@@ -13,6 +13,8 @@ import { HomeComponent } from './home/home.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { AddEnquiryComponent } from './Business Enquiry/add-enquiry/add-enquiry.component';
 import { SearchEnquiryComponent } from './Business Enquiry/search-enquiry/search-enquiry.component';
+import { AddmodalComponent } from './Business Enquiry/addbuyermodal/addmodal.component';
+import { ArtienquirymodalComponent } from './Business Enquiry/artienquirymodal/artienquirymodal.component';
 
 
 
@@ -27,7 +29,9 @@ const appRoutes: Routes = [
     AppComponent,
     HomeComponent,
     AddEnquiryComponent,
-    SearchEnquiryComponent,   
+    SearchEnquiryComponent,
+    AddmodalComponent,
+    ArtienquirymodalComponent 
   ],
 
 
