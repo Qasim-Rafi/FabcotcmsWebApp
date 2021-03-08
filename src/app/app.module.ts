@@ -15,6 +15,7 @@ import { AddEnquiryComponent } from './Business Enquiry/add-enquiry/add-enquiry.
 import { SearchEnquiryComponent } from './Business Enquiry/search-enquiry/search-enquiry.component';
 import { AddmodalComponent } from './Business Enquiry/addbuyermodal/addmodal.component';
 import { ArtienquirymodalComponent } from './Business Enquiry/artienquirymodal/artienquirymodal.component';
+import { ProcessenqmodalComponent } from './Business Enquiry/processenqmodal/processenqmodal.component';
 
 
 
@@ -31,7 +32,8 @@ const appRoutes: Routes = [
     AddEnquiryComponent,
     SearchEnquiryComponent,
     AddmodalComponent,
-    ArtienquirymodalComponent 
+    ArtienquirymodalComponent,
+    ProcessenqmodalComponent,
   ],
 
 

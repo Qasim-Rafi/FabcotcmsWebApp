@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddmodalComponent } from '../addbuyermodal/addmodal.component';
 import { ArtienquirymodalComponent } from '../artienquirymodal/artienquirymodal.component';
-
+import { ProcessenqmodalComponent } from '../processenqmodal/processenqmodal.component';
 @Component({
   selector: 'app-add-enquiry',
   templateUrl: './add-enquiry.component.html',
@@ -47,13 +47,22 @@ export class AddEnquiryComponent implements OnInit {
   fetch(arg0: (data: any) => void) {
     throw new Error('Method not implemented.');
   }
-
-
+  addenquiryProcessForm(){
+    const modalRef = this.modalService.open(ProcessenqmodalComponent, { centered: true });
+          modalRef.result.then((data) => {
+         // on close
+          if(data ==true){
+          //  this.date = this.myDate;
+           this.fetch((data) => {
+            this.rows = data;
+          });
+           
   
-
-
-
-
+         }
+       }, (reason) => {
+         // on dismiss
+       });
+  } 
   getenquiryCountry()
   {
     this.http.get(`${environment.apiUrl}/api/Lookups/Countries`)
@@ -117,6 +126,7 @@ export class AddEnquiryComponent implements OnInit {
        // on dismiss
      });
 } 
+
 addenquiryArticleForm(){
   const modalRef = this.modalService.open(ArtienquirymodalComponent, { centered: true });
         modalRef.result.then((data) => {
@@ -133,6 +143,7 @@ addenquiryArticleForm(){
      }, (reason) => {
        // on dismiss
      });
+     
 } 
 
 
