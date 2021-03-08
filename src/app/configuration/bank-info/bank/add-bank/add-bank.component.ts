@@ -35,7 +35,7 @@ export class AddBankComponent implements OnInit {
       "branchName":this.data.branchName ,
       "location":this.data.location,
       "address":this.data.address,
-      "details":this.data.details
+      "details":this.data.details,
      
     }
 

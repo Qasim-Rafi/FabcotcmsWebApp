@@ -12,11 +12,13 @@ import { EditCityComponent } from './edit-city/edit-city.component';
   styleUrls: ['./city.component.css']
 })
 export class CityComponent implements OnInit {
+  listCount: number;
   response:any;
   rows:any=[];
+  // countryId= null;
+
   columns:any=[];
   data:any={};
-  listCount: number;
   myDate=Date.now();
 
   constructor(private http:HttpClient,
@@ -26,17 +28,20 @@ export class CityComponent implements OnInit {
   ngOnInit(): void {
     this.fetch((data) => {
       this.rows = data;
+      this.listCount= this.rows.length;
     });
+  
   }
 
 
+  
   fetch(cb) {
     let that = this;
     that.http
-    .get(`${environment.apiUrl}/api/Lookups/Countries`)
+    .get(`${environment.apiUrl}/api/Configs/GetAllCity`)
     .subscribe(res => {
       this.response = res;
-      this.listCount = this.fetch.length;
+     
     if(this.response.success==true)
     {
     that.data =this.response.data;
@@ -55,11 +60,35 @@ export class CityComponent implements OnInit {
   }
 
 
+  deleteCity(id)
+  {
+    this.http.delete(`${environment.apiUrl}/api/Configs/DeleteCity/`+id.id )
+    .subscribe(
+      res=> { 
+        this.response = res;
+        if (this.response.success == true){
+         this.toastr.error(this.response.message, 'Message.');
+         this.fetch((data) => {
+          this.rows = data;
+        });
 
+        }
+        else {
+          this.toastr.error('Something went Worng', 'Message.');
+            }
  
+      }, err => {
+        if (err.status == 400) {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+      });
+  }
 
 
-  addCityForm(){
+
+
+  
+  addCity(){
     const modalRef = this.modalService.open(AddCityComponent, { centered: true });
           modalRef.result.then((data) => {
          // on close
@@ -67,6 +96,7 @@ export class CityComponent implements OnInit {
           //  this.date = this.myDate;
            this.fetch((data) => {
             this.rows = data;
+        
           });
            
   
@@ -77,14 +107,16 @@ export class CityComponent implements OnInit {
   } 
   
 
-  editCityForm(){
+  editCity(row){
     const modalRef = this.modalService.open(EditCityComponent, { centered: true });
+    modalRef.componentInstance.userId =row.id;
           modalRef.result.then((data) => {
          // on close
           if(data ==true){
           //  this.date = this.myDate;
            this.fetch((data) => {
             this.rows = data;
+            
           });
            
          }
@@ -92,8 +124,5 @@ export class CityComponent implements OnInit {
          // on dismiss
        });
   } 
-  
-
-
-
 }
+
