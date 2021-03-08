@@ -1,0 +1,41 @@
+<div class="modal-header">
+    <h5 class="modal-title">
+      <i class="far fa-edit"></i>
+      Add Process Type
+    </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <form #addAgentForm="ngForm" novalidate>
+
+          <div class="form-group row" [class.has-error]="type.invalid && type.touched">
+            <label for="type" class="col-sm-3 col-form-label control-label">Process Type </label>
+            <div class="col-sm-9">
+              <input required id="type" type="text" class="form-control" placeholder="Name" name="type"
+                [(ngModel)]="data.type" #type="ngModel" [ngClass]="{'error': type.invalid && type.touched}">
+            </div>
+          </div>
+
+      <div class="form-group row">
+        <label for="description" class="col-sm-3 col-form-label">Description</label>
+        <div class="col-sm-9">
+          <textarea required class="form-control" id="description" rows="3" name="description"
+            [(ngModel)]="data.description" #description="ngModel"></textarea>
+        </div>
+      </div>
+
+      <div class="form-check form-check-inline">
+        <input class="form-check-input check-btn" type="checkbox" checked>
+        <label class="form-check-label">Mark as Active</label>
+      </div>
+
+      <div class="modal-footer">
+       <button class="btn button-save" type="submit" (click)="addProcessType()">
+          Save Process Type
+        </button>
+      </div>
+    </form>
+  </div>

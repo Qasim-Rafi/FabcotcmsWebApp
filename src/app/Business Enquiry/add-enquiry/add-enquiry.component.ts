@@ -6,7 +6,9 @@ import { environment } from 'src/environments/environment';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddmodalComponent } from '../addbuyermodal/addmodal.component';
 import { ArtienquirymodalComponent } from '../artienquirymodal/artienquirymodal.component';
-
+import {PackagingComponent} from './packaging/packaging.component'
+import { DesignTypeComponent } from './design-type/design-type.component';
+import {ProcessTypeComponent} from './process-type/process-type.component';
 @Component({
   selector: 'app-add-enquiry',
   templateUrl: './add-enquiry.component.html',
@@ -21,6 +23,7 @@ export class AddEnquiryComponent implements OnInit {
     buyer:any[];
     rows:any=[];
     temp: any[];
+    columns:any=[];
     countryId:null;
     @ViewChild(NgForm) buyerForm;
     date: number;
@@ -134,6 +137,61 @@ addenquiryArticleForm(){
        // on dismiss
      });
 } 
+// packaging form
 
+addPackingForm(){
+  const modalRef = this.modalService.open(PackagingComponent, { centered: true });
+        modalRef.result.then((data) => {
+       // on close
+        if(data ==true){
+        //  this.date = this.myDate;
+         this.fetch((data) => {
+          this.rows = data;
+          
+  this.listCount = this.rows.length;
+        });
+         
+
+       }
+     }, (reason) => {
+       // on dismiss
+     });
+} 
+// design form
+addDesignTypeForm(){
+  const modalRef = this.modalService.open(DesignTypeComponent, { centered: true });
+        modalRef.result.then((data) => {
+       // on close
+        if(data ==true){
+        //  this.date = this.myDate;
+         this.fetch((data) => {
+          this.rows = data;
+        });
+         
+
+       }
+     }, (reason) => {
+       // on dismiss
+     });
+}
+
+// process type form
+
+addProcessTypeForm(){
+  const modalRef = this.modalService.open(ProcessTypeComponent, { centered: true });
+        modalRef.result.then((data) => {
+       // on close
+        if(data ==true){
+        //  this.date = this.myDate;
+         this.fetch((data) => {
+          this.rows = data;
+        });
+         
+
+       }
+     }, (reason) => {
+       // on dismiss
+     });
+} 
 
 }
