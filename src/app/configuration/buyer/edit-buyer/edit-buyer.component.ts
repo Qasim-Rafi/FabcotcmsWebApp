@@ -26,10 +26,31 @@ export class EditBuyerComponent implements OnInit {
   ngOnInit(): void {
     this.editBuyer(this.userId);
     this.getCountry();
+    this.getParentBuyer();
   }
 
   get activeModal() {
     return this._NgbActiveModal;
+  }
+
+  getParentBuyer()
+  {
+    this.http.get(`${environment.apiUrl}/api/Lookups/Buyers`)
+    .subscribe(
+      res=> { 
+        this.response = res;
+        if (this.response.success == true){
+          this.buyer=this.response.data;
+        }
+        else {
+          this.toastr.error('Something went Worng', 'Message.');
+            }
+
+      }, err => {
+        if (err.status == 400) {
+          this.toastr.error('Something went Worng', 'Message.');
+        }
+      });
   }
 
 

@@ -19,6 +19,8 @@ export class BuyerComponent implements OnInit {
     data:any={};
     country:any=[];
     buyer:any[];
+    rows:any=[];
+    temp: any[];
     countryId:null;
     @ViewChild(NgForm) buyerForm;
     date: number;
@@ -33,9 +35,14 @@ export class BuyerComponent implements OnInit {
              
               
   ngOnInit(){
-    this.getBuyers();
     this.getCountry();
+    this.getBuyers();
   }
+
+
+  
+
+
 
 
   getCountry()
@@ -57,6 +64,10 @@ export class BuyerComponent implements OnInit {
         }
       });
   }
+
+
+
+  
 
  
     getBuyers()

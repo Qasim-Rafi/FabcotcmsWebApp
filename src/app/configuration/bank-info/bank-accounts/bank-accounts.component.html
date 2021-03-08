@@ -31,18 +31,28 @@
             </tbody>
         </table>
 
+        
+        <div class="row">
+          <div class=" col-md-4 mb-4" >
+            <div class="input-group col-md-offset-3">
+              <input type="text" placeholder="Search " 
+              class="input form-control w-50" (keyup)="updateFilter($event)">
+            </div>
+          </div>
+        </div>
 
 
-        <ngx-datatable #myTable class="material" [columns]="columns" [rows]="rows" [columnMode]="'force'" 
-        [headerHeight]="50" [footerHeight]="50"
-        [rowHeight]="'auto'" [limit]="10">
 
-      <ngx-datatable-column name="S. No." [width]="20" > 
+        <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'" 
+        [headerHeight]="50" [footerHeight]="50" [sorts]="[{prop: 'id', dir: 'asce'}]"
+        [rowHeight]="'auto'" [limit]="6">
+
+      <ngx-datatable-column name="S. No." [width]="0.5" prop="id" >   
           <ng-template let-row="row"  ngx-datatable-cell-template>
             {{row.id}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Account Name" [width]="80">
+        <ngx-datatable-column name="Account Name" [width]="80" prop="accountName" >
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.accountName}}
           </ng-template>

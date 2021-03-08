@@ -30,47 +30,59 @@
                 </tr>
             </tbody>
         </table>
+
         
-        <ngx-datatable #myTable class="bootstrap" [columns]="columns" 
-        [rows]="rows" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-        [rowHeight]="'auto'" [limit]="10">
+        <div class="row">
+          <div class=" col-md-4 mb-4" >
+            <div class="input-group col-md-offset-3">
+              <input type="text" placeholder="Search " 
+              class="input form-control w-50" (keyup)="updateFilter($event)">
+            </div>
+          </div>
+        </div>
+
+        
+
+        <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'" 
+        [headerHeight]="50" [footerHeight]="50" [sorts]="[{prop: 'code', dir: 'asce'}]"
+        [rowHeight]="'auto'" [limit]="6">
 
       <ngx-datatable-column name="Code" [width]="20" prop="code" > 
           <ng-template let-row="row"  ngx-datatable-cell-template>
             {{row.code}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Name" [width]="80">
+        <ngx-datatable-column name="Name" [width]="20" prop="name">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.name}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name=" Agent Type" [width]="80">
+        <ngx-datatable-column name=" Agent Type" [width]="10">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.agentTypeId}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Address" [width]="80">
+        <ngx-datatable-column name="Address" [width]="20">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.address}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Email" [width]="80">
+        <ngx-datatable-column name="Email" [width]="20">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.emailAddress}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Contact Nos." [width]="80">
+        <ngx-datatable-column name="Contact Nos." [width]="10">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.cellNumber}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Status " [width]="80">
+        <ngx-datatable-column name="Status " [width]="5">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.agentTypeId}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Side" [width]="80">
+        <ngx-datatable-column name="Side" [width]="5">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.agentSideId}}
           </ng-template>

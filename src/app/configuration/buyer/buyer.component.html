@@ -99,7 +99,7 @@
   
   
   
-  <!-- List  -->
+  <!--    List   -->
   
   <div class="faq-item" *ngFor="let i of buyer">
     <div class="row">
@@ -113,7 +113,7 @@
       <div class="col-md-7">
         <a class="faq-question ">{{i.buyerCode}} - {{i.buyerName}}</a>
   
-        <small>Parent Buyer: Almedahls Alingsås AB (386)</small><br>
+        <small>Parent Buyer: {{i.parentBuyerId}} ({{i.buyerCode}})</small><br>
         <small>Added by <strong>Shahid Tanvir</strong>
           <div class="m-l-lg" style="display: inline-block;">
             <i class="far fa-clock"></i> {{myDate | date:'medium'}}

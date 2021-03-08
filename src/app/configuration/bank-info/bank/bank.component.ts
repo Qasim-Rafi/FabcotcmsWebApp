@@ -18,6 +18,7 @@ export class BankComponent implements OnInit {
   columns:any=[];
   data:any={};
   myDate=Date.now();
+  temp: any[];
 
   constructor(private http:HttpClient,
     private toastr: ToastrService,
@@ -25,10 +26,26 @@ export class BankComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetch((data) => {
+      this.temp = [...data];
       this.rows = data;
       this.listCount= this.rows.length;
     });
   
+  }
+
+  
+  updateFilter(event) {
+    const val = event.target.value.toLowerCase();
+
+    // filter our data
+    const temp = this.temp.filter(function (d) {
+      return d.name.toLowerCase().indexOf(val) !== -1 || !val;
+    });
+
+    // update the rows
+    this.rows = temp;
+    // Whenever the filter changes, always go back to the first page
+    // this.table.offset = 0;
   }
 
 
@@ -93,8 +110,9 @@ export class BankComponent implements OnInit {
           if(data ==true){
           //  this.date = this.myDate;
            this.fetch((data) => {
+            this.temp = [...data];
             this.rows = data;
-        
+            this.listCount= this.rows.length;
           });
            
   

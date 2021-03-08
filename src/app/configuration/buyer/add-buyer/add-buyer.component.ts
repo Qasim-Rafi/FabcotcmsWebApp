@@ -43,7 +43,7 @@ export class AddBuyerComponent implements OnInit {
       res=> { 
         this.response = res;
         if (this.response.success == true){
-          this.country =this.response.data;
+          this.buyer=this.response.data;
         }
         else {
           this.toastr.error('Something went Worng', 'Message.');
@@ -76,7 +76,6 @@ export class AddBuyerComponent implements OnInit {
         }
       });
   }
-
 
 
 

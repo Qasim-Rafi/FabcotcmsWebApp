@@ -18,7 +18,7 @@ export class ArticlesComponent implements OnInit {
   data:any={};
   listCount: number;
   myDate=Date.now();
-  temp: any[];
+  temp: any=[];
 
   constructor(private http:HttpClient,
     private toastr: ToastrService,
@@ -32,8 +32,6 @@ export class ArticlesComponent implements OnInit {
   });
 
   }
-
-
 
   updateFilter(event) {
     const val = event.target.value.toLowerCase();

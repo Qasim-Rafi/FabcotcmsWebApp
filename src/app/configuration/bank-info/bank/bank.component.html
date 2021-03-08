@@ -31,48 +31,56 @@
             </tbody>
         </table>
 
+        <div class="row">
+          <div class=" col-md-4 mb-4" >
+            <div class="input-group col-md-offset-3">
+              <input type="text" placeholder="Search " 
+              class="input form-control w-50" (keyup)="updateFilter($event)">
+            </div>
+          </div>
+        </div>
 
+        
+        <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'" 
+        [headerHeight]="50" [footerHeight]="50" [sorts]="[{prop: 'id', dir: 'asce'}]"
+        [rowHeight]="'auto'" [limit]="6">
 
-        <ngx-datatable #myTable class="material" [columns]="columns" [rows]="rows" [columnMode]="'force'" 
-        [headerHeight]="50" [footerHeight]="50"
-        [rowHeight]="'auto'" [limit]="10">
-
-      <ngx-datatable-column name="S. No." [width]="20" > 
+      <ngx-datatable-column name="S. No." [width]="0.5"  prop="id"> 
           <ng-template let-row="row"  ngx-datatable-cell-template>
             {{row.id}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Bank Name" [width]="80">
+        <ngx-datatable-column name="Bank Name" [width]="3"  prop="name">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.name}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Branch Code" [width]="80">
+        <ngx-datatable-column name="Branch Code" [width]="3"  prop="branchCode">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.branchCode}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Branch Name" [width]="80">
+        <ngx-datatable-column name="Branch Name" [width]="5"  prop="branchName">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.branchName}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Location" [width]="80">
+        <ngx-datatable-column name="Location" [width]="10"  prop="location">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.location}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Address" [width]="80">
+        <ngx-datatable-column name="Address" [width]="10"  prop="address">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
               {{row.address}}
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Details" [width]="80">
+          <ngx-datatable-column name="Details" [width]="20"  prop="details">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
               {{row.details}}
             </ng-template>
           </ngx-datatable-column>
-        <ngx-datatable-column name="Action" [width]="80">
+        <ngx-datatable-column name="Action" [width]="0.5">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             <button type="button" class="btn editIconBack" (click)="editEditForm(row)">
               <i class="far fa-edit "></i>

@@ -17,6 +17,7 @@ export class AddSellerFormComponent implements OnInit {
   seller:any[];
   country:any=[];
   countryId:null;
+  parentSellerId:null;
   @ViewChild(NgForm) sellerForm;
 
   
@@ -26,7 +27,7 @@ export class AddSellerFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCountry();
-    this.getSellers();
+    this.getParentSellers();
   }
 
   getCountry()
@@ -56,9 +57,9 @@ export class AddSellerFormComponent implements OnInit {
   }
 
 
-  getSellers()
+  getParentSellers()
   {
-    this.http.get(`${environment.apiUrl}/api/Sellers/GetSellers`)
+    this.http.get(`${environment.apiUrl}/api/Lookups/Sellers`)
     .subscribe(
       res=> { 
   
@@ -86,7 +87,7 @@ export class AddSellerFormComponent implements OnInit {
            "sellerCode": this.data.sellerCode,
            "sellerName":  this.data.sellerName,
            "billingAddress": this.data.sellerBillAddress,
-           "countryId": this.countryId,
+           "countryId": this.data.countryId,
            "contactNoPrimary":  this.data.sellerContact,
            "contactNoSecondary":  this.data.sellerOtherContact,
            "faxNumber":  this.data.sellerFax,
@@ -98,7 +99,7 @@ export class AddSellerFormComponent implements OnInit {
            "leadTime":  this.data.leadTime,
            "sellerDetails":  this.data.sellerDetails,
            "isParentSeller": true,
-           "parentSellerId": 0
+           "parentSellerId": this.data.parentSellerId
     }
 
     this.http.
@@ -117,7 +118,7 @@ export class AddSellerFormComponent implements OnInit {
 
       }, err => {
         if (err.status == 400) {
-          this.toastr.error('Something went Worng', 'Message.');
+          this.toastr.error('Error 400 :(', 'Message.');
         }
       });
   }

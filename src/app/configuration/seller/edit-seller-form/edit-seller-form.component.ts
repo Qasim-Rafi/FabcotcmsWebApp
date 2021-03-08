@@ -13,6 +13,7 @@ export class EditSellerFormComponent implements OnInit {
   @Input() userId;
   data:any={};
   response: any;
+  seller:any[];
   country:any=[];
   countryId = null;
   parentSellerId = null;
@@ -28,11 +29,37 @@ export class EditSellerFormComponent implements OnInit {
     ngOnInit() {
       this.editSeller(this.userId);
       this.getCountry();
+      this.getParentSellers();
     }
   
     get activeModal() {
       return this._NgbActiveModal;
     }
+
+
+
+    getParentSellers()
+    {
+      this.http.get(`${environment.apiUrl}/api/Lookups/Sellers`)
+      .subscribe(
+        res=> { 
+    
+          this.response = res;
+          if (this.response.success == true){
+                this.seller =this.response.data;
+           
+          }
+          else {
+            this.toastr.error('Something went Worng', 'Message.');
+              }
+  
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error('Something went Worng', 'Message.');
+          }
+        });
+    }
+  
   
     getCountry()
     {

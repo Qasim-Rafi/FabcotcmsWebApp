@@ -12,7 +12,7 @@
     </div>
  
       <div class="form-group row">
-        <label for="name" class="col-sm-3 col-form-label">Buyer Name<span>*</span></label>
+        <label for="name" class="col-sm-3 col-form-label">Buyer Name<span> *</span></label>
         <div class="col-sm-9">
           <input required id="buyerName" type="text" class="form-control" placeholder="Name" name="buyerName"
             [(ngModel)]="data.buyerName" #name="ngModel" [ngClass]="{'error': name.invalid && name.touched}">
@@ -20,7 +20,7 @@
       </div>
   
       <div class="form-group row">
-        <label for="bill-address" class="col-sm-3 col-form-label">Billing Address<span>*</span></label>
+        <label for="bill-address" class="col-sm-3 col-form-label">Billing Address<span> *</span></label>
         <div class="col-sm-9">
           <textarea required class="form-control" id="billingAddress" rows="3" name="billingAddress"
             [(ngModel)]="data.billingAddress" #billingAddress="ngModel"
@@ -29,7 +29,7 @@
       </div>
   
       <div class="form-group row">
-        <label for="delivery-address" class="col-sm-3 col-form-label">Delivery Address<span>*</span></label>
+        <label for="delivery-address" class="col-sm-3 col-form-label">Delivery Address<span> *</span></label>
         <div class="col-sm-9">
           <textarea required class="form-control" id="deliveryAddress" rows="3" name="deliveryAddress"
             [(ngModel)]="data.deliveryAddress" #deliveryAddress="ngModel"
@@ -38,7 +38,7 @@
       </div>
   
       <div class="form-group row">
-        <label for="country" class="col-sm-3 col-form-label">Country<span>*</span></label>
+        <label for="country" class="col-sm-3 col-form-label">Country<span> *</span></label>
         <div class="col-sm-9">
           <select class="form-control" name="countryId" [(ngModel)]="data.countryId">
             <option value="null" disabled> Select Country</option>
@@ -50,7 +50,7 @@
       </div>
   
       <div class="form-group row">
-        <label for="contactNoPrimary" class="col-sm-3 col-form-label">Contact Nos.<span>*</span></label>
+        <label for="contactNoPrimary" class="col-sm-3 col-form-label">Contact Nos.<span> *</span></label>
         <div class="col-sm-4">
           <input required type="text" class="form-control" id="contactNoPrimary" placeholder="Contact No."
             name="contactNoPrimary" [(ngModel)]="data.contactNoPrimary" #contactNoPrimary="ngModel"
@@ -91,23 +91,27 @@
         </div>
       </div>
   
+     
       <div class="form-check form-check-inline">
         <input class="form-check-input check-btn" type="checkbox" checked>
         <label class="form-check-label">Parent Buyer</label>
       </div>
-  
+      
       <div class="form-group row">
-        <label for="inputEmail3" class="col-sm-3 col-form-label">Parent Buyer</label>
+        <label for="isParentBuyer" class="col-sm-3 col-form-label" 
+        name="isParentBuyer" [(ngModel)]="data.isParentBuyer" #isParentBuyer="ngModel">
+        Parent Buyer
+      </label>
+
         <div class="col-sm-9">
-          <select class="form-control">
-            <option> Ali</option>
-            <option> Ali</option>
-            <option> Ali</option>
-            <option> Ali</option>
-            <option> Ali</option>
+          <select class="form-control" name="parentBuyerId" [(ngModel)]="data.parentBuyerId">
+            <option  *ngFor="let i of buyer" [value]="i.id">
+              {{i.buyerName}}
+            </option> 
           </select>
         </div>
       </div>
+
   
   
     <div class="modal-footer bg-light">
