@@ -11,6 +11,8 @@ import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ConfigurationModule } from './configuration/configuration.module';
 import { HomeComponent } from './home/home.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { AddEnquiryComponent } from './Business Enquiry/add-enquiry/add-enquiry.component';
+import { SearchEnquiryComponent } from './Business Enquiry/search-enquiry/search-enquiry.component';
 
 
 
@@ -23,7 +25,9 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,   
+    HomeComponent,
+    AddEnquiryComponent,
+    SearchEnquiryComponent,   
   ],
 
 

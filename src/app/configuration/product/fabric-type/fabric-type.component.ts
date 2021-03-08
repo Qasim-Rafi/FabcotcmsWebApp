@@ -17,6 +17,7 @@ export class FabricTypeComponent implements OnInit {
   columns:any=[];
   listCount: number;
   myDate=Date.now();
+  temp: any[];
  
 
 
@@ -26,12 +27,28 @@ export class FabricTypeComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetch((data) => {
+      this.temp = [...data];
       this.rows = data;
+      this.listCount = this.rows.length;
     });
   }
 
 
 
+  updateFilter(event) {
+    const val = event.target.value.toLowerCase();
+
+    // filter our data
+    const temp = this.temp.filter(function (d) {
+      return d.code.toLowerCase().indexOf(val) !== -1  ||
+             d.type.toLowerCase().indexOf(val) !== -1  || !val;
+    });
+
+    // update the rows
+    this.rows = temp;
+    // Whenever the filter changes, always go back to the first page
+    // this.table.offset = 0;
+  }
 
 
   
@@ -42,7 +59,6 @@ export class FabricTypeComponent implements OnInit {
     .get(`${environment.apiUrl}/api/Products/GetAllFabricType`)
     .subscribe(res => {
       this.response = res;
-      this.listCount = this.fetch.length;
     if(this.response.success==true)
     {
     that.data =this.response.data;
@@ -72,6 +88,7 @@ export class FabricTypeComponent implements OnInit {
          this.toastr.error(this.response.message, 'Message.');
          this.fetch((data) => {
           this.rows = data;
+          this.listCount = this.rows.length;
         });
           
         }
@@ -96,6 +113,7 @@ export class FabricTypeComponent implements OnInit {
           //  this.date = this.myDate;
            this.fetch((data) => {
             this.rows = data;
+            this.listCount = this.rows.length;
           });
            
   
