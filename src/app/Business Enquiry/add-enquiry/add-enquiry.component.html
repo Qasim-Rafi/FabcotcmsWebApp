@@ -86,7 +86,6 @@
                       <option> Article 3 </option>
                       <option> Article 4 </option>
                     </select>
-                    <span class="float-left">
                       <button class="btn btn-success ">
                         <div class="row">
                           <div class=" col-md-12">
@@ -97,7 +96,6 @@
                           </div>
                         </div>
                       </button>
-                    </span>
                   </div>
                 </div>
               </div>
@@ -119,11 +117,16 @@
                       <option> Process 3 </option>
                       <option> Process 4 </option>
                     </select>
-                    <span class="float-left">
-                      <button class="btn btn-success ">
-                        <i class="fa fa-plus"></i>
-                      </button>
-                    </span>
+                    <button class="btn btn-success ">
+                      <div class="row">
+                        <div class=" col-md-12">
+                          <div class="input-group col-md-offset-3">
+
+                            <i class="fa fa-plus" (click)="addenquiryProcessForm()" aria-hidden="true"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </button>
                   </div>
                 </div>
               </div>

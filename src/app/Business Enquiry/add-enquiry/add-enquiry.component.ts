@@ -9,6 +9,8 @@ import { ArtienquirymodalComponent } from '../artienquirymodal/artienquirymodal.
 import {PackagingComponent} from './packaging/packaging.component'
 import { DesignTypeComponent } from './design-type/design-type.component';
 import {ProcessTypeComponent} from './process-type/process-type.component';
+
+
 @Component({
   selector: 'app-add-enquiry',
   templateUrl: './add-enquiry.component.html',
@@ -50,12 +52,6 @@ export class AddEnquiryComponent implements OnInit {
   fetch(arg0: (data: any) => void) {
     throw new Error('Method not implemented.');
   }
-
-
-  
-
-
-
 
   getenquiryCountry()
   {
@@ -120,6 +116,7 @@ export class AddEnquiryComponent implements OnInit {
        // on dismiss
      });
 } 
+
 addenquiryArticleForm(){
   const modalRef = this.modalService.open(ArtienquirymodalComponent, { centered: true });
         modalRef.result.then((data) => {
@@ -136,6 +133,7 @@ addenquiryArticleForm(){
      }, (reason) => {
        // on dismiss
      });
+     
 } 
 // packaging form
 
