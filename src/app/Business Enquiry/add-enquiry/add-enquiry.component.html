@@ -14,12 +14,14 @@
       <div class=" panel-heading">
         <table class="table">
             <tbody>
-                <tr>
+                <tr >
                     <td>
 
 
                         <div class="col-md-6 col-md-offset-1">
-                            <div class="form-group"><label class="m-b-none ">Enquiry # <span style="margin-left: 40px;"> (Auto) </span> <span style="margin-left: 160px;"> (Manual) </span></label>
+                            <div class="form-group">
+                                <label class="m-b-none ">Enquiry # 
+                                    <span style="margin-left: 40px;"> (Auto) </span> <span style="margin-left: 160px;"> (Manual) </span></label>
                                 <div class="input-group">
                                     <span class="input-group-addon mr-5 ml-4">FG-</span> 
                                     <div class="col-md-4 ml-7">
@@ -31,25 +33,11 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="input-group">
-                        <div class="form-group row">
-                            <label for="code" class="col-sm-3 col-form-label control-label">Enquiry# </label>
-                         
-                            <div class="col-sm-2 ">
-                              <input  id="name" type="text" class="form-control" placeholder="Name" name="name">
-                            </div> 
-                    
-                        
-                          </div>
-                        </div> -->
                     </td>
-                   
                 </tr>
-                
                 <tr>
-                    <td>
-                       
-                        <div class="form-group row">
+                    <td class="noBorder ">
+                        <div class="form-group row mt-6">
                             <label for="code" class="col-sm-3 col-form-label control-label">Buyer Name</label>
                             <div class="col-sm-4">
                                 <div class="input-group">
@@ -62,11 +50,11 @@
                                   <button class="btn btn-success ">
                                     <i class="fa fa-plus"></i>
                                   </button>
-                            </div></div>
-
+                            </div>
                           </div>
+                        </div>
                     
-                          <div class="form-group row">
+                        <div class="form-group row">
                             <label for="code" class="col-sm-3 col-form-label control-label float-right">Article Name</label>
                             <div class="col-sm-4">
                                 <div class="input-group">
@@ -76,21 +64,19 @@
                                     <option> Article 3 </option> 
                                     <option> Article 4 </option> 
                                   </select>
-                                  <span class="float-left">
-                                  <button class="btn btn-success ">
-                                    <i class="fa fa-plus"></i>
-                                  </button>
-                                </span>
+                                    <span class="float-left">
+                                        <button class="btn btn-success ">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                          </div>
-                        </td>
-                </tr>
-
-
-                <tr>
-                    <td>
-                       
+                       </td>
+                    </tr>
+                    
+                    <tr>
+                      <td>   
                         <div class="form-group row">
                             <label for="code" class="col-sm-3 col-form-label control-label">Process</label>
                             <div class="col-sm-4">
@@ -166,9 +152,177 @@
                                 </span>
                             </div>
                         </div>
-                          </div>
+                      </div>
                     </td>
                 </tr>
+
+                
+                <tr>
+                    <td >
+                        <div class="form-group row">
+                            <label for="code" class="col-sm-3 col-form-label control-label">Payment Terms</label>
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                <select class="form-control">
+                                    <option selected disabled> Select Packaging  </option> 
+                                    <option> Packaging 1 </option> 
+                                    <option> Packaging 2 </option> 
+                                    <option> Packaging 3 </option> 
+                                    <option> Packaging 4 </option> 
+                                  </select>
+                                
+                                  <button class="btn btn-success ">
+                                    <i class="fa fa-plus"></i>
+                                  </button>
+                                
+                                  <div class="col-sm-2">
+                                    <input type="text" placeholder="Days." class="form-control">
+                                </div>
+                                
+                                <div class="col-sm-4">
+                                    <input type="text" placeholder="Additional Info." class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                  </td>
+                </tr>
+
+                <tr>
+                    <td class="noBorder">
+                        <div class="form-group row">
+                            <label for="code" class="col-sm-3 col-form-label control-label">Price Terms</label>
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                <select class="form-control">
+                                    <option selected disabled> Select Price Terms  </option> 
+                                    <option> Price Terms 1 </option> 
+                                    <option> Price Terms 2 </option> 
+                                    <option> Price Terms 3 </option> 
+                                    <option> Price Terms 4 </option> 
+                                  </select>
+                                  <button class="btn btn-success ">
+                                    <i class="fa fa-plus"></i>
+                                  </button>
+
+                                  <select class="form-control">
+                                    <option selected disabled> Select Destination </option> 
+                                    <option> Destination 1 </option> 
+                                    <option> Destination 2 </option> 
+                                    <option> Destination 3 </option> 
+                                    <option> Destination 4 </option> 
+                                  </select>
+                                  <button class="btn btn-success ">
+                                    <i class="fa fa-plus"></i>
+                                  </button>
+                            </div>
+                        </div>
+                      </div>
+                  </td>
+                </tr>
+                <tr>
+                    <td class="noBorder">
+                        <div class="form-group row">
+                            <label for="code" class="col-sm-3 col-form-label control-label">Suppiler Side Commission</label>
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <div class="col-sm-3">
+                                        <input type="text" placeholder="Comm%" class="form-control">
+                                    </div>
+                                <select class="form-control col-sm-5">
+                                    <option selected disabled> Select UOM  </option> 
+                                    <option> UOM 1 </option> 
+                                    <option> UOM 2 </option> 
+                                    <option> UOM 3 </option> 
+                                    <option> UOM 4 </option> 
+                                  </select>
+                                  <div class="col-sm-5">
+                                    <input type="text" placeholder="Additional Info." class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                  </td>
+                </tr>
+
+                <tr>
+                    <td class="noBorder">
+                        <div class="form-group row">
+                            <label for="code" class="col-sm-3 col-form-label control-label">Buyer Side Commission</label>
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <div class="col-sm-3">
+                                        <input type="text" placeholder="Comm%" class="form-control">
+                                    </div>
+                                <select class="form-control col-sm-5">
+                                    <option selected disabled> Select UOM  </option> 
+                                    <option> UOM 1 </option> 
+                                    <option> UOM 2 </option> 
+                                    <option> UOM 3 </option> 
+                                    <option> UOM 4 </option> 
+                                  </select>
+                                  <div class="col-sm-5">
+                                    <input type="text" placeholder="Additional Info." class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                  </td>
+                </tr>
+
+                <tr>
+                    <td >
+                        <div class="form-group row">
+                            <label for="code" class="col-sm-3 col-form-label control-label">Certification</label>
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                <select class="form-control">
+                                    <option selected disabled> Select Certification  </option> 
+                                    <option> Certification 1 </option> 
+                                    <option> Certification 2 </option> 
+                                    <option> Certification 3 </option> 
+                                    <option> Certification 4 </option> 
+                                  </select>
+                                  <button class="btn btn-success ">
+                                    <i class="fa fa-plus"></i>
+                                  </button>
+                            </div>
+                        </div>
+                      </div>
+                  </td>
+                </tr>
+
+                  <tr>
+                    <td class="noBorder">
+                        <div class="form-group row">
+                            <label  class="col-sm-3 col-form-label">Remarks</label>
+                            <div class="col-sm-6">
+                              <textarea class="form-control"  rows="4" placeholder="Any Remarks Here..." >
+                              </textarea>
+                            </div>
+                          </div>
+                  </td>
+                </tr>
+                <tr>
+                    <td class="noBorder">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Other Conditions</label>
+                            <div class="col-sm-6">
+                              <textarea class="form-control"  rows="4" placeholder="Any Conditions Here..." >
+                              </textarea>
+                            </div>
+                          </div>
+                  </td>
+                </tr>
+
+                <tr class="text-center">
+
+                    <button class="btn btn-info"><i class="fas fa-check"></i> Save & Next</button>
+             
+                    <button class="btn btn-secondary ml-4"> <i class="fas fa-times"></i>
+                        Cancle</button>
+                </tr>
+
             </tbody>
         </table>
       </div>

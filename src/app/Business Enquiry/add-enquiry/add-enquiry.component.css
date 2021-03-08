@@ -1,6 +1,36 @@
 label:not(.form-check-label):not(.custom-file-label) {
   font-weight: 500;
   color: #3e3d3d;
-
   text-align: right;
+}
+.noBorder {
+  border: none !important;
+}
+
+.form-group {
+  margin-bottom: 1.2rem !important;
+}
+.btn-success {
+  color: #1ab394;
+  background-color: #ffffff;
+  border-color: #1ab394;
+  border-radius: 0px;
+}
+.btn-success:hover {
+  color: #ffffff;
+  background-color: #1ab394;
+  border-color: #1ab394;
+  border-radius: 0px;
+}
+.btn-info {
+  color: #ffffff;
+  background-color: #1ab394;
+  border-color: #1ab394;
+  border-radius: 0px;
+}
+.btn-secondary {
+  color: #ffffff;
+  background-color: #818381;
+  border-color: #818381;
+  border-radius: 0px;
 }
