@@ -15,10 +15,10 @@ import { AddEnquiryComponent } from './Business Enquiry/add-enquiry/add-enquiry.
 import { SearchEnquiryComponent } from './Business Enquiry/search-enquiry/search-enquiry.component';
 import { AddmodalComponent } from './Business Enquiry/addbuyermodal/addmodal.component';
 import { ArtienquirymodalComponent } from './Business Enquiry/artienquirymodal/artienquirymodal.component';
-
 import { PackagingComponent } from './Business Enquiry/add-enquiry/packaging/packaging.component';
 import { DesignTypeComponent } from './Business Enquiry/add-enquiry/design-type/design-type.component';
 import { ProcessTypeComponent } from './Business Enquiry/add-enquiry/process-type/process-type.component';
+import { ProcessenqmodalComponent } from './Business Enquiry/processenqmodal/processenqmodal.component';
 
 
 
@@ -42,7 +42,8 @@ const appRoutes: Routes = [
 
     PackagingComponent,
     DesignTypeComponent,
-    ProcessTypeComponent 
+    ProcessTypeComponent,
+    ProcessenqmodalComponent
 
   ],
 

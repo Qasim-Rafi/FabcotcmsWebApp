@@ -9,7 +9,7 @@ import { ArtienquirymodalComponent } from '../artienquirymodal/artienquirymodal.
 import {PackagingComponent} from './packaging/packaging.component'
 import { DesignTypeComponent } from './design-type/design-type.component';
 import {ProcessTypeComponent} from './process-type/process-type.component';
-
+import { ProcessenqmodalComponent } from '../processenqmodal/processenqmodal.component';
 
 @Component({
   selector: 'app-add-enquiry',
@@ -135,6 +135,22 @@ addenquiryArticleForm(){
      });
      
 } 
+addenquiryProcessForm(){
+  const modalRef = this.modalService.open(ProcessenqmodalComponent, { centered: true });
+        modalRef.result.then((data) => {
+       // on close
+        if(data ==true){
+        //  this.date = this.myDate;
+         this.fetch((data) => {
+          this.rows = data;
+        });
+         
+
+       }
+     }, (reason) => {
+       // on dismiss
+     });
+}
 // packaging form
 
 addPackingForm(){
