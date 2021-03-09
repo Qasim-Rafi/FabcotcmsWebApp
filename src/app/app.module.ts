@@ -19,6 +19,8 @@ import { PackagingComponent } from './Business Enquiry/add-enquiry/packaging/pac
 import { DesignTypeComponent } from './Business Enquiry/add-enquiry/design-type/design-type.component';
 import { ProcessTypeComponent } from './Business Enquiry/add-enquiry/process-type/process-type.component';
 import { ProcessenqmodalComponent } from './Business Enquiry/processenqmodal/processenqmodal.component';
+import { AddcitymodalComponent } from './Business Enquiry/addcitymodal/addcitymodal.component';
+import { AddcertmodalComponent } from './Business Enquiry/addcertmodal/addcertmodal.component';
 
 
 
@@ -43,7 +45,9 @@ const appRoutes: Routes = [
     PackagingComponent,
     DesignTypeComponent,
     ProcessTypeComponent,
-    ProcessenqmodalComponent
+    ProcessenqmodalComponent,
+    AddcitymodalComponent,
+    AddcertmodalComponent
 
   ],
 

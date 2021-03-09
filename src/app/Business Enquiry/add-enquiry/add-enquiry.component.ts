@@ -10,6 +10,8 @@ import {PackagingComponent} from './packaging/packaging.component'
 import { DesignTypeComponent } from './design-type/design-type.component';
 import {ProcessTypeComponent} from './process-type/process-type.component';
 import { ProcessenqmodalComponent } from '../processenqmodal/processenqmodal.component';
+import { AddcitymodalComponent } from '../addcitymodal/addcitymodal.component';
+import { AddcertmodalComponent } from '../addcertmodal/addcertmodal.component';
 
 @Component({
   selector: 'app-add-enquiry',
@@ -52,6 +54,104 @@ export class AddEnquiryComponent implements OnInit {
   fetch(arg0: (data: any) => void) {
     throw new Error('Method not implemented.');
   }
+  fetch1(cb) {
+    let that = this;
+    that.http
+    .get(`${environment.apiUrl}/api/Configs/GetAllArticle`)
+    .subscribe(res => {
+      this.response = res;
+     
+    if(this.response.success==true)
+    {
+    that.data =this.response.data;
+    cb(this.data);
+    }
+    else{
+      this.toastr.error(this.response.message, 'Message.');
+    }
+      // this.spinner.hide();
+    }, err => {
+      if ( err.status == 400) {
+ this.toastr.error(err.error.message, 'Message.');;
+      }
+    //  this.spinner.hide();
+    });
+  }
+
+ //fetch for process function
+ fetch2(cb) {
+  let that = this;
+  that.http
+  .get(`${environment.apiUrl}/api/TextileGarments/GetAllProcess`)
+  .subscribe(res => {
+    this.response = res;
+    this.listCount = this.fetch.length;
+  if(this.response.success==true)
+  {
+  that.data =this.response.data;
+  cb(this.data);
+  }
+  else{
+    this.toastr.error(this.response.message, 'Message.');
+  }
+    // this.spinner.hide();
+  }, err => {
+    if ( err.status == 400) {
+this.toastr.error(err.error.message, 'Message.');;
+    }
+  //  this.spinner.hide();
+  });
+}
+//fetch for city modal
+fetch3(cb) {
+  let that = this;
+  that.http
+  .get(`${environment.apiUrl}/api/Configs/GetAllCity`)
+  .subscribe(res => {
+    this.response = res;
+   
+  if(this.response.success==true)
+  {
+  that.data =this.response.data;
+  cb(this.data);
+  }
+  else{
+    this.toastr.error(this.response.message, 'Message.');
+  }
+    // this.spinner.hide();
+  }, err => {
+    if ( err.status == 400) {
+this.toastr.error(err.error.message, 'Message.');;
+    }
+  //  this.spinner.hide();
+  });
+}
+
+//fetch for certificate modal
+
+fetch4(cb) {
+  let that = this;
+  that.http
+  .get(`${environment.apiUrl}/api/TextileGarments/GetAllCertificate`)
+  .subscribe(res => {
+    this.response = res;
+    this.listCount = this.fetch.length;
+  if(this.response.success==true)
+  {
+  that.data =this.response.data;
+  cb(this.data);
+  }
+  else{
+    this.toastr.error(this.response.message, 'Message.');
+  }
+    // this.spinner.hide();
+  }, err => {
+    if ( err.status == 400) {
+this.toastr.error(err.error.message, 'Message.');;
+    }
+  //  this.spinner.hide();
+  });
+}
 
   getenquiryCountry()
   {
@@ -73,9 +173,40 @@ export class AddEnquiryComponent implements OnInit {
       });
   }
 
-
-
+  addenquiryCertificateForm(){
+    const modalRef = this.modalService.open(AddcertmodalComponent, { centered: true });
+          modalRef.result.then((data) => {
+         // on close
+          if(data ==true){
+          //  this.date = this.myDate;
+           this.fetch4((data) => {
+            this.rows = data;
+          });
+           
   
+         }
+       }, (reason) => {
+         // on dismiss
+       });
+  } 
+
+  addenquiryCity(){
+    const modalRef = this.modalService.open(AddcitymodalComponent, { centered: true });
+          modalRef.result.then((data) => {
+         // on close
+          if(data ==true){
+          //  this.date = this.myDate;
+           this.fetch3((data) => {
+            this.rows = data;
+        
+          });
+           
+  
+         }
+       }, (reason) => {
+         // on dismiss
+       });
+  }
 
  
     getenquiryBuyers()
@@ -123,7 +254,7 @@ addenquiryArticleForm(){
        // on close
         if(data ==true){
         //  this.date = this.myDate;
-         this.fetch((data) => {
+         this.fetch1((data) => {
           this.rows = data;
           this.listCount = this.rows.length;
         });
@@ -141,7 +272,7 @@ addenquiryProcessForm(){
        // on close
         if(data ==true){
         //  this.date = this.myDate;
-         this.fetch((data) => {
+         this.fetch2((data) => {
           this.rows = data;
         });
          
