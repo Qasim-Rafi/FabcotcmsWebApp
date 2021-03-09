@@ -12,7 +12,8 @@ import {ProcessTypeComponent} from './process-type/process-type.component';
 import { ProcessenqmodalComponent } from '../processenqmodal/processenqmodal.component';
 import { AddcitymodalComponent } from '../addcitymodal/addcitymodal.component';
 import { AddcertmodalComponent } from '../addcertmodal/addcertmodal.component';
-
+import { PaymentTermComponent} from './payment-term/payment-term.component'
+import {PriceTermComponent} from './price-term/price-term.component'
 @Component({
   selector: 'app-add-enquiry',
   templateUrl: './add-enquiry.component.html',
@@ -153,6 +154,123 @@ this.toastr.error(err.error.message, 'Message.');;
   });
 }
 
+fetch5(cb) {
+  let that = this;
+  that.http
+  .get(`${environment.apiUrl}/api/Products/GetAllPriceTerm`)
+  .subscribe(res => {
+    this.response = res;
+    this.listCount = this.fetch.length;
+  if(this.response.success==true)
+  {
+  that.data =this.response.data;
+  cb(this.data);
+  }
+  else{
+    this.toastr.error(this.response.message, 'Message.');
+  }
+    // this.spinner.hide();
+  }, err => {
+    if ( err.status == 400) {
+this.toastr.error(err.error.message, 'Message.');;
+    }
+  //  this.spinner.hide();
+  });
+}
+
+fetch6(cb) {
+  let that = this;
+  that.http
+  .get(`${environment.apiUrl}/api/Products/GetAllPaymentTerm`)
+  .subscribe(res => {
+    this.response = res;
+    this.listCount = this.fetch.length;
+  if(this.response.success==true)
+  {
+  that.data =this.response.data;
+  cb(this.data);
+  }
+  else{
+    this.toastr.error(this.response.message, 'Message.');
+  }
+    // this.spinner.hide();
+  }, err => {
+    if ( err.status == 400) {
+this.toastr.error(err.error.message, 'Message.');;
+    }
+  //  this.spinner.hide();
+  });
+}
+
+fetch7(cb) {
+  let that = this;
+  that.http
+  .get(`${environment.apiUrl}/api/TextileGarments/GetAllProcessType`)
+  .subscribe(res => {
+    this.response = res;
+    this.listCount = this.fetch.length;
+  if(this.response.success==true)
+  {
+  that.data =this.response.data;
+  cb(this.data);
+  }
+  else{
+    this.toastr.error(this.response.message, 'Message.');
+  }
+    // this.spinner.hide();
+  }, err => {
+    if ( err.status == 400) {
+this.toastr.error(err.error.message, 'Message.');;
+    }
+  //  this.spinner.hide();
+  });
+}
+
+fetch8(cb) {
+  let that = this;
+  that.http
+  .get(`${environment.apiUrl}/api/TextileGarments/GetAllDesignType`)
+  .subscribe(res => {
+    this.response = res;
+    this.listCount = this.fetch.length;
+  if(this.response.success==true)
+  {
+  that.data =this.response.data;
+  cb(this.data);
+  }
+  else{
+    this.toastr.error(this.response.message, 'Message.');
+  }
+    // this.spinner.hide();
+  }, err => {
+    if ( err.status == 400) {
+this.toastr.error(err.error.message, 'Message.');;
+    }
+  //  this.spinner.hide();
+  });
+}
+fetch9(cb) {
+  let that = this;
+  that.http
+  .get(`${environment.apiUrl}/api/Products/GetAllPacking`)
+  .subscribe(res => {
+    this.response = res;
+  if(this.response.success==true)
+  {
+  that.data =this.response.data;
+  cb(this.data);
+  }
+  else{
+    this.toastr.error(this.response.message, 'Message.');
+  }
+    // this.spinner.hide();
+  }, err => {
+    if ( err.status == 400) {
+this.toastr.error(err.error.message, 'Message.');;
+    }
+  //  this.spinner.hide();
+  });
+}
   getenquiryCountry()
   {
     this.http.get(`${environment.apiUrl}/api/Lookups/Countries`)
@@ -290,7 +408,7 @@ addPackingForm(){
        // on close
         if(data ==true){
         //  this.date = this.myDate;
-         this.fetch((data) => {
+         this.fetch9((data) => {
           this.rows = data;
           
   this.listCount = this.rows.length;
@@ -309,7 +427,7 @@ addDesignTypeForm(){
        // on close
         if(data ==true){
         //  this.date = this.myDate;
-         this.fetch((data) => {
+         this.fetch8((data) => {
           this.rows = data;
         });
          
@@ -328,7 +446,7 @@ addProcessTypeForm(){
        // on close
         if(data ==true){
         //  this.date = this.myDate;
-         this.fetch((data) => {
+         this.fetch7((data) => {
           this.rows = data;
         });
          
@@ -338,5 +456,43 @@ addProcessTypeForm(){
        // on dismiss
      });
 } 
+
+// payment Term form 
+
+addPaymentForm(){
+  const modalRef = this.modalService.open(PaymentTermComponent, { centered: true });
+        modalRef.result.then((data) => {
+       // on close
+        if(data ==true){
+        //  this.date = this.myDate;
+         this.fetch6((data) => {
+          this.rows = data;
+        });
+         
+
+       }
+     }, (reason) => {
+       // on dismiss
+     });
+} 
+
+addPriceForm(){
+  const modalRef = this.modalService.open(PriceTermComponent, { centered: true });
+        modalRef.result.then((data) => {
+       // on close
+        if(data ==true){
+        //  this.date = this.myDate;
+         this.fetch5((data) => {
+          this.rows = data;
+        });
+         
+
+       }
+     }, (reason) => {
+       // on dismiss
+     });
+} 
+
+
 
 }

@@ -21,6 +21,8 @@ import { ProcessTypeComponent } from './Business Enquiry/add-enquiry/process-typ
 import { ProcessenqmodalComponent } from './Business Enquiry/processenqmodal/processenqmodal.component';
 import { AddcitymodalComponent } from './Business Enquiry/addcitymodal/addcitymodal.component';
 import { AddcertmodalComponent } from './Business Enquiry/addcertmodal/addcertmodal.component';
+import { PaymentTermComponent } from './Business Enquiry/add-enquiry/payment-term/payment-term.component';
+import { PriceTermComponent } from './Business Enquiry/add-enquiry/price-term/price-term.component';
 
 
 
@@ -47,7 +49,9 @@ const appRoutes: Routes = [
     ProcessTypeComponent,
     ProcessenqmodalComponent,
     AddcitymodalComponent,
-    AddcertmodalComponent
+    AddcertmodalComponent,
+    PaymentTermComponent,
+    PriceTermComponent
 
   ],
 
