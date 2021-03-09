@@ -7,6 +7,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EditBuyerComponent } from './edit-buyer/edit-buyer.component';
 import { AddBuyerComponent } from './add-buyer/add-buyer.component';
 
+import { ServiceService } from 'src/app/shared/service.service';
 @Component({
   selector: 'app-buyer',
   templateUrl: './buyer.component.html',
@@ -28,46 +29,17 @@ export class BuyerComponent implements OnInit {
     constructor(private http:HttpClient,
               private toastr: ToastrService,  
               private modalService: NgbModal,
-  
+              private service: ServiceService
                 )
                { }
 
              
               
   ngOnInit(){
-    this.getCountry();
     this.getBuyers();
-  }
-
-
-  
-
-
-
-
-  getCountry()
-  {
-    this.http.get(`${environment.apiUrl}/api/Lookups/Countries`)
-    .subscribe(
-      res=> { 
-        this.response = res;
-        if (this.response.success == true){
-          this.country =this.response.data;
-        }
-        else {
-          this.toastr.error('Something went Worng', 'Message.');
-            }
-
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error('Something went Worng', 'Message.');
-        }
-      });
-  }
-
-
-
-  
+    return this.service.getCountry();
+   
+  } 
 
  
     getBuyers()

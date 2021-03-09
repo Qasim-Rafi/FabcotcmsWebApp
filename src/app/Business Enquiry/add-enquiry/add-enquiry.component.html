@@ -45,18 +45,29 @@
                                 <label for="code" class="col-sm-3 col-form-label control-label">Buyer Name</label>
                                 <div class="col-sm-4">
                                     <div class="input-group">
-                                        <select class="form-control">
-                                            <option> Buyer 1 </option>
-                                            <option> Buyer 2 </option>
-                                            <option> Buyer 3 </option>
-                                            <option> Buyer 4 </option>
-                                        </select>
+                                        <select name="buyer " class="form-control" [(ngModel)]="buyerId">
+                                            <option value="null" disabled> Select Buyer</option>
+                                            <option *ngFor="let i of buyer" [value]="i.id">
+                                                             {{i.buyerName}}
+                                            </option>
+                                          </select>
                                         <button class="btn btn-success " (click)="addenquiryBuyerForm()">
                                             <i class="fa fa-plus"></i>
                                         </button>
                                     </div>
                                 </div>
                             </div>
+                            <!-- <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Country Name</label>
+                                <div class="col-sm-9">
+                                  <select name="country " class="form-control" [(ngModel)]="countryId">
+                                    <option value="null" disabled> Select Country</option>
+                                    <option *ngFor="let i of country" [value]="i.id">
+                                      {{i.name}}
+                                    </option>
+                                  </select>
+                                </div>
+                              </div> -->
 
                             <div class="form-group row">
                                 <label for="code" class="col-sm-3 col-form-label control-label float-right">Article

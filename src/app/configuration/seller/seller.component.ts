@@ -22,29 +22,29 @@ export class SellerComponent implements OnInit {
               private modalService: NgbModal,) { }
 
   ngOnInit(): void {
-    this.getCountry();
+    // this.getCountry();
     this.getSellers();
   }
 
-  getCountry()
-  {
-    this.http.get(`${environment.apiUrl}/api/Lookups/Countries`)
-    .subscribe(
-      res=> { 
-        this.response = res;
-        if (this.response.success == true){
-          this.country =this.response.data;
-        }
-        else {
-          this.toastr.error('Something went Worng', 'Message.');
-            }
+  // getCountry()
+  // {
+  //   this.http.get(`${environment.apiUrl}/api/Lookups/Countries`)
+  //   .subscribe(
+  //     res=> { 
+  //       this.response = res;
+  //       if (this.response.success == true){
+  //         this.country =this.response.data;
+  //       }
+  //       else {
+  //         this.toastr.error('Something went Worng', 'Message.');
+  //           }
 
-      }, err => { 
-        if (err.status == 400) {
-          this.toastr.error('Something went Worng', 'Message.');
-        }
-      });
-  }
+  //     }, err => { 
+  //       if (err.status == 400) {
+  //         this.toastr.error('Something went Worng', 'Message.');
+  //       }
+  //     });
+  // }
 
   getSellers()
   {

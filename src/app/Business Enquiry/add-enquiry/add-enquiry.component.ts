@@ -14,6 +14,7 @@ import { AddcitymodalComponent } from '../addcitymodal/addcitymodal.component';
 import { AddcertmodalComponent } from '../addcertmodal/addcertmodal.component';
 import { PaymentTermComponent} from './payment-term/payment-term.component'
 import {PriceTermComponent} from './price-term/price-term.component'
+import { ServiceService } from 'src/app/shared/service.service';
 @Component({
   selector: 'app-add-enquiry',
   templateUrl: './add-enquiry.component.html',
@@ -26,8 +27,9 @@ export class AddEnquiryComponent implements OnInit {
     data:any={};
     country:any=[];
     buyer:any[];
+    buyerId:null;
     rows:any=[];
-    temp: any[];
+    temp: any=[];
     columns:any=[];
     countryId:null;
     @ViewChild(NgForm) buyerForm;
@@ -36,25 +38,31 @@ export class AddEnquiryComponent implements OnInit {
     constructor(private http:HttpClient,
               private toastr: ToastrService,  
               private modalService: NgbModal,
-  
+              private service: ServiceService
                 )
                { }
 
              
               
-  ngOnInit(){
-    this.fetch((data) => {
-      this.temp = [...data];
-      this.rows = data;
-      this.listCount = this.rows.length;
-  });
+  ngOnInit()
+  {
 
     this.getenquiryCountry();
     this.getenquiryBuyers();
+    return this.service.getBuyers();
+    
+  //   this.fetch((data) => {
+  //     this.temp = [...data];
+  //     this.rows = data;
+  //     this.listCount = this.rows.length;
+  // });
+
+
   }
   fetch(arg0: (data: any) => void) {
     throw new Error('Method not implemented.');
   }
+ 
   fetch1(cb) {
     let that = this;
     that.http
@@ -86,7 +94,7 @@ export class AddEnquiryComponent implements OnInit {
   .get(`${environment.apiUrl}/api/TextileGarments/GetAllProcess`)
   .subscribe(res => {
     this.response = res;
-    this.listCount = this.fetch.length;
+    this.listCount = this.fetch2.length;
   if(this.response.success==true)
   {
   that.data =this.response.data;
@@ -136,7 +144,7 @@ fetch4(cb) {
   .get(`${environment.apiUrl}/api/TextileGarments/GetAllCertificate`)
   .subscribe(res => {
     this.response = res;
-    this.listCount = this.fetch.length;
+    this.listCount = this.fetch4.length;
   if(this.response.success==true)
   {
   that.data =this.response.data;
@@ -160,7 +168,7 @@ fetch5(cb) {
   .get(`${environment.apiUrl}/api/Products/GetAllPriceTerm`)
   .subscribe(res => {
     this.response = res;
-    this.listCount = this.fetch.length;
+    this.listCount = this.fetch5.length;
   if(this.response.success==true)
   {
   that.data =this.response.data;
@@ -184,7 +192,7 @@ fetch6(cb) {
   .get(`${environment.apiUrl}/api/Products/GetAllPaymentTerm`)
   .subscribe(res => {
     this.response = res;
-    this.listCount = this.fetch.length;
+    this.listCount = this.fetch6.length;
   if(this.response.success==true)
   {
   that.data =this.response.data;
@@ -208,7 +216,7 @@ fetch7(cb) {
   .get(`${environment.apiUrl}/api/TextileGarments/GetAllProcessType`)
   .subscribe(res => {
     this.response = res;
-    this.listCount = this.fetch.length;
+    this.listCount = this.fetch7.length;
   if(this.response.success==true)
   {
   that.data =this.response.data;
@@ -232,7 +240,7 @@ fetch8(cb) {
   .get(`${environment.apiUrl}/api/TextileGarments/GetAllDesignType`)
   .subscribe(res => {
     this.response = res;
-    this.listCount = this.fetch.length;
+    this.listCount = this.fetch8.length;
   if(this.response.success==true)
   {
   that.data =this.response.data;
