@@ -33,9 +33,25 @@
 }
 /* ----------------------------------------------------------------------- */
 
+h2 {
+  color: #575d63 !important;
+  font-weight: 100 !important;
+}
+
+h3 {
+  color: white !important;
+  font-weight: 100 !important;
+}
+
+h5 {
+  color: grey;
+  /* margin-left: 40%;   */
+}
+
 .innerBody {
   padding: 15px 15px 15px 15px;
 }
+
 .btn-primary {
   background-color: #1ab394 !important;
   border-color: #1ab394 !important;
@@ -61,8 +77,8 @@
   color: red;
 }
 .button-save {
-  background-color: #1ab394;
-  color: ivory;
+  background-color: #1ab394 !important;
+  color: ivory !important;
 }
 .close:not(:disabled):not(.disabled):focus,
 .mailbox-attachment-close:not(:disabled):not(.disabled):focus {

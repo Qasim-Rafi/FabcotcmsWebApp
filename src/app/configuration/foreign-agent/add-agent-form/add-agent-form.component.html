@@ -79,35 +79,40 @@
       </div>
 
       <div class="form-group row">
-        <label for="cellNumber" class="col-sm- col-form-label">Contact Nos.<span>*</span></label>
-        <div class="col-sm-9">
+        <label for="cellNumber" class="col-sm-3 col-form-label">Contact Nos.<span>*</span></label>
+        <div class="col-md-9">
           <input required type="text" class="form-control" id="cellNumber" placeholder="Contact No."
             name="cellNumber" [(ngModel)]="data.cellNumber" #cellNumber="ngModel"cellNumber>
         </div>
-        <div class="col-sm-9">
+        <label  class="col-sm-3 col-form-label"></label>
+        <div class="col-md-9 mt-1">
           <input type="text" class="form-control" id="landlineNumber" placeholder="Landline No."
             name="landlineNumber" [(ngModel)]="data.landlineNumber" #landlineNumber="ngModel"
-            [disabled]=" landlineNumber.invalid">
+            [disabled]=" cellNumber.invalid">
         </div>
       </div>
  
-
+      <div class="form-group row">
         <label for="bankName" class="col-sm-3 col-form-label control-label">Bank </label>
         <div class="col-sm-9">
           <input required id="bankName" type="text" class="form-control " placeholder="Code" name="bankName"
             [(ngModel)]="data.bankName" #bankName="ngModel">
         </div>
+      </div>
 
-
+      <div class="form-group row">
         <label for="accountNumber" class="col-sm-3 col-form-label control-label">Agent <span>*</span></label>
         <div class="col-sm-9">
           <input required id="accountNumber" type="text" class="form-control " placeholder="Account Number" name="accountNumber"
             [(ngModel)]="data.accountNumber" #accountNumber="ngModel" [ngClass]="{'error': accountNumber.invalid && accountNumber.touched}">
         </div>
-        <div class="col-sm-9">
+        <label  class="col-sm-3 col-form-label"></label>
+        <div class="col-sm-9 mt-1">
+          
             <input required id="accountTitle" type="text" class="form-control " placeholder="Account Name" name="accountTitle"
               [(ngModel)]="data.accountTitle" #accountTitle="ngModel" [ngClass]="{'error': accountTitle.invalid && accountTitle.touched}">
           </div>
+      </div>
       
 
       <div class="form-group row" [class.has-error]="swiftCode.invalid && swiftCode.touched">
@@ -120,16 +125,16 @@
 
 
       <div class="form-group row">
-        <label for="details" class="col-sm-3 col-form-label">Details<span>*</span></label>
+        <label for="details" class="col-sm-3 col-form-label">Details</label>
         <div class="col-sm-9">
-          <textarea required class="form-control" id="details" rows="3" name="details"
-            [(ngModel)]="data.details" #details="ngModel">           </textarea>
+          <textarea  class="form-control" id="details" rows="3" name="details"
+            [(ngModel)]="data.details" #details="ngModel"></textarea>
         </div>
       </div>
 
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="activeModal.close()">Close</button>
-        <button class="btn button-save" type="submit" (click)="addAgent()">
+        <button class="btn button-save" type="submit" (click)="addAgent() " [disabled]="addAgentForm.invalid">
           Add Agent
         </button>
       </div>

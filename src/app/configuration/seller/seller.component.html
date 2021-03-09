@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-12">
-          <h3 class="m-0 ">Seller / Supplier</h3>
+          <h2 class="m-0 ">Seller / Supplier</h2>
         </div><!-- /.col -->
       </div><!-- /.row -->
     </div><!-- /.container-fluid -->
@@ -32,15 +32,15 @@
       -->
       </div>
   
-      <div class="col-lg-3 ">
+      <div class="col-md-3 ">
         <div class="widget style1 green-bg">
           <div class="row">
-            <div class="col-xs-4">
+            <div class="col-md-4">
               <i class="fa fa-industry fa-4x"></i>
             </div>
-            <div class="col-xs-8 text-right">
+            <div class="col-md-8 text-right">
               <div> Total Sellers </div>
-              <h2 class="font-bold">{{listCount}}</h2>
+              <h3 class="font-bold">{{listCount}}</h3>
             </div>
           </div>
         </div>
@@ -48,12 +48,12 @@
       <div class="col-lg-3">
         <div class="widget style1 blue-bg">
           <div class="row">
-            <div class="col-xs-4">
+            <div class="col-md-4">
               <i class="fa fa-users fa-4x"></i>
             </div>
-            <div class="col-xs-8 text-right">
+            <div class="col-md-8 text-right">
               <div> Total Contacts </div>
-              <h2 class="font-bold">0</h2>
+              <h3 class="font-bold">0</h3>
             </div>
           </div>
         </div>
@@ -86,11 +86,11 @@
       -->
     <hr>
     <div class="row">
-      <div class=" col-md-12">
+      <div class=" col-md-12 autoAdjustSearch">
         <div class="input-group col-md-offset-3">
           <input type="text" placeholder="Search Buyer or their POCs " class="input form-control w-50">
           <span class="group-btn">
-            <button type="button" class="btn btn-primary"> <i class="fa fa-search"></i> Search</button>
+            <button type="button" class="btn btn-primary autoAdjustBtn ml-1"> <i class="fa fa-search"></i> Search</button>
           </span>
           <button type="button" class="btn btn-primary float-right" data-toggle="modal"
             data-target="#exampleModalScrollable" (click)="addSellerform()">

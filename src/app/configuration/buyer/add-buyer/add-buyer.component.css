@@ -1,8 +1,3 @@
-h5 {
-  color: grey;
-  /* margin-left: 40%;   */
-}
-
 input,
 textarea,
 option,
@@ -22,9 +17,9 @@ label {
   color: ivory;
 }
 
-.check-btn {
+/* .check-btn {
   margin-left: 100px;
-}
+} */
 .error {
   border: 1px solid #e03a37 !important;
   border-left: 3px solid #e03a37 !important;
@@ -39,4 +34,16 @@ label {
 
 span {
   color: red;
+}
+
+@media (max-width: 640px) {
+  label {
+    text-align: left;
+  }
+}
+
+@media (max-width: 575px) {
+  .fieldmrgbtm {
+    margin: 0 0 10px 0;
+  }
 }

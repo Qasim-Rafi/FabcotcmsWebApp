@@ -1,9 +1,9 @@
 <!-- Button trigger modal -->
-<div class="content-header p-4">
+<div class="content-header">
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-12">
-          <h3 class="m-0 ">Buyer / Customer</h3>
+          <h2 class="m-0 ">Buyer / Customer</h2>
         </div><!-- /.col -->
       </div><!-- /.row -->
     </div><!-- /.container-fluid -->
@@ -13,87 +13,91 @@
     <!--span class="text-muted small pull-right">Last modification: <i class="fa fa-clock-o"></i> 2:10 pm - 12.06.2014</span -->
   
     <div class="row">
-      <div class="col-lg-3">
-        
-  <!-- <div class="widget style1" >
-  <div class="row">
-  <div class="col-xs-4 text-center">
-    <i class="fa fa-trophy fa-4x"></i>
-  </div>
-  <div class="col-xs-8 text-right">
-    <span> Today income </span>
-    <h2 class="font-bold">$ 4,232</h2>
-  </div>
-  </div>
-  </div> -->
+      <div class="col-md-3">
+              
+        <!-- <div class="widget style1" >
+        <div class="row">
+        <div class="col-xs-4 text-center">
+          <i class="fa fa-trophy fa-4x"></i>
+        </div>
+        <div class="col-xs-8 text-right">
+          <span> Today income </span>
+          <h2 class="font-bold">$ 4,232</h2>
+        </div>
+        </div>
+        </div> -->
   
       </div>
   
-      <div class="col-lg-3">
+      <div class="col-md-3">
         <div class="widget style1 yellow-bg">
           <div class="row">
-            <div class="col-xs-4">
+            <div class="col-md-4">
               <i class="fa fa-briefcase fa-4x"></i>
             </div>
-            <div class="col-xs-8 text-right">
+            <div class="col-md-8 text-right">
               <div> Total Buyers </div>
-              <h2 class="font-bold">{{listCount}}</h2>
+              <h3 class="font-bold">{{listCount}}</h3>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-lg-3">
+
+      <div class="col-md-3">
         <div class="widget style1 lazur-bg">
           <div class="row">
-            <div class="col-xs-4">
+            <div class="col-md-4">
               <i class="fa fa-users fa-4x"></i>
             </div>
-            <div class="col-xs-8 text-right">
+            <div class="col-md-8 text-right">
               <div> Total Contacts </div>
-              <h2 class="font-bold">0</h2>
+              <h3 class="font-bold">0</h3>
             </div>
           </div>
         </div>
       </div>
   
-      <div class="col-lg-3">
+      <div class="col-md-3">
         
-  <!-- <div class="widget style1 navy-bg">
-  <div class="row">
-  <div class="col-xs-4">
-  <i class="fa fa-music fa-4x"></i>
-  </div>
-  <div class="col-xs-8 text-right">
-  <span> New albums </span>
-  <h2 class="font-bold">12</h2>
-  </div>
-  </div>
-  </div> -->
-  
-      </div>
-    </div>
-  
-    <!--
-  <span class="pull-right m-l-xs" style="margin-top: 8px;"> teams</span><h2 class="no-margins pull-right" data-toggle="tooltip" data-placement="top" title="Total Teams"> </h2>
-  <h2>Company Internal Team</h2>
-      <p>
-          Company internal teams are comprises of employees who are ticket stakeholders.
-      </p>
-  -->
-    <hr>
-    <div class="row">
-      <div class=" col-md-12">
-        <div class="input-group col-md-offset-3">
-          <input type="text" placeholder="Search Buyer or their POCs " class="input form-control w-50">
-          <span class="group-btn">
-            <button type="button" class="btn btn-primary"> <i class="fa fa-search"></i> Search</button>
-          </span>
-          <button type="button" class="btn btn-primary float-right" data-toggle="modal" 
-                  data-target="#popForm" (click)="addBuyerForm()" >  
-                  <i class="fa fa-plus" aria-hidden="true"></i> Add New Buyer</button>
+        <!-- <div class="widget style1 navy-bg">
+        <div class="row">
+        <div class="col-xs-4">
+        <i class="fa fa-music fa-4x"></i>
         </div>
+        <div class="col-xs-8 text-right">
+        <span> New albums </span>
+        <h2 class="font-bold">12</h2>
+        </div>
+        </div>
+        </div> -->
+  
       </div>
+
     </div>
+  
+        <!--
+      <span class="pull-right m-l-xs" style="margin-top: 8px;"> teams</span><h2 class="no-margins pull-right" data-toggle="tooltip" data-placement="top" title="Total Teams"> </h2>
+      <h2>Company Internal Team</h2>
+          <p>
+              Company internal teams are comprises of employees who are ticket stakeholders.
+          </p>
+      -->
+        <hr>
+        <div class="row">
+          <div class=" col-md-12 autoAdjustSearch">
+            <div class="input-group col-md-offset-3">
+              <input type="text" placeholder="Search Buyer or their POCs " class="input form-control col-sm-7">
+              <span class="group-btn">
+                <button type="button" class="btn btn-primary autoAdjustBtn ml-1"> <i class="fa fa-search"></i> Search</button>
+              </span>
+
+              
+              <button type="button " class="btn btn-primary float-right " data-toggle="modal" 
+                      data-target="#popForm" (click)="addBuyerForm()" >  
+                      <i class="fa fa-plus" aria-hidden="true"></i> Add New Buyer</button>
+            </div>
+          </div>
+        </div>
   </div>
   
   
