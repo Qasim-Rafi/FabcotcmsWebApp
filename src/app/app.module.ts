@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import { ToastrModule } from 'ngx-toastr';
+import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ConfigurationModule } from './configuration/configuration.module';
 import { HomeComponent } from './home/home.component';
@@ -71,8 +72,14 @@ const appRoutes: Routes = [
       progressBar: true,
       timeOut:3000
     }),
-  ],
+    ConfirmationPopoverModule.forRoot({
+      confirmButtonType: 'success', // set defaults here
+      cancelButtonType: 'danger',
+      cancelText:'No',
+      confirmText:'Yes',
 
+    }),
+  ],
 
   providers: [],
   bootstrap: [AppComponent]

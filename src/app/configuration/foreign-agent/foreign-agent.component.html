@@ -97,8 +97,14 @@
             <button type="button" class="btn editIconBack" (click)="editAgentForm(row)">
               <i class="far fa-edit "></i>
             </button>
-            <button type="button" class="btn deleteIconBack" (click)="deleteAgent(row)">
-              <i class="far fa-trash-alt"></i>
+            <button type="button" 
+            class="btn deleteIconBack"
+            mwlConfirmationPopover 
+            popoverTitle="Confirmation"
+            popoverMessage="Are you sure ?" 
+            placement="left" 
+            (confirm)="deleteAgent(row)"> 
+            <i class="far fa-trash-alt"></i>
             </button>
           </ng-template>
         </ngx-datatable-column>

@@ -70,6 +70,7 @@ import { EditTimeActionComponent } from './home-textile/time-action-items/edit-t
 import { AddTimeActionComponent } from './home-textile/time-action-items/add-time-action/add-time-action.component';
 import { AddCurrencyComponent } from './currency/add-currency/add-currency.component';
 import { EditCurrencyComponent } from './currency/edit-currency/edit-currency.component';
+import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 
 @NgModule({
   declarations: [
@@ -83,19 +84,19 @@ import { EditCurrencyComponent } from './currency/edit-currency/edit-currency.co
     BuyerComponent, 
     AddBuyerComponent, 
     EditBuyerComponent,
-     ArticlesComponent, 
-     AddArticleComponent,
-      EditArticleComponent, 
-      CityComponent,
-       CountryComponent, 
-       CurrencyComponent,
-        AddCityComponent, 
-        EditCityComponent,
-         EditCountryComponent,
-          AddCountryComponent,
-           FabricTypeComponent,
-     PackingComponent, 
-            PaymentTermComponent, 
+    ArticlesComponent, 
+    AddArticleComponent,
+    EditArticleComponent, 
+    CityComponent,
+    CountryComponent, 
+    CurrencyComponent,
+    AddCityComponent, 
+    EditCityComponent,
+    EditCountryComponent,
+    AddCountryComponent,
+    FabricTypeComponent,
+    PackingComponent, 
+     PaymentTermComponent, 
             AddTypeComponent, 
             EditTypeComponent, 
             EditPackingComponent,
@@ -125,6 +126,9 @@ import { EditCurrencyComponent } from './currency/edit-currency/edit-currency.co
     ToastrModule.forRoot({
       progressBar: true,
       timeOut:3000
+    }),
+    ConfirmationPopoverModule.forRoot({
+      confirmButtonType: 'danger', // set defaults here
     }),
   ]
 })

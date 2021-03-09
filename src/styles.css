@@ -94,3 +94,11 @@ h5 {
   border-style: solid solid none;
   border-width: 1px 0;
 }
+
+.popover-header {
+  padding: 0.5rem 0.75rem;
+  margin-bottom: 0;
+  font-size: 1rem;
+  color: rgb(255, 255, 255) !important;
+  background-color: #424141 !important;
+}

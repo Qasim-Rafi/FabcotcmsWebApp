@@ -25,7 +25,10 @@ export class BuyerComponent implements OnInit {
     countryId:null;
     @ViewChild(NgForm) buyerForm;
     date: number;
+
     
+
+
     constructor(private http:HttpClient,
               private toastr: ToastrService,  
               private modalService: NgbModal,
