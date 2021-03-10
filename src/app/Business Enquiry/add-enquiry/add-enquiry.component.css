@@ -10,6 +10,14 @@ label:not(.form-check-label):not(.custom-file-label) {
 .form-group {
   margin-bottom: 1.2rem !important;
 }
+
+.headline {
+  font-size: 16px;
+  font-weight: 700;
+  color: #545454;
+  padding-bottom: 10px;
+}
+
 .btn-success {
   color: #1ab394;
   background-color: #ffffff;

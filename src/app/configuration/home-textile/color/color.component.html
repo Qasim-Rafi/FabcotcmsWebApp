@@ -69,6 +69,15 @@
             <button type="button" class="btn deleteIconBack" (click)="deleteColor(row)">
               <i class="far fa-trash-alt"></i>
             </button>
+            <button type="button" 
+            class="btn deleteIconBack"
+            mwlConfirmationPopover 
+            popoverTitle="Confirmation"
+            popoverMessage="Are you sure ?" 
+            placement="left" 
+            (confirm)="deleteColor(row)"> 
+            <i class="far fa-trash-alt"></i>
+            </button>
           </ng-template>
         </ngx-datatable-column>
       </ngx-datatable>      

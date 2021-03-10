@@ -57,7 +57,7 @@ export class LoomTypeComponent implements OnInit {
 
 
 
-  deleteColor(id)
+  deleteLoom(id)
   {
     this.http.delete(`${environment.apiUrl}/api/TextileGarments/DeleteLoomType/`+id.id )
     .subscribe(

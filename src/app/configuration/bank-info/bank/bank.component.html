@@ -85,8 +85,14 @@
             <button type="button" class="btn editIconBack" (click)="editEditForm(row)">
               <i class="far fa-edit "></i>
             </button>
-            <button type="button" class="btn deleteIconBack"  (click)="deleteBank(row)">
-              <i class="far fa-trash-alt"></i>
+            <button type="button" 
+            class="btn deleteIconBack"
+            mwlConfirmationPopover 
+            popoverTitle="Confirmation"
+            popoverMessage="Are you sure ?" 
+            placement="left" 
+            (confirm)="deleteBank(row)"> 
+            <i class="far fa-trash-alt"></i>
             </button>
           </ng-template>
         </ngx-datatable-column>
