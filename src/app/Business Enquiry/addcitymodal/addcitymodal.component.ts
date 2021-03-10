@@ -21,7 +21,19 @@ export class AddcitymodalComponent implements OnInit {
     private service: ServiceService) { }
 
   ngOnInit(): void {
-    return this.service.getCountry()
+    {
+      this.service.getCountry().subscribe(res => {
+        this.response = res;
+        if (this.response.success == true) {
+          this.data = this.response.data;
+        
+    
+        }
+        else {
+          this.toastr.error('Something went Worng', 'Message.');
+        }
+      })
+    }
   }
 
     

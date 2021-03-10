@@ -27,7 +27,11 @@ export class AddEnquiryComponent implements OnInit {
     data:any={};
     country:any=[];
     buyer:any[];
+    article:any=[];
+    articleId:null;
     buyerId:null;
+    city:any[];
+    cityId:any[];
     rows:any=[];
     temp: any=[];
     columns:any=[];
@@ -46,16 +50,42 @@ export class AddEnquiryComponent implements OnInit {
               
   ngOnInit()
   {
-
+{
+  this.service.getBuyers().subscribe(res => {
+    this.response = res;
+    if (this.response.success == true) {
+      this.data = this.response.data;
+    }
+    else {
+      this.toastr.error('Something went Worng', 'Message.');
+    }
+  })
+}
+{
+  this.service.getArticles().subscribe(res => {
+    this.response = res;
+    if (this.response.success == true) {
+      this.data = this.response.data;
+    }
+    else {
+      this.toastr.error('Something went Worng', 'Message.');
+    }
+  })
+}
+// {
+//   this.service.getDestination().subscribe(res => {
+//     this.response = res;
+//     if (this.response.success == true) {
+//       this.data = this.response.data;
+//     }
+//     else {
+//       this.toastr.error('Something went Worng', 'Message.');
+//     }
+//   })
+// }
     this.getenquiryCountry();
     this.getenquiryBuyers();
-    return this.service.getBuyers();
-    
-  //   this.fetch((data) => {
-  //     this.temp = [...data];
-  //     this.rows = data;
-  //     this.listCount = this.rows.length;
-  // });
+ 
 
 
   }
@@ -78,12 +108,10 @@ export class AddEnquiryComponent implements OnInit {
     else{
       this.toastr.error(this.response.message, 'Message.');
     }
-      // this.spinner.hide();
     }, err => {
       if ( err.status == 400) {
  this.toastr.error(err.error.message, 'Message.');;
       }
-    //  this.spinner.hide();
     });
   }
 
@@ -103,12 +131,10 @@ export class AddEnquiryComponent implements OnInit {
   else{
     this.toastr.error(this.response.message, 'Message.');
   }
-    // this.spinner.hide();
   }, err => {
     if ( err.status == 400) {
 this.toastr.error(err.error.message, 'Message.');;
     }
-  //  this.spinner.hide();
   });
 }
 //fetch for city modal
@@ -127,12 +153,10 @@ fetch3(cb) {
   else{
     this.toastr.error(this.response.message, 'Message.');
   }
-    // this.spinner.hide();
   }, err => {
     if ( err.status == 400) {
 this.toastr.error(err.error.message, 'Message.');;
     }
-  //  this.spinner.hide();
   });
 }
 
@@ -153,12 +177,10 @@ fetch4(cb) {
   else{
     this.toastr.error(this.response.message, 'Message.');
   }
-    // this.spinner.hide();
   }, err => {
     if ( err.status == 400) {
 this.toastr.error(err.error.message, 'Message.');;
     }
-  //  this.spinner.hide();
   });
 }
 
@@ -177,12 +199,10 @@ fetch5(cb) {
   else{
     this.toastr.error(this.response.message, 'Message.');
   }
-    // this.spinner.hide();
   }, err => {
     if ( err.status == 400) {
 this.toastr.error(err.error.message, 'Message.');;
     }
-  //  this.spinner.hide();
   });
 }
 
@@ -201,12 +221,10 @@ fetch6(cb) {
   else{
     this.toastr.error(this.response.message, 'Message.');
   }
-    // this.spinner.hide();
   }, err => {
     if ( err.status == 400) {
 this.toastr.error(err.error.message, 'Message.');;
     }
-  //  this.spinner.hide();
   });
 }
 
@@ -225,12 +243,10 @@ fetch7(cb) {
   else{
     this.toastr.error(this.response.message, 'Message.');
   }
-    // this.spinner.hide();
   }, err => {
     if ( err.status == 400) {
 this.toastr.error(err.error.message, 'Message.');;
     }
-  //  this.spinner.hide();
   });
 }
 
@@ -249,12 +265,10 @@ fetch8(cb) {
   else{
     this.toastr.error(this.response.message, 'Message.');
   }
-    // this.spinner.hide();
   }, err => {
     if ( err.status == 400) {
 this.toastr.error(err.error.message, 'Message.');;
     }
-  //  this.spinner.hide();
   });
 }
 fetch9(cb) {
@@ -271,12 +285,10 @@ fetch9(cb) {
   else{
     this.toastr.error(this.response.message, 'Message.');
   }
-    // this.spinner.hide();
   }, err => {
     if ( err.status == 400) {
 this.toastr.error(err.error.message, 'Message.');;
     }
-  //  this.spinner.hide();
   });
 }
   getenquiryCountry()

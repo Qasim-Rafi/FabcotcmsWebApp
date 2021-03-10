@@ -57,34 +57,19 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Country Name</label>
-                                <div class="col-sm-9">
-                                  <select name="country " class="form-control" [(ngModel)]="countryId">
-                                    <option value="null" disabled> Select Country</option>
-                                    <option *ngFor="let i of country" [value]="i.id">
-                                      {{i.name}}
-                                    </option>
-                                  </select>
-                                </div>
-                              </div> -->
-
-                            <div class="form-group row">
-                                <label for="code" class="col-sm-3 col-form-label control-label float-right">Article
-                                    Name</label>
+                              <div class="form-group row mt-6">
+                                <label for="code" class="col-sm-3 col-form-label control-label">Article Name</label>
                                 <div class="col-sm-4">
                                     <div class="input-group">
-                                        <select class="form-control">
-                                            <option> Article 1 </option>
-                                            <option> Article 2 </option>
-                                            <option> Article 3 </option>
-                                            <option> Article 4 </option>
-                                        </select>
-                                        <span class="float-left">
-                                            <button class="btn btn-success " (click)="addenquiryArticleForm()">
-                                                <i class="fa fa-plus"></i>
-                                            </button>
-                                        </span>
+                                        <select name="article" class="form-control" [(ngModel)]="articleId">
+                                            <option value="null" disabled> Select Article</option>
+                                            <option *ngFor="let i of article" [value]="i.id">
+                                                             {{i.name}}
+                                            </option>
+                                          </select>
+                                        <button class="btn btn-success " (click)="addenquiryArticleForm()">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -221,13 +206,12 @@
                                             <i class="fa fa-plus" (click)="addPriceForm()" ></i>
                                         </button>
 
-                                        <select class="form-control">
-                                            <option selected disabled> Select Destination </option>
-                                            <option> Destination 1 </option>
-                                            <option> Destination 2 </option>
-                                            <option> Destination 3 </option>
-                                            <option> Destination 4 </option>
-                                        </select>
+                                        <select name="city" class="form-control" [(ngModel)]="cityId">
+                                            <option value="null" disabled> Select Article</option>
+                                            <option *ngFor="let i of city" [value]="i.id">
+                                                             {{i.name}}
+                                            </option>
+                                          </select>
                                         <button class="btn btn-success " (click)='addenquiryCity()' >
                                             <i class="fa fa-plus"></i>
                                         </button>

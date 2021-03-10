@@ -9,45 +9,27 @@ export class ServiceService {
   response:any;
   country:any=[];
   buyer:any=[];
+  article:any=[];
   constructor(private http: HttpClient, private toastr: ToastrService,) { }
 
   getCountry()
   {
-    this.http.get(`${environment.apiUrl}/api/Lookups/Countries`)
-    .subscribe(
-      res=> { 
-        this.response = res;
-        if (this.response.success == true){
-          this.country =this.response.data;
-        }
-        else {
-          this.toastr.error('Something went Worng', 'Message.');
-            }
+    return this.http.get(`${environment.apiUrl}/api/Lookups/Countries`)
 
-      }, err => { 
-        if (err.status == 400) {
-          this.toastr.error('Something went Worng', 'Message.');
-        }
-      });
   }
   
   getBuyers()
   {
-    this.http.get(`${environment.apiUrl}/api/Lookups/Buyers`)
-    .subscribe(
-      res=> { 
-        this.response = res;
-        if (this.response.success == true){
-          this.buyer =this.response.data;
-        }
-        else {
-          this.toastr.error('Something went Worng', 'Message.');
-            }
-
-      }, err => { 
-        if (err.status == 400) {
-          this.toastr.error('Something went Worng', 'Message.');
-        }
-      });
+    return this.http.get(`${environment.apiUrl}/api/Lookups/Buyers`);
   }
+getArticles()
+  {
+    return this.http.get(`${environment.apiUrl}/api/Lookups/Articles`)
+  }
+  // getDestination()
+  // {
+  //   return this.http.get(`${environment.apiUrl}/api/Lookups/Cities/{countryId}`)
+
+  // }
+  
 }
