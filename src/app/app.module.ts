@@ -10,22 +10,9 @@ import { ToastrModule } from 'ngx-toastr';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ConfigurationModule } from './configuration/configuration.module';
+import { BusinessEnquryModule } from './business-enqury/business-enqury.module';
 import { HomeComponent } from './home/home.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { AddEnquiryComponent } from './Business Enquiry/add-enquiry/add-enquiry.component';
-import { SearchEnquiryComponent } from './Business Enquiry/search-enquiry/search-enquiry.component';
-import { AddmodalComponent } from './Business Enquiry/addbuyermodal/addmodal.component';
-import { ArtienquirymodalComponent } from './Business Enquiry/artienquirymodal/artienquirymodal.component';
-import { PackagingComponent } from './Business Enquiry/add-enquiry/packaging/packaging.component';
-import { DesignTypeComponent } from './Business Enquiry/add-enquiry/design-type/design-type.component';
-import { ProcessTypeComponent } from './Business Enquiry/add-enquiry/process-type/process-type.component';
-import { ProcessenqmodalComponent } from './Business Enquiry/processenqmodal/processenqmodal.component';
-import { AddcitymodalComponent } from './Business Enquiry/addcitymodal/addcitymodal.component';
-import { AddcertmodalComponent } from './Business Enquiry/addcertmodal/addcertmodal.component';
-import { PaymentTermComponent } from './Business Enquiry/add-enquiry/payment-term/payment-term.component';
-import { PriceTermComponent } from './Business Enquiry/add-enquiry/price-term/price-term.component';
-import { ActiveEnquiryComponent } from './Business Enquiry/active-enquiry/active-enquiry.component';
-
 
 
 
@@ -41,20 +28,20 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     HomeComponent,
-    AddEnquiryComponent,
-    SearchEnquiryComponent,
-    AddmodalComponent,
-    ArtienquirymodalComponent,
+    // AddEnquiryComponent,
+    // SearchEnquiryComponent,
+    // AddmodalComponent,
+    // ArtienquirymodalComponent,
 
-    PackagingComponent,
-    DesignTypeComponent,
-    ProcessTypeComponent,
-    ProcessenqmodalComponent,
-    AddcitymodalComponent,
-    AddcertmodalComponent,
-    PaymentTermComponent,
-    PriceTermComponent,
-    ActiveEnquiryComponent
+    // PackagingComponent,
+    // DesignTypeComponent,
+    // ProcessTypeComponent,
+    // ProcessenqmodalComponent,
+    // AddcitymodalComponent,
+    // AddcertmodalComponent,
+    // PaymentTermComponent,
+    // PriceTermComponent,
+    // ActiveEnquiryComponent
 
   ],
 
@@ -64,6 +51,7 @@ const appRoutes: Routes = [
     BrowserModule,
     AppRoutingModule,
     ConfigurationModule,
+    BusinessEnquryModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,

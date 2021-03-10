@@ -4,7 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { AddmodalComponent } from '../addbuyermodal/addmodal.component';
+// import {  AddmodalComponent} from '../addbuyermodal/addbuyermodal.component';
 import { ArtienquirymodalComponent } from '../artienquirymodal/artienquirymodal.component';
 import {PackagingComponent} from './packaging/packaging.component'
 import { DesignTypeComponent } from './design-type/design-type.component';
@@ -15,6 +15,7 @@ import { AddcertmodalComponent } from '../addcertmodal/addcertmodal.component';
 import { PaymentTermComponent} from './payment-term/payment-term.component'
 import {PriceTermComponent} from './price-term/price-term.component'
 import { ServiceService } from 'src/app/shared/service.service';
+import { AddmodalComponent } from '../addmodal/addmodal.component';
 @Component({
   selector: 'app-add-enquiry',
   templateUrl: './add-enquiry.component.html',

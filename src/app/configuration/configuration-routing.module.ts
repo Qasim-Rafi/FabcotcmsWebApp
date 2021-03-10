@@ -44,8 +44,7 @@ const routes: Routes = [
       {path: 'city', component: CityComponent},
       {path: 'country', component: CountryComponent},
       {path: 'currency', component: CurrencyComponent},
-      
-    
+        
     ];
 
 @NgModule({
