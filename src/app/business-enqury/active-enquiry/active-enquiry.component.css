@@ -1,0 +1,23 @@
+.table tbody tr td {
+  text-align: center;
+}
+.text-s-md {
+  vertical-align: middle;
+  font-size: 20px;
+  color: rgb(53, 53, 53);
+}
+.text {
+  color: rgb(255, 255, 255) !important;
+  font-size: 25px;
+}
+.headline {
+  font-size: 16px;
+  font-weight: 700;
+  color: #7c7c7c;
+  padding-bottom: 10px;
+}
+.table td {
+  padding: 1.75rem;
+  vertical-align: middle;
+  border-bottom: 1px solid #dee2e6;
+}

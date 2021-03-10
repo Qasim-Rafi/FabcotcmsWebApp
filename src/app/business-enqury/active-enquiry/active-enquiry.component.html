@@ -9,35 +9,62 @@
   </div>
 
   <div class="ibox-content">
+    <div class="headline">
+      Date
+  </div>
     <div class=" panel blank-panel">  
       <div class=" panel-heading">
-        <table class="table">
+        <table class="table ">
             <tbody>
-                <tr>
-                    <td  >
-                        <button type="button" class="btn btn-primary m-r-sm text-s-md px-3"> 
-                        <i class="fas fa-user-tie"></i></button>
-                        <span class="text-muted text">Article</span>
-                    </td>
-                    <td>
-                        <button type="button" class="btn  m-r-sm text-s-md px-3"> </button>
-                        <span class="text-muted text"></span>
-                    </td>
+                <tr >
                     <td >
-                        <button type="button" class="btn btn-primary btn-md float-right" 
-                        ><i class="fa fa-plus"></i> Add New Article</button>
+                        <button type="button" class="btn btn-primary  text "> 
+                          <i class="fas fa-phone px-1"></i>
+                          <span class="text-muted text ml-1 ">0</span>
+                        </button>
+                        <span class="text-muted text-s-md  ml-2">Active</span>
                     </td>
+
+                    <td>
+                      <button type="button" class="btn btn-info  text "> 
+                        <i class="far fa-check-circle px-1"></i>
+                        <span class="text-muted text ml-1">0</span>
+                      </button>
+                      <span class="text-muted text-s-md  ml-2">Confirmed</span>
+                  </td>
+
+                  <td  >
+                    <button type="button" class="btn btn-danger m-r-sm text "> 
+                      <i class="far fa-window-close px-1"></i>
+                      <span class="text-muted text ml-1">0</span>
+                    </button>
+                    <span class="text-muted text-s-md  ml-2">Closed</span>
+                </td>
+
+                <td>
+                  <button type="button" class="btn btn-secondary m-r-sm text "> 
+                    <i class="fas fa-mug-hot px-1"></i>
+                    <span class="text-muted text ml-1">0</span>
+                  </button>
+                  <span class="text-muted text-s-md  ml-2">On-Hold</span>
+                </td>
                 </tr>
             </tbody>
         </table>
 
-        <div class="row">
-          <div class=" col-md-4 mb-4" >
-            <div class="input-group col-md-offset-3">
-              <input type="text" placeholder="Search " 
-              class="input form-control w-50">
+        <div class="row py-5">
+          <div class="col-md-4" >
+            <div class="input-group ">
+              <input type="text" placeholder="Search" 
+              class="input form-control">
             </div>
           </div>
+      
+          <div class="col-md-8" >
+          <button type="button" class="btn btn-primary float-right mr-5">
+          <i class="fa fa-plus"></i> Add New Enqury</button>
+            </div>
+
         </div>
 
 
@@ -48,32 +75,32 @@
 
       <ngx-datatable-column name="Article Code" [width]="5" prop="code" > 
           <ng-template let-row="row"  ngx-datatable-cell-template>
-           >
+           {{row.Ali}}
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="Article Name" [width]="80" prop="name"> 
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            >
+            {{row.Ali}}
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name=" Generic Name" [width]="80" prop="genericName">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            >
+            {{row.Ali}}
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="Status" [width]="5" prop="address"> 
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            >
+            {{row.Ali}}
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="Last Updated On" [width]="80" prop="modifiedDate">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-           >
+            Ali
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="Last Updated By" [width]="80" prop="modifiedBy">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-             >
+              Ali
             </ng-template>
           </ngx-datatable-column>
         <ngx-datatable-column name="Action" [width]="40" >

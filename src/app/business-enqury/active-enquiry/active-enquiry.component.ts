@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./active-enquiry.component.css']
 })
 export class ActiveEnquiryComponent implements OnInit {
-
+  rows:any=[];
+  columns:any=[];
   constructor() { }
 
   ngOnInit(): void {
