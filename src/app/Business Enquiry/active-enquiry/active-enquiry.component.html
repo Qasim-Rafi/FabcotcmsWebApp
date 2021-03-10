@@ -2,7 +2,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-12">
-          <h2 class="m-0 ">Article </h2>
+          <h2 class="m-0 ">Active Enqury </h2>
         </div><!-- /.col -->
       </div><!-- /.row -->
     </div><!-- /.container-fluid -->
@@ -14,9 +14,9 @@
         <table class="table">
             <tbody>
                 <tr>
-                    <td>
+                    <td  >
                         <button type="button" class="btn btn-primary m-r-sm text-s-md px-3"> 
-                        <i class="fas fa-user-tie"></i>{{listCount}}</button>
+                        <i class="fas fa-user-tie"></i></button>
                         <span class="text-muted text">Article</span>
                     </td>
                     <td>
@@ -25,7 +25,7 @@
                     </td>
                     <td >
                         <button type="button" class="btn btn-primary btn-md float-right" 
-                        (click)="addArticleForm()"><i class="fa fa-plus"></i> Add New Article</button>
+                        ><i class="fa fa-plus"></i> Add New Article</button>
                     </td>
                 </tr>
             </tbody>
@@ -35,50 +35,50 @@
           <div class=" col-md-4 mb-4" >
             <div class="input-group col-md-offset-3">
               <input type="text" placeholder="Search " 
-              class="input form-control w-50" (keyup)="updateFilter($event)">
+              class="input form-control w-50">
             </div>
           </div>
         </div>
 
 
 
-        <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'" 
-        [headerHeight]="50" [footerHeight]="50" [sorts]="[{prop: 'code', dir: 'asce'}]"
+        <ngx-datatable #myTable class="bootstrap" [columns]="" [rows]="" [columnMode]="'force'" 
+        [headerHeight]="50" [footerHeight]="50" 
         [rowHeight]="'auto'" [limit]="6">
 
       <ngx-datatable-column name="Article Code" [width]="5" prop="code" > 
           <ng-template let-row="row"  ngx-datatable-cell-template>
-            {{row.code}}
+           >
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="Article Name" [width]="80" prop="name"> 
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            {{row.name}}
+            >
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name=" Generic Name" [width]="80" prop="genericName">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            {{row.genericName}}
+            >
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="Status" [width]="5" prop="address"> 
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            {{row.address}}
+            >
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="Last Updated On" [width]="80" prop="modifiedDate">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            {{myDate | date:'medium'}}
+           >
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="Last Updated By" [width]="80" prop="modifiedBy">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{myDate | date:'medium'}}
+             >
             </ng-template>
           </ngx-datatable-column>
         <ngx-datatable-column name="Action" [width]="40" >
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            <button type="button" class="btn editIconBack" (click)="editArticleForm(row)">
+            <button type="button" class="btn editIconBack" >>
               <i class="far fa-edit "></i>
             </button>
             <button type="button" 
@@ -87,7 +87,7 @@
             popoverTitle="Confirmation"
             popoverMessage="Are you sure ?" 
             placement="left" 
-            (confirm)="deleteArticle(row)"> 
+            >
             <i class="far fa-trash-alt"></i>
             </button>
           </ng-template>

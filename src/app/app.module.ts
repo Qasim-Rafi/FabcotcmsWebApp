@@ -24,6 +24,7 @@ import { AddcitymodalComponent } from './Business Enquiry/addcitymodal/addcitymo
 import { AddcertmodalComponent } from './Business Enquiry/addcertmodal/addcertmodal.component';
 import { PaymentTermComponent } from './Business Enquiry/add-enquiry/payment-term/payment-term.component';
 import { PriceTermComponent } from './Business Enquiry/add-enquiry/price-term/price-term.component';
+import { ActiveEnquiryComponent } from './Business Enquiry/active-enquiry/active-enquiry.component';
 
 
 
@@ -52,7 +53,8 @@ const appRoutes: Routes = [
     AddcitymodalComponent,
     AddcertmodalComponent,
     PaymentTermComponent,
-    PriceTermComponent
+    PriceTermComponent,
+    ActiveEnquiryComponent
 
   ],
 
