@@ -25,9 +25,9 @@
           <div class="form-group row">
             <label class="col-sm-3 col-form-label">Country Name</label>
             <div class="col-sm-9">
-              <select name="country " class="form-control" [(ngModel)]="countryId">
+              <select name="data" class="form-control" [(ngModel)]="countryId">
                 <option value="null" disabled> Select Country</option>
-                <option *ngFor="let i of country" [value]="i.id">
+                <option *ngFor="let i of data" [value]="i.id">
                   {{i.name}}
                 </option>
               </select>

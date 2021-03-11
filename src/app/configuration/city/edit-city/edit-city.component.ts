@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ServiceService } from 'src/app/shared/service.service';
 @Component({
   selector: 'app-edit-city',
   templateUrl: './edit-city.component.html',
@@ -18,42 +19,29 @@ export class EditCityComponent implements OnInit {
   
   constructor(private http:HttpClient,
     private toastr: ToastrService,
-    private _NgbActiveModal: NgbActiveModal) { }
+    private _NgbActiveModal: NgbActiveModal,
+    private service:ServiceService) { }
 
   ngOnInit(): void {
+    {
+      this.service.getCountry().subscribe(res => {
+        this.response = res;
+        if (this.response.success == true) {
+          this.country= this.response.data;
+        }
+        else {
+          this.toastr.error('Something went Worng', 'Message.');
+        }
+      })
+    }
     this.editCity();
-    this.getCountry();
   }
 
   
   get activeModal() {
     return this._NgbActiveModal;
   }
-
-
-  getCountry()
-  {
-    this.http.get(`${environment.apiUrl}/api/Lookups/Countries`)
-    .subscribe(
-      res=> { 
-        this.response = res;
-        if (this.response.success == true){
-          this.country =this.response.data;
-        }
-        else {
-          this.toastr.error('Something went Worng', 'Message.');
-            }
-
-      }, err => { 
-        if (err.status == 400) {
-          this.toastr.error('Something went Worng', 'Message.');
-        }
-      });
-  }
-
-
-
-  
+ 
   editCity()
   {
     this.http.get(`${environment.apiUrl}/api/Configs/GetCityById/`+this.userId )

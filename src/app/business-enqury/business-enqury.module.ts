@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { BusinessEnquryRoutingModule } from './business-enqury-routing.module';
 import { AddEnquiryComponent } from './add-enquiry/add-enquiry.component';
 import { ActiveEnquiryComponent } from './active-enquiry/active-enquiry.component';
@@ -16,7 +15,6 @@ import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { ToastrModule } from 'ngx-toastr';
 import { AddcitymodalComponent } from './addcitymodal/addcitymodal.component';
 import { AddcertmodalComponent } from './addcertmodal/addcertmodal.component';
-import { ArtienquirymodalComponent } from './artienquirymodal/artienquirymodal.component';
 import { ProcessenqmodalComponent } from './processenqmodal/processenqmodal.component';
 import { DesignTypeComponent } from './add-enquiry/design-type/design-type.component';
 import { PackagingComponent } from './add-enquiry/packaging/packaging.component';
@@ -30,7 +28,7 @@ import { AddmodalComponent } from './addmodal/addmodal.component';
   declarations: [
     AddEnquiryComponent, 
     ActiveEnquiryComponent, 
-    SearchEnquiryComponent, AddcitymodalComponent, AddcertmodalComponent, ArtienquirymodalComponent, ProcessenqmodalComponent, DesignTypeComponent, PackagingComponent, PaymentTermComponent, PriceTermComponent, ProcessTypeComponent, AddmodalComponent
+    SearchEnquiryComponent, AddcitymodalComponent, AddcertmodalComponent,  ProcessenqmodalComponent, DesignTypeComponent, PackagingComponent, PaymentTermComponent, PriceTermComponent, ProcessTypeComponent, AddmodalComponent
   
   ],
 

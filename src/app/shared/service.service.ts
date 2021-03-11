@@ -26,10 +26,40 @@ getArticles()
   {
     return this.http.get(`${environment.apiUrl}/api/Lookups/Articles`)
   }
-  // getDestination()
-  // {
-  //   return this.http.get(`${environment.apiUrl}/api/Lookups/Cities/{countryId}`)
-
-  // }
+  getPaymentTerm()
+  {
+    return this.http.get(`${environment.apiUrl}/api/Lookups/PaymentTerms`)
+  }
+  getPackaging()
+  {
+    return this.http.get(`${environment.apiUrl}/api/Lookups/Packagings`)
+  }
   
+  getDesignType()
+  {
+    return this.http.get(`${environment.apiUrl}/api/Lookups/DesignTypes`)
+  }
+  getProcess()
+  {
+    return this.http.get(`${environment.apiUrl}/api/Lookups/Process`)
+  }
+  getProcessType()
+  {
+    return this.http.get(`${environment.apiUrl}/api/Lookups/ProcessTypes`)
+  }
+  getCertification()
+  {
+    return this.http.get(`${environment.apiUrl}/api/Lookups/Certifications`)
+
+  }
+  getPriceTerm()
+  {
+    return this.http.get(`${environment.apiUrl}/api/Lookups/PriceTerms`)
+
+  }
+  getCity()
+  {
+    return this.http.get(`${environment.apiUrl}
+    ​/api/Lookups/Destinations`)
+  }
 }

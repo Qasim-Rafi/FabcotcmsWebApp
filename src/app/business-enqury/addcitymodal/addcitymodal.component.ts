@@ -22,7 +22,7 @@ export class AddcitymodalComponent implements OnInit {
 
   ngOnInit(): void {
     {
-      this.service.getCountry().subscribe(res => {
+      this.service.getCity().subscribe(res => {
         this.response = res;
         if (this.response.success == true) {
           this.data = this.response.data;
@@ -42,28 +42,7 @@ export class AddcitymodalComponent implements OnInit {
   }
 
 
-  // getCountry()
-  // {
-  //   this.http.get(`${environment.apiUrl}/api/Lookups/Countries`)
-  //   .subscribe(
-  //     res=> { 
-  //       this.response = res;
-  //       if (this.response.success == true){
-  //         this.country =this.response.data;
-  //       }
-  //       else {
-  //         this.toastr.error('Something went Worng', 'Message.');
-  //           }
-
-  //     }, err => { 
-  //       if (err.status == 400) {
-  //         this.toastr.error('Something went Worng', 'Message.');
-  //       }
-  //     });
-  // }
-
-
-
+  
   
   addCity()
   {

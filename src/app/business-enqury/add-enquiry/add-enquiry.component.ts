@@ -4,8 +4,6 @@ import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-// import {  AddmodalComponent} from '../addbuyermodal/addbuyermodal.component';
-import { ArtienquirymodalComponent } from '../artienquirymodal/artienquirymodal.component';
 import {PackagingComponent} from './packaging/packaging.component'
 import { DesignTypeComponent } from './design-type/design-type.component';
 import {ProcessTypeComponent} from './process-type/process-type.component';
@@ -16,6 +14,7 @@ import { PaymentTermComponent} from './payment-term/payment-term.component'
 import {PriceTermComponent} from './price-term/price-term.component'
 import { ServiceService } from 'src/app/shared/service.service';
 import { AddmodalComponent } from '../addmodal/addmodal.component';
+import { AddArticleComponent } from 'src/app/configuration/articles/add-article/add-article.component';
 @Component({
   selector: 'app-add-enquiry',
   templateUrl: './add-enquiry.component.html',
@@ -24,33 +23,34 @@ import { AddmodalComponent } from '../addmodal/addmodal.component';
 export class AddEnquiryComponent implements OnInit {
   listCount:number;
     myDate=Date.now();
-    response: any;
-    data:any={};
-    country:any=[];
-    buyer:any[];
-    article:any=[];
-    articleId:null;
-    buyerId:null;
-    city:any[];
-    cityId:any[];
-    rows:any=[];
-    temp: any=[];
-    columns:any=[];
-    countryId:null;
+    response: any; data:any={}; country:any=[]; buyer:any[]; designId:null; packageId:null; article:any=[]; articleId:null;
+    type:any[]; package:any[]; buyerId:null; city:any[]; certificateId:any[]; paymentId:any[]; term:any[]; priceId:any[];
+    processId:null; cityId:any[]; rows:any=[]; temp: any=[]; columns:any=[]; countryId:null; processtypeId:null;
     @ViewChild(NgForm) buyerForm;
     date: number;
-    
+  payment: any=[]; packaging: any=[]; design: any=[]; process: any={}; ptype: any={}; certification: any={}; priceterm: any={};
+    city1: any=[]; country1: any=[];
+  
     constructor(private http:HttpClient,
               private toastr: ToastrService,  
               private modalService: NgbModal,
               private service: ServiceService
                 )
-               { }
-
-             
-              
+               { }           
   ngOnInit()
   {
+    
+    {
+      this.service.getCountry().subscribe(res => {
+        this.response = res;
+        if (this.response.success == true) {
+          this.country1 = this.response.data;
+        }
+        else {
+          this.toastr.error('Something went Worng', 'Message.');
+        }
+      })
+    }
 {
   this.service.getBuyers().subscribe(res => {
     this.response = res;
@@ -66,30 +66,120 @@ export class AddEnquiryComponent implements OnInit {
   this.service.getArticles().subscribe(res => {
     this.response = res;
     if (this.response.success == true) {
-      this.data = this.response.data;
+      this.article = this.response.data;
     }
     else {
       this.toastr.error('Something went Worng', 'Message.');
     }
   })
 }
-// {
-//   this.service.getDestination().subscribe(res => {
-//     this.response = res;
-//     if (this.response.success == true) {
-//       this.data = this.response.data;
-//     }
-//     else {
-//       this.toastr.error('Something went Worng', 'Message.');
-//     }
-//   })
-// }
+{
+  this.service.getPaymentTerm().subscribe(res => {
+    this.response = res;
+    if (this.response.success == true) {
+      this.payment = this.response.data;
+    }
+    else {
+      this.toastr.error('Something went Worng', 'Message.');
+    }
+  })
+}
+{
+  this.service.getPackaging().subscribe(res => {
+    this.response = res;
+    if (this.response.success == true) {
+      this.packaging = this.response.data;
+    }
+    else {
+      this.toastr.error('Something went Worng', 'Message.');
+    }
+  })
+}
+{
+  this.service.getDesignType().subscribe(res => {
+    this.response = res;
+    if (this.response.success == true) {
+      this.design = this.response.data;
+    }
+    else {
+      this.toastr.error('Something went Worng', 'Message.');
+    }
+  })
+}
+
+{
+  this.service.getProcess().subscribe(res => {
+    this.response = res;
+    if (this.response.success == true) {
+      this.process = this.response.data;
+    }
+    else {
+      this.toastr.error('Something went Worng', 'Message.');
+    }
+  })
+}
+{
+  this.service.getProcessType().subscribe(res => {
+    this.response = res;
+    if (this.response.success == true) {
+      this.ptype= this.response.data;
+    }
+    else {
+      this.toastr.error('Something went Worng', 'Message.');
+    }
+  })
+}
+{
+  this.service.getCertification().subscribe(res => {
+    this.response = res;
+    if (this.response.success == true) {
+      this.certification= this.response.data;
+    }
+    else {
+      this.toastr.error('Something went Worng', 'Message.');
+    }
+  })
+}
+{
+  this.service.getPriceTerm().subscribe(res => {
+    this.response = res;
+    if (this.response.success == true) {
+      this.priceterm= this.response.data;
+    }
+    else {
+      this.toastr.error('Something went Worng', 'Message.');
+    }
+  })
+}
+
+
+
+{
+  this.service.getCity().subscribe(res => {
+    this.response = res;
+    if (this.response.success == true) {
+      this.city1= this.response.data;
+    }
+    else {
+      this.toastr.error('Something went Worng', 'Message.');
+    }
+  })
+}
+
+
     this.getenquiryCountry();
     this.getenquiryBuyers();
  
 
 
+
+
+
+
+
   }
+
+
   fetch(arg0: (data: any) => void) {
     throw new Error('Method not implemented.');
   }
@@ -388,7 +478,7 @@ this.toastr.error(err.error.message, 'Message.');;
 } 
 
 addenquiryArticleForm(){
-  const modalRef = this.modalService.open(ArtienquirymodalComponent, { centered: true });
+  const modalRef = this.modalService.open(AddArticleComponent, { centered: true });
         modalRef.result.then((data) => {
        // on close
         if(data ==true){

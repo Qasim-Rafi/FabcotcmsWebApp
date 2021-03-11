@@ -1,334 +1,327 @@
 <div class="content-header p-4">
     <div class="container-fluid">
-      <div class="row mb-2">
-        <div class="col-sm-12">
-          <h2 class="m-6">New Enquiries </h2>
-        </div><!-- /.col -->
-      </div><!-- /.row -->
+        <div class="row mb-2">
+            <div class="col-sm-12">
+                <h2 class="m-6">New Enquiries </h2>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
     </div><!-- /.container-fluid -->
-  </div>
-  
-   
-  
-  <div class="ibox-content">
-      <div class="headline">
-          Enquiry Form
-      </div>
-      <div class=" panel blank-panel">
-          <div class=" panel-heading">
-              <table class="table">
-                  <tbody>
-                      <tr>
-                          <td>
-                              <div class="col-md-6 col-md-offset-1">
-                                  <div class="form-group">
-                                      <label class="m-b-none pt-2 ">
-                                          Enquiry #
-                                          <span style="margin-left: 40px;"> (Auto) </span> <span
-                                              style="margin-left: 160px;"> (Manual) </span></label>
-                                      <div class="input-group">
-                                          <span class="input-group-addon mr-5 ml-4">FG-</span>
-                                          <div class="col-md-4 ml-7">
-                                              <input type="text" placeholder="Auto Enquiry no."
-                                                  class="form-control text-w-4" id="enqry-autono" value="000092"
-                                                  readonly="">
-                                          </div>
-                                          <div class="col-md-5 p-l-none">
-                                              <input type="text" placeholder="Enquiry no." class="form-control text-w-4"
-                                                  id="enqry-no">
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td class="noBorder ">
-                              <div class="form-group row mt-6">
-                                  <label for="code" class="col-sm-3 col-form-label control-label">Buyer Name</label>
-                                  <div class="col-sm-4">
-                                      <div class="input-group">
-                                          <select name="buyer " class="form-control" [(ngModel)]="buyerId">
-                                              <option value="null" disabled> Select Buyer</option>
-                                              <option *ngFor="let i of buyer" [value]="i.id">
-                                                               {{i.buyerName}}
-                                              </option>
-                                            </select>
-                                          <button class="btn btn-success " (click)="addenquiryBuyerForm()">
-                                              <i class="fa fa-plus"></i>
-                                          </button>
-                                      </div>
-                                  </div>
-                              </div>
-                                <div class="form-group row mt-6">
-                                  <label for="code" class="col-sm-3 col-form-label control-label">Article Name</label>
-                                  <div class="col-sm-4">
-                                      <div class="input-group">
-                                          <select name="article" class="form-control" [(ngModel)]="articleId">
-                                              <option value="null" disabled> Select Article</option>
-                                              <option *ngFor="let i of article" [value]="i.id">
-                                                               {{i.name}}
-                                              </option>
-                                            </select>
-                                          <button class="btn btn-success " (click)="addenquiryArticleForm()">
-                                              <i class="fa fa-plus"></i>
-                                          </button>
-                                      </div>
-                                  </div>
-                              </div>
-                          </td>
-                      </tr>
-  
-                      <tr>
-                          <td>
-                              <div class="form-group row">
-                                  <label for="code" class="col-sm-3 col-form-label control-label">Process</label>
-                                  <div class="col-sm-4">
-                                      <div class="input-group">
-                                          <select class="form-control">
-                                              <option selected disabled> Select Process </option>
-                                              <option> Process 1 </option>
-                                              <option> Process 2 </option>
-                                              <option> Process 3 </option>
-                                              <option> Process 4 </option>
-                                          </select>
-                                          <span class="float-left">
-                                              <button class="btn btn-success " (click)="addenquiryProcessForm()">
-                                                  <i class="fa fa-plus"></i>
-                                              </button>
-                                          </span>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="form-group row">
-                                  <label for="code" class="col-sm-3 col-form-label control-label">Process Type</label>
-                                  <div class="col-sm-4">
-                                      <div class="input-group">
-                                          <select class="form-control">
-                                              <option selected disabled> Select Process Type </option>
-                                              <option> Process Type 1 </option>
-                                              <option> Process Type 2 </option>
-                                              <option> Process Type 3 </option>
-                                              <option> Process Type 4 </option>
-                                          </select>
-                                          <span class="float-left">
-                                              <button class="btn btn-success " (click)="addProcessTypeForm()">
-                                                  <i class="fa fa-plus"></i>
-                                              </button>
-                                          </span>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="form-group row">
-                                  <label for="code" class="col-sm-3 col-form-label control-label">Design Type</label>
-                                  <div class="col-sm-4">
-                                      <div class="input-group">
-                                          <select class="form-control">
-                                              <option selected disabled> Select Design </option>
-                                              <option> Design Type 1 </option>
-                                              <option> Design Type 2 </option>
-                                              <option> Design Type 3 </option>
-                                              <option> Design Type 4 </option>
-                                          </select>
-                                          <span class="float-left">
-                                              <button class="btn btn-success " (click)="addDesignTypeForm()">
-                                                  <i class="fa fa-plus"></i>
-                                              </button>
-                                          </span>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="form-group row">
-                                  <label for="code" class="col-sm-3 col-form-label control-label">Packaging</label>
-                                  <div class="col-sm-4">
-                                      <div class="input-group">
-                                          <select class="form-control">
-                                              <option selected disabled> Select Packaging </option>
-                                              <option> Packaging 1 </option>
-                                              <option> Packaging 2 </option>
-                                              <option> Packaging 3 </option>
-                                              <option> Packaging 4 </option>
-                                          </select>
-                                          <span class="float-left">
-                                              <button class="btn btn-success " (click)="addPackingForm()">
-                                                  <i class="fa fa-plus"></i>
-                                              </button>
-                                          </span>
-                                      </div>
-                                  </div>
-                              </div>
-                          </td>
-                      </tr>
-  
-  
-                      <tr>
-                          <td>
-                              <div class="form-group row">
-                                  <label for="code" class="col-sm-3 col-form-label control-label">Payment Terms</label>
-                                  <div class="col-sm-6">
-                                      <div class="input-group">
-                                          <select class="form-control">
-                                              <option selected disabled> Select Packaging </option>
-                                              <option> Packaging 1 </option>
-                                              <option> Packaging 2 </option>
-                                              <option> Packaging 3 </option>
-                                              <option> Packaging 4 </option>
-                                          </select>
-  
-                                          <button class="btn btn-success ">
-                                              <i class="fa fa-plus" (click)="addPaymentForm()"></i>
-                                          </button>
-  
-                                          <div class="col-sm-2">
-                                              <input type="text" placeholder="Days." class="form-control">
-                                          </div>
-  
-                                          <div class="col-sm-4">
-                                              <input type="text" placeholder="Additional Info." class="form-control">
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </td>
-                      </tr>
-  
-                      <tr>
-                          <td class="noBorder">
-                              <div class="form-group row">
-                                  <label for="code" class="col-sm-3 col-form-label control-label">Price Terms</label>
-                                  <div class="col-sm-6">
-                                      <div class="input-group">
-                                          <select class="form-control">
-                                              <option selected disabled> Select Price Terms </option>
-                                              <option> Price Terms 1 </option>
-                                              <option> Price Terms 2 </option>
-                                              <option> Price Terms 3 </option>
-                                              <option> Price Terms 4 </option>
-                                          </select>
-                                          <button class="btn btn-success ">
-                                              <i class="fa fa-plus" (click)="addPriceForm()" ></i>
-                                          </button>
-  
-                                          <select name="city" class="form-control" [(ngModel)]="cityId">
-                                              <option value="null" disabled> Select Article</option>
-                                              <option *ngFor="let i of city" [value]="i.id">
-                                                               {{i.name}}
-                                              </option>
-                                            </select>
-                                          <button class="btn btn-success " (click)='addenquiryCity()' >
-                                              <i class="fa fa-plus"></i>
-                                          </button>
-                                      </div>
-                                  </div>
-                              </div>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td class="noBorder">
-                              <div class="form-group row">
-                                  <label for="code" class="col-sm-3 col-form-label control-label">Suppiler Side
-                                      Commission</label>
-                                  <div class="col-sm-6">
-                                      <div class="input-group">
-                                          <div class="col-sm-3">
-                                              <input type="text" placeholder="Comm%" class="form-control">
-                                          </div>
-                                          <select class="form-control col-sm-5">
-                                              <option selected disabled> Select UOM </option>
-                                              <option> UOM 1 </option>
-                                              <option> UOM 2 </option>
-                                              <option> UOM 3 </option>
-                                              <option> UOM 4 </option>
-                                          </select>
-                                          <div class="col-sm-5">
-                                              <input type="text" placeholder="Additional Info." class="form-control">
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </td>
-                      </tr>
-  
-                      <tr>
-                          <td class="noBorder">
-                              <div class="form-group row">
-                                  <label for="code" class="col-sm-3 col-form-label control-label">Buyer Side
-                                      Commission</label>
-                                  <div class="col-sm-6">
-                                      <div class="input-group">
-                                          <div class="col-sm-3">
-                                              <input type="text" placeholder="Comm%" class="form-control">
-                                          </div>
-                                          <select class="form-control col-sm-5">
-                                              <option selected disabled> Select UOM </option>
-                                              <option> UOM 1 </option>
-                                              <option> UOM 2 </option>
-                                              <option> UOM 3 </option>
-                                              <option> UOM 4 </option>
-                                          </select>
-                                          <div class="col-sm-5">
-                                              <input type="text" placeholder="Additional Info." class="form-control">
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>
-                              <div class="form-group row">
-                                  <label for="code" class="col-sm-3 col-form-label control-label">Certification</label>
-                                  <div class="col-sm-6">
-                                      <div class="input-group">
-                                          <select class="form-control">
-                                              <option selected disabled> Select Certification </option>
-                                              <option> Certification 1 </option>
-                                              <option> Certification 2 </option>
-                                              <option> Certification 3 </option>
-                                              <option> Certification 4 </option>
-                                          </select>
-                                          <button class="btn btn-success " (click)="addenquiryCertificateForm()">
-                                              <i class="fa fa-plus"></i>
-                                          </button>
-                                      </div>
-                                  </div>
-                              </div>
-                          </td>
-                      </tr>
-  
-                      <tr>
-                          <td class="noBorder">
-                              <div class="form-group row">
-                                  <label class="col-sm-3 col-form-label">Remarks</label>
-                                  <div class="col-sm-6">
-                                      <textarea class="form-control" rows="4" placeholder="Any Remarks Here...">
+</div>
+
+
+
+<div class="ibox-content">
+    <div class="headline">
+        Enquiry Form
+    </div>
+    <div class=" panel blank-panel">
+        <div class=" panel-heading">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="col-md-6 col-md-offset-1">
+                                <div class="form-group">
+                                    <label class="m-b-none pt-2 ">
+                                        Enquiry #
+                                        <span style="margin-left: 40px;"> (Auto) </span> <span
+                                            style="margin-left: 160px;"> (Manual) </span></label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon mr-5 ml-4">FG-</span>
+                                        <div class="col-md-4 ml-7">
+                                            <input type="text" placeholder="Auto Enquiry no."
+                                                class="form-control text-w-4" id="enqry-autono" value="000092"
+                                                readonly="">
+                                        </div>
+                                        <div class="col-md-5 p-l-none">
+                                            <input type="text" placeholder="Enquiry no." class="form-control text-w-4"
+                                                id="enqry-no">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="noBorder ">
+                            <div class="form-group row mt-6">
+                                <label for="code" class="col-sm-3 col-form-label control-label">Buyer Name</label>
+                                <div class="col-sm-4">
+                                    <div class="input-group">
+                                        <select name="buyer " class="form-control" [(ngModel)]="buyerId">
+                                            <option value="null" disabled> Select Buyer</option>
+                                            <option *ngFor="let i of buyer" [value]="i.id">
+                                                {{i.buyerName}}
+                                            </option>
+                                        </select>
+                                        <button class="btn btn-success " (click)="addenquiryBuyerForm()">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row mt-6">
+                                <label for="code" class="col-sm-3 col-form-label control-label">Article Name</label>
+                                <div class="col-sm-4">
+                                    <div class="input-group">
+                                        <select name="article" class="form-control" [(ngModel)]="articleId">
+                                            <option value="null" disabled> Select Article</option>
+                                            <option *ngFor="let i of article" [value]="i.id">
+                                                {{i.name}}
+                                            </option>
+                                        </select>
+                                        <button class="btn btn-success " (click)="addenquiryArticleForm()">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="form-group row">
+                                <label for="code" class="col-sm-3 col-form-label control-label">Process</label>
+                                <div class="col-sm-4">
+                                    <div class="input-group">
+                                        <select name="process" class="form-control" [(ngModel)]="processId">
+                                            <option value="null" disabled> Select Process</option>
+                                            <option *ngFor="let i of process" [value]="i.id">
+                                                {{i.name}}
+                                            </option>
+                                        </select>
+                                        <span class="float-left">
+                                            <button class="btn btn-success " (click)="addenquiryProcessForm()">
+                                                <i class="fa fa-plus"></i>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="code" class="col-sm-3 col-form-label control-label">Process Type</label>
+                                <div class="col-sm-4">
+                                    <div class="input-group">
+                                        <select name="ptype" class="form-control" [(ngModel)]="processtypeId">
+                                            <option value="null" disabled> Select Process Type</option>
+                                            <option *ngFor="let i of ptype" [value]="i.id">
+                                                {{i.type}}
+                                            </option>
+                                        </select>
+                                        <span class="float-left">
+                                            <button class="btn btn-success " (click)="addProcessTypeForm()">
+                                                <i class="fa fa-plus"></i>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="code" class="col-sm-3 col-form-label control-label">Design Type</label>
+                                <div class="col-sm-4">
+                                    <div class="input-group">
+                                        <select name="design" class="form-control" [(ngModel)]="designId">
+                                            <option value="null" disabled> Select Design Type</option>
+                                            <option *ngFor="let i of design" [value]="i.id">
+                                                {{i.type}}
+                                            </option>
+                                        </select>
+                                        <span class="float-left">
+                                            <button class="btn btn-success " (click)="addDesignTypeForm()">
+                                                <i class="fa fa-plus"></i>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="code" class="col-sm-3 col-form-label control-label">Packaging</label>
+                                <div class="col-sm-4">
+                                    <div class="input-group">
+                                        <select name="packaging" class="form-control" [(ngModel)]="packageId">
+                                            <option value="null" disabled> Select Packaging</option>
+                                            <option *ngFor="let i of packaging" [value]="i.id">
+                                                {{i.name}}
+                                            </option>
+                                        </select>
+                                        <span class="float-left">
+                                            <button class="btn btn-success " (click)="addPackingForm()">
+                                                <i class="fa fa-plus"></i>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td>
+                            <div class="form-group row">
+                                <label for="code" class="col-sm-3 col-form-label control-label">Payment Terms</label>
+                                <div class="col-sm-6">
+                                    <div class="input-group">
+                                        <select name="payment" class="form-control" [(ngModel)]="paymentId">
+                                            <option value="null" disabled> Select Payment Terms</option>
+                                            <option *ngFor="let i of payment" [value]="i.id">
+                                                {{i.term}}
+                                            </option>
+                                        </select>
+
+                                        <button class="btn btn-success ">
+                                            <i class="fa fa-plus" (click)="addPaymentForm()"></i>
+                                        </button>
+
+                                        <div class="col-sm-2">
+                                            <input type="text" placeholder="Days." class="form-control">
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <input type="text" placeholder="Additional Info." class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="noBorder">
+                            <div class="form-group row">
+                                <label for="code" class="col-sm-3 col-form-label control-label">Price Terms</label>
+                                <div class="col-sm-6">
+                                    <div class="input-group">
+                                        <select name="priceterm" class="form-control" [(ngModel)]="priceId">
+                                            <option value="null" disabled> Select Price Terms</option>
+                                            <option *ngFor="let i of priceterm" [value]="i.id">
+                                                {{i.term}}
+                                            </option>
+                                        </select>
+                                        <button class="btn btn-success ">
+                                            <i class="fa fa-plus" (click)="addPriceForm()"></i>
+                                        </button>
+                                        <label for="code" class="col-sm-3 col-form-label control-label">Destination</label>
+                                        <select name="city1" class="form-control" [(ngModel)]="cityId">
+                                            <option value="null" disabled> Select Destination</option>
+                                            <option *ngFor="let i of city1 " [value]="i.id">
+                                                {{i.name}}
+                                            </option>
+                                        </select>
+                                        <button class="btn btn-success " (click)='addenquiryCity()'>
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="noBorder">
+                            <div class="form-group row">
+                                <label for="code" class="col-sm-3 col-form-label control-label">Suppiler Side
+                                    Commission</label>
+                                <div class="col-sm-6">
+                                    <div class="input-group">
+                                        <div class="col-sm-3">
+                                            <input type="text" placeholder="Comm%" class="form-control">
+                                        </div>
+                                        <select class="form-control col-sm-5">
+                                            <option selected disabled> Select UOM </option>
+                                            <option> UOM 1 </option>
+                                            <option> UOM 2 </option>
+                                            <option> UOM 3 </option>
+                                            <option> UOM 4 </option>
+                                        </select>
+                                        <div class="col-sm-5">
+                                            <input type="text" placeholder="Additional Info." class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="noBorder">
+                            <div class="form-group row">
+                                <label for="code" class="col-sm-3 col-form-label control-label">Buyer Side
+                                    Commission</label>
+                                <div class="col-sm-6">
+                                    <div class="input-group">
+                                        <div class="col-sm-3">
+                                            <input type="text" placeholder="Comm%" class="form-control">
+                                        </div>
+                                        <select class="form-control col-sm-5">
+                                            <option selected disabled> Select UOM </option>
+                                            <option> UOM 1 </option>
+                                            <option> UOM 2 </option>
+                                            <option> UOM 3 </option>
+                                            <option> UOM 4 </option>
+                                        </select>
+                                        <div class="col-sm-5">
+                                            <input type="text" placeholder="Additional Info." class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-group row">
+                                <label for="code" class="col-sm-3 col-form-label control-label">Certification</label>
+                                <div class="col-sm-6">
+                                    <div class="input-group">
+                                        <select name="certification" class="form-control" [(ngModel)]="certificateId">
+                                            <option value="null" disabled> Select Certifications</option>
+                                            <option *ngFor="let i of certification" [value]="i.id">
+                                                {{i.name}}
+                                            </option>
+                                        </select>
+                                        <button class="btn btn-success " (click)="addenquiryCertificateForm()">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="noBorder">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Remarks</label>
+                                <div class="col-sm-6">
+                                    <textarea class="form-control" rows="4" placeholder="Any Remarks Here...">
                                 </textarea>
-                                  </div>
-                              </div>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td class="noBorder">
-                              <div class="form-group row">
-                                  <label class="col-sm-3 col-form-label">Other Conditions</label>
-                                  <div class="col-sm-6">
-                                      <textarea class="form-control" rows="4" placeholder="Any Conditions Here...">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="noBorder">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Other Conditions</label>
+                                <div class="col-sm-6">
+                                    <textarea class="form-control" rows="4" placeholder="Any Conditions Here...">
                                 </textarea>
-                                  </div>
-                              </div>
-                          </td>
-                      </tr>
-  
-                      <tr class="text-center">
-  
-                          <button class="btn btn-info"><i class="fas fa-check"></i> Save & Next</button>
-  
-                          <button class="btn btn-secondary ml-4"> <i class="fas fa-times"></i>
-                              Cancle</button>
-                      </tr>
-  
-                  </tbody>
-              </table>
-          </div>
-      </div>
-  </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr class="text-center">
+
+                        <button class="btn btn-info"><i class="fas fa-check"></i> Save & Next</button>
+
+                        <button class="btn btn-secondary ml-4"> <i class="fas fa-times"></i>
+                            Cancle</button>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
