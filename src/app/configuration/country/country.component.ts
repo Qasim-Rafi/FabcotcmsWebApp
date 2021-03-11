@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EditCountryComponent } from './edit-country/edit-country.component';
 import { AddCountryComponent } from './add-country/add-country.component';
+import Swal from 'sweetalert2/dist/sweetalert2.js'; 
 
 @Component({
   selector: 'app-country',
@@ -62,12 +63,25 @@ export class CountryComponent implements OnInit {
 
   deleteCountry(id)
   {
-    this.http.delete(`${environment.apiUrl}/api/Configs/DeleteCountry/`+id.id )
+
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+
+        this.http.delete(`${environment.apiUrl}/api/Configs/DeleteCountry/`+id.id )
     .subscribe(
       res=> { 
         this.response = res;
         if (this.response.success == true){
-         this.toastr.error(this.response.message, 'Message.');
+          this.toastr.error('Record Deleted Successfully', 'Message.');
          this.fetch((data) => {
           this.rows = data;
         });
@@ -82,6 +96,16 @@ export class CountryComponent implements OnInit {
           this.toastr.error(this.response.message, 'Message.');
         }
       });
+
+
+        // Swal.fire(
+        //   'Record',
+        //   'Deleted Successfully.',
+        //   'success'
+        // )
+      }
+    })
+    
   }
   
   addCountryForm(){

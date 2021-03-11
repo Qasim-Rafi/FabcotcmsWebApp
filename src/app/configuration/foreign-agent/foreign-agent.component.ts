@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddAgentFormComponent } from './add-agent-form/add-agent-form.component';
 import { EditAgentFormComponent } from './edit-agent-form/edit-agent-form.component';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 @Component({
   selector: 'app-foreign-agent',
@@ -74,9 +75,22 @@ export class ForeignAgentComponent implements OnInit {
     });
   }
 
-  deleteAgent(id)
-  {
-    this.http.delete(`${environment.apiUrl}/api/Configs/DeleteExternalAgent/`+id.id )
+  
+
+
+  deleteAgent(id){
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+    
+        this.http.delete(`${environment.apiUrl}/api/Configs/DeleteExternalAgent/`+id.id )
     .subscribe(
       res=> { 
         this.response = res;
@@ -98,7 +112,37 @@ export class ForeignAgentComponent implements OnInit {
           this.toastr.error(this.response.message, 'Message.');
         }
       });
-  }
+    
+    
+        // Swal.fire(
+        //   'Record',
+        //   'Deleted Successfully.',
+        //   'success'
+        // )
+      }
+    })
+    
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   addAgentForm(){

@@ -131,7 +131,10 @@
           <button type="button" class="btn editIconBack" (click)="editBuyer(i)">
             <i class="far fa-edit "></i>
           </button>
-          <button type="button" 
+          <button type="button" class="btn editIconBack" (click)="deleteBuyer(i)">
+            <i class="far fa-trash-alt"></i>
+          </button>
+          <!-- <button type="button" 
           class="btn deleteIconBack"
           mwlConfirmationPopover 
           popoverTitle="Confirmation"
@@ -139,7 +142,7 @@
           placement="left" 
           (confirm)="deleteBuyer(i)"> 
           <i class="far fa-trash-alt"></i>
-          </button>
+          </button> -->
         </div>
       </div>
   
@@ -186,28 +189,5 @@
   </div>
   
   
-  
-  
-  <!-- Delete Modal -->
-  <!-- 
-  <div class="modal fade" id="popDeleteForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <img src="/assets/warning.png" >
-          <h5 class="modal-title"><span>Warning</span></h5>
-        
-        </div>
-        <div class="modal-body">
-          Are you sure you want to delete the Buyer ?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" style="background-color: rgb(204, 0, 0);" 
-                (click)="deleteBuyer(i)">Yes</button>
-          <button type="button" class="btn btn-secondary"  data-dismiss="modal" aria-label="Close">No</button>
-        </div>
-      </div>
-    </div>
-  </div>
-   -->
-  
+
+ 

@@ -2,7 +2,8 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-12">
-        <h3 class="m-0 ">Country </h3>
+        <h2 class="m-0 ">Country </h2>
+        <span class="m-0 ">Business Country location and its managemen </span>
       </div><!-- /.col -->
     </div><!-- /.row -->
   </div><!-- /.container-fluid -->
@@ -14,16 +15,16 @@
       <table class="table">
           <tbody>
               <tr>
-                  <td  >
-                      <button type="button" class="btn btn-primary m-r-sm text-s-md px-3"> 
-                      <i class="fas fa-user-tie"></i>{{listCount}}</button>
-                      <span class="text-muted text">Countries</span>
+                  <td class="noBorder"  >
+                      <button type="button" class="btn btn-primary text "> 
+                        <i class="fas fa-map px-1"></i>{{listCount}}</button>
+                      <span class="text-muted text-s-md  ml-2">Countries</span>
                   </td>
-                  <td>
+                  <td class="noBorder" >
                       <button type="button" class="btn  m-r-sm text-s-md px-3"> </button>
                       <span class="text-muted text"></span>
                   </td>
-                  <td >
+                  <td  class="noBorder" >
                       <button type="button" class="btn btn-primary btn-md float-right" (click)="addCountryForm()">
                         <i class="fa fa-plus" ></i> Add New Country</button>
                   </td>
@@ -33,41 +34,51 @@
 
 
 
-      <ngx-datatable #myTable class="material" [columns]="columns" [rows]="rows" [columnMode]="'force'" 
-      [headerHeight]="50" [footerHeight]="50"
-      [rowHeight]="'auto'" [limit]="10">
+      <ngx-datatable #myTable class="bootstrap datatable-row-wrapper" [columns]="columns" 
+      [rows]="rows" [columnMode]="'flex'" 
+      [headerHeight]="50" [footerHeight]="50" [sorts]="[{prop: 'code', dir: 'asce'}]"
+      [rowHeight]="'auto'" [limit]="6">
 
-    <ngx-datatable-column name="S. No." [width]="20" prop="code" > 
-        <ng-template let-row="row"  ngx-datatable-cell-template>
+    <ngx-datatable-column name="S. No." prop="code" [flexGrow]="0.03" > 
+        <ng-template let-row="row" ngx-datatable-cell-template>
           {{row.id}}
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="Country Name" [width]="80">
+      <ngx-datatable-column name="Country Name"  prop="code" [flexGrow]="0.05">
         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
           {{row.name}}
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="Details" [width]="80">
+      <ngx-datatable-column name="Details"  prop="code" [flexGrow]="0.06">
         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
           {{row.details}}
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="Status" [width]="80">
+      <ngx-datatable-column name="Status"  prop="code" [flexGrow]="0.06">
         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-          {{row.active}}
+          <!-- {{row.active}} -->
+          <div class="status" *ngIf="row.active==true">
+            Active
+  
+        </div>
+
+
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="Last Updated On" [width]="80">
+      <ngx-datatable-column name="Created On |Created By"  prop="code" [flexGrow]="0.07">
         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-          {{myDate | date:'medium'}}
+          {{myDate | date:'medium'}} | {{row.createdByName}} 
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="Action" [width]="80">
+      <ngx-datatable-column name="Action"  prop="code" [flexGrow]="0.03">
         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
           <button type="button" class="btn editIconBack" (click)="editCountryForm(row)">
             <i class="far fa-edit "></i>
           </button>
-          <button type="button" 
+          <button type="button" class="btn editIconBack" (click)="deleteCountry(row)">
+            <i class="far fa-trash-alt"></i>
+          </button>
+          <!-- <button type="button" 
           class="btn deleteIconBack"
           mwlConfirmationPopover 
           popoverTitle="Confirmation"
@@ -75,10 +86,9 @@
           placement="left" 
           (confirm)="deleteCountry(row)"> 
           <i class="far fa-trash-alt"></i>
-          </button>
+          </button> -->
         </ng-template>
       </ngx-datatable-column>
-      
     </ngx-datatable>      
 
 

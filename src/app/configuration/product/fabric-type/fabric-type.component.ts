@@ -5,6 +5,8 @@ import { environment } from 'src/environments/environment';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddTypeComponent } from './add-type/add-type.component';
 import { EditTypeComponent } from './edit-type/edit-type.component';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
+
 @Component({
   selector: 'app-fabric-type',
   templateUrl: './fabric-type.component.html',
@@ -78,30 +80,69 @@ export class FabricTypeComponent implements OnInit {
 
 
 
-  deleteType(id)
-  {
-    this.http.delete(`${environment.apiUrl}/api/Products/DeleteFabricType/`+id.id )
-    .subscribe(
-      res=> { 
-        this.response = res;
-        if (this.response.success == true){
-         this.toastr.error(this.response.message, 'Message.');
-         this.fetch((data) => {
-          this.rows = data;
-          this.listCount = this.rows.length;
-        });
-          
-        }
-        else {
-          this.toastr.error('Something went Worng', 'Message.');
+  
+
+  
+  deleteType(id){
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+    
+        this.http.delete(`${environment.apiUrl}/api/Products/DeleteFabricType/`+id.id )
+        .subscribe(
+          res=> { 
+            this.response = res;
+            if (this.response.success == true){
+             this.toastr.error(this.response.message, 'Message.');
+             this.fetch((data) => {
+              this.rows = data;
+              this.listCount = this.rows.length;
+            });
+              
             }
- 
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error(this.response.message, 'Message.');
-        }
-      });
-  }
+            else {
+              this.toastr.error('Something went Worng', 'Message.');
+                }
+     
+          }, err => {
+            if (err.status == 400) {
+              this.toastr.error(this.response.message, 'Message.');
+            }
+          });
+        // Swal.fire(
+        //   'Record',
+        //   'Deleted Successfully.',
+        //   'success'
+        // )
+      }
+    })
+    
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

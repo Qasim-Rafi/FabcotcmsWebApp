@@ -53,7 +53,9 @@
         </ngx-datatable-column>
         <ngx-datatable-column name="Status" [width]="10">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            {{row.description}}
+            <div class="status" *ngIf="row.active==true">
+              Active
+          </div>
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="Changed On | Changed By" [width]="80">
@@ -69,7 +71,10 @@
             <button type="button" class="btn deleteIconBack" (click)="deleteColor(row)">
               <i class="far fa-trash-alt"></i>
             </button>
-            <button type="button" 
+            <button type="button" class="btn editIconBack" (click)="deleteColor(row)">
+              <i class="far fa-trash-alt"></i>
+            </button>
+            <!-- <button type="button" 
             class="btn deleteIconBack"
             mwlConfirmationPopover 
             popoverTitle="Confirmation"
@@ -77,7 +82,7 @@
             placement="left" 
             (confirm)="deleteColor(row)"> 
             <i class="far fa-trash-alt"></i>
-            </button>
+            </button> -->
           </ng-template>
         </ngx-datatable-column>
       </ngx-datatable>      

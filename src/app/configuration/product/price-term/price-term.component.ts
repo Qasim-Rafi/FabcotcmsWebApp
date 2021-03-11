@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddPriceComponent } from './add-price/add-price.component';
 import { EditPriceComponent } from './edit-price/edit-price.component';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 @Component({
   selector: 'app-price-term',
@@ -56,29 +57,67 @@ export class PriceTermComponent implements OnInit {
 
 
 
-  deletePrice(id)
-  {
-    this.http.delete(`${environment.apiUrl}/api/Products/DeletePriceTerm/`+id.id )
-    .subscribe(
-      res=> { 
-        this.response = res;
-        if (this.response.success == true){
-         this.toastr.error(this.response.message, 'Message.');
-         this.fetch((data) => {
-          this.rows = data;
-        });
-          
-        }
-        else {
-          this.toastr.error('Something went Worng', 'Message.');
+
+
+
+
+  deletePrice(id){
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+    
+        this.http.delete(`${environment.apiUrl}/api/Products/DeletePriceTerm/`+id.id )
+        .subscribe(
+          res=> { 
+            this.response = res;
+            if (this.response.success == true){
+             this.toastr.error(this.response.message, 'Message.');
+             this.fetch((data) => {
+              this.rows = data;
+            });
+              
             }
- 
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error(this.response.message, 'Message.');
-        }
-      });
-  }
+            else {
+              this.toastr.error('Something went Worng', 'Message.');
+                }
+     
+          }, err => {
+            if (err.status == 400) {
+              this.toastr.error(this.response.message, 'Message.');
+            }
+          });
+    
+        // Swal.fire(
+        //   'Record',
+        //   'Deleted Successfully.',
+        //   'success'
+        // )
+      }
+    })
+    
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

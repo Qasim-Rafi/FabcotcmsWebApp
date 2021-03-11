@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
 import { AddBankAccountComponent } from './add-bank-account/add-bank-account.component';
 import { EditBankAccountComponent } from './edit-bank-account/edit-bank-account.component';
+import Swal from 'sweetalert2/dist/sweetalert2.js'; 
 
 @Component({
   selector: 'app-bank-accounts',
@@ -72,29 +73,63 @@ export class BankAccountsComponent implements OnInit {
   }
 
 
-  deleteAccount(id)
-  {
-    this.http.delete(`${environment.apiUrl}/api/Configs/DeleteBankAccount/`+id.id )
-    .subscribe(
-      res=> { 
-        this.response = res;
-        if (this.response.success == true){
-         this.toastr.error(this.response.message, 'Message.');
-         this.fetch((data) => {
-          this.rows = data;
-        });
-          
-        }
-        else {
-          this.toastr.error('Something went Worng', 'Message.');
+
+  
+  deleteAccount(id){
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+    
+        this.http.delete(`${environment.apiUrl}/api/Configs/DeleteBankAccount/`+id.id )
+        .subscribe(
+          res=> { 
+            this.response = res;
+            if (this.response.success == true){
+             this.toastr.error(this.response.message, 'Message.');
+             this.fetch((data) => {
+              this.rows = data;
+            });
+              
             }
- 
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error(this.response.message, 'Message.');
-        }
-      });
-  }
+            else {
+              this.toastr.error('Something went Worng', 'Message.');
+                }
+     
+          }, err => {
+            if (err.status == 400) {
+              this.toastr.error(this.response.message, 'Message.');
+            }
+          });
+    
+    
+        // Swal.fire(
+        //   'Record',
+        //   'Deleted Successfully.',
+        //   'success'
+        // )
+      }
+    })
+    
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
   
   addAccountForm(){

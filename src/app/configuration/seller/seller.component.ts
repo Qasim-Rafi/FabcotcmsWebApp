@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EditSellerFormComponent } from './edit-seller-form/edit-seller-form.component';
 import { AddSellerFormComponent } from './add-seller-form/add-seller-form.component';
+import Swal from 'sweetalert2/dist/sweetalert2.js'; 
 @Component({
   selector: 'app-seller',
   templateUrl: './seller.component.html',
@@ -72,26 +73,57 @@ export class SellerComponent implements OnInit {
 
  
 
-  deleteSeller(id)
-  {
-    this.http.delete(`${environment.apiUrl}/api/Sellers/DeleteSeller/`+id.id )
-    .subscribe(
-      res=> { 
-        this.response = res;
-        if (this.response.success == true){
-         this.toastr.error(this.response.message, 'Message.');
-         this.getSellers();
-        }
-        else {
-          this.toastr.error('Something went Worng', 'Message.');
-            }
+
  
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error('Something went Worng', 'Message.');
-        }
-      });
-  }
+
+
+
+
+
+  deleteSeller(id){
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+  
+          this.http.delete(`${environment.apiUrl}/api/Sellers/DeleteSeller/`+id.id )
+          .subscribe(
+            res=> { 
+              this.response = res;
+              if (this.response.success == true){
+               this.toastr.error(this.response.message, 'Message.');
+               this.getSellers();
+              }
+              else {
+                this.toastr.error('Something went Worng', 'Message.');
+                  }
+       
+            }, err => {
+              if (err.status == 400) {
+                this.toastr.error('Something went Worng', 'Message.');
+              }
+            });
+        
+    
+    
+        // Swal.fire(
+        //   'Record',
+        //   'Deleted Successfully.',
+        //   'success'
+        // )
+      }
+    })
+    
+    }
+
+
+
 
 
   editSellerform(popup){

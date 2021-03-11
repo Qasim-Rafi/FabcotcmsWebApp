@@ -2,7 +2,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-12">
-          <h3 class="m-0 ">Currency </h3>
+          <h2 class="m-0 ">Currency </h2>
         </div><!-- /.col -->
       </div><!-- /.row -->
     </div><!-- /.container-fluid -->
@@ -14,16 +14,16 @@
         <table class="table">
             <tbody>
                 <tr>
-                    <td  >
+                    <td class="noBorder" >
                         <button type="button" class="btn btn-primary m-r-sm text-s-md px-3"> 
                         <i class="fas fa-user-tie"></i>{{listCount}}</button>
                         <span class="text-muted text">Currency</span>
                     </td>
-                    <td>
+                    <td class="noBorder">
                         <button type="button" class="btn  m-r-sm text-s-md px-3"> </button>
                         <span class="text-muted text"></span>
                     </td>
-                    <td >
+                    <td class="noBorder">
                         <button type="button" class="btn btn-primary btn-md float-right" (click)="addCurrencyForm()">
                           <i class="fa fa-plus" ></i> Add Currency</button>
                     </td>
@@ -64,6 +64,7 @@
         </ngx-datatable-column>
         <ngx-datatable-column name=" Updated By" [width]="80">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+            {{row.createdByName}} 
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name=" Updated On" [width]="80">
@@ -76,8 +77,10 @@
             <button type="button" class="btn editIconBack" (click)="editCurrencyForm(row)">
               <i class="far fa-edit "></i>
             </button>
-            
-            <button type="button" 
+            <button type="button" class="btn editIconBack" (click)="deleteCurrency(row)">
+              <i class="far fa-trash-alt"></i>
+            </button> 
+            <!-- <button type="button" 
             class="btn deleteIconBack"
             mwlConfirmationPopover 
             popoverTitle="Confirmation"
@@ -85,7 +88,7 @@
             placement="left" 
             (confirm)="deleteCurrency(row)"> 
             <i class="far fa-trash-alt"></i>
-            </button>
+            </button> -->
           </ng-template>
         </ngx-datatable-column>
         

@@ -5,6 +5,8 @@ import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
 import { AddLoomTypeComponent } from './add-loom-type/add-loom-type.component';
 import { EditLoomTypeComponent } from './edit-loom-type/edit-loom-type.component';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
+
 
 @Component({
   selector: 'app-loom-type',
@@ -57,9 +59,19 @@ export class LoomTypeComponent implements OnInit {
 
 
 
-  deleteLoom(id)
-  {
-    this.http.delete(`${environment.apiUrl}/api/TextileGarments/DeleteLoomType/`+id.id )
+  deleteLoom(id){
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+    
+        this.http.delete(`${environment.apiUrl}/api/TextileGarments/DeleteLoomType/`+id.id )
     .subscribe(
       res=> { 
         this.response = res;
@@ -79,7 +91,16 @@ export class LoomTypeComponent implements OnInit {
           this.toastr.error(this.response.message, 'Message.');
         }
       });
-  }
+    
+        // Swal.fire(
+        //   'Record',
+        //   'Deleted Successfully.',
+        //   'success'
+        // )
+      }
+    })
+    
+    }
 
 
 
