@@ -4,17 +4,17 @@ import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import {PackagingComponent} from './packaging/packaging.component'
-import { DesignTypeComponent } from './design-type/design-type.component';
-import {ProcessTypeComponent} from './process-type/process-type.component';
-import { ProcessenqmodalComponent } from '../processenqmodal/processenqmodal.component';
-import { AddcitymodalComponent } from '../addcitymodal/addcitymodal.component';
-import { AddcertmodalComponent } from '../addcertmodal/addcertmodal.component';
-import { PaymentTermComponent} from './payment-term/payment-term.component'
-import {PriceTermComponent} from './price-term/price-term.component'
 import { ServiceService } from 'src/app/shared/service.service';
-import { AddmodalComponent } from '../addmodal/addmodal.component';
 import { AddArticleComponent } from 'src/app/configuration/articles/add-article/add-article.component';
+import { AddBuyerComponent } from 'src/app/configuration/buyer/add-buyer/add-buyer.component';
+import { AddCertificateComponent } from 'src/app/configuration/home-textile/certificate/add-certificate/add-certificate.component';
+import { AddCityComponent } from 'src/app/configuration/city/add-city/add-city.component';
+import { AddProcessComponent } from 'src/app/configuration/home-textile/process/add-process/add-process.component';
+import { AddPackingComponent } from 'src/app/configuration/product/packing/add-packing/add-packing.component';
+import { AddDesignTypeComponent } from 'src/app/configuration/home-textile/design-type/add-design-type/add-design-type.component';
+import { AddProcessTypeComponent } from 'src/app/configuration/home-textile/process-type/add-process-type/add-process-type.component';
+import { AddPaymentComponent } from 'src/app/configuration/product/payment-term/add-payment/add-payment.component';
+import { AddPriceComponent } from 'src/app/configuration/product/price-term/add-price/add-price.component';
 @Component({
   selector: 'app-add-enquiry',
   templateUrl: './add-enquiry.component.html',
@@ -183,205 +183,7 @@ export class AddEnquiryComponent implements OnInit {
   fetch(arg0: (data: any) => void) {
     throw new Error('Method not implemented.');
   }
- 
-  fetch1(cb) {
-    let that = this;
-    that.http
-    .get(`${environment.apiUrl}/api/Configs/GetAllArticle`)
-    .subscribe(res => {
-      this.response = res;
-     
-    if(this.response.success==true)
-    {
-    that.data =this.response.data;
-    cb(this.data);
-    }
-    else{
-      this.toastr.error(this.response.message, 'Message.');
-    }
-    }, err => {
-      if ( err.status == 400) {
- this.toastr.error(err.error.message, 'Message.');;
-      }
-    });
-  }
 
- //fetch for process function
- fetch2(cb) {
-  let that = this;
-  that.http
-  .get(`${environment.apiUrl}/api/TextileGarments/GetAllProcess`)
-  .subscribe(res => {
-    this.response = res;
-    this.listCount = this.fetch2.length;
-  if(this.response.success==true)
-  {
-  that.data =this.response.data;
-  cb(this.data);
-  }
-  else{
-    this.toastr.error(this.response.message, 'Message.');
-  }
-  }, err => {
-    if ( err.status == 400) {
-this.toastr.error(err.error.message, 'Message.');;
-    }
-  });
-}
-//fetch for city modal
-fetch3(cb) {
-  let that = this;
-  that.http
-  .get(`${environment.apiUrl}/api/Configs/GetAllCity`)
-  .subscribe(res => {
-    this.response = res;
-   
-  if(this.response.success==true)
-  {
-  that.data =this.response.data;
-  cb(this.data);
-  }
-  else{
-    this.toastr.error(this.response.message, 'Message.');
-  }
-  }, err => {
-    if ( err.status == 400) {
-this.toastr.error(err.error.message, 'Message.');;
-    }
-  });
-}
-
-//fetch for certificate modal
-
-fetch4(cb) {
-  let that = this;
-  that.http
-  .get(`${environment.apiUrl}/api/TextileGarments/GetAllCertificate`)
-  .subscribe(res => {
-    this.response = res;
-    this.listCount = this.fetch4.length;
-  if(this.response.success==true)
-  {
-  that.data =this.response.data;
-  cb(this.data);
-  }
-  else{
-    this.toastr.error(this.response.message, 'Message.');
-  }
-  }, err => {
-    if ( err.status == 400) {
-this.toastr.error(err.error.message, 'Message.');;
-    }
-  });
-}
-
-fetch5(cb) {
-  let that = this;
-  that.http
-  .get(`${environment.apiUrl}/api/Products/GetAllPriceTerm`)
-  .subscribe(res => {
-    this.response = res;
-    this.listCount = this.fetch5.length;
-  if(this.response.success==true)
-  {
-  that.data =this.response.data;
-  cb(this.data);
-  }
-  else{
-    this.toastr.error(this.response.message, 'Message.');
-  }
-  }, err => {
-    if ( err.status == 400) {
-this.toastr.error(err.error.message, 'Message.');;
-    }
-  });
-}
-
-fetch6(cb) {
-  let that = this;
-  that.http
-  .get(`${environment.apiUrl}/api/Products/GetAllPaymentTerm`)
-  .subscribe(res => {
-    this.response = res;
-    this.listCount = this.fetch6.length;
-  if(this.response.success==true)
-  {
-  that.data =this.response.data;
-  cb(this.data);
-  }
-  else{
-    this.toastr.error(this.response.message, 'Message.');
-  }
-  }, err => {
-    if ( err.status == 400) {
-this.toastr.error(err.error.message, 'Message.');;
-    }
-  });
-}
-
-fetch7(cb) {
-  let that = this;
-  that.http
-  .get(`${environment.apiUrl}/api/TextileGarments/GetAllProcessType`)
-  .subscribe(res => {
-    this.response = res;
-    this.listCount = this.fetch7.length;
-  if(this.response.success==true)
-  {
-  that.data =this.response.data;
-  cb(this.data);
-  }
-  else{
-    this.toastr.error(this.response.message, 'Message.');
-  }
-  }, err => {
-    if ( err.status == 400) {
-this.toastr.error(err.error.message, 'Message.');;
-    }
-  });
-}
-
-fetch8(cb) {
-  let that = this;
-  that.http
-  .get(`${environment.apiUrl}/api/TextileGarments/GetAllDesignType`)
-  .subscribe(res => {
-    this.response = res;
-    this.listCount = this.fetch8.length;
-  if(this.response.success==true)
-  {
-  that.data =this.response.data;
-  cb(this.data);
-  }
-  else{
-    this.toastr.error(this.response.message, 'Message.');
-  }
-  }, err => {
-    if ( err.status == 400) {
-this.toastr.error(err.error.message, 'Message.');;
-    }
-  });
-}
-fetch9(cb) {
-  let that = this;
-  that.http
-  .get(`${environment.apiUrl}/api/Products/GetAllPacking`)
-  .subscribe(res => {
-    this.response = res;
-  if(this.response.success==true)
-  {
-  that.data =this.response.data;
-  cb(this.data);
-  }
-  else{
-    this.toastr.error(this.response.message, 'Message.');
-  }
-  }, err => {
-    if ( err.status == 400) {
-this.toastr.error(err.error.message, 'Message.');;
-    }
-  });
-}
   getenquiryCountry()
   {
     this.http.get(`${environment.apiUrl}/api/Lookups/Countries`)
@@ -403,12 +205,12 @@ this.toastr.error(err.error.message, 'Message.');;
   }
 
   addenquiryCertificateForm(){
-    const modalRef = this.modalService.open(AddcertmodalComponent, { centered: true });
+    const modalRef = this.modalService.open(AddCertificateComponent , { centered: true });
           modalRef.result.then((data) => {
          // on close
           if(data ==true){
           //  this.date = this.myDate;
-           this.fetch4((data) => {
+           this.fetch((data) => {
             this.rows = data;
           });
            
@@ -420,12 +222,12 @@ this.toastr.error(err.error.message, 'Message.');;
   } 
 
   addenquiryCity(){
-    const modalRef = this.modalService.open(AddcitymodalComponent, { centered: true });
+    const modalRef = this.modalService.open(AddCityComponent, { centered: true });
           modalRef.result.then((data) => {
          // on close
           if(data ==true){
           //  this.date = this.myDate;
-           this.fetch3((data) => {
+           this.fetch((data) => {
             this.rows = data;
         
           });
@@ -464,7 +266,7 @@ this.toastr.error(err.error.message, 'Message.');;
  
 
  addenquiryBuyerForm(){
-  const modalRef = this.modalService.open(AddmodalComponent, { centered: true });
+  const modalRef = this.modalService.open(AddBuyerComponent, { centered: true });
         modalRef.result.then((data) => {
        // on close
         if(data ==true){
@@ -483,7 +285,7 @@ addenquiryArticleForm(){
        // on close
         if(data ==true){
         //  this.date = this.myDate;
-         this.fetch1((data) => {
+         this.fetch((data) => {
           this.rows = data;
           this.listCount = this.rows.length;
         });
@@ -496,12 +298,12 @@ addenquiryArticleForm(){
      
 } 
 addenquiryProcessForm(){
-  const modalRef = this.modalService.open(ProcessenqmodalComponent, { centered: true });
+  const modalRef = this.modalService.open(AddProcessComponent, { centered: true });
         modalRef.result.then((data) => {
        // on close
         if(data ==true){
         //  this.date = this.myDate;
-         this.fetch2((data) => {
+         this.fetch((data) => {
           this.rows = data;
         });
          
@@ -514,12 +316,12 @@ addenquiryProcessForm(){
 // packaging form
 
 addPackingForm(){
-  const modalRef = this.modalService.open(PackagingComponent, { centered: true });
+  const modalRef = this.modalService.open(AddPackingComponent, { centered: true });
         modalRef.result.then((data) => {
        // on close
         if(data ==true){
         //  this.date = this.myDate;
-         this.fetch9((data) => {
+         this.fetch((data) => {
           this.rows = data;
           
   this.listCount = this.rows.length;
@@ -533,12 +335,12 @@ addPackingForm(){
 } 
 // design form
 addDesignTypeForm(){
-  const modalRef = this.modalService.open(DesignTypeComponent, { centered: true });
+  const modalRef = this.modalService.open(AddDesignTypeComponent, { centered: true });
         modalRef.result.then((data) => {
        // on close
         if(data ==true){
         //  this.date = this.myDate;
-         this.fetch8((data) => {
+         this.fetch((data) => {
           this.rows = data;
         });
          
@@ -552,12 +354,12 @@ addDesignTypeForm(){
 // process type form
 
 addProcessTypeForm(){
-  const modalRef = this.modalService.open(ProcessTypeComponent, { centered: true });
+  const modalRef = this.modalService.open(AddProcessTypeComponent, { centered: true });
         modalRef.result.then((data) => {
        // on close
         if(data ==true){
         //  this.date = this.myDate;
-         this.fetch7((data) => {
+         this.fetch((data) => {
           this.rows = data;
         });
          
@@ -571,12 +373,12 @@ addProcessTypeForm(){
 // payment Term form 
 
 addPaymentForm(){
-  const modalRef = this.modalService.open(PaymentTermComponent, { centered: true });
+  const modalRef = this.modalService.open(AddPaymentComponent, { centered: true });
         modalRef.result.then((data) => {
        // on close
         if(data ==true){
         //  this.date = this.myDate;
-         this.fetch6((data) => {
+         this.fetch((data) => {
           this.rows = data;
         });
          
@@ -588,12 +390,12 @@ addPaymentForm(){
 } 
 
 addPriceForm(){
-  const modalRef = this.modalService.open(PriceTermComponent, { centered: true });
+  const modalRef = this.modalService.open(AddPriceComponent, { centered: true });
         modalRef.result.then((data) => {
        // on close
         if(data ==true){
         //  this.date = this.myDate;
-         this.fetch5((data) => {
+         this.fetch((data) => {
           this.rows = data;
         });
          

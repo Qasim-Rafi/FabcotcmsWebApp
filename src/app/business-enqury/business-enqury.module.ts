@@ -13,22 +13,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { ToastrModule } from 'ngx-toastr';
-import { AddcitymodalComponent } from './addcitymodal/addcitymodal.component';
-import { AddcertmodalComponent } from './addcertmodal/addcertmodal.component';
-import { ProcessenqmodalComponent } from './processenqmodal/processenqmodal.component';
-import { DesignTypeComponent } from './add-enquiry/design-type/design-type.component';
-import { PackagingComponent } from './add-enquiry/packaging/packaging.component';
-import { PaymentTermComponent } from './add-enquiry/payment-term/payment-term.component';
-import { PriceTermComponent } from './add-enquiry/price-term/price-term.component';
-import { ProcessTypeComponent } from './add-enquiry/process-type/process-type.component';
-import { AddmodalComponent } from './addmodal/addmodal.component';
 
 
 @NgModule({
   declarations: [
     AddEnquiryComponent, 
     ActiveEnquiryComponent, 
-    SearchEnquiryComponent, AddcitymodalComponent, AddcertmodalComponent,  ProcessenqmodalComponent, DesignTypeComponent, PackagingComponent, PaymentTermComponent, PriceTermComponent, ProcessTypeComponent, AddmodalComponent
+    SearchEnquiryComponent
   
   ],
 
