@@ -29,13 +29,10 @@
             [(ngModel)]="data.details" #details="ngModel"></textarea>
         </div>
       </div>
-
       <div class="form-check form-check-inline">
-        <input class="form-check-input check-btn" type="checkbox" name="active"
-        [(ngModel)]="data.active" #active="ngModel"> 
-        <label for="active" class="form-check-label" id="active">Marked as Active</label>
+        <input class="form-check-input check-btn" name="active" type="checkbox" checked>
+        <label for="active"  class="form-check-label" >Marked as Active</label>
       </div>
-
         <div class="modal-footer">
         <button class="btn button-save" type="submit" (click)="addCountry()" >
           Add Country
