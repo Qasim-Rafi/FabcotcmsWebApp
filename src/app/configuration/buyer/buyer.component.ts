@@ -134,11 +134,11 @@ Swal.fire({
       });
 
 
-    // Swal.fire(
-    //   'Record',
-    //   'Deleted Successfully.',
-    //   'success'
-    // )
+    Swal.fire(
+      'Record',
+      'Deleted Successfully.',
+      'failed',
+    )
   }
 })
 
