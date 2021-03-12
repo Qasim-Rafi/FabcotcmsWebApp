@@ -202,10 +202,11 @@
                                         <button class="btn btn-success ">
                                             <i class="fa fa-plus" (click)="addPriceForm()"></i>
                                         </button>
+
                                         <label for="code" class="col-sm-3 col-form-label control-label">Destination</label>
-                                        <select name="city1" class="form-control" [(ngModel)]="cityId">
+                                        <select name="city" class="form-control" [(ngModel)]="cityId">
                                             <option value="null" disabled> Select Destination</option>
-                                            <option *ngFor="let i of city1 " [value]="i.id">
+                                            <option *ngFor="let i of city " [value]="i.id">
                                                 {{i.name}}
                                             </option>
                                         </select>

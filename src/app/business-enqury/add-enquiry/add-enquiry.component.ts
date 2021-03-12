@@ -28,8 +28,9 @@ export class AddEnquiryComponent implements OnInit {
     processId:null; cityId:any[]; rows:any=[]; temp: any=[]; columns:any=[]; countryId:null; processtypeId:null;
     @ViewChild(NgForm) buyerForm;
     date: number;
-  payment: any=[]; packaging: any=[]; design: any=[]; process: any={}; ptype: any={}; certification: any={}; priceterm: any={};
-    city1: any=[]; country1: any=[];
+   payment: any=[]; packaging: any=[]; design: any=[]; process: any=[]; ptype: any=[]; certification: any=[]; priceterm: any=[];
+   country1: any=[];
+  
   
     constructor(private http:HttpClient,
               private toastr: ToastrService,  
@@ -158,7 +159,7 @@ export class AddEnquiryComponent implements OnInit {
   this.service.getCity().subscribe(res => {
     this.response = res;
     if (this.response.success == true) {
-      this.city1= this.response.data;
+      this.city= this.response.data;
     }
     else {
       this.toastr.error('Something went Worng', 'Message.');
@@ -167,15 +168,10 @@ export class AddEnquiryComponent implements OnInit {
 }
 
 
+
     this.getenquiryCountry();
     this.getenquiryBuyers();
  
-
-
-
-
-
-
 
   }
 

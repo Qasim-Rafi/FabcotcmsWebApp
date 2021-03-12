@@ -59,7 +59,7 @@ getArticles()
   }
   getCity()
   {
-    return this.http.get(`${environment.apiUrl}
-    ​/api/Lookups/Destinations`)
+    return this.http.get(`${environment.apiUrl}/api/Lookups/Destinations`)
   }
+
 }
