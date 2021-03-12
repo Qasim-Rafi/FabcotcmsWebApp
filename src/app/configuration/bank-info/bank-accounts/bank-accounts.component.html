@@ -92,7 +92,10 @@
             <button type="button" class="btn editIconBack" (click)=" editAccountForm(row)">
               <i class="far fa-edit "></i>
             </button>
-            <button type="button" 
+            <button type="button" class="btn editIconBack" (click)="deleteAccount(row)">
+              <i class="far fa-trash-alt"></i>
+            </button>
+            <!-- <button type="button" 
             class="btn deleteIconBack"
             mwlConfirmationPopover 
             popoverTitle="Confirmation"
@@ -100,7 +103,7 @@
             placement="left" 
             (confirm)="deleteAccount(row)"> 
             <i class="far fa-trash-alt"></i>
-            </button>
+            </button> -->
           </ng-template>
         </ngx-datatable-column>
       </ngx-datatable>      

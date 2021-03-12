@@ -14,16 +14,16 @@
         <table class="table">
             <tbody>
                 <tr>
-                    <td>
+                    <td class="noBorder">
                         <button type="button" class="btn btn-primary m-r-sm text-s-md px-3"> 
                         <i class="fas fa-user-tie"></i>{{listCount}}</button>
                         <span class="text-muted text">Article</span>
                     </td>
-                    <td>
+                    <td class="noBorder">
                         <button type="button" class="btn  m-r-sm text-s-md px-3"> </button>
                         <span class="text-muted text"></span>
                     </td>
-                    <td >
+                    <td class="noBorder">
                         <button type="button" class="btn btn-primary btn-md float-right" 
                         (click)="addArticleForm()"><i class="fa fa-plus"></i> Add New Article</button>
                     </td>
@@ -63,7 +63,9 @@
         </ngx-datatable-column>
         <ngx-datatable-column name="Status" [width]="5" prop="address"> 
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            {{row.address}}
+            <div class="status" *ngIf="row.active==true">
+              Active
+          </div>
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="Last Updated On" [width]="80" prop="modifiedDate">
@@ -73,7 +75,7 @@
         </ngx-datatable-column>
         <ngx-datatable-column name="Last Updated By" [width]="80" prop="modifiedBy">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{myDate | date:'medium'}}
+         {{row.createdByName}} 
             </ng-template>
           </ngx-datatable-column>
         <ngx-datatable-column name="Action" [width]="40" >
@@ -81,7 +83,11 @@
             <button type="button" class="btn editIconBack" (click)="editArticleForm(row)">
               <i class="far fa-edit "></i>
             </button>
-            <button type="button" 
+            <button type="button" class="btn editIconBack" (click)=" deleteArticle(row)">
+              <i class="far fa-trash-alt"></i>
+            </button>
+       
+            <!-- <button type="button" 
             class="btn deleteIconBack"
             mwlConfirmationPopover 
             popoverTitle="Confirmation"
@@ -89,7 +95,7 @@
             placement="left" 
             (confirm)="deleteArticle(row)"> 
             <i class="far fa-trash-alt"></i>
-            </button>
+            </button> -->
           </ng-template>
         </ngx-datatable-column>
         

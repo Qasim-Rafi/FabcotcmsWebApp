@@ -3,9 +3,6 @@ label:not(.form-check-label):not(.custom-file-label) {
   color: #3e3d3d;
   text-align: right;
 }
-.noBorder {
-  border: none !important;
-}
 
 .form-group {
   margin-bottom: 1.2rem !important;

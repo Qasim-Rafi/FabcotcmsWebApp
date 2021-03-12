@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
 import { AddTimeActionComponent } from './add-time-action/add-time-action.component';
 import { EditTimeActionComponent } from './edit-time-action/edit-time-action.component';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 @Component({
   selector: 'app-time-action-items',
@@ -29,7 +30,6 @@ export class TimeActionItemsComponent implements OnInit {
           this.rows = data;
         });
               }
-            
             
               fetch(cb) {
                 let that = this;
@@ -56,10 +56,23 @@ export class TimeActionItemsComponent implements OnInit {
               }
             
             
+           
             
-              deleteAction(id)
-              {
-                this.http.delete(`${environment.apiUrl}/api/TextileGarments/DeleteTnaAction/`+id.id )
+
+
+              deleteAction(id){
+                Swal.fire({
+                  title: 'Are you sure?',
+                  text: "You won't be able to revert this!",
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Delete it!'
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                
+                    this.http.delete(`${environment.apiUrl}/api/TextileGarments/DeleteTnaAction/`+id.id )
                 .subscribe(
                   res=> { 
                     this.response = res;
@@ -79,9 +92,32 @@ export class TimeActionItemsComponent implements OnInit {
                       this.toastr.error(this.response.message, 'Message.');
                     }
                   });
-              }
+                
+                    // Swal.fire(
+                    //   'Record',
+                    //   'Deleted Successfully.',
+                    //   'success'
+                    // )
+                  }
+                })
+                
+                }
             
             
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             
               addActionForm(){
                 const modalRef = this.modalService.open(AddTimeActionComponent, { centered: true });

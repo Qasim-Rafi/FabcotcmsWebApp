@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-12">
-        <h3 class="m-0 ">City </h3>
+        <h2 class="m-0 ">City </h2>
       </div><!-- /.col -->
     </div><!-- /.row -->
   </div><!-- /.container-fluid -->
@@ -59,12 +59,14 @@
       </ngx-datatable-column>
         <ngx-datatable-column name="Status" [width]="10">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            {{row.active}}
+            <div class="status" *ngIf="row.active==true">
+              Active
+          </div>
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="Changed On | Changed By" [width]="80">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            {{myDate | date:'medium'}}
+            {{myDate | date:'medium'}} | {{row.createdByName}} 
           </ng-template>
         </ngx-datatable-column>
       <ngx-datatable-column name="Action" [width]="80">
@@ -72,7 +74,10 @@
           <button type="button" class="btn editIconBack" (click)="editCity(row)">
             <i class="far fa-edit "></i>
           </button>
-          <button type="button" 
+          <button type="button" class="btn editIconBack" (click)="deleteCity(row)">
+            <i class="far fa-trash-alt"></i>
+          </button>
+          <!-- <button type="button" 
           class="btn deleteIconBack"
           mwlConfirmationPopover 
           popoverTitle="Confirmation"
@@ -80,7 +85,7 @@
           placement="left" 
           (confirm)="deleteCity(row)"> 
           <i class="far fa-trash-alt"></i>
-          </button>
+          </button> -->
         </ng-template>
       </ngx-datatable-column>
       

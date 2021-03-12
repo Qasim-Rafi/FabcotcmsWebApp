@@ -5,6 +5,8 @@ import { environment } from 'src/environments/environment';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddCityComponent } from './add-city/add-city.component';
 import { EditCityComponent } from './edit-city/edit-city.component';
+import Swal from 'sweetalert2/dist/sweetalert2.js'; 
+
 
 @Component({
   selector: 'app-city',
@@ -60,9 +62,21 @@ export class CityComponent implements OnInit {
   }
 
 
-  deleteCity(id)
-  {
-    this.http.delete(`${environment.apiUrl}/api/Configs/DeleteCity/`+id.id )
+
+
+  deleteCity(id){
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+    
+        this.http.delete(`${environment.apiUrl}/api/Configs/DeleteCity/`+id.id )
     .subscribe(
       res=> { 
         this.response = res;
@@ -82,7 +96,32 @@ export class CityComponent implements OnInit {
           this.toastr.error(this.response.message, 'Message.');
         }
       });
-  }
+    
+        // Swal.fire(
+        //   'Record',
+        //   'Deleted Successfully.',
+        //   'success'
+        // )
+      }
+    })
+    
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

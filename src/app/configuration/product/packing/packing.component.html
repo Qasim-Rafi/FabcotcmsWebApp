@@ -63,7 +63,9 @@
         </ngx-datatable-column>
         <ngx-datatable-column name="Status" [width]="80">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            {{row.address}}
+            <div class="status" *ngIf="row.active==true">
+              Active
+          </div>
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="Last Updated On" [width]="80">
@@ -76,8 +78,10 @@
             <button type="button" class="btn editIconBack" (click)="editPackingForm(row)">
               <i class="far fa-edit "></i>
             </button>
-
-            <button type="button" 
+            <button type="button" class="btn editIconBack" (click)="deletePacking(row)">
+              <i class="far fa-trash-alt"></i>
+            </button>
+            <!-- <button type="button" 
             class="btn deleteIconBack"
             mwlConfirmationPopover 
             popoverTitle="Confirmation"
@@ -85,7 +89,7 @@
             placement="left" 
             (confirm)="deletePacking(row)"> 
             <i class="far fa-trash-alt"></i>
-            </button>
+            </button> -->
           </ng-template>
         </ngx-datatable-column>
         
