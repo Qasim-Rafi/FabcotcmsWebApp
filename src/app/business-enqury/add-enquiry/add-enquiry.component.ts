@@ -28,9 +28,8 @@ export class AddEnquiryComponent implements OnInit {
     processId:null; cityId:any[]; rows:any=[]; temp: any=[]; columns:any=[]; countryId:null; processtypeId:null;
     @ViewChild(NgForm) buyerForm;
     date: number;
-   payment: any=[]; packaging: any=[]; design: any=[]; process: any=[]; ptype: any=[]; certification: any=[]; priceterm: any=[];
-   country1: any=[];
-  
+   payment: any=[]; packaging: any=[]; design: any=[]; process: any={}; ptype: any={}; certification: any={}; priceterm: any={};
+  country1: any=[];
   
     constructor(private http:HttpClient,
               private toastr: ToastrService,  

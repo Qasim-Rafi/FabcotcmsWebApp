@@ -1,0 +1,12 @@
+td {
+  width: 33.3%;
+  border: none;
+  float: left;
+  font-size: 20px;
+}
+.text {
+  font-weight: 400;
+}
+.float-e-margins .btn {
+  margin-bottom: 5px;
+}

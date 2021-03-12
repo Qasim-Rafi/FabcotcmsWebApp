@@ -2,7 +2,9 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-12">
-          <h2 class="m-0 ">Fabric Type </h2>
+          <h2 class="row wrapper page-header  "><strong>Fabric Type</strong> 
+            <small class="ml-2">Fabric Type Description</small>
+          </h2>
         </div><!-- /.col -->
       </div><!-- /.row -->
     </div><!-- /.container-fluid -->
@@ -14,16 +16,17 @@
         <table class="table">
             <tbody>
                 <tr>
-                    <td  >
-                        <button type="button" class="btn btn-primary m-r-sm text-s-md px-3"> 
-                        <i class="fas fa-user-tie"></i>{{listCount}}</button>
+                    <td  class="noBorder">
+                        <button type="button" class="btn btn-primary m-r-sm text-s-md"> 
+                          <i class="fas fa-anchor fa-fw"></i>{{listCount}}</button>
                         <span class="text-muted text">Fabric Types</span>
                     </td>
-                    <td>
-                        <button type="button" class="btn  m-r-sm text-s-md px-3"> </button>
+                    
+                    <td class="noBorder">
+                        <button type="button" class="btn  mr-1 text-s-md px-3"> </button>
                         <span class="text-muted text"></span>
                     </td>
-                    <td >
+                    <td  class="noBorder">
                         <button type="button" class="btn btn-primary btn-md float-right" (click)="addTypeForm()" >
                           <i class="fa fa-plus"></i> Add Fabric Type</button>
                     </td>
