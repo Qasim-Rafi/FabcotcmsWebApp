@@ -14,11 +14,7 @@
           <form #sellerForm="ngForm" novalidate>
   
             <div class="form-group row">
-<<<<<<< HEAD
 <label for="sellerName" class="col-sm-3 col-form-label" class="topInputclr">Seller Name<span> *</span></label>
-=======
-              <label for="sellerName" class="col-sm-3 col-form-label" class="topInputclr">Seller Name<span> *</span></label>
->>>>>>> 18ec898a133bf9c3403cc565f4ba87210decfd97
               <div class="col-sm-9">
                 <input required id="sellerName" type="text" class="form-control" placeholder="Name" name="sellerName"
                   [(ngModel)]="data.sellerName" #name="ngModel" [ngClass]="{'error': name.invalid && name.touched}">
