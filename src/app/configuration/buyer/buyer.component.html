@@ -95,15 +95,12 @@
     
               <button type="button" class="btn btn-primary float-right" data-toggle="modal"
                 data-target="#exampleModalScrollable" (click)="addBuyerForm()">
-                <i class="fa fa-plus" aria-hidden="true"></i> Add New Seller</button>
+                <i class="fa fa-plus" aria-hidden="true"></i> Add New Buyer</button>
     
             </div>
           </div>
         </div>
   </div>
-  
-  
- 
   
   
   <!--    List   -->
@@ -129,13 +126,13 @@
           <div class="m-l-lg" style="display: inline-block;">Country: &nbsp; {{i.country}}</div>
         </small>
       </div>
-      <div class="col-md-2" style="font-size: x-small;">
-        <div class="ibox-tools" style="float: right;">
+      <div class="col-md-2">
+        <div class="ibox-tools">
           <button type="button" class="btn editIconBack" (click)="editBuyer(i)">
-            <i class="far fa-edit " style="color: grey;"></i>
+            <i class="far fa-edit "></i>
           </button>
-          <button type="button" class="btn editIconBack" (click)="deleteBuyer(i)">
-            <i class="far fa-trash-alt" style="color: grey;"></i>
+          <button type="button" class="btn deleteIconBack" (click)="deleteBuyer(i)">
+            <i class="far fa-trash-alt"></i>
           </button>
           <!-- <button type="button" 
           class="btn deleteIconBack"
@@ -151,7 +148,7 @@
   
       <div class="col-md-1  forum-info" data-toggle="tooltip" data-placement="top" title=""
         style="border-left: 1px solid #d0d0d0" data-original-title="Total Contracts">
-        <span class="views-number" style="color: grey;">
+        <span class="views-number" >
           0
         </span>
         <div>
@@ -160,7 +157,7 @@
       </div>
       <div class="col-md-1 forum-info" data-toggle="tooltip" data-placement="top" title=""
         data-original-title="Open Contracts">
-        <span class="views-number" style="color: grey;">
+        <span class="views-number" >
           0
         </span>
         <div>

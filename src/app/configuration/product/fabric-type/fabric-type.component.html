@@ -1,6 +1,6 @@
-<div class="content-header p-4">
+<div class="content-header">
     <div class="container-fluid">
-      <div class="row mb-2">
+      <div class="row mb-5">
         <div class="col-sm-12">
           <h2 class="row wrapper page-header  "><strong>Fabric Type</strong> 
             <small class="ml-2 text-muted">Fabric Type Description</small>
@@ -38,7 +38,7 @@
           <div class=" col-md-4 mb-4" >
             <div class="input-group col-md-offset-3">
               <input type="text" placeholder="Search"
-              class="input form-control w-50" (keyup)="updateFilter($event)">
+              class="input form-control w-50" >
             </div>
           </div>
 
@@ -100,7 +100,7 @@
             <button type="button" class="btn editIconBack" (click)="editTypeForm(row)">
               <i class="far fa-edit "></i>
             </button>
-            <button type="button" class="btn editIconBack" (click)="deleteType(row)">
+            <button type="button" class="btn deleteIconBack" (click)="deleteType(row)">
               <i class="far fa-trash-alt"></i>
             </button>
             <!-- <button type="button" 

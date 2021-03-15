@@ -1,6 +1,6 @@
-<div class="content-header p-4">
+<div class="content-header">
     <div class="container-fluid">
-      <div class="row mb-2">
+      <div class="row mb-5">
         <div class="col-sm-12">
           <h2 class="row wrapper page-header "><strong>Payment Terms</strong> 
             <small class="ml-2 text-muted">Payment Terms</small>
@@ -38,14 +38,12 @@
         </table>
 
         <div class="row">
-          <!-- <div class=" col-md-4 mb-4" >
+          <div class=" col-md-4 mb-4" >
             <div class="input-group col-md-offset-3">
               <input type="text" placeholder="Search"
-              class="input form-control w-50" 
-              (keyup)="updateFilter($event)"
-              >
+              class="input form-control w-50" >
             </div>
-          </div> -->
+          </div>
           <div class="html5buttons">
             <div class="dt-buttons btn-group ">
               <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0" 
@@ -101,7 +99,7 @@
             <button type="button" class="btn editIconBack" (click)="editPaymentForm(row) ">
               <i class="far fa-edit "></i>
             </button>
-            <button type="button" class="btn editIconBack" (click)="deletePayment(row)">
+            <button type="button" class="btn deleteIconBack" (click)="deletePayment(row)">
               <i class="far fa-trash-alt"></i>
             </button>
    

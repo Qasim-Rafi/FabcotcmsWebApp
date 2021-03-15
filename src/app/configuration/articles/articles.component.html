@@ -1,6 +1,6 @@
-<div class="content-header p-4">
+<div class="content-header">
     <div class="container-fluid">
-      <div class="row mb-2">
+      <div class="row mb-5">
         <div class="col-sm-12">
           <p  style="font-size: x-large; color: rgb(133, 127, 127); font-weight: 400;">
             <strong  >Article </strong> 
@@ -18,8 +18,8 @@
                 <tr>
                     <td class="noBorder" > 
                         <button type="button" class="btn btn-primary m-r-sm text-s-md px-3"> 
-                       <strong><i class="fa fa-anchor fa-fw"></i>&nbsp;&nbsp;{{listCount}}</strong> </button>
-                        <strong><span class="text-muted text">&nbsp;&nbsp;&nbsp;Articles</span></strong> 
+                       <strong><i class="fa fa-anchor fa-fw"></i>{{listCount}}</strong> </button>
+                        <strong><span class="text-muted text"></span></strong> 
                     </td>
                     <td class="noBorder">
                         <button type="button" class="btn  m-r-sm text-s-md px-3"> </button>
@@ -99,7 +99,7 @@
             <button type="button" class="btn editIconBack" (click)="editArticleForm(row)">
               <i class="far fa-edit "></i>
             </button>
-            <button type="button" class="btn editIconBack" (click)=" deleteArticle(row)">
+            <button type="button" class="btn deleteIconBack" (click)=" deleteArticle(row)">
               <i class="far fa-trash-alt"></i>
             </button>
        
