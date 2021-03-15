@@ -1,3 +1,13 @@
 .table tbody tr td {
   text-align: left;
 }
+.editIconBack {
+  color: rgb(177, 171, 171);
+  padding: 8px;
+  font-size: 12px;
+}
+.deleteIconBack{
+  color: rgb(177, 171, 171);
+  padding: 8px;
+  font-size: 12px;
+}

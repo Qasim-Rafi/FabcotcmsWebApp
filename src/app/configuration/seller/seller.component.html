@@ -137,12 +137,12 @@
       </div>
       <div class="col-md-2">
         <div class="ibox-tools" style="float: right;">
-          <button type="button" class="btn editIconBack"  >
-            <i class="fa fa-certificate " ></i>
+          <button type="button" class="btn editIconBack" (click)="addCertificateForm()" >
+            <i class="fa fa-certificate "data-toggle="tooltip" data-placement="top" title="Tooltip on top" ></i>
           
           </button>
           <button type="button" class="btn editIconBack" (click)="editSellerform(i)">
-            <i class="far fa-edit "  data-toggle="tooltip" data-placement="top" title="top"></i>
+            <i class="far fa-edit "  ></i>
           </button>
           <button type="button" class="btn deleteIconBack" (click)="deleteSeller(i)">
             <i class="far fa-trash-alt"></i>
