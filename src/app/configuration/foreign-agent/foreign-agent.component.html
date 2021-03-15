@@ -2,27 +2,34 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-12">
-          <h2 class="m-0 ">External Agents & L/C Opener </h2>
+          <p  style="font-size: x-large; color: rgb(133, 127, 127);">External Agents And L/C Openner
+            <small style="font-size: large;">&nbsp;Manage External Agents or L/C OPenner profile detail</small> <small style="font-size: small; float: right;">Configuration / External Agents</small></p>
+       
         </div><!-- /.col -->
       </div><!-- /.row -->
     </div><!-- /.container-fluid -->
   </div>
 
-  <div class="ibox-content">
+  <div class="ibox-content m-b-sm mb-2">
     <div class=" panel blank-panel">  
       <div class=" panel-heading">
         <table class="table">
             <tbody>
                 <tr >
                     <td class="noBorder">
-                        <button type="button" class="btn btn-primary m-r-sm text-s-md px-3"> 
+                        <button  type="button" class="btn btn-primary m-r-sm text-s-md px-3"> 
                         <i class="fas fa-user-tie pr-2"></i>{{listCount}}</button>
-                        <span class="text-muted text">Agent</span>
+                        <span style="font-size: large;" class="text-muted text">Agents</span>
                     </td>
-                    <td class="noBorder">
+                    <td  class="noBorder">
+                      <button style="background-color:#23c6c8 ; color: white;" type="button" class="btn m-r-sm text-s-md px-3"> 
+                      <i  class="fas fa-user-tie pr-2"></i>{{listCount}}</button>
+                      <span style="font-size: large;" class="text-muted text">L/C Openner</span>
+                  </td>
+                    <!-- <td class="noBorder">
                         <button type="button" class="btn  m-r-sm text-s-md px-3"> </button>
                         <span class="text-muted text"></span>
-                    </td>
+                    </td> -->
                     <td class="noBorder">
                         <button type="button" class="btn btn-primary btn-md float-right" 
                         (click)="addAgentForm()"><i class="fa fa-plus"></i> Add New Agent</button>
