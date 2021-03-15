@@ -2,7 +2,9 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-12">
-          <h2 class="m-0 ">Packing </h2>
+          <h2 class="row wrapper page-header"><strong>Packing </strong> 
+            <small class="ml-2 text-muted">Packing Description</small>
+          </h2>
         </div><!-- /.col -->
       </div><!-- /.row -->
     </div><!-- /.container-fluid -->
@@ -14,16 +16,16 @@
         <table class="table">
             <tbody>
                 <tr>
-                    <td  >
-                        <button type="button" class="btn btn-primary m-r-sm text-s-md px-3"> 
-                        <i class="fas fa-user-tie"></i>{{listCount}}</button>
-                        <span class="text-muted text">Packing</span>
+                    <td class="noBorder" >
+                        <button type="button" class="btn btn-primary descBtn "> 
+                        <i class="fas fa-anchor fa-fw mr-2"></i>{{listCount}}</button>
+                        <span class="text-muted text2">Packing</span>
                     </td>
-                    <td>
-                        <button type="button" class="btn  m-r-sm text-s-md px-3"> </button>
+                    <td class="noBorder">
+                        <button type="button" class="btn  mr-1 px-3"> </button>
                         <span class="text-muted text"></span>
                     </td>
-                    <td >
+                    <td class="noBorder">
                         <button type="button" class="btn btn-primary btn-md float-right" (click)="addPackingForm()">
                           <i class="fa fa-plus" ></i> Add Packing</button>
                     </td>
@@ -39,6 +41,20 @@
               class="input form-control w-50" (keyup)="updateFilter($event)">
             </div>
           </div>
+          <div class="html5buttons">
+            <div class="dt-buttons btn-group ">
+              <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0" 
+              aria-controls="DataTables_Table_0"><span>Copy</span></a>
+              <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0" 
+              aria-controls="DataTables_Table_0"><span>CSV</span></a>
+              <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0" 
+              aria-controls="DataTables_Table_0"><span>Excel</span></a>
+              <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0" 
+              aria-controls="DataTables_Table_0"><span>PDF</span></a>
+              <a class="btn btn-default buttons-print bg-white" tabindex="0" 
+              aria-controls="DataTables_Table_0"><span>Print</span></a>
+             </div>
+           </div>
         </div>
 
 

@@ -1,19 +1,20 @@
 
   <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
     <h5 class="modal-title">
       <i class="far fa-edit"></i>
       Edit Account
     </h5>
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
-      <span aria-hidden="true">&times;</span>
-    </button>
+
   </div>
 
-  <div class="modal-body">
+  <div class="modal-body BG">
     <form #addAgentForm="ngForm" novalidate>
 
       <div class="form-group row">
-        <label for="inputEmail3" class="col-sm-3 col-form-label">Bank</label>
+        <label for="inputEmail3" class="col-sm-3 col-form-label topInputclr">Bank</label>
         <div class="col-sm-9">
           <select class="form-control" name="bankId" [(ngModel)]="bankId">
             <option value="null" disabled> Select Bank</option>
@@ -26,7 +27,7 @@
       </div>
  
           <div class="form-group row" [class.has-error]="accountName.invalid && accountName.touched">
-            <label for="accountName" class="col-sm-3 col-form-label control-label">Account Name </label>
+            <label for="accountName" class="col-sm-3 col-form-label control-label topInputclr">Account Name </label>
             <div class="col-sm-9">
               <input required id="accountName" type="text" class="form-control" placeholder="Name" name="accountName"
                 [(ngModel)]="data.accountName" #accountName="ngModel" [ngClass]="{'error': accountName.invalid && accountName.touched}">
@@ -34,7 +35,7 @@
           </div>
 
           <div class="form-group row" [class.has-error]="accountNumber.invalid && accountNumber.touched">
-            <label for="accountNumber" class="col-sm-3 col-form-label control-label">Account No </label>
+            <label for="accountNumber" class="col-sm-3 col-form-label control-label otherInputclr">Account No </label>
             <div class="col-sm-9">
               <input required id="accountNumber" type="text" class="form-control" placeholder="Bank Branch Code" name="accountNumber"
                 [(ngModel)]="data.accountNumber" #accountNumber="ngModel" [ngClass]="{'error': accountNumber.invalid && accountNumber.touched}">
@@ -42,7 +43,7 @@
           </div>
 
           <div class="form-group row" [class.has-error]="iban.invalid && iban.touched">
-            <label for="iban" class="col-sm-3 col-form-label control-label">IBAN </label>
+            <label for="iban" class="col-sm-3 col-form-label control-label otherInputclr">IBAN </label>
             <div class="col-sm-9">
               <input required id="iban" type="text" class="form-control" placeholder="Bank Branch Name" name="iban"
                 [(ngModel)]="data.iban" #iban="ngModel" [ngClass]="{'error': iban.invalid && iban.touched}">
@@ -50,7 +51,7 @@
           </div>
 
           <div class="form-group row" [class.has-error]="swiftCode.invalid && swiftCode.touched">
-            <label for="swiftCode" class="col-sm-3 col-form-label control-label">Swift Code</label>
+            <label for="swiftCode" class="col-sm-3 col-form-label control-label otherInputclr">Swift Code</label>
             <div class="col-sm-9">
               <input required id="swiftCode" type="text" class="form-control" placeholder="Bank Location" name="swiftCode"
                 [(ngModel)]="data.swiftCode" #swiftCode="ngModel" [ngClass]="{'error': swiftCode.invalid && swiftCode.touched}">
@@ -58,7 +59,7 @@
           </div>
 
           <div class="form-group row" [class.has-error]="type.invalid && type.touched">
-            <label for="type" class="col-sm-3 col-form-label control-label">Type </label>
+            <label for="type" class="col-sm-3 col-form-label control-label otherInputclr">Type </label>
             <div class="col-sm-9">
               <input required id="type" type="text" class="form-control" placeholder="Bank Address" name="type"
                 [(ngModel)]="data.type" #type="ngModel" [ngClass]="{'error': type.invalid && type.touched}">
@@ -67,17 +68,17 @@
      
           <div class="form-check form-check-inline">
             <input class="form-check-input check-btn" type="checkbox" checked>
-            <label class="form-check-label">Marked as Printable</label>
+            <label class="form-check-label otherInputclr">Marked as Printable</label>
           </div>
 
           <div class="form-check form-check-inline">
             <input class="form-check-input check-btn" type="checkbox" checked>
-            <label class="form-check-label">Set as Default</label>
+            <label class="form-check-label otherInputclr">Set as Default</label>
           </div>
 
       <div class="modal-footer">
         <button class="btn button-save" type="submit" (click)="UpdateBankAccount()" >
-         Save Account
+         Update Account
         </button>
       </div>
     </form>

@@ -2,7 +2,10 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-12">
-          <h2 class="m-0 ">Payment Terms </h2>
+          <h2 class="row wrapper page-header "><strong>Payment Terms</strong> 
+            <small class="ml-2 text-muted">Payment Terms</small>
+            
+          </h2>
         </div><!-- /.col -->
       </div><!-- /.row -->
     </div><!-- /.container-fluid -->
@@ -14,22 +17,51 @@
         <table class="table">
             <tbody>
                 <tr>
-                    <td  >
-                        <button type="button" class="btn btn-primary m-r-sm text-s-md px-3"> 
-                        <i class="fas fa-user-tie"></i>{{listCount}}</button>
-                        <span class="text-muted text">Payment Terms</span>
+                    <td  class="noBorder">
+                        <button type="button" class="btn btn-primary descBtn"> 
+                        <i class="fas fa-money-bill-alt fa-fw mr-2"></i>
+                            {{listCount}}
+                      </button>
+
+                        <span class="text-muted text2">Payment Terms</span>
                     </td>
-                    <td>
+                    <td class="noBorder">
                         <button type="button" class="btn  m-r-sm text-s-md px-3"> </button>
                         <span class="text-muted text"></span>
                     </td>
-                    <td >
+                    <td class="noBorder" >
                         <button type="button" class="btn btn-primary btn-md float-right" (click)="addPaymentForm()" >
                           <i class="fa fa-plus" ></i> Add Payment Terms</button>
                     </td>
                 </tr>
             </tbody>
         </table>
+
+        <div class="row">
+          <!-- <div class=" col-md-4 mb-4" >
+            <div class="input-group col-md-offset-3">
+              <input type="text" placeholder="Search"
+              class="input form-control w-50" 
+              (keyup)="updateFilter($event)"
+              >
+            </div>
+          </div> -->
+          <div class="html5buttons">
+            <div class="dt-buttons btn-group ">
+              <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0" 
+              aria-controls="DataTables_Table_0"><span>Copy</span></a>
+              <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0" 
+              aria-controls="DataTables_Table_0"><span>CSV</span></a>
+              <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0" 
+              aria-controls="DataTables_Table_0"><span>Excel</span></a>
+              <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0" 
+              aria-controls="DataTables_Table_0"><span>PDF</span></a>
+              <a class="btn btn-default buttons-print bg-white" tabindex="0" 
+              aria-controls="DataTables_Table_0"><span>Print</span></a>
+             </div>
+           </div>
+        </div>
+
 
 
 

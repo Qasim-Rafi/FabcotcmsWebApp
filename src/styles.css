@@ -49,7 +49,7 @@ h5 {
 }
 
 .innerBody {
-  padding: 15px 15px 15px 15px;
+  padding: 15px 35px 15px 35px;
 }
 
 .btn-primary {
@@ -103,9 +103,17 @@ h5 {
   color: rgb(53, 53, 53);
 }
 .text {
-  color: rgb(255, 255, 255) !important;
+  color: rgb(250, 0, 0) !important;
   font-size: 25px;
 }
+
+.text2 {
+  font-size: 22px;
+  vertical-align: middle;
+  padding-left: 10px;
+  font-weight: 400;
+}
+
 .headline {
   font-size: 16px;
   font-weight: 700;
@@ -130,9 +138,40 @@ h5 {
   box-shadow: 0 0 0 0 !important;
 }
 
+.topInputclr {
+  color: #1ab394 !important;
+}
+
+.otherInputclr {
+  color: #606060;
+}
+
 .editIconBack :hover {
   color: #1ab394;
   transform: scale(1.5);
+}
+
+.descBtn {
+  padding: 6px 15px 6px 15px !important;
+  font-size: 23px !important;
+}
+
+.modal-title {
+  text-align: center !important;
+  align-items: center !important;
+  font-size: 26px;
+  color: #606060;
+  font-weight: 600;
+  padding: 15px 15px 15px 15px;
+}
+
+.modal-header {
+  display: block !important;
+  padding: 30px 15px;
+}
+
+.BG {
+  background-color: #f8fafb !important;
 }
 
 .deleteIconBack :hover {

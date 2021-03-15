@@ -3,27 +3,27 @@
       <div class="row mb-2">
         <div class="col-sm-12">
           <h2 class="row wrapper page-header  "><strong>Fabric Type</strong> 
-            <small class="ml-2">Fabric Type Description</small>
+            <small class="ml-2 text-muted">Fabric Type Description</small>
           </h2>
         </div><!-- /.col -->
       </div><!-- /.row -->
     </div><!-- /.container-fluid -->
   </div>
 
-  <div class="ibox-content">
+  <div class="ibox-content shadow">
     <div class=" panel blank-panel">  
       <div class=" panel-heading">
         <table class="table">
             <tbody>
                 <tr>
                     <td  class="noBorder">
-                        <button type="button" class="btn btn-primary m-r-sm text-s-md"> 
-                          <i class="fas fa-anchor fa-fw"></i>{{listCount}}</button>
-                        <span class="text-muted text">Fabric Types</span>
+                        <button type="button" class="btn btn-primary descBtn "> 
+                          <i class="fas fa-anchor fa-fw mr-2"></i>{{listCount}}</button>
+                        <span class="text-muted text2">Fabric Types</span>
                     </td>
                     
                     <td class="noBorder">
-                        <button type="button" class="btn  mr-1 text-s-md px-3"> </button>
+                        <button type="button" class="btn  mr-1 px-3"> </button>
                         <span class="text-muted text"></span>
                     </td>
                     <td  class="noBorder">
@@ -41,6 +41,26 @@
               class="input form-control w-50" (keyup)="updateFilter($event)">
             </div>
           </div>
+
+       <div class="html5buttons">
+         <div class="dt-buttons btn-group ">
+           <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0" 
+           aria-controls="DataTables_Table_0"><span>Copy</span></a>
+           <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0" 
+           aria-controls="DataTables_Table_0"><span>CSV</span></a>
+           <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0" 
+           aria-controls="DataTables_Table_0"><span>Excel</span></a>
+           <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0" 
+           aria-controls="DataTables_Table_0"><span>PDF</span></a>
+           <a class="btn btn-default buttons-print bg-white" tabindex="0" 
+           aria-controls="DataTables_Table_0"><span>Print</span></a>
+          </div>
+        </div>
+
+
+
+
+
         </div>
 
 

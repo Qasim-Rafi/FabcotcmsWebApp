@@ -1,11 +1,12 @@
 <div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
     <h5 class="modal-title">
       <i class="far fa-edit"></i>
       Edit Bank
     </h5>
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
-      <span aria-hidden="true">&times;</span>
-    </button>
+  
   </div>
 
   <div class="modal-body">
@@ -13,7 +14,7 @@
  
 
           <div class="form-group row" [class.has-error]="name.invalid && name.touched">
-            <label for="name" class="col-sm-3 col-form-label control-label">Bank Name </label>
+            <label for="name" class="col-sm-3 col-form-label control-label topInputclr">Bank Name </label>
             <div class="col-sm-9">
               <input required id="name" type="text" class="form-control" placeholder="Name" name="name"
                 [(ngModel)]="data.name" #name="ngModel" [ngClass]="{'error': name.invalid && name.touched}">
@@ -21,7 +22,7 @@
           </div>
 
           <div class="form-group row" [class.has-error]="branchCode.invalid && branchCode.touched">
-            <label for="branchCode" class="col-sm-3 col-form-label control-label">Branch Code </label>
+            <label for="branchCode" class="col-sm-3 col-form-label control-label otherInputclr">Branch Code </label>
             <div class="col-sm-9">
               <input required id="branchCode" type="text" class="form-control" placeholder="Bank Branch Code" name="branchCode"
                 [(ngModel)]="data.branchCode" #branchCode="ngModel" [ngClass]="{'error': branchCode.invalid && branchCode.touched}">
@@ -29,7 +30,7 @@
           </div>
 
           <div class="form-group row" [class.has-error]="branchName.invalid && branchName.touched">
-            <label for="branchName" class="col-sm-3 col-form-label control-label">Branch Name </label>
+            <label for="branchName" class="col-sm-3 col-form-label control-label otherInputclr">Branch Name </label>
             <div class="col-sm-9">
               <input required id="branchName" type="text" class="form-control" placeholder="Bank Branch Name" name="branchName"
                 [(ngModel)]="data.branchName" #branchName="ngModel" [ngClass]="{'error': branchName.invalid && branchName.touched}">
@@ -37,7 +38,7 @@
           </div>
 
           <div class="form-group row" [class.has-error]="location.invalid && location.touched">
-            <label for="location" class="col-sm-3 col-form-label control-label">Location</label>
+            <label for="location" class="col-sm-3 col-form-label control-label otherInputclr">Location</label>
             <div class="col-sm-9">
               <input required id="location" type="text" class="form-control" placeholder="Bank Location" name="location"
                 [(ngModel)]="data.location" #location="ngModel" [ngClass]="{'error': location.invalid && location.touched}">
@@ -45,7 +46,7 @@
           </div>
 
           <div class="form-group row" [class.has-error]="address.invalid && address.touched">
-            <label for="address" class="col-sm-3 col-form-label control-label">Address </label>
+            <label for="address" class="col-sm-3 col-form-label control-label otherInputclr">Address </label>
             <div class="col-sm-9">
               <input required id="address" type="text" class="form-control" placeholder="Bank Address" name="address"
                 [(ngModel)]="data.address" #address="ngModel" [ngClass]="{'error': address.invalid && address.touched}">
@@ -53,7 +54,7 @@
           </div>
      
       <div class="form-group row">
-        <label for="details" class="col-sm-3 col-form-label">Details</label>
+        <label for="details" class="col-sm-3 col-form-label otherInputclr">Details</label>
         <div class="col-sm-9">
           <textarea required class="form-control" id="details" rows="3" name="details"
             [(ngModel)]="data.details" #details="ngModel"></textarea>
@@ -62,7 +63,7 @@
 
       <div class="modal-footer">
         <button class="btn button-save" type="submit" (click)="UpdateBank()">
-         Save Bank
+         Update Bank
         </button>
       </div>
     </form>
