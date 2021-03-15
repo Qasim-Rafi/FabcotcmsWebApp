@@ -12,11 +12,11 @@
     <form #addAgentForm="ngForm" novalidate>
 <div style="font-size: small;">
           <div class="form-group row" [class.has-error]="name.invalid && name.touched">
-            <label for="name" class="col-sm-3 col-form-label control-label" style="color: #1ab394;">Process Name </label>
+            <label for="name" class="col-sm-3 col-form-label control-label" class="topInputclr">Process Name </label>
             <div class="col-sm-9">
               <input required id="name" type="text" class="form-control" placeholder="Process name" name="name"
                 [(ngModel)]="data.name" #name="ngModel" [ngClass]="{'error': name.invalid && name.touched}">
-                <small style="color: grey;">Add process description</small>
+                <small>Add process description</small>
             </div>
           </div>
 
