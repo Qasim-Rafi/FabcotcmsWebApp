@@ -13,14 +13,3 @@ td {
 .text-s-md {
   font-size: 20px;
 }
-.m-r-sm {
-  margin-right: 10px;
-}
-.btn1 {
-  background-color: #23c6c8;
-  border-color: #23c6c8;
-  color: #ffffff;
-  border-radius: 3px;
-  display: inline-block;
-  padding: 6px 12px;
-}
