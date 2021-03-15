@@ -22,9 +22,6 @@ label {
   color: ivory;
 }
 
-.check-btn {
-  margin-left: 100px;
-}
 .error {
   border: 1px solid #e03a37 !important;
   border-left: 3px solid #e03a37 !important;

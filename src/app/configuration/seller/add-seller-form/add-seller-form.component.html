@@ -1,20 +1,22 @@
 <!-- Modal -->
 
         <div class="modal-header">
+
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
+            <span style="color: black;" aria-hidden="true">&times;</span>
+          </button>
   
           <h5 class="modal-title" id="exampleModalScrollableTitle" style="width: 600px; text-align: center;">
             <i class="fa fa-plus"></i>
             Add Seller
           </h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
-            <span style="color: black;" aria-hidden="true">&times;</span>
-          </button>
+          
         </div>
         <div class="modal-body" style="background-color: #f8fafb;">
           <form #sellerForm="ngForm" novalidate>
   
             <div class="form-group row">
-<label for="sellerName" class="col-sm-3 col-form-label" class="topInputclr">Seller Name<span> *</span></label>
+              <label for="sellerName" class="col-sm-3 col-form-label topInputclr">Seller Name<span> *</span></label>
               <div class="col-sm-9">
                 <input required id="sellerName" type="text" class="form-control" placeholder="Name" name="sellerName"
                   [(ngModel)]="data.sellerName" #name="ngModel" [ngClass]="{'error': name.invalid && name.touched}">
@@ -44,16 +46,21 @@
   
             <div class="form-group row">
               <label for="sellerContact" class="col-sm-3 col-form-label">Contact Nos.<span> *</span></label>
-              <div class="col-sm-4">
-                <input required type="text" class="form-control" id="sellerContact" placeholder="Contact No."
-                  name="sellerContact" [(ngModel)]="data.sellerContact" #sellerContact="ngModel"
-                  [ngClass]="{'error': sellerContact.invalid && sellerContact.touched}">
+            <div class="col-sm-9">
+              <div class="row">
+                <div class="col-sm-6">
+                  <input required type="text" class="form-control" id="sellerContact" placeholder="Contact No." name="sellerContact"
+                    [(ngModel)]="data.sellerContact" #sellerContact="ngModel"
+                    [ngClass]="{'error': sellerContact.invalid && sellerContact.touched}">
+                </div>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" id="sellerOtherContact" placeholder="Other Contact No."
+                    name="sellerOtherContact" [(ngModel)]="data.sellerOtherContact" #sellerOtherContact="ngModel"
+                    [disabled]=" sellerContact.invalid">
+                </div>
               </div>
-              <div class="col-sm-4 ml-2">
-                <input type="text" class="form-control" id="sellerOtherContact" placeholder="Other Contact No."
-                  name="sellerOtherContact" [(ngModel)]="data.sellerOtherContact" #sellerOtherContact="ngModel"
-                  [disabled]=" sellerContact.invalid">
-              </div>
+            </div>
+
             </div>
   
             <div class="form-group row">
@@ -66,15 +73,21 @@
   
             <div class="form-group row">
               <label for="sellerNTN" class="col-sm-3 col-form-label">NTN/GST Nos.</label>
-              <div class="col-sm-4">
+              <div class="col-sm-9">
+                <div class="row">
+
+                
+              <div class="col-sm-6">
                 <input type="text" class="form-control" id="sellerNTN" placeholder="NTN No." name="sellerNTN"
                   [(ngModel)]="data.sellerNTN" #sellerNTN="ngModel">
               </div>
-              <div class="col-sm-4 ml-2">
+              <div class="col-sm-6">
                 <input type="text" class="form-control" id="sellerGST" placeholder="GST No." name="sellerGST"
                   [(ngModel)]="data.sellerGST" #sellerGST="ngModel">
               </div>
             </div>
+          </div>
+        </div>
   
             <div class="form-group row">
               <label for="inputEmail3" class="col-sm-3 col-form-label">Machine Details</label>

@@ -86,22 +86,24 @@
         <hr>
         <div class="row">
           <div class=" col-md-12 autoAdjustSearch">
-            <div style="text-align: center;" class="input-group col-md-offset-3" >
-              <input style="width: 350px; left: 220px;" type="text" placeholder="Search Buyer or their POCs " class="input form-control col-sm-7">
-              <span style="left: 500px;" class="group-btn">
-                <button  type="button" class="btn btn-primary autoAdjustBtn ml-1" > <i class="fa fa-search"></i> Search</button>
-              </span>
-
+            <div class="input-group col-md-offset-3">
               
-              <button type="button " class="btn btn-primary float-right " data-toggle="modal" 
-                      data-target="#popForm" (click)="addBuyerForm()" >  
-                      <i class="fa fa-plus" aria-hidden="true"></i> Add New Buyer</button>
+              <input type="text" placeholder="Search Buyer or their POCs " class="input form-control w-50">
+              <span class="group-btn">
+                <button type="button" class="btn btn-primary autoAdjustBtn ml-1"> <i class="fa fa-search"></i> Search</button>
+              </span>
+    
+              <button type="button" class="btn btn-primary float-right" data-toggle="modal"
+                data-target="#exampleModalScrollable" (click)="addBuyerForm()">
+                <i class="fa fa-plus" aria-hidden="true"></i> Add New Seller</button>
+    
             </div>
           </div>
         </div>
   </div>
   
   
+ 
   
   
   <!--    List   -->

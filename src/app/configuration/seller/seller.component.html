@@ -1,9 +1,4 @@
-<!-- Button trigger modal -->
-<script>
-  $(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-})
-</script>
+
 <div class="content-header p-4">
     <div class="container-fluid">
       <div class="row mb-2">
@@ -25,7 +20,7 @@
   
   
   
-  <div class="ibox-content m-b-sm mb-2">
+  <div class="ibox-content m-b-sm mb-3">
     <!--span class="text-muted small pull-right">Last modification: <i class="fa fa-clock-o"></i> 2:10 pm - 12.06.2014</span -->
   
     <div class="row">
@@ -101,13 +96,16 @@
     <div class="row">
       <div class=" col-md-12 autoAdjustSearch">
         <div class="input-group col-md-offset-3">
+          
           <input type="text" placeholder="Search Buyer or their POCs " class="input form-control w-50">
           <span class="group-btn">
             <button type="button" class="btn btn-primary autoAdjustBtn ml-1"> <i class="fa fa-search"></i> Search</button>
           </span>
+
           <button type="button" class="btn btn-primary float-right" data-toggle="modal"
             data-target="#exampleModalScrollable" (click)="addSellerform()">
             <i class="fa fa-plus" aria-hidden="true"></i> Add New Seller</button>
+
         </div>
       </div>
     </div>
@@ -115,7 +113,7 @@
   
   
   
-  <div class="faq-item " *ngFor="let i of seller">
+  <div class="faq-item shadow-sm" *ngFor="let i of seller">
     <div class="row ">
       <div class="col-md-1 col-sm-3 col-xs-3 forum-info" data-toggle="tooltip" data-placement="top" 
         data-original-title="POCs">
