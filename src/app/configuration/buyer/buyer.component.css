@@ -11,7 +11,10 @@ label {
   font-size: 11px;
   color: grey;
 }
-
+h2{
+  color: rgb(173, 169, 169);
+  font-weight: 100;
+}
 .check-btn {
   margin-left: 100px;
 }
@@ -73,7 +76,7 @@ span {
 }
 .small,
 small {
-  font-size: 85%;
+  font-size: 80%;
   color: gray;
 }
 .m-l-lg {

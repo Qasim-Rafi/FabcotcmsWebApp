@@ -1,6 +1,6 @@
 <div class="modal-header">
-    <h5 class="modal-title">
-      <i class="far fa-edit"></i>
+    <h5 class="modal-title" style="width: 600px; text-align: center; font-size: x-large; color: rgb(77, 77, 77);">
+      <i class="fa fa-anchor fa-fw" ></i>
       Add new Process
     </h5>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
@@ -10,9 +10,9 @@
 
   <div class="modal-body">
     <form #addAgentForm="ngForm" novalidate>
-
+<div style="font-size: small;">
           <div class="form-group row" [class.has-error]="name.invalid && name.touched">
-            <label for="name" class="col-sm-3 col-form-label control-label">Process Name </label>
+            <label for="name" class="col-sm-3 col-form-label control-label" style="color: #1ab394;">Process Name </label>
             <div class="col-sm-9">
               <input required id="name" type="text" class="form-control" placeholder="Process name" name="name"
                 [(ngModel)]="data.name" #name="ngModel" [ngClass]="{'error': name.invalid && name.touched}">
@@ -27,10 +27,10 @@
             [(ngModel)]="data.description" #description="ngModel"></textarea>
         </div>
       </div>
-
+    </div>
       <div class="form-check form-check-inline">
         <input class="form-check-input check-btn" type="checkbox" checked>
-        <label class="form-check-label">Mark as Active</label>
+        <label class="form-check-label">Marked as Active</label>
       </div>
 
       <div class="modal-footer">
