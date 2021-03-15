@@ -68,7 +68,7 @@ span {
 .poc-icon .fa {
   font-size: 30px;
   margin-top: 8px;
-  color: #535353;
+  color: #969292;
 }
 
 .text-s-lg {
@@ -158,7 +158,7 @@ small {
   float: left;
   /* width: 50%; */
   margin-bottom: 0;
-  margin-left: 140px;
+  margin-left: 120px;
 }
 .input-group .form-control,
 .input-group-addon,
@@ -178,10 +178,17 @@ small {
   font-size: 14px;
   box-shadow: 0 0 0 0 !important;
 }
-.editIconBack{
+.editIconBack {
   color: rgb(177, 171, 171);
   padding: 10px;
+  font-size: 12px;
 }
+.deleteIconBack{
+  color: rgb(177, 171, 171);
+  padding: 10px;
+  font-size: 12px;
+}
+
 .path{
   float: right;
 }
@@ -191,3 +198,6 @@ small {
 .content-header{
   margin-bottom: -28px;
 }
+
+
+

@@ -1,4 +1,9 @@
 <!-- Button trigger modal -->
+<script>
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
 <div class="content-header p-4">
     <div class="container-fluid">
       <div class="row mb-2">
@@ -6,7 +11,7 @@
           <div class="m-0 ">  
             <div>
             <p class="heading">Seller / Supplier  
-              <small class="path">Configuration / Sellers</small>
+              &nbsp;<small class="path">Configuration / Sellers</small>
            <small >Seller and their point of contact information goes here</small>
        
             </p>
@@ -112,7 +117,7 @@
   
   <div class="faq-item " *ngFor="let i of seller">
     <div class="row ">
-      <div class="col-md-1 col-sm-3 col-xs-3 forum-info" data-toggle="tooltip" data-placement="top" title=""
+      <div class="col-md-1 col-sm-3 col-xs-3 forum-info" data-toggle="tooltip" data-placement="top" 
         data-original-title="POCs">
         <div class="poc-icon">
           <a data-toggle="collapse" class="faq-question text-muted text-s-lg text-w-3"> <span
@@ -132,13 +137,14 @@
       </div>
       <div class="col-md-2">
         <div class="ibox-tools" style="float: right;">
-          <button type="button" class="btn editIconBack">
-            <i class="fa fa-certificate "></i>
+          <button type="button" class="btn editIconBack"  >
+            <i class="fa fa-certificate " ></i>
+          
           </button>
           <button type="button" class="btn editIconBack" (click)="editSellerform(i)">
-            <i class="far fa-edit "></i>
+            <i class="far fa-edit "  data-toggle="tooltip" data-placement="top" title="top"></i>
           </button>
-          <button type="button" class="btn editIconBack" (click)="deleteSeller(i)">
+          <button type="button" class="btn deleteIconBack" (click)="deleteSeller(i)">
             <i class="far fa-trash-alt"></i>
           </button>
           <!-- <button type="button" 
