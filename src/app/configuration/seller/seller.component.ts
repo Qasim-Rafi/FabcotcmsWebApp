@@ -6,6 +6,7 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EditSellerFormComponent } from './edit-seller-form/edit-seller-form.component';
 import { AddSellerFormComponent } from './add-seller-form/add-seller-form.component';
 import Swal from 'sweetalert2/dist/sweetalert2.js'; 
+import { AddCertificateComponent } from '../home-textile/certificate/add-certificate/add-certificate.component';
 @Component({
   selector: 'app-seller',
   templateUrl: './seller.component.html',
@@ -18,6 +19,7 @@ export class SellerComponent implements OnInit {
   seller:any[];
   country:any=[];
   countryId:null;
+  rows:any=[];
   constructor(private http:HttpClient,
               private toastr: ToastrService,
               private modalService: NgbModal,) { }
@@ -25,6 +27,9 @@ export class SellerComponent implements OnInit {
   ngOnInit(): void {
     // this.getCountry();
     this.getSellers();
+    this.fetch((data) => {
+      this.rows = data;
+    });
   }
 
   // getCountry()
@@ -153,5 +158,46 @@ export class SellerComponent implements OnInit {
        });
   } 
   
+// add certificate
+fetch(cb) {
+  let that = this;
+  that.http
+  .get(`${environment.apiUrl}/api/TextileGarments/GetAllCertificate`)
+  .subscribe(res => {
+    this.response = res;
+    this.listCount = this.fetch.length;
+  if(this.response.success==true)
+  {
+  that.data =this.response.data;
+  cb(this.data);
+  }
+  else{
+    this.toastr.error(this.response.message, 'Message.');
+  }
+    // this.spinner.hide();
+  }, err => {
+    if ( err.status == 400) {
+this.toastr.error(err.error.message, 'Message.');;
+    }
+  //  this.spinner.hide();
+  });
+}
+// add certificate form
+addCertificateForm(){
+  const modalRef = this.modalService.open(AddCertificateComponent, { centered: true });
+        modalRef.result.then((data) => {
+       // on close
+        if(data ==true){
+        //  this.date = this.myDate;
+         this.fetch((data) => {
+          this.rows = data;
+        });
+         
+
+       }
+     }, (reason) => {
+       // on dismiss
+     });
+} 
 
 }
