@@ -13,7 +13,7 @@
     <form #addAgentForm="ngForm" novalidate>
  <div style="width: 450px; padding: 20px 30px 30px 30px;" >
       <div class="form-group row" [class.has-error]="name.invalid && name.touched">
-        <label for="code" class="col-sm-3 col-form-label control-label">Article Code </label>
+        <label for="code" class="col-sm-3 col-form-label control-label" >Article Code </label>
         
         <div class="col-sm-9">
           <input required id="name" type="text" class="form-control" placeholder="Article Code" name="name"
@@ -23,7 +23,7 @@
       </div>
    
       <div class="form-group row" [class.has-error]="name.invalid && name.touched">
-        <label style="color: #1ab394;" for="code" class="col-sm-3 col-form-label control-label">Article name </label>
+        <label class="topInputclr" for="code" class="col-sm-3 col-form-label control-label">Article name </label>
         
         <div class="col-sm-9">
           <input required id="name" type="text" class="form-control" placeholder="Name" name="name"

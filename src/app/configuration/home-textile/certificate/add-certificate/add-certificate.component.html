@@ -1,7 +1,7 @@
 
   <div class="modal-header">
-    <h5 class="modal-title">
-      <i class="far fa-edit"></i>
+    <h5 class="modal-title" class="title">
+      <i class="fa fa-anchor"></i>
       Add new Certificate
     </h5>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
@@ -14,17 +14,18 @@
  
 
           <div class="form-group row" [class.has-error]="name.invalid && name.touched">
-            <label for="name" class="col-sm-3 col-form-label control-label">Certificate </label>
+            <label for="name" class="col-sm-3 col-form-label control-label" class="topInputclr">Certificate </label>
             <div class="col-sm-9">
-              <input required id="name" type="text" class="form-control" placeholder="Name" name="name"
+              <input required id="name" type="text" class="form-control" placeholder="Certificate name" name="name"
                 [(ngModel)]="data.name" #name="ngModel" [ngClass]="{'error': name.invalid && name.touched}">
+                <small>Add Certificate Description</small>
             </div>
           </div>
 
       <div class="form-group row">
         <label for="description" class="col-sm-3 col-form-label">Description</label>
         <div class="col-sm-9">
-          <textarea required class="form-control" id="description" rows="3" name="description"
+          <textarea required class="form-control" id="description" rows="3" placeholder="Brief Certificate description here ..." name="description"
             [(ngModel)]="data.description" #description="ngModel"></textarea>
         </div>
       </div>

@@ -164,3 +164,10 @@ h5 {
   color: rgb(255, 255, 255) !important;
   background-color: #424141 !important;
 }
+small{
+  color: grey;
+}
+title{
+  width: 600px;
+  text-align: center;
+}
