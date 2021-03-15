@@ -3,7 +3,8 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-12">
-          <h2 class="m-0 ">Buyer / Customer</h2>
+          <p  style="font-size: x-large; color: grey; font-weight: 100;">Buyer / Customer <small style="font-size: large;">Buyer and their point of contact information goes here</small> <small style="font-size: small; float: right;">Configuration / Buyers</small></p>
+      
         </div><!-- /.col -->
       </div><!-- /.row -->
     </div><!-- /.container-fluid -->
@@ -85,10 +86,10 @@
         <hr>
         <div class="row">
           <div class=" col-md-12 autoAdjustSearch">
-            <div class="input-group col-md-offset-3">
-              <input type="text" placeholder="Search Buyer or their POCs " class="input form-control col-sm-7">
-              <span class="group-btn">
-                <button type="button" class="btn btn-primary autoAdjustBtn ml-1"> <i class="fa fa-search"></i> Search</button>
+            <div style="text-align: center;" class="input-group col-md-offset-3" >
+              <input style="width: 350px; left: 220px;" type="text" placeholder="Search Buyer or their POCs " class="input form-control col-sm-7">
+              <span style="left: 500px;" class="group-btn">
+                <button  type="button" class="btn btn-primary autoAdjustBtn ml-1" > <i class="fa fa-search"></i> Search</button>
               </span>
 
               
@@ -126,13 +127,13 @@
           <div class="m-l-lg" style="display: inline-block;">Country: &nbsp; {{i.country}}</div>
         </small>
       </div>
-      <div class="col-md-2">
+      <div class="col-md-2" style="font-size: x-small;">
         <div class="ibox-tools" style="float: right;">
           <button type="button" class="btn editIconBack" (click)="editBuyer(i)">
-            <i class="far fa-edit "></i>
+            <i class="far fa-edit " style="color: grey;"></i>
           </button>
           <button type="button" class="btn editIconBack" (click)="deleteBuyer(i)">
-            <i class="far fa-trash-alt"></i>
+            <i class="far fa-trash-alt" style="color: grey;"></i>
           </button>
           <!-- <button type="button" 
           class="btn deleteIconBack"
@@ -148,7 +149,7 @@
   
       <div class="col-md-1  forum-info" data-toggle="tooltip" data-placement="top" title=""
         style="border-left: 1px solid #d0d0d0" data-original-title="Total Contracts">
-        <span class="views-number">
+        <span class="views-number" style="color: grey;">
           0
         </span>
         <div>
@@ -157,7 +158,7 @@
       </div>
       <div class="col-md-1 forum-info" data-toggle="tooltip" data-placement="top" title=""
         data-original-title="Open Contracts">
-        <span class="views-number">
+        <span class="views-number" style="color: grey;">
           0
         </span>
         <div>

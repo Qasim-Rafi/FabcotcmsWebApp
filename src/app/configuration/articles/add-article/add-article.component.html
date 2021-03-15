@@ -1,22 +1,34 @@
 
   <div class="modal-header">
-    <h5 class="modal-title">
-      <i class="far fa-edit"></i>
-      Add new Article
+    <h5 class="modal-title" style="width: 600px; text-align: center; color: rgb(100, 99, 99); font-size: x-large;">
+      <i class="fa fa-anchor fa-fw"></i>
+      Add New Article
     </h5>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
 
-  <div class="modal-body">
+  <div class="modal-body" style="color: grey; font-size: small;  background-color: #f8fafb;"  >
     <form #addAgentForm="ngForm" novalidate>
- 
+ <div style="width: 450px; padding: 20px 30px 30px 30px;" >
       <div class="form-group row" [class.has-error]="name.invalid && name.touched">
-        <label for="code" class="col-sm-3 col-form-label control-label">Article Name </label>
+        <label for="code" class="col-sm-3 col-form-label control-label">Article Code </label>
+        
+        <div class="col-sm-9">
+          <input required id="name" type="text" class="form-control" placeholder="Article Code" name="name"
+            [(ngModel)]="data.name" #name="ngModel" [ngClass]="{'error': name.invalid && name.touched}">
+            <small style="font-size:small; color: rgb(180, 175, 175);">Standard code for the article</small>
+        </div>
+      </div>
+   
+      <div class="form-group row" [class.has-error]="name.invalid && name.touched">
+        <label style="color: #1ab394;" for="code" class="col-sm-3 col-form-label control-label">Article name </label>
+        
         <div class="col-sm-9">
           <input required id="name" type="text" class="form-control" placeholder="Name" name="name"
             [(ngModel)]="data.name" #name="ngModel" [ngClass]="{'error': name.invalid && name.touched}">
+            <small style="font-size:small; color: rgb(180, 175, 175);">Add warp,weft,end,pick & width info in order</small>
         </div>
       </div>
 
@@ -24,7 +36,7 @@
       <div class="form-group row">
         <label for="genericName" class="col-sm-3 col-form-label">Generic Name</label>
         <div class="col-sm-9">
-          <input required id="genericName" type="text" class="form-control" placeholder="Address" name="genericName"
+          <input required id="genericName" type="text" class="form-control" placeholder="Article generic name" name="genericName"
             [(ngModel)]="data.genericName" #genericName="ngModel" >
         </div>
       </div>
@@ -32,20 +44,20 @@
       <div class="form-group row">
         <label for="description" class="col-sm-3 col-form-label">Description</label>
         <div class="col-sm-9">
-          <textarea required class="form-control" id="description" rows="3" name="description"
+          <textarea required class="form-control" id="description" rows="3" placeholder="Brief article description here ..." name="description"
             [(ngModel)]="data.description" #description="ngModel"></textarea>
         </div>
       </div>
 
       <div class="form-check form-check-inline">
         <input class="form-check-input check-btn" type="checkbox" checked>
-        <label class="form-check-label">Parent Buyer</label>
+        <label class="form-check-label">Marked as Active</label>
       </div>
-
+    </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="activeModal.close()">Close</button>
+        <p style=" color: black; cursor: pointer;"  data-dismiss="modal" (click)="activeModal.close()">Close</p>
         <button class="btn button-save" type="submit" (click)="addArticle()">
-          Add Article
+          Save Article
         </button>
       </div>
     </form>
