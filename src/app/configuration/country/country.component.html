@@ -18,7 +18,7 @@
               <tr>
                   <td class="noBorder"  >
                       <button type="button" class="btn btn-primary descBtn "> 
-                        <i class="fas fa-map fa-fw mr-2"></i>{{listCount}}</button>
+                        <i class="fas fa-map fa-fw mr-2"></i>{{countryCount}}</button>
                       <span class="text-muted text2">Countries</span>
                   </td>
                   <td class="noBorder" >
@@ -93,7 +93,7 @@
       </ngx-datatable-column>
       <ngx-datatable-column name="Created On |Created By"  prop="code" [flexGrow]="0.07">
         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-          {{myDate | date:'medium'}} | {{row.createdByName}} 
+          {{currentDate | date:'medium'}} | {{row.createdByName}} 
         </ng-template>
       </ngx-datatable-column>
       <ngx-datatable-column name="Action"  prop="code" [flexGrow]="0.03">
