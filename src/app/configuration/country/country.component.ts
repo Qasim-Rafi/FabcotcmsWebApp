@@ -14,7 +14,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
   styleUrls: ['./country.component.css']
 })
 export class CountryComponent implements OnInit {
-  countryCount: number;
+  listCount: number;
   response:any;
   rows:any=[];
   columns:any=[];
@@ -30,7 +30,7 @@ export class CountryComponent implements OnInit {
   ngOnInit(): void {
     this.fetch((data) => {
       this.rows = data;
-      this.countryCount= this.rows.length;
+      this.listCount= this.rows.length;
     });
   
   }

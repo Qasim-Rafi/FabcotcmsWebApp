@@ -11,15 +11,17 @@
   </div>
 
   <div class="ibox-content">
+
     <div class=" panel blank-panel">  
-      <div class=" panel-heading">
+      <div class="panel-heading">
+
         <table class="table">
             <tbody>
                 <tr>
                     <td class="noBorder" > 
                         <button type="button" class="btn btn-primary descBtn "> 
                        <i class="fa fa-anchor fa-fw mr-2"></i>{{listCount}} </button>
-                        <span class="text-muted text2"></span> 
+                        <span class="text-muted text2">Articles </span> 
                     </td>
                     <td class="noBorder">
                         <button type="button" class="btn  mr-1 px-3"> </button>
@@ -33,8 +35,10 @@
             </tbody>
         </table>
 
+
+        <div class="col-md-12 mb-4">
         <div class="row justify-content-end">
-          <div class=" col-md-4 mb-4" >
+          <div class=" col-md-4" >
             <div class="input-group col-md-offset-3">
               <input type="text" placeholder="Search " 
               class="input form-control w-50" (keyup)="updateFilter($event)">
@@ -55,8 +59,12 @@
              </div>
            </div>
         </div>
+       </div>
+        
 
+      </div>
 
+      <div class="panel-body">
 
         <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'" 
         [headerHeight]="50" [footerHeight]="50" [sorts]="[{prop: 'code', dir: 'asce'}]"
@@ -115,7 +123,11 @@
           </ng-template>
         </ngx-datatable-column>
         
-      </ngx-datatable>      
+        </ngx-datatable>
+
+      </div>
+    </div>
+  </div>    
 
 
 
