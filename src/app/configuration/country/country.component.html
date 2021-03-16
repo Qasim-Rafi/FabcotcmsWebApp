@@ -1,10 +1,10 @@
-<div class="content-header p-4">
+<div class="content-header ">
   <div class="container-fluid">
-    <div class="row mb-2">
+    <div class="row mb-5">
       <div class="col-sm-12">
-        <p  style="font-size: x-large; color: grey; font-weight: 100;">Country Location 
-          <small style="font-size: large;">&nbsp;Business Country location and its management</small> 
-          <small style="font-size: small; float: right;">Configuration / Country Location</small></p>
+        <h2 class="row wrapper page-header "> <strong>Country Location</strong> 
+          <small class="ml-2 text-muted">Business Country location and its management</small>
+          </h2>
       </div><!-- /.col -->
     </div><!-- /.row -->
   </div><!-- /.container-fluid -->
@@ -17,12 +17,12 @@
           <tbody>
               <tr>
                   <td class="noBorder"  >
-                      <button type="button" class="btn btn-primary text "> 
-                        <i class="fas fa-map px-1"></i>{{listCount}}</button>
-                      <span class="text-muted text-s-md  ml-2">Countries</span>
+                      <button type="button" class="btn btn-primary descBtn "> 
+                        <i class="fas fa-map fa-fw mr-2"></i>{{listCount}}</button>
+                      <span class="text-muted text2">Countries</span>
                   </td>
                   <td class="noBorder" >
-                      <button type="button" class="btn  m-r-sm text-s-md px-3"> </button>
+                      <button type="button" class="btn  mr-1 px-3"> </button>
                       <span class="text-muted text"></span>
                   </td>
                   <td  class="noBorder" >
@@ -32,6 +32,31 @@
               </tr>
           </tbody>
       </table>
+
+      <div class="row">
+        <div class=" col-md-4 mb-4" >
+          <div class="input-group col-md-offset-3">
+            <input type="text" placeholder="Search"
+            class="input form-control w-50" >
+          </div>
+        </div>
+
+     <div class="html5buttons">
+       <div class="dt-buttons btn-group ">
+         <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0" 
+         aria-controls="DataTables_Table_0"><span>Copy</span></a>
+         <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0" 
+         aria-controls="DataTables_Table_0"><span>CSV</span></a>
+         <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0" 
+         aria-controls="DataTables_Table_0"><span>Excel</span></a>
+         <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0" 
+         aria-controls="DataTables_Table_0"><span>PDF</span></a>
+         <a class="btn btn-default buttons-print bg-white" tabindex="0" 
+         aria-controls="DataTables_Table_0"><span>Print</span></a>
+        </div>
+      </div>
+      </div>
+
 
 
 

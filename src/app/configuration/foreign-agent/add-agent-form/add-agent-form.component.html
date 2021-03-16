@@ -1,19 +1,20 @@
   <!-- Modal -->
  
   <div class="modal-header">
-    <h5 class="modal-title" style="width: 600px; text-align: center;">
-      <i class="far fa-edit"></i>
-      Add new Agent
-    </h5>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
-      <span style="color: black;" aria-hidden="true">&times;</span>
+      <span aria-hidden="true">&times;</span>
     </button>
+    <h5 class="modal-title" >
+      <i class="fas fa-user-tie fa-fw"></i>
+      Add New Agent or L/C Opener
+    </h5>
+   
   </div>
 
-  <div class="modal-body">
+  <div class="modal-body BG">
     <form #addAgentForm="ngForm" novalidate>
         <div class="form-group row">
-            <label name="agentTypeId" class="col-sm-3 col-form-label" [(ngModel)]="agentTypeId">
+            <label name="agentTypeId" class="col-sm-3 col-form-label topInputclr" [(ngModel)]="agentTypeId">
                  Type</label>
             <div class="col-sm-9">
               <select class="form-control">
@@ -27,7 +28,7 @@
 
 
           <div class="form-group row">
-            <label name="agentSideId" class="col-sm-3 col-form-label" [(ngModel)]="agentSideId">
+            <label name="agentSideId" class="col-sm-3 col-form-label topInputclr" [(ngModel)]="agentSideId">
                 Side
             </label>
             <div class="col-sm-9">
@@ -43,7 +44,7 @@
 
     
       <div class="form-group row" [class.has-error]="name.invalid && name.touched">
-        <label for="code" class="col-sm-3 col-form-label control-label">Name <span>*</span></label>
+        <label for="code" class="col-sm-3 col-form-label control-label topInputclr">Name </label>
         <div class="col-sm-9">
           <input required id="name" type="text" class="form-control" placeholder="Name" name="name"
             [(ngModel)]="data.name" #name="ngModel" [ngClass]="{'error': name.invalid && name.touched}">
@@ -52,7 +53,7 @@
 
 
       <div class="form-group row">
-        <label for="name" class="col-sm-3 col-form-label">Address<span>*</span></label>
+        <label for="name" class="col-sm-3 col-form-label otherInputclr">Address</label>
         <div class="col-sm-9">
           <input required id="address" type="text" class="form-control" placeholder="Address" name="address"
             [(ngModel)]="data.address" #address="ngModel" >
@@ -60,7 +61,7 @@
       </div>
 
       <div class="form-group row">
-        <label for="inputEmail3" class="col-sm-3 col-form-label">City</label>
+        <label for="inputEmail3" class="col-sm-3 col-form-label otherInputclr">City</label>
         <div class="col-sm-9">
           <select class="form-control">
             <option> Ali</option>
@@ -71,7 +72,7 @@
       </div>
 
       <div class="form-group row">
-        <label for="name" class="col-sm-3 col-form-label">Email<span>*</span></label>
+        <label for="name" class="col-sm-3 col-form-label otherInputclr">Email</label>
         <div class="col-sm-9">
           <input required id="emailAddress" type="text" class="form-control" placeholder="Email" name="emailAddress"
             [(ngModel)]="data.emailAddress" #emailAddress="ngModel">
@@ -79,12 +80,12 @@
       </div>
 
       <div class="form-group row">
-        <label for="cellNumber" class="col-sm-3 col-form-label">Contact Nos.<span>*</span></label>
+        <label for="cellNumber" class="col-sm-3 col-form-label otherInputclr">Contact Nos.</label>
         <div class="col-md-9">
           <input required type="text" class="form-control" id="cellNumber" placeholder="Contact No."
             name="cellNumber" [(ngModel)]="data.cellNumber" #cellNumber="ngModel"cellNumber>
         </div>
-        <label  class="col-sm-3 col-form-label"></label>
+        <label  class="col-sm-3 col-form-label otherInputclr"></label>
         <div class="col-md-9 mt-1">
           <input type="text" class="form-control" id="landlineNumber" placeholder="Landline No."
             name="landlineNumber" [(ngModel)]="data.landlineNumber" #landlineNumber="ngModel"
@@ -93,7 +94,7 @@
       </div>
  
       <div class="form-group row">
-        <label for="bankName" class="col-sm-3 col-form-label control-label">Bank </label>
+        <label for="bankName" class="col-sm-3 col-form-label control-label otherInputclr">Bank </label>
         <div class="col-sm-9">
           <input required id="bankName" type="text" class="form-control " placeholder="Code" name="bankName"
             [(ngModel)]="data.bankName" #bankName="ngModel">
@@ -101,7 +102,7 @@
       </div>
 
       <div class="form-group row">
-        <label for="accountNumber" class="col-sm-3 col-form-label control-label">Agent <span>*</span></label>
+        <label for="accountNumber" class="col-sm-3 col-form-label control-label otherInputclr">Account </label>
         <div class="col-sm-9">
           <input required id="accountNumber" type="text" class="form-control " placeholder="Account Number" name="accountNumber"
             [(ngModel)]="data.accountNumber" #accountNumber="ngModel" [ngClass]="{'error': accountNumber.invalid && accountNumber.touched}">
@@ -116,7 +117,7 @@
       
 
       <div class="form-group row" [class.has-error]="swiftCode.invalid && swiftCode.touched">
-        <label for="swiftCode" class="col-sm-3 col-form-label control-label">Swift <span>*</span></label>
+        <label for="swiftCode" class="col-sm-3 col-form-label control-label otherInputclr">Swift </label>
         <div class="col-sm-9">
           <input required id="swiftCode" type="text" class="form-control " placeholder="Code" name="swiftCode"
             [(ngModel)]="data.swiftCode" #swiftCode="ngModel" [ngClass]="{'error': swiftCode.invalid && swiftCode.touched}">
@@ -125,18 +126,19 @@
 
 
       <div class="form-group row">
-        <label for="details" class="col-sm-3 col-form-label">Details</label>
+        <label for="details" class="col-sm-3 col-form-label otherInputclr">Details</label>
         <div class="col-sm-9">
           <textarea  class="form-control" id="details" rows="3" name="details"
             [(ngModel)]="data.details" #details="ngModel"></textarea>
         </div>
       </div>
 
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="activeModal.close()">Close</button>
-        <button class="btn button-save" type="submit" (click)="addAgent() " [disabled]="addAgentForm.invalid">
-          Add Agent
-        </button>
-      </div>
+    
     </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-white" data-dismiss="modal" (click)="activeModal.close()">Close</button>
+    <button class="btn button-save" type="submit" (click)="addAgent() " [disabled]="addAgentForm.invalid">
+      Add Agent
+    </button>
   </div>

@@ -1,19 +1,20 @@
 <div class="modal-header">
-    <h5 class="modal-title">
-        <i class="far fa-edit"></i>
-        Update City
-    </h5>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
         <span aria-hidden="true">&times;</span>
     </button>
+    <h5 class="modal-title">
+        <i class="fa fa-map fa-fw"></i>
+       Edit City Location
+    </h5>
+
 </div>
 
-<div class="modal-body">
+<div class="modal-body BG">
     <form #addAgentForm="ngForm" novalidate>
 
 
         <div class="form-group row" [class.has-error]="name.invalid && name.touched">
-            <label for="name" class="col-sm-3 col-form-label control-label">City Name </label>
+            <label for="name" class="col-sm-3 col-form-label control-label topInputclr">City Name </label>
             <div class="col-sm-9">
                 <input required id="name" type="text" class="form-control" placeholder="Name" name="name"
                     [(ngModel)]="data.name" #name="ngModel" [ngClass]="{'error': name.invalid && name.touched}">
@@ -21,7 +22,7 @@
         </div>
 
         <div class="form-group row" >
-            <label class="col-sm-3 col-form-label">Country</label>
+            <label class="col-sm-3 col-form-label otherInputclr">Country</label>
             <div class="col-sm-9">
               <select name="country" class="form-control" [(ngModel)]="data.countryId">
                 <option  disabled> Select Country</option>
@@ -32,7 +33,7 @@
             </div>
           </div>
         <div class="form-group row">
-            <label for="details" class="col-sm-3 col-form-label">Details</label>
+            <label for="details" class="col-sm-3 col-form-label otherInputclr">Details</label>
             <div class="col-sm-9">
                 <textarea required class="form-control" id="details" rows="3" name="details" [(ngModel)]="data.details"
                     #details="ngModel"></textarea>
@@ -40,12 +41,13 @@
         </div>
         <div class="form-check form-check-inline">
             <input class="form-check-input check-btn" type="checkbox" checked>
-            <label class="form-check-label">Marked as Active</label>
+            <label class="form-check-label otherInputclr">Marked as Active</label>
           </div> 
-        <div class="modal-footer">
-            <button class="btn button-save" type="submit" (click)="UpdateCity()">
-                Update City
-            </button>
-        </div>
+     
     </form>
+</div>
+<div class="modal-footer">
+    <button class="btn button-save" type="submit" (click)="UpdateCity()">
+        Update City
+    </button>
 </div>
