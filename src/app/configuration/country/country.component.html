@@ -13,25 +13,37 @@
 <div class="ibox-content">
   <div class=" panel blank-panel">  
     <div class=" panel-heading">
-      <table class="table">
+     <div class="row mb-3">
+       <div class="col-md-6 ">
+        <button type="button" class="btn btn-primary descBtn ml-sm-none ml-md-2 "> 
+          <i class="fas fa-map fa-fw mr-2"></i>{{listCount}}</button>
+          <span class="text-muted text2">Countries</span>
+       </div>
+       <div class="col-md-6 mt-1 ">
+        <button type="button" class="btn btn-primary btn-md float-sm-none float-md-right  mr-md-2 mr-sm-none" (click)="addCountryForm()">
+          <i class="fa fa-plus" ></i> Add New Country</button>
+       </div>
+
+     </div>
+      <!-- <table class="table">
           <tbody>
               <tr>
-                  <td class="noBorder"  >
+                  <td class=""  >
                       <button type="button" class="btn btn-primary descBtn "> 
                         <i class="fas fa-map fa-fw mr-2"></i>{{listCount}}</button>
                       <span class="text-muted text2">Countries</span>
                   </td>
-                  <td class="noBorder" >
+                  <td class="" >
                       <button type="button" class="btn  mr-1 px-3"> </button>
                       <span class="text-muted text"></span>
                   </td>
-                  <td  class="noBorder" >
+                  <td  class="Border" >
                       <button type="button" class="btn btn-primary btn-md float-right" (click)="addCountryForm()">
                         <i class="fa fa-plus" ></i> Add New Country</button>
                   </td>
               </tr>
           </tbody>
-      </table>
+      </table> -->
 
       <div class="row">
         <div class=" col-md-4 mb-4" >
