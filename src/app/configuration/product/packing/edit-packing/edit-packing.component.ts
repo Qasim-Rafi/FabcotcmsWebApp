@@ -10,10 +10,10 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./edit-packing.component.css']
 })
 export class EditPackingComponent implements OnInit {
-  data: any ={};
+  data: any = {};
   response: any;
   @Input() userId;
-  constructor(private http:HttpClient,
+  constructor(private http: HttpClient,
     private toastr: ToastrService,
     private _NgbActiveModal: NgbActiveModal) { }
 
@@ -26,54 +26,52 @@ export class EditPackingComponent implements OnInit {
   }
 
 
-  editPacking()
-  {
-    this.http.get(`${environment.apiUrl}/api/Products/GetPackingById/`+this.userId )
-    .subscribe(
-      res=> { 
-        this.response = res;
-        if (this.response.success == true){
-          this.data =this.response.data; 
-        }
-        else {
-          this.toastr.error('Something went Worng', 'Message.');
-            }
+  editPacking() {
+    this.http.get(`${environment.apiUrl}/api/Products/GetPackingById/` + this.userId)
+      .subscribe(
+        res => {
+          this.response = res;
+          if (this.response.success == true) {
+            this.data = this.response.data;
+          }
+          else {
+            this.toastr.error('Something went Worng', 'Message.');
+          }
 
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error('Something went Worng', 'Message.');
-        }
-      });
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error('Something went Worng', 'Message.');
+          }
+        });
   }
 
-  
-  
-  UpdatePacking()
-  {
-    let varr=  {
+
+
+  UpdatePacking() {
+    let varr = {
       "name": this.data.name,
-      "description":  this.data.description,
+      "description": this.data.description,
     }
 
     this.http.
-    put(`${environment.apiUrl}/api/Products/UpdatePacking/`+this.userId,varr)
-    .subscribe(
-      res=> { 
-  
-        this.response = res;
-        if (this.response.success == true){
-          this.toastr.success(this.response.message, 'Message.');
-          this.activeModal.close(true);
-        }
-        else {
-          this.toastr.error('Something went Worng', 'Message.');
-            }
+      put(`${environment.apiUrl}/api/Products/UpdatePacking/` + this.userId, varr)
+      .subscribe(
+        res => {
 
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error('Something went Worng', 'Message.');
-        }
-      });
+          this.response = res;
+          if (this.response.success == true) {
+            this.toastr.success(this.response.message, 'Message.');
+            this.activeModal.close(true);
+          }
+          else {
+            this.toastr.error('Something went Worng', 'Message.');
+          }
+
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error('Something went Worng', 'Message.');
+          }
+        });
   }
 
 

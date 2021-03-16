@@ -150,10 +150,11 @@
             </div>
   
   
-            <div class="modal-footer">
-              <p style="cursor: pointer;" data-dismiss="modal" (click)="activeModal.close()">Close</p>
-              <button type="button" class="btn button-save" (click)="addSeller()" [disabled]="sellerForm.invalid">Save
-                Seller</button>
-            </div>
+         
           </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">Close</button>
+    <button type="button" class="btn button-save" (click)="addSeller()" [disabled]="sellerForm.invalid">Save
+            Seller</button>
         </div>

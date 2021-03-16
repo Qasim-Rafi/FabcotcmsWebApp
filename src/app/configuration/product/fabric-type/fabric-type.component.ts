@@ -13,17 +13,17 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
   styleUrls: ['./fabric-type.component.css']
 })
 export class FabricTypeComponent implements OnInit {
-  response:any;
-  rows:any=[];
-  data:any={};
-  columns:any=[];
+  response: any;
+  rows: any = [];
+  data: any = {};
+  columns: any = [];
   listCount: number;
-  myDate=Date.now();
+  myDate = Date.now();
   temp: any[];
- 
 
 
-  constructor(private http:HttpClient,
+
+  constructor(private http: HttpClient,
     private toastr: ToastrService,
     private modalService: NgbModal,) { }
 
@@ -31,7 +31,6 @@ export class FabricTypeComponent implements OnInit {
     this.fetch((data) => {
       this.temp = [...data];
       this.rows = data;
-      this.listCount = this.rows.length;
     });
   }
 
@@ -42,8 +41,8 @@ export class FabricTypeComponent implements OnInit {
 
     // filter our data
     const temp = this.temp.filter(function (d) {
-      return d.code.toLowerCase().indexOf(val) !== -1  ||
-             d.type.toLowerCase().indexOf(val) !== -1  || !val;
+      return d.code.toLowerCase().indexOf(val) !== -1 ||
+        d.type.toLowerCase().indexOf(val) !== -1 || !val;
     });
 
     // update the rows
@@ -53,69 +52,71 @@ export class FabricTypeComponent implements OnInit {
   }
 
 
-  
+
 
   fetch(cb) {
     let that = this;
     that.http
-    .get(`${environment.apiUrl}/api/Products/GetAllFabricType`)
-    .subscribe(res => {
-      this.response = res;
-    if(this.response.success==true)
-    {
-    that.data =this.response.data;
-    cb(this.data);
-    }
-    else{
-      this.toastr.error(this.response.message, 'Message.');
-    }
-      // this.spinner.hide();
-    }, err => {
-      if ( err.status == 400) {
- this.toastr.error(err.error.message, 'Message.');;
-      }
-    //  this.spinner.hide();
-    });
+      .get(`${environment.apiUrl}/api/Products/GetAllFabricType`)
+      .subscribe(res => {
+        this.response = res;
+        if (this.response.success == true) {
+          that.data = this.response.data;
+          this.listCount = this.response.data.length;
+          cb(this.data);
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+        // this.spinner.hide();
+      }, err => {
+        if (err.status == 400) {
+          this.toastr.error(err.error.message, 'Message.');;
+        }
+        //  this.spinner.hide();
+      });
   }
 
 
 
-  
 
-  
-  deleteType(id){
+
+
+  deleteType(id) {
     Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
+      title: 'Confirm Delete',
+      text: "Are you sure to delete this record",
+      icon: 'error',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Delete it!'
+      confirmButtonColor: '#ed5565',
+      cancelButtonColor: '#fff',
+      cancelButtonText: 'No',
+      confirmButtonText: 'Yes',
+      reverseButtons: true
     }).then((result) => {
       if (result.isConfirmed) {
-    
-        this.http.delete(`${environment.apiUrl}/api/Products/DeleteFabricType/`+id.id )
-        .subscribe(
-          res=> { 
-            this.response = res;
-            if (this.response.success == true){
-             this.toastr.error(this.response.message, 'Message.');
-             this.fetch((data) => {
-              this.rows = data;
-              this.listCount = this.rows.length;
+
+        this.http.delete(`${environment.apiUrl}/api/Products/DeleteFabricType/` + id.id)
+          .subscribe(
+            res => {
+              this.response = res;
+              if (this.response.success == true) {
+                this.toastr.error(this.response.message, 'Message.');
+                this.fetch((data) => {
+                  this.rows = data;
+                  this.listCount = this.rows.length;
+                });
+
+              }
+              else {
+                this.toastr.error('Something went Worng', 'Message.');
+              }
+
+            }, err => {
+              if (err.status == 400) {
+                this.toastr.error(this.response.message, 'Message.');
+              }
             });
-              
-            }
-            else {
-              this.toastr.error('Something went Worng', 'Message.');
-                }
-     
-          }, err => {
-            if (err.status == 400) {
-              this.toastr.error(this.response.message, 'Message.');
-            }
-          });
         // Swal.fire(
         //   'Record',
         //   'Deleted Successfully.',
@@ -123,8 +124,8 @@ export class FabricTypeComponent implements OnInit {
         // )
       }
     })
-    
-    }
+
+  }
 
 
 
@@ -146,42 +147,42 @@ export class FabricTypeComponent implements OnInit {
 
 
 
-  addTypeForm(){
+  addTypeForm() {
     const modalRef = this.modalService.open(AddTypeComponent, { centered: true });
-          modalRef.result.then((data) => {
-         // on close
-          if(data ==true){
-          //  this.date = this.myDate;
-           this.fetch((data) => {
-            this.rows = data;
-            this.listCount = this.rows.length;
-          });
-           
-  
-         }
-       }, (reason) => {
-         // on dismiss
-       });
-  } 
-  
+    modalRef.result.then((data) => {
+      // on close
+      if (data == true) {
+        //  this.date = this.myDate;
+        this.fetch((data) => {
+          this.rows = data;
+          this.listCount = this.rows.length;
+        });
 
-  editTypeForm(row){
+
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
+
+
+  editTypeForm(row) {
     const modalRef = this.modalService.open(EditTypeComponent, { centered: true });
-    modalRef.componentInstance.userId =row.id;
-          modalRef.result.then((data) => {
-         // on close
-          if(data ==true){
-          //  this.date = this.myDate;
-           this.fetch((data) => {
-            this.rows = data;
-          });
-           
-         }
-       }, (reason) => {
-         // on dismiss
-       });
-  } 
-  
+    modalRef.componentInstance.userId = row.id;
+    modalRef.result.then((data) => {
+      // on close
+      if (data == true) {
+        //  this.date = this.myDate;
+        this.fetch((data) => {
+          this.rows = data;
+        });
+
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
+
 
 
 }

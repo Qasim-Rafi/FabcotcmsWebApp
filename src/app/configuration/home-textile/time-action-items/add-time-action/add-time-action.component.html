@@ -33,10 +33,13 @@
         <label class="form-check-label otherInputclr">Mark as Active</label>
       </div>
 
-      <div class="modal-footer">
-       <button class="btn button-save" type="submit" (click)="addAction()">
-          Save Action 
-        </button>
-      </div>
+      
     </form>
   </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">Close</button>
+   
+    <button class="btn button-save" type="submit" (click)="addAction()">
+       Save Action 
+     </button>
+   </div>

@@ -149,11 +149,13 @@
               </div>
           
 
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="activeModal.close()">Close</button>
-          <button type="button" class="btn btn-success" [disabled]="sellerEditForm.invalid" 
-                  (click)="updateSeller()">Update Seller</button>
-        </div>
         </div>
   </form>   
+  
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">Close</button>
+   
+    <button type="button" class="btn btn-success" [disabled]="sellerEditForm.invalid" 
+            (click)="updateSeller()">Update Seller</button>
+  </div>
     
