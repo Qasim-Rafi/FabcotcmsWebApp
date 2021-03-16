@@ -52,6 +52,11 @@ h5 {
   padding: 15px 35px 15px 35px;
 }
 
+.noHover:hover {
+
+  background-color: white !important;
+  color: #7c7c7c !important;
+}
 .btn-primary {
   background-color: #1ab394 !important;
   border-color: #1ab394 !important;

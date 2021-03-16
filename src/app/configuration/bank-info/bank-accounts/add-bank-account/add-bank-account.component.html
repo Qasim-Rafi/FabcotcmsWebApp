@@ -76,10 +76,12 @@
             <label class="form-check-label otherInputclr">Set as Default</label>
           </div>
 
-      <div class="modal-footer">
-        <button class="btn button-save" type="submit" (click)="addBankAccount()" >
-         Save Account
-        </button>
-      </div>
     </form>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn btn-outline-secondary noHover"  data-dismiss="modal" (click)="activeModal.close()">Close</button>
+    <button class="btn button-save" type="submit" (click)="addBankAccount()" >
+     Save Account
+    </button>
   </div>

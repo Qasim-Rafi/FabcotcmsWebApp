@@ -49,10 +49,13 @@
         </div>
       </div>
 
-      <div class="modal-footer">
-       <button class="btn button-save" type="submit" (click)="addCurrency()">
-         Save Currency
-        </button>
-      </div>
+    
     </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">Close</button>
+
+   <button class="btn button-save" type="submit" (click)="addCurrency()">
+     Save Rate
+    </button>
   </div>
