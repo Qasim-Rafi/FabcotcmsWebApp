@@ -176,7 +176,9 @@ h5 {
 .BG {
   background-color: #f8fafb !important;
 }
-
+.NotBG{
+	background-color: white !important;
+}
 .deleteIconBack :hover {
   color: red;
   transform: scale(1.5);
