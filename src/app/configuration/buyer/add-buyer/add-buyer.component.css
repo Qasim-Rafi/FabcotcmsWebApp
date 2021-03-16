@@ -31,19 +31,20 @@ label {
 .form-control {
   box-shadow: 0 0 0 0 !important;
 }
-label{
+
+/* label{
   font-size: 13px;
-  font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "open sans", "Helvetica Neue";
   text-align: left;
 }
 input{
   font-size: 13px;
-  font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "open sans", "Helvetica Neue";
 }
 textarea{
   font-size: 13px;
-  font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
+  font-family: "open sans", "Helvetica Neue";
+} */
 
 
 @media (max-width: 640px) {

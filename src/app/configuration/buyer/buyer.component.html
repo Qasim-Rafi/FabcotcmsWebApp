@@ -3,10 +3,10 @@
     <div class="container-fluid">
       <div class="row mb-5">
         <div class="col-sm-12">
-          <h2 class="row wrapper page-header font-weight-light "> Buyer / Customer
+          <h2 class="row wrapper page-header font-weight-light"> Buyer / Customer
             <small class="ml-2 text-muted">Buyer and their point of contact information goes here</small></h2>
+          </div><!-- /.row -->
         </div><!-- /.col -->
-      </div><!-- /.row -->
     </div><!-- /.container-fluid -->
   </div>
   
@@ -105,7 +105,7 @@
   
   <!--    List   -->
   
-  <div class="faq-item" *ngFor="let i of buyer">
+  <div class="faq-item shadow-sm" *ngFor="let i of buyer">
     <div class="row">
       <div class="col-md-1 col-sm-3  forum-info" data-toggle="tooltip" data-placement="top" title=""
         data-original-title="POCs">
@@ -114,18 +114,20 @@
               class="fa fa-users"></span> 0</a>
         </div>
       </div>
+
       <div class="col-md-7">
         <a class="faq-question ">{{i.buyerCode}} - {{i.buyerName}}</a>
   
-        <small>Parent Buyer: {{i.parentBuyerId}} ({{i.buyerCode}})</small><br>
-        <small>Added by <strong>Shahid Tanvir</strong>
+        <div class="small mb-3">Parent Buyer: {{i.parentBuyerId}} ({{i.buyerCode}})</div>
+        <div class="small">Added by <strong>Shahid Tanvir</strong>
           <div class="m-l-lg" style="display: inline-block;">
             <i class="far fa-clock"></i> {{myDate | date:'medium'}}
           </div>
   
           <div class="m-l-lg" style="display: inline-block;">Country: &nbsp; {{i.country}}</div>
-        </small>
+        </div>
       </div>
+
       <div class="col-md-2">
         <div class="ibox-tools">
           <button type="button" class="btn editIconBack" (click)="editBuyer(i)">
