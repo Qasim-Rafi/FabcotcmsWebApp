@@ -3,7 +3,7 @@
       <div class="row mb-5">
         <div class="col-sm-12">
           <h2 class="row wrapper page-header  "><strong>Process</strong> 
-            <small class="ml-2 text-muted">Process Description</small>
+            <small class="ml-2 text-muted">Home Textile & Garments Process</small>
            </h2>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -18,7 +18,7 @@
                 <tr>
                     <td class="noBorder">
                         <button type="button" class="btn btn-primary descBtn "> 
-                        <i class="fas fa-user-tie fa-fw mr-2"></i>{{listCount}}</button>
+                        <i class="fa fa-bolt  fa-fw mr-2"></i>{{listCount}}</button>
                         <span class="text-muted text2">Process</span>
                     </td>
                     <td class="noBorder">
@@ -34,30 +34,39 @@
         </table>
 
         <div class="row">
-          <div class=" col-md-4 mb-4" >
+          <div class=" col-md-4 mb-4">
             <div class="input-group col-md-offset-3">
-              <input type="text" placeholder="Search"
-              class="input form-control w-50" >
+              <input type="text" placeholder="Search" class="input form-control w-50">
             </div>
           </div>
-
-       <div class="html5buttons">
-         <div class="dt-buttons btn-group ">
-           <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0" 
-           aria-controls="DataTables_Table_0"><span>Copy</span></a>
-           <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0" 
-           aria-controls="DataTables_Table_0"><span>CSV</span></a>
-           <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0" 
-           aria-controls="DataTables_Table_0"><span>Excel</span></a>
-           <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0" 
-           aria-controls="DataTables_Table_0"><span>PDF</span></a>
-           <a class="btn btn-default buttons-print bg-white" tabindex="0" 
-           aria-controls="DataTables_Table_0"><span>Print</span></a>
+        
+          <div class="html5buttons">
+            <div class="dt-buttons btn-group ">
+              <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0"
+                aria-controls="DataTables_Table_0"><span>Copy</span></a>
+              <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
+                aria-controls="DataTables_Table_0"><span>CSV</span></a>
+              <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
+                aria-controls="DataTables_Table_0"><span>Excel</span></a>
+              <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0"
+                aria-controls="DataTables_Table_0"><span>PDF</span></a>
+              <a class="btn btn-default buttons-print bg-white" tabindex="0"
+                aria-controls="DataTables_Table_0"><span>Print</span></a>
+            </div>
           </div>
-        </div>
+        
+        
         </div>
 
 
+        
+  </div>
+
+  <div class="panel-body">
+    <div class="row">
+          <div class="col-md-12">
+
+          
 
         <ngx-datatable #myTable class="material" [columns]="columns" [rows]="rows" [columnMode]="'force'" 
         [headerHeight]="50" [footerHeight]="50"
@@ -111,3 +120,10 @@
         </ngx-datatable-column>
       </ngx-datatable>      
 
+    </div>
+  </div>
+  </div>
+
+  </div>
+  </div>
+  
