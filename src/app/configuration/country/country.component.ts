@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EditCountryComponent } from './edit-country/edit-country.component';
 import { AddCountryComponent } from './add-country/add-country.component';
+import{ GlobalConstants } from '../../Common/global-constants';
 import Swal from 'sweetalert2/dist/sweetalert2.js'; 
 
 @Component({
@@ -65,9 +66,9 @@ export class CountryComponent implements OnInit {
   {
 
     Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
+      title: GlobalConstants.deleteTitle, //'Are you sure?',
+      text: GlobalConstants.deleteMessage, //"You won't be able to revert this!",
+      icon: 'danger',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
