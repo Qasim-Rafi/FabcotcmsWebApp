@@ -39,7 +39,7 @@ export class LoomTypeComponent implements OnInit {
     .get(`${environment.apiUrl}/api/TextileGarments/GetAllLoomType`)
     .subscribe(res => {
       this.response = res;
-      this.listCount = this.fetch.length;
+      this.listCount = this.rows.length;
     if(this.response.success==true)
     {
     that.data =this.response.data;
@@ -79,6 +79,7 @@ export class LoomTypeComponent implements OnInit {
          this.toastr.error(this.response.message, 'Message.');
          this.fetch((data) => {
           this.rows = data;
+          this.listCount = this.rows.length;
         });
           
         }
@@ -112,6 +113,7 @@ export class LoomTypeComponent implements OnInit {
           //  this.date = this.myDate;
            this.fetch((data) => {
             this.rows = data;
+            this.listCount = this.rows.length;
           });
            
   

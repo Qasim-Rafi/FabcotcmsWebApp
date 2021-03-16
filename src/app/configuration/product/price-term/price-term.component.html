@@ -34,6 +34,7 @@
         </tbody>
       </table>
 
+      <div class="col-md-12 mb-4">
       <div class="row justify-content-end">
         <div class=" col-md-4 mb-4">
           <div class="input-group col-md-offset-3">
@@ -55,10 +56,12 @@
           </div>
         </div>
       </div>
+    </div>
+    </div>
 
 
 
-
+      <div class="panel-body">
       <ngx-datatable #myTable class="material" [columns]="columns" [rows]="rows" [columnMode]="'force'"
         [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
 
@@ -110,3 +113,6 @@
         </ngx-datatable-column>
 
       </ngx-datatable>
+    </div>
+</div>
+  </div>

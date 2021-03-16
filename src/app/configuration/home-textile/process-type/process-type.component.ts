@@ -38,7 +38,7 @@ export class ProcessTypeComponent implements OnInit {
                 .get(`${environment.apiUrl}/api/TextileGarments/GetAllProcessType`)
                 .subscribe(res => {
                   this.response = res;
-                  this.listCount = this.fetch.length;
+                  this.listCount = this.rows.length;
                 if(this.response.success==true)
                 {
                 that.data =this.response.data;
@@ -79,6 +79,7 @@ export class ProcessTypeComponent implements OnInit {
                          this.toastr.error(this.response.message, 'Message.');
                          this.fetch((data) => {
                           this.rows = data;
+                          this.listCount = this.rows.length;
                         });
                           
                         }
@@ -105,22 +106,6 @@ export class ProcessTypeComponent implements OnInit {
             
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            
             
               addProcessTypeForm(){
                 const modalRef = this.modalService.open(AddProcessTypeComponent, { centered: true });
@@ -130,6 +115,7 @@ export class ProcessTypeComponent implements OnInit {
                       //  this.date = this.myDate;
                        this.fetch((data) => {
                         this.rows = data;
+                        this.listCount = this.rows.length;
                       });
                        
               
