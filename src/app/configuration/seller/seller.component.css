@@ -90,6 +90,7 @@ span {
 small {
   font-size: 80%;
   color: gray;
+  font-weight: 400;
 }
 .m-l-lg {
   margin-left: 30px;
@@ -157,7 +158,7 @@ small {
   float: left;
   /* width: 50%; */
   margin-bottom: 0;
-  margin-left: 120px;
+  
 }
 .input-group .form-control,
 .input-group-addon,
@@ -177,16 +178,7 @@ small {
   font-size: 14px;
   box-shadow: 0 0 0 0 !important;
 }
-.editIconBack {
-  color: rgb(177, 171, 171);
-  padding: 10px;
-  font-size: 12px;
-}
-.deleteIconBack {
-  color: rgb(177, 171, 171);
-  padding: 10px;
-  font-size: 12px;
-}
+
 
 .path {
   float: right;
@@ -207,11 +199,4 @@ td {
   border: none;
   float: left;
   font-size: 20px;
-}
-
-small,
-.small {
-  font-size: 60% !important;
-  font-weight: 400;
-  padding: 12px 0 0 0;
 }

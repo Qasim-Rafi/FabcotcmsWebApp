@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row mb-5">
       <div class="col-sm-12">
-        <h2 class="row wrapper page-header "> <strong>Country Location</strong> 
+        <h2 class="row wrapper page-header font-weight-light"> Country Location
           <small class="ml-2 text-muted">Business Country location and its management</small>
           </h2>
       </div><!-- /.col -->
@@ -30,7 +30,7 @@
               <tr>
                   <td class=""  >
                       <button type="button" class="btn btn-primary descBtn "> 
-                        <i class="fas fa-map fa-fw mr-2"></i>{{listCount}}</button>
+                        <i class="fas fa-map fa-fw mr-2"></i>{{countryCount}}</button>
                       <span class="text-muted text2">Countries</span>
                   </td>
                   <td class="" >
@@ -105,7 +105,7 @@
       </ngx-datatable-column>
       <ngx-datatable-column name="Created On |Created By"  prop="code" [flexGrow]="0.07">
         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-          {{myDate | date:'medium'}} | {{row.createdByName}} 
+          {{currentDate | date:'medium'}} | {{row.createdByName}} 
         </ng-template>
       </ngx-datatable-column>
       <ngx-datatable-column name="Action"  prop="code" [flexGrow]="0.03">

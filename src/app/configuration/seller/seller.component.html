@@ -4,8 +4,7 @@
       <div class="row mb-5">
         <div class="col-sm-12">
               <h2 class="row wrapper page-header font-weight-light "> Seller / Supplier  
-                <small class="ml-2 text-muted">Seller and their point of contact information goes here</small></h2>
-   
+              <small class="ml-2 text-muted">Seller and their point of contact information goes here</small></h2>
         </div><!-- /.col -->
       </div><!-- /.row -->
     </div><!-- /.container-fluid -->
@@ -119,13 +118,13 @@
       <div class="col-md-7">
         <a class="faq-question">{{i.sellerCode}} - {{i.sellerName}}</a>
   
-        <small>Parent Buyer: {{i.parentSellerId}} ({{i.sellerCode}})</small><br>
-        <small>Added by <strong>Shahid Tanvir</strong>
+        <div class="small mb-3">Parent Buyer: {{i.parentSellerId}} ({{i.sellerCode}})</div>
+        <div class="small">Added by <strong>Shahid Tanvir</strong>
           <div class="m-l-lg" style="display: inline-block;"> <i class="fa fa-clock-o fa-fw">
   
             </i> 11:05 am - Thu 09-May-2019</div>
           <div class="m-l-lg" style="display: inline-block;">Country: &nbsp; {{i.country}}</div>
-        </small>
+        </div>
       </div>
       <div class="col-md-2">
         <div class="ibox-tools">

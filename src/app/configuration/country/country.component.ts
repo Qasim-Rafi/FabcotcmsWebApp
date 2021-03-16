@@ -14,13 +14,13 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
   styleUrls: ['./country.component.css']
 })
 export class CountryComponent implements OnInit {
-  listCount: number;
+  countryCount: number;
   response:any;
   rows:any=[];
   columns:any=[];
   data:any={};
-  myDate=Date.now();
-
+  currentDate=Date.now();
+  
 
 
   constructor(private http:HttpClient,
@@ -30,7 +30,7 @@ export class CountryComponent implements OnInit {
   ngOnInit(): void {
     this.fetch((data) => {
       this.rows = data;
-      this.listCount= this.rows.length;
+      this.countryCount= this.rows.length;
     });
   
   }
@@ -38,15 +38,15 @@ export class CountryComponent implements OnInit {
 
   
   fetch(cb) {
-    let that = this;
-    that.http
+    let desc = this;
+    desc.http
     .get(`${environment.apiUrl}/api/Configs/GetAllCountry`)
     .subscribe(res => {
       this.response = res;
       // this.listCount = this.fetch.length;
     if(this.response.success==true)
     {
-    that.data =this.response.data;
+    desc.data =this.response.data;
     cb(this.data);
     }
     else{

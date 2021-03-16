@@ -26,7 +26,7 @@ h2{
 
 .faq-item {
   padding: 20px;
-  margin-bottom: 2px;
+  margin-bottom: 10px;
   background: #fff;
 }
 
@@ -78,7 +78,9 @@ span {
 small {
   font-size: 80%;
   color: gray;
+  font-weight: 400;
 }
+
 .m-l-lg {
   margin-left: 30px;
 }
@@ -173,9 +175,3 @@ td {
   font-size: 20px;
 }
 
-small,
-.small {
-  font-size: 60% !important;
-  font-weight: 400;
-  padding: 12px 0 0 0;
-}
