@@ -7,6 +7,7 @@ import { EditSellerFormComponent } from './edit-seller-form/edit-seller-form.com
 import { AddSellerFormComponent } from './add-seller-form/add-seller-form.component';
 import Swal from 'sweetalert2/dist/sweetalert2.js'; 
 import { AddCertificateComponent } from '../home-textile/certificate/add-certificate/add-certificate.component';
+import { GlobalConstants } from 'src/app/Common/global-constants';
 @Component({
   selector: 'app-seller',
   templateUrl: './seller.component.html',
@@ -87,13 +88,16 @@ export class SellerComponent implements OnInit {
 
   deleteSeller(id){
     Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
+      title: GlobalConstants.deleteTitle, //'Are you sure?',
+      text: GlobalConstants.deleteMessage, //"You won't be able to revert this!",
+      icon: 'error',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Delete it!'
+      confirmButtonColor: '#ed5565',
+      cancelButtonColor: '#dae0e5',
+      cancelButtonText: 'No',
+      confirmButtonText: 'Yes',
+      reverseButtons: true,
+      position: 'top',
     }).then((result) => {
       if (result.isConfirmed) {
   

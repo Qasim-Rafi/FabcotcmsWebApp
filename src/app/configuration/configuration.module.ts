@@ -128,7 +128,7 @@ import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
       timeOut:3000
     }),
     ConfirmationPopoverModule.forRoot({
-      confirmButtonType: 'danger', // set defaults here
+      // confirmButtonType: 'danger',     // set defaults here
     }),
   ]
 })

@@ -42,8 +42,8 @@
         <div class="row justify-content-end">
           <div class=" col-md-4 mb-4" >
             <div class="input-group col-md-offset-3">
-              <input type="text" placeholder="Search"
-              class="input form-control w-50" >
+              <input type="text" placeholder="Search by Term..."
+              class="input form-control w-50" (keyup)="updateFilter($event)" >
             </div>
           </div>
           <div class="html5buttons">
@@ -68,16 +68,16 @@
 
         <div class="panel-body">
 
-        <ngx-datatable #myTable class="material" [columns]="columns" [rows]="rows" [columnMode]="'force'" 
-        [headerHeight]="50" [footerHeight]="50"
-        [rowHeight]="'auto'" [limit]="10">
+          <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'" 
+          [headerHeight]="50" [footerHeight]="50" [sorts]="[{prop: 'id', dir: 'asce'}]"
+          [rowHeight]="'auto'" [limit]="6">
 
-      <ngx-datatable-column name="S. No." [width]="20" prop="code" > 
-          <ng-template let-row="row"  ngx-datatable-cell-template>
-            {{row.code}}
+      <ngx-datatable-column name="S. No." [width]="20" prop="i" > 
+          <ng-template let-row="row"   *ngFor="let i of rows"  ngx-datatable-cell-template >
+            {{i}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Payment Terms" [width]="80">
+        <ngx-datatable-column name="Payment Terms" [width]="80" prop="term">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.term}}
           </ng-template>
@@ -99,7 +99,7 @@
         </ngx-datatable-column>
         <ngx-datatable-column name="Last Updated On" [width]="80">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            {{myDate | date:'medium'}}
+            {{row.createdDateTime}}
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="Action" [width]="80">

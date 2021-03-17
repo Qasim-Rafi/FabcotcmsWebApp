@@ -6,6 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddDesignTypeComponent } from './add-design-type/add-design-type.component';
 import { EditDesignTypeComponent } from './edit-design-type/edit-design-type.component';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
+import { GlobalConstants } from 'src/app/Common/global-constants';
 
 
 @Component({
@@ -20,6 +21,7 @@ export class DesignTypeComponent implements OnInit {
   data:any={};
   listCount: number;
   myDate=Date.now();
+  temp: any=[];
 
 
   constructor(private http:HttpClient,
@@ -28,8 +30,23 @@ export class DesignTypeComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetch((data) => {
+      this.temp = [...data];
       this.rows = data;
     });
+  }
+
+  updateFilter(event) {
+    const val = event.target.value.toLowerCase();
+
+    // filter our data
+    const temp = this.temp.filter(function (d) {
+      return d.type.toLowerCase().indexOf(val) !== -1  || !val;
+    });
+ 
+    // update the rows
+    this.rows = temp;
+    // Whenever the filter changes, always go back to the first page
+    // this.table.offset = 0;
   }
 
 
@@ -40,7 +57,7 @@ export class DesignTypeComponent implements OnInit {
     .get(`${environment.apiUrl}/api/TextileGarments/GetAllDesignType`)
     .subscribe(res => {
       this.response = res;
-      this.listCount = this.rows.length;
+      this.listCount = this.response.data.length;
     if(this.response.success==true)
     {
     that.data =this.response.data;
@@ -64,13 +81,16 @@ export class DesignTypeComponent implements OnInit {
 
   deleteDesignType(id){
     Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
+      title: GlobalConstants.deleteTitle, //'Are you sure?',
+      text: GlobalConstants.deleteMessage, //"You won't be able to revert this!",
+      icon: 'error',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Delete it!'
+      confirmButtonColor: '#ed5565',
+      cancelButtonColor: '#dae0e5',
+      cancelButtonText: 'No',
+      confirmButtonText: 'Yes',
+      reverseButtons: true,
+      position: 'top',
     }).then((result) => {
       if (result.isConfirmed) {
     

@@ -33,42 +33,45 @@
         </table>
 
 
-        <div class="row">
-          <div class=" col-md-4 mb-4" >
-            <div class="input-group col-md-offset-3">
-              <input type="text" placeholder="Search"
-              class="input form-control w-50" >
+        <div class="col-md-12 mb-4">
+          <div class="row justify-content-end">
+            <div class=" col-md-4" >
+              <div class="input-group col-md-offset-3">
+                <input type="text" placeholder="Search by Design Name... " 
+                class="input form-control w-50" (keyup)="updateFilter($event)">
+              </div>
             </div>
+            <div class="html5buttons">
+              <div class="dt-buttons btn-group ">
+                <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0" 
+                aria-controls="DataTables_Table_0"><span>Copy</span></a>
+                <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0" 
+                aria-controls="DataTables_Table_0"><span>CSV</span></a>
+                <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0" 
+                aria-controls="DataTables_Table_0"><span>Excel</span></a>
+                <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0" 
+                aria-controls="DataTables_Table_0"><span>PDF</span></a>
+                <a class="btn btn-default buttons-print bg-white" tabindex="0" 
+                aria-controls="DataTables_Table_0"><span>Print</span></a>
+               </div>
+             </div>
           </div>
-
-       <div class="html5buttons">
-         <div class="dt-buttons btn-group ">
-           <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0" 
-           aria-controls="DataTables_Table_0"><span>Copy</span></a>
-           <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0" 
-           aria-controls="DataTables_Table_0"><span>CSV</span></a>
-           <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0" 
-           aria-controls="DataTables_Table_0"><span>Excel</span></a>
-           <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0" 
-           aria-controls="DataTables_Table_0"><span>PDF</span></a>
-           <a class="btn btn-default buttons-print bg-white" tabindex="0" 
-           aria-controls="DataTables_Table_0"><span>Print</span></a>
-          </div>
-        </div>
+         </div>
         </div>
 
 
+        <div class="panel-body">
 
-        <ngx-datatable #myTable class="material" [columns]="columns" [rows]="rows" [columnMode]="'force'" 
-        [headerHeight]="50" [footerHeight]="50"
-        [rowHeight]="'auto'" [limit]="10">
+          <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'" 
+          [headerHeight]="50" [footerHeight]="50" [sorts]="[{prop: 'id', dir: 'asce'}]"
+          [rowHeight]="'auto'" [limit]="6">
 
-      <ngx-datatable-column name="S. No." [width]="5" prop="code" > 
+      <ngx-datatable-column name="S. No." [width]="5" prop="id" > 
           <ng-template let-row="row"  ngx-datatable-cell-template>
             {{row.id}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Process Type" [width]="40">
+        <ngx-datatable-column name="Process Type" [width]="40" prop="type">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.type}}
           </ng-template>
@@ -114,4 +117,8 @@
           </ng-template>
         </ngx-datatable-column>
       </ngx-datatable>      
+    </div>
+    </div>
+    </div>
+
 

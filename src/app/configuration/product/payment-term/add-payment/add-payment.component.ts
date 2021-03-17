@@ -30,7 +30,8 @@ export class AddPaymentComponent implements OnInit {
   {
     let varr=  {
            "term": this.data.term,
-           "description":this.data.description
+           "description":this.data.description,
+           "createdDateTime":this.data.createdDateTime,
      
     }
 

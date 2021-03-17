@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { AddBankAccountComponent } from './add-bank-account/add-bank-account.component';
 import { EditBankAccountComponent } from './edit-bank-account/edit-bank-account.component';
 import Swal from 'sweetalert2/dist/sweetalert2.js'; 
+import { GlobalConstants } from 'src/app/Common/global-constants';
 
 @Component({
   selector: 'app-bank-accounts',
@@ -77,13 +78,16 @@ export class BankAccountsComponent implements OnInit {
   
   deleteAccount(id){
     Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
+      title: GlobalConstants.deleteTitle, //'Are you sure?',
+      text: GlobalConstants.deleteMessage, //"You won't be able to revert this!",
+      icon: 'error',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Delete it!'
+      confirmButtonColor: '#ed5565',
+      cancelButtonColor: '#dae0e5',
+      cancelButtonText: 'No',
+      confirmButtonText: 'Yes',
+      reverseButtons: true,
+      position: 'top',
     }).then((result) => {
       if (result.isConfirmed) {
     

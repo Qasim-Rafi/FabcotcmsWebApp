@@ -7,6 +7,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddAgentFormComponent } from './add-agent-form/add-agent-form.component';
 import { EditAgentFormComponent } from './edit-agent-form/edit-agent-form.component';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
+import { GlobalConstants } from 'src/app/Common/global-constants';
 
 @Component({
   selector: 'app-foreign-agent',
@@ -22,6 +23,7 @@ export class ForeignAgentComponent implements OnInit {
   date: number;
   myDate=Date.now();
   temp: any[];
+  
   constructor(private http:HttpClient,
     private toastr: ToastrService,  
     private modalService: NgbModal,){ }
@@ -80,13 +82,16 @@ export class ForeignAgentComponent implements OnInit {
 
   deleteAgent(id){
     Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
+      title: GlobalConstants.deleteTitle, //'Are you sure?',
+      text: GlobalConstants.deleteMessage, //"You won't be able to revert this!",
+      icon: 'error',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Delete it!'
+      confirmButtonColor: '#ed5565',
+      cancelButtonColor: '#dae0e5',
+      cancelButtonText: 'No',
+      confirmButtonText: 'Yes',
+      reverseButtons: true,
+      position: 'top',
     }).then((result) => {
       if (result.isConfirmed) {
     

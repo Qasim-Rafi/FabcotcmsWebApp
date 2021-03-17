@@ -39,7 +39,8 @@
         <div class="row justify-content-end">
         <div class=" col-md-4 mb-4">
           <div class="input-group col-md-offset-3">
-            <input type="text" placeholder="Search" class="input form-control w-50">
+            <input type="text" placeholder="Search bt Type..." 
+            class="input form-control w-50" (keyup)="updateFilter($event)"   >
           </div>
         </div>
 
@@ -68,9 +69,9 @@
         [headerHeight]="50" [footerHeight]="50" [sorts]="[{prop: 'code', dir: 'asce'}]" [rowHeight]="'auto'"
         [limit]="6">
 
-        <ngx-datatable-column name="S. No." [width]="20" prop="code">
+        <ngx-datatable-column name="S. No." [width]="20" prop="id">
           <ng-template let-row="row" ngx-datatable-cell-template>
-            {{row.code}}
+            {{row.id}}
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="Fabric Type" [width]="80" prop="type">

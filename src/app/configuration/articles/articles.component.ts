@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddArticleComponent } from './add-article/add-article.component';
 import { EditArticleComponent } from './edit-article/edit-article.component';
+import { GlobalConstants } from '../../Common/global-constants';
 import Swal from 'sweetalert2/dist/sweetalert2.js'; 
 
 @Component({
@@ -29,7 +30,6 @@ export class ArticlesComponent implements OnInit {
     this.fetch((data) => {
       this.temp = [...data];
       this.rows = data;
-      this.listCount = this.rows.length;
   });
 
   }
@@ -39,10 +39,9 @@ export class ArticlesComponent implements OnInit {
 
     // filter our data
     const temp = this.temp.filter(function (d) {
-      return d.code.toLowerCase().indexOf(val) !== -1  ||
-             d.name.toLowerCase().indexOf(val) !== -1  || !val;
+      return d.code.toLowerCase().indexOf(val) !== -1  || !val;
     });
-
+ 
     // update the rows
     this.rows = temp;
     // Whenever the filter changes, always go back to the first page
@@ -56,6 +55,8 @@ export class ArticlesComponent implements OnInit {
     .get(`${environment.apiUrl}/api/Configs/GetAllArticle`)
     .subscribe(res => {
       this.response = res;
+      this.listCount = this.response.data.length;
+      
      
     if(this.response.success==true)
     {
@@ -77,14 +78,18 @@ export class ArticlesComponent implements OnInit {
 
 
   deleteArticle(id){
+
     Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
+      title: GlobalConstants.deleteTitle, //'Are you sure?',
+      text: GlobalConstants.deleteMessage, //"You won't be able to revert this!",
+      icon: 'error',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Delete it!'
+      confirmButtonColor: '#ed5565',
+      cancelButtonColor: '#dae0e5',
+      cancelButtonText: 'No',
+      confirmButtonText: 'Yes',
+      reverseButtons: true,
+      position: 'top',
     }).then((result) => {
       if (result.isConfirmed) {
     
@@ -96,7 +101,7 @@ export class ArticlesComponent implements OnInit {
              this.toastr.error(this.response.message, 'Message.');
              this.fetch((data) => {
               this.rows = data;
-              this.listCount = this.rows.length;
+              
             });
               
             }

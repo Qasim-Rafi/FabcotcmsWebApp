@@ -8,6 +8,7 @@ import { EditBuyerComponent } from './edit-buyer/edit-buyer.component';
 import { AddBuyerComponent } from './add-buyer/add-buyer.component';
 import { ServiceService } from 'src/app/shared/service.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js'; 
+import { GlobalConstants } from 'src/app/Common/global-constants';
 @Component({
   selector: 'app-buyer',
   templateUrl: './buyer.component.html',
@@ -105,13 +106,16 @@ export class BuyerComponent implements OnInit {
 
 deleteBuyer(id){
 Swal.fire({
-  title: 'Are you sure?',
-  text: "You won't be able to revert this!",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Delete it!'
+  title: GlobalConstants.deleteTitle, //'Are you sure?',
+      text: GlobalConstants.deleteMessage, //"You won't be able to revert this!",
+      icon: 'error',
+      showCancelButton: true,
+      confirmButtonColor: '#ed5565',
+      cancelButtonColor: '#dae0e5',
+      cancelButtonText: 'No',
+      confirmButtonText: 'Yes',
+      reverseButtons: true,
+      position: 'top',
 }).then((result) => {
   if (result.isConfirmed) {
 

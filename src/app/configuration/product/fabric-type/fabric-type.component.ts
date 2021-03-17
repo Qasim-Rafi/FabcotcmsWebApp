@@ -5,7 +5,9 @@ import { environment } from 'src/environments/environment';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddTypeComponent } from './add-type/add-type.component';
 import { EditTypeComponent } from './edit-type/edit-type.component';
+
 import Swal from 'sweetalert2/dist/sweetalert2.js';
+import { GlobalConstants } from 'src/app/Common/global-constants';
 
 @Component({
   selector: 'app-fabric-type',
@@ -31,6 +33,7 @@ export class FabricTypeComponent implements OnInit {
     this.fetch((data) => {
       this.temp = [...data];
       this.rows = data;
+      this.listCount = this.rows.length;
     });
   }
 
@@ -41,8 +44,7 @@ export class FabricTypeComponent implements OnInit {
 
     // filter our data
     const temp = this.temp.filter(function (d) {
-      return d.code.toLowerCase().indexOf(val) !== -1 ||
-        d.type.toLowerCase().indexOf(val) !== -1 || !val;
+      return d.type.toLowerCase().indexOf(val) !== -1 || !val;
     });
 
     // update the rows
@@ -84,15 +86,16 @@ export class FabricTypeComponent implements OnInit {
 
   deleteType(id) {
     Swal.fire({
-      title: 'Confirm Delete',
-      text: "Are you sure to delete this record",
+      title: GlobalConstants.deleteTitle, //'Are you sure?',
+      text: GlobalConstants.deleteMessage, //"You won't be able to revert this!",
       icon: 'error',
       showCancelButton: true,
       confirmButtonColor: '#ed5565',
-      cancelButtonColor: '#fff',
+      cancelButtonColor: '#dae0e5',
       cancelButtonText: 'No',
       confirmButtonText: 'Yes',
-      reverseButtons: true
+      reverseButtons: true,
+      position: 'top',
     }).then((result) => {
       if (result.isConfirmed) {
 
@@ -126,23 +129,6 @@ export class FabricTypeComponent implements OnInit {
     })
 
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

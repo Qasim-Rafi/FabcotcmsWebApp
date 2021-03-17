@@ -40,7 +40,7 @@
         <div class="row justify-content-end">
           <div class=" col-md-4" >
             <div class="input-group col-md-offset-3">
-              <input type="text" placeholder="Search " 
+              <input type="text" placeholder="Search by Article Code... " 
               class="input form-control w-50" (keyup)="updateFilter($event)">
             </div>
           </div>
@@ -60,8 +60,6 @@
            </div>
         </div>
        </div>
-        
-
       </div>
 
       <div class="panel-body">
@@ -85,7 +83,7 @@
             {{row.genericName}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Status" [width]="5" prop="address"> 
+        <ngx-datatable-column name="Status" [width]="5" prop="status"> 
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             <div class="active" *ngIf="row.active==true">
               Active
