@@ -15,7 +15,7 @@ import { GlobalConstants } from 'src/app/Common/global-constants';
   styleUrls: ['./city.component.css']
 })
 export class CityComponent implements OnInit {
-  listCount: number;
+  CityCount: number;
   response: any;
   rows: any = [];
   // countryId= null;
@@ -26,7 +26,7 @@ export class CityComponent implements OnInit {
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
-    private modalService: NgbModal,) { }
+    private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.fetch((data) => {
@@ -45,7 +45,7 @@ export class CityComponent implements OnInit {
         this.response = res;
 
         if (this.response.success == true) {
-          this.listCount = this.response.data.length;
+          this.CityCount = this.response.data.length;
           that.data = this.response.data;
           cb(this.data);
         }
