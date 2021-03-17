@@ -16,7 +16,7 @@
           <div class="form-group row" [class.has-error]="name.invalid && name.touched">
             <label for="name" class="col-sm-3 col-form-label control-label topInputclr">Bank Name </label>
             <div class="col-sm-9">
-              <input required id="name" type="text" class="form-control" placeholder="Name" name="name"
+              <input required id="name" type="text" class="form-control" placeholder="Bank Name" name="name"
                 [(ngModel)]="data.name" #name="ngModel" [ngClass]="{'error': name.invalid && name.touched}">
             </div>
           </div>
@@ -48,7 +48,7 @@
           <div class="form-group row" [class.has-error]="address.invalid && address.touched">
             <label for="address" class="col-sm-3 col-form-label control-label otherInputclr">Address </label>
             <div class="col-sm-9">
-              <input required id="address" type="text" class="form-control" placeholder="Bank Address" name="address"
+              <input required id="address" type="text" class="form-control" placeholder="bank address" name="address"
                 [(ngModel)]="data.address" #address="ngModel" [ngClass]="{'error': address.invalid && address.touched}">
             </div>
           </div>
@@ -56,12 +56,14 @@
       <div class="form-group row">
         <label for="details" class="col-sm-3 col-form-label otherInputclr">Details</label>
         <div class="col-sm-9">
-          <textarea required class="form-control" id="details" rows="3" name="details"
+          <textarea required class="form-control" id="details" rows="3" placeholder="Action Details" name="details"
             [(ngModel)]="data.details" #details="ngModel"></textarea>
         </div>
       </div>
 
       <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">Close</button>
+
         <button class="btn button-save" type="submit" (click)="UpdateBank()">
          Update Bank
         </button>

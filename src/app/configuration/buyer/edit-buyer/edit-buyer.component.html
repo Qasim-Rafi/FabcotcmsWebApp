@@ -17,36 +17,36 @@
 
 
     <div class="form-group row">
-      <label for="name" class="col-sm-3 col-form-label">Buyer Name<span> *</span></label>
+      <label for="name" class="col-sm-3 col-form-label">Buyer Name</label>
       <div class="col-sm-9">
-        <input required id="buyerName" type="text" class="form-control" placeholder="Name" name="buyerName"
+        <input required id="buyerName" type="text" class="form-control" placeholder="Buyer name" name="buyerName"
           [(ngModel)]="data.buyerName" #name="ngModel" [ngClass]="{'error': name.invalid && name.touched}">
       </div>
     </div>
 
     <div class="form-group row">
-      <label for="bill-address" class="col-sm-3 col-form-label">Billing Address<span> *</span></label>
+      <label for="bill-address" class="col-sm-3 col-form-label">Billing Address</label>
       <div class="col-sm-9">
-        <textarea required class="form-control" id="billingAddress" rows="3" name="billingAddress"
+        <textarea required class="form-control" id="billingAddress" rows="3" placeholder="Buyer mailing address" name="billingAddress"
           [(ngModel)]="data.billingAddress" #billingAddress="ngModel"
           [ngClass]="{'error': billingAddress.invalid && billingAddress.touched}"></textarea>
       </div>
     </div>
 
     <div class="form-group row">
-      <label for="delivery-address" class="col-sm-3 col-form-label">Delivery Address<span> *</span></label>
+      <label for="delivery-address" class="col-sm-3 col-form-label">Delivery Address</label>
       <div class="col-sm-9">
-        <textarea required class="form-control" id="deliveryAddress" rows="3" name="deliveryAddress"
+        <textarea required class="form-control" id="deliveryAddress" rows="3" placeholder="Buyer delivery address" name="deliveryAddress"
           [(ngModel)]="data.deliveryAddress" #deliveryAddress="ngModel"
           [ngClass]="{'error': deliveryAddress.invalid && deliveryAddress.touched}"></textarea>
       </div>
     </div>
 
     <div class="form-group row">
-      <label for="country" class="col-sm-3 col-form-label">Country<span> *</span></label>
+      <label for="country" class="col-sm-3 col-form-label">Country</label>
       <div class="col-sm-9">
-        <select class="form-control" name="countryId" [(ngModel)]="data.countryId">
-          <option value="null" disabled> Select Country</option>
+        <select class="form-control"  name="countryId" [(ngModel)]="data.countryId">
+          <option value="null" disabled> Nothing selected</option>
           <option *ngFor="let i of country" [value]="i.id">
             {{i.name}}
           </option>
@@ -55,12 +55,12 @@
     </div>
 
     <div class="form-group row">
-      <label for="contactNoPrimary" class="col-sm-3 col-form-label">Contact Nos.<span> *</span></label>
+      <label for="contactNoPrimary" class="col-sm-3 col-form-label">Contact Nos.</label>
     
       <div class="col-sm-9">
         <div class="row">
           <div class="col-sm-6">
-            <input required type="text" class="form-control" id="contactNoPrimary" placeholder="Contact No."
+            <input required type="text" class="form-control" id="contactNoPrimary" placeholder="Primary Contact No."
               name="contactNoPrimary" [(ngModel)]="data.contactNoPrimary" #contactNoPrimary="ngModel"
               [ngClass]="{'error': contactNoPrimary.invalid && contactNoPrimary.touched}">
           </div>
@@ -105,7 +105,7 @@
     <div class="form-group row">
       <label for="buyerDetails" class="col-sm-3 col-form-label">Buyer Details</label>
       <div class="col-sm-9">
-        <textarea class="form-control" id="buyerDetails" rows="4" name="buyerDetails" [(ngModel)]="data.buyerDetails"
+        <textarea class="form-control" id="buyerDetails" rows="4" placeholder="Buyer additional details here ..." name="buyerDetails" [(ngModel)]="data.buyerDetails"
           #buyerDetails="ngModel"></textarea>
       </div>
     </div>
@@ -127,6 +127,7 @@
 
       <div class="col-sm-9">
         <select class="form-control" name="parentBuyerId" [(ngModel)]="data.parentBuyerId">
+         <option disabled>Select Parent Buyer ...</option>
           <option *ngFor="let i of buyer" [value]="i.id">
             {{i.buyerName}}
           </option>

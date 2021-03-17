@@ -18,7 +18,8 @@
       <div class="col-sm-9 ">
         <input required id="type" type="text" class="form-control" placeholder="Fabric Type" name="type"
           [(ngModel)]="data.type" #type="ngModel" [ngClass]="{'error': type.invalid && type.touched}">
-      </div>
+     <small>Add Fabric Description</small>
+        </div>
     </div>
 
 
@@ -26,7 +27,7 @@
       <label for="description" class="col-sm-3 col-form-label otherInputclr">Description</label>
       <div class="col-sm-9">
         <textarea required class="form-control" id="description" rows="3" name="description"
-          placeholder="Brief Fabric Description Here..." [(ngModel)]="data.description"
+          placeholder="Brief Fabric description here..." [(ngModel)]="data.description"
           #description="ngModel"></textarea>
       </div>
     </div>

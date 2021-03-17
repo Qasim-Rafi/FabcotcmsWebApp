@@ -16,15 +16,16 @@
           <div class="form-group row" [class.has-error]="name.invalid && name.touched">
             <label for="name" class="col-sm-3 col-form-label control-label topInputclr">Certificate </label>
             <div class="col-sm-9">
-              <input required id="name" type="text" class="form-control" placeholder="Name" name="name"
+              <input required id="name" type="text" class="form-control" placeholder="Certificate name" name="name"
                 [(ngModel)]="data.name" #name="ngModel" [ngClass]="{'error': name.invalid && name.touched}">
-            </div>
+           <small>Add Certificate Description</small>
+              </div>
           </div>
 
       <div class="form-group row">
         <label for="description" class="col-sm-3 col-form-label otherInputclr">Description</label>
         <div class="col-sm-9">
-          <textarea required class="form-control" id="description" rows="3" name="description"
+          <textarea required class="form-control" id="description" rows="3" placeholder="Brief Certificate description here ..." name="description"
             [(ngModel)]="data.description" #description="ngModel"></textarea>
         </div>
       </div>
@@ -38,7 +39,7 @@
   </div>
   
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" (click)="activeModal.close()">Close</button>
+    <!-- <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" (click)="activeModal.close()">Close</button> -->
     <button class="btn button-save" type="submit" (click)="UpdateCertificate()">
     Update Certificate
     </button>

@@ -16,27 +16,27 @@
           <form #sellerForm="ngForm" novalidate>
   
             <div class="form-group row">
-              <label for="sellerName" class="col-sm-3 col-form-label topInputclr">Seller Name<span> *</span></label>
+              <label for="sellerName" class="col-sm-3 col-form-label topInputclr">Seller Name</label>
               <div class="col-sm-9">
-                <input required id="sellerName" type="text" class="form-control" placeholder="Name" name="sellerName"
+                <input required id="sellerName" type="text" class="form-control" placeholder="Seller name" name="sellerName"
                   [(ngModel)]="data.sellerName" #name="ngModel" [ngClass]="{'error': name.invalid && name.touched}">
               </div>
             </div>
   
             <div class="form-group row">
-              <label for="sellerBillAddress" class="col-sm-3 col-form-label">Billing Address<span> *</span></label>
+              <label for="sellerBillAddress" class="col-sm-3 col-form-label">Billing Address</label>
               <div class="col-sm-9">
-                <textarea required class="form-control" id="sellerBillAddress" rows="3" name="sellerBillAddress"
+                <textarea required class="form-control" id="sellerBillAddress" rows="3" placeholder="Seller mailing address" name="sellerBillAddress"
                   [(ngModel)]="data.sellerBillAddress" #sellerBillAddress="ngModel"
                   [ngClass]="{'error': sellerBillAddress.invalid && sellerBillAddress.touched}"></textarea>
               </div>
             </div>
   
             <div class="form-group row">
-              <label for="inputEmail3" class="col-sm-3 col-form-label">Country<span> *</span></label>
+              <label for="inputEmail3" class="col-sm-3 col-form-label">Country</label>
               <div class="col-sm-9">
                   <select required name="country " class="form-control" [(ngModel)]=" data.countryId">
-                      <option value="null" disabled> Select Country</option>
+                      <option value="null" disabled> Choose a Seller Country</option>
                       <option  *ngFor="let i of country" [value]="i.id">
                         {{i.name}}
                       </option>
@@ -45,11 +45,11 @@
             </div>
   
             <div class="form-group row">
-              <label for="sellerContact" class="col-sm-3 col-form-label">Contact Nos.<span> *</span></label>
+              <label for="sellerContact" class="col-sm-3 col-form-label">Contact Nos.</label>
             <div class="col-sm-9">
               <div class="row">
                 <div class="col-sm-6">
-                  <input required type="text" class="form-control" id="sellerContact" placeholder="Contact No." name="sellerContact"
+                  <input required type="text" class="form-control" id="sellerContact" placeholder=" Primary Contact No." name="sellerContact"
                     [(ngModel)]="data.sellerContact" #sellerContact="ngModel"
                     [ngClass]="{'error': sellerContact.invalid && sellerContact.touched}">
                 </div>
@@ -66,7 +66,7 @@
             <div class="form-group row">
               <label for="sellerFax" class="col-sm-3 col-form-label">Fax Number</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="sellerFax" placeholder="seller Fax No." name="sellerFax"
+                <input type="text" class="form-control" id="sellerFax" placeholder="Seller Fax No." name="sellerFax"
                   [(ngModel)]="data.sellerFax" #sellerFax="ngModel">
               </div>
             </div>
@@ -93,7 +93,7 @@
               <label for="inputEmail3" class="col-sm-3 col-form-label">Machine Details</label>
               <div class="col-sm-9">
                 <select class="form-control">
-                  <option>Select Machine Details</option>
+                  <option>Select machine details...</option>
                   <option>Sweden</option>
                 </select>
               </div>
@@ -102,7 +102,7 @@
               <label for="inputEmail3" class="col-sm-3 col-form-label">Capabilities</label>
               <div class="col-sm-9">
                 <select class="form-control">
-                  <option>Nothing Selected</option>
+                  <option>Nothing selected</option>
                   <option>Sweden</option>
                 </select>
               </div>
@@ -111,7 +111,7 @@
             <div class="form-group row">
               <label for="sellerStrenght" class="col-sm-3 col-form-label">Major Strenghts</label>
               <div class="col-sm-9">
-                <textarea class="form-control" id="sellerStrenght" rows="3" name="sellerStrenght"
+                <textarea class="form-control" id="sellerStrenght" rows="3" placeholder="Major marketing strengths ..." name="sellerStrenght"
                   [(ngModel)]="data.sellerStrenght" #sellerStrenght="ngModel"></textarea>
               </div>
             </div>
@@ -119,7 +119,7 @@
             <div class="form-group row">
               <label for="leadTime" class="col-sm-3 col-form-label">Leadtime / MOQ</label>
               <div class="col-sm-9">
-                <textarea class="form-control" id="leadTime" rows="3" name="leadTime" [(ngModel)]="data.leadTime"
+                <textarea class="form-control" id="leadTime" rows="3" placeholder="Lead time and MOQ ..." name="leadTime" [(ngModel)]="data.leadTime"
                   #leadTime="ngModel"></textarea>
               </div>
             </div>
@@ -127,7 +127,7 @@
             <div class="form-group row">
               <label for="sellerDetails" class="col-sm-3 col-form-label">Seller Details</label>
               <div class="col-sm-9">
-                <textarea class="form-control" id="sellerDetails" rows="3" name="sellerDetails"
+                <textarea class="form-control" id="sellerDetails" rows="3" placeholder="Seller additional details here ..." name="sellerDetails"
                   [(ngModel)]="data.sellerDetails" #sellerDetails="ngModel"></textarea>
               </div>
             </div>
@@ -142,6 +142,7 @@
               <label for="parentSellerId" class="col-sm-3 col-form-label">Parent Seller</label>
               <div class="col-sm-9">
                 <select class="form-control" name="parentSellerId" [(ngModel)]="data.parentSellerId">
+                  <option selected>Select Parent Seller ...</option>
                   <option  *ngFor="let i of seller" [value]="i.id">
                     {{i.sellerName}}
                   </option>

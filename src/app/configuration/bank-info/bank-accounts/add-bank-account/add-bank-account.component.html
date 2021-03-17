@@ -4,8 +4,8 @@
       <span aria-hidden="true">&times;</span>
     </button>
     <h5 class="modal-title">
-      <i class="far fa-edit"></i>
-      Add new Account
+      <i class="fa fa-plus"></i>
+      Add New Bank Account
     </h5>
   
   </div>
@@ -29,7 +29,7 @@
           <div class="form-group row" [class.has-error]="accountName.invalid && accountName.touched">
             <label for="accountName" class="col-sm-3 col-form-label control-label topInputclr">Account Name </label>
             <div class="col-sm-9">
-              <input required id="accountName" type="text" class="form-control" placeholder="Name" name="accountName"
+              <input required id="accountName" type="text" class="form-control" placeholder="Account Name" name="accountName"
                 [(ngModel)]="data.accountName" #accountName="ngModel" [ngClass]="{'error': accountName.invalid && accountName.touched}">
             </div>
           </div>
@@ -37,7 +37,7 @@
           <div class="form-group row" [class.has-error]="accountNumber.invalid && accountNumber.touched">
             <label for="accountNumber" class="col-sm-3 col-form-label control-label otherInputclr">Account No </label>
             <div class="col-sm-9">
-              <input required id="accountNumber" type="text" class="form-control" placeholder="Bank Branch Code" name="accountNumber"
+              <input required id="accountNumber" type="text" class="form-control" placeholder="Account Number" name="accountNumber"
                 [(ngModel)]="data.accountNumber" #accountNumber="ngModel" [ngClass]="{'error': accountNumber.invalid && accountNumber.touched}">
             </div>
           </div>
@@ -45,7 +45,7 @@
           <div class="form-group row" [class.has-error]="iban.invalid && iban.touched">
             <label for="iban" class="col-sm-3 col-form-label control-label otherInputclr">IBAN </label>
             <div class="col-sm-9">
-              <input required id="iban" type="text" class="form-control" placeholder="Bank Branch Name" name="iban"
+              <input required id="iban" type="text" class="form-control" placeholder="IBAN" name="iban"
                 [(ngModel)]="data.iban" #iban="ngModel" [ngClass]="{'error': iban.invalid && iban.touched}">
             </div>
           </div>
@@ -53,7 +53,7 @@
           <div class="form-group row" [class.has-error]="swiftCode.invalid && swiftCode.touched">
             <label for="swiftCode" class="col-sm-3 col-form-label control-label otherInputclr">Swift Code</label>
             <div class="col-sm-9">
-              <input required id="swiftCode" type="text" class="form-control" placeholder="Bank Location" name="swiftCode"
+              <input required id="swiftCode" type="text" class="form-control" placeholder="Account Swift Code" name="swiftCode"
                 [(ngModel)]="data.swiftCode" #swiftCode="ngModel" [ngClass]="{'error': swiftCode.invalid && swiftCode.touched}">
             </div>
           </div>
@@ -61,7 +61,7 @@
           <div class="form-group row" [class.has-error]="type.invalid && type.touched">
             <label for="type" class="col-sm-3 col-form-label control-label otherInputclr">Type </label>
             <div class="col-sm-9">
-              <input required id="type" type="text" class="form-control" placeholder="Bank Address" name="type"
+              <input required id="type" type="text" class="form-control" placeholder="Account Type" name="type"
                 [(ngModel)]="data.type" #type="ngModel" [ngClass]="{'error': type.invalid && type.touched}">
             </div>
           </div>

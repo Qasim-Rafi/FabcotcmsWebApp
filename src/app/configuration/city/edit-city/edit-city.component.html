@@ -16,13 +16,13 @@
         <div class="form-group row" [class.has-error]="name.invalid && name.touched">
             <label for="name" class="col-sm-3 col-form-label control-label topInputclr">City Name </label>
             <div class="col-sm-9">
-                <input required id="name" type="text" class="form-control" placeholder="Name" name="name"
+                <input required id="name" type="text" class="form-control" placeholder="Port City name" name="name"
                     [(ngModel)]="data.name" #name="ngModel" [ngClass]="{'error': name.invalid && name.touched}">
             </div>
         </div>
 
         <div class="form-group row" >
-            <label class="col-sm-3 col-form-label otherInputclr">Country</label>
+            <label class="col-sm-3 col-form-label otherInputclr">Country Name</label>
             <div class="col-sm-9">
               <select name="country" class="form-control" [(ngModel)]="data.countryId">
                 <option  disabled> Select Country</option>
@@ -33,9 +33,9 @@
             </div>
           </div>
         <div class="form-group row">
-            <label for="details" class="col-sm-3 col-form-label otherInputclr">Details</label>
+            <label for="details" class="col-sm-3 col-form-label otherInputclr">Description</label>
             <div class="col-sm-9">
-                <textarea required class="form-control" id="details" rows="3" name="details" [(ngModel)]="data.details"
+                <textarea required class="form-control" id="details" rows="3" placeholder="Brief description here ..." name="details" [(ngModel)]="data.details"
                     #details="ngModel"></textarea>
             </div>
         </div>

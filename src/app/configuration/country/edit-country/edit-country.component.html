@@ -17,7 +17,7 @@
           <div class="form-group row" [class.has-error]="code.invalid && code.touched">
             <label for="code" class="col-sm-3 col-form-label control-label topInputclr">Country Name </label>
             <div class="col-sm-9">
-              <input required id="code" type="text" class="form-control" placeholder="Name" name="name"
+              <input required id="code" type="text" class="form-control" placeholder="Country name" name="name"
                 [(ngModel)]="data.name" #code="ngModel" [ngClass]="{'error': code.invalid && code.touched}">
             </div>
           </div>
@@ -26,7 +26,7 @@
       <div class="form-group row">
         <label for="details" class="col-sm-3 col-form-label otherInputclr">Description</label>
         <div class="col-sm-9">
-          <textarea required class="form-control" id="details" rows="3" name="details"
+          <textarea required class="form-control" id="details" rows="3" placeholder="Brief description here ..." name="details"
             [(ngModel)]="data.details" #details="ngModel"></textarea>
         </div>
       </div>

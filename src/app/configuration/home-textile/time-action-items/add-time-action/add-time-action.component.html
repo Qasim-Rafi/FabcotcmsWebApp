@@ -3,7 +3,7 @@
     <span aria-hidden="true">&times;</span>
   </button>
     <h5 class="modal-title">
-      <i class="far fa-edit fa-fw"></i>
+      <i class="fa fa-plus fa-fw"></i>
       Add new Action 
     </h5>
    
@@ -15,7 +15,7 @@
           <div class="form-group row" [class.has-error]="name.invalid && name.touched">
             <label for="name" class="col-sm-3 col-form-label control-label topInputclr">Action Name </label>
             <div class="col-sm-9">
-              <input required id="name" type="text" class="form-control" placeholder="Name" name="name"
+              <input required id="name" type="text" class="form-control" placeholder="Action Name" name="name"
                 [(ngModel)]="data.name" #name="ngModel" [ngClass]="{'error': name.invalid && name.touched}">
             </div>
           </div>
@@ -23,7 +23,7 @@
       <div class="form-group row">
         <label for="description" class="col-sm-3 col-form-label otherInputclr">Description</label>
         <div class="col-sm-9">
-          <textarea required class="form-control" id="description" rows="3" name="description"
+          <textarea required class="form-control" id="description" rows="3" placeholder="Action Details" name="description"
             [(ngModel)]="data.description" #description="ngModel"></textarea>
         </div>
       </div>

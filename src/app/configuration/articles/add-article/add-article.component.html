@@ -27,7 +27,7 @@
         <label class="topInputclr" for="name" class="col-sm-3 col-form-label control-label topInputclr">Article name </label>
         
         <div class="col-sm-9">
-          <input required id="name" type="text" class="form-control" placeholder="Name" name="name"
+          <input required id="name" type="text" class="form-control" placeholder="Article name" name="name"
             [(ngModel)]="data.name" #name="ngModel" [ngClass]="{'error': name.invalid && name.touched}">
             <small >Add warp,weft,end,pick & width info in order</small>
         </div>

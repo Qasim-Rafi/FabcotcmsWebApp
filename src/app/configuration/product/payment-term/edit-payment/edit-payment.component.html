@@ -15,16 +15,17 @@
     <div class="form-group row" [class.has-error]="term.invalid && term.touched">
       <label for="term" class="col-sm-3 col-form-label control-label topInputclr">Payment Term </label>
       <div class="col-sm-9">
-        <input required id="term" type="text" class="form-control" placeholder="Name" name="term"
+        <input required id="term" type="text" class="form-control" placeholder="Paymentterm name" name="term"
           [(ngModel)]="data.term" #term="ngModel" [ngClass]="{'error': term.invalid && term.touched}">
-      </div>
+     <small>Add Payment Term</small>
+        </div>
     </div>
 
 
     <div class="form-group row">
       <label for="description" class="col-sm-3 col-form-label otherInputclr">Description</label>
       <div class="col-sm-9">
-        <textarea required class="form-control" id="description" rows="3" name="description"
+        <textarea required class="form-control" id="description" rows="3" placeholder="Brief Payment Term description here ..." name="description"
           [(ngModel)]="data.description" #description="ngModel"></textarea>
       </div>
     </div>
@@ -41,7 +42,7 @@
 
     <div class="modal-footer NotBG">
       <button class="btn button-save" type="submit" (click)="UpdatePayment()">
-        Update Payment Terms
+        Update Payment Term
       </button>
     </div>
   </form>
