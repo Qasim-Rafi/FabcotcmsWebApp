@@ -1,44 +1,44 @@
-<div class="modal-header">
-  <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
-    <span aria-hidden="true">&times;</span>
-  </button>
-  <h5 class="modal-title">
-    <i class="fa fa-map fa-fw"></i>
-    Add New Country
-  </h5>
 
-</div>
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()" >
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <h5 class="modal-title">
+      <i class="fa fa-map fa-fw" ></i>
+      Add New Country
+    </h5>
 
-<div class="modal-body BG">
-  <form #addAgentForm="ngForm" novalidate>
+  </div>
 
+  <div class="modal-body BG">
+    <form #addAgentForm="ngForm" novalidate >
+ 
 
-    <div class="form-group row" [class.has-error]="code.invalid && code.touched">
-      <label for="code" class="col-sm-3 col-form-label control-label topInputclr">Country Name </label>
-      <div class="col-sm-9">
-        <input required id="code" type="text" class="form-control" placeholder="Country name" name="name"
-          [(ngModel)]="data.name" #code="ngModel" [ngClass]="{'error': code.invalid && code.touched}">
+          <div class="form-group row" [class.has-error]="code.invalid && code.touched">
+            <label for="code" class="col-sm-3 col-form-label control-label topInputclr" >Country Name </label>
+            <div class="col-sm-9">
+              <input required id="code" type="text" class="form-control" placeholder="Country name" name="name"
+                [(ngModel)]="data.name" #code="ngModel" [ngClass]="{'error': code.invalid && code.touched}">
+            </div>
+          </div>
+
+     
+      <div class="form-group row">
+        <label for="details" class="col-sm-3 col-form-label otherInputclr">Description</label>
+        <div class="col-sm-9">
+          <textarea required class="form-control" id="details" rows="3" placeholder="Brief description here ..." name="details"
+            [(ngModel)]="data.details" #details="ngModel"></textarea>
+        </div>
       </div>
-    </div>
-
-
-    <div class="form-group row">
-      <label for="details" class="col-sm-3 col-form-label otherInputclr">Description</label>
-      <div class="col-sm-9">
-        <textarea required class="form-control" id="details" rows="3" placeholder="Brief description here ..."
-          name="details" [(ngModel)]="data.details" #details="ngModel"></textarea>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input check-btn" name="active" type="checkbox" checked>
+        <label for="active"  class="form-check-label otherInputclr" >Marked as Active</label>
       </div>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input check-btn" name="active" type="checkbox" checked>
-      <label for="active" class="form-check-label otherInputclr">Marked as Active</label>
-    </div>
-
-  </form>
-
-</div>
-<div class="modal-footer NotBG">
-  <button class="btn button-save" type="submit" (click)="addCountry()">
-    Save Country
-  </button>
-</div>
+    
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn button-save" type="submit" (click)="addCountry()" >
+      Save Country
+    </button>
+  </div>
