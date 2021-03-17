@@ -11,13 +11,13 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./add-country.component.css']
 })
 export class AddCountryComponent implements OnInit {
-  data:any={};
+  data: any = {};
   response: any;
- 
-  constructor(  
-    private http:HttpClient, private toastr: ToastrService,
+
+  constructor(
+    private http: HttpClient, private toastr: ToastrService,
     private _NgbActiveModal: NgbActiveModal) { }
- 
+
   get activeModal() {
     return this._NgbActiveModal;
   }
@@ -25,36 +25,35 @@ export class AddCountryComponent implements OnInit {
 
   ngOnInit(): void {
   }
- 
-   active2 : boolean;
-  addCountry()
-  {
-    let varr=  {
+
+  active2: boolean;
+  addCountry() {
+    let varr = {
       "name": this.data.name,
-      "details":this.data.details,
-     "active":this.data.active
+      "details": this.data.details,
+      "active": this.data.active
     }
 
     this.http.
-    post(`${environment.apiUrl}/api/Configs/AddCountry`,varr)
-    .subscribe(
-      res=> { 
+      post(`${environment.apiUrl}/api/Configs/AddCountry`, varr)
+      .subscribe(
+        res => {
 
-        this.response = res;
-        if (this.response.success == true){
-          this.toastr.success(this.response.message, 'Message.');
-      
-        
-          this.activeModal.close(true);
-        }
-        else {
-          this.toastr.error('Something went Worng', 'Message.');
-            }
+          this.response = res;
+          if (this.response.success == true) {
+            this.toastr.success(this.response.message, 'Message.');
 
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error('Something went Worng', 'Message.');
-        }
-      });
+
+            this.activeModal.close(true);
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error('Something went Worng', 'Message.');
+          }
+        });
   }
 }

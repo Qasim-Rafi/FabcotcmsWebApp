@@ -5,7 +5,8 @@ import { environment } from 'src/environments/environment';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddCityComponent } from './add-city/add-city.component';
 import { EditCityComponent } from './edit-city/edit-city.component';
-import Swal from 'sweetalert2/dist/sweetalert2.js'; 
+import Swal from 'sweetalert2/dist/sweetalert2.js';
+import { GlobalConstants } from 'src/app/Common/global-constants';
 
 
 @Component({
@@ -15,88 +16,90 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 })
 export class CityComponent implements OnInit {
   listCount: number;
-  response:any;
-  rows:any=[];
+  response: any;
+  rows: any = [];
   // countryId= null;
 
-  columns:any=[];
-  data:any={};
-  myDate=Date.now();
+  columns: any = [];
+  data: any = {};
+  myDate = Date.now();
 
-  constructor(private http:HttpClient,
+  constructor(private http: HttpClient,
     private toastr: ToastrService,
     private modalService: NgbModal,) { }
 
   ngOnInit(): void {
     this.fetch((data) => {
       this.rows = data;
-      this.listCount= this.rows.length;
     });
-  
+
   }
 
 
-  
+
   fetch(cb) {
     let that = this;
     that.http
-    .get(`${environment.apiUrl}/api/Configs/GetAllCity`)
-    .subscribe(res => {
-      this.response = res;
-     
-    if(this.response.success==true)
-    {
-    that.data =this.response.data;
-    cb(this.data);
-    }
-    else{
-      this.toastr.error(this.response.message, 'Message.');
-    }
-      // this.spinner.hide();
-    }, err => {
-      if ( err.status == 400) {
- this.toastr.error(err.error.message, 'Message.');;
-      }
-    //  this.spinner.hide();
-    });
+      .get(`${environment.apiUrl}/api/Configs/GetAllCity`)
+      .subscribe(res => {
+        this.response = res;
+
+        if (this.response.success == true) {
+          this.listCount = this.response.data.length;
+          that.data = this.response.data;
+          cb(this.data);
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+        // this.spinner.hide();
+      }, err => {
+        if (err.status == 400) {
+          this.toastr.error(err.error.message, 'Message.');;
+        }
+        //  this.spinner.hide();
+      });
   }
 
 
 
 
-  deleteCity(id){
+  deleteCity(id) {
     Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
+      title: GlobalConstants.deleteTitle, //'Are you sure?',
+      text: GlobalConstants.deleteMessage, //"You won't be able to revert this!",
+      icon: 'error',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Delete it!'
+      confirmButtonColor: '#ed5565',
+      cancelButtonColor: '#dae0e5',
+      cancelButtonText: 'No',
+      confirmButtonText: 'Yes',
+      reverseButtons: true,
+      position: 'top',
     }).then((result) => {
       if (result.isConfirmed) {
-    
-        this.http.delete(`${environment.apiUrl}/api/Configs/DeleteCity/`+id.id )
-    .subscribe(
-      res=> { 
-        this.response = res;
-        if (this.response.success == true){
-         this.toastr.error(this.response.message, 'Message.');
-         this.fetch((data) => {
-          this.rows = data;
-        });
 
-        }
-        else {
-          this.toastr.error('Something went Worng', 'Message.');
-            }
- 
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error(this.response.message, 'Message.');
-        }
-      });
-    
+        this.http.delete(`${environment.apiUrl}/api/Configs/DeleteCity/` + id.id)
+          .subscribe(
+            res => {
+              this.response = res;
+              if (this.response.success == true) {
+                this.toastr.error(this.response.message, 'Message.');
+                this.fetch((data) => {
+                  this.rows = data;
+                });
+
+              }
+              else {
+                this.toastr.error('Something went Worng', 'Message.');
+              }
+
+            }, err => {
+              if (err.status == 400) {
+                this.toastr.error(this.response.message, 'Message.');
+              }
+            });
+
         // Swal.fire(
         //   'Record',
         //   'Deleted Successfully.',
@@ -104,8 +107,8 @@ export class CityComponent implements OnInit {
         // )
       }
     })
-    
-    }
+
+  }
 
 
 
@@ -126,42 +129,42 @@ export class CityComponent implements OnInit {
 
 
 
-  
-  addCity(){
+
+  addCity() {
     const modalRef = this.modalService.open(AddCityComponent, { centered: true });
-          modalRef.result.then((data) => {
-         // on close
-          if(data ==true){
-          //  this.date = this.myDate;
-           this.fetch((data) => {
-            this.rows = data;
-        
-          });
-           
-  
-         }
-       }, (reason) => {
-         // on dismiss
-       });
-  } 
-  
+    modalRef.result.then((data) => {
+      // on close
+      if (data == true) {
+        //  this.date = this.myDate;
+        this.fetch((data) => {
+          this.rows = data;
 
-  editCity(row){
+        });
+
+
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
+
+
+  editCity(row) {
     const modalRef = this.modalService.open(EditCityComponent, { centered: true });
-    modalRef.componentInstance.userId =row.id;
-          modalRef.result.then((data) => {
-         // on close
-          if(data ==true){
-          //  this.date = this.myDate;
-           this.fetch((data) => {
-            this.rows = data;
-            
-          });
-           
-         }
-       }, (reason) => {
-         // on dismiss
-       });
-  } 
+    modalRef.componentInstance.userId = row.id;
+    modalRef.result.then((data) => {
+      // on close
+      if (data == true) {
+        //  this.date = this.myDate;
+        this.fetch((data) => {
+          this.rows = data;
+
+        });
+
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
 }
 
