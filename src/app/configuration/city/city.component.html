@@ -84,9 +84,12 @@
       </ngx-datatable-column>
         <ngx-datatable-column name="Status" [width]="10">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            <div class="status" *ngIf="row.active==true">
+            <div class="active" *ngIf="row.active==true">
               Active
-          </div>
+            </div>
+            <div class="inactive" *ngIf="row.active==false">
+              Inactive
+            </div>
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="Changed On | Changed By" [width]="80">

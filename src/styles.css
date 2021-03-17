@@ -65,9 +65,18 @@ h5 {
 .table tbody tr td {
   text-align: left !important;
 }
-.status {
+.active {
   color: white;
   background-color: #1ab394;
+  border-radius: 5px;
+  font-weight: 400;
+  width: 56px;
+  margin-left: 60px;
+}
+
+.inactive {
+  color: white;
+  background-color: #6d6d6d;
   border-radius: 5px;
   font-weight: 400;
   width: 56px;
