@@ -14,7 +14,7 @@
 
 
         <div class="form-group row" [class.has-error]="name.invalid && name.touched">
-            <label for="name" class="col-sm-3 col-form-label control-label text-navy">City Name </label>
+            <label for="name" class="col-sm-3 col-form-label control-label text_Navy">City Name </label>
             <div class="col-sm-9">
                 <input required id="name" type="text" class="form-control" placeholder="Port City name" name="name"
                     [(ngModel)]="data.name" #name="ngModel" [ngClass]="{'error': name.invalid && name.touched}">
@@ -43,9 +43,10 @@
             <label for="active" class="col-sm-3 col-form-label text-grey"></label>
             <div class="col-sm-9">
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input check-btn" type="checkbox" checked>
-                    <label class="form-check-label text-grey">Marked as Active</label>
-                </div>
+                    <input class="form-check-input check-btn " type="checkbox" name="active"
+                    [(ngModel)]="data.active" #active="ngModel"> 
+                    <label for="active" class="form-check-label text-grey" id="active">Marked as Active</label>
+                  </div>
             </div>
         </div>
 

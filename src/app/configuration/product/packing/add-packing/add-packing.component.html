@@ -14,7 +14,7 @@
 
 
     <div class="form-group row" [class.has-error]="name.invalid && name.touched">
-      <label for="name" class="col-sm-3 col-form-label control-label text-navy">Packing Name </label>
+      <label for="name" class="col-sm-3 col-form-label control-label text_Navy">Packing Name </label>
       <div class="col-sm-9">
         <input required id="name" type="text" class="form-control" placeholder=" Packing Name" name="name"
           [(ngModel)]="data.name" #name="ngModel" [ngClass]="{'error': name.invalid && name.touched}">

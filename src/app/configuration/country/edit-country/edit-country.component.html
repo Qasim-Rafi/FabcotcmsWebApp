@@ -15,7 +15,7 @@
  
 
           <div class="form-group row" [class.has-error]="code.invalid && code.touched">
-            <label for="code" class="col-sm-3 col-form-label control-label text-navy">Country Name </label>
+            <label for="code" class="col-sm-3 col-form-label control-label text_Navy">Country Name </label>
             <div class="col-sm-9">
               <input required id="code" type="text" class="form-control" placeholder="Country name" name="name"
                 [(ngModel)]="data.name" #code="ngModel" [ngClass]="{'error': code.invalid && code.touched}">

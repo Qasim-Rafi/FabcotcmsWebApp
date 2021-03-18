@@ -12,7 +12,7 @@
   <form #addPriceForm="ngForm" novalidate>
 
     <div class="form-group row" [class.has-error]="term.invalid && term.touched">
-      <label for="term" class="col-sm-3 col-form-label control-label text-navy">Price Term </label>
+      <label for="term" class="col-sm-3 col-form-label control-label text_Navy">Price Term </label>
       <div class="col-sm-9">
         <input required id="term" type="text" class="form-control" placeholder="Priceterm name" name="term"
           [(ngModel)]="data.term" #term="ngModel" [ngClass]="{'error': term.invalid && term.touched}">
