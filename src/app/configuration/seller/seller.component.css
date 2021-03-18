@@ -127,11 +127,9 @@ small {
 }
 .text-right {
   text-align: right !important;
-  text-shadow: 0px 0px 4px white;
 }
 .fa-4x {
   font-size: 4em;
-  text-shadow: 0px 0px 5px white;
 }
 
 .blue-bg {
@@ -158,7 +156,6 @@ small {
   float: left;
   /* width: 50%; */
   margin-bottom: 0;
-  
 }
 .input-group .form-control,
 .input-group-addon,
@@ -179,10 +176,6 @@ small {
   box-shadow: 0 0 0 0 !important;
 }
 
-
-.path {
-  float: right;
-}
 .heading {
   font-size: 20px;
 }
@@ -204,5 +197,4 @@ td {
   font-size: 60% !important;
   font-weight: 400 !important;
   padding: 12px 0 0 0 !important;
-} */
-
+/* } */
