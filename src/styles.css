@@ -154,7 +154,7 @@ h5 {
   border-color: #1ab394 !important;
 }
 
-.text-navy {
+.text_Navy {
   color: #1ab394 !important;
 }
 
@@ -236,18 +236,8 @@ title {
   padding: 12px 0 0 0 !important;
 }
 
-
-
-
-
-
 @media only screen and (max-width: 667px) {
-  
   .mrg-tsm {
-    margin: 10px 0 0 0 ;
+    margin: 10px 0 0 0;
   }
-
-
-
-  
 }
