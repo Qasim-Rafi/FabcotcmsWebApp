@@ -15,7 +15,7 @@
  
 
           <div class="form-group row" [class.has-error]="name.invalid && name.touched">
-            <label for="name" class="col-sm-3 col-form-label control-label topInputclr">Certificate </label>
+            <label for="name" class="col-sm-3 col-form-label control-label text-navy">Certificate </label>
             <div class="col-sm-9">
               <input required id="name" type="text" class="form-control" placeholder="Certificate name" name="name"
                 [(ngModel)]="data.name" #name="ngModel" [ngClass]="{'error': name.invalid && name.touched}">
@@ -24,7 +24,7 @@
           </div>
 
       <div class="form-group row">
-        <label for="description" class="col-sm-3 col-form-label otherInputclr">Description</label>
+        <label for="description" class="col-sm-3 col-form-label text-grey">Description</label>
         <div class="col-sm-9">
           <textarea required class="form-control" id="description" rows="3" placeholder="Brief Certificate description here ..." name="description"
             [(ngModel)]="data.description" #description="ngModel"></textarea>
@@ -33,7 +33,7 @@
 
       <div class="form-check form-check-inline">
         <input class="form-check-input check-btn" type="checkbox" checked>
-        <label class="form-check-label otherInputclr">Mark as Active</label>
+        <label class="form-check-label text-grey">Mark as Active</label>
       </div>
 
    
