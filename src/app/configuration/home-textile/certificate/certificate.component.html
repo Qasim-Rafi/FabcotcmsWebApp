@@ -12,7 +12,8 @@
   <div class=" panel blank-panel">
 
     <div class=" panel-heading">
-      <table class="table">
+
+      <!-- <table class="table">
         <tbody>
           <tr>
             <td class="noBorder">
@@ -30,32 +31,51 @@
             </td>
           </tr>
         </tbody>
-      </table>
+      </table> -->
 
-      <div class="col-md-12 mb-4">
-        <div class="row justify-content-end">
-          <div class=" col-md-4">
-            <div class="input-group col-md-offset-3">
-              <input type="text" placeholder="Search by Certificate Name... " class="input form-control w-50"
-                (keyup)="updateFilter($event)">
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <button type="button" class="btn btn-primary descBtn ml-sm-none ml-md-2 ">
+            <i class="fas fa-anchor fa-fw mr-2"></i>{{listCount}}</button>
+            <span class="text-muted text2">Certificate</span>
+        </div>
+        <div class="col-md-6 mrg-tsm">
+          <button type="button" class="btn btn-primary btn-md float-right" (click)="addCertificateForm()">
+            <i class="fa fa-plus"></i> Add Certificate</button>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-12 mb-4">
+          <div class="row justify-content-end">
+            <div class=" col-md-4">
+              <div class="input-group col-md-offset-3">
+                <input type="text" placeholder="Search by Certificate Name... " class="input form-control w-50"
+                  (keyup)="updateFilter($event)">
+              </div>
             </div>
-          </div>
-          <div class="html5buttons">
-            <div class="dt-buttons btn-group ">
-              <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0"
-                aria-controls="DataTables_Table_0"><span>Copy</span></a>
-              <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
-                aria-controls="DataTables_Table_0"><span>CSV</span></a>
-              <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
-                aria-controls="DataTables_Table_0"><span>Excel</span></a>
-              <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0"
-                aria-controls="DataTables_Table_0"><span>PDF</span></a>
-              <a class="btn btn-default buttons-print bg-white" tabindex="0"
-                aria-controls="DataTables_Table_0"><span>Print</span></a>
+
+            <div class="html5buttons mrg-tsm">
+              <div class="dt-buttons btn-group ">
+                <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0"
+                  aria-controls="DataTables_Table_0"><span>Copy</span></a>
+                <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
+                  aria-controls="DataTables_Table_0"><span>CSV</span></a>
+                <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
+                  aria-controls="DataTables_Table_0"><span>Excel</span></a>
+                <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0"
+                  aria-controls="DataTables_Table_0"><span>PDF</span></a>
+                <a class="btn btn-default buttons-print bg-white" tabindex="0"
+                  aria-controls="DataTables_Table_0"><span>Print</span></a>
+              </div>
             </div>
+            
           </div>
         </div>
       </div>
+
     </div>
 
 

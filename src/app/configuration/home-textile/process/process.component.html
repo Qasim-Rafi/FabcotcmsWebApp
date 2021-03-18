@@ -27,7 +27,7 @@
 
       <div class=" panel-heading">
 
-        <table class="table">
+        <!-- <table class="table">
             <tbody>
                 <tr>
                     <td class="noBorder">
@@ -45,8 +45,24 @@
                     </td>
                 </tr>
             </tbody>
-        </table>
+        </table> -->
 
+
+        <div class="row mb-3">
+          <div class="col-md-6 ">
+            <button type="button" class="btn btn-primary descBtn ml-sm-none ml-md-2 ">
+              <i class="fas fa-bolt fa-fw mr-2"></i>{{listCount}}</button>
+              <span class="text-muted text2">Process</span>
+          </div>
+          <div class="col-md-6 mrg-tsm">
+            <button type="button" class="btn btn-primary btn-md float-right" (click)="addProcessForm()">
+              <i class="fa fa-plus"></i> Add New Process</button>
+          </div>
+  
+        </div>
+
+
+        <div class="row">
         <div class="col-md-12 mb-4">
           <div class="row justify-content-end">
             <div class=" col-md-4" >
@@ -55,7 +71,7 @@
                 class="input form-control w-50" (keyup)="updateFilter($event)">
               </div>
             </div>
-            <div class="html5buttons">
+            <div class="html5buttons mrg-tsm">
               <div class="dt-buttons btn-group ">
                 <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0" 
                 aria-controls="DataTables_Table_0"><span>Copy</span></a>
@@ -71,6 +87,7 @@
              </div>
           </div>
          </div>
+        </div>
          
       </div>
 
