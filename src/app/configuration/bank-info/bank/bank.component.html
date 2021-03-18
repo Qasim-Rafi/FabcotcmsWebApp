@@ -1,105 +1,101 @@
 <div class="content-header">
-    <div class="container-fluid">
-      <div class="row mb-5">
-        <div class="col-sm-12">
-          <h2 class="row wrapper page-header ">
-            <strong>Bank </strong> 
-            <small class="ml-2 text-muted">Bank's Description</small>
-          </h2>
-        </div><!-- /.col -->
-      </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+  <div class="col-sm-12 mb-4">
+    <h2 class="row wrapper page-header font-weight-light"> Bank
+      <div class="ml-2 text-muted descr">Bank's Description</div>
+    </h2>
   </div>
+</div>
 
-  <div class="ibox-content shadow">
-    <div class=" panel blank-panel">  
-      <div class=" panel-heading">
-        <table class="table">
-            <tbody>
-                <tr>
-                    <td class="noBorder" >
-                        <button type="button" class="btn btn-primary descBtn"> 
-                          <i class="fas fa-map fa-fw mr-2"></i>{{listCount}}</button>
-                        <span class="text-muted text2">Banks</span>
-                    </td>
-                    <td class="noBorder"> 
-                        <button type="button" class="btn  mr-1 px-3"> </button>
-                        <span class="text-muted text"></span>
-                    </td>
-                    <td class="noBorder">
-                        <button type="button" class="btn btn-primary btn-md float-right" (click)="addBankForm()" >
-                          <i class="fa fa-plus" ></i> Add New Bank</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
 
-        <div class="row">
-          <div class=" col-md-4 mb-4" >
+
+<div class="ibox-content shadow">
+  <div class=" panel blank-panel">
+
+    <div class=" panel-heading">
+      <table class="table">
+        <tbody>
+          <tr>
+            <td class="noBorder">
+              <button type="button" class="btn btn-primary descBtn">
+                <i class="fas fa-map fa-fw mr-2"></i>{{listCount}}</button>
+              <span class="text-muted text2">Banks</span>
+            </td>
+            <td class="noBorder">
+              <button type="button" class="btn  mr-1 px-3"> </button>
+              <span class="text-muted text"></span>
+            </td>
+            <td class="noBorder">
+              <button type="button" class="btn btn-primary btn-md float-right" (click)="addBankForm()">
+                <i class="fa fa-plus"></i> Add New Bank</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="col-md-12 mb-4">
+        <div class="row justify-content-end">
+          <div class=" col-md-4">
             <div class="input-group col-md-offset-3">
-              <input type="text" placeholder="Search " 
-              class="input form-control w-50" (keyup)="updateFilter($event)">
+              <input type="text" placeholder="Search " class="input form-control w-50" (keyup)="updateFilter($event)">
             </div>
           </div>
           <div class="html5buttons">
             <div class="dt-buttons btn-group ">
-              <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0" 
-              aria-controls="DataTables_Table_0"><span>Copy</span></a>
-              <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0" 
-              aria-controls="DataTables_Table_0"><span>CSV</span></a>
-              <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0" 
-              aria-controls="DataTables_Table_0"><span>Excel</span></a>
-              <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0" 
-              aria-controls="DataTables_Table_0"><span>PDF</span></a>
-              <a class="btn btn-default buttons-print bg-white" tabindex="0" 
-              aria-controls="DataTables_Table_0"><span>Print</span></a>
-             </div>
-           </div>
+              <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0"
+                aria-controls="DataTables_Table_0"><span>Copy</span></a>
+              <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
+                aria-controls="DataTables_Table_0"><span>CSV</span></a>
+              <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
+                aria-controls="DataTables_Table_0"><span>Excel</span></a>
+              <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0"
+                aria-controls="DataTables_Table_0"><span>PDF</span></a>
+              <a class="btn btn-default buttons-print bg-white" tabindex="0"
+                aria-controls="DataTables_Table_0"><span>Print</span></a>
+            </div>
+          </div>
         </div>
-        </div>
+      </div>
+    </div>
 
-        
+    <div class="panel-body">
+      <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'"
+        [headerHeight]="50" [footerHeight]="50" [sorts]="[{prop: 'id', dir: 'asce'}]" [rowHeight]="'auto'" [limit]="6">
 
-        
-        <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'" 
-        [headerHeight]="50" [footerHeight]="50" [sorts]="[{prop: 'id', dir: 'asce'}]"
-        [rowHeight]="'auto'" [limit]="6">
-
-      <ngx-datatable-column name="S. No." [width]="0.5"  prop="id"> 
-          <ng-template let-row="row"  ngx-datatable-cell-template>
+        <ngx-datatable-column name="S. No." [width]="0.5" prop="id">
+          <ng-template let-row="row" ngx-datatable-cell-template>
             {{row.id}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Bank Name" [width]="3"  prop="name">
+        <ngx-datatable-column name="Bank Name" [width]="3" prop="name">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.name}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Branch Code" [width]="3"  prop="branchCode">
+        <ngx-datatable-column name="Branch Code" [width]="3" prop="branchCode">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.branchCode}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Branch Name" [width]="5"  prop="branchName">
+        <ngx-datatable-column name="Branch Name" [width]="5" prop="branchName">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.branchName}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Location" [width]="10"  prop="location">
+        <ngx-datatable-column name="Location" [width]="10" prop="location">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.location}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Address" [width]="10"  prop="address">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{row.address}}
-            </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="Details" [width]="20"  prop="details">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{row.details}}
-            </ng-template>
-          </ngx-datatable-column>
+        <ngx-datatable-column name="Address" [width]="10" prop="address">
+          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+            {{row.address}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Details" [width]="20" prop="details">
+          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+            {{row.details}}
+          </ng-template>
+        </ngx-datatable-column>
         <ngx-datatable-column name="Action" [width]="0.5">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             <button type="button" class="btn editIconBack" (click)="editEditForm(row)">
@@ -119,10 +115,9 @@
             </button> -->
           </ng-template>
         </ngx-datatable-column>
-        
-      </ngx-datatable>      
 
+      </ngx-datatable>
+    </div>
 
-
-
-        
+  </div>
+</div>

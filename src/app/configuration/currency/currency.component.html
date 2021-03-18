@@ -1,71 +1,72 @@
 <div class="content-header">
-    <div class="container-fluid">
-      <div class="row mb-5">
-        <div class="col-sm-12">
-          <h2 class="row wrapper page-header font-weight-light "> Manage Currency Rates  
-            <small class="ml-2 text-muted descr">Define and manage currency rates in PKR.</small></h2>
-        </div><!-- /.col -->
-      </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+  <div class="col-sm-12 mb-4">
+    <h2 class="row wrapper page-header font-weight-light"> Manage Currency Rates
+      <div class="ml-2 text-muted descr">Define and manage currency rates in PKR.</div>
+    </h2>
   </div>
-
-  <div class="ibox-content">
-    <div class=" panel blank-panel">  
-      <div class=" panel-heading">
-        <table class="table">
-            <tbody>
-                <tr>
-                    <td class="noBorder" >
-                        <button type="button" class="btn btn-primary descBtn"> 
-                        <i class="fas fa-user-tie fa-fw mr-2"></i>{{listCount}}</button>
-                        <span class="text-muted text2">Currency</span>
-                    </td>
-                    <td class="noBorder">
-                        <button type="button" class="btn  mr-1 px-3"> </button>
-                        <span class="text-muted text"></span>
-                    </td>
-                    <td class="noBorder">
-                        <button type="button" class="btn btn-primary btn-md float-right" (click)="addCurrencyForm()">
-                          <i class="fa fa-plus" ></i> Add Currency</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+</div>
 
 
+<div class="ibox-content">
+  <div class=" panel blank-panel">
+
+    <div class=" panel-heading">
+      <table class="table">
+        <tbody>
+          <tr>
+            <td class="noBorder">
+              <button type="button" class="btn btn-primary descBtn">
+                <i class="fas fa-user-tie fa-fw mr-2"></i>{{listCount}}</button>
+              <span class="text-muted text2">Currency</span>
+            </td>
+            <td class="noBorder">
+              <button type="button" class="btn  mr-1 px-3"> </button>
+              <span class="text-muted text"></span>
+            </td>
+            <td class="noBorder">
+              <button type="button" class="btn btn-primary btn-md float-right" (click)="addCurrencyForm()">
+                <i class="fa fa-plus"></i> Add Currency</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+
+      <div class="col-md-12 mb-4">
         <div class="row justify-content-end">
-          <div class=" col-md-4 mb-4" >
+          <div class=" col-md-4">
             <div class="input-group col-md-offset-3">
-              <input type="text" placeholder="Search"
-              class="input form-control w-50" >
+              <input type="text" placeholder="Search" class="input form-control w-50">
             </div>
           </div>
-  
-       <div class="html5buttons">
-         <div class="dt-buttons btn-group ">
-           <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0" 
-           aria-controls="DataTables_Table_0"><span>Copy</span></a>
-           <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0" 
-           aria-controls="DataTables_Table_0"><span>CSV</span></a>
-           <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0" 
-           aria-controls="DataTables_Table_0"><span>Excel</span></a>
-           <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0" 
-           aria-controls="DataTables_Table_0"><span>PDF</span></a>
-           <a class="btn btn-default buttons-print bg-white" tabindex="0" 
-           aria-controls="DataTables_Table_0"><span>Print</span></a>
+
+          <div class="html5buttons">
+            <div class="dt-buttons btn-group ">
+              <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0"
+                aria-controls="DataTables_Table_0"><span>Copy</span></a>
+              <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
+                aria-controls="DataTables_Table_0"><span>CSV</span></a>
+              <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
+                aria-controls="DataTables_Table_0"><span>Excel</span></a>
+              <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0"
+                aria-controls="DataTables_Table_0"><span>PDF</span></a>
+              <a class="btn btn-default buttons-print bg-white" tabindex="0"
+                aria-controls="DataTables_Table_0"><span>Print</span></a>
+            </div>
           </div>
-        </div>
         </div>
       </div>
 
+    </div>
 
 
-        <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'" 
-        [headerHeight]="50" [footerHeight]="50"
-        [rowHeight]="'auto'" [limit]="10">
 
-      <ngx-datatable-column name="S. No." [width]="5" prop="code" > 
-          <ng-template let-row="row"  ngx-datatable-cell-template>
+    <div class="panel-body">
+      <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'"
+        [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
+
+        <ngx-datatable-column name="S. No." [width]="5" prop="code">
+          <ng-template let-row="row" ngx-datatable-cell-template>
             {{row.id}}
           </ng-template>
         </ngx-datatable-column>
@@ -91,7 +92,7 @@
         </ngx-datatable-column>
         <ngx-datatable-column name=" Updated By" [width]="80">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            {{row.createdByName}} 
+            {{row.createdByName}}
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name=" Updated On" [width]="80">
@@ -106,7 +107,7 @@
             </button>
             <button type="button" class="btn editIconBack" (click)="deleteCurrency(row)">
               <i class="far fa-trash-alt"></i>
-            </button> 
+            </button>
             <!-- <button type="button" 
             class="btn deleteIconBack"
             mwlConfirmationPopover 
@@ -118,10 +119,9 @@
             </button> -->
           </ng-template>
         </ngx-datatable-column>
-        
-      </ngx-datatable>      
 
+      </ngx-datatable>
+    </div>
 
-
-
-        
+  </div>
+</div>
