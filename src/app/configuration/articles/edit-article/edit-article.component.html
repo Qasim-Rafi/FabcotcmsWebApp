@@ -23,7 +23,7 @@
       </div>
 
       <div class="form-group row" [class.has-error]="name.invalid && name.touched">
-        <label for="code" class="col-sm-3 col-form-label control-label text-navy" >Article Name </label>
+        <label for="code" class="col-sm-3 col-form-label control-label text_Navy" >Article Name </label>
         <div class="col-sm-9">
           <input required id="name" type="text" class="form-control" placeholder="Article name" name="name"
             [(ngModel)]="data.name" #name="ngModel" [ngClass]="{'error': name.invalid && name.touched}">

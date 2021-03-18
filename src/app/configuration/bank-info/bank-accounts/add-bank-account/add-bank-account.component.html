@@ -14,7 +14,7 @@
     <form #addAgentForm="ngForm" novalidate>
 
       <div class="form-group row">
-        <label for="inputEmail3" class="col-sm-3 col-form-label text-navy">Bank</label>
+        <label for="inputEmail3" class="col-sm-3 col-form-label text_Navy">Bank</label>
         <div class="col-sm-9">
           <select class="form-control" name="bankId" [(ngModel)]="bankId">
             <option value="null" disabled> Select Bank</option>
@@ -27,7 +27,7 @@
       </div>
  
           <div class="form-group row" [class.has-error]="accountName.invalid && accountName.touched">
-            <label for="accountName" class="col-sm-3 col-form-label control-label text-navy">Account Name </label>
+            <label for="accountName" class="col-sm-3 col-form-label control-label text_Navy">Account Name </label>
             <div class="col-sm-9">
               <input required id="accountName" type="text" class="form-control" placeholder="Account Name" name="accountName"
                 [(ngModel)]="data.accountName" #accountName="ngModel" [ngClass]="{'error': accountName.invalid && accountName.touched}">

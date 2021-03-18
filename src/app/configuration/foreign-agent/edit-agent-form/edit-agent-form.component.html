@@ -14,7 +14,7 @@
   <div class="modal-body BG">
     <form #addAgentForm="ngForm" novalidate>
         <div class="form-group row">
-            <label name="agentTypeId" class="col-sm-3 col-form-label text-navy" [(ngModel)]="agentTypeId">
+            <label name="agentTypeId" class="col-sm-3 col-form-label text_Navy" [(ngModel)]="agentTypeId">
                  Type</label>
             <div class="col-sm-9">
               <select class="form-control">
@@ -28,7 +28,7 @@
 
 
           <div class="form-group row">
-            <label name="agentSideId" class="col-sm-3 col-form-label text-navy" [(ngModel)]="agentSideId">
+            <label name="agentSideId" class="col-sm-3 col-form-label text_Navy" [(ngModel)]="agentSideId">
                 Side
             </label>
             <div class="col-sm-9">
@@ -45,7 +45,7 @@
    
 
       <div class="form-group row" [class.has-error]="name.invalid && name.touched">
-        <label for="name" class="col-sm-3 col-form-label control-label text-navy">Name </label>
+        <label for="name" class="col-sm-3 col-form-label control-label text_Navy">Name </label>
         <div class="col-sm-9">
           <input required id="name" type="text" class="form-control" placeholder="Enter Agent full name" name="name"
             [(ngModel)]="data.name" #name="ngModel" [ngClass]="{'error': name.invalid && name.touched}">
