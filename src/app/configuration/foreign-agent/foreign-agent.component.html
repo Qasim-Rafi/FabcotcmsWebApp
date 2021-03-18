@@ -130,7 +130,7 @@
           </ngx-datatable-column>
           <ngx-datatable-column name="Last Updated On | By" [width]="80">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{myDate | date:'medium'}} | {{row.createdByName}}
+              {{row.updatedDateTime}} | {{row.createdByName}}
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Action" [width]="80">

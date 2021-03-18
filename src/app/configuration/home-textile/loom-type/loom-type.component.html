@@ -92,9 +92,9 @@
             </div>
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Changed On | Changed By" [width]="80">
+        <ngx-datatable-column name="Last Changed On | Updated By" [width]="80">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            {{myDate | date:'medium'}}
+            {{row.updatedDateTime}} | {{row.updatedByName}}
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="Action" [width]="80">

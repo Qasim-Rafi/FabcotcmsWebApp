@@ -14,7 +14,7 @@
           <form #buyerForm="ngForm" novalidate >
 
             <div class="form-group row" >
-              <label for="name" class="col-sm-3 col-form-label topInputclr" ><strong>Buyer Name</strong></label>
+              <label for="name" class="col-sm-3 col-form-label text-navy" ><strong>Buyer Name</strong></label>
               <div class="col-sm-9">
                 <input required id="buyerName" type="text" class="form-control" placeholder="Buyer name" name="buyerName"
                   [(ngModel)]="data.buyerName" #name="ngModel" [ngClass]="{'error': name.invalid && name.touched}">
