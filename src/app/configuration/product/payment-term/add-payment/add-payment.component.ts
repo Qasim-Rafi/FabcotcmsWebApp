@@ -31,6 +31,7 @@ export class AddPaymentComponent implements OnInit {
       "term": this.data.term,
       "description": this.data.description,
       "createdDateTime": this.data.createdDateTime,
+      "active": this.data.active,
 
     }
 

@@ -26,7 +26,8 @@ export class AddLoomTypeComponent implements OnInit {
   addLoom() {
     let varr = {
       "type": this.data.type,
-      "description": this.data.description
+      "description": this.data.description,
+      "active": this.data.active,
     }
 
     this.http.

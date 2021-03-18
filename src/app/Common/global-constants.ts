@@ -1,8 +1,8 @@
 export class GlobalConstants {
 
-    public static deleteTitle: string = "Are you sure?";
+    public static deleteTitle: string = "Confirm Delete";
 
-    public static deleteMessage: string =  "You won't be able to revert this!";
+    public static deleteMessage: string =  "Are you sure to delete ";
 
    
 }

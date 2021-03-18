@@ -9,6 +9,7 @@ import { EditTypeComponent } from './edit-type/edit-type.component';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { GlobalConstants } from 'src/app/Common/global-constants';
 
+
 @Component({
   selector: 'app-fabric-type',
   templateUrl: './fabric-type.component.html',
@@ -81,13 +82,10 @@ export class FabricTypeComponent implements OnInit {
 
 
 
-
-
-
-  deleteType(id) {
-    Swal.fire({
-      title: GlobalConstants.deleteTitle, //'Are you sure?',
-      text: GlobalConstants.deleteMessage, //"You won't be able to revert this!",
+  deleteType(row) {
+    Swal.fire({ 
+      title: GlobalConstants.deleteTitle, 
+      text: GlobalConstants.deleteMessage  +' '+'"'+ row.type +'"',
       icon: 'error',
       showCancelButton: true,
       confirmButtonColor: '#ed5565',
@@ -99,7 +97,7 @@ export class FabricTypeComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
 
-        this.http.delete(`${environment.apiUrl}/api/Products/DeleteFabricType/` + id.id)
+        this.http.delete(`${environment.apiUrl}/api/Products/DeleteFabricType/` + row.id)
           .subscribe(
             res => {
               this.response = res;

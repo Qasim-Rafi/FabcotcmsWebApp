@@ -28,7 +28,8 @@ export class AddProcessComponent implements OnInit {
   addProcess() {
     let varr = {
       "name": this.data.name,
-      "description": this.data.description
+      "description": this.data.description,
+      "active": this.data.active,
     }
 
     this.http.

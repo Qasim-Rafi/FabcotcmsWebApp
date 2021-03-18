@@ -50,7 +50,8 @@ export class EditPaymentComponent implements OnInit {
   {
     let varr=  {
       "term": this.data.term,
-      "description":this.data.description
+      "description":this.data.description,
+      "active": this.data.active,
     }
 
     this.http.

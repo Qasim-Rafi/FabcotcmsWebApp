@@ -53,8 +53,9 @@
         <label for="active" class="col-sm-3 col-form-label text-grey"></label>
         <div class="col-sm-9">
           <div class="form-check form-check-inline">
-            <input class="form-check-input check-btn" type="checkbox" checked>
-            <label class="form-check-label text-grey">Marked as Active</label>
+            <input class="form-check-input check-btn " type="checkbox" name="active" [(ngModel)]="data.active"
+              #active="ngModel">
+            <label for="active" class="form-check-label text-grey" id="active">Marked as Active</label>
           </div>
         </div>
       </div>

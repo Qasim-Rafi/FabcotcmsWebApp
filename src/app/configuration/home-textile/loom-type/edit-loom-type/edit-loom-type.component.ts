@@ -50,7 +50,8 @@ export class EditLoomTypeComponent implements OnInit {
   UpdateLoom() {
     let varr = {
       "type": this.data.type,
-      "description": this.data.description
+      "description": this.data.description,
+      "active": this.data.active,
     }
 
     this.http.

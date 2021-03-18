@@ -87,7 +87,7 @@ export class PriceTermComponent implements OnInit {
   deletePrice(id) {
     Swal.fire({
       title: GlobalConstants.deleteTitle, //'Are you sure?',
-      text: GlobalConstants.deleteMessage, //"You won't be able to revert this!",
+      text: GlobalConstants.deleteMessage+' '+'"'+ id.term +'"',
       icon: 'error',
       showCancelButton: true,
       confirmButtonColor: '#ed5565',

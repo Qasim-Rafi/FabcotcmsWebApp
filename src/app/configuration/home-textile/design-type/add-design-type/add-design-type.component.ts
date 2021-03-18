@@ -30,7 +30,8 @@ export class AddDesignTypeComponent implements OnInit {
   {
     let varr=  {
       "type": this.data.type,
-      "description": this.data.description
+      "description": this.data.description,
+      "active": this.data.active,
     }
 
     this.http.
