@@ -108,7 +108,7 @@ export class ColorComponent implements OnInit {
               
             }
             else {
-              this.toastr.error('Something went Worng', 'Message.');
+              this.toastr.error(this.response.message, 'Message.');
                 }
      
           }, err => {
