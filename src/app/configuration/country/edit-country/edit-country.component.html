@@ -15,7 +15,7 @@
  
 
           <div class="form-group row" [class.has-error]="code.invalid && code.touched">
-            <label for="code" class="col-sm-3 col-form-label control-label topInputclr">Country Name </label>
+            <label for="code" class="col-sm-3 col-form-label control-label text-navy">Country Name </label>
             <div class="col-sm-9">
               <input required id="code" type="text" class="form-control" placeholder="Country name" name="name"
                 [(ngModel)]="data.name" #code="ngModel" [ngClass]="{'error': code.invalid && code.touched}">
@@ -24,7 +24,7 @@
 
      
       <div class="form-group row">
-        <label for="details" class="col-sm-3 col-form-label otherInputclr">Description</label>
+        <label for="details" class="col-sm-3 col-form-label text-grey">Description</label>
         <div class="col-sm-9">
           <textarea required class="form-control" id="details" rows="3" placeholder="Brief description here ..." name="details"
             [(ngModel)]="data.details" #details="ngModel"></textarea>
@@ -34,7 +34,7 @@
       <div class="form-check form-check-inline">
         <input class="form-check-input check-btn " type="checkbox" name="active"
         [(ngModel)]="data.active" #active="ngModel"> 
-        <label for="active" class="form-check-label otherInputclr" id="active">Marked as Active</label>
+        <label for="active" class="form-check-label text-grey" id="active">Marked as Active</label>
       </div>
 
 

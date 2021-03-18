@@ -13,7 +13,7 @@
 
 
     <div class="form-group row" [class.has-error]="type.invalid && type.touched">
-      <label for="type" class="col-sm-3 col-form-label control-label topInputclr">Fabric Type </label>
+      <label for="type" class="col-sm-3 col-form-label control-label text-navy">Fabric Type </label>
       <div class="col-sm-9">
         <input required id="type" type="text" class="form-control" placeholder="Name" name="type"
           [(ngModel)]="data.type" #type="ngModel" [ngClass]="{'error': type.invalid && type.touched}">
@@ -23,7 +23,7 @@
 
 
     <div class="form-group row">
-      <label for="description" class="col-sm-3 col-form-label otherInputclr">Description</label>
+      <label for="description" class="col-sm-3 col-form-label text-grey">Description</label>
       <div class="col-sm-9">
         <textarea required class="form-control" id="description" rows="3" placeholder="Brief Fabric description here ..." name="description"
           [(ngModel)]="data.description" #description="ngModel"></textarea>
@@ -32,7 +32,7 @@
 
     <div class="form-check form-check-inline">
       <input class="form-check-input check-btn" type="checkbox" checked>
-      <label class="form-check-label otherInputclr">Marked as Active</label>
+      <label class="form-check-label text-grey">Marked as Active</label>
     </div>
 
   </form>
