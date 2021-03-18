@@ -18,8 +18,8 @@
       <div class="col-sm-9 ">
         <input required id="type" type="text" class="form-control" placeholder="Fabric Type" name="type"
           [(ngModel)]="data.type" #type="ngModel" [ngClass]="{'error': type.invalid && type.touched}">
-     <small>Add Fabric Description</small>
-        </div>
+        <small>Add Fabric Description</small>
+      </div>
     </div>
 
 
@@ -43,11 +43,11 @@
     </div>
 
   </form>
-  <div class="modal-footer NotBG">
 
-    <button class="btn button-save" type="submit" (click)="addFabricType()">
-      Save Fabric Type
-    </button>
-  </div>
 </div>
+<div class="modal-footer NotBG">
 
+  <button class="btn button-save" type="submit" (click)="addFabricType()">
+    Save Fabric Type
+  </button>
+</div>

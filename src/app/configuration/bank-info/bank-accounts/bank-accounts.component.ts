@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
 import { AddBankAccountComponent } from './add-bank-account/add-bank-account.component';
 import { EditBankAccountComponent } from './edit-bank-account/edit-bank-account.component';
-import Swal from 'sweetalert2/dist/sweetalert2.js'; 
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { GlobalConstants } from 'src/app/Common/global-constants';
 
 @Component({
@@ -16,13 +16,13 @@ import { GlobalConstants } from 'src/app/Common/global-constants';
 export class BankAccountsComponent implements OnInit {
 
   listCount: number;
-  response:any;
-  rows:any=[];
-  columns:any=[];
-  data:any={};
-  temp: any[];s
+  response: any;
+  rows: any = [];
+  columns: any = [];
+  data: any = {};
+  temp: any[]; s
 
-  constructor(private http:HttpClient,
+  constructor(private http: HttpClient,
     private toastr: ToastrService,
     private modalService: NgbModal,) { }
 
@@ -30,7 +30,6 @@ export class BankAccountsComponent implements OnInit {
     this.fetch((data) => {
       this.temp = [...data];
       this.rows = data;
-      this.listCount= this.rows.length;
     });
   }
 
@@ -38,7 +37,7 @@ export class BankAccountsComponent implements OnInit {
     const val = event.target.value.toLowerCase();
     // filter our data
     const temp = this.temp.filter(function (d) {
-      return d.id.toLowerCase().indexOf(val) !== -1  || !val;
+      return d.id.toLowerCase().indexOf(val) !== -1 || !val;
     });
 
     // update the rows
@@ -48,35 +47,35 @@ export class BankAccountsComponent implements OnInit {
   }
 
 
-  
+
   fetch(cb) {
-    
+
     this.http
-    .get(`${environment.apiUrl}/api/Configs/GetAllBankAccount`)
-    .subscribe(res => {
-      this.response = res;
-     
-    if(this.response.success==true)
-    {
-    this.data =this.response.data;
-    cb(this.data);
-    }
-    else{
-      this.toastr.error(this.response.message, 'Message.');
-    }
-      // this.spinner.hide();
-    }, err => {
-      if ( err.status == 400) {
- this.toastr.error(err.error.message, 'Message.');;
-      }
-    //  this.spinner.hide();
-    });
+      .get(`${environment.apiUrl}/api/Configs/GetAllBankAccount`)
+      .subscribe(res => {
+        this.response = res;
+
+        if (this.response.success == true) {
+          this.data = this.response.data;
+          this.listCount = this.response.data.length;
+          cb(this.data);
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+        // this.spinner.hide();
+      }, err => {
+        if (err.status == 400) {
+          this.toastr.error(err.error.message, 'Message.');;
+        }
+        //  this.spinner.hide();
+      });
   }
 
 
 
-  
-  deleteAccount(id){
+
+  deleteAccount(id) {
     Swal.fire({
       title: GlobalConstants.deleteTitle, //'Are you sure?',
       text: GlobalConstants.deleteMessage, //"You won't be able to revert this!",
@@ -90,29 +89,29 @@ export class BankAccountsComponent implements OnInit {
       position: 'top',
     }).then((result) => {
       if (result.isConfirmed) {
-    
-        this.http.delete(`${environment.apiUrl}/api/Configs/DeleteBankAccount/`+id.id )
-        .subscribe(
-          res=> { 
-            this.response = res;
-            if (this.response.success == true){
-             this.toastr.error(this.response.message, 'Message.');
-             this.fetch((data) => {
-              this.rows = data;
+
+        this.http.delete(`${environment.apiUrl}/api/Configs/DeleteBankAccount/` + id.id)
+          .subscribe(
+            res => {
+              this.response = res;
+              if (this.response.success == true) {
+                this.toastr.error(this.response.message, 'Message.');
+                this.fetch((data) => {
+                  this.rows = data;
+                });
+
+              }
+              else {
+                this.toastr.error('Something went Worng', 'Message.');
+              }
+
+            }, err => {
+              if (err.status == 400) {
+                this.toastr.error(this.response.message, 'Message.');
+              }
             });
-              
-            }
-            else {
-              this.toastr.error('Something went Worng', 'Message.');
-                }
-     
-          }, err => {
-            if (err.status == 400) {
-              this.toastr.error(this.response.message, 'Message.');
-            }
-          });
-    
-    
+
+
         // Swal.fire(
         //   'Record',
         //   'Deleted Successfully.',
@@ -120,8 +119,8 @@ export class BankAccountsComponent implements OnInit {
         // )
       }
     })
-    
-    }
+
+  }
 
 
 
@@ -135,42 +134,42 @@ export class BankAccountsComponent implements OnInit {
 
 
 
-  
-  addAccountForm(){
+
+  addAccountForm() {
     const modalRef = this.modalService.open(AddBankAccountComponent, { centered: true });
-          modalRef.result.then((data) => {
-         // on close
-          if(data ==true){
-           this.fetch((data) => {
-            this.rows = data;
-        
-          });
-           
-  
-         }
-       }, (reason) => {
-         // on dismiss
-       });
-  } 
-  
+    modalRef.result.then((data) => {
+      // on close
+      if (data == true) {
+        this.fetch((data) => {
+          this.rows = data;
 
-  editAccountForm(row){
+        });
+
+
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
+
+
+  editAccountForm(row) {
     const modalRef = this.modalService.open(EditBankAccountComponent, { centered: true });
-    modalRef.componentInstance.userId =row.id;
-          modalRef.result.then((data) => {
-         // on close
-          if(data ==true){
-           this.fetch((data) => {
-            this.rows = data;
-            
-          });
-           
-         }
-       }, (reason) => {
-         // on dismiss
-       });
-  } 
-  
+    modalRef.componentInstance.userId = row.id;
+    modalRef.result.then((data) => {
+      // on close
+      if (data == true) {
+        this.fetch((data) => {
+          this.rows = data;
+
+        });
+
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
+
 
 
 }

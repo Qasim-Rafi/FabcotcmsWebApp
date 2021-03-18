@@ -16,16 +16,17 @@
       <div class="col-sm-9">
         <input required id="term" type="text" class="form-control" placeholder="Priceterm name" name="term"
           [(ngModel)]="data.term" #term="ngModel" [ngClass]="{'error': term.invalid && term.touched}">
-     <small>Add Price Term</small>
-        </div>
+        <small>Add Price Term</small>
+      </div>
     </div>
 
 
     <div class="form-group row">
       <label for="description" class="col-sm-3 col-form-label text-grey">Description</label>
       <div class="col-sm-9">
-        <textarea required class="form-control" id="description" rows="3" placeholder="Brief Price Term description here ..." name="description"
-          [(ngModel)]="data.description" #description="ngModel"></textarea>
+        <textarea required class="form-control" id="description" rows="3"
+          placeholder="Brief Price Term description here ..." name="description" [(ngModel)]="data.description"
+          #description="ngModel"></textarea>
       </div>
     </div>
 
@@ -39,10 +40,11 @@
       </div>
     </div>
 
-    <div class="modal-footer NotBG">
-      <button class="btn button-save" type="submit" (click)="UpdatePrice()">
-        Update Price Term
-      </button>
-    </div>
+
   </form>
+</div>
+<div class="modal-footer NotBG">
+  <button class="btn button-save" type="submit" (click)="UpdatePrice()">
+    Update Price Term
+  </button>
 </div>

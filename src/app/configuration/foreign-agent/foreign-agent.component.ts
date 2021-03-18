@@ -15,24 +15,23 @@ import { GlobalConstants } from 'src/app/Common/global-constants';
   styleUrls: ['./foreign-agent.component.css']
 })
 export class ForeignAgentComponent implements OnInit {
-  response:any;
-  rows:any=[];
-  columns:any=[];
-  data:any={};
+  response: any;
+  rows: any = [];
+  columns: any = [];
+  data: any = {};
   listCount: number;
   date: number;
-  myDate=Date.now();
+  myDate = Date.now();
   temp: any[];
-  
-  constructor(private http:HttpClient,
-    private toastr: ToastrService,  
-    private modalService: NgbModal,){ }
+
+  constructor(private http: HttpClient,
+    private toastr: ToastrService,
+    private modalService: NgbModal,) { }
 
   ngOnInit(): void {
     this.fetch((data) => {
       this.temp = [...data];
       this.rows = data;
-      this.listCount = this.rows.length;
     });
   }
 
@@ -42,8 +41,8 @@ export class ForeignAgentComponent implements OnInit {
 
     // filter our data
     const temp = this.temp.filter(function (d) {
-      return d.code.toLowerCase().indexOf(val) !== -1  ||
-       d.name.toLowerCase().indexOf(val) !== -1  || !val;
+      return d.code.toLowerCase().indexOf(val) !== -1 ||
+        d.name.toLowerCase().indexOf(val) !== -1 || !val;
     });
 
     // update the rows
@@ -57,30 +56,30 @@ export class ForeignAgentComponent implements OnInit {
   fetch(cb) {
     let that = this;
     that.http
-    .get(`${environment.apiUrl}/api/Configs/GetAllExternalAgent`)
-    .subscribe(res => {
-      this.response = res;
-    if(this.response.success==true)
-    {
-    that.data =this.response.data;
-    cb(this.data);
-    }
-    else{
-      this.toastr.error(this.response.message, 'Message.');
-    }
-      // this.spinner.hide();
-    }, err => {
-      if ( err.status == 400) {
- this.toastr.error(err.error.message, 'Message.');;
-      }
-    //  this.spinner.hide();
-    });
+      .get(`${environment.apiUrl}/api/Configs/GetAllExternalAgent`)
+      .subscribe(res => {
+        this.response = res;
+        if (this.response.success == true) {
+          that.data = this.response.data;
+          this.listCount = this.response.data.length;
+          cb(this.data);
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+        // this.spinner.hide();
+      }, err => {
+        if (err.status == 400) {
+          this.toastr.error(err.error.message, 'Message.');;
+        }
+        //  this.spinner.hide();
+      });
   }
 
-  
 
 
-  deleteAgent(id){
+
+  deleteAgent(id) {
     Swal.fire({
       title: GlobalConstants.deleteTitle, //'Are you sure?',
       text: GlobalConstants.deleteMessage, //"You won't be able to revert this!",
@@ -94,31 +93,31 @@ export class ForeignAgentComponent implements OnInit {
       position: 'top',
     }).then((result) => {
       if (result.isConfirmed) {
-    
-        this.http.delete(`${environment.apiUrl}/api/Configs/DeleteExternalAgent/`+id.id )
-    .subscribe(
-      res=> { 
-        this.response = res;
-        if (this.response.success == true){
-         this.toastr.error(this.response.message, 'Message.');
-         this.fetch((data) => {
-          this.rows = data;
-          
-          this.listCount = this.rows.length;
-        });
-          
-        }
-        else {
-          this.toastr.error('Something went Worng', 'Message.');
-            }
- 
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error(this.response.message, 'Message.');
-        }
-      });
-    
-    
+
+        this.http.delete(`${environment.apiUrl}/api/Configs/DeleteExternalAgent/` + id.id)
+          .subscribe(
+            res => {
+              this.response = res;
+              if (this.response.success == true) {
+                this.toastr.error(this.response.message, 'Message.');
+                this.fetch((data) => {
+                  this.rows = data;
+
+                  this.listCount = this.rows.length;
+                });
+
+              }
+              else {
+                this.toastr.error('Something went Worng', 'Message.');
+              }
+
+            }, err => {
+              if (err.status == 400) {
+                this.toastr.error(this.response.message, 'Message.');
+              }
+            });
+
+
         // Swal.fire(
         //   'Record',
         //   'Deleted Successfully.',
@@ -126,8 +125,8 @@ export class ForeignAgentComponent implements OnInit {
         // )
       }
     })
-    
-    }
+
+  }
 
 
 
@@ -150,45 +149,45 @@ export class ForeignAgentComponent implements OnInit {
 
 
 
-  addAgentForm(){
+  addAgentForm() {
     const modalRef = this.modalService.open(AddAgentFormComponent, { centered: true });
-          modalRef.result.then((data) => {
-         // on close
-          if(data ==true){
-           this.date = this.myDate;
-           this.fetch((data) => {
-            this.temp = [...data];
-            this.rows = data;
-            this.listCount = this.rows.length;
-          });
-           
-  
-         }
-       }, (reason) => {
-         // on dismiss
-       });
-  } 
-  
+    modalRef.result.then((data) => {
+      // on close
+      if (data == true) {
+        this.date = this.myDate;
+        this.fetch((data) => {
+          this.temp = [...data];
+          this.rows = data;
+          this.listCount = this.rows.length;
+        });
 
 
-  editAgentForm(row){
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
+
+
+
+  editAgentForm(row) {
     const modalRef = this.modalService.open(EditAgentFormComponent, { centered: true });
     modalRef.componentInstance.userId = row.id;
-          modalRef.result.then((data) => {
-         // on close
-          if(data ==true){
-           this.date = this.myDate;
-           this.fetch((data) => {
-            this.rows = data;
-          });
-           
-  
-         }
-       }, (reason) => {
-         // on dismiss
-       });
-  } 
-  
+    modalRef.result.then((data) => {
+      // on close
+      if (data == true) {
+        this.date = this.myDate;
+        this.fetch((data) => {
+          this.rows = data;
+        });
+
+
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
+
 
 
 

@@ -49,16 +49,21 @@
             [(ngModel)]="data.description" #description="ngModel"></textarea>
         </div>
       </div>
-
-      <div class="form-check form-check-inline">
-        <input class="form-check-input check-btn" type="checkbox" checked>
-        <label class="form-check-label text-grey">Marked as Active</label>
+      <div class="form-group row">
+        <label for="active" class="col-sm-3 col-form-label text-grey"></label>
+        <div class="col-sm-9">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input check-btn" type="checkbox" checked>
+            <label class="form-check-label text-grey">Marked as Active</label>
+          </div>
+        </div>
       </div>
+     
     
      
     </form>
   </div>
-  <div class="modal-footer">
+  <div class="modal-footer NotBG">
     <button class="btn btn-outline-secondary noHover"  data-dismiss="modal" (click)="activeModal.close()">Close</button>
     <button class="btn button-save" type="submit" (click)="addArticle()">
       Save Article

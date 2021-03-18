@@ -11,51 +11,50 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./add-payment.component.css']
 })
 export class AddPaymentComponent implements OnInit {
-  data:any={};
+  data: any = {};
   response: any;
-  constructor(private http:HttpClient,
+  constructor(private http: HttpClient,
     private toastr: ToastrService,
     private _NgbActiveModal: NgbActiveModal) { }
 
   ngOnInit(): void {
   }
 
-    
+
   get activeModal() {
     return this._NgbActiveModal;
   }
 
 
-  addPayment()
-  {
-    let varr=  {
-           "term": this.data.term,
-           "description":this.data.description,
-           "createdDateTime":this.data.createdDateTime,
-     
+  addPayment() {
+    let varr = {
+      "term": this.data.term,
+      "description": this.data.description,
+      "createdDateTime": this.data.createdDateTime,
+
     }
 
     this.http.
-    post(`${environment.apiUrl}/api/Products/AddPaymentTerm`,varr)
-    .subscribe(
-      res=> { 
-  
-        this.response = res;
-        if (this.response.success == true){
-          this.toastr.success(this.response.message, 'Message.');
-      
-          // this.buyerForm.reset();
-          this.activeModal.close(true);
-        }
-        else {
-          this.toastr.error('Something went Worng', 'Message.');
-            }
+      post(`${environment.apiUrl}/api/Products/AddPaymentTerm`, varr)
+      .subscribe(
+        res => {
 
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error('Something went Worng', 'Message.');
-        }
-      });
+          this.response = res;
+          if (this.response.success == true) {
+            this.toastr.success(this.response.message, 'Message.');
+
+            // this.buyerForm.reset();
+            this.activeModal.close(true);
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+        });
   }
 
 

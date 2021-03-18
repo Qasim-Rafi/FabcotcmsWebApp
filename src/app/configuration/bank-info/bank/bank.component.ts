@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddBankComponent } from './add-bank/add-bank.component';
 import { EditBankComponent } from './edit-bank/edit-bank.component';
-import Swal from 'sweetalert2/dist/sweetalert2.js'; 
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { GlobalConstants } from 'src/app/Common/global-constants';
 
 @Component({
@@ -15,14 +15,14 @@ import { GlobalConstants } from 'src/app/Common/global-constants';
 })
 export class BankComponent implements OnInit {
   listCount: number;
-  response:any;
-  rows:any=[];
-  columns:any=[];
-  data:any={};
-  myDate=Date.now();
+  response: any;
+  rows: any = [];
+  columns: any = [];
+  data: any = {};
+  myDate = Date.now();
   temp: any[];
 
-  constructor(private http:HttpClient,
+  constructor(private http: HttpClient,
     private toastr: ToastrService,
     private modalService: NgbModal,) { }
 
@@ -30,12 +30,11 @@ export class BankComponent implements OnInit {
     this.fetch((data) => {
       this.temp = [...data];
       this.rows = data;
-      this.listCount= this.rows.length;
     });
-  
+
   }
 
-  
+
   updateFilter(event) {
     const val = event.target.value.toLowerCase();
 
@@ -51,34 +50,34 @@ export class BankComponent implements OnInit {
   }
 
 
-  
+
   fetch(cb) {
     let that = this;
     that.http
-    .get(`${environment.apiUrl}/api/Configs/GetAllBank`)
-    .subscribe(res => {
-      this.response = res;
-     
-    if(this.response.success==true)
-    {
-    that.data =this.response.data;
-    cb(this.data);
-    }
-    else{
-      this.toastr.error(this.response.message, 'Message.');
-    }
-      // this.spinner.hide();
-    }, err => {
-      if ( err.status == 400) {
- this.toastr.error(err.error.message, 'Message.');;
-      }
-    //  this.spinner.hide();
-    });
+      .get(`${environment.apiUrl}/api/Configs/GetAllBank`)
+      .subscribe(res => {
+        this.response = res;
+
+        if (this.response.success == true) {
+          that.data = this.response.data;
+          this.listCount = this.response.data.length;
+          cb(this.data);
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+        // this.spinner.hide();
+      }, err => {
+        if (err.status == 400) {
+          this.toastr.error(err.error.message, 'Message.');;
+        }
+        //  this.spinner.hide();
+      });
   }
 
 
 
-  deleteBank(id){
+  deleteBank(id) {
     Swal.fire({
       title: GlobalConstants.deleteTitle, //'Are you sure?',
       text: GlobalConstants.deleteMessage, //"You won't be able to revert this!",
@@ -92,28 +91,28 @@ export class BankComponent implements OnInit {
       position: 'top',
     }).then((result) => {
       if (result.isConfirmed) {
-    
-        this.http.delete(`${environment.apiUrl}/api/Configs/DeleteBank/`+id.id )
-        .subscribe(
-          res=> { 
-            this.response = res;
-            if (this.response.success == true){
-             this.toastr.error(this.response.message, 'Message.');
-             this.fetch((data) => {
-              this.rows = data;
+
+        this.http.delete(`${environment.apiUrl}/api/Configs/DeleteBank/` + id.id)
+          .subscribe(
+            res => {
+              this.response = res;
+              if (this.response.success == true) {
+                this.toastr.error(this.response.message, 'Message.');
+                this.fetch((data) => {
+                  this.rows = data;
+                });
+
+              }
+              else {
+                this.toastr.error('Something went Worng', 'Message.');
+              }
+
+            }, err => {
+              if (err.status == 400) {
+                this.toastr.error(this.response.message, 'Message.');
+              }
             });
-              
-            }
-            else {
-              this.toastr.error('Something went Worng', 'Message.');
-                }
-     
-          }, err => {
-            if (err.status == 400) {
-              this.toastr.error(this.response.message, 'Message.');
-            }
-          });
-    
+
         // Swal.fire(
         //   'Record',
         //   'Deleted Successfully.',
@@ -121,8 +120,8 @@ export class BankComponent implements OnInit {
         // )
       }
     })
-    
-    }
+
+  }
 
 
 
@@ -143,45 +142,45 @@ export class BankComponent implements OnInit {
 
 
 
-  
-  addBankForm(){
+
+  addBankForm() {
     const modalRef = this.modalService.open(AddBankComponent, { centered: true });
-          modalRef.result.then((data) => {
-         // on close
-          if(data ==true){
-          //  this.date = this.myDate;
-           this.fetch((data) => {
-            this.temp = [...data];
-            this.rows = data;
-            this.listCount= this.rows.length;
-          });
-           
-  
-         }
-       }, (reason) => {
-         // on dismiss
-       });
-  } 
-  
+    modalRef.result.then((data) => {
+      // on close
+      if (data == true) {
+        //  this.date = this.myDate;
+        this.fetch((data) => {
+          this.temp = [...data];
+          this.rows = data;
+          this.listCount = this.rows.length;
+        });
 
-  editEditForm(row){
+
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
+
+
+  editEditForm(row) {
     const modalRef = this.modalService.open(EditBankComponent, { centered: true });
-    modalRef.componentInstance.userId =row.id;
-          modalRef.result.then((data) => {
-         // on close
-          if(data ==true){
-          //  this.date = this.myDate;
-           this.fetch((data) => {
-            this.rows = data;
-            
-          });
-           
-         }
-       }, (reason) => {
-         // on dismiss
-       });
-  } 
-  
+    modalRef.componentInstance.userId = row.id;
+    modalRef.result.then((data) => {
+      // on close
+      if (data == true) {
+        //  this.date = this.myDate;
+        this.fetch((data) => {
+          this.rows = data;
+
+        });
+
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
+
 
 
 }
