@@ -1,14 +1,27 @@
-<div class="content-header">
+<!-- <div class="content-header">
     <div class="container-fluid">
       <div class="row mb-5">
         <div class="col-sm-12">
-          <h2 class="row wrapper page-header "> <strong>Article</strong> 
-            <small class="ml-2 text-muted">Manage Fabric / Yarn Articles with warp, weft, end, pick,weive & width info</small></h2>
+          <h2 class="row wrapper page-header font-weight-light"> Article 
+            <small class="ml-2 text-muted descr">Manage Fabric / Yarn Articles with warp, weft, end, pick,weive & width info</small></h2>
           
-        </div><!-- /.col -->
-      </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+
+  <div class="content-header">
+    <div class="col-sm-12 mb-4">
+      <h2 class="row wrapper page-header font-weight-light"> Article
+        <div class="ml-2 text-muted descr">Manage Fabric / Yarn Articles with warp, weft, end, pick,weive & width
+          info</div>
+      </h2>
+    </div>
   </div>
+
+
+
 
   <div class="ibox-content">
 
@@ -100,29 +113,34 @@
         </ngx-datatable-column>
         <ngx-datatable-column name="Last Updated By" [width]="80" prop="modifiedBy">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-         {{row.createdByName}} 
+              {{myDate | date:'medium'}}
             </ng-template>
           </ngx-datatable-column>
-        <ngx-datatable-column name="Action" [width]="40" >
-          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            <button type="button" class="btn editIconBack" (click)="editArticleForm(row)">
-              <i class="far fa-edit "></i>
-            </button>
-            <button type="button" class="btn deleteIconBack" (click)=" deleteArticle(row)">
-              <i class="far fa-trash-alt"></i>
-            </button>
-       
-            <!-- <button type="button" 
-            class="btn deleteIconBack"
-            mwlConfirmationPopover 
-            popoverTitle="Confirmation"
-            popoverMessage="Are you sure ?" 
-            placement="left" 
-            (confirm)="deleteArticle(row)"> 
-            <i class="far fa-trash-alt"></i>
-            </button> -->
-          </ng-template>
-        </ngx-datatable-column>
+          <ngx-datatable-column name="Last Updated By" [width]="80" prop="modifiedBy">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              {{row.createdByName}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Action" [width]="40">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              <button type="button" class="btn editIconBack" (click)="editArticleForm(row)">
+                <i class="far fa-edit "></i>
+              </button>
+              <button type="button" class="btn deleteIconBack" (click)=" deleteArticle(row)">
+                <i class="far fa-trash-alt"></i>
+              </button>
+        
+              <!-- <button type="button" 
+                    class="btn deleteIconBack"
+                    mwlConfirmationPopover 
+                    popoverTitle="Confirmation"
+                    popoverMessage="Are you sure ?" 
+                    placement="left" 
+                    (confirm)="deleteArticle(row)"> 
+                    <i class="far fa-trash-alt"></i>
+                    </button> -->
+            </ng-template>
+          </ngx-datatable-column>
         
         </ngx-datatable>
 

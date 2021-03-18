@@ -1,14 +1,23 @@
-<div class="content-header">
+<!-- <div class="content-header">
   <div class="container-fluid">
     <div class="row mb-5">
       <div class="col-sm-12">
         <h2 class="row wrapper page-header  "><strong>Fabric Type</strong>
           <small class="ml-2 text-muted">Fabric Type Description</small>
         </h2>
-      </div><!-- /.col -->
-    </div><!-- /.row -->
-  </div><!-- /.container-fluid -->
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+<div class="content-header">
+  <div class="col-sm-12 mb-4">
+    <h2 class="row wrapper page-header font-weight-light"> Fabric Type
+      <div class="ml-2 text-muted descr">Fabric Type Description</div></h2>
+  </div>
 </div>
+
 
 <div class="ibox-content">
   <div class=" panel blank-panel">
@@ -37,7 +46,7 @@
 
       <div class="col-md-12 mb-4">
         <div class="row justify-content-end">
-        <div class=" col-md-4 mb-4">
+        <div class=" col-md-4">
           <div class="input-group col-md-offset-3">
             <input type="text" placeholder="Search bt Type..." 
             class="input form-control w-50" (keyup)="updateFilter($event)"   >
@@ -119,5 +128,7 @@
           </ng-template>
         </ngx-datatable-column>
       </ngx-datatable>
+    </div>
+
     </div>
     </div>

@@ -1,18 +1,29 @@
-<div class="content-header">
-    <div class="container-fluid">
-      <div class="row mb-5">
-        <div class="col-sm-12">
-          <h2 class="row wrapper page-header "><strong>Payment Terms</strong> 
-            <small class="ml-2 text-muted">Payment Terms</small>
-            
-          </h2>
-        </div><!-- /.col -->
-      </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+<!-- <div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-5">
+      <div class="col-sm-12">
+        <h2 class="row wrapper page-header "><strong>Payment Terms</strong>
+          <small class="ml-2 text-muted">Payment Terms</small>
+
+        </h2>
+      </div>
+    </div>
   </div>
+</div> -->
+
+
+
+<div class="content-header">
+  <div class="col-sm-12 mb-4">
+    <h2 class="row wrapper page-header font-weight-light"> Payment Terms
+      <div class="ml-2 text-muted descr">Payment Terms</div></h2>
+  </div>
+</div>
+
 
   <div class="ibox-content">
-    <div class=" panel blank-panel">  
+    <div class=" panel blank-panel"> 
+
       <div class=" panel-heading">
         <table class="table">
             <tbody>
@@ -40,7 +51,7 @@
 
         <div class="col-md-12 mb-4">
         <div class="row justify-content-end">
-          <div class=" col-md-4 mb-4" >
+          <div class=" col-md-4">
             <div class="input-group col-md-offset-3">
               <input type="text" placeholder="Search by Term..."
               class="input form-control w-50" (keyup)="updateFilter($event)" >
@@ -63,8 +74,6 @@
         </div>
         </div>
       </div>
-
-
 
         <div class="panel-body">
 
@@ -125,6 +134,7 @@
         
       </ngx-datatable>   
     </div>
+
   </div>
 </div>
  

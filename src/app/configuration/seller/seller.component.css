@@ -105,7 +105,7 @@ small {
   text-align: right;
 }
 
-.ibox-content {
+/* .ibox-content {
   background-color: #ffffff;
   color: inherit;
   padding: 15px 20px 20px 20px;
@@ -113,7 +113,7 @@ small {
   border-image: none;
   border-style: solid solid none;
   border-width: 1px 0;
-}
+} */
 
 .widget {
   border-radius: 5px;
@@ -186,9 +186,9 @@ small {
 .heading {
   font-size: 20px;
 }
-.content-header {
+/* .content-header {
   margin-bottom: -28px;
-}
+} */
 
 .table tbody tr td {
   text-align: left;
@@ -200,9 +200,9 @@ td {
   float: left;
   font-size: 20px;
 }
-.descr {
+/* .descr {
   font-size: 60% !important;
   font-weight: 400 !important;
   padding: 12px 0 0 0 !important;
-}
+} */
 
