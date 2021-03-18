@@ -13,7 +13,7 @@
 
 
     <div class="form-group row" [class.has-error]="type.invalid && type.touched">
-      <label for="type" class="col-sm-3 col-form-label control-label text-navy">Fabric Type </label>
+      <label for="type" class="col-sm-3 col-form-label control-label text_Navy">Fabric Type </label>
       <div class="col-sm-9">
         <input required id="type" type="text" class="form-control" placeholder="Name" name="type"
           [(ngModel)]="data.type" #type="ngModel" [ngClass]="{'error': type.invalid && type.touched}">
