@@ -235,6 +235,22 @@ title {
   font-weight: 300 !important;
   padding: 12px 0 0 0 !important;
 }
+.html5buttons{
+  padding: 0px 7.5px ;
+}
+
+
+
+
+@media only screen and (max-width: 768px) {
+  
+  .mrg-tsm {
+    margin: 10px 0 0 0 ;
+  }
+  
+  
+}
+
 
 @media only screen and (max-width: 667px) {
   .mrg-tsm {

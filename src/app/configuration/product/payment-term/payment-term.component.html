@@ -11,21 +11,21 @@
   </div>
 </div> -->
 
-
-
 <div class="content-header">
   <div class="col-sm-12 mb-4">
     <h2 class="row wrapper page-header font-weight-light"> Payment Terms
-      <div class="ml-2 text-muted descr">Payment Terms</div></h2>
+      <div class="ml-2 text-muted descr">Payment Terms</div>
+    </h2>
   </div>
 </div>
 
 
-  <div class="ibox-content">
-    <div class=" panel blank-panel"> 
+<div class="ibox-content shadow">
+  <div class=" panel blank-panel">
 
-      <div class=" panel-heading">
-        <table class="table">
+    <div class=" panel-heading">
+
+      <!-- <table class="table">
             <tbody>
                 <tr>
                     <td  class="noBorder">
@@ -46,43 +46,59 @@
                     </td>
                 </tr>
             </tbody>
-        </table>
+        </table> -->
 
-
-        <div class="col-md-12 mb-4">
-        <div class="row justify-content-end">
-          <div class=" col-md-4">
-            <div class="input-group col-md-offset-3">
-              <input type="text" placeholder="Search by Term..."
-              class="input form-control w-50" (keyup)="updateFilter($event)" >
-            </div>
-          </div>
-          <div class="html5buttons">
-            <div class="dt-buttons btn-group ">
-              <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0" 
-              aria-controls="DataTables_Table_0"><span>Copy</span></a>
-              <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0" 
-              aria-controls="DataTables_Table_0"><span>CSV</span></a>
-              <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0" 
-              aria-controls="DataTables_Table_0"><span>Excel</span></a>
-              <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0" 
-              aria-controls="DataTables_Table_0"><span>PDF</span></a>
-              <a class="btn btn-default buttons-print bg-white" tabindex="0" 
-              aria-controls="DataTables_Table_0"><span>Print</span></a>
-             </div>
-           </div>
+      <div class="row mb-3">
+        <div class="col-md-6 ">
+          <button type="button" class="btn btn-primary descBtn ml-sm-none ml-md-2 ">
+            <i class="fas fa-money-bill-alt fa-fw mr-2"></i>{{listCount}}</button>
+          <span class="text-muted text2">Payment Terms</span>
         </div>
+        <div class="col-md-6 mrg-tsm">
+          <button type="button" class="btn btn-primary btn-md float-right" (click)="addPaymentForm()">
+            <i class="fa fa-plus"></i> Add Payment Terms</button>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col-md-12 mb-4">
+          <div class="row justify-content-end">
+            <div class=" col-md-4">
+              <div class="input-group col-md-offset-3">
+                <input type="text" placeholder="Search by Term..." class="input form-control w-50"
+                  (keyup)="updateFilter($event)">
+              </div>
+            </div>
+
+            <div class="html5buttons mrg-tsm">
+              <div class="dt-buttons btn-group ">
+                <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0"
+                  aria-controls="DataTables_Table_0"><span>Copy</span></a>
+                <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
+                  aria-controls="DataTables_Table_0"><span>CSV</span></a>
+                <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
+                  aria-controls="DataTables_Table_0"><span>Excel</span></a>
+                <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0"
+                  aria-controls="DataTables_Table_0"><span>PDF</span></a>
+                <a class="btn btn-default buttons-print bg-white" tabindex="0"
+                  aria-controls="DataTables_Table_0"><span>Print</span></a>
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
 
-        <div class="panel-body">
+    </div>
 
-          <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'" 
-          [headerHeight]="50" [footerHeight]="50" [sorts]="[{prop: 'id', dir: 'asce'}]"
-          [rowHeight]="'auto'" [limit]="6">
+    <div class="panel-body">
 
-      <ngx-datatable-column name="S. No." [width]="20" prop="i" > 
-          <ng-template let-row="row"   *ngFor="let i of rows"  ngx-datatable-cell-template >
+      <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'"
+        [headerHeight]="50" [footerHeight]="50" [sorts]="[{prop: 'id', dir: 'asce'}]" [rowHeight]="'auto'" [limit]="6">
+
+        <ngx-datatable-column name="S. No." [width]="20" prop="i">
+          <ng-template let-row="row" *ngFor="let i of rows" ngx-datatable-cell-template>
             {{i}}
           </ng-template>
         </ngx-datatable-column>
@@ -119,7 +135,7 @@
             <button type="button" class="btn deleteIconBack" (click)="deletePayment(row)">
               <i class="far fa-trash-alt"></i>
             </button>
-   
+
             <!-- <button type="button" 
             class="btn deleteIconBack"
             mwlConfirmationPopover 
@@ -131,15 +147,9 @@
             </button> -->
           </ng-template>
         </ngx-datatable-column>
-        
-      </ngx-datatable>   
+
+      </ngx-datatable>
     </div>
 
   </div>
 </div>
- 
-
-
-
-
-        
