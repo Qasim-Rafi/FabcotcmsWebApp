@@ -237,3 +237,16 @@ title {
   font-weight: 300 !important;
   padding: 12px 0 0 0 !important;
 }
+
+@media only screen and (max-width: 667px) {
+  
+  .mrg-tsm {
+    margin: 10px 0 0 0 ;
+  }
+
+
+
+  
+}
+
+
