@@ -56,7 +56,8 @@ export class EditArticleComponent implements OnInit {
       "code": this.data.code,
       "name": this.data.name,
       "genericName": this.data.genericName,
-      "description": this.data.description
+      "description": this.data.description,
+      "active": this.data.active,
     }
 
     this.http.

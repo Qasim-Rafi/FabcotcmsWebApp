@@ -29,7 +29,8 @@ export class AddProcessTypeComponent implements OnInit {
   {
     let varr=  {
       "type": this.data.type,
-      "description": this.data.description
+      "description": this.data.description,
+      "active": this.data.active,
     }
 
     this.http.
@@ -45,12 +46,12 @@ export class AddProcessTypeComponent implements OnInit {
           this.activeModal.close(true);
         }
         else {
-          this.toastr.error('Something went Worng', 'Message.');
+          this.toastr.error(this.response.message, 'Message.');
             }
 
       }, err => {
         if (err.status == 400) {
-          this.toastr.error('Something went Worng', 'Message.');
+          this.toastr.error(this.response.message, 'Message.');
         }
       });
   }

@@ -6,6 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddPackingComponent } from './add-packing/add-packing.component';
 import { EditPackingComponent } from './edit-packing/edit-packing.component';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
+import { GlobalConstants } from 'src/app/Common/global-constants';
 
 @Component({
   selector: 'app-packing',
@@ -43,7 +44,7 @@ export class PackingComponent implements OnInit {
     // filter our data
     const temp = this.temp.filter(function (d) {
       return d.name.toLowerCase().indexOf(val) !== -1 || !val;
-    });
+    })  ;
 
     // update the rows
     this.rows = temp;
@@ -83,15 +84,16 @@ export class PackingComponent implements OnInit {
 
   deletePacking(id) {
     Swal.fire({
-      title: 'Confirm Delete',
-      text: "Are you sure to delete this record",
+      title: GlobalConstants.deleteTitle, //'Are you sure?',
+      text: GlobalConstants.deleteMessage+' '+'"'+ id.name +'"',
       icon: 'error',
       showCancelButton: true,
       confirmButtonColor: '#ed5565',
-      cancelButtonColor: '#fff',
+      cancelButtonColor: '#dae0e5',
       cancelButtonText: 'No',
       confirmButtonText: 'Yes',
-      reverseButtons: true
+      reverseButtons: true,
+      position: 'top',
     }).then((result) => {
       if (result.isConfirmed) {
 

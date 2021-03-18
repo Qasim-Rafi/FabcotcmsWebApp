@@ -1,16 +1,26 @@
-<div class="content-header">
-    <div class="container-fluid">
-      <div class="row mb-5">
-        <div class="col-sm-12">
-          <h2 class="row wrapper page-header font-weight-light "> External Agents And L/C Openner  
-            <small class="ml-2 text-muted">Manage External Agents or L/C OPenner profile detail</small></h2>
+<!-- <div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-5">
+      <div class="col-sm-12">
+        <h2 class="row wrapper page-header font-weight-light "> External Agents And L/C Openner
+          <small class="ml-2 text-muted">Manage External Agents or L/C OPenner profile detail</small>
+        </h2>
 
-        </div><!-- /.col -->
-      </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+      </div>
+    </div>
   </div>
+</div> -->
 
-  <div class="ibox-content">
+
+<div class="content-header">
+  <div class="col-sm-12 mb-4">
+    <h2 class="row wrapper page-header font-weight-light"> External Agents And L/C Openner
+      <div class="ml-2 text-muted descr">Manage External Agents or L/C OPenner profile detail</div></h2>
+  </div>
+</div>
+
+
+  <div class="ibox-content shadow">
     <div class=" panel blank-panel">  
       <div class=" panel-heading">
 
@@ -39,17 +49,18 @@
             </tbody>
         </table>
 
+        <div class="row">
         <div class="col-md-12 mb-4">
           <div class="row justify-content-end">
             
               <div class=" col-md-4" >
                 <div class="input-group col-md-offset-3">
-                  <input type="text" placeholder="Search"
+                  <input type="text" placeholder="Search..."
                   class="input form-control w-50" (keyup)="updateFilter($event)">
                 </div>
               </div>
 
-              <div class="html5buttons">
+              <div class="html5buttons mrg-tsm">
                 <div class="dt-buttons btn-group ">
                   <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0" 
                   aria-controls="DataTables_Table_0"><span>Copy</span></a>
@@ -65,6 +76,7 @@
               </div>
           </div>
         </div>
+      </div>
       </div>
 
       <div class="panel-body">
@@ -120,7 +132,7 @@
           </ngx-datatable-column>
           <ngx-datatable-column name="Last Updated On | By" [width]="80">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{myDate | date:'medium'}} | {{row.createdByName}}
+              {{row.updatedDateTime}} | {{row.createdByName}}
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Action" [width]="80">

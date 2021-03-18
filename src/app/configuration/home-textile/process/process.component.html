@@ -1,19 +1,33 @@
-<div class="content-header ">
-    <div class="container-fluid">
-      <div class="row mb-5">
-        <div class="col-sm-12">
-          <h2 class="row wrapper page-header  "><strong>Process</strong> 
-            <small class="ml-2 text-muted">Home Textile & Garments Process</small>
-           </h2>
-        </div><!-- /.col -->
-      </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+<!-- <div class="content-header ">
+  <div class="container-fluid">
+    <div class="row mb-5">
+      <div class="col-sm-12">
+        <h2 class="row wrapper page-header  "><strong>Process</strong>
+          <small class="ml-2 text-muted">Home Textile & Garments Process</small>
+        </h2>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+  <div class="content-header">
+    <div class="col-sm-12 mb-4">
+      <h2 class="row wrapper page-header font-weight-light"> Process
+        <div class="ml-2 text-muted descr">Home Textile & Garments Process
+          info</div>
+      </h2>
+    </div>
   </div>
 
+
+
   <div class="ibox-content shadow">
-    <div class=" panel blank-panel">  
+    <div class=" panel blank-panel"> 
+
       <div class=" panel-heading">
-        <table class="table">
+
+        <!-- <table class="table">
             <tbody>
                 <tr>
                     <td class="noBorder">
@@ -31,53 +45,64 @@
                     </td>
                 </tr>
             </tbody>
-        </table>
+        </table> -->
 
-        <div class="row">
-          <div class=" col-md-4 mb-4">
-            <div class="input-group col-md-offset-3">
-              <input type="text" placeholder="Search" class="input form-control w-50">
-            </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6 ">
+            <button type="button" class="btn btn-primary descBtn ml-sm-none ml-md-2 ">
+              <i class="fas fa-bolt fa-fw mr-2"></i>{{listCount}}</button>
+              <span class="text-muted text2">Process</span>
           </div>
-        
-          <div class="html5buttons">
-            <div class="dt-buttons btn-group ">
-              <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0"
-                aria-controls="DataTables_Table_0"><span>Copy</span></a>
-              <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
-                aria-controls="DataTables_Table_0"><span>CSV</span></a>
-              <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
-                aria-controls="DataTables_Table_0"><span>Excel</span></a>
-              <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0"
-                aria-controls="DataTables_Table_0"><span>PDF</span></a>
-              <a class="btn btn-default buttons-print bg-white" tabindex="0"
-                aria-controls="DataTables_Table_0"><span>Print</span></a>
-            </div>
+          <div class="col-md-6 mrg-tsm">
+            <button type="button" class="btn btn-primary btn-md float-right" (click)="addProcessForm()">
+              <i class="fa fa-plus"></i> Add New Process</button>
           </div>
-        
-        
+  
         </div>
 
 
-        
-  </div>
+        <div class="row">
+        <div class="col-md-12 mb-4">
+          <div class="row justify-content-end">
+            <div class=" col-md-4" >
+              <div class="input-group col-md-offset-3">
+                <input type="text" placeholder="Search by Process Name... " 
+                class="input form-control w-50" (keyup)="updateFilter($event)">
+              </div>
+            </div>
+            <div class="html5buttons mrg-tsm">
+              <div class="dt-buttons btn-group ">
+                <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0" 
+                aria-controls="DataTables_Table_0"><span>Copy</span></a>
+                <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0" 
+                aria-controls="DataTables_Table_0"><span>CSV</span></a>
+                <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0" 
+                aria-controls="DataTables_Table_0"><span>Excel</span></a>
+                <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0" 
+                aria-controls="DataTables_Table_0"><span>PDF</span></a>
+                <a class="btn btn-default buttons-print bg-white" tabindex="0" 
+                aria-controls="DataTables_Table_0"><span>Print</span></a>
+               </div>
+             </div>
+          </div>
+         </div>
+        </div>
+         
+      </div>
 
   <div class="panel-body">
-    <div class="row">
-          <div class="col-md-12">
 
-          
+    <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'" 
+    [headerHeight]="50" [footerHeight]="50" [sorts]="[{prop: 'id', dir: 'asce'}]"
+    [rowHeight]="'auto'" [limit]="6">
 
-        <ngx-datatable #myTable class="material" [columns]="columns" [rows]="rows" [columnMode]="'force'" 
-        [headerHeight]="50" [footerHeight]="50"
-        [rowHeight]="'auto'" [limit]="10">
-
-      <ngx-datatable-column name="S. No." [width]="5" prop="code" > 
+      <ngx-datatable-column name="S. No." [width]="5" prop="id" > 
           <ng-template let-row="row"  ngx-datatable-cell-template>
-            {{row.code}}
+            {{row.id}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Certificate Name" [width]="40">
+        <ngx-datatable-column name="Certificate Name" [width]="40" prop="name">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.name}}
           </ng-template>
@@ -97,9 +122,9 @@
             </div>
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Changed On | Changed By" [width]="80">
+        <ngx-datatable-column name="Last Changed On | Updated By" [width]="80">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            {{myDate | date:'medium'}}
+            {{row.updatedDateTime}} | {{row.updatedByName}}
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="Action" [width]="80">
@@ -124,9 +149,7 @@
       </ngx-datatable>      
 
     </div>
-  </div>
-  </div>
 
   </div>
   </div>
-  
+

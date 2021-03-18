@@ -1,96 +1,113 @@
 <div class="content-header">
-    <div class="container-fluid">
-      <div class="row mb-5">
-        <div class="col-sm-12">
-          <h2 class="row wrapper page-header ">
-            <strong>Bank Account </strong> 
-            <small class="ml-2 text-muted">Bank Account's Description</small>  
-          
-          </h2>
-        </div><!-- /.col -->
-      </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+  <div class="col-sm-12 mb-4">
+    <h2 class="row wrapper page-header font-weight-light"> Bank Account
+      <div class="ml-2 text-muted descr">Bank Account's Description</div>
+    </h2>
   </div>
+</div>
 
-  <div class="ibox-content shadow">
-    <div class=" panel blank-panel">  
-      <div class=" panel-heading">
-        <table class="table">
-            <tbody>
-                <tr>
-                    <td  class="noBorder">
-                        <button type="button" class="btn btn-primary descBtn"> 
-                        <i class="fas fa-map fa-fw mr-2"></i>{{listCount}}</button>
-                        <span class="text-muted text2"> Account</span>
-                    </td>
-                    <td class="noBorder">
-                        <button type="button" class="btn  mr-1 px-3"> </button>
-                        <span class="text-muted text"></span>
-                    </td>
-                    <td class="noBorder">
-                        <button type="button" class="btn btn-primary btn-md float-right" (click)="addAccountForm()"  >
-                          <i class="fa fa-plus" ></i> Add New Account</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
 
-        
-        <div class="row">
-          <div class=" col-md-4 mb-4" >
-            <div class="input-group col-md-offset-3">
-              <input type="text" placeholder="Search " 
-              class="input form-control w-50" (keyup)="updateFilter($event)">
-            </div>
-          </div>
-          <div class="html5buttons">
-            <div class="dt-buttons btn-group ">
-              <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0" 
-              aria-controls="DataTables_Table_0"><span>Copy</span></a>
-              <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0" 
-              aria-controls="DataTables_Table_0"><span>CSV</span></a>
-              <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0" 
-              aria-controls="DataTables_Table_0"><span>Excel</span></a>
-              <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0" 
-              aria-controls="DataTables_Table_0"><span>PDF</span></a>
-              <a class="btn btn-default buttons-print bg-white" tabindex="0" 
-              aria-controls="DataTables_Table_0"><span>Print</span></a>
-             </div>
-           </div>
+<div class="ibox-content shadow">
+  <div class=" panel blank-panel">
+
+    <div class=" panel-heading">
+
+      <!-- <table class="table">
+        <tbody>
+          <tr>
+            <td class="noBorder">
+              <button type="button" class="btn btn-primary descBtn">
+                <i class="fas fa-map fa-fw mr-2"></i>{{listCount}}</button>
+              <span class="text-muted text2"> Account</span>
+            </td>
+            <td class="noBorder">
+              <button type="button" class="btn  mr-1 px-3"> </button>
+              <span class="text-muted text"></span>
+            </td>
+            <td class="noBorder">
+              <button type="button" class="btn btn-primary btn-md float-right" (click)="addAccountForm()">
+                <i class="fa fa-plus"></i> Add New Account</button>
+            </td>
+          </tr>
+        </tbody>
+      </table> -->
+
+
+      <div class="row mb-3">
+        <div class="col-md-6 ">
+          <button type="button" class="btn btn-primary descBtn ml-sm-none ml-md-2 ">
+            <i class="fas fa-map fa-fw mr-2"></i>{{listCount}}</button>
+          <span class="text-muted text2">Account</span>
+        </div>
+        <div class="col-md-6 mrg-tsm">
+          <button type="button" class="btn btn-primary btn-md float-right" (click)="addAccountForm()">
+            <i class="fa fa-plus"></i> Add New Account</button>
         </div>
 
+      </div>
 
 
-        <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'" 
-        [headerHeight]="50" [footerHeight]="50" [sorts]="[{prop: 'id', dir: 'asce'}]"
-        [rowHeight]="'auto'" [limit]="6">
 
-      <ngx-datatable-column name="S. No." [width]="0.5" prop="id" >   
-          <ng-template let-row="row"  ngx-datatable-cell-template>
-            {{row.id}}
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Account Name" [width]="80" prop="accountName" >
-          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            {{row.accountName}}
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Account No" [width]="80">
-          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            {{row.accountNumber}}
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="IBAN" [width]="80">
-          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            {{row.iban}}
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Swift Code" [width]="80">
-          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            {{row.swiftCode}}
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Account Type" [width]="80">
+      <div class="row">
+      <div class="col-md-12 mb-4">
+        <div class="row justify-content-end">
+          <div class=" col-md-4">
+            <div class="input-group col-md-offset-3">
+              <input type="text" placeholder="Search " class="input form-control w-50" (keyup)="updateFilter($event)">
+            </div>
+          </div>
+
+          <div class="html5buttons mrg-tsm">
+            <div class="dt-buttons btn-group ">
+              <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0"
+                aria-controls="DataTables_Table_0"><span>Copy</span></a>
+              <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
+                aria-controls="DataTables_Table_0"><span>CSV</span></a>
+              <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
+                aria-controls="DataTables_Table_0"><span>Excel</span></a>
+              <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0"
+                aria-controls="DataTables_Table_0"><span>PDF</span></a>
+              <a class="btn btn-default buttons-print bg-white" tabindex="0"
+                aria-controls="DataTables_Table_0"><span>Print</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+      <div class="panel-body">
+        <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'"
+          [headerHeight]="50" [footerHeight]="50" [sorts]="[{prop: 'id', dir: 'asce'}]" [rowHeight]="'auto'"
+          [limit]="6">
+
+          <ngx-datatable-column name="S. No." [width]="0.5" prop="id">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.id}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Account Name" [width]="80" prop="accountName">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              {{row.accountName}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Account No" [width]="80">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              {{row.accountNumber}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="IBAN" [width]="80">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              {{row.iban}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Swift Code" [width]="80">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              {{row.swiftCode}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Account Type" [width]="80">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
               {{row.type}}
             </ng-template>
@@ -105,15 +122,15 @@
               {{row.details}}
             </ng-template>
           </ngx-datatable-column>
-        <ngx-datatable-column name="Action" [width]="80">
-          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            <button type="button" class="btn editIconBack" (click)=" editAccountForm(row)">
-              <i class="far fa-edit "></i>
-            </button>
-            <button type="button" class="btn deleteIconBack" (click)="deleteAccount(row)">
-              <i class="far fa-trash-alt"></i>
-            </button>
-            <!-- <button type="button" 
+          <ngx-datatable-column name="Action" [width]="80">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              <button type="button" class="btn editIconBack" (click)=" editAccountForm(row)">
+                <i class="far fa-edit "></i>
+              </button>
+              <button type="button" class="btn deleteIconBack" (click)="deleteAccount(row)">
+                <i class="far fa-trash-alt"></i>
+              </button>
+              <!-- <button type="button" 
             class="btn deleteIconBack"
             mwlConfirmationPopover 
             popoverTitle="Confirmation"
@@ -122,6 +139,10 @@
             (confirm)="deleteAccount(row)"> 
             <i class="far fa-trash-alt"></i>
             </button> -->
-          </ng-template>
-        </ngx-datatable-column>
-      </ngx-datatable>      
+            </ng-template>
+          </ngx-datatable-column>
+        </ngx-datatable>
+      </div>
+
+    </div>
+  </div>

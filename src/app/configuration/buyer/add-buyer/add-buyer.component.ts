@@ -11,20 +11,20 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./add-buyer.component.css']
 })
 export class AddBuyerComponent implements OnInit {
-  listCount:number;
-  myDate=Date.now();
+  listCount: number;
+  myDate = Date.now();
   response: any;
-  data:any={};
-  country:any=[];
-  buyer:any[];
-  countryId:null;
-  parentBuyerId:null;
+  data: any = {};
+  country: any = [];
+  buyer: any[];
+  countryId: null;
+  parentBuyerId: null;
   @ViewChild(NgForm) buyerForm;
   date: number;
-  
-  constructor(private http:HttpClient,
-              private toastr: ToastrService,  
-              private _NgbActiveModal: NgbActiveModal) { }
+
+  constructor(private http: HttpClient,
+    private toastr: ToastrService,
+    private _NgbActiveModal: NgbActiveModal) { }
 
   ngOnInit(): void {
     this.getCountry();
@@ -36,89 +36,86 @@ export class AddBuyerComponent implements OnInit {
   }
 
 
-  getParentBuyer()
-  {
+  getParentBuyer() {
     this.http.get(`${environment.apiUrl}/api/Lookups/Buyers`)
-    .subscribe(
-      res=> { 
-        this.response = res;
-        if (this.response.success == true){
-          this.buyer=this.response.data;
-        }
-        else {
-          this.toastr.error('Something went Worng', 'Message.');
-            }
+      .subscribe(
+        res => {
+          this.response = res;
+          if (this.response.success == true) {
+            this.buyer = this.response.data;
+          }
+          else {
+            this.toastr.error('Something went Worng', 'Message.');
+          }
 
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error('Something went Worng', 'Message.');
-        }
-      });
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error('Something went Worng', 'Message.');
+          }
+        });
   }
 
 
-  getCountry()
-  {
+  getCountry() {
     this.http.get(`${environment.apiUrl}/api/Lookups/Countries`)
-    .subscribe(
-      res=> { 
-        this.response = res;
-        if (this.response.success == true){
-          this.country =this.response.data;
-        }
-        else {
-          this.toastr.error('Something went Worng', 'Message.');
-            }
+      .subscribe(
+        res => {
+          this.response = res;
+          if (this.response.success == true) {
+            this.country = this.response.data;
+          }
+          else {
+            this.toastr.error('Something went Worng', 'Message.');
+          }
 
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error('Something went Worng', 'Message.');
-        }
-      });
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error('Something went Worng', 'Message.');
+          }
+        });
   }
 
 
 
 
-  addBuyer()
-  {
-    let varr=  {
-      "buyerCode": this.data.buyerCode ,
+  addBuyer() {
+    let varr = {
+      "buyerCode": this.data.buyerCode,
       "buyerName": this.data.buyerName,
       "billingAddress": this.data.buyerBillAddress,
       "deliveryAddress": this.data.buyerDiliveryAddress,
-      "countryId": this.data.countryId, 
+      "countryId": this.data.countryId,
       "contactNoPrimary": this.data.buyerContact,
       "contactNoSecondary": this.data.buyerOtherContact,
       "faxNumber": this.data.buyerFax,
-      "ntnNumber":this.data.buyerNTN,
-      "gstNumber":this.data.buyerGTS,
-      "buyerDetails" : this.data.buyerDetails,
+      "ntnNumber": this.data.buyerNTN,
+      "gstNumber": this.data.buyerGTS,
+      "buyerDetails": this.data.buyerDetails,
       "isParentBuyer": this.data.isParentBuyer,
       "parentBuyerId": this.data.parentBuyerId,
     }
 
     this.http.
-    post(`${environment.apiUrl}/api/Buyers/AddBuyer`,varr)
-    .subscribe(
-      res=> { 
-  
-        this.response = res;
-        if (this.response.success == true){
-          this.toastr.success(this.response.message, 'Message.');
-      
-          this.buyerForm.reset();
-          this.activeModal.close(true);
-        }
-        else {
-          this.toastr.error('Something went Worng', 'Message.');
-            }
+      post(`${environment.apiUrl}/api/Buyers/AddBuyer`, varr)
+      .subscribe(
+        res => {
 
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error('Something went Worng', 'Message.');
-        }
-      });
+          this.response = res;
+          if (this.response.success == true) {
+            this.toastr.success(this.response.message, 'Message.');
+
+            this.buyerForm.reset();
+            this.activeModal.close(true);
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+        });
   }
 
 }

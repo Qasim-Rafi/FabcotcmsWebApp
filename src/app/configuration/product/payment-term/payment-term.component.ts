@@ -6,6 +6,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddPaymentComponent } from './add-payment/add-payment.component';
 import { EditPaymentComponent } from './edit-payment/edit-payment.component';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
+import { GlobalConstants } from 'src/app/Common/global-constants';
+import { listenerCount } from 'events';
 @Component({
   selector: 'app-payment-term',
   templateUrl: './payment-term.component.html',
@@ -18,6 +20,7 @@ export class PaymentTermComponent implements OnInit {
   columns: any = [];
   listCount: number;
   myDate = Date.now();
+  temp: any[];
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
@@ -26,8 +29,25 @@ export class PaymentTermComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetch((data) => {
+      this.temp = [...data];
       this.rows = data;
     });
+  }
+
+
+
+  updateFilter(event) {
+    const val = event.target.value.toLowerCase();
+
+    // filter our data
+    const temp = this.temp.filter(function (d) {
+      return d.term.toLowerCase().indexOf(val) !== -1 || !val;
+    })  ;
+
+    // update the rows
+    this.rows = temp;
+    // Whenever the filter changes, always go back to the first page
+    // this.table.offset = 0;
   }
 
 
@@ -61,15 +81,16 @@ export class PaymentTermComponent implements OnInit {
 
   deletePayment(id) {
     Swal.fire({
-      title: 'Confirm Delete',
-      text: "Are you sure to delete this record",
+      title: GlobalConstants.deleteTitle, //'Are you sure?',
+      text: GlobalConstants.deleteMessage+' '+'"'+ id.term +'"',
       icon: 'error',
       showCancelButton: true,
       confirmButtonColor: '#ed5565',
-      cancelButtonColor: '#fff',
+      cancelButtonColor: '#dae0e5',
       cancelButtonText: 'No',
       confirmButtonText: 'Yes',
-      reverseButtons: true
+      reverseButtons: true,
+      position: 'top',
     }).then((result) => {
       if (result.isConfirmed) {
 

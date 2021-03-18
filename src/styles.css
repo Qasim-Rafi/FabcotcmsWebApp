@@ -53,7 +53,6 @@ h5 {
 }
 
 .noHover:hover {
-
   background-color: white !important;
   color: #7c7c7c !important;
 }
@@ -71,7 +70,7 @@ h5 {
   border-radius: 5px;
   font-weight: 400;
   width: 56px;
-  margin-left: 60px;
+  margin-left: 10px;
 }
 
 .inactive {
@@ -155,11 +154,11 @@ h5 {
   border-color: #1ab394 !important;
 }
 
-.topInputclr {
+.text_Navy {
   color: #1ab394 !important;
 }
 
-.otherInputclr {
+.text-grey {
   color: #606060 !important;
 }
 
@@ -190,8 +189,8 @@ h5 {
 .BG {
   background-color: #f8fafb !important;
 }
-.NotBG{
-	background-color: white !important;
+.NotBG {
+  background-color: white !important;
 }
 .deleteIconBack :hover {
   color: red;
@@ -214,7 +213,7 @@ h5 {
   border-image: none;
   border-style: solid solid none;
   border-width: 1px 0;
-  margin-top: -35px;
+  /* margin-top: -35px; */
 }
 
 .popover-header {
@@ -230,4 +229,38 @@ small {
 title {
   width: 600px;
   text-align: center;
+}
+.descr {
+  font-size: 60% !important;
+  font-weight: 300 !important;
+  padding: 12px 0 0 0 !important;
+}
+.html5buttons{
+  padding: 0px 7.5px ;
+}
+
+.modal-header .close, .modal-header .mailbox-attachment-close {
+  margin: 0rem 0rem 0rem auto !important;
+}
+.modal-title {
+  padding: 5px;
+}
+
+
+
+
+@media only screen and (max-width: 768px) {
+  
+  .mrg-tsm {
+    margin: 10px 0 0 0 ;
+  }
+  
+  
+}
+
+
+@media only screen and (max-width: 667px) {
+  .mrg-tsm {
+    margin: 10px 0 0 0;
+  }
 }

@@ -6,6 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EditCurrencyComponent } from './edit-currency/edit-currency.component';
 import { AddCurrencyComponent } from './add-currency/add-currency.component';
 import Swal from 'sweetalert2/dist/sweetalert2.js'; 
+import { GlobalConstants } from 'src/app/Common/global-constants';
 
 @Component({
   selector: 'app-currency',
@@ -62,13 +63,16 @@ export class CurrencyComponent implements OnInit {
 
   deleteCurrency(id){
     Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
+      title: GlobalConstants.deleteTitle, //'Are you sure?',
+      text: GlobalConstants.deleteMessage+' '+'"'+ id.currencyCode +'"',
+      icon: 'error',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Delete it!'
+      confirmButtonColor: '#ed5565',
+      cancelButtonColor: '#dae0e5',
+      cancelButtonText: 'No',
+      confirmButtonText: 'Yes',
+      reverseButtons: true,
+      position: 'top',
     }).then((result) => {
       if (result.isConfirmed) {
     

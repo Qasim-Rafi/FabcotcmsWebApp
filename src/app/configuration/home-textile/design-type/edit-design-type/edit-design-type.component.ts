@@ -11,11 +11,11 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class EditDesignTypeComponent implements OnInit {
 
-  data:any={};
+  data: any = {};
   response: any;
   @Input() userId;
-  
-  constructor(private http:HttpClient,
+
+  constructor(private http: HttpClient,
     private toastr: ToastrService,
     private _NgbActiveModal: NgbActiveModal) { }
 
@@ -27,10 +27,9 @@ export class EditDesignTypeComponent implements OnInit {
     return this._NgbActiveModal;
   }
 
-  
- 
-  editDesign()
-  {
+
+
+  editDesign() {
     // this.
     // http.
     // get(`${environment.apiUrl}​/api​/TextileGarments​/GetDesignTypeById​/`+this.userId )
@@ -49,52 +48,52 @@ export class EditDesignTypeComponent implements OnInit {
     //       this.toastr.error('Something went Worng', 'Message.');
     //     }
     //   });
-      this.http.get(`${environment.apiUrl}/api/TextileGarments/GetDesignTypeById/`+this.userId )
-    .subscribe(
-      res=> { 
-        this.response = res;
-        if (this.response.success == true){
-          this.data =this.response.data; 
-        }
-        else {
-          this.toastr.error('Something went Worng', 'Message.');
-            }
+    this.http.get(`${environment.apiUrl}/api/TextileGarments/GetDesignTypeById/` + this.userId)
+      .subscribe(
+        res => {
+          this.response = res;
+          if (this.response.success == true) {
+            this.data = this.response.data;
+          }
+          else {
+            this.toastr.error('Something went Worng', 'Message.');
+          }
 
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error('Something went Worng', 'Message.');
-        }
-      });
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error('Something went Worng', 'Message.');
+          }
+        });
   }
 
 
 
-  UpdateDesign()
-  {
+  UpdateDesign() {
     let varr = {
       "type": this.data.type,
-      "description": this.data.description
+      "description": this.data.description,
+      "active": this.data.active,
     }
 
     this.http.
-    put(`${environment.apiUrl}/api/TextileGarments/UpdateDesignType/`+this.userId,varr)
-    .subscribe(
-      res=> { 
-  
-        this.response = res;
-        if (this.response.success == true){
-          this.toastr.success(this.response.message, 'Message.');
-          this.activeModal.close(true);
-        }
-        else {
-          this.toastr.error('Something went Worng', 'Message.');
-            }
+      put(`${environment.apiUrl}/api/TextileGarments/UpdateDesignType/` + this.userId, varr)
+      .subscribe(
+        res => {
 
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error('Something went Worng', 'Message.');
-        }
-      });
+          this.response = res;
+          if (this.response.success == true) {
+            this.toastr.success(this.response.message, 'Message.');
+            this.activeModal.close(true);
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+        });
   }
 
 }

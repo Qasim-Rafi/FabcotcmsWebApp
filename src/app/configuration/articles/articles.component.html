@@ -1,21 +1,36 @@
-<div class="content-header">
-    <div class="container-fluid">
-      <div class="row mb-5">
-        <div class="col-sm-12">
-          <h2 class="row wrapper page-header "> <strong>Article</strong> 
-            <small class="ml-2 text-muted">Manage Fabric / Yarn Articles with warp, weft, end, pick,weive & width info</small></h2>
-          
-        </div><!-- /.col -->
-      </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+
+  <div class="content-header">
+    <div class="col-sm-12 mb-4">
+      <h2 class="row wrapper page-header font-weight-light"> Article
+        <div class="ml-2 text-muted descr">Manage Fabric / Yarn Articles with warp, weft, end, pick,weive & width
+          info</div>
+      </h2>
+    </div>
   </div>
 
-  <div class="ibox-content">
+
+
+
+  <div class="ibox-content shadow">
 
     <div class=" panel blank-panel">  
       <div class="panel-heading">
 
-        <table class="table">
+
+        <div class="row mb-3">
+          <div class="col-md-6 ">
+            <button type="button" class="btn btn-primary descBtn ml-sm-none ml-md-2 ">
+              <i class="fas fa-map fa-fw mr-2"></i>{{listCount}}</button>
+            <span class="text-muted text2">Articles</span>
+          </div>
+          <div class="col-md-6 mrg-tsm">
+            <button type="button" class="btn btn-primary btn-md float-right" (click)="addArticleForm()">
+              <i class="fa fa-plus"></i> Add New Article</button>
+          </div>
+  
+        </div>
+
+        <!-- <table class="table">
             <tbody>
                 <tr>
                     <td class="noBorder" > 
@@ -33,18 +48,19 @@
                     </td>
                 </tr>
             </tbody>
-        </table>
+        </table> -->
 
 
+        <div class="row">
         <div class="col-md-12 mb-4">
         <div class="row justify-content-end">
           <div class=" col-md-4" >
             <div class="input-group col-md-offset-3">
-              <input type="text" placeholder="Search " 
+              <input type="text" placeholder="Search by Article Code... " 
               class="input form-control w-50" (keyup)="updateFilter($event)">
             </div>
           </div>
-          <div class="html5buttons">
+          <div class="html5buttons mrg-tsm">
             <div class="dt-buttons btn-group ">
               <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0" 
               aria-controls="DataTables_Table_0"><span>Copy</span></a>
@@ -60,7 +76,7 @@
            </div>
         </div>
        </div>
-        
+      </div>
 
       </div>
 
@@ -70,6 +86,12 @@
         [headerHeight]="50" [footerHeight]="50" [sorts]="[{prop: 'code', dir: 'asce'}]"
         [rowHeight]="'auto'" [limit]="6">
 
+
+        <ngx-datatable-column name="S. No." [width]="5" prop="">
+          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+            {{row.id}}
+          </ng-template>
+        </ngx-datatable-column>
       <ngx-datatable-column name="Article Code" [width]="5" prop="code" > 
           <ng-template let-row="row"  ngx-datatable-cell-template>
             {{row.code}}
@@ -85,7 +107,7 @@
             {{row.genericName}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Status" [width]="5" prop="address"> 
+        <ngx-datatable-column name="Status" [width]="5" prop="status"> 
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             <div class="active" *ngIf="row.active==true">
               Active
@@ -97,34 +119,35 @@
         </ngx-datatable-column>
         <ngx-datatable-column name="Last Updated On" [width]="80" prop="modifiedDate">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            {{myDate | date:'medium'}}
+            {{row.updatedDateTime}}
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="Last Updated By" [width]="80" prop="modifiedBy">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-         {{row.createdByName}} 
+              {{row.createdByName}}
             </ng-template>
           </ngx-datatable-column>
-        <ngx-datatable-column name="Action" [width]="40" >
-          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            <button type="button" class="btn editIconBack" (click)="editArticleForm(row)">
-              <i class="far fa-edit "></i>
-            </button>
-            <button type="button" class="btn deleteIconBack" (click)=" deleteArticle(row)">
-              <i class="far fa-trash-alt"></i>
-            </button>
-       
-            <!-- <button type="button" 
-            class="btn deleteIconBack"
-            mwlConfirmationPopover 
-            popoverTitle="Confirmation"
-            popoverMessage="Are you sure ?" 
-            placement="left" 
-            (confirm)="deleteArticle(row)"> 
-            <i class="far fa-trash-alt"></i>
-            </button> -->
-          </ng-template>
-        </ngx-datatable-column>
+      
+          <ngx-datatable-column name="Action" [width]="40">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              <button type="button" class="btn editIconBack" (click)="editArticleForm(row)">
+                <i class="far fa-edit "></i>
+              </button>
+              <button type="button" class="btn deleteIconBack" (click)=" deleteArticle(row)">
+                <i class="far fa-trash-alt"></i>
+              </button>
+        
+              <!-- <button type="button" 
+                    class="btn deleteIconBack"
+                    mwlConfirmationPopover 
+                    popoverTitle="Confirmation"
+                    popoverMessage="Are you sure ?" 
+                    placement="left" 
+                    (confirm)="deleteArticle(row)"> 
+                    <i class="far fa-trash-alt"></i>
+                    </button> -->
+            </ng-template>
+          </ngx-datatable-column>
         
         </ngx-datatable>
 

@@ -53,7 +53,8 @@ export class EditCertificateComponent implements OnInit {
   {
     let varr = {
       "name": this.data.name,
-      "description": this.data.description
+      "description": this.data.description,
+      "active": this.data.active,
     }
 
     this.http.
@@ -67,12 +68,12 @@ export class EditCertificateComponent implements OnInit {
           this.activeModal.close(true);
         }
         else {
-          this.toastr.error('Something went Worng', 'Message.');
+          this.toastr.error(this.response.message, 'Message.');
             }
 
       }, err => {
         if (err.status == 400) {
-          this.toastr.error('Something went Worng', 'Message.');
+          this.toastr.error(this.response.message, 'Message.');
         }
       });
   }
