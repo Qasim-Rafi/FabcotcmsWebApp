@@ -11,43 +11,42 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./add-seller-form.component.css']
 })
 export class AddSellerFormComponent implements OnInit {
- 
-  data:any={};
+
+  data: any = {};
   response: any;
-  seller:any[];
-  country:any=[];
-  countryId:null;
-  parentSellerId:null;
+  seller: any[];
+  country: any = [];
+  countryId: null;
+  parentSellerId: null;
   @ViewChild(NgForm) sellerForm;
 
-  
-  constructor(private http:HttpClient,
-              private toastr:ToastrService,
-              private _NgbActiveModal: NgbActiveModal) { }
+
+  constructor(private http: HttpClient,
+    private toastr: ToastrService,
+    private _NgbActiveModal: NgbActiveModal) { }
 
   ngOnInit(): void {
     this.getCountry();
     this.getParentSellers();
   }
 
-  getCountry()
-  {
+  getCountry() {
     this.http.get(`${environment.apiUrl}/api/Lookups/Countries`)
-    .subscribe(
-      res=> { 
-        this.response = res;
-        if (this.response.success == true){
-          this.country =this.response.data;
-        }
-        else {
-          this.toastr.error('Something went Worng', 'Message.');
-            }
+      .subscribe(
+        res => {
+          this.response = res;
+          if (this.response.success == true) {
+            this.country = this.response.data;
+          }
+          else {
+            this.toastr.error('Something went Worng', 'Message.');
+          }
 
-      }, err => { 
-        if (err.status == 400) {
-          this.toastr.error('Something went Worng', 'Message.');
-        }
-      });
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error('Something went Worng', 'Message.');
+          }
+        });
   }
 
 
@@ -57,70 +56,68 @@ export class AddSellerFormComponent implements OnInit {
   }
 
 
-  getParentSellers()
-  {
+  getParentSellers() {
     this.http.get(`${environment.apiUrl}/api/Lookups/Sellers`)
-    .subscribe(
-      res=> { 
-  
-        this.response = res;
-        if (this.response.success == true){
-              this.seller =this.response.data;
-         
-        }
-        else {
-          this.toastr.error('Something went Worng', 'Message.');
-            }
+      .subscribe(
+        res => {
 
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error('Something went Worng', 'Message.');
-        }
-      });
+          this.response = res;
+          if (this.response.success == true) {
+            this.seller = this.response.data;
+
+          }
+          else {
+            this.toastr.error('Something went Worng', 'Message.');
+          }
+
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error('Something went Worng', 'Message.');
+          }
+        });
   }
 
 
-    
-  addSeller()
-  {
-    let varr=  {
-           "sellerCode": this.data.sellerCode,
-           "sellerName":  this.data.sellerName,
-           "billingAddress": this.data.sellerBillAddress,
-           "countryId": this.data.countryId,
-           "contactNoPrimary":  this.data.sellerContact,
-           "contactNoSecondary":  this.data.sellerOtherContact,
-           "faxNumber":  this.data.sellerFax,
-           "ntnNumber":  this.data.sellerNTN,
-           "gstNumber":  this.data.sellerGST,
-           "machineId": 0,
-           "capabilitiesId": 0,
-           "majorStrength":  this.data.sellerStrenght,
-           "leadTime":  this.data.leadTime,
-           "sellerDetails":  this.data.sellerDetails,
-           "isParentSeller": true,
-           "parentSellerId": this.data.parentSellerId
+
+  addSeller() {
+    let varr = {
+      "sellerCode": this.data.sellerCode,
+      "sellerName": this.data.sellerName,
+      "billingAddress": this.data.sellerBillAddress,
+      "countryId": this.data.countryId,
+      "contactNoPrimary": this.data.sellerContact,
+      "contactNoSecondary": this.data.sellerOtherContact,
+      "faxNumber": this.data.sellerFax,
+      "ntnNumber": this.data.sellerNTN,
+      "gstNumber": this.data.sellerGST,
+      "machineId": 0,
+      "capabilitiesId": 0,
+      "majorStrength": this.data.sellerStrenght,
+      "leadTime": this.data.leadTime,
+      "sellerDetails": this.data.sellerDetails,
+      "isParentSeller": true,
+      "parentSellerId": this.data.parentSellerId
     }
 
     this.http.
-    post(`${environment.apiUrl}/api/Sellers/AddSeller`,varr)
-    .subscribe(
-      res=> { 
-        this.response = res;
-        if (this.response.success == true){
-          this.toastr.success(this.response.message, 'Message.');
-          this.sellerForm.reset();
-          this.activeModal.close(true);
-        }
-        else {
-          this.toastr.error('Something went Worng', 'Message.');
-            }
+      post(`${environment.apiUrl}/api/Sellers/AddSeller`, varr)
+      .subscribe(
+        res => {
+          this.response = res;
+          if (this.response.success == true) {
+            this.toastr.success(this.response.message, 'Message.');
+            this.sellerForm.reset();
+            this.activeModal.close(true);
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          }
 
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error('Error 400 :(', 'Message.');
-        }
-      });
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+        });
   }
 
 

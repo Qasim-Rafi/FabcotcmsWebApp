@@ -98,7 +98,7 @@
       <div class=" col-md-12 autoAdjustSearch">
         <div class="input-group col-md-offset-3">
 
-          <input type="text" placeholder="Search Buyer or their POCs " class="input form-control w-50">
+          <input type="text" placeholder="Search Supplier or their POCs " class="input form-control w-50">
           <span class="group-btn">
             <button type="button" class="btn btn-primary autoAdjustBtn ml-1"> <i class="fa fa-search"></i> Search</button>
           </span>
@@ -126,8 +126,8 @@
       <div class="col-md-7">
         <a class="faq-question">{{i.sellerCode}} - {{i.sellerName}}</a>
   
-        <div class="small mb-3">Parent Buyer: {{i.parentSellerId}} ({{i.sellerCode}})</div>
-        <div class="small">Added by <strong>Shahid Tanvir</strong>
+        <div class="small mb-3">Parent Buyer: {{i.parentSellerName}} ({{i.parentSellerCode}})</div>
+        <div class="small">Added by <strong>{{i.createdByName}}</strong>
           <div class="m-l-lg" style="display: inline-block;"> <i class="fa fa-clock-o fa-fw">
   
             </i>  {{i.createdDateTime}}</div>

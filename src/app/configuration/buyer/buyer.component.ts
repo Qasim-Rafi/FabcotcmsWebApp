@@ -7,7 +7,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EditBuyerComponent } from './edit-buyer/edit-buyer.component';
 import { AddBuyerComponent } from './add-buyer/add-buyer.component';
 import { ServiceService } from 'src/app/shared/service.service';
-import Swal from 'sweetalert2/dist/sweetalert2.js'; 
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { GlobalConstants } from 'src/app/Common/global-constants';
 @Component({
   selector: 'app-buyer',
@@ -15,98 +15,96 @@ import { GlobalConstants } from 'src/app/Common/global-constants';
   styleUrls: ['./buyer.component.css']
 })
 export class BuyerComponent implements OnInit {
-  listCount:number;
-    myDate=Date.now();
-    response: any;
-    data:any={};
-    country:any=[];
-    buyer:any[];
-    rows:any=[];
-    temp: any[];
-    countryId:null;
-    @ViewChild(NgForm) buyerForm;
-    date: number;
-
-    
+  listCount: number;
+  myDate = Date.now();
+  response: any;
+  data: any = {};
+  country: any = [];
+  buyer: any[];
+  rows: any = [];
+  temp: any[];
+  countryId: null;
+  @ViewChild(NgForm) buyerForm;
+  date: number;
 
 
-    constructor(private http:HttpClient,
-              private toastr: ToastrService,  
-              private modalService: NgbModal,
-              private service: ServiceService
-                )
-               { }
 
-             
-              
-  ngOnInit(){
+
+  constructor(private http: HttpClient,
+    private toastr: ToastrService,
+    private modalService: NgbModal,
+    private service: ServiceService
+  ) { }
+
+
+
+  ngOnInit() {
     this.getBuyers();
     return this.service.getCountry();
-   
-  } 
 
- 
-    getBuyers()
-    {
-      this.http.get(`${environment.apiUrl}/api/Buyers/GetBuyers`)
+  }
+
+
+  getBuyers() {
+    this.http.get(`${environment.apiUrl}/api/Buyers/GetBuyers`)
       .subscribe(
-        res=> { 
-    
+        res => {
+
           this.response = res;
-          if (this.response.success == true){
-            this.buyer =this.response.data;
-            this.listCount =this.buyer.length;
-           
+          if (this.response.success == true) {
+            this.buyer = this.response.data;
+            this.listCount = this.response.data.length;
+
           }
           else {
             this.toastr.error('Something went Worng', 'Message.');
-              }
-  
+          }
+
         }, err => {
           if (err.status == 400) {
             this.toastr.error('Something went Worng', 'Message.');
           }
         });
-    }
+  }
 
 
 
- editBuyer(popup){
-   const modalRef = this.modalService.open(EditBuyerComponent, { centered: true });
-         modalRef.componentInstance.userId = popup.id;
-         modalRef.result.then((data) => {
-        // on close
-        if(data ==true){
-          this.date = this.myDate;
-          this.getBuyers();
+  editBuyer(popup) {
+    const modalRef = this.modalService.open(EditBuyerComponent, { centered: true });
+    modalRef.componentInstance.userId = popup.id;
+    modalRef.result.then((data) => {
+      // on close
+      if (data == true) {
+        this.date = this.myDate;
+        this.getBuyers();
 
-        }
-      }, (reason) => {
-        // on dismiss
-      });
- } 
- 
-
- addBuyerForm(){
-  const modalRef = this.modalService.open(AddBuyerComponent, { centered: true });
-        modalRef.result.then((data) => {
-       // on close
-        if(data ==true){
-         this.date = this.myDate;
-         this.getBuyers();
-
-       }
-     }, (reason) => {
-       // on dismiss
-     });
-} 
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
 
 
+  addBuyerForm() {
+    const modalRef = this.modalService.open(AddBuyerComponent, { centered: true });
+    modalRef.result.then((data) => {
+      // on close
+      if (data == true) {
+        this.date = this.myDate;
+        this.getBuyers();
+
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
 
 
-deleteBuyer(id){
-Swal.fire({
-  title: GlobalConstants.deleteTitle, //'Are you sure?',
+
+
+  deleteBuyer(id) {
+    Swal.fire({
+      title: GlobalConstants.deleteTitle, //'Are you sure?',
       text: GlobalConstants.deleteMessage, //"You won't be able to revert this!",
       icon: 'error',
       showCancelButton: true,
@@ -116,35 +114,35 @@ Swal.fire({
       confirmButtonText: 'Yes',
       reverseButtons: true,
       position: 'top',
-}).then((result) => {
-  if (result.isConfirmed) {
+    }).then((result) => {
+      if (result.isConfirmed) {
 
-    this.http.delete(`${environment.apiUrl}/api/Buyers/DeleteBuyer/`+id.id )
-    .subscribe(
-      res=> { 
-        this.response = res;
-        if (this.response.success == true){
-         this.toastr.error(this.response.message, 'Message.');
-         this.getBuyers();
-        }
-        else {
-          this.toastr.error('Something went Worng', 'Message.');
-            }
- 
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error('Something went Worng', 'Message.');
-        }
-      });
+        this.http.delete(`${environment.apiUrl}/api/Buyers/DeleteBuyer/` + id.id)
+          .subscribe(
+            res => {
+              this.response = res;
+              if (this.response.success == true) {
+                this.toastr.error(this.response.message, 'Message.');
+                this.getBuyers();
+              }
+              else {
+                this.toastr.error(this.response.message, 'Message.');
+              }
+
+            }, err => {
+              if (err.status == 400) {
+                this.toastr.error('Something went Worng', 'Message.');
+              }
+            });
 
 
-    // Swal.fire(
-    //   'Record',
-    //   'Deleted Successfully.',
-    //   'failed',
-    // )
+        // Swal.fire(
+        //   'Record',
+        //   'Deleted Successfully.',
+        //   'failed',
+        // )
+      }
+    })
+
   }
-})
-
-}
 }

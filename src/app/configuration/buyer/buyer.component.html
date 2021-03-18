@@ -96,8 +96,8 @@
         </p>
     -->
       <hr>
-      <div class="row">
-        <div class=" col-md-12 autoAdjustSearch">
+      <div class="row justify-content-end">
+        <div class="col-md-12">
           <div class="input-group col-md-offset-3">
             
             <input type="text" placeholder="Search Buyer or their POCs " class="input form-control w-50">
@@ -130,8 +130,8 @@
     <div class="col-md-7">
       <a class="faq-question ">{{i.buyerCode}} - {{i.buyerName}}</a>
 
-      <div class="small mb-3">Parent Buyer: {{i.parentBuyerId}} ({{i.buyerCode}})</div>
-      <div class="small">Added by <strong>Shahid Tanvir</strong>
+      <div class="small mb-3">Parent Buyer: {{i.parentBuyerName}} ({{i.parentBuyerCode}})</div>
+      <div class="small">Added by <strong>{{i.createdByName}}</strong>
         <div class="m-l-lg" style="display: inline-block;">
           <i class="far fa-clock"></i> {{i.createdDateTime}}
         </div>
