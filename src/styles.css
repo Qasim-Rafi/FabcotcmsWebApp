@@ -35,6 +35,36 @@
   font-weight: 500 !important;
 }
 /* ----------------------------------------------------------------------- */
+/* DropDown styling */
+
+.ng-select .ng-select-container {
+  color: #333;
+  background-color: #fff;
+  border-radius: 0px !important;
+  border: 1px solid #ccc;
+  min-height: 36px;
+  align-items: center;
+  font-size: 11px;
+}
+
+.ng-select.ng-select-focused:not(.ng-select-opened) > .ng-select-container {
+  border-color: #1ab394 !important;
+  box-shadow: none !important;
+}
+
+.ng-dropdown-panel
+  .ng-dropdown-panel-items
+  .ng-option.ng-option-selected
+  .ng-option-label,
+.ng-dropdown-panel
+  .ng-dropdown-panel-items
+  .ng-option.ng-option-selected.ng-option-marked
+  .ng-option-label {
+  font-weight: 600;
+  font-size: 100px !important;
+}
+
+/* ----------------------------------------------------------------------- */
 
 h2 {
   color: #575d63 !important;
