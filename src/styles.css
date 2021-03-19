@@ -119,10 +119,10 @@ h5 {
 }
 
 .text2 {
-  font-size: 22px;
+  font-size: 20px;
   vertical-align: middle;
   padding-left: 10px;
-  font-weight: 400;
+  /* font-weight: 400; */
 }
 
 .headline {
@@ -245,6 +245,19 @@ title {
 }
 
 
+.active-enqury-pdg{
+  padding: 28px !important;
+}
+
+.agents-pdg{
+  padding: 20px !important;
+}
+
+.flt-RnL{
+  float: right !important;
+}
+
+
 
 
 @media only screen and (max-width: 768px) {
@@ -261,4 +274,41 @@ title {
   .mrg-tsm {
     margin: 10px 0 0 0;
   }
+  .active-enqury-pdg{
+    padding: 24px !important;
+  }
+  .text {
+    font-size: 21px;
 }
+
+.agents-pdg{
+  padding: 12px !important;
+}
+.flt-RnL{
+  float: left !important;
+}
+
+}
+
+
+
+@media only screen and (max-width: 480px) {
+ 
+  .active-enqury-pdg{
+    padding: 16px !important;
+  }
+  .display-b{
+    display: block !important;
+  }
+  .text-s-md {
+    font-size: 16px !important;
+  }
+  .text2 {
+    font-size: 16px;
+  }
+  .flt-RnL{
+    float: left !important;
+  }
+
+}
+
