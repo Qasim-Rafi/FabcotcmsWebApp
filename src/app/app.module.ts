@@ -13,7 +13,6 @@ import { ConfigurationModule } from './configuration/configuration.module';
 import { BusinessEnquryModule } from './business-enqury/business-enqury.module';
 import { HomeComponent } from './home/home.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { Select2Module } from 'ng2-select2';
 
 
 const appRoutes: Routes = [ ]
@@ -52,7 +51,6 @@ const appRoutes: Routes = [ ]
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    Select2Module,
     NgxDatatableModule,
     RouterModule.forRoot(appRoutes),
     ToastrModule.forRoot({

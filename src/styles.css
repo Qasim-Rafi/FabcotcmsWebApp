@@ -1,3 +1,6 @@
+/* DropDown Search */
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
 /* NGX TABLE */
 @import "~@swimlane/ngx-datatable/index.css";
 @import "~@swimlane/ngx-datatable/themes/material.css";
@@ -233,37 +236,38 @@ title {
   font-weight: 300 !important;
   padding: 12px 0 0 0 !important;
 }
-.html5buttons{
-  padding: 0px 7.5px ;
+.html5buttons {
+  padding: 0px 7.5px;
 }
 
-.modal-header .close, .modal-header .mailbox-attachment-close {
+.modal-header .close,
+.modal-header .mailbox-attachment-close {
   margin: 0px -5px 0px auto !important;
 }
 .modal-title {
   padding: 5px;
 }
 
-
-.active-enqury-pdg{
+.active-enqury-pdg {
   padding: 28px !important;
 }
 
-.agents-pdg{
+.agents-pdg {
   padding: 20px !important;
 }
 
-.flt-RnL{
+.flt-RnL {
   float: right !important;
 }
 .modal-dialog {
   max-width: 50% !important;
 }
 
-.close, .mailbox-attachment-close {
+.close,
+.mailbox-attachment-close {
   font-size: 1.3rem !important;
 }
-label  {
+label {
   text-align: right;
   font-size: 11px !important;
   color: grey !important;
@@ -277,50 +281,36 @@ select {
   border-radius: 0px;
 }
 
-
-
-
-
-
-
 @media only screen and (max-width: 768px) {
-  
   .mrg-tsm {
-    margin: 10px 0 0 0 ;
+    margin: 10px 0 0 0;
   }
-  
-  
 }
-
 
 @media only screen and (max-width: 667px) {
   .mrg-tsm {
     margin: 10px 0 0 0;
   }
-  .active-enqury-pdg{
+  .active-enqury-pdg {
     padding: 24px !important;
   }
   .text {
     font-size: 21px;
-}
+  }
 
-.agents-pdg{
-  padding: 12px !important;
+  .agents-pdg {
+    padding: 12px !important;
+  }
+  .flt-RnL {
+    float: left !important;
+  }
 }
-.flt-RnL{
-  float: left !important;
-}
-
-}
-
-
 
 @media only screen and (max-width: 480px) {
- 
-  .active-enqury-pdg{
+  .active-enqury-pdg {
     padding: 16px !important;
   }
-  .display-b{
+  .display-b {
     display: block !important;
   }
   .text-s-md {
@@ -329,9 +319,7 @@ select {
   .text2 {
     font-size: 16px;
   }
-  .flt-RnL{
+  .flt-RnL {
     float: left !important;
   }
-
 }
-
