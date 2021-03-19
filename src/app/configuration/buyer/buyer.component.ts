@@ -9,6 +9,7 @@ import { AddBuyerComponent } from './add-buyer/add-buyer.component';
 import { ServiceService } from 'src/app/shared/service.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { GlobalConstants } from 'src/app/Common/global-constants';
+import { Select2OptionData } from 'ng2-select2';
 @Component({
   selector: 'app-buyer',
   templateUrl: './buyer.component.html',
@@ -28,6 +29,8 @@ export class BuyerComponent implements OnInit {
   date: number;
 
 
+  public exampleData: Array<Select2OptionData>;
+
 
 
   constructor(private http: HttpClient,
@@ -39,11 +42,51 @@ export class BuyerComponent implements OnInit {
 
 
   ngOnInit() {
+
     this.getBuyers();
-    return this.service.getCountry();
+    // return this.service.getCountry();
+
+    this.exampleData = [
+      {
+        id: 'basic1',
+        text: 'Basic 1'
+      },
+      {
+        id: 'basic2',
+        disabled: true,
+        text: 'Basic 2'
+      },
+      {
+        id: 'basic3',
+        text: 'Basic 3'
+      },
+      {
+        id: 'basic4',
+        text: 'Basic 4'
+      }
+    ];
+
+
 
   }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 
   getBuyers() {
     this.http.get(`${environment.apiUrl}/api/Buyers/GetBuyers`)

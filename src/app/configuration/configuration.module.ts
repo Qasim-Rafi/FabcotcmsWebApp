@@ -71,6 +71,7 @@ import { AddTimeActionComponent } from './home-textile/time-action-items/add-tim
 import { AddCurrencyComponent } from './currency/add-currency/add-currency.component';
 import { EditCurrencyComponent } from './currency/edit-currency/edit-currency.component';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
+import { Select2Module } from 'ng2-select2';
 
 @NgModule({
   declarations: [
@@ -123,6 +124,7 @@ import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    Select2Module,
     ToastrModule.forRoot({
       progressBar: true,
       timeOut:3000

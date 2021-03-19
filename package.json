@@ -25,6 +25,8 @@
     "@swimlane/ngx-datatable": "^19.0.0",
     "admin-lte": "^3.0.5",
     "angular-confirmation-popover": "^6.0.0",
+    "jquery": "^3.6.0",
+    "ng2-select2": "^1.0.0-beta.16",
     "ngx-toastr": "^13.2.0",
     "rxjs": "~6.6.0",
     "sweetalert2": "^10.15.5",
