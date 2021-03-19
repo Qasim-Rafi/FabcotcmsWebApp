@@ -16,7 +16,7 @@
     <div class="form-group row">
       <label name="agentTypeId" class="col-sm-3 col-form-label text_Navy" [(ngModel)]="agentTypeId">
         Type</label>
-      <div class="col-sm-9">
+      <div class="col-sm-8">
         <select class="form-control">
           <option selected disabled> External Agent</option>
 
@@ -29,7 +29,7 @@
       <label name="agentSideId" class="col-sm-3 col-form-label text_Navy" [(ngModel)]="agentSideId">
         Side
       </label>
-      <div class="col-sm-9">
+      <div class="col-sm-8">
         <select class="form-control">
           <option selected disabled> Buyer side Agent</option>
 
@@ -44,7 +44,7 @@
 
     <div class="form-group row" [class.has-error]="name.invalid && name.touched">
       <label for="code" class="col-sm-3 col-form-label control-label text_Navy">Name </label>
-      <div class="col-sm-9">
+      <div class="col-sm-8">
         <input required id="name" type="text" class="form-control" placeholder="Enter Agent full name" name="name"
           [(ngModel)]="data.name" #name="ngModel" [ngClass]="{'error': name.invalid }">
       </div>
@@ -53,7 +53,7 @@
 
     <div class="form-group row">
       <label for="name" class="col-sm-3 col-form-label text-grey">Address</label>
-      <div class="col-sm-9">
+      <div class="col-sm-8">
         <input  id="address" type="text" class="form-control" placeholder="Enter Agent mailing address"
           name="address" [(ngModel)]="data.address" #address="ngModel">
       </div>
@@ -62,7 +62,7 @@
     
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-3 col-form-label">City</label>
-      <div class="col-sm-9">
+      <div class="col-sm-8">
         <select  name="city " class="form-control" [(ngModel)]=" cityId">
           <option value="null" disabled> Nothing Selected</option>
           <option *ngFor="let i of city" [value]="i.id">
@@ -74,7 +74,7 @@
 
     <div class="form-group row">
       <label for="name" class="col-sm-3 col-form-label text-grey">Email</label>
-      <div class="col-sm-9">
+      <div class="col-sm-8">
         <input  id="emailAddress" type="text" class="form-control" placeholder="Enter Agent email address"
           name="emailAddress" [(ngModel)]="data.emailAddress" #emailAddress="ngModel">
       </div>
@@ -82,12 +82,12 @@
 
     <div class="form-group row">
       <label for="cellNumber" class="col-sm-3 col-form-label text-grey">Contact Nos.</label>
-      <div class="col-md-9">
+      <div class="col-md-8">
         <input  type="text" class="form-control" id="cellNumber" placeholder="Enter mobile numbers"
           name="cellNumber" [(ngModel)]="data.cellNumber" #cellNumber="ngModel" cellNumber>
       </div>
       <label class="col-sm-3 col-form-label text-grey"></label>
-      <div class="col-md-9 mt-1">
+      <div class="col-md-8 mt-1">
         <input type="text" class="form-control" id="landlineNumber" placeholder="Enter Land numbers"
           name="landlineNumber" [(ngModel)]="data.landlineNumber" #landlineNumber="ngModel"
          >
@@ -96,7 +96,7 @@
 
     <div class="form-group row">
       <label for="bankName" class="col-sm-3 col-form-label control-label text-grey">Bank </label>
-      <div class="col-sm-9">
+      <div class="col-sm-8">
         <input  id="bankName" type="text" class="form-control " placeholder="Enter Agent Bank Name"
           name="bankName" [(ngModel)]="data.bankName" #bankName="ngModel">
       </div>
@@ -104,13 +104,13 @@
 
     <div class="form-group row">
       <label for="accountNumber" class="col-sm-3 col-form-label control-label text-grey">Account </label>
-      <div class="col-sm-9">
+      <div class="col-sm-8">
         <input  id="accountNumber" type="text" class="form-control " placeholder="Enter Agent Account No."
           name="accountNumber" [(ngModel)]="data.accountNumber" #accountNumber="ngModel"
           [ngClass]="{'error': accountNumber.invalid }">
       </div>
       <label class="col-sm-3 col-form-label"></label>
-      <div class="col-sm-9 mt-1">
+      <div class="col-sm-8 mt-1">
 
         <input required id="accountTitle" type="text" class="form-control " placeholder="Enter Agent Account Name"
           name="accountTitle" [(ngModel)]="data.accountTitle" #accountTitle="ngModel"
@@ -121,7 +121,7 @@
 
     <div class="form-group row" [class.has-error]="swiftCode.invalid && swiftCode.touched">
       <label for="swiftCode" class="col-sm-3 col-form-label control-label text-grey">Swift </label>
-      <div class="col-sm-9">
+      <div class="col-sm-8">
         <input  id="swiftCode" type="text" class="form-control " placeholder="Enter Agent Account swift code"
           name="swiftCode" [(ngModel)]="data.swiftCode" #swiftCode="ngModel"
           >
@@ -131,7 +131,7 @@
 
     <div class="form-group row">
       <label for="details" class="col-sm-3 col-form-label text-grey">Details</label>
-      <div class="col-sm-9">
+      <div class="col-sm-8">
         <textarea class="form-control" id="details" rows="3" placeholder="Description or note for agent ..."
           name="details" [(ngModel)]="data.details" #details="ngModel"></textarea>
       </div>

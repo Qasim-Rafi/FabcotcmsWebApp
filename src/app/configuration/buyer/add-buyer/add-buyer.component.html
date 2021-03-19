@@ -15,7 +15,7 @@
 
     <div class="form-group row">
       <label for="name" class="col-sm-3 col-form-label text_Navy"><strong>Buyer Name</strong></label>
-      <div class="col-sm-9">
+      <div class="col-sm-8">
         <input required id="buyerName" type="text" class="form-control" placeholder="Buyer name" name="buyerName"
           [(ngModel)]="data.buyerName" #name="ngModel" [ngClass]="{'error': name.invalid}">
       </div>
@@ -23,7 +23,7 @@
 
     <div class="form-group row">
       <label for="bill-address" class="col-sm-3 col-form-label">Billing Address</label>
-      <div class="col-sm-9">
+      <div class="col-sm-8">
         <textarea class="form-control" id="buyerBillAddress" rows="3" placeholder="Buyer mailing address"
           name="buyerBillAddress" [(ngModel)]="data.buyerBillAddress" #buyerBillAddress="ngModel"
           ></textarea>
@@ -32,7 +32,7 @@
 
     <div class="form-group row">
       <label for="delivery-address" class="col-sm-3 col-form-label">Delivery Address</label>
-      <div class="col-sm-9">
+      <div class="col-sm-8">
         <textarea class="form-control" id="buyerDiliveryAddress" rows="3" placeholder="Buyer delivery address"
           name="buyerDiliveryAddress" [(ngModel)]="data.buyerDiliveryAddress" #buyerDiliveryAddress="ngModel"
           ></textarea>
@@ -41,7 +41,7 @@
 
     <div class="form-group row">
       <label for="country" class="col-sm-3 col-form-label">Country</label>
-      <div class="col-sm-9">
+      <div class="col-sm-8">
         <select required class="form-control" placeholder="Nothing selected" name="countryId"
           [(ngModel)]="countryId" >
           <option value="null" disabled > Nothing Selected</option>
@@ -54,7 +54,7 @@
 
     <div class="form-group row">
       <label for="buyerContact" class="col-sm-3 col-form-label">Contact Nos.</label>
-        <div class="col-sm-9">
+        <div class="col-sm-8">
 
         <div class="row">
           <div class="col-sm-6 fieldmrgbtm">
@@ -73,7 +73,7 @@
 
     <div class="form-group row">
       <label for="buyerFax" class="col-sm-3 col-form-label">Fax Number</label>
-      <div class="col-sm-9">
+      <div class="col-sm-8">
         <input type="text" class="form-control" id="buyerFax" placeholder="Buyer Fax No." name="buyerFax"
           [(ngModel)]="data.buyerFax" #buyerFax="ngModel">
       </div>
@@ -82,7 +82,7 @@
     <div class="form-group row">
       <label for="buyerNTN" class="col-sm-3 col-form-label">NTN/GST Nos.</label>
 
-      <div class="col-sm-9">
+      <div class="col-sm-8">
         <div class="row">
           <div class="col-sm-6 fieldmrgbtm">
             <input type="text" class="form-control" id="buyerNTN" placeholder="NTN No." name="buyerNTN"
@@ -99,7 +99,7 @@
 
     <div class="form-group row">
       <label for="buyerDetails" class="col-sm-3 col-form-label">Buyer Details</label>
-      <div class="col-sm-9">
+      <div class="col-sm-8">
         <textarea class="form-control" id="buyerDetails" rows="4" placeholder="Buyer additional details here ..."
           name="buyerDetails" [(ngModel)]="data.buyerDetails" #buyerDetails="ngModel"></textarea>
       </div>
@@ -112,7 +112,7 @@
 
     <div class="form-group row">
       <label for="isParentBuyer" class="col-sm-3 col-form-label">Parent Buyer</label>
-      <div class="col-sm-9">
+      <div class="col-sm-8">
         <select class="form-control" name="parentBuyerId" [(ngModel)]="parentBuyerId">
           <option value="null" disabled > Select Parent Buyer</option>
           <option *ngFor="let i of buyer" [value]="i.id">

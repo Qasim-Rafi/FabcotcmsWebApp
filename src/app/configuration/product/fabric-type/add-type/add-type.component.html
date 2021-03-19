@@ -15,7 +15,7 @@
 
     <div class="form-group row" [class.has-error]="type.invalid">
       <label for="type" class="col-sm-3 col-form-label control-label text_Navy">Fabric Type </label>
-      <div class="col-sm-9 ">
+      <div class="col-sm-8 ">
         <input required id="type" type="text" class="form-control" placeholder="Fabric Type" name="type"
           [(ngModel)]="data.type" #type="ngModel" [ngClass]="{'error': type.invalid}">
         <small>Add Fabric Description</small>
@@ -25,7 +25,7 @@
 
     <div class="form-group row">
       <label for="description" class="col-sm-3 col-form-label text-grey">Description</label>
-      <div class="col-sm-9">
+      <div class="col-sm-8">
         <textarea  class="form-control" id="description" rows="3" name="description"
           placeholder="Brief Fabric description here..." [(ngModel)]="data.description"
           #description="ngModel"></textarea>
@@ -34,7 +34,7 @@
 
     <div class="form-group row">
       <label for="active" class="col-sm-3 col-form-label text-grey"></label>
-      <div class="col-sm-9">
+      <div class="col-sm-8">
         <div class="form-check form-check-inline">
           <input checked class="form-check-input check-btn " type="checkbox" name="active" [(ngModel)]="active"
             >

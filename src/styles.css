@@ -238,7 +238,7 @@ title {
 }
 
 .modal-header .close, .modal-header .mailbox-attachment-close {
-  margin: 0rem 0rem 0rem auto !important;
+  margin: 0px -5px 0px auto !important;
 }
 .modal-title {
   padding: 5px;
@@ -256,6 +256,29 @@ title {
 .flt-RnL{
   float: right !important;
 }
+.modal-dialog {
+  max-width: 50% !important;
+}
+
+.close, .mailbox-attachment-close {
+  font-size: 1.3rem !important;
+}
+label  {
+  text-align: right;
+  font-size: 11px !important;
+  color: grey !important;
+}
+input,
+textarea,
+option,
+select {
+  font-size: 11px !important;
+  color: grey !important;
+  border-radius: 0px;
+}
+
+
+
 
 
 
