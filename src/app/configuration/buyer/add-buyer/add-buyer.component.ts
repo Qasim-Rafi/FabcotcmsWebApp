@@ -18,7 +18,7 @@ export class AddBuyerComponent implements OnInit {
   country: any = [];
   buyer: any[];
   countryId= null;
-  parentBuyerId= null;
+  parentBuyerId= 0;
   @ViewChild(NgForm) buyerForm;
   date: number;
 
