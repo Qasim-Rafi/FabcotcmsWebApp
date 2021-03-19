@@ -12,6 +12,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class AddPriceComponent implements OnInit {
   data:any={};
   response: any;
+  active = true;
 
   constructor(private http:HttpClient,
     private toastr: ToastrService,
@@ -30,7 +31,7 @@ export class AddPriceComponent implements OnInit {
     let varr=  {
            "term": this.data.term,
            "description":this.data.description,
-           "active": this.data.active,
+           "active": this.active,
      
     }
 

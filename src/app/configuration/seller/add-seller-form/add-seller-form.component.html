@@ -3,40 +3,40 @@
 <div class="modal-header">
 
   <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
-    <span style="color: black;" aria-hidden="true">&times;</span>
+    <div aria-hidden="true">&times;</div>
   </button>
 
-  <h5 class="modal-title" id="exampleModalScrollableTitle" style="width: 600px; text-align: center;">
+  <h5 class="modal-title" id="exampleModalScrollableTitle">
     <i class="fa fa-plus"></i>
-    Add Seller
+    Add Seller  
   </h5>
 
 </div>
 <div class="modal-body" style="background-color: #f8fafb;">
   <form #sellerForm="ngForm" novalidate>
 
-    <div class="form-group row">
+    <div class="form-group row" [class.has-error]="name.invalid"> 
       <label for="sellerName" class="col-sm-3 col-form-label text_Navy">Seller Name</label>
       <div class="col-sm-9">
         <input required id="sellerName" type="text" class="form-control" placeholder="Seller name" name="sellerName"
-          [(ngModel)]="data.sellerName" #name="ngModel" [ngClass]="{'error': name.invalid && name.touched}">
+          [(ngModel)]="data.sellerName" #name="ngModel" [ngClass]="{'error':name.invalid}">
       </div>
     </div>
 
     <div class="form-group row">
       <label for="sellerBillAddress" class="col-sm-3 col-form-label">Billing Address</label>
       <div class="col-sm-9">
-        <textarea required class="form-control" id="sellerBillAddress" rows="3" placeholder="Seller mailing address"
+        <textarea  class="form-control" id="sellerBillAddress" rows="3" placeholder="Seller mailing address"
           name="sellerBillAddress" [(ngModel)]="data.sellerBillAddress" #sellerBillAddress="ngModel"
-          [ngClass]="{'error': sellerBillAddress.invalid && sellerBillAddress.touched}"></textarea>
+         ></textarea>
       </div>
     </div>
 
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-3 col-form-label">Country</label>
       <div class="col-sm-9">
-        <select required name="country " class="form-control" [(ngModel)]=" data.countryId">
-          <option value="null" disabled> Choose a Seller Country</option>
+        <select required name="country " class="form-control" [(ngModel)]=" countryId">
+          <option value="null" disabled> Nothing Selected</option>
           <option *ngFor="let i of country" [value]="i.id">
             {{i.name}}
           </option>
@@ -49,14 +49,14 @@
       <div class="col-sm-9">
         <div class="row">
           <div class="col-sm-6">
-            <input required type="text" class="form-control" id="sellerContact" placeholder=" Primary Contact No."
+            <input  type="text" class="form-control" id="sellerContact" placeholder=" Primary Contact No."
               name="sellerContact" [(ngModel)]="data.sellerContact" #sellerContact="ngModel"
-              [ngClass]="{'error': sellerContact.invalid && sellerContact.touched}">
+              >
           </div>
           <div class="col-sm-6">
             <input type="text" class="form-control" id="sellerOtherContact" placeholder="Other Contact No."
               name="sellerOtherContact" [(ngModel)]="data.sellerOtherContact" #sellerOtherContact="ngModel"
-              [disabled]=" sellerContact.invalid">
+              >
           </div>
         </div>
       </div>
@@ -140,8 +140,8 @@
     <div class="form-group row">
       <label for="parentSellerId" class="col-sm-3 col-form-label">Parent Seller</label>
       <div class="col-sm-9">
-        <select class="form-control" name="parentSellerId" [(ngModel)]="data.parentSellerId">
-          <option selected>Select Parent Seller ...</option>
+        <select class="form-control" name="parentSellerId" [(ngModel)]="parentSellerId">
+          <option disabled value="null">Select Parent Seller</option>
           <option *ngFor="let i of seller" [value]="i.id">
             {{i.sellerName}}
           </option>

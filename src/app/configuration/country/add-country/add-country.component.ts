@@ -12,6 +12,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class AddCountryComponent implements OnInit {
   data: any = {};
   response: any;
+  active = true; 
 
   constructor(
     private http: HttpClient, private toastr: ToastrService,
@@ -30,7 +31,7 @@ export class AddCountryComponent implements OnInit {
     let varr = {
       "name": this.data.name,
       "details": this.data.details,
-      "active": this.data.active
+      "active": this.active
     }
 
     this.http.

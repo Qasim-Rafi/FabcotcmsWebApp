@@ -12,11 +12,11 @@
 <div class="modal-body BG">
   <form #addPriceForm="ngForm" novalidate>
 
-    <div class="form-group row" [class.has-error]="term.invalid && term.touched">
+    <div class="form-group row" [class.has-error]="term.invalid ">
       <label for="term" class="col-sm-3 col-form-label control-label text_Navy">Price Term </label>
       <div class="col-sm-9">
         <input required id="term" type="text" class="form-control" placeholder="Price Term" name="term"
-          [(ngModel)]="data.term" #term="ngModel" [ngClass]="{'error': term.invalid && term.touched}">
+          [(ngModel)]="data.term" #term="ngModel" [ngClass]="{'error': term.invalid }">
         <small>Add Price Term</small>
       </div>
     </div>
@@ -25,7 +25,7 @@
     <div class="form-group row">
       <label for="description" class="col-sm-3 col-form-label text-grey">Description</label>
       <div class="col-sm-9">
-        <textarea required class="form-control" id="description" rows="3" name="description"
+        <textarea  class="form-control" id="description" rows="3" name="description"
           placeholder="Brief Price Term description here..." [(ngModel)]="data.description"
           #description="ngModel"></textarea>
       </div>
@@ -35,8 +35,8 @@
       <label for="active" class="col-sm-3 col-form-label text-grey"></label>
       <div class="col-sm-9">
         <div class="form-check form-check-inline">
-          <input class="form-check-input check-btn " type="checkbox" name="active" [(ngModel)]="data.active"
-            #active="ngModel">
+          <input class="form-check-input check-btn " type="checkbox" name="active" [(ngModel)]="active"
+           >
           <label for="active" class="form-check-label text-grey" id="active">Marked as Active</label>
         </div>
       </div>
@@ -46,7 +46,7 @@
   </form>
 </div>
 <div class="modal-footer NotBG">
-  <button class="btn button-save" type="submit" (click)="addPrice()">
+  <button class="btn button-save" type="submit" (click)="addPrice()" [disabled]="addPriceForm.invalid">
     Save Price Term
   </button>
 </div>

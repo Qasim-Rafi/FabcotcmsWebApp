@@ -12,6 +12,9 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class AddPackingComponent implements OnInit {
   data: any ={};
   response: any;
+  active = true;
+
+
   constructor(private http:HttpClient,
     private toastr: ToastrService,
     private _NgbActiveModal: NgbActiveModal) { }
@@ -29,7 +32,7 @@ export class AddPackingComponent implements OnInit {
     let varr=  {
       "name": this.data.name,
       "description":  this.data.description,
-      "active": this.data.active,
+      "active": this.active,
      
     }
 

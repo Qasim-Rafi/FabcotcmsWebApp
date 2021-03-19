@@ -18,7 +18,7 @@
             <label for="validFrom" class="col-sm-3 col-form-label control-label">Form Validity</label>
             <div class="col-sm-9">
               <input required id="validFrom" type="date" class="form-control" placeholder="Date" name="validFrom"
-                [(ngModel)]="data.validFrom" #validFrom="ngModel">
+                [(ngModel)]="data.validFrom" #validFrom="ngModel" >
             </div>
           </div>
 
@@ -26,7 +26,7 @@
         <label for="code" class="col-sm-3 col-form-label control-label">Currency Code </label>
         <div class="col-sm-9">
           <input required id="currencyCode" type="text" class="form-control" placeholder="Code" name="currencyCode"
-            [(ngModel)]="data.currencyCode" #currencyCode="ngModel">
+            [(ngModel)]="data.currencyCode" #currencyCode="ngModel" [ngClass]="{'error': currencyCode.invalid }">
         </div>
       </div>
 
@@ -35,7 +35,7 @@
         <label for="code" class="col-sm-3 col-form-label control-label">Rate </label>
         <div class="input-group col-sm-9"> 
           <input required id="rate" type="text" class="form-control" placeholder="Rate" name="rate"
-            [(ngModel)]="data.rate" #name="ngModel">
+            [(ngModel)]="data.rate" #rate="ngModel" [ngClass]="{'error': rate.invalid }">
             <span class="rate">= 1 USD</span>
             
         </div>
@@ -45,7 +45,7 @@
       <div class="form-group row">
         <label for="details" class="col-sm-3 col-form-label">Details</label>
         <div class="col-sm-9">
-          <textarea required class="form-control" id="details" rows="3" name="details"
+          <textarea  class="form-control" id="details" rows="3" name="details"
             [(ngModel)]="data.details" #details="ngModel"></textarea>
         </div>
       </div>
@@ -56,7 +56,7 @@
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">Close</button>
 
-   <button class="btn button-save" type="submit" (click)="addCurrency()">
+   <button class="btn button-save" type="submit" (click)="addCurrency()" [disabled]="addAgentForm.invalid">
      Save Rate
     </button>
   </div>

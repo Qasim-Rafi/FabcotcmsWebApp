@@ -17,7 +17,7 @@
       <label for="name" class="col-sm-3 col-form-label text_Navy"><strong>Buyer Name</strong></label>
       <div class="col-sm-9">
         <input required id="buyerName" type="text" class="form-control" placeholder="Buyer name" name="buyerName"
-          [(ngModel)]="data.buyerName" #name="ngModel" [ngClass]="{'error': name.invalid && name.touched}">
+          [(ngModel)]="data.buyerName" #name="ngModel" [ngClass]="{'error': name.invalid}">
       </div>
     </div>
 

@@ -12,6 +12,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class AddCertificateComponent implements OnInit {
   data:any={};
   response: any;
+  active = true;
 
   constructor(private http:HttpClient,
     private toastr: ToastrService,
@@ -32,7 +33,7 @@ export class AddCertificateComponent implements OnInit {
     let varr=  {
       "name": this.data.name,
       "description": this.data.description,
-      "active": this.data.active,
+      "active": this.active,
     }
 
     this.http.

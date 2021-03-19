@@ -12,8 +12,10 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class AddAgentFormComponent implements OnInit {
   data:any={};
   response: any;
-  agentTypeId: null;
-  agentSideId: null;
+  agentTypeId = null;
+  agentSideId = null;
+  city: any[];
+  cityId = null;
 
 
   constructor(private http:HttpClient,
@@ -38,7 +40,7 @@ export class AddAgentFormComponent implements OnInit {
       "agentSideId": this.data.agentSideId,
       "name": this.data.name,
       "address": this.data.address,
-      "cityId": this.data.cityId,
+      "cityId": this.cityId,
       "emailAddress": this.data.emailAddress,
       "cellNumber": this.data.cellNumber,
       "landlineNumber": this.data.landlineNumber,

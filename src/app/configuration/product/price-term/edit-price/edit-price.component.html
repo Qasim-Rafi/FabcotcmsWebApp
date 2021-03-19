@@ -24,7 +24,7 @@
     <div class="form-group row">
       <label for="description" class="col-sm-3 col-form-label text-grey">Description</label>
       <div class="col-sm-9">
-        <textarea required class="form-control" id="description" rows="3"
+        <textarea  class="form-control" id="description" rows="3"
           placeholder="Brief Price Term description here ..." name="description" [(ngModel)]="data.description"
           #description="ngModel"></textarea>
       </div>
@@ -45,7 +45,7 @@
   </form>
 </div>
 <div class="modal-footer NotBG">
-  <button class="btn button-save" type="submit" (click)="UpdatePrice()">
+  <button class="btn button-save" type="submit" (click)="UpdatePrice()" [disabled]="addPriceForm.invalid">
     Update Price Term
   </button>
 </div>

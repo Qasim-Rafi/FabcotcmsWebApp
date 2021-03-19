@@ -25,7 +25,7 @@
     <div class="form-group row">
       <label for="description" class="col-sm-3 col-form-label text-grey">Description</label>
       <div class="col-sm-9">
-        <textarea required class="form-control" id="description" rows="3"
+        <textarea  class="form-control" id="description" rows="3"
           placeholder="Brief Fabric description here ..." name="description" [(ngModel)]="data.description"
           #description="ngModel"></textarea>
       </div>
@@ -46,7 +46,7 @@
 
 </div>
 <div class="modal-footer ">
-  <button class="btn button-save" type="submit" (click)=" UpdateType()">
+  <button class="btn button-save" type="submit" (click)=" UpdateType()" [disabled]="addTypeForm.invalid">
     Update Fabric Type
   </button>
 </div>

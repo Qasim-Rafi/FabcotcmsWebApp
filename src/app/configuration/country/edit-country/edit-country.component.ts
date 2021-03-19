@@ -13,6 +13,8 @@ export class EditCountryComponent implements OnInit {
   response: any;
   data: any = {};
   @Input() userId;
+  
+  
   constructor(private http: HttpClient,
     private toastr: ToastrService,
     private _NgbActiveModal: NgbActiveModal) { }
