@@ -24,18 +24,18 @@
     <div class="form-group row">
       <label for="bill-address" class="col-sm-3 col-form-label">Billing Address</label>
       <div class="col-sm-9">
-        <textarea required class="form-control" id="buyerBillAddress" rows="3" placeholder="Buyer mailing address"
+        <textarea class="form-control" id="buyerBillAddress" rows="3" placeholder="Buyer mailing address"
           name="buyerBillAddress" [(ngModel)]="data.buyerBillAddress" #buyerBillAddress="ngModel"
-          [ngClass]="{'error': buyerBillAddress.invalid && buyerBillAddress.touched}"></textarea>
+          ></textarea>
       </div>
     </div>
 
     <div class="form-group row">
       <label for="delivery-address" class="col-sm-3 col-form-label">Delivery Address</label>
       <div class="col-sm-9">
-        <textarea required class="form-control" id="buyerDiliveryAddress" rows="3" placeholder="Buyer delivery address"
+        <textarea class="form-control" id="buyerDiliveryAddress" rows="3" placeholder="Buyer delivery address"
           name="buyerDiliveryAddress" [(ngModel)]="data.buyerDiliveryAddress" #buyerDiliveryAddress="ngModel"
-          [ngClass]="{'error': buyerDiliveryAddress.invalid && buyerDiliveryAddress.touched}"></textarea>
+          ></textarea>
       </div>
     </div>
 
@@ -43,31 +43,29 @@
       <label for="country" class="col-sm-3 col-form-label">Country</label>
       <div class="col-sm-9">
         <select required class="form-control" placeholder="Nothing selected" name="countryId"
-          [(ngModel)]="data.countryId">
-          <option value="null" selected> Nothing selected</option>
+          [(ngModel)]="countryId" >
+          <option value="null" disabled > Nothing Selected</option>
           <option *ngFor="let i of country" [value]="i.id">
             {{i.name}}
           </option>
         </select>
       </div>
-    </div>
+    </div>  
 
     <div class="form-group row">
       <label for="buyerContact" class="col-sm-3 col-form-label">Contact Nos.</label>
-
-
-      <div class="col-sm-9">
+        <div class="col-sm-9">
 
         <div class="row">
           <div class="col-sm-6 fieldmrgbtm">
-            <input required type="text" class="form-control" id="buyerContact" placeholder="Primary Contact No."
+            <input  type="text" class="form-control" id="buyerContact" placeholder="Primary Contact No."
               name="buyerContact" [(ngModel)]="data.buyerContact" #buyerContact="ngModel"
-              [ngClass]="{'error': buyerContact.invalid && buyerContact.touched}">
+              >
           </div>
           <div class="col-sm-6">
             <input type="text" class="form-control" id="buyerOtherContact" placeholder="Other Contact No."
               name="buyerOtherContact" [(ngModel)]="data.buyerOtherContact" #buyerOtherContact="ngModel"
-              [disabled]=" buyerContact.invalid">
+              >
           </div>
         </div>
       </div>
@@ -113,13 +111,10 @@
     </div>
 
     <div class="form-group row">
-      <label for="isParentBuyer" class="col-sm-3 col-form-label">
-        Parent Buyer
-      </label>
-
+      <label for="isParentBuyer" class="col-sm-3 col-form-label">Parent Buyer</label>
       <div class="col-sm-9">
-        <select class="form-control" name="parentBuyerId" [(ngModel)]="data.parentBuyerId">
-          <option value=" " disabled selected> Select Parent Buyer ...</option>
+        <select class="form-control" name="parentBuyerId" [(ngModel)]="parentBuyerId">
+          <option value="null" disabled > Select Parent Buyer</option>
           <option *ngFor="let i of buyer" [value]="i.id">
             {{i.buyerName}}
           </option>

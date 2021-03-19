@@ -42,6 +42,7 @@ export class ForeignAgentComponent implements OnInit {
     // filter our data
     const temp = this.temp.filter(function (d) {
       return d.code.toLowerCase().indexOf(val) !== -1 ||
+      
         d.name.toLowerCase().indexOf(val) !== -1 || !val;
     });
 

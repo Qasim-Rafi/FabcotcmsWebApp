@@ -17,8 +17,8 @@ export class AddBuyerComponent implements OnInit {
   data: any = {};
   country: any = [];
   buyer: any[];
-  countryId: null;
-  parentBuyerId: null;
+  countryId= null;
+  parentBuyerId= null;
   @ViewChild(NgForm) buyerForm;
   date: number;
 
@@ -84,7 +84,7 @@ export class AddBuyerComponent implements OnInit {
       "buyerName": this.data.buyerName,
       "billingAddress": this.data.buyerBillAddress,
       "deliveryAddress": this.data.buyerDiliveryAddress,
-      "countryId": this.data.countryId,
+      "countryId": this.countryId,
       "contactNoPrimary": this.data.buyerContact,
       "contactNoSecondary": this.data.buyerOtherContact,
       "faxNumber": this.data.buyerFax,
@@ -92,8 +92,8 @@ export class AddBuyerComponent implements OnInit {
       "gstNumber": this.data.buyerGTS,
       "buyerDetails": this.data.buyerDetails,
       "isParentBuyer": this.data.isParentBuyer,
-      "parentBuyerId": this.data.parentBuyerId,
-    }
+      "parentBuyerId": this.parentBuyerId,
+    } 
 
     this.http.
       post(`${environment.apiUrl}/api/Buyers/AddBuyer`, varr)
