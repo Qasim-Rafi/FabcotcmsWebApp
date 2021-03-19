@@ -37,7 +37,8 @@ export class BankAccountsComponent implements OnInit {
     const val = event.target.value.toLowerCase();
     // filter our data
     const temp = this.temp.filter(function (d) {
-      return d.id.toLowerCase().indexOf(val) !== -1 || !val;
+      return (d.accountName.toLowerCase().indexOf(val) !== -1 ||
+      d.accountNumber.toLowerCase().indexOf(val) !== -1 || !val);
     });
 
     // update the rows

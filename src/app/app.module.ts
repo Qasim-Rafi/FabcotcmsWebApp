@@ -16,6 +16,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 
 
+
  
 
 
@@ -29,6 +30,7 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     HomeComponent,
+   
     // AddEnquiryComponent,
     // SearchEnquiryComponent,
     // AddmodalComponent,
@@ -57,6 +59,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+ 
     NgxDatatableModule,
     RouterModule.forRoot(appRoutes),
     ToastrModule.forRoot({

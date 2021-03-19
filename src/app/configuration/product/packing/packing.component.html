@@ -50,7 +50,7 @@
           <div class="col-md-6 ">
             <button type="button" class="btn btn-primary descBtn ml-sm-none ml-md-2 ">
               <i class="fas fa-anchor fa-fw mr-2"></i>{{listCount}}</button>
-            <span class="text-muted text2">Fabric Types</span>
+            <span class="text-muted text2">Packing</span>
           </div>
           <div class="col-md-6 mrg-tsm">
             <button type="button" class="btn btn-primary btn-md float-right" (click)="addPackingForm()">
@@ -65,7 +65,7 @@
         <div class="row justify-content-end">
           <div class=" col-md-4" >
             <div class="input-group col-md-offset-3">
-              <input type="text" placeholder="Search"
+              <input type="text" placeholder="Search by Packing Name.."
               class="input form-control w-50" (keyup)="updateFilter($event)">
             </div>
           </div>
@@ -98,7 +98,7 @@
             {{row.id}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Packing" [width]="80" prop="name">
+        <ngx-datatable-column name="Packing Name" [width]="80" prop="name">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.name}}
           </ng-template>

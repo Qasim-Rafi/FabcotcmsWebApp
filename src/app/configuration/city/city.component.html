@@ -54,7 +54,8 @@
         <div class="row justify-content-end">
           <div class=" col-md-4">
             <div class="input-group col-md-offset-3">
-              <input type="text" placeholder="Search" class="input form-control w-50">
+              <input type="text" placeholder="Search by City Name or Country" class="input form-control w-50"
+              (keyup)="updateFilter($event)">
             </div>
           </div>
 

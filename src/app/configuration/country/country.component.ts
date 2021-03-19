@@ -20,7 +20,7 @@ export class CountryComponent implements OnInit {
   columns: any = [];
   data: any = {};
   currentDate = Date.now();
-
+  temp: any=[];
 
 
   constructor(private http: HttpClient,
@@ -29,9 +29,25 @@ export class CountryComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetch((data) => {
+      this.temp = [...data];
       this.rows = data;
+
     });
 
+  }
+
+  updateFilter(event) {
+    const val = event.target.value.toLowerCase();
+
+    // filter our data
+    const temp = this.temp.filter(function (d) {
+      return (d.name.toLowerCase().indexOf(val) !== -1  || !val);
+    });
+ 
+    // update the rows
+    this.rows = temp;
+    // Whenever the filter changes, always go back to the first page
+    // this.table.offset = 0;
   }
 
 

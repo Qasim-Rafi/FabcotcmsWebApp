@@ -39,7 +39,7 @@ export class PriceTermComponent implements OnInit {
 
     // filter our data
     const temp = this.temp.filter(function (d) {
-      return d.term.toLowerCase().indexOf(val) !== -1 || !val;
+      return (d.term.toLowerCase().indexOf(val) !== -1 || !val);
     });
 
     // update the rows
