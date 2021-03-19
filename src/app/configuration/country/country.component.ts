@@ -21,12 +21,12 @@ export class CountryComponent implements OnInit {
   data: any = {};
   currentDate = Date.now();
   temp: any=[];
-
+ 
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
     private modalService: NgbModal,) { }
-
+  
   ngOnInit(): void {
     this.fetch((data) => {
       this.temp = [...data];

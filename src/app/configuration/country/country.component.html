@@ -2,7 +2,8 @@
   <div class="col-sm-12 mb-4">
     <h2 class="row wrapper page-header font-weight-light"> Country Location
       <div class="ml-2 text-muted descr">Business Country location and its management
-        <small>Configuration / Country Location</small>
+        <small class="float-right">Configuration / Country Location</small>
+      
       </div>
     </h2>
   </div>
@@ -79,7 +80,7 @@
 
     </div>
 
-    <div class="panel-body">
+    <div class="panel-body" >
       <ngx-datatable #myTable class="bootstrap datatable-row-wrapper" [columns]="columns" [rows]="rows"
         [columnMode]="'flex'" [headerHeight]="50" [footerHeight]="50" [sorts]="[{prop: 'id', dir: 'asce'}]"
         [rowHeight]="'auto'" [limit]="6">
