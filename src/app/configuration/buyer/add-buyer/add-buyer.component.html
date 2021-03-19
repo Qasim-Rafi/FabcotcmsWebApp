@@ -73,19 +73,19 @@
 
     <div class="form-group row">
       <label for="country" class="col-sm-3 col-form-label">Country</label>
+
       <div class="col-sm-8">
-        <select
+        <ng-select
+          [(ngModel)]="countryId"
           required
-          class="form-control"
           placeholder="Nothing selected"
           name="countryId"
-          [(ngModel)]="countryId"
         >
-          <option value="null" disabled>Nothing Selected</option>
-          <option *ngFor="let i of country" [value]="i.id">
-            {{ i.name }}
-          </option>
-        </select>
+          <!-- <ng-option value="null" disabled >  Nothing Selected  </ng-option> -->
+          <ng-option *ngFor="let i of country" [value]="i.id">{{
+            i.name
+          }}</ng-option>
+        </ng-select>
       </div>
     </div>
 
