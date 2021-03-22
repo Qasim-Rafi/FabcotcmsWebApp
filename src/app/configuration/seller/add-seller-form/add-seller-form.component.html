@@ -24,8 +24,9 @@
       >
       <div class="col-sm-8">
         <input
+          autofocus
           required
-          pattern="{0,60}"
+          maxlength="60"
           id="sellerName"
           class="form-control"
           placeholder="Seller name"
@@ -43,6 +44,7 @@
       >
       <div class="col-sm-8">
         <textarea
+        maxlength="300"
           class="form-control"
           id="sellerBillAddress"
           rows="3"
@@ -83,25 +85,27 @@
           <div class="col-sm-6">
             <input
               pattern="[+0-9-]{7,15}"
+              maxlength="15"
               class="form-control"
               id="sellerContact"
               placeholder=" Primary Contact No."
               name="sellerContact"
               [(ngModel)]="data.sellerContact"
               #sellerContact="ngModel"
-              [ngClass]="{ error: sellerContact.invalid }"
+              [ngClass]="{ error: sellerContact.invalid && sellerContact.touched }"
             />
           </div>
           <div class="col-sm-6">
             <input
               pattern="[+0-9-]{7,15}"
+              maxlength="15"
               class="form-control"
               id="sellerOtherContact"
               placeholder="Other Contact No."
               name="sellerOtherContact"
               [(ngModel)]="data.sellerOtherContact"
               #sellerOtherContact="ngModel"
-              [ngClass]="{ error: sellerOtherContact.invalid }"
+              [ngClass]="{ error: sellerOtherContact.invalid && sellerOtherContact.touched }"
             />
           </div>
         </div>
@@ -114,13 +118,14 @@
         <input
           pattern="[+-0-9]{4,15}"
           maxlength="15"
+          minlength="4"
           class="form-control"
           id="sellerFax"
           placeholder="Seller Fax No."
           name="sellerFax"
           [(ngModel)]="data.sellerFax"
           #sellerFax="ngModel"
-          [ngClass]="{ error: sellerFax.invalid }"
+          [ngClass]="{ error: sellerFax.invalid && sellerFax.touched }"
         />
       </div>
     </div>
@@ -134,31 +139,30 @@
           <div class="col-sm-6">
             <input
               type="text"
-              pattern="[+-a-zA-Z0-9]{0,15}"
-              maxlength="15"
+              pattern="[+-a-zA-Z0-9]{0,7}"
+              maxlength="7"
               class="form-control"
               id="sellerNTN"
               placeholder="NTN No."
               name="sellerNTN"
               [(ngModel)]="data.sellerNTN"
               #sellerNTN="ngModel"
-              [ngClass]="{ error: sellerNTN.invalid }"
+              [ngClass]="{ error: sellerNTN.invalid && sellerNTN.touched }"
             />
           </div>
           <div class="col-sm-6">
             <input
               type="text"
               pattern="[+-a-zA-Z0-9]{0,15}"
+              maxlength="15"
               class="form-control"
               id="sellerGST"
               placeholder="GST No."
               name="sellerGST"
               [(ngModel)]="data.sellerGST"
               #sellerGST="ngModel"
+              [ngClass]="{ error: sellerGST.invalid && sellerGST.touched }"
             />
-            <p *ngIf="sellerGST.invalid && sellerGST.touched">
-              Invalid Input or Lenght
-            </p>
           </div>
         </div>
       </div>
@@ -193,6 +197,7 @@
       >
       <div class="col-sm-8">
         <textarea
+        maxlength="300"
           class="form-control"
           id="sellerStrenght"
           rows="3"
@@ -210,6 +215,7 @@
       >
       <div class="col-sm-8">
         <textarea
+        maxlength="300"
           class="form-control"
           id="leadTime"
           rows="3"
@@ -227,6 +233,7 @@
       >
       <div class="col-sm-8">
         <textarea
+        maxlength="300"
           class="form-control"
           id="sellerDetails"
           rows="3"
