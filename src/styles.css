@@ -254,7 +254,7 @@ title {
   text-align: center;
 }
 .descr {
-  font-size: 60% !important;
+  font-size: 55% !important;
   font-weight: 300 !important;
   padding: 12px 0 0 0 !important;
 }
@@ -311,6 +311,15 @@ select {
 .pr-md1{
   padding-right: 8.333333% !important;
 }
+.pt-ls {
+  padding-top: 8px !important;
+}
+
+.breadcrumb-item.active {
+  color: #6c757d;
+  background: none !important;
+}
+
 
 
 
@@ -342,6 +351,10 @@ select {
   .flt-RnL {
     float: left !important;
   }
+  .pt-ls {
+    padding-top: 0px !important;
+  }
+
 }
 
 @media only screen and (max-width: 480px) {
@@ -359,5 +372,8 @@ select {
   }
   .flt-RnL {
     float: left !important;
+  }
+  .pt-ls {
+    padding-top: 0px !important;
   }
 }
