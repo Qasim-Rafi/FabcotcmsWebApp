@@ -9,12 +9,12 @@
 
 </div>
 
-<div class="modal-body BG">
+<div class="modal-body BG pt-2r">
   <form #addPaymentForm="ngForm" novalidate>
 
     <div class="form-group row" [class.has-error]="term.invalid ">
       <label for="term" class="col-sm-3 col-form-label control-label text_Navy">Payment Term</label>
-      <div class="col-sm-9">
+      <div class="col-sm-8">
         <input required id="term" type="text" class="form-control" placeholder="Payment Term Name" name="term"
           [(ngModel)]="data.term" #term="ngModel" [ngClass]="{'error': term.invalid }">
         <small>Add Payment Term</small>
@@ -24,7 +24,7 @@
 
     <div class="form-group row">
       <label for="description" class="col-sm-3 col-form-label text-grey">Description</label>
-      <div class="col-sm-9">
+      <div class="col-sm-8">
         <textarea  class="form-control" id="description" rows="3" name="description"
           placeholder="Brief Payment description here..." [(ngModel)]="data.description"
           #description="ngModel"></textarea>
@@ -33,7 +33,7 @@
 
     <div class="form-group row">
       <label for="active" class="col-sm-3 col-form-label text-grey"></label>
-      <div class="col-sm-9">
+      <div class="col-sm-8">
         <div class="form-check form-check-inline">
           <input class="form-check-input check-btn " type="checkbox" name="active" [(ngModel)]="active"
             >

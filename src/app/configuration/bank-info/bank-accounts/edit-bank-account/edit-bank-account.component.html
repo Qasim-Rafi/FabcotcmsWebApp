@@ -10,7 +10,7 @@
 
   </div>
 
-  <div class="modal-body BG">
+  <div class="modal-body BG pt-2r">
     <form #addAgentForm="ngForm" novalidate>
 
       <div class="form-group row">
@@ -28,7 +28,7 @@
  
           <div class="form-group row" [class.has-error]="accountName.invalid && accountName.touched">
             <label for="accountName" class="col-sm-3 col-form-label control-label text_Navy">Account Name </label>
-            <div class="col-sm-9">
+            <div class="col-sm-8">
               <input required id="accountName" type="text" class="form-control" placeholder="Account Name" name="accountName"
                 [(ngModel)]="data.accountName" #accountName="ngModel" [ngClass]="{'error': accountName.invalid && accountName.touched}">
             </div>
@@ -36,7 +36,7 @@
 
           <div class="form-group row" [class.has-error]="accountNumber.invalid && accountNumber.touched">
             <label for="accountNumber" class="col-sm-3 col-form-label control-label text-grey">Account No </label>
-            <div class="col-sm-9">
+            <div class="col-sm-8">
               <input required id="accountNumber" type="text" class="form-control" placeholder="Account Number" name="accountNumber"
                 [(ngModel)]="data.accountNumber" #accountNumber="ngModel" [ngClass]="{'error': accountNumber.invalid && accountNumber.touched}">
             </div>
@@ -44,7 +44,7 @@
 
           <div class="form-group row" [class.has-error]="iban.invalid && iban.touched">
             <label for="iban" class="col-sm-3 col-form-label control-label text-grey">IBAN </label>
-            <div class="col-sm-9">
+            <div class="col-sm-8">
               <input required id="iban" type="text" class="form-control" placeholder="IBAN" name="iban"
                 [(ngModel)]="data.iban" #iban="ngModel" [ngClass]="{'error': iban.invalid && iban.touched}">
             </div>
@@ -52,7 +52,7 @@
 
           <div class="form-group row" [class.has-error]="swiftCode.invalid && swiftCode.touched">
             <label for="swiftCode" class="col-sm-3 col-form-label control-label text-grey">Swift Code</label>
-            <div class="col-sm-9">
+            <div class="col-sm-8">
               <input required id="swiftCode" type="text" class="form-control" placeholder="Account Swift Code" name="swiftCode"
                 [(ngModel)]="data.swiftCode" #swiftCode="ngModel" [ngClass]="{'error': swiftCode.invalid && swiftCode.touched}">
             </div>
@@ -60,7 +60,7 @@
 
           <div class="form-group row" [class.has-error]="type.invalid && type.touched">
             <label for="type" class="col-sm-3 col-form-label control-label text-grey">Type </label>
-            <div class="col-sm-9">
+            <div class="col-sm-8">
               <input required id="type" type="text" class="form-control" placeholder="Account Type" name="type"
                 [(ngModel)]="data.type" #type="ngModel" [ngClass]="{'error': type.invalid && type.touched}">
             </div>

@@ -9,12 +9,12 @@
 
 </div>
 
-<div class="modal-body BG">
+<div class="modal-body BG pt-2r">
   <form #addAgentForm="ngForm" novalidate>
 
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-3 col-form-label">Bank</label>
-      <div class="col-sm-9">
+      <div class="col-sm-8">
         <select  name="bank " class="form-control" [(ngModel)]=" bankId">
           <option value="null" disabled> Nothing Selected</option>
           <option *ngFor="let i of banks" [value]="i.id">
@@ -26,7 +26,7 @@
 
     <div class="form-group row" [class.has-error]="accountName.invalid ">
       <label for="accountName" class="col-sm-3 col-form-label control-label text_Navy">Account Name </label>
-      <div class="col-sm-9">
+      <div class="col-sm-8">
         <input required id="accountName" type="text" class="form-control" placeholder="Account Name" name="accountName"
           [(ngModel)]="data.accountName" #accountName="ngModel"
           [ngClass]="{'error': accountName.invalid }">
@@ -35,7 +35,7 @@
 
     <div class="form-group row" [class.has-error]="accountNumber.invalid ">
       <label for="accountNumber" class="col-sm-3 col-form-label control-label text-grey">Account No </label>
-      <div class="col-sm-9">
+      <div class="col-sm-8">
         <input required id="accountNumber" type="text" class="form-control" placeholder="Account Number"
           name="accountNumber" [(ngModel)]="data.accountNumber" #accountNumber="ngModel"
           [ngClass]="{'error': accountNumber.invalid }">
@@ -44,7 +44,7 @@
 
     <div class="form-group row" >
       <label for="iban" class="col-sm-3 col-form-label control-label text-grey">IBAN </label>
-      <div class="col-sm-9">
+      <div class="col-sm-8">
         <input  id="iban" type="text" class="form-control" placeholder="IBAN" name="iban"
           [(ngModel)]="data.iban" #iban="ngModel" >
       </div>
@@ -52,7 +52,7 @@
 
     <div class="form-group row">
       <label for="swiftCode" class="col-sm-3 col-form-label control-label text-grey">Swift Code</label>
-      <div class="col-sm-9">
+      <div class="col-sm-8">
         <input id="swiftCode" type="text" class="form-control" placeholder="Account Swift Code"
           name="swiftCode" [(ngModel)]="data.swiftCode" #swiftCode="ngModel"
          >
@@ -61,14 +61,14 @@
 
     <div class="form-group row" >
       <label for="type" class="col-sm-3 col-form-label control-label text-grey">Type </label>
-      <div class="col-sm-9">
+      <div class="col-sm-8">
         <input required id="type" type="text" class="form-control" placeholder="Account Type" name="type"
           [(ngModel)]="data.type" #type="ngModel" >
       </div>
     </div>
     <div class="form-group row">
       <label for="type" class="col-sm-3 col-form-label control-label text-grey"></label>
-      <div class="col-sm-9">
+      <div class="col-sm-8">
         <div class="form-check form-check-inline">
           <input class="form-check-input check-btn" type="checkbox" checked>
           <label class="form-check-label text-grey">Marked as Printable</label>
@@ -77,7 +77,7 @@
     </div>
     <div class="form-group row">
       <label for="type" class="col-sm-3 col-form-label control-label text-grey"></label>
-      <div class="col-sm-9">
+      <div class="col-sm-8">
         <div class="form-check form-check-inline">
           <input class="form-check-input check-btn" type="checkbox" checked>
           <label class="form-check-label text-grey">Set as Default</label>
