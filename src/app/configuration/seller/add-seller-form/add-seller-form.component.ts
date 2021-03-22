@@ -16,8 +16,8 @@ export class AddSellerFormComponent implements OnInit {
   response: any;
   seller: any[];
   country: any = [];
-  countryId= 0;
-  parentSellerId= 0;
+  countryId : null;
+  parentSellerId: null;
   @ViewChild(NgForm) sellerForm;
 
 

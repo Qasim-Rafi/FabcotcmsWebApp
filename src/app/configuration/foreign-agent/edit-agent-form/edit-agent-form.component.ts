@@ -15,11 +15,16 @@ export class EditAgentFormComponent implements OnInit {
   response: any;
   agentTypeId: null;
   agentSideId: null;
+  city: any = [];
+  banks: any = [];
+
   constructor(private http:HttpClient,
               private toastr: ToastrService,
               private _NgbActiveModal: NgbActiveModal) { }
 
   ngOnInit(): void {
+    this. getBanks();
+    this.getCity();
     this.editAgent( );
   } 
 
@@ -27,6 +32,45 @@ export class EditAgentFormComponent implements OnInit {
     return this._NgbActiveModal;
   }
 
+  getCity() {
+    this.http.get(`${environment.apiUrl}/api/Configs/GetAllCity`)
+      .subscribe(
+        res => {
+          this.response = res;
+          if (this.response.success == true) {
+            this.city = this.response.data;
+          }
+          else {
+            this.toastr.error('Something went Worng', 'Message.');
+          }
+
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error('Something went Worng', 'Message.');
+          }
+        });
+  }
+
+
+
+  getBanks() {
+    this.http.get(`${environment.apiUrl}/api/Lookups/Banks`)
+      .subscribe(
+        res => {
+          this.response = res;
+          if (this.response.success == true) {
+            this.banks = this.response.data;
+          }
+          else {
+            this.toastr.error('Something went Worng', 'Message.');
+          }
+
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error('Something went Worng', 'Message.');
+          }
+        });
+  }
 
 
   editAgent()

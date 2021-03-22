@@ -1,96 +1,173 @@
 <div class="modal-header">
-  <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
+  <button
+    type="button"
+    class="close"
+    data-dismiss="modal"
+    aria-label="Close"
+    (click)="activeModal.close()"
+  >
     <span aria-hidden="true">&times;</span>
   </button>
   <h5 class="modal-title">
     <i class="fa fa-plus"></i>
     Add New Bank Account
   </h5>
-
 </div>
 
 <div class="modal-body BG pt-2r">
   <form #addAgentForm="ngForm" novalidate>
-
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-3 col-form-label">Bank</label>
       <div class="col-sm-8">
-        <select  name="bank " class="form-control" [(ngModel)]=" bankId">
-          <option value="null" disabled> Nothing Selected</option>
-          <option *ngFor="let i of banks" [value]="i.id">
-            {{i.name}}
-          </option>
-        </select>
+        <ng-select
+          [(ngModel)]="bankId"
+          required
+          placeholder="-- Select --"
+          name="bank"
+        >
+          <ng-option *ngFor="let i of banks" [value]="i.id"
+            >{{ i.name }}
+          </ng-option>
+        </ng-select>
       </div>
     </div>
 
-    <div class="form-group row" [class.has-error]="accountName.invalid ">
-      <label for="accountName" class="col-sm-3 col-form-label control-label text_Navy">Account Name </label>
-      <div class="col-sm-8">
-        <input required id="accountName" type="text" class="form-control" placeholder="Account Name" name="accountName"
-          [(ngModel)]="data.accountName" #accountName="ngModel"
-          [ngClass]="{'error': accountName.invalid }">
+    <div class="form-group row" [class.has-error]="accountName.invalid">
+      <label
+        for="accountName"
+        class="col-sm-3 col-form-label control-label text_Navy"
+        >Account Name
+      </label>
+      <div class="col-sm-9">
+        <input
+          required
+          id="accountName"
+          type="text"
+          class="form-control"
+          placeholder="Account Name"
+          name="accountName"
+          [(ngModel)]="data.accountName"
+          #accountName="ngModel"
+          [ngClass]="{ error: accountName.invalid }"
+        />
       </div>
     </div>
 
-    <div class="form-group row" [class.has-error]="accountNumber.invalid ">
-      <label for="accountNumber" class="col-sm-3 col-form-label control-label text-grey">Account No </label>
-      <div class="col-sm-8">
-        <input required id="accountNumber" type="text" class="form-control" placeholder="Account Number"
-          name="accountNumber" [(ngModel)]="data.accountNumber" #accountNumber="ngModel"
-          [ngClass]="{'error': accountNumber.invalid }">
-      </div>
-    </div>
-
-    <div class="form-group row" >
-      <label for="iban" class="col-sm-3 col-form-label control-label text-grey">IBAN </label>
-      <div class="col-sm-8">
-        <input  id="iban" type="text" class="form-control" placeholder="IBAN" name="iban"
-          [(ngModel)]="data.iban" #iban="ngModel" >
+    <div class="form-group row" [class.has-error]="accountNumber.invalid">
+      <label
+        for="accountNumber"
+        class="col-sm-3 col-form-label control-label text-grey"
+        >Account No
+      </label>
+      <div class="col-sm-9">
+        <input
+          required
+          id="accountNumber"
+          type="text"
+          class="form-control"
+          placeholder="Account Number"
+          name="accountNumber"
+          [(ngModel)]="data.accountNumber"
+          #accountNumber="ngModel"
+          [ngClass]="{ error: accountNumber.invalid }"
+        />
       </div>
     </div>
 
     <div class="form-group row">
-      <label for="swiftCode" class="col-sm-3 col-form-label control-label text-grey">Swift Code</label>
-      <div class="col-sm-8">
-        <input id="swiftCode" type="text" class="form-control" placeholder="Account Swift Code"
-          name="swiftCode" [(ngModel)]="data.swiftCode" #swiftCode="ngModel"
-         >
+      <label for="iban" class="col-sm-3 col-form-label control-label text-grey"
+        >IBAN
+      </label>
+      <div class="col-sm-9">
+        <input
+          id="iban"
+          type="text"
+          class="form-control"
+          placeholder="IBAN"
+          name="iban"
+          [(ngModel)]="data.iban"
+          #iban="ngModel"
+        />
       </div>
     </div>
 
-    <div class="form-group row" >
-      <label for="type" class="col-sm-3 col-form-label control-label text-grey">Type </label>
+    <div class="form-group row">
+      <label
+        for="swiftCode"
+        class="col-sm-3 col-form-label control-label text-grey"
+        >Swift Code</label
+      >
       <div class="col-sm-8">
-        <input required id="type" type="text" class="form-control" placeholder="Account Type" name="type"
-          [(ngModel)]="data.type" #type="ngModel" >
+        <input
+          id="swiftCode"
+          type="text"
+          class="form-control"
+          placeholder="Account Swift Code"
+          name="swiftCode"
+          [(ngModel)]="data.swiftCode"
+          #swiftCode="ngModel"
+        />
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="type" class="col-sm-3 col-form-label control-label text-grey"
+        >Type
+      </label>
+      <div class="col-sm-8">
+        <input
+          required
+          id="type"
+          type="text"
+          class="form-control"
+          placeholder="Account Type"
+          name="type"
+          [(ngModel)]="data.type"
+          #type="ngModel"
+        />
       </div>
     </div>
     <div class="form-group row">
-      <label for="type" class="col-sm-3 col-form-label control-label text-grey"></label>
+      <label
+        for="type"
+        class="col-sm-3 col-form-label control-label text-grey"
+      ></label>
       <div class="col-sm-8">
         <div class="form-check form-check-inline">
-          <input class="form-check-input check-btn" type="checkbox" checked>
+          <input class="form-check-input check-btn" type="checkbox" checked />
           <label class="form-check-label text-grey">Marked as Printable</label>
         </div>
       </div>
     </div>
     <div class="form-group row">
-      <label for="type" class="col-sm-3 col-form-label control-label text-grey"></label>
+      <label
+        for="type"
+        class="col-sm-3 col-form-label control-label text-grey"
+      ></label>
       <div class="col-sm-8">
         <div class="form-check form-check-inline">
-          <input class="form-check-input check-btn" type="checkbox" checked>
+          <input class="form-check-input check-btn" type="checkbox" checked />
           <label class="form-check-label text-grey">Set as Default</label>
         </div>
       </div>
     </div>
-
   </form>
 </div>
 
 <div class="modal-footer NotBG">
-  <button class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">Close</button>
-  <button class="btn button-save" type="submit" (click)="addBankAccount()" [disabled]="addAgentForm.invalid">
+  <button
+    class="btn btn-outline-secondary noHover"
+    data-dismiss="modal"
+    (click)="activeModal.close()"
+  >
+    Close
+  </button>
+  <button
+    class="btn button-save"
+    type="submit"
+    (click)="addBankAccount()"
+    [disabled]="addAgentForm.invalid"
+  >
     Save Account
   </button>
 </div>

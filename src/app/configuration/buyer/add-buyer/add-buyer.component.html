@@ -25,6 +25,7 @@
       <div class="col-sm-8">
         <input
           required
+          pattern="{0,60}"
           id="buyerName"
           type="text"
           class="form-control"
@@ -34,6 +35,9 @@
           #name="ngModel"
           [ngClass]="{ error: name.invalid }"
         />
+        <p *ngIf="buyerName.invalid && buyerName.touched">
+          Invalid Input or Lenght
+        </p>
       </div>
     </div>
 
@@ -72,19 +76,22 @@
     </div>
 
     <div class="form-group row">
-      <label for="country" class="col-sm-3 col-form-label">Country</label>
-
+      <label for="countryId" class="col-sm-3 col-form-label">Country</label>
       <div class="col-sm-8">
         <ng-select
-          [(ngModel)]="countryId"
+          [(ngModel)]="data.countryId"
           required
-          placeholder="Nothing selected"
+          placeholder="-- Select --"
           name="countryId"
+          #countryId="ngModel"
+          [ngClass]="{ error: countryId.invalid }"
         >
-          <!-- <ng-option value="null" disabled >  Nothing Selected  </ng-option> -->
-          <ng-option *ngFor="let i of country" [value]="i.id">{{
-            i.name
-          }}</ng-option>
+          <ng-option *ngFor="let i of country" [value]="i.id"
+            >{{ i.name }}
+            <span class="text-muted" style="font-size: 11px"
+              >( {{ i.details }} )</span
+            >
+          </ng-option>
         </ng-select>
       </div>
     </div>
@@ -97,7 +104,7 @@
         <div class="row">
           <div class="col-sm-6 fieldmrgbtm">
             <input
-              type="text"
+              pattern="[+0-9-]{7,15}"
               class="form-control"
               id="buyerContact"
               placeholder="Primary Contact No."
@@ -105,10 +112,13 @@
               [(ngModel)]="data.buyerContact"
               #buyerContact="ngModel"
             />
+            <p *ngIf="buyerContact.invalid && buyerContact.touched">
+              Invalid Input or Lenght
+            </p>
           </div>
           <div class="col-sm-6">
             <input
-              type="text"
+              pattern="[+0-9-]{7-15}"
               class="form-control"
               id="buyerOtherContact"
               placeholder="Other Contact No."
@@ -116,6 +126,9 @@
               [(ngModel)]="data.buyerOtherContact"
               #buyerOtherContact="ngModel"
             />
+            <p *ngIf="buyerOtherContact.invalid && buyerOtherContact.touched">
+              Invalid Input or Lenght
+            </p>
           </div>
         </div>
       </div>
@@ -125,7 +138,7 @@
       <label for="buyerFax" class="col-sm-3 col-form-label">Fax Number</label>
       <div class="col-sm-8">
         <input
-          type="text"
+          pattern="[+-()0-9]{0,15}"
           class="form-control"
           id="buyerFax"
           placeholder="Buyer Fax No."
@@ -133,6 +146,9 @@
           [(ngModel)]="data.buyerFax"
           #buyerFax="ngModel"
         />
+        <p *ngIf="buyerFax.invalid && buyerFax.touched">
+          Invalid Input or Lenght
+        </p>
       </div>
     </div>
 
@@ -144,6 +160,7 @@
           <div class="col-sm-6 fieldmrgbtm">
             <input
               type="text"
+              pattern="[+-)(a-zA-Z0-9]{0,7}"
               class="form-control"
               id="buyerNTN"
               placeholder="NTN No."
@@ -152,8 +169,12 @@
               #buyerNTN="ngModel"
             />
           </div>
+          <p *ngIf="buyerNTN.invalid && buyerNTN.touched">
+            Invalid Input or Lenght
+          </p>
           <div class="col-sm-6">
             <input
+              pattern="[+-)(a-zA-Z0-9]{0,15}"
               type="text"
               class="form-control"
               id="buyerGST"
@@ -162,6 +183,9 @@
               [(ngModel)]="data.buyerGST"
               #buyerGST="ngModel"
             />
+            <p *ngIf="buyerGST.invalid && buyerGST.touched">
+              Invalid Input or Lenght
+            </p>
           </div>
         </div>
       </div>
@@ -195,20 +219,19 @@
     </div>
 
     <div class="form-group row">
-      <label for="isParentBuyer" class="col-sm-3 col-form-label"
+      <label for="parentBuyerId" class="col-sm-3 col-form-label"
         >Parent Buyer</label
       >
       <div class="col-sm-8">
-        <select
-          class="form-control"
-          name="parentBuyerId"
-          [(ngModel)]="parentBuyerId"
+        <ng-select
+          name="parentSellerId"
+          [(ngModel)]="data.parentBuyerId"
+          placeholder="-- Select --"
         >
-          <option value="null" disabled>Select Parent Buyer</option>
-          <option *ngFor="let i of buyer" [value]="i.id">
+          <ng-option *ngFor="let i of buyer" [value]="i.id">
             {{ i.buyerName }}
-          </option>
-        </select>
+          </ng-option>
+        </ng-select>
       </div>
     </div>
   </form>

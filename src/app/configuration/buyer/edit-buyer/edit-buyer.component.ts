@@ -17,6 +17,7 @@ export class EditBuyerComponent implements OnInit {
   states: any;
   buyer:any[];
   countryId:null;
+  
 
 
   constructor(private http:HttpClient,
@@ -113,8 +114,8 @@ export class EditBuyerComponent implements OnInit {
       "ntnNumber":this.data.ntnNumber,
       "gstNumber":this.data.gstNumber,
       "buyerDetails" : this.data.buyerDetails,
-      "isParentBuyer": true,
-      "parentBuyerId":1
+      "isParentBuyer": this.data.isParentBuyer,
+      "parentBuyerId":this.data.parentBuyerId,
     }
  
     this.http.

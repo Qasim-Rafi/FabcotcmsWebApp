@@ -167,6 +167,7 @@ export class DesignTypeComponent implements OnInit {
           //  this.date = this.myDate;
            this.fetch((data) => {
             this.rows = data;
+            
           });
            
          }

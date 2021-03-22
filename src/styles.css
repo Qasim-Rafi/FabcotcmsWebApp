@@ -44,7 +44,7 @@
   border: 1px solid #ccc;
   min-height: 36px;
   align-items: center;
-  font-size: 11px;
+  font-size: 13px;
 }
 
 .ng-select.ng-select-focused:not(.ng-select-opened) > .ng-select-container {
@@ -52,16 +52,8 @@
   box-shadow: none !important;
 }
 
-.ng-dropdown-panel
-  .ng-dropdown-panel-items
-  .ng-option.ng-option-selected
-  .ng-option-label,
-.ng-dropdown-panel
-  .ng-dropdown-panel-items
-  .ng-option.ng-option-selected.ng-option-marked
-  .ng-option-label {
-  font-weight: 600;
-  font-size: 100px !important;
+ng-dropdown-panel {
+  font-size: 13px;
 }
 
 /* ----------------------------------------------------------------------- */
