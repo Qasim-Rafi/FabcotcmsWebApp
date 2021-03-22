@@ -67,6 +67,7 @@ export class SellerComponent implements OnInit {
           this.response = res;
           if (this.response.success == true) {
             this.seller = this.response.data;
+            this.temp = [...this.seller];
             this.listCount = this.response.data.length;
            
           }
@@ -91,7 +92,7 @@ export class SellerComponent implements OnInit {
       
         d.sellerName.toLowerCase().indexOf(val) !== -1 || !val);
     });
-    this.rows = temp;
+    this.seller = temp;
     
   }
 

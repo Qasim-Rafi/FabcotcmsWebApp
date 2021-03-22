@@ -34,12 +34,6 @@
           #name="ngModel"
           [ngClass]="{ error: name.invalid }"
         />
-<<<<<<< Updated upstream
-        <p *ngIf="name.invalid">
-          Invalid Input or Lenght
-        </p>
-=======
->>>>>>> Stashed changes
       </div>
     </div>
 
@@ -69,7 +63,6 @@
           required
           placeholder="-- Select --"
           name="countryId"
-          
         >
           <ng-option *ngFor="let i of country" [value]="i.id"
             >{{ i.name }}
@@ -78,7 +71,6 @@
             >
           </ng-option>
         </ng-select>
-
       </div>
     </div>
 
@@ -98,9 +90,6 @@
               [(ngModel)]="data.sellerContact"
               #sellerContact="ngModel"
             />
-            <p *ngIf="sellerContact.invalid">
-              Invalid Input or Lenght
-            </p>
           </div>
           <div class="col-sm-6">
             <input
@@ -112,9 +101,6 @@
               [(ngModel)]="data.sellerOtherContact"
               #sellerOtherContact="ngModel"
             />
-            <p *ngIf="sellerOtherContact.invalid">
-              Invalid Input or Lenght
-            </p>
           </div>
         </div>
       </div>
