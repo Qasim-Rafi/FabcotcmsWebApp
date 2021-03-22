@@ -34,7 +34,7 @@
           #name="ngModel"
           [ngClass]="{ error: name.invalid }"
         />
-        <p *ngIf="sellerName.invalid && sellerName.touched">
+        <p *ngIf="name.invalid">
           Invalid Input or Lenght
         </p>
       </div>
