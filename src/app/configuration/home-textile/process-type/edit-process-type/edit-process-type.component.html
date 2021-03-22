@@ -15,7 +15,7 @@
     <div class="form-group row" [class.has-error]="type.invalid && type.touched">
       <label for="type" class="col-sm-3 col-form-label control-label text_Navy">Process Type </label>
       <div class="col-sm-8">
-        <input required id="type" type="text" class="form-control" placeholder="Process Type" name="type"
+        <input maxlength="100" required id="type" type="text" class="form-control" placeholder="Process Type" name="type"
           [(ngModel)]="data.type" #type="ngModel" [ngClass]="{'error': type.invalid && type.touched}">
         <small>Add Process Type Description.</small>
       </div>
@@ -24,7 +24,7 @@
     <div class="form-group row">
       <label for="description" class="col-sm-3 col-form-label text-grey">Description</label>
       <div class="col-sm-8">
-        <textarea  class="form-control" id="description" rows="3"
+        <textarea maxlength="300"  class="form-control" id="description" rows="3"
           placeholder="Brief Process Type description here ..." name="description" [(ngModel)]="data.description"
           #description="ngModel"></textarea>
       </div>
