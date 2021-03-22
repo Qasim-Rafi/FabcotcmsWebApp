@@ -1,7 +1,9 @@
 <div class="content-header">
   <div class="col-sm-12 mb-4">
     <h2 class="row wrapper page-header font-weight-light"> Process Type
-      <div class="ml-2 text-muted descr">Process Type Description</div>
+      <div class="ml-2 text-muted descr">Process Type Description
+        <small>Configuration / Textile-Garments /  Process Type</small>
+      </div>
     </h2>
   </div>
 </div>
@@ -52,7 +54,7 @@
           <div class="row justify-content-end">
             <div class=" col-md-4">
               <div class="input-group col-md-offset-3">
-                <input type="text" placeholder="Search by Design Name... " class="input form-control w-50"
+                <input type="text" placeholder="Search by Process Type... " class="input form-control w-50"
                   (keyup)="updateFilter($event)">
               </div>
             </div>
@@ -118,7 +120,7 @@
               </button>
               <button type="button" class="btn deleteIconBack" (click)="deleteProcess(row)">
                 <i class="far fa-trash-alt"></i>
-              </button> -->
+              </button>
             </ng-template>
           </ngx-datatable-column>
         </ngx-datatable>

@@ -40,7 +40,7 @@ export class DesignTypeComponent implements OnInit {
 
     // filter our data
     const temp = this.temp.filter(function (d) {
-      return d.type.toLowerCase().indexOf(val) !== -1  || !val;
+      return (d.type.toLowerCase().indexOf(val) !== -1  || !val);
     });
  
     // update the rows
@@ -167,6 +167,7 @@ export class DesignTypeComponent implements OnInit {
           //  this.date = this.myDate;
            this.fetch((data) => {
             this.rows = data;
+            
           });
            
          }

@@ -1,7 +1,9 @@
 <div class="content-header">
   <div class="col-sm-12 mb-4">
     <h2 class="row wrapper page-header font-weight-light"> TnA Actions
-      <div class="ml-2 text-muted descr">Action's Description</div>
+      <div class="ml-2 text-muted descr">Action's Description
+        <small>Configuration / Textile-Garments / TnA Action</small>
+      </div>
     </h2>
   </div>
 </div>
@@ -54,7 +56,7 @@
           <div class="row justify-content-end">
             <div class=" col-md-4">
               <div class="input-group col-md-offset-3">
-                <input type="text" placeholder="Search by Design Name... " class="input form-control w-50"
+                <input type="text" placeholder="Search by Action Name... " class="input form-control w-50"
                   (keyup)="updateFilter($event)">
               </div>
             </div>
@@ -89,7 +91,7 @@
             {{row.id}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Certificate Name" [width]="40" prop="name">
+        <ngx-datatable-column name="Action Name" [width]="40" prop="name">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.name}}
           </ng-template>

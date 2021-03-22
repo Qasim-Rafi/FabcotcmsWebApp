@@ -12,6 +12,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class AddDesignTypeComponent implements OnInit {
   data:any={};
   response: any;
+  active = true;
 
   constructor(private http:HttpClient,
     private toastr: ToastrService,
@@ -31,7 +32,7 @@ export class AddDesignTypeComponent implements OnInit {
     let varr=  {
       "type": this.data.type,
       "description": this.data.description,
-      "active": this.data.active,
+      "active": this.active,
     }
 
     this.http.

@@ -16,7 +16,7 @@ export class AddSellerFormComponent implements OnInit {
   response: any;
   seller: any[];
   country: any = [];
-  countryId: null;
+  countryId : null;
   parentSellerId: null;
   @ViewChild(NgForm) sellerForm;
 
@@ -84,7 +84,7 @@ export class AddSellerFormComponent implements OnInit {
       "sellerCode": this.data.sellerCode,
       "sellerName": this.data.sellerName,
       "billingAddress": this.data.sellerBillAddress,
-      "countryId": this.data.countryId,
+      "countryId": this.countryId,
       "contactNoPrimary": this.data.sellerContact,
       "contactNoSecondary": this.data.sellerOtherContact,
       "faxNumber": this.data.sellerFax,
@@ -96,7 +96,7 @@ export class AddSellerFormComponent implements OnInit {
       "leadTime": this.data.leadTime,
       "sellerDetails": this.data.sellerDetails,
       "isParentSeller": true,
-      "parentSellerId": this.data.parentSellerId
+      "parentSellerId": this.parentSellerId
     }
 
     this.http.

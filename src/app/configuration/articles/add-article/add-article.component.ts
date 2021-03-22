@@ -12,6 +12,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class AddArticleComponent implements OnInit {
   data:any={};
   response: any;
+  active = true;
 
 
   constructor(private http:HttpClient,
@@ -37,7 +38,7 @@ export class AddArticleComponent implements OnInit {
       "name": this.data.name,
       "genericName": this.data.genericName,
       "description": this.data.description,
-      "active": this.data.active,
+      "active": this.active,
     }
 
     this.http.

@@ -9,15 +9,15 @@
 
 </div>
 
-<div class="modal-body BG">
+<div class="modal-body BG pt-2r">
   <form #addPackingForm="ngForm" novalidate>
 
 
-    <div class="form-group row" [class.has-error]="name.invalid && name.touched">
+    <div class="form-group row" [class.has-error]="name.invalid ">
       <label for="name" class="col-sm-3 col-form-label control-label text_Navy">Packing Name </label>
-      <div class="col-sm-9">
+      <div class="col-sm-8">
         <input required id="name" type="text" class="form-control" placeholder=" Packing Name" name="name"
-          [(ngModel)]="data.name" #name="ngModel" [ngClass]="{'error': name.invalid && name.touched}">
+          [(ngModel)]="data.name" #name="ngModel" [ngClass]="{'error': name.invalid }">
         <small>Add Packing Description</small>
       </div>
     </div>
@@ -25,8 +25,8 @@
 
     <div class="form-group row">
       <label for="description" class="col-sm-3 col-form-label text-grey">Description</label>
-      <div class="col-sm-9">
-        <textarea required class="form-control" id="description" rows="3" name="description"
+      <div class="col-sm-8">
+        <textarea  class="form-control" id="description" rows="3" name="description"
           placeholder="Brief Packing Description Here..." [(ngModel)]="data.description"
           #description="ngModel"></textarea>
       </div>
@@ -34,10 +34,10 @@
 
     <div class="form-group row">
       <label for="active" class="col-sm-3 col-form-label text-grey"></label>
-      <div class="col-sm-9">
+      <div class="col-sm-8">
         <div class="form-check form-check-inline">
-          <input class="form-check-input check-btn " type="checkbox" name="active" [(ngModel)]="data.active"
-            #active="ngModel">
+          <input class="form-check-input check-btn " type="checkbox" name="active" [(ngModel)]="active"
+           >
           <label for="active" class="form-check-label text-grey" id="active">Marked as Active</label>
         </div>
       </div>
@@ -48,7 +48,7 @@
 </div> 
 <div class="modal-footer NotBG">
 
-      <button class="btn button-save" type="submit" (click)="addPacking()">
+      <button class="btn button-save" type="submit" (click)="addPacking()" [disabled]="addPackingForm.invalid">
         Save Packing
       </button>
     </div>

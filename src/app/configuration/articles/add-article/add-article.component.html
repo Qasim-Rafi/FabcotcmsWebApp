@@ -10,25 +10,25 @@
     
   </div>
 
-  <div class="modal-body BG"  >
+  <div class="modal-body BG pt-2r">
     <form #addAgentForm="ngForm" novalidate>
 
-      <div class="form-group row" [class.has-error]="code.invalid && code.touched">
+      <div class="form-group row" [class.has-error]="code.invalid ">
         <label for="code" class="col-sm-3 col-form-label control-label text-grey" >Article Code </label>
         
-        <div class="col-sm-9">
+        <div class="col-sm-8">
           <input required id="code" type="text" class="form-control" placeholder="Article Code" name="code"
-            [(ngModel)]="data.code" #code="ngModel" [ngClass]="{'error': code.invalid && code.touched}">
+            [(ngModel)]="data.code" #code="ngModel" [ngClass]="{'error': code.invalid }">
             <small>Standard code for the article</small>
         </div>
       </div>
    
-      <div class="form-group row" [class.has-error]="name.invalid && name.touched">
+      <div class="form-group row" [class.has-error]="name.invalid ">
         <label  for="name" class="col-sm-3 col-form-label control-label text_Navy">Article name </label>
         
-        <div class="col-sm-9">
+        <div class="col-sm-8">
           <input required id="name" type="text" class="form-control" placeholder="Article name" name="name"
-            [(ngModel)]="data.name" #name="ngModel" [ngClass]="{'error': name.invalid && name.touched}">
+            [(ngModel)]="data.name" #name="ngModel" [ngClass]="{'error': name.invalid }">
             <small >Add warp,weft,end,pick & width info in order</small>
         </div>
       </div>
@@ -36,25 +36,24 @@
 
       <div class="form-group row">
         <label for="genericName" class="col-sm-3 col-form-label text-grey">Generic Name</label>
-        <div class="col-sm-9">
-          <input required id="genericName" type="text" class="form-control" placeholder="Article generic name" name="genericName"
+        <div class="col-sm-8">
+          <input  id="genericName" type="text" class="form-control" placeholder="Article generic name" name="genericName"
             [(ngModel)]="data.genericName" #genericName="ngModel" >
         </div>
       </div>
 
       <div class="form-group row">
         <label for="description" class="col-sm-3 col-form-label text-grey">Description</label>
-        <div class="col-sm-9">
-          <textarea required class="form-control" id="description" rows="3" placeholder="Brief article description here ..." name="description"
+        <div class="col-sm-8">
+          <textarea  class="form-control" id="description" rows="3" placeholder="Brief article description here ..." name="description"
             [(ngModel)]="data.description" #description="ngModel"></textarea>
         </div>
       </div>
       <div class="form-group row">
         <label for="active" class="col-sm-3 col-form-label text-grey"></label>
-        <div class="col-sm-9">
+        <div class="col-sm-8">
           <div class="form-check form-check-inline">
-            <input class="form-check-input check-btn " type="checkbox" name="active" [(ngModel)]="data.active"
-              #active="ngModel">
+            <input checked  class="form-check-input check-btn " type="checkbox" name="active" [(ngModel)]="active">
             <label for="active" class="form-check-label text-grey" id="active">Marked as Active</label>
           </div>
         </div>
@@ -66,7 +65,7 @@
   </div>
   <div class="modal-footer NotBG">
     <button class="btn btn-outline-secondary noHover"  data-dismiss="modal" (click)="activeModal.close()">Close</button>
-    <button class="btn button-save" type="submit" (click)="addArticle()">
+    <button class="btn button-save" type="submit" (click)="addArticle()" [disabled]="addAgentForm.invalid">
       Save Article
     </button>
   </div>

@@ -15,20 +15,14 @@ import { HomeComponent } from './home/home.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 
-
- 
-
-
-const appRoutes: Routes = [
-
-  ]
-
+const appRoutes: Routes = [ ]
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+   
     // AddEnquiryComponent,
     // SearchEnquiryComponent,
     // AddmodalComponent,

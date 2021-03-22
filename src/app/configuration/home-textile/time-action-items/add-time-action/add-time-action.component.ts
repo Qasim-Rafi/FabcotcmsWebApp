@@ -13,6 +13,7 @@ export class AddTimeActionComponent implements OnInit {
 
   data: any = {};
   response: any;
+  active = true; 
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
@@ -29,7 +30,7 @@ export class AddTimeActionComponent implements OnInit {
     let varr = {
       "name": this.data.name,
       "description": this.data.description,
-      "active": this.data.active,
+      "active": this.active,
     }
 
     this.http.

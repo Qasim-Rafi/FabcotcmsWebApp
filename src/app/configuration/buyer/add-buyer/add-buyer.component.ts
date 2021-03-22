@@ -12,13 +12,12 @@ import { NgForm } from '@angular/forms';
 })
 export class AddBuyerComponent implements OnInit {
   listCount: number;
-  myDate = Date.now();
   response: any;
   data: any = {};
   country: any = [];
   buyer: any[];
-  countryId: null;
-  parentBuyerId: null;
+  // countryId: null;
+  // parentBuyerId =  null;
   @ViewChild(NgForm) buyerForm;
   date: number;
 
@@ -93,7 +92,7 @@ export class AddBuyerComponent implements OnInit {
       "buyerDetails": this.data.buyerDetails,
       "isParentBuyer": this.data.isParentBuyer,
       "parentBuyerId": this.data.parentBuyerId,
-    }
+    } 
 
     this.http.
       post(`${environment.apiUrl}/api/Buyers/AddBuyer`, varr)

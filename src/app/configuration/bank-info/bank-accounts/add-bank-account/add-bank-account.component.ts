@@ -11,7 +11,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class AddBankAccountComponent implements OnInit {
   banks:any=[];
-  bankId:null;
+  bankId =null;
   response:any;
   data:any={};
 
@@ -56,7 +56,7 @@ export class AddBankAccountComponent implements OnInit {
   addBankAccount()
   {
     let varr=  {
-      "bankId": this.data.bankId,
+      "bankId": this.bankId,
       "accountName": this.data.accountName,
       "accountNumber": this.data.accountNumber,
       "iban": this.data.iban,

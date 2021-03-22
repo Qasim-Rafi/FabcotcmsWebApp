@@ -12,8 +12,11 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class AddAgentFormComponent implements OnInit {
   data:any={};
   response: any;
-  agentTypeId: null;
-  agentSideId: null;
+  agentTypeId = null;
+  agentSideId = null;
+  city: any = [];
+  banks: any = [];
+ 
 
 
   constructor(private http:HttpClient,
@@ -21,6 +24,10 @@ export class AddAgentFormComponent implements OnInit {
     private _NgbActiveModal: NgbActiveModal ) { }
 
   ngOnInit(): void {
+
+    this.getCity();
+    this.getBanks();
+    
   }
 
 
@@ -29,6 +36,50 @@ export class AddAgentFormComponent implements OnInit {
   get activeModal() {
     return this._NgbActiveModal;
   }
+
+
+  getCity() {
+    this.http.get(`${environment.apiUrl}/api/Configs/GetAllCity`)
+      .subscribe(
+        res => {
+          this.response = res;
+          if (this.response.success == true) {
+            this.city = this.response.data;
+          }
+          else {
+            this.toastr.error('Something went Worng', 'Message.');
+          }
+
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error('Something went Worng', 'Message.');
+          }
+        });
+  }
+
+
+
+  getBanks() {
+    this.http.get(`${environment.apiUrl}/api/Lookups/Banks`)
+      .subscribe(
+        res => {
+          this.response = res;
+          if (this.response.success == true) {
+            this.banks = this.response.data;
+          }
+          else {
+            this.toastr.error('Something went Worng', 'Message.');
+          }
+
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error('Something went Worng', 'Message.');
+          }
+        });
+  }
+
+
+
 
 
   addAgent()

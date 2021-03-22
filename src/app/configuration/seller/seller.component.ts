@@ -21,6 +21,7 @@ export class SellerComponent implements OnInit {
   country: any = [];
   countryId: null;
   rows: any = [];
+  temp: any[];
   constructor(private http: HttpClient,
     private toastr: ToastrService,
     private modalService: NgbModal,) { }
@@ -29,9 +30,14 @@ export class SellerComponent implements OnInit {
     // this.getCountry();
     this.getSellers();
     this.fetch((data) => {
+      this.temp = [...data];
       this.rows = data;
     });
   }
+
+ 
+
+ 
 
   // getCountry()
   // {
@@ -62,7 +68,7 @@ export class SellerComponent implements OnInit {
           if (this.response.success == true) {
             this.seller = this.response.data;
             this.listCount = this.response.data.length;
-
+           
           }
           else {
             this.toastr.error('Something went Worng', 'Message.');
@@ -77,7 +83,17 @@ export class SellerComponent implements OnInit {
 
 
 
+  updateFilter(event) {
+    const val = event.target.value.toLowerCase();
 
+    const temp = this.temp.filter(function (d) {
+      return (d.sellerCode.toLowerCase().indexOf(val) !== -1 ||
+      
+        d.sellerName.toLowerCase().indexOf(val) !== -1 || !val);
+    });
+    this.rows = temp;
+    
+  }
 
 
 
@@ -88,7 +104,7 @@ export class SellerComponent implements OnInit {
   deleteSeller(id) {
     Swal.fire({
       title: GlobalConstants.deleteTitle, //'Are you sure?',
-      text: GlobalConstants.deleteMessage, //"You won't be able to revert this!",
+      text: GlobalConstants.deleteMessage+' '+'"'+ id.sellerName +'"',
       icon: 'error',
       showCancelButton: true,
       confirmButtonColor: '#ed5565',
@@ -201,5 +217,9 @@ export class SellerComponent implements OnInit {
       // on dismiss
     });
   }
+// search
+
+
+
 
 }

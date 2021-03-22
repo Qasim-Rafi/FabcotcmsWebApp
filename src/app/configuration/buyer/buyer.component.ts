@@ -9,6 +9,10 @@ import { AddBuyerComponent } from './add-buyer/add-buyer.component';
 import { ServiceService } from 'src/app/shared/service.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { GlobalConstants } from 'src/app/Common/global-constants';
+
+
+
+
 @Component({
   selector: 'app-buyer',
   templateUrl: './buyer.component.html',
@@ -27,9 +31,6 @@ export class BuyerComponent implements OnInit {
   @ViewChild(NgForm) buyerForm;
   date: number;
 
-
-
-
   constructor(private http: HttpClient,
     private toastr: ToastrService,
     private modalService: NgbModal,
@@ -39,11 +40,14 @@ export class BuyerComponent implements OnInit {
 
 
   ngOnInit() {
+
     this.getBuyers();
     return this.service.getCountry();
 
   }
 
+
+  
 
   getBuyers() {
     this.http.get(`${environment.apiUrl}/api/Buyers/GetBuyers`)

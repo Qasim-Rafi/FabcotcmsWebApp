@@ -12,9 +12,10 @@ import { ServiceService } from 'src/app/shared/service.service';
 })
 export class AddCityComponent implements OnInit {
   country: any = [];
-  countryId: null;
+  countryId= null;
   response: any;
   data: any = {};
+  active = true; 
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
@@ -46,7 +47,7 @@ export class AddCityComponent implements OnInit {
       "name": this.data.name,
       "details": this.data.details,
       "countryId": this.countryId,
-      "active": this.data.active
+      "active": this.active
 
     }
 

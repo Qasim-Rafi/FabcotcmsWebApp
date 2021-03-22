@@ -1,3 +1,6 @@
+/* DropDown Search */
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
 /* NGX TABLE */
 @import "~@swimlane/ngx-datatable/index.css";
 @import "~@swimlane/ngx-datatable/themes/material.css";
@@ -31,6 +34,28 @@
   font-size: 16px !important;
   font-weight: 500 !important;
 }
+/* ----------------------------------------------------------------------- */
+/* DropDown styling */
+
+.ng-select .ng-select-container {
+  color: #333;
+  background-color: #fff;
+  border-radius: 0px !important;
+  border: 1px solid #ccc;
+  min-height: 36px;
+  align-items: center;
+  font-size: 13px;
+}
+
+.ng-select.ng-select-focused:not(.ng-select-opened) > .ng-select-container {
+  border-color: #1ab394 !important;
+  box-shadow: none !important;
+}
+
+ng-dropdown-panel {
+  font-size: 13px;
+}
+
 /* ----------------------------------------------------------------------- */
 
 h2 {
@@ -69,8 +94,7 @@ h5 {
   background-color: #1ab394;
   border-radius: 5px;
   font-weight: 400;
-  width: 56px;
-  margin-left: 10px;
+  padding: 2px 5px;
 }
 
 .inactive {
@@ -78,8 +102,7 @@ h5 {
   background-color: #6d6d6d;
   border-radius: 5px;
   font-weight: 400;
-  width: 56px;
-  margin-left: 60px;
+  /* padding: 2px 5px; */
 }
 
 .noBorder {
@@ -121,10 +144,10 @@ h5 {
 }
 
 .text2 {
-  font-size: 22px;
+  font-size: 20px;
   vertical-align: middle;
   padding-left: 10px;
-  font-weight: 400;
+  /* font-weight: 400; */
 }
 
 .headline {
@@ -235,32 +258,106 @@ title {
   font-weight: 300 !important;
   padding: 12px 0 0 0 !important;
 }
-.html5buttons{
-  padding: 0px 7.5px ;
+.html5buttons {
+  padding: 0px 7.5px;
 }
 
-.modal-header .close, .modal-header .mailbox-attachment-close {
-  margin: 0rem 0rem 0rem auto !important;
+.modal-header .close,
+.modal-header .mailbox-attachment-close {
+  margin: 0px -5px 0px auto !important;
 }
 .modal-title {
   padding: 5px;
 }
 
+.active-enqury-pdg {
+  padding: 28px !important;
+}
+
+.agents-pdg {
+  padding: 20px !important;
+}
+
+.flt-RnL {
+  float: right !important;
+}
+.modal-dialog {
+  max-width: 50% !important;
+}
+
+.close,
+.mailbox-attachment-close {
+  font-size: 1.3rem !important;
+}
+label {
+  text-align: right;
+  font-size: 13px !important;
+  color: grey !important;
+  font-weight: 400 !important;
+}
+input,
+textarea,
+option,
+select {
+  font-size: 13px !important;
+  color: grey !important;
+  border-radius: 0px;
+  font-weight: 400 !important;
+}
+.pt-2r{
+  padding-top: 2rem !important;
+}
+
+.pr-md1{
+  padding-right: 8.333333% !important;
+}
+
+
+
+
+
 
 
 
 @media only screen and (max-width: 768px) {
-  
   .mrg-tsm {
-    margin: 10px 0 0 0 ;
+    margin: 10px 0 0 0;
   }
-  
-  
 }
-
 
 @media only screen and (max-width: 667px) {
   .mrg-tsm {
     margin: 10px 0 0 0;
+  }
+  .active-enqury-pdg {
+    padding: 24px !important;
+  }
+  .text {
+    font-size: 21px;
+  }
+
+  .agents-pdg {
+    padding: 12px !important;
+  }
+  .flt-RnL {
+    float: left !important;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .active-enqury-pdg {
+    padding: 16px !important;
+  }
+  .display-b {
+    display: block !important;
+  }
+  .text-s-md {
+    font-size: 16px !important;
+  }
+  .text2 {
+    font-size: 16px;
+  }
+  .flt-RnL {
+    float: left !important;
   }
 }

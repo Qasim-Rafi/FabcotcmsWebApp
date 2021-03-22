@@ -9,22 +9,22 @@
 
 </div>
 
-<div class="modal-body BG">
+<div class="modal-body BG pt-2r">
   <form #addAgentForm="ngForm" novalidate>
 
-    <div class="form-group row" [class.has-error]="type.invalid && type.touched">
+    <div class="form-group row" [class.has-error]="type.invalid ">
       <label for="type" class="col-sm-3 col-form-label control-label text_Navy">Process Type </label>
-      <div class="col-sm-9">
+      <div class="col-sm-8">
         <input required id="type" type="text" class="form-control" placeholder="Process Type" name="type"
-          [(ngModel)]="data.type" #type="ngModel" [ngClass]="{'error': type.invalid && type.touched}">
+          [(ngModel)]="data.type" #type="ngModel" [ngClass]="{'error': type.invalid }">
         <small>Add Process Type Description</small>
       </div>
     </div>
 
     <div class="form-group row">
       <label for="description" class="col-sm-3 col-form-label text-grey">Description</label>
-      <div class="col-sm-9">
-        <textarea required class="form-control" id="description" rows="3"
+      <div class="col-sm-8">
+        <textarea  class="form-control" id="description" rows="3"
           placeholder="Brief Process Type description here ..." name="description" [(ngModel)]="data.description"
           #description="ngModel"></textarea>
       </div>
@@ -32,10 +32,11 @@
 
     <div class="form-group row">
       <label for="active" class="col-sm-3 col-form-label text-grey"></label>
-      <div class="col-sm-9">
+      <div class="col-sm-8">
         <div class="form-check form-check-inline">
-          <input class="form-check-input check-btn" type="checkbox" checked>
-          <label class="form-check-label text-grey">Marked as Active</label>
+          <input checked class="form-check-input check-btn " type="checkbox" name="active" [(ngModel)]="active"
+            >
+          <label for="active" class="form-check-label text-grey" id="active">Marked as Active</label>
         </div>
       </div>
     </div>
@@ -44,7 +45,7 @@
   </form>
 </div>
 <div class="modal-footer NotBG">
-  <button class="btn button-save" type="submit" (click)="addProcessType()">
+  <button class="btn button-save" type="submit" (click)="addProcessType()" [disabled]="addAgentForm.invalid">
     Save Process Type
   </button>
 </div>

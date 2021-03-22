@@ -131,21 +131,6 @@ export class ColorComponent implements OnInit {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   addColorForm(){
     const modalRef = this.modalService.open(AddColorComponent, { centered: true });
           modalRef.result.then((data) => {

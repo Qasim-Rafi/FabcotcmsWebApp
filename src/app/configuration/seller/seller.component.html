@@ -13,8 +13,10 @@
   <div class="content-header">
     <div class="col-sm-12 mb-4">
       <h2 class="row wrapper page-header font-weight-light"> Seller / Supplier
-        <div class="ml-2 text-muted descr">Manage Fabric / Yarn Articles with warp, weft, end, pick,weive & width
-          info</div>
+        <div class="ml-2 text-muted descr"> Seller and their point of contact information goes here
+          <small>Configuration / Sellers</small>
+        </div>
+
       </h2>
     </div>
   </div>
@@ -98,9 +100,11 @@
       <div class=" col-md-12 autoAdjustSearch">
         <div class="input-group col-md-offset-3">
 
-          <input type="text" placeholder="Search Supplier or their POCs " class="input form-control w-50">
+          <input type="text" placeholder="Search Supplier or their POCs " 
+          class="input form-control w-50"  (keyup)="updateFilter($event)"  >
           <span class="group-btn">
-            <button type="button" class="btn btn-primary autoAdjustBtn ml-1"> <i class="fa fa-search"></i> Search</button>
+            <button type="button" class="btn btn-primary autoAdjustBtn ml-1"> 
+              <i class="fa fa-search"></i> Search</button>
           </span>
 
           <button type="button" class="btn btn-primary float-right" data-toggle="modal"
