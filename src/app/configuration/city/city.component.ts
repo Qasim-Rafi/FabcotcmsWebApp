@@ -19,7 +19,6 @@ export class CityComponent implements OnInit {
   response: any;
   rows: any = [];
   // countryId= null;
-
   columns: any = [];
   data: any = {};
   myDate = Date.now();
