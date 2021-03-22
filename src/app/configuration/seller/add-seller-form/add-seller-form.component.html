@@ -89,6 +89,7 @@
               name="sellerContact"
               [(ngModel)]="data.sellerContact"
               #sellerContact="ngModel"
+              [ngClass]="{ error: sellerContact.invalid }"
             />
           </div>
           <div class="col-sm-6">
@@ -100,6 +101,7 @@
               name="sellerOtherContact"
               [(ngModel)]="data.sellerOtherContact"
               #sellerOtherContact="ngModel"
+              [ngClass]="{ error: sellerOtherContact.invalid }"
             />
           </div>
         </div>
@@ -111,16 +113,15 @@
       <div class="col-sm-8">
         <input
           pattern="[+-0-9]{4,15}"
+          maxlength="15"
           class="form-control"
           id="sellerFax"
           placeholder="Seller Fax No."
           name="sellerFax"
           [(ngModel)]="data.sellerFax"
           #sellerFax="ngModel"
+          [ngClass]="{ error: sellerFax.invalid }"
         />
-        <p *ngIf="sellerFax.invalid && sellerFax.touched">
-          Invalid Input or Lenght
-        </p>
       </div>
     </div>
 
@@ -134,16 +135,15 @@
             <input
               type="text"
               pattern="[+-a-zA-Z0-9]{0,15}"
+              maxlength="15"
               class="form-control"
               id="sellerNTN"
               placeholder="NTN No."
               name="sellerNTN"
               [(ngModel)]="data.sellerNTN"
               #sellerNTN="ngModel"
+              [ngClass]="{ error: sellerNTN.invalid }"
             />
-            <p *ngIf="sellerNTN.invalid && sellerNTN.touched">
-              Invalid Input or Lenght
-            </p>
           </div>
           <div class="col-sm-6">
             <input
