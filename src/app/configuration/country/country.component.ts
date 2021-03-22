@@ -7,7 +7,7 @@ import { EditCountryComponent } from './edit-country/edit-country.component';
 import { AddCountryComponent } from './add-country/add-country.component';
 import { GlobalConstants } from '../../Common/global-constants';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
-
+import {ServiceService}  from 'src/app/shared/service.service'
 @Component({
   selector: 'app-country',
   templateUrl: './country.component.html',
@@ -21,11 +21,12 @@ export class CountryComponent implements OnInit {
   data: any = {};
   currentDate = Date.now();
   temp: any=[];
+  newData:any=[];
  
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
-    private modalService: NgbModal,) { }
+    private modalService: NgbModal, private service:ServiceService) { }
   
   ngOnInit(): void {
     this.fetch((data) => {
@@ -161,9 +162,15 @@ export class CountryComponent implements OnInit {
       // on dismiss
     });
   }
+ 
+
+// excel
 
 
+exportAsXLSX():void {
 
+  this.service.exportAsExcelFile(this.data, 'sample');
+}
 
 
 
