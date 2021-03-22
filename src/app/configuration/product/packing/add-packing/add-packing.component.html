@@ -17,7 +17,9 @@
       <label for="name" class="col-sm-3 col-form-label control-label text_Navy">Packing Name </label>
       <div class="col-sm-8">
         <input required id="name" type="text" class="form-control" placeholder=" Packing Name" name="name"
-          [(ngModel)]="data.name" #name="ngModel" [ngClass]="{'error': name.invalid }">
+          [(ngModel)]="data.name"
+          maxlength="100"
+          #name="ngModel" [ngClass]="{'error': name.invalid }">
         <small>Add Packing Description</small>
       </div>
     </div>
@@ -27,7 +29,9 @@
       <label for="description" class="col-sm-3 col-form-label text-grey">Description</label>
       <div class="col-sm-8">
         <textarea  class="form-control" id="description" rows="3" name="description"
-          placeholder="Brief Packing Description Here..." [(ngModel)]="data.description"
+          placeholder="Brief Packing Description Here..." 
+          maxlength="500"
+          [(ngModel)]="data.description"
           #description="ngModel"></textarea>
       </div>
     </div>
