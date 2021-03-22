@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -8,6 +8,8 @@ import { AddCountryComponent } from './add-country/add-country.component';
 import { GlobalConstants } from '../../Common/global-constants';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import {ServiceService}  from 'src/app/shared/service.service'
+import { ClipboardService } from 'ngx-clipboard';
+import { DatatableComponent } from '@swimlane/ngx-datatable';
 @Component({
   selector: 'app-country',
   templateUrl: './country.component.html',
@@ -22,11 +24,14 @@ export class CountryComponent implements OnInit {
   currentDate = Date.now();
   temp: any=[];
   newData:any=[];
+  @ViewChild('myTable') table: DatatableComponent;
  
 
   constructor(private http: HttpClient,
-    private toastr: ToastrService,
-    private modalService: NgbModal, private service:ServiceService) { }
+              private toastr: ToastrService,
+              private modalService: NgbModal, 
+              private service:ServiceService,
+              private clipboardService: ClipboardService) { }
   
   ngOnInit(): void {
     this.fetch((data) => {
@@ -94,7 +99,6 @@ export class CountryComponent implements OnInit {
       position: 'top',
     }).then((result) => {
       if (result.isConfirmed) {
-
 
         this.http.delete(`${environment.apiUrl}/api/Configs/DeleteCountry/` + id.id)
           .subscribe(
@@ -170,8 +174,24 @@ export class CountryComponent implements OnInit {
 exportAsXLSX():void {
 
   this.service.exportAsExcelFile(this.data, 'sample');
-}
+ 
+  }
 
+//   copyContent() {
+//     let array = []
+//    let rows = this.table.bodyComponent.rows;
+//    function createStringByArray(array) {
+//     var output = '';
+//         forEach(array, function (object) {
+//         forEach(object, function (value, key) {
+//             output += key + ',';
+//             output += value + ',';
+//         });
+//     });
+//     return output;
+// }
 
-
+//     // let copy =     this.rows.join(',')
+//     // this.clipboardService.copyFromContent(array)
+//   }
 }
