@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
@@ -19,6 +19,8 @@ export class AddSellerFormComponent implements OnInit {
   countryId : null;
   parentSellerId: null;
   @ViewChild(NgForm) sellerForm;
+  @ViewChild('sellerName') private elementRef: ElementRef;
+
 
 
   constructor(private http: HttpClient,
@@ -29,6 +31,14 @@ export class AddSellerFormComponent implements OnInit {
     this.getCountry();
     this.getParentSellers();
   }
+
+
+  public ngAfterViewInit(): void {
+    this.elementRef.nativeElement.focus();
+  }
+
+
+  
 
   getCountry() {
     this.http.get(`${environment.apiUrl}/api/Lookups/Countries`)
