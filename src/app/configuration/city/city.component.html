@@ -179,8 +179,13 @@
             let-expanded="expanded"
             ngx-datatable-cell-template
           >
-            <div class="active" *ngIf="row.active == true">Active</div>
-            <div class="inactive" *ngIf="row.active == false">Inactive</div>
+
+            <span class="badge badge-primary" *ngIf="row.active==true">Active</span>
+            <span class="badge badge-secondary" *ngIf="row.active==false">Inactive</span>
+
+            <!-- <div class="active" *ngIf="row.active == true">Active</div>
+            <div class="inactive" *ngIf="row.active == false">Inactive</div> -->
+
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="Changed On | Changed By" [width]="80">

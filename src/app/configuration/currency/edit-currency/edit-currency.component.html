@@ -36,9 +36,13 @@
           <input required id="rate" type="text" class="form-control" placeholder="Rate" name="rate"
             [(ngModel)]="data.rate" #rate="ngModel" [ngClass]="{'error': rate.invalid }">
             <!-- <span class="rate">= 1 USD</span> -->
-            <span class="input-group-text" id="basic-addon2">= 1 USD</span>
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">= 1 USD</span>
+            </div>
         </div>
       </div>
+
+      
 
       <div class="form-group row">
         <label for="details" class="col-sm-3 col-form-label">Details</label>

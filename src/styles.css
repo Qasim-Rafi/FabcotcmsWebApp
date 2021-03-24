@@ -15,7 +15,7 @@
 }
 
 .ngx-datatable.bootstrap {
-  font-size: 16px !important;
+  font-size: 14px !important;
   font-weight: 300 !important;
 }
 
@@ -320,8 +320,15 @@ select {
   background: none !important;
 }
 
-
-
+.badge-primary {
+  color: #ffffff;
+  background-color: #1ab394 !important;
+}
+.badge {
+  padding: 7px 10px !important;
+  font-weight: 500 !important;
+  font-size: 80% !important;
+}
 
 
 

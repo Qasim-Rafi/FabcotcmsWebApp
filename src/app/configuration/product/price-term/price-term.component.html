@@ -144,12 +144,17 @@
         </ngx-datatable-column>
         <ngx-datatable-column name="Status" [width]="80">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            <div class="active" *ngIf="row.active==true">
+            
+            <span class="badge badge-primary" *ngIf="row.active==true">Active</span>
+            <span class="badge badge-secondary" *ngIf="row.active==false">Inactive</span>
+
+            <!-- <div class="active" *ngIf="row.active==true">
               Active
             </div>
             <div class="inactive" *ngIf="row.active==false">
               Inactive
-            </div>
+            </div> -->
+
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="Last Changed On | Updated By" [width]="80">
