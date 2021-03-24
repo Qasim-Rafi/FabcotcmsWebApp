@@ -14,7 +14,8 @@ export class ServiceService {
   country:any=[];
   buyer:any=[];
   article:any=[];
-  constructor(private http: HttpClient, private toastr: ToastrService,) { }
+  constructor(private http: HttpClient, 
+              private toastr: ToastrService,) { }
 
   getCountry()
   {
@@ -66,6 +67,8 @@ getArticles()
     return this.http.get(`${environment.apiUrl}/api/Lookups/Destinations`)
   }
 
+
+  
   // excel
   public exportAsExcelFile(json: any[], excelFileName: string): void {
     

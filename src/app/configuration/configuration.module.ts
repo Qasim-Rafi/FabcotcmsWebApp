@@ -72,6 +72,7 @@ import { AddCurrencyComponent } from './currency/add-currency/add-currency.compo
 import { EditCurrencyComponent } from './currency/edit-currency/edit-currency.component';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { ClipboardModule } from 'ngx-clipboard';
 
 @NgModule({
   declarations: [
@@ -123,6 +124,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     FormsModule,
     NgSelectModule,
     ReactiveFormsModule,
+    ClipboardModule,
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({

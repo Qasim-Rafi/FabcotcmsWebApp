@@ -22,7 +22,9 @@
       >
       <div class="col-sm-8">
         <input
+          #sellerName
           required
+          maxlength="60"
           id="sellerName"
           type="text"
           class="form-control"
@@ -30,7 +32,7 @@
           name="sellerName"
           [(ngModel)]="data.sellerName"
           #name="ngModel"
-          [ngClass]="{ error: name.invalid && name.touched }"
+          [ngClass]="{ error: name.invalid }"
         />
       </div>
     </div>
@@ -41,6 +43,7 @@
       >
       <div class="col-sm-8">
         <textarea
+          maxlength="300"
           class="form-control"
           id="billingAddress"
           rows="3"
@@ -48,9 +51,6 @@
           name="billingAddress"
           [(ngModel)]="data.billingAddress"
           #billingAddress="ngModel"
-          [ngClass]="{
-            error: billingAddress.invalid && billingAddress.touched
-          }"
         ></textarea>
       </div>
     </div>
@@ -64,6 +64,8 @@
           required
           placeholder="-- Select --"
           name="countryId"
+          #countryId="ngModel"
+          [ngClass]="{ error: countryId.invalid }"
         >
           <ng-option *ngFor="let i of country" [value]="i.id"
             >{{ i.name }}
@@ -84,17 +86,23 @@
         <div class="row">
           <div class="col-sm-6">
             <input
-              type="text"
+              pattern="[+0-9-]{7,15}"
+              maxlength="15"
               class="form-control"
               id="contactNoPrimary"
               placeholder="Primary Contact No."
               name="contactNoPrimary"
               [(ngModel)]="data.contactNoPrimary"
               #contactNoPrimary="ngModel"
+              [ngClass]="{
+                error: contactNoPrimary.invalid && contactNoPrimary.touched
+              }"
             />
           </div>
           <div class="col-sm-6">
             <input
+              pattern="[+0-9-]{7,15}"
+              maxlength="15"
               type="text"
               class="form-control"
               id="contactNoSecondary"
@@ -102,6 +110,9 @@
               name="contactNoSecondary"
               [(ngModel)]="data.contactNoSecondary"
               #contactNoSecondary="ngModel"
+              [ngClass]="{
+                error: contactNoSecondary.invalid && contactNoSecondary.touched
+              }"
             />
           </div>
         </div>
@@ -112,6 +123,9 @@
       <label for="faxNumber" class="col-sm-3 col-form-label">Fax Number</label>
       <div class="col-sm-8">
         <input
+          pattern="[+-0-9]{4,15}"
+          maxlength="15"
+          minlength="4"
           type="text"
           class="form-control"
           id="faxNumber"
@@ -119,6 +133,7 @@
           name="faxNumber"
           [(ngModel)]="data.faxNumber"
           #faxNumber="ngModel"
+          [ngClass]="{ error: faxNumber.invalid && faxNumber.touched }"
         />
       </div>
     </div>
@@ -132,6 +147,8 @@
         <div class="row">
           <div class="col-sm-6">
             <input
+              pattern="[+-a-zA-Z0-9]{0,7}"
+              maxlength="7"
               type="text"
               class="form-control"
               id="ntnNumber"
@@ -139,10 +156,13 @@
               name="ntnNumber"
               [(ngModel)]="data.ntnNumber"
               #ntnNumber="ngModel"
+              [ngClass]="{ error: ntnNumber.invalid && ntnNumber.touched }"
             />
           </div>
           <div class="col-sm-6">
             <input
+              pattern="[+-a-zA-Z0-9]{0,15}"
+              maxlength="15"
               type="text"
               class="form-control"
               id="gstNumber"
@@ -150,6 +170,7 @@
               name="gstNumber"
               [(ngModel)]="data.gstNumber"
               #gstNumber="ngModel"
+              [ngClass]="{ error: gstNumber.invalid && gstNumber.touched }"
             />
           </div>
         </div>
@@ -185,6 +206,7 @@
       >
       <div class="col-sm-8">
         <textarea
+          maxlength="300"
           class="form-control"
           id="majorStrength"
           rows="3"
@@ -202,6 +224,7 @@
       >
       <div class="col-sm-8">
         <textarea
+          maxlength="300"
           class="form-control"
           id="leadTime"
           rows="3"
