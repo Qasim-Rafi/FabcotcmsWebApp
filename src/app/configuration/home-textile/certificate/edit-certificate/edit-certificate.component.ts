@@ -26,6 +26,10 @@ export class EditCertificateComponent implements OnInit {
     if(this.statusCheck == 'edit'){
       this.editCertificate();
     }
+    if(this.statusCheck == 'Add'){
+      this.addCertificate();
+    }
+
   }
 
   get activeModal() {

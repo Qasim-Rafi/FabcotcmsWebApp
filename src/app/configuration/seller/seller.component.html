@@ -21,26 +21,26 @@
   </div> -->
 
 <div class="content-header">
-  <div class="row">
+  <div class="row mb-4">
     <div class="col-sm-12 col-md-6 col-lg-8">
       <h2 class="row wrapper page-header font-weight-light">
         Seller / Supplier
-        <div class="ml-2 descr">
+        <div class="ml-2 text-muted descr">
           Seller and their point of contact information goes here
         </div>
       </h2>
     </div>
 
     <div class="col-sm-12 col-md-6 col-lg-4">
-      <ol class="breadcrumb flt-RnL">
-        <li class="breadcrumb-item"><a href="#">Configuration</a></li>
+      <ol class="breadcrumb flt-RnL pt-ls">
+        <li class="breadcrumb-item">Configuration</li>
         <li class="breadcrumb-item active" aria-current="page">Sellers</li>
       </ol>
     </div>
   </div>
 </div>
 
-<div class="ibox-content m-b-sm mb-2">
+<div class="ibox-content m-b-sm mb-3">
   <!--span class="text-muted small pull-right">Last modification: <i class="fa fa-clock-o"></i> 2:10 pm - 12.06.2014</span -->
 
   <div class="row">
@@ -116,25 +116,16 @@
     <div class="col-md-12 autoAdjustSearch">
       <div class="input-group col-md-offset-3">
         <input
+          placeholder="Search Supplier or their POCs"
           type="text"
           class="input form-control w-50"
           (keyup)="updateFilter($event)"
         />
         <span class="group-btn">
-          <button type="button" class="btn btn-primary autoAdjustBtn">
+          <button type="button" class="btn btn-primary autoAdjustBtn ml-1">
             <i class="fa fa-search"></i> Search
           </button>
         </span>
-
-        <button
-          type="button"
-          class="btn btn-primary float-right"
-          data-toggle="modal"
-          data-target="#exampleModalScrollable"
-          (click)="addSellerform()"
-        >
-          <i class="fa fa-plus" aria-hidden="true"></i> Add New Seller
-        </button>
 
         <button
           type="button"
@@ -158,9 +149,7 @@
     >
       <div class="poc-icon">
         <a
-          aria-expanded="false"
-          aria-controls="collapseExample"
-          (click)="collapse(i)"
+          (click)="collapse()"
           class="faq-question text-muted text-s-lg text-w-3"
         >
           <span class="fa fa-users"></span> 0</a
@@ -182,42 +171,31 @@
           Country: &nbsp; {{ i.country }}
         </div>
       </div>
-      <div class="col-md-2">
-        <div class="ibox-tools">
-          <button
-            type="button"
-            class="btn editIconBack"
-            data-toggle="tooltip"
-            data-placement="top"
-            title=""
-            data-original-title="Certificate"
-            (click)="addCertificateForm()"
-          >
-            <i class="fa fa-certificate"></i>
-          </button>
-          <button
-            type="button"
-            class="btn editIconBack"
-            data-toggle="tooltip"
-            data-placement="top"
-            title=""
-            data-original-title="Edit"
-            (click)="editSellerform(i)"
-          >
-            <i class="far fa-edit"></i>
-          </button>
-          <button
-            type="button"
-            class="btn deleteIconBack"
-            data-toggle="tooltip"
-            data-placement="top"
-            title=""
-            data-original-title="Delete"
-            (click)="deleteSeller(i)"
-          >
-            <i class="far fa-trash-alt"></i>
-          </button>
-          <!-- <button type="button" 
+    </div>
+    <div class="col-md-2">
+      <div class="ibox-tools">
+        <button
+          type="button"
+          class="btn editIconBack"
+          (click)="addCertificateForm('edit')"
+        >
+          <i class="fa fa-certificate"></i>
+        </button>
+        <button
+          type="button"
+          class="btn editIconBack"
+          (click)="editSellerform(i)"
+        >
+          <i class="far fa-edit"></i>
+        </button>
+        <button
+          type="button"
+          class="btn deleteIconBack"
+          (click)="deleteSeller(i)"
+        >
+          <i class="far fa-trash-alt"></i>
+        </button>
+        <!-- <button type="button" 
           class="btn deleteIconBack"
           mwlConfirmationPopover 
           popoverTitle="Confirmation"
@@ -226,63 +204,39 @@
           (confirm)="deleteSeller(i)"> 
           <i class="far fa-trash-alt"></i>
           </button> -->
-        </div>
-
-        <div
-          class="col-md-1 forum-info"
-          data-toggle="tooltip"
-          data-placement="top"
-          title=""
-          style="border-left: 1px solid #d0d0d0"
-          data-original-title="Total Contracts"
-        >
-          <span class="views-number">0</span>
-          <div><small>Total Contracts</small></div>
-        </div>
-
-        <div
-          class="col-md-1 forum-info"
-          data-toggle="tooltip"
-          data-placement="top"
-          title=""
-          data-original-title="Open Contracts"
-        >
-          <span class="views-number"> 0 </span>
-          <div>
-            <small>Open Contracts</small>
-          </div>
-        </div>
-
-        <div
-          class="col-md-1 col-xs-3 forum-info"
-          data-toggle="tooltip"
-          data-placement="top"
-          title=""
-          style="border-left: 1px solid #d0d0d0"
-          data-original-title="Total Contracts"
-        >
-          <span class="views-number"> 0 </span>
-          <div>
-            <small>Total Contracts</small>
-          </div>
-        </div>
-        <div
-          class="col-md-1 forum-info"
-          data-toggle="tooltip"
-          data-placement="top"
-          title=""
-          data-original-title="Open Contracts"
-        >
-          <span class="views-number"> 0 </span>
-          <div>
-            <small>Open Contracts</small>
-          </div>
-        </div>
       </div>
-      <!-- end of .row -->
+    </div>
 
-      <!-- POC Not found Modal -->
-      <!--     
+    <div
+      class="col-md-1 col-xs-3 forum-info"
+      data-toggle="tooltip"
+      data-placement="top"
+      title=""
+      style="border-left: 1px solid #d0d0d0"
+      data-original-title="Total Contracts"
+    >
+      <span class="views-number"> 0 </span>
+      <div>
+        <small>Total Contracts</small>
+      </div>
+    </div>
+    <div
+      class="col-md-1 forum-info"
+      data-toggle="tooltip"
+      data-placement="top"
+      title=""
+      data-original-title="Open Contracts"
+    >
+      <span class="views-number"> 0 </span>
+      <div>
+        <small>Open Contracts</small>
+      </div>
+    </div>
+  </div>
+  <!-- end of .row -->
+
+  <!-- POC Not found Modal -->
+  <!--     
        <div class="row">
         <div class="col-md-12">
           <div id="buyer386" class="panel-collapse collapse">
@@ -298,66 +252,49 @@
           </div>
         </div>
       </div> -->
-      <div
-        *ngIf="isCollapse == true"
-        aria-expanded="false"
-        aria-controls="collapseExample"
-      >
-        <div class="card card-body">
-          <span>
-            <button
-              (click)="addPocform(i)"
-              type="button"
-              class="btn btn-primary float-right col-sm-4 pull-right"
-            >
-              <i class="fa fa-user" aria-hidden="true"></i> POC not Found,
-              <i class="fa fa-plus" aria-hidden="true"></i> Add a new one ?
-            </button>
-          </span>
-          <h2>Contacts</h2>
+  <div class="collapse" id="collapseExample" *ngIf="isCollapse == true">
+    <div class="card card-body">
+      <h2>Contacts</h2>
+      <p>
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
+        terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
+        labore wes anderson cred nesciunt sapiente ea proident.
+      </p>
 
-          <p class="pt-3">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
-            terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
-            labore wes anderson cred nesciunt sapiente ea proident.
-          </p>
+      <h2>Certificate</h2>
+      <p>
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
+        terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
+        labore wes anderson cred nesciunt sapiente ea proident.
+      </p>
 
-          <h2>Certificate</h2>
-          <p class="p-3">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
-            terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
-            labore wes anderson cred nesciunt sapiente ea proident.
-          </p>
+      <h2>Machine Details</h2>
+      <p>
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
+        terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
+        labore wes anderson cred nesciunt sapiente ea proident.
+      </p>
 
-          <h2>Machine Details</h2>
-          <p class="p-3">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
-            terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
-            labore wes anderson cred nesciunt sapiente ea proident.
-          </p>
+      <h2>Major Market & Strengths</h2>
+      <p>
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
+        terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
+        labore wes anderson cred nesciunt sapiente ea proident.
+      </p>
 
-          <h2>Major Market & Strengths</h2>
-          <p class="p-3">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
-            terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
-            labore wes anderson cred nesciunt sapiente ea proident.
-          </p>
+      <h2>Product Capabilties</h2>
+      <p>
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
+        terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
+        labore wes anderson cred nesciunt sapiente ea proident.
+      </p>
 
-          <h2>Product Capabilties</h2>
-          <p class="p-3">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
-            terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
-            labore wes anderson cred nesciunt sapiente ea proident.
-          </p>
-
-          <h2>Lead time & MOQ</h2>
-          <p class="p-3">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
-            terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
-            labore wes anderson cred nesciunt sapiente ea proident.
-          </p>
-        </div>
-      </div>
+      <h2>Lead time & MOQ</h2>
+      <p>
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
+        terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
+        labore wes anderson cred nesciunt sapiente ea proident.
+      </p>
     </div>
   </div>
 </div>

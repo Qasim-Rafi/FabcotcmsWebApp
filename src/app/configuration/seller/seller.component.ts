@@ -48,7 +48,7 @@ export class SellerComponent implements OnInit {
   }
 
  
-collapse(userId)
+collapse()
 {
   this.isCollapse = !this.isCollapse;
 }

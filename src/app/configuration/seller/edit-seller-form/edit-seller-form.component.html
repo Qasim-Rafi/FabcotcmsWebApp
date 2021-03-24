@@ -64,8 +64,6 @@
           required
           placeholder="-- Select --"
           name="countryId"
-          #countryId="ngModel"
-          [ngClass]="{ error: countryId.invalid }"
         >
           <ng-option *ngFor="let i of country" [value]="i.id"
             >{{ i.name }}

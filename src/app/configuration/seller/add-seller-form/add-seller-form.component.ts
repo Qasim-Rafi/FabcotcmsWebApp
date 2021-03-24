@@ -16,16 +16,18 @@ export class AddSellerFormComponent implements OnInit {
   response: any;
   seller: any[];
   country: any = [];
-  // countryId : null;
+  countryId : null;
   parentSellerId: null;
   @ViewChild(NgForm) sellerForm;
   @ViewChild('sellerName') private elementRef: ElementRef;
 
 
 
-  constructor(private http: HttpClient,
+  constructor(
+    private http: HttpClient,
     private toastr: ToastrService,
-    private _NgbActiveModal: NgbActiveModal) { }
+    private _NgbActiveModal: NgbActiveModal
+    ) { }
 
   ngOnInit(): void {
     this.getCountry();
