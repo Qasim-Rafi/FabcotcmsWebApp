@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
@@ -8,6 +8,8 @@ import { AddSellerFormComponent } from './add-seller-form/add-seller-form.compon
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { AddCertificateComponent } from '../home-textile/certificate/add-certificate/add-certificate.component';
 import { GlobalConstants } from 'src/app/Common/global-constants';
+import { SellerPocComponent } from './seller-poc/seller-poc.component';
+import { EditCertificateComponent } from '../home-textile/certificate/edit-certificate/edit-certificate.component';
 @Component({
   selector: 'app-seller',
   templateUrl: './seller.component.html',
@@ -22,12 +24,21 @@ export class SellerComponent implements OnInit {
   countryId: null;
   rows: any = [];
   temp: any[];
+  active = true;
+  isCollapse: boolean = false;
+  @Input() userId;
+  @Input() statusCheck;
   constructor(private http: HttpClient,
     private toastr: ToastrService,
-    private modalService: NgbModal,) { }
+    private modalService: NgbModal,
+   ) { }
 
   ngOnInit(): void {
     // this.getCountry();
+    this.statusCheck=this.statusCheck;
+    if(this.statusCheck == 'Add'){
+      this.addCertificate();
+    }
     this.getSellers();
     this.fetch((data) => {
       this.temp = [...data];
@@ -37,6 +48,47 @@ export class SellerComponent implements OnInit {
   }
 
  
+collapse(userId)
+{
+  this.isCollapse = !this.isCollapse;
+}
+
+
+
+
+
+
+addCertificate()
+{
+  let varr=  {
+    "name": this.data.name,
+    "description": this.data.description,
+    "active": this.active,
+  }
+
+  this.http.
+  post(`${environment.apiUrl}/api/TextileGarments/AddCertificate`,varr)
+  .subscribe(
+    res=> { 
+
+      this.response = res;
+      if (this.response.success == true){
+        this.toastr.success(this.response.message, 'Message.');
+    
+        // this.buyerForm.reset();
+        // this.activeModal.close(true);
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+          }
+
+    }, err => {
+      if (err.status == 400) {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    });
+}
+
 
  
 
@@ -59,6 +111,13 @@ export class SellerComponent implements OnInit {
   //       }
   //     });
   // }
+
+
+
+
+
+
+
 
   getSellers() {
     this.http.get(`${environment.apiUrl}/api/Sellers/GetSellers`)
@@ -149,6 +208,21 @@ export class SellerComponent implements OnInit {
   }
 
 
+  
+  addPocform(popup) {
+    const modalRef = this.modalService.open(SellerPocComponent, { centered: true });
+    modalRef.componentInstance.userId = popup.id;
+    modalRef.result.then((data) => {
+      // on close
+      if (data == true) {
+        this.getSellers();
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
+
+
 
 
 
@@ -179,6 +253,9 @@ export class SellerComponent implements OnInit {
     });
   }
 
+
+
+
   // add certificate
   fetch(cb) {
     let that = this;
@@ -202,24 +279,47 @@ export class SellerComponent implements OnInit {
         //  this.spinner.hide();
       });
   }
+
+
   // add certificate form
-  addCertificateForm() {
-    const modalRef = this.modalService.open(AddCertificateComponent, { centered: true });
-    modalRef.result.then((data) => {
-      // on close
-      if (data == true) {
-        //  this.date = this.myDate;
-        this.fetch((data) => {
-          this.rows = data;
-        });
+  addCertificateForm(check){
+    const modalRef = this.modalService.open(EditCertificateComponent, { centered: true });
+    modalRef.componentInstance.statusCheck = check;
+
+          modalRef.result.then((data) => {
+         // on close
+          if(data ==true){
+          //  this.date = this.myDate;
+           this.fetch((data) => {
+            this.rows = data;
+            this.listCount = this.rows.length;
+          });
+         }
+       }, (reason) => {
+         // on dismiss
+       });
+  } 
+  
+
+  editCertificateForm(check,data){
+    const modalRef = this.modalService.open(EditCertificateComponent, { centered: true });
+    modalRef.componentInstance.statusCheck = check;
+    modalRef.componentInstance.formdataSellerEdit = data;
 
 
-      }
-    }, (reason) => {
-      // on dismiss
-    });
-  }
-// search
+          modalRef.result.then((data) => {
+         // on close
+          if(data ==true){
+          //  this.date = this.myDate;
+           this.fetch((data) => {
+            this.rows = data;
+            this.listCount = this.rows.length;
+          });
+         }
+       }, (reason) => {
+         // on dismiss
+       });
+  } 
 
 
 

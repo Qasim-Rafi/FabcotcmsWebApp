@@ -73,6 +73,7 @@ import { EditCurrencyComponent } from './currency/edit-currency/edit-currency.co
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ClipboardModule } from 'ngx-clipboard';
+import { SellerPocComponent } from './seller/seller-poc/seller-poc.component';
 
 @NgModule({
   declarations: [
@@ -107,7 +108,7 @@ import { ClipboardModule } from 'ngx-clipboard';
              EditPaymentComponent, 
              PriceTermComponent,
               AddPriceComponent, 
-              EditPriceComponent, BankComponent, BankAccountsComponent, AddBankComponent, EditBankComponent, AddBankAccountComponent, EditBankAccountComponent, ProcessComponent, ProcessTypeComponent, DesignTypeComponent, LoomTypeComponent, CertificateComponent, ColorComponent, TimeActionItemsComponent, AddCertificateComponent, EditCertificateComponent, EditColorComponent, AddColorComponent, AddDesignTypeComponent, EditDesignTypeComponent, AddLoomTypeComponent, EditLoomTypeComponent, EditProcessComponent, AddProcessComponent, AddProcessTypeComponent, EditProcessTypeComponent, EditTimeActionComponent, AddTimeActionComponent, AddCurrencyComponent, EditCurrencyComponent, 
+              EditPriceComponent, BankComponent, BankAccountsComponent, AddBankComponent, EditBankComponent, AddBankAccountComponent, EditBankAccountComponent, ProcessComponent, ProcessTypeComponent, DesignTypeComponent, LoomTypeComponent, CertificateComponent, ColorComponent, TimeActionItemsComponent, AddCertificateComponent, EditCertificateComponent, EditColorComponent, AddColorComponent, AddDesignTypeComponent, EditDesignTypeComponent, AddLoomTypeComponent, EditLoomTypeComponent, EditProcessComponent, AddProcessComponent, AddProcessTypeComponent, EditProcessTypeComponent, EditTimeActionComponent, AddTimeActionComponent, AddCurrencyComponent, EditCurrencyComponent, SellerPocComponent, 
   
   
   ],

@@ -22,6 +22,7 @@ export class CertificateComponent implements OnInit {
   myDate=Date.now();
   temp: any=[];
 
+
   constructor(private http:HttpClient,
               private toastr: ToastrService,
               private modalService: NgbModal,) { }
@@ -73,12 +74,6 @@ export class CertificateComponent implements OnInit {
     });
   }
 
-
-
-
-
-
-
   
 
   deleteCertificate(id){
@@ -129,10 +124,10 @@ export class CertificateComponent implements OnInit {
     }
 
 
+  addCertificateForm(check){
+    const modalRef = this.modalService.open(EditCertificateComponent, { centered: true });
+    modalRef.componentInstance.statusCheck =check;
 
-
-  addCertificateForm(){
-    const modalRef = this.modalService.open(AddCertificateComponent, { centered: true });
           modalRef.result.then((data) => {
          // on close
           if(data ==true){
@@ -150,9 +145,10 @@ export class CertificateComponent implements OnInit {
   } 
   
 
-  editCertificateForm(row){
+  editCertificateForm(row,check){
     const modalRef = this.modalService.open(EditCertificateComponent, { centered: true });
-    modalRef.componentInstance.userId =row.id;
+    modalRef.componentInstance.Id =row.id;
+    modalRef.componentInstance.statusCheck =check;
           modalRef.result.then((data) => {
          // on close
           if(data ==true){
@@ -160,7 +156,6 @@ export class CertificateComponent implements OnInit {
            this.fetch((data) => {
             this.rows = data;
           });
-           
          }
        }, (reason) => {
          // on dismiss

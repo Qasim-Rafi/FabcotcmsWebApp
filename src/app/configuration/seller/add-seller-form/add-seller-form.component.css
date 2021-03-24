@@ -27,11 +27,11 @@ label {
   color: ivory;
 }
 .error {
-  border: 1px solid #e03a37 !important;
-  border-left: 3px solid #e03a37 !important;
+  border: 1px solid #e03a37;
+  border-left: 3px solid #e03a37;
   background-repeat: no-repeat;
   background-position: center right 20px;
-  background-image: url("/assets/caution.png");
+  background-image: url("/assets/caution.png") !important;
   background-size: 15px;
 }
 

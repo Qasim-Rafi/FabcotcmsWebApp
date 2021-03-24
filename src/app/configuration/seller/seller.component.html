@@ -1,4 +1,3 @@
-
 <!-- <div class="content-header">
     <div class="container-fluid">
       <div class="row mb-5">
@@ -9,8 +8,8 @@
       </div>
     </div>
   </div> -->
-  
-  <!-- <div class="content-header">
+
+<!-- <div class="content-header">
     <div class="col-sm-12 mb-4">
       <h2 class="row wrapper page-header font-weight-light"> Seller / Supplier
         <div class="ml-2 text-muted descr"> Seller and their point of contact information goes here
@@ -20,35 +19,33 @@
       </h2>
     </div>
   </div> -->
-  
 
+<div class="content-header">
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-8">
+      <h2 class="row wrapper page-header font-weight-light">
+        Seller / Supplier
+        <div class="ml-2 descr">
+          Seller and their point of contact information goes here
+        </div>
+      </h2>
+    </div>
 
-  <div class="content-header">
-
-    <div class="row">
-      <div class="col-sm-12 col-md-6 col-lg-8">
-        <h2 class="row wrapper page-header font-weight-light"> Seller / Supplier
-          <div class="ml-2 descr"> Seller and their point of contact information goes here </div>
-        </h2>
-      </div>
-  
-      <div class="col-sm-12 col-md-6 col-lg-4">
-        <ol class="breadcrumb flt-RnL">
-          <li class="breadcrumb-item"><a href="#">Configuration</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Sellers</li>
-        </ol>
-      </div>
-  
+    <div class="col-sm-12 col-md-6 col-lg-4">
+      <ol class="breadcrumb flt-RnL">
+        <li class="breadcrumb-item"><a href="#">Configuration</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Sellers</li>
+      </ol>
     </div>
   </div>
-  
-  
-  <div class="ibox-content m-b-sm mb-2">
-    <!--span class="text-muted small pull-right">Last modification: <i class="fa fa-clock-o"></i> 2:10 pm - 12.06.2014</span -->
-  
-    <div class="row">
-      <div class="col-lg-3">
-        <!--
+</div>
+
+<div class="ibox-content m-b-sm mb-2">
+  <!--span class="text-muted small pull-right">Last modification: <i class="fa fa-clock-o"></i> 2:10 pm - 12.06.2014</span -->
+
+  <div class="row">
+    <div class="col-lg-3">
+      <!--
       <div class="widget style1">
       <div class="row">
       <div class="col-xs-4 text-center">
@@ -61,37 +58,37 @@
       </div>
       </div>
       -->
-      </div>
-  
-      <div class="col-md-3 ">
-        <div class="widget style1 green-bg">
-          <div class="row">
-            <div class="col-md-4">
-              <i class="fa fa-industry fa-4x"></i>
-            </div>
-            <div class="col-md-8 text-right">
-              <div> Total Sellers </div>
-              <h3 class="font-bold">{{listCount}}</h3>
-            </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="widget style1 green-bg">
+        <div class="row">
+          <div class="col-md-4">
+            <i class="fa fa-industry fa-4x"></i>
+          </div>
+          <div class="col-md-8 text-right">
+            <div>Total Sellers</div>
+            <h3 class="font-bold">{{ listCount }}</h3>
           </div>
         </div>
       </div>
-      <div class="col-lg-3">
-        <div class="widget style1 blue-bg">
-          <div class="row">
-            <div class="col-md-4">
-              <i class="fa fa-users fa-4x"></i>
-            </div>
-            <div class="col-md-8 text-right">
-              <div> Total Contacts </div>
-              <h3 class="font-bold">0</h3>
-            </div>
+    </div>
+    <div class="col-lg-3">
+      <div class="widget style1 blue-bg">
+        <div class="row">
+          <div class="col-md-4">
+            <i class="fa fa-users fa-4x"></i>
+          </div>
+          <div class="col-md-8 text-right">
+            <div>Total Contacts</div>
+            <h3 class="font-bold">0</h3>
           </div>
         </div>
       </div>
-  
-      <div class="col-lg-3">
-        <!--
+    </div>
+
+    <div class="col-lg-3">
+      <!--
       <div class="widget style1 navy-bg">
       <div class="row">
       <div class="col-xs-4">
@@ -104,73 +101,121 @@
       </div>
       </div>
       -->
-      </div>
-  
     </div>
-  
-    <!--
+  </div>
+
+  <!--
       <span class="pull-right m-l-xs" style="margin-top: 8px;"> teams</span><h2 class="no-margins pull-right" data-toggle="tooltip" data-placement="top" title="Total Teams"> </h2>
       <h2>Company Internal Team</h2>
           <p>
               Company internal teams are comprises of employees who are ticket stakeholders.
           </p>
       -->
-    <hr>
-    <div class="row">
-      <div class=" col-md-12 autoAdjustSearch">
-        <div class="input-group col-md-offset-3">
+  <hr />
+  <div class="row">
+    <div class="col-md-12 autoAdjustSearch">
+      <div class="input-group col-md-offset-3">
+        <input
+          type="text"
+          class="input form-control w-50"
+          (keyup)="updateFilter($event)"
+        />
+        <span class="group-btn">
+          <button type="button" class="btn btn-primary autoAdjustBtn">
+            <i class="fa fa-search"></i> Search
+          </button>
+        </span>
 
-          <input type="text" 
-          class="input form-control w-50"  (keyup)="updateFilter($event)"  >
-          <span class="group-btn">
-            <button type="button" class="btn btn-primary autoAdjustBtn"> 
-              <i class="fa fa-search"></i> Search</button>
-          </span>
+        <button
+          type="button"
+          class="btn btn-primary float-right"
+          data-toggle="modal"
+          data-target="#exampleModalScrollable"
+          (click)="addSellerform()"
+        >
+          <i class="fa fa-plus" aria-hidden="true"></i> Add New Seller
+        </button>
 
-          <button type="button" class="btn btn-primary float-right" data-toggle="modal"
-            data-target="#exampleModalScrollable" (click)="addSellerform()">
-            <i class="fa fa-plus" aria-hidden="true"></i> Add New Seller</button>
-
-        </div>
+        <button
+          type="button"
+          class="btn btn-primary float-right"
+          data-toggle="modal"
+          data-target="#exampleModalScrollable"
+          (click)="addSellerform()"
+        >
+          <i class="fa fa-plus" aria-hidden="true"></i> Add New Seller
+        </button>
       </div>
     </div>
   </div>
-  
-  
-  
-  <div class="faq-item shadow-sm" *ngFor="let i of seller">
-    <div class="row ">
-      <div class="col-md-1 col-sm-3 col-xs-3 forum-info" data-toggle="tooltip" data-placement="top" 
-        data-original-title="POCs">
-        <div class="poc-icon">
-          <a data-toggle="collapse" class="faq-question text-muted text-s-lg text-w-3"> <span
-              class="fa fa-users"></span> 0</a>
-        </div>
+</div>
+
+<div class="faq-item shadow-sm" *ngFor="let i of seller">
+  <div class="row">
+    <div
+      class="col-md-1 col-sm-3 col-xs-3 forum-info"
+      data-original-title="POCs"
+    >
+      <div class="poc-icon">
+        <a
+          aria-expanded="false"
+          aria-controls="collapseExample"
+          (click)="collapse(i)"
+          class="faq-question text-muted text-s-lg text-w-3"
+        >
+          <span class="fa fa-users"></span> 0</a
+        >
       </div>
-      <div class="col-md-7">
-        <a class="faq-question">{{i.sellerCode}} - {{i.sellerName}}</a>
-  
-        <div class="small mb-1">Parent Buyer: {{i.parentSellerName}} ({{i.parentSellerCode}})</div>
-        <div class="small">Added by <strong>{{i.createdByName}}</strong>
-          <div class="m-l-lg" style="display: inline-block;"> <i class="fa fa-clock-o fa-fw">
-  
-            </i>  {{i.createdDateTime}}</div>
-          <div class="m-l-lg" style="display: inline-block;">Country: &nbsp; {{i.country}}</div>
+    </div>
+    <div class="col-md-7">
+      <a class="faq-question">{{ i.sellerCode }} - {{ i.sellerName }}</a>
+
+      <div class="small mb-1">
+        Parent Buyer: {{ i.parentSellerName }} ({{ i.parentSellerCode }})
+      </div>
+      <div class="small">
+        Added by <strong>{{ i.createdByName }}</strong>
+        <div class="m-l-lg" style="display: inline-block">
+          <i class="fa fa-clock-o fa-fw"> </i> {{ i.createdDateTime }}
+        </div>
+        <div class="m-l-lg" style="display: inline-block">
+          Country: &nbsp; {{ i.country }}
         </div>
       </div>
       <div class="col-md-2">
         <div class="ibox-tools">
-          <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top" title=""
-           data-original-title="Certificate" (click)="addCertificateForm()" >
+          <button
+            type="button"
+            class="btn editIconBack"
+            data-toggle="tooltip"
+            data-placement="top"
+            title=""
+            data-original-title="Certificate"
+            (click)="addCertificateForm()"
+          >
             <i class="fa fa-certificate"></i>
           </button>
-          <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top" title=""
-          data-original-title="Edit" (click)="editSellerform(i)">
-            <i class="far fa-edit "  ></i>
+          <button
+            type="button"
+            class="btn editIconBack"
+            data-toggle="tooltip"
+            data-placement="top"
+            title=""
+            data-original-title="Edit"
+            (click)="editSellerform(i)"
+          >
+            <i class="far fa-edit"></i>
           </button>
-          <button type="button" class="btn deleteIconBack" data-toggle="tooltip" data-placement="top" title=""
-          data-original-title="Delete" (click)="deleteSeller(i)">
-            <i class="far fa-trash-alt"></i> 
+          <button
+            type="button"
+            class="btn deleteIconBack"
+            data-toggle="tooltip"
+            data-placement="top"
+            title=""
+            data-original-title="Delete"
+            (click)="deleteSeller(i)"
+          >
+            <i class="far fa-trash-alt"></i>
           </button>
           <!-- <button type="button" 
           class="btn deleteIconBack"
@@ -182,32 +227,62 @@
           <i class="far fa-trash-alt"></i>
           </button> -->
         </div>
-      </div>
-  
 
-      <div class="col-md-1 forum-info" data-toggle="tooltip" data-placement="top" title=""
-        style="border-left: 1px solid #d0d0d0" data-original-title="Total Contracts">
-        <span class="views-number">0</span>
-        <div><small>Total Contracts</small></div>
-      </div>
+        <div
+          class="col-md-1 forum-info"
+          data-toggle="tooltip"
+          data-placement="top"
+          title=""
+          style="border-left: 1px solid #d0d0d0"
+          data-original-title="Total Contracts"
+        >
+          <span class="views-number">0</span>
+          <div><small>Total Contracts</small></div>
+        </div>
 
+        <div
+          class="col-md-1 forum-info"
+          data-toggle="tooltip"
+          data-placement="top"
+          title=""
+          data-original-title="Open Contracts"
+        >
+          <span class="views-number"> 0 </span>
+          <div>
+            <small>Open Contracts</small>
+          </div>
+        </div>
 
-
-      <div class="col-md-1 forum-info" data-toggle="tooltip" data-placement="top" title=""
-        data-original-title="Open Contracts">
-        <span class="views-number">
-          0
-        </span>
-        <div>
-          <small>Open Contracts</small>
+        <div
+          class="col-md-1 col-xs-3 forum-info"
+          data-toggle="tooltip"
+          data-placement="top"
+          title=""
+          style="border-left: 1px solid #d0d0d0"
+          data-original-title="Total Contracts"
+        >
+          <span class="views-number"> 0 </span>
+          <div>
+            <small>Total Contracts</small>
+          </div>
+        </div>
+        <div
+          class="col-md-1 forum-info"
+          data-toggle="tooltip"
+          data-placement="top"
+          title=""
+          data-original-title="Open Contracts"
+        >
+          <span class="views-number"> 0 </span>
+          <div>
+            <small>Open Contracts</small>
+          </div>
         </div>
       </div>
-    </div> <!-- end of .row -->
-  
-  
-  
-    <!-- POC Not found Modal -->
-    <!--     
+      <!-- end of .row -->
+
+      <!-- POC Not found Modal -->
+      <!--     
        <div class="row">
         <div class="col-md-12">
           <div id="buyer386" class="panel-collapse collapse">
@@ -223,6 +298,66 @@
           </div>
         </div>
       </div> -->
-  
+      <div
+        *ngIf="isCollapse == true"
+        aria-expanded="false"
+        aria-controls="collapseExample"
+      >
+        <div class="card card-body">
+          <span>
+            <button
+              (click)="addPocform(i)"
+              type="button"
+              class="btn btn-primary float-right col-sm-4 pull-right"
+            >
+              <i class="fa fa-user" aria-hidden="true"></i> POC not Found,
+              <i class="fa fa-plus" aria-hidden="true"></i> Add a new one ?
+            </button>
+          </span>
+          <h2>Contacts</h2>
+
+          <p class="pt-3">
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
+            terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
+            labore wes anderson cred nesciunt sapiente ea proident.
+          </p>
+
+          <h2>Certificate</h2>
+          <p class="p-3">
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
+            terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
+            labore wes anderson cred nesciunt sapiente ea proident.
+          </p>
+
+          <h2>Machine Details</h2>
+          <p class="p-3">
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
+            terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
+            labore wes anderson cred nesciunt sapiente ea proident.
+          </p>
+
+          <h2>Major Market & Strengths</h2>
+          <p class="p-3">
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
+            terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
+            labore wes anderson cred nesciunt sapiente ea proident.
+          </p>
+
+          <h2>Product Capabilties</h2>
+          <p class="p-3">
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
+            terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
+            labore wes anderson cred nesciunt sapiente ea proident.
+          </p>
+
+          <h2>Lead time & MOQ</h2>
+          <p class="p-3">
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
+            terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
+            labore wes anderson cred nesciunt sapiente ea proident.
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
-  
+</div>
