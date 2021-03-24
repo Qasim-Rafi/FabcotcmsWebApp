@@ -8,6 +8,16 @@
 @import "~@swimlane/ngx-datatable/themes/bootstrap.css";
 @import "~@swimlane/ngx-datatable/assets/icons.css";
 
+
+body {
+  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 14px !important;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: left;
+}
+
 .ngx-datatable .datatable-body-cell,
 .ngx-datatable .datatable-header-cell {
   line-height: 2.1 !important;
@@ -57,10 +67,14 @@ ng-dropdown-panel {
 }
 
 /* ----------------------------------------------------------------------- */
-
+h2, .h2 {
+  font-size: 24px !important;
+}
 h2 {
-  color: #575d63 !important;
-  font-weight: 400 !important;
+  /* color: #575d63 !important; */
+  color: #505050 !important;
+  font-weight: 500 !important;
+
 }
 
 h3 {
@@ -74,7 +88,7 @@ h5 {
 }
 
 .innerBody {
-  padding: 15px 35px 15px 35px;
+  padding: 20px 30px 15px 30px;
 }
 
 .noHover:hover {
@@ -89,7 +103,7 @@ h5 {
 .table tbody tr td {
   text-align: left !important;
 }
-.active {
+/* .active {
   color: white;
   background-color: #1ab394;
   border-radius: 5px;
@@ -102,8 +116,8 @@ h5 {
   background-color: #6d6d6d;
   border-radius: 5px;
   font-weight: 400;
-  /* padding: 2px 5px; */
-}
+  padding: 2px 5px; 
+} */
 
 .noBorder {
   border: none !important;
@@ -246,17 +260,21 @@ h5 {
   color: rgb(255, 255, 255) !important;
   background-color: #424141 !important;
 }
+.small,
 small {
-  color: grey;
+  font-size: 85% !important;
+  color: gray;
+  font-weight: 400;
 }
 title {
   width: 600px;
   text-align: center;
 }
 .descr {
-  font-size: 55% !important;
+  font-size: 75% !important;
   font-weight: 300 !important;
-  padding: 12px 0 0 0 !important;
+  padding: 5px 0 0 0 !important;
+  color: #777777;
 }
 .html5buttons {
   padding: 0px 7.5px;
@@ -312,7 +330,7 @@ select {
   padding-right: 8.333333% !important;
 }
 .pt-ls {
-  padding-top: 8px !important;
+  padding-top: 3px !important;
 }
 
 .breadcrumb-item.active {
@@ -329,7 +347,24 @@ select {
   font-weight: 500 !important;
   font-size: 80% !important;
 }
-
+.breadcrumb-item a{
+  color: #333;
+}
+.breadcrumb-item a:hover{
+  color: #333;
+}
+.ibox-tools {
+  display: block;
+  float: none;
+  margin-top: 0;
+  position: relative;
+  padding: 0;
+  text-align: right;
+}
+.ibox-tools .btn{
+  color: #c4c4c4 !important;
+  font-size: 14px;
+}
 
 
 

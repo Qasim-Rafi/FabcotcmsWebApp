@@ -74,25 +74,29 @@ span {
   text-align: center;
   overflow: hidden;
 }
-.small,
+/* .small,
 small {
   font-size: 80%;
   color: gray;
   font-weight: 400;
-}
+} */
 
 .m-l-lg {
   margin-left: 30px;
 }
 
-.ibox-tools {
+/* .ibox-tools {
   display: block;
   float: none;
   margin-top: 0;
   position: relative;
   padding: 0;
   text-align: right;
-}
+} */
+/* .ibox-tools i{
+  color: #c4c4c4 !important;
+  font-size: 14px;
+} */
 
 .widget {
   border-radius: 5px;
