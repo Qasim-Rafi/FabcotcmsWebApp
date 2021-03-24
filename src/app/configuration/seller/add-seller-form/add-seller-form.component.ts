@@ -105,7 +105,7 @@ export class AddSellerFormComponent implements OnInit {
       "majorStrength": this.data.sellerStrenght,
       "leadTime": this.data.leadTime,
       "sellerDetails": this.data.sellerDetails,
-      "isParentSeller": true,
+      "isParentSeller": this.data.isParentSeller,
       "parentSellerId": this.parentSellerId
     }
 

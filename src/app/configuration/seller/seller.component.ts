@@ -32,6 +32,7 @@ export class SellerComponent implements OnInit {
     this.fetch((data) => {
       this.temp = [...data];
       this.rows = data;
+
     });
   }
 
