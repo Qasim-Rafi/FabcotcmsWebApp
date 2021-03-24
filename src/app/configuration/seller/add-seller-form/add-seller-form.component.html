@@ -61,10 +61,11 @@
 
       <div class="col-sm-8">
         <ng-select
-          [(ngModel)]="countryId"
+          [(ngModel)]="data.countryId"
           required
           placeholder="-- Select --"
           name="countryId"
+          [ngClass]="{ error: data.countryId.invalid }"
         >
           <ng-option *ngFor="let i of country" [value]="i.id"
             >{{ i.name }}
