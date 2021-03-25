@@ -135,18 +135,19 @@
         class="material"
         [columns]="columns"
         [rows]="rows"
+      [sorts]="[{ prop: 'id,name', dir: 'asce' }]"
         [columnMode]="'force'"
         [headerHeight]="50"
         [footerHeight]="50"
         [rowHeight]="'auto'"
         [limit]="10"
       >
-        <ngx-datatable-column name="S. No." [width]="20">
+        <ngx-datatable-column prop="id" name="S. No." [width]="20">
           <ng-template let-row="row" ngx-datatable-cell-template>
             {{ row.id }}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="City Name" [width]="80">
+        <ngx-datatable-column name="City Name" prop="name" [width]="80">
           <ng-template
             let-row="row"
             let-expanded="expanded"
