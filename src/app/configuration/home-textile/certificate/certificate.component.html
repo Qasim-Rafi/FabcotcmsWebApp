@@ -125,17 +125,9 @@
     </div>
 
     <div class="panel-body">
-      <ngx-datatable
-        #myTable
-        class="material"
-        [columns]="columns"
-        [rows]="rows"
-        [columnMode]="'force'"
-        [headerHeight]="50"
-        [footerHeight]="50"
-        [rowHeight]="'auto'"
-        [limit]="10"
-      >
+      <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'"
+        [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
+
         <ngx-datatable-column name="S. No." [width]="5" prop="id">
           <ng-template let-row="row" ngx-datatable-cell-template>
             {{ row.id }}
@@ -190,25 +182,18 @@
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="Action" [width]="80">
-          <ng-template
-            let-row="row"
-            let-expanded="expanded"
-            ngx-datatable-cell-template
-          >
-            <button
-              type="button"
-              class="btn editIconBack"
-              (click)="editCertificateForm(row, 'edit')"
-            >
-              <i class="far fa-edit"></i>
+          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+            
+            <div class="ibox-tools text-center">
+            <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" (click)="editCertificateForm(row , 'SellerEdit')">
+              <i class="far fa-edit "></i>
             </button>
-            <button
-              type="button"
-              class="btn deleteIconBack"
-              (click)="deleteCertificate(row)"
-            >
+            <button type="button" class="btn deleteIconBack" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" (click)="deleteCertificate(row)">
               <i class="far fa-trash-alt"></i>
             </button>
+          </div>
+
+
             <!-- <button type="button" 
             class="btn deleteIconBack"
             mwlConfirmationPopover 

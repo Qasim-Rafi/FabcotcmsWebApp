@@ -21,7 +21,8 @@ body {
 
 .ngx-datatable .datatable-body-cell,
 .ngx-datatable .datatable-header-cell {
-  line-height: 2.1 !important;
+  /* line-height: 2.1 !important; */
+  line-height: 1.5 !important;
   text-align: center !important;
 }
 
@@ -45,6 +46,35 @@ body {
   font-size: 16px !important;
   font-weight: 500 !important;
 }
+
+
+
+.datatable-header-cell {
+  border-left: 1px solid #757575;
+}
+
+.ngx-datatable.bootstrap 
+.datatable-body 
+.datatable-body-row 
+.datatable-body-cell {
+  border-left: 1px solid #d1d4d7;
+}
+
+.datatable-body {
+  border-left: 1px solid #d1d4d7;
+  border-right: 1px solid #d1d4d7;
+} 
+
+.ngx-datatable.bootstrap 
+.datatable-body-cell:first-child {
+  border: none !important;
+}
+
+
+/* .ngx-datatable.bootstrap .datatable-footer {
+  margin-top: -3px !important;
+} */
+
 /* ----------------------------------------------------------------------- */
 /* DropDown styling */
 

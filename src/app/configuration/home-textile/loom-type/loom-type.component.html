@@ -148,12 +148,17 @@
         </ngx-datatable-column>
         <ngx-datatable-column name="Action" [width]="80">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            <button type="button" class="btn editIconBack" (click)="editLoomForm(row)">
-              <i class="far fa-edit "></i>
-            </button>
-            <button type="button" class="btn deleteIconBack" (click)="deleteLoom(row)">
-              <i class="far fa-trash-alt"></i>
-            </button>
+            
+            <div class="ibox-tools text-center">
+              <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" (click)="editLoomForm(row)">
+                <i class="far fa-edit "></i>
+              </button>
+              <button type="button" class="btn deleteIconBack" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" (click)="deleteLoom(row)">
+                <i class="far fa-trash-alt"></i>
+              </button>
+            </div>
+
+
             <!-- <button type="button" 
             class="btn deleteIconBack"
             mwlConfirmationPopover 
