@@ -24,7 +24,7 @@ div{
 .welcome{
     font-size:13px;
     color:#636e65;
-    margin-left:auto;
+    padding: 8px 0px 0px 0px;
 }
 
 #search,button{
@@ -60,3 +60,17 @@ span{
     color: white;
     /* margin-left: 40%;   */
 }
+
+
+.navbar-expand .navbar-nav .nav-link {
+    padding-right: 10px !important;
+    padding-left: 10px !important;
+}
+
+.navbar {
+    padding: 0.5rem 1.0rem 0.5rem 0.5rem !important;
+}
+
+
+
+

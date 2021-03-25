@@ -426,6 +426,13 @@ select {
   }
 }
 
+@media only screen and (max-width: 575px) {
+
+  .visibility {
+    display: none;
+  }
+}
+
 @media only screen and (max-width: 480px) {
   .active-enqury-pdg {
     padding: 16px !important;
@@ -445,4 +452,5 @@ select {
   .pt-ls {
     padding-top: 0px !important;
   }
+  
 }
