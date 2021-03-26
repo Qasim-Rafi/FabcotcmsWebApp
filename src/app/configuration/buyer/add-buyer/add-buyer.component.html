@@ -113,7 +113,7 @@
               [(ngModel)]="data.buyerContact"
               #buyerContact="ngModel"
             />
-            <p *ngIf="buyerContact.invalid">Invalid Input or Lenght</p>
+            <p *ngIf="buyerContact.invalid">Invalid Input or Length</p>
           </div>
           <div class="col-sm-6">
             <input
@@ -125,7 +125,7 @@
               [(ngModel)]="data.buyerOtherContact"
               #buyerOtherContact="ngModel"
             />
-            <p *ngIf="buyerOtherContact.invalid">Invalid Input or Lenght</p>
+            <p *ngIf="buyerOtherContact.invalid">Invalid Input or Length</p>
           </div>
         </div>
       </div>
@@ -135,7 +135,9 @@
       <label for="buyerFax" class="col-sm-3 col-form-label">Fax Number</label>
       <div class="col-sm-8">
         <input
-          pattern="[+-0-9]{0,15}"
+          pattern="[+0-9]{5,15}"
+          minlength="5"
+          maxlength="15"
           class="form-control"
           id="buyerFax"
           placeholder="Buyer Fax No."
@@ -143,7 +145,7 @@
           [(ngModel)]="data.buyerFax"
           #buyerFax="ngModel"
         />
-        <p *ngIf="buyerFax.invalid">Invalid Input or Lenght</p>
+        <p *ngIf="buyerFax.invalid">Invalid Input or Length</p>
       </div>
     </div>
 
@@ -164,7 +166,7 @@
               #buyerNTN="ngModel"
             />
           </div>
-          <p *ngIf="buyerNTN.invalid">Invalid Input or Lenght</p>
+          <p *ngIf="buyerNTN.invalid">Invalid Input or Length</p>
           <div class="col-sm-6">
             <input
               pattern="[+-a-zA-Z0-9]{0,15}"
@@ -176,7 +178,7 @@
               [(ngModel)]="data.buyerGST"
               #buyerGST="ngModel"
             />
-            <p *ngIf="buyerGST.invalid">Invalid Input or Lenght</p>
+            <p *ngIf="buyerGST.invalid">Invalid Input or Length</p>
           </div>
         </div>
       </div>
