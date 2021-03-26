@@ -10,7 +10,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./edit-seller-form.component.css']
 })
 export class EditSellerFormComponent implements OnInit {
-  @Input() userId;
+  @Input() Id;
   data: any = {};
   response: any;
   seller: any[];
@@ -19,6 +19,7 @@ export class EditSellerFormComponent implements OnInit {
   parentSellerId = null;
   machineId = null;
   capabilitiesId = null;
+  sellerCertificate: any = []
   @ViewChild('sellerName') private elementRef: ElementRef;
 
 
@@ -28,11 +29,11 @@ export class EditSellerFormComponent implements OnInit {
 
 
   ngOnInit() {
-    this.editSeller(this.userId);
+    this.editSeller(this.Id);
     this.getCountry();
     this.getParentSellers();
   }
-//for autoFocus
+  //for autoFocus
   public ngAfterViewInit(): void {
     this.elementRef.nativeElement.focus();
   }
@@ -120,8 +121,8 @@ export class EditSellerFormComponent implements OnInit {
       "faxNumber": this.data.faxNumber,
       "ntnNumber": this.data.ntnNumber,
       "gstNumber": this.data.gstNumber,
-      "machineId": this.data.machineId,
-      "capabilitiesId": this.data.capabilitiesId,
+      "machineId": this.data.machineId.toString(),
+      "capabilitiesId": this.data.capabilitiesId.toString(),
       "majorStrength": this.data.majorStrength,
       "leadTime": this.data.leadTime,
       "sellerDetails": this.data.sellerDetails,
@@ -130,7 +131,7 @@ export class EditSellerFormComponent implements OnInit {
     }
 
     this.http.
-      put(`${environment.apiUrl}/api/Sellers/UpdateSeller/` + this.userId, varr)
+      put(`${environment.apiUrl}/api/Sellers/UpdateSeller/` + this.Id, varr)
       .subscribe(
         res => {
 

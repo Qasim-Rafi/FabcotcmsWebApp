@@ -56,7 +56,7 @@ export class CertificateComponent implements OnInit {
     .get(`${environment.apiUrl}/api/TextileGarments/GetAllCertificate`)
     .subscribe(res => {
       this.response = res;
-      this.listCount = this.response.data.length;
+      this.listCount = this.rows.length;
     if(this.response.success==true)
     {
     that.data =this.response.data;
@@ -126,7 +126,8 @@ export class CertificateComponent implements OnInit {
 
   addCertificateForm(check){
     const modalRef = this.modalService.open(EditCertificateComponent, { centered: true });
-    modalRef.componentInstance.statusCheck =check;
+       modalRef.componentInstance.statusCheck =check;
+      //  modalRef.componentInstance.name =componentName;
 
           modalRef.result.then((data) => {
          // on close
@@ -147,8 +148,8 @@ export class CertificateComponent implements OnInit {
 
   editCertificateForm(row,check){
     const modalRef = this.modalService.open(EditCertificateComponent, { centered: true });
-    modalRef.componentInstance.Id =row.id;
-    modalRef.componentInstance.statusCheck =check;
+    modalRef.componentInstance.Id =row.id; //just for edit.. to access the needed row
+    modalRef.componentInstance.statusCheck = check;
           modalRef.result.then((data) => {
          // on close
           if(data ==true){

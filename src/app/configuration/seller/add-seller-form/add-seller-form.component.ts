@@ -16,7 +16,7 @@ export class AddSellerFormComponent implements OnInit {
   response: any;
   seller: any[];
   country: any = [];
-  countryId : null;
+  countryId: null;
   parentSellerId: null;
   @ViewChild(NgForm) sellerForm;
   @ViewChild('sellerName') private elementRef: ElementRef;
@@ -27,7 +27,7 @@ export class AddSellerFormComponent implements OnInit {
     private http: HttpClient,
     private toastr: ToastrService,
     private _NgbActiveModal: NgbActiveModal
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.getCountry();
@@ -40,7 +40,7 @@ export class AddSellerFormComponent implements OnInit {
   }
 
 
-  
+
 
   getCountry() {
     this.http.get(`${environment.apiUrl}/api/Lookups/Countries`)
@@ -102,8 +102,8 @@ export class AddSellerFormComponent implements OnInit {
       "faxNumber": this.data.sellerFax,
       "ntnNumber": this.data.sellerNTN,
       "gstNumber": this.data.sellerGST,
-      "machineId": 0,
-      "capabilitiesId": 0,
+      "machineId": this.data.machineId.toString(),
+      "capabilitiesId": this.data.capabilitiesId.toString(),
       "majorStrength": this.data.sellerStrenght,
       "leadTime": this.data.leadTime,
       "sellerDetails": this.data.sellerDetails,

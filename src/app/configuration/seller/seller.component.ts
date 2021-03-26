@@ -25,72 +25,188 @@ export class SellerComponent implements OnInit {
   rows: any = [];
   temp: any[];
   active = true;
-  isCollapse: boolean = false;
-  @Input() userId;
-  @Input() statusCheck;
+  @Input() sellerId;
+  // @Input() statusCheck;
+  sellerCertificate: any = [];
+
+
   constructor(private http: HttpClient,
     private toastr: ToastrService,
     private modalService: NgbModal,
-   ) { }
+  ) { }
 
   ngOnInit(): void {
     // this.getCountry();
-    this.statusCheck=this.statusCheck;
-    if(this.statusCheck == 'Add'){
-      this.addCertificate();
-    }
+    // this.statusCheck = this.statusCheck;
+    // if(this.statusCheck == 'Add'){
+    //   this.addCertificate();
+    // }
     this.getSellers();
     this.fetch((data) => {
       this.temp = [...data];
       this.rows = data;
 
     });
+    this.getSellersCertificates();
+
   }
 
- 
-collapse()
-{
-  this.isCollapse = !this.isCollapse;
-}
 
+  // Search Function
+  updateFilter(event) {
+    const val = event.target.value.toLowerCase();
 
+    const temp = this.temp.filter(function (d) {
+      return (d.sellerCode.toLowerCase().indexOf(val) !== -1 ||
 
+        d.sellerName.toLowerCase().indexOf(val) !== -1 || !val);
+    });
+    this.seller = temp;
 
-
-
-addCertificate()
-{
-  let varr=  {
-    "name": this.data.name,
-    "description": this.data.description,
-    "active": this.active,
   }
 
-  this.http.
-  post(`${environment.apiUrl}/api/TextileGarments/AddCertificate`,varr)
-  .subscribe(
-    res=> { 
 
-      this.response = res;
-      if (this.response.success == true){
-        this.toastr.success(this.response.message, 'Message.');
-    
-        // this.buyerForm.reset();
-        // this.activeModal.close(true);
-      }
-      else {
-        this.toastr.error(this.response.message, 'Message.');
+
+  // ---------------------------------------Get All Seller Certificates----------------------------
+
+
+  getSellersCertificates() {
+    this.http.get(`${environment.apiUrl}/api/Sellers/GetAllCertificate`)
+      .subscribe(
+        res => {
+
+          this.response = res;
+          if (this.response.success == true) {
+            this.sellerCertificate = this.response.data;
+            this.temp = [...this.sellerCertificate];
+
+
+          }
+          else {
+            this.toastr.error('Something went Worng', 'Message.');
           }
 
-    }, err => {
-      if (err.status == 400) {
-        this.toastr.error(this.response.message, 'Message.');
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error('Something went Worng', 'Message.');
+          }
+        });
+  }
+
+
+
+
+
+  // ---------------------------------------Delete Seller Certificates----------------------------
+
+  deleteSellerCertificate(id) {
+    Swal.fire({
+      title: GlobalConstants.deleteTitle, //'Are you sure?',
+      text: GlobalConstants.deleteMessage + ' ' + '"' + id.certificateName + '"',
+      icon: 'error',
+      showCancelButton: true,
+      confirmButtonColor: '#ed5565',
+      cancelButtonColor: '#dae0e5',
+      cancelButtonText: 'No',
+      confirmButtonText: 'Yes',
+      reverseButtons: true,
+      position: 'top',
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        this.http.delete(`${environment.apiUrl}/api/Sellers/DeletePOC/` + id.sellerCertificateId)
+          .subscribe(
+            res => {
+              this.response = res;
+              if (this.response.success == true) {
+                this.toastr.error(this.response.message, 'Message.');
+                this.getSellers();
+              }
+              else {
+                this.toastr.error(this.response.message, 'Message.');
+              }
+
+            }, err => {
+              if (err.status == 400) {
+                this.toastr.error('Something went Worng', 'Message.');
+              }
+            });
+
+
+
+        // Swal.fire(
+        //   'Record',
+        //   'Deleted Successfully.',
+        //   'success'
+        // )
       }
-    });
-}
+    })
+
+  }
 
 
- 
+
+  //--------------------------------Get Certificates by Seller Id---------------------//
+
+
+  // getSellersCertificatesById() {
+  //   this.http.get(`${environment.apiUrl}/api/Sellers/GetAllCertificateBySellerId/` + ???)
+  //     .subscribe(
+  //       res => {
+
+  //         this.response = res;
+  //         if (this.response.success == true) {
+  //           this.data = this.response.data;
+
+  //         }
+  //         else {
+  //           this.toastr.error('Something went Worng', 'Message.');
+  //         }
+
+  //       }, err => {
+  //         if (err.status == 400) {
+  //           this.toastr.error('Something went Worng', 'Message.');
+  //         }
+  //       });
+  // }
+
+
+
+
+
+
+  // addCertificate() {
+  //   let varr = {
+  //     "name": this.data.name,
+  //     "description": this.data.description,
+  //     "active": this.active,
+  //   }
+
+  //   this.http.
+  //     post(`${environment.apiUrl}/api/TextileGarments/AddCertificate`, varr)
+  //     .subscribe(
+  //       res => {
+
+  //         this.response = res;
+  //         if (this.response.success == true) {
+  //           this.toastr.success(this.response.message, 'Message.');
+
+  //           // this.buyerForm.reset();
+  //           // this.activeModal.close(true);
+  //         }
+  //         else {
+  //           this.toastr.error(this.response.message, 'Message.');
+  //         }
+
+  //       }, err => {
+  //         if (err.status == 400) {
+  //           this.toastr.error(this.response.message, 'Message.');
+  //         }
+  //       });
+  // }
+
+
+
 
   // getCountry()
   // {
@@ -114,11 +230,6 @@ addCertificate()
 
 
 
-
-
-
-
-
   getSellers() {
     this.http.get(`${environment.apiUrl}/api/Sellers/GetSellers`)
       .subscribe(
@@ -129,7 +240,7 @@ addCertificate()
             this.seller = this.response.data;
             this.temp = [...this.seller];
             this.listCount = this.response.data.length;
-           
+
           }
           else {
             this.toastr.error('Something went Worng', 'Message.');
@@ -144,20 +255,6 @@ addCertificate()
 
 
 
-  updateFilter(event) {
-    const val = event.target.value.toLowerCase();
-
-    const temp = this.temp.filter(function (d) {
-      return (d.sellerCode.toLowerCase().indexOf(val) !== -1 ||
-      
-        d.sellerName.toLowerCase().indexOf(val) !== -1 || !val);
-    });
-    this.seller = temp;
-    
-  }
-
-
-
 
 
 
@@ -165,7 +262,7 @@ addCertificate()
   deleteSeller(id) {
     Swal.fire({
       title: GlobalConstants.deleteTitle, //'Are you sure?',
-      text: GlobalConstants.deleteMessage+' '+'"'+ id.sellerName +'"',
+      text: GlobalConstants.deleteMessage + ' ' + '"' + id.sellerName + '"',
       icon: 'error',
       showCancelButton: true,
       confirmButtonColor: '#ed5565',
@@ -208,7 +305,7 @@ addCertificate()
   }
 
 
-  
+
   addPocform(popup) {
     const modalRef = this.modalService.open(SellerPocComponent, { centered: true });
     modalRef.componentInstance.userId = popup.id;
@@ -229,6 +326,7 @@ addCertificate()
   editSellerform(popup) {
     const modalRef = this.modalService.open(EditSellerFormComponent, { centered: true });
     modalRef.componentInstance.userId = popup.id;
+
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
@@ -258,14 +356,14 @@ addCertificate()
 
   // add certificate
   fetch(cb) {
-    let that = this;
-    that.http
+
+    this.http
       .get(`${environment.apiUrl}/api/TextileGarments/GetAllCertificate`)
       .subscribe(res => {
         this.response = res;
-        this.listCount = this.fetch.length;
+
         if (this.response.success == true) {
-          that.data = this.response.data;
+          this.data = this.response.data;
           cb(this.data);
         }
         else {
@@ -282,44 +380,47 @@ addCertificate()
 
 
   // add certificate form
-  addCertificateForm(check){
+  addCertificateForm(check, seller) {
     const modalRef = this.modalService.open(EditCertificateComponent, { centered: true });
     modalRef.componentInstance.statusCheck = check;
+    modalRef.componentInstance.parentSellerId = seller.id;
+    modalRef.result.then((data) => {
+      // on close
+      if (data == true) {
+        //  this.date = this.myDate;
+        this.getSellers();
+        this.fetch((data) => {
+          this.rows = data;
 
-          modalRef.result.then((data) => {
-         // on close
-          if(data ==true){
-          //  this.date = this.myDate;
-           this.fetch((data) => {
-            this.rows = data;
-            this.listCount = this.rows.length;
-          });
-         }
-       }, (reason) => {
-         // on dismiss
-       });
-  } 
-  
+        });
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
 
-  editCertificateForm(check,data){
+
+  editCertificateForm(check, seller, certificateId) {
     const modalRef = this.modalService.open(EditCertificateComponent, { centered: true });
     modalRef.componentInstance.statusCheck = check;
-    modalRef.componentInstance.formdataSellerEdit = data;
+    modalRef.componentInstance.certificateID = certificateId.sellerCertificateId;
+    modalRef.componentInstance.parentSellerId = seller.id;
 
 
-          modalRef.result.then((data) => {
-         // on close
-          if(data ==true){
-          //  this.date = this.myDate;
-           this.fetch((data) => {
-            this.rows = data;
-            this.listCount = this.rows.length;
-          });
-         }
-       }, (reason) => {
-         // on dismiss
-       });
-  } 
+    modalRef.result.then((data) => {
+      // on close
+      if (data == true) {
+        this.getSellers();
+        //  this.date = this.myDate;
+        this.fetch((data) => {
+          this.rows = data;
+
+        });
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
 
 
 
