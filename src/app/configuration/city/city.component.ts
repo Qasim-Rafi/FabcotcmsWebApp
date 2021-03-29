@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { AddCityComponent } from './add-city/add-city.component';
 import { EditCityComponent } from './edit-city/edit-city.component';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { GlobalConstants } from 'src/app/Common/global-constants';
+import { DatatableComponent } from '@swimlane/ngx-datatable';
+import { ServiceService } from 'src/app/shared/service.service';
 
 
 @Component({
@@ -23,8 +24,11 @@ export class CityComponent implements OnInit {
   data: any = {};
   myDate = Date.now();
    temp:any=[];
+  @ViewChild('myTable') table: DatatableComponent;
+
   constructor(private http: HttpClient,
     private toastr: ToastrService,
+    private service:ServiceService,
     private modalService: NgbModal) { }
 
   ngOnInit(): void {
@@ -122,63 +126,45 @@ export class CityComponent implements OnInit {
       }
     })
 
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  addCity() {
-    const modalRef = this.modalService.open(AddCityComponent, { centered: true });
-    modalRef.result.then((data) => {
-      // on close
-      if (data == true) {
-        //  this.date = this.myDate;
-        this.fetch((data) => {
-          this.rows = data;
-
-        });
-
-
-      }
-    }, (reason) => {
-      // on dismiss
-    });
-  }
-
-
-  editCity(row) {
+    
+  } 
+  addCity(check) {
     const modalRef = this.modalService.open(EditCityComponent, { centered: true });
-    modalRef.componentInstance.userId = row.id;
-    modalRef.result.then((data) => {
-      // on close
-      if (data == true) {
-        //  this.date = this.myDate;
-        this.fetch((data) => {
-          this.rows = data;
+    modalRef.componentInstance.statusCheck =check;
+   //  modalRef.componentInstance.name =componentName;
 
-        });
+       modalRef.result.then((data) => {
+      // on close
+       if(data ==true){
+       //  this.date = this.myDate;
+        this.fetch((data) => {
+         this.rows = data;
+         this.CityCount = this.rows.length;
+       });
+        
 
       }
     }, (reason) => {
       // on dismiss
     });
   }
+
+
+  editCity(row,check){
+    const modalRef = this.modalService.open(EditCityComponent, { centered: true });
+    modalRef.componentInstance.userId =row.id; //just for edit.. to access the needed row
+    modalRef.componentInstance.statusCheck = check;
+          modalRef.result.then((data) => {
+         // on close
+          if(data ==true){
+          //  this.date = this.myDate;
+           this.fetch((data) => {
+            this.rows = data;
+          });
+         }
+       }, (reason) => {
+         // on dismiss
+       });
+  } 
 }
 

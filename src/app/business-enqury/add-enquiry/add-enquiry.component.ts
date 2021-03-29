@@ -8,13 +8,13 @@ import { ServiceService } from 'src/app/shared/service.service';
 import { AddArticleComponent } from 'src/app/configuration/articles/add-article/add-article.component';
 import { AddBuyerComponent } from 'src/app/configuration/buyer/add-buyer/add-buyer.component';
 import { AddCertificateComponent } from 'src/app/configuration/home-textile/certificate/add-certificate/add-certificate.component';
-import { AddCityComponent } from 'src/app/configuration/city/add-city/add-city.component';
 import { AddProcessComponent } from 'src/app/configuration/home-textile/process/add-process/add-process.component';
 import { AddPackingComponent } from 'src/app/configuration/product/packing/add-packing/add-packing.component';
 import { AddDesignTypeComponent } from 'src/app/configuration/home-textile/design-type/add-design-type/add-design-type.component';
 import { AddProcessTypeComponent } from 'src/app/configuration/home-textile/process-type/add-process-type/add-process-type.component';
 import { AddPaymentComponent } from 'src/app/configuration/product/payment-term/add-payment/add-payment.component';
 import { AddPriceComponent } from 'src/app/configuration/product/price-term/add-price/add-price.component';
+import { EditCityComponent } from 'src/app/configuration/city/edit-city/edit-city.component';
 @Component({
   selector: 'app-add-enquiry',
   templateUrl: './add-enquiry.component.html',
@@ -217,7 +217,7 @@ export class AddEnquiryComponent implements OnInit {
   } 
 
   addenquiryCity(){
-    const modalRef = this.modalService.open(AddCityComponent, { centered: true });
+    const modalRef = this.modalService.open(EditCityComponent, { centered: true });
           modalRef.result.then((data) => {
          // on close
           if(data ==true){

@@ -25,7 +25,6 @@ import { EditArticleComponent } from './articles/edit-article/edit-article.compo
 import { CityComponent } from './city/city.component';
 import { CountryComponent } from './country/country.component';
 import { CurrencyComponent } from './currency/currency.component';
-import { AddCityComponent } from './city/add-city/add-city.component';
 import { EditCityComponent } from './city/edit-city/edit-city.component';
 import { EditCountryComponent } from './country/edit-country/edit-country.component';
 import { AddCountryComponent } from './country/add-country/add-country.component';
@@ -93,7 +92,6 @@ import { SellerPocComponent } from './seller/seller-poc/seller-poc.component';
     CityComponent,
     CountryComponent, 
     CurrencyComponent,
-    AddCityComponent, 
     EditCityComponent,
     EditCountryComponent,
     AddCountryComponent,
