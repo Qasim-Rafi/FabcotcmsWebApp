@@ -132,9 +132,10 @@ export class CountryComponent implements OnInit {
 
   }
 
-  addCountryForm(check) {
+  addCountryForm(check , name) {
     const modalRef = this.modalService.open(EditCountryComponent, { centered: true });
     modalRef.componentInstance.statusCheck = check;
+    modalRef.componentInstance.FormName = name;
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
@@ -151,10 +152,11 @@ export class CountryComponent implements OnInit {
   }
 
 
-  editCountryForm(row , check) {
+  editCountryForm(row , check , name) {
     const modalRef = this.modalService.open(EditCountryComponent, { centered: true });
     modalRef.componentInstance.userId = row.id;
     modalRef.componentInstance.statusCheck = check;
+    modalRef.componentInstance.FormName = name;
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
