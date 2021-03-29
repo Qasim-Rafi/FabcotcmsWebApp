@@ -12,15 +12,19 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class EditCountryComponent implements OnInit {
   response: any;
   data: any = {};
+  active = true; 
   @Input() userId;
-  
+  @Input() statusCheck;
   
   constructor(private http: HttpClient,
     private toastr: ToastrService,
     private _NgbActiveModal: NgbActiveModal) { }
 
   ngOnInit(): void {
+    this.statusCheck = this.statusCheck;
+    if (this.statusCheck == 'countryEdit') {
     this.editCountry();
+    }
   }
   get activeModal() {
     return this._NgbActiveModal;
@@ -72,7 +76,37 @@ export class EditCountryComponent implements OnInit {
         });
   }
 
+// -------------------------------------ADD COUNTRY FROM ---------------------------
 
+addCountry() {
+  let varr = {
+    "name": this.data.name,
+    "details": this.data.details,
+    "active": this.active
+  }
+
+  this.http.
+    post(`${environment.apiUrl}/api/Configs/AddCountry`, varr)
+    .subscribe(
+      res => {
+
+        this.response = res;
+        if (this.response.success == true) {
+          this.toastr.success(this.response.message, 'Message.');
+
+
+          this.activeModal.close(true);
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+
+      }, err => {
+        if (err.status == 400) {
+          this.toastr.error('Something went Wrong', 'Message.');
+        }
+      });
+}
 
 
 }

@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
-import { AddCertificateComponent } from './add-certificate/add-certificate.component';
+// import { AddCertificateComponent } from './add-certificate/add-certificate.component';
 import { EditCertificateComponent } from './edit-certificate/edit-certificate.component';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { GlobalConstants } from 'src/app/Common/global-constants';

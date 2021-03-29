@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EditCountryComponent } from './edit-country/edit-country.component';
-import { AddCountryComponent } from './add-country/add-country.component';
+// import { AddCountryComponent } from './add-country/add-country.component';
 import { GlobalConstants } from '../../Common/global-constants';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import {ServiceService}  from 'src/app/shared/service.service'
@@ -132,8 +132,9 @@ export class CountryComponent implements OnInit {
 
   }
 
-  addCountryForm() {
-    const modalRef = this.modalService.open(AddCountryComponent, { centered: true });
+  addCountryForm(check) {
+    const modalRef = this.modalService.open(EditCountryComponent, { centered: true });
+    modalRef.componentInstance.statusCheck = check;
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
@@ -150,9 +151,10 @@ export class CountryComponent implements OnInit {
   }
 
 
-  editCountryForm(row) {
+  editCountryForm(row , check) {
     const modalRef = this.modalService.open(EditCountryComponent, { centered: true });
     modalRef.componentInstance.userId = row.id;
+    modalRef.componentInstance.statusCheck = check;
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
