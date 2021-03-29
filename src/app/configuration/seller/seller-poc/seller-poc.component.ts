@@ -280,7 +280,7 @@ export class SellerPocComponent implements OnInit {
       "landlineNumber": this.data.landlineNumber,
       "description": this.data.description,
       "dealsIn": this.data.dealsIn,
-      "sellerId": this.parentBuyerId,
+      "buyerId": this.parentBuyerId.toString(),
       "includeInContractPreview": this.data.includeInContractPreview,
 
     }

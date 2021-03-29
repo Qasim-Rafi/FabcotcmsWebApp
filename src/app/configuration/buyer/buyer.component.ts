@@ -113,7 +113,7 @@ export class BuyerComponent implements OnInit {
 
   editBuyer(popup) {
     const modalRef = this.modalService.open(EditBuyerComponent, { centered: true });
-    modalRef.componentInstance.userId = popup.id;
+    modalRef.componentInstance.buyerId = popup.id;
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
