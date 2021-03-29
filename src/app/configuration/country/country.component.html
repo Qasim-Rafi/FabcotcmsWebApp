@@ -47,7 +47,7 @@
         </div>
         <div class="col-md-6 mrg-tsm">
           <button type="button" class="btn btn-primary btn-md float-right"
-            (click)="addCountryForm('CountryAdd')">
+            (click)="addCountryForm('CountryAdd' , 'countryForm')">
             <i class="fa fa-plus"></i> Add Country
           </button>
         </div>
@@ -198,7 +198,7 @@
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template >
 
             <div class="ibox-tools text-center">
-            <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" (click)="editCountryForm(row , 'countryEdit')"><i class="far fa-edit"></i></button>
+            <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" (click)="editCountryForm(row , 'countryEdit' , 'countryForm')"><i class="far fa-edit"></i></button>
             <button type="button" class="btn deleteIconBack" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" (click)="deleteCountry(row)"><i class="far fa-trash-alt"></i></button>
             </div>
             <!-- <button type="button" 

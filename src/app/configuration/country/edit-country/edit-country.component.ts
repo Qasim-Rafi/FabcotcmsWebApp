@@ -15,6 +15,7 @@ export class EditCountryComponent implements OnInit {
   active = true; 
   @Input() userId;
   @Input() statusCheck;
+  @Input() FormName;
   
   constructor(private http: HttpClient,
     private toastr: ToastrService,
@@ -22,6 +23,7 @@ export class EditCountryComponent implements OnInit {
 
   ngOnInit(): void {
     this.statusCheck = this.statusCheck;
+    this.FormName = this.FormName;
     if (this.statusCheck == 'countryEdit') {
     this.editCountry();
     }

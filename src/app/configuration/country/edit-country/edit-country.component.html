@@ -1,4 +1,4 @@
-<div class="modal-header">
+<div class="modal-header" *ngIf = "FormName == 'countryForm'">
   <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -63,12 +63,13 @@
 
   </form>
 </div>
-<div class="modal-footer NotBG">
-  
-  <button *ngIf="statusCheck == 'CountryAdd'" class="btn button-save" type="submit" (click)="addCountry()">
+<div class="modal-footer NotBG" *ngIf = "FormName == 'countryForm'">
+ 
+  <button *ngIf="statusCheck == 'CountryAdd' " class="btn button-save" type="submit" (click)="addCountry()">
     Add Country
   </button>
   <button *ngIf="statusCheck == 'countryEdit'" class="btn button-save" type="submit" (click)="UpdateCountry()">
     Update Country
   </button>
+
 </div>
