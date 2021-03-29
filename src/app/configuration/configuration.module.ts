@@ -74,45 +74,46 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { ClipboardModule } from 'ngx-clipboard';
 import { SellerPocComponent } from './seller/seller-poc/seller-poc.component';
 
+
 @NgModule({
   declarations: [
-    ConfigurationComponent, 
-    SellerComponent, 
-    EditSellerFormComponent, 
-    AddSellerFormComponent, 
-    ForeignAgentComponent, 
-    AddAgentFormComponent, 
-    EditAgentFormComponent, 
-    BuyerComponent, 
-    AddBuyerComponent, 
+    ConfigurationComponent,
+    SellerComponent,
+    EditSellerFormComponent,
+    AddSellerFormComponent,
+    ForeignAgentComponent,
+    AddAgentFormComponent,
+    EditAgentFormComponent,
+    BuyerComponent,
+    AddBuyerComponent,
     EditBuyerComponent,
-    ArticlesComponent, 
+    ArticlesComponent,
     AddArticleComponent,
-    EditArticleComponent, 
+    EditArticleComponent,
     CityComponent,
-    CountryComponent, 
+    CountryComponent,
     CurrencyComponent,
     EditCityComponent,
     EditCountryComponent,
     AddCountryComponent,
     FabricTypeComponent,
-    PackingComponent, 
-     PaymentTermComponent, 
-            AddTypeComponent, 
-            EditTypeComponent, 
-            EditPackingComponent,
-             AddPackingComponent, 
-             AddPaymentComponent, 
-             EditPaymentComponent, 
-             PriceTermComponent,
-              AddPriceComponent, 
-              EditPriceComponent, BankComponent, BankAccountsComponent, AddBankComponent, EditBankComponent, AddBankAccountComponent, EditBankAccountComponent, ProcessComponent, ProcessTypeComponent, DesignTypeComponent, LoomTypeComponent, CertificateComponent, ColorComponent, TimeActionItemsComponent, AddCertificateComponent, EditCertificateComponent, EditColorComponent, AddColorComponent, AddDesignTypeComponent, EditDesignTypeComponent, AddLoomTypeComponent, EditLoomTypeComponent, EditProcessComponent, AddProcessComponent, AddProcessTypeComponent, EditProcessTypeComponent, EditTimeActionComponent, AddTimeActionComponent, AddCurrencyComponent, EditCurrencyComponent, SellerPocComponent, 
-  
-  
+    PackingComponent,
+    PaymentTermComponent,
+    AddTypeComponent,
+    EditTypeComponent,
+    EditPackingComponent,
+    AddPackingComponent,
+    AddPaymentComponent,
+    EditPaymentComponent,
+    PriceTermComponent,
+    AddPriceComponent,
+    EditPriceComponent, BankComponent, BankAccountsComponent, AddBankComponent, EditBankComponent, AddBankAccountComponent, EditBankAccountComponent, ProcessComponent, ProcessTypeComponent, DesignTypeComponent, LoomTypeComponent, CertificateComponent, ColorComponent, TimeActionItemsComponent, AddCertificateComponent, EditCertificateComponent, EditColorComponent, AddColorComponent, AddDesignTypeComponent, EditDesignTypeComponent, AddLoomTypeComponent, EditLoomTypeComponent, EditProcessComponent, AddProcessComponent, AddProcessTypeComponent, EditProcessTypeComponent, EditTimeActionComponent, AddTimeActionComponent, AddCurrencyComponent, EditCurrencyComponent, SellerPocComponent,
+
+
   ],
- 
-  
-  
+
+
+
   imports: [
     CommonModule,
     ConfigurationRoutingModule,
@@ -128,11 +129,12 @@ import { SellerPocComponent } from './seller/seller-poc/seller-poc.component';
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       progressBar: true,
-      timeOut:3000
+      timeOut: 3000
     }),
     ConfirmationPopoverModule.forRoot({
       // confirmButtonType: 'danger',     // set defaults here
     }),
+
   ]
 })
 export class ConfigurationModule { }

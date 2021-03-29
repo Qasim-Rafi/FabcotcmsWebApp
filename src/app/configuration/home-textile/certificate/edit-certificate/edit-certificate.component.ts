@@ -1,8 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Injectable, Input, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-edit-certificate',
@@ -17,6 +17,7 @@ export class EditCertificateComponent implements OnInit {
   @Input() certificateID;
   @Input() statusCheck;
 
+
   active = true;
   rows: any = [];
   temp: any = [];
@@ -24,6 +25,7 @@ export class EditCertificateComponent implements OnInit {
 
   certificateId = null;
 
+  date: NgbDateStruct = { year: 1789, month: 7, day: 14 }; // July, 14 1789
 
 
   constructor(private http: HttpClient,
