@@ -16,8 +16,6 @@ export class EditCertificateComponent implements OnInit {
   @Input() parentSellerId;
   @Input() certificateID;
   @Input() statusCheck;
-
-
   active = true;
   rows: any = [];
   temp: any = [];

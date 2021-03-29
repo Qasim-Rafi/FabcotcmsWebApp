@@ -1,13 +1,7 @@
 <!-- Modal -->
 
 <div class="modal-header">
-  <button
-    type="button"
-    class="close"
-    data-dismiss="modal"
-    aria-label="Close"
-    (click)="activeModal.close()"
-  >
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
     <div aria-hidden="true">&times;</div>
   </button>
 
@@ -19,40 +13,19 @@
 <div class="modal-body pt-2r" style="background-color: #f8fafb">
   <form #sellerForm="ngForm" novalidate>
     <div class="form-group row" [class.has-error]="name.invalid">
-      <label for="sellerName" class="col-sm-3 col-form-label text_Navy"
-        >Seller Name</label
-      >
+      <label for="sellerName" class="col-sm-3 col-form-label text_Navy">Seller Name</label>
       <div class="col-sm-8">
-        <input
-          #sellerName
-          required
-          maxlength="60"
-          id="sellerName"
-          class="form-control"
-          placeholder="Seller name"
-          name="sellerName"
-          [(ngModel)]="data.sellerName"
-          #name="ngModel"
-          [ngClass]="{ error: name.invalid }"
-        />
+        <input #sellerName required maxlength="60" id="sellerName" class="form-control" placeholder="Seller name"
+          name="sellerName" [(ngModel)]="data.sellerName" #name="ngModel" [ngClass]="{ error: name.invalid }" />
       </div>
     </div>
 
     <div class="form-group row">
-      <label for="sellerBillAddress" class="col-sm-3 col-form-label"
-        >Billing Address</label
-      >
+      <label for="sellerBillAddress" class="col-sm-3 col-form-label">Billing Address</label>
       <div class="col-sm-8">
-        <textarea
-          maxlength="300"
-          class="form-control"
-          id="sellerBillAddress"
-          rows="3"
-          placeholder="Seller mailing address"
-          name="sellerBillAddress"
-          [(ngModel)]="data.sellerBillAddress"
-          #sellerBillAddress="ngModel"
-        ></textarea>
+        <textarea maxlength="300" class="form-control" id="sellerBillAddress" rows="3"
+          placeholder="Seller mailing address" name="sellerBillAddress" [(ngModel)]="data.sellerBillAddress"
+          #sellerBillAddress="ngModel"></textarea>
       </div>
     </div>
 
@@ -60,59 +33,32 @@
       <label for="country" class="col-sm-3 col-form-label">Country</label>
 
       <div class="col-sm-8">
-        <ng-select
-          [(ngModel)]="data.countryId"
-          required
-          placeholder="-- Select --"
-          name="countryId"
-          #countryId="ngModel"
-          [ngClass]="{ error: countryId.invalid }"
-        >
-          <ng-option *ngFor="let i of country" [value]="i.id"
-            >{{ i.name }}
-            <span class="text-muted" style="font-size: 11px"
-              >( {{ i.details }} )</span
-            >
+        <ng-select [(ngModel)]="data.countryId" required placeholder="-- Select --" name="countryId"
+          #countryId="ngModel" [ngClass]="{ error: countryId.invalid }">
+          <ng-option *ngFor="let i of country" [value]="i.id">{{ i.name }}
+            <span class="text-muted" style="font-size: 11px">( {{ i.details }} )</span>
           </ng-option>
         </ng-select>
       </div>
     </div>
 
     <div class="form-group row">
-      <label for="sellerContact" class="col-sm-3 col-form-label"
-        >Contact Nos.</label
-      >
+      <label for="sellerContact" class="col-sm-3 col-form-label">Contact Nos.</label>
       <div class="col-sm-8">
         <div class="row">
           <div class="col-sm-6">
-            <input
-              pattern="[+0-9-]{7,15}"
-              maxlength="15"
-              class="form-control"
-              id="sellerContact"
-              placeholder=" Primary Contact No."
-              name="sellerContact"
-              [(ngModel)]="data.sellerContact"
-              #sellerContact="ngModel"
-              [ngClass]="{
+            <input pattern="[+0-9-]{7,15}" maxlength="15" class="form-control" id="sellerContact"
+              placeholder=" Primary Contact No." name="sellerContact" [(ngModel)]="data.sellerContact"
+              #sellerContact="ngModel" [ngClass]="{
                 error: sellerContact.invalid && sellerContact.touched
-              }"
-            />
+              }" />
           </div>
           <div class="col-sm-6">
-            <input
-              pattern="[+0-9-]{7,15}"
-              maxlength="15"
-              class="form-control"
-              id="sellerOtherContact"
-              placeholder="Other Contact No."
-              name="sellerOtherContact"
-              [(ngModel)]="data.sellerOtherContact"
-              #sellerOtherContact="ngModel"
-              [ngClass]="{
+            <input pattern="[+0-9-]{7,15}" maxlength="15" class="form-control" id="sellerOtherContact"
+              placeholder="Other Contact No." name="sellerOtherContact" [(ngModel)]="data.sellerOtherContact"
+              #sellerOtherContact="ngModel" [ngClass]="{
                 error: sellerOtherContact.invalid && sellerOtherContact.touched
-              }"
-            />
+              }" />
           </div>
         </div>
       </div>
@@ -121,62 +67,32 @@
     <div class="form-group row">
       <label for="sellerFax" class="col-sm-3 col-form-label">Fax Number</label>
       <div class="col-sm-8">
-        <input
-          pattern="[0-9-]{0,15}"
-          maxlength="15"
-          class="form-control"
-          id="sellerFax"
-          placeholder="Seller Fax No."
-          name="sellerFax"
-          [(ngModel)]="data.sellerFax"
-          #sellerFax="ngModel"
-          [ngClass]="{ error: sellerFax.invalid && sellerFax.touched }"
-        />
+        <input pattern="[0-9-]{0,15}" maxlength="15" class="form-control" id="sellerFax" placeholder="Seller Fax No."
+          name="sellerFax" [(ngModel)]="data.sellerFax" #sellerFax="ngModel"
+          [ngClass]="{ error: sellerFax.invalid && sellerFax.touched }" />
       </div>
     </div>
 
     <div class="form-group row">
-      <label for="sellerNTN" class="col-sm-3 col-form-label"
-        >NTN/GST Nos.</label
-      >
+      <label for="sellerNTN" class="col-sm-3 col-form-label">NTN/GST Nos.</label>
       <div class="col-sm-8">
         <div class="row">
           <div class="col-sm-6">
-            <input
-              type="text"
-              pattern="[+-a-zA-Z0-9]{0,7}"
-              maxlength="7"
-              class="form-control"
-              id="sellerNTN"
-              placeholder="NTN No."
-              name="sellerNTN"
-              [(ngModel)]="data.sellerNTN"
-              #sellerNTN="ngModel"
-              [ngClass]="{ error: sellerNTN.invalid && sellerNTN.touched }"
-            />
+            <input type="text" pattern="[+-a-zA-Z0-9]{0,7}" maxlength="7" class="form-control" id="sellerNTN"
+              placeholder="NTN No." name="sellerNTN" [(ngModel)]="data.sellerNTN" #sellerNTN="ngModel"
+              [ngClass]="{ error: sellerNTN.invalid && sellerNTN.touched }" />
           </div>
           <div class="col-sm-6">
-            <input
-              type="text"
-              pattern="[+-a-zA-Z0-9]{0,15}"
-              maxlength="15"
-              class="form-control"
-              id="sellerGST"
-              placeholder="GST No."
-              name="sellerGST"
-              [(ngModel)]="data.sellerGST"
-              #sellerGST="ngModel"
-              [ngClass]="{ error: sellerGST.invalid && sellerGST.touched }"
-            />
+            <input type="text" pattern="[+-a-zA-Z0-9]{0,15}" maxlength="15" class="form-control" id="sellerGST"
+              placeholder="GST No." name="sellerGST" [(ngModel)]="data.sellerGST" #sellerGST="ngModel"
+              [ngClass]="{ error: sellerGST.invalid && sellerGST.touched }" />
           </div>
         </div>
       </div>
     </div>
 
     <div class="form-group row">
-      <label for="inputEmail3" class="col-sm-3 col-form-label"
-        >Machine Details</label
-      >
+      <label for="inputEmail3" class="col-sm-3 col-form-label">Machine Details</label>
       <div class="col-sm-8">
         <ng-select [multiple]="true" placeholder="-- Select Machine Details --">
           <ng-option [value]="">ok</ng-option>
@@ -186,9 +102,7 @@
     </div>
 
     <div class="form-group row">
-      <label for="inputEmail3" class="col-sm-3 col-form-label"
-        >Capabilities</label
-      >
+      <label for="inputEmail3" class="col-sm-3 col-form-label">Capabilities</label>
       <div class="col-sm-8">
         <ng-select [multiple]="true" placeholder="-- Select --">
           <ng-option [value]="">ok</ng-option>
@@ -198,80 +112,42 @@
     </div>
 
     <div class="form-group row">
-      <label for="sellerStrenght" class="col-sm-3 col-form-label"
-        >Major Strenghts</label
-      >
+      <label for="sellerStrenght" class="col-sm-3 col-form-label">Major Strenghts</label>
       <div class="col-sm-8">
-        <textarea
-          maxlength="300"
-          class="form-control"
-          id="sellerStrenght"
-          rows="3"
-          placeholder="Major marketing strengths ..."
-          name="sellerStrenght"
-          [(ngModel)]="data.sellerStrenght"
-          #sellerStrenght="ngModel"
-        ></textarea>
+        <textarea maxlength="300" class="form-control" id="sellerStrenght" rows="3"
+          placeholder="Major marketing strengths ..." name="sellerStrenght" [(ngModel)]="data.sellerStrenght"
+          #sellerStrenght="ngModel"></textarea>
       </div>
     </div>
 
     <div class="form-group row">
-      <label for="leadTime" class="col-sm-3 col-form-label"
-        >Leadtime / MOQ</label
-      >
+      <label for="leadTime" class="col-sm-3 col-form-label">Leadtime / MOQ</label>
       <div class="col-sm-8">
-        <textarea
-          maxlength="300"
-          class="form-control"
-          id="leadTime"
-          rows="3"
-          placeholder="Lead time and MOQ ..."
-          name="leadTime"
-          [(ngModel)]="data.leadTime"
-          #leadTime="ngModel"
-        ></textarea>
+        <textarea maxlength="300" class="form-control" id="leadTime" rows="3" placeholder="Lead time and MOQ ..."
+          name="leadTime" [(ngModel)]="data.leadTime" #leadTime="ngModel"></textarea>
       </div>
     </div>
 
     <div class="form-group row">
-      <label for="sellerDetails" class="col-sm-3 col-form-label"
-        >Seller Details</label
-      >
+      <label for="sellerDetails" class="col-sm-3 col-form-label">Seller Details</label>
       <div class="col-sm-8">
-        <textarea
-          maxlength="300"
-          class="form-control"
-          id="sellerDetails"
-          rows="3"
-          placeholder="Seller additional details here ..."
-          name="sellerDetails"
-          [(ngModel)]="data.sellerDetails"
-          #sellerDetails="ngModel"
-        ></textarea>
+        <textarea maxlength="300" class="form-control" id="sellerDetails" rows="3"
+          placeholder="Seller additional details here ..." name="sellerDetails" [(ngModel)]="data.sellerDetails"
+          #sellerDetails="ngModel"></textarea>
       </div>
     </div>
 
     <div class="form-check form-check-inline offset-md-3 pl-1">
-      <input
-        class="form-check-input check-btn"
-        type="checkbox"
-        name="isParentSeller"
-        [(ngModel)]="data.isParentSeller"
-      />
+      <input class="form-check-input check-btn" type="checkbox" name="isParentSeller"
+        [(ngModel)]="data.isParentSeller" />
       <label class="form-check-label">Parent Seller</label>
     </div>
 
     <div class="form-group row">
-      <label for="parentSellerId" class="col-sm-3 col-form-label"
-        >Parent Seller</label
-      >
+      <label for="parentSellerId" class="col-sm-3 col-form-label">Parent Seller</label>
 
       <div class="col-sm-8">
-        <ng-select
-          name="parentSellerId"
-          [(ngModel)]="parentSellerId"
-          placeholder="-- Select --"
-        >
+        <ng-select name="parentSellerId" [(ngModel)]="parentSellerId" placeholder="-- Select --">
           <ng-option *ngFor="let i of seller" [value]="i.id">
             {{ i.sellerName }}
           </ng-option>
@@ -281,20 +157,10 @@
   </form>
 </div>
 <div class="modal-footer NotBG">
-  <button
-    type="button"
-    class="btn btn-outline-secondary noHover"
-    data-dismiss="modal"
-    (click)="activeModal.close()"
-  >
+  <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
     Close
   </button>
-  <button
-    type="button"
-    class="btn button-save"
-    (click)="addSeller()"
-    [disabled]="sellerForm.invalid"
-  >
+  <button type="button" class="btn button-save" (click)="addSeller()" [disabled]="sellerForm.invalid">
     Save Seller
   </button>
 </div>

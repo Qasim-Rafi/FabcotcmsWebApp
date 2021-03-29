@@ -21,31 +21,33 @@ import { PaymentTermComponent } from './product/payment-term/payment-term.compon
 import { PriceTermComponent } from './product/price-term/price-term.component';
 import { SellerComponent } from './seller/seller.component';
 
+
+
 const routes: Routes = [
 
 
-      {path: 'buyer', component: BuyerComponent},
-      {path: 'seller', component: SellerComponent},
-      {path: 'agent', component: ForeignAgentComponent},
-      {path: 'article', component: ArticlesComponent},
-      {path: 'fabric-type', component: FabricTypeComponent},
-      {path: 'packing', component: PackingComponent},
-      {path: 'price-term', component: PriceTermComponent},
-      {path: 'payment-term', component: PaymentTermComponent},
-      {path: 'certificate', component: CertificateComponent},
-      {path: 'color', component: ColorComponent},
-      {path: 'design-type', component: DesignTypeComponent},
-      {path: 'loom-type', component: LoomTypeComponent},
-      {path: 'process', component: ProcessComponent},
-      {path: 'process-type', component: ProcessTypeComponent},
-      {path: 'time-action-items', component: TimeActionItemsComponent},
-      {path: 'bank', component: BankComponent},
-      {path: 'bank-accounts', component: BankAccountsComponent},
-      {path: 'city', component: CityComponent},
-      {path: 'country', component: CountryComponent},
-      {path: 'currency', component: CurrencyComponent},
-        
-    ];
+  { path: 'buyer', component: BuyerComponent },
+  { path: 'seller', component: SellerComponent },
+  { path: 'agent', component: ForeignAgentComponent },
+  { path: 'article', component: ArticlesComponent },
+  { path: 'fabric-type', component: FabricTypeComponent },
+  { path: 'packing', component: PackingComponent },
+  { path: 'price-term', component: PriceTermComponent },
+  { path: 'payment-term', component: PaymentTermComponent },
+  { path: 'certificate', component: CertificateComponent },
+  { path: 'color', component: ColorComponent },
+  { path: 'design-type', component: DesignTypeComponent },
+  { path: 'loom-type', component: LoomTypeComponent },
+  { path: 'process', component: ProcessComponent },
+  { path: 'process-type', component: ProcessTypeComponent },
+  { path: 'time-action-items', component: TimeActionItemsComponent },
+  { path: 'bank', component: BankComponent },
+  { path: 'bank-accounts', component: BankAccountsComponent },
+  { path: 'city', component: CityComponent },
+  { path: 'country', component: CountryComponent },
+  { path: 'currency', component: CurrencyComponent },
+
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

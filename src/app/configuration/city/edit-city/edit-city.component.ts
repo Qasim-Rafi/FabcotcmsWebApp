@@ -17,18 +17,19 @@ export class EditCityComponent implements OnInit {
   @Input() userId;
   @Input() statusCheck;
   active = true;
+  FormName: any;
   constructor(private http: HttpClient,
     private toastr: ToastrService,
     private _NgbActiveModal: NgbActiveModal,
     private service: ServiceService) { }
 
   ngOnInit(): void {
-   
+
     {
       this.service.getCountry().subscribe(res => {
         this.response = res;
         if (this.response.success == true) {
-          this.data = this.response.data;
+          this.country = this.response.data;
         }
         else {
           this.toastr.error('Something went Worng', 'Message.');
@@ -37,7 +38,7 @@ export class EditCityComponent implements OnInit {
     }
     this.statusCheck = this.statusCheck;
     if (this.statusCheck == 'CityEdit') {
-    this.editCity();
+      this.editCity();
     }
     // this.editCity();
   }
@@ -68,7 +69,7 @@ export class EditCityComponent implements OnInit {
         });
   }
 
-//ADD CITIES
+  //ADD CITIES
 
   addCity() {
     let varr = {
@@ -102,7 +103,7 @@ export class EditCityComponent implements OnInit {
         });
   }
 
-//GET CITY
+  //GET CITY
   getCity() {
     this.http.get(`${environment.apiUrl}/api/Configs/GetAllCity`)
       .subscribe(
@@ -124,15 +125,15 @@ export class EditCityComponent implements OnInit {
         });
   }
 
-  
 
-//UPDATE CITIES
+
+  //UPDATE CITIES
 
   UpdateCity() {
     let varr = {
       "name": this.data.name,
       "details": this.data.details,
-      "countryId": this.data.countryId,
+      "countryId": this.countryId,
       "active": this.data.active
     }
 

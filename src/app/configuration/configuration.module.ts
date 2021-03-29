@@ -73,6 +73,7 @@ import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ClipboardModule } from 'ngx-clipboard';
 import { SellerPocComponent } from './seller/seller-poc/seller-poc.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 
 @NgModule({
@@ -115,6 +116,7 @@ import { SellerPocComponent } from './seller/seller-poc/seller-poc.component';
 
 
   imports: [
+    BsDatepickerModule.forRoot(),
     CommonModule,
     ConfigurationRoutingModule,
     NgbModule,
