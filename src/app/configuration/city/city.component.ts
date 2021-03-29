@@ -128,9 +128,11 @@ export class CityComponent implements OnInit {
 
     
   } 
-  addCity(check) {
+  addCity(check,name) {
     const modalRef = this.modalService.open(EditCityComponent, { centered: true });
     modalRef.componentInstance.statusCheck =check;
+    modalRef.componentInstance.FormName = name;
+
    //  modalRef.componentInstance.name =componentName;
 
        modalRef.result.then((data) => {
@@ -150,10 +152,12 @@ export class CityComponent implements OnInit {
   }
 
 
-  editCity(row,check){
+  editCity(row,check,name){
     const modalRef = this.modalService.open(EditCityComponent, { centered: true });
     modalRef.componentInstance.userId =row.id; //just for edit.. to access the needed row
     modalRef.componentInstance.statusCheck = check;
+    modalRef.componentInstance.FormName = name;
+
           modalRef.result.then((data) => {
          // on close
           if(data ==true){

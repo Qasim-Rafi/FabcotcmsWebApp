@@ -63,7 +63,7 @@
           <span class="text-muted text2">Account</span>
         </div>
         <div class="col-md-6 mrg-tsm">
-          <button type="button" class="btn btn-primary btn-md float-right" (click)="addCity('CityAdd')">
+          <button type="button" class="btn btn-primary btn-md float-right" (click)="addCity('CityAdd', 'cityForm')">
             <i class="fa fa-plus"></i> Add New City
           </button>
         </div>
@@ -144,7 +144,7 @@
 
             <div class="ibox-tools text-center">
               <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top" title=""
-                data-original-title="Edit" (click)="editCity(row, 'CityEdit')"><i class="far fa-edit"></i></button>
+                data-original-title="Edit" (click)="editCity(row, 'CityEdit','cityForm')"><i class="far fa-edit"></i></button>
 
               <button type="button" class="btn deleteIconBack" data-toggle="tooltip" data-placement="top" title=""
                 data-original-title="Delete" (click)="deleteCity(row)"> <i class="far fa-trash-alt"></i></button>

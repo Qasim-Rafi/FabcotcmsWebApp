@@ -36,7 +36,7 @@ export class EditCityComponent implements OnInit {
       })
     }
     this.statusCheck = this.statusCheck;
-    if (this.statusCheck == 'cityEdit') {
+    if (this.statusCheck == 'CityEdit') {
     this.editCity();
     }
     // this.editCity();
