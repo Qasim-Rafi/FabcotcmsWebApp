@@ -32,7 +32,7 @@
     <div class="form-group row">
       <label class="col-sm-3 col-form-label text-grey">Country Name</label>
       <div class="col-sm-8">
-        <ng-select [(ngModel)]="countryId" required placeholder="-- Select --" name="countryId">
+        <ng-select required [(ngModel)]="data.countryId" placeholder="-- Select --" name="countryId">
           <ng-option *ngFor="let i of country" [value]="i.id">{{ i.name }}
             <span class="text-muted" style="font-size: 11px">( {{ i.details }} )</span>
           </ng-option>

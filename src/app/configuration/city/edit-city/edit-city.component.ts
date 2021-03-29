@@ -11,7 +11,7 @@ import { ServiceService } from 'src/app/shared/service.service';
 })
 export class EditCityComponent implements OnInit {
   country: any = [];
-  countryId: null;
+
   response: any;
   data: any = {};
   @Input() userId;
@@ -75,7 +75,7 @@ export class EditCityComponent implements OnInit {
     let varr = {
       "name": this.data.name,
       "details": this.data.details,
-      "countryId": this.countryId,
+      "countryId": this.data.countryId,
       "active": this.active
 
     }
@@ -133,7 +133,7 @@ export class EditCityComponent implements OnInit {
     let varr = {
       "name": this.data.name,
       "details": this.data.details,
-      "countryId": this.countryId,
+      "countryId": this.data.countryId,
       "active": this.data.active
     }
 
