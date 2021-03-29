@@ -62,8 +62,9 @@
   ">
       <label for="description" class="col-sm-3 col-form-label text-Navy">Validity Date</label>
       <div class="col-sm-8">
-        <input type="date" class="form-control" id="description" name="validityDate" [(ngModel)]="data.validityDate"
-          #validityDate="ngModel" />
+        <input required type="date" class="form-control" id="description" name="validityDate"
+          [(ngModel)]="data.validityDate" #validityDate="ngModel"
+          [ngClass]="{ error: validityDate.invalid && validityDate.touched }" />
       </div>
     </div>
 
@@ -105,11 +106,13 @@
 
 <div class="modal-footer NotBG">
   <!-- <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" (click)="activeModal.close()">Close</button> -->
-  <button *ngIf="statusCheck == 'CertificateAdd'" class="btn button-save" type="submit" (click)="addCertificate()">
+  <button [disabled]="certificateForm.invalid" *ngIf="statusCheck == 'CertificateAdd'" class="btn button-save"
+    type="submit" (click)="addCertificate()">
     Save Certificate
   </button>
 
-  <button *ngIf="statusCheck == 'CertificateEdit'" class="btn button-save" type="submit" (click)="UpdateCertificate()">
+  <button [disabled]="certificateForm.invalid" *ngIf="statusCheck == 'CertificateEdit'" class="btn button-save"
+    type="submit" (click)="UpdateCertificate()">
     Update Certificate
   </button>
 
@@ -118,7 +121,7 @@
       Close
     </button>
 
-    <button class="btn button-save" type="submit" (click)="addSellerCertificate()">
+    <button class="btn button-save" type="submit" (click)="addSellerCertificate()" [disabled]="certificateForm.invalid">
       Save
     </button>
   </div>
@@ -128,7 +131,8 @@
       Close
     </button>
 
-    <button class="btn button-save" type="submit" (click)="UpdateSellerCertificate()">
+    <button class="btn button-save" type="submit" (click)="UpdateSellerCertificate()"
+      [disabled]="certificateForm.invalid">
       Update
     </button>
   </div>
