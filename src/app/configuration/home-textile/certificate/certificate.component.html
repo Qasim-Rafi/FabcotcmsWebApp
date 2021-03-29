@@ -118,12 +118,7 @@
             <span class="badge badge-primary" *ngIf="row.active == true">Active</span>
             <span class="badge badge-secondary" *ngIf="row.active == false">Inactive</span>
 
-            <!-- <div class="active" *ngIf="row.active==true">
-              Active
-            </div>
-            <div class="inactive" *ngIf="row.active==false">
-              Inactive
-            </div> -->
+
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="Last Changed On | Updated By" [width]="80">
@@ -136,7 +131,7 @@
 
             <div class="ibox-tools text-center">
               <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top" title=""
-                data-original-title="Edit" (click)="editCertificateForm(row , 'SellerEdit')">
+                data-original-title="Edit" (click)="editCertificateForm(row , 'CertificateEdit')">
                 <i class="far fa-edit "></i>
               </button>
               <button type="button" class="btn deleteIconBack" data-toggle="tooltip" data-placement="top" title=""
@@ -144,17 +139,6 @@
                 <i class="far fa-trash-alt"></i>
               </button>
             </div>
-
-
-            <!-- <button type="button" 
-            class="btn deleteIconBack"
-            mwlConfirmationPopover 
-            popoverTitle="Confirmation"
-            popoverMessage="Are you sure ?" 
-            placement="left" 
-            (confirm)="deleteCertificate(row)"> 
-            <i class="far fa-trash-alt"></i>
-            </button> -->
           </ng-template>
         </ngx-datatable-column>
       </ngx-datatable>

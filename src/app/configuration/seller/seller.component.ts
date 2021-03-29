@@ -6,7 +6,7 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EditSellerFormComponent } from './edit-seller-form/edit-seller-form.component';
 import { AddSellerFormComponent } from './add-seller-form/add-seller-form.component';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
-import { AddCertificateComponent } from '../home-textile/certificate/add-certificate/add-certificate.component';
+// import { AddCertificateComponent } from '../home-textile/certificate/add-certificate/add-certificate.component';
 import { GlobalConstants } from 'src/app/Common/global-constants';
 import { SellerPocComponent } from './seller-poc/seller-poc.component';
 import { EditCertificateComponent } from '../home-textile/certificate/edit-certificate/edit-certificate.component';
@@ -17,6 +17,7 @@ import { EditCertificateComponent } from '../home-textile/certificate/edit-certi
 })
 export class SellerComponent implements OnInit {
   listCount: number;
+  // pocList: number;
   data: any = {};
   response: any;
   seller: any[];
@@ -25,9 +26,11 @@ export class SellerComponent implements OnInit {
   rows: any = [];
   temp: any[];
   active = true;
-  @Input() sellerId;
-  // @Input() statusCheck;
+  // @Input() sellerId;
+  @Input() Id;
   sellerCertificate: any = [];
+  // @Input() sellerPOCid;
+
 
 
   constructor(private http: HttpClient,
@@ -41,18 +44,15 @@ export class SellerComponent implements OnInit {
     // if(this.statusCheck == 'Add'){
     //   this.addCertificate();
     // }
-    this.getSellers();
-    this.fetch((data) => {
-      this.temp = [...data];
-      this.rows = data;
 
-    });
+    this.getSellers();
+    this.getAllCertificates();
     this.getSellersCertificates();
 
   }
 
 
-  // Search Function
+  //---------------------------- Search Function-----------------------//
   updateFilter(event) {
     const val = event.target.value.toLowerCase();
 
@@ -66,7 +66,6 @@ export class SellerComponent implements OnInit {
   }
 
 
-
   // ---------------------------------------Get All Seller Certificates----------------------------
 
 
@@ -78,7 +77,7 @@ export class SellerComponent implements OnInit {
           this.response = res;
           if (this.response.success == true) {
             this.sellerCertificate = this.response.data;
-            this.temp = [...this.sellerCertificate];
+
 
 
           }
@@ -102,7 +101,7 @@ export class SellerComponent implements OnInit {
   deleteSellerCertificate(id) {
     Swal.fire({
       title: GlobalConstants.deleteTitle, //'Are you sure?',
-      text: GlobalConstants.deleteMessage + ' ' + '"' + id.certificateName + '"',
+      text: GlobalConstants.deleteMessage + ' ' + '"' + id.sellerCertificateName + '"',
       icon: 'error',
       showCancelButton: true,
       confirmButtonColor: '#ed5565',
@@ -114,7 +113,7 @@ export class SellerComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
 
-        this.http.delete(`${environment.apiUrl}/api/Sellers/DeletePOC/` + id.sellerCertificateId)
+        this.http.delete(`${environment.apiUrl}/api/Sellers/DeleteCertificate/` + id.sellerCertificateId)
           .subscribe(
             res => {
               this.response = res;
@@ -237,9 +236,11 @@ export class SellerComponent implements OnInit {
 
           this.response = res;
           if (this.response.success == true) {
+
             this.seller = this.response.data;
             this.temp = [...this.seller];
             this.listCount = this.response.data.length;
+            // this.pocList = this.response.data.sellerPOCList.lenght
 
           }
           else {
@@ -306,9 +307,10 @@ export class SellerComponent implements OnInit {
 
 
 
-  addPocform(popup) {
+  addPocform(popup, check) {
     const modalRef = this.modalService.open(SellerPocComponent, { centered: true });
-    modalRef.componentInstance.userId = popup.id;
+    modalRef.componentInstance.parentSellerId = popup.id;
+    modalRef.componentInstance.statusCheck = check;
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
@@ -319,23 +321,73 @@ export class SellerComponent implements OnInit {
     });
   }
 
-
-
-
-
-  editSellerform(popup) {
-    const modalRef = this.modalService.open(EditSellerFormComponent, { centered: true });
-    modalRef.componentInstance.userId = popup.id;
-
+  editPocform(popup, check, pocId) {
+    const modalRef = this.modalService.open(SellerPocComponent, { centered: true });
+    modalRef.componentInstance.parentSellerId = popup.id;
+    modalRef.componentInstance.statusCheck = check;
+    modalRef.componentInstance.sellerPOCid = pocId.selllerPOCId;
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
         this.getSellers();
+
       }
     }, (reason) => {
       // on dismiss
     });
   }
+
+
+
+
+  // -----------------------delete Seller POC------------------------//
+  deleteSellerPOC(id) {
+    Swal.fire({
+      title: GlobalConstants.deleteTitle, //'Are you sure?',
+      text: GlobalConstants.deleteMessage + ' ' + '"' + id.name + '"',
+      icon: 'error',
+      showCancelButton: true,
+      confirmButtonColor: '#ed5565',
+      cancelButtonColor: '#dae0e5',
+      cancelButtonText: 'No',
+      confirmButtonText: 'Yes',
+      reverseButtons: true,
+      position: 'top',
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        this.http.delete(`${environment.apiUrl}/api/Sellers/DeletePOC/` + id.selllerPOCId)
+          .subscribe(
+            res => {
+              this.response = res;
+              if (this.response.success == true) {
+                this.toastr.error(this.response.message, 'Message.');
+                this.getSellers();
+              }
+              else {
+                this.toastr.error(this.response.message, 'Message.');
+              }
+
+            }, err => {
+              if (err.status == 400) {
+                this.toastr.error('Something went Worng', 'Message.');
+              }
+            });
+
+
+
+        // Swal.fire(
+        //   'Record',
+        //   'Deleted Successfully.',
+        //   'success'
+        // )
+      }
+    })
+
+  }
+
+
+
 
 
   addSellerform() {
@@ -353,29 +405,41 @@ export class SellerComponent implements OnInit {
 
 
 
+  editSellerform(popup) {
+    const modalRef = this.modalService.open(EditSellerFormComponent, { centered: true });
+    modalRef.componentInstance.Id = popup.id;
 
-  // add certificate
-  fetch(cb) {
+    modalRef.result.then((data) => {
+      // on close
+      if (data == true) {
+        this.getSellers();
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
 
-    this.http
-      .get(`${environment.apiUrl}/api/TextileGarments/GetAllCertificate`)
-      .subscribe(res => {
-        this.response = res;
 
-        if (this.response.success == true) {
-          this.data = this.response.data;
-          cb(this.data);
-        }
-        else {
-          this.toastr.error(this.response.message, 'Message.');
-        }
-        // this.spinner.hide();
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error(err.error.message, 'Message.');;
-        }
-        //  this.spinner.hide();
-      });
+  // Certificate for DropDown
+  getAllCertificates() {
+
+    this.http.get(`${environment.apiUrl}/api/TextileGarments/GetAllCertificate`)
+      .subscribe(
+        res => {
+          this.response = res;
+          if (this.response.success == true) {
+            this.data = this.response.data;
+
+          }
+          else {
+            this.toastr.error('Something went Worng', 'Message.');
+          }
+
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error('Something went Worng', 'Message.');
+          }
+        });
   }
 
 
@@ -387,12 +451,8 @@ export class SellerComponent implements OnInit {
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        //  this.date = this.myDate;
         this.getSellers();
-        this.fetch((data) => {
-          this.rows = data;
-
-        });
+        this.getAllCertificates();
       }
     }, (reason) => {
       // on dismiss
@@ -411,11 +471,8 @@ export class SellerComponent implements OnInit {
       // on close
       if (data == true) {
         this.getSellers();
-        //  this.date = this.myDate;
-        this.fetch((data) => {
-          this.rows = data;
 
-        });
+        this.getAllCertificates();
       }
     }, (reason) => {
       // on dismiss

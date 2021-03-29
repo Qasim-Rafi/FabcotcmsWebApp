@@ -87,8 +87,8 @@ export class EditSellerFormComponent implements OnInit {
   }
 
 
-  editSeller(id) {
-    this.http.get(`${environment.apiUrl}/api/Sellers/GetSeller/` + id)
+  editSeller(Id) {
+    this.http.get(`${environment.apiUrl}/api/Sellers/GetSeller/` + Id)
       .subscribe(
         res => {
           this.response = res;
@@ -121,8 +121,8 @@ export class EditSellerFormComponent implements OnInit {
       "faxNumber": this.data.faxNumber,
       "ntnNumber": this.data.ntnNumber,
       "gstNumber": this.data.gstNumber,
-      "machineId": this.data.machineId.toString(),
-      "capabilitiesId": this.data.capabilitiesId.toString(),
+      "machineId": this.data.machineId,
+      "capabilitiesId": this.data.capabilitiesId,
       "majorStrength": this.data.majorStrength,
       "leadTime": this.data.leadTime,
       "sellerDetails": this.data.sellerDetails,
@@ -134,7 +134,6 @@ export class EditSellerFormComponent implements OnInit {
       put(`${environment.apiUrl}/api/Sellers/UpdateSeller/` + this.Id, varr)
       .subscribe(
         res => {
-
           this.response = res;
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');

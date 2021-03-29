@@ -18,24 +18,25 @@
 
 
 
-  <div class="content-header">
+<div class="content-header">
 
     <div class="row">
-      <div class="col-sm-12 col-md-6 col-lg-8">
-        <h2 class="row wrapper page-header font-weight-light"> New Enquiries
-          <div class="ml-2 descr"> Fill all the enquiry details on this page and create an enquiry in the system. </div>
-        </h2>
-      </div>
-  
-      <div class="col-sm-12 col-md-6 col-lg-4">
-        <ol class="breadcrumb flt-RnL">
-          <li class="breadcrumb-item"><a href="#">Enquiry</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Add New Enquiry</li>
-        </ol>
-      </div>
-  
+        <div class="col-sm-12 col-md-6 col-lg-8">
+            <h2 class="row wrapper page-header font-weight-light"> New Enquiries
+                <div class="ml-2 descr"> Fill all the enquiry details on this page and create an enquiry in the system.
+                </div>
+            </h2>
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-lg-4">
+            <ol class="breadcrumb flt-RnL">
+                <li class="breadcrumb-item"><a href="#">Enquiry</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Add New Enquiry</li>
+            </ol>
+        </div>
+
     </div>
-  </div>
+</div>
 
 
 
@@ -47,17 +48,17 @@
 
         <div class="card-tools">
 
-          <button type="button" class="btn btn-tool" data-card-widget="collapse">
-              <i class="fas fa-minus"></i>
-          </button>
-          <button type="button" class="btn btn-tool" data-card-widget="maximize">
-            <i class="fas fa-expand"></i>
-          </button>
-          <button type="button" class="btn btn-tool" data-card-widget="remove">
-            <i class="fas fa-times"></i>
-          </button>
+            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                <i class="fas fa-expand"></i>
+            </button>
+            <button type="button" class="btn btn-tool" data-card-widget="remove">
+                <i class="fas fa-times"></i>
+            </button>
         </div>
-      </div>
+    </div>
 
 
     <!-- <div class="headline">
@@ -82,13 +83,14 @@
                             <div class="form-group col-md-2">
                                 <label for="inputPassword4">Auto</label>
                                 <!-- <input type="password" class="form-control" id="inputPassword4"> -->
-                                <input type="text" placeholder="Auto Enquiry no." class="form-control text-w-4" id="enqry-autono"
-                                    value="000092" readonly="">
+                                <input type="text" placeholder="Auto Enquiry no." class="form-control text-w-4"
+                                    id="enqry-autono" value="000092" readonly="">
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="inputPassword4">(Manual)</label>
                                 <!-- <input type="password" class="form-control" id="inputPassword4"> -->
-                                <input type="text" placeholder="Enquiry no." class="form-control text-w-4" id="enqry-no">
+                                <input type="text" placeholder="Enquiry no." class="form-control text-w-4"
+                                    id="enqry-no">
                             </div>
                             <div class="form-group col-md-3 offset-md-3">
                                 <label for="inputPassword4">Enquiry Date</label>
@@ -98,29 +100,31 @@
 
                         <div class="row">
                             <div class="col-md-12 pt-2r pb-3">
-                        
+
                                 <div class="form-group row">
-                                    <label for="inputEmail3" class="col-sm-3 col-form-label control-label">Buyer Name</label>
+                                    <label for="inputEmail3" class="col-sm-3 col-form-label control-label">Buyer
+                                        Name</label>
                                     <div class="col-sm-6">
                                         <div class="input-group">
-                        
+
                                             <select name="buyer " class="form-control" [(ngModel)]="buyerId">
                                                 <option value="null" disabled> Select Buyer</option>
                                                 <option *ngFor="let i of buyer" [value]="i.id">
                                                     {{i.buyerName}}
                                                 </option>
                                             </select>
-                        
+
                                             <button class="btn btn-success " (click)="addenquiryBuyerForm()">
                                                 <i class="fa fa-plus"></i>
                                             </button>
-                        
+
                                         </div>
                                     </div>
                                 </div>
-                        
+
                                 <div class="form-group row">
-                                    <label for="inputEmail3" class="col-sm-3 col-form-label control-label">Article Name</label>
+                                    <label for="inputEmail3" class="col-sm-3 col-form-label control-label">Article
+                                        Name</label>
                                     <div class="col-sm-6">
                                         <div class="input-group">
                                             <select name="article" class="form-control" [(ngModel)]="articleId">
@@ -135,16 +139,17 @@
                                         </div>
                                     </div>
                                 </div>
-                        
+
                             </div>
                         </div>
 
 
                         <div class="row border-top">
                             <div class="col-md-12 pt-2r pb-3">
-                        
+
                                 <div class="form-group row">
-                                    <label for="inputEmail3" class="col-sm-3 col-form-label control-label">Process</label>
+                                    <label for="inputEmail3"
+                                        class="col-sm-3 col-form-label control-label">Process</label>
                                     <div class="col-sm-6">
                                         <div class="input-group">
                                             <select name="process" class="form-control" [(ngModel)]="processId">
@@ -161,9 +166,10 @@
                                         </div>
                                     </div>
                                 </div>
-                        
+
                                 <div class="form-group row">
-                                    <label for="inputEmail3" class="col-sm-3 col-form-label control-label">Process Type</label>
+                                    <label for="inputEmail3" class="col-sm-3 col-form-label control-label">Process
+                                        Type</label>
                                     <div class="col-sm-6">
                                         <div class="input-group">
                                             <select name="ptype" class="form-control" [(ngModel)]="processtypeId">
@@ -182,7 +188,8 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="inputEmail3" class="col-sm-3 col-form-label control-label">Design Type</label>
+                                    <label for="inputEmail3" class="col-sm-3 col-form-label control-label">Design
+                                        Type</label>
                                     <div class="col-sm-6">
                                         <div class="input-group">
                                             <select name="design" class="form-control" [(ngModel)]="designId">
@@ -201,7 +208,8 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="inputEmail3" class="col-sm-3 col-form-label control-label">Packaging</label>
+                                    <label for="inputEmail3"
+                                        class="col-sm-3 col-form-label control-label">Packaging</label>
                                     <div class="col-sm-6">
                                         <div class="input-group">
                                             <select name="packaging" class="form-control" [(ngModel)]="packageId">
@@ -218,17 +226,18 @@
                                         </div>
                                     </div>
                                 </div>
-                        
+
                             </div>
                         </div>
-                        
+
 
                         <div class="row border-top">
                             <div class="col-md-12 pt-2r pb-3">
-                        
+
                                 <div class="form-group row">
-                                    <label for="inputEmail3" class="col-sm-3 col-form-label control-label">Payment Terms</label>
-                                    
+                                    <label for="inputEmail3" class="col-sm-3 col-form-label control-label">Payment
+                                        Terms</label>
+
 
                                     <div class="col-sm-6">
                                         <div class="row">
@@ -239,17 +248,18 @@
                                                         {{i.term}}
                                                     </option>
                                                 </select>
-                                    
+
                                                 <button class="btn btn-success ">
                                                     <i class="fa fa-plus" (click)="addPaymentForm()"></i>
                                                 </button>
-                                    
+
                                                 <div class="col-sm-2">
                                                     <input type="text" placeholder="Days." class="form-control">
                                                 </div>
-                                    
+
                                                 <div class="col-sm-4">
-                                                    <input type="text" placeholder="Additional Info." class="form-control">
+                                                    <input type="text" placeholder="Additional Info."
+                                                        class="form-control">
                                                 </div>
                                             </div>
                                         </div>
@@ -258,11 +268,12 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="inputEmail3" class="col-sm-3 col-form-label control-label">Price terms</label>
-                                    
+                                    <label for="inputEmail3" class="col-sm-3 col-form-label control-label">Price
+                                        terms</label>
+
 
                                     <div class="col-sm-3">
-                                        
+
                                         <div class="input-group">
                                             <select name="priceterm" class="form-control" [(ngModel)]="priceId">
                                                 <option value="null" disabled> Select Price Terms</option>
@@ -273,7 +284,7 @@
                                             <button class="btn btn-success ">
                                                 <i class="fa fa-plus" (click)="addPriceForm()"></i>
                                             </button>
-    
+
                                         </div>
                                     </div>
 
@@ -295,8 +306,9 @@
 
 
                                 <div class="form-group row">
-                                    <label for="inputEmail3" class="col-sm-3 col-form-label control-label">Suppiler Side Commission</label>
-                                    
+                                    <label for="inputEmail3" class="col-sm-3 col-form-label control-label">Suppiler Side
+                                        Commission</label>
+
 
                                     <div class="col-sm-6">
                                         <div class="row">
@@ -317,7 +329,8 @@
                                                 </select>
 
                                                 <div class="col-sm-4">
-                                                    <input type="text" placeholder="Additional Info." class="form-control">
+                                                    <input type="text" placeholder="Additional Info."
+                                                        class="form-control">
                                                 </div>
                                             </div>
                                         </div>
@@ -326,44 +339,46 @@
                                         </small>
                                     </div>
 
-                                    
+
 
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="code" class="col-sm-3 col-form-label control-label">Buyer Side Commission</label>
-                                    
+                                    <label for="code" class="col-sm-3 col-form-label control-label">Buyer Side
+                                        Commission</label>
+
                                     <div class="col-sm-6">
                                         <div class="row">
-                                        <div class="input-group">
-                                            <div class="input-group col-sm-4">
-                                                <input type="text" placeholder="Comm%" class="form-control">
-                                                <div class="input-group-append">
-                                                    <span class="input-group-text" id="basic-addon2">per</span>
+                                            <div class="input-group">
+                                                <div class="input-group col-sm-4">
+                                                    <input type="text" placeholder="Comm%" class="form-control">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text" id="basic-addon2">per</span>
+                                                    </div>
+                                                </div>
+                                                <select class="form-control col-sm-4">
+                                                    <option selected disabled> Select UOM </option>
+                                                    <option> UOM 1 </option>
+                                                    <option> UOM 2 </option>
+                                                    <option> UOM 3 </option>
+                                                    <option> UOM 4 </option>
+                                                </select>
+                                                <div class="col-sm-4">
+                                                    <input type="text" placeholder="Additional Info."
+                                                        class="form-control">
                                                 </div>
                                             </div>
-                                            <select class="form-control col-sm-4">
-                                                <option selected disabled> Select UOM </option>
-                                                <option> UOM 1 </option>
-                                                <option> UOM 2 </option>
-                                                <option> UOM 3 </option>
-                                                <option> UOM 4 </option>
-                                            </select>
-                                            <div class="col-sm-4">
-                                                <input type="text" placeholder="Additional Info." class="form-control">
-                                            </div>
                                         </div>
-                                    </div>
                                         <small id="passwordHelpBlock" class="form-text text-lightgrey">
                                             FabCot Buyer Side ommission in %age, if UOM not selected
-                                          </small>
+                                        </small>
                                     </div>
 
-                                    
+
 
                                 </div>
 
-                        
+
                             </div>
                         </div>
 
@@ -371,12 +386,14 @@
 
                         <div class="row border-top">
                             <div class="col-md-12 pt-2r pb-3">
-                        
+
                                 <div class="form-group row">
-                                    <label for="inputEmail3" class="col-sm-3 col-form-label control-label">Certification:</label>
+                                    <label for="inputEmail3"
+                                        class="col-sm-3 col-form-label control-label">Certification:</label>
                                     <div class="col-sm-6">
                                         <div class="input-group">
-                                            <select name="certification" class="form-control" [(ngModel)]="certificateId">
+                                            <select name="certification" class="form-control"
+                                                [(ngModel)]="certificateId">
                                                 <option value="null" disabled> Select Certifications</option>
                                                 <option *ngFor="let i of certification" [value]="i.id">
                                                     {{i.name}}
@@ -390,7 +407,8 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="inputEmail3" class="col-sm-3 col-form-label control-label">Remarks:</label>
+                                    <label for="inputEmail3"
+                                        class="col-sm-3 col-form-label control-label">Remarks:</label>
                                     <div class="col-sm-6">
                                         <textarea class="form-control" rows="4" placeholder="Any Remarks Here...">
                                         </textarea>
@@ -399,14 +417,15 @@
 
 
                                 <div class="form-group row">
-                                    <label for="inputEmail3" class="col-sm-3 col-form-label control-label">Other Condition:</label>
+                                    <label for="inputEmail3" class="col-sm-3 col-form-label control-label">Other
+                                        Condition:</label>
                                     <div class="col-sm-6">
                                         <textarea class="form-control" rows="4" placeholder="Any Conditions Here...">
                                         </textarea>
                                     </div>
                                 </div>
 
-                        
+
                             </div>
                         </div>
 
@@ -414,11 +433,11 @@
 
 
                         <div class="row">
-                            <div class="col-md-6 offset-md-3">    
-                                
+                            <div class="col-md-6 offset-md-3">
+
                                 <button class="btn button-save"><i class="fas fa-check"></i> Save & Next</button>
                                 <button class="btn btn-secondary ml-4"> <i class="fas fa-times"></i>Close</button>
-                        
+
                             </div>
                         </div>
 
@@ -434,7 +453,7 @@
 
 
 
-<!-- ---------------------------------Table--------------------------- -->
+            <!-- ---------------------------------Table--------------------------- -->
 
 
             <!-- <table class="table">

@@ -148,7 +148,7 @@
       <div class="poc-icon">
         <a class="faq-question text-muted text-s-lg text-w-3" data-toggle="collapse" href="#seller-{{ x }}"
           role="button" aria-expanded="false" aria-controls="collapseExample">
-          <span class="fa fa-users"></span> 0</a>
+          <span class="fa fa-users"></span>0</a>
       </div>
     </div>
     <div class="col-md-7">
@@ -202,80 +202,74 @@
     <div class="card card-body">
       <div class="col-sm-4">
         <button type="button" class="btn btn-primary float-right" data-toggle="modal"
-          data-target="#exampleModalScrollable" (click)="addPocform(i)">
+          data-target="#exampleModalScrollable" (click)="addPocform(i,'SellerAddPOC')">
           <i class="fa fa-plus" aria-hidden="true"></i> Add POC form
         </button>
       </div>
 
       <h2>Contacts</h2>
-      <p>
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
-        terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
-        labore wes anderson cred nesciunt sapiente ea proident.
-      </p>
 
-      <h2>Certificate</h2>
-
-      <div class=" card card-body" *ngFor="let j of i.sellerCertificateList">
-        <div class="row">
-          <div class="col-md-2">
-            {{j.sellerCertificateId}}
-          </div>
-
-          <div class="col-md-2">
-            {{j.sellerCertificateName}}
-          </div>
-
-          <div class="col-md-2">
-            {{j.description}}
-          </div>
-
-
-          <div class="col-md-2">
-            {{j.validityDate}}
-          </div>
-
-          <div class="col-md-4">
-            <button type="button" class="btn editIconBack" (click)="editCertificateForm('SellerEdit', i , j)">
-              <i class="far fa-edit"></i>
-            </button>
-
-            <button type="button" class="btn deleteIconBack" (click)="deleteSellerCertificate(j)">
-              <i class="far fa-trash-alt"></i>
-            </button>
-          </div>
+      <div class="row text-center pt-3" *ngFor="let poc of i.sellerPOCList">
+        <div class="col-md-2 border p-2 ">{{ poc.name }}</div>
+        <div class="col-md-2 border p-2">{{ poc.description }}</div>
+        <div class="col-md-2 border p-2">{{ poc.email }}</div>
+        <div class="col-md-2 border p-2">{{ poc.mobileNumber }}</div>
+        <div class="col-md-2 border p-2">
+          <div class="badge badge-primary" *ngIf="poc.active==true">Active</div>
+          <div class="badge badge-secondary" *ngIf="poc.active==false">Inactive</div>
+        </div>
+        <div class="col-md-2 border ">
+          <button type="button" class="btn editIconBack" (click)="editPocform(i , 'SellerEditPOC', poc)">
+            <i class="far fa-edit"></i>
+          </button>
+          <button type="button" class="btn deleteIconBack" (click)="deleteSellerPOC(poc)">
+            <i class="far fa-trash-alt"></i>
+          </button>
         </div>
       </div>
 
 
+      <h2 class="pt-5">Certificate</h2>
 
-      <h2>Machine Details</h2>
-      <p>
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
-        terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
-        labore wes anderson cred nesciunt sapiente ea proident.
-      </p>
+      <div class="row text-center pt-3" *ngFor="let j of i.sellerCertificateList">
+        <div class="col-md-1 border text-left p-2"><i class="fas fa-bolt"></i></div>
+        <div class="col-md-2 border p-2 ">{{ j.sellerCertificateName }}</div>
+        <div class="col-md-3 border p-2 ">{{ j.description }}</div>
+        <div class="col-md-2 border p-2 ">{{j.validityDate}}</div>
+        <div class="col-md-4 border p-2 text-right">
+          <button type="button" class="btn editIconBack" (click)="editCertificateForm('SellerEdit', i , j)">
+            <i class="far fa-edit"></i>
+          </button>
+          <button type="button" class="btn deleteIconBack" (click)="deleteSellerCertificate(j)">
+            <i class="far fa-trash-alt"></i>
+          </button>
+        </div>
+      </div>
 
-      <h2>Major Market & Strengths</h2>
-      <p>
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
-        terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
-        labore wes anderson cred nesciunt sapiente ea proident.
-      </p>
 
-      <h2>Product Capabilties</h2>
-      <p>
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
-        terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
-        labore wes anderson cred nesciunt sapiente ea proident.
-      </p>
+      <h2 class="pt-5">Machine Details</h2>
+      <div class="pt-3">
 
-      <h2>Lead time & MOQ</h2>
-      <p>
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
-        terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
-        labore wes anderson cred nesciunt sapiente ea proident.
-      </p>
+      </div>
+
+      <h2 class="pt-5">Major Market & Strengths</h2>
+
+      <div class="col-md-12 pt-3">
+        {{i.majorStrength}}
+      </div>
+
+      <h2 class="pt-5">Product Capabilties</h2>
+
+      <div class="pt-3">
+
+      </div>
+
+
+      <h2 class="pt-5">Lead time & MOQ</h2>
+
+      <div class="col-md-12 pt-3">
+        {{i.leadTime}}
+      </div>
     </div>
   </div>
 </div>

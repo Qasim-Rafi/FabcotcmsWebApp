@@ -31,15 +31,13 @@ export class EditCertificateComponent implements OnInit {
     private _NgbActiveModal: NgbActiveModal) { }
 
   ngOnInit(): void {
+
+    this.getCertificate();
+
     this.statusCheck = this.statusCheck;
     if (this.statusCheck == 'CertificateEdit') {
       this.editCertificate();
     }
-
-    this.fetch((data) => {
-      this.temp = [...data];
-      this.rows = data;
-    });
 
     if (this.statusCheck == 'SellerEdit') {
       this.editSellerCertificate();
@@ -166,30 +164,27 @@ export class EditCertificateComponent implements OnInit {
 
   //-------------------------get All Certificates-----------------------------------------
 
+  getCertificate() {
+    this.http.get(`${environment.apiUrl}/api/TextileGarments/GetAllCertificate`)
+      .subscribe(
+        res => {
 
+          this.response = res;
+          if (this.response.success == true) {
+            this.certificate = this.response.data;
 
-  fetch(cb) {
+          }
+          else {
+            this.toastr.error('Something went Worng', 'Message.');
+          }
 
-    this.http
-      .get(`${environment.apiUrl}/api/TextileGarments/GetAllCertificate`)
-      .subscribe(res => {
-        this.response = res;
-
-        if (this.response.success == true) {
-          this.certificate = this.response.data;
-          cb(this.data);
-        }
-        else {
-          this.toastr.error(this.response.message, 'Message.');
-        }
-        // this.spinner.hide();
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error(err.error.message, 'Message.');;
-        }
-        //  this.spinner.hide();
-      });
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error('Something went Worng', 'Message.');
+          }
+        });
   }
+
 
 
 
