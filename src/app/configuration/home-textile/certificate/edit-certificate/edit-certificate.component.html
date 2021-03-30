@@ -18,7 +18,7 @@
 
   <div *ngIf="statusCheck == 'SellerAdd'">
     <h5 class="modal-title">
-      <i class="far fa-edit fa-fw"></i>
+      <i class="fa fa-plus fa-fw"></i>
       Add New Certificate
     </h5>
   </div>
@@ -60,7 +60,7 @@
     statusCheck == 'SellerEdit' || statusCheck == 'SellerAdd'">
       <label for="description" class="col-sm-3 col-form-label text-Navy">Validity Date</label>
       <div class="col-sm-8" (clickOutside)="validityDate.close()">
-        <input class="form-control" ngbDatepicker #validityDate="ngbDatepicker" (click)="validityDate.toggle()"
+        <input class="form-control text_Navy" ngbDatepicker #validityDate="ngbDatepicker" (click)="validityDate.toggle()"
           placeholder="Certificate validity date" [(ngModel)]="data.validityDate" name="validityDate" />
       </div>
 
