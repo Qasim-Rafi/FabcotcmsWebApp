@@ -12,7 +12,9 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class AddCountryComponent implements OnInit {
   data: any = {};
   response: any;
-  active = true; 
+  active = true;
+
+
 
   constructor(
     private http: HttpClient, private toastr: ToastrService,
@@ -33,6 +35,8 @@ export class AddCountryComponent implements OnInit {
       "details": this.data.details,
       "active": this.active
     }
+    this.data.name.trim();
+    this.data.details.trim();
 
     this.http.
       post(`${environment.apiUrl}/api/Configs/AddCountry`, varr)

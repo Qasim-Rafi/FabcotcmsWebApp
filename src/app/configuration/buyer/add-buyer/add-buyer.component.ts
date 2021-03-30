@@ -44,12 +44,12 @@ export class AddBuyerComponent implements OnInit {
             this.buyer = this.response.data;
           }
           else {
-            this.toastr.error('Something went Worng', 'Message.');
+            this.toastr.error(this.response.message, 'Message.');
           }
 
         }, err => {
           if (err.status == 400) {
-            this.toastr.error('Something went Worng', 'Message.');
+            this.toastr.error(this.response.message, 'Message.');
           }
         });
   }
@@ -64,12 +64,12 @@ export class AddBuyerComponent implements OnInit {
             this.country = this.response.data;
           }
           else {
-            this.toastr.error('Something went Worng', 'Message.');
+            this.toastr.error(this.response.message, 'Message.');
           }
 
         }, err => {
           if (err.status == 400) {
-            this.toastr.error('Something went Worng', 'Message.');
+            this.toastr.error(this.response.message, 'Message.');
           }
         });
   }
@@ -92,7 +92,7 @@ export class AddBuyerComponent implements OnInit {
       "buyerDetails": this.data.buyerDetails,
       "isParentBuyer": this.data.isParentBuyer,
       "parentBuyerId": this.data.parentBuyerId,
-    } 
+    }
 
     this.http.
       post(`${environment.apiUrl}/api/Buyers/AddBuyer`, varr)

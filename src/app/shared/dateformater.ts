@@ -4,7 +4,7 @@ export class Dateformater {
         if (data == null) {
             return null;
         }
-        let date: string = (data.date.getMonth() < 10 ? ("0" + data.month) : data.month) + "-" + (data.day < 10 ? ("0" + data.day) : data.day) + "-" + data.year;
+        let date: string = data.year + "-" + (data.month < 10 ? ("0" + data.month) : data.month) + "-" + (data.day < 10 ? ("0" + data.day) : data.day);
         return date;
     }
     fromModel(data: any): any {
@@ -16,7 +16,7 @@ export class Dateformater {
             // let separators: string[] = ["/", "\\s", "T"];
             let dateParts: string[] = data.split('-');
             // new RegExp(separators.join('-'), 'g'
-            date = { year: +dateParts[2], month: +dateParts[1], day: +dateParts[0] };
+            date = { day: +dateParts[2], month: +dateParts[1], year: +dateParts[0] };
         }
         else {
             date = { year: data.year, month: data.month, day: data.day };
