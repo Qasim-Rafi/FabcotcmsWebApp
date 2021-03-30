@@ -14,7 +14,7 @@ export class EditCityComponent implements OnInit {
 
   response: any;
   data: any = {};
-  @Input() userId;
+  @Input() cityId;
   @Input() statusCheck;
   active = true;
   FormName: any;
@@ -50,7 +50,7 @@ export class EditCityComponent implements OnInit {
   //EDIT CITIES
 
   editCity() {
-    this.http.get(`${environment.apiUrl}/api/Configs/GetCityById/` + this.userId)
+    this.http.get(`${environment.apiUrl}/api/Configs/GetCityById/` + this.cityId)
       .subscribe(
         res => {
           this.response = res;
@@ -138,7 +138,7 @@ export class EditCityComponent implements OnInit {
     }
 
     this.http.
-      put(`${environment.apiUrl}/api/Configs/UpdateCity/` + this.userId, varr)
+      put(`${environment.apiUrl}/api/Configs/UpdateCity/` + this.cityId, varr)
       .subscribe(
         res => {
 

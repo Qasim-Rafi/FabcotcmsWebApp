@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import {GlobalConstants} from 'src/app/Common/global-constants'
 
 @Component({
   selector: 'app-edit-country',
@@ -13,7 +14,7 @@ export class EditCountryComponent implements OnInit {
   response: any;
   data: any = {};
   active = true; 
-  @Input() userId;
+  @Input() countryId;
   @Input() statusCheck;
   @Input() FormName;
   
@@ -24,7 +25,7 @@ export class EditCountryComponent implements OnInit {
   ngOnInit(): void {
     this.statusCheck = this.statusCheck;
     this.FormName = this.FormName;
-    if (this.statusCheck == 'countryEdit') {
+    if (this.statusCheck == 'edit') {
     this.editCountry();
     }
   }
@@ -32,7 +33,7 @@ export class EditCountryComponent implements OnInit {
     return this._NgbActiveModal;
   }
   editCountry() {
-    this.http.get(`${environment.apiUrl}/api/Configs/GetCountryById/` + this.userId)
+    this.http.get(`${environment.apiUrl}/api/Configs/GetCountryById/` + this.countryId)
       .subscribe(
         res => {
           this.response = res;
@@ -40,12 +41,12 @@ export class EditCountryComponent implements OnInit {
             this.data = this.response.data;
           }
           else {
-            this.toastr.error('Something went Worng', 'Message.');
+            this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
           }
 
         }, err => {
           if (err.status == 400) {
-            this.toastr.error('Something went Worng', 'Message.');
+            this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
           }
         });
   }
@@ -58,13 +59,13 @@ export class EditCountryComponent implements OnInit {
     }
 
     this.http.
-      put(`${environment.apiUrl}/api/Configs/UpdateCountry/` + this.userId, varr)
+      put(`${environment.apiUrl}/api/Configs/UpdateCountry/` + this.countryId, varr)
       .subscribe(
         res => {
 
           this.response = res;
           if (this.response.success == true) {
-            this.toastr.success(this.response.message, 'Message.');
+            this.toastr.success(GlobalConstants.updateMessage, 'Message.');
             this.activeModal.close(true);
           }
           else {
@@ -73,7 +74,7 @@ export class EditCountryComponent implements OnInit {
 
         }, err => {
           if (err.status == 400) {
-            this.toastr.error('Something went Worng', 'Message.');
+            this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
           }
         });
   }
@@ -94,7 +95,7 @@ addCountry() {
 
         this.response = res;
         if (this.response.success == true) {
-          this.toastr.success(this.response.message, 'Message.');
+          this.toastr.success(GlobalConstants.addMessage, 'Message.');
 
 
           this.activeModal.close(true);
@@ -105,7 +106,7 @@ addCountry() {
 
       }, err => {
         if (err.status == 400) {
-          this.toastr.error('Something went Wrong', 'Message.');
+          this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
         }
       });
 }

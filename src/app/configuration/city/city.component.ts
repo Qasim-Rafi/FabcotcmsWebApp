@@ -22,7 +22,7 @@ export class CityComponent implements OnInit {
   // countryId= null;
   columns: any = [];
   data: any = {};
-  myDate = Date.now();
+  cityDate = Date.now();
    temp:any=[];
   @ViewChild('myTable') table: DatatableComponent;
 
@@ -138,7 +138,7 @@ export class CityComponent implements OnInit {
        modalRef.result.then((data) => {
       // on close
        if(data ==true){
-       //  this.date = this.myDate;
+       //  this.date = this.cityDate;
         this.fetch((data) => {
          this.rows = data;
          this.CityCount = this.rows.length;
@@ -154,14 +154,14 @@ export class CityComponent implements OnInit {
 
   editCity(row,check,name){
     const modalRef = this.modalService.open(EditCityComponent, { centered: true });
-    modalRef.componentInstance.userId =row.id; //just for edit.. to access the needed row
+    modalRef.componentInstance.cityId =row.id; //just for edit.. to access the needed row
     modalRef.componentInstance.statusCheck = check;
     modalRef.componentInstance.FormName = name;
 
           modalRef.result.then((data) => {
          // on close
           if(data ==true){
-          //  this.date = this.myDate;
+          //  this.date = this.cityDate;
            this.fetch((data) => {
             this.rows = data;
           });
