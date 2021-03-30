@@ -29,7 +29,7 @@ export class AddCountryComponent implements OnInit {
   active2: boolean;
   addCountry() {
     let varr = {
-      "name": this.data.name,
+      "countryName": this.data.countryName,
       "details": this.data.details,
       "active": this.active
     }

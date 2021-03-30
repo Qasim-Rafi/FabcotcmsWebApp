@@ -26,6 +26,7 @@
       <label for="code" class="col-sm-3 col-form-label control-label text_Navy">Country Name </label>
       <div class="col-sm-8">
         <input 
+        #countryName
         required
         maxlength="80"
         minlength="3" 
@@ -53,9 +54,10 @@
       <label for="active" class="col-sm-3 col-form-label text-grey"></label>
       <div class="col-sm-8">
         <div class="form-check form-check-inline">
-          <input class="form-check-input check-btn " type="checkbox" name="active" [(ngModel)]="data.active"
-            #active="ngModel">
-          <label for="active" class="form-check-label text-grey" id="active">Marked as Active</label>
+          <input [checked] class="form-check-input check-btn " id="active"
+           type="checkbox" name="active" [(ngModel)]="data.active"
+            #active="ngModel" >
+          <label for="active" class="form-check-label text-grey" id="active" >Marked as Active</label>
         </div>
       </div>
     </div>
@@ -65,10 +67,10 @@
 </div>
 <div class="modal-footer NotBG" *ngIf = "FormName == 'countryForm'">
  
-  <button *ngIf="statusCheck == 'add' " class="btn button-save" type="submit" (click)="addCountry()">
+  <button  [disabled]="code.invalid" *ngIf="statusCheck == 'add' " class="btn button-save" type="submit" (click)="addCountry()">
     Add Country
   </button>
-  <button *ngIf="statusCheck == 'edit'" class="btn button-save" type="submit" (click)="UpdateCountry()">
+  <button [disabled]="code.invalid" *ngIf="statusCheck == 'edit'" class="btn button-save" type="submit" (click)="UpdateCountry()">
     Update Country
   </button>
 

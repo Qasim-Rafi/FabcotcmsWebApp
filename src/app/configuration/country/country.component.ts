@@ -178,7 +178,7 @@ export class CountryComponent implements OnInit {
 
 exportAsXLSX():void {
 
-  this.service.exportAsExcelFile(this.data, 'sample');
+  this.service.exportAsExcelFile(this.data, 'Country List');
  
   }
 

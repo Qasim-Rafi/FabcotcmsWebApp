@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -17,6 +17,7 @@ export class EditCountryComponent implements OnInit {
   @Input() countryId;
   @Input() statusCheck;
   @Input() FormName;
+  @ViewChild('countryName') private elementRef: ElementRef;
   
   constructor(private http: HttpClient,
     private toastr: ToastrService,
@@ -28,6 +29,9 @@ export class EditCountryComponent implements OnInit {
     if (this.statusCheck == 'edit') {
     this.editCountry();
     }
+  }
+  public ngAfterViewInit(): void {
+    this.elementRef.nativeElement.focus();
   }
   get activeModal() {
     return this._NgbActiveModal;
