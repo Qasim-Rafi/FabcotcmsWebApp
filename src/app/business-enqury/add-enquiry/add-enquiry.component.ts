@@ -30,6 +30,7 @@ export class AddEnquiryComponent implements OnInit {
     date: number;
    payment: any=[]; packaging: any=[]; design: any=[]; process: any={}; ptype: any={}; certification: any={}; priceterm: any={};
   country1: any=[];
+  CityCount: number;
   
     constructor(private http:HttpClient,
               private toastr: ToastrService,  
@@ -216,22 +217,27 @@ export class AddEnquiryComponent implements OnInit {
        });
   } 
 
-  addenquiryCity(){
+  addenquiryCity(check,name){
     const modalRef = this.modalService.open(EditCityComponent, { centered: true });
-          modalRef.result.then((data) => {
-         // on close
-          if(data ==true){
-          //  this.date = this.myDate;
-           this.fetch((data) => {
-            this.rows = data;
-        
-          });
-           
-  
-         }
-       }, (reason) => {
-         // on dismiss
+    modalRef.componentInstance.statusCheck =check;
+    modalRef.componentInstance.FormName = name;
+
+   //  modalRef.componentInstance.name =componentName;
+
+       modalRef.result.then((data) => {
+      // on close
+       if(data ==true){
+       //  this.date = this.cityDate;
+        this.fetch((data) => {
+         this.rows = data;
+         this.CityCount = this.rows.length;
        });
+        
+
+      }
+    }, (reason) => {
+      // on dismiss
+    });
   }
 
  
