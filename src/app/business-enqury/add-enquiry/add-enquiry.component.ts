@@ -15,6 +15,8 @@ import { AddProcessTypeComponent } from 'src/app/configuration/home-textile/proc
 import { AddPaymentComponent } from 'src/app/configuration/product/payment-term/add-payment/add-payment.component';
 import { AddPriceComponent } from 'src/app/configuration/product/price-term/add-price/add-price.component';
 import { EditCityComponent } from 'src/app/configuration/city/edit-city/edit-city.component';
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker'
+
 @Component({
   selector: 'app-add-enquiry',
   templateUrl: './add-enquiry.component.html',

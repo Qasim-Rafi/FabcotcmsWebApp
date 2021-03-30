@@ -1,8 +1,13 @@
-import { Component, Injectable, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { NgbActiveModal, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker'
+import { Dateformater } from 'src/app/shared/dateformater';
+
+
+
 
 @Component({
   selector: 'app-edit-certificate',
@@ -10,6 +15,8 @@ import { NgbActiveModal, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./edit-certificate.component.css']
 })
 export class EditCertificateComponent implements OnInit {
+
+  datePickerConfig: Partial<BsDatepickerConfig>;
   data: any = {};
   response: any;
   @Input() Id;
@@ -20,21 +27,30 @@ export class EditCertificateComponent implements OnInit {
   rows: any = [];
   temp: any = [];
   certificate: any = []
-
   certificateId = null;
+  dateformater: Dateformater = new Dateformater();
 
-  date: NgbDateStruct = { year: 1789, month: 7, day: 14 }; // July, 14 1789
-
-
-  constructor(private http: HttpClient,
+  constructor(
+    private http: HttpClient,
     private toastr: ToastrService,
-    private _NgbActiveModal: NgbActiveModal) { }
+    private _NgbActiveModal: NgbActiveModal,
+
+
+
+  ) { }
 
   ngOnInit(): void {
+    this.datePickerConfig = Object.assign
+      ({}, {
+        containerClass: 'theme-default ',
+        isAnimated: true,
+        showWeekNumbers: false,
+        dateInputFormat: 'DD/MM/YYYY',
+      }),
 
-    this.getCertificate();
-
+      this.getCertificate();
     this.statusCheck = this.statusCheck;
+
     if (this.statusCheck == 'CertificateEdit') {
       this.editCertificate();
     }
@@ -61,6 +77,7 @@ export class EditCertificateComponent implements OnInit {
 
 
   addSellerCertificate() {
+
     let varr = {
       "certificateId": this.data.certificateId,
       "validityDate": this.data.validityDate,
@@ -68,11 +85,13 @@ export class EditCertificateComponent implements OnInit {
       "sellerId": this.parentSellerId.toString(),
       "active": true
     }
+    this.data.validityDate = this.dateformater.toModel(this.data.validityDate);
 
     this.http.
       post(`${environment.apiUrl}/api/Sellers/AddCertificate`, varr)
       .subscribe(
         res => {
+
 
           this.response = res;
           if (this.response.success == true) {
