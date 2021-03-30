@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -11,13 +11,14 @@ import { ServiceService } from 'src/app/shared/service.service';
 })
 export class EditCityComponent implements OnInit {
   country: any = [];
-
   response: any;
   data: any = {};
-  @Input() cityId;
-  @Input() statusCheck;
   active = true;
   FormName: any;
+  @Input() cityId;
+  @Input() statusCheck;
+  @ViewChild('name') private elementRef: ElementRef;
+
   constructor(private http: HttpClient,
     private toastr: ToastrService,
     private _NgbActiveModal: NgbActiveModal,
@@ -43,7 +44,10 @@ export class EditCityComponent implements OnInit {
     // this.editCity();
   }
 
-
+ //for autoFocus
+ public ngAfterViewInit(): void {
+  this.elementRef.nativeElement.focus();
+}
   get activeModal() {
     return this._NgbActiveModal;
   }

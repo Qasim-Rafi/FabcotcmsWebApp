@@ -18,14 +18,23 @@
 
 <div class="modal-body BG pt-2r">
   <form #CityForm="ngForm" novalidate>
-
-
     <div class="form-group row">
       <label for="name" class="col-sm-3 col-form-label control-label text_Navy">City Name </label>
       <div class="col-sm-8">
-        <input required id="name" maxlength="80" minlength="3" type="text" class="form-control"
-          placeholder="Port City Name" name="name" [(ngModel)]="data.name" #name="ngModel"
-          [ngClass]="{ error: name.invalid }" />
+        <input
+        #name
+        required 
+        id="name" 
+        maxlength="80" 
+        minlength="3" 
+        type="text" 
+        class="form-control"
+        placeholder="Port City Name" 
+        name="name" 
+        [(ngModel)]="data.name" 
+        #name="ngModel"
+        [ngClass]="{ error: CityForm.invalid }"
+         />
       </div>
     </div>
 
@@ -46,13 +55,13 @@
           name="details" [(ngModel)]="data.details" #details="ngModel"></textarea>
       </div>
     </div>
-    <div class="form-group row" >
+    <div class="form-group row">
       <label for="active" class="col-sm-3 col-form-label text-grey"></label>
       <div class="col-sm-8">
         <div class="form-check form-check-inline">
-          <input class="form-check-input check-btn " type="checkbox" name="active" [(ngModel)]="data.active"
-            #active="ngModel">
-          <label for="active" class="form-check-label text-grey" id="active">Marked as Active</label>
+          <input class="form-check-input check-btn " type="checkbox" id="scales" name="active" [(ngModel)]="data.active"
+            #active="ngModel" checked>
+          <label for="scales" class="form-check-label text-grey" id="active">Marked as Active</label>
         </div>
       </div>
     </div>
