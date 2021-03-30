@@ -392,7 +392,6 @@ export class SellerComponent implements OnInit {
 
   addSellerform() {
     const modalRef = this.modalService.open(AddSellerFormComponent, { centered: true });
-
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
@@ -408,7 +407,6 @@ export class SellerComponent implements OnInit {
   editSellerform(popup) {
     const modalRef = this.modalService.open(EditSellerFormComponent, { centered: true });
     modalRef.componentInstance.Id = popup.id;
-
     modalRef.result.then((data) => {
       // on close
       if (data == true) {

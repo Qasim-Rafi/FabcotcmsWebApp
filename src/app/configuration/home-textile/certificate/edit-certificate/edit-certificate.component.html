@@ -60,9 +60,8 @@
     statusCheck == 'SellerEdit' || statusCheck == 'SellerAdd'">
       <label for="description" class="col-sm-3 col-form-label text-Navy">Validity Date</label>
       <div class="col-sm-8">
-        <input type="text" placeholder="MM/DD/YYYY" class="form-control" bsDatepicker name="validityDate"
-          [(ngModel)]="data.validityDate" [bsConfig]="{ isAnimated: true }"
-          [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }" formControlName="dateMDY">
+        <input required type="text" placeholder="DD/MM/YYYY" class="form-control" bsDatepicker name="validityDate"
+          [(ngModel)]="data.validityDate" [bsConfig]="datePickerConfig">
       </div>
     </div>
 
