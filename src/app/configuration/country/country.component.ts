@@ -16,14 +16,14 @@ import { DatatableComponent } from '@swimlane/ngx-datatable';
   styleUrls: ['./country.component.css']
 })
 export class CountryComponent implements OnInit {
-  listCount: number;
+  countryCount: number;
   response: any;
   rows: any = [];
   columns: any = [];
   data: any = {};
   currentDate = Date.now();
-  temp: any=[];
-  newData:any=[];
+  countryFilter: any=[];
+ 
   @ViewChild('myTable') table: DatatableComponent;
  
 
@@ -35,9 +35,9 @@ export class CountryComponent implements OnInit {
   
   ngOnInit(): void {
     this.fetch((data) => {
-      this.temp = [...data];
+      this.countryFilter = [...data];
       this.rows = data;
-
+      this.countryCount = this.rows.length;
     });
 
   }
@@ -46,7 +46,7 @@ export class CountryComponent implements OnInit {
     const val = event.target.value.toLowerCase();
 
     // filter our data
-    const temp = this.temp.filter(function (d) {
+    const temp = this.countryFilter.filter(function (d) {
       return (d.name.toLowerCase().indexOf(val) !== -1  || !val);
     });
  
@@ -66,7 +66,7 @@ export class CountryComponent implements OnInit {
         this.response = res;
         // this.listCount = this.fetch.length;
         if (this.response.success == true) {
-          this.listCount = this.response.data.length;
+          this.countryCount = this.response.data.length;
 
           desc.data = this.response.data;
           cb(this.data);
@@ -105,14 +105,14 @@ export class CountryComponent implements OnInit {
             res => {
               this.response = res;
               if (this.response.success == true) {
-                this.toastr.error('Record Deleted Successfully', 'Message.');
+                this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
                 this.fetch((data) => {
                   this.rows = data;
                 });
 
               }
               else {
-                this.toastr.error('Something went Worng', 'Message.');
+                this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
               }
 
             }, err => {
@@ -142,6 +142,7 @@ export class CountryComponent implements OnInit {
         //  this.date = this.myDate;
         this.fetch((data) => {
           this.rows = data;
+          this.countryCount = this.rows.length;
         });
 
 
@@ -154,7 +155,7 @@ export class CountryComponent implements OnInit {
 
   editCountryForm(row , check , name) {
     const modalRef = this.modalService.open(EditCountryComponent, { centered: true });
-    modalRef.componentInstance.userId = row.id;
+    modalRef.componentInstance.countryId = row.id;
     modalRef.componentInstance.statusCheck = check;
     modalRef.componentInstance.FormName = name;
     modalRef.result.then((data) => {

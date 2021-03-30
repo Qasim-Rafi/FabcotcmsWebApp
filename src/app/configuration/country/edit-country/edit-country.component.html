@@ -2,13 +2,13 @@
   <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
     <span aria-hidden="true">&times;</span>
   </button>
-  <div *ngIf="statusCheck == 'CountryAdd'">
+  <div *ngIf="statusCheck == 'add'">
     <h5 class="modal-title">
       <i class="fa fa-map fa-fw"></i>
       Add New Country
     </h5>
     </div>
-  <div *ngIf="statusCheck == 'countryEdit'">
+  <div *ngIf="statusCheck == 'edit'">
   <h5 class="modal-title">
     <i class="fa fa-map fa-fw"></i>
     Edit Country Location
@@ -65,10 +65,10 @@
 </div>
 <div class="modal-footer NotBG" *ngIf = "FormName == 'countryForm'">
  
-  <button *ngIf="statusCheck == 'CountryAdd' " class="btn button-save" type="submit" (click)="addCountry()">
+  <button *ngIf="statusCheck == 'add' " class="btn button-save" type="submit" (click)="addCountry()">
     Add Country
   </button>
-  <button *ngIf="statusCheck == 'countryEdit'" class="btn button-save" type="submit" (click)="UpdateCountry()">
+  <button *ngIf="statusCheck == 'edit'" class="btn button-save" type="submit" (click)="UpdateCountry()">
     Update Country
   </button>
 
