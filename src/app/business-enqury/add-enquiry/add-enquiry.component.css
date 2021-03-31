@@ -46,3 +46,18 @@ label:not(.form-check-label):not(.custom-file-label) {
   padding: 11px 12px;
   text-align: center;
 }
+
+
+@media only screen and (max-width: 768px) {
+
+  label:not(.form-check-label):not(.custom-file-label) {
+    text-align: left;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .mrg-sm1 {
+    margin: 10px 0 0 0;
+  }
+}
+

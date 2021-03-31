@@ -74,7 +74,7 @@
 
                     <form>
                         <div class="form-row">
-                            <div class="form-group col-md-1">
+                            <div class="form-group col-xl-1 col-md-2 col-lg-2">
                                 <label for="inputEmail4">Enquiry #</label>
                                 <div class="input-group">
                                     <span class="input-group-addon">FG-</span>
@@ -92,21 +92,21 @@
                                 <input type="text" placeholder="Enquiry no." class="form-control text-w-4"
                                     id="enqry-no">
                             </div>
-                            <div class="form-group col-md-3 offset-md-3">
+                            <div class="form-group col-md-3 offset-md-2 offset-lg-2">
                                 <label for="inputPassword4">Enquiry Date</label>
                                 <!-- <input type="text" class="form-control date" id="enqry-date" value="Fri 26-Mar-2021"> -->
-                                <input type="text" placeholder="MM/DD/YYYY" class="form-control" bsDatepicker name="validityDate"
-                                    [(ngModel)]="data.validityDate">
+                                <input class="form-control " ngbDatepicker #validityDate="ngbDatepicker" (click)="validityDate.toggle()"
+          placeholder="30-03-2021" />
                             </div>
                         </div>
 
-                        <div class="row">
+                        <div class="form-row">
                             <div class="col-md-12 pt-2r pb-3">
 
                                 <div class="form-group row">
-                                    <label for="inputEmail3" class="col-sm-3 col-form-label control-label">Buyer
+                                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Buyer
                                         Name</label>
-                                    <div class="col-sm-6">
+                                    <div class="col-md-6">
                                         <div class="input-group">
 
                                             <select name="buyer " class="form-control" [(ngModel)]="buyerId">
@@ -125,9 +125,9 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="inputEmail3" class="col-sm-3 col-form-label control-label">Article
+                                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Article
                                         Name</label>
-                                    <div class="col-sm-6">
+                                    <div class="col-md-6">
                                         <div class="input-group">
                                             <select name="article" class="form-control" [(ngModel)]="articleId">
                                                 <option value="null" disabled> Select Article</option>
@@ -146,13 +146,13 @@
                         </div>
 
 
-                        <div class="row border-top">
+                        <div class="form-row border-top">
                             <div class="col-md-12 pt-2r pb-3">
 
                                 <div class="form-group row">
                                     <label for="inputEmail3"
-                                        class="col-sm-3 col-form-label control-label">Process</label>
-                                    <div class="col-sm-6">
+                                        class="col-md-3 col-form-label control-label">Process</label>
+                                    <div class="col-md-6">
                                         <div class="input-group">
                                             <select name="process" class="form-control" [(ngModel)]="processId">
                                                 <option value="null" disabled> Select Process</option>
@@ -170,9 +170,9 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="inputEmail3" class="col-sm-3 col-form-label control-label">Process
+                                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Process
                                         Type</label>
-                                    <div class="col-sm-6">
+                                    <div class="col-md-6">
                                         <div class="input-group">
                                             <select name="ptype" class="form-control" [(ngModel)]="processtypeId">
                                                 <option value="null" disabled> Select Process Type</option>
@@ -190,9 +190,9 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="inputEmail3" class="col-sm-3 col-form-label control-label">Design
+                                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Design
                                         Type</label>
-                                    <div class="col-sm-6">
+                                    <div class="col-md-6">
                                         <div class="input-group">
                                             <select name="design" class="form-control" [(ngModel)]="designId">
                                                 <option value="null" disabled> Select Design Type</option>
@@ -211,8 +211,8 @@
 
                                 <div class="form-group row">
                                     <label for="inputEmail3"
-                                        class="col-sm-3 col-form-label control-label">Packaging</label>
-                                    <div class="col-sm-6">
+                                        class="col-md-3 col-form-label control-label">Packaging</label>
+                                    <div class="col-md-6">
                                         <div class="input-group">
                                             <select name="packaging" class="form-control" [(ngModel)]="packageId">
                                                 <option value="null" disabled> Select Packaging</option>
@@ -237,44 +237,48 @@
                             <div class="col-md-12 pt-2r pb-3">
 
                                 <div class="form-group row">
-                                    <label for="inputEmail3" class="col-sm-3 col-form-label control-label">Payment
-                                        Terms</label>
+                                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Payment Terms</label>
 
-
-                                    <div class="col-sm-6">
+                                    <div class="col-md-6">
                                         <div class="row">
-                                            <div class="input-group">
-                                                <select name="payment" class="form-control" [(ngModel)]="paymentId">
-                                                    <option value="null" disabled> Select Payment Terms</option>
-                                                    <option *ngFor="let i of payment" [value]="i.id">
-                                                        {{i.term}}
-                                                    </option>
-                                                </select>
+                                            
+                                                
+                                                <div class="col-md-6">
+                                                    <div class="input-group">
+                                                
+                                                        <select name="payment" class="form-control" [(ngModel)]="paymentId">
+                                                            <option value="null" disabled> Select Payment Terms</option>
+                                                            <option *ngFor="let i of payment" [value]="i.id">
+                                                                {{i.term}}
+                                                            </option>
+                                                        </select>
+                                                
+                                                        <button class="btn btn-success ">
+                                                            <i class="fa fa-plus" (click)="addPaymentForm()"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
 
-                                                <button class="btn btn-success ">
-                                                    <i class="fa fa-plus" (click)="addPaymentForm()"></i>
-                                                </button>
-
-                                                <div class="col-sm-2">
+                                                <div class="col-md-2 mrg-sm1">
                                                     <input type="text" placeholder="Days." class="form-control">
                                                 </div>
 
-                                                <div class="col-sm-4">
+                                                <div class="col-md-4 mrg-sm1">
                                                     <input type="text" placeholder="Additional Info."
                                                         class="form-control">
                                                 </div>
-                                            </div>
+                                            
                                         </div>
                                     </div>
 
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="inputEmail3" class="col-sm-3 col-form-label control-label">Price
+                                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Price
                                         terms</label>
 
 
-                                    <div class="col-sm-3">
+                                    <div class="col-md-3">
 
                                         <div class="input-group">
                                             <select name="priceterm" class="form-control" [(ngModel)]="priceId">
@@ -290,7 +294,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-sm-3">
+                                    <div class="col-md-3 mrg-sm1">
                                         <div class="input-group">
                                             <select name="city" class="form-control" [(ngModel)]="cityId">
                                                 <option value="null" disabled> Select Destination</option>
@@ -308,68 +312,73 @@
 
 
                                 <div class="form-group row">
-                                    <label for="inputEmail3" class="col-sm-3 col-form-label control-label">Suppiler Side
-                                        Commission</label>
+                                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Suppiler Side Commission</label>
 
-
-                                    <div class="col-sm-6">
+                                    <div class="col-md-6">
                                         <div class="row">
-                                            <div class="input-group">
-                                                <div class="input-group col-sm-4">
-                                                    <input type="text" placeholder="Comm%" class="form-control">
-                                                    <div class="input-group-append">
-                                                        <span class="input-group-text" id="basic-addon2">per</span>
+
+                                                <div class="col-md-4">
+                                                    <div class="input-group">
+                                                        <input type="text" placeholder="Comm%" class="form-control">
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text" id="basic-addon2">per</span>
+                                                        </div>
                                                     </div>
                                                 </div>
 
-                                                <select class="form-control col-sm-4">
-                                                    <option selected disabled> Select UOM </option>
-                                                    <option> UOM 1 </option>
-                                                    <option> UOM 2 </option>
-                                                    <option> UOM 3 </option>
-                                                    <option> UOM 4 </option>
-                                                </select>
+                                                <div class="col-md-4 mrg-sm1">
+                                                    <select class="form-control col-md-12">
+                                                        <option selected disabled> Select UOM </option>
+                                                        <option> UOM 1 </option>
+                                                        <option> UOM 2 </option>
+                                                        <option> UOM 3 </option>
+                                                        <option> UOM 4 </option>
+                                                    </select>
+                                                </div>
 
-                                                <div class="col-sm-4">
+                                                <div class="col-md-4 mrg-sm1">
                                                     <input type="text" placeholder="Additional Info."
                                                         class="form-control">
                                                 </div>
-                                            </div>
+                                            
                                         </div>
                                         <small id="passwordHelpBlock" class="form-text text-lightgrey">
                                             FabCot Seller Side Commission in %age, if UOM not selected
                                         </small>
                                     </div>
 
-
-
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="code" class="col-sm-3 col-form-label control-label">Buyer Side
-                                        Commission</label>
+                                    <label for="code" class="col-md-3 col-form-label control-label">Buyer Side Commission</label>
 
-                                    <div class="col-sm-6">
+                                    <div class="col-md-6">
                                         <div class="row">
-                                            <div class="input-group">
-                                                <div class="input-group col-sm-4">
-                                                    <input type="text" placeholder="Comm%" class="form-control">
-                                                    <div class="input-group-append">
-                                                        <span class="input-group-text" id="basic-addon2">per</span>
+                                            
+                                                <div class="col-md-4">
+                                                    <div class="input-group">
+                                                        <input type="text" placeholder="Comm%" class="form-control">
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text" id="basic-addon2">per</span>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <select class="form-control col-sm-4">
-                                                    <option selected disabled> Select UOM </option>
-                                                    <option> UOM 1 </option>
-                                                    <option> UOM 2 </option>
-                                                    <option> UOM 3 </option>
-                                                    <option> UOM 4 </option>
-                                                </select>
-                                                <div class="col-sm-4">
+ 
+                                                <div class="col-md-4 mrg-sm1">
+                                                    <select class="form-control col-md-12">
+                                                        <option selected disabled> Select UOM </option>
+                                                        <option> UOM 1 </option>
+                                                        <option> UOM 2 </option>
+                                                        <option> UOM 3 </option>
+                                                        <option> UOM 4 </option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-md-4 mrg-sm1">
                                                     <input type="text" placeholder="Additional Info."
                                                         class="form-control">
                                                 </div>
-                                            </div>
+                                            
                                         </div>
                                         <small id="passwordHelpBlock" class="form-text text-lightgrey">
                                             FabCot Buyer Side ommission in %age, if UOM not selected
@@ -391,8 +400,8 @@
 
                                 <div class="form-group row">
                                     <label for="inputEmail3"
-                                        class="col-sm-3 col-form-label control-label">Certification:</label>
-                                    <div class="col-sm-6">
+                                        class="col-md-3 col-form-label control-label">Certification:</label>
+                                    <div class="col-md-6">
                                         <div class="input-group">
                                             <select name="certification" class="form-control"
                                                 [(ngModel)]="certificateId">
@@ -410,8 +419,8 @@
 
                                 <div class="form-group row">
                                     <label for="inputEmail3"
-                                        class="col-sm-3 col-form-label control-label">Remarks:</label>
-                                    <div class="col-sm-6">
+                                        class="col-md-3 col-form-label control-label">Remarks:</label>
+                                    <div class="col-md-6">
                                         <textarea class="form-control" rows="4" placeholder="Any Remarks Here...">
                                         </textarea>
                                     </div>
@@ -419,9 +428,9 @@
 
 
                                 <div class="form-group row">
-                                    <label for="inputEmail3" class="col-sm-3 col-form-label control-label">Other
+                                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Other
                                         Condition:</label>
-                                    <div class="col-sm-6">
+                                    <div class="col-md-6">
                                         <textarea class="form-control" rows="4" placeholder="Any Conditions Here...">
                                         </textarea>
                                     </div>

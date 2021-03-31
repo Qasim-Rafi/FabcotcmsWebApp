@@ -16,7 +16,6 @@ export class EditSellerFormComponent implements OnInit {
   seller: any[];
   country: any = [];
   countryId = null;
-  parentSellerId = null;
   machineId = null;
   capabilitiesId = null;
   sellerCertificate: any = []
@@ -29,14 +28,16 @@ export class EditSellerFormComponent implements OnInit {
 
 
   ngOnInit() {
+
     this.editSeller(this.Id);
     this.getCountry();
     this.getParentSellers();
   }
+
   //for autoFocus
-  public ngAfterViewInit(): void {
-    this.elementRef.nativeElement.focus();
-  }
+  // public ngAfterViewInit(): void {
+  //   this.elementRef.nativeElement.focus();
+  // }
 
 
   get activeModal() {
@@ -56,12 +57,12 @@ export class EditSellerFormComponent implements OnInit {
 
           }
           else {
-            this.toastr.error('Something went Worng', 'Message.');
+            this.toastr.error(this.response.message, 'Message.');
           }
 
         }, err => {
           if (err.status == 400) {
-            this.toastr.error('Something went Worng', 'Message.');
+            this.toastr.error(this.response.message, 'Message.');
           }
         });
   }
@@ -76,12 +77,12 @@ export class EditSellerFormComponent implements OnInit {
             this.country = this.response.data;
           }
           else {
-            this.toastr.error('Something went Worng', 'Message.');
+            this.toastr.error(this.response.message, 'Message.');
           }
 
         }, err => {
           if (err.status == 400) {
-            this.toastr.error('Something went Worng', 'Message.');
+            this.toastr.error(this.response.message, 'Message.');
           }
         });
   }
@@ -98,12 +99,12 @@ export class EditSellerFormComponent implements OnInit {
 
           }
           else {
-            this.toastr.error('Something went Worng', 'Message.');
+            this.toastr.error(this.response.message, 'Message.');
           }
 
         }, err => {
           if (err.status == 400) {
-            this.toastr.error('Something went Worng', 'Message.');
+            this.toastr.error(this.response.message, 'Message.');
           }
         });
   }

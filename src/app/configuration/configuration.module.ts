@@ -9,7 +9,7 @@ import { AddSellerFormComponent } from './seller/add-seller-form/add-seller-form
 import { ForeignAgentComponent } from './foreign-agent/foreign-agent.component';
 import { AddAgentFormComponent } from './foreign-agent/add-agent-form/add-agent-form.component';
 import { EditAgentFormComponent } from './foreign-agent/edit-agent-form/edit-agent-form.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDatepickerModule, } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -53,7 +53,6 @@ import { LoomTypeComponent } from './home-textile/loom-type/loom-type.component'
 import { CertificateComponent } from './home-textile/certificate/certificate.component';
 import { ColorComponent } from './home-textile/color/color.component';
 import { TimeActionItemsComponent } from './home-textile/time-action-items/time-action-items.component';
-import { AddCertificateComponent } from './home-textile/certificate/add-certificate/add-certificate.component';
 import { EditCertificateComponent } from './home-textile/certificate/edit-certificate/edit-certificate.component';
 import { EditColorComponent } from './home-textile/color/edit-color/edit-color.component';
 import { AddColorComponent } from './home-textile/color/add-color/add-color.component';
@@ -108,7 +107,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     EditPaymentComponent,
     PriceTermComponent,
     AddPriceComponent,
-    EditPriceComponent, BankComponent, BankAccountsComponent, AddBankComponent, EditBankComponent, AddBankAccountComponent, EditBankAccountComponent, ProcessComponent, ProcessTypeComponent, DesignTypeComponent, LoomTypeComponent, CertificateComponent, ColorComponent, TimeActionItemsComponent, AddCertificateComponent, EditCertificateComponent, EditColorComponent, AddColorComponent, AddDesignTypeComponent, EditDesignTypeComponent, AddLoomTypeComponent, EditLoomTypeComponent, EditProcessComponent, AddProcessComponent, AddProcessTypeComponent, EditProcessTypeComponent, EditTimeActionComponent, AddTimeActionComponent, AddCurrencyComponent, EditCurrencyComponent, SellerPocComponent,
+    EditPriceComponent, BankComponent, BankAccountsComponent, AddBankComponent, EditBankComponent, AddBankAccountComponent, EditBankAccountComponent, ProcessComponent, ProcessTypeComponent, DesignTypeComponent, LoomTypeComponent, CertificateComponent, ColorComponent, TimeActionItemsComponent, EditCertificateComponent, EditColorComponent, AddColorComponent, AddDesignTypeComponent, EditDesignTypeComponent, AddLoomTypeComponent, EditLoomTypeComponent, EditProcessComponent, AddProcessComponent, AddProcessTypeComponent, EditProcessTypeComponent, EditTimeActionComponent, AddTimeActionComponent, AddCurrencyComponent, EditCurrencyComponent, SellerPocComponent,
 
 
   ],
@@ -119,7 +118,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     BsDatepickerModule.forRoot(),
     CommonModule,
     ConfigurationRoutingModule,
-    NgbModule,
+    NgbDatepickerModule,
     BrowserModule,
     AppRoutingModule,
     NgxDatatableModule,

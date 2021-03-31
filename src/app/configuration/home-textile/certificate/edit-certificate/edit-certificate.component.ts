@@ -77,7 +77,7 @@ export class EditCertificateComponent implements OnInit {
 
 
   addSellerCertificate() {
-
+    this.data.validityDate = this.dateformater.toModel(this.data.validityDate);
     let varr = {
       "certificateId": this.data.certificateId,
       "validityDate": this.data.validityDate,
@@ -85,7 +85,7 @@ export class EditCertificateComponent implements OnInit {
       "sellerId": this.parentSellerId.toString(),
       "active": true
     }
-    this.data.validityDate = this.dateformater.toModel(this.data.validityDate);
+
 
     this.http.
       post(`${environment.apiUrl}/api/Sellers/AddCertificate`, varr)
@@ -125,16 +125,18 @@ export class EditCertificateComponent implements OnInit {
           this.response = res;
           if (this.response.success == true) {
             this.data = this.response.data;
+            this.data.validityDate = this.dateformater.fromModel(this.data.validityDate);
+
 
 
           }
           else {
-            this.toastr.error('Something went Worng', 'Message.');
+            this.toastr.error(this.response.message, 'Message.');
           }
 
         }, err => {
           if (err.status == 400) {
-            this.toastr.error('Something went Worng', 'Message.');
+            this.toastr.error(this.response.message, 'Message.');
           }
         });
   }
@@ -142,14 +144,13 @@ export class EditCertificateComponent implements OnInit {
 
 
   UpdateSellerCertificate() {
+    this.data.validityDate = this.dateformater.toModel(this.data.validityDate);
     let varr = {
-
       "certificateId": this.data.certificateId,
       "validityDate": this.data.validityDate,
       "description": this.data.description,
       "sellerId": this.parentSellerId.toString(),
       "active": true,
-
     }
 
     this.http.
@@ -194,12 +195,12 @@ export class EditCertificateComponent implements OnInit {
 
           }
           else {
-            this.toastr.error('Something went Worng', 'Message.');
+            this.toastr.error(this.response.message, 'Message.');
           }
 
         }, err => {
           if (err.status == 400) {
-            this.toastr.error('Something went Worng', 'Message.');
+            this.toastr.error(this.response.message, 'Message.');
           }
         });
   }
@@ -259,12 +260,12 @@ export class EditCertificateComponent implements OnInit {
             this.data = this.response.data;
           }
           else {
-            this.toastr.error('Something went Worng', 'Message.');
+            this.toastr.error(this.response.message, 'Message.');
           }
 
         }, err => {
           if (err.status == 400) {
-            this.toastr.error('Something went Worng', 'Message.');
+            this.toastr.error(this.response.message, 'Message.');
           }
         });
   }

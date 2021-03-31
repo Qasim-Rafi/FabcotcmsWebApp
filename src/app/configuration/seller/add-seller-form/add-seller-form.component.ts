@@ -11,15 +11,13 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./add-seller-form.component.css']
 })
 export class AddSellerFormComponent implements OnInit {
-
   data: any = {};
   response: any;
   seller: any[];
   country: any = [];
   countryId: null;
-  parentSellerId: null;
   @ViewChild(NgForm) sellerForm;
-  @ViewChild('sellerName') private elementRef: ElementRef;
+  // @ViewChild('sellerName') private elementRef: ElementRef;
 
 
 
@@ -35,10 +33,14 @@ export class AddSellerFormComponent implements OnInit {
   }
 
 
-  public ngAfterViewInit(): void {
-    this.elementRef.nativeElement.focus();
-  }
+  // public ngAfterViewInit(): void {
+  //   this.elementRef.nativeElement.focus();
+  // }
 
+
+  get activeModal() {
+    return this._NgbActiveModal;
+  }
 
 
 
@@ -51,21 +53,18 @@ export class AddSellerFormComponent implements OnInit {
             this.country = this.response.data;
           }
           else {
-            this.toastr.error('Something went Worng', 'Message.');
+            this.toastr.error(this.response.message, 'Message.');
           }
 
         }, err => {
           if (err.status == 400) {
-            this.toastr.error('Something went Worng', 'Message.');
+            this.toastr.error(this.response.message, 'Message.');
           }
         });
   }
 
 
 
-  get activeModal() {
-    return this._NgbActiveModal;
-  }
 
 
   getParentSellers() {
@@ -79,12 +78,12 @@ export class AddSellerFormComponent implements OnInit {
 
           }
           else {
-            this.toastr.error('Something went Worng', 'Message.');
+            this.toastr.error(this.response.message, 'Message.');
           }
 
         }, err => {
           if (err.status == 400) {
-            this.toastr.error('Something went Worng', 'Message.');
+            this.toastr.error(this.response.message, 'Message.');
           }
         });
   }
@@ -108,7 +107,7 @@ export class AddSellerFormComponent implements OnInit {
       "leadTime": this.data.leadTime,
       "sellerDetails": this.data.sellerDetails,
       "isParentSeller": this.data.isParentSeller,
-      "parentSellerId": this.parentSellerId
+      "parentSellerId": this.data.parentSellerId
     }
 
     this.http.
