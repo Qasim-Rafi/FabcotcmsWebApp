@@ -17,7 +17,6 @@ export class EditCityComponent implements OnInit {
   FormName: any;
   @Input() cityId;
   @Input() statusCheck;
-  @ViewChild('name') private elementRef: ElementRef;
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
@@ -44,10 +43,6 @@ export class EditCityComponent implements OnInit {
     // this.editCity();
   }
 
- //for autoFocus
- public ngAfterViewInit(): void {
-  this.elementRef.nativeElement.focus();
-}
   get activeModal() {
     return this._NgbActiveModal;
   }
