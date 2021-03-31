@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
 import { EditCertificateComponent } from './edit-certificate/edit-certificate.component';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { GlobalConstants } from 'src/app/Common/global-constants';
-
+import { ServiceService } from 'src/app/shared/service.service';
 @Component({
   selector: 'app-certificate',
   templateUrl: './certificate.component.html',
@@ -25,6 +25,7 @@ export class CertificateComponent implements OnInit {
 
   constructor(private http:HttpClient,
               private toastr: ToastrService,
+              private service:ServiceService,
               private modalService: NgbModal,) { }
 
   ngOnInit(): void {
@@ -163,7 +164,18 @@ export class CertificateComponent implements OnInit {
        });
   } 
   
-
+  exportAsXLSX(): void {
+    const filtered = this.data.map(row => ({
+      SNo:row.id,
+    CertificateName :row.name,
+     Details:row.description,
+  Status:row.active == true ? "Active" : "In-Active",
+  LastChange :row.updatedDateTime + '|' + row.updatedByName 
+   }));
+   
+    this.service.exportAsExcelFile(filtered, 'Certificate');
+  
+  }
 
 }
 

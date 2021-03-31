@@ -182,7 +182,7 @@ export class CountryComponent implements OnInit {
   CountryName:row.name,
   Details:row.details,
   Status:row.active == true ? "Active" : "In-Active",
-  CreatedOn :row.createdDateTime + '|' + row.createdByName 
+  CreatedOn :row.createdDateTime + ' | ' + row.createdByName 
  
 
     

@@ -7,7 +7,7 @@ import { AddProcessComponent } from './add-process/add-process.component';
 import { EditProcessComponent } from './edit-process/edit-process.component';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { GlobalConstants } from 'src/app/Common/global-constants';
-
+import { ServiceService } from 'src/app/shared/service.service';
 @Component({
   selector: 'app-process',
   templateUrl: './process.component.html',
@@ -23,6 +23,7 @@ export class ProcessComponent implements OnInit {
   temp: any = [];
   constructor(private http: HttpClient,
     private toastr: ToastrService,
+    private service:ServiceService,
     private modalService: NgbModal) { }
 
   ngOnInit(): void {
@@ -160,6 +161,20 @@ export class ProcessComponent implements OnInit {
     });
   }
 
+  exportAsXLSX(): void {
+    const filtered = this.data.map(row => ({
+      SNo:row.id,
+    ProcessName :row.name,
+     Details:row.description,
+  Status:row.active == true ? "Active" : "In-Active",
+  LastChange :row.updatedDateTime + '|' + row.updatedByName 
+  
+  
+    }));
+   
+    this.service.exportAsExcelFile(filtered, 'Process');
+  
+  }
 
 
 }

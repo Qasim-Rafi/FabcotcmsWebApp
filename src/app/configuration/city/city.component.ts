@@ -181,10 +181,6 @@ Details:row.details,
 Status:row.active == true ? "Active" : "In-Active",
 CreatedOn :row.createdDateTime + '|' + row.createdByName 
 
-
-  
-// createdDateTime:row.row.createdDateTime
-
   }));
  
   this.service.exportAsExcelFile(filtered, 'City Location');

@@ -7,7 +7,7 @@ import { AddArticleComponent } from './add-article/add-article.component';
 import { EditArticleComponent } from './edit-article/edit-article.component';
 import { GlobalConstants } from '../../Common/global-constants';
 import Swal from 'sweetalert2/dist/sweetalert2.js'; 
-
+import { ServiceService } from 'src/app/shared/service.service';
 @Component({
   selector: 'app-articles',
   templateUrl: './articles.component.html',
@@ -24,6 +24,7 @@ export class ArticlesComponent implements OnInit {
 
   constructor(private http:HttpClient,
     private toastr: ToastrService,
+    private service:ServiceService,
     private modalService: NgbModal,) { }
 
   ngOnInit(): void {
@@ -125,27 +126,6 @@ export class ArticlesComponent implements OnInit {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   addArticleForm(){
     const modalRef = this.modalService.open(AddArticleComponent, { centered: true });
           modalRef.result.then((data) => {
@@ -183,6 +163,22 @@ export class ArticlesComponent implements OnInit {
        });
   } 
   
+// excell
+exportAsXLSX(): void {
+  const filtered = this.data.map(row => ({
+    SNo:row.id,
+  ArticleCode :row.code,
+ArticleName:row.name,
+GenericName:row.genericName,
+Status:row.active == true ? "Active" : "In-Active",
+LastUpdateOn :row.updatedDateTime ,
+LastUpdateBy :row.createdByName
 
+
+  }));
+ 
+  this.service.exportAsExcelFile(filtered, 'Article');
+
+}
 
 }

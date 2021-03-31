@@ -7,7 +7,7 @@ import { AddDesignTypeComponent } from './add-design-type/add-design-type.compon
 import { EditDesignTypeComponent } from './edit-design-type/edit-design-type.component';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { GlobalConstants } from 'src/app/Common/global-constants';
-
+import { ServiceService } from 'src/app/shared/service.service';
 
 @Component({
   selector: 'app-design-type',
@@ -26,6 +26,7 @@ export class DesignTypeComponent implements OnInit {
 
   constructor(private http:HttpClient,
     private toastr: ToastrService,
+    private service:ServiceService,
     private modalService: NgbModal) { }
 
   ngOnInit(): void {
@@ -125,20 +126,6 @@ export class DesignTypeComponent implements OnInit {
     
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   addDesignTypeForm(){
     const modalRef = this.modalService.open(AddDesignTypeComponent, { centered: true });
           modalRef.result.then((data) => {
@@ -176,7 +163,18 @@ export class DesignTypeComponent implements OnInit {
        });
   } 
   
-
+  exportAsXLSX(): void {
+    const filtered = this.data.map(row => ({
+      SNo:row.id,
+    DesignType :row.type,
+     Details:row.description,
+  Status:row.active == true ? "Active" : "In-Active",
+  LastChange :row.updatedDateTime + '|' + row.updatedByName 
+   }));
+   
+    this.service.exportAsExcelFile(filtered, 'Design Type');
+  
+  }
 
 }
 

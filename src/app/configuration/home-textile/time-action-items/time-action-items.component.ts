@@ -7,7 +7,7 @@ import { AddTimeActionComponent } from './add-time-action/add-time-action.compon
 import { EditTimeActionComponent } from './edit-time-action/edit-time-action.component';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { GlobalConstants } from 'src/app/Common/global-constants';
-
+import { ServiceService } from 'src/app/shared/service.service';
 @Component({
   selector: 'app-time-action-items',
   templateUrl: './time-action-items.component.html',
@@ -25,6 +25,7 @@ export class TimeActionItemsComponent implements OnInit {
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
+    private service:ServiceService,
     private modalService: NgbModal) { }
 
   ngOnInit(): void {
@@ -164,7 +165,18 @@ export class TimeActionItemsComponent implements OnInit {
     });
   }
 
-
+  exportAsXLSX(): void {
+    const filtered = this.data.map(row => ({
+      SNo:row.id,
+    ActionName :row.name,
+     Details:row.description,
+  Status:row.active == true ? "Active" : "In-Active",
+  LastChange :row.updatedDateTime + '|' + row.updatedByName 
+   }));
+   
+    this.service.exportAsExcelFile(filtered, 'TnA Actions');
+  
+  }
 
 }
 

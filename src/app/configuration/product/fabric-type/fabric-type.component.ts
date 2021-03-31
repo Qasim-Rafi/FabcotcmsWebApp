@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddTypeComponent } from './add-type/add-type.component';
 import { EditTypeComponent } from './edit-type/edit-type.component';
-
+import { ServiceService } from 'src/app/shared/service.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { GlobalConstants } from 'src/app/Common/global-constants';
 
@@ -28,6 +28,7 @@ export class FabricTypeComponent implements OnInit {
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
+    private service:ServiceService,
     private modalService: NgbModal,) { }
 
   ngOnInit(): void {
@@ -167,6 +168,20 @@ export class FabricTypeComponent implements OnInit {
     });
   }
 
+// excell
+exportAsXLSX(): void {
+const filtered = this.data.map(row => ({
+    SNo:row.id,
+  FabricType :row.type,
+   Details:row.description,
+Status:row.active == true ? "Active" : "In-Active",
+LastChange :row.createdDateTime + '|' + row.createdByName 
 
+
+  }));
+ 
+  this.service.exportAsExcelFile(filtered, 'Fabric Type');
+
+}
 
 }

@@ -7,7 +7,7 @@ import { AddBankAccountComponent } from './add-bank-account/add-bank-account.com
 import { EditBankAccountComponent } from './edit-bank-account/edit-bank-account.component';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { GlobalConstants } from 'src/app/Common/global-constants';
-
+import { ServiceService } from 'src/app/shared/service.service';
 @Component({
   selector: 'app-bank-accounts',
   templateUrl: './bank-accounts.component.html',
@@ -24,6 +24,7 @@ export class BankAccountsComponent implements OnInit {
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
+    private service:ServiceService,
     private modalService: NgbModal,) { }
 
   ngOnInit(): void {
@@ -124,18 +125,6 @@ export class BankAccountsComponent implements OnInit {
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
   addAccountForm() {
     const modalRef = this.modalService.open(AddBankAccountComponent, { centered: true });
     modalRef.result.then((data) => {
@@ -171,7 +160,21 @@ export class BankAccountsComponent implements OnInit {
     });
   }
 
-
+  exportAsXLSX(): void {
+    const filtered = this.data.map(row => ({
+      SNo:row.id,
+    AccountName :row.accountName,
+    AccountNo :row.accountNumber,
+    IBAN :row.iban,
+    SwiftCode :row.swiftCode,
+    AccountType :row.type,
+     Bank:row.bankId ,
+     Branch:row.details 
+   }));
+   
+    this.service.exportAsExcelFile(filtered, 'Bank Account');
+  
+  }
 
 }
 
