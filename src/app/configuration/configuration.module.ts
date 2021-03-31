@@ -73,6 +73,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { ClipboardModule } from 'ngx-clipboard';
 import { SellerPocComponent } from './seller/seller-poc/seller-poc.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { AutofocusDirective } from '../autofocus.directive';
 
 
 @NgModule({
@@ -89,6 +90,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     EditBuyerComponent,
     ArticlesComponent,
     AddArticleComponent,
+    AutofocusDirective,
     EditArticleComponent,
     CityComponent,
     CountryComponent,
