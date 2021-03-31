@@ -56,10 +56,6 @@ export class EditCountryComponent implements OnInit {
   }
 
   UpdateCountry() {
-
-    this.data.name = this.data.name.replace(/\s/g, "");
-    this.data.details = this.data.details.replace(/\s/g, "");
-
     let varr = {
       "name": this.data.name,
       "details": this.data.details,

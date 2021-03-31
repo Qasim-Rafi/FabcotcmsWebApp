@@ -170,5 +170,23 @@ export class CityComponent implements OnInit {
          // on dismiss
        });
   } 
+
+// excell
+exportAsXLSX(): void {
+  const filtered = this.data.map(row => ({
+Sno :row.id,
+City:row.name,
+CountryName:row.country,
+Details:row.details,
+Status:row.active == true ? "Active" : "In-Active",
+CreatedOn :row.createdDateTime + '|' + row.createdByName 
+
+  }));
+ 
+  this.service.exportAsExcelFile(filtered, 'City Location');
+
+}
+
+
 }
 

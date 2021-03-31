@@ -7,7 +7,7 @@ import { AddPackingComponent } from './add-packing/add-packing.component';
 import { EditPackingComponent } from './edit-packing/edit-packing.component';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { GlobalConstants } from 'src/app/Common/global-constants';
-
+import { ServiceService } from 'src/app/shared/service.service';
 @Component({
   selector: 'app-packing',
   templateUrl: './packing.component.html',
@@ -25,6 +25,7 @@ export class PackingComponent implements OnInit {
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
+    private service:ServiceService,
     private modalService: NgbModal,) { }
 
 
@@ -169,6 +170,20 @@ export class PackingComponent implements OnInit {
     });
   }
 
+  exportAsXLSX(): void {
+    const filtered = this.data.map(row => ({
+      SNo:row.id,
+    PackingName :row.name,
+     Details:row.description,
+  Status:row.active == true ? "Active" : "In-Active",
+  LastChange :row.updatedDateTime + '|' + row.updatedByName 
+  
+  
+    }));
+   
+    this.service.exportAsExcelFile(filtered, 'Packing');
+  
+  }
 
 
 }

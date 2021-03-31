@@ -7,7 +7,7 @@ import { AddProcessTypeComponent } from './add-process-type/add-process-type.com
 import { EditProcessTypeComponent } from './edit-process-type/edit-process-type.component';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { GlobalConstants } from 'src/app/Common/global-constants';
-
+import { ServiceService } from 'src/app/shared/service.service';
 @Component({
   selector: 'app-process-type',
   templateUrl: './process-type.component.html',
@@ -25,6 +25,7 @@ export class ProcessTypeComponent implements OnInit {
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
+    private service:ServiceService,
     private modalService: NgbModal) { }
 
   ngOnInit(): void {
@@ -165,7 +166,20 @@ export class ProcessTypeComponent implements OnInit {
     });
   }
 
-
+  exportAsXLSX(): void {
+    const filtered = this.data.map(row => ({
+      SNo:row.id,
+    ProcessType :row.type,
+     Details:row.description,
+  Status:row.active == true ? "Active" : "In-Active",
+  LastChange :row.updatedDateTime + '|' + row.updatedByName 
+  
+  
+    }));
+   
+    this.service.exportAsExcelFile(filtered, 'Process Type');
+  
+  }
 
 }
 

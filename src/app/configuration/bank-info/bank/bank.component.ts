@@ -7,7 +7,7 @@ import { AddBankComponent } from './add-bank/add-bank.component';
 import { EditBankComponent } from './edit-bank/edit-bank.component';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { GlobalConstants } from 'src/app/Common/global-constants';
-
+import { ServiceService } from 'src/app/shared/service.service';
 @Component({
   selector: 'app-bank',
   templateUrl: './bank.component.html',
@@ -24,6 +24,7 @@ export class BankComponent implements OnInit {
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
+    private service:ServiceService,
     private modalService: NgbModal,) { }
 
   ngOnInit(): void {
@@ -124,26 +125,6 @@ export class BankComponent implements OnInit {
 
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   addBankForm() {
     const modalRef = this.modalService.open(AddBankComponent, { centered: true });
     modalRef.result.then((data) => {
@@ -181,7 +162,20 @@ export class BankComponent implements OnInit {
       // on dismiss
     });
   }
-
+  exportAsXLSX(): void {
+    const filtered = this.data.map(row => ({
+      SNo:row.id,
+    BankName :row.name,
+    BranchCode :row.branchCode,
+    BranchName :row.branchName,
+    Location :row.location,
+    Address :row.address,
+     Details:row.details 
+   }));
+   
+    this.service.exportAsExcelFile(filtered, 'Bank');
+  
+  }
 
 
 }

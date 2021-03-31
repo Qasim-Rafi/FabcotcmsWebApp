@@ -7,7 +7,7 @@ import { AddColorComponent } from './add-color/add-color.component';
 import { EditColorComponent } from './edit-color/edit-color.component';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { GlobalConstants } from 'src/app/Common/global-constants';
-
+import { ServiceService } from 'src/app/shared/service.service';
 @Component({
   selector: 'app-color',
   templateUrl: './color.component.html',
@@ -24,6 +24,7 @@ export class ColorComponent implements OnInit {
 
   constructor(private http:HttpClient,
               private toastr: ToastrService,
+              private service:ServiceService,
               private modalService: NgbModal) { }
 
   ngOnInit(): void {
@@ -166,7 +167,18 @@ export class ColorComponent implements OnInit {
          // on dismiss
        });
   } 
+  exportAsXLSX(): void {
+    const filtered = this.data.map(row => ({
+      SNo:row.id,
+    ColorName :row.name,
+     Details:row.description,
+  Status:row.active == true ? "Active" : "In-Active",
+  LastChange :row.updatedDateTime + '|' + row.updatedByName 
+   }));
+   
+    this.service.exportAsExcelFile(filtered, 'Color');
   
+  }
 
 
 }

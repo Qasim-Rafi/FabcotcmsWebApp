@@ -400,6 +400,9 @@ select {
   color: #c4c4c4 !important;
   font-size: 14px;
 }
+.winput {
+  width: 50% !important;
+}
 
 
 
@@ -408,11 +411,10 @@ select {
 
 
 
-
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767px) {
   .mrg-tsm {
     margin: 10px 0 0 0;
-  }
+  } 
 }
 
 @media only screen and (max-width: 667px) {
@@ -441,6 +443,10 @@ select {
   .visibility {
     display: none;
   }
+
+  .winput {
+    width: 40% !important;
+  }
 }
 
 @media only screen and (max-width: 480px) {
@@ -462,5 +468,33 @@ select {
   .pt-ls {
     padding-top: 0px !important;
   }
+  .mrg-sm1 {
+    margin: 10px 0 0 0;
+  }
+
+  .winput {
+    width: 75% !important;
+  }
   
+}
+
+
+
+
+
+
+@media only screen and (max-width: 375px) {
+
+  .winput {
+    width: 65% !important;
+  }
+
+}
+
+@media only screen and (max-width: 320px) {
+
+  .winput {
+    width: 55% !important;
+  }
+
 }

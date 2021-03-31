@@ -93,23 +93,29 @@
         </p>
     -->
   <hr>
+
   <div class="row justify-content-end">
     <div class="col-md-12">
-      <div class="input-group col-md-offset-3">
+      <div class="input-group">
 
-        <input type="text" placeholder="Search Buyer or their POCs " class="input form-control w-50"
+        <input type="text" placeholder="Search Buyer or their POCs " class="input form-control winput"
           (keyup)="updateFilter($event)">
         <span class="group-btn">
-          <button type="button" class="btn btn-primary autoAdjustBtn"> <i class="fa fa-search"></i> Search</button>
+          <button type="button" class="btn btn-primary autoAdjustBtn ml-1"> <i class="fa fa-search"></i> Search</button>
         </span>
 
-        <button type="button" class="btn btn-primary float-right" data-toggle="modal"
+        <button type="button" class="btn btn-primary float-right mrg-sm1" data-toggle="modal"
           data-target="#exampleModalScrollable" (click)="addBuyerForm()">
-          <i class="fa fa-plus" aria-hidden="true"></i> Add New Buyer</button>
+          <i class="fa fa-plus" aria-hidden="true"></i> Add New Buyer</button> 
 
       </div>
     </div>
   </div>
+
+  
+  
+
+
 </div>
 
 

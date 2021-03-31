@@ -8,6 +8,8 @@ import { AddAgentFormComponent } from './add-agent-form/add-agent-form.component
 import { EditAgentFormComponent } from './edit-agent-form/edit-agent-form.component';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { GlobalConstants } from 'src/app/Common/global-constants';
+import { ServiceService } from 'src/app/shared/service.service';
+
 
 @Component({
   selector: 'app-foreign-agent',
@@ -26,6 +28,7 @@ export class ForeignAgentComponent implements OnInit {
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
+    private service:ServiceService,
     private modalService: NgbModal,) { }
 
   ngOnInit(): void {
@@ -131,25 +134,6 @@ export class ForeignAgentComponent implements OnInit {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   addAgentForm() {
     const modalRef = this.modalService.open(AddAgentFormComponent, { centered: true });
     modalRef.result.then((data) => {
@@ -189,7 +173,24 @@ export class ForeignAgentComponent implements OnInit {
     });
   }
 
+// excell
+exportAsXLSX(): void {
+  const filtered = this.data.map(row => ({
+AgentCode :row.code,
+AgentName:row.name,
+AgentType:row.agentTypeId,
+Address:row.address,
+ContactNum:row.cellNumber,
+Email:row.emailAddress,
+Status:row.active == true ? "Active" : "In-Active",
+Side:row.agentSideId,
+LastChangedOn :row.updatedDateTime + '|' + row.createdByName
 
+  }));
+ 
+  this.service.exportAsExcelFile(filtered, 'Agent');
+
+}
 
 
 }

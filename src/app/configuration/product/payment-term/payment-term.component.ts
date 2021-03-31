@@ -7,6 +7,7 @@ import { AddPaymentComponent } from './add-payment/add-payment.component';
 import { EditPaymentComponent } from './edit-payment/edit-payment.component';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { GlobalConstants } from 'src/app/Common/global-constants';
+import { ServiceService } from 'src/app/shared/service.service';
 import { listenerCount } from 'events';
 @Component({
   selector: 'app-payment-term',
@@ -24,6 +25,7 @@ export class PaymentTermComponent implements OnInit {
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
+    private service:ServiceService,
     private modalService: NgbModal,) { }
 
 
@@ -168,6 +170,19 @@ export class PaymentTermComponent implements OnInit {
     });
   }
 
-
+  exportAsXLSX(): void {
+    const filtered = this.data.map(row => ({
+      SNo:row.id,
+    PaymentTerm :row.term,
+     Details:row.description,
+  Status:row.active == true ? "Active" : "In-Active",
+  LastChange :row.updatedDateTime + '|' + row.updatedByName 
+  
+  
+    }));
+   
+    this.service.exportAsExcelFile(filtered, 'Payment Term');
+  
+  }
 
 }

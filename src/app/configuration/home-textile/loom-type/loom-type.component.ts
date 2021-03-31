@@ -7,7 +7,7 @@ import { AddLoomTypeComponent } from './add-loom-type/add-loom-type.component';
 import { EditLoomTypeComponent } from './edit-loom-type/edit-loom-type.component';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { GlobalConstants } from 'src/app/Common/global-constants';
-
+import { ServiceService } from 'src/app/shared/service.service';
 
 @Component({
   selector: 'app-loom-type',
@@ -26,6 +26,7 @@ export class LoomTypeComponent implements OnInit {
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
+    private service:ServiceService,
     private modalService: NgbModal) { }
 
   ngOnInit(): void {
@@ -160,7 +161,18 @@ export class LoomTypeComponent implements OnInit {
     });
   }
 
-
+  exportAsXLSX(): void {
+    const filtered = this.data.map(row => ({
+      SNo:row.id,
+    LoomType :row.type,
+     Details:row.description,
+  Status:row.active == true ? "Active" : "In-Active",
+  LastChange :row.updatedDateTime + '|' + row.updatedByName 
+   }));
+   
+    this.service.exportAsExcelFile(filtered, 'Loom Type');
+  
+  }
 
 }
 

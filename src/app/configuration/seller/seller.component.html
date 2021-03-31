@@ -84,7 +84,7 @@
 
 
   <hr />
-  <div class="row">
+  <!-- <div class="row">
     <div class="col-md-12 autoAdjustSearch">
       <div class="input-group col-md-offset-3">
         <input placeholder="Search Supplier or their POCs" type="text" class="input form-control w-50"
@@ -101,7 +101,31 @@
         </button>
       </div>
     </div>
+  </div> -->
+
+
+  <div class="row">
+    <div class="col-md-12 autoAdjustSearch">
+      <div class="input-group col-md-offset-3">
+        <input placeholder="Search Supplier or their POCs" type="text" class="input form-control winput"
+          (keyup)="updateFilter($event)" />
+        <span class="group-btn">
+          <button type="button" class="btn btn-primary autoAdjustBtn ml-1">
+            <i class="fa fa-search"></i> Search
+          </button>
+        </span>
+
+        <button type="button" class="btn btn-primary float-right mrg-sm1" data-toggle="modal"
+          data-target="#exampleModalScrollable" (click)="addSellerform()">
+          <i class="fa fa-plus" aria-hidden="true"></i> Add New Seller
+        </button>
+      </div>
+    </div>
   </div>
+
+
+
+  
 </div>
 
 <div class="faq-item shadow-sm" *ngFor="let i of seller ; let x = index">
