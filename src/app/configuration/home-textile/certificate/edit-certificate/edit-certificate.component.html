@@ -60,8 +60,10 @@
     statusCheck == 'SellerEdit' || statusCheck == 'SellerAdd'">
       <label for="description" class="col-sm-3 col-form-label text-Navy">Validity Date</label>
       <div class="col-sm-8" (clickOutside)="validityDate.close()">
-        <input class="form-control text_Navy" ngbDatepicker #validityDate="ngbDatepicker" (click)="validityDate.toggle()"
-          placeholder="Certificate validity date" [(ngModel)]="data.validityDate" name="validityDate" />
+
+        <input navigation="select" class="form-control text_Navy " ngbDatepicker #validityDate="ngbDatepicker"
+          (click)="validityDate.toggle()" placeholder="Certificate validity date" [(ngModel)]="data.validityDate"
+          name="validityDate" />
       </div>
 
 
@@ -85,25 +87,6 @@
           </div> -->
 
       <!-- </div> -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     </div>
 

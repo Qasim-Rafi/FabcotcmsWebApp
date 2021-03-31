@@ -6,7 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddArticleComponent } from './add-article/add-article.component';
 import { EditArticleComponent } from './edit-article/edit-article.component';
 import { GlobalConstants } from '../../Common/global-constants';
-import Swal from 'sweetalert2/dist/sweetalert2.js'; 
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { ServiceService } from 'src/app/shared/service.service';
 @Component({
   selector: 'app-articles',
@@ -14,74 +14,77 @@ import { ServiceService } from 'src/app/shared/service.service';
   styleUrls: ['./articles.component.css']
 })
 export class ArticlesComponent implements OnInit {
-  response:any;
-  rows:any=[];
-  columns:any=[];
-  data:any={};
+  response: any;
+  rows: any = [];
+  columns: any = [];
+  data: any = {};
   listCount: number;
-  myDate=Date.now();
-  temp: any=[];
+  myDate = Date.now();
+  temp: any = [];
 
-  constructor(private http:HttpClient,
+
+
+
+  constructor(private http: HttpClient,
     private toastr: ToastrService,
-    private service:ServiceService,
+    private service: ServiceService,
     private modalService: NgbModal,) { }
 
   ngOnInit(): void {
     this.fetch((data) => {
       this.temp = [...data];
       this.rows = data;
-  });
+    });
+
 
   }
+
+
 
   updateFilter(event) {
     const val = event.target.value.toLowerCase();
 
     // filter our data
     const temp = this.temp.filter(function (d) {
-      return ( d.code.toLowerCase().indexOf(val) !== -1  ||
-      d.name.toLowerCase().indexOf(val) !== -1  || !val);
+      return (d.code.toLowerCase().indexOf(val) !== -1 ||
+        d.name.toLowerCase().indexOf(val) !== -1 || !val);
     });
- 
     this.rows = temp;
- 
   }
 
 
   fetch(cb) {
     let that = this;
     that.http
-    .get(`${environment.apiUrl}/api/Configs/GetAllArticle`)
-    .subscribe(res => {
-      this.response = res;
-      this.listCount = this.response.data.length;
-      
-     
-    if(this.response.success==true)
-    {
-    that.data =this.response.data;
-    cb(this.data);
-    }
-    else{
-      this.toastr.error(this.response.message, 'Message.');
-    }
-      // this.spinner.hide();
-    }, err => {
-      if ( err.status == 400) {
- this.toastr.error(err.error.message, 'Message.');;
-      }
-    //  this.spinner.hide();
-    });
+      .get(`${environment.apiUrl}/api/Configs/GetAllArticle`)
+      .subscribe(res => {
+        this.response = res;
+        this.listCount = this.response.data.length;
+
+
+        if (this.response.success == true) {
+          that.data = this.response.data;
+          cb(this.data);
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+        // this.spinner.hide();
+      }, err => {
+        if (err.status == 400) {
+          this.toastr.error(err.error.message, 'Message.');;
+        }
+        //  this.spinner.hide();
+      });
   }
 
 
 
-  deleteArticle(id){
+  deleteArticle(id) {
 
     Swal.fire({
       title: GlobalConstants.deleteTitle, //'Are you sure?',
-      text: GlobalConstants.deleteMessage+' '+'"'+ id.name +'"',
+      text: GlobalConstants.deleteMessage + ' ' + '"' + id.name + '"',
       icon: 'error',
       showCancelButton: true,
       confirmButtonColor: '#ed5565',
@@ -92,29 +95,29 @@ export class ArticlesComponent implements OnInit {
       position: 'top',
     }).then((result) => {
       if (result.isConfirmed) {
-    
-        this.http.delete(`${environment.apiUrl}/api/Configs/DeleteArticle/`+id.id )
-        .subscribe(
-          res=> { 
-            this.response = res;
-            if (this.response.success == true){
-             this.toastr.error(this.response.message, 'Message.');
-             this.fetch((data) => {
-              this.rows = data;
-              
+
+        this.http.delete(`${environment.apiUrl}/api/Configs/DeleteArticle/` + id.id)
+          .subscribe(
+            res => {
+              this.response = res;
+              if (this.response.success == true) {
+                this.toastr.error(this.response.message, 'Message.');
+                this.fetch((data) => {
+                  this.rows = data;
+
+                });
+
+              }
+              else {
+                this.toastr.error('Something went Worng', 'Message.');
+              }
+
+            }, err => {
+              if (err.status == 400) {
+                this.toastr.error(this.response.message, 'Message.');
+              }
             });
-              
-            }
-            else {
-              this.toastr.error('Something went Worng', 'Message.');
-                }
-     
-          }, err => {
-            if (err.status == 400) {
-              this.toastr.error(this.response.message, 'Message.');
-            }
-          });
-    
+
         // Swal.fire(
         //   'Record',
         //   'Deleted Successfully.',
@@ -122,63 +125,63 @@ export class ArticlesComponent implements OnInit {
         // )
       }
     })
-    
-    }
+
+  }
 
 
-  addArticleForm(){
+  addArticleForm() {
     const modalRef = this.modalService.open(AddArticleComponent, { centered: true });
-          modalRef.result.then((data) => {
-         // on close
-          if(data ==true){
-          //  this.date = this.myDate;
-           this.fetch((data) => {
-            this.rows = data;
-            this.listCount = this.rows.length;
-          });
-           
-  
-         }
-       }, (reason) => {
-         // on dismiss
-       });
-  } 
-  
+    modalRef.result.then((data) => {
+      // on close
+      if (data == true) {
+        //  this.date = this.myDate;
+        this.fetch((data) => {
+          this.rows = data;
+          this.listCount = this.rows.length;
+        });
 
-  editArticleForm(row){
+
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
+
+
+  editArticleForm(row) {
     const modalRef = this.modalService.open(EditArticleComponent, { centered: true });
-    modalRef.componentInstance.userId =row.id;
-          modalRef.result.then((data) => {
-         // on close
-          if(data ==true){
-          //  this.date = this.myDate;
-           this.fetch((data) => {
-            this.rows = data;
-            
-          });
-           
-         }
-       }, (reason) => {
-         // on dismiss
-       });
-  } 
-  
-// excell
-exportAsXLSX(): void {
-  const filtered = this.data.map(row => ({
-    SNo:row.id,
-  ArticleCode :row.code,
-ArticleName:row.name,
-GenericName:row.genericName,
-Status:row.active == true ? "Active" : "In-Active",
-LastUpdateOn :row.updatedDateTime ,
-LastUpdateBy :row.createdByName
+    modalRef.componentInstance.userId = row.id;
+    modalRef.result.then((data) => {
+      // on close
+      if (data == true) {
+        //  this.date = this.myDate;
+        this.fetch((data) => {
+          this.rows = data;
+
+        });
+
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
+
+  // excell
+  exportAsXLSX(): void {
+    const filtered = this.data.map(row => ({
+      SNo: row.id,
+      ArticleCode: row.code,
+      ArticleName: row.name,
+      GenericName: row.genericName,
+      Status: row.active == true ? "Active" : "In-Active",
+      LastUpdateOn: row.updatedDateTime,
+      LastUpdateBy: row.createdByName
 
 
-  }));
- 
-  this.service.exportAsExcelFile(filtered, 'Article');
+    }));
 
-}
+    this.service.exportAsExcelFile(filtered, 'Article');
+
+  }
 
 }

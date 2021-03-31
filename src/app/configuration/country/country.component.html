@@ -37,10 +37,7 @@
     <div class="panel-heading">
       <div class="row mb-3">
         <div class="col-md-6">
-          <button
-            type="button"
-            class="btn btn-primary descBtn ml-sm-none ml-md-2"
-          >
+          <button type="button" class="btn btn-primary descBtn ml-sm-none ml-md-2">
             <i class="fas fa-map fa-fw mr-2"></i>{{ countryCount }}
           </button>
           <span class="text-muted text2">Countries</span>
@@ -79,49 +76,24 @@
           <div class="row justify-content-end">
             <div class="col-md-4">
               <div class="input-group col-md-offset-3">
-                <input
-                  type="text"
-                  placeholder="Search by Country Name"
-                  class="input form-control w-50"
-                  (keyup)="updateFilter($event)"
-                />
+                <input type="text" placeholder="Search by Country Name" class="input form-control w-50"
+                  (keyup)="updateFilter($event)" />
               </div>
             </div>
 
             <div class="html5buttons mrg-tsm">
               <div class="dt-buttons btn-group">
-                <a
-                  class="btn btn-default buttons-copy buttons-html5 bg-white"
-                  tabindex="0"
-                  aria-controls="DataTables_Table_0"
-                  ngxClipboard
-                  ><span>Copy</span>
+                <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0"
+                  aria-controls="DataTables_Table_0" ngxClipboard><span>Copy</span>
                 </a>
-                <a
-                  class="btn btn-default buttons-csv buttons-html5 bg-white"
-                  tabindex="0"
-                  aria-controls="DataTables_Table_0"
-                  ><span>CSV</span></a
-                >
-                <a
-                  class="btn btn-default buttons-excel buttons-html5 bg-white"
-                  tabindex="0"
-                  aria-controls="DataTables_Table_0"
-                  (click)="exportAsXLSX()"
-                  ><span>Excel</span></a
-                >
-                <a
-                  class="btn btn-default buttons-pdf buttons-html5 bg-white"
-                  tabindex="0"
-                  aria-controls="DataTables_Table_0"
-                  ><span>PDF</span></a
-                >
-                <a
-                  class="btn btn-default buttons-print bg-white"
-                  tabindex="0"
-                  aria-controls="DataTables_Table_0"
-                  ><span>Print</span></a
-                >
+                <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
+                  aria-controls="DataTables_Table_0"><span>CSV</span></a>
+                <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
+                  aria-controls="DataTables_Table_0" (click)="exportAsXLSX()"><span>Excel</span></a>
+                <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0"
+                  aria-controls="DataTables_Table_0"><span>PDF</span></a>
+                <a class="btn btn-default buttons-print bg-white" tabindex="0"
+                  aria-controls="DataTables_Table_0"><span>Print</span></a>
               </div>
             </div>
           </div>
@@ -130,38 +102,21 @@
     </div>
 
     <div class="panel-body" id="tableid">
-      <ngx-datatable
-        #myTable
-        class="bootstrap datatable-row-wrapper"
-        [columns]="columns"
-        [rows]="rows"
-        [columnMode]="'flex'"
-        [headerHeight]="50"
-        [footerHeight]="50"
-        [sorts]="[{ prop: 'id, name, details', dir: 'asce' }]"
-        [rowHeight]="'auto'"
-        [limit]="6"
-      >
+      <ngx-datatable #myTable class="bootstrap datatable-row-wrapper" [columns]="columns" [rows]="rows"
+        [columnMode]="'flex'" [headerHeight]="50" [footerHeight]="50" [sorts]="[{ prop: 'id', dir: 'asce' }]"
+        [rowHeight]="'auto'" [limit]="6">
         <ngx-datatable-column name="S. No." prop="id" [flexGrow]="0.03">
           <ng-template let-row="row" ngx-datatable-cell-template>
             {{ row.id }}
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="Country Name" prop="name" [flexGrow]="0.05">
-          <ng-template
-            let-row="row"
-            let-expanded="expanded"
-            ngx-datatable-cell-template
-          >
+          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{ row.name }}
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="Details" prop="details" [flexGrow]="0.06">
-          <ng-template
-            let-row="row"
-            let-expanded="expanded"
-            ngx-datatable-cell-template
-          >
+          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{ row.details }}
           </ng-template>
         </ngx-datatable-column>
@@ -180,36 +135,22 @@
             </div> -->
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column
-          name="Created On |Created By"
-          prop="date"
-          [flexGrow]="0.07"
-        >
-          <ng-template
-            let-row="row"
-            let-expanded="expanded"
-            ngx-datatable-cell-template
-          >
+        <ngx-datatable-column name="Created On |Created By" prop="date" [flexGrow]="0.07">
+          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{ row.createdDateTime }} | {{ row.createdByName }}
           </ng-template>
         </ngx-datatable-column>
-        
+
         <ngx-datatable-column name="Action" prop="code" [flexGrow]="0.03">
-          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template >
+          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
 
             <div class="ibox-tools text-center">
-            <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" (click)="editCountryForm(row , 'edit' , 'countryForm')"><i class="far fa-edit"></i></button>
-            <button type="button" class="btn deleteIconBack" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" (click)="deleteCountry(row)"><i class="far fa-trash-alt"></i></button>
+              <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top" title=""
+                data-original-title="Edit" (click)="editCountryForm(row , 'edit' , 'countryForm')"><i
+                  class="far fa-edit"></i></button>
+              <button type="button" class="btn deleteIconBack" data-toggle="tooltip" data-placement="top" title=""
+                data-original-title="Delete" (click)="deleteCountry(row)"><i class="far fa-trash-alt"></i></button>
             </div>
-            <!-- <button type="button" 
-          class="btn deleteIconBack"
-          mwlConfirmationPopover 
-          popoverTitle="Confirmation"
-          popoverMessage="Are you sure ?" 
-          placement="left" 
-          (confirm)="deleteCountry(row)"> 
-          <i class="far fa-trash-alt"></i>
-          </button> -->
           </ng-template>
         </ngx-datatable-column>
       </ngx-datatable>

@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
@@ -19,7 +19,6 @@ export class EditSellerFormComponent implements OnInit {
   machineId = null;
   capabilitiesId = null;
   sellerCertificate: any = []
-  @ViewChild('sellerName') private elementRef: ElementRef;
 
 
   constructor(private http: HttpClient,
@@ -33,12 +32,6 @@ export class EditSellerFormComponent implements OnInit {
     this.getCountry();
     this.getParentSellers();
   }
-
-  //for autoFocus
-  // public ngAfterViewInit(): void {
-  //   this.elementRef.nativeElement.focus();
-  // }
-
 
   get activeModal() {
     return this._NgbActiveModal;

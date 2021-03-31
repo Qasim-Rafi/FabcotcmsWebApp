@@ -98,10 +98,10 @@ export class SellerComponent implements OnInit {
 
   // ---------------------------------------Delete Seller Certificates----------------------------
 
-  deleteSellerCertificate(id) {
+  deleteSellerCertificate(obj) {
     Swal.fire({
       title: GlobalConstants.deleteTitle, //'Are you sure?',
-      text: GlobalConstants.deleteMessage + ' ' + '"' + id.sellerCertificateName + '"',
+      text: GlobalConstants.deleteMessage + ' ' + '"' + obj.sellerCertificateName + '"',
       icon: 'error',
       showCancelButton: true,
       confirmButtonColor: '#ed5565',
@@ -113,7 +113,7 @@ export class SellerComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
 
-        this.http.delete(`${environment.apiUrl}/api/Sellers/DeleteCertificate/` + id.sellerCertificateId)
+        this.http.delete(`${environment.apiUrl}/api/Sellers/DeleteCertificate/` + obj.sellerCertificateId)
           .subscribe(
             res => {
               this.response = res;
@@ -260,10 +260,10 @@ export class SellerComponent implements OnInit {
 
 
 
-  deleteSeller(id) {
+  deleteSeller(obj) {
     Swal.fire({
       title: GlobalConstants.deleteTitle, //'Are you sure?',
-      text: GlobalConstants.deleteMessage + ' ' + '"' + id.sellerName + '"',
+      text: GlobalConstants.deleteMessage + ' ' + '"' + obj.sellerName + '"',
       icon: 'error',
       showCancelButton: true,
       confirmButtonColor: '#ed5565',
@@ -275,7 +275,7 @@ export class SellerComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
 
-        this.http.delete(`${environment.apiUrl}/api/Sellers/DeleteSeller/` + id.id)
+        this.http.delete(`${environment.apiUrl}/api/Sellers/DeleteSeller/` + obj.id)
           .subscribe(
             res => {
               this.response = res;
@@ -404,9 +404,9 @@ export class SellerComponent implements OnInit {
 
 
 
-  editSellerform(popup) {
+  editSellerform(obj) {
     const modalRef = this.modalService.open(EditSellerFormComponent, { centered: true });
-    modalRef.componentInstance.Id = popup.id;
+    modalRef.componentInstance.Id = obj.id;
     modalRef.result.then((data) => {
       // on close
       if (data == true) {

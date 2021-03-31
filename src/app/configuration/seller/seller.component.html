@@ -127,7 +127,7 @@
   
 </div>
 
-<div class="faq-item shadow-sm" *ngFor="let i of seller ; let x = index">
+<div class="faq-item shadow-sm" *ngFor="let obj of seller ; let x = index">
   <div class="row">
     <div class="col-md-1 col-sm-3 col-xs-3 forum-info" data-original-title="POCs">
       <div class="poc-icon">
@@ -137,30 +137,30 @@
       </div>
     </div>
     <div class="col-md-7">
-      <a class="faq-question">{{ i.sellerCode }} - {{ i.sellerName }}</a>
+      <a class="faq-question">{{ obj.sellerCode }} - {{ obj.sellerName }}</a>
 
       <div class="small mb-1">
-        Parent Buyer: {{ i.parentSellerName }} ({{ i.parentSellerCode }})
+        Parent Buyer: {{ obj.parentSellerName }} ({{ obj.parentSellerCode }})
       </div>
       <div class="small">
-        Added by <strong>{{ i.createdByName }}</strong>
+        Added by <strong>{{ obj.createdByName }}</strong>
         <div class="m-l-lg" style="display: inline-block">
-          <i class="fa fa-clock-o fa-fw"> </i> {{ i.createdDateTime }}
+          <i class="fa fa-clock-o fa-fw"> </i> {{ obj.createdDateTime }}
         </div>
         <div class="m-l-lg" style="display: inline-block">
-          Country: &nbsp; {{ i.country }}
+          Country: &nbsp; {{ obj.country }}
         </div>
       </div>
     </div>
     <div class="col-md-2">
       <div class="ibox-tools">
-        <button type="button" class="btn editIconBack" (click)="addCertificateForm('SellerAdd', i)">
+        <button type="button" class="btn editIconBack" (click)="addCertificateForm('SellerAdd', obj)">
           <i class="fa fa-certificate"></i>
         </button>
-        <button type="button" class="btn editIconBack" (click)="editSellerform(i)">
+        <button type="button" class="btn editIconBack" (click)="editSellerform(obj)">
           <i class="far fa-edit"></i>
         </button>
-        <button type="button" class="btn deleteIconBack" (click)="deleteSeller(i)">
+        <button type="button" class="btn deleteIconBack" (click)="deleteSeller(obj)">
           <i class="far fa-trash-alt"></i>
         </button>
       </div>
@@ -187,7 +187,7 @@
     <div class="card-body mt-4 BG">
       <div class="col-sm-11">
         <button type="button" class="btn btn-primary float-right" data-toggle="modal"
-          data-target="#exampleModalScrollable" (click)="addPocform(i,'SellerAddPOC')">
+          data-target="#exampleModalScrollable" (click)="addPocform(obj,'SellerAddPOC')">
           <i class="fa fa-user" aria-hidden="true"></i> POC not found, <i class="fa fa-plus" aria-hidden="true"></i> Add
           a new one?
         </button>
@@ -195,7 +195,7 @@
 
       <h2>Contacts</h2>
 
-      <div class="row text-center pt-3" *ngFor="let poc of i.sellerPOCList">
+      <div class="row text-center pt-3" *ngFor="let poc of obj.sellerPOCList">
         <div class="col-md-2 border p-2 ">{{ poc.name }}</div>
         <div class="col-md-2 border p-2">{{ poc.description }}</div>
         <div class="col-md-2 border p-2">{{ poc.email }}</div>
@@ -205,7 +205,7 @@
           <div class="badge badge-secondary" *ngIf="poc.active==false">Inactive</div>
         </div>
         <div class="col-md-2 border ">
-          <button type="button" class="btn editIconBack" (click)="editPocform(i , 'SellerEditPOC', poc)">
+          <button type="button" class="btn editIconBack" (click)="editPocform(obj , 'SellerEditPOC', poc)">
             <i class="far fa-edit"></i>
           </button>
           <button type="button" class="btn deleteIconBack" (click)="deleteSellerPOC(poc)">
@@ -217,13 +217,13 @@
 
       <h2 class="pt-5">Certificate</h2>
 
-      <div class="row text-center pt-3" *ngFor="let j of i.sellerCertificateList">
+      <div class="row text-center pt-3" *ngFor="let j of obj.sellerCertificateList">
         <div class="col-md-1 border text-left p-2"><i class="fas fa-bolt"></i></div>
         <div class="col-md-2 border p-2 ">{{ j.sellerCertificateName }}</div>
         <div class="col-md-3 border p-2 ">{{ j.description }}</div>
         <div class="col-md-2 border p-2 ">{{j.validityDate}}</div>
         <div class="col-md-4 border p-2 text-right">
-          <button type="button" class="btn editIconBack" (click)="editCertificateForm('SellerEdit', i , j)">
+          <button type="button" class="btn editIconBack" (click)="editCertificateForm('SellerEdit', obj , j)">
             <i class="far fa-edit"></i>
           </button>
           <button type="button" class="btn deleteIconBack" (click)="deleteSellerCertificate(j)">
@@ -241,7 +241,7 @@
       <h2 class="pt-5">Major Market & Strengths</h2>
 
       <div class="col-md-12 pt-3">
-        {{i.majorStrength}}
+        {{obj.majorStrength}}
       </div>
 
       <h2 class="pt-5">Product Capabilties</h2>
@@ -254,7 +254,7 @@
       <h2 class="pt-5">Lead time & MOQ</h2>
 
       <div class="col-md-12 pt-3">
-        {{i.leadTime}}
+        {{obj.leadTime}}
       </div>
     </div>
   </div>

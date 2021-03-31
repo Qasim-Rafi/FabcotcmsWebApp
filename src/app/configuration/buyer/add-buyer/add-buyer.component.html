@@ -15,8 +15,9 @@
     <div class="form-group row">
       <label for="name" class="col-sm-3 col-form-label text_Navy"><strong>Buyer Name</strong></label>
       <div class="col-sm-8">
-        <input required maxlength="60" id="buyerName" type="text" class="form-control" placeholder="Buyer name"
-          name="buyerName" [(ngModel)]="data.buyerName" #name="ngModel" [ngClass]="{ error: name.invalid }" />
+        <input appAutofocus required maxlength="60" id="buyerName" type="text" class="form-control"
+          placeholder="Buyer name" name="buyerName" [(ngModel)]="data.buyerName" #name="ngModel"
+          [ngClass]="{ error: name.invalid }" />
       </div>
     </div>
 
@@ -44,7 +45,7 @@
         <ng-select [(ngModel)]="data.countryId" required placeholder="-- Select --" name="countryId"
           #countryId="ngModel" [ngClass]="{ error: countryId.invalid }">
           <ng-option *ngFor="let i of country" [value]="i.id">{{ i.name }}
-            <span *ngIf="i.details !=null" class="text-muted" style="font-size: 11px">( {{ i.details }} )</span>
+            <span *ngIf="i.details !=null" class="text-muted" style="font-size: 11px">({{ i.details }})</span>
           </ng-option>
         </ng-select>
       </div>

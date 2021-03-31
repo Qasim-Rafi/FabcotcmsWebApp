@@ -1,5 +1,4 @@
-
-  <!-- <div class="content-header">
+<!-- <div class="content-header">
     <div class="col-sm-12 mb-4">
       <h2 class="row wrapper page-header font-weight-light"> Article
         <div class="ml-2 text-muted descr">Manage Fabric / Yarn Articles with warp, weft, end, pick,weive & width info
@@ -12,46 +11,46 @@
 
 
 
-  <div class="content-header">
+<div class="content-header">
 
-    <div class="row">
-      <div class="col-sm-12 col-md-6 col-lg-8">
-        <h2 class="row wrapper page-header font-weight-light"> Article
-          <div class="ml-2 descr"> Manage Fabric / Yarn Articles with warp, weft, end, pick,weive & width info </div>
-        </h2>
-      </div>
-  
-      <div class="col-sm-12 col-md-6 col-lg-4">
-        <ol class="breadcrumb flt-RnL">
-          <li class="breadcrumb-item"><a href="#">Configuration</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Article </li>
-        </ol>
-      </div>
-  
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-8">
+      <h2 class="row wrapper page-header font-weight-light"> Article
+        <div class="ml-2 descr"> Manage Fabric / Yarn Articles with warp, weft, end, pick,weive & width info </div>
+      </h2>
     </div>
+
+    <div class="col-sm-12 col-md-6 col-lg-4">
+      <ol class="breadcrumb flt-RnL">
+        <li class="breadcrumb-item"><a href="#">Configuration</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Article </li>
+      </ol>
+    </div>
+
   </div>
+</div>
 
 
-  <div class="card ibox-content">
+<div class="card ibox-content">
 
-    <div class=" panel blank-panel">  
-      <div class="panel-heading">
+  <div class=" panel blank-panel">
+    <div class="panel-heading">
 
 
-        <div class="row mb-3">
-          <div class="col-md-6 ">
-            <button type="button" class="btn btn-primary descBtn ml-sm-none ml-md-2 ">
-              <i class="fas fa-map fa-fw mr-2"></i>{{listCount}}</button>
-            <span class="text-muted text2">Articles</span>
-          </div>
-          <div class="col-md-6 mrg-tsm">
-            <button type="button" class="btn btn-primary btn-md float-right" (click)="addArticleForm()">
-              <i class="fa fa-plus"></i> Add New Article</button>
-          </div>
-  
+      <div class="row mb-3">
+        <div class="col-md-6 ">
+          <button type="button" class="btn btn-primary descBtn ml-sm-none ml-md-2 ">
+            <i class="fas fa-map fa-fw mr-2"></i>{{listCount}}</button>
+          <span class="text-muted text2">Articles</span>
+        </div>
+        <div class="col-md-6 mrg-tsm">
+          <button type="button" class="btn btn-primary btn-md float-right" (click)="addArticleForm()">
+            <i class="fa fa-plus"></i> Add New Article</button>
         </div>
 
-        <!-- <table class="table">
+      </div>
+
+      <!-- <table class="table">
             <tbody>
                 <tr>
                     <td class="noBorder" > 
@@ -72,111 +71,111 @@
         </table> -->
 
 
-        <div class="row">
+      <div class="row">
         <div class="col-md-12 mb-4">
-        <div class="row justify-content-end">
-          <div class=" col-md-4" >
-            <div class="input-group col-md-offset-3">
-              <input type="text" placeholder="Search by Article Code or Article Name.. " 
-              class="input form-control w-50" (keyup)="updateFilter($event)">
+          <div class="row justify-content-end">
+            <div class=" col-md-4">
+              <div class="input-group col-md-offset-3">
+                <input type="text" placeholder="Search by Article Code or Article Name.. "
+                  class="input form-control w-50" (keyup)="updateFilter($event)">
+              </div>
+            </div>
+            <div class="html5buttons mrg-tsm">
+              <div class="dt-buttons btn-group ">
+                <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0"
+                  aria-controls="DataTables_Table_0"><span>Copy</span></a>
+                <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
+                  aria-controls="DataTables_Table_0"><span>CSV</span></a>
+                <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
+                  aria-controls="DataTables_Table_0" (click)="exportAsXLSX()"><span>Excel</span></a>
+                <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0"
+                  aria-controls="DataTables_Table_0"><span>PDF</span></a>
+                <a class="btn btn-default buttons-print bg-white" tabindex="0"
+                  aria-controls="DataTables_Table_0"><span>Print</span></a>
+              </div>
             </div>
           </div>
-          <div class="html5buttons mrg-tsm">
-            <div class="dt-buttons btn-group ">
-              <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0" 
-              aria-controls="DataTables_Table_0"><span>Copy</span></a>
-              <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0" 
-              aria-controls="DataTables_Table_0"><span>CSV</span></a>
-              <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0" 
-              aria-controls="DataTables_Table_0"
-              (click)="exportAsXLSX()"
-              ><span>Excel</span></a>
-              <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0" 
-              aria-controls="DataTables_Table_0"><span>PDF</span></a>
-              <a class="btn btn-default buttons-print bg-white" tabindex="0" 
-              aria-controls="DataTables_Table_0"><span>Print</span></a>
-             </div>
-           </div>
         </div>
-       </div>
-        </div>
-
       </div>
 
-      <div class="panel-body">
-      
-        <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'" [headerHeight]="50"
-          [footerHeight]="50" [sorts]="[{prop: 'code', dir: 'asce'}]" [rowHeight]="'auto'" [limit]="6">
-      
-      
-          <ngx-datatable-column name="S. No." [width]="5" prop="">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{row.id}}
-            </ng-template>
-          </ngx-datatable-column>
+    </div>
 
-          <ngx-datatable-column name="Article Code" [width]="5" prop="code">
-            <ng-template let-row="row" ngx-datatable-cell-template>
-              {{row.code}}
-            </ng-template>
-          </ngx-datatable-column>
+    <div class="panel-body">
 
-          <ngx-datatable-column name="Article Name" [width]="80" prop="name">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{row.name}}
-            </ng-template>
-          </ngx-datatable-column>
+      <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'"
+        [headerHeight]="50" [footerHeight]="50" [sorts]="[{prop: 'code', dir: 'asce'}]" [rowHeight]="'auto'"
+        [limit]="6">
 
-          <ngx-datatable-column name=" Generic Name" [width]="80" prop="genericName">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{row.genericName}}
-            </ng-template>
-          </ngx-datatable-column>
 
-          <ngx-datatable-column name="Status" [width]="5" prop="status">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-      
-              <span class="badge badge-primary" *ngIf="row.active==true">Active</span>
-              <span class="badge badge-secondary" *ngIf="row.active==false">Inactive</span>
-      
-              <!-- <div class="active" *ngIf="row.active==true">
+        <ngx-datatable-column name="S. No." [width]="5" prop="">
+          <ng-template let-rowIndex="rowIndex" let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+            {{rowIndex + 1}}
+
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Article Code" [width]="5" prop="code">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.code}}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Article Name" [width]="80" prop="name">
+          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+            {{row.name}}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name=" Generic Name" [width]="80" prop="genericName">
+          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+            {{row.genericName}}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Status" [width]="5" prop="status">
+          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+
+            <span class="badge badge-primary" *ngIf="row.active==true">Active</span>
+            <span class="badge badge-secondary" *ngIf="row.active==false">Inactive</span>
+
+            <!-- <div class="active" *ngIf="row.active==true">
                     Active
                   </div>
                   <div class="inactive" *ngIf="row.active==false">
                     Inactive
                   </div> -->
-      
-            </ng-template>
-          </ngx-datatable-column>
 
-          <ngx-datatable-column name="Last Updated On" [width]="80" prop="modifiedDate">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{row.updatedDateTime}}
-            </ng-template>
-          </ngx-datatable-column>
-          
-          <ngx-datatable-column name="Last Updated By" [width]="80" prop="modifiedBy">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{row.createdByName}}
-            </ng-template>
-          </ngx-datatable-column>
-      
-          <ngx-datatable-column name="Action" [width]="40">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              
-              <div class="ibox-tools text-center">
+          </ng-template>
+        </ngx-datatable-column>
 
-                <button type="button" class="btn editIconBack" (click)="editArticleForm(row)">
-                  <i class="far fa-edit "></i>
-                </button>
+        <ngx-datatable-column name="Last Updated On" [width]="80" prop="modifiedDate">
+          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+            {{row.updatedDateTime}}
+          </ng-template>
+        </ngx-datatable-column>
 
-                <button type="button" class="btn deleteIconBack" (click)=" deleteArticle(row)">
-                  <i class="far fa-trash-alt"></i>
-                </button>
+        <ngx-datatable-column name="Last Updated By" [width]="80" prop="modifiedBy">
+          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+            {{row.createdByName}}
+          </ng-template>
+        </ngx-datatable-column>
 
-               </div>
-      
-              <!-- <button type="button" 
+        <ngx-datatable-column name="Action" [width]="40">
+          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+
+            <div class="ibox-tools text-center">
+
+              <button type="button" class="btn editIconBack" (click)="editArticleForm(row)">
+                <i class="far fa-edit "></i>
+              </button>
+
+              <button type="button" class="btn deleteIconBack" (click)=" deleteArticle(row)">
+                <i class="far fa-trash-alt"></i>
+              </button>
+
+            </div>
+
+            <!-- <button type="button" 
                           class="btn deleteIconBack"
                           mwlConfirmationPopover 
                           popoverTitle="Confirmation"
@@ -185,20 +184,12 @@
                           (confirm)="deleteArticle(row)"> 
                           <i class="far fa-trash-alt"></i>
                           </button> -->
-            </ng-template>
-          </ngx-datatable-column>
-      
-        </ngx-datatable>
-      
-      </div>
+          </ng-template>
+        </ngx-datatable-column>
+
+      </ngx-datatable>
 
     </div>
+
   </div>
-
-
-   
-
-
-
-
-        
+</div>

@@ -15,7 +15,7 @@
     <div class="form-group row" [class.has-error]="name.invalid">
       <label for="sellerName" class="col-sm-3 col-form-label text_Navy">Seller Name</label>
       <div class="col-sm-8">
-        <input #sellerName required maxlength="60" id="sellerName" class="form-control" placeholder="Seller name"
+        <input appAutofocus required maxlength="60" id="sellerName" class="form-control" placeholder="Seller name"
           name="sellerName" [(ngModel)]="data.sellerName" #name="ngModel" [ngClass]="{ error: name.invalid }" />
       </div>
     </div>
