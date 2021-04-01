@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
 import { AddBankAccountComponent } from './add-bank-account/add-bank-account.component';
 import { EditBankAccountComponent } from './edit-bank-account/edit-bank-account.component';
-import Swal from 'sweetalert2/dist/sweetalert2.js';
+import { Swal } from 'sweetalert2/dist/sweetalert2.js';
 import { GlobalConstants } from 'src/app/Common/global-constants';
 import { ServiceService } from 'src/app/shared/service.service';
 @Component({
