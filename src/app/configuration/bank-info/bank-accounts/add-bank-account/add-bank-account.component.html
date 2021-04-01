@@ -13,7 +13,7 @@
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-3 col-form-label">Bank</label>
       <div class="col-sm-8">
-        <ng-select [(ngModel)]="bankId" required placeholder="-- Select --" name="bank">
+        <ng-select [(ngModel)]="bankId" placeholder="-- Select --" name="bank">
           <ng-option *ngFor="let i of banks" [value]="i.id">{{ i.name }}
           </ng-option>
         </ng-select>
@@ -23,32 +23,30 @@
     <div class="form-group row" [class.has-error]="accountName.invalid">
       <label for="accountName" class="col-sm-3 col-form-label control-label text_Navy">Account Name
       </label>
-      <div class="col-sm-9">
+      <div class="col-sm-8">
         <input appAutofocus required id="accountName" type="text" class="form-control" placeholder="Account Name"
           name="accountName" [(ngModel)]="data.accountName" #accountName="ngModel"
-          [ngClass]="{ error: accountName.invalid }" maxlength="100" />
+          [ngClass]="{ error: accountName.invalid }" maxlength="60" />
       </div>
     </div>
 
     <div class="form-group row" [class.has-error]="accountNumber.invalid">
       <label for="accountNumber" class="col-sm-3 col-form-label control-label text-grey">Account No
       </label>
-      <div class="col-sm-9">
+      <div class="col-sm-8">
         <input required id="accountNumber" type="text" class="form-control" placeholder="Account Number"
           name="accountNumber" [(ngModel)]="data.accountNumber" #accountNumber="ngModel"
-          [ngClass]="{ error: accountNumber.invalid }" maxlength="50" />
+          [ngClass]="{ error: accountNumber.invalid }" maxlength="15" />
       </div>
     </div>
 
     <div class="form-group row" [class.has-error]="iban.invalid">
       <label for="iban" class="col-sm-3 col-form-label control-label text-grey">IBAN
       </label>
-      <div class="col-sm-9">
+      <div class="col-sm-8">
         <input pattern="[a-zA-Z0-9]{0,34}" id="iban" type="text" class="form-control" placeholder="IBAN" name="iban"
-          [(ngModel)]="data.iban" #iban="ngModel" [ngClass]="{ error: iban.invalid }" maxlength="34" />
-        <p *ngIf="iban.invalid">
-          Invalid Input or Length
-        </p>
+          [(ngModel)]="data.iban" #iban="ngModel" [ngClass]="{ error: iban.invalid && iban.touched }" maxlength="34" />
+
       </div>
     </div>
 
@@ -56,11 +54,9 @@
       <label for="swiftCode" class="col-sm-3 col-form-label control-label text-grey">Swift Code</label>
       <div class="col-sm-8">
         <input pattern="[0-9]{8,11}" id="swiftCode" type="text" class="form-control" placeholder="Account Swift Code"
-          name="swiftCode" [(ngModel)]="data.swiftCode" #swiftCode="ngModel" [ngClass]="{ error: swiftCode.invalid }"
-          maxlength="11" />
-        <p *ngIf="swiftCode.invalid">
-          Invalid Input or Length
-        </p>
+          name="swiftCode" [(ngModel)]="data.swiftCode" #swiftCode="ngModel"
+          [ngClass]="{ error: swiftCode.invalid && swiftCode.touched }" maxlength="11" />
+
       </div>
     </div>
 
@@ -68,8 +64,8 @@
       <label for="type" class="col-sm-3 col-form-label control-label text-grey">Type
       </label>
       <div class="col-sm-8">
-        <input required id="type" type="text" class="form-control" placeholder="Account Type" name="type"
-          [(ngModel)]="data.type" #type="ngModel" />
+        <input id="type" type="text" class="form-control" placeholder="Account Type" name="type" [(ngModel)]="data.type"
+          #type="ngModel" />
       </div>
     </div>
     <div class="form-group row">
