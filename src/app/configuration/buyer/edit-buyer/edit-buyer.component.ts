@@ -11,12 +11,14 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class EditBuyerComponent implements OnInit {
   @Input() buyerId;
+  @Input() CountPOC;
   data: any = {};
   country: any = [];
   response: any;
   states: any;
   buyer: any[];
   countryId: null;
+
 
 
 
@@ -83,6 +85,7 @@ export class EditBuyerComponent implements OnInit {
           this.response = res;
           if (this.response.success == true) {
             this.data = this.response.data;
+            this.CountPOC = this.response.data.buyerPOCList.length;
 
 
 

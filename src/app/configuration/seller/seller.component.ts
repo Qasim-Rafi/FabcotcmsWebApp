@@ -17,6 +17,8 @@ import { EditCertificateComponent } from '../home-textile/certificate/edit-certi
 })
 export class SellerComponent implements OnInit {
   listCount: number;
+  TotalPOC: number;
+
   // pocList: number;
   data: any = {};
   response: any;
@@ -44,7 +46,6 @@ export class SellerComponent implements OnInit {
     // if(this.statusCheck == 'Add'){
     //   this.addCertificate();
     // }
-
     this.getSellers();
     this.getAllCertificates();
     this.getSellersCertificates();
@@ -64,6 +65,35 @@ export class SellerComponent implements OnInit {
     this.seller = temp;
 
   }
+
+
+
+
+  getTotalPOCs() {
+    this.http.get(`${environment.apiUrl}/api/Sellers/GetAllPOC`)
+      .subscribe(
+        res => {
+
+          this.response = res;
+          if (this.response.success == true) {
+            this.TotalPOC = this.response.data.length;
+
+
+
+
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+        });
+  }
+
+
 
 
   // ---------------------------------------Get All Seller Certificates----------------------------
@@ -240,6 +270,7 @@ export class SellerComponent implements OnInit {
             this.seller = this.response.data;
             this.temp = [...this.seller];
             this.listCount = this.response.data.length;
+            this.getTotalPOCs();
             // this.pocList = this.response.data.sellerPOCList.lenght
 
           }
