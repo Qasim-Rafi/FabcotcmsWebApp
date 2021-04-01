@@ -1,15 +1,3 @@
-<!-- <div class="content-header">
-  <div class="col-sm-12 mb-4">
-    <h2 class="row wrapper page-header font-weight-light">
-      Country Location
-      <div class="ml-2 text-muted descr">
-        Business Country location and its management
-        <small class="float-right">Configuration / Country Location</small>
-      </div>
-    </h2>
-  </div>
-</div> -->
-
 <div class="content-header">
   <div class="row">
     <div class="col-sm-12 col-md-6 col-lg-8">
@@ -32,7 +20,7 @@
   </div>
 </div>
 
-<div class="ibox-content shadow">
+<div class="card ibox-content">
   <div class="panel blank-panel">
     <div class="panel-heading">
       <div class="row mb-3">
@@ -49,27 +37,6 @@
           </button>
         </div>
       </div>
-      <!--  -->
-
-      <!-- <table class="table">
-          <tbody>
-              <tr>
-                  <td class=""  >
-                      <button type="button" class="btn btn-primary descBtn "> 
-                        <i class="fas fa-map fa-fw mr-2"></i>{{countryCount}}</button>
-                      <span class="text-muted text2">Countries</span>
-                  </td>
-                  <td class="" >
-                      <button type="button" class="btn  mr-1 px-3"> </button>
-                      <span class="text-muted text"></span>
-                  </td>
-                  <td  class="Border" >
-                      <button type="button" class="btn btn-primary btn-md float-right" (click)="addCountryForm()">
-                        <i class="fa fa-plus" ></i> Add New Country</button>
-                  </td>
-              </tr>
-          </tbody>
-      </table> -->
 
       <div class="row">
         <div class="col-md-12 mb-4">
@@ -126,13 +93,6 @@
             <span class="badge badge-primary" *ngIf="row.active==true">Active</span>
             <span class="badge badge-secondary" *ngIf="row.active==false">Inactive</span>
 
-
-            <!-- <div class="active" *ngIf="row.active==true">
-              Active
-            </div>
-            <div class="inactive" *ngIf="row.active==false">
-              Inactive
-            </div> -->
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="Created On |Created By" prop="date" [flexGrow]="0.07">

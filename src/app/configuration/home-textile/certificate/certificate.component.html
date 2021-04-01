@@ -1,13 +1,3 @@
-<!-- <div class="content-header">
-  <div class="col-sm-12 mb-4">
-    <h2 class="row wrapper page-header font-weight-light"> Certificate
-      <div class="ml-2 text-muted descr">Certificate's Description
-        <small>Configuration / Textile-Garments / Certificate</small>
-      </div>
-    </h2>
-  </div>
-</div> -->
-
 <div class="content-header">
   <div class="row">
     <div class="col-sm-12 col-md-6 col-lg-8">
@@ -20,35 +10,15 @@
     <div class="col-sm-12 col-md-6 col-lg-4">
       <ol class="breadcrumb flt-RnL">
         <li class="breadcrumb-item"><a href="#">Configuration</a></li>
-        <!-- <li class="breadcrumb-item">Textile-Garments</li> -->
         <li class="breadcrumb-item active" aria-current="page">Certificate</li>
       </ol>
     </div>
   </div>
 </div>
 
-<div class="ibox-content shadow">
+<div class="card ibox-content">
   <div class="panel blank-panel">
     <div class="panel-heading">
-      <!-- <table class="table">
-        <tbody>
-          <tr>
-            <td class="noBorder">
-              <button type="button" class="btn btn-primary descBtn ">
-                <i class="fas fa-anchor fa-fw mr-2"></i>{{listCount}}</button>
-              <span class="text-muted text2">Certificate</span>
-            </td>
-            <td class="noBorder">
-              <button type="button" class="btn  mr-1 px-3"> </button>
-              <span class="text-muted text"></span>
-            </td>
-            <td class="noBorder">
-              <button type="button" class="btn btn-primary btn-md float-right" (click)="addCertificateForm()"><i
-                  class="fa fa-plus"></i> Add Certificate</button>
-            </td>
-          </tr>
-        </tbody>
-      </table> -->
 
       <div class="row mb-3">
         <div class="col-md-6">
@@ -82,9 +52,7 @@
                 <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
                   aria-controls="DataTables_Table_0"><span>CSV</span></a>
                 <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
-                  aria-controls="DataTables_Table_0"
-                  (click)="exportAsXLSX()"
-                  ><span>Excel</span></a>
+                  aria-controls="DataTables_Table_0" (click)="exportAsXLSX()"><span>Excel</span></a>
                 <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0"
                   aria-controls="DataTables_Table_0"><span>PDF</span></a>
                 <a class="btn btn-default buttons-print bg-white" tabindex="0"

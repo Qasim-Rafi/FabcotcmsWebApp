@@ -1,18 +1,3 @@
-<!-- <div class="content-header">
-  <div class="col-sm-12 mb-4">
-    <h2 class="row wrapper page-header font-weight-light">
-      City Location
-      <div class="ml-2 text-muted descr">
-        Business Cities location and its management
-        <small>Configuration / City Location</small>
-      </div>
-    </h2>
-  </div>
-</div> -->
-
-
-
-
 <div class="content-header">
 
   <div class="row">
@@ -32,28 +17,10 @@
   </div>
 </div>
 
-<div class="ibox-content shadow">
+<div class="card ibox-content">
   <div class="panel blank-panel">
     <div class="panel-heading">
-      <!-- <table class="table">
-        <tbody>
-          <tr>
-            <td class="noBorder">
-              <button type="button" class="btn btn-primary descBtn">
-                <i class="fa fa-map fa-fw mr-2"></i>{{CityCount}}</button>
-              <span class="text-muted text2">Cities</span>
-            </td>
-            <td class="noBorder">
-              <button type="button" class="btn  mr-1 px-3"> </button>
-              <span class="text-muted text"></span>
-            </td>
-            <td class="noBorder">
-              <button type="button" class="btn btn-primary btn-md float-right" (click)="addCity()">
-                <i class="fa fa-plus"></i> Add New City</button>
-            </td>
-          </tr>
-        </tbody>
-      </table> -->
+
 
       <div class="row mb-3">
         <div class="col-md-6">
@@ -86,9 +53,7 @@
                 <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
                   aria-controls="DataTables_Table_0"><span>CSV</span></a>
                 <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
-                  aria-controls="DataTables_Table_0"
-                  (click)="exportAsXLSX()"
-                  ><span>Excel</span></a>
+                  aria-controls="DataTables_Table_0" (click)="exportAsXLSX()"><span>Excel</span></a>
                 <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0"
                   aria-controls="DataTables_Table_0"><span>PDF</span></a>
                 <a class="btn btn-default buttons-print bg-white" tabindex="0"
@@ -101,7 +66,7 @@
     </div>
 
     <div class="panel-body">
-      <ngx-datatable #myTable class="material" [columns]="columns" [rows]="rows"
+      <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows"
         [sorts]="[{ prop: 'id,name', dir: 'asce' }]" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
         [rowHeight]="'auto'" [limit]="10">
         <ngx-datatable-column prop="id" name="S. No." [width]="20">
@@ -130,9 +95,6 @@
             <span class="badge badge-primary" *ngIf="row.active==true">Active</span>
             <span class="badge badge-secondary" *ngIf="row.active==false">Inactive</span>
 
-            <!-- <div class="active" *ngIf="row.active == true">Active</div>
-            <div class="inactive" *ngIf="row.active == false">Inactive</div> -->
-
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="Changed On | Changed By" [width]="80">
@@ -146,7 +108,8 @@
 
             <div class="ibox-tools text-center">
               <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top" title=""
-                data-original-title="Edit" (click)="editCity(row, 'CityEdit','cityForm')"><i class="far fa-edit"></i></button>
+                data-original-title="Edit" (click)="editCity(row, 'CityEdit','cityForm')"><i
+                  class="far fa-edit"></i></button>
 
               <button type="button" class="btn deleteIconBack" data-toggle="tooltip" data-placement="top" title=""
                 data-original-title="Delete" (click)="deleteCity(row)"> <i class="far fa-trash-alt"></i></button>
@@ -156,5 +119,6 @@
         </ngx-datatable-column>
       </ngx-datatable>
     </div>
+
   </div>
 </div>

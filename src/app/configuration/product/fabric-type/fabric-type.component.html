@@ -1,27 +1,3 @@
-<!-- <div class="content-header">
-  <div class="container-fluid">
-    <div class="row mb-5">
-      <div class="col-sm-12">
-        <h2 class="row wrapper page-header  "><strong>Fabric Type</strong>
-          <small class="ml-2 text-muted">Fabric Type Description</small>
-        </h2>
-      </div>
-    </div>
-  </div>
-</div> -->
-
-
-<!-- <div class="content-header">
-  <div class="col-sm-12 mb-4">
-    <h2 class="row wrapper page-header font-weight-light"> Fabric Type
-      <div class="ml-2 text-muted descr">Fabric Type Description
-        <small >Configuration / Product / Fabric Type</small>
-      </div></h2>
-  </div>
-</div> -->
-
-
-
 <div class="content-header">
 
   <div class="row">
@@ -34,7 +10,6 @@
     <div class="col-sm-12 col-md-6 col-lg-4">
       <ol class="breadcrumb flt-RnL">
         <li class="breadcrumb-item"><a href="#">Configuration</a></li>
-        <!-- <li class="breadcrumb-item">Product</li> -->
         <li class="breadcrumb-item active" aria-current="page">Fabric Type</li>
       </ol>
     </div>
@@ -43,34 +18,9 @@
 </div>
 
 
-
-
-
-
-<div class="ibox-content shadow">
+<div class="card ibox-content">
   <div class=" panel blank-panel">
     <div class=" panel-heading">
-
-      <!-- <table class="table">
-        <tbody>
-          <tr>
-            <td class="noBorder">
-              <button type="button" class="btn btn-primary descBtn ">
-                <i class="fas fa-anchor fa-fw mr-2"></i>{{listCount}}</button>
-              <span class="text-muted text2">Fabric Types</span>
-            </td>
-
-            <td class="noBorder">
-              <button type="button" class="btn  mr-1 px-3"> </button>
-              <span class="text-muted text"></span>
-            </td>
-            <td class="noBorder">
-              <button type="button" class="btn btn-primary btn-md float-right" (click)="addTypeForm()">
-                <i class="fa fa-plus"></i> Add Fabric Type</button>
-            </td>
-          </tr>
-        </tbody>
-      </table> -->
 
 
       <div class="row mb-3">
@@ -142,13 +92,6 @@
             <span class="badge badge-primary" *ngIf="row.active==true">Active</span>
             <span class="badge badge-secondary" *ngIf="row.active==false">Inactive</span>
 
-            <!-- <div class="active" *ngIf="row.active==true">
-              Active
-            </div>
-            <div class="inactive" *ngIf="row.active==false">
-              Inactive
-            </div> -->
-
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="Last Changed On | Updated By" [width]="80">
@@ -169,15 +112,6 @@
                 <i class="far fa-trash-alt"></i>
               </button>
             </div>
-            <!-- <button type="button" 
-            class="btn deleteIconBack"
-            mwlConfirmationPopover 
-            popoverTitle="Confirmation"
-            popoverMessage="Are you sure ?" 
-            placement="left" 
-            (confirm)="deleteType(row)"> 
-            <i class="far fa-trash-alt"></i>
-            </button> -->
           </ng-template>
         </ngx-datatable-column>
       </ngx-datatable>
