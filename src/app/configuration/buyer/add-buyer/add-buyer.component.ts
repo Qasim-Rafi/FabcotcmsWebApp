@@ -102,7 +102,6 @@ export class AddBuyerComponent implements OnInit {
           this.response = res;
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
-
             this.buyerForm.reset();
             this.activeModal.close(true);
           }

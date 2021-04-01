@@ -79,10 +79,6 @@ export class BuyerComponent implements OnInit {
           this.response = res;
           if (this.response.success == true) {
             this.TotalPOC = this.response.data.length;
-
-
-
-
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
@@ -108,7 +104,6 @@ export class BuyerComponent implements OnInit {
             this.buyer = this.response.data;
             this.temp = [...this.buyer];
             this.listCount = this.response.data.length;
-
             this.getTotalPOCs();
 
 

@@ -14,13 +14,12 @@ import { ServiceService } from 'src/app/shared/service.service';
   styleUrls: ['./bank-accounts.component.css']
 })
 export class BankAccountsComponent implements OnInit {
-
   listCount: number;
   response: any;
   rows: any = [];
   columns: any = [];
   data: any = {};
-  temp: any[]; s
+  temp: any[];
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
@@ -60,6 +59,7 @@ export class BankAccountsComponent implements OnInit {
         if (this.response.success == true) {
           this.data = this.response.data;
           this.listCount = this.response.data.length;
+          // this.temp = [...this.data];
           cb(this.data);
         }
         else {
@@ -131,8 +131,8 @@ export class BankAccountsComponent implements OnInit {
       // on close
       if (data == true) {
         this.fetch((data) => {
+          this.temp = [...data];
           this.rows = data;
-
         });
 
 
