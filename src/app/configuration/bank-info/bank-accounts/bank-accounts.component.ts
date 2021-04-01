@@ -24,7 +24,7 @@ export class BankAccountsComponent implements OnInit {
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
-    private service:ServiceService,
+    private service: ServiceService,
     private modalService: NgbModal,) { }
 
   ngOnInit(): void {
@@ -39,7 +39,7 @@ export class BankAccountsComponent implements OnInit {
     // filter our data
     const temp = this.temp.filter(function (d) {
       return (d.accountName.toLowerCase().indexOf(val) !== -1 ||
-      d.accountNumber.toLowerCase().indexOf(val) !== -1 || !val);
+        d.accountNumber.toLowerCase().indexOf(val) !== -1 || !val);
     });
 
     // update the rows
@@ -80,7 +80,7 @@ export class BankAccountsComponent implements OnInit {
   deleteAccount(id) {
     Swal.fire({
       title: GlobalConstants.deleteTitle, //'Are you sure?',
-      text: GlobalConstants.deleteMessage+' '+'"'+ id.accountName +'"',
+      text: GlobalConstants.deleteMessage + ' ' + '"' + id.accountName + '"',
       icon: 'error',
       showCancelButton: true,
       confirmButtonColor: '#ed5565',
@@ -104,7 +104,7 @@ export class BankAccountsComponent implements OnInit {
 
               }
               else {
-                this.toastr.error('Something went Worng', 'Message.');
+                this.toastr.error(this.response.message, 'Message.');
               }
 
             }, err => {
@@ -162,18 +162,18 @@ export class BankAccountsComponent implements OnInit {
 
   exportAsXLSX(): void {
     const filtered = this.data.map(row => ({
-      SNo:row.id,
-    AccountName :row.accountName,
-    AccountNo :row.accountNumber,
-    IBAN :row.iban,
-    SwiftCode :row.swiftCode,
-    AccountType :row.type,
-     Bank:row.bankId ,
-     Branch:row.details 
-   }));
-   
+      SNo: row.id,
+      AccountName: row.accountName,
+      AccountNo: row.accountNumber,
+      IBAN: row.iban,
+      SwiftCode: row.swiftCode,
+      AccountType: row.type,
+      Bank: row.bank,
+      Branch: row.details
+    }));
+
     this.service.exportAsExcelFile(filtered, 'Bank Account');
-  
+
   }
 
 }

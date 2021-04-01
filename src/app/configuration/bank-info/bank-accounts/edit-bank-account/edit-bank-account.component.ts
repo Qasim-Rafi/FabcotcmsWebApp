@@ -11,13 +11,12 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class EditBankAccountComponent implements OnInit {
 
-  data:any={};
+  data: any = {};
   response: any;
-  banks:any=[];
-  bankId:null;
+  banks: any = [];
   @Input() userId;
-  
-  constructor(private http:HttpClient,
+
+  constructor(private http: HttpClient,
     private toastr: ToastrService,
     private _NgbActiveModal: NgbActiveModal) { }
 
@@ -32,53 +31,50 @@ export class EditBankAccountComponent implements OnInit {
   }
 
 
-  getBanks()
-  {
+  getBanks() {
     this.http.get(`${environment.apiUrl}/api/Lookups/Banks`)
-    .subscribe(
-      res=> { 
-        this.response = res;
-        if (this.response.success == true){
-          this.banks =this.response.data;
-        }
-        else {
-          this.toastr.error('Something went Worng', 'Message.');
-            }
+      .subscribe(
+        res => {
+          this.response = res;
+          if (this.response.success == true) {
+            this.banks = this.response.data;
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          }
 
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error('Something went Worng', 'Message.');
-        }
-      });
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+        });
   }
 
 
 
 
-  editBankAccount()
-  {
-    this.http.get(`${environment.apiUrl}/api/Configs/GetBankAccountById/`+this.userId )
-    .subscribe(
-      res=> { 
-        this.response = res;
-        if (this.response.success == true){
-          this.data =this.response.data; 
-        }
-        else {
-          this.toastr.error('Something went Worng', 'Message.');
-            }
+  editBankAccount() {
+    this.http.get(`${environment.apiUrl}/api/Configs/GetBankAccountById/` + this.userId)
+      .subscribe(
+        res => {
+          this.response = res;
+          if (this.response.success == true) {
+            this.data = this.response.data;
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          }
 
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error('Something went Worng', 'Message.');
-        } 
-      });
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+        });
   }
 
 
-  UpdateBankAccount()
-  {
-    let varr=  {
+  UpdateBankAccount() {
+    let varr = {
       "bankId": this.data.bankId,
       "accountName": this.data.accountName,
       "accountNumber": this.data.accountNumber,
@@ -90,24 +86,24 @@ export class EditBankAccountComponent implements OnInit {
     }
 
     this.http.
-    put(`${environment.apiUrl}/api/Configs/UpdateBankAccount/`+this.userId,varr)
-    .subscribe(
-      res=> { 
-  
-        this.response = res;
-        if (this.response.success == true){
-          this.toastr.success(this.response.message, 'Message.');
-          this.activeModal.close(true);
-        }
-        else {
-          this.toastr.error('Something went Worng', 'Message.');
-            }
+      put(`${environment.apiUrl}/api/Configs/UpdateBankAccount/` + this.userId, varr)
+      .subscribe(
+        res => {
 
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error('Something went Worng', 'Message.');
-        }
-      });
+          this.response = res;
+          if (this.response.success == true) {
+            this.toastr.success(this.response.message, 'Message.');
+            this.activeModal.close(true);
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+        });
   }
 
 

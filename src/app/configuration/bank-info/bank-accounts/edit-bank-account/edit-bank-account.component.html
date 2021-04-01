@@ -15,7 +15,7 @@
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-3 col-form-label text_Navy">Bank</label>
       <div class="col-md-8">
-        <select class="form-control" name="bankId" [(ngModel)]="bankId">
+        <select class="form-control" name="bankId" [(ngModel)]="data.bankId">
           <option value="null" disabled> Select Bank</option>
           <option *ngFor="let i of banks" [value]="i.id">
             {{i.name}}
@@ -65,8 +65,8 @@
     <div class="form-group row" [class.has-error]="type.invalid ">
       <label for="type" class="col-sm-3 col-form-label control-label text-grey">Type </label>
       <div class="col-sm-8">
-        <input required id="type" type="text" class="form-control" placeholder="Account Type" name="type"
-          [(ngModel)]="data.type" #type="ngModel" [ngClass]="{'error': type.invalid }">
+        <input maxlength="60" id="type" type="text" class="form-control" placeholder="Account Type" name="type"
+          [(ngModel)]="data.type" #type="ngModel">
       </div>
     </div>
 
