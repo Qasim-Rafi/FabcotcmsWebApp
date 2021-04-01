@@ -10,27 +10,25 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./add-agent-form.component.css']
 })
 export class AddAgentFormComponent implements OnInit {
-  data:any={};
+  data: any = {};
   response: any;
-  agentTypeId = null;
-  agentSideId = null;
+  agentType: any = {};
+  agentSide: any = {};
   city: any = [];
   banks: any = [];
- 
 
 
-  constructor(private http:HttpClient,
+
+  constructor(private http: HttpClient,
     private toastr: ToastrService,
-    private _NgbActiveModal: NgbActiveModal ) { }
+    private _NgbActiveModal: NgbActiveModal) { }
 
   ngOnInit(): void {
 
     this.getCity();
     this.getBanks();
-    
+
   }
-
-
 
 
   get activeModal() {
@@ -82,9 +80,8 @@ export class AddAgentFormComponent implements OnInit {
 
 
 
-  addAgent()
-  {
-    let varr=  {
+  addAgent() {
+    let varr = {
       "agentTypeId": this.data.agentTypeId,
       "agentSideId": this.data.agentSideId,
       "name": this.data.name,
@@ -101,26 +98,26 @@ export class AddAgentFormComponent implements OnInit {
     }
 
     this.http.
-    post(`${environment.apiUrl}/api/Configs/AddExternalAgent`,varr)
-    .subscribe(
-      res=> { 
-  
-        this.response = res;
-        if (this.response.success == true){
-          this.toastr.success(this.response.message, 'Message.');
-      
-          // this.buyerForm.reset();
-          this.activeModal.close(true);
-        }
-        else {
-          this.toastr.error(this.response.message, 'Message.');
-            }
+      post(`${environment.apiUrl}/api/Configs/AddExternalAgent`, varr)
+      .subscribe(
+        res => {
 
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error(this.response.message, 'Message.');
-        }
-      });
+          this.response = res;
+          if (this.response.success == true) {
+            this.toastr.success(this.response.message, 'Message.');
+
+            // this.buyerForm.reset();
+            this.activeModal.close(true);
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+        });
   }
 
 

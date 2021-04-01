@@ -11,22 +11,22 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class EditAgentFormComponent implements OnInit {
   @Input() userId;
-  data:any={};
+  data: any = {};
   response: any;
-  agentTypeId: null;
-  agentSideId: null;
+  agentType: any = {};
+  agentSide: any = {};
   city: any = [];
   banks: any = [];
 
-  constructor(private http:HttpClient,
-              private toastr: ToastrService,
-              private _NgbActiveModal: NgbActiveModal) { }
+  constructor(private http: HttpClient,
+    private toastr: ToastrService,
+    private _NgbActiveModal: NgbActiveModal) { }
 
   ngOnInit(): void {
-    this. getBanks();
+    this.getBanks();
     this.getCity();
-    this.editAgent( );
-  } 
+    this.editAgent();
+  }
 
   get activeModal() {
     return this._NgbActiveModal;
@@ -73,30 +73,28 @@ export class EditAgentFormComponent implements OnInit {
   }
 
 
-  editAgent()
-  {
-    this.http.get(`${environment.apiUrl}/api/Configs/GetExternalAgentById/`+this.userId )
-    .subscribe(
-      res=> { 
-        this.response = res;
-        if (this.response.success == true){
-          this.data =this.response.data; 
-        }
-        else {
-          this.toastr.error('Something went Worng', 'Message.');
-            }
+  editAgent() {
+    this.http.get(`${environment.apiUrl}/api/Configs/GetExternalAgentById/` + this.userId)
+      .subscribe(
+        res => {
+          this.response = res;
+          if (this.response.success == true) {
+            this.data = this.response.data;
+          }
+          else {
+            this.toastr.error('Something went Worng', 'Message.');
+          }
 
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error(this.response.message, 'Message.');
-        }
-      });
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+        });
   }
 
 
-  UpdateAgent()
-  {
-    let varr=  {
+  UpdateAgent() {
+    let varr = {
       "agentTypeId": this.data.agentTypeId,
       "agentSideId": this.data.agentSideId,
       "name": this.data.name,
@@ -113,23 +111,23 @@ export class EditAgentFormComponent implements OnInit {
     }
 
     this.http.
-    put(`${environment.apiUrl}/api/Configs/UpdateExternalAgent/`+this.userId,varr)
-    .subscribe(
-      res=> { 
-  
-        this.response = res;
-        if (this.response.success == true){
-          this.toastr.success(this.response.message, 'Message.');
-          this.activeModal.close(true);
-        }
-        else {
-          this.toastr.error(this.response.message, 'Message.');
-            }
+      put(`${environment.apiUrl}/api/Configs/UpdateExternalAgent/` + this.userId, varr)
+      .subscribe(
+        res => {
 
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error(this.response.message, 'Message.');
-        }
-      });
+          this.response = res;
+          if (this.response.success == true) {
+            this.toastr.success(this.response.message, 'Message.');
+            this.activeModal.close(true);
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+        });
   }
 }
