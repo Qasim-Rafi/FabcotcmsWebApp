@@ -81,34 +81,32 @@
 
 
       <div class="row">
-      <div class="col-md-12 mb-4">
-        <div class="row justify-content-end">
-          <div class=" col-md-4">
-            <div class="input-group col-md-offset-3">
-              <input type="text" placeholder="Search by Account Name or Account Number " class="input form-control w-50"
-               (keyup)="updateFilter($event)">
+        <div class="col-md-12 mb-4">
+          <div class="row justify-content-end">
+            <div class=" col-md-4">
+              <div class="input-group col-md-offset-3">
+                <input type="text" placeholder="Search by Account Name or Account Number "
+                  class="input form-control w-50" (keyup)="updateFilter($event)">
+              </div>
             </div>
-          </div>
 
-          <div class="html5buttons mrg-tsm">
-            <div class="dt-buttons btn-group ">
-              <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0"
-                aria-controls="DataTables_Table_0"><span>Copy</span></a>
-              <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
-                aria-controls="DataTables_Table_0"><span>CSV</span></a>
-              <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
-                aria-controls="DataTables_Table_0"
-                (click)="exportAsXLSX()"
-                ><span>Excel</span></a>
-              <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0"
-                aria-controls="DataTables_Table_0"><span>PDF</span></a>
-              <a class="btn btn-default buttons-print bg-white" tabindex="0"
-                aria-controls="DataTables_Table_0"><span>Print</span></a>
+            <div class="html5buttons mrg-tsm">
+              <div class="dt-buttons btn-group ">
+                <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0"
+                  aria-controls="DataTables_Table_0"><span>Copy</span></a>
+                <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
+                  aria-controls="DataTables_Table_0"><span>CSV</span></a>
+                <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
+                  aria-controls="DataTables_Table_0" (click)="exportAsXLSX()"><span>Excel</span></a>
+                <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0"
+                  aria-controls="DataTables_Table_0"><span>PDF</span></a>
+                <a class="btn btn-default buttons-print bg-white" tabindex="0"
+                  aria-controls="DataTables_Table_0"><span>Print</span></a>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
 
 
@@ -118,8 +116,8 @@
           [limit]="6">
 
           <ngx-datatable-column name="S. No." [width]="0.5" prop="id">
-            <ng-template let-row="row" ngx-datatable-cell-template>
-              {{row.id}}
+            <ng-template let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
+              {{rowIndex + 1}}
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Account Name" [width]="80" prop="accountName">
@@ -149,18 +147,18 @@
           </ngx-datatable-column>
           <ngx-datatable-column name="Bank" [width]="80">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{row.bankId}}
+              {{row.bankName}}
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Branch" [width]="80">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{row.details}}
+              {{row.branchName}}
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Action" [width]="80">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              
-              
+
+
               <div class="ibox-tools text-center">
                 <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top" title=""
                   data-original-title="Edit" (click)=" editAccountForm(row)">
@@ -171,8 +169,8 @@
                   <i class="far fa-trash-alt"></i>
                 </button>
               </div>
-              
-              
+
+
               <!-- <button type="button" 
             class="btn deleteIconBack"
             mwlConfirmationPopover 
