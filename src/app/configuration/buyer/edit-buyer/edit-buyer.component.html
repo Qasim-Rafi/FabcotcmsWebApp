@@ -101,8 +101,8 @@
               [ngClass]="{ error: ntnNumber.invalid && ntnNumber.touched }" />
           </div>
           <div class="col-sm-6">
-            <input maxlength="15" minlength="7" type="text" class="form-control" id="gstNumber" placeholder="GST No."
-              name="gstNumber" [(ngModel)]="data.gstNumber" #gstNumber="ngModel"
+            <input pattern="[0-9]{7,15}" maxlength="15" minlength="7" type="text" class="form-control" id="gstNumber"
+              placeholder="GST No." name="gstNumber" [(ngModel)]="data.gstNumber" #gstNumber="ngModel"
               [ngClass]="{ error: gstNumber.invalid && gstNumber.touched }" />
 
           </div>
@@ -136,7 +136,6 @@
     </div>
   </form>
 </div>
-
 <div class="modal-footer NotBG">
   <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
     Close
