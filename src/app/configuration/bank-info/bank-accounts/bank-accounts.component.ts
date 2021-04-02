@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
 import { AddBankAccountComponent } from './add-bank-account/add-bank-account.component';
 import { EditBankAccountComponent } from './edit-bank-account/edit-bank-account.component';
-import { Swal } from 'sweetalert2/dist/sweetalert2.js';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { GlobalConstants } from 'src/app/Common/global-constants';
 import { ServiceService } from 'src/app/shared/service.service';
 @Component({
@@ -14,20 +14,22 @@ import { ServiceService } from 'src/app/shared/service.service';
   styleUrls: ['./bank-accounts.component.css']
 })
 export class BankAccountsComponent implements OnInit {
+
   listCount: number;
   response: any;
   rows: any = [];
   columns: any = [];
   data: any = {};
-  temp: any[];
+  temp: any[]; s
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
-    private service: ServiceService,
+    private service:ServiceService,
     private modalService: NgbModal,) { }
 
   ngOnInit(): void {
     this.fetch((data) => {
+      this.temp = [...data];
       this.rows = data;
     });
   }
@@ -37,7 +39,7 @@ export class BankAccountsComponent implements OnInit {
     // filter our data
     const temp = this.temp.filter(function (d) {
       return (d.accountName.toLowerCase().indexOf(val) !== -1 ||
-        d.accountNumber.toLowerCase().indexOf(val) !== -1 || !val);
+      d.accountNumber.toLowerCase().indexOf(val) !== -1 || !val);
     });
 
     // update the rows
@@ -58,7 +60,6 @@ export class BankAccountsComponent implements OnInit {
         if (this.response.success == true) {
           this.data = this.response.data;
           this.listCount = this.response.data.length;
-          this.temp = [...this.data];
           cb(this.data);
         }
         else {
@@ -79,7 +80,7 @@ export class BankAccountsComponent implements OnInit {
   deleteAccount(id) {
     Swal.fire({
       title: GlobalConstants.deleteTitle, //'Are you sure?',
-      text: GlobalConstants.deleteMessage + ' ' + '"' + id.accountName + '"',
+      text: GlobalConstants.deleteMessage+' '+'"'+ id.accountName +'"',
       icon: 'error',
       showCancelButton: true,
       confirmButtonColor: '#ed5565',
@@ -103,7 +104,7 @@ export class BankAccountsComponent implements OnInit {
 
               }
               else {
-                this.toastr.error(this.response.message, 'Message.');
+                this.toastr.error('Something went Worng', 'Message.');
               }
 
             }, err => {
@@ -130,8 +131,8 @@ export class BankAccountsComponent implements OnInit {
       // on close
       if (data == true) {
         this.fetch((data) => {
-          // this.temp = [...data];
           this.rows = data;
+
         });
 
 
@@ -161,18 +162,18 @@ export class BankAccountsComponent implements OnInit {
 
   exportAsXLSX(): void {
     const filtered = this.data.map(row => ({
-      SNo: row.id,
-      AccountName: row.accountName,
-      AccountNo: row.accountNumber,
-      IBAN: row.iban,
-      SwiftCode: row.swiftCode,
-      AccountType: row.type,
-      Bank: row.bank,
-      Branch: row.details
-    }));
-
+      SNo:row.id,
+    AccountName :row.accountName,
+    AccountNo :row.accountNumber,
+    IBAN :row.iban,
+    SwiftCode :row.swiftCode,
+    AccountType :row.type,
+     Bank:row.bankId ,
+     Branch:row.details 
+   }));
+   
     this.service.exportAsExcelFile(filtered, 'Bank Account');
-
+  
   }
 
 }

@@ -21,7 +21,7 @@ import { SellerPocComponent } from '../seller/seller-poc/seller-poc.component';
 })
 export class BuyerComponent implements OnInit {
   listCount: number;
-  TotalPOC: any;
+  CountPOC: number;
   myDate = Date.now();
   response: any;
   data: any = {};
@@ -44,7 +44,6 @@ export class BuyerComponent implements OnInit {
 
   ngOnInit() {
     // this.getBuyerById();
-
     this.getBuyers();
     return this.service.getCountry();
 
@@ -66,32 +65,6 @@ export class BuyerComponent implements OnInit {
   }
 
 
-
-
-
-  // --------------------------------Get Buyer-------------------//
-
-  getTotalPOCs() {
-    this.http.get(`${environment.apiUrl}/api/Buyers/GetAllPOC`)
-      .subscribe(
-        res => {
-
-          this.response = res;
-          if (this.response.success == true) {
-            this.TotalPOC = this.response.data.length;
-          }
-          else {
-            this.toastr.error(this.response.message, 'Message.');
-          }
-
-        }, err => {
-          if (err.status == 400) {
-            this.toastr.error(this.response.message, 'Message.');
-          }
-        });
-  }
-
-
   // --------------------------------Get Buyer-------------------//
 
   getBuyers() {
@@ -104,7 +77,6 @@ export class BuyerComponent implements OnInit {
             this.buyer = this.response.data;
             this.temp = [...this.buyer];
             this.listCount = this.response.data.length;
-            this.getTotalPOCs();
 
 
           }
@@ -289,6 +261,34 @@ export class BuyerComponent implements OnInit {
     })
 
   }
+
+
+  // --------------------------Buyer POC Count-------------------------------//
+
+
+  // getBuyerById() {
+  //   this.http.get(`${environment.apiUrl}/api/Buyers/GetBuyer/` +)
+  //     .subscribe(
+  //       res => {
+  //         this.response = res;
+  //         if (this.response.success == true) {
+  //           this.CountPOC = this.response.data.buyerPOCList.lenght;
+
+
+  //         }
+  //         else {
+  //           this.toastr.error(this.response.message, 'Message.');
+  //         }
+
+  //       }, err => {
+  //         if (err.status == 400) {
+  //           this.toastr.error(this.response.message, 'Message.');
+  //         }
+  //       });
+  // }
+
+
+
 
 
 

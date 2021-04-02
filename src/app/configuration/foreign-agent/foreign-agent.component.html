@@ -1,3 +1,29 @@
+<!-- <div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-5">
+      <div class="col-sm-12">
+        <h2 class="row wrapper page-header font-weight-light "> External Agents And L/C Openner
+          <small class="ml-2 text-muted">Manage External Agents or L/C OPenner profile detail</small>
+        </h2>
+
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+<!-- <div class="content-header">
+  <div class="col-sm-12 mb-4">
+    <h2 class="row wrapper page-header font-weight-light"> External Agents And L/C Openner
+      <div class="ml-2 text-muted descr">Manage External Agents or L/C OPenner profile detail
+        <small>Configuration / External Agents</small>
+      </div>
+    </h2>
+  </div>
+</div> -->
+
+
+
 <div class="content-header">
 
   <div class="row">
@@ -20,124 +46,151 @@
 
 
 
-<div class="card ibox-content">
-  <div class=" panel blank-panel">
-    <div class=" panel-heading">
+  <div class="card ibox-content">
+    <div class=" panel blank-panel">  
+      <div class=" panel-heading">
 
-      <div class="row mb-2">
+        <!-- <table class="table">
+            <tbody>
+                <tr >
+                    <td class="noBorder">
+                        <button  type="button" class="btn btn-primary descBtn "> 
+                        <i class="fas fa-user-tie fa-fw mr-2"></i>{{listCount}}</button>
+                        <span  class="text-muted text2">Agents</span>
+                    </td>
+                    <td  class="noBorder">
+                      <button type="button" class="btn btn-info descBtn"> 
+                      <i  class="fas fa-user-tie pr-2"></i>{{listCount}}</button>
+                      <span  class="text-muted text2">L/C Openner</span>
+                  </td>
+                   
+                    <td class="noBorder">
+                        <button type="button" class="btn btn-primary btn-md float-right" 
+                        (click)="addAgentForm()"><i class="fa fa-plus"></i> Add New Agent</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table> -->
 
-        <div class="col-6 col-md-4 col-xl-4 agents-pdg">
-          <button type="button" class="btn btn-primary descBtn display-b">
-            <i class="fas fa-user-tie fa-fw mr-2"></i>{{listCount}}</button>
-          <span class="text-muted text2">Agents</span>
+        <div class="row mb-2">
+
+          <div class="col-6 col-md-4 col-xl-4 agents-pdg">
+            <button  type="button" class="btn btn-primary descBtn display-b"> 
+              <i class="fas fa-user-tie fa-fw mr-2"></i>{{listCount}}</button>
+              <span  class="text-muted text2">Agents</span>
+          </div>
+
+          <div class="col-6 col-md-4 col-xl-4 agents-pdg">
+            <button type="button" class="btn btn-info descBtn display-b"> 
+              <i  class="fas fa-user-tie pr-2"></i>{{listCount}}</button>
+              <span  class="text-muted text2">L/C Openner</span>
+          </div>
+
+          <div class="col-12 col-md-4 col-xl-4 agents-pdg">
+            <button type="button" class="btn btn-primary btn-md flt-RnL" (click)="addAgentForm()">
+              <i class="fa fa-plus"></i>Add New Agent</button>
+          </div>
+          
+  
         </div>
 
-        <div class="col-6 col-md-4 col-xl-4 agents-pdg">
-          <button type="button" class="btn btn-info descBtn display-b">
-            <i class="fas fa-user-tie pr-2"></i>{{listCount}}</button>
-          <span class="text-muted text2">L/C Openner</span>
-        </div>
-
-        <div class="col-12 col-md-4 col-xl-4 agents-pdg">
-          <button type="button" class="btn btn-primary btn-md flt-RnL" (click)="addAgentForm()">
-            <i class="fa fa-plus"></i>Add New Agent</button>
-        </div>
-
-
-      </div>
-
-      <div class="row">
-        <div class="col-md-12 mb-4">
-          <div class="row justify-content-end">
-
-            <div class=" col-md-4">
-              <div class="input-group col-md-offset-3">
-                <input type="text" placeholder="Search by Agent Code or Agent Name" class="input form-control w-50"
-                  (keyup)="updateFilter($event)">
+        <div class="row">
+          <div class="col-md-12 mb-4">
+            <div class="row justify-content-end">
+        
+              <div class=" col-md-4">
+                <div class="input-group col-md-offset-3">
+                  <input type="text" placeholder="Search by Agent Code or Agent Name" class="input form-control w-50" (keyup)="updateFilter($event)">
+                </div>
               </div>
-            </div>
-
-            <div class="html5buttons mrg-tsm">
-              <div class="dt-buttons btn-group ">
-                <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0"
-                  aria-controls="DataTables_Table_0"><span>Copy</span></a>
-                <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
-                  aria-controls="DataTables_Table_0"><span>CSV</span></a>
-                <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
-                  aria-controls="DataTables_Table_0" (click)="exportAsXLSX()"><span>Excel</span></a>
-                <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0"
-                  aria-controls="DataTables_Table_0"><span>PDF</span></a>
-                <a class="btn btn-default buttons-print bg-white" tabindex="0"
-                  aria-controls="DataTables_Table_0"><span>Print</span></a>
+        
+              <div class="html5buttons mrg-tsm">
+                <div class="dt-buttons btn-group ">
+                  <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0"
+                    aria-controls="DataTables_Table_0"><span>Copy</span></a>
+                  <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
+                    aria-controls="DataTables_Table_0"><span>CSV</span></a>
+                  <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
+                    aria-controls="DataTables_Table_0"
+                    (click)="exportAsXLSX()"
+                    ><span>Excel</span></a>
+                  <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0"
+                    aria-controls="DataTables_Table_0"><span>PDF</span></a>
+                  <a class="btn btn-default buttons-print bg-white" tabindex="0"
+                    aria-controls="DataTables_Table_0"><span>Print</span></a>
+                </div>
               </div>
             </div>
           </div>
         </div>
+        
       </div>
 
-    </div>
+      <div class="panel-body">
 
-    <div class="panel-body">
+        <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'" 
+        [headerHeight]="50" [footerHeight]="50" [sorts]="[{prop: 'code', dir: 'asce'}]"
+        [rowHeight]="'auto'" [limit]="6">
 
-      <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'"
-        [headerHeight]="50" [footerHeight]="50" [sorts]="[{prop: 'code', dir: 'asce'}]" [rowHeight]="'auto'"
-        [limit]="6">
-
-        <ngx-datatable-column name="Agent Code" [width]="20" prop="code">
-          <ng-template let-row="row" ngx-datatable-cell-template>
-            {{row.code}}
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Agent Name" [width]="20" prop="name">
-          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            {{row.name}}
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name=" Agent Type" [width]="10">
-          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            {{row.agentTypeId}}
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Address" [width]="20">
-          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            {{row.address}}
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Email" [width]="20">
-          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            {{row.emailAddress}}
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Contact Nos." [width]="10">
-          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            {{row.cellNumber}}
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Status " [width]="5">
-          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            <span class="badge badge-primary" *ngIf="row.active==true">Active</span>
-            <span class="badge badge-secondary" *ngIf="row.active==false">Inactive</span>
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Side" [width]="5">
-          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            {{row.agentSideId}}
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Last Updated On | By" [width]="80">
-          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            {{row.updatedDateTime}} | {{row.createdByName}}
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Action" [width]="80">
-          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            <button type="button" class="btn editIconBack" (click)="editAgentForm(row)">
-              <i class="far fa-edit "></i>
-            </button>
-            <button type="button" class="btn deleteIconBack" (click)="deleteAgent(row)">
-              <i class="far fa-trash-alt"></i>
-            </button>
-            <!-- <button type="button" 
+          <ngx-datatable-column name="Agent Code" [width]="20" prop="code">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.code}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Agent Name" [width]="20" prop="name">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              {{row.name}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name=" Agent Type" [width]="10">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              {{row.agentTypeId}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Address" [width]="20">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              {{row.address}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Email" [width]="20">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              {{row.emailAddress}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Contact Nos." [width]="10">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              {{row.cellNumber}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Status " [width]="5">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              <div class="active" *ngIf="row.active==true">
+                Active
+              </div>
+              <div class="inactive" *ngIf="row.active==false">
+                Inactive
+              </div>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Side" [width]="5">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              {{row.agentSideId}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Last Updated On | By" [width]="80">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              {{row.updatedDateTime}} | {{row.createdByName}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Action" [width]="80">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              <button type="button" class="btn editIconBack" (click)="editAgentForm(row)">
+                <i class="far fa-edit "></i>
+              </button>
+              <button type="button" class="btn deleteIconBack" (click)="deleteAgent(row)">
+                <i class="far fa-trash-alt"></i>
+              </button>
+              <!-- <button type="button" 
                       class="btn deleteIconBack"
                       mwlConfirmationPopover 
                       popoverTitle="Confirmation"
@@ -146,12 +199,12 @@
                       (confirm)="deleteAgent(row)"> 
                       <i class="far fa-trash-alt"></i>
                       </button> -->
-          </ng-template>
-        </ngx-datatable-column>
+            </ng-template>
+          </ngx-datatable-column>
+        
+        </ngx-datatable>      
 
-      </ngx-datatable>
+      </div>
 
     </div>
-
   </div>
-</div>

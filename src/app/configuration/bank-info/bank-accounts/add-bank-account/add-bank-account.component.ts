@@ -10,11 +10,12 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./add-bank-account.component.css']
 })
 export class AddBankAccountComponent implements OnInit {
-  banks: any = [];
-  response: any;
-  data: any = {};
+  banks:any=[];
+  bankId =null;
+  response:any;
+  data:any={};
 
-  constructor(private http: HttpClient,
+  constructor(private http:HttpClient,
     private toastr: ToastrService,
     private _NgbActiveModal: NgbActiveModal) { }
 
@@ -22,66 +23,68 @@ export class AddBankAccountComponent implements OnInit {
     this.getBanks();
   }
 
-
+    
   get activeModal() {
     return this._NgbActiveModal;
   }
 
-
-  getBanks() {
+ 
+  getBanks()
+  {
     this.http.get(`${environment.apiUrl}/api/Lookups/Banks`)
-      .subscribe(
-        res => {
-          this.response = res;
-          if (this.response.success == true) {
-            this.banks = this.response.data;
-          }
-          else {
-            this.toastr.error(this.response.message, 'Message.');
-          }
+    .subscribe(
+      res=> { 
+        this.response = res;
+        if (this.response.success == true){
+          this.banks =this.response.data;
+        }
+        else {
+          this.toastr.error('Something went Worng', 'Message.');
+            }
 
-        }, err => {
-          if (err.status == 400) {
-            this.toastr.error(this.response.message, 'Message.');
-          }
-        });
+      }, err => {
+        if (err.status == 400) {
+          this.toastr.error('Something went Worng', 'Message.');
+        }
+      });
   }
 
 
 
 
 
-  addBankAccount() {
-    let varr = {
-      "bankId": this.data.bankId,
+  addBankAccount()
+  {
+    let varr=  {
+      "bankId": this.bankId,
       "accountName": this.data.accountName,
       "accountNumber": this.data.accountNumber,
       "iban": this.data.iban,
       "swiftCode": this.data.swiftCode,
       "type": this.data.type,
       "default": this.data.default
-
+     
     }
 
     this.http.
-      post(`${environment.apiUrl}/api/Configs/AddBankAccount`, varr)
-      .subscribe(
-        res => {
+    post(`${environment.apiUrl}/api/Configs/AddBankAccount`,varr)
+    .subscribe(
+      res=> { 
+  
+        this.response = res;
+        if (this.response.success == true){
+          this.toastr.success(this.response.message, 'Message.');
+          this.activeModal.close(true);
+        }
+        else {
+          this.toastr.error('Something went Worng', 'Message.');
+            }
 
-          this.response = res;
-          if (this.response.success == true) {
-            this.toastr.success(this.response.message, 'Message.');
-            this.activeModal.close(true);
-          }
-          else {
-            this.toastr.error(this.response.message, 'Message.');
-          }
-
-        }, err => {
-          if (err.status == 400) {
-            this.toastr.error(this.response.message, 'Message.');
-          }
-        });
+      }, err => {
+        if (err.status == 400) {
+          this.toastr.error('Something went Worng', 'Message.');
+        }
+      });
   }
 
 }

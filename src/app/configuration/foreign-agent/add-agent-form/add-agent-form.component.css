@@ -20,7 +20,14 @@ label {
 /* .check-btn {
   margin-left: 100px;
 } */
-
+.error {
+  border: 1px solid #e03a37 !important;
+  border-left: 3px solid #e03a37 !important;
+  background-repeat: no-repeat;
+  background-position: center right 20px;
+  background-image: url("/assets/caution.png");
+  background-size: 20px;
+}
 .form-control {
   box-shadow: 0 0 0 0 !important;
 }

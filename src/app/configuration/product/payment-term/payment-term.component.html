@@ -1,3 +1,31 @@
+<!-- <div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-5">
+      <div class="col-sm-12">
+        <h2 class="row wrapper page-header "><strong>Payment Terms</strong>
+          <small class="ml-2 text-muted">Payment Terms</small>
+
+        </h2>
+      </div>
+    </div>
+  </div>
+</div> -->
+<!-- 
+<div class="content-header">
+  <div class="col-sm-12 mb-4">
+    <h2 class="row wrapper page-header font-weight-light"> Payment Terms
+      <div class="ml-2 text-muted descr">Payment Terms
+        <small>Configuration / Product / Payment Terms</small>
+
+      </div>
+    </h2>
+  </div>
+</div> -->
+
+
+
+
+
 <div class="content-header">
 
   <div class="row">
@@ -10,6 +38,7 @@
     <div class="col-sm-12 col-md-6 col-lg-4">
       <ol class="breadcrumb flt-RnL">
         <li class="breadcrumb-item"><a href="#">Configuration</a></li>
+        <!-- <li class="breadcrumb-item">Product</li> -->
         <li class="breadcrumb-item active" aria-current="page">Payment Terms</li>
       </ol>
     </div>
@@ -20,11 +49,33 @@
 
 
 
-<div class="card ibox-content">
+<div class="ibox-content shadow">
   <div class=" panel blank-panel">
 
     <div class=" panel-heading">
 
+      <!-- <table class="table">
+            <tbody>
+                <tr>
+                    <td  class="noBorder">
+                        <button type="button" class="btn btn-primary descBtn"> 
+                        <i class="fas fa-money-bill-alt fa-fw mr-2"></i>
+                            {{listCount}}
+                      </button>
+
+                        <span class="text-muted text2">Payment Terms</span>
+                    </td>
+                    <td class="noBorder">
+                        <button type="button" class="btn  m-r-sm text-s-md px-3"> </button>
+                        <span class="text-muted text"></span>
+                    </td>
+                    <td class="noBorder" >
+                        <button type="button" class="btn btn-primary btn-md float-right" (click)="addPaymentForm()" >
+                          <i class="fa fa-plus" ></i> Add Payment Terms</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table> -->
 
       <div class="row mb-3">
         <div class="col-md-6 ">
@@ -56,7 +107,9 @@
                 <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
                   aria-controls="DataTables_Table_0"><span>CSV</span></a>
                 <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
-                  aria-controls="DataTables_Table_0" (click)="exportAsXLSX()"><span>Excel</span></a>
+                  aria-controls="DataTables_Table_0"
+                  (click)="exportAsXLSX()"
+                  ><span>Excel</span></a>
                 <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0"
                   aria-controls="DataTables_Table_0"><span>PDF</span></a>
                 <a class="btn btn-default buttons-print bg-white" tabindex="0"
@@ -76,8 +129,8 @@
         [headerHeight]="50" [footerHeight]="50" [sorts]="[{prop: 'id', dir: 'asce'}]" [rowHeight]="'auto'" [limit]="6">
 
         <ngx-datatable-column name="S. No." [width]="20" prop="i">
-          <ng-template let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
-            {{rowIndex + 1}}
+          <ng-template let-row="row" *ngFor="let i of rows" ngx-datatable-cell-template>
+            {{i}}
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="Payment Terms" [width]="80" prop="term">
@@ -92,10 +145,16 @@
         </ngx-datatable-column>
         <ngx-datatable-column name="Status" [width]="80">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-
+            
             <span class="badge badge-primary" *ngIf="row.active==true">Active</span>
             <span class="badge badge-secondary" *ngIf="row.active==false">Inactive</span>
 
+            <!-- <div class="active" *ngIf="row.active==true">
+              Active
+            </div>
+            <div class="inactive" *ngIf="row.active==false">
+              Inactive
+            </div> -->
 
           </ng-template>
         </ngx-datatable-column>
@@ -106,18 +165,25 @@
         </ngx-datatable-column>
         <ngx-datatable-column name="Action" [width]="80">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-
+            
             <div class="ibox-tools text-center">
-              <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top" title=""
-                data-original-title="Edit" (click)="editPaymentForm(row) ">
-                <i class="far fa-edit "></i>
-              </button>
-              <button type="button" class="btn deleteIconBack" data-toggle="tooltip" data-placement="top" title=""
-                data-original-title="Delete" (click)="deletePayment(row)">
-                <i class="far fa-trash-alt"></i>
-              </button>
+            <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" (click)="editPaymentForm(row) ">
+              <i class="far fa-edit "></i>
+            </button>
+            <button type="button" class="btn deleteIconBack" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" (click)="deletePayment(row)">
+              <i class="far fa-trash-alt"></i>
+            </button>
             </div>
 
+            <!-- <button type="button" 
+            class="btn deleteIconBack"
+            mwlConfirmationPopover 
+            popoverTitle="Confirmation"
+            popoverMessage="Are you sure ?" 
+            placement="left" 
+            (confirm)="deletePayment(row)"> 
+            <i class="far fa-trash-alt"></i>
+            </button> -->
           </ng-template>
         </ngx-datatable-column>
 

@@ -15,22 +15,23 @@ import { ServiceService } from 'src/app/shared/service.service';
   styleUrls: ['./design-type.component.css']
 })
 export class DesignTypeComponent implements OnInit {
-  response: any;
-  rows: any = [];
-  columns: any = [];
-  data: any = {};
+  response:any;
+  rows:any=[];
+  columns:any=[];
+  data:any={};
   listCount: number;
-  myDate = Date.now();
-  temp: any = [];
+  myDate=Date.now();
+  temp: any=[];
 
 
-  constructor(private http: HttpClient,
+  constructor(private http:HttpClient,
     private toastr: ToastrService,
-    private service: ServiceService,
+    private service:ServiceService,
     private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.fetch((data) => {
+      this.temp = [...data];
       this.rows = data;
     });
   }
@@ -40,9 +41,9 @@ export class DesignTypeComponent implements OnInit {
 
     // filter our data
     const temp = this.temp.filter(function (d) {
-      return (d.type.toLowerCase().indexOf(val) !== -1 || !val);
+      return (d.type.toLowerCase().indexOf(val) !== -1  || !val);
     });
-
+ 
     // update the rows
     this.rows = temp;
     // Whenever the filter changes, always go back to the first page
@@ -50,41 +51,39 @@ export class DesignTypeComponent implements OnInit {
   }
 
 
-
+  
   fetch(cb) {
     let that = this;
     that.http
-      .get(`${environment.apiUrl}/api/TextileGarments/GetAllDesignType`)
-      .subscribe(res => {
-        this.response = res;
-
-
-        this.listCount = this.response.data.length;
-        if (this.response.success == true) {
-          this.data = this.response.data;
-          this.temp = [...this.data];
-          cb(this.data);
-        }
-        else {
-          this.toastr.error(this.response.message, 'Message.');
-        }
-        // this.spinner.hide();
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error(err.error.message, 'Message.');;
-        }
-        //  this.spinner.hide();
-      });
+    .get(`${environment.apiUrl}/api/TextileGarments/GetAllDesignType`)
+    .subscribe(res => {
+      this.response = res;
+      this.listCount = this.response.data.length;
+    if(this.response.success==true)
+    {
+    that.data =this.response.data;
+    cb(this.data);
+    }
+    else{
+      this.toastr.error(this.response.message, 'Message.');
+    }
+      // this.spinner.hide();
+    }, err => {
+      if ( err.status == 400) {
+ this.toastr.error(err.error.message, 'Message.');;
+      }
+    //  this.spinner.hide();
+    });
   }
 
 
 
 
 
-  deleteDesignType(id) {
+  deleteDesignType(id){
     Swal.fire({
       title: GlobalConstants.deleteTitle, //'Are you sure?',
-      text: GlobalConstants.deleteMessage + ' ' + '"' + id.type + '"',
+      text: GlobalConstants.deleteMessage+' '+'"'+ id.type +'"',
       icon: 'error',
       showCancelButton: true,
       confirmButtonColor: '#ed5565',
@@ -95,28 +94,28 @@ export class DesignTypeComponent implements OnInit {
       position: 'top',
     }).then((result) => {
       if (result.isConfirmed) {
-
-        this.http.delete(`${environment.apiUrl}/api/TextileGarments/DeleteDesignType/` + id.id)
-          .subscribe(
-            res => {
-              this.response = res;
-              if (this.response.success == true) {
-                this.toastr.error(this.response.message, 'Message.');
-                this.fetch((data) => {
-                  this.rows = data;
-                  this.listCount = this.rows.length;
-                });
-
-              }
-              else {
-                this.toastr.error(this.response.message, 'Message.');
-              }
-
-            }, err => {
-              if (err.status == 400) {
-                this.toastr.error(this.response.message, 'Message.');
-              }
+    
+        this.http.delete(`${environment.apiUrl}/api/TextileGarments/DeleteDesignType/`+id.id )
+        .subscribe(
+          res=> { 
+            this.response = res;
+            if (this.response.success == true){
+             this.toastr.error(this.response.message, 'Message.');
+             this.fetch((data) => {
+              this.rows = data;
+              this.listCount = this.rows.length;
             });
+              
+            }
+            else {
+              this.toastr.error(this.response.message, 'Message.');
+                }
+     
+          }, err => {
+            if (err.status == 400) {
+              this.toastr.error(this.response.message, 'Message.');
+            }
+          });
         // Swal.fire(
         //   'Record',
         //   'Deleted Successfully.',
@@ -124,57 +123,57 @@ export class DesignTypeComponent implements OnInit {
         // )
       }
     })
+    
+    }
 
-  }
-
-  addDesignTypeForm() {
+  addDesignTypeForm(){
     const modalRef = this.modalService.open(AddDesignTypeComponent, { centered: true });
-    modalRef.result.then((data) => {
-      // on close
-      if (data == true) {
-        //  this.date = this.myDate;
-        this.fetch((data) => {
-          this.rows = data;
-          this.listCount = this.rows.length;
-        });
+          modalRef.result.then((data) => {
+         // on close
+          if(data ==true){
+          //  this.date = this.myDate;
+           this.fetch((data) => {
+            this.rows = data;
+            this.listCount = this.rows.length;
+          });
+           
+  
+         }
+       }, (reason) => {
+         // on dismiss
+       });
+  } 
+  
 
-
-      }
-    }, (reason) => {
-      // on dismiss
-    });
-  }
-
-
-  editDesignTypeForm(row) {
+  editDesignTypeForm(row){
     const modalRef = this.modalService.open(EditDesignTypeComponent, { centered: true });
-    modalRef.componentInstance.userId = row.id;
-    modalRef.result.then((data) => {
-      // on close
-      if (data == true) {
-        //  this.date = this.myDate;
-        this.fetch((data) => {
-          this.rows = data;
-
-        });
-
-      }
-    }, (reason) => {
-      // on dismiss
-    });
-  }
-
+    modalRef.componentInstance.userId =row.id;
+          modalRef.result.then((data) => {
+         // on close
+          if(data ==true){
+          //  this.date = this.myDate;
+           this.fetch((data) => {
+            this.rows = data;
+            
+          });
+           
+         }
+       }, (reason) => {
+         // on dismiss
+       });
+  } 
+  
   exportAsXLSX(): void {
     const filtered = this.data.map(row => ({
-      SNo: row.id,
-      DesignType: row.type,
-      Details: row.description,
-      Status: row.active == true ? "Active" : "In-Active",
-      LastChange: row.updatedDateTime + '|' + row.updatedByName
-    }));
-
+      SNo:row.id,
+    DesignType :row.type,
+     Details:row.description,
+  Status:row.active == true ? "Active" : "In-Active",
+  LastChange :row.updatedDateTime + '|' + row.updatedByName 
+   }));
+   
     this.service.exportAsExcelFile(filtered, 'Design Type');
-
+  
   }
 
 }

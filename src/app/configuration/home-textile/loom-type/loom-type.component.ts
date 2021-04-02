@@ -26,11 +26,12 @@ export class LoomTypeComponent implements OnInit {
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
-    private service: ServiceService,
+    private service:ServiceService,
     private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.fetch((data) => {
+      this.temp = [...data];
       this.rows = data;
     });
   }
@@ -59,7 +60,6 @@ export class LoomTypeComponent implements OnInit {
         this.listCount = this.response.data.length;
         if (this.response.success == true) {
           that.data = this.response.data;
-          this.temp = [...this.data];
           cb(this.data);
         }
         else {
@@ -79,7 +79,7 @@ export class LoomTypeComponent implements OnInit {
   deleteLoom(id) {
     Swal.fire({
       title: GlobalConstants.deleteTitle, //'Are you sure?',
-      text: GlobalConstants.deleteMessage + ' ' + '"' + id.type + '"',
+      text: GlobalConstants.deleteMessage+' '+'"'+ id.type +'"',
       icon: 'error',
       showCancelButton: true,
       confirmButtonColor: '#ed5565',
@@ -163,15 +163,15 @@ export class LoomTypeComponent implements OnInit {
 
   exportAsXLSX(): void {
     const filtered = this.data.map(row => ({
-      SNo: row.id,
-      LoomType: row.type,
-      Details: row.description,
-      Status: row.active == true ? "Active" : "In-Active",
-      LastChange: row.updatedDateTime + '|' + row.updatedByName
-    }));
-
+      SNo:row.id,
+    LoomType :row.type,
+     Details:row.description,
+  Status:row.active == true ? "Active" : "In-Active",
+  LastChange :row.updatedDateTime + '|' + row.updatedByName 
+   }));
+   
     this.service.exportAsExcelFile(filtered, 'Loom Type');
-
+  
   }
 
 }

@@ -28,7 +28,7 @@ export class ForeignAgentComponent implements OnInit {
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
-    private service: ServiceService,
+    private service:ServiceService,
     private modalService: NgbModal,) { }
 
   ngOnInit(): void {
@@ -45,7 +45,7 @@ export class ForeignAgentComponent implements OnInit {
     // filter our data
     const temp = this.temp.filter(function (d) {
       return (d.code.toLowerCase().indexOf(val) !== -1 ||
-
+      
         d.name.toLowerCase().indexOf(val) !== -1 || !val);
     });
 
@@ -65,8 +65,6 @@ export class ForeignAgentComponent implements OnInit {
         this.response = res;
         if (this.response.success == true) {
           that.data = this.response.data;
-          this.temp = [...this.data];
-
           this.listCount = this.response.data.length;
           cb(this.data);
         }
@@ -88,7 +86,7 @@ export class ForeignAgentComponent implements OnInit {
   deleteAgent(id) {
     Swal.fire({
       title: GlobalConstants.deleteTitle, //'Are you sure?',
-      text: GlobalConstants.deleteMessage + ' ' + '"' + id.name + '"',
+      text: GlobalConstants.deleteMessage+' '+'"'+ id.name +'"',
       icon: 'error',
       showCancelButton: true,
       confirmButtonColor: '#ed5565',
@@ -143,6 +141,7 @@ export class ForeignAgentComponent implements OnInit {
       if (data == true) {
         this.date = this.myDate;
         this.fetch((data) => {
+          this.temp = [...data];
           this.rows = data;
           this.listCount = this.rows.length;
         });
@@ -174,24 +173,24 @@ export class ForeignAgentComponent implements OnInit {
     });
   }
 
-  // excell
-  exportAsXLSX(): void {
-    const filtered = this.data.map(row => ({
-      AgentCode: row.code,
-      AgentName: row.name,
-      AgentType: row.agentTypeId,
-      Address: row.address,
-      ContactNum: row.cellNumber,
-      Email: row.emailAddress,
-      Status: row.active == true ? "Active" : "In-Active",
-      Side: row.agentSideId,
-      LastChangedOn: row.updatedDateTime + '|' + row.createdByName
+// excell
+exportAsXLSX(): void {
+  const filtered = this.data.map(row => ({
+AgentCode :row.code,
+AgentName:row.name,
+AgentType:row.agentTypeId,
+Address:row.address,
+ContactNum:row.cellNumber,
+Email:row.emailAddress,
+Status:row.active == true ? "Active" : "In-Active",
+Side:row.agentSideId,
+LastChangedOn :row.updatedDateTime + '|' + row.createdByName
 
-    }));
+  }));
+ 
+  this.service.exportAsExcelFile(filtered, 'Agent');
 
-    this.service.exportAsExcelFile(filtered, 'Agent');
-
-  }
+}
 
 
 }

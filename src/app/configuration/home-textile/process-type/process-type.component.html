@@ -1,3 +1,17 @@
+<!-- <div class="content-header">
+  <div class="col-sm-12 mb-4">
+    <h2 class="row wrapper page-header font-weight-light"> Process Type
+      <div class="ml-2 text-muted descr">Process Type Description
+        <small>Configuration / Textile-Garments /  Process Type</small>
+      </div>
+    </h2>
+  </div>
+</div> -->
+
+
+
+
+
 <div class="content-header">
 
   <div class="row">
@@ -10,6 +24,7 @@
     <div class="col-sm-12 col-md-6 col-lg-4">
       <ol class="breadcrumb flt-RnL">
         <li class="breadcrumb-item"><a href="#">Configuration</a></li>
+        <!-- <li class="breadcrumb-item">Textile-Garments</li> -->
         <li class="breadcrumb-item active" aria-current="page">Process Type</li>
       </ol>
     </div>
@@ -22,17 +37,38 @@
 
 
 
-<div class="card ibox-content">
+<div class="ibox-content shadow">
   <div class=" panel blank-panel">
 
     <div class="panel-heading">
+
+      <!-- <table class="table">
+        <tbody>
+          <tr>
+            <td class="noBorder">
+              <button type="button" class="btn btn-primary descBtn ">
+                <i class="fas fa-anchor fa-fw mr-2"></i>{{listCount}}</button>
+              <span class="text-muted text2">Process</span>
+            </td>
+            <td class="noBorder">
+              <button type="button" class="btn  m-r-sm text-s-md px-3"> </button>
+              <span class="text-muted text"></span>
+            </td>
+            <td class="noBorder">
+              <button type="button" class="btn btn-primary btn-md float-right" (click)="addProcessTypeForm()"><i
+                  class="fa fa-plus"></i> Add Process Type</button>
+            </td>
+          </tr>
+        </tbody>
+      </table> -->
+
 
 
       <div class="row mb-3">
         <div class="col-md-6 ">
           <button type="button" class="btn btn-primary descBtn ml-sm-none ml-md-2 ">
             <i class="fas fa-anchor fa-fw mr-2"></i>{{listCount}}</button>
-          <span class="text-muted text2">Process</span>
+            <span class="text-muted text2">Process</span>
         </div>
         <div class="col-md-6 mrg-tsm">
           <button type="button" class="btn btn-primary btn-md float-right" (click)="addProcessTypeForm()">
@@ -57,7 +93,9 @@
                 <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
                   aria-controls="DataTables_Table_0"><span>CSV</span></a>
                 <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
-                  aria-controls="DataTables_Table_0" (click)="exportAsXLSX()"><span>Excel</span></a>
+                  aria-controls="DataTables_Table_0"
+                  (click)="exportAsXLSX()"
+                  ><span>Excel</span></a>
                 <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0"
                   aria-controls="DataTables_Table_0"><span>PDF</span></a>
                 <a class="btn btn-default buttons-print bg-white" tabindex="0"
@@ -72,13 +110,12 @@
       <div class="panel-body">
 
         <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'"
-          [headerHeight]="50" [footerHeight]="50" [sorts]="[{prop: 'type', dir: 'asce'}]" [rowHeight]="'auto'"
+          [headerHeight]="50" [footerHeight]="50" [sorts]="[{prop: 'id', dir: 'asce'}]" [rowHeight]="'auto'"
           [limit]="6">
 
           <ngx-datatable-column name="S. No." [width]="5" prop="id">
-            <ng-template let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
-              {{rowIndex + 1}}
-
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.id}}
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Process Type" [width]="40" prop="type">
@@ -93,9 +130,16 @@
           </ngx-datatable-column>
           <ngx-datatable-column name="Status" [width]="10">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-
+             
               <span class="badge badge-primary" *ngIf="row.active==true">Active</span>
               <span class="badge badge-secondary" *ngIf="row.active==false">Inactive</span>
+
+              <!-- <div class="active" *ngIf="row.active==true">
+                Active
+              </div>
+              <div class="inactive" *ngIf="row.active==false">
+                Inactive
+              </div> -->
 
             </ng-template>
           </ngx-datatable-column>
@@ -106,7 +150,7 @@
           </ngx-datatable-column>
           <ngx-datatable-column name="Action" [width]="80">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-
+              
 
               <div class="ibox-tools text-center">
                 <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top" title=""
@@ -118,7 +162,7 @@
                   <i class="far fa-trash-alt"></i>
                 </button>
               </div>
-
+              
 
             </ng-template>
           </ngx-datatable-column>
@@ -126,6 +170,6 @@
       </div>
 
     </div>
-
+    
   </div>
-</div>
+  </div>

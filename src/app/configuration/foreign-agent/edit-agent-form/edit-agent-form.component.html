@@ -1,7 +1,13 @@
 <!-- Modal -->
 
 <div class="modal-header">
-  <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
+  <button
+    type="button"
+    class="close"
+    data-dismiss="modal"
+    aria-label="Close"
+    (click)="activeModal.close()"
+  >
     <span aria-hidden="true">&times;</span>
   </button>
   <h5 class="modal-title">
@@ -13,52 +19,93 @@
 <div class="modal-body BG pt-2r">
   <form #addAgentForm="ngForm" novalidate>
 
-
+    
     <div class="form-group row">
-      <label name="agentTypeId" class="col-sm-3 col-form-label text_Navy">
-        Type</label>
+      <label
+        name="agentTypeId"
+        class="col-sm-3 col-form-label text_Navy"
+        [(ngModel)]="agentTypeId"
+      >
+        Type</label
+      >
       <div class="col-sm-8">
-        <ng-select [(ngModel)]="data.agentTypeId" placeholder="-- Select --" name="agentTypeId">
-          <ng-option *ngFor="let i of agentType" [value]="i.id">{{ i.name }}
-          </ng-option>
-        </ng-select>
+        <select class="form-control">
+          <option disabled>Select ID</option>
+          <option>External Agent</option>
+        </select>
       </div>
     </div>
 
     <div class="form-group row">
-      <label name="agentSideId" class="col-sm-3 col-form-label text_Navy">
+      <label
+        name="agentSideId"
+        class="col-sm-3 col-form-label text_Navy"
+        [(ngModel)]="agentSideId"
+      >
         Side
       </label>
       <div class="col-sm-8">
-        <ng-select [(ngModel)]="data.agentSideId" placeholder="-- Select --" name="agentSideId">
-          <ng-option *ngFor="let i of agentSide" [value]="i.id">{{ i.name }}
-          </ng-option>
-        </ng-select>
+        <select class="form-control">
+          <option>Buyer side agent</option>
+          <option *ngFor="let i of agentSideId" [value]="i.id">
+            {{ i.id }}
+          </option>
+        </select>
       </div>
     </div>
 
-    <div class="form-group row" [class.has-error]="name.invalid && name.touched">
-      <label for="name" class="col-sm-3 col-form-label control-label text_Navy">Name
+    <div
+      class="form-group row"
+      [class.has-error]="name.invalid && name.touched"
+    >
+      <label for="name" class="col-sm-3 col-form-label control-label text_Navy"
+        >Name
       </label>
       <div class="col-sm-8">
-        <input appAutofocus required id="name" type="text" class="form-control" placeholder="Enter Agent full name"
-          name="name" [(ngModel)]="data.name" #name="ngModel" [ngClass]="{ error: name.invalid }" />
+        <input
+          required
+          id="name"
+          type="text"
+          class="form-control"
+          placeholder="Enter Agent full name"
+          name="name"
+          [(ngModel)]="data.name"
+          #name="ngModel"
+          [ngClass]="{ error: name.invalid }"
+        />
       </div>
     </div>
 
     <div class="form-group row">
-      <label for="name" class="col-sm-3 col-form-label text-grey">Address</label>
+      <label for="name" class="col-sm-3 col-form-label text-grey"
+        >Address</label
+      >
       <div class="col-sm-8">
-        <input id="address" type="text" maxlength="300" class="form-control" placeholder="Enter Agent mailing address"
-          name="address" [(ngModel)]="data.address" #address="ngModel" />
+        <input
+         
+          id="address"
+          type="text"
+          maxlength="300"
+          class="form-control"
+          placeholder="Enter Agent mailing address"
+          name="address"
+          [(ngModel)]="data.address"
+          #address="ngModel"
+        />
       </div>
     </div>
 
     <div class="form-group row">
       <label for="city" class="col-sm-3 col-form-label">City</label>
       <div class="col-sm-8">
-        <ng-select [(ngModel)]="data.cityId" required placeholder="-- Select --" name="city">
-          <ng-option *ngFor="let i of city" [value]="i.id">{{ i.name }}
+        <ng-select
+          [(ngModel)]="data.cityId"
+          required
+          placeholder="-- Select --"
+          name="city"
+        >
+          <ng-option *ngFor="let i of city" [value]="i.id"
+            >{{ i.name }}
           </ng-option>
         </ng-select>
       </div>
@@ -67,10 +114,17 @@
     <div class="form-group row">
       <label for="name" class="col-sm-3 col-form-label text-grey">Email</label>
       <div class="col-sm-8">
-        <input id="emailAddress" type="text" maxlength="50"
+        <input
+          id="emailAddress"
+          type="text"
+          maxlength="50"
           pattern="[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})"
-          class="form-control" placeholder="Enter Agent email address" name="emailAddress"
-          [(ngModel)]="data.emailAddress" #emailAddress="ngModel" />
+          class="form-control"
+          placeholder="Enter Agent email address"
+          name="emailAddress"
+          [(ngModel)]="data.emailAddress"
+          #emailAddress="ngModel"
+        />
         <p *ngIf="emailAddress.invalid">
           Invalid Input or Length
         </p>
@@ -78,77 +132,165 @@
     </div>
 
     <div class="form-group row">
-      <label for="cellNumber" class="col-sm-3 col-form-label text-grey">Contact Nos.</label>
+      <label for="cellNumber" class="col-sm-3 col-form-label text-grey"
+        >Contact Nos.</label
+      >
       <div class="col-sm-8">
-        <input type="text" pattern="[+0-9-]{7,15}" maxlength="15" minlength="7" class="form-control" id="cellNumber"
-          placeholder="Enter mobile numbers" name="cellNumber" [(ngModel)]="data.cellNumber" #cellNumber="ngModel"
-          cellNumber />
+        <input
+          type="text"
+          pattern="[+0-9-]{7,15}"
+          maxlength="15"
+          minlength="7"
+          class="form-control"
+          id="cellNumber"
+          placeholder="Enter mobile numbers"
+          name="cellNumber"
+          [(ngModel)]="data.cellNumber"
+          #cellNumber="ngModel"
+          cellNumber
+        />
         <p *ngIf="cellNumber.invalid">
           Invalid Input or Length</p>
       </div>
       <label class="col-sm-3 col-form-label"></label>
       <div class="col-sm-8 mt-1">
-        <input type="text" pattern="[+0-9-]{7,15}" class="form-control" id="landlineNumber"
-          placeholder="Enter Land numbers" name="landlineNumber" [(ngModel)]="data.landlineNumber"
-          #landlineNumber="ngModel" />
+        <input
+          type="text"
+          pattern="[+0-9-]{7,15}"
+          class="form-control"
+          id="landlineNumber"
+          placeholder="Enter Land numbers"
+          name="landlineNumber"
+          [(ngModel)]="data.landlineNumber"
+          #landlineNumber="ngModel"
+        />
         <p *ngIf="landlineNumber.invalid">
           Invalid Input or Length</p>
       </div>
     </div>
 
     <div class="form-group row">
-      <label for="bankName" class="col-sm-3 col-form-label control-label text-grey">Bank
+      <label
+        for="bankName"
+        class="col-sm-3 col-form-label control-label text-grey"
+        >Bank
       </label>
       <div class="col-sm-8">
-        <input id="bankName" type="text" maxlength="100" class="form-control" placeholder="Enter Agent Bank Name"
-          name="bankName" [(ngModel)]="data.bankName" #bankName="ngModel" />
+        <input
+          id="bankName"
+          type="text"
+          maxlength="100"
+          class="form-control"
+          placeholder="Enter Agent Bank Name"
+          name="bankName"
+          [(ngModel)]="data.bankName"
+          #bankName="ngModel"
+        />
       </div>
     </div>
 
-    <div class="form-group row" [class.has-error]="accountNumber.invalid && accountNumber.touched">
-      <label for="accountNumber" class="col-sm-3 col-form-label control-label text-grey">Account
+    <div
+      class="form-group row"
+      [class.has-error]="accountNumber.invalid && accountNumber.touched"
+    >
+      <label
+        for="accountNumber"
+        class="col-sm-3 col-form-label control-label text-grey"
+        >Account
       </label>
       <div class="col-sm-8">
-        <input id="accountNumber" type="text" class="form-control" pattern="[0-9]{8,11}"
-          placeholder="Enter Agent Account No." name="accountNumber" [(ngModel)]="data.accountNumber"
-          #accountNumber="ngModel" />
+        <input
+         
+          id="accountNumber"
+          type="text"
+          class="form-control"
+          pattern="[0-9]{8,11}"
+          placeholder="Enter Agent Account No."
+          name="accountNumber"
+          [(ngModel)]="data.accountNumber"
+          #accountNumber="ngModel"
+        
+        />
         <p *ngIf="accountNumber.invalid">
           Invalid Input or Length</p>
       </div>
       <label class="col-sm-3 col-form-label control-label text-grey"></label>
       <div class="col-sm-8 mt-1">
-        <input id="accountTitle" type="text" class="form-control" placeholder="Enter Agent Account name"
-          name="accountTitle" [(ngModel)]="data.accountTitle" #accountTitle="ngModel"
-          [ngClass]="{ error: accountTitle.invalid}" />
+        <input
+         
+          id="accountTitle"
+          type="text"
+          class="form-control"
+          placeholder="Enter Agent Account name"
+          name="accountTitle"
+          [(ngModel)]="data.accountTitle"
+          #accountTitle="ngModel"
+          [ngClass]="{ error: accountTitle.invalid}"
+        />
       </div>
     </div>
 
-    <div class="form-group row" [class.has-error]="swiftCode.invalid && swiftCode.touched">
-      <label for="swiftCode" class="col-sm-3 col-form-label control-label text-grey">Swift
+    <div
+      class="form-group row"
+      [class.has-error]="swiftCode.invalid && swiftCode.touched"
+    >
+      <label
+        for="swiftCode"
+        class="col-sm-3 col-form-label control-label text-grey"
+        >Swift
       </label>
       <div class="col-sm-8">
-        <input id="swiftCode" type="text" pattern="[+0-9-]{8,11}" class="form-control"
-          placeholder="Enter Agent Account swift code" name="swiftCode" [(ngModel)]="data.swiftCode"
-          #swiftCode="ngModel" />
+        <input
+          
+          id="swiftCode"
+          type="text"
+          pattern="[+0-9-]{8,11}"
+          class="form-control"
+          placeholder="Enter Agent Account swift code"
+          name="swiftCode"
+          [(ngModel)]="data.swiftCode"
+          #swiftCode="ngModel"
+         
+        />
         <p *ngIf="swiftCode.invalid">Invalid Input or Length</p>
       </div>
     </div>
 
     <div class="form-group row">
-      <label for="details" class="col-sm-3 col-form-label text-grey">Details</label>
+      <label for="details" class="col-sm-3 col-form-label text-grey"
+        >Details</label
+      >
       <div class="col-sm-8">
-        <textarea class="form-control" id="details" rows="3" maxlength="300"
-          placeholder="Description or note for agent ..." name="details" [(ngModel)]="data.details" #details="ngModel">
+        <textarea
+          class="form-control"
+          id="details"
+          rows="3"
+          maxlength="300"
+          placeholder="Description or note for agent ..."
+          name="details"
+          [(ngModel)]="data.details"
+          #details="ngModel"
+        >
         </textarea>
       </div>
     </div>
   </form>
 </div>
 <div class="modal-footer NotBG">
-  <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
+  <button
+    type="button"
+    class="btn btn-outline-secondary noHover"
+    data-dismiss="modal"
+    (click)="activeModal.close()"
+  >
     Close
   </button>
-  <button class="btn button-save" type="submit" (click)="UpdateAgent()" [disabled]="addAgentForm.invalid">
+  <button
+    class="btn button-save"
+    type="submit"
+    (click)="UpdateAgent()"
+    [disabled]="addAgentForm.invalid"
+  >
     Update Agent
   </button>
 </div>

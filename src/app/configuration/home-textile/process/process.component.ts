@@ -23,11 +23,12 @@ export class ProcessComponent implements OnInit {
   temp: any = [];
   constructor(private http: HttpClient,
     private toastr: ToastrService,
-    private service: ServiceService,
+    private service:ServiceService,
     private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.fetch((data) => {
+      this.temp = [...data];
       this.rows = data;
     });
   }
@@ -58,8 +59,6 @@ export class ProcessComponent implements OnInit {
         this.listCount = this.response.data.length;
         if (this.response.success == true) {
           that.data = this.response.data;
-          this.temp = [...this.data];
-
           cb(this.data);
         }
         else {
@@ -80,7 +79,7 @@ export class ProcessComponent implements OnInit {
   deleteProcess(id) {
     Swal.fire({
       title: GlobalConstants.deleteTitle, //'Are you sure?',
-      text: GlobalConstants.deleteMessage + ' ' + '"' + id.name + '"',
+      text: GlobalConstants.deleteMessage+' '+'"'+ id.name +'"',
       icon: 'error',
       showCancelButton: true,
       confirmButtonColor: '#ed5565',
@@ -164,17 +163,17 @@ export class ProcessComponent implements OnInit {
 
   exportAsXLSX(): void {
     const filtered = this.data.map(row => ({
-      SNo: row.id,
-      ProcessName: row.name,
-      Details: row.description,
-      Status: row.active == true ? "Active" : "In-Active",
-      LastChange: row.updatedDateTime + '|' + row.updatedByName
-
-
+      SNo:row.id,
+    ProcessName :row.name,
+     Details:row.description,
+  Status:row.active == true ? "Active" : "In-Active",
+  LastChange :row.updatedDateTime + '|' + row.updatedByName 
+  
+  
     }));
-
+   
     this.service.exportAsExcelFile(filtered, 'Process');
-
+  
   }
 
 

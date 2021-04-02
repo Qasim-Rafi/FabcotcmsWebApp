@@ -9,7 +9,7 @@ import { AddSellerFormComponent } from './seller/add-seller-form/add-seller-form
 import { ForeignAgentComponent } from './foreign-agent/foreign-agent.component';
 import { AddAgentFormComponent } from './foreign-agent/add-agent-form/add-agent-form.component';
 import { EditAgentFormComponent } from './foreign-agent/edit-agent-form/edit-agent-form.component';
-import { NgbDatepickerModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDatepickerModule, } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -70,12 +70,11 @@ import { AddCurrencyComponent } from './currency/add-currency/add-currency.compo
 import { EditCurrencyComponent } from './currency/edit-currency/edit-currency.component';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { ClipboardModule } from 'ngx-clipboard';
 import { SellerPocComponent } from './seller/seller-poc/seller-poc.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { AutofocusDirective } from '../autofocus.directive';
-
-
+// import { ClipboardModule } from '@angular/cdk/clipboard';
+import {ClipboardModule} from 'ngx-clipboard'
 @NgModule({
   declarations: [
     ConfigurationComponent,
@@ -121,14 +120,13 @@ import { AutofocusDirective } from '../autofocus.directive';
     CommonModule,
     ConfigurationRoutingModule,
     NgbDatepickerModule,
-    NgbModule,
     BrowserModule,
     AppRoutingModule,
+    ClipboardModule,
     NgxDatatableModule,
     FormsModule,
     NgSelectModule,
     ReactiveFormsModule,
-    ClipboardModule,
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({

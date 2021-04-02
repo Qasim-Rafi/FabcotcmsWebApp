@@ -20,6 +20,7 @@
 
 
 <div class="card ibox-content m-b-sm mb-3">
+  <!--span class="text-muted small pull-right">Last modification: <i class="fa fa-clock-o"></i> 2:10 pm - 12.06.2014</span -->
 
   <div class="row">
     <div class="col-md-3">
@@ -60,7 +61,7 @@
           </div>
           <div class="col-md-8 text-right">
             <div> Total Contacts </div>
-            <h3 class="font-bold">{{TotalPOC}}</h3>
+            <h3 class="font-bold">0</h3>
           </div>
         </div>
       </div>
@@ -84,6 +85,13 @@
 
   </div>
 
+  <!--
+    <span class="pull-right" style="margin-top: 8px;"> teams</span><h2 class="no-margins pull-right" data-toggle="tooltip" data-placement="top" title="Total Teams"> </h2>
+    <h2>Company Internal Team</h2>
+        <p>
+            Company internal teams are comprises of employees who are ticket stakeholders.
+        </p>
+    -->
   <hr>
 
   <div class="row justify-content-end">
@@ -98,18 +106,20 @@
 
         <button type="button" class="btn btn-primary float-right mrg-sm1" data-toggle="modal"
           data-target="#exampleModalScrollable" (click)="addBuyerForm()">
-          <i class="fa fa-plus" aria-hidden="true"></i> Add New Buyer</button>
+          <i class="fa fa-plus" aria-hidden="true"></i> Add New Buyer</button> 
 
       </div>
     </div>
   </div>
 
+  
+  
 
 
 </div>
 
 
-
+<!--    List   -->
 
 <div class="faq-item shadow-sm" *ngFor="let i of buyer ; let x = index">
   <div class="row">
@@ -117,7 +127,7 @@
       <div class="poc-icon">
         <a class="faq-question text-muted text-s-lg text-w-3" data-toggle="collapse" href="#buyer-{{ x }}" role="button"
           aria-expanded="false" aria-controls="collapseExample">
-          <span class="fa fa-users"></span>{{i.buyerPOCList.length}}</a>
+          <span class="fa fa-users"></span>{{CountPOC }}</a>
       </div>
     </div>
 
@@ -173,8 +183,7 @@
       <div class="col-sm-11">
         <button type="button" class="btn btn-primary float-right" data-toggle="modal"
           data-target="#exampleModalScrollable" (click)="addPocform(i,'BuyerAddPOC' )">
-          <i class="fa fa-user" aria-hidden="true"></i> POC not found, <i class="fa fa-plus" aria-hidden="true"></i> Add
-          a new one?
+          <i class="fa fa-user" aria-hidden="true"></i> POC not found, <i class="fa fa-plus" aria-hidden="true"></i> Add a new one?
         </button>
       </div>
 

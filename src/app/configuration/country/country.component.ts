@@ -178,18 +178,18 @@ export class CountryComponent implements OnInit {
 
   exportAsXLSX(): void {
     const filtered = this.data.map(row => ({
-      Sno: row.id,
-      CountryName: row.name,
-      Details: row.details,
-      Status: row.active == true ? "Active" : "In-Active",
-      CreatedOn: row.createdDateTime + ' | ' + row.createdByName
+  Sno :row.id,
+  CountryName:row.name,
+  Details:row.details,
+  Status:row.active == true ? "Active" : "In-Active",
+  CreatedOn :row.createdDateTime + ' | ' + row.createdByName 
+ 
 
-
-
-      // createdDateTime:row.row.createdDateTime
+    
+  // createdDateTime:row.row.createdDateTime
 
     }));
-
+ 
     this.service.exportAsExcelFile(filtered, 'Countries');
 
   }
