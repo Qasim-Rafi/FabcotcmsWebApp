@@ -57,9 +57,9 @@
       <div class="col-sm-8">
         <div class="row">
           <div class="col-sm-6">
-            <input pattern="[0-9]{0,15}" type="text" class="form-control" id="contactNoPrimary"
-              placeholder="Primary Contact No." name="contactNoPrimary" [(ngModel)]="data.contactNoPrimary"
-              #contactNoPrimary="ngModel" [ngClass]="{
+            <input pattern="[+0-9-]{7,15}" minlength="7" maxlength="15" type="text" class="form-control"
+              id="contactNoPrimary" placeholder="Primary Contact No." name="contactNoPrimary"
+              [(ngModel)]="data.contactNoPrimary" #contactNoPrimary="ngModel" [ngClass]="{
                 error: contactNoPrimary.invalid && contactNoPrimary.touched
               }" />
             <!-- <p *ngIf="contactNoPrimary.invalid && contactNoPrimary.touched">
@@ -67,9 +67,9 @@
             </p> -->
           </div>
           <div class="col-sm-6">
-            <input pattern="[0-9]{0,15}" type="text" class="form-control" id="contactNoSecondary"
-              placeholder="Other Contact No." name="contactNoSecondary" [(ngModel)]="data.contactNoSecondary"
-              #contactNoSecondary="ngModel" [ngClass]="{
+            <input pattern="[+0-9-]{7,15}" minlength="7" maxlength="15" type="text" class="form-control"
+              id="contactNoSecondary" placeholder="Other Contact No." name="contactNoSecondary"
+              [(ngModel)]="data.contactNoSecondary" #contactNoSecondary="ngModel" [ngClass]="{
                 error: contactNoSecondary.invalid && contactNoSecondary.touched
               }" />
             <!-- <p *ngIf="contactNoSecondary.invalid && contactNoSecondary.touched">

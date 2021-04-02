@@ -64,8 +64,9 @@
 
           </div>
           <div class="col-sm-6">
-            <input pattern="[+0-9-]{7,15}" class="form-control" id="buyerOtherContact" placeholder="Other Contact No."
-              name="buyerOtherContact" [(ngModel)]="data.buyerOtherContact" #buyerOtherContact="ngModel" [ngClass]="{
+            <input pattern="[+0-9-]{7,15}" maxlength="15" minlength="7" class="form-control" id="buyerOtherContact"
+              placeholder="Other Contact No." name="buyerOtherContact" [(ngModel)]="data.buyerOtherContact"
+              #buyerOtherContact="ngModel" [ngClass]="{
                 error: buyerOtherContact.invalid && buyerOtherContact.touched
               }" />
 
