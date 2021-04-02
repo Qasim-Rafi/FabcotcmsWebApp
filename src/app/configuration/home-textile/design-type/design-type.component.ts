@@ -57,11 +57,12 @@ export class DesignTypeComponent implements OnInit {
       .get(`${environment.apiUrl}/api/TextileGarments/GetAllDesignType`)
       .subscribe(res => {
         this.response = res;
-        this.temp = [...this.data];
+
 
         this.listCount = this.response.data.length;
         if (this.response.success == true) {
-          that.data = this.response.data;
+          this.data = this.response.data;
+          this.temp = [...this.data];
           cb(this.data);
         }
         else {

@@ -127,9 +127,6 @@ export class TimeActionItemsComponent implements OnInit {
 
   }
 
-
-
-
   addActionForm() {
     const modalRef = this.modalService.open(AddTimeActionComponent, { centered: true });
     modalRef.result.then((data) => {
