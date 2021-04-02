@@ -58,13 +58,17 @@
           <div class="col-sm-6 fieldmrgbtm">
             <input pattern="[+0-9-]{7,15}" maxlength="15" minlength="7" class="form-control" id="buyerContact"
               placeholder="Primary Contact No." name="buyerContact" [(ngModel)]="data.buyerContact"
-              #buyerContact="ngModel" />
-            <p *ngIf="buyerContact.invalid">Invalid Input or Length</p>
+              #buyerContact="ngModel" [ngClass]="{
+                error: buyerContact.invalid && buyerContact.touched
+              }" />
+
           </div>
           <div class="col-sm-6">
             <input pattern="[+0-9-]{7,15}" class="form-control" id="buyerOtherContact" placeholder="Other Contact No."
-              name="buyerOtherContact" [(ngModel)]="data.buyerOtherContact" #buyerOtherContact="ngModel" />
-            <p *ngIf="buyerOtherContact.invalid">Invalid Input or Length</p>
+              name="buyerOtherContact" [(ngModel)]="data.buyerOtherContact" #buyerOtherContact="ngModel" [ngClass]="{
+                error: buyerOtherContact.invalid && buyerOtherContact.touched
+              }" />
+
           </div>
         </div>
       </div>
@@ -74,8 +78,9 @@
       <label for="buyerFax" class="col-sm-3 col-form-label">Fax Number</label>
       <div class="col-sm-8">
         <input pattern="[+0-9]{5,15}" minlength="5" maxlength="15" class="form-control" id="buyerFax"
-          placeholder="Buyer Fax No." name="buyerFax" [(ngModel)]="data.buyerFax" #buyerFax="ngModel" />
-        <p *ngIf="buyerFax.invalid">Invalid Input or Length</p>
+          placeholder="Buyer Fax No." name="buyerFax" [(ngModel)]="data.buyerFax" #buyerFax="ngModel"
+          [ngClass]="{ error: buyerFax.invalid && buyerFax.touched }" />
+
       </div>
     </div>
 
@@ -86,13 +91,14 @@
         <div class="row">
           <div class="col-sm-6 fieldmrgbtm">
             <input type="text" pattern="[+-a-zA-Z0-9]{0,7}" class="form-control" id="buyerNTN" placeholder="NTN No."
-              name="buyerNTN" [(ngModel)]="data.buyerNTN" #buyerNTN="ngModel" />
+              name="buyerNTN" [(ngModel)]="data.buyerNTN" #buyerNTN="ngModel"
+              [ngClass]="{ error: buyerNTN.invalid && buyerNTN.touched }" />
           </div>
-          <p *ngIf="buyerNTN.invalid">Invalid Input or Length</p>
+
           <div class="col-sm-6">
             <input pattern="[+-a-zA-Z0-9]{0,15}" type="text" class="form-control" id="buyerGST" placeholder="GST No."
-              name="buyerGST" [(ngModel)]="data.buyerGST" #buyerGST="ngModel" />
-            <p *ngIf="buyerGST.invalid">Invalid Input or Length</p>
+              name="buyerGST" [(ngModel)]="data.buyerGST" #buyerGST="ngModel"
+              [ngClass]="{ error: buyerGST.invalid && buyerGST.touched }" />
           </div>
         </div>
       </div>

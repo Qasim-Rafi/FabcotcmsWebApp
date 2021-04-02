@@ -50,7 +50,7 @@ export class AddEnquiryComponent implements OnInit {
           this.country1 = this.response.data;
         }
         else {
-          this.toastr.error('Something went Worng', 'Message.');
+          this.toastr.error(this.response.message, 'Message.');
         }
       })
     }
@@ -61,7 +61,7 @@ export class AddEnquiryComponent implements OnInit {
           this.data = this.response.data;
         }
         else {
-          this.toastr.error('Something went Worng', 'Message.');
+          this.toastr.error(this.response.message, 'Message.');
         }
       })
     }
@@ -72,7 +72,7 @@ export class AddEnquiryComponent implements OnInit {
           this.article = this.response.data;
         }
         else {
-          this.toastr.error('Something went Worng', 'Message.');
+          this.toastr.error(this.response.message, 'Message.');
         }
       })
     }
@@ -83,7 +83,7 @@ export class AddEnquiryComponent implements OnInit {
           this.payment = this.response.data;
         }
         else {
-          this.toastr.error('Something went Worng', 'Message.');
+          this.toastr.error(this.response.message, 'Message.');
         }
       })
     }
@@ -94,7 +94,7 @@ export class AddEnquiryComponent implements OnInit {
           this.packaging = this.response.data;
         }
         else {
-          this.toastr.error('Something went Worng', 'Message.');
+          this.toastr.error(this.response.message, 'Message.');
         }
       })
     }
@@ -105,7 +105,7 @@ export class AddEnquiryComponent implements OnInit {
           this.design = this.response.data;
         }
         else {
-          this.toastr.error('Something went Worng', 'Message.');
+          this.toastr.error(this.response.message, 'Message.');
         }
       })
     }
@@ -117,7 +117,7 @@ export class AddEnquiryComponent implements OnInit {
           this.process = this.response.data;
         }
         else {
-          this.toastr.error('Something went Worng', 'Message.');
+          this.toastr.error(this.response.message, 'Message.');
         }
       })
     }
@@ -128,7 +128,7 @@ export class AddEnquiryComponent implements OnInit {
           this.ptype = this.response.data;
         }
         else {
-          this.toastr.error('Something went Worng', 'Message.');
+          this.toastr.error(this.response.message, 'Message.');
         }
       })
     }
@@ -139,7 +139,7 @@ export class AddEnquiryComponent implements OnInit {
           this.certification = this.response.data;
         }
         else {
-          this.toastr.error('Something went Worng', 'Message.');
+          this.toastr.error(this.response.message, 'Message.');
         }
       })
     }
@@ -150,7 +150,7 @@ export class AddEnquiryComponent implements OnInit {
           this.priceterm = this.response.data;
         }
         else {
-          this.toastr.error('Something went Worng', 'Message.');
+          this.toastr.error(this.response.message, 'Message.');
         }
       })
     }
@@ -164,7 +164,7 @@ export class AddEnquiryComponent implements OnInit {
           this.city = this.response.data;
         }
         else {
-          this.toastr.error('Something went Worng', 'Message.');
+          this.toastr.error(this.response.message, 'Message.');
         }
       })
     }
@@ -191,12 +191,12 @@ export class AddEnquiryComponent implements OnInit {
             this.country = this.response.data;
           }
           else {
-            this.toastr.error('Something went Worng', 'Message.');
+            this.toastr.error(this.response.message, 'Message.');
           }
 
         }, err => {
           if (err.status == 400) {
-            this.toastr.error('Something went Worng', 'Message.');
+            this.toastr.error(this.response.message, 'Message.');
           }
         });
   }
@@ -254,12 +254,12 @@ export class AddEnquiryComponent implements OnInit {
 
           }
           else {
-            this.toastr.error('Something went Worng', 'Message.');
+            this.toastr.error(this.response.message, 'Message.');
           }
 
         }, err => {
           if (err.status == 400) {
-            this.toastr.error('Something went Worng', 'Message.');
+            this.toastr.error(this.response.message, 'Message.');
           }
         });
   }
