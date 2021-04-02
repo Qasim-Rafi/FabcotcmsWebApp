@@ -81,7 +81,9 @@
 
             <div class="html5buttons mrg-tsm">
               <div class="dt-buttons btn-group">
-                <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0"
+                <a class="btn btn-default buttons-copy buttons-html5 bg-white"
+                ngxClipboard [cbContent]="myTable.innerText"
+                tabindex="0"
                   aria-controls="DataTables_Table_0"><span>Copy</span></a>
                 <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
                   aria-controls="DataTables_Table_0"><span>CSV</span></a>
@@ -99,8 +101,10 @@
         </div>
       </div>
     </div>
+    
 
-    <div class="panel-body">
+    <div #myTable class="panel-body">
+      
       <ngx-datatable #myTable class="material" [columns]="columns" [rows]="rows"
         [sorts]="[{ prop: 'id,name', dir: 'asce' }]" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
         [rowHeight]="'auto'" [limit]="10">
@@ -155,6 +159,7 @@
           </ng-template>
         </ngx-datatable-column>
       </ngx-datatable>
+    
     </div>
   </div>
 </div>
