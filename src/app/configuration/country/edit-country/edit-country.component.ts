@@ -17,7 +17,6 @@ export class EditCountryComponent implements OnInit {
   @Input() countryId;
   @Input() statusCheck;
   @Input() FormName;
-  @ViewChild('countryName') private elementRef: ElementRef;
   constructor(private http: HttpClient,
     private toastr: ToastrService,
     private _NgbActiveModal: NgbActiveModal) { }
@@ -29,10 +28,7 @@ export class EditCountryComponent implements OnInit {
       this.editCountry();
     }
   }
-  //for autoFocus
-  public ngAfterViewInit(): void {
-    this.elementRef.nativeElement.focus();
-  }
+ 
   get activeModal() {
     return this._NgbActiveModal;
   }
