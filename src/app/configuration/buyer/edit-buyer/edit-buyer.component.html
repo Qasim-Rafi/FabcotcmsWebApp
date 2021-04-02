@@ -96,8 +96,8 @@
       <div class="col-sm-8">
         <div class="row">
           <div class="col-sm-6">
-            <input maxlength="15" minlength="7" type="text" class="form-control" id="ntnNumber" placeholder="NTN No."
-              name="ntnNumber" [(ngModel)]="data.ntnNumber" #ntnNumber="ngModel"
+            <input maxlength="7" pattern="[0-9]{0,7}" type="text" class="form-control" id="ntnNumber"
+              placeholder="NTN No." name="ntnNumber" [(ngModel)]="data.ntnNumber" #ntnNumber="ngModel"
               [ngClass]="{ error: ntnNumber.invalid && ntnNumber.touched }" />
           </div>
           <div class="col-sm-6">
