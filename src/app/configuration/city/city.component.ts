@@ -23,12 +23,12 @@ export class CityComponent implements OnInit {
   columns: any = [];
   data: any = {};
   cityDate = Date.now();
-   temp:any=[];
+  temp: any = [];
   @ViewChild('myTable') table: DatatableComponent;
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
-    private service:ServiceService,
+    private service: ServiceService,
     private modalService: NgbModal) { }
 
   ngOnInit(): void {
@@ -44,10 +44,10 @@ export class CityComponent implements OnInit {
 
     // filter our data
     const temp = this.temp.filter(function (d) {
-      return ( d.name.toLowerCase().indexOf(val) !== -1  ||
-      d.country.toLowerCase().indexOf(val) !== -1  || !val);
+      return (d.name.toLowerCase().indexOf(val) !== -1 ||
+        d.country.toLowerCase().indexOf(val) !== -1 || !val);
     });
- 
+
     // update the rows
     this.rows = temp;
     // Whenever the filter changes, always go back to the first page
@@ -63,8 +63,9 @@ export class CityComponent implements OnInit {
         this.response = res;
 
         if (this.response.success == true) {
+          this.data = this.response.data;
+          this.temp = [...this.data];
           this.CityCount = this.response.data.length;
-          that.data = this.response.data;
           cb(this.data);
         }
         else {
@@ -85,7 +86,7 @@ export class CityComponent implements OnInit {
   deleteCity(id) {
     Swal.fire({
       title: GlobalConstants.deleteTitle, //'Are you sure?',
-      text: GlobalConstants.deleteMessage+' '+'"'+ id.name +'"',
+      text: GlobalConstants.deleteMessage + ' ' + '"' + id.name + '"',
       icon: 'error',
       showCancelButton: true,
       confirmButtonColor: '#ed5565',
@@ -126,24 +127,24 @@ export class CityComponent implements OnInit {
       }
     })
 
-    
-  } 
-  addCity(check,name) {
+
+  }
+  addCity(check, name) {
     const modalRef = this.modalService.open(EditCityComponent, { centered: true });
-    modalRef.componentInstance.statusCheck =check;
+    modalRef.componentInstance.statusCheck = check;
     modalRef.componentInstance.FormName = name;
 
-   //  modalRef.componentInstance.name =componentName;
+    //  modalRef.componentInstance.name =componentName;
 
-       modalRef.result.then((data) => {
+    modalRef.result.then((data) => {
       // on close
-       if(data ==true){
-       //  this.date = this.cityDate;
+      if (data == true) {
+        //  this.date = this.cityDate;
         this.fetch((data) => {
-         this.rows = data;
-         this.CityCount = this.rows.length;
-       });
-        
+          this.rows = data;
+          this.CityCount = this.rows.length;
+        });
+
 
       }
     }, (reason) => {
@@ -152,40 +153,40 @@ export class CityComponent implements OnInit {
   }
 
 
-  editCity(row,check,name){
+  editCity(row, check, name) {
     const modalRef = this.modalService.open(EditCityComponent, { centered: true });
-    modalRef.componentInstance.cityId =row.id; //just for edit.. to access the needed row
+    modalRef.componentInstance.cityId = row.id; //just for edit.. to access the needed row
     modalRef.componentInstance.statusCheck = check;
     modalRef.componentInstance.FormName = name;
 
-          modalRef.result.then((data) => {
-         // on close
-          if(data ==true){
-          //  this.date = this.cityDate;
-           this.fetch((data) => {
-            this.rows = data;
-          });
-         }
-       }, (reason) => {
-         // on dismiss
-       });
-  } 
+    modalRef.result.then((data) => {
+      // on close
+      if (data == true) {
+        //  this.date = this.cityDate;
+        this.fetch((data) => {
+          this.rows = data;
+        });
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
 
-// excell
-exportAsXLSX(): void {
-  const filtered = this.data.map(row => ({
-Sno :row.id,
-City:row.name,
-CountryName:row.country,
-Details:row.details,
-Status:row.active == true ? "Active" : "In-Active",
-CreatedOn :row.createdDateTime + '|' + row.createdByName 
+  // excell
+  exportAsXLSX(): void {
+    const filtered = this.data.map(row => ({
+      Sno: row.id,
+      City: row.name,
+      CountryName: row.country,
+      Details: row.details,
+      Status: row.active == true ? "Active" : "In-Active",
+      CreatedOn: row.createdDateTime + '|' + row.createdByName
 
-  }));
- 
-  this.service.exportAsExcelFile(filtered, 'City Location');
+    }));
 
-}
+    this.service.exportAsExcelFile(filtered, 'City Location');
+
+  }
 
 
 }

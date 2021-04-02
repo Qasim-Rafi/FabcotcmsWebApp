@@ -64,6 +64,8 @@ export class ArticlesComponent implements OnInit {
 
         if (this.response.success == true) {
           that.data = this.response.data;
+          this.temp = [...this.data];
+          this.listCount = this.response.data.length;
           cb(this.data);
         }
         else {
@@ -137,7 +139,7 @@ export class ArticlesComponent implements OnInit {
         //  this.date = this.myDate;
         this.fetch((data) => {
           this.rows = data;
-          this.listCount = this.rows.length;
+
         });
 
 

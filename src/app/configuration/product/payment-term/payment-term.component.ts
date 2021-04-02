@@ -25,13 +25,13 @@ export class PaymentTermComponent implements OnInit {
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
-    private service:ServiceService,
+    private service: ServiceService,
     private modalService: NgbModal,) { }
 
 
   ngOnInit(): void {
     this.fetch((data) => {
-      this.temp = [...data];
+
       this.rows = data;
     });
   }
@@ -44,7 +44,7 @@ export class PaymentTermComponent implements OnInit {
     // filter our data
     const temp = this.temp.filter(function (d) {
       return (d.term.toLowerCase().indexOf(val) !== -1 || !val);
-    })  ;
+    });
 
     // update the rows
     this.rows = temp;
@@ -62,6 +62,7 @@ export class PaymentTermComponent implements OnInit {
         this.response = res;
         if (this.response.success == true) {
           that.data = this.response.data;
+          this.temp = [...this.data];
           this.listCount = this.response.data.length;
           cb(this.data);
         }
@@ -84,7 +85,7 @@ export class PaymentTermComponent implements OnInit {
   deletePayment(id) {
     Swal.fire({
       title: GlobalConstants.deleteTitle, //'Are you sure?',
-      text: GlobalConstants.deleteMessage+' '+'"'+ id.term +'"',
+      text: GlobalConstants.deleteMessage + ' ' + '"' + id.term + '"',
       icon: 'error',
       showCancelButton: true,
       confirmButtonColor: '#ed5565',
@@ -172,17 +173,17 @@ export class PaymentTermComponent implements OnInit {
 
   exportAsXLSX(): void {
     const filtered = this.data.map(row => ({
-      SNo:row.id,
-    PaymentTerm :row.term,
-     Details:row.description,
-  Status:row.active == true ? "Active" : "In-Active",
-  LastChange :row.updatedDateTime + '|' + row.updatedByName 
-  
-  
+      SNo: row.id,
+      PaymentTerm: row.term,
+      Details: row.description,
+      Status: row.active == true ? "Active" : "In-Active",
+      LastChange: row.updatedDateTime + '|' + row.updatedByName
+
+
     }));
-   
+
     this.service.exportAsExcelFile(filtered, 'Payment Term');
-  
+
   }
 
 }

@@ -14,23 +14,23 @@ import { ServiceService } from 'src/app/shared/service.service';
   styleUrls: ['./certificate.component.css']
 })
 export class CertificateComponent implements OnInit {
-  response:any;
-  rows:any=[];
-  columns:any=[];
-  data:any={};
+  response: any;
+  rows: any = [];
+  columns: any = [];
+  data: any = {};
   listCount: number;
-  myDate=Date.now();
-  temp: any=[];
+  myDate = Date.now();
+  temp: any = [];
 
 
-  constructor(private http:HttpClient,
-              private toastr: ToastrService,
-              private service:ServiceService,
-              private modalService: NgbModal,) { }
+  constructor(private http: HttpClient,
+    private toastr: ToastrService,
+    private service: ServiceService,
+    private modalService: NgbModal,) { }
 
   ngOnInit(): void {
     this.fetch((data) => {
-      this.temp = [...data];
+
       this.rows = data;
     });
   }
@@ -41,7 +41,7 @@ export class CertificateComponent implements OnInit {
 
     // filter our data
     const temp = this.temp.filter(function (d) {
-      return d.name.toLowerCase().indexOf(val) !== -1  || !val;
+      return d.name.toLowerCase().indexOf(val) !== -1 || !val;
     });
 
     // update the rows
@@ -54,33 +54,33 @@ export class CertificateComponent implements OnInit {
   fetch(cb) {
     let that = this;
     that.http
-    .get(`${environment.apiUrl}/api/TextileGarments/GetAllCertificate`)
-    .subscribe(res => {
-      this.response = res;
-      this.listCount = this.rows.length;
-    if(this.response.success==true)
-    {
-    that.data =this.response.data;
-    cb(this.data);
-    }
-    else{
-      this.toastr.error(this.response.message, 'Message.');
-    }
-      // this.spinner.hide();
-    }, err => {
-      if ( err.status == 400) {
- this.toastr.error(err.error.message, 'Message.');;
-      }
-    //  this.spinner.hide();
-    });
+      .get(`${environment.apiUrl}/api/TextileGarments/GetAllCertificate`)
+      .subscribe(res => {
+        this.response = res;
+        this.temp = [...this.data];
+        this.listCount = this.rows.length;
+        if (this.response.success == true) {
+          that.data = this.response.data;
+          cb(this.data);
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+        // this.spinner.hide();
+      }, err => {
+        if (err.status == 400) {
+          this.toastr.error(err.error.message, 'Message.');;
+        }
+        //  this.spinner.hide();
+      });
   }
 
-  
 
-  deleteCertificate(id){
+
+  deleteCertificate(id) {
     Swal.fire({
       title: GlobalConstants.deleteTitle, //'Are you sure?',
-      text: GlobalConstants.deleteMessage+' '+'"'+ id.name +'"',
+      text: GlobalConstants.deleteMessage + ' ' + '"' + id.name + '"',
       icon: 'error',
       showCancelButton: true,
       confirmButtonColor: '#ed5565',
@@ -91,29 +91,29 @@ export class CertificateComponent implements OnInit {
       position: 'top',
     }).then((result) => {
       if (result.isConfirmed) {
-    
-        this.http.delete(`${environment.apiUrl}/api/TextileGarments/DeleteCertificate/`+id.id )
-        .subscribe(
-          res=> { 
-            this.response = res;
-            if (this.response.success == true){
-             this.toastr.error(this.response.message, 'Message.');
-             this.fetch((data) => {
-              this.rows = data;
-              this.listCount = this.rows.length;
+
+        this.http.delete(`${environment.apiUrl}/api/TextileGarments/DeleteCertificate/` + id.id)
+          .subscribe(
+            res => {
+              this.response = res;
+              if (this.response.success == true) {
+                this.toastr.error(this.response.message, 'Message.');
+                this.fetch((data) => {
+                  this.rows = data;
+                  this.listCount = this.rows.length;
+                });
+
+              }
+              else {
+                this.toastr.error(this.response.message, 'Message.');
+              }
+
+            }, err => {
+              if (err.status == 400) {
+                this.toastr.error(this.response.message, 'Message.');
+              }
             });
-              
-            }
-            else {
-              this.toastr.error(this.response.message, 'Message.');
-                }
-     
-          }, err => {
-            if (err.status == 400) {
-              this.toastr.error(this.response.message, 'Message.');
-            }
-          });
-    
+
         // Swal.fire(
         //   'Record',
         //   'Deleted Successfully.',
@@ -121,60 +121,60 @@ export class CertificateComponent implements OnInit {
         // )
       }
     })
-    
-    }
+
+  }
 
 
-  addCertificateForm(check){
+  addCertificateForm(check) {
     const modalRef = this.modalService.open(EditCertificateComponent, { centered: true });
-       modalRef.componentInstance.statusCheck =check;
-      //  modalRef.componentInstance.name =componentName;
-
-          modalRef.result.then((data) => {
-         // on close
-          if(data ==true){
-          //  this.date = this.myDate;
-           this.fetch((data) => {
-            this.rows = data;
-            this.listCount = this.rows.length;
-          });
-           
-  
-         }
-       }, (reason) => {
-         // on dismiss
-       });
-  } 
-  
-
-  editCertificateForm(row,check){
-    const modalRef = this.modalService.open(EditCertificateComponent, { centered: true });
-    modalRef.componentInstance.Id =row.id; //just for edit.. to access the needed row
     modalRef.componentInstance.statusCheck = check;
-          modalRef.result.then((data) => {
-         // on close
-          if(data ==true){
-          //  this.date = this.myDate;
-           this.fetch((data) => {
-            this.rows = data;
-          });
-         }
-       }, (reason) => {
-         // on dismiss
-       });
-  } 
-  
+    //  modalRef.componentInstance.name =componentName;
+
+    modalRef.result.then((data) => {
+      // on close
+      if (data == true) {
+        //  this.date = this.myDate;
+        this.fetch((data) => {
+          this.rows = data;
+          this.listCount = this.rows.length;
+        });
+
+
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
+
+
+  editCertificateForm(row, check) {
+    const modalRef = this.modalService.open(EditCertificateComponent, { centered: true });
+    modalRef.componentInstance.Id = row.id; //just for edit.. to access the needed row
+    modalRef.componentInstance.statusCheck = check;
+    modalRef.result.then((data) => {
+      // on close
+      if (data == true) {
+        //  this.date = this.myDate;
+        this.fetch((data) => {
+          this.rows = data;
+        });
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
+
   exportAsXLSX(): void {
     const filtered = this.data.map(row => ({
-      SNo:row.id,
-    CertificateName :row.name,
-     Details:row.description,
-  Status:row.active == true ? "Active" : "In-Active",
-  LastChange :row.updatedDateTime + '|' + row.updatedByName 
-   }));
-   
+      SNo: row.id,
+      CertificateName: row.name,
+      Details: row.description,
+      Status: row.active == true ? "Active" : "In-Active",
+      LastChange: row.updatedDateTime + '|' + row.updatedByName
+    }));
+
     this.service.exportAsExcelFile(filtered, 'Certificate');
-  
+
   }
 
 }

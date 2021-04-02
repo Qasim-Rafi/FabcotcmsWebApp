@@ -28,7 +28,6 @@ export class BankAccountsComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetch((data) => {
-      this.temp = [...data];
       this.rows = data;
     });
   }
@@ -59,7 +58,7 @@ export class BankAccountsComponent implements OnInit {
         if (this.response.success == true) {
           this.data = this.response.data;
           this.listCount = this.response.data.length;
-          // this.temp = [...this.data];
+          this.temp = [...this.data];
           cb(this.data);
         }
         else {
@@ -131,7 +130,7 @@ export class BankAccountsComponent implements OnInit {
       // on close
       if (data == true) {
         this.fetch((data) => {
-          this.temp = [...data];
+          // this.temp = [...data];
           this.rows = data;
         });
 

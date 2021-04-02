@@ -24,12 +24,12 @@ export class BankComponent implements OnInit {
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
-    private service:ServiceService,
+    private service: ServiceService,
     private modalService: NgbModal,) { }
 
   ngOnInit(): void {
     this.fetch((data) => {
-      this.temp = [...data];
+
       this.rows = data;
     });
 
@@ -42,7 +42,7 @@ export class BankComponent implements OnInit {
     // filter our data
     const temp = this.temp.filter(function (d) {
       return (d.name.toLowerCase().indexOf(val) !== -1 ||
-      d.branchName.toLowerCase().indexOf(val) !== -1 || !val);
+        d.branchName.toLowerCase().indexOf(val) !== -1 || !val);
     });
 
     // update the rows
@@ -62,6 +62,7 @@ export class BankComponent implements OnInit {
 
         if (this.response.success == true) {
           that.data = this.response.data;
+          this.temp = [...this.data];
           this.listCount = this.response.data.length;
           cb(this.data);
         }
@@ -82,7 +83,7 @@ export class BankComponent implements OnInit {
   deleteBank(id) {
     Swal.fire({
       title: GlobalConstants.deleteTitle, //'Are you sure?',
-      text: GlobalConstants.deleteMessage+' '+'"'+ id.name +'"',
+      text: GlobalConstants.deleteMessage + ' ' + '"' + id.name + '"',
       icon: 'error',
       showCancelButton: true,
       confirmButtonColor: '#ed5565',
@@ -132,7 +133,6 @@ export class BankComponent implements OnInit {
       if (data == true) {
         //  this.date = this.myDate;
         this.fetch((data) => {
-          this.temp = [...data];
           this.rows = data;
           this.listCount = this.rows.length;
         });
@@ -164,17 +164,17 @@ export class BankComponent implements OnInit {
   }
   exportAsXLSX(): void {
     const filtered = this.data.map(row => ({
-      SNo:row.id,
-    BankName :row.name,
-    BranchCode :row.branchCode,
-    BranchName :row.branchName,
-    Location :row.location,
-    Address :row.address,
-     Details:row.details 
-   }));
-   
+      SNo: row.id,
+      BankName: row.name,
+      BranchCode: row.branchCode,
+      BranchName: row.branchName,
+      Location: row.location,
+      Address: row.address,
+      Details: row.details
+    }));
+
     this.service.exportAsExcelFile(filtered, 'Bank');
-  
+
   }
 
 

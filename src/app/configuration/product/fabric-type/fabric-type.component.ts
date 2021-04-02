@@ -28,12 +28,11 @@ export class FabricTypeComponent implements OnInit {
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
-    private service:ServiceService,
+    private service: ServiceService,
     private modalService: NgbModal,) { }
 
   ngOnInit(): void {
     this.fetch((data) => {
-      this.temp = [...data];
       this.rows = data;
       this.listCount = this.rows.length;
     });
@@ -66,6 +65,7 @@ export class FabricTypeComponent implements OnInit {
         this.response = res;
         if (this.response.success == true) {
           that.data = this.response.data;
+          this.temp = [...this.data];
           this.listCount = this.response.data.length;
           cb(this.data);
         }
@@ -84,9 +84,9 @@ export class FabricTypeComponent implements OnInit {
 
 
   deleteType(row) {
-    Swal.fire({ 
-      title: GlobalConstants.deleteTitle, 
-      text: GlobalConstants.deleteMessage  +' '+'"'+ row.type +'"',
+    Swal.fire({
+      title: GlobalConstants.deleteTitle,
+      text: GlobalConstants.deleteMessage + ' ' + '"' + row.type + '"',
       icon: 'error',
       showCancelButton: true,
       confirmButtonColor: '#ed5565',
@@ -168,20 +168,20 @@ export class FabricTypeComponent implements OnInit {
     });
   }
 
-// excell
-exportAsXLSX(): void {
-const filtered = this.data.map(row => ({
-    SNo:row.id,
-  FabricType :row.type,
-   Details:row.description,
-Status:row.active == true ? "Active" : "In-Active",
-LastChange :row.createdDateTime + '|' + row.createdByName 
+  // excell
+  exportAsXLSX(): void {
+    const filtered = this.data.map(row => ({
+      SNo: row.id,
+      FabricType: row.type,
+      Details: row.description,
+      Status: row.active == true ? "Active" : "In-Active",
+      LastChange: row.createdDateTime + '|' + row.createdByName
 
 
-  }));
- 
-  this.service.exportAsExcelFile(filtered, 'Fabric Type');
+    }));
 
-}
+    this.service.exportAsExcelFile(filtered, 'Fabric Type');
+
+  }
 
 }

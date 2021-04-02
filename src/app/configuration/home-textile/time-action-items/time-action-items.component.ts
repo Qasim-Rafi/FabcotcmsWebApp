@@ -25,12 +25,11 @@ export class TimeActionItemsComponent implements OnInit {
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
-    private service:ServiceService,
+    private service: ServiceService,
     private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.fetch((data) => {
-      this.temp = [...data];
       this.rows = data;
     });
   }
@@ -63,6 +62,8 @@ export class TimeActionItemsComponent implements OnInit {
         this.listCount = this.response.data.length;
         if (this.response.success == true) {
           that.data = this.response.data;
+          this.temp = [...this.data];
+
           cb(this.data);
         }
         else {
@@ -82,7 +83,7 @@ export class TimeActionItemsComponent implements OnInit {
   deleteAction(id) {
     Swal.fire({
       title: GlobalConstants.deleteTitle, //'Are you sure?',
-      text: GlobalConstants.deleteMessage+' '+'"'+ id.name +'"',
+      text: GlobalConstants.deleteMessage + ' ' + '"' + id.name + '"',
       icon: 'error',
       showCancelButton: true,
       confirmButtonColor: '#ed5565',
@@ -167,15 +168,15 @@ export class TimeActionItemsComponent implements OnInit {
 
   exportAsXLSX(): void {
     const filtered = this.data.map(row => ({
-      SNo:row.id,
-    ActionName :row.name,
-     Details:row.description,
-  Status:row.active == true ? "Active" : "In-Active",
-  LastChange :row.updatedDateTime + '|' + row.updatedByName 
-   }));
-   
+      SNo: row.id,
+      ActionName: row.name,
+      Details: row.description,
+      Status: row.active == true ? "Active" : "In-Active",
+      LastChange: row.updatedDateTime + '|' + row.updatedByName
+    }));
+
     this.service.exportAsExcelFile(filtered, 'TnA Actions');
-  
+
   }
 
 }

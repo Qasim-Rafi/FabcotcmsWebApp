@@ -25,7 +25,7 @@ export class PackingComponent implements OnInit {
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
-    private service:ServiceService,
+    private service: ServiceService,
     private modalService: NgbModal,) { }
 
 
@@ -45,7 +45,7 @@ export class PackingComponent implements OnInit {
     // filter our data
     const temp = this.temp.filter(function (d) {
       return (d.name.toLowerCase().indexOf(val) !== -1 || !val);
-    })  ;
+    });
 
     // update the rows
     this.rows = temp;
@@ -65,6 +65,7 @@ export class PackingComponent implements OnInit {
         this.response = res;
         if (this.response.success == true) {
           that.data = this.response.data;
+          this.temp = [...this.data];
           this.listCount = this.response.data.length;
           cb(this.data);
         }
@@ -86,7 +87,7 @@ export class PackingComponent implements OnInit {
   deletePacking(id) {
     Swal.fire({
       title: GlobalConstants.deleteTitle, //'Are you sure?',
-      text: GlobalConstants.deleteMessage+' '+'"'+ id.name +'"',
+      text: GlobalConstants.deleteMessage + ' ' + '"' + id.name + '"',
       icon: 'error',
       showCancelButton: true,
       confirmButtonColor: '#ed5565',
@@ -172,17 +173,17 @@ export class PackingComponent implements OnInit {
 
   exportAsXLSX(): void {
     const filtered = this.data.map(row => ({
-      SNo:row.id,
-    PackingName :row.name,
-     Details:row.description,
-  Status:row.active == true ? "Active" : "In-Active",
-  LastChange :row.updatedDateTime + '|' + row.updatedByName 
-  
-  
+      SNo: row.id,
+      PackingName: row.name,
+      Details: row.description,
+      Status: row.active == true ? "Active" : "In-Active",
+      LastChange: row.updatedDateTime + '|' + row.updatedByName
+
+
     }));
-   
+
     this.service.exportAsExcelFile(filtered, 'Packing');
-  
+
   }
 
 
