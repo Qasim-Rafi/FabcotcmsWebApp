@@ -21,10 +21,13 @@ export class CityComponent implements OnInit {
   rows: any = [];
   // countryId= null;
   columns: any = [];
-  data: any = {};
+  data: any = [];
+  data1: any =[];
   cityDate = Date.now();
    temp:any=[];
   @ViewChild('myTable') table: DatatableComponent;
+  copydata: any;
+  clipboardService: any=[];
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
@@ -188,5 +191,40 @@ CreatedOn :row.createdDateTime + '|' + row.createdByName
 }
 
 
+
+
+  //   copyContent() {
+    copy() {
+      // let count = this.rows.map(x => x.id.length);
+      // let max = count.reduce((a, b) => Math.max(a, b));
+
+      let count1 = this.rows.map(x => x.name.length);
+      let max1 = count1.reduce((a, b) => Math.max(a, b));
+  
+      let count2 = this.rows.map(x => x.country.length);
+      let max2= count2.reduce((a, b) => Math.max(a, b));
+
+      let count3 = this.rows.map(x => x.details.length);
+      let max3 = count3.reduce((a, b) => Math.max(a, b));
+      // max = max + 10;
+      max1 = max1 + 10;
+      max2 = max2 + 10;
+      max3 = max3 + 10;
+      // ................................................ headings replace yours............................
+  
+      this.data1.push('S No.' +'City Name'.padEnd(max1) +
+      'Country'.padEnd(max2) + 'Details'.padEnd(max3)+ 'Changed On | Changed By \n');
+      // ................................................ headings............................
+  
+      // ................................................ coloum data...........replace your coloum names.................
+      for (let i = 0; i < this.rows.length; i++) {
+        let data1 = this.rows[i].id+this.rows[i].name.padEnd(max1)+this.rows[i].country.padEnd(max2) 
+        + this.rows[i].details.padEnd(max3)+ this.rows[i].updatedDateTime+'\n';
+        this.data1.push(data1);
+      }
+      this.clipboardService.copy(this.data1)
+      // ................................................ coloum this.data............................
+  
+    }
 }
 
