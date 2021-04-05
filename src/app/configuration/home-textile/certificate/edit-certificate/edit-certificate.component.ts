@@ -27,7 +27,7 @@ export class EditCertificateComponent implements OnInit {
   rows: any = [];
   temp: any = [];
   certificate: any = []
-  certificateId = null;
+
   dateformater: Dateformater = new Dateformater();
 
   constructor(

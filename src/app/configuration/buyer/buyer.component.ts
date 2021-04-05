@@ -30,7 +30,7 @@ export class BuyerComponent implements OnInit {
   rows: any = [];
   temp: any[];
   countryId: null;
-  @ViewChild(NgForm) buyerForm;
+  // @ViewChild(NgForm) buyerForm;
   date: number;
 
 

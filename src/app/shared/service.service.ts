@@ -10,70 +10,61 @@ const EXCEL_EXTENSION = '.xlsx';
   providedIn: 'root'
 })
 export class ServiceService {
-  response:any;
-  country:any=[];
-  buyer:any=[];
-  article:any=[];
-  constructor(private http: HttpClient, 
-              private toastr: ToastrService,) { }
+  response: any;
+  country: any = [];
+  buyer: any = [];
+  article: any = [];
+  constructor(private http: HttpClient,
+    private toastr: ToastrService,) { }
 
-  getCountry()
-  {
+  getCountry() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/Countries`)
-
   }
-  
-  getBuyers()
-  {
+
+  getBuyers() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/Buyers`);
   }
-getArticles()
-  {
+  getArticles() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/Articles`)
   }
-  getPaymentTerm()
-  {
+  getPaymentTerm() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/PaymentTerms`)
   }
-  getPackaging()
-  {
+  getPackaging() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/Packagings`)
   }
-  
-  getDesignType()
-  {
+
+  getDesignType() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/DesignTypes`)
   }
-  getProcess()
-  {
+  getProcess() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/Process`)
   }
-  getProcessType()
-  {
+  getProcessType() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/ProcessTypes`)
   }
-  getCertification()
-  {
+  getCertification() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/Certifications`)
 
   }
-  getPriceTerm()
-  {
+  getPriceTerm() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/PriceTerms`)
 
   }
-  getCity()
-  {
+  getCity() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/Destinations`)
+  }
+  getUOM() {
+    return this.http.get(`${environment.apiUrl}/api/Enquiries/GetAllUOM`)
   }
 
 
-  
+
   // excel
   public exportAsExcelFile(json: any[], excelFileName: string): void {
-    
+
     const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(json);
-    console.log('worksheet',worksheet);
+    console.log('worksheet', worksheet);
     const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
     const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
     //const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'buffer' });
@@ -84,7 +75,7 @@ getArticles()
     const data: Blob = new Blob([buffer], {
       type: EXCEL_TYPE
     });
-    FileSaver.saveAs(data, fileName  + EXCEL_EXTENSION);
+    FileSaver.saveAs(data, fileName + EXCEL_EXTENSION);
   }
 
 

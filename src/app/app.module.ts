@@ -4,25 +4,26 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule} from '@angular/common/http';
-import { BrowserAnimationsModule} from '@angular/platform-browser/animations'
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { ToastrModule } from 'ngx-toastr';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
-import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ConfigurationModule } from './configuration/configuration.module';
 import { BusinessEnquryModule } from './business-enqury/business-enqury.module';
 import { HomeComponent } from './home/home.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
-const appRoutes: Routes = [ ]
+const appRoutes: Routes = []
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-   
+
     // AddEnquiryComponent,
     // SearchEnquiryComponent,
     // AddmodalComponent,
@@ -48,6 +49,7 @@ const appRoutes: Routes = [ ]
     ConfigurationModule,
     BusinessEnquryModule,
     FormsModule,
+    NgSelectModule,
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
@@ -55,13 +57,13 @@ const appRoutes: Routes = [ ]
     RouterModule.forRoot(appRoutes),
     ToastrModule.forRoot({
       progressBar: true,
-      timeOut:3000
+      timeOut: 3000
     }),
     ConfirmationPopoverModule.forRoot({
       confirmButtonType: 'success', // set defaults here
       cancelButtonType: 'danger',
-      cancelText:'No',
-      confirmText:'Yes',
+      cancelText: 'No',
+      confirmText: 'Yes',
 
     }),
   ],
