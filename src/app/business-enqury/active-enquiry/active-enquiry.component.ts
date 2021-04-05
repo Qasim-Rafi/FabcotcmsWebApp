@@ -4,6 +4,8 @@ import { ToastrService } from 'ngx-toastr';
 import { GlobalConstants } from 'src/app/Common/global-constants';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-active-enquiry',
@@ -24,10 +26,15 @@ export class ActiveEnquiryComponent implements OnInit {
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
+    private router: Router,
+
     // private service: ServiceService,
     // private modalService: NgbModal,
   ) { }
 
+  navigate() {
+    this.router.navigateByUrl('/enquiries');
+  };
 
   ngOnInit(): void {
     this.fetch((data) => {
@@ -40,7 +47,6 @@ export class ActiveEnquiryComponent implements OnInit {
 
   updateFilter(event) {
     const val = event.target.value.toLowerCase();
-
     // filter our data
     const temp = this.temp.filter(function (d) {
       return (d.code.toLowerCase().indexOf(val) !== -1 ||
@@ -80,10 +86,9 @@ export class ActiveEnquiryComponent implements OnInit {
 
 
   deleteArticle(obj) {
-
     Swal.fire({
       title: GlobalConstants.deleteTitle, //'Are you sure?',
-      text: GlobalConstants.deleteMessage + ' ' + '"' + obj.name + '"',
+      text: GlobalConstants.deleteMessage + ' ' + '"' + obj.enquiryNumber + '"',
       icon: 'error',
       showCancelButton: true,
       confirmButtonColor: '#ed5565',

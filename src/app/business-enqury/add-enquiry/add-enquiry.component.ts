@@ -17,6 +17,7 @@ import { EditCityComponent } from 'src/app/configuration/city/edit-city/edit-cit
 import { EditCertificateComponent } from 'src/app/configuration/home-textile/certificate/edit-certificate/edit-certificate.component';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { Dateformater } from 'src/app/shared/dateformater';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-enquiry',
@@ -65,9 +66,13 @@ export class AddEnquiryComponent implements OnInit {
     private toastr: ToastrService,
     private modalService: NgbModal,
     private service: ServiceService,
+    private router: Router,
 
   ) { }
 
+  navigate() {
+    this.router.navigateByUrl('/active-enquiries');
+  };
 
   ngOnInit() {
 
