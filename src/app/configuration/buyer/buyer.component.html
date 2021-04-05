@@ -61,7 +61,7 @@
           </div>
           <div class="col-md-8 text-right">
             <div> Total Contacts </div>
-            <h3 class="font-bold">0</h3>
+            <h3 class="font-bold">{{TotalPOC}}</h3>
           </div>
         </div>
       </div>
@@ -106,16 +106,11 @@
 
         <button type="button" class="btn btn-primary float-right mrg-sm1" data-toggle="modal"
           data-target="#exampleModalScrollable" (click)="addBuyerForm()">
-          <i class="fa fa-plus" aria-hidden="true"></i> Add New Buyer</button> 
+          <i class="fa fa-plus" aria-hidden="true"></i> Add New Buyer</button>
 
       </div>
     </div>
   </div>
-
-  
-  
-
-
 </div>
 
 
@@ -127,7 +122,7 @@
       <div class="poc-icon">
         <a class="faq-question text-muted text-s-lg text-w-3" data-toggle="collapse" href="#buyer-{{ x }}" role="button"
           aria-expanded="false" aria-controls="collapseExample">
-          <span class="fa fa-users"></span>{{CountPOC }}</a>
+          <span class="fa fa-users"></span>{{i.buyerPOCList.length}}</a>
       </div>
     </div>
 
@@ -183,7 +178,8 @@
       <div class="col-sm-11">
         <button type="button" class="btn btn-primary float-right" data-toggle="modal"
           data-target="#exampleModalScrollable" (click)="addPocform(i,'BuyerAddPOC' )">
-          <i class="fa fa-user" aria-hidden="true"></i> POC not found, <i class="fa fa-plus" aria-hidden="true"></i> Add a new one?
+          <i class="fa fa-user" aria-hidden="true"></i> POC not found, <i class="fa fa-plus" aria-hidden="true"></i> Add
+          a new one?
         </button>
       </div>
 

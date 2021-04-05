@@ -21,7 +21,7 @@ import { SellerPocComponent } from '../seller/seller-poc/seller-poc.component';
 })
 export class BuyerComponent implements OnInit {
   listCount: number;
-  CountPOC: number;
+  TotalPOC: number;
   myDate = Date.now();
   response: any;
   data: any = {};
@@ -65,6 +65,35 @@ export class BuyerComponent implements OnInit {
   }
 
 
+  // ---------------------------------------Get All Seller POC LENGHT----------------------------
+
+
+  getTotalPOCs() {
+    this.http.get(`${environment.apiUrl}/api/Buyers/GetAllPOC`)
+      .subscribe(
+        res => {
+
+          this.response = res;
+          if (this.response.success == true) {
+            this.TotalPOC = this.response.data.length;
+
+
+
+
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+        });
+  }
+
+
+
   // --------------------------------Get Buyer-------------------//
 
   getBuyers() {
@@ -77,6 +106,7 @@ export class BuyerComponent implements OnInit {
             this.buyer = this.response.data;
             this.temp = [...this.buyer];
             this.listCount = this.response.data.length;
+            this.getTotalPOCs();
 
 
           }
