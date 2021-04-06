@@ -27,7 +27,6 @@ import { CountryComponent } from './country/country.component';
 import { CurrencyComponent } from './currency/currency.component';
 import { EditCityComponent } from './city/edit-city/edit-city.component';
 import { EditCountryComponent } from './country/edit-country/edit-country.component';
-import { AddCountryComponent } from './country/add-country/add-country.component';
 import { FabricTypeComponent } from './product/fabric-type/fabric-type.component';
 import { PackingComponent } from './product/packing/packing.component';
 import { PaymentTermComponent } from './product/payment-term/payment-term.component';
@@ -96,7 +95,6 @@ import {ClipboardModule} from 'ngx-clipboard'
     CurrencyComponent,
     EditCityComponent,
     EditCountryComponent,
-    AddCountryComponent,
     FabricTypeComponent,
     PackingComponent,
     PaymentTermComponent,
