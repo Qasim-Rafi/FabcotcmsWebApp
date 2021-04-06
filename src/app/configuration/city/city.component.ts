@@ -8,13 +8,11 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { GlobalConstants } from 'src/app/Common/global-constants';
 import { DatatableComponent, id } from '@swimlane/ngx-datatable';
 import { ServiceService } from 'src/app/shared/service.service';
-<<<<<<< Updated upstream
 import pdfMake from "pdfmake/build/pdfmake";  
 import pdfFonts from "pdfmake/build/vfs_fonts";  
 pdfMake.vfs = pdfFonts.pdfMake.vfs;  
-=======
 import { ClipboardService } from 'ngx-clipboard';
->>>>>>> Stashed changes
+
 
 @Component({
   selector: 'app-city',
@@ -198,48 +196,48 @@ CreatedOn :row.createdDateTime + '|' + row.createdByName
 }
 // pdf generation
 
-generatePDF() {
+// generatePDF() {
 
-  let docDefinition = {
-    pageSize: 'A4',
-    info: {
-      title: 'City List'
-    },
-    content: [
-      {
-        text: 'City List',
-        style: 'heading',
+//   let docDefinition = {
+//     pageSize: 'A4',
+//     info: {
+//       title: 'City List'
+//     },
+//     content: [
+//       {
+//         text: 'City List',
+//         style: 'heading',
 
-      },
+//       },
 
-      {
-        layout: 'lightHorizontalLines',
-        table: {
-          headerRows: 1,
-          widths: [30, 90, 130, 50, 150],
-          body: [
-            ['S.no.', 'City', 'Details', 'Status', 'Created On| Created By'],
-            ...this.data.map(row => (
-              [row.id, row.name, row.details, 
-                row.active == true ? "Active" : "In-Active", row.createdDateTime+ '|'+ row.createdByName]
-            ))
-          ]
-        }
-      }
-    ],
-    styles: {
-      heading: {
-        fontSize: 18,
-        alignment: 'center',
-        margin: [0, 15, 0, 30]
-      }
-    }
+//       {
+//         layout: 'lightHorizontalLines',
+//         table: {
+//           headerRows: 1,
+//           widths: [30, 90, 130, 50, 150],
+//           body: [
+//             ['S.no.', 'City', 'Details', 'Status', 'Created On| Created By'],
+//             ...this.data.map(row => (
+//               [row.id, row.name, row.details, 
+//                 row.active == true ? "Active" : "In-Active", row.createdDateTime+ '|'+ row.createdByName]
+//             ))
+//           ]
+//         }
+//       }
+//     ],
+//     styles: {
+//       heading: {
+//         fontSize: 18,
+//         alignment: 'center',
+//         margin: [0, 15, 0, 30]
+//       }
+//     }
 
-  };
+//   };
 
 
-  pdfMake.createPdf(docDefinition).download('CityList.pdf');
-}
+//   pdfMake.createPdf(docDefinition).download('CityList.pdf');
+// }
 
 
 
