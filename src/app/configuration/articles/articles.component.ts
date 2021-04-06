@@ -8,6 +8,7 @@ import { EditArticleComponent } from './edit-article/edit-article.component';
 import { GlobalConstants } from '../../Common/global-constants';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { ServiceService } from 'src/app/shared/service.service';
+import pdfMake from "pdfmake/build/pdfmake";
 @Component({
   selector: 'app-articles',
   templateUrl: './articles.component.html',
@@ -183,5 +184,51 @@ export class ArticlesComponent implements OnInit {
     this.service.exportAsExcelFile(filtered, 'Article');
 
   }
+//  pdf ///
+
+generatePDF() {
+
+  let docDefinition = {
+    pageSize: 'A4',
+    info: {
+      title: 'Article List'
+    },
+    content: [
+      {
+        text: 'Articles List',
+        style: 'heading',
+
+      },
+
+      {
+        layout: 'lightHorizontalLines',
+        table: {
+          headerRows: 1,
+          widths: [30, 50, 80, 80, 40 , 100 , 70 ],
+          body: [
+            ['S.no.', 'Article Code', 'Article Name', 'Generic Name' ,'Status', 'Last Update On', 'Last Update By' ],
+            ...this.data.map(row => (
+              [row.id, row.code, row.name, row.genericName ,row.active == true ? "Active" : "In-Active",
+              row.updatedDateTime , row.updatedByName 
+               ] 
+            ))
+          ]
+        }
+      }
+    ],
+    styles: {
+      heading: {
+        fontSize: 18,
+        alignment: 'center',
+        margin: [0, 15, 0, 30]
+      }
+    }
+
+  };
+
+
+  pdfMake.createPdf(docDefinition).download('ArticleList.pdf');
+}
+
 
 }

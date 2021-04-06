@@ -8,6 +8,7 @@ import { EditPriceComponent } from './edit-price/edit-price.component';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { GlobalConstants } from 'src/app/Common/global-constants';
 import { ServiceService } from 'src/app/shared/service.service';
+import pdfMake from "pdfmake/build/pdfmake";
 @Component({
   selector: 'app-price-term',
   templateUrl: './price-term.component.html',
@@ -173,6 +174,53 @@ export class PriceTermComponent implements OnInit {
     this.service.exportAsExcelFile(filtered, 'Price Term');
   
   }
+
+// pdf ///
+
+generatePDF() {
+
+  let docDefinition = {
+    pageSize: 'A4',
+    info: {
+      title: 'Price Term List'
+    },
+    content: [
+      {
+        text: 'Price Term List',
+        style: 'heading',
+
+      },
+
+      {
+        layout: 'lightHorizontalLines',
+        table: {
+          headerRows: 1,
+          widths: [30, 100, 80, 50, 150 ],
+          body: [
+            ['S.no.', 'Price Term', 'Details', 'Status', 'Update Date Time | Updated By' ],
+            ...this.data.map(row => (
+              [row.id, row.term, row.description, row.active == true ? "Active" : "In-Active",
+              row.updatedDateTime + '|' + row.updatedByName 
+               ] 
+            ))
+          ]
+        }
+      }
+    ],
+    styles: {
+      heading: {
+        fontSize: 18,
+        alignment: 'center',
+        margin: [0, 15, 0, 30]
+      }
+    }
+
+  };
+
+
+  pdfMake.createPdf(docDefinition).download('PriceTerm.pdf');
+}
+
 
 
 }

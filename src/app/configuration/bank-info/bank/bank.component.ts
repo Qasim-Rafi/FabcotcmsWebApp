@@ -8,6 +8,7 @@ import { EditBankComponent } from './edit-bank/edit-bank.component';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { GlobalConstants } from 'src/app/Common/global-constants';
 import { ServiceService } from 'src/app/shared/service.service';
+import pdfMake from "pdfmake/build/pdfmake";
 @Component({
   selector: 'app-bank',
   templateUrl: './bank.component.html',
@@ -162,6 +163,9 @@ export class BankComponent implements OnInit {
       // on dismiss
     });
   }
+
+// excel /////////
+
   exportAsXLSX(): void {
     const filtered = this.data.map(row => ({
       SNo:row.id,
@@ -176,6 +180,50 @@ export class BankComponent implements OnInit {
     this.service.exportAsExcelFile(filtered, 'Bank');
   
   }
+
+  // pdf //////////
+  generatePDF() {
+   
+        let docDefinition = {
+          pageSize: 'A4',
+          info: {
+            title: 'Bank List'
+          },
+          content: [
+            {
+              text: 'Bank List',
+              style: 'heading',
+    
+            },
+    
+            {
+              layout: 'lightHorizontalLines',
+              table: {
+                headerRows: 1,
+                widths: [30, 70, 70, 70, 50 , 60 , 60 ],
+                body: [
+                  ['S.no.', 'Bank Name', 'Branch Code', 'Branch Name', 'Location' , 'Address' , 'Details'],
+                  ...this.data.map(row => (
+                    [row.id, row.name, row.branchCode, row.branchName, 
+                      row.location,row.address , 
+                      row.details] 
+                  ))
+                ]
+              }
+            }
+          ],
+          styles: {
+            heading: {
+              fontSize: 18,
+              alignment: 'center',
+              margin: [0, 15, 0, 30]
+            }
+          }
+    
+        };
+        pdfMake.createPdf(docDefinition).download('BankList.pdf');
+      }
+    
 
 
 }

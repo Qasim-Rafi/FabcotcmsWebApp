@@ -8,6 +8,7 @@ import { EditBankAccountComponent } from './edit-bank-account/edit-bank-account.
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { GlobalConstants } from 'src/app/Common/global-constants';
 import { ServiceService } from 'src/app/shared/service.service';
+import pdfMake from "pdfmake/build/pdfmake";
 @Component({
   selector: 'app-bank-accounts',
   templateUrl: './bank-accounts.component.html',
@@ -160,7 +161,9 @@ export class BankAccountsComponent implements OnInit {
     });
   }
 
-  exportAsXLSX(): void {
+// excecl///////////
+  
+exportAsXLSX(): void {
     const filtered = this.data.map(row => ({
       SNo:row.id,
     AccountName :row.accountName,
@@ -168,13 +171,60 @@ export class BankAccountsComponent implements OnInit {
     IBAN :row.iban,
     SwiftCode :row.swiftCode,
     AccountType :row.type,
-     Bank:row.bankId ,
-     Branch:row.details 
+     Bank:row.bankName ,
+     Branch:row.branchName 
    }));
    
     this.service.exportAsExcelFile(filtered, 'Bank Account');
   
   }
 
+// Pdf /////////////////
+
+  generatePDF() {
+
+    let docDefinition = {
+      pageSize: 'A4',
+      info: {
+        title: 'Bank Account List'
+      },
+      content: [
+        {
+          text: 'Bank Account List',
+          style: 'heading',
+
+        },
+
+        {
+          layout: 'lightHorizontalLines',
+          table: {
+            headerRows: 1,
+            widths: [30, 60, 60, 60, 60 , 60 , 60  , 50 , 50],
+            body: [
+              ['S.no.', 'Account Name', 'Account No.', 'IBAN', 'Swift Code' , 'Account Type' , 'Bank Name' , 'Branch Name' ],
+              ...this.data.map(row => (
+                [row.id, row.accountName, row.accountNumber, row.iban, 
+                  row.swiftCode,row.type , 
+                  row.bankName, row.branchName] 
+              ))
+            ]
+          }
+        }
+      ],
+      styles: {
+        heading: {
+          fontSize: 18,
+          alignment: 'center',
+          margin: [0, 15, 0, 30]
+        }
+      }
+
+    };
+
+
+    pdfMake.createPdf(docDefinition).download('BankAccount.pdf');
+  }
+
 }
+
 

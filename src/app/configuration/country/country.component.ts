@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -10,11 +10,15 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { ServiceService } from 'src/app/shared/service.service'
 import { ClipboardService } from 'ngx-clipboard';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
+import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 @Component({
   selector: 'app-country',
   templateUrl: './country.component.html',
   styleUrls: ['./country.component.css']
 })
+
 export class CountryComponent implements OnInit {
   countryCount: number;
   response: any;
@@ -24,7 +28,9 @@ export class CountryComponent implements OnInit {
   currentDate = Date.now();
   countryFilter: any = [];
 
-  @ViewChild('myTable') table: DatatableComponent;
+
+
+  @ViewChild('myTable', { static: false }) table:DatatableComponent;
 
 
   constructor(private http: HttpClient,
@@ -178,18 +184,18 @@ export class CountryComponent implements OnInit {
 
   exportAsXLSX(): void {
     const filtered = this.data.map(row => ({
-  Sno :row.id,
-  CountryName:row.name,
-  Details:row.details,
-  Status:row.active == true ? "Active" : "In-Active",
-  CreatedOn :row.createdDateTime + ' | ' + row.createdByName 
- 
+      Sno: row.id,
+      CountryName: row.name,
+      Details: row.details,
+      Status: row.active == true ? "Active" : "In-Active",
+      CreatedOn: row.createdDateTime + ' | ' + row.createdByName
 
-    
-  // createdDateTime:row.row.createdDateTime
+
+
+      // createdDateTime:row.row.createdDateTime
 
     }));
- 
+
     this.service.exportAsExcelFile(filtered, 'Countries');
 
   }
@@ -211,4 +217,53 @@ export class CountryComponent implements OnInit {
   //     // let copy =     this.rows.join(',')
   //     // this.clipboardService.copyFromContent(array)
   //   }
+
+
+  // pdf
+
+  generatePDF() {
+
+    let docDefinition = {
+      pageSize: 'A4',
+      info: {
+        title: 'Country List'
+      },
+      content: [
+        {
+          text: 'Country List',
+          style: 'heading',
+
+        },
+
+        {
+          layout: 'lightHorizontalLines',
+          table: {
+            headerRows: 1,
+            widths: [30, 90, 130, 50, 150],
+            body: [
+              ['S.no.', 'Country', 'Details', 'Status', 'Created On| Created By'],
+              ...this.data.map(row => (
+                [row.id, row.name, row.details, 
+                  row.active == true ? "Active" : "In-Active", row.createdDateTime+ '|'+ row.createdByName]
+              ))
+            ]
+          }
+        }
+      ],
+      styles: {
+        heading: {
+          fontSize: 18,
+          alignment: 'center',
+          margin: [0, 15, 0, 30]
+        }
+      }
+
+    };
+
+
+    pdfMake.createPdf(docDefinition).download('CountryList.pdf');
+  }
+
+ 
+
 }

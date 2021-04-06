@@ -60,7 +60,9 @@
                 <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
                   aria-controls="DataTables_Table_0" (click)="exportAsXLSX()"><span>Excel</span></a>
                 <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0"
-                  aria-controls="DataTables_Table_0"><span>PDF</span></a>
+                  aria-controls="DataTables_Table_0"
+                  (click)="generatePDF()"
+                  ><span>PDF</span></a>
                 <a class="btn btn-default buttons-print bg-white" tabindex="0"
                   aria-controls="DataTables_Table_0"><span>Print</span></a>
               </div>
@@ -69,13 +71,15 @@
         </div>
       </div>
     </div>
-
-    <div class="panel-body" id="tableid">
-      <ngx-datatable #myTable class="bootstrap datatable-row-wrapper" [columns]="columns" [rows]="rows"
+<div id="myTable">
+    <div class="panel-body" >
+      <ngx-datatable #myTable
+    
+      class="bootstrap datatable-row-wrapper" [columns]="columns" [rows]="rows"
         [columnMode]="'flex'" [headerHeight]="50" [footerHeight]="50" [sorts]="[{ prop: 'id', dir: 'asce' }]"
         [rowHeight]="'auto'" [limit]="6">
-        <ngx-datatable-column name="S. No." prop="id" [flexGrow]="0.03">
-          <ng-template let-row="row" ngx-datatable-cell-template>
+        <ngx-datatable-column name="S. No." prop="id" [flexGrow]="0.03"   >
+          <ng-template let-row="row" ngx-datatable-cell-template >
             {{ row.id }}
           </ng-template>
         </ngx-datatable-column>
@@ -115,5 +119,6 @@
         </ngx-datatable-column>
       </ngx-datatable>
     </div>
+  </div>
   </div>
 </div>

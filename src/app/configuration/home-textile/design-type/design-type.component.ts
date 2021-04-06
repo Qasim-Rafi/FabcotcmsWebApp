@@ -8,7 +8,7 @@ import { EditDesignTypeComponent } from './edit-design-type/edit-design-type.com
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { GlobalConstants } from 'src/app/Common/global-constants';
 import { ServiceService } from 'src/app/shared/service.service';
-
+import pdfMake from "pdfmake/build/pdfmake";
 @Component({
   selector: 'app-design-type',
   templateUrl: './design-type.component.html',
@@ -162,7 +162,7 @@ export class DesignTypeComponent implements OnInit {
          // on dismiss
        });
   } 
-  
+  // excel
   exportAsXLSX(): void {
     const filtered = this.data.map(row => ({
       SNo:row.id,
@@ -174,6 +174,51 @@ export class DesignTypeComponent implements OnInit {
    
     this.service.exportAsExcelFile(filtered, 'Design Type');
   
+  }
+
+  // pdf //
+  generatePDF() {
+
+    let docDefinition = {
+      pageSize: 'A4',
+      info: {
+        title: 'Design Type List'
+      },
+      content: [
+        {
+          text: 'Design Type List',
+          style: 'heading',
+  
+        },
+  
+        {
+          layout: 'lightHorizontalLines',
+          table: {
+            headerRows: 1,
+            widths: [30, 80, 80, 50, 170 ],
+            body: [
+              ['S.no.', 'Design Type', 'Details', 'Status', 'Update Date Time | Updated By' ],
+              ...this.data.map(row => (
+                [row.id, row.type, row.description, row.active == true ? "Active" : "In-Active",
+                row.updatedDateTime + '|' + row.updatedByName 
+                 ] 
+              ))
+            ]
+          }
+        }
+      ],
+      styles: {
+        heading: {
+          fontSize: 18,
+          alignment: 'center',
+          margin: [0, 15, 0, 30]
+        }
+      }
+  
+    };
+  
+  
+    pdfMake.createPdf(docDefinition).download('DesignType.pdf');
   }
 
 }

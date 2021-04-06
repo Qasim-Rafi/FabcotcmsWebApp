@@ -9,6 +9,7 @@ import { EditAgentFormComponent } from './edit-agent-form/edit-agent-form.compon
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { GlobalConstants } from 'src/app/Common/global-constants';
 import { ServiceService } from 'src/app/shared/service.service';
+import pdfMake from "pdfmake/build/pdfmake";
 
 
 @Component({
@@ -191,6 +192,57 @@ LastChangedOn :row.updatedDateTime + '|' + row.createdByName
   this.service.exportAsExcelFile(filtered, 'Agent');
 
 }
+// pdf ////////
+
+generatePDF() {
+
+  let docDefinition = {
+    pageSize: 'A4',
+    info: {
+      title: 'Agent List'
+    },
+    content: [
+      {
+        text: 'Agent List',
+        style: 'heading',
+
+      },
+
+      {
+        layout: 'lightHorizontalLines',
+        table: {
+          headerRows: 1,
+          widths: [30, 50, 40, 50, 50 , 60 ,40,30 ,70 ],
+          body: [
+            ['Agent Code', 'Agent Name', 'Agent Type', 'Address' , 'Cell number' , 'Email'
+             ,'Status','Side' ,'Last Update On' ],
+            ...this.data.map(row => (
+              [ row.code, row.name, row.agentTypeId,row.address,row.cellNumber
+                 ,row.emailAddress ,row.active == true ? "Active" : "In-Active",
+              row.agentSideId,
+              row.updatedDateTime + '|' + row.createdByName
+               ] 
+            ))
+          ]
+        }
+      }
+    ],
+    styles: {
+      heading: {
+        fontSize: 18,
+        alignment: 'center',
+        margin: [0, 15, 0, 30]
+      }
+    }
+
+
+  };
+
+
+  pdfMake.createPdf(docDefinition).download('AgentsList.pdf');
+}
+
+
 
 
 }
