@@ -22,8 +22,6 @@ export class ActiveEnquiryComponent implements OnInit {
   temp: any = [];
 
 
-
-
   constructor(private http: HttpClient,
     private toastr: ToastrService,
     private router: Router,
@@ -32,8 +30,13 @@ export class ActiveEnquiryComponent implements OnInit {
     // private modalService: NgbModal,
   ) { }
 
-  navigate() {
+  navigateAddEnquiry() {
     this.router.navigateByUrl('/enquiries');
+  };
+
+
+  navigateEditEnquiry() {
+    this.router.navigateByUrl('/edit-active-enquiries');
   };
 
   ngOnInit(): void {

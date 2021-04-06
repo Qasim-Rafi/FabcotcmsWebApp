@@ -14,6 +14,8 @@ import { BusinessEnquryModule } from './business-enqury/business-enqury.module';
 import { HomeComponent } from './home/home.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { EnquiryItemsComponent } from './shared/MODLES/enquiry-items/enquiry-items.component';
+import { QuotationComponent } from './shared/MODLES/quotation/quotation.component';
 
 
 const appRoutes: Routes = []
@@ -23,6 +25,8 @@ const appRoutes: Routes = []
   declarations: [
     AppComponent,
     HomeComponent,
+    EnquiryItemsComponent,
+    QuotationComponent,
 
     // AddEnquiryComponent,
     // SearchEnquiryComponent,

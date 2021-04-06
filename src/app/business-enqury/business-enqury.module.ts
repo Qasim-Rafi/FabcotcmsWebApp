@@ -13,13 +13,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { ToastrModule } from 'ngx-toastr';
+import { EditActiveEnquiryComponent } from './active-enquiry/edit-active-enquiry/edit-active-enquiry.component';
 
 
 @NgModule({
   declarations: [
     AddEnquiryComponent, 
     ActiveEnquiryComponent, 
-    SearchEnquiryComponent
+    SearchEnquiryComponent, EditActiveEnquiryComponent
   
   ],
 

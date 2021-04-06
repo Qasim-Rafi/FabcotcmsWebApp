@@ -89,7 +89,7 @@
       </div>
 
       <div class="col-md-8">
-        <button type="button" class="btn btn-primary float-right mrg-tsm" (click)="navigate()">
+        <button type="button" class="btn btn-primary float-right mrg-tsm" (click)=" navigateAddEnquiry()">
           <i class="fa fa-plus"></i> Add New Enqury</button>
       </div>
 
@@ -143,18 +143,22 @@
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             <div class="ibox-tools text-center" data-toggle="tooltip" data-placement="top" title=""
               data-original-title="Edit">
-              <button type="button" class="btn editIconBack">
+
+
+
+              <button type="button" class="btn editIconBack px-1 py-1" (click)="navigateEditEnquiry()">
                 <i class="fas fa-external-link-alt"></i>
               </button>
 
-              <button type="button" class="btn editIconBack">
+
+
+              <button type="button" class="btn editIconBack px-1 py-1">
                 <i class="far fa-copy"></i>
               </button>
-              <button type="button" class="btn deleteIconBack" (click)=" deleteArticle(row)">
+              <button type="button" class="btn deleteIconBack px-1 py-1" (click)=" deleteArticle(row)">
                 <i class="far fa-trash-alt"></i>
               </button>
             </div>
-
           </ng-template>
         </ngx-datatable-column>
       </ngx-datatable>

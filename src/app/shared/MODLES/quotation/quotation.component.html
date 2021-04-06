@@ -1,0 +1,81 @@
+<!-- Modal -->
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
+        <div aria-hidden="true">&times;</div>
+    </button>
+
+    <h5 class="modal-title">
+        <i class="fa fa-plus"></i>
+        Add New Quote
+    </h5>
+</div>
+
+<div class="modal-body BG pt-2r">
+    <form #buyerForm="ngForm" novalidate>
+
+        <div class="form-group row">
+            <label for="countryId" class="col-sm-3 col-form-label">Enquiry Item</label>
+            <div class="col-sm-8">
+                <ng-select required placeholder="-- Select --" name="countryId">
+                    <ng-option>
+                        <span> ok</span>
+                    </ng-option>
+                </ng-select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="countryId" class="col-sm-3 col-form-label">Supplier / Seller</label>
+            <div class="col-sm-8">
+                <ng-select required placeholder="Select Vendor" name="countryId">
+                    <ng-option>
+                        <span> ok</span>
+                    </ng-option>
+                </ng-select>
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <label for="name" class="col-sm-3 col-form-label ">Price / Rate</label>
+
+            <div class="col-md-2">
+                <input type="number" class="form-control" placeholder="Rate" name="quantity" />
+            </div>
+            <div class="col-md-3">
+                <ng-select placeholder="-- Select Currency --" name="Currency">
+                    <ng-option>
+                        ok
+                    </ng-option>
+                </ng-select>
+            </div>
+            <div class="col-md-3">
+                <ng-select placeholder="-- Select UOM --" name="Currency">
+                    <ng-option>
+                        ok
+                    </ng-option>
+                </ng-select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="name" class="col-sm-3 col-form-label ">Validity</label>
+            <div class="col-sm-8">
+                <input type="number" class="form-control" placeholder="Quote Validity Date" name="validity" />
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <label for="name" class="col-sm-3 col-form-label ">Notes</label>
+            <textarea class="col-sm-8 form-control" rows="3" placeholder="Quote Additional Details here..."></textarea>
+        </div>
+    </form>
+</div>
+<div class="modal-footer NotBG">
+    <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
+        Close
+    </button>
+    <button class="btn button-save" type="submit" [disabled]="buyerForm.invalid">
+        Save Quote
+    </button>
+</div>
