@@ -11,8 +11,7 @@ import { ServiceService } from 'src/app/shared/service.service'
 import { ClipboardService } from 'ngx-clipboard';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import pdfMake from "pdfmake/build/pdfmake";
-import pdfFonts from "pdfmake/build/vfs_fonts";
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
+import * as printJS from 'print-js'
 @Component({
   selector: 'app-country',
   templateUrl: './country.component.html',
@@ -264,6 +263,56 @@ export class CountryComponent implements OnInit {
     pdfMake.createPdf(docDefinition).download('CountryList.pdf');
   }
 
- 
+//  print
+printTest(){
+  printJS('test' , 'html')
+}
+
+// print pdf ///
+
+printPdf() {
+
+  let docDefinition = {
+    pageSize: 'A4',
+    info: {
+      title: 'Country List'
+    },
+    content: [
+      {
+        text: 'Country List',
+        style: 'heading',
+
+      },
+
+      {
+        layout: 'lightHorizontalLines',
+        table: {
+          headerRows: 1,
+          widths: [30, 90, 130, 50, 150],
+          body: [
+            ['S.no.', 'Country', 'Details', 'Status', 'Created On| Created By'],
+            ...this.data.map(row => (
+              [row.id, row.name, row.details, 
+                row.active == true ? "Active" : "In-Active", row.createdDateTime+ '|'+ row.createdByName]
+            ))
+          ]
+        }
+      }
+    ],
+    styles: {
+      heading: {
+        fontSize: 18,
+        alignment: 'center',
+        margin: [0, 15, 0, 30]
+      }
+    }
+
+  };
+
+  const win = window.open('', "tempWinForPdf");
+    pdfMake.createPdf(docDefinition).print({}, win);
+    // win.close();
+}
+
 
 }

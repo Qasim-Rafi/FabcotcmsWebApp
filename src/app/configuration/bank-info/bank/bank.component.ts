@@ -224,6 +224,49 @@ export class BankComponent implements OnInit {
         pdfMake.createPdf(docDefinition).download('BankList.pdf');
       }
     
+//  print 
+printPdf() {
+   
+  let docDefinition = {
+    pageSize: 'A4',
+    info: {
+      title: 'Bank List'
+    },
+    content: [
+      {
+        text: 'Bank List',
+        style: 'heading',
+
+      },
+
+      {
+        layout: 'lightHorizontalLines',
+        table: {
+          headerRows: 1,
+          widths: [30, 70, 70, 70, 50 , 60 , 60 ],
+          body: [
+            ['S.no.', 'Bank Name', 'Branch Code', 'Branch Name', 'Location' , 'Address' , 'Details'],
+            ...this.data.map(row => (
+              [row.id, row.name, row.branchCode, row.branchName, 
+                row.location,row.address , 
+                row.details] 
+            ))
+          ]
+        }
+      }
+    ],
+    styles: {
+      heading: {
+        fontSize: 18,
+        alignment: 'center',
+        margin: [0, 15, 0, 30]
+      }
+    }
+
+  };
+  pdfMake.createPdf(docDefinition).print();
+}
+
 
 
 }

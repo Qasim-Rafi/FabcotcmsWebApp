@@ -219,5 +219,51 @@ export class LoomTypeComponent implements OnInit {
     pdfMake.createPdf(docDefinition).download('LoomType.pdf');
   }
 
+  // print
+
+  printPdf() {
+
+    let docDefinition = {
+      pageSize: 'A4',
+      info: {
+        title: 'Loom Type List'
+      },
+      content: [
+        {
+          text: 'Loom Type List',
+          style: 'heading',
+  
+        },
+  
+        {
+          layout: 'lightHorizontalLines',
+          table: {
+            headerRows: 1,
+            widths: [30, 80, 80, 50, 170 ],
+            body: [
+              ['S.no.', 'Loom Type', 'Details', 'Status', 'Update Date Time | Updated By' ],
+              ...this.data.map(row => (
+                [row.id, row.type, row.description, row.active == true ? "Active" : "In-Active",
+                row.updatedDateTime + '|' + row.updatedByName 
+                 ] 
+              ))
+            ]
+          }
+        }
+      ],
+      styles: {
+        heading: {
+          fontSize: 18,
+          alignment: 'center',
+          margin: [0, 15, 0, 30]
+        }
+      }
+  
+    };
+  
+  
+    pdfMake.createPdf(docDefinition).print();
+  }
+
 }
 

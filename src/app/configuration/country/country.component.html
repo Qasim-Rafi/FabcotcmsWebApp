@@ -40,7 +40,7 @@
         </div>
       </div>
 
-      <div class="row">
+      <div class="row" >
         <div class="col-md-12 mb-4">
           <div class="row justify-content-end">
             <div class="col-md-4">
@@ -64,15 +64,17 @@
                   (click)="generatePDF()"
                   ><span>PDF</span></a>
                 <a class="btn btn-default buttons-print bg-white" tabindex="0"
-                  aria-controls="DataTables_Table_0"><span>Print</span></a>
+                  aria-controls="DataTables_Table_0"
+                  (click)="printPdf()"
+                  ><span>Print</span></a>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-<div id="myTable">
-    <div class="panel-body" >
+<div >
+    <div class="panel-body" id="test">
       <ngx-datatable #myTable
     
       class="bootstrap datatable-row-wrapper" [columns]="columns" [rows]="rows"

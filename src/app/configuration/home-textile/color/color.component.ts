@@ -227,6 +227,52 @@ export class ColorComponent implements OnInit {
     pdfMake.createPdf(docDefinition).download('ColorList.pdf');
   }
 
+// print
+
+printPdf() {
+
+  let docDefinition = {
+    pageSize: 'A4',
+    info: {
+      title: 'Color List'
+    },
+    content: [
+      {
+        text: 'Color List',
+        style: 'heading',
+
+      },
+
+      {
+        layout: 'lightHorizontalLines',
+        table: {
+          headerRows: 1,
+          widths: [30, 80, 80, 50, 170 ],
+          body: [
+            ['S.no.', 'Color Name', 'Details', 'Status', 'Update Date Time | Updated By' ],
+            ...this.data.map(row => (
+              [row.id, row.name, row.description, row.active == true ? "Active" : "In-Active",
+              row.updatedDateTime + '|' + row.updatedByName 
+               ] 
+            ))
+          ]
+        }
+      }
+    ],
+    styles: {
+      heading: {
+        fontSize: 18,
+        alignment: 'center',
+        margin: [0, 15, 0, 30]
+      }
+    }
+
+  };
+
+
+  pdfMake.createPdf(docDefinition).print();
+}
+
 
 }
 

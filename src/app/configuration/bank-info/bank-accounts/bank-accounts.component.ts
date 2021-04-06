@@ -224,6 +224,50 @@ exportAsXLSX(): void {
 
     pdfMake.createPdf(docDefinition).download('BankAccount.pdf');
   }
+// print 
+printPdf() {
+
+  let docDefinition = {
+    pageSize: 'A4',
+    info: {
+      title: 'Bank Account List'
+    },
+    content: [
+      {
+        text: 'Bank Account List',
+        style: 'heading',
+
+      },
+
+      {
+        layout: 'lightHorizontalLines',
+        table: {
+          headerRows: 1,
+          widths: [30, 60, 60, 60, 60 , 60 , 60  , 50 , 50],
+          body: [
+            ['S.no.', 'Account Name', 'Account No.', 'IBAN', 'Swift Code' , 'Account Type' , 'Bank Name' , 'Branch Name' ],
+            ...this.data.map(row => (
+              [row.id, row.accountName, row.accountNumber, row.iban, 
+                row.swiftCode,row.type , 
+                row.bankName, row.branchName] 
+            ))
+          ]
+        }
+      }
+    ],
+    styles: {
+      heading: {
+        fontSize: 18,
+        alignment: 'center',
+        margin: [0, 15, 0, 30]
+      }
+    }
+
+  };
+
+
+  pdfMake.createPdf(docDefinition).print();
+}
 
 }
 

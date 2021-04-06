@@ -230,5 +230,51 @@ generatePDF() {
   pdfMake.createPdf(docDefinition).download('ArticleList.pdf');
 }
 
+// print
+
+printPdf() {
+
+  let docDefinition = {
+    pageSize: 'A4',
+    info: {
+      title: 'Article List'
+    },
+    content: [
+      {
+        text: 'Articles List',
+        style: 'heading',
+
+      },
+
+      {
+        layout: 'lightHorizontalLines',
+        table: {
+          headerRows: 1,
+          widths: [30, 50, 80, 80, 40 , 100 , 70 ],
+          body: [
+            ['S.no.', 'Article Code', 'Article Name', 'Generic Name' ,'Status', 'Last Update On', 'Last Update By' ],
+            ...this.data.map(row => (
+              [row.id, row.code, row.name, row.genericName ,row.active == true ? "Active" : "In-Active",
+              row.updatedDateTime , row.updatedByName 
+               ] 
+            ))
+          ]
+        }
+      }
+    ],
+    styles: {
+      heading: {
+        fontSize: 18,
+        alignment: 'center',
+        margin: [0, 15, 0, 30]
+      }
+    }
+
+  };
+
+
+  pdfMake.createPdf(docDefinition).print();
+}
+
 
 }
