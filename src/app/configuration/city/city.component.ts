@@ -6,11 +6,15 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EditCityComponent } from './edit-city/edit-city.component';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { GlobalConstants } from 'src/app/Common/global-constants';
-import { DatatableComponent } from '@swimlane/ngx-datatable';
+import { DatatableComponent, id } from '@swimlane/ngx-datatable';
 import { ServiceService } from 'src/app/shared/service.service';
+<<<<<<< Updated upstream
 import pdfMake from "pdfmake/build/pdfmake";  
 import pdfFonts from "pdfmake/build/vfs_fonts";  
 pdfMake.vfs = pdfFonts.pdfMake.vfs;  
+=======
+import { ClipboardService } from 'ngx-clipboard';
+>>>>>>> Stashed changes
 
 @Component({
   selector: 'app-city',
@@ -34,6 +38,7 @@ export class CityComponent implements OnInit {
   constructor(private http: HttpClient,
     private toastr: ToastrService,
     private service:ServiceService,
+    private _clipboardService: ClipboardService,
     private modalService: NgbModal) { }
 
   ngOnInit(): void {
@@ -251,25 +256,38 @@ generatePDF() {
 
       let count3 = this.rows.map(x => x.details.length);
       let max3 = count3.reduce((a, b) => Math.max(a, b));
+
+      let count4 = this.rows.map(x => x.active== true ? "Active".length : "In-Active".length);
+      let max4 = count4.reduce((a, b) => Math.max(a, b));
       // max = max + 10;
       max1 = max1 + 10;
       max2 = max2 + 10;
       max3 = max3 + 10;
+      max4 = max4 + 10;
+
       // ................................................ headings replace yours............................
   
       this.data1.push('S No.' +'City Name'.padEnd(max1) +
-      'Country'.padEnd(max2) + 'Details'.padEnd(max3)+ 'Changed On | Changed By \n');
+      'Country'.padEnd(max2) + 'Details'.padEnd(max3)+'Status'.padEnd(max4)+'Changed On'+'| Changed By \n');
       // ................................................ headings............................
   
       // ................................................ coloum data...........replace your coloum names.................
       for (let i = 0; i < this.rows.length; i++) {
-        let data1 = this.rows[i].id+this.rows[i].name.padEnd(max1)+this.rows[i].country.padEnd(max2) 
-        + this.rows[i].details.padEnd(max3)+ this.rows[i].updatedDateTime+'\n';
-        this.data1.push(data1);
+        let anydata = this.rows[i].id + this.rows[i].name.padEnd(max1) + this.rows[i].country.padEnd(max2) 
+        + this.rows[i].details.padEnd(max3) 
+        +this.rows[i].active
+        + this.rows[i].updatedDateTime + this.rows[i].updatedByName +'\n';
+        this.data1.push(anydata);
       }
-      this.clipboardService.copy(this.data1)
-      // ................................................ coloum this.data............................
-  
+      this._clipboardService.copy(this.data1)
+      // ............................row.active == true ? "Active" : "In-Active".................... coloum this.data............................
+
+      Swal.fire({
+        title: GlobalConstants.copySuccess, 
+        footer:'Copied'+'\n'+this.CityCount+'\n'+'rows to clipboard',
+         showConfirmButton: false,
+         timer:2000,
+      })
     }
 }
 

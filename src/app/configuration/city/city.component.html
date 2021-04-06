@@ -96,7 +96,7 @@
             {{ row.details }}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Status" prop="status" [flexGrow]="0.06">
+        <ngx-datatable-column name="Status" id="active" prop="status" [flexGrow]="0.06">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
 
             <span class="badge badge-primary" *ngIf="row.active==true">Active</span>
