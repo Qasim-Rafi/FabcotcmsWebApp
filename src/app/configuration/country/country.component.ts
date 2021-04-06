@@ -11,7 +11,7 @@ import { ServiceService } from 'src/app/shared/service.service'
 import { ClipboardService } from 'ngx-clipboard';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import pdfMake from "pdfmake/build/pdfmake";
-import * as printJS from 'print-js'
+
 @Component({
   selector: 'app-country',
   templateUrl: './country.component.html',
@@ -263,11 +263,6 @@ export class CountryComponent implements OnInit {
     pdfMake.createPdf(docDefinition).download('CountryList.pdf');
   }
 
-//  print
-printTest(){
-  printJS('test' , 'html')
-}
-
 // print pdf ///
 
 printPdf() {
@@ -306,6 +301,12 @@ printPdf() {
         margin: [0, 15, 0, 30]
       }
     }
+
+
+
+
+
+
 
   };
 
