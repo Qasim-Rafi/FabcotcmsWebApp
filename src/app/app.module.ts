@@ -17,6 +17,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { EnquiryItemsComponent } from './shared/MODLES/enquiry-items/enquiry-items.component';
 import { QuotationComponent } from './shared/MODLES/quotation/quotation.component';
 import { LoginComponent } from './login/login.component';
+import { AngularMaterialModule } from './angular-material.module';
 
 
 const appRoutes: Routes = []
@@ -59,6 +60,7 @@ const appRoutes: Routes = []
     HttpClientModule,
     BrowserAnimationsModule,
     NgxDatatableModule,
+    AngularMaterialModule,
     RouterModule.forRoot(appRoutes),
     ToastrModule.forRoot({
       progressBar: true,
