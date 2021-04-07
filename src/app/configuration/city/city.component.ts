@@ -196,48 +196,93 @@ CreatedOn :row.createdDateTime + '|' + row.createdByName
 }
 // pdf generation
 
-// generatePDF() {
+generatePDF() {
 
-//   let docDefinition = {
-//     pageSize: 'A4',
-//     info: {
-//       title: 'City List'
-//     },
-//     content: [
-//       {
-//         text: 'City List',
-//         style: 'heading',
+  let docDefinition = {
+    pageSize: 'A4',
+    info: {
+      title: 'City List'
+    },
+    content: [
+      {
+        text: 'City List',
+        style: 'heading',
 
-//       },
+      },
 
-//       {
-//         layout: 'lightHorizontalLines',
-//         table: {
-//           headerRows: 1,
-//           widths: [30, 90, 130, 50, 150],
-//           body: [
-//             ['S.no.', 'City', 'Details', 'Status', 'Created On| Created By'],
-//             ...this.data.map(row => (
-//               [row.id, row.name, row.details, 
-//                 row.active == true ? "Active" : "In-Active", row.createdDateTime+ '|'+ row.createdByName]
-//             ))
-//           ]
-//         }
-//       }
-//     ],
-//     styles: {
-//       heading: {
-//         fontSize: 18,
-//         alignment: 'center',
-//         margin: [0, 15, 0, 30]
-//       }
-//     }
+      {
+        layout: 'lightHorizontalLines',
+        table: {
+          headerRows: 1,
+          widths: [30, 90, 130, 50, 150],
+          body: [
+            ['S.no.', 'City', 'Details', 'Status', 'Created On| Created By'],
+            ...this.data.map(row => (
+              [row.id, row.name, row.details, 
+                row.active == true ? "Active" : "In-Active", row.createdDateTime+ '|'+ row.createdByName]
+            ))
+          ]
+        }
+      }
+    ],
+    styles: {
+      heading: {
+        fontSize: 18,
+        alignment: 'center',
+        margin: [0, 15, 0, 30]
+      }
+    }
 
-//   };
+  };
 
 
-//   pdfMake.createPdf(docDefinition).download('CityList.pdf');
-// }
+  pdfMake.createPdf(docDefinition).download('CityList.pdf');
+}
+// print
+
+printPdf() {
+
+  let docDefinition = {
+    pageSize: 'A4',
+    info: {
+      title: 'City List'
+    },
+    content: [
+      {
+        text: 'City List',
+        style: 'heading',
+
+      },
+
+      {
+        layout: 'lightHorizontalLines',
+        table: {
+          headerRows: 1,
+          widths: [30, 90, 130, 50, 150],
+          body: [
+            ['S.no.', 'City', 'Details', 'Status', 'Created On| Created By'],
+            ...this.data.map(row => (
+              [row.id, row.name, row.details, 
+                row.active == true ? "Active" : "In-Active", row.createdDateTime+ '|'+ row.createdByName]
+            ))
+          ]
+        }
+      }
+    ],
+    styles: {
+      heading: {
+        fontSize: 18,
+        alignment: 'center',
+        margin: [0, 15, 0, 30]
+      }
+    }
+
+  };
+
+
+  pdfMake.createPdf(docDefinition).print();
+}
+
 
 
 

@@ -4,7 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EditCountryComponent } from './edit-country/edit-country.component';
-// import { AddCountryComponent } from './add-country/add-country.component';
 import { GlobalConstants } from '../../Common/global-constants';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { ServiceService } from 'src/app/shared/service.service'
@@ -49,16 +48,10 @@ export class CountryComponent implements OnInit {
 
   updateFilter(event) {
     const val = event.target.value.toLowerCase();
-
-    // filter our data
     const temp = this.countryFilter.filter(function (d) {
       return (d.name.toLowerCase().indexOf(val) !== -1 || !val);
     });
-
-    // update the rows
     this.rows = temp;
-    // Whenever the filter changes, always go back to the first page
-    // this.table.offset = 0;
   }
 
 
@@ -125,13 +118,6 @@ export class CountryComponent implements OnInit {
                 this.toastr.error(this.response.message, 'Message.');
               }
             });
-
-
-        // Swal.fire(
-        //   'Record',
-        //   'Deleted Successfully.',
-        //   'success'
-        // )
       }
     })
 
@@ -188,38 +174,11 @@ export class CountryComponent implements OnInit {
       Details: row.details,
       Status: row.active == true ? "Active" : "In-Active",
       CreatedOn: row.createdDateTime + ' | ' + row.createdByName
-
-
-
-      // createdDateTime:row.row.createdDateTime
-
     }));
 
     this.service.exportAsExcelFile(filtered, 'Countries');
 
   }
-
-  //   copyContent() {
-  //     let array = []
-  //    let rows = this.table.bodyComponent.rows;
-  //    function createStringByArray(array) {
-  //     var output = '';
-  //         forEach(array, function (object) {
-  //         forEach(object, function (value, key) {
-  //             output += key + ',';
-  //             output += value + ',';
-  //         });
-  //     });
-  //     return output;
-  // }
-
-  //     // let copy =     this.rows.join(',')
-  //     // this.clipboardService.copyFromContent(array)
-  //   }
-
-
-  // pdf
-
   generatePDF() {
 
     let docDefinition = {
@@ -301,13 +260,6 @@ printPdf() {
         margin: [0, 15, 0, 30]
       }
     }
-
-
-
-
-
-
-
   };
 
   const win = window.open('', "tempWinForPdf");
