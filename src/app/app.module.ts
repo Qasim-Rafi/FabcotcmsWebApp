@@ -16,6 +16,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { EnquiryItemsComponent } from './shared/MODLES/enquiry-items/enquiry-items.component';
 import { QuotationComponent } from './shared/MODLES/quotation/quotation.component';
+import { LoginComponent } from './login/login.component';
 
 
 const appRoutes: Routes = []
@@ -27,7 +28,7 @@ const appRoutes: Routes = []
     HomeComponent,
     EnquiryItemsComponent,
     QuotationComponent,
-
+    LoginComponent,
     // AddEnquiryComponent,
     // SearchEnquiryComponent,
     // AddmodalComponent,
