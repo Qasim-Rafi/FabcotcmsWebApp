@@ -21,7 +21,7 @@ export class BankAccountsComponent implements OnInit {
   rows: any = [];
   columns: any = [];
   data: any = {};
-  temp: any[]; s
+  temp: any[]; 
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,

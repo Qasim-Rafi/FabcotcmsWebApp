@@ -22,17 +22,17 @@ export class TimeActionItemsComponent implements OnInit {
   data: any = {};
   TnaCount: number;
   TnaFilter: any = [];
-
+  TnaUrl = '/api/TextileGarments/GetAllTnaAction'
   constructor(private http: HttpClient,
     private toastr: ToastrService,
     private service: ServiceService,
     private modalService: NgbModal) { }
 
   ngOnInit(): void {
-    this.fetch((data) => {
-
+    this.service.fetch((data) => {
       this.rows = data;
-    });
+      this.TnaCount = this.rows.length;
+    } , this.TnaUrl);
   }
 
 
@@ -49,36 +49,6 @@ export class TimeActionItemsComponent implements OnInit {
     // Whenever the filter changes, always go back to the first page
     // this.table.offset = 0;
   }
-
-
-
-
-
-  fetch(cb) {
-    let that = this;
-    that.http
-      .get(`${environment.apiUrl}/api/TextileGarments/GetAllTnaAction`)
-      .subscribe(res => {
-        this.response = res;
-        this.TnaCount = this.response.data.length;
-        if (this.response.success == true) {
-          that.data = this.response.data;
-          this.TnaFilter = [...this.data];
-          cb(this.data);
-        }
-        else {
-          this.toastr.error(this.response.message, 'Message.');
-        }
-        // this.spinner.hide();
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error(err.error.message, 'Message.');;
-        }
-        //  this.spinner.hide();
-      });
-  }
-
-
 
   deleteAction(id) {
     Swal.fire({
@@ -101,10 +71,10 @@ export class TimeActionItemsComponent implements OnInit {
               this.response = res;
               if (this.response.success == true) {
                 this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
-                this.fetch((data) => {
+                this.service.fetch((data) => {
                   this.rows = data;
                   this.TnaCount = this.rows.length;
-                });
+                } , this.TnaUrl);
 
               }
               else {
@@ -116,12 +86,6 @@ export class TimeActionItemsComponent implements OnInit {
                 this.toastr.error(this.response.message, 'Message.');
               }
             });
-
-        // Swal.fire(
-        //   'Record',
-        //   'Deleted Successfully.',
-        //   'success'
-        // )
       }
     })
 
@@ -136,10 +100,10 @@ export class TimeActionItemsComponent implements OnInit {
       // on close
       if (data == true) {
         //  this.date = this.myDate;
-        this.fetch((data) => {
+        this.service.fetch((data) => {
           this.rows = data;
           this.TnaCount = this.rows.length;
-        });
+        } , this.TnaUrl);
 
 
       }
@@ -156,9 +120,9 @@ export class TimeActionItemsComponent implements OnInit {
       // on close
       if (data == true) {
         //  this.date = this.myDate;
-        this.fetch((data) => {
+        this.service.fetch((data) => {
           this.rows = data;
-        });
+        } , this.TnaUrl);
 
       }
     }, (reason) => {
@@ -171,7 +135,6 @@ export class TimeActionItemsComponent implements OnInit {
       SNo: row.id,
       ActionName: row.name,
       Details: row.description,
-      // Status: row.active == true ? "Active" : "In-Active",
       LastChange: row.updatedDateTime + '|' + row.updatedByName
     }));
 

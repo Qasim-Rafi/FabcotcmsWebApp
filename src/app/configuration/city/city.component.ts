@@ -40,6 +40,7 @@ export class CityComponent implements OnInit {
     this.service.fetch((data) => {
       this.cityFilter = [...data];
       this.rows = data;
+      this.CityCount = this.rows.length;
     } , this.cityUrl);
 
   }

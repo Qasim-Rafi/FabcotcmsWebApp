@@ -22,7 +22,7 @@ export class BankComponent implements OnInit {
   data: any = {};
   myDate = Date.now();
   temp: any[];
-
+ 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
     private service:ServiceService,

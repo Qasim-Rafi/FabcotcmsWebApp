@@ -21,17 +21,18 @@ export class PriceTermComponent implements OnInit {
   columns: any = [];
   priceTermCount: number;
   priceTermFilter: any[];
-
+  PriceTermUrl = '/api/Products/GetAllPriceTerm'
   constructor(private http: HttpClient,
     private toastr: ToastrService,
     private service:ServiceService,
     private modalService: NgbModal,) { }
 
   ngOnInit(): void {
-    this.fetch((data) => {
+    this.service.fetch((data) => {
       this.priceTermFilter = [...data];
       this.rows = data;
-    });
+      this.priceTermCount = this.rows.length;
+    } , this.PriceTermUrl);
   }
 
 // Searching
@@ -42,30 +43,6 @@ export class PriceTermComponent implements OnInit {
     });
     this.rows = temp;
   }
-
-  fetch(cb) {
-    let that = this;
-    that.http
-      .get(`${environment.apiUrl}/api/Products/GetAllPriceTerm`)
-      .subscribe(res => {
-        this.response = res;
-        if (this.response.success == true) {
-          that.data = this.response.data;
-          this.priceTermCount = this.response.data.length;
-          cb(this.data);
-        }
-        else {
-          this.toastr.error(this.response.message, 'Message.');
-        }
-    
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error(err.error.message, 'Message.');;
-        }
-   
-      });
-  }
-
 
   deletePrice(id) {
     Swal.fire({
@@ -88,9 +65,9 @@ export class PriceTermComponent implements OnInit {
               this.response = res;
               if (this.response.success == true) {
                 this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
-                this.fetch((data) => {
+                this.service.fetch((data) => {
                   this.rows = data;
-                });
+                }, this.PriceTermUrl);
 
               }
               else {
@@ -114,9 +91,9 @@ export class PriceTermComponent implements OnInit {
       // on close
       if (data == true) {
      
-        this.fetch((data) => {
+        this.service.fetch((data) => {
           this.rows = data;
-        });
+        }, this.PriceTermUrl);
 
 
       }
@@ -132,9 +109,9 @@ export class PriceTermComponent implements OnInit {
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        this.fetch((data) => {
+        this.service.fetch((data) => {
           this.rows = data;
-        });
+        } , this.PriceTermUrl);
 
       }
     }, (reason) => {

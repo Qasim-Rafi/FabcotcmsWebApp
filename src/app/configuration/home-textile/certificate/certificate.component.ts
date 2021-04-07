@@ -19,10 +19,9 @@ export class CertificateComponent implements OnInit {
   rows:any=[];
   columns:any=[];
   data:any={};
-  listCount: number;
-  myDate=Date.now();
-  temp: any=[];
-
+  certificateCount: number;
+  certificateFilter: any=[];
+certificateUrl = '/api/TextileGarments/GetAllCertificate'
 
   constructor(private http:HttpClient,
               private toastr: ToastrService,
@@ -30,10 +29,11 @@ export class CertificateComponent implements OnInit {
               private modalService: NgbModal,) { }
 
   ngOnInit(): void {
-    this.fetch((data) => {
-      this.temp = [...data];
+    this.service.fetch((data) => {
+      this.certificateFilter = [...data];
       this.rows = data;
-    });
+      this.certificateCount = this.rows.length;
+    } , this.certificateUrl);
   }
 
 
@@ -41,7 +41,7 @@ export class CertificateComponent implements OnInit {
     const val = event.target.value.toLowerCase();
 
     // filter our data
-    const temp = this.temp.filter(function (d) {
+    const temp = this.certificateFilter.filter(function (d) {
       return d.name.toLowerCase().indexOf(val) !== -1  || !val;
     });
 
@@ -50,33 +50,6 @@ export class CertificateComponent implements OnInit {
     // Whenever the filter changes, always go back to the first page
     // this.table.offset = 0;
   }
-
-
-  fetch(cb) {
-    let that = this;
-    that.http
-    .get(`${environment.apiUrl}/api/TextileGarments/GetAllCertificate`)
-    .subscribe(res => {
-      this.response = res;
-      this.listCount = this.rows.length;
-    if(this.response.success==true)
-    {
-    that.data =this.response.data;
-    cb(this.data);
-    }
-    else{
-      this.toastr.error(this.response.message, 'Message.');
-    }
-      // this.spinner.hide();
-    }, err => {
-      if ( err.status == 400) {
- this.toastr.error(err.error.message, 'Message.');;
-      }
-    //  this.spinner.hide();
-    });
-  }
-
-  
 
   deleteCertificate(id){
     Swal.fire({
@@ -98,15 +71,15 @@ export class CertificateComponent implements OnInit {
           res=> { 
             this.response = res;
             if (this.response.success == true){
-             this.toastr.error(this.response.message, 'Message.');
-             this.fetch((data) => {
+             this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
+             this.service.fetch((data) => {
               this.rows = data;
-              this.listCount = this.rows.length;
-            });
+              this.certificateCount = this.rows.length;
+            } , this.certificateUrl);
               
             }
             else {
-              this.toastr.error(this.response.message, 'Message.');
+              this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
                 }
      
           }, err => {
@@ -114,12 +87,6 @@ export class CertificateComponent implements OnInit {
               this.toastr.error(this.response.message, 'Message.');
             }
           });
-    
-        // Swal.fire(
-        //   'Record',
-        //   'Deleted Successfully.',
-        //   'success'
-        // )
       }
     })
     
@@ -135,10 +102,10 @@ export class CertificateComponent implements OnInit {
          // on close
           if(data ==true){
           //  this.date = this.myDate;
-           this.fetch((data) => {
+           this.service.fetch((data) => {
             this.rows = data;
-            this.listCount = this.rows.length;
-          });
+            this.certificateCount = this.rows.length;
+          } , this.certificateUrl);
            
   
          }
@@ -156,9 +123,9 @@ export class CertificateComponent implements OnInit {
          // on close
           if(data ==true){
           //  this.date = this.myDate;
-           this.fetch((data) => {
+           this.service.fetch((data) => {
             this.rows = data;
-          });
+          } , this.certificateUrl);
          }
        }, (reason) => {
          // on dismiss

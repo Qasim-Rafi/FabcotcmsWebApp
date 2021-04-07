@@ -22,61 +22,29 @@ export class ProcessTypeComponent implements OnInit {
   data: any = {};
   processTypeCount: number;
   processTypeFilter: any = [];
-
+processTypeUrl = '/api/TextileGarments/GetAllProcessType'
   constructor(private http: HttpClient,
     private toastr: ToastrService,
     private service:ServiceService,
     private modalService: NgbModal) { }
 
   ngOnInit(): void {
-    this.fetch((data) => {
+    this.service.fetch((data) => {
       this.processTypeFilter = [...data];
       this.rows = data;
-    });
+      this.processTypeCount = this.rows.length;
+    } , this.processTypeUrl);
   }
-
-
 
   updateFilter(event) {
     const val = event.target.value.toLowerCase();
 
-    // filter our data
     const temp = this.processTypeFilter.filter(function (d) {
       return d.type.toLowerCase().indexOf(val) !== -1 || !val;
     });
-
-    // update the rows
     this.rows = temp;
-    // Whenever the filter changes, always go back to the first page
-    // this.table.offset = 0;
+
   }
-
-
-
-  fetch(cb) {
-    let that = this;
-    that.http
-      .get(`${environment.apiUrl}/api/TextileGarments/GetAllProcessType`)
-      .subscribe(res => {
-        this.response = res;
-        this.processTypeCount = this.response.data.length;
-        if (this.response.success == true) {
-          that.data = this.response.data;
-          cb(this.data);
-        }
-        else {
-          this.toastr.error(this.response.message, 'Message.');
-        }
-        // this.spinner.hide();
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error(err.error.message, 'Message.');;
-        }
-        //  this.spinner.hide();
-      });
-  }
-
-
 
 
   deleteProcess(id) {
@@ -100,10 +68,10 @@ export class ProcessTypeComponent implements OnInit {
               this.response = res;
               if (this.response.success == true) {
                 this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
-                this.fetch((data) => {
+                this.service.fetch((data) => {
                   this.rows = data;
                   this.processTypeCount = this.rows.length;
-                });
+                } , this.processTypeUrl);
 
               }
               else {
@@ -126,10 +94,10 @@ export class ProcessTypeComponent implements OnInit {
       // on close
       if (data == true) {
         //  this.date = this.myDate;
-        this.fetch((data) => {
+        this.service.fetch((data) => {
           this.rows = data;
           this.processTypeCount = this.rows.length;
-        });
+        } , this.processTypeUrl);
 
 
       }
@@ -146,9 +114,9 @@ export class ProcessTypeComponent implements OnInit {
       // on close
       if (data == true) {
         //  this.date = this.myDate;
-        this.fetch((data) => {
+        this.service.fetch((data) => {
           this.rows = data;
-        });
+        } , this.processTypeUrl);
 
       }
     }, (reason) => {

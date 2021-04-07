@@ -23,6 +23,7 @@ export class PaymentTermComponent implements OnInit {
   paymentTermCount: number;
   myDate = Date.now();
   paymentTermFilter: any[];
+  paymentTermUrl = '/api/Products/GetAllPaymentTerm'
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
@@ -31,10 +32,11 @@ export class PaymentTermComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.fetch((data) => {
+    this.service.fetch((data) => {
       this.paymentTermFilter = [...data];
       this.rows = data;
-    });
+      this.paymentTermCount = this.rows.length;
+    }, this.paymentTermUrl);
   }
 
 // searching
@@ -48,27 +50,6 @@ export class PaymentTermComponent implements OnInit {
 
   }
 
-  fetch(cb) {
-    let that = this;
-    that.http
-      .get(`${environment.apiUrl}/api/Products/GetAllPaymentTerm`)
-      .subscribe(res => {
-        this.response = res;
-        if (this.response.success == true) {
-          that.data = this.response.data;
-          this.paymentTermCount = this.response.data.length;
-          cb(this.data);
-        }
-        else {
-          this.toastr.error(this.response.message, 'Message.');
-        }
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error(err.error.message, 'Message.');;
-        }
-        
-      });
-  }
 
   deletePayment(id) {
     Swal.fire({
@@ -91,9 +72,9 @@ export class PaymentTermComponent implements OnInit {
               this.response = res;
               if (this.response.success == true) {
                 this.toastr.error(this.response.message, 'Message.');
-                this.fetch((data) => {
+                this.service.fetch((data) => {
                   this.rows = data;
-                });
+                } , this.paymentTermUrl);
 
               }
               else {
@@ -116,9 +97,10 @@ export class PaymentTermComponent implements OnInit {
       // on close
       if (data == true) {
         //  this.date = this.myDate;
-        this.fetch((data) => {
+        this.service.fetch((data) => {
           this.rows = data;
-        });
+          this.paymentTermCount = this.rows.length;
+        } , this.paymentTermUrl);
 
 
       }
@@ -135,9 +117,9 @@ export class PaymentTermComponent implements OnInit {
       // on close
       if (data == true) {
         //  this.date = this.myDate;
-        this.fetch((data) => {
+        this.service.fetch((data) => {
           this.rows = data;
-        });
+        }, this.paymentTermUrl);
 
       }
     }, (reason) => {

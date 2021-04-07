@@ -22,7 +22,7 @@ export class PackingComponent implements OnInit {
   packingCount: number;
   myDate = Date.now();
   packingFilter: any[];
-
+packingUrl='/api/Products/GetAllPacking'
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
@@ -31,10 +31,11 @@ export class PackingComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.fetch((data) => {
+    this.service.fetch((data) => {
       this.packingFilter = [...data];
       this.rows = data;
-    });
+      this.packingCount = this.rows.length;
+    } , this.packingUrl);
   }
 
 // searching
@@ -47,32 +48,6 @@ export class PackingComponent implements OnInit {
     })  ;
     this.rows = temp;
   }
-
-
-  fetch(cb) {
-    let that = this;
-    that.http
-      .get(`${environment.apiUrl}/api/Products/GetAllPacking`)
-      .subscribe(res => {
-        this.response = res;
-        if (this.response.success == true) {
-          that.data = this.response.data;
-          this.packingCount = this.response.data.length;
-          cb(this.data);
-        }
-        else {
-          this.toastr.error(this.response.message, 'Message.');
-        }
-        // this.spinner.hide();
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error(err.error.message, 'Message.');;
-        }
-        //  this.spinner.hide();
-      });
-  }
-
-
 
 
   deletePacking(id) {
@@ -96,11 +71,11 @@ export class PackingComponent implements OnInit {
               this.response = res;
               if (this.response.success == true) {
                 this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
-                this.fetch((data) => {
+                this.service.fetch((data) => {
                   this.rows = data;
 
                   this.packingCount = this.rows.length;
-                });
+                } , this.packingUrl);
 
               }
               else {
@@ -123,11 +98,11 @@ export class PackingComponent implements OnInit {
       // on close
       if (data == true) {
         //  this.date = this.myDate;
-        this.fetch((data) => {
+        this.service.fetch((data) => {
           this.rows = data;
 
           this.packingCount = this.rows.length;
-        });
+        }, this.packingUrl);
 
 
       }
@@ -144,9 +119,9 @@ export class PackingComponent implements OnInit {
       // on close
       if (data == true) {
       
-        this.fetch((data) => {
+        this.service.fetch((data) => {
           this.rows = data;
-        });
+        } , this.packingUrl);
 
       }
     }, (reason) => {

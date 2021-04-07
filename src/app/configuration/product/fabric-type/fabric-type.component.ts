@@ -22,7 +22,7 @@ export class FabricTypeComponent implements OnInit {
   columns: any = [];
   fabricTypeCount: number;
   fabricFilter: any[];
-
+  fabricTypeUrl = '/api/Products/GetAllFabricType'
 
 
   constructor(private http: HttpClient,
@@ -31,11 +31,11 @@ export class FabricTypeComponent implements OnInit {
     private modalService: NgbModal,) { }
 
   ngOnInit(): void {
-    this.fetch((data) => {
+    this.service.fetch((data) => {
       this.fabricFilter = [...data];
       this.rows = data;
       this.fabricTypeCount = this.rows.length;
-    });
+    } , this.fabricTypeUrl);
   }
 
 
@@ -54,31 +54,6 @@ export class FabricTypeComponent implements OnInit {
     // this.table.offset = 0;
   }
 
-
-
-
-  fetch(cb) {
-    let that = this;
-    that.http
-      .get(`${environment.apiUrl}/api/Products/GetAllFabricType`)
-      .subscribe(res => {
-        this.response = res;
-        if (this.response.success == true) {
-          that.data = this.response.data;
-          this.fabricTypeCount = this.response.data.length;
-          cb(this.data);
-        }
-        else {
-          this.toastr.error(this.response.message, 'Message.');
-        }
-        // this.spinner.hide();
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error(err.error.message, 'Message.');;
-        }
-        //  this.spinner.hide();
-      });
-  }
 
 
 
@@ -103,10 +78,10 @@ export class FabricTypeComponent implements OnInit {
               this.response = res;
               if (this.response.success == true) {
                 this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
-                this.fetch((data) => {
+                this.service.fetch((data) => {
                   this.rows = data;
                   this.fabricTypeCount = this.rows.length;
-                });
+                } , this.fabricTypeUrl);
 
               }
               else {
@@ -118,11 +93,7 @@ export class FabricTypeComponent implements OnInit {
                 this.toastr.error(this.response.message, 'Message.');
               }
             });
-        // Swal.fire(
-        //   'Record',
-        //   'Deleted Successfully.',
-        //   'success'
-        // )
+     
       }
     })
 
@@ -137,10 +108,10 @@ export class FabricTypeComponent implements OnInit {
       // on close
       if (data == true) {
         //  this.date = this.myDate;
-        this.fetch((data) => {
+        this.service.fetch((data) => {
           this.rows = data;
           this.fabricTypeCount = this.rows.length;
-        });
+        } , this.fabricTypeUrl);
 
 
       }
@@ -157,9 +128,9 @@ export class FabricTypeComponent implements OnInit {
       // on close
       if (data == true) {
         //  this.date = this.myDate;
-        this.fetch((data) => {
+        this.service.fetch((data) => {
           this.rows = data;
-        });
+        } , this.fabricTypeUrl);
 
       }
     }, (reason) => {

@@ -20,27 +20,27 @@ export class LoomTypeComponent implements OnInit {
   rows: any = [];
   columns: any = [];
   data: any = {};
-  listCount: number;
-  myDate = Date.now();
-  temp: any = [];
-
+  loomCount: number;
+  loomFilter: any = [];
+  loomUrl = '/api/TextileGarments/GetAllLoomType'
   constructor(private http: HttpClient,
     private toastr: ToastrService,
     private service:ServiceService,
     private modalService: NgbModal) { }
 
   ngOnInit(): void {
-    this.fetch((data) => {
-      this.temp = [...data];
+    this.service.fetch((data) => {
+      this.loomFilter = [...data];
       this.rows = data;
-    });
+      this.loomCount = this.rows.length;
+    } , this.loomUrl);
   }
 
   updateFilter(event) {
     const val = event.target.value.toLowerCase();
 
     // filter our data
-    const temp = this.temp.filter(function (d) {
+    const temp = this.loomFilter.filter(function (d) {
       return d.type.toLowerCase().indexOf(val) !== -1 || !val;
     });
 
@@ -49,33 +49,6 @@ export class LoomTypeComponent implements OnInit {
     // Whenever the filter changes, always go back to the first page
     // this.table.offset = 0;
   }
-
-
-  fetch(cb) {
-    let that = this;
-    that.http
-      .get(`${environment.apiUrl}/api/TextileGarments/GetAllLoomType`)
-      .subscribe(res => {
-        this.response = res;
-        this.listCount = this.response.data.length;
-        if (this.response.success == true) {
-          that.data = this.response.data;
-          cb(this.data);
-        }
-        else {
-          this.toastr.error(this.response.message, 'Message.');
-        }
-        // this.spinner.hide();
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error(err.error.message, 'Message.');;
-        }
-        //  this.spinner.hide();
-      });
-  }
-
-
-
   deleteLoom(id) {
     Swal.fire({
       title: GlobalConstants.deleteTitle, //'Are you sure?',
@@ -96,15 +69,15 @@ export class LoomTypeComponent implements OnInit {
             res => {
               this.response = res;
               if (this.response.success == true) {
-                this.toastr.error(this.response.message, 'Message.');
-                this.fetch((data) => {
+                this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
+                this.service.fetch((data) => {
                   this.rows = data;
-                  this.listCount = this.rows.length;
-                });
+                  this.loomCount = this.rows.length;
+                } , this.loomUrl);
 
               }
               else {
-                this.toastr.error(this.response.message, 'Message.');
+                this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
               }
 
             }, err => {
@@ -113,11 +86,6 @@ export class LoomTypeComponent implements OnInit {
               }
             });
 
-        // Swal.fire(
-        //   'Record',
-        //   'Deleted Successfully.',
-        //   'success'
-        // )
       }
     })
 
@@ -131,10 +99,10 @@ export class LoomTypeComponent implements OnInit {
       // on close
       if (data == true) {
         //  this.date = this.myDate;
-        this.fetch((data) => {
+        this.service.fetch((data) => {
           this.rows = data;
-          this.listCount = this.rows.length;
-        });
+          this.loomCount = this.rows.length;
+        } , this.loomUrl);
 
 
       }
@@ -151,9 +119,9 @@ export class LoomTypeComponent implements OnInit {
       // on close
       if (data == true) {
         //  this.date = this.myDate;
-        this.fetch((data) => {
+        this.service.fetch((data) => {
           this.rows = data;
-        });
+        } , this.loomUrl);
 
       }
     }, (reason) => {

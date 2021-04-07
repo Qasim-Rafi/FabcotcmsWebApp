@@ -11,14 +11,11 @@ const EXCEL_EXTENSION = '.xlsx';
 })
 export class ServiceService {
   response: any;
-  country: any = [];
   buyer: any = [];
   article: any = [];
-  countryCount: number;
-  rows: any = [];
-  columns: any = [];
+  listCount: number;
   data: any = [];
-  copyData: any =[];
+ 
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,) { }
@@ -63,10 +60,7 @@ export class ServiceService {
   getUOM() {
     return this.http.get(`${environment.apiUrl}/api/Enquiries/GetAllUOM`)
   }
-  // countryData(){
-  
-
-   
+ 
   fetch(cb , apiUrl2) {
     let desc = this;
     desc.http
@@ -74,7 +68,7 @@ export class ServiceService {
       .subscribe(res => {
         this.response = res;
         if (this.response.success == true) {
-          this.countryCount = this.response.data.length;
+          this.listCount = this.response.data.length;
 
           desc.data = this.response.data;
           cb(this.data);

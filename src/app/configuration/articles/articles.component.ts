@@ -22,7 +22,7 @@ export class ArticlesComponent implements OnInit {
   listCount: number;
   myDate = Date.now();
   temp: any = [];
-
+  articleUrl: '/api/Configs/GetAllArticle'
 
 
 

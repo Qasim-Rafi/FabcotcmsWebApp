@@ -21,59 +21,28 @@ export class ProcessComponent implements OnInit {
   data: any = {};
   processCount: number;
   processFilter: any = [];
+  processUrl : '/api/TextileGarments/GetAllProcess'
   constructor(private http: HttpClient,
     private toastr: ToastrService,
     private service:ServiceService,
     private modalService: NgbModal) { }
 
   ngOnInit(): void {
-    this.fetch((data) => {
+    this.service.fetch((data) => {
       this.processFilter = [...data];
       this.rows = data;
-    });
+      this.processCount = this.rows.length;
+    } , this.processUrl);
   }
 
   updateFilter(event) {
     const val = event.target.value.toLowerCase();
-
-    // filter our data
     const temp = this.processFilter.filter(function (d) {
       return (d.name.toLowerCase().indexOf(val) !== -1 || !val);
     });
 
-    // update the rows
     this.rows = temp;
-    // Whenever the filter changes, always go back to the first page
-    // this.table.offset = 0;
   }
-
-
-
-
-  fetch(cb) {
-    let that = this;
-    that.http
-      .get(`${environment.apiUrl}/api/TextileGarments/GetAllProcess`)
-      .subscribe(res => {
-        this.response = res;
-        this.processCount = this.response.data.length;
-        if (this.response.success == true) {
-          that.data = this.response.data;
-          cb(this.data);
-        }
-        else {
-          this.toastr.error(this.response.message, 'Message.');
-        }
-        // this.spinner.hide();
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error(err.error.message, 'Message.');;
-        }
-        //  this.spinner.hide();
-      });
-  }
-
-
 
 
   deleteProcess(id) {
@@ -97,10 +66,10 @@ export class ProcessComponent implements OnInit {
               this.response = res;
               if (this.response.success == true) {
                 this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
-                this.fetch((data) => {
+                this.service.fetch((data) => {
                   this.rows = data;
                   this.processCount = this.rows.length;
-                });
+                } , this.processUrl);
 
               }
               else {
@@ -113,11 +82,6 @@ export class ProcessComponent implements OnInit {
               }
             });
 
-        // Swal.fire(
-        //   'Record',
-        //   'Deleted Successfully.',
-        //   'success'
-        // )
       }
     })
 
@@ -131,10 +95,10 @@ export class ProcessComponent implements OnInit {
       // on close
       if (data == true) {
         //  this.date = this.myDate;
-        this.fetch((data) => {
+        this.service.fetch((data) => {
           this.rows = data;
           this.processCount = this.rows.length;
-        });
+        } , this.processUrl);
 
 
       }
@@ -151,9 +115,9 @@ export class ProcessComponent implements OnInit {
       // on close
       if (data == true) {
         //  this.date = this.myDate;
-        this.fetch((data) => {
+        this.service.fetch((data) => {
           this.rows = data;
-        });
+        } , this.processUrl);
 
       }
     }, (reason) => {
