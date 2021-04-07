@@ -253,7 +253,7 @@ printPdf() {
       let count3 = this.rows.map(x => x.details.length);
       let max3 = count3.reduce((a, b) => Math.max(a, b));
 
-      let count4 = this.rows.map(x => x.active== true ? "Active".length : "In-Active".length);
+      let count4 = this.rows.map(x => x.active.length);
       let max4 = count4.reduce((a, b) => Math.max(a, b));
       // max = max + 10;
       max1 = max1 + 10;
