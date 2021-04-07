@@ -23,64 +23,33 @@ export class CountryComponent implements OnInit {
   rows: any = [];
   columns: any = [];
   data: any = {};
+  copyData: any =[];
   currentDate = Date.now();
   countryFilter: any = [];
-
-
-
+  CountryUrl = '/api/Configs/GetAllCountry'
   @ViewChild('myTable', { static: false }) table:DatatableComponent;
-
-
   constructor(private http: HttpClient,
     private toastr: ToastrService,
     private modalService: NgbModal,
     private service: ServiceService,
-    private clipboardService: ClipboardService) { }
+    private _clipboardService: ClipboardService) { }
 
   ngOnInit(): void {
-    this.fetch((data) => {
+    this.service.fetch((data ) => {
       this.countryFilter = [...data];
       this.rows = data;
       this.countryCount = this.rows.length;
-    });
+    } , this.CountryUrl);
 
   }
 
-  updateFilter(event) {
+  search(event) {
     const val = event.target.value.toLowerCase();
     const temp = this.countryFilter.filter(function (d) {
       return (d.name.toLowerCase().indexOf(val) !== -1 || !val);
     });
     this.rows = temp;
   }
-
-
-
-  fetch(cb) {
-    let desc = this;
-    desc.http
-      .get(`${environment.apiUrl}/api/Configs/GetAllCountry`)
-      .subscribe(res => {
-        this.response = res;
-        // this.listCount = this.fetch.length;
-        if (this.response.success == true) {
-          this.countryCount = this.response.data.length;
-
-          desc.data = this.response.data;
-          cb(this.data);
-        }
-        else {
-          this.toastr.error(this.response.message, 'Message.');
-        }
-        // this.spinner.hide();
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error(err.error.message, 'Message.');;
-        }
-        //  this.spinner.hide();
-      });
-  }
-
 
   deleteCountry(id) {
 
@@ -104,9 +73,9 @@ export class CountryComponent implements OnInit {
               this.response = res;
               if (this.response.success == true) {
                 this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
-                this.fetch((data) => {
+                this.service.fetch((data) => {
                   this.rows = data;
-                });
+                } , this.CountryUrl);
 
               }
               else {
@@ -131,10 +100,10 @@ export class CountryComponent implements OnInit {
       // on close
       if (data == true) {
         //  this.date = this.myDate;
-        this.fetch((data) => {
+        this.service.fetch((data) => {
           this.rows = data;
           this.countryCount = this.rows.length;
-        });
+        } , this.CountryUrl);
 
 
       }
@@ -153,9 +122,9 @@ export class CountryComponent implements OnInit {
       // on close
       if (data == true) {
         //  this.date = this.myDate;
-        this.fetch((data) => {
+        this.service.fetch((data) => {
           this.rows = data;
-        });
+        } , this.CountryUrl);
 
       }
     }, (reason) => {
@@ -179,6 +148,7 @@ export class CountryComponent implements OnInit {
     this.service.exportAsExcelFile(filtered, 'Countries');
 
   }
+  // pdf 
   generatePDF() {
 
     let docDefinition = {
@@ -267,5 +237,44 @@ printPdf() {
     // win.close();
 }
 
+
+// copy
+
+copy() {
+  // let count = this.rows.map(x => x.id.length);
+  // let max = count.reduce((a, b) => Math.max(a, b));
+
+  let count1 = this.rows.map(x => x.name.length);
+  let max1 = count1.reduce((a, b) => Math.max(a, b));
+  let count3 = this.rows.map(x => x.details.length);
+  let max3 = count3.reduce((a, b) => Math.max(a, b));
+  let count4 = this.rows.map(x => x.active== true ? "Active".length : "In-Active".length);
+  let max4 = count4.reduce((a, b) => Math.max(a, b));
+  max1 = max1 + 10;
+  max3 = max3 + 10;
+  max4 = max4 + 10;
+
+  // ................................................ headings replace yours............................
+
+  this.copyData.push('S No.' +'Country Name'.padEnd(max1) + 'Details'.padEnd(max3)+'Status'.padEnd(max4)+'Changed On'+'| Changed By \n');
+  // ................................................ headings............................
+
+  // ................................................ coloum data...........replace your coloum names.................
+  for (let i = 0; i < this.rows.length; i++) {
+    let tempData = this.rows[i].id + this.rows[i].name.padEnd(max1) +  this.rows[i].details.padEnd(max3) 
+    +this.rows[i].active
+    + this.rows[i].createdDateTime + this.rows[i].createdByName +'\n';
+    this.copyData.push(tempData);
+  }
+  this._clipboardService.copy(this.copyData)
+  // ............................row.active == true ? "Active" : "In-Active".................... coloum this.data............................
+
+  Swal.fire({
+    title: GlobalConstants.copySuccess, 
+    footer:'Copied'+'\n'+this.countryCount+'\n'+'rows to clipboard',
+     showConfirmButton: false,
+     timer:2000,
+  })
+}
 
 }

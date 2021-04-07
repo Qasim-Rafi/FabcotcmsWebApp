@@ -20,9 +20,8 @@ export class TimeActionItemsComponent implements OnInit {
   rows: any = [];
   columns: any = [];
   data: any = {};
-  listCount: number;
-  myDate = Date.now();
-  temp: any = [];
+  TnaCount: number;
+  TnaFilter: any = [];
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
@@ -41,7 +40,7 @@ export class TimeActionItemsComponent implements OnInit {
     const val = event.target.value.toLowerCase();
 
     // filter our data
-    const temp = this.temp.filter(function (d) {
+    const temp = this.TnaFilter.filter(function (d) {
       return d.name.toLowerCase().indexOf(val) !== -1 || !val;
     });
 
@@ -61,10 +60,10 @@ export class TimeActionItemsComponent implements OnInit {
       .get(`${environment.apiUrl}/api/TextileGarments/GetAllTnaAction`)
       .subscribe(res => {
         this.response = res;
-        this.listCount = this.response.data.length;
+        this.TnaCount = this.response.data.length;
         if (this.response.success == true) {
           that.data = this.response.data;
-          this.temp = [...this.data];
+          this.TnaFilter = [...this.data];
           cb(this.data);
         }
         else {
@@ -101,15 +100,15 @@ export class TimeActionItemsComponent implements OnInit {
             res => {
               this.response = res;
               if (this.response.success == true) {
-                this.toastr.error(this.response.message, 'Message.');
+                this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
                 this.fetch((data) => {
                   this.rows = data;
-                  this.listCount = this.rows.length;
+                  this.TnaCount = this.rows.length;
                 });
 
               }
               else {
-                this.toastr.error(this.response.message, 'Message.');
+                this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
               }
 
             }, err => {
@@ -139,7 +138,7 @@ export class TimeActionItemsComponent implements OnInit {
         //  this.date = this.myDate;
         this.fetch((data) => {
           this.rows = data;
-          this.listCount = this.rows.length;
+          this.TnaCount = this.rows.length;
         });
 
 

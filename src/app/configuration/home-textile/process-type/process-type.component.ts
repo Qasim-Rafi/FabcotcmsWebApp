@@ -20,9 +20,8 @@ export class ProcessTypeComponent implements OnInit {
   rows: any = [];
   columns: any = [];
   data: any = {};
-  listCount: number;
-  myDate = Date.now();
-  temp: any = [];
+  processTypeCount: number;
+  processTypeFilter: any = [];
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
@@ -31,7 +30,7 @@ export class ProcessTypeComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetch((data) => {
-      this.temp = [...data];
+      this.processTypeFilter = [...data];
       this.rows = data;
     });
   }
@@ -42,7 +41,7 @@ export class ProcessTypeComponent implements OnInit {
     const val = event.target.value.toLowerCase();
 
     // filter our data
-    const temp = this.temp.filter(function (d) {
+    const temp = this.processTypeFilter.filter(function (d) {
       return d.type.toLowerCase().indexOf(val) !== -1 || !val;
     });
 
@@ -60,7 +59,7 @@ export class ProcessTypeComponent implements OnInit {
       .get(`${environment.apiUrl}/api/TextileGarments/GetAllProcessType`)
       .subscribe(res => {
         this.response = res;
-        this.listCount = this.response.data.length;
+        this.processTypeCount = this.response.data.length;
         if (this.response.success == true) {
           that.data = this.response.data;
           cb(this.data);
@@ -100,15 +99,15 @@ export class ProcessTypeComponent implements OnInit {
             res => {
               this.response = res;
               if (this.response.success == true) {
-                this.toastr.error(this.response.message, 'Message.');
+                this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
                 this.fetch((data) => {
                   this.rows = data;
-                  this.listCount = this.rows.length;
+                  this.processTypeCount = this.rows.length;
                 });
 
               }
               else {
-                this.toastr.error(this.response.message, 'Message.');
+                this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
               }
 
             }, err => {
@@ -116,20 +115,10 @@ export class ProcessTypeComponent implements OnInit {
                 this.toastr.error(this.response.message, 'Message.');
               }
             });
-
-        // Swal.fire(
-        //   'Record',
-        //   'Deleted Successfully.',
-        //   'success'
-        // )
       }
     })
 
   }
-
-
-
-
 
   addProcessTypeForm() {
     const modalRef = this.modalService.open(AddProcessTypeComponent, { centered: true });
@@ -139,7 +128,7 @@ export class ProcessTypeComponent implements OnInit {
         //  this.date = this.myDate;
         this.fetch((data) => {
           this.rows = data;
-          this.listCount = this.rows.length;
+          this.processTypeCount = this.rows.length;
         });
 
 

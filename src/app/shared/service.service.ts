@@ -14,6 +14,12 @@ export class ServiceService {
   country: any = [];
   buyer: any = [];
   article: any = [];
+  countryCount: number;
+  rows: any = [];
+  columns: any = [];
+  data: any = [];
+  copyData: any =[];
+
   constructor(private http: HttpClient,
     private toastr: ToastrService,) { }
 
@@ -57,6 +63,32 @@ export class ServiceService {
   getUOM() {
     return this.http.get(`${environment.apiUrl}/api/Enquiries/GetAllUOM`)
   }
+  // countryData(){
+  
+
+   
+  fetch(cb , apiUrl2) {
+    let desc = this;
+    desc.http
+      .get(`${environment.apiUrl}`+ apiUrl2)
+      .subscribe(res => {
+        this.response = res;
+        if (this.response.success == true) {
+          this.countryCount = this.response.data.length;
+
+          desc.data = this.response.data;
+          cb(this.data);
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+      }, err => {
+        if (err.status == 400) {
+          this.toastr.error(err.error.message, 'Message.');;
+        }
+      });
+  }
+  
 
 
 
@@ -80,3 +112,7 @@ export class ServiceService {
  
 
 }
+function cb(data: any) {
+  throw new Error('Function not implemented.');
+}
+

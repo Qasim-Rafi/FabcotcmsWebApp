@@ -6,7 +6,6 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EditSellerFormComponent } from './edit-seller-form/edit-seller-form.component';
 import { AddSellerFormComponent } from './add-seller-form/add-seller-form.component';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
-// import { AddCertificateComponent } from '../home-textile/certificate/add-certificate/add-certificate.component';
 import { GlobalConstants } from 'src/app/Common/global-constants';
 import { SellerPocComponent } from './seller-poc/seller-poc.component';
 import { EditCertificateComponent } from '../home-textile/certificate/edit-certificate/edit-certificate.component';
@@ -16,7 +15,7 @@ import { EditCertificateComponent } from '../home-textile/certificate/edit-certi
   styleUrls: ['./seller.component.css']
 })
 export class SellerComponent implements OnInit {
-  listCount: number;
+  sellerCount: number;
 
   data: any = {};
   response: any;
@@ -24,7 +23,7 @@ export class SellerComponent implements OnInit {
   country: any = [];
   countryId: null;
   rows: any = [];
-  temp: any[];
+  sellerFilter: any[];
   active = true;
   @Input() Id;
   sellerCertificate: any = [];
@@ -56,7 +55,7 @@ export class SellerComponent implements OnInit {
   updateFilter(event) {
     const val = event.target.value.toLowerCase();
 
-    const temp = this.temp.filter(function (d) {
+    const temp = this.sellerFilter.filter(function (d) {
       return (d.sellerCode.toLowerCase().indexOf(val) !== -1 ||
 
         d.sellerName.toLowerCase().indexOf(val) !== -1 || !val);
@@ -273,8 +272,8 @@ export class SellerComponent implements OnInit {
           if (this.response.success == true) {
 
             this.seller = this.response.data;
-            this.temp = [...this.seller];
-            this.listCount = this.response.data.length;
+            this.sellerFilter = [...this.seller];
+            this.sellerCount = this.response.data.length;
             this.getTotalPOCs();
 
 

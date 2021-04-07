@@ -19,9 +19,9 @@ export class PackingComponent implements OnInit {
   rows: any = [];
   data: any = {};
   columns: any = [];
-  listCount: number;
+  packingCount: number;
   myDate = Date.now();
-  temp: any[];
+  packingFilter: any[];
 
 
   constructor(private http: HttpClient,
@@ -32,30 +32,21 @@ export class PackingComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetch((data) => {
-      this.temp = [...data];
+      this.packingFilter = [...data];
       this.rows = data;
     });
   }
 
-
-
-
+// searching
   updateFilter(event) {
     const val = event.target.value.toLowerCase();
 
     // filter our data
-    const temp = this.temp.filter(function (d) {
+    const temp = this.packingFilter.filter(function (d) {
       return (d.name.toLowerCase().indexOf(val) !== -1 || !val);
     })  ;
-
-    // update the rows
     this.rows = temp;
-    // Whenever the filter changes, always go back to the first page
-    // this.table.offset = 0;
   }
-
-
-
 
 
   fetch(cb) {
@@ -66,7 +57,7 @@ export class PackingComponent implements OnInit {
         this.response = res;
         if (this.response.success == true) {
           that.data = this.response.data;
-          this.listCount = this.response.data.length;
+          this.packingCount = this.response.data.length;
           cb(this.data);
         }
         else {
@@ -104,16 +95,16 @@ export class PackingComponent implements OnInit {
             res => {
               this.response = res;
               if (this.response.success == true) {
-                this.toastr.error(this.response.message, 'Message.');
+                this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
                 this.fetch((data) => {
                   this.rows = data;
 
-                  this.listCount = this.rows.length;
+                  this.packingCount = this.rows.length;
                 });
 
               }
               else {
-                this.toastr.error('Something went Worng', 'Message.');
+                this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
               }
 
             }, err => {
@@ -121,20 +112,12 @@ export class PackingComponent implements OnInit {
                 this.toastr.error(this.response.message, 'Message.');
               }
             });
-
-        // Swal.fire(
-        //   'Record',
-        //   'Deleted Successfully.',
-        //   'success'
-        // )
       }
     })
 
   }
 
-
-
-  addPackingForm() {
+ addPackingForm() {
     const modalRef = this.modalService.open(AddPackingComponent, { centered: true });
     modalRef.result.then((data) => {
       // on close
@@ -143,7 +126,7 @@ export class PackingComponent implements OnInit {
         this.fetch((data) => {
           this.rows = data;
 
-          this.listCount = this.rows.length;
+          this.packingCount = this.rows.length;
         });
 
 
@@ -160,7 +143,7 @@ export class PackingComponent implements OnInit {
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        //  this.date = this.myDate;
+      
         this.fetch((data) => {
           this.rows = data;
         });
@@ -178,12 +161,10 @@ export class PackingComponent implements OnInit {
      Details:row.description,
   Status:row.active == true ? "Active" : "In-Active",
   LastChange :row.updatedDateTime + '|' + row.updatedByName 
-  
-  
-    }));
+   }));
    
     this.service.exportAsExcelFile(filtered, 'Packing');
-  
+
   }
 // pdf ///
 

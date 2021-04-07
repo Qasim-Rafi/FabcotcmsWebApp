@@ -193,12 +193,6 @@ export class BuyerComponent implements OnInit {
               }
             });
 
-
-        // Swal.fire(
-        //   'Record',
-        //   'Deleted Successfully.',
-        //   'failed',
-        // )
       }
     })
 

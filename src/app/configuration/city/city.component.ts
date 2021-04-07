@@ -8,9 +8,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { GlobalConstants } from 'src/app/Common/global-constants';
 import { DatatableComponent, id } from '@swimlane/ngx-datatable';
 import { ServiceService } from 'src/app/shared/service.service';
-import pdfMake from "pdfmake/build/pdfmake";  
-import pdfFonts from "pdfmake/build/vfs_fonts";  
-pdfMake.vfs = pdfFonts.pdfMake.vfs;  
+import pdfMake from "pdfmake/build/pdfmake";   
 import { ClipboardService } from 'ngx-clipboard';
 
 
@@ -23,14 +21,13 @@ export class CityComponent implements OnInit {
   CityCount: number;
   response: any;
   rows: any = [];
-  // countryId= null;
   columns: any = [];
   data: any = [];
-  data1: any =[];
+  copyData: any =[];
   cityDate = Date.now();
-   temp:any=[];
+   cityFilter:any=[];
+  cityUrl= '/api/Configs/GetAllCity'
   @ViewChild('myTable') table: DatatableComponent;
-  copydata: any;
   clipboardService: any=[];
 
   constructor(private http: HttpClient,
@@ -40,55 +37,21 @@ export class CityComponent implements OnInit {
     private modalService: NgbModal) { }
 
   ngOnInit(): void {
-    this.fetch((data) => {
-      this.temp = [...data];
+    this.service.fetch((data) => {
+      this.cityFilter = [...data];
       this.rows = data;
-    });
+    } , this.cityUrl);
 
   }
 
   updateFilter(event) {
     const val = event.target.value.toLowerCase();
-
-    // filter our data
-    const temp = this.temp.filter(function (d) {
+    const temp = this.cityFilter.filter(function (d) {
       return ( d.name.toLowerCase().indexOf(val) !== -1  ||
       d.country.toLowerCase().indexOf(val) !== -1  || !val);
     });
- 
-    // update the rows
     this.rows = temp;
-    // Whenever the filter changes, always go back to the first page
-    // this.table.offset = 0;
   }
-
-
-  fetch(cb) {
-    let that = this;
-    that.http
-      .get(`${environment.apiUrl}/api/Configs/GetAllCity`)
-      .subscribe(res => {
-        this.response = res;
-
-        if (this.response.success == true) {
-          this.CityCount = this.response.data.length;
-          that.data = this.response.data;
-          cb(this.data);
-        }
-        else {
-          this.toastr.error(this.response.message, 'Message.');
-        }
-        // this.spinner.hide();
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error(err.error.message, 'Message.');;
-        }
-        //  this.spinner.hide();
-      });
-  }
-
-
-
 
   deleteCity(id) {
     Swal.fire({
@@ -111,9 +74,9 @@ export class CityComponent implements OnInit {
               this.response = res;
               if (this.response.success == true) {
                 this.toastr.error(this.response.message, 'Message.');
-                this.fetch((data) => {
+                this.service.fetch((data) => {
                   this.rows = data;
-                });
+                } , this.cityUrl);
 
               }
               else {
@@ -125,32 +88,21 @@ export class CityComponent implements OnInit {
                 this.toastr.error(this.response.message, 'Message.');
               }
             });
-
-        // Swal.fire(
-        //   'Record',
-        //   'Deleted Successfully.',
-        //   'success'
-        // )
       }
-    })
-
-    
+    })  
   } 
   addCity(check,name) {
     const modalRef = this.modalService.open(EditCityComponent, { centered: true });
     modalRef.componentInstance.statusCheck =check;
     modalRef.componentInstance.FormName = name;
-
-   //  modalRef.componentInstance.name =componentName;
-
        modalRef.result.then((data) => {
       // on close
        if(data ==true){
        //  this.date = this.cityDate;
-        this.fetch((data) => {
+        this.service.fetch((data) => {
          this.rows = data;
          this.CityCount = this.rows.length;
-       });
+       } , this.cityUrl);
         
 
       }
@@ -170,9 +122,9 @@ export class CityComponent implements OnInit {
          // on close
           if(data ==true){
           //  this.date = this.cityDate;
-           this.fetch((data) => {
+           this.service.fetch((data) => {
             this.rows = data;
-          });
+          } , this.cityUrl);
          }
        }, (reason) => {
          // on dismiss
@@ -310,19 +262,19 @@ printPdf() {
 
       // ................................................ headings replace yours............................
   
-      this.data1.push('S No.' +'City Name'.padEnd(max1) +
+      this.copyData.push('S No.' +'City Name'.padEnd(max1) +
       'Country'.padEnd(max2) + 'Details'.padEnd(max3)+'Status'.padEnd(max4)+'Changed On'+'| Changed By \n');
       // ................................................ headings............................
   
       // ................................................ coloum data...........replace your coloum names.................
       for (let i = 0; i < this.rows.length; i++) {
-        let anydata = this.rows[i].id + this.rows[i].name.padEnd(max1) + this.rows[i].country.padEnd(max2) 
+        let tempData = this.rows[i].id + this.rows[i].name.padEnd(max1) + this.rows[i].country.padEnd(max2) 
         + this.rows[i].details.padEnd(max3) 
         +this.rows[i].active
         + this.rows[i].updatedDateTime + this.rows[i].updatedByName +'\n';
-        this.data1.push(anydata);
+        this.copyData.push(tempData);
       }
-      this._clipboardService.copy(this.data1)
+      this._clipboardService.copy(this.copyData)
       // ............................row.active == true ? "Active" : "In-Active".................... coloum this.data............................
 
       Swal.fire({

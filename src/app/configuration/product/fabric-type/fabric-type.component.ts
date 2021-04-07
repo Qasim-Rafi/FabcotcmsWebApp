@@ -20,9 +20,8 @@ export class FabricTypeComponent implements OnInit {
   rows: any = [];
   data: any = {};
   columns: any = [];
-  listCount: number;
-  myDate = Date.now();
-  temp: any[];
+  fabricTypeCount: number;
+  fabricFilter: any[];
 
 
 
@@ -33,9 +32,9 @@ export class FabricTypeComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetch((data) => {
-      this.temp = [...data];
+      this.fabricFilter = [...data];
       this.rows = data;
-      this.listCount = this.rows.length;
+      this.fabricTypeCount = this.rows.length;
     });
   }
 
@@ -45,7 +44,7 @@ export class FabricTypeComponent implements OnInit {
     const val = event.target.value.toLowerCase();
 
     // filter our data
-    const temp = this.temp.filter(function (d) {
+    const temp = this.fabricFilter.filter(function (d) {
       return (d.type.toLowerCase().indexOf(val) !== -1 || !val);
     });
 
@@ -66,7 +65,7 @@ export class FabricTypeComponent implements OnInit {
         this.response = res;
         if (this.response.success == true) {
           that.data = this.response.data;
-          this.listCount = this.response.data.length;
+          this.fabricTypeCount = this.response.data.length;
           cb(this.data);
         }
         else {
@@ -103,15 +102,15 @@ export class FabricTypeComponent implements OnInit {
             res => {
               this.response = res;
               if (this.response.success == true) {
-                this.toastr.error(this.response.message, 'Message.');
+                this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
                 this.fetch((data) => {
                   this.rows = data;
-                  this.listCount = this.rows.length;
+                  this.fabricTypeCount = this.rows.length;
                 });
 
               }
               else {
-                this.toastr.error('Something went Worng', 'Message.');
+                this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
               }
 
             }, err => {
@@ -140,7 +139,7 @@ export class FabricTypeComponent implements OnInit {
         //  this.date = this.myDate;
         this.fetch((data) => {
           this.rows = data;
-          this.listCount = this.rows.length;
+          this.fabricTypeCount = this.rows.length;
         });
 
 

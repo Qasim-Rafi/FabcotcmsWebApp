@@ -19,9 +19,8 @@ export class PriceTermComponent implements OnInit {
   rows: any = [];
   data: any = {};
   columns: any = [];
-  listCount: number;
-  myDate = Date.now();
-  temp: any[];
+  priceTermCount: number;
+  priceTermFilter: any[];
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
@@ -30,24 +29,18 @@ export class PriceTermComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetch((data) => {
-      this.temp = [...data];
+      this.priceTermFilter = [...data];
       this.rows = data;
     });
   }
 
-
+// Searching
   updateFilter(event) {
     const val = event.target.value.toLowerCase();
-
-    // filter our data
-    const temp = this.temp.filter(function (d) {
+    const temp = this.priceTermFilter.filter(function (d) {
       return (d.term.toLowerCase().indexOf(val) !== -1 || !val);
     });
-
-    // update the rows
     this.rows = temp;
-    // Whenever the filter changes, always go back to the first page
-    // this.table.offset = 0;
   }
 
   fetch(cb) {
@@ -58,25 +51,20 @@ export class PriceTermComponent implements OnInit {
         this.response = res;
         if (this.response.success == true) {
           that.data = this.response.data;
-          this.listCount = this.response.data.length;
+          this.priceTermCount = this.response.data.length;
           cb(this.data);
         }
         else {
           this.toastr.error(this.response.message, 'Message.');
         }
-        // this.spinner.hide();
+    
       }, err => {
         if (err.status == 400) {
           this.toastr.error(err.error.message, 'Message.');;
         }
-        //  this.spinner.hide();
+   
       });
   }
-
-
-
-
-
 
 
   deletePrice(id) {
@@ -99,14 +87,14 @@ export class PriceTermComponent implements OnInit {
             res => {
               this.response = res;
               if (this.response.success == true) {
-                this.toastr.error(this.response.message, 'Message.');
+                this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
                 this.fetch((data) => {
                   this.rows = data;
                 });
 
               }
               else {
-                this.toastr.error('Something went Worng', 'Message.');
+                this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
               }
 
             }, err => {
@@ -115,11 +103,6 @@ export class PriceTermComponent implements OnInit {
               }
             });
 
-        // Swal.fire(
-        //   'Record',
-        //   'Deleted Successfully.',
-        //   'success'
-        // )
       }
     })
 
@@ -130,7 +113,7 @@ export class PriceTermComponent implements OnInit {
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        //  this.date = this.myDate;
+     
         this.fetch((data) => {
           this.rows = data;
         });
@@ -149,7 +132,6 @@ export class PriceTermComponent implements OnInit {
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        //  this.date = this.myDate;
         this.fetch((data) => {
           this.rows = data;
         });
@@ -159,7 +141,7 @@ export class PriceTermComponent implements OnInit {
       // on dismiss
     });
   }
-
+// excel file
   exportAsXLSX(): void {
     const filtered = this.data.map(row => ({
       SNo:row.id,
@@ -167,8 +149,6 @@ export class PriceTermComponent implements OnInit {
      Details:row.description,
   Status:row.active == true ? "Active" : "In-Active",
   LastChange :row.updatedDateTime + '|' + row.updatedByName 
-  
-  
     }));
    
     this.service.exportAsExcelFile(filtered, 'Price Term');

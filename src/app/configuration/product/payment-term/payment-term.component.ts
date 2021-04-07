@@ -20,9 +20,9 @@ export class PaymentTermComponent implements OnInit {
   rows: any = [];
   data: any = {};
   columns: any = [];
-  listCount: number;
+  paymentTermCount: number;
   myDate = Date.now();
-  temp: any[];
+  paymentTermFilter: any[];
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
@@ -32,28 +32,21 @@ export class PaymentTermComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetch((data) => {
-      this.temp = [...data];
+      this.paymentTermFilter = [...data];
       this.rows = data;
     });
   }
 
-
+// searching
 
   updateFilter(event) {
     const val = event.target.value.toLowerCase();
-
-    // filter our data
-    const temp = this.temp.filter(function (d) {
+    const temp = this.paymentTermFilter.filter(function (d) {
       return (d.term.toLowerCase().indexOf(val) !== -1 || !val);
     })  ;
-
-    // update the rows
     this.rows = temp;
-    // Whenever the filter changes, always go back to the first page
-    // this.table.offset = 0;
+
   }
-
-
 
   fetch(cb) {
     let that = this;
@@ -63,24 +56,19 @@ export class PaymentTermComponent implements OnInit {
         this.response = res;
         if (this.response.success == true) {
           that.data = this.response.data;
-          this.listCount = this.response.data.length;
+          this.paymentTermCount = this.response.data.length;
           cb(this.data);
         }
         else {
           this.toastr.error(this.response.message, 'Message.');
         }
-        // this.spinner.hide();
       }, err => {
         if (err.status == 400) {
           this.toastr.error(err.error.message, 'Message.');;
         }
-        //  this.spinner.hide();
+        
       });
   }
-
-
-
-
 
   deletePayment(id) {
     Swal.fire({
@@ -109,7 +97,7 @@ export class PaymentTermComponent implements OnInit {
 
               }
               else {
-                this.toastr.error('Something went Worng', 'Message.');
+                this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
               }
 
             }, err => {
@@ -117,24 +105,10 @@ export class PaymentTermComponent implements OnInit {
                 this.toastr.error(this.response.message, 'Message.');
               }
             });
-
-        // Swal.fire(
-        //   'Record',
-        //   'Deleted Successfully.',
-        //   'success'
-        // )
       }
     })
 
   }
-
-
-
-
-
-
-
-
 
   addPaymentForm() {
     const modalRef = this.modalService.open(AddPaymentComponent, { centered: true });

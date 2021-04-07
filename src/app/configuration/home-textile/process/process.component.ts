@@ -19,9 +19,8 @@ export class ProcessComponent implements OnInit {
   rows: any = [];
   columns: any = [];
   data: any = {};
-  listCount: number;
-  myDate = Date.now();
-  temp: any = [];
+  processCount: number;
+  processFilter: any = [];
   constructor(private http: HttpClient,
     private toastr: ToastrService,
     private service:ServiceService,
@@ -29,7 +28,7 @@ export class ProcessComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetch((data) => {
-      this.temp = [...data];
+      this.processFilter = [...data];
       this.rows = data;
     });
   }
@@ -38,7 +37,7 @@ export class ProcessComponent implements OnInit {
     const val = event.target.value.toLowerCase();
 
     // filter our data
-    const temp = this.temp.filter(function (d) {
+    const temp = this.processFilter.filter(function (d) {
       return (d.name.toLowerCase().indexOf(val) !== -1 || !val);
     });
 
@@ -57,7 +56,7 @@ export class ProcessComponent implements OnInit {
       .get(`${environment.apiUrl}/api/TextileGarments/GetAllProcess`)
       .subscribe(res => {
         this.response = res;
-        this.listCount = this.response.data.length;
+        this.processCount = this.response.data.length;
         if (this.response.success == true) {
           that.data = this.response.data;
           cb(this.data);
@@ -97,15 +96,15 @@ export class ProcessComponent implements OnInit {
             res => {
               this.response = res;
               if (this.response.success == true) {
-                this.toastr.error(this.response.message, 'Message.');
+                this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
                 this.fetch((data) => {
                   this.rows = data;
-                  this.listCount = this.rows.length;
+                  this.processCount = this.rows.length;
                 });
 
               }
               else {
-                this.toastr.error(this.response.message, 'Message.');
+                this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
               }
 
             }, err => {
@@ -134,7 +133,7 @@ export class ProcessComponent implements OnInit {
         //  this.date = this.myDate;
         this.fetch((data) => {
           this.rows = data;
-          this.listCount = this.rows.length;
+          this.processCount = this.rows.length;
         });
 
 
