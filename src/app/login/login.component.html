@@ -1,44 +1,24 @@
-<div  fxLayoutAlign="center center" class="center">
-
-    <mat-card class="box">
-        <div class="center">
-            <img mat-card-image src="assets/fab.png" alt="logo" class="img-fluid rounded-circle">
-        </div>
-        <mat-card-header>
-            <mat-card-title>Please Sign in</mat-card-title>
-        </mat-card-header>
-
-        <form >
-<div class="font">
-            <mat-card-content >
-                <mat-form-field  appearance="fill" >
-                    <mat-icon matSuffix>person_add</mat-icon>
-                    <mat-label>User Name</mat-label>
-                    <input matInput #input placeholder="Enter your user name">
-                </mat-form-field>
-
-                <mat-form-field appearance="fill">
-                    <mat-label>Password</mat-label>
-                    <input matInput #input placeholder="Enter your password">
-                    <mat-icon matSuffix>vpn_key</mat-icon>
-                </mat-form-field>
-            </mat-card-content>
-        </div>
-        <mat-checkbox class="example-margin;">Remember me</mat-checkbox>
-        
-<br>
-            <button mat-stroked-button type="button" class="btn btn-outline-primary">
-                <a href="home">
-                <i class="fas fa-sign-in-alt"></i>&nbsp;&nbsp;&nbsp;Log in</a></button>
-            <br>
-            <small><a href="#" class="content">Forgot Pasword?</a></small>
-
+<div >
+    <div >
+        <h2 style="margin: auto;">Please Login in First</h2>
+        <h3 *ngIf='message'>
+{{message}}
+        </h3>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="username">UserName:</label>
+                <input type="text" class="form-control" formControlName="username" id="username" autocomplete="off">
+                <div class="error" *ngIf="loginForm.controls['username'].hasError('required') && loginForm.controls['username'].touched">Please Enter UserName</div>
+            </div>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control" formControlName="password" id="passworde" autocomplete="off">
+                    <div class="error" *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched">Please Enter Password</div>
+                </div>
+                <button class="btn btn-success" [disabled]="loginForm.invalid">Login</button>
+                <div *ngIf="invalidLogin" class="error">
+                    <div>Invalid Credentials, Try again!</div>
+                </div>
         </form>
-        <small class="content">FabCot International Enterprises
-            <sup>®</sup>
-            <br>
-            © 2021 All rights reserved
-        </small>
-    </mat-card>
-
-</div>
+  

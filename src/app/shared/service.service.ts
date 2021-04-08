@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
+import { Observable } from 'rxjs';
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 const EXCEL_EXTENSION = '.xlsx';
 @Injectable({
@@ -61,6 +62,9 @@ export class ServiceService {
     return this.http.get(`${environment.apiUrl}/api/Enquiries/GetAllUOM`)
   }
  
+  login(loginData){
+    return this.http.get(`${environment.apiUrl}/api/Auth/Login`)
+  }
   fetch(cb , apiUrl2) {
     let desc = this;
     desc.http
