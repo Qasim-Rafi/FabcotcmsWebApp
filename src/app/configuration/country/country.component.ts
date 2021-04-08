@@ -10,8 +10,7 @@ import { ServiceService } from 'src/app/shared/service.service'
 import { ClipboardService } from 'ngx-clipboard';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import pdfMake from "pdfmake/build/pdfmake";
-import pdfFonts from "pdfmake/build/vfs_fonts";  
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
 @Component({
   selector: 'app-country',
   templateUrl: './country.component.html',
@@ -24,12 +23,12 @@ export class CountryComponent implements OnInit {
   rows: any = [];
   columns: any = [];
   data: any = {};
-  copyData: any =[];
+  copyData: any = [];
   currentDate = Date.now();
   countryFilter: any = [];
   CountryUrl = '/api/Configs/GetAllCountry'
 
-  @ViewChild('myTable', { static: false }) table:DatatableComponent;
+  @ViewChild('myTable', { static: false }) table: DatatableComponent;
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
@@ -38,16 +37,16 @@ export class CountryComponent implements OnInit {
     private _clipboardService: ClipboardService) { }
 
   ngOnInit(): void {
-    this.service.fetch((data ) => {
+    this.service.fetch((data) => {
       this.countryFilter = [...data];
       this.rows = data;
       this.countryCount = this.rows.length;
-    } , this.CountryUrl);
+    }, this.CountryUrl);
 
   }
 
-  
-// ------------------- Search function ----------------------------------//
+
+  // ------------------- Search function ----------------------------------//
   search(event) {
     const val = event.target.value.toLowerCase();
     const temp = this.countryFilter.filter(function (d) {
@@ -56,31 +55,7 @@ export class CountryComponent implements OnInit {
     this.rows = temp;
   }
 
-
-  // fetch(cb) {
-  //   let desc = this;
-  //   desc.http
-  //     .get(`${environment.apiUrl}/api/Configs/GetAllCountry`)
-  //     .subscribe(res => {
-  //       this.response = res;
-  //       if (this.response.success == true) {
-  //         this.countryCount = this.response.data.length;
-
-  //         desc.data = this.response.data;
-  //         cb(this.data);
-  //       }
-  //       else {
-  //         this.toastr.error(this.response.message, 'Message.');
-  //       }
-  //     }, err => {
-  //       if (err.status == 400) {
-  //         this.toastr.error(err.error.message, 'Message.');;
-  //       }
-  //     });
-  // }
-
-
-//  --------------------- Delete Country ---------------------------//
+  //  --------------------- Delete Country ---------------------------//
 
   deleteCountry(id) {
 
@@ -106,7 +81,7 @@ export class CountryComponent implements OnInit {
                 this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
                 this.service.fetch((data) => {
                   this.rows = data;
-                } , this.CountryUrl);
+                }, this.CountryUrl);
 
               }
               else {
@@ -123,25 +98,25 @@ export class CountryComponent implements OnInit {
 
   }
 
-//  ----------------------- Add country Form -----------------------//
-  
+  //  ----------------------- Add country Form -----------------------//
+
   addCountryForm(check, name) {
     const modalRef = this.modalService.open(EditCountryComponent, { centered: true });
     modalRef.componentInstance.statusCheck = check;
     modalRef.componentInstance.FormName = name;
     modalRef.result.then((data) => {
-      
+
       if (data == true) {
         this.service.fetch((data) => {
           this.rows = data;
           this.countryCount = this.rows.length;
-        } , this.CountryUrl);
+        }, this.CountryUrl);
       }
     }, (reason) => {
     });
   }
 
-// ---------------------- Edit Country Form ----------------------//
+  // ---------------------- Edit Country Form ----------------------//
 
 
   editCountryForm(row, check, name) {
@@ -155,7 +130,7 @@ export class CountryComponent implements OnInit {
         //  this.date = this.myDate;
         this.service.fetch((data) => {
           this.rows = data;
-        } , this.CountryUrl);
+        }, this.CountryUrl);
 
       }
     }, (reason) => {
@@ -205,8 +180,8 @@ export class CountryComponent implements OnInit {
             body: [
               ['S.no.', 'Country', 'Details', 'Status', 'Created On| Created By'],
               ...this.rows.map(row => (
-                [row.id, row.name, row.details, 
-                  row.active == true ? "Active" : "In-Active", row.createdDateTime+ '|'+ row.createdByName]
+                [row.id, row.name, row.details,
+                row.active == true ? "Active" : "In-Active", row.createdDateTime + '|' + row.createdByName]
               ))
             ]
           }
@@ -226,86 +201,86 @@ export class CountryComponent implements OnInit {
     pdfMake.createPdf(docDefinition).download('CountryList.pdf');
   }
 
-//-------------------------------------- Print country List ------------------------- ///
+  //-------------------------------------- Print country List ------------------------- ///
 
-printCountryList() {
+  printCountryList() {
 
-  let docDefinition = {
-    pageSize: 'A4',
-    info: {
-      title: 'Country List'
-    },
-    content: [
-      {
-        text: 'Country List',
-        style: 'heading',
-
+    let docDefinition = {
+      pageSize: 'A4',
+      info: {
+        title: 'Country List'
       },
+      content: [
+        {
+          text: 'Country List',
+          style: 'heading',
 
-      {
-        layout: 'lightHorizontalLines',
-        table: {
-          headerRows: 1,
-          widths: [30, 90, 130, 50, 150],
-          body: [
-            ['S.no.', 'Country', 'Details', 'Status', 'Created On| Created By'],
-            ...this.rows.map(row => (
-              [row.id, row.name, row.details, 
-                row.active == true ? "Active" : "In-Active", row.createdDateTime+ '|'+ row.createdByName]
-            ))
-          ]
+        },
+
+        {
+          layout: 'lightHorizontalLines',
+          table: {
+            headerRows: 1,
+            widths: [30, 90, 130, 50, 150],
+            body: [
+              ['S.no.', 'Country', 'Details', 'Status', 'Created On| Created By'],
+              ...this.rows.map(row => (
+                [row.id, row.name, row.details,
+                row.active == true ? "Active" : "In-Active", row.createdDateTime + '|' + row.createdByName]
+              ))
+            ]
+          }
+        }
+      ],
+      styles: {
+        heading: {
+          fontSize: 18,
+          alignment: 'center',
+          margin: [0, 15, 0, 30]
         }
       }
-    ],
-    styles: {
-      heading: {
-        fontSize: 18,
-        alignment: 'center',
-        margin: [0, 15, 0, 30]
-      }
-    }
-  };
+    };
 
-  // const win = window.open('', "tempWinForPdf");
+    // const win = window.open('', "tempWinForPdf");
     pdfMake.createPdf(docDefinition).print();
 
-}
-
-
-//------------------------------------ Copy Country list --------------------///
-
-copyCountryList() {
-  let count1 = this.rows.map(x => x.name.length);
-  let max1 = count1.reduce((a, b) => Math.max(a, b));
-  let count3 = this.rows.map(x => x.details.length);
-  let max3 = count3.reduce((a, b) => Math.max(a, b));
-  let count4 = this.rows.map(x => x.active== true ? "Active".length : "In-Active".length);
-  let max4 = count4.reduce((a, b) => Math.max(a, b));
-  max1 = max1 + 10;
-  max3 = max3 + 10;
-  max4 = max4 + 10;
-
-  // ................................................ headings replace yours............................
-
-  this.copyData.push('S No.' +'Country Name'.padEnd(max1) + 'Details'.padEnd(max3)+'Status'.padEnd(max4)+'Changed On'+'| Changed By \n');
-  // ................................................ headings............................
-
-  // ................................................ coloum data...........replace your coloum names.................
-  for (let i = 0; i < this.rows.length; i++) {
-    let tempData = this.rows[i].id + this.rows[i].name.padEnd(max1) +  this.rows[i].details.padEnd(max3) 
-    +this.rows[i].active
-    + this.rows[i].createdDateTime + this.rows[i].createdByName +'\n';
-    this.copyData.push(tempData);
   }
-  this._clipboardService.copy(this.copyData)
-  // ............................row.active == true ? "Active" : "In-Active".................... coloum this.data............................
 
-  Swal.fire({
-    title: GlobalConstants.copySuccess, 
-    footer:'Copied'+'\n'+this.countryCount+'\n'+'rows to clipboard',
-     showConfirmButton: false,
-     timer:2000,
-  })
-}
+
+  //------------------------------------ Copy Country list --------------------///
+
+  copyCountryList() {
+    let count1 = this.rows.map(x => x.name.length);
+    let max1 = count1.reduce((a, b) => Math.max(a, b));
+    let count3 = this.rows.map(x => x.details.length);
+    let max3 = count3.reduce((a, b) => Math.max(a, b));
+    let count4 = this.rows.map(x => x.active == true ? "Active".length : "In-Active".length);
+    let max4 = count4.reduce((a, b) => Math.max(a, b));
+    max1 = max1 + 10;
+    max3 = max3 + 10;
+    max4 = max4 + 10;
+
+    // ................................................ headings replace yours............................
+
+    this.copyData.push('S No.' + 'Country Name'.padEnd(max1) + 'Details'.padEnd(max3) + 'Status'.padEnd(max4) + 'Changed On' + '| Changed By \n');
+    // ................................................ headings............................
+
+    // ................................................ coloum data...........replace your coloum names.................
+    for (let i = 0; i < this.rows.length; i++) {
+      let tempData = this.rows[i].id + this.rows[i].name.padEnd(max1) + this.rows[i].details.padEnd(max3)
+        + this.rows[i].active
+        + this.rows[i].createdDateTime + this.rows[i].createdByName + '\n';
+      this.copyData.push(tempData);
+    }
+    this._clipboardService.copy(this.copyData)
+    // ............................row.active == true ? "Active" : "In-Active".................... coloum this.data............................
+
+    Swal.fire({
+      title: GlobalConstants.copySuccess,
+      footer: 'Copied' + '\n' + this.countryCount + '\n' + 'rows to clipboard',
+      showConfirmButton: false,
+      timer: 2000,
+    })
+  }
 
 }

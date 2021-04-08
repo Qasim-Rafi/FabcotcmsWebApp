@@ -8,7 +8,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { GlobalConstants } from 'src/app/Common/global-constants';
 import { DatatableComponent, id } from '@swimlane/ngx-datatable';
 import { ServiceService } from 'src/app/shared/service.service';
-import pdfMake from "pdfmake/build/pdfmake";   
+import pdfMake from "pdfmake/build/pdfmake";
 import { ClipboardService } from 'ngx-clipboard';
 
 @Component({
@@ -22,17 +22,17 @@ export class CityComponent implements OnInit {
   rows: any = [];
   columns: any = [];
   data: any = [];
-  copyData: any =[];
+  copyData: any = [];
   cityDate = Date.now();
-   cityFilter:any=[];
-  cityUrl= '/api/Configs/GetAllCity'
-  
+  cityFilter: any = [];
+  cityUrl = '/api/Configs/GetAllCity'
+
   @ViewChild('myTable') table: DatatableComponent;
-  clipboardService: any=[];
+
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
-    private service:ServiceService,
+    private service: ServiceService,
     private _clipboardService: ClipboardService,
     private modalService: NgbModal) { }
 
@@ -41,23 +41,26 @@ export class CityComponent implements OnInit {
       this.cityFilter = [...data];
       this.rows = data;
       this.CityCount = this.rows.length;
-    } , this.cityUrl);
+    }, this.cityUrl);
 
   }
 
-  updateFilter(event) {
+  // ------------------------------- search Function---------------------//
+  search(event) {
     const val = event.target.value.toLowerCase();
     const temp = this.cityFilter.filter(function (d) {
-      return ( d.name.toLowerCase().indexOf(val) !== -1  ||
-      d.country.toLowerCase().indexOf(val) !== -1  || !val);
+      return (d.name.toLowerCase().indexOf(val) !== -1 ||
+        d.country.toLowerCase().indexOf(val) !== -1 || !val);
     });
     this.rows = temp;
   }
 
+  // -------------------------- Delete City -----------------------------------//
+
   deleteCity(id) {
     Swal.fire({
       title: GlobalConstants.deleteTitle, //'Are you sure?',
-      text: GlobalConstants.deleteMessage+' '+'"'+ id.name +'"',
+      text: GlobalConstants.deleteMessage + ' ' + '"' + id.name + '"',
       icon: 'error',
       showCancelButton: true,
       confirmButtonColor: '#ed5565',
@@ -74,14 +77,14 @@ export class CityComponent implements OnInit {
             res => {
               this.response = res;
               if (this.response.success == true) {
-                this.toastr.error(this.response.message, 'Message.');
+                this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
                 this.service.fetch((data) => {
                   this.rows = data;
-                } , this.cityUrl);
+                }, this.cityUrl);
 
               }
               else {
-                this.toastr.error(this.response.message, 'Message.');
+                this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
               }
 
             }, err => {
@@ -90,21 +93,23 @@ export class CityComponent implements OnInit {
               }
             });
       }
-    })  
-  } 
-  addCity(check,name) {
+    })
+  }
+
+  // -------------------------------- Add city Form --------------------------------//
+
+  addCity(check, name) {
     const modalRef = this.modalService.open(EditCityComponent, { centered: true });
-    modalRef.componentInstance.statusCheck =check;
+    modalRef.componentInstance.statusCheck = check;
     modalRef.componentInstance.FormName = name;
-       modalRef.result.then((data) => {
+    modalRef.result.then((data) => {
       // on close
-       if(data ==true){
-       //  this.date = this.cityDate;
+      if (data == true) {
         this.service.fetch((data) => {
-         this.rows = data;
-         this.CityCount = this.rows.length;
-       } , this.cityUrl);
-        
+          this.rows = data;
+          this.CityCount = this.rows.length;
+        }, this.cityUrl);
+
 
       }
     }, (reason) => {
@@ -112,178 +117,175 @@ export class CityComponent implements OnInit {
     });
   }
 
+  // ----------------------------- Edit City Form -------------------------//
 
-  editCity(row,check,name){
+  editCity(row, check, name) {
     const modalRef = this.modalService.open(EditCityComponent, { centered: true });
-    modalRef.componentInstance.cityId =row.id; //just for edit.. to access the needed row
+    modalRef.componentInstance.cityId = row.id; //just for edit.. to access the needed row
     modalRef.componentInstance.statusCheck = check;
     modalRef.componentInstance.FormName = name;
 
-          modalRef.result.then((data) => {
-         // on close
-          if(data ==true){
-          //  this.date = this.cityDate;
-           this.service.fetch((data) => {
-            this.rows = data;
-          } , this.cityUrl);
-         }
-       }, (reason) => {
-         // on dismiss
-       });
-  } 
+    modalRef.result.then((data) => {
+      // on close
+      if (data == true) {
+        this.service.fetch((data) => {
+          this.rows = data;
+        }, this.cityUrl);
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
 
-// excell
-exportAsXLSX(): void {
-  const filtered = this.data .map(row => ({
-Sno :row.id,
-City:row.name,
-CountryName:row.country,
-Details:row.details,
-Status:row.active == true ? "Active" : "In-Active",
-CreatedOn :row.createdDateTime + '|' + row.createdByName 
+  // --------------------------Export as excel ----------------------------//
 
-  }));
- 
-  this.service.exportAsExcelFile(filtered, 'City Location');
+  cityExcelFile(): void {
+    const filtered = this.rows.map(row => ({
+      Sno: row.id,
+      City: row.name,
+      CountryName: row.country,
+      Details: row.details,
+      Status: row.active == true ? "Active" : "In-Active",
+      CreatedOn: row.createdDateTime + '|' + row.createdByName
 
-}
-// pdf generation
+    }));
 
-generatePDF() {
+    this.service.exportAsExcelFile(filtered, 'City Location');
 
-  let docDefinition = {
-    pageSize: 'A4',
-    info: {
-      title: 'City List'
-    },
-    content: [
-      {
-        text: 'City List',
-        style: 'heading',
+  }
 
+  //---------------------------- Export As Pdf --------------------------//
+
+  cityPdfList() {
+
+    let docDefinition = {
+      pageSize: 'A4',
+      info: {
+        title: 'City List'
       },
+      content: [
+        {
+          text: 'City List',
+          style: 'heading',
 
-      {
-        layout: 'lightHorizontalLines',
-        table: {
-          headerRows: 1,
-          widths: [30, 90, 130, 50, 150],
-          body: [
-            ['S.no.', 'City', 'Details', 'Status', 'Created On| Created By'],
-            ...this.data.map(row => (
-              [row.id, row.name, row.details, 
-                row.active == true ? "Active" : "In-Active", row.createdDateTime+ '|'+ row.createdByName]
-            ))
-          ]
+        },
+
+        {
+          layout: 'lightHorizontalLines',
+          table: {
+            headerRows: 1,
+            widths: [30, 90, 130, 50, 150],
+            body: [
+              ['S.no.', 'City', 'Details', 'Status', 'Created On| Created By'],
+              ...this.rows.map(row => (
+                [row.id, row.name, row.details,
+                row.active == true ? "Active" : "In-Active", row.createdDateTime + '|' + row.createdByName]
+              ))
+            ]
+          }
+        }
+      ],
+      styles: {
+        heading: {
+          fontSize: 18,
+          alignment: 'center',
+          margin: [0, 15, 0, 30]
         }
       }
-    ],
-    styles: {
-      heading: {
-        fontSize: 18,
-        alignment: 'center',
-        margin: [0, 15, 0, 30]
-      }
-    }
 
-  };
+    };
 
 
-  pdfMake.createPdf(docDefinition).download('CityList.pdf');
-}
-// print
+    pdfMake.createPdf(docDefinition).download('CityList.pdf');
+  }
 
-printPdf() {
+  //-------------------- Print city List --------------------------------//
 
-  let docDefinition = {
-    pageSize: 'A4',
-    info: {
-      title: 'City List'
-    },
-    content: [
-      {
-        text: 'City List',
-        style: 'heading',
+  printCityList() {
 
+    let docDefinition = {
+      pageSize: 'A4',
+      info: {
+        title: 'City List'
       },
+      content: [
+        {
+          text: 'City List',
+          style: 'heading',
 
-      {
-        layout: 'lightHorizontalLines',
-        table: {
-          headerRows: 1,
-          widths: [30, 90, 130, 50, 150],
-          body: [
-            ['S.no.', 'City', 'Details', 'Status', 'Created On| Created By'],
-            ...this.data.map(row => (
-              [row.id, row.name, row.details, 
-                row.active == true ? "Active" : "In-Active", row.createdDateTime+ '|'+ row.createdByName]
-            ))
-          ]
+        },
+
+        {
+          layout: 'lightHorizontalLines',
+          table: {
+            headerRows: 1,
+            widths: [30, 90, 130, 50, 150],
+            body: [
+              ['S.no.', 'City', 'Details', 'Status', 'Created On| Created By'],
+              ...this.rows.map(row => (
+                [row.id, row.name, row.details,
+                row.active == true ? "Active" : "In-Active", row.createdDateTime + '|' + row.createdByName]
+              ))
+            ]
+          }
+        }
+      ],
+      styles: {
+        heading: {
+          fontSize: 18,
+          alignment: 'center',
+          margin: [0, 15, 0, 30]
         }
       }
-    ],
-    styles: {
-      heading: {
-        fontSize: 18,
-        alignment: 'center',
-        margin: [0, 15, 0, 30]
-      }
+
+    };
+
+
+    pdfMake.createPdf(docDefinition).print();
+  }
+
+  // ------------------------------- Copy City List -------------------------//
+  copyCityList() {
+    let count1 = this.rows.map(x => x.name.length);
+    let max1 = count1.reduce((a, b) => Math.max(a, b));
+
+    let count2 = this.rows.map(x => x.country.length);
+    let max2 = count2.reduce((a, b) => Math.max(a, b));
+
+    let count3 = this.rows.map(x => x.details.length);
+    let max3 = count3.reduce((a, b) => Math.max(a, b));
+
+    let count4 = this.rows.map(x => x.active.length);
+    let max4 = count4.reduce((a, b) => Math.max(a, b));
+    // max = max + 10;
+    max1 = max1 + 10;
+    max2 = max2 + 10;
+    max3 = max3 + 10;
+    max4 = max4 + 10;
+
+    // ................................................ headings replace yours............................
+
+    this.copyData.push('S No.' + 'City Name'.padEnd(max1) +
+      'Country'.padEnd(max2) + 'Details'.padEnd(max3) + 'Status'.padEnd(max4) + 'Changed On' + '| Changed By \n');
+    // ................................................ headings............................
+
+    // ................................................ coloum data...........replace your coloum names.................
+    for (let i = 0; i < this.rows.length; i++) {
+      let tempData = this.rows[i].id + this.rows[i].name.padEnd(max1) + this.rows[i].country.padEnd(max2)
+        + this.rows[i].details.padEnd(max3)
+        + this.rows[i].active
+        + this.rows[i].updatedDateTime + this.rows[i].updatedByName + '\n';
+      this.copyData.push(tempData);
     }
+    this._clipboardService.copy(this.copyData)
+    // ............................row.active == true ? "Active" : "In-Active".................... coloum this.data............................
 
-  };
-
-
-  pdfMake.createPdf(docDefinition).print();
-}
-
-
-
-
-  //   copyContent() {
-    copy() {
-      // let count = this.rows.map(x => x.id.length);
-      // let max = count.reduce((a, b) => Math.max(a, b));
-
-      let count1 = this.rows.map(x => x.name.length);
-      let max1 = count1.reduce((a, b) => Math.max(a, b));
-  
-      let count2 = this.rows.map(x => x.country.length);
-      let max2= count2.reduce((a, b) => Math.max(a, b));
-
-      let count3 = this.rows.map(x => x.details.length);
-      let max3 = count3.reduce((a, b) => Math.max(a, b));
-
-      let count4 = this.rows.map(x => x.active.length);
-      let max4 = count4.reduce((a, b) => Math.max(a, b));
-      // max = max + 10;
-      max1 = max1 + 10;
-      max2 = max2 + 10;
-      max3 = max3 + 10;
-      max4 = max4 + 10;
-
-      // ................................................ headings replace yours............................
-  
-      this.copyData.push('S No.' +'City Name'.padEnd(max1) +
-      'Country'.padEnd(max2) + 'Details'.padEnd(max3)+'Status'.padEnd(max4)+'Changed On'+'| Changed By \n');
-      // ................................................ headings............................
-  
-      // ................................................ coloum data...........replace your coloum names.................
-      for (let i = 0; i < this.rows.length; i++) {
-        let tempData = this.rows[i].id + this.rows[i].name.padEnd(max1) + this.rows[i].country.padEnd(max2) 
-        + this.rows[i].details.padEnd(max3) 
-        +this.rows[i].active
-        + this.rows[i].updatedDateTime + this.rows[i].updatedByName +'\n';
-        this.copyData.push(tempData);
-      }
-      this._clipboardService.copy(this.copyData)
-      // ............................row.active == true ? "Active" : "In-Active".................... coloum this.data............................
-
-      Swal.fire({
-        title: GlobalConstants.copySuccess, 
-        footer:'Copied'+'\n'+this.CityCount+'\n'+'rows to clipboard',
-         showConfirmButton: false,
-         timer:2000,
-      })
-    }
+    Swal.fire({
+      title: GlobalConstants.copySuccess,
+      footer: 'Copied' + '\n' + this.CityCount + '\n' + 'rows to clipboard',
+      showConfirmButton: false,
+      timer: 2000,
+    })
+  }
 }
 
