@@ -20,6 +20,7 @@ export class EnquiryItemsComponent implements OnInit {
   uomList: any = [];
   color: any = [];
   loomType: any = [];
+  fabricType: any = [];
 
 
 
@@ -35,7 +36,11 @@ export class EnquiryItemsComponent implements OnInit {
     this.GetUOMDropdown();
     this.GetColorDropdown();
     this.GetLoomDropdown();
-    this.editEnquiry(this.EnquiryItemId);
+    this.GetFabricDropdown();
+
+    if (this.statusCheck == 'EditEnquiryItem') {
+      this.editEnquiry(this.EnquiryItemId);
+    }
   }
 
   get activeModal() {
@@ -82,6 +87,17 @@ export class EnquiryItemsComponent implements OnInit {
     })
   }
 
+  GetFabricDropdown() {
+    this.service.getFabricType().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.fabricType = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
 
 
 

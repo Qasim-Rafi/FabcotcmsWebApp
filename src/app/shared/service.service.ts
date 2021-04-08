@@ -65,6 +65,10 @@ export class ServiceService {
   getColor() {
     return this.http.get(`${environment.apiUrl}/api/TextileGarments/GetAllColor`)
   }
+  getFabricType() {
+    return this.http.get(`${environment.apiUrl}/api/Products/GetAllFabricType`)
+  }
+
 
 
 
