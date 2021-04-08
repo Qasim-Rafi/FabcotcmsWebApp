@@ -9,7 +9,11 @@ import { QuotationComponent } from 'src/app/shared/MODLES/quotation/quotation.co
   styleUrls: ['./edit-active-enquiry.component.css']
 })
 export class EditActiveEnquiryComponent implements OnInit {
-  toggle: boolean = false;
+  enquiryToggle: boolean = false;
+  currencyToggle: boolean = false;
+  vendorToggle: boolean = false;
+  orderToggle: boolean = false;
+  remarksToggle: boolean = false;
 
   constructor(
     private modalService: NgbModal,
