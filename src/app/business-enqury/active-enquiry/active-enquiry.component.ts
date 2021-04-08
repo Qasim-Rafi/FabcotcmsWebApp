@@ -1,10 +1,12 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { GlobalConstants } from 'src/app/Common/global-constants';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { EnquiryItemsComponent } from 'src/app/shared/MODLES/enquiry-items/enquiry-items.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -20,32 +22,35 @@ export class ActiveEnquiryComponent implements OnInit {
   listCount: number;
   myDate = Date.now();
   temp: any = [];
+  @Input() enquiryId;
 
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
     private router: Router,
-
+    private modalService: NgbModal,
     // private service: ServiceService,
-    // private modalService: NgbModal,
   ) { }
+
 
   navigateAddEnquiry() {
     this.router.navigateByUrl('/enquiries');
   };
 
 
-  navigateEditEnquiry() {
-    this.router.navigateByUrl('/edit-active-enquiries');
+  navigateEditEnquiry(obj) {
+    this.router.navigate(['/edit-active-enquiries'], { queryParams: obj });
   };
 
+
   ngOnInit(): void {
+
+    // this.editEnquiry(this.enquiryId);
     this.fetch((data) => {
       this.rows = data;
     });
+
   }
-
-
 
 
   updateFilter(event) {
@@ -88,7 +93,36 @@ export class ActiveEnquiryComponent implements OnInit {
 
 
 
-  deleteArticle(obj) {
+
+
+
+
+
+
+
+  editEnquiry(row) {
+    this.http.get(`${environment.apiUrl}/api/Enquiries/GetEnquiryById/` + row.id)
+      .subscribe(
+        res => {
+          this.response = res;
+          if (this.response.success == true) {
+            this.data = this.response.data;
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+        });
+  }
+
+
+
+
+  deleteEnquiry(obj) {
     Swal.fire({
       title: GlobalConstants.deleteTitle, //'Are you sure?',
       text: GlobalConstants.deleteMessage + ' ' + '"' + obj.enquiryNumber + '"',
@@ -103,7 +137,7 @@ export class ActiveEnquiryComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
 
-        this.http.delete(`${environment.apiUrl}​/api​/Enquiries​/DeleteEnquiry​/` + obj.id)
+        this.http.delete(`${environment.apiUrl}/api/Enquiries/DeleteEnquiry/` + obj.id)
           .subscribe(
             res => {
               this.response = res;

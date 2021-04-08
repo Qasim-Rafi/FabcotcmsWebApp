@@ -23,7 +23,6 @@ export class ServiceService {
   getCountry() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/Countries`)
   }
-
   getBuyers() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/Buyers`);
   }
@@ -60,17 +59,26 @@ export class ServiceService {
   getUOM() {
     return this.http.get(`${environment.apiUrl}/api/Enquiries/GetAllUOM`)
   }
- 
-  login(loginData){
+  getLoom() {
+    return this.http.get(`${environment.apiUrl}/api/TextileGarments/GetAllLoomType`)
+  }
+  getColor() {
+    return this.http.get(`${environment.apiUrl}/api/TextileGarments/GetAllColor`)
+  }
+
+
+
+
+  login(loginData) {
     return this.http.get(`${environment.apiUrl}/api/Auth/Login`)
   }
 
-//  -------------Fetch function for all components --------------------------------//
+  //  -------------Fetch function for all components --------------------------------//
 
-  fetch(cb , apiUrl2) {
+  fetch(cb, apiUrl2) {
     let desc = this;
     desc.http
-      .get(`${environment.apiUrl}`+ apiUrl2)
+      .get(`${environment.apiUrl}` + apiUrl2)
       .subscribe(res => {
         this.response = res;
         if (this.response.success == true) {
@@ -88,7 +96,7 @@ export class ServiceService {
         }
       });
   }
-  
+
   // excel
   public exportAsExcelFile(json: any[], excelFileName: string): void {
 
@@ -106,7 +114,7 @@ export class ServiceService {
     });
     FileSaver.saveAs(data, fileName + EXCEL_EXTENSION);
   }
- 
+
 
 }
 function cb(data: any) {

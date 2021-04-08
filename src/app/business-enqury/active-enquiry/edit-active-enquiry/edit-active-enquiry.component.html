@@ -22,11 +22,11 @@
 
             <div class="row mb-3">
                 <div class="col-md-3">
-                    <h2 class="text-muted text2">FG-93</h2>
+                    <h2 class="text-muted text2">{{objEnquiry.enquiryNumber}}</h2>
                 </div>
                 <div class="col-md-9 mrg-tsm">
 
-                    <span class="text-muted text2">Dalal Industries</span>
+                    <span class="text-muted text2">{{objEnquiry.buyerName}}</span>
 
                     <button type="button" class="btn btn-primary btn-md float-right"
                         (click)="enquiryToggle = ! enquiryToggle">
@@ -38,15 +38,18 @@
                 <div class="col-md-6">
                     <dl class="row">
                         <dt class="col-sm-6"> Status:</dt>
-                        <dd class="col-sm-6">ACTIVE</dd>
+                        <dd class="col-sm-6">
+                            <span class="badge badge-primary" *ngIf="objEnquiry.active == 'true'">Active</span>
+                            <span class="badge badge-secondary" *ngIf="objEnquiry.active== 'false'">Closed</span>
+                        </dd>
                     </dl>
                     <dl class="row">
                         <dt class="col-sm-6"> Enquiry Created:</dt>
-                        <dd class="col-sm-6">Zahid</dd>
+                        <dd class="col-sm-6">{{objEnquiry.createdByName}}</dd>
                     </dl>
                     <dl class="row">
                         <dt class="col-sm-6"> Last Updated:</dt>
-                        <dd class="col-sm-6">Zahid</dd>
+                        <dd class="col-sm-6">{{objEnquiry.updatedByName}}</dd>
                     </dl>
                 </div>
 
@@ -54,15 +57,15 @@
 
                     <dl class="row">
                         <dt class="col-sm-6"> Enquiry Date:</dt>
-                        <dd class="col-sm-6"></dd>
+                        <dd class="col-sm-6">{{objEnquiry.enquiryDate}}</dd>
                     </dl>
                     <dl class="row">
                         <dt class="col-sm-6"> Created on:</dt>
-                        <dd class="col-sm-6"></dd>
+                        <dd class="col-sm-6">{{objEnquiry.createdDateTime}}</dd>
                     </dl>
                     <dl class="row">
                         <dt class="col-sm-6"> Updated on:</dt>
-                        <dd class="col-sm-6"></dd>
+                        <dd class="col-sm-6">articleName</dd>
                     </dl>
                 </div>
             </div>
@@ -72,15 +75,15 @@
 
                     <dl class="row">
                         <dt class="col-sm-6"> Article:</dt>
-                        <dd class="col-sm-6">1313AW-RS01</dd>
+                        <dd class="col-sm-6">{{objEnquiry.articleName}}</dd>
                     </dl>
                     <dl class="row">
                         <dt class="col-sm-6"> Design Type:</dt>
-                        <dd class="col-sm-6"></dd>
+                        <dd class="col-sm-6">{{objEnquiry.createdDateTime}}</dd>
                     </dl>
                     <dl class="row">
                         <dt class="col-sm-6"> Shipment Dates:</dt>
-                        <dd class="col-sm-6">1</dd>
+                        <dd class="col-sm-6">{{objEnquiry.createdDateTime}}</dd>
                     </dl>
                 </div>
 
@@ -266,26 +269,22 @@
                                 </dl>
                                 <dl class="row">
                                     <dt class="col-sm-6">Supplier Commission:</dt>
-                                    <dd class="col-sm-6"></dd>
+                                    <dd class="col-sm-6">{{objEnquiry.sellerSideCommission}}%</dd>
                                 </dl>
                                 <dl class="row">
                                     <dt class="col-sm-6"> Buyer Commission:
                                     </dt>
-                                    <dd class="col-sm-6"></dd>
+                                    <dd class="col-sm-6">{{objEnquiry.buyerSideCommission}}%</dd>
                                 </dl>
 
                                 <button class="btn btn-primary float-right" (click)="currencyToggle = !currencyToggle">
                                     Edit</button>
-
                             </div>
                         </div>
 
 
                         <div class="row border-bottom">
                             <div class="col-md-12" [ngClass]="{ noDisplay : currencyToggle==false }">
-                                <h2>Currency Form Div</h2>
-
-
                                 <div class="form-group row">
                                     <label for="inputEmail3"
                                         class="col-md-3 col-form-label control-label">Currency</label>
@@ -647,13 +646,13 @@
                 <div class="row">
 
                     <button type="button" class="btn btn-primary btn-md float-right"
-                        (click)="addEnquiryItemform('AddEnquiryItem')">
+                        (click)="addEnquiryItemform('AddEnquiryItem', objEnquiry)">
                         <i class="fa fa-plus"></i>Add Enquiry Item</button>
 
                 </div>
 
 
-                <div class="row">
+                <div class="row" *ngFor="let obj of enquiryItem">
                     <div class="col-md-1 col-sm-3 col-xs-3 forum-info" data-original-title="POCs">
                         <div class="poc-icon">
                             <a class="faq-question text-muted text-s-lg text-w-3" data-toggle="collapse" role="button"
@@ -662,14 +661,16 @@
                         </div>
                     </div>
                     <div class="col-md-7">
-                        <a class="faq-question ">Name</a>
-                        <div class="small mb-1">Parent Buyer:Name (NAME)</div>
-                        <div class="small">Added by <strong>Admin</strong>
+                        <a class="faq-question ">{{obj.description}}</a>
+                        <div class="small mb-1">{{obj.colorId}} {{obj.compositionPercentage}}
+                            {{obj.compositionFebricTypeId}}
+                            | {{obj.construction}}
+                            Size: {{obj.size}} </div>
+                        <div class="small">Added by <strong>{{obj.createdByName}}</strong>
                             <div class="m-l-lg" style="display: inline-block;">
-                                <i class="far fa-clock"></i> Date
+                                <i class="far fa-clock"></i> Date : {{obj.createdDateTime}}
                             </div>
 
-                            <div class="m-l-lg" style="display: inline-block;">Country: &nbsp; Date</div>
                         </div>
                     </div>
 
@@ -680,11 +681,12 @@
                                 <i class="fas fa-paperclip"></i>
                             </button>
                             <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top"
-                                title="" data-original-title="Edit" (click)=" EditEnquiryItemform('EditEnquiryItem') ">
+                                title="" data-original-title="Edit"
+                                (click)=" EditEnquiryItemform('EditEnquiryItem', obj)">
                                 <i class="far fa-edit "></i>
                             </button>
                             <button type="button" class="btn deleteIconBack" data-toggle="tooltip" data-placement="top"
-                                title="" data-original-title="Delete" Date>
+                                title="" data-original-title="Delete" (click)=" deleteEnquiryItem(obj)">
                                 <i class="far fa-trash-alt"></i>
                             </button>
 
@@ -694,21 +696,10 @@
 
                     <div class="col-md-1 forum-info" data-toggle="tooltip" data-placement="top" title=""
                         style="border-left: 1px solid #d0d0d0" data-original-title="Total Contracts">
-                        <span class="views-number">0</span>
-                        <div><small>Total Contracts</small></div>
-                    </div>
-
-                    <div class="col-md-1 forum-info" data-toggle="tooltip" data-placement="top" title=""
-                        data-original-title="Open Contracts">
-                        <span class="views-number">
-                            0
-                        </span>
-                        <div>
-                            <small>Open Contracts</small>
-                        </div>
+                        <span class="views-number">{{obj.itemQuantity}}</span>
+                        <div><small>Sets</small></div>
                     </div>
                 </div>
-
 
 
             </div>

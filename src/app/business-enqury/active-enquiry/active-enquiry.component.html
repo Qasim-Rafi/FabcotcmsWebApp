@@ -144,9 +144,7 @@
             <div class="ibox-tools text-center" data-toggle="tooltip" data-placement="top" title=""
               data-original-title="Edit">
 
-
-
-              <button type="button" class="btn editIconBack px-1 py-1" (click)="navigateEditEnquiry()">
+              <button type="button" class="btn editIconBack px-1 py-1" (click)="navigateEditEnquiry(row)">
                 <i class="fas fa-external-link-alt"></i>
               </button>
 
@@ -155,7 +153,7 @@
               <button type="button" class="btn editIconBack px-1 py-1">
                 <i class="far fa-copy"></i>
               </button>
-              <button type="button" class="btn deleteIconBack px-1 py-1" (click)=" deleteArticle(row)">
+              <button type="button" class="btn deleteIconBack px-1 py-1" (click)=" deleteEnquiry(row)">
                 <i class="far fa-trash-alt"></i>
               </button>
             </div>
