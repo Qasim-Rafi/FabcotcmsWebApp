@@ -10,7 +10,8 @@ import { ServiceService } from 'src/app/shared/service.service'
 import { ClipboardService } from 'ngx-clipboard';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import pdfMake from "pdfmake/build/pdfmake";
-
+import pdfFonts from "pdfmake/build/vfs_fonts";  
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 @Component({
   selector: 'app-country',
   templateUrl: './country.component.html',
@@ -27,7 +28,9 @@ export class CountryComponent implements OnInit {
   currentDate = Date.now();
   countryFilter: any = [];
   CountryUrl = '/api/Configs/GetAllCountry'
+
   @ViewChild('myTable', { static: false }) table:DatatableComponent;
+
   constructor(private http: HttpClient,
     private toastr: ToastrService,
     private modalService: NgbModal,
@@ -43,6 +46,8 @@ export class CountryComponent implements OnInit {
 
   }
 
+  
+// ------------------- Search function ----------------------------------//
   search(event) {
     const val = event.target.value.toLowerCase();
     const temp = this.countryFilter.filter(function (d) {
@@ -50,6 +55,32 @@ export class CountryComponent implements OnInit {
     });
     this.rows = temp;
   }
+
+
+  // fetch(cb) {
+  //   let desc = this;
+  //   desc.http
+  //     .get(`${environment.apiUrl}/api/Configs/GetAllCountry`)
+  //     .subscribe(res => {
+  //       this.response = res;
+  //       if (this.response.success == true) {
+  //         this.countryCount = this.response.data.length;
+
+  //         desc.data = this.response.data;
+  //         cb(this.data);
+  //       }
+  //       else {
+  //         this.toastr.error(this.response.message, 'Message.');
+  //       }
+  //     }, err => {
+  //       if (err.status == 400) {
+  //         this.toastr.error(err.error.message, 'Message.');;
+  //       }
+  //     });
+  // }
+
+
+//  --------------------- Delete Country ---------------------------//
 
   deleteCountry(id) {
 
@@ -92,25 +123,25 @@ export class CountryComponent implements OnInit {
 
   }
 
+//  ----------------------- Add country Form -----------------------//
+  
   addCountryForm(check, name) {
     const modalRef = this.modalService.open(EditCountryComponent, { centered: true });
     modalRef.componentInstance.statusCheck = check;
     modalRef.componentInstance.FormName = name;
     modalRef.result.then((data) => {
-      // on close
+      
       if (data == true) {
-        //  this.date = this.myDate;
         this.service.fetch((data) => {
           this.rows = data;
           this.countryCount = this.rows.length;
         } , this.CountryUrl);
-
-
       }
     }, (reason) => {
-      // on dismiss
     });
   }
+
+// ---------------------- Edit Country Form ----------------------//
 
 
   editCountryForm(row, check, name) {
@@ -133,11 +164,11 @@ export class CountryComponent implements OnInit {
   }
 
 
-  // excel
+  // --------------------------Export as Excel ----------------------------------//
 
 
-  exportAsXLSX(): void {
-    const filtered = this.data.map(row => ({
+  countryExcelFile(): void {
+    const filtered = this.rows.map(row => ({
       Sno: row.id,
       CountryName: row.name,
       Details: row.details,
@@ -148,8 +179,11 @@ export class CountryComponent implements OnInit {
     this.service.exportAsExcelFile(filtered, 'Countries');
 
   }
-  // pdf 
-  generatePDF() {
+
+
+  // -------------------------------Export as Pdf  ------------------------------------//
+
+  countryPdf() {
 
     let docDefinition = {
       pageSize: 'A4',
@@ -170,7 +204,7 @@ export class CountryComponent implements OnInit {
             widths: [30, 90, 130, 50, 150],
             body: [
               ['S.no.', 'Country', 'Details', 'Status', 'Created On| Created By'],
-              ...this.data.map(row => (
+              ...this.rows.map(row => (
                 [row.id, row.name, row.details, 
                   row.active == true ? "Active" : "In-Active", row.createdDateTime+ '|'+ row.createdByName]
               ))
@@ -192,9 +226,9 @@ export class CountryComponent implements OnInit {
     pdfMake.createPdf(docDefinition).download('CountryList.pdf');
   }
 
-// print pdf ///
+//-------------------------------------- Print country List ------------------------- ///
 
-printPdf() {
+printCountryList() {
 
   let docDefinition = {
     pageSize: 'A4',
@@ -215,7 +249,7 @@ printPdf() {
           widths: [30, 90, 130, 50, 150],
           body: [
             ['S.no.', 'Country', 'Details', 'Status', 'Created On| Created By'],
-            ...this.data.map(row => (
+            ...this.rows.map(row => (
               [row.id, row.name, row.details, 
                 row.active == true ? "Active" : "In-Active", row.createdDateTime+ '|'+ row.createdByName]
             ))
@@ -232,18 +266,15 @@ printPdf() {
     }
   };
 
-  const win = window.open('', "tempWinForPdf");
-    pdfMake.createPdf(docDefinition).print({}, win);
-    // win.close();
+  // const win = window.open('', "tempWinForPdf");
+    pdfMake.createPdf(docDefinition).print();
+
 }
 
 
-// copy
+//------------------------------------ Copy Country list --------------------///
 
-copy() {
-  // let count = this.rows.map(x => x.id.length);
-  // let max = count.reduce((a, b) => Math.max(a, b));
-
+copyCountryList() {
   let count1 = this.rows.map(x => x.name.length);
   let max1 = count1.reduce((a, b) => Math.max(a, b));
   let count3 = this.rows.map(x => x.details.length);

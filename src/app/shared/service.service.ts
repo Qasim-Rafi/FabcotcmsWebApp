@@ -16,7 +16,6 @@ export class ServiceService {
   article: any = [];
   listCount: number;
   data: any = [];
- 
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,) { }
@@ -65,6 +64,9 @@ export class ServiceService {
   login(loginData){
     return this.http.get(`${environment.apiUrl}/api/Auth/Login`)
   }
+
+//  -------------Fetch function for all components --------------------------------//
+
   fetch(cb , apiUrl2) {
     let desc = this;
     desc.http
@@ -87,9 +89,6 @@ export class ServiceService {
       });
   }
   
-
-
-
   // excel
   public exportAsExcelFile(json: any[], excelFileName: string): void {
 

@@ -22,66 +22,37 @@ export class ForeignAgentComponent implements OnInit {
   rows: any = [];
   columns: any = [];
   data: any = {};
-  listCount: number;
+  agentCount: number;
   date: number;
   myDate = Date.now();
-  temp: any[];
-
+  agentFilter: any[];
+agentUrl = '/api/Configs/GetAllExternalAgent'
   constructor(private http: HttpClient,
     private toastr: ToastrService,
     private service:ServiceService,
     private modalService: NgbModal,) { }
 
   ngOnInit(): void {
-    this.fetch((data) => {
-      this.temp = [...data];
+    this.service.fetch((data) => {
+      this.agentFilter = [...data];
       this.rows = data;
-    });
+      this.agentCount = this.rows.length
+    } , this.agentUrl);
   }
 
 
   updateFilter(event) {
     const val = event.target.value.toLowerCase();
 
-    // filter our data
-    const temp = this.temp.filter(function (d) {
+    const temp = this.agentFilter.filter(function (d) {
       return (d.code.toLowerCase().indexOf(val) !== -1 ||
       
         d.name.toLowerCase().indexOf(val) !== -1 || !val);
     });
 
-    // update the rows
     this.rows = temp;
-    // Whenever the filter changes, always go back to the first page
-    // this.table.offset = 0;
+
   }
-
-
-
-  fetch(cb) {
-    let that = this;
-    that.http
-      .get(`${environment.apiUrl}/api/Configs/GetAllExternalAgent`)
-      .subscribe(res => {
-        this.response = res;
-        if (this.response.success == true) {
-          that.data = this.response.data;
-          this.listCount = this.response.data.length;
-          cb(this.data);
-        }
-        else {
-          this.toastr.error(this.response.message, 'Message.');
-        }
-        // this.spinner.hide();
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error(err.error.message, 'Message.');;
-        }
-        //  this.spinner.hide();
-      });
-  }
-
-
 
 
   deleteAgent(id) {
@@ -104,16 +75,16 @@ export class ForeignAgentComponent implements OnInit {
             res => {
               this.response = res;
               if (this.response.success == true) {
-                this.toastr.error(this.response.message, 'Message.');
-                this.fetch((data) => {
+                this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
+                this.service.fetch((data) => {
                   this.rows = data;
 
-                  this.listCount = this.rows.length;
-                });
+                  this.agentCount = this.rows.length;
+                } , this.agentUrl);
 
               }
               else {
-                this.toastr.error('Something went Worng', 'Message.');
+                this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
               }
 
             }, err => {
@@ -121,13 +92,6 @@ export class ForeignAgentComponent implements OnInit {
                 this.toastr.error(this.response.message, 'Message.');
               }
             });
-
-
-        // Swal.fire(
-        //   'Record',
-        //   'Deleted Successfully.',
-        //   'success'
-        // )
       }
     })
 
@@ -141,11 +105,11 @@ export class ForeignAgentComponent implements OnInit {
       // on close
       if (data == true) {
         this.date = this.myDate;
-        this.fetch((data) => {
-          this.temp = [...data];
+        this.service.fetch((data) => {
+          this.agentFilter = [...data];
           this.rows = data;
-          this.listCount = this.rows.length;
-        });
+          this.agentCount = this.rows.length;
+        } , this.agentUrl);
 
 
       }
@@ -163,9 +127,9 @@ export class ForeignAgentComponent implements OnInit {
       // on close
       if (data == true) {
         this.date = this.myDate;
-        this.fetch((data) => {
+        this.service.fetch((data) => {
           this.rows = data;
-        });
+        } , this.agentUrl);
 
 
       }

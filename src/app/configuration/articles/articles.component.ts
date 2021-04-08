@@ -19,10 +19,9 @@ export class ArticlesComponent implements OnInit {
   rows: any = [];
   columns: any = [];
   data: any = {};
-  listCount: number;
-  myDate = Date.now();
-  temp: any = [];
-  articleUrl: '/api/Configs/GetAllArticle'
+  articleCount: number;
+  articleFilter: any = [];
+  articleUrl= '/api/Configs/GetAllArticle'
 
 
 
@@ -32,10 +31,11 @@ export class ArticlesComponent implements OnInit {
     private modalService: NgbModal,) { }
 
   ngOnInit(): void {
-    this.fetch((data) => {
-      this.temp = [...data];
+    this.service.fetch((data) => {
+      this.articleFilter = [...data];
       this.rows = data;
-    });
+      this.articleCount = this.rows.length
+    } , this.articleUrl);
 
 
   }
@@ -46,40 +46,12 @@ export class ArticlesComponent implements OnInit {
     const val = event.target.value.toLowerCase();
 
     // filter our data
-    const temp = this.temp.filter(function (d) {
+    const temp = this.articleFilter.filter(function (d) {
       return (d.code.toLowerCase().indexOf(val) !== -1 ||
         d.name.toLowerCase().indexOf(val) !== -1 || !val);
     });
     this.rows = temp;
   }
-
-
-  fetch(cb) {
-    let that = this;
-    that.http
-      .get(`${environment.apiUrl}/api/Configs/GetAllArticle`)
-      .subscribe(res => {
-        this.response = res;
-        this.listCount = this.response.data.length;
-
-
-        if (this.response.success == true) {
-          that.data = this.response.data;
-          cb(this.data);
-        }
-        else {
-          this.toastr.error(this.response.message, 'Message.');
-        }
-        // this.spinner.hide();
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error(err.error.message, 'Message.');;
-        }
-        //  this.spinner.hide();
-      });
-  }
-
-
 
   deleteArticle(id) {
 
@@ -102,15 +74,15 @@ export class ArticlesComponent implements OnInit {
             res => {
               this.response = res;
               if (this.response.success == true) {
-                this.toastr.error(this.response.message, 'Message.');
-                this.fetch((data) => {
+                this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
+                this.service.fetch((data) => {
                   this.rows = data;
 
-                });
+                } , this.articleUrl);
 
               }
               else {
-                this.toastr.error('Something went Worng', 'Message.');
+                this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
               }
 
             }, err => {
@@ -118,12 +90,6 @@ export class ArticlesComponent implements OnInit {
                 this.toastr.error(this.response.message, 'Message.');
               }
             });
-
-        // Swal.fire(
-        //   'Record',
-        //   'Deleted Successfully.',
-        //   'success'
-        // )
       }
     })
 
@@ -136,10 +102,10 @@ export class ArticlesComponent implements OnInit {
       // on close
       if (data == true) {
         //  this.date = this.myDate;
-        this.fetch((data) => {
+        this.service.fetch((data) => {
           this.rows = data;
-          this.listCount = this.rows.length;
-        });
+          this.articleCount = this.rows.length;
+        } , this.articleUrl);
 
 
       }
@@ -156,10 +122,10 @@ export class ArticlesComponent implements OnInit {
       // on close
       if (data == true) {
         //  this.date = this.myDate;
-        this.fetch((data) => {
+        this.service.fetch((data) => {
           this.rows = data;
 
-        });
+        } ,  this.articleUrl);
 
       }
     }, (reason) => {

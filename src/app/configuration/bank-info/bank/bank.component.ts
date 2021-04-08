@@ -22,6 +22,7 @@ export class BankComponent implements OnInit {
   data: any = {};
   myDate = Date.now();
   temp: any[];
+  bankUrl = '/api/Configs/GetAllBank'
  
   constructor(private http: HttpClient,
     private toastr: ToastrService,
@@ -29,10 +30,10 @@ export class BankComponent implements OnInit {
     private modalService: NgbModal,) { }
 
   ngOnInit(): void {
-    this.fetch((data) => {
+    this.service.fetch((data) => {
       this.temp = [...data];
       this.rows = data;
-    });
+    } , this.bankUrl);
 
   }
 
@@ -51,33 +52,6 @@ export class BankComponent implements OnInit {
     // Whenever the filter changes, always go back to the first page
     // this.table.offset = 0;
   }
-
-
-
-  fetch(cb) {
-    let that = this;
-    that.http
-      .get(`${environment.apiUrl}/api/Configs/GetAllBank`)
-      .subscribe(res => {
-        this.response = res;
-
-        if (this.response.success == true) {
-          that.data = this.response.data;
-          this.listCount = this.response.data.length;
-          cb(this.data);
-        }
-        else {
-          this.toastr.error(this.response.message, 'Message.');
-        }
-        // this.spinner.hide();
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error(err.error.message, 'Message.');;
-        }
-        //  this.spinner.hide();
-      });
-  }
-
 
 
   deleteBank(id) {
@@ -101,9 +75,9 @@ export class BankComponent implements OnInit {
               this.response = res;
               if (this.response.success == true) {
                 this.toastr.error(this.response.message, 'Message.');
-                this.fetch((data) => {
+                this.service.fetch((data) => {
                   this.rows = data;
-                });
+                } , this.bankUrl);
 
               }
               else {
@@ -132,11 +106,11 @@ export class BankComponent implements OnInit {
       // on close
       if (data == true) {
         //  this.date = this.myDate;
-        this.fetch((data) => {
+        this.service.fetch((data) => {
           this.temp = [...data];
           this.rows = data;
           this.listCount = this.rows.length;
-        });
+        } , this.bankUrl);
 
 
       }
@@ -153,10 +127,10 @@ export class BankComponent implements OnInit {
       // on close
       if (data == true) {
         //  this.date = this.myDate;
-        this.fetch((data) => {
+        this.service.fetch((data) => {
           this.rows = data;
 
-        });
+        } , this.bankUrl);
 
       }
     }, (reason) => {

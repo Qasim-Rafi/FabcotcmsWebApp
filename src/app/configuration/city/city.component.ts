@@ -11,7 +11,6 @@ import { ServiceService } from 'src/app/shared/service.service';
 import pdfMake from "pdfmake/build/pdfmake";   
 import { ClipboardService } from 'ngx-clipboard';
 
-
 @Component({
   selector: 'app-city',
   templateUrl: './city.component.html',
@@ -27,6 +26,7 @@ export class CityComponent implements OnInit {
   cityDate = Date.now();
    cityFilter:any=[];
   cityUrl= '/api/Configs/GetAllCity'
+  
   @ViewChild('myTable') table: DatatableComponent;
   clipboardService: any=[];
 
@@ -134,7 +134,7 @@ export class CityComponent implements OnInit {
 
 // excell
 exportAsXLSX(): void {
-  const filtered = this.data.map(row => ({
+  const filtered = this.data .map(row => ({
 Sno :row.id,
 City:row.name,
 CountryName:row.country,
