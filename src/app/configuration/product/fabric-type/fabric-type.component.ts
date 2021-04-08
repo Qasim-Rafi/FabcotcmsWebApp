@@ -9,13 +9,17 @@ import { ServiceService } from 'src/app/shared/service.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { GlobalConstants } from 'src/app/Common/global-constants';
 import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
   selector: 'app-fabric-type',
   templateUrl: './fabric-type.component.html',
   styleUrls: ['./fabric-type.component.css']
 })
+
 export class FabricTypeComponent implements OnInit {
+
   response: any;
   rows: any = [];
   data: any = {};
@@ -27,7 +31,7 @@ export class FabricTypeComponent implements OnInit {
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
-    private service:ServiceService,
+    private service: ServiceService,
     private modalService: NgbModal,) { }
 
   ngOnInit(): void {
@@ -35,32 +39,25 @@ export class FabricTypeComponent implements OnInit {
       this.fabricFilter = [...data];
       this.rows = data;
       this.fabricTypeCount = this.rows.length;
-    } , this.fabricTypeUrl);
+    }, this.fabricTypeUrl);
   }
 
+  // --------------------------Search Function --------------------------------//
 
-
-  updateFilter(event) {
+  search(event) {
     const val = event.target.value.toLowerCase();
-
-    // filter our data
     const temp = this.fabricFilter.filter(function (d) {
       return (d.type.toLowerCase().indexOf(val) !== -1 || !val);
     });
-
-    // update the rows
     this.rows = temp;
-    // Whenever the filter changes, always go back to the first page
-    // this.table.offset = 0;
   }
 
-
-
+  // ------------------------------ Delete Fabric Type ------------------------//
 
   deleteType(row) {
-    Swal.fire({ 
-      title: GlobalConstants.deleteTitle, 
-      text: GlobalConstants.deleteMessage  +' '+'"'+ row.type +'"',
+    Swal.fire({
+      title: GlobalConstants.deleteTitle,
+      text: GlobalConstants.deleteMessage + ' ' + '"' + row.type + '"',
       icon: 'error',
       showCancelButton: true,
       confirmButtonColor: '#ed5565',
@@ -81,7 +78,7 @@ export class FabricTypeComponent implements OnInit {
                 this.service.fetch((data) => {
                   this.rows = data;
                   this.fabricTypeCount = this.rows.length;
-                } , this.fabricTypeUrl);
+                }, this.fabricTypeUrl);
 
               }
               else {
@@ -93,14 +90,14 @@ export class FabricTypeComponent implements OnInit {
                 this.toastr.error(this.response.message, 'Message.');
               }
             });
-     
+
       }
     })
 
   }
 
 
-
+  // --------------------------- Add Fabric Type form ----------------------------//
 
   addTypeForm() {
     const modalRef = this.modalService.open(AddTypeComponent, { centered: true });
@@ -111,7 +108,7 @@ export class FabricTypeComponent implements OnInit {
         this.service.fetch((data) => {
           this.rows = data;
           this.fabricTypeCount = this.rows.length;
-        } , this.fabricTypeUrl);
+        }, this.fabricTypeUrl);
 
 
       }
@@ -120,6 +117,7 @@ export class FabricTypeComponent implements OnInit {
     });
   }
 
+  // ------------------------- Edit Fabric Type Form ------------------------------//
 
   editTypeForm(row) {
     const modalRef = this.modalService.open(EditTypeComponent, { centered: true });
@@ -127,10 +125,9 @@ export class FabricTypeComponent implements OnInit {
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        //  this.date = this.myDate;
         this.service.fetch((data) => {
           this.rows = data;
-        } , this.fabricTypeUrl);
+        }, this.fabricTypeUrl);
 
       }
     }, (reason) => {
@@ -138,112 +135,113 @@ export class FabricTypeComponent implements OnInit {
     });
   }
 
-// excell
-exportAsXLSX(): void {
-const filtered = this.data.map(row => ({
-    SNo:row.id,
-  FabricType :row.type,
-   Details:row.description,
-Status:row.active == true ? "Active" : "In-Active",
-LastChange :row.createdDateTime + '|' + row.createdByName 
+  // -----------------------------Export as  excel File ----------------------------//
 
+  fabricExcelFile() {
 
-  }));
- 
-  this.service.exportAsExcelFile(filtered, 'Fabric Type');
+    const filtered = this.rows.map(row => ({
+      SNo: row.id,
+      FabricType: row.type,
+      Details: row.description,
+      Status: row.active == true ? "Active" : "In-Active",
+      LastChange: row.createdDateTime + '|' + row.createdByName
+    }));
 
-}
-// pdf ////////
+    this.service.exportAsExcelFile(filtered, 'Fabric Type');
 
-generatePDF() {
+  }
 
-  let docDefinition = {
-    pageSize: 'A4',
-    info: {
-      title: 'Fabric Type'
-    },
-    content: [
-      {
-        text: 'Fabric Type',
-        style: 'heading',
+  //---------------------------------Export as  pdf ---------------------------------//
 
+  fabricPdf() {
+
+    let docDefinition = {
+      pageSize: 'A4',
+      info: {
+        title: 'Fabric Type'
       },
+      content: [
+        {
+          text: 'Fabric Type',
+          style: 'heading',
 
-      {
-        layout: 'lightHorizontalLines',
-        table: {
-          headerRows: 1,
-          widths: [30, 100, 80, 40, 170 ],
-          body: [
-            ['S.no.', 'Fabric Type', 'Details', 'Status', 'Update Date Time | Updated By' ],
-            ...this.data.map(row => (
-              [row.id, row.type, row.description, row.active == true ? "Active" : "In-Active",
-              row.updatedDateTime + '|' + row.updatedByName 
-               ] 
-            ))
-          ]
+        },
+
+        {
+          layout: 'lightHorizontalLines',
+          table: {
+            headerRows: 1,
+            widths: [30, 100, 80, 40, 170],
+            body: [
+              ['S.no.', 'Fabric Type', 'Details', 'Status', 'Update Date Time | Updated By'],
+              ...this.rows.map(row => (
+                [row.id, row.type, row.description, row.active == true ? "Active" : "In-Active",
+                row.updatedDateTime + '|' + row.updatedByName
+                ]
+              ))
+            ]
+          }
+        }
+      ],
+      styles: {
+        heading: {
+          fontSize: 18,
+          alignment: 'center',
+          margin: [0, 15, 0, 30]
         }
       }
-    ],
-    styles: {
-      heading: {
-        fontSize: 18,
-        alignment: 'center',
-        margin: [0, 15, 0, 30]
-      }
-    }
 
-  };
+    };
 
 
-  pdfMake.createPdf(docDefinition).download('FabricType.pdf');
-}
+    pdfMake.createPdf(docDefinition).download('FabricType.pdf');
+  }
 
-// print
+  //---------------------------------- print Fabric Type List--------------------------//
 
-printPdf() {
+  printFabricList() {
 
-  let docDefinition = {
-    pageSize: 'A4',
-    info: {
-      title: 'Fabric Type'
-    },
-    content: [
-      {
-        text: 'Fabric Type',
-        style: 'heading',
-
+    let docDefinition = {
+      pageSize: 'A4',
+      info: {
+        title: 'Fabric Type'
       },
+      content: [
+        {
+          text: 'Fabric Type',
+          style: 'heading',
 
-      {
-        layout: 'lightHorizontalLines',
-        table: {
-          headerRows: 1,
-          widths: [30, 100, 80, 40, 170 ],
-          body: [
-            ['S.no.', 'Fabric Type', 'Details', 'Status', 'Update Date Time | Updated By' ],
-            ...this.data.map(row => (
-              [row.id, row.type, row.description, row.active == true ? "Active" : "In-Active",
-              row.updatedDateTime + '|' + row.updatedByName 
-               ] 
-            ))
-          ]
+        },
+
+        {
+          layout: 'lightHorizontalLines',
+          table: {
+            headerRows: 1,
+            widths: [30, 100, 80, 40, 170],
+            body: [
+              ['S.no.', 'Fabric Type', 'Details', 'Status', 'Update Date Time | Updated By'],
+              ...this.rows.map(row => (
+                [row.id, row.type, row.description, row.active == true ? "Active" : "In-Active",
+                row.updatedDateTime + '|' + row.updatedByName
+                ]
+              ))
+            ]
+          }
+        }
+      ],
+      styles: {
+        heading: {
+          fontSize: 18,
+          alignment: 'center',
+          margin: [0, 15, 0, 30]
         }
       }
-    ],
-    styles: {
-      heading: {
-        fontSize: 18,
-        alignment: 'center',
-        margin: [0, 15, 0, 30]
-      }
-    }
 
-  };
+    };
 
 
-  pdfMake.createPdf(docDefinition).print();
-}
+    pdfMake.createPdf(docDefinition).print();
+  }
 
 
 

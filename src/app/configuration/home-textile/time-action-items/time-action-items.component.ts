@@ -9,11 +9,15 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { GlobalConstants } from 'src/app/Common/global-constants';
 import { ServiceService } from 'src/app/shared/service.service';
 import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
 @Component({
   selector: 'app-time-action-items',
   templateUrl: './time-action-items.component.html',
   styleUrls: ['./time-action-items.component.css']
 })
+
 export class TimeActionItemsComponent implements OnInit {
 
   response: any;
@@ -23,6 +27,7 @@ export class TimeActionItemsComponent implements OnInit {
   TnaCount: number;
   TnaFilter: any = [];
   TnaUrl = '/api/TextileGarments/GetAllTnaAction'
+
   constructor(private http: HttpClient,
     private toastr: ToastrService,
     private service: ServiceService,
@@ -35,20 +40,19 @@ export class TimeActionItemsComponent implements OnInit {
     } , this.TnaUrl);
   }
 
+// ------------------------------ Search Function -------------------------//
 
-  updateFilter(event) {
+  search(event) {
     const val = event.target.value.toLowerCase();
 
-    // filter our data
     const temp = this.TnaFilter.filter(function (d) {
       return d.name.toLowerCase().indexOf(val) !== -1 || !val;
     });
 
-    // update the rows
     this.rows = temp;
-    // Whenever the filter changes, always go back to the first page
-    // this.table.offset = 0;
   }
+
+  // ------------------------- Delete Action --------------------------------//
 
   deleteAction(id) {
     Swal.fire({
@@ -91,15 +95,13 @@ export class TimeActionItemsComponent implements OnInit {
 
   }
 
-
-
+// --------------------------- Add Action Form---------------------------//
 
   addActionForm() {
     const modalRef = this.modalService.open(AddTimeActionComponent, { centered: true });
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        //  this.date = this.myDate;
         this.service.fetch((data) => {
           this.rows = data;
           this.TnaCount = this.rows.length;
@@ -112,6 +114,7 @@ export class TimeActionItemsComponent implements OnInit {
     });
   }
 
+  // ------------------------ Edit Action Form --------------------------//
 
   editActionForm(row) {
     const modalRef = this.modalService.open(EditTimeActionComponent, { centered: true });
@@ -119,7 +122,6 @@ export class TimeActionItemsComponent implements OnInit {
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        //  this.date = this.myDate;
         this.service.fetch((data) => {
           this.rows = data;
         } , this.TnaUrl);
@@ -129,9 +131,10 @@ export class TimeActionItemsComponent implements OnInit {
       // on dismiss
     });
   }
-// excel /////////////////////////////
-  exportAsXLSX(): void {
-    const filtered = this.data.map(row => ({
+// ------------------------------ Export as Excel File--------------------------//
+ 
+tnaExcelFile(): void {
+    const filtered = this.rows.map(row => ({
       SNo: row.id,
       ActionName: row.name,
       Details: row.description,
@@ -141,8 +144,10 @@ export class TimeActionItemsComponent implements OnInit {
     this.service.exportAsExcelFile(filtered, 'TnA Actions');
 
   }
-// pdf////////////
-generatePDF() {
+
+// ------------------------ Export as PDF ------------------------------------//
+
+tnaPdf() {
    
   let docDefinition = {
     pageSize: 'A4',
@@ -163,7 +168,7 @@ generatePDF() {
           widths: [30, 100, 100, 170  ],
           body: [
             ['S.no.', 'Action Name', 'Details', 'Update Date Time | Update By '],
-            ...this.data.map(row => (
+            ...this.rows.map(row => (
               [row.id, row.name, row.description, 
               row.updatedDateTime + '|' + row.updatedByName] 
             ))
@@ -183,8 +188,9 @@ generatePDF() {
   pdfMake.createPdf(docDefinition).download('TnA.pdf');
 }
 
-// print 
-printPdf() {
+//----------------------------- print Tna List -----------------------------------// 
+
+printTnaList() {
    
   let docDefinition = {
     pageSize: 'A4',
@@ -205,7 +211,7 @@ printPdf() {
           widths: [30, 100, 100, 170  ],
           body: [
             ['S.no.', 'Action Name', 'Details', 'Update Date Time | Update By '],
-            ...this.data.map(row => (
+            ...this.rows.map(row => (
               [row.id, row.name, row.description, 
               row.updatedDateTime + '|' + row.updatedByName] 
             ))

@@ -9,12 +9,17 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { GlobalConstants } from 'src/app/Common/global-constants';
 import { ServiceService } from 'src/app/shared/service.service';
 import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
 @Component({
   selector: 'app-packing',
   templateUrl: './packing.component.html',
   styleUrls: ['./packing.component.css']
 })
+
 export class PackingComponent implements OnInit {
+
   response: any;
   rows: any = [];
   data: any = {};
@@ -22,11 +27,11 @@ export class PackingComponent implements OnInit {
   packingCount: number;
   myDate = Date.now();
   packingFilter: any[];
-packingUrl='/api/Products/GetAllPacking'
+  packingUrl = '/api/Products/GetAllPacking'
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
-    private service:ServiceService,
+    private service: ServiceService,
     private modalService: NgbModal,) { }
 
 
@@ -35,25 +40,25 @@ packingUrl='/api/Products/GetAllPacking'
       this.packingFilter = [...data];
       this.rows = data;
       this.packingCount = this.rows.length;
-    } , this.packingUrl);
+    }, this.packingUrl);
   }
 
-// searching
-  updateFilter(event) {
-    const val = event.target.value.toLowerCase();
+  // ------------------------search Function ----------------------------//
 
-    // filter our data
+  search(event) {
+    const val = event.target.value.toLowerCase();
     const temp = this.packingFilter.filter(function (d) {
       return (d.name.toLowerCase().indexOf(val) !== -1 || !val);
-    })  ;
+    });
     this.rows = temp;
   }
 
+  // --------------------------------- Delete Packing --------------------//
 
   deletePacking(id) {
     Swal.fire({
       title: GlobalConstants.deleteTitle, //'Are you sure?',
-      text: GlobalConstants.deleteMessage+' '+'"'+ id.name +'"',
+      text: GlobalConstants.deleteMessage + ' ' + '"' + id.name + '"',
       icon: 'error',
       showCancelButton: true,
       confirmButtonColor: '#ed5565',
@@ -75,7 +80,7 @@ packingUrl='/api/Products/GetAllPacking'
                   this.rows = data;
 
                   this.packingCount = this.rows.length;
-                } , this.packingUrl);
+                }, this.packingUrl);
 
               }
               else {
@@ -92,7 +97,9 @@ packingUrl='/api/Products/GetAllPacking'
 
   }
 
- addPackingForm() {
+  // -------------------------------- Add Packing Form --------------------------//
+
+  addPackingForm() {
     const modalRef = this.modalService.open(AddPackingComponent, { centered: true });
     modalRef.result.then((data) => {
       // on close
@@ -111,6 +118,7 @@ packingUrl='/api/Products/GetAllPacking'
     });
   }
 
+  // ------------------------------- Edit Packing Form ----------------------------------//
 
   editPackingForm(row) {
     const modalRef = this.modalService.open(EditPackingComponent, { centered: true });
@@ -118,10 +126,10 @@ packingUrl='/api/Products/GetAllPacking'
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-      
+
         this.service.fetch((data) => {
           this.rows = data;
-        } , this.packingUrl);
+        }, this.packingUrl);
 
       }
     }, (reason) => {
@@ -129,109 +137,113 @@ packingUrl='/api/Products/GetAllPacking'
     });
   }
 
-  exportAsXLSX(): void {
-    const filtered = this.data.map(row => ({
-      SNo:row.id,
-    PackingName :row.name,
-     Details:row.description,
-  Status:row.active == true ? "Active" : "In-Active",
-  LastChange :row.updatedDateTime + '|' + row.updatedByName 
-   }));
-   
+  // ----------------------------- Export as Excel File ---------------------------------//
+
+  packingExcelFile() {
+
+    const filtered = this.rows.map(row => ({
+      SNo: row.id,
+      PackingName: row.name,
+      Details: row.description,
+      Status: row.active == true ? "Active" : "In-Active",
+      LastChange: row.updatedDateTime + '|' + row.updatedByName
+    }));
+
     this.service.exportAsExcelFile(filtered, 'Packing');
 
   }
-// pdf ///
 
-generatePDF() {
+  //----------------------------------Export as  pdf -------------------------------------//
 
-  let docDefinition = {
-    pageSize: 'A4',
-    info: {
-      title: 'Packing List'
-    },
-    content: [
-      {
-        text: 'Packing List',
-        style: 'heading',
+  packingPdf() {
 
+    let docDefinition = {
+      pageSize: 'A4',
+      info: {
+        title: 'Packing List'
       },
+      content: [
+        {
+          text: 'Packing List',
+          style: 'heading',
 
-      {
-        layout: 'lightHorizontalLines',
-        table: {
-          headerRows: 1,
-          widths: [30, 80, 80, 50, 170 ],
-          body: [
-            ['S.no.', 'Packing Name', 'Details', 'Status', 'Update Date Time | Updated By' ],
-            ...this.data.map(row => (
-              [row.id, row.name, row.description, row.active == true ? "Active" : "In-Active",
-              row.updatedDateTime + '|' + row.updatedByName 
-               ] 
-            ))
-          ]
+        },
+
+        {
+          layout: 'lightHorizontalLines',
+          table: {
+            headerRows: 1,
+            widths: [30, 80, 80, 50, 170],
+            body: [
+              ['S.no.', 'Packing Name', 'Details', 'Status', 'Update Date Time | Updated By'],
+              ...this.rows.map(row => (
+                [row.id, row.name, row.description, row.active == true ? "Active" : "In-Active",
+                row.updatedDateTime + '|' + row.updatedByName
+                ]
+              ))
+            ]
+          }
+        }
+      ],
+      styles: {
+        heading: {
+          fontSize: 18,
+          alignment: 'center',
+          margin: [0, 15, 0, 30]
         }
       }
-    ],
-    styles: {
-      heading: {
-        fontSize: 18,
-        alignment: 'center',
-        margin: [0, 15, 0, 30]
-      }
-    }
 
-  };
+    };
 
 
-  pdfMake.createPdf(docDefinition).download('PackingList.pdf');
-}
+    pdfMake.createPdf(docDefinition).download('PackingList.pdf');
+  }
 
-// print
+  //------------------------------------- print Packing List -------------------------//
 
-printPdf() {
+  printPackingList() {
 
-  let docDefinition = {
-    pageSize: 'A4',
-    info: {
-      title: 'Packing List'
-    },
-    content: [
-      {
-        text: 'Packing List',
-        style: 'heading',
-
+    let docDefinition = {
+      pageSize: 'A4',
+      info: {
+        title: 'Packing List'
       },
+      content: [
+        {
+          text: 'Packing List',
+          style: 'heading',
 
-      {
-        layout: 'lightHorizontalLines',
-        table: {
-          headerRows: 1,
-          widths: [30, 80, 80, 50, 170 ],
-          body: [
-            ['S.no.', 'Packing Name', 'Details', 'Status', 'Update Date Time | Updated By' ],
-            ...this.data.map(row => (
-              [row.id, row.name, row.description, row.active == true ? "Active" : "In-Active",
-              row.updatedDateTime + '|' + row.updatedByName 
-               ] 
-            ))
-          ]
+        },
+
+        {
+          layout: 'lightHorizontalLines',
+          table: {
+            headerRows: 1,
+            widths: [30, 80, 80, 50, 170],
+            body: [
+              ['S.no.', 'Packing Name', 'Details', 'Status', 'Update Date Time | Updated By'],
+              ...this.data.map(row => (
+                [row.id, row.name, row.description, row.active == true ? "Active" : "In-Active",
+                row.updatedDateTime + '|' + row.updatedByName
+                ]
+              ))
+            ]
+          }
+        }
+      ],
+      styles: {
+        heading: {
+          fontSize: 18,
+          alignment: 'center',
+          margin: [0, 15, 0, 30]
         }
       }
-    ],
-    styles: {
-      heading: {
-        fontSize: 18,
-        alignment: 'center',
-        margin: [0, 15, 0, 30]
-      }
-    }
 
-  };
+    };
 
 
-  pdfMake.createPdf(docDefinition).print();
-}
+    pdfMake.createPdf(docDefinition).print();
+  }
 
 
 

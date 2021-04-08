@@ -9,11 +9,15 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { GlobalConstants } from 'src/app/Common/global-constants';
 import { ServiceService } from 'src/app/shared/service.service';
 import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
 @Component({
   selector: 'app-loom-type',
   templateUrl: './loom-type.component.html',
   styleUrls: ['./loom-type.component.css']
 })
+
 export class LoomTypeComponent implements OnInit {
 
   response: any;
@@ -23,9 +27,10 @@ export class LoomTypeComponent implements OnInit {
   loomCount: number;
   loomFilter: any = [];
   loomUrl = '/api/TextileGarments/GetAllLoomType'
+
   constructor(private http: HttpClient,
     private toastr: ToastrService,
-    private service:ServiceService,
+    private service: ServiceService,
     private modalService: NgbModal) { }
 
   ngOnInit(): void {
@@ -33,26 +38,25 @@ export class LoomTypeComponent implements OnInit {
       this.loomFilter = [...data];
       this.rows = data;
       this.loomCount = this.rows.length;
-    } , this.loomUrl);
+    }, this.loomUrl);
   }
 
-  updateFilter(event) {
-    const val = event.target.value.toLowerCase();
+  //  ------------------------------------- Search Function -----------------------//
 
-    // filter our data
+  search(event) {
+    const val = event.target.value.toLowerCase();
     const temp = this.loomFilter.filter(function (d) {
       return d.type.toLowerCase().indexOf(val) !== -1 || !val;
     });
-
-    // update the rows
     this.rows = temp;
-    // Whenever the filter changes, always go back to the first page
-    // this.table.offset = 0;
   }
+
+  // ------------------------------------- Delete Loom Type --------------------------//
+
   deleteLoom(id) {
     Swal.fire({
       title: GlobalConstants.deleteTitle, //'Are you sure?',
-      text: GlobalConstants.deleteMessage+' '+'"'+ id.type +'"',
+      text: GlobalConstants.deleteMessage + ' ' + '"' + id.type + '"',
       icon: 'error',
       showCancelButton: true,
       confirmButtonColor: '#ed5565',
@@ -73,7 +77,7 @@ export class LoomTypeComponent implements OnInit {
                 this.service.fetch((data) => {
                   this.rows = data;
                   this.loomCount = this.rows.length;
-                } , this.loomUrl);
+                }, this.loomUrl);
 
               }
               else {
@@ -91,18 +95,17 @@ export class LoomTypeComponent implements OnInit {
 
   }
 
-
+  // ------------------------------ Add Loom Type Form -------------------------------//
 
   addLoomForm() {
     const modalRef = this.modalService.open(AddLoomTypeComponent, { centered: true });
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        //  this.date = this.myDate;
         this.service.fetch((data) => {
           this.rows = data;
           this.loomCount = this.rows.length;
-        } , this.loomUrl);
+        }, this.loomUrl);
 
 
       }
@@ -111,6 +114,7 @@ export class LoomTypeComponent implements OnInit {
     });
   }
 
+  // ------------------------------- Edit Looom Type --------------------------//
 
   editLoomForm(row) {
     const modalRef = this.modalService.open(EditLoomTypeComponent, { centered: true });
@@ -118,32 +122,34 @@ export class LoomTypeComponent implements OnInit {
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        //  this.date = this.myDate;
         this.service.fetch((data) => {
           this.rows = data;
-        } , this.loomUrl);
+        }, this.loomUrl);
 
       }
     }, (reason) => {
       // on dismiss
     });
   }
-// excel ///
-  exportAsXLSX(): void {
-    const filtered = this.data.map(row => ({
-      SNo:row.id,
-    LoomType :row.type,
-     Details:row.description,
-  Status:row.active == true ? "Active" : "In-Active",
-  LastChange :row.updatedDateTime + '|' + row.updatedByName 
-   }));
-   
+
+  //----------------------------- Eport As Excel File ---------------------------------//
+
+  loomExcelFile(): void {
+    const filtered = this.rows.map(row => ({
+      SNo: row.id,
+      LoomType: row.type,
+      Details: row.description,
+      Status: row.active == true ? "Active" : "In-Active",
+      LastChange: row.updatedDateTime + '|' + row.updatedByName
+    }));
+
     this.service.exportAsExcelFile(filtered, 'Loom Type');
-  
+
   }
 
-  // pdf ////
-  generatePDF() {
+  // --------------------------------- Export As Pdf ----------------------------------//
+
+  loomPdf() {
 
     let docDefinition = {
       pageSize: 'A4',
@@ -154,20 +160,20 @@ export class LoomTypeComponent implements OnInit {
         {
           text: 'Loom Type List',
           style: 'heading',
-  
+
         },
-  
+
         {
           layout: 'lightHorizontalLines',
           table: {
             headerRows: 1,
-            widths: [30, 80, 80, 50, 170 ],
+            widths: [30, 80, 80, 50, 170],
             body: [
-              ['S.no.', 'Loom Type', 'Details', 'Status', 'Update Date Time | Updated By' ],
-              ...this.data.map(row => (
+              ['S.no.', 'Loom Type', 'Details', 'Status', 'Update Date Time | Updated By'],
+              ...this.rows.map(row => (
                 [row.id, row.type, row.description, row.active == true ? "Active" : "In-Active",
-                row.updatedDateTime + '|' + row.updatedByName 
-                 ] 
+                row.updatedDateTime + '|' + row.updatedByName
+                ]
               ))
             ]
           }
@@ -180,16 +186,16 @@ export class LoomTypeComponent implements OnInit {
           margin: [0, 15, 0, 30]
         }
       }
-  
+
     };
-  
-  
+
+
     pdfMake.createPdf(docDefinition).download('LoomType.pdf');
   }
 
-  // print
+  //---------------------------- print Loom Type List ------------------------------//
 
-  printPdf() {
+  printLoomList() {
 
     let docDefinition = {
       pageSize: 'A4',
@@ -200,20 +206,20 @@ export class LoomTypeComponent implements OnInit {
         {
           text: 'Loom Type List',
           style: 'heading',
-  
+
         },
-  
+
         {
           layout: 'lightHorizontalLines',
           table: {
             headerRows: 1,
-            widths: [30, 80, 80, 50, 170 ],
+            widths: [30, 80, 80, 50, 170],
             body: [
-              ['S.no.', 'Loom Type', 'Details', 'Status', 'Update Date Time | Updated By' ],
-              ...this.data.map(row => (
+              ['S.no.', 'Loom Type', 'Details', 'Status', 'Update Date Time | Updated By'],
+              ...this.rows.map(row => (
                 [row.id, row.type, row.description, row.active == true ? "Active" : "In-Active",
-                row.updatedDateTime + '|' + row.updatedByName 
-                 ] 
+                row.updatedDateTime + '|' + row.updatedByName
+                ]
               ))
             ]
           }
@@ -226,10 +232,10 @@ export class LoomTypeComponent implements OnInit {
           margin: [0, 15, 0, 30]
         }
       }
-  
+
     };
-  
-  
+
+
     pdfMake.createPdf(docDefinition).print();
   }
 

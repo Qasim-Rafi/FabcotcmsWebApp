@@ -137,7 +137,7 @@ export class CityComponent implements OnInit {
     });
   }
 
-  // --------------------------Export as excel ----------------------------//
+  // --------------------------Export as excel  file----------------------------//
 
   cityExcelFile(): void {
     const filtered = this.rows.map(row => ({

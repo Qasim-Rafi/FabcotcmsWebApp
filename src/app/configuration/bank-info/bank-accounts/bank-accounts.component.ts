@@ -9,6 +9,9 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { GlobalConstants } from 'src/app/Common/global-constants';
 import { ServiceService } from 'src/app/shared/service.service';
 import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
 @Component({
   selector: 'app-bank-accounts',
   templateUrl: './bank-accounts.component.html',
@@ -21,11 +24,12 @@ export class BankAccountsComponent implements OnInit {
   rows: any = [];
   columns: any = [];
   data: any = {};
-  bankAccFilter: any[]; 
-bankAccUrl = '/api/Configs/GetAllBankAccount'
+  bankAccFilter: any[];
+  bankAccUrl = '/api/Configs/GetAllBankAccount'
+
   constructor(private http: HttpClient,
     private toastr: ToastrService,
-    private service:ServiceService,
+    private service: ServiceService,
     private modalService: NgbModal,) { }
 
   ngOnInit(): void {
@@ -33,26 +37,26 @@ bankAccUrl = '/api/Configs/GetAllBankAccount'
       this.bankAccFilter = [...data];
       this.rows = data;
       this.bankAccCount = this.rows.length
-    } , this.bankAccUrl);
+    }, this.bankAccUrl);
   }
-
-  updateFilter(event) {
+//  ----------------------- Search Function ---------------//
+  search(event) {
     const val = event.target.value.toLowerCase();
-    // filter our data
     const temp = this.bankAccFilter.filter(function (d) {
       return (d.accountName.toLowerCase().indexOf(val) !== -1 ||
-      d.accountNumber.toLowerCase().indexOf(val) !== -1 || !val);
+        d.accountNumber.toLowerCase().indexOf(val) !== -1 || !val);
     });
 
     this.rows = temp;
- 
+
   }
 
+//  --------------------- Delete Bank Account ----------------------///
 
   deleteAccount(id) {
     Swal.fire({
       title: GlobalConstants.deleteTitle, //'Are you sure?',
-      text: GlobalConstants.deleteMessage+' '+'"'+ id.accountName +'"',
+      text: GlobalConstants.deleteMessage + ' ' + '"' + id.accountName + '"',
       icon: 'error',
       showCancelButton: true,
       confirmButtonColor: '#ed5565',
@@ -72,7 +76,7 @@ bankAccUrl = '/api/Configs/GetAllBankAccount'
                 this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
                 this.service.fetch((data) => {
                   this.rows = data;
-                } , this.bankAccUrl);
+                }, this.bankAccUrl);
 
               }
               else {
@@ -90,6 +94,7 @@ bankAccUrl = '/api/Configs/GetAllBankAccount'
 
   }
 
+// -------------------------- add Bankk Acount Form -----------------------------//
 
   addAccountForm() {
     const modalRef = this.modalService.open(AddBankAccountComponent, { centered: true });
@@ -99,7 +104,7 @@ bankAccUrl = '/api/Configs/GetAllBankAccount'
         this.service.fetch((data) => {
           this.rows = data;
 
-        } , this.bankAccUrl);
+        }, this.bankAccUrl);
 
 
       }
@@ -108,6 +113,7 @@ bankAccUrl = '/api/Configs/GetAllBankAccount'
     });
   }
 
+// -------------------------------- Edit Bank Account Form ---------------------------------//
 
   editAccountForm(row) {
     const modalRef = this.modalService.open(EditBankAccountComponent, { centered: true });
@@ -118,7 +124,7 @@ bankAccUrl = '/api/Configs/GetAllBankAccount'
         this.service.fetch((data) => {
           this.rows = data;
 
-        } , this.bankAccUrl);
+        }, this.bankAccUrl);
 
       }
     }, (reason) => {
@@ -126,27 +132,27 @@ bankAccUrl = '/api/Configs/GetAllBankAccount'
     });
   }
 
-// excecl///////////
-  
-exportAsXLSX(): void {
-    const filtered = this.data.map(row => ({
-      SNo:row.id,
-    AccountName :row.accountName,
-    AccountNo :row.accountNumber,
-    IBAN :row.iban,
-    SwiftCode :row.swiftCode,
-    AccountType :row.type,
-     Bank:row.bankName ,
-     Branch:row.branchName 
-   }));
-   
+// ------------------------- Export As Excel file ---------------------------//
+
+  bankAccExcelFile(): void {
+    const filtered = this.rows.map(row => ({
+      SNo: row.id,
+      AccountName: row.accountName,
+      AccountNo: row.accountNumber,
+      IBAN: row.iban,
+      SwiftCode: row.swiftCode,
+      AccountType: row.type,
+      Bank: row.bankName,
+      Branch: row.branchName
+    }));
+
     this.service.exportAsExcelFile(filtered, 'Bank Account');
-  
+
   }
 
-// Pdf /////////////////
+// --------------------------- Export As Pdf File ---------------------------------//
 
-  generatePDF() {
+  bankAccPdf() {
 
     let docDefinition = {
       pageSize: 'A4',
@@ -164,13 +170,14 @@ exportAsXLSX(): void {
           layout: 'lightHorizontalLines',
           table: {
             headerRows: 1,
-            widths: [30, 60, 60, 60, 60 , 60 , 60  , 50 , 50],
+            widths: [30, 60, 60, 60, 60, 60, 60, 50, 50],
             body: [
-              ['S.no.', 'Account Name', 'Account No.', 'IBAN', 'Swift Code' , 'Account Type' , 'Bank Name' , 'Branch Name' ],
-              ...this.data.map(row => (
-                [row.id, row.accountName, row.accountNumber, row.iban, 
-                  row.swiftCode,row.type , 
-                  row.bankName, row.branchName] 
+              ['S.no.', 'Account Name', 'Account No.', 'IBAN', 'Swift Code',
+                'Account Type', 'Bank Name', 'Branch Name'],
+              ...this.rows.map(row => (
+                [row.id, row.accountName, row.accountNumber, row.iban,
+                row.swiftCode, row.type,
+                row.bankName, row.branchName]
               ))
             ]
           }
@@ -189,50 +196,52 @@ exportAsXLSX(): void {
 
     pdfMake.createPdf(docDefinition).download('BankAccount.pdf');
   }
-// print 
-printPdf() {
 
-  let docDefinition = {
-    pageSize: 'A4',
-    info: {
-      title: 'Bank Account List'
-    },
-    content: [
-      {
-        text: 'Bank Account List',
-        style: 'heading',
+  //----------------------- print Bank Account List ---------------------------------//
 
+  printBankAccList() {
+
+    let docDefinition = {
+      pageSize: 'A4',
+      info: {
+        title: 'Bank Account List'
       },
+      content: [
+        {
+          text: 'Bank Account List',
+          style: 'heading',
 
-      {
-        layout: 'lightHorizontalLines',
-        table: {
-          headerRows: 1,
-          widths: [30, 60, 60, 60, 60 , 60 , 60  , 50 , 50],
-          body: [
-            ['S.no.', 'Account Name', 'Account No.', 'IBAN', 'Swift Code' , 'Account Type' , 'Bank Name' , 'Branch Name' ],
-            ...this.data.map(row => (
-              [row.id, row.accountName, row.accountNumber, row.iban, 
-                row.swiftCode,row.type , 
-                row.bankName, row.branchName] 
-            ))
-          ]
+        },
+
+        {
+          layout: 'lightHorizontalLines',
+          table: {
+            headerRows: 1,
+            widths: [30, 60, 60, 60, 60, 60, 60, 50, 50],
+            body: [
+              ['S.no.', 'Account Name', 'Account No.', 'IBAN', 'Swift Code', 'Account Type', 'Bank Name', 'Branch Name'],
+              ...this.rows.map(row => (
+                [row.id, row.accountName, row.accountNumber, row.iban,
+                row.swiftCode, row.type,
+                row.bankName, row.branchName]
+              ))
+            ]
+          }
+        }
+      ],
+      styles: {
+        heading: {
+          fontSize: 18,
+          alignment: 'center',
+          margin: [0, 15, 0, 30]
         }
       }
-    ],
-    styles: {
-      heading: {
-        fontSize: 18,
-        alignment: 'center',
-        margin: [0, 15, 0, 30]
-      }
-    }
 
-  };
+    };
 
 
-  pdfMake.createPdf(docDefinition).print();
-}
+    pdfMake.createPdf(docDefinition).print();
+  }
 
 }
 

@@ -28,7 +28,7 @@
       <div class="row mb-3">
         <div class="col-md-6 ">
           <button type="button" class="btn btn-primary descBtn ml-sm-none ml-md-2 ">
-            <i class="fas fa-money-bill-alt fa-fw mr-2"></i>{{listCount}}</button>
+            <i class="fas fa-money-bill-alt fa-fw mr-2"></i>{{bankCount}}</button>
           <span class="text-muted text2">Banks</span>
         </div>
         <div class="col-md-6 mrg-tsm">
@@ -45,7 +45,7 @@
           <div class=" col-md-4">
             <div class="input-group col-md-offset-3">
               <input type="text" placeholder="Search by Bank Name or Branch Name"
-               class="input form-control w-50" (keyup)="updateFilter($event)">
+               class="input form-control w-50" (keyup)="search($event)">
             </div>
           </div>
           <div class="html5buttons mrg-tsm">
@@ -56,15 +56,15 @@
                 aria-controls="DataTables_Table_0"><span>CSV</span></a>
               <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
                 aria-controls="DataTables_Table_0"
-                (click)="exportAsXLSX()"
+                (click)="bankExcelFile()"
                 ><span>Excel</span></a>
               <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0"
                 aria-controls="DataTables_Table_0"
-                (click)="generatePDF()"
+                (click)="bankPdf()"
                 ><span>PDF</span></a>
               <a class="btn btn-default buttons-print bg-white" tabindex="0"
                 aria-controls="DataTables_Table_0"
-                (click)="printPdf()"
+                (click)="printBankList()"
                 ><span>Print</span></a>
             </div>
           </div>

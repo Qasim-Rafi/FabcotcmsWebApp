@@ -10,12 +10,17 @@ import { GlobalConstants } from 'src/app/Common/global-constants';
 import { ServiceService } from 'src/app/shared/service.service';
 import { listenerCount } from 'events';
 import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
 @Component({
   selector: 'app-payment-term',
   templateUrl: './payment-term.component.html',
   styleUrls: ['./payment-term.component.css']
 })
+
 export class PaymentTermComponent implements OnInit {
+
   response: any;
   rows: any = [];
   data: any = {};
@@ -27,7 +32,7 @@ export class PaymentTermComponent implements OnInit {
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
-    private service:ServiceService,
+    private service: ServiceService,
     private modalService: NgbModal,) { }
 
 
@@ -39,22 +44,23 @@ export class PaymentTermComponent implements OnInit {
     }, this.paymentTermUrl);
   }
 
-// searching
+  // ---------------------------------Search Function ------------------------------//
 
-  updateFilter(event) {
+  search(event) {
     const val = event.target.value.toLowerCase();
     const temp = this.paymentTermFilter.filter(function (d) {
       return (d.term.toLowerCase().indexOf(val) !== -1 || !val);
-    })  ;
+    });
     this.rows = temp;
 
   }
 
+  // -------------------------------- Delete Payment Term ---------------------------//
 
   deletePayment(id) {
     Swal.fire({
       title: GlobalConstants.deleteTitle, //'Are you sure?',
-      text: GlobalConstants.deleteMessage+' '+'"'+ id.term +'"',
+      text: GlobalConstants.deleteMessage + ' ' + '"' + id.term + '"',
       icon: 'error',
       showCancelButton: true,
       confirmButtonColor: '#ed5565',
@@ -74,7 +80,7 @@ export class PaymentTermComponent implements OnInit {
                 this.toastr.error(this.response.message, 'Message.');
                 this.service.fetch((data) => {
                   this.rows = data;
-                } , this.paymentTermUrl);
+                }, this.paymentTermUrl);
 
               }
               else {
@@ -91,24 +97,24 @@ export class PaymentTermComponent implements OnInit {
 
   }
 
+  // ---------------------------- Add Payment Term Form --------------------------------//
+
   addPaymentForm() {
     const modalRef = this.modalService.open(AddPaymentComponent, { centered: true });
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        //  this.date = this.myDate;
         this.service.fetch((data) => {
           this.rows = data;
           this.paymentTermCount = this.rows.length;
-        } , this.paymentTermUrl);
-
-
+        }, this.paymentTermUrl);
       }
     }, (reason) => {
       // on dismiss
     });
   }
 
+  // -------------------------------- Edit Payment Term Form ------------------------//
 
   editPaymentForm(row) {
     const modalRef = this.modalService.open(EditPaymentComponent, { centered: true });
@@ -116,7 +122,6 @@ export class PaymentTermComponent implements OnInit {
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        //  this.date = this.myDate;
         this.service.fetch((data) => {
           this.rows = data;
         }, this.paymentTermUrl);
@@ -126,23 +131,26 @@ export class PaymentTermComponent implements OnInit {
       // on dismiss
     });
   }
-//  excel
-  exportAsXLSX(): void {
-    const filtered = this.data.map(row => ({
-      SNo:row.id,
-    PaymentTerm :row.term,
-     Details:row.description,
-  Status:row.active == true ? "Active" : "In-Active",
-  LastChange :row.updatedDateTime + '|' + row.updatedByName 
-  
-  
+
+  // ----------------------------------Export as Excel File --------------------------//
+
+  paymentExcelFile() {
+
+    const filtered = this.rows.map(row => ({
+      SNo: row.id,
+      PaymentTerm: row.term,
+      Details: row.description,
+      Status: row.active == true ? "Active" : "In-Active",
+      LastChange: row.updatedDateTime + '|' + row.updatedByName
     }));
-   
+
     this.service.exportAsExcelFile(filtered, 'Payment Term');
-  
+
   }
-// / pdf //////////
-  generatePDF() {
+
+  //------------------------------------Export as Pdf -------------------------------//
+
+  paymentPdf() {
 
     let docDefinition = {
       pageSize: 'A4',
@@ -153,20 +161,20 @@ export class PaymentTermComponent implements OnInit {
         {
           text: 'Payment Term List',
           style: 'heading',
-  
+
         },
-  
+
         {
           layout: 'lightHorizontalLines',
           table: {
             headerRows: 1,
-            widths: [30, 80, 80, 50, 170 ],
+            widths: [30, 80, 80, 50, 170],
             body: [
-              ['S.no.', 'Payment Term', 'Details', 'Status', 'Update Date Time | Updated By' ],
-              ...this.data.map(row => (
+              ['S.no.', 'Payment Term', 'Details', 'Status', 'Update Date Time | Updated By'],
+              ...this.rows.map(row => (
                 [row.id, row.term, row.description, row.active == true ? "Active" : "In-Active",
-                row.updatedDateTime + '|' + row.updatedByName 
-                 ] 
+                row.updatedDateTime + '|' + row.updatedByName
+                ]
               ))
             ]
           }
@@ -179,60 +187,61 @@ export class PaymentTermComponent implements OnInit {
           margin: [0, 15, 0, 30]
         }
       }
-  
+
     };
-  
-  
+
+
     pdfMake.createPdf(docDefinition).download('PaymentTerm.pdf');
   }
-//  print //
 
-printPdf() {
+  //--------------------------------  print Payment Term List --------------------------//
 
-  let docDefinition = {
-    pageSize: 'A4',
-    info: {
-      title: 'Payment Term List'
-    },
-    content: [
-      {
-        text: 'Payment Term List',
-        style: 'heading',
+  printPaymentList() {
 
+    let docDefinition = {
+      pageSize: 'A4',
+      info: {
+        title: 'Payment Term List'
       },
+      content: [
+        {
+          text: 'Payment Term List',
+          style: 'heading',
 
-      {
-        layout: 'lightHorizontalLines',
-        table: {
-          headerRows: 1,
-          widths: [30, 80, 80, 50, 170 ],
-          body: [
-            ['S.no.', 'Payment Term', 'Details', 'Status', 'Update Date Time | Updated By' ],
-            ...this.data.map(row => (
-              [row.id, row.term, row.description, row.active == true ? "Active" : "In-Active",
-              row.updatedDateTime + '|' + row.updatedByName 
-               ] 
-            ))
-          ]
+        },
+
+        {
+          layout: 'lightHorizontalLines',
+          table: {
+            headerRows: 1,
+            widths: [30, 80, 80, 50, 170],
+            body: [
+              ['S.no.', 'Payment Term', 'Details', 'Status', 'Update Date Time | Updated By'],
+              ...this.data.map(row => (
+                [row.id, row.term, row.description, row.active == true ? "Active" : "In-Active",
+                row.updatedDateTime + '|' + row.updatedByName
+                ]
+              ))
+            ]
+          }
+        }
+      ],
+      styles: {
+        heading: {
+          fontSize: 18,
+          alignment: 'center',
+          margin: [0, 15, 0, 30]
         }
       }
-    ],
-    styles: {
-      heading: {
-        fontSize: 18,
-        alignment: 'center',
-        margin: [0, 15, 0, 30]
-      }
-    }
 
-  };
+    };
 
 
-  pdfMake.createPdf(docDefinition).print();
-}
+    pdfMake.createPdf(docDefinition).print();
+  }
 
 
-  
-  
+
+
 
 }

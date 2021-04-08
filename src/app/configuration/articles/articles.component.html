@@ -77,7 +77,7 @@
             <div class=" col-md-4">
               <div class="input-group col-md-offset-3">
                 <input type="text" placeholder="Search by Article Code or Article Name.. "
-                  class="input form-control w-50" (keyup)="updateFilter($event)">
+                  class="input form-control w-50" (keyup)="search($event)">
               </div>
             </div>
             <div class="html5buttons mrg-tsm">
@@ -87,14 +87,15 @@
                 <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
                   aria-controls="DataTables_Table_0"><span>CSV</span></a>
                 <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
-                  aria-controls="DataTables_Table_0" (click)="exportAsXLSX()"><span>Excel</span></a>
+                  aria-controls="DataTables_Table_0" 
+                  (click)="articleExcelFile()"><span>Excel</span></a>
                 <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0"
                   aria-controls="DataTables_Table_0"
-                  (click)="generatePDF()"
+                  (click)="articlePdf()"
                   ><span>PDF</span></a>
                 <a class="btn btn-default buttons-print bg-white" tabindex="0"
                   aria-controls="DataTables_Table_0"
-                  (click)="printPdf()"
+                  (click)="printArticleList()"
                   ><span>Print</span></a>
               </div>
             </div>

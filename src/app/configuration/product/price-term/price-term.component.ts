@@ -9,12 +9,17 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { GlobalConstants } from 'src/app/Common/global-constants';
 import { ServiceService } from 'src/app/shared/service.service';
 import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
 @Component({
   selector: 'app-price-term',
   templateUrl: './price-term.component.html',
   styleUrls: ['./price-term.component.css']
 })
+
 export class PriceTermComponent implements OnInit {
+
   response: any;
   rows: any = [];
   data: any = {};
@@ -22,9 +27,10 @@ export class PriceTermComponent implements OnInit {
   priceTermCount: number;
   priceTermFilter: any[];
   PriceTermUrl = '/api/Products/GetAllPriceTerm'
+
   constructor(private http: HttpClient,
     private toastr: ToastrService,
-    private service:ServiceService,
+    private service: ServiceService,
     private modalService: NgbModal,) { }
 
   ngOnInit(): void {
@@ -32,11 +38,12 @@ export class PriceTermComponent implements OnInit {
       this.priceTermFilter = [...data];
       this.rows = data;
       this.priceTermCount = this.rows.length;
-    } , this.PriceTermUrl);
+    }, this.PriceTermUrl);
   }
 
-// Searching
-  updateFilter(event) {
+  //--------------------------- Search Function ------------------------//
+
+  search(event) {
     const val = event.target.value.toLowerCase();
     const temp = this.priceTermFilter.filter(function (d) {
       return (d.term.toLowerCase().indexOf(val) !== -1 || !val);
@@ -44,10 +51,12 @@ export class PriceTermComponent implements OnInit {
     this.rows = temp;
   }
 
+  // ---------------------------- Delete Price Term ------------------//
+
   deletePrice(id) {
     Swal.fire({
       title: GlobalConstants.deleteTitle, //'Are you sure?',
-      text: GlobalConstants.deleteMessage+' '+'"'+ id.term +'"',
+      text: GlobalConstants.deleteMessage + ' ' + '"' + id.term + '"',
       icon: 'error',
       showCancelButton: true,
       confirmButtonColor: '#ed5565',
@@ -85,12 +94,14 @@ export class PriceTermComponent implements OnInit {
 
   }
 
+  // ----------------------------- Add Price Term Form -------------------------//
+
   addPriceForm() {
     const modalRef = this.modalService.open(AddPriceComponent, { centered: true });
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-     
+
         this.service.fetch((data) => {
           this.rows = data;
         }, this.PriceTermUrl);
@@ -102,6 +113,7 @@ export class PriceTermComponent implements OnInit {
     });
   }
 
+  // --------------------------Edit Price Term Form ------------------------------//
 
   editPriceForm(row) {
     const modalRef = this.modalService.open(EditPriceComponent, { centered: true });
@@ -111,117 +123,119 @@ export class PriceTermComponent implements OnInit {
       if (data == true) {
         this.service.fetch((data) => {
           this.rows = data;
-        } , this.PriceTermUrl);
+        }, this.PriceTermUrl);
 
       }
     }, (reason) => {
       // on dismiss
     });
   }
-// excel file
-  exportAsXLSX(): void {
-    const filtered = this.data.map(row => ({
-      SNo:row.id,
-    PriceTerms :row.term,
-     Details:row.description,
-  Status:row.active == true ? "Active" : "In-Active",
-  LastChange :row.updatedDateTime + '|' + row.updatedByName 
+
+  //-------------------------Export as  excel file --------------------------------//
+  priceExcelFile() {
+    const filtered = this.rows.map(row => ({
+      SNo: row.id,
+      PriceTerms: row.term,
+      Details: row.description,
+      Status: row.active == true ? "Active" : "In-Active",
+      LastChange: row.updatedDateTime + '|' + row.updatedByName
     }));
-   
+
     this.service.exportAsExcelFile(filtered, 'Price Term');
-  
+
   }
 
-// pdf ///
+  //---------------------------Export as  pdf --------------------------------------//
 
-generatePDF() {
+  pricePdf() {
 
-  let docDefinition = {
-    pageSize: 'A4',
-    info: {
-      title: 'Price Term List'
-    },
-    content: [
-      {
-        text: 'Price Term List',
-        style: 'heading',
-
+    let docDefinition = {
+      pageSize: 'A4',
+      info: {
+        title: 'Price Term List'
       },
+      content: [
+        {
+          text: 'Price Term List',
+          style: 'heading',
 
-      {
-        layout: 'lightHorizontalLines',
-        table: {
-          headerRows: 1,
-          widths: [30, 100, 80, 50, 150 ],
-          body: [
-            ['S.no.', 'Price Term', 'Details', 'Status', 'Update Date Time | Updated By' ],
-            ...this.data.map(row => (
-              [row.id, row.term, row.description, row.active == true ? "Active" : "In-Active",
-              row.updatedDateTime + '|' + row.updatedByName 
-               ] 
-            ))
-          ]
+        },
+
+        {
+          layout: 'lightHorizontalLines',
+          table: {
+            headerRows: 1,
+            widths: [30, 100, 80, 50, 150],
+            body: [
+              ['S.no.', 'Price Term', 'Details', 'Status', 'Update Date Time | Updated By'],
+              ...this.rows.map(row => (
+                [row.id, row.term, row.description, row.active == true ? "Active" : "In-Active",
+                row.updatedDateTime + '|' + row.updatedByName
+                ]
+              ))
+            ]
+          }
+        }
+      ],
+      styles: {
+        heading: {
+          fontSize: 18,
+          alignment: 'center',
+          margin: [0, 15, 0, 30]
         }
       }
-    ],
-    styles: {
-      heading: {
-        fontSize: 18,
-        alignment: 'center',
-        margin: [0, 15, 0, 30]
-      }
-    }
 
-  };
+    };
 
 
-  pdfMake.createPdf(docDefinition).download('PriceTerm.pdf');
-}
+    pdfMake.createPdf(docDefinition).download('PriceTerm.pdf');
+  }
 
-// print
-printPdf() {
+  // -------------------------------print Price Term List --------------------------//
 
-  let docDefinition = {
-    pageSize: 'A4',
-    info: {
-      title: 'Price Term List'
-    },
-    content: [
-      {
-        text: 'Price Term List',
-        style: 'heading',
+  printPriceList() {
 
+    let docDefinition = {
+      pageSize: 'A4',
+      info: {
+        title: 'Price Term List'
       },
+      content: [
+        {
+          text: 'Price Term List',
+          style: 'heading',
 
-      {
-        layout: 'lightHorizontalLines',
-        table: {
-          headerRows: 1,
-          widths: [30, 100, 80, 50, 150 ],
-          body: [
-            ['S.no.', 'Price Term', 'Details', 'Status', 'Update Date Time | Updated By' ],
-            ...this.data.map(row => (
-              [row.id, row.term, row.description, row.active == true ? "Active" : "In-Active",
-              row.updatedDateTime + '|' + row.updatedByName 
-               ] 
-            ))
-          ]
+        },
+
+        {
+          layout: 'lightHorizontalLines',
+          table: {
+            headerRows: 1,
+            widths: [30, 100, 80, 50, 150],
+            body: [
+              ['S.no.', 'Price Term', 'Details', 'Status', 'Update Date Time | Updated By'],
+              ...this.data.map(row => (
+                [row.id, row.term, row.description, row.active == true ? "Active" : "In-Active",
+                row.updatedDateTime + '|' + row.updatedByName
+                ]
+              ))
+            ]
+          }
+        }
+      ],
+      styles: {
+        heading: {
+          fontSize: 18,
+          alignment: 'center',
+          margin: [0, 15, 0, 30]
         }
       }
-    ],
-    styles: {
-      heading: {
-        fontSize: 18,
-        alignment: 'center',
-        margin: [0, 15, 0, 30]
-      }
-    }
 
-  };
+    };
 
 
-  pdfMake.createPdf(docDefinition).print();
-}
+    pdfMake.createPdf(docDefinition).print();
+  }
 
 
 

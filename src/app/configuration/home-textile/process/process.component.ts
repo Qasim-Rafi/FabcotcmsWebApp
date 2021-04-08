@@ -9,22 +9,28 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { GlobalConstants } from 'src/app/Common/global-constants';
 import { ServiceService } from 'src/app/shared/service.service';
 import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
 @Component({
   selector: 'app-process',
   templateUrl: './process.component.html',
   styleUrls: ['./process.component.css']
 })
+
 export class ProcessComponent implements OnInit {
+
   response: any;
   rows: any = [];
   columns: any = [];
   data: any = {};
   processCount: number;
   processFilter: any = [];
-  processUrl : '/api/TextileGarments/GetAllProcess'
+  processUrl = '/api/TextileGarments/GetAllProcess'
+
   constructor(private http: HttpClient,
     private toastr: ToastrService,
-    private service:ServiceService,
+    private service: ServiceService,
     private modalService: NgbModal) { }
 
   ngOnInit(): void {
@@ -32,10 +38,12 @@ export class ProcessComponent implements OnInit {
       this.processFilter = [...data];
       this.rows = data;
       this.processCount = this.rows.length;
-    } , this.processUrl);
+    }, this.processUrl);
   }
 
-  updateFilter(event) {
+  //  ---------------------------- Search Function ------------------------//
+
+  search(event) {
     const val = event.target.value.toLowerCase();
     const temp = this.processFilter.filter(function (d) {
       return (d.name.toLowerCase().indexOf(val) !== -1 || !val);
@@ -44,11 +52,12 @@ export class ProcessComponent implements OnInit {
     this.rows = temp;
   }
 
+  // -------------------------- delete Process ----------------------------//
 
   deleteProcess(id) {
     Swal.fire({
       title: GlobalConstants.deleteTitle, //'Are you sure?',
-      text: GlobalConstants.deleteMessage+' '+'"'+ id.name +'"',
+      text: GlobalConstants.deleteMessage + ' ' + '"' + id.name + '"',
       icon: 'error',
       showCancelButton: true,
       confirmButtonColor: '#ed5565',
@@ -69,7 +78,7 @@ export class ProcessComponent implements OnInit {
                 this.service.fetch((data) => {
                   this.rows = data;
                   this.processCount = this.rows.length;
-                } , this.processUrl);
+                }, this.processUrl);
 
               }
               else {
@@ -87,18 +96,17 @@ export class ProcessComponent implements OnInit {
 
   }
 
-
+  // -------------------------------- Add Process Form -----------------------------//
 
   addProcessForm() {
     const modalRef = this.modalService.open(AddProcessComponent, { centered: true });
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        //  this.date = this.myDate;
         this.service.fetch((data) => {
           this.rows = data;
           this.processCount = this.rows.length;
-        } , this.processUrl);
+        }, this.processUrl);
 
 
       }
@@ -107,6 +115,7 @@ export class ProcessComponent implements OnInit {
     });
   }
 
+  // --------------------------- Edit Process Form ------------------------------//
 
   editProcessForm(row) {
     const modalRef = this.modalService.open(EditProcessComponent, { centered: true });
@@ -114,121 +123,122 @@ export class ProcessComponent implements OnInit {
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        //  this.date = this.myDate;
         this.service.fetch((data) => {
           this.rows = data;
-        } , this.processUrl);
+        }, this.processUrl);
 
       }
     }, (reason) => {
       // on dismiss
     });
   }
-//  excel
-  exportAsXLSX(): void {
-    const filtered = this.data.map(row => ({
-      SNo:row.id,
-    ProcessName :row.name,
-     Details:row.description,
-  Status:row.active == true ? "Active" : "In-Active",
-  LastChange :row.updatedDateTime + '|' + row.updatedByName 
-  
-  
+
+  // -------------------------------Export as Excel File ----------------------------//
+
+  processExcelFile() {
+
+    const filtered = this.rows.map(row => ({
+      SNo: row.id,
+      ProcessName: row.name,
+      Details: row.description,
+      Status: row.active == true ? "Active" : "In-Active",
+      LastChange: row.updatedDateTime + '|' + row.updatedByName
     }));
-   
+
     this.service.exportAsExcelFile(filtered, 'Process');
-  
+
   }
-// pdf //
-generatePDF() {
+  // ------------------------------Export as Pdf --------------------------------------//
 
-  let docDefinition = {
-    pageSize: 'A4',
-    info: {
-      title: 'Process List'
-    },
-    content: [
-      {
-        text: 'Process List',
-        style: 'heading',
+  processPdf() {
 
+    let docDefinition = {
+      pageSize: 'A4',
+      info: {
+        title: 'Process List'
       },
+      content: [
+        {
+          text: 'Process List',
+          style: 'heading',
 
-      {
-        layout: 'lightHorizontalLines',
-        table: {
-          headerRows: 1,
-          widths: [30, 80, 80, 50, 170 ],
-          body: [
-            ['S.no.', 'Process Name', 'Details', 'Status', 'Update Date Time | Updated By' ],
-            ...this.data.map(row => (
-              [row.id, row.name, row.description, row.active == true ? "Active" : "In-Active",
-              row.updatedDateTime + '|' + row.updatedByName 
-               ] 
-            ))
-          ]
+        },
+
+        {
+          layout: 'lightHorizontalLines',
+          table: {
+            headerRows: 1,
+            widths: [30, 80, 80, 50, 170],
+            body: [
+              ['S.no.', 'Process Name', 'Details', 'Status', 'Update Date Time | Updated By'],
+              ...this.rows.map(row => (
+                [row.id, row.name, row.description, row.active == true ? "Active" : "In-Active",
+                row.updatedDateTime + '|' + row.updatedByName
+                ]
+              ))
+            ]
+          }
+        }
+      ],
+      styles: {
+        heading: {
+          fontSize: 18,
+          alignment: 'center',
+          margin: [0, 15, 0, 30]
         }
       }
-    ],
-    styles: {
-      heading: {
-        fontSize: 18,
-        alignment: 'center',
-        margin: [0, 15, 0, 30]
-      }
-    }
 
-  };
+    };
 
 
-  pdfMake.createPdf(docDefinition).download('Process.pdf');
-}
+    pdfMake.createPdf(docDefinition).download('Process.pdf');
+  }
 
-// print 
+  // -----------------------------------print Process List ------------------------------// 
 
-printPdf() {
+  printProcessList() {
 
-  let docDefinition = {
-    pageSize: 'A4',
-    info: {
-      title: 'Process List'
-    },
-    content: [
-      {
-        text: 'Process List',
-        style: 'heading',
-
+    let docDefinition = {
+      pageSize: 'A4',
+      info: {
+        title: 'Process List'
       },
+      content: [
+        {
+          text: 'Process List',
+          style: 'heading',
 
-      {
-        layout: 'lightHorizontalLines',
-        table: {
-          headerRows: 1,
-          widths: [30, 80, 80, 50, 170 ],
-          body: [
-            ['S.no.', 'Process Name', 'Details', 'Status', 'Update Date Time | Updated By' ],
-            ...this.data.map(row => (
-              [row.id, row.name, row.description, row.active == true ? "Active" : "In-Active",
-              row.updatedDateTime + '|' + row.updatedByName 
-               ] 
-            ))
-          ]
+        },
+
+        {
+          layout: 'lightHorizontalLines',
+          table: {
+            headerRows: 1,
+            widths: [30, 80, 80, 50, 170],
+            body: [
+              ['S.no.', 'Process Name', 'Details', 'Status', 'Update Date Time | Updated By'],
+              ...this.rows.map(row => (
+                [row.id, row.name, row.description, row.active == true ? "Active" : "In-Active",
+                row.updatedDateTime + '|' + row.updatedByName
+                ]
+              ))
+            ]
+          }
+        }
+      ],
+      styles: {
+        heading: {
+          fontSize: 18,
+          alignment: 'center',
+          margin: [0, 15, 0, 30]
         }
       }
-    ],
-    styles: {
-      heading: {
-        fontSize: 18,
-        alignment: 'center',
-        margin: [0, 15, 0, 30]
-      }
-    }
 
-  };
+    };
 
 
-  pdfMake.createPdf(docDefinition).print();
-}
+    pdfMake.createPdf(docDefinition).print();
+  }
 
 
 }

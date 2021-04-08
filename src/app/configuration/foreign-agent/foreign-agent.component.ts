@@ -10,6 +10,8 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { GlobalConstants } from 'src/app/Common/global-constants';
 import { ServiceService } from 'src/app/shared/service.service';
 import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 
 @Component({
@@ -17,7 +19,9 @@ import pdfMake from "pdfmake/build/pdfmake";
   templateUrl: './foreign-agent.component.html',
   styleUrls: ['./foreign-agent.component.css']
 })
+
 export class ForeignAgentComponent implements OnInit {
+
   response: any;
   rows: any = [];
   columns: any = [];
@@ -26,10 +30,11 @@ export class ForeignAgentComponent implements OnInit {
   date: number;
   myDate = Date.now();
   agentFilter: any[];
-agentUrl = '/api/Configs/GetAllExternalAgent'
+  agentUrl = '/api/Configs/GetAllExternalAgent'
+
   constructor(private http: HttpClient,
     private toastr: ToastrService,
-    private service:ServiceService,
+    private service: ServiceService,
     private modalService: NgbModal,) { }
 
   ngOnInit(): void {
@@ -37,16 +42,17 @@ agentUrl = '/api/Configs/GetAllExternalAgent'
       this.agentFilter = [...data];
       this.rows = data;
       this.agentCount = this.rows.length
-    } , this.agentUrl);
+    }, this.agentUrl);
   }
 
+  // -------------------------- Search Function -------------------------//
 
-  updateFilter(event) {
+  search(event) {
     const val = event.target.value.toLowerCase();
 
     const temp = this.agentFilter.filter(function (d) {
       return (d.code.toLowerCase().indexOf(val) !== -1 ||
-      
+
         d.name.toLowerCase().indexOf(val) !== -1 || !val);
     });
 
@@ -54,11 +60,12 @@ agentUrl = '/api/Configs/GetAllExternalAgent'
 
   }
 
+  // ------------------------------- Delete Agent -------------------------//
 
   deleteAgent(id) {
     Swal.fire({
       title: GlobalConstants.deleteTitle, //'Are you sure?',
-      text: GlobalConstants.deleteMessage+' '+'"'+ id.name +'"',
+      text: GlobalConstants.deleteMessage + ' ' + '"' + id.name + '"',
       icon: 'error',
       showCancelButton: true,
       confirmButtonColor: '#ed5565',
@@ -80,7 +87,7 @@ agentUrl = '/api/Configs/GetAllExternalAgent'
                   this.rows = data;
 
                   this.agentCount = this.rows.length;
-                } , this.agentUrl);
+                }, this.agentUrl);
 
               }
               else {
@@ -97,7 +104,7 @@ agentUrl = '/api/Configs/GetAllExternalAgent'
 
   }
 
-
+  // ---------------------------- Add Agent Form --------------------------------//
 
   addAgentForm() {
     const modalRef = this.modalService.open(AddAgentFormComponent, { centered: true });
@@ -109,7 +116,7 @@ agentUrl = '/api/Configs/GetAllExternalAgent'
           this.agentFilter = [...data];
           this.rows = data;
           this.agentCount = this.rows.length;
-        } , this.agentUrl);
+        }, this.agentUrl);
 
 
       }
@@ -118,7 +125,7 @@ agentUrl = '/api/Configs/GetAllExternalAgent'
     });
   }
 
-
+  // ------------------------------ Edit Agent Form ---------------------------//
 
   editAgentForm(row) {
     const modalRef = this.modalService.open(EditAgentFormComponent, { centered: true });
@@ -129,7 +136,7 @@ agentUrl = '/api/Configs/GetAllExternalAgent'
         this.date = this.myDate;
         this.service.fetch((data) => {
           this.rows = data;
-        } , this.agentUrl);
+        }, this.agentUrl);
 
 
       }
@@ -138,123 +145,126 @@ agentUrl = '/api/Configs/GetAllExternalAgent'
     });
   }
 
-// excell
-exportAsXLSX(): void {
-  const filtered = this.data.map(row => ({
-AgentCode :row.code,
-AgentName:row.name,
-AgentType:row.agentTypeId,
-Address:row.address,
-ContactNum:row.cellNumber,
-Email:row.emailAddress,
-Status:row.active == true ? "Active" : "In-Active",
-Side:row.agentSideId,
-LastChangedOn :row.updatedDateTime + '|' + row.createdByName
+  //---------------------- Export as  excel File ----------------------------//
 
-  }));
- 
-  this.service.exportAsExcelFile(filtered, 'Agent');
+  agentExcelFile() {
 
-}
-// pdf ////////
+    const filtered = this.rows.map(row => ({
 
-generatePDF() {
+      AgentCode: row.code,
+      AgentName: row.name,
+      AgentType: row.agentTypeId,
+      Address: row.address,
+      ContactNum: row.cellNumber,
+      Email: row.emailAddress,
+      Status: row.active == true ? "Active" : "In-Active",
+      Side: row.agentSideId,
+      LastChangedOn: row.updatedDateTime + '|' + row.createdByName
 
-  let docDefinition = {
-    pageSize: 'A4',
-    info: {
-      title: 'Agent List'
-    },
-    content: [
-      {
-        text: 'Agent List',
-        style: 'heading',
+    }));
 
+    this.service.exportAsExcelFile(filtered, 'Agent');
+
+  }
+  //-------------------------- Export as Pdf-----------------------//
+
+  agentPdf() {
+
+    let docDefinition = {
+      pageSize: 'A4',
+      info: {
+        title: 'Agent List'
       },
+      content: [
+        {
+          text: 'Agent List',
+          style: 'heading',
 
-      {
-        layout: 'lightHorizontalLines',
-        table: {
-          headerRows: 1,
-          widths: [30, 50, 40, 50, 50 , 60 ,40,30 ,70 ],
-          body: [
-            ['Agent Code', 'Agent Name', 'Agent Type', 'Address' , 'Cell number' , 'Email'
-             ,'Status','Side' ,'Last Update On' ],
-            ...this.data.map(row => (
-              [ row.code, row.name, row.agentTypeId,row.address,row.cellNumber
-                 ,row.emailAddress ,row.active == true ? "Active" : "In-Active",
-              row.agentSideId,
-              row.updatedDateTime + '|' + row.createdByName
-               ] 
-            ))
-          ]
+        },
+
+        {
+          layout: 'lightHorizontalLines',
+          table: {
+            headerRows: 1,
+            widths: [30, 50, 40, 50, 50, 60, 40, 30, 70],
+            body: [
+              ['Agent Code', 'Agent Name', 'Agent Type', 'Address', 'Cell number', 'Email'
+                , 'Status', 'Side', 'Last Update On'],
+              ...this.rows.map(row => (
+                [row.code, row.name, row.agentTypeId, row.address, row.cellNumber
+                  , row.emailAddress, row.active == true ? "Active" : "In-Active",
+                row.agentSideId,
+                row.updatedDateTime + '|' + row.createdByName
+                ]
+              ))
+            ]
+          }
+        }
+      ],
+      styles: {
+        heading: {
+          fontSize: 18,
+          alignment: 'center',
+          margin: [0, 15, 0, 30]
         }
       }
-    ],
-    styles: {
-      heading: {
-        fontSize: 18,
-        alignment: 'center',
-        margin: [0, 15, 0, 30]
-      }
-    }
 
 
-  };
+    };
 
 
-  pdfMake.createPdf(docDefinition).download('AgentsList.pdf');
-}
+    pdfMake.createPdf(docDefinition).download('AgentsList.pdf');
+  }
 
-//  print
+  // ----------------------------------- print Agent List -------------------------------//
 
-printPdf() {
+  printAgentList() {
 
-  let docDefinition = {
-    pageSize: 'A4',
-    info: {
-      title: 'Agent List'
-    },
-    content: [
-      {
-        text: 'Agent List',
-        style: 'heading',
-
+    let docDefinition = {
+      pageSize: 'A4',
+      info: {
+        title: 'Agent List'
       },
+      content: [
+        {
+          text: 'Agent List',
+          style: 'heading',
 
-      {
-        layout: 'lightHorizontalLines',
-        table: {
-          headerRows: 1,
-          widths: [30, 50, 40, 50, 50 , 60 ,40,30 ,70 ],
-          body: [
-            ['Agent Code', 'Agent Name', 'Agent Type', 'Address' , 'Cell number' , 'Email'
-             ,'Status','Side' ,'Last Update On' ],
-            ...this.data.map(row => (
-              [ row.code, row.name, row.agentTypeId,row.address,row.cellNumber
-                 ,row.emailAddress ,row.active == true ? "Active" : "In-Active",
-              row.agentSideId,
-              row.updatedDateTime + '|' + row.createdByName
-               ] 
-            ))
-          ]
+        },
+
+        {
+          layout: 'lightHorizontalLines',
+          table: {
+            headerRows: 1,
+            widths: [30, 50, 40, 50, 50, 60, 40, 30, 70],
+            body: [
+              ['Agent Code', 'Agent Name', 'Agent Type', 'Address', 'Cell number', 'Email'
+                , 'Status', 'Side', 'Last Update On'],
+              ...this.rows.map(row => (
+                [row.code, row.name, row.agentTypeId, row.address, row.cellNumber
+                  , row.emailAddress, row.active == true ? "Active" : "In-Active",
+                row.agentSideId,
+                row.updatedDateTime + '|' + row.createdByName
+                ]
+              ))
+            ]
+          }
+        }
+      ],
+      styles: {
+        heading: {
+          fontSize: 18,
+          alignment: 'center',
+          margin: [0, 15, 0, 30]
         }
       }
-    ],
-    styles: {
-      heading: {
-        fontSize: 18,
-        alignment: 'center',
-        margin: [0, 15, 0, 30]
-      }
-    }
 
 
-  };
+    };
 
 
-  pdfMake.createPdf(docDefinition).print();
-}
+    pdfMake.createPdf(docDefinition).print();
+  }
 
 
 

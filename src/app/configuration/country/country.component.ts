@@ -10,7 +10,8 @@ import { ServiceService } from 'src/app/shared/service.service'
 import { ClipboardService } from 'ngx-clipboard';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import pdfMake from "pdfmake/build/pdfmake";
-
+import pdfFonts from "pdfmake/build/vfs_fonts";
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 @Component({
   selector: 'app-country',
   templateUrl: './country.component.html',
@@ -40,6 +41,7 @@ export class CountryComponent implements OnInit {
     this.service.fetch((data) => {
       this.countryFilter = [...data];
       this.rows = data;
+      console.log(this.rows)
       this.countryCount = this.rows.length;
     }, this.CountryUrl);
 
@@ -139,7 +141,7 @@ export class CountryComponent implements OnInit {
   }
 
 
-  // --------------------------Export as Excel ----------------------------------//
+  // --------------------------Export as Excel file----------------------------------//
 
 
   countryExcelFile(): void {

@@ -9,21 +9,24 @@ import { GlobalConstants } from '../../Common/global-constants';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { ServiceService } from 'src/app/shared/service.service';
 import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
 @Component({
   selector: 'app-articles',
   templateUrl: './articles.component.html',
   styleUrls: ['./articles.component.css']
 })
+
 export class ArticlesComponent implements OnInit {
+
   response: any;
   rows: any = [];
   columns: any = [];
   data: any = {};
   articleCount: number;
   articleFilter: any = [];
-  articleUrl= '/api/Configs/GetAllArticle'
-
-
+  articleUrl = '/api/Configs/GetAllArticle'
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
@@ -35,23 +38,24 @@ export class ArticlesComponent implements OnInit {
       this.articleFilter = [...data];
       this.rows = data;
       this.articleCount = this.rows.length
-    } , this.articleUrl);
+    }, this.articleUrl);
 
 
   }
 
+  // ----------------------- Search Function ---------------------------//
 
-
-  updateFilter(event) {
+  search(event) {
     const val = event.target.value.toLowerCase();
 
-    // filter our data
     const temp = this.articleFilter.filter(function (d) {
       return (d.code.toLowerCase().indexOf(val) !== -1 ||
         d.name.toLowerCase().indexOf(val) !== -1 || !val);
     });
     this.rows = temp;
   }
+
+  // ------------------------- Delete Article Form ------------------//
 
   deleteArticle(id) {
 
@@ -78,7 +82,7 @@ export class ArticlesComponent implements OnInit {
                 this.service.fetch((data) => {
                   this.rows = data;
 
-                } , this.articleUrl);
+                }, this.articleUrl);
 
               }
               else {
@@ -95,17 +99,17 @@ export class ArticlesComponent implements OnInit {
 
   }
 
+  // ------------------------------ Add Article Form p-------------------------//
 
   addArticleForm() {
     const modalRef = this.modalService.open(AddArticleComponent, { centered: true });
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        //  this.date = this.myDate;
         this.service.fetch((data) => {
           this.rows = data;
           this.articleCount = this.rows.length;
-        } , this.articleUrl);
+        }, this.articleUrl);
 
 
       }
@@ -114,6 +118,7 @@ export class ArticlesComponent implements OnInit {
     });
   }
 
+  // --------------------------- Edit Article Form ----------------------------//
 
   editArticleForm(row) {
     const modalRef = this.modalService.open(EditArticleComponent, { centered: true });
@@ -121,11 +126,10 @@ export class ArticlesComponent implements OnInit {
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        //  this.date = this.myDate;
         this.service.fetch((data) => {
           this.rows = data;
 
-        } ,  this.articleUrl);
+        }, this.articleUrl);
 
       }
     }, (reason) => {
@@ -133,9 +137,11 @@ export class ArticlesComponent implements OnInit {
     });
   }
 
-  // excell
-  exportAsXLSX(): void {
-    const filtered = this.data.map(row => ({
+  // --------------------------Export as excel File ----------------------------//
+
+  articleExcelFile() {
+
+    const filtered = this.rows.map(row => ({
       SNo: row.id,
       ArticleCode: row.code,
       ArticleName: row.name,
@@ -143,104 +149,103 @@ export class ArticlesComponent implements OnInit {
       Status: row.active == true ? "Active" : "In-Active",
       LastUpdateOn: row.updatedDateTime,
       LastUpdateBy: row.createdByName
-
-
     }));
 
     this.service.exportAsExcelFile(filtered, 'Article');
 
   }
-//  pdf ///
 
-generatePDF() {
+  // -------------------------------Export as  pdf ---------------------------------//
 
-  let docDefinition = {
-    pageSize: 'A4',
-    info: {
-      title: 'Article List'
-    },
-    content: [
-      {
-        text: 'Articles List',
-        style: 'heading',
+  articlePdf() {
 
+    let docDefinition = {
+      pageSize: 'A4',
+      info: {
+        title: 'Article List'
       },
+      content: [
+        {
+          text: 'Articles List',
+          style: 'heading',
 
-      {
-        layout: 'lightHorizontalLines',
-        table: {
-          headerRows: 1,
-          widths: [30, 50, 80, 80, 40 , 100 , 70 ],
-          body: [
-            ['S.no.', 'Article Code', 'Article Name', 'Generic Name' ,'Status', 'Last Update On', 'Last Update By' ],
-            ...this.data.map(row => (
-              [row.id, row.code, row.name, row.genericName ,row.active == true ? "Active" : "In-Active",
-              row.updatedDateTime , row.updatedByName 
-               ] 
-            ))
-          ]
+        },
+
+        {
+          layout: 'lightHorizontalLines',
+          table: {
+            headerRows: 1,
+            widths: [30, 50, 80, 80, 40, 100, 70],
+            body: [
+              ['S.no.', 'Article Code', 'Article Name', 'Generic Name', 'Status', 'Last Update On', 'Last Update By'],
+              ...this.rows.map(row => (
+                [row.id, row.code, row.name, row.genericName, row.active == true ? "Active" : "In-Active",
+                row.updatedDateTime, row.updatedByName
+                ]
+              ))
+            ]
+          }
+        }
+      ],
+      styles: {
+        heading: {
+          fontSize: 18,
+          alignment: 'center',
+          margin: [0, 15, 0, 30]
         }
       }
-    ],
-    styles: {
-      heading: {
-        fontSize: 18,
-        alignment: 'center',
-        margin: [0, 15, 0, 30]
-      }
-    }
 
-  };
+    };
 
 
-  pdfMake.createPdf(docDefinition).download('ArticleList.pdf');
-}
+    pdfMake.createPdf(docDefinition).download('ArticleList.pdf');
+  }
 
-// print
+  //------------------------------------ print Article List ----------------------//
 
-printPdf() {
+  printArticleList() {
 
-  let docDefinition = {
-    pageSize: 'A4',
-    info: {
-      title: 'Article List'
-    },
-    content: [
-      {
-        text: 'Articles List',
-        style: 'heading',
-
+    let docDefinition = {
+      pageSize: 'A4',
+      info: {
+        title: 'Article List'
       },
+      content: [
+        {
+          text: 'Articles List',
+          style: 'heading',
 
-      {
-        layout: 'lightHorizontalLines',
-        table: {
-          headerRows: 1,
-          widths: [30, 50, 80, 80, 40 , 100 , 70 ],
-          body: [
-            ['S.no.', 'Article Code', 'Article Name', 'Generic Name' ,'Status', 'Last Update On', 'Last Update By' ],
-            ...this.data.map(row => (
-              [row.id, row.code, row.name, row.genericName ,row.active == true ? "Active" : "In-Active",
-              row.updatedDateTime , row.updatedByName 
-               ] 
-            ))
-          ]
+        },
+
+        {
+          layout: 'lightHorizontalLines',
+          table: {
+            headerRows: 1,
+            widths: [30, 50, 80, 80, 40, 100, 70],
+            body: [
+              ['S.no.', 'Article Code', 'Article Name', 'Generic Name', 'Status', 'Last Update On', 'Last Update By'],
+              ...this.rows.map(row => (
+                [row.id, row.code, row.name, row.genericName, row.active == true ? "Active" : "In-Active",
+                row.updatedDateTime, row.updatedByName
+                ]
+              ))
+            ]
+          }
+        }
+      ],
+      styles: {
+        heading: {
+          fontSize: 18,
+          alignment: 'center',
+          margin: [0, 15, 0, 30]
         }
       }
-    ],
-    styles: {
-      heading: {
-        fontSize: 18,
-        alignment: 'center',
-        margin: [0, 15, 0, 30]
-      }
-    }
 
-  };
+    };
 
 
-  pdfMake.createPdf(docDefinition).print();
-}
+    pdfMake.createPdf(docDefinition).print();
+  }
 
 
 }
