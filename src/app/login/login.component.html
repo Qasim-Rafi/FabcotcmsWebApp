@@ -1,24 +1,124 @@
-<div >
-    <div >
+<!-- <div>
+    <div>
         <h2 style="margin: auto;">Please Login in First</h2>
         <h3 *ngIf='message'>
-{{message}}
+            {{message}}
         </h3>
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
                 <label for="username">UserName:</label>
                 <input type="text" class="form-control" formControlName="username" id="username" autocomplete="off">
-                <div class="error" *ngIf="loginForm.controls['username'].hasError('required') && loginForm.controls['username'].touched">Please Enter UserName</div>
+                <div class="error"
+                    *ngIf="loginForm.controls['username'].hasError('required') && loginForm.controls['username'].touched">
+                    Please Enter UserName</div>
             </div>
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                 <div class="form-group">
                     <label for="password">Password:</label>
-                    <input type="password" class="form-control" formControlName="password" id="passworde" autocomplete="off">
-                    <div class="error" *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched">Please Enter Password</div>
+                    <input type="password" class="form-control" formControlName="password" id="passworde"
+                        autocomplete="off">
+                    <div class="error"
+                        *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched">
+                        Please Enter Password</div>
                 </div>
                 <button class="btn btn-success" [disabled]="loginForm.invalid">Login</button>
                 <div *ngIf="invalidLogin" class="error">
                     <div>Invalid Credentials, Try again!</div>
                 </div>
+            </form>
         </form>
-  
+    </div>
+</div> -->
+
+
+
+    
+<section class="content">
+  <div class="container-fluid">
+    <div class="login-page1">
+    
+      <div class="login-box">
+        <!-- /.login-logo -->
+        <div class="card card-outline card-primary">
+
+          <div class="card-header text-center">
+            <a href="../../index2.html" class="h1"><img src="assets/fabcot.png" width="200" alt="Fabcot Logo"></a>
+          </div>
+
+          <div class="card-body">
+            <p class="login-box-msg">Sign in to start your session</p>
+
+            <form class="mb-2" action="../../index3.html" method="post">
+              <div class="input-group mb-3">
+                <input type="email" class="form-control" placeholder="Email">
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <span class="fas fa-envelope"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="input-group mb-3">
+                <input type="password" class="form-control" placeholder="Password">
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <span class="fas fa-lock"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 text-center">
+
+                  <!-- <div class="icheck-primary">
+                    <input type="checkbox" id="remember">
+                    <label for="remember">
+                      Remember Me
+                    </label>
+                  </div> -->
+
+                  <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Remember Me</label>
+                  </div>
+
+                </div>
+                <!-- /.col -->
+                <div class="col-12">
+                  <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                </div>
+                <!-- /.col -->
+              </div>
+            </form>
+
+            <!-- <div class="social-auth-links text-center mt-2 mb-3">
+              <a href="#" class="btn btn-block btn-primary">
+                <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+              </a>
+              <a href="#" class="btn btn-block btn-danger">
+                <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+              </a>
+            </div> -->
+
+            <!-- /.social-auth-links -->
+
+            <p class="mb-4 text-center">
+              <a href="forgot-password.html">I forgot my password</a>
+            </p>
+
+            <p class="mb-0 text-center">
+              FabCot International Enterprises® © 2021 All rights reserved
+            </p>
+
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+    
+    </div>
+  </div>
+</section>
+    
+
+
+
+
