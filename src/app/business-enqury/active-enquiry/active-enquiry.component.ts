@@ -95,11 +95,6 @@ export class ActiveEnquiryComponent implements OnInit {
 
 
 
-
-
-
-
-
   editEnquiry(row) {
     this.http.get(`${environment.apiUrl}/api/Enquiries/GetEnquiryById/` + row.id)
       .subscribe(

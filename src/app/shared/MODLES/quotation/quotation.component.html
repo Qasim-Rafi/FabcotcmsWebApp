@@ -4,19 +4,23 @@
         <div aria-hidden="true">&times;</div>
     </button>
 
-    <h5 class="modal-title">
+    <h5 class="modal-title" *ngIf="statusCheck == 'addQuotation'">
         <i class="fa fa-plus"></i>
         Add New Quote
+    </h5>
+    <h5 class="modal-title" *ngIf="statusCheck == 'editQuotation'">
+        <i class="fa fa-plus"></i>
+        Edit Quote
     </h5>
 </div>
 
 <div class="modal-body BG pt-2r">
-    <form #buyerForm="ngForm" novalidate>
+    <form #QuotationForm="ngForm" novalidate>
 
         <div class="form-group row">
             <label for="countryId" class="col-sm-3 col-form-label">Enquiry Item</label>
             <div class="col-sm-8">
-                <ng-select required placeholder="-- Select --" name="countryId">
+                <ng-select placeholder="-- Select --" name="sellerId" [(ngModel)]="data.sellerId">
                     <ng-option>
                         <span> ok</span>
                     </ng-option>
@@ -26,7 +30,7 @@
         <div class="form-group row">
             <label for="countryId" class="col-sm-3 col-form-label">Supplier / Seller</label>
             <div class="col-sm-8">
-                <ng-select required placeholder="Select Vendor" name="countryId">
+                <ng-select placeholder="Select Vendor" name="sellerId" [(ngModel)]="data.sellerId">
                     <ng-option>
                         <span> ok</span>
                     </ng-option>
@@ -39,17 +43,17 @@
             <label for="name" class="col-sm-3 col-form-label ">Price / Rate</label>
 
             <div class="col-md-2">
-                <input type="number" class="form-control" placeholder="Rate" name="quantity" />
+                <input type="number" class="form-control" placeholder="Rate" name="rate" [(ngModel)]="data.rate" />
             </div>
             <div class="col-md-3">
-                <ng-select placeholder="-- Select Currency --" name="Currency">
+                <ng-select placeholder="-- Select Currency --" name="currencyId" [(ngModel)]="data.currencyId">
                     <ng-option>
                         ok
                     </ng-option>
                 </ng-select>
             </div>
             <div class="col-md-3">
-                <ng-select placeholder="-- Select UOM --" name="Currency">
+                <ng-select placeholder="-- Select UOM --" name="uomId" [(ngModel)]="data.uomId">
                     <ng-option>
                         ok
                     </ng-option>
@@ -60,14 +64,16 @@
         <div class="form-group row">
             <label for="name" class="col-sm-3 col-form-label ">Validity</label>
             <div class="col-sm-8">
-                <input type="number" class="form-control" placeholder="Quote Validity Date" name="validity" />
+                <input type="number" class="form-control" placeholder="Quote Validity Date" name="validity"
+                    [(ngModel)]="data.validity" />
             </div>
         </div>
 
 
         <div class="form-group row">
-            <label for="name" class="col-sm-3 col-form-label ">Notes</label>
-            <textarea class="col-sm-8 form-control" rows="3" placeholder="Quote Additional Details here..."></textarea>
+            <label for="remarks" class="col-sm-3 col-form-label ">Notes</label>
+            <textarea class="col-sm-8 form-control" rows="3" placeholder="Quote Additional Details here..."
+                name="remarks" [(ngModel)]="data.remarks"></textarea>
         </div>
     </form>
 </div>
@@ -75,7 +81,12 @@
     <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
         Close
     </button>
-    <button class="btn button-save" type="submit" [disabled]="buyerForm.invalid">
+    <button class="btn button-save" type="submit" [disabled]="QuotationForm.invalid"
+        *ngIf="statusCheck == 'addQuotation'">
         Save Quote
+    </button>
+    <button class="btn button-save" type="submit" [disabled]="QuotationForm.invalid"
+        *ngIf="statusCheck == 'editQuotation'">
+        Update Quote
     </button>
 </div>

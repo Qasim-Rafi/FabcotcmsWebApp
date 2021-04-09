@@ -59,6 +59,22 @@ export class EditActiveEnquiryComponent implements OnInit {
   }
 
 
+  editQuotationform(check) {
+    const modalRef = this.modalService.open(QuotationComponent, { centered: true });
+    // modalRef.componentInstance.parentBuyerId = popup.id;
+    modalRef.componentInstance.statusCheck = check;
+    modalRef.result.then((data) => {
+      // on close
+      if (data == true) {
+
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
+
+
+
 
 
   addEnquiryItemform(check, enquiryObj) {

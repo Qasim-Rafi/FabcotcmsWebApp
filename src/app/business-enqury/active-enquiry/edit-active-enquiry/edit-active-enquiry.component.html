@@ -652,12 +652,12 @@
                 </div>
 
 
-                <div class="row" *ngFor="let obj of enquiryItem">
+                <div class="row" *ngFor="let obj of enquiryItem; let x = index">
                     <div class="col-md-1 col-sm-3 col-xs-3 forum-info" data-original-title="POCs">
                         <div class="poc-icon">
                             <a class="faq-question text-muted text-s-lg text-w-3" data-toggle="collapse" role="button"
-                                aria-expanded="false" aria-controls="collapseExample">
-                                <span class="fa fa-users"></span>List</a>
+                                aria-expanded="false" aria-controls="collapseExample" href="#enquiryItem-{{ x }}">
+                                <span class="fa fa-expand-alt"></span>1</a>
                         </div>
                     </div>
                     <div class="col-md-7">
@@ -677,7 +677,7 @@
                     <div class="col-md-2">
                         <div class="ibox-tools">
                             <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top"
-                                title="" data-original-title="Edit" (click)=" addQuotationform('addQuotation') ">
+                                title="" data-original-title="Edit" (click)=" addQuotationform('addQuotation' ) ">
                                 <i class="fas fa-paperclip"></i>
                             </button>
                             <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top"
@@ -699,6 +699,57 @@
                         <span class="views-number">{{obj.itemQuantity}}</span>
                         <div><small>Sets</small></div>
                     </div>
+
+                    <!-- ----------------End Of Row-------------------- -->
+
+
+
+
+                    <div class="collapse" id="enquiryItem-{{ x }}">
+                        <div class="card-body mt-4 BG">
+                            <div class="row">
+                            </div>
+
+                            <h2>Vendor Quotes</h2>
+
+                            <div class="row text-center pt-3">
+                                <div class="col-md-2 border p-2 "></div>
+                                <div class="col-md-2 border p-2"></div>
+                                <div class="col-md-2 border p-2"></div>
+                                <div class="col-md-2 border p-2"></div>
+                                <div class="col-md-2 border p-2">
+                                    <div class="badge badge-primary">Active</div>
+                                    <div class="badge badge-secondary">Inactive</div>
+                                </div>
+                                <div class="col-md-2 border ">
+                                    <button type="button" class="btn editIconBack"
+                                        (click)="editQuotationform('editQuotation')">
+                                        <i class="far fa-edit"></i>
+                                    </button>
+                                    <button type="button" class="btn deleteIconBack">
+                                        <i class="far fa-trash-alt"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+
+
+
+
+
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+                    <!----------------------------------------------------------------------------->
+
                 </div>
 
 
