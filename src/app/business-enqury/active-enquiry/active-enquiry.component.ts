@@ -39,7 +39,7 @@ export class ActiveEnquiryComponent implements OnInit {
 
 
   navigateEditEnquiry(obj) {
-    this.router.navigate(['/edit-active-enquiries'], { queryParams: obj });
+    this.router.navigate(['/edit-active-enquiries'], { queryParams: { id: obj.id } });
   };
 
 
@@ -93,26 +93,6 @@ export class ActiveEnquiryComponent implements OnInit {
 
 
 
-
-
-  editEnquiry(row) {
-    this.http.get(`${environment.apiUrl}/api/Enquiries/GetEnquiryById/` + row.id)
-      .subscribe(
-        res => {
-          this.response = res;
-          if (this.response.success == true) {
-            this.data = this.response.data;
-          }
-          else {
-            this.toastr.error(this.response.message, 'Message.');
-          }
-
-        }, err => {
-          if (err.status == 400) {
-            this.toastr.error(this.response.message, 'Message.');
-          }
-        });
-  }
 
 
 

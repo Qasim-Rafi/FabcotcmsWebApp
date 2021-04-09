@@ -14,14 +14,15 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { ToastrModule } from 'ngx-toastr';
 import { EditActiveEnquiryComponent } from './active-enquiry/edit-active-enquiry/edit-active-enquiry.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
   declarations: [
-    AddEnquiryComponent, 
-    ActiveEnquiryComponent, 
+    AddEnquiryComponent,
+    ActiveEnquiryComponent,
     SearchEnquiryComponent, EditActiveEnquiryComponent
-  
+
   ],
 
 
@@ -34,12 +35,13 @@ import { EditActiveEnquiryComponent } from './active-enquiry/edit-active-enquiry
     AppRoutingModule,
     NgxDatatableModule,
     FormsModule,
+    NgSelectModule,
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       progressBar: true,
-      timeOut:3000
+      timeOut: 3000
     }),
     ConfirmationPopoverModule.forRoot({
       confirmButtonType: 'danger', // set defaults here

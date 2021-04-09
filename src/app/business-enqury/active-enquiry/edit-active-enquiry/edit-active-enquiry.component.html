@@ -17,753 +17,767 @@
 </div>
 
 <div class="row">
-    <div class="col-md-8 bg-white card ibox-content">
-        <div [ngClass]="{ noDisplay : enquiryToggle==true }">
+    <div *ngFor="let obj of enquiryItem">
+        <div class="col-md-8 bg-white card ibox-content">
+            <div [ngClass]="{ noDisplay : enquiryToggle==true }">
 
-            <div class="row mb-3">
-                <div class="col-md-3">
-                    <h2 class="text-muted text2">{{objEnquiry.enquiryNumber}}</h2>
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <h2 class="text-muted text2">{{obj.enquiryNumber}}</h2>
+                    </div>
+                    <div class="col-md-9 mrg-tsm">
+
+                        <span class="text-muted text2">Test</span>
+
+                        <button type="button" class="btn btn-primary btn-md float-right"
+                            (click)="enquiryToggle = ! enquiryToggle">
+                            <i class="fa fa-plus"></i>Edit Enquiry</button>
+                    </div>
                 </div>
-                <div class="col-md-9 mrg-tsm">
 
-                    <span class="text-muted text2">{{objEnquiry.buyerName}}</span>
+                <div class="row border-bottom">
+                    <div class="col-md-6">
+                        <dl class="row">
+                            <dt class="col-sm-6"> Status:</dt>
+                            <dd class="col-sm-6">
+                                <span class="badge badge-primary" *ngIf="objEnquiry.active == 'true'">Active</span>
+                                <span class="badge badge-secondary" *ngIf="objEnquiry.active== 'false'">Closed</span>
+                            </dd>
+                        </dl>
+                        <dl class="row">
+                            <dt class="col-sm-6"> Enquiry Created:</dt>
+                            <dd class="col-sm-6">{{objEnquiry.createdByName}}</dd>
+                        </dl>
+                        <dl class="row">
+                            <dt class="col-sm-6"> Last Updated:</dt>
+                            <dd class="col-sm-6">{{objEnquiry.updatedByName}}</dd>
+                        </dl>
+                    </div>
 
-                    <button type="button" class="btn btn-primary btn-md float-right"
-                        (click)="enquiryToggle = ! enquiryToggle">
-                        <i class="fa fa-plus"></i>Edit Enquiry</button>
+                    <div class="col-md-6">
+
+                        <dl class="row">
+                            <dt class="col-sm-6"> Enquiry Date:</dt>
+                            <dd class="col-sm-6">{{objEnquiry.enquiryDate}}</dd>
+                        </dl>
+                        <dl class="row">
+                            <dt class="col-sm-6"> Created on:</dt>
+                            <dd class="col-sm-6">{{objEnquiry.createdDateTime}}</dd>
+                        </dl>
+                        <dl class="row">
+                            <dt class="col-sm-6"> Updated on:</dt>
+                            <dd class="col-sm-6">articleName</dd>
+                        </dl>
+                    </div>
+                </div>
+
+                <div class="row border-bottom">
+                    <div class="col-md-6">
+
+                        <dl class="row">
+                            <dt class="col-sm-6"> Article:</dt>
+                            <dd class="col-sm-6">{{objEnquiry.articleName}}</dd>
+                        </dl>
+                        <dl class="row">
+                            <dt class="col-sm-6"> Design Type:</dt>
+                            <dd class="col-sm-6">{{objEnquiry.createdDateTime}}</dd>
+                        </dl>
+                        <dl class="row">
+                            <dt class="col-sm-6"> Shipment Dates:</dt>
+                            <dd class="col-sm-6">{{objEnquiry.createdDateTime}}</dd>
+                        </dl>
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <dl class="row">
+                            <dt class="col-sm-6"> Process:</dt>
+                            <dd class="col-sm-6"></dd>
+                        </dl>
+                        <dl class="row">
+                            <dt class="col-sm-6">Process Type:</dt>
+                            <dd class="col-sm-6"></dd>
+                        </dl>
+                        <dl class="row">
+                            <dt class="col-sm-6"> Packaging:</dt>
+                            <dd class="col-sm-6"></dd>
+                        </dl>
+                    </div>
                 </div>
             </div>
+
 
             <div class="row border-bottom">
-                <div class="col-md-6">
-                    <dl class="row">
-                        <dt class="col-sm-6"> Status:</dt>
-                        <dd class="col-sm-6">
-                            <span class="badge badge-primary" *ngIf="objEnquiry.active == 'true'">Active</span>
-                            <span class="badge badge-secondary" *ngIf="objEnquiry.active== 'false'">Closed</span>
-                        </dd>
-                    </dl>
-                    <dl class="row">
-                        <dt class="col-sm-6"> Enquiry Created:</dt>
-                        <dd class="col-sm-6">{{objEnquiry.createdByName}}</dd>
-                    </dl>
-                    <dl class="row">
-                        <dt class="col-sm-6"> Last Updated:</dt>
-                        <dd class="col-sm-6">{{objEnquiry.updatedByName}}</dd>
-                    </dl>
-                </div>
+                <div class="col-md-12 " [ngClass]="{ noDisplay : enquiryToggle==false }">
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">Buyer
+                            Name</label>
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <select name="article" class="form-control">
+                                    <option value="null" disabled> Select Article</option>
+                                    <option>
+                                        1
+                                    </option>
+                                </select>
 
-                <div class="col-md-6">
-
-                    <dl class="row">
-                        <dt class="col-sm-6"> Enquiry Date:</dt>
-                        <dd class="col-sm-6">{{objEnquiry.enquiryDate}}</dd>
-                    </dl>
-                    <dl class="row">
-                        <dt class="col-sm-6"> Created on:</dt>
-                        <dd class="col-sm-6">{{objEnquiry.createdDateTime}}</dd>
-                    </dl>
-                    <dl class="row">
-                        <dt class="col-sm-6"> Updated on:</dt>
-                        <dd class="col-sm-6">articleName</dd>
-                    </dl>
-                </div>
-            </div>
-
-            <div class="row border-bottom">
-                <div class="col-md-6">
-
-                    <dl class="row">
-                        <dt class="col-sm-6"> Article:</dt>
-                        <dd class="col-sm-6">{{objEnquiry.articleName}}</dd>
-                    </dl>
-                    <dl class="row">
-                        <dt class="col-sm-6"> Design Type:</dt>
-                        <dd class="col-sm-6">{{objEnquiry.createdDateTime}}</dd>
-                    </dl>
-                    <dl class="row">
-                        <dt class="col-sm-6"> Shipment Dates:</dt>
-                        <dd class="col-sm-6">{{objEnquiry.createdDateTime}}</dd>
-                    </dl>
-                </div>
-
-
-                <div class="col-md-6">
-
-                    <dl class="row">
-                        <dt class="col-sm-6"> Process:</dt>
-                        <dd class="col-sm-6"></dd>
-                    </dl>
-                    <dl class="row">
-                        <dt class="col-sm-6">Process Type:</dt>
-                        <dd class="col-sm-6"></dd>
-                    </dl>
-                    <dl class="row">
-                        <dt class="col-sm-6"> Packaging:</dt>
-                        <dd class="col-sm-6"></dd>
-                    </dl>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="row border-bottom">
-            <div class="col-md-12 " [ngClass]="{ noDisplay : enquiryToggle==false }">
-                <div class="form-group row">
-                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Buyer
-                        Name</label>
-                    <div class="col-md-6">
-                        <div class="input-group">
-                            <select name="article" class="form-control">
-                                <option value="null" disabled> Select Article</option>
-                                <option>
-                                    1
-                                </option>
-                            </select>
-
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="form-group row">
-                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Article
-                        Name</label>
-                    <div class="col-md-6">
-                        <div class="input-group">
-                            <select name="article" class="form-control">
-                                <option value="null" disabled> Select Article</option>
-                                <option>
-                                    1
-                                </option>
-                            </select>
-
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="form-group row">
-                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Process</label>
-                    <div class="col-md-6">
-                        <div class="input-group">
-                            <select name="article" class="form-control">
-                                <option value="null" disabled> Select Article</option>
-                                <option>
-                                    1
-                                </option>
-                            </select>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Process Type</label>
-                    <div class="col-md-6">
-                        <div class="input-group">
-                            <select name="article" class="form-control">
-                                <option value="null" disabled> Select Article</option>
-                                <option>
-                                    1
-                                </option>
-                            </select>
-
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="form-group row">
-                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Design Type</label>
-                    <div class="col-md-6">
-                        <div class="input-group">
-                            <select name="article" class="form-control">
-                                <option value="null" disabled> Select Article</option>
-                                <option>
-                                    1
-                                </option>
-                            </select>
-
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <div class="form-group row">
-                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Packaging</label>
-                    <div class="col-md-6">
-                        <div class="input-group">
-                            <select name="article" class="form-control">
-                                <option value="null" disabled> Select Article</option>
-                                <option>
-                                    1
-                                </option>
-                            </select>
-
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <div class="form-group row">
-                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Shipment Dates</label>
-                    <div class="col-md-6">
-                        <div class="input-group">
-                            <textarea class="form-control" rows="3" type="text"></textarea>
-
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <button class="btn btn-white float-right" (click)="enquiryToggle = !enquiryToggle"> Close</button>
-                <button class="btn btn-primary float-right" (click)="enquiryToggle = !enquiryToggle"> Save</button>
-            </div>
-        </div>
-
-
-
-
-
-        <div class="row border-bottom pt-4">
-            <div class="col-md-12">
-                <nav>
-                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <a class="nav-item nav-link active" id="nav-pricing-tab" data-toggle="tab" href="#nav-pricing"
-                            role="tab" aria-controls="nav-pricing" aria-selected="true">Pricing Details</a>
-                        <a class="nav-item nav-link" id="nav-vendor-tab" data-toggle="tab" href="#nav-vendor" role="tab"
-                            aria-controls="nav-vendor" aria-selected="false">Vendor Details</a>
-                        <a class="nav-item nav-link" id="nav-order-tab" data-toggle="tab" href="#nav-order" role="tab"
-                            aria-controls="nav-order" aria-selected="false">Order Details</a>
-                        <a class="nav-item nav-link" id="nav-enquiry-tab" data-toggle="tab" href="#nav-enquiry"
-                            role="tab" aria-controls="nav-enquiry" aria-selected="false">Enquiry Remarks </a>
-                    </div>
-                </nav>
-                <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="nav-pricing" role="tabpanel"
-                        aria-labelledby="nav-pricing-tab">
-                        <div class="row border-bottom">
-                            <div class="col-md-6" [ngClass]="{ noDisplay : currencyToggle==true }">
-
-                                <dl class="row">
-                                    <dt class="col-sm-6"> Currency:</dt>
-                                    <dd class="col-sm-6"></dd>
-                                </dl>
-                                <dl class="row">
-                                    <dt class="col-sm-6">Quantity:</dt>
-                                    <dd class="col-sm-6"></dd>
-                                </dl>
-                                <dl class="row">
-                                    <dt class="col-sm-6"> Payment terms:</dt>
-                                    <dd class="col-sm-6"></dd>
-                                </dl>
-
-                                <dl class="row">
-                                    <dt class="col-sm-6">Price terms:
-                                    </dt>
-                                    <dd class="col-sm-6"></dd>
-                                </dl>
-                                <dl class="row">
-                                    <dt class="col-sm-6">Supplier Commission:</dt>
-                                    <dd class="col-sm-6">{{objEnquiry.sellerSideCommission}}%</dd>
-                                </dl>
-                                <dl class="row">
-                                    <dt class="col-sm-6"> Buyer Commission:
-                                    </dt>
-                                    <dd class="col-sm-6">{{objEnquiry.buyerSideCommission}}%</dd>
-                                </dl>
-
-                                <button class="btn btn-primary float-right" (click)="currencyToggle = !currencyToggle">
-                                    Edit</button>
                             </div>
                         </div>
+                    </div>
 
 
-                        <div class="row border-bottom">
-                            <div class="col-md-12" [ngClass]="{ noDisplay : currencyToggle==false }">
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">Article
+                            Name</label>
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <select name="article" class="form-control">
+                                    <option value="null" disabled> Select Article</option>
+                                    <option>
+                                        1
+                                    </option>
+                                </select>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">Process</label>
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <select name="article" class="form-control">
+                                    <option value="null" disabled> Select Article</option>
+                                    <option>
+                                        1
+                                    </option>
+                                </select>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">Process Type</label>
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <select name="article" class="form-control">
+                                    <option value="null" disabled> Select Article</option>
+                                    <option>
+                                        1
+                                    </option>
+                                </select>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">Design Type</label>
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <select name="article" class="form-control">
+                                    <option value="null" disabled> Select Article</option>
+                                    <option>
+                                        1
+                                    </option>
+                                </select>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">Packaging</label>
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <select name="article" class="form-control">
+                                    <option value="null" disabled> Select Article</option>
+                                    <option>
+                                        1
+                                    </option>
+                                </select>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">Shipment Dates</label>
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <textarea class="form-control" rows="3" type="text"></textarea>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <button class="btn btn-white float-right" (click)="enquiryToggle = !enquiryToggle"> Close</button>
+                    <button class="btn btn-primary float-right" (click)="enquiryToggle = !enquiryToggle"> Save</button>
+                </div>
+            </div>
+
+
+
+
+
+            <div class="row border-bottom pt-4">
+                <div class="col-md-12">
+                    <nav>
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <a class="nav-item nav-link active" id="nav-pricing-tab" data-toggle="tab"
+                                href="#nav-pricing" role="tab" aria-controls="nav-pricing" aria-selected="true">Pricing
+                                Details</a>
+                            <a class="nav-item nav-link" id="nav-vendor-tab" data-toggle="tab" href="#nav-vendor"
+                                role="tab" aria-controls="nav-vendor" aria-selected="false">Vendor Details</a>
+                            <a class="nav-item nav-link" id="nav-order-tab" data-toggle="tab" href="#nav-order"
+                                role="tab" aria-controls="nav-order" aria-selected="false">Order Details</a>
+                            <a class="nav-item nav-link" id="nav-enquiry-tab" data-toggle="tab" href="#nav-enquiry"
+                                role="tab" aria-controls="nav-enquiry" aria-selected="false">Enquiry Remarks </a>
+                        </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-pricing" role="tabpanel"
+                            aria-labelledby="nav-pricing-tab">
+                            <div class="row border-bottom">
+                                <div class="col-md-6" [ngClass]="{ noDisplay : currencyToggle==true }">
+
+                                    <dl class="row">
+                                        <dt class="col-sm-6"> Currency:</dt>
+                                        <dd class="col-sm-6"></dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Quantity:</dt>
+                                        <dd class="col-sm-6"></dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6"> Payment terms:</dt>
+                                        <dd class="col-sm-6"></dd>
+                                    </dl>
+
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Price terms:
+                                        </dt>
+                                        <dd class="col-sm-6"></dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Supplier Commission:</dt>
+                                        <dd class="col-sm-6">{{objEnquiry.sellerSideCommission}}%</dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6"> Buyer Commission:
+                                        </dt>
+                                        <dd class="col-sm-6">{{objEnquiry.buyerSideCommission}}%</dd>
+                                    </dl>
+
+                                    <button class="btn btn-primary float-right"
+                                        (click)="currencyToggle = !currencyToggle">
+                                        Edit</button>
+                                </div>
+                            </div>
+
+
+                            <div class="row border-bottom">
+                                <div class="col-md-12" [ngClass]="{ noDisplay : currencyToggle==false }">
+                                    <div class="form-group row">
+                                        <label for="inputEmail3"
+                                            class="col-md-3 col-form-label control-label">Currency</label>
+                                        <div class="col-md-6">
+                                            <div class="input-group">
+                                                <select name="article" class="form-control">
+                                                    <option value="null" disabled> Select Article</option>
+                                                    <option>
+                                                        1
+                                                    </option>
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">Total
+                                            Quantity</label>
+                                        <div class="col-md-3">
+                                            <div class="input-group">
+                                                <input class="form-control" type="number" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="input-group">
+                                                <select name="article" class="form-control">
+                                                    <option value="null" disabled> Select Article</option>
+                                                    <option>
+                                                        1
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">Payment
+                                            Terms</label>
+                                        <div class="col-md-2">
+                                            <div class="input-group">
+                                                <select name="article" class="form-control">
+                                                    <option value="null" disabled> Select Payment</option>
+                                                    <option>
+                                                        1
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="input-group">
+                                                <input class="form-control" type="number" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input class="form-control" type="text"
+                                                placeholder="Additional Information" />
+                                        </div>
+                                    </div>
+
+                                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Price
+                                        terms</label>
+                                    <div class="col-md-3">
+                                        <div class="input-group">
+                                            <select name="priceterm" class="form-control">
+                                                <option value="null" disabled> Select Price Terms</option>
+                                                <option>
+                                                    1
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3 mrg-sm1">
+                                        <div class="input-group">
+                                            <select name="destinationId" class="form-control">
+                                                <option value="null" disabled> Select Destination</option>
+                                                <option>
+                                                    1
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">Suppiler
+                                            Side
+                                            Commission</label>
+
+                                        <div class="col-md-6">
+                                            <div class="row">
+
+                                                <div class="col-md-4">
+                                                    <div class="input-group">
+                                                        <input type="text" placeholder="Comm%" class="form-control"
+                                                            name="sellerSideCommission">
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text" id="basic-addon2">per</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4 mrg-sm1">
+                                                    <select class="form-control col-md-12"
+                                                        name="sellerSideCommissionUOMId">
+                                                        <option selected disabled> Select UOM </option>
+                                                        <option>
+
+                                                        </option>
+
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-md-4 mrg-sm1">
+                                                    <input type="text" placeholder="Additional Info."
+                                                        class="form-control" name="sellerSideCommissionInfo">
+                                                </div>
+                                            </div>
+                                            <small id="passwordHelpBlock" class="form-text text-lightgrey">
+                                                FabCot Seller Side Commission in %age, if UOM not selected
+                                            </small>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="code" class="col-md-3 col-form-label control-label">Buyer Side
+                                            Commission</label>
+
+                                        <div class="col-md-6">
+                                            <div class="row">
+
+                                                <div class="col-md-4">
+                                                    <div class="input-group">
+                                                        <input type="text" placeholder="Comm%" class="form-control"
+                                                            name="buyerSideCommission">
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text" id="basic-addon2">per</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4 mrg-sm1">
+                                                    <select class="form-control col-md-12"
+                                                        name="buyerSideCommissionUOMId">
+                                                        <option selected disabled> Select UOM </option>
+                                                        <option>
+
+                                                        </option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-md-4 mrg-sm1">
+                                                    <input type="text" placeholder="Additional Info."
+                                                        class="form-control">
+                                                </div>
+                                            </div>
+                                            <small id="passwordHelpBlock" class="form-text text-lightgrey">
+                                                FabCot Buyer Side ommission in %age, if UOM not selected
+                                            </small>
+                                        </div>
+                                    </div>
+
+                                    <button class="btn btn-primary float-right"
+                                        (click)="currencyToggle = !currencyToggle">Save</button>
+                                    <button class="btn btn-light float-right"
+                                        (click)="currencyToggle = !currencyToggle">
+                                        Close</button>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="tab-pane fade" id="nav-vendor" role="tabpanel" aria-labelledby="nav-vendor-tab">
+                            <div [ngClass]="{ noDisplay : vendorToggle==true }">
+                                <dl class="row">
+                                    <dt class="col-sm-6"> Selected Vendor:
+                                    </dt>
+                                    <dd class="col-sm-6"></dd>
+                                </dl>
+                                <dl class="row">
+                                    <dt class="col-sm-6"> Final Costing:</dt>
+                                    <dd class="col-sm-6"></dd>
+                                </dl>
+                                <button class="btn btn-primary float-right" (click)="vendorToggle = !vendorToggle">
+                                    Edit</button>
+                            </div>
+
+                            <div [ngClass]="{ noDisplay : vendorToggle==false }">
+
+                                <div class="form-group row">
+                                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Suplier /
+                                        Seller</label>
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            <select name="article" class="form-control">
+                                                <option value="null" disabled> Select Article</option>
+                                                <option>
+                                                    1
+                                                </option>
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
                                 <div class="form-group row">
                                     <label for="inputEmail3"
-                                        class="col-md-3 col-form-label control-label">Currency</label>
+                                        class="col-md-3 col-form-label control-label">Costing</label>
                                     <div class="col-md-6">
                                         <div class="input-group">
-                                            <select name="article" class="form-control">
-                                                <option value="null" disabled> Select Article</option>
-                                                <option>
-                                                    1
-                                                </option>
-                                            </select>
-
+                                            <textarea rows="3" class="form-control"></textarea>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
-                                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Total
-                                        Quantity</label>
-                                    <div class="col-md-3">
-                                        <div class="input-group">
-                                            <input class="form-control" type="number" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="input-group">
-                                            <select name="article" class="form-control">
-                                                <option value="null" disabled> Select Article</option>
-                                                <option>
-                                                    1
-                                                </option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Payment
-                                        Terms</label>
-                                    <div class="col-md-2">
-                                        <div class="input-group">
-                                            <select name="article" class="form-control">
-                                                <option value="null" disabled> Select Payment</option>
-                                                <option>
-                                                    1
-                                                </option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="input-group">
-                                            <input class="form-control" type="number" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <input class="form-control" type="text" placeholder="Additional Information" />
-                                    </div>
-                                </div>
-
-                                <label for="inputEmail3" class="col-md-3 col-form-label control-label">Price
-                                    terms</label>
-                                <div class="col-md-3">
-                                    <div class="input-group">
-                                        <select name="priceterm" class="form-control">
-                                            <option value="null" disabled> Select Price Terms</option>
-                                            <option>
-                                                1
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-3 mrg-sm1">
-                                    <div class="input-group">
-                                        <select name="destinationId" class="form-control">
-                                            <option value="null" disabled> Select Destination</option>
-                                            <option>
-                                                1
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-
-
-                                <div class="form-group row">
-                                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Suppiler
-                                        Side
-                                        Commission</label>
-
-                                    <div class="col-md-6">
-                                        <div class="row">
-
-                                            <div class="col-md-4">
-                                                <div class="input-group">
-                                                    <input type="text" placeholder="Comm%" class="form-control"
-                                                        name="sellerSideCommission">
-                                                    <div class="input-group-append">
-                                                        <span class="input-group-text" id="basic-addon2">per</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-4 mrg-sm1">
-                                                <select class="form-control col-md-12" name="sellerSideCommissionUOMId">
-                                                    <option selected disabled> Select UOM </option>
-                                                    <option>
-
-                                                    </option>
-
-                                                </select>
-                                            </div>
-
-                                            <div class="col-md-4 mrg-sm1">
-                                                <input type="text" placeholder="Additional Info." class="form-control"
-                                                    name="sellerSideCommissionInfo">
-                                            </div>
-                                        </div>
-                                        <small id="passwordHelpBlock" class="form-text text-lightgrey">
-                                            FabCot Seller Side Commission in %age, if UOM not selected
-                                        </small>
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label for="code" class="col-md-3 col-form-label control-label">Buyer Side
-                                        Commission</label>
-
-                                    <div class="col-md-6">
-                                        <div class="row">
-
-                                            <div class="col-md-4">
-                                                <div class="input-group">
-                                                    <input type="text" placeholder="Comm%" class="form-control"
-                                                        name="buyerSideCommission">
-                                                    <div class="input-group-append">
-                                                        <span class="input-group-text" id="basic-addon2">per</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-4 mrg-sm1">
-                                                <select class="form-control col-md-12" name="buyerSideCommissionUOMId">
-                                                    <option selected disabled> Select UOM </option>
-                                                    <option>
-
-                                                    </option>
-                                                </select>
-                                            </div>
-
-                                            <div class="col-md-4 mrg-sm1">
-                                                <input type="text" placeholder="Additional Info." class="form-control">
-                                            </div>
-                                        </div>
-                                        <small id="passwordHelpBlock" class="form-text text-lightgrey">
-                                            FabCot Buyer Side ommission in %age, if UOM not selected
-                                        </small>
-                                    </div>
-                                </div>
-
-                                <button class="btn btn-primary float-right"
-                                    (click)="currencyToggle = !currencyToggle">Save</button>
-                                <button class="btn btn-light float-right" (click)="currencyToggle = !currencyToggle">
+                                <button class="btn btn-primary float-right" (click)="vendorToggle = !vendorToggle">
+                                    Save</button>
+                                <button class="btn btn-white float-right" (click)="vendorToggle = !vendorToggle">
                                     Close</button>
 
                             </div>
                         </div>
 
-                    </div>
 
-                    <div class="tab-pane fade" id="nav-vendor" role="tabpanel" aria-labelledby="nav-vendor-tab">
-                        <div [ngClass]="{ noDisplay : vendorToggle==true }">
-                            <dl class="row">
-                                <dt class="col-sm-6"> Selected Vendor:
-                                </dt>
-                                <dd class="col-sm-6"></dd>
-                            </dl>
-                            <dl class="row">
-                                <dt class="col-sm-6"> Final Costing:</dt>
-                                <dd class="col-sm-6"></dd>
-                            </dl>
-                            <button class="btn btn-primary float-right" (click)="vendorToggle = !vendorToggle">
-                                Edit</button>
+                        <div class="tab-pane fade" id="nav-order" role="tabpanel" aria-labelledby="nav-order-tab">
+
+
+                            <div [ngClass]="{ noDisplay : orderToggle==true }">
+                                <dl class="row">
+                                    <dt class="col-sm-6">Order Confirm On:
+                                    </dt>
+                                    <dd class="col-sm-6"></dd>
+                                </dl>
+                                <dl class="row">
+                                    <dt class="col-sm-6"> Details:</dt>
+                                    <dd class="col-sm-6"></dd>
+                                </dl>
+
+                                <button class="btn btn-primary float-right" (click)="orderToggle = !orderToggle">
+                                    Edit</button>
+                            </div>
+
+
+                            <div [ngClass]="{ noDisplay : orderToggle==false }">
+                                <div class="form-group row">
+                                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Confirmation
+                                        On:</label>
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            <input class="form-control " ngbDatepicker #validityDate="ngbDatepicker"
+                                                (click)="validityDate.toggle()" [displayMonths]="1" />
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group row">
+                                    <label for="inputEmail3"
+                                        class="col-md-3 col-form-label control-label">Details</label>
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            <textarea rows="3" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary" (click)="orderToggle = !orderToggle">
+                                    Save</button>
+                                <button class="btn btn-white" (click)="orderToggle = !orderToggle">
+                                    Close</button>
+                            </div>
                         </div>
 
-                        <div [ngClass]="{ noDisplay : vendorToggle==false }">
+                        <div class="tab-pane fade" id="nav-enquiry" role="tabpanel" aria-labelledby="nav-enquiry-tab">
 
-                            <div class="form-group row">
-                                <label for="inputEmail3" class="col-md-3 col-form-label control-label">Suplier /
-                                    Seller</label>
-                                <div class="col-md-6">
-                                    <div class="input-group">
-                                        <select name="article" class="form-control">
-                                            <option value="null" disabled> Select Article</option>
-                                            <option>
-                                                1
-                                            </option>
-                                        </select>
+                            <div [ngClass]="{ noDisplay : remarksToggle==true }">
+                                <dl class="row">
+                                    <dt class="col-sm-6">Enquiry Remarks:
 
-                                    </div>
-                                </div>
+                                    </dt>
+                                    <dd class="col-sm-6"></dd>
+                                </dl>
+                                <dl class="row">
+                                    <dt class="col-sm-6"> Other Condition:
+                                    </dt>
+                                    <dd class="col-sm-6"></dd>
+                                </dl>
+                                <dl class="row">
+                                    <dt class="col-sm-6">Certifications:
+                                    </dt>
+                                    <dd class="col-sm-6"></dd>
+                                </dl>
+
+                                <button class="btn btn-primary float-right" (click)="remarksToggle = !remarksToggle">
+                                    Edit</button>
                             </div>
 
+                            <div [ngClass]="{ noDisplay : remarksToggle==false }">
 
-                            <div class="form-group row">
-                                <label for="inputEmail3" class="col-md-3 col-form-label control-label">Costing</label>
-                                <div class="col-md-6">
-                                    <div class="input-group">
-                                        <textarea rows="3" class="form-control"></textarea>
+
+                                <div class="form-group row">
+                                    <label for="inputEmail3"
+                                        class="col-md-3 col-form-label control-label">Remarks</label>
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            <textarea rows="3" class="form-control"></textarea>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <button class="btn btn-primary float-right" (click)="vendorToggle = !vendorToggle">
-                                Save</button>
-                            <button class="btn btn-white float-right" (click)="vendorToggle = !vendorToggle">
-                                Close</button>
-
-                        </div>
-                    </div>
-
-
-                    <div class="tab-pane fade" id="nav-order" role="tabpanel" aria-labelledby="nav-order-tab">
-
-
-                        <div [ngClass]="{ noDisplay : orderToggle==true }">
-                            <dl class="row">
-                                <dt class="col-sm-6">Order Confirm On:
-                                </dt>
-                                <dd class="col-sm-6"></dd>
-                            </dl>
-                            <dl class="row">
-                                <dt class="col-sm-6"> Details:</dt>
-                                <dd class="col-sm-6"></dd>
-                            </dl>
-
-                            <button class="btn btn-primary float-right" (click)="orderToggle = !orderToggle">
-                                Edit</button>
-                        </div>
-
-
-                        <div [ngClass]="{ noDisplay : orderToggle==false }">
-                            <div class="form-group row">
-                                <label for="inputEmail3" class="col-md-3 col-form-label control-label">Confirmation
-                                    On:</label>
-                                <div class="col-md-6">
-                                    <div class="input-group">
-                                        <input class="form-control " ngbDatepicker #validityDate="ngbDatepicker"
-                                            (click)="validityDate.toggle()" [displayMonths]="1" />
+                                <div class="form-group row">
+                                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Other
+                                        Conditions</label>
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            <textarea rows="3" class="form-control"></textarea>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
 
-                            <div class="form-group row">
-                                <label for="inputEmail3" class="col-md-3 col-form-label control-label">Details</label>
-                                <div class="col-md-6">
-                                    <div class="input-group">
-                                        <textarea rows="3" class="form-control"></textarea>
+                                <div class="form-group row">
+                                    <label for="inputEmail3"
+                                        class="col-md-3 col-form-label control-label">Certificates</label>
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            <select name="article" class="form-control">
+                                                <option value="null" disabled> Select Certificates</option>
+                                                <option>
+                                                    1
+                                                </option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
+
+                                <button class="btn btn-primary float-right" (click)="remarksToggle = !remarksToggle">
+                                    Save Info</button>
+                                <button class="btn btn-white float-right" (click)="remarksToggle = !remarksToggle">
+                                    Close</button>
                             </div>
-                            <button class="btn btn-primary" (click)="orderToggle = !orderToggle">
-                                Save</button>
-                            <button class="btn btn-white" (click)="orderToggle = !orderToggle">
-                                Close</button>
-                        </div>
-                    </div>
-
-                    <div class="tab-pane fade" id="nav-enquiry" role="tabpanel" aria-labelledby="nav-enquiry-tab">
-
-                        <div [ngClass]="{ noDisplay : remarksToggle==true }">
-                            <dl class="row">
-                                <dt class="col-sm-6">Enquiry Remarks:
-
-                                </dt>
-                                <dd class="col-sm-6"></dd>
-                            </dl>
-                            <dl class="row">
-                                <dt class="col-sm-6"> Other Condition:
-                                </dt>
-                                <dd class="col-sm-6"></dd>
-                            </dl>
-                            <dl class="row">
-                                <dt class="col-sm-6">Certifications:
-                                </dt>
-                                <dd class="col-sm-6"></dd>
-                            </dl>
-
-                            <button class="btn btn-primary float-right" (click)="remarksToggle = !remarksToggle">
-                                Edit</button>
-                        </div>
-
-                        <div [ngClass]="{ noDisplay : remarksToggle==false }">
-
-
-                            <div class="form-group row">
-                                <label for="inputEmail3" class="col-md-3 col-form-label control-label">Remarks</label>
-                                <div class="col-md-6">
-                                    <div class="input-group">
-                                        <textarea rows="3" class="form-control"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="inputEmail3" class="col-md-3 col-form-label control-label">Other
-                                    Conditions</label>
-                                <div class="col-md-6">
-                                    <div class="input-group">
-                                        <textarea rows="3" class="form-control"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="form-group row">
-                                <label for="inputEmail3"
-                                    class="col-md-3 col-form-label control-label">Certificates</label>
-                                <div class="col-md-6">
-                                    <div class="input-group">
-                                        <select name="article" class="form-control">
-                                            <option value="null" disabled> Select Certificates</option>
-                                            <option>
-                                                1
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <button class="btn btn-primary float-right" (click)="remarksToggle = !remarksToggle">
-                                Save Info</button>
-                            <button class="btn btn-white float-right" (click)="remarksToggle = !remarksToggle">
-                                Close</button>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- ----------------------------------------------------- -->
-
-
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
-                    aria-selected="true">Enquiry Items</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                    aria-controls="profile" aria-selected="false">Notes / Activities</a>
-            </li>
-        </ul>
-        <!-- --------------------------------------------- -->
+            <!-- ----------------------------------------------------- -->
 
 
-        <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                <div class="row">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                        aria-controls="home" aria-selected="true">Enquiry Items</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                        aria-controls="profile" aria-selected="false">Notes / Activities</a>
+                </li>
+            </ul>
+            <!-- --------------------------------------------- -->
 
-                    <button type="button" class="btn btn-primary btn-md float-right"
-                        (click)="addEnquiryItemform('AddEnquiryItem', objEnquiry)">
-                        <i class="fa fa-plus"></i>Add Enquiry Item</button>
+
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="row">
+
+                        <button type="button" class="btn btn-primary btn-md float-right"
+                            (click)="addEnquiryItemform('AddEnquiryItem', objEnquiry)">
+                            <i class="fa fa-plus"></i>Add Enquiry Item</button>
+
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-1 col-sm-3 col-xs-3 forum-info" data-original-title="POCs">
+                            <div class="poc-icon">
+                                <a class="faq-question text-muted text-s-lg text-w-3" data-toggle="collapse"
+                                    role="button" aria-expanded="false" aria-controls="collapseExample">
+                                    <span class="fa fa-expand-alt"></span>1</a>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <a class="faq-question ">1</a>
+                            <div class="small mb-1">1 1
+                                1
+                                | 1
+                                Size: 1 </div>
+                            <div class="small">Added by <strong>1</strong>
+                                <div class="m-l-lg" style="display: inline-block;">
+                                    <i class="far fa-clock"></i> Date : 1
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="ibox-tools">
+                                <button type="button" class="btn editIconBack" data-toggle="tooltip"
+                                    data-placement="top" title="" data-original-title="Edit"
+                                    (click)=" addQuotationform('addQuotation' ) ">
+                                    <i class="fas fa-paperclip"></i>
+                                </button>
+                                <button type="button" class="btn editIconBack" data-toggle="tooltip"
+                                    data-placement="top" title="" data-original-title="Edit"
+                                    (click)=" EditEnquiryItemform('EditEnquiryItem', obj)">
+                                    <i class="far fa-edit "></i>
+                                </button>
+                                <button type="button" class="btn deleteIconBack" data-toggle="tooltip"
+                                    data-placement="top" title="" data-original-title="Delete"
+                                    (click)=" deleteEnquiryItem(obj)">
+                                    <i class="far fa-trash-alt"></i>
+                                </button>
+
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-1 forum-info" data-toggle="tooltip" data-placement="top" title=""
+                            style="border-left: 1px solid #d0d0d0" data-original-title="Total Contracts">
+                            <span class="views-number">1</span>
+                            <div><small>Sets</small></div>
+                        </div>
+
+                        <!-- ----------------End Of Row-------------------- -->
+
+
+
+
+                        <div class="collapse" id="enquiryItem-{{ x }}">
+                            <div class="card-body mt-4 BG">
+                                <div class="row">
+                                </div>
+
+                                <h2>Vendor Quotes</h2>
+
+                                <div class="row text-center pt-3">
+                                    <div class="col-md-2 border p-2 "></div>
+                                    <div class="col-md-2 border p-2"></div>
+                                    <div class="col-md-2 border p-2"></div>
+                                    <div class="col-md-2 border p-2"></div>
+                                    <div class="col-md-2 border p-2">
+                                        <div class="badge badge-primary">Active</div>
+                                        <div class="badge badge-secondary">Inactive</div>
+                                    </div>
+                                    <div class="col-md-2 border ">
+                                        <button type="button" class="btn editIconBack"
+                                            (click)="editQuotationform('editQuotation')">
+                                            <i class="far fa-edit"></i>
+                                        </button>
+                                        <button type="button" class="btn deleteIconBack">
+                                            <i class="far fa-trash-alt"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+                        <!----------------------------------------------------------------------------->
+
+                    </div>
+
 
                 </div>
-
-
-                <div class="row" *ngFor="let obj of enquiryItem; let x = index">
-                    <div class="col-md-1 col-sm-3 col-xs-3 forum-info" data-original-title="POCs">
-                        <div class="poc-icon">
-                            <a class="faq-question text-muted text-s-lg text-w-3" data-toggle="collapse" role="button"
-                                aria-expanded="false" aria-controls="collapseExample" href="#enquiryItem-{{ x }}">
-                                <span class="fa fa-expand-alt"></span>1</a>
-                        </div>
-                    </div>
-                    <div class="col-md-7">
-                        <a class="faq-question ">{{obj.description}}</a>
-                        <div class="small mb-1">{{obj.colorId}} {{obj.compositionPercentage}}
-                            {{obj.compositionFebricTypeId}}
-                            | {{obj.construction}}
-                            Size: {{obj.size}} </div>
-                        <div class="small">Added by <strong>{{obj.createdByName}}</strong>
-                            <div class="m-l-lg" style="display: inline-block;">
-                                <i class="far fa-clock"></i> Date : {{obj.createdDateTime}}
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="col-md-2">
-                        <div class="ibox-tools">
-                            <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top"
-                                title="" data-original-title="Edit" (click)=" addQuotationform('addQuotation' ) ">
-                                <i class="fas fa-paperclip"></i>
-                            </button>
-                            <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top"
-                                title="" data-original-title="Edit"
-                                (click)=" EditEnquiryItemform('EditEnquiryItem', obj)">
-                                <i class="far fa-edit "></i>
-                            </button>
-                            <button type="button" class="btn deleteIconBack" data-toggle="tooltip" data-placement="top"
-                                title="" data-original-title="Delete" (click)=" deleteEnquiryItem(obj)">
-                                <i class="far fa-trash-alt"></i>
-                            </button>
-
-                        </div>
-                    </div>
-
-
-                    <div class="col-md-1 forum-info" data-toggle="tooltip" data-placement="top" title=""
-                        style="border-left: 1px solid #d0d0d0" data-original-title="Total Contracts">
-                        <span class="views-number">{{obj.itemQuantity}}</span>
-                        <div><small>Sets</small></div>
-                    </div>
-
-                    <!-- ----------------End Of Row-------------------- -->
-
-
-
-
-                    <div class="collapse" id="enquiryItem-{{ x }}">
-                        <div class="card-body mt-4 BG">
-                            <div class="row">
-                            </div>
-
-                            <h2>Vendor Quotes</h2>
-
-                            <div class="row text-center pt-3">
-                                <div class="col-md-2 border p-2 "></div>
-                                <div class="col-md-2 border p-2"></div>
-                                <div class="col-md-2 border p-2"></div>
-                                <div class="col-md-2 border p-2"></div>
-                                <div class="col-md-2 border p-2">
-                                    <div class="badge badge-primary">Active</div>
-                                    <div class="badge badge-secondary">Inactive</div>
-                                </div>
-                                <div class="col-md-2 border ">
-                                    <button type="button" class="btn editIconBack"
-                                        (click)="editQuotationform('editQuotation')">
-                                        <i class="far fa-edit"></i>
-                                    </button>
-                                    <button type="button" class="btn deleteIconBack">
-                                        <i class="far fa-trash-alt"></i>
-                                    </button>
-                                </div>
-                            </div>
-
-
-
-
-
-
-                        </div>
-                    </div>
-
-
-
-
-
-
-
-
-
-                    <!----------------------------------------------------------------------------->
-
-                </div>
-
-
+                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">Comming Soon</div>
             </div>
-            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">Comming Soon</div>
+
+        </div>
+
+
+
+        <!-- --------------------------------------------------- -->
+        <div class="col-md-4">
+            (Side Nav Bar)
         </div>
 
     </div>
-
-
-
-    <!-- --------------------------------------------------- -->
-    <div class="col-md-4">
-        (Side Nav Bar)
-    </div>
-
 </div>

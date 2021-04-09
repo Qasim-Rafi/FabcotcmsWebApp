@@ -27,6 +27,9 @@ export class EditActiveEnquiryComponent implements OnInit {
   enquiryItem: any = [];
   temp: any[];
 
+  obj: any;
+  x: any;
+
 
   constructor(
 
@@ -38,11 +41,38 @@ export class EditActiveEnquiryComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
     this.queryParems = this.route.snapshot.queryParams;
     this.objEnquiry = this.queryParems;
+    this.editEnquiry(this.objEnquiry)
 
-    this.getAllEnquiryItems();
+    // this.getAllEnquiryItems();
   }
+
+
+
+
+  editEnquiry(row) {
+    this.http.get(`${environment.apiUrl}/api/Enquiries/GetEnquiryById/` + row.id)
+      .subscribe(
+        res => {
+          this.response = res;
+          if (this.response.success == true) {
+            this.enquiryItem = this.response.data;
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+        });
+  }
+
+
+
 
   addQuotationform(check) {
     const modalRef = this.modalService.open(QuotationComponent, { centered: true });
@@ -84,7 +114,7 @@ export class EditActiveEnquiryComponent implements OnInit {
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        this.getAllEnquiryItems();
+        // this.getAllEnquiryItems();
 
       }
     }, (reason) => {
@@ -100,7 +130,7 @@ export class EditActiveEnquiryComponent implements OnInit {
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        this.getAllEnquiryItems();
+        // this.getAllEnquiryItems();
 
       }
     }, (reason) => {
@@ -110,28 +140,28 @@ export class EditActiveEnquiryComponent implements OnInit {
 
 
 
-  getAllEnquiryItems() {
-    this.http.get(`${environment.apiUrl}/api/Enquiries/GetAllEnquiryItem`)
-      .subscribe(
-        res => {
+  // getAllEnquiryItems() {
+  //   this.http.get(`${environment.apiUrl}/api/Enquiries/GetAllEnquiryItem`)
+  //     .subscribe(
+  //       res => {
 
-          this.response = res;
-          if (this.response.success == true) {
-            this.enquiryItem = this.response.data;
-            this.temp = [...this.enquiryItem];
-            // this.listCount = this.response.data.length;
-            // this.getTotalPOCs();
-          }
-          else {
-            this.toastr.error(this.response.message, 'Message.');
-          }
+  //         this.response = res;
+  //         if (this.response.success == true) {
+  //           this.enquiryItem = this.response.data;
+  //           this.temp = [...this.enquiryItem];
+  //           // this.listCount = this.response.data.length;
+  //           // this.getTotalPOCs();
+  //         }
+  //         else {
+  //           this.toastr.error(this.response.message, 'Message.');
+  //         }
 
-        }, err => {
-          if (err.status == 400) {
-            this.toastr.error(this.response.message, 'Message.');
-          }
-        });
-  }
+  //       }, err => {
+  //         if (err.status == 400) {
+  //           this.toastr.error(this.response.message, 'Message.');
+  //         }
+  //       });
+  // }
 
 
   deleteEnquiryItem(obj) {
@@ -155,7 +185,7 @@ export class EditActiveEnquiryComponent implements OnInit {
               this.response = res;
               if (this.response.success == true) {
                 this.toastr.error(this.response.message, 'Message.');
-                this.getAllEnquiryItems();
+                // this.getAllEnquiryItems();
               }
               else {
                 this.toastr.error(this.response.message, 'Message.');
