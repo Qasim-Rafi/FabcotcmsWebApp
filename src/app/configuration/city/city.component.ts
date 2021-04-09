@@ -273,27 +273,27 @@ cityCsvFile(){
     let count2 = this.rows.map(x => x.country.length);
     let max2 = count2.reduce((a, b) => Math.max(a, b));
 
-    let count3 = this.rows.map(x => x.details.length);
-    let max3 = count3.reduce((a, b) => Math.max(a, b));
+    // let count3 = this.rows.map(x => x.details.length);
+    // let max3 = count3.reduce((a, b) => Math.max(a, b));
 
     let count4 = this.rows.map(x => x.active.length);
     let max4 = count4.reduce((a, b) => Math.max(a, b));
     // max = max + 10;
     max1 = max1 + 10;
     max2 = max2 + 10;
-    max3 = max3 + 10;
+    // max3 = max3 + 10;
     max4 = max4 + 10;
 
     // ................................................ headings replace yours............................
 
     this.copyData.push('S No.' + 'City Name'.padEnd(max1) +
-      'Country'.padEnd(max2) + 'Details'.padEnd(max3) + 'Status'.padEnd(max4) + 'Changed On' + '| Changed By \n');
+      'Country'.padEnd(max2) + 'Details' + 'Status'.padEnd(max4) + 'Changed On' + '| Changed By \n');
     // ................................................ headings............................
 
     // ................................................ coloum data...........replace your coloum names.................
     for (let i = 0; i < this.rows.length; i++) {
       let tempData = this.rows[i].id + this.rows[i].name.padEnd(max1) + this.rows[i].country.padEnd(max2)
-        + this.rows[i].details.padEnd(max3)
+        + this.rows[i].details
         + this.rows[i].active
         + this.rows[i].updatedDateTime + this.rows[i].updatedByName + '\n';
       this.copyData.push(tempData);
