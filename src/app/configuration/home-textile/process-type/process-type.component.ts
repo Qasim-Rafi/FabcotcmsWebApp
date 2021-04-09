@@ -136,7 +136,7 @@ deleteProcess(id) {
 
   //---------------------------------Export as Excel FiLe -----------------------------//
 
-  processTypeExcel(): void {
+  processTypeExcel(){
   
     const filtered = this.rows.map(row => ({
       SNo: row.id,
@@ -151,6 +151,25 @@ deleteProcess(id) {
     this.service.exportAsExcelFile(filtered, 'Process Type');
 
   }
+
+ //---------------------------------Export as CSV FiLe -----------------------------//
+
+ processTypeCsv(){
+  
+  const filtered = this.rows.map(row => ({
+    SNo: row.id,
+    ProcessType: row.type,
+    Details: row.description,
+    Status: row.active == true ? "Active" : "In-Active",
+    LastChange: row.updatedDateTime + '|' + row.updatedByName
+
+
+  }));
+
+  this.service.exportAsCsvFile(filtered, 'Process Type');
+
+}
+
 
   //--------------------------------Export as  pdf -----------------------------------//
 

@@ -41,7 +41,6 @@ export class CountryComponent implements OnInit {
     this.service.fetch((data) => {
       this.countryFilter = [...data];
       this.rows = data;
-      console.log(this.rows)
       this.countryCount = this.rows.length;
     }, this.CountryUrl);
 
@@ -144,7 +143,7 @@ export class CountryComponent implements OnInit {
   // --------------------------Export as Excel file----------------------------------//
 
 
-  countryExcelFile(): void {
+  countryExcelFile(){
     const filtered = this.rows.map(row => ({
       Sno: row.id,
       CountryName: row.name,
@@ -157,6 +156,20 @@ export class CountryComponent implements OnInit {
 
   }
 
+// -------------------------------- Export as CSV file --------------------------------//
+
+countryCsvFile(){
+  const filtered = this.rows.map(row => ({
+    Sno: row.id,
+    CountryName: row.name,
+    Details: row.details,
+    Status: row.active == true ? "Active" : "In-Active",
+    CreatedOn: row.createdDateTime + ' | ' + row.createdByName
+  }));
+
+  this.service.exportAsCsvFile(filtered, 'Countries');
+
+}
 
   // -------------------------------Export as Pdf  ------------------------------------//
 

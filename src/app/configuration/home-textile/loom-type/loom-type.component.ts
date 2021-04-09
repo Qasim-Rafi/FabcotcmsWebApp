@@ -134,7 +134,7 @@ export class LoomTypeComponent implements OnInit {
 
   //----------------------------- Eport As Excel File ---------------------------------//
 
-  loomExcelFile(): void {
+  loomExcelFile(){
     const filtered = this.rows.map(row => ({
       SNo: row.id,
       LoomType: row.type,
@@ -146,6 +146,22 @@ export class LoomTypeComponent implements OnInit {
     this.service.exportAsExcelFile(filtered, 'Loom Type');
 
   }
+
+  //----------------------------- Eport As CSV File ---------------------------------//
+
+  loomCsvFile(){
+    const filtered = this.rows.map(row => ({
+      SNo: row.id,
+      LoomType: row.type,
+      Details: row.description,
+      Status: row.active == true ? "Active" : "In-Active",
+      LastChange: row.updatedDateTime + '|' + row.updatedByName
+    }));
+
+    this.service.exportAsCsvFile(filtered, 'Loom Type');
+
+  }
+
 
   // --------------------------------- Export As Pdf ----------------------------------//
 

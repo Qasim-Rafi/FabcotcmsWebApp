@@ -54,7 +54,9 @@
                 <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0" 
                 aria-controls="DataTables_Table_0"><span>Copy</span></a>
                 <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0" 
-                aria-controls="DataTables_Table_0"><span>CSV</span></a>
+                aria-controls="DataTables_Table_0"
+                (click)="processCsvFile()"
+                ><span>CSV</span></a>
                 <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0" 
                 aria-controls="DataTables_Table_0"
                 (click)="processExcelFile()"

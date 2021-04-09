@@ -136,7 +136,7 @@ export class CertificateComponent implements OnInit {
 
   //-------------------------------Export as Excel File ---------------------------------//
 
-  certificateExcelFile(): void {
+  certificateExcelFile(){
     const filtered = this.rows.map(row => ({
       SNo: row.id,
       CertificateName: row.name,
@@ -148,7 +148,20 @@ export class CertificateComponent implements OnInit {
     this.service.exportAsExcelFile(filtered, 'Certificate');
 
   }
+  //-------------------------------Export as CSV  File ---------------------------------//
 
+  certificateCsvFile(){
+    const filtered = this.rows.map(row => ({
+      SNo: row.id,
+      CertificateName: row.name,
+      Details: row.description,
+      Status: row.active == true ? "Active" : "In-Active",
+      LastChange: row.updatedDateTime + '|' + row.updatedByName
+    }));
+
+    this.service.exportAsCsvFile(filtered, 'Certificate');
+
+  }
   //-----------------------------Export as PDF --------------------------------------- //
 
   certificatePdf() {

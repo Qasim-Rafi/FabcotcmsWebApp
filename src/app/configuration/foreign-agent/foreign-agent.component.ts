@@ -166,6 +166,28 @@ export class ForeignAgentComponent implements OnInit {
     this.service.exportAsExcelFile(filtered, 'Agent');
 
   }
+ //---------------------- Export as  CSV File ----------------------------//
+
+ agentCsvFile() {
+
+  const filtered = this.rows.map(row => ({
+
+    AgentCode: row.code,
+    AgentName: row.name,
+    AgentType: row.agentTypeId,
+    Address: row.address,
+    ContactNum: row.cellNumber,
+    Email: row.emailAddress,
+    Status: row.active == true ? "Active" : "In-Active",
+    Side: row.agentSideId,
+    LastChangedOn: row.updatedDateTime + '|' + row.createdByName
+
+  }));
+
+  this.service.exportAsCsvFile(filtered, 'Agent');
+
+}
+
   //-------------------------- Export as Pdf-----------------------//
 
   agentPdf() {

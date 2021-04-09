@@ -134,7 +134,7 @@ export class BankAccountsComponent implements OnInit {
 
 // ------------------------- Export As Excel file ---------------------------//
 
-  bankAccExcelFile(): void {
+  bankAccExcelFile(){
     const filtered = this.rows.map(row => ({
       SNo: row.id,
       AccountName: row.accountName,
@@ -149,6 +149,25 @@ export class BankAccountsComponent implements OnInit {
     this.service.exportAsExcelFile(filtered, 'Bank Account');
 
   }
+
+
+// ------------------------- Export As CSV file ---------------------------//
+
+bankAccCsvFile(){
+  const filtered = this.rows.map(row => ({
+    SNo: row.id,
+    AccountName: row.accountName,
+    AccountNo: row.accountNumber,
+    IBAN: row.iban,
+    SwiftCode: row.swiftCode,
+    AccountType: row.type,
+    Bank: row.bankName,
+    Branch: row.branchName
+  }));
+
+  this.service.exportAsCsvFile(filtered, 'Bank Account');
+
+}
 
 // --------------------------- Export As Pdf File ---------------------------------//
 

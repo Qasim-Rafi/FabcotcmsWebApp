@@ -144,6 +144,19 @@ export class PriceTermComponent implements OnInit {
     this.service.exportAsExcelFile(filtered, 'Price Term');
 
   }
+ //-------------------------Export as  CSV file --------------------------------//
+ priceCsvFile() {
+  const filtered = this.rows.map(row => ({
+    SNo: row.id,
+    PriceTerms: row.term,
+    Details: row.description,
+    Status: row.active == true ? "Active" : "In-Active",
+    LastChange: row.updatedDateTime + '|' + row.updatedByName
+  }));
+
+  this.service.exportAsCsvFile(filtered, 'Price Term');
+
+}
 
   //---------------------------Export as  pdf --------------------------------------//
 

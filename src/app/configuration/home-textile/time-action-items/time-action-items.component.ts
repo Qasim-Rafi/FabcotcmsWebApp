@@ -133,7 +133,7 @@ export class TimeActionItemsComponent implements OnInit {
   }
 // ------------------------------ Export as Excel File--------------------------//
  
-tnaExcelFile(): void {
+tnaExcelFile(){
     const filtered = this.rows.map(row => ({
       SNo: row.id,
       ActionName: row.name,
@@ -144,6 +144,24 @@ tnaExcelFile(): void {
     this.service.exportAsExcelFile(filtered, 'TnA Actions');
 
   }
+
+
+// -------------------------- Export as Csv File ----------------------------------//
+
+tnaCsvFile(){
+  const filtered = this.rows.map(row => ({
+    SNo: row.id,
+    ActionName: row.name,
+    Details: row.description,
+    LastChange: row.updatedDateTime + '|' + row.updatedByName
+  }));
+
+  this.service.exportAsCsvFile(filtered, 'TnA Actions');
+
+}
+
+
+
 
 // ------------------------ Export as PDF ------------------------------------//
 

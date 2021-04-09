@@ -132,7 +132,7 @@ export class ColorComponent implements OnInit {
 
   //--------------------------------Export as Excel File---------------------------//
 
-  clrExcelFile(): void {
+  clrExcelFile(){
 
     const filtered = this.rows.map(row => ({
       SNo: row.id,
@@ -145,6 +145,23 @@ export class ColorComponent implements OnInit {
     this.service.exportAsExcelFile(filtered, 'Color');
 
   }
+
+// ------------------------------- Export as Csv File ------------------------------//
+
+
+clrCsvFile(){
+
+  const filtered = this.rows.map(row => ({
+    SNo: row.id,
+    ColorName: row.name,
+    Details: row.description,
+    Status: row.active == true ? "Active" : "In-Active",
+    LastChange: row.updatedDateTime + '|' + row.updatedByName
+  }));
+
+  this.service.exportAsCsvFile(filtered, 'Color');
+
+}
 
   //-------------------------------Export As Pdf -------------------------------- //
 

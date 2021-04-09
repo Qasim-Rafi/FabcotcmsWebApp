@@ -58,7 +58,9 @@
                   ><span>Copy</span>
                 </a>
                 <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
-                  aria-controls="DataTables_Table_0"><span>CSV</span></a>
+                  aria-controls="DataTables_Table_0"
+                  (click)="countryCsvFile()"
+                  ><span>CSV</span></a>
                 <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
                   aria-controls="DataTables_Table_0" (click)="countryExcelFile()"><span>Excel</span></a>
                 <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0"
@@ -76,7 +78,7 @@
       </div>
     </div>
 <div >
-    <div class="panel-body" id="test">
+    <div class="panel-body">
       <ngx-datatable #myTable
     
       class="bootstrap datatable-row-wrapper" [columns]="columns" [rows]="rows"

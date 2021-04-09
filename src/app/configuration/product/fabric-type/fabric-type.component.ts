@@ -151,6 +151,22 @@ export class FabricTypeComponent implements OnInit {
 
   }
 
+    // -----------------------------Export as  CSV File ----------------------------//
+
+    fabricCsvFile() {
+
+      const filtered = this.rows.map(row => ({
+        SNo: row.id,
+        FabricType: row.type,
+        Details: row.description,
+        Status: row.active == true ? "Active" : "In-Active",
+        LastChange: row.createdDateTime + '|' + row.createdByName
+      }));
+  
+      this.service.exportAsCsvFile(filtered, 'Fabric Type');
+  
+    }
+
   //---------------------------------Export as  pdf ---------------------------------//
 
   fabricPdf() {

@@ -148,6 +148,22 @@ export class ProcessComponent implements OnInit {
     this.service.exportAsExcelFile(filtered, 'Process');
 
   }
+ // -------------------------------Export as CSV File ----------------------------//
+
+ processCsvFile() {
+
+  const filtered = this.rows.map(row => ({
+    SNo: row.id,
+    ProcessName: row.name,
+    Details: row.description,
+    Status: row.active == true ? "Active" : "In-Active",
+    LastChange: row.updatedDateTime + '|' + row.updatedByName
+  }));
+
+  this.service.exportAsCsvFile(filtered, 'Process');
+
+}
+
   // ------------------------------Export as Pdf --------------------------------------//
 
   processPdf() {

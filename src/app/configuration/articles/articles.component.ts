@@ -155,6 +155,25 @@ export class ArticlesComponent implements OnInit {
 
   }
 
+ // --------------------------Export as CSV File ----------------------------//
+
+ articleCsvFile() {
+
+  const filtered = this.rows.map(row => ({
+    SNo: row.id,
+    ArticleCode: row.code,
+    ArticleName: row.name,
+    GenericName: row.genericName,
+    Status: row.active == true ? "Active" : "In-Active",
+    LastUpdateOn: row.updatedDateTime,
+    LastUpdateBy: row.createdByName
+  }));
+
+  this.service.exportAsCsvFile(filtered, 'Article');
+
+}
+
+
   // -------------------------------Export as  pdf ---------------------------------//
 
   articlePdf() {

@@ -140,7 +140,7 @@ export class BankComponent implements OnInit {
 
 // -------------------------- Export As Excel file -----------------------//
 
-  bankExcelFile(): void {
+  bankExcelFile(){
     const filtered = this.rows.map(row => ({
       SNo:row.id,
     BankName :row.name,
@@ -154,6 +154,22 @@ export class BankComponent implements OnInit {
     this.service.exportAsExcelFile(filtered, 'Bank');
   
   }
+// -------------------------- Export As CSV file -----------------------//
+
+bankCsvFile(){
+  const filtered = this.rows.map(row => ({
+    SNo:row.id,
+  BankName :row.name,
+  BranchCode :row.branchCode,
+  BranchName :row.branchName,
+  Location :row.location,
+  Address :row.address,
+   Details:row.details 
+ }));
+ 
+  this.service.exportAsCsvFile(filtered, 'Bank');
+
+}
 
   // ---------------------------- Export as PDF ----------------------------//
   bankPdf() {

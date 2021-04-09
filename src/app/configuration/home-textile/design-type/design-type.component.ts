@@ -149,6 +149,23 @@ export class DesignTypeComponent implements OnInit {
 
   }
 
+  //-----------------------------Export As CSV file ------------------------------//
+
+  designCsvFile() {
+
+    const filtered = this.rows.map(row => ({
+      SNo: row.id,
+      DesignType: row.type,
+      Details: row.description,
+      Status: row.active == true ? "Active" : "In-Active",
+      LastChange: row.updatedDateTime + '|' + row.updatedByName
+    }));
+
+    this.service.exportAsCsvFile(filtered, 'Design Type');
+
+  }
+
+
   //---------------------Export as pdf----------------------------------------------- //
 
   designPdf() {

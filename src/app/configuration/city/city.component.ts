@@ -139,7 +139,7 @@ export class CityComponent implements OnInit {
 
   // --------------------------Export as excel  file----------------------------//
 
-  cityExcelFile(): void {
+  cityExcelFile(){
     const filtered = this.rows.map(row => ({
       Sno: row.id,
       City: row.name,
@@ -150,9 +150,30 @@ export class CityComponent implements OnInit {
 
     }));
 
-    this.service.exportAsExcelFile(filtered, 'City Location');
+    this.service.exportAsCsvFile(filtered, 'City Location');
 
   }
+
+
+// ---------------------------------- Export as CSV file -------------------------//
+
+cityCsvFile(){
+  const filtered = this.rows.map(row => ({
+    Sno: row.id,
+    City: row.name,
+    CountryName: row.country,
+    Details: row.details,
+    Status: row.active == true ? "Active" : "In-Active",
+    CreatedOn: row.createdDateTime + '|' + row.createdByName
+
+  }));
+
+  this.service.exportAsCsvFile(filtered, 'City Location');
+
+}
+
+
+
 
   //---------------------------- Export As Pdf --------------------------//
 

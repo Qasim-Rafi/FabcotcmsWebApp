@@ -153,6 +153,23 @@ export class PackingComponent implements OnInit {
 
   }
 
+   // ----------------------------- Export as CSV File ---------------------------------//
+
+   packingCsvFile() {
+
+    const filtered = this.rows.map(row => ({
+      SNo: row.id,
+      PackingName: row.name,
+      Details: row.description,
+      Status: row.active == true ? "Active" : "In-Active",
+      LastChange: row.updatedDateTime + '|' + row.updatedByName
+    }));
+
+    this.service.exportAsCsvFile(filtered, 'Packing');
+
+  }
+
+
   //----------------------------------Export as  pdf -------------------------------------//
 
   packingPdf() {

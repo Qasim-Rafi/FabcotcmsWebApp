@@ -148,6 +148,22 @@ export class PaymentTermComponent implements OnInit {
 
   }
 
+  // ----------------------------------Export as CSV File --------------------------//
+
+  paymentCsvFile() {
+
+    const filtered = this.rows.map(row => ({
+      SNo: row.id,
+      PaymentTerm: row.term,
+      Details: row.description,
+      Status: row.active == true ? "Active" : "In-Active",
+      LastChange: row.updatedDateTime + '|' + row.updatedByName
+    }));
+
+    this.service.exportAsCsvFile(filtered, 'Payment Term');
+
+  }
+
   //------------------------------------Export as Pdf -------------------------------//
 
   paymentPdf() {
