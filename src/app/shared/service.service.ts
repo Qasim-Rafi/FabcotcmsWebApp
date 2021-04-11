@@ -28,6 +28,9 @@ export class ServiceService {
   getBuyers() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/Buyers`);
   }
+  getSellers() {
+    return this.http.get(`${environment.apiUrl}/api/Sellers/GetSellers`);
+  }
   getArticles() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/Articles`)
   }
@@ -70,7 +73,12 @@ export class ServiceService {
   getFabricType() {
     return this.http.get(`${environment.apiUrl}/api/Products/GetAllFabricType`)
   }
-
+  getEnquiryItem() {
+    return this.http.get(`${environment.apiUrl}/api/Enquiries/GetAllEnquiryItem`);
+  }
+  getCurrency() {
+    return this.http.get(`${environment.apiUrl}/api/Configs/GetAllCurrencyRate`);
+  }
 
 
 
@@ -120,7 +128,7 @@ export class ServiceService {
     FileSaver.saveAs(data, fileName + EXCEL_EXTENSION);
   }
 
-// ------------------------------------ Export as CSV file -----------------------------------//
+  // ------------------------------------ Export as CSV file -----------------------------------//
 
   public exportAsCsvFile(json: any[], excelFileName: string): void {
 

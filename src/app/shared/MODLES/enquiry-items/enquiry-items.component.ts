@@ -118,7 +118,6 @@ export class EnquiryItemsComponent implements OnInit {
       "loomTypeId": this.data.loomTypeId,
       "size": this.data.size,
       "remarks": this.data.remarks,
-      "active": this.data.active,
     }
 
     this.http.
@@ -180,7 +179,6 @@ export class EnquiryItemsComponent implements OnInit {
       "loomTypeId": this.data.loomTypeId,
       "size": this.data.size,
       "remarks": this.data.remarks,
-      "active": this.data.active,
     }
 
     this.http.

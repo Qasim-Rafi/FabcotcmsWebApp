@@ -27,9 +27,6 @@ export class EditActiveEnquiryComponent implements OnInit {
   enquiryItem: any = [];
   temp: any[];
 
-  obj: any;
-  x: any;
-
 
   constructor(
 
@@ -44,11 +41,10 @@ export class EditActiveEnquiryComponent implements OnInit {
 
     this.queryParems = this.route.snapshot.queryParams;
     this.objEnquiry = this.queryParems;
-    this.editEnquiry(this.objEnquiry)
+    this.editEnquiry(this.objEnquiry);
 
     // this.getAllEnquiryItems();
   }
-
 
 
 
@@ -105,8 +101,6 @@ export class EditActiveEnquiryComponent implements OnInit {
 
 
 
-
-
   addEnquiryItemform(check, enquiryObj) {
     const modalRef = this.modalService.open(EnquiryItemsComponent, { centered: true });
     modalRef.componentInstance.EnquiryId = enquiryObj.id;
@@ -115,6 +109,8 @@ export class EditActiveEnquiryComponent implements OnInit {
       // on close
       if (data == true) {
         // this.getAllEnquiryItems();
+        this.editEnquiry(this.objEnquiry);
+
 
       }
     }, (reason) => {
@@ -131,6 +127,8 @@ export class EditActiveEnquiryComponent implements OnInit {
       // on close
       if (data == true) {
         // this.getAllEnquiryItems();
+        this.editEnquiry(this.objEnquiry);
+
 
       }
     }, (reason) => {
@@ -186,6 +184,8 @@ export class EditActiveEnquiryComponent implements OnInit {
               if (this.response.success == true) {
                 this.toastr.error(this.response.message, 'Message.');
                 // this.getAllEnquiryItems();
+                this.editEnquiry(this.objEnquiry);
+
               }
               else {
                 this.toastr.error(this.response.message, 'Message.');

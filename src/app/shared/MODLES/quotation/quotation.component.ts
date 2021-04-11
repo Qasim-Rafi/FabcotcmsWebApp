@@ -15,6 +15,10 @@ export class QuotationComponent implements OnInit {
   @Input() statusCheck;
   data: any = {};
   response: any = [];
+  enquiryItem: any = [];
+  seller: any = [];
+  currency: any = [];
+  uom: any = [];
   @Input() EnquiryItemId;
 
 
@@ -29,6 +33,10 @@ export class QuotationComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.GetSellersDropdown();
+    this.GetEnquiryItemDropdown();
+    this.GetUOMDropdown();
+    this.GetCurrencyDropdown();
   }
 
   get activeModal() {
@@ -36,10 +44,63 @@ export class QuotationComponent implements OnInit {
   }
 
 
+  GetEnquiryItemDropdown() {
+    this.service.getEnquiryItem().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.enquiryItem = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
+
+  GetSellersDropdown() {
+    this.service.getSellers().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.seller = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
+
+
+  GetCurrencyDropdown() {
+    this.service.getCurrency().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.currency = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
+
+  GetUOMDropdown() {
+    this.service.getUOM().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.uom = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
+
+
+
+
+
   addQuotation() {
     let varr =
     {
-      "enquiryItemId": this.EnquiryItemId,
+      "enquiryItemId": this.data.enquiryItemId,
       "sellerId": this.data.sellerId,
       "rate": this.data.rate,
       "currencyId": this.data.currencyId,

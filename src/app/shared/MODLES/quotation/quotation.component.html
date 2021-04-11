@@ -20,9 +20,8 @@
         <div class="form-group row">
             <label for="countryId" class="col-sm-3 col-form-label">Enquiry Item</label>
             <div class="col-sm-8">
-                <ng-select placeholder="-- Select --" name="sellerId" [(ngModel)]="data.sellerId">
-                    <ng-option>
-                        <span> ok</span>
+                <ng-select placeholder="-- Select --" name="sellerId" [(ngModel)]="data.enquiryItemId">
+                    <ng-option *ngFor="let obj of enquiryItem" [value]="obj.id">{{obj.description}}
                     </ng-option>
                 </ng-select>
             </div>
@@ -31,8 +30,7 @@
             <label for="countryId" class="col-sm-3 col-form-label">Supplier / Seller</label>
             <div class="col-sm-8">
                 <ng-select placeholder="Select Vendor" name="sellerId" [(ngModel)]="data.sellerId">
-                    <ng-option>
-                        <span> ok</span>
+                    <ng-option *ngFor="let obj of seller" [value]="obj.id"> {{obj.sellerName}}
                     </ng-option>
                 </ng-select>
             </div>
@@ -47,15 +45,15 @@
             </div>
             <div class="col-md-3">
                 <ng-select placeholder="-- Select Currency --" name="currencyId" [(ngModel)]="data.currencyId">
-                    <ng-option>
-                        ok
+                    <ng-option *ngFor="let obj of currency" [value]="obj.id">
+                        {{obj.currencyCode}}
                     </ng-option>
                 </ng-select>
             </div>
             <div class="col-md-3">
                 <ng-select placeholder="-- Select UOM --" name="uomId" [(ngModel)]="data.uomId">
-                    <ng-option>
-                        ok
+                    <ng-option *ngFor="let obj of uom" [value]="obj.id">
+                        {{obj.unit}}
                     </ng-option>
                 </ng-select>
             </div>
@@ -82,7 +80,7 @@
         Close
     </button>
     <button class="btn button-save" type="submit" [disabled]="QuotationForm.invalid"
-        *ngIf="statusCheck == 'addQuotation'">
+        *ngIf="statusCheck == 'addQuotation'" (click)="addQuotation()">
         Save Quote
     </button>
     <button class="btn button-save" type="submit" [disabled]="QuotationForm.invalid"
