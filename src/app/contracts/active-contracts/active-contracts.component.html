@@ -1,85 +1,167 @@
-
 <div class="content-header">
 
-    <div class="row">
-      <div class="col-sm-12 col-md-6 col-lg-8">
-        <h2 class="row wrapper page-header font-weight-light"> Active Contract
-          <!-- <div class="ml-2 descr"> Manage Fabric / Yarn Articles with warp, weft, end, pick,weive & width info </div> -->
-        </h2>
-      </div>
-  
-      <div class="col-sm-12 col-md-6 col-lg-4">
-        <ol class="breadcrumb flt-RnL">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Active Contracts</li>
-        </ol>
-      </div>
-  
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-8">
+      <h2 class="row wrapper page-header font-weight-light"> Active Contract
+        <!-- <div class="ml-2 descr"> Manage Fabric / Yarn Articles with warp, weft, end, pick,weive & width info </div> -->
+      </h2>
     </div>
-  </div>
-  
-  
-  <div class="card ibox-content">
-  
-    <div class=" panel blank-panel">
-      <div class="panel-heading">
-  
-        <div class="row mb-3">
-            <!-- <div class="col-md-12 text-center">
-                <div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-secondary">Left</button>
-                    <button type="button" class="btn btn-secondary">Middle</button>
-                    <button type="button" class="btn btn-secondary">Middle</button>
-                    <button type="button" class="btn btn-secondary">Middle</button>
-                    <button type="button" class="btn btn-secondary">Middle</button>
-                    <button type="button" class="btn btn-secondary">Right</button>
-                  </div>
-            </div> -->
 
-
-            <div class="col-md-12 text-center">
-              <div class="btn-group" role="group">
-                <button type="button" class="btn btn-sm btn-primary" onclick="ShowContracts(99);" id="con-all" data-toggle="tooltip" title="" data-original-title="All Contracts"> <i class="fa fa-bullseye fa-fw"></i> All &nbsp; <span class="badge badge-pill badge-primary">118</span> </button>
-                <button type="button" class="btn btn-sm btn-white" onclick="ShowContracts(0);" id="con-open" data-toggle="tooltip" title="Contract open &amp; in-process"> <i class="far fa-folder-open"></i> Open &nbsp; <span class="badge badge-pill badge-primary">42</span> </button>
-                <button type="button" class="btn btn-sm btn-white" onclick="ShowContracts(1);" id="con-close" data-toggle="tooltip" title="Contract working closed &amp; waiting for billing"> <i class="fa fa-check fa-fw"></i> Close &nbsp; <span class="badge badge-pill badge-primary">1</span></button>
-                <button type="button" class="btn btn-sm btn-white" onclick="ShowContracts(2);" id="con-billawaited" data-toggle="tooltip" title="Contract ready for billing"> <i class="fa fa-clock-o fa-fw"></i> Bill Awaited &nbsp; <span class="badge badge-pill badge-primary">1</span> </button>
-                <button type="button" class="btn btn-sm btn-white" onclick="ShowContracts(3);" id="con-billed" data-toggle="tooltip" title="Contract bill generated"> <i class="icofont icofont-law-document fa-fw"></i> Billed &nbsp; <span class="badge badge-pill badge-primary">74</span> </button>
-                <button type="button" class="btn btn-sm btn-white" onclick="ShowContracts(4);" id="con-receivable" data-toggle="tooltip" title="Some payment received against contract"> <i class="fa fa-money fa-fw"></i> Receivable &nbsp; <span class="badge badge-pill badge-primary">0</span> </button>
-                <button type="button" class="btn btn-sm btn-white" onclick="ShowContracts(5);" id="con-received" data-toggle="tooltip" title="All payment received against contract"> <i class="icofont icofont-money fa-fw"></i> Received &nbsp; <span class="badge badge-pill badge-primary">0</span> </button>
-                <button type="button" class="btn btn-sm btn-white" onclick="ShowContracts(10);" id="con-onhold" data-toggle="tooltip" title="Contract currently on-hold or deferred"> <i class="fa fa-hand-paper-o fa-fw"></i> On-Hold &nbsp; <span class="badge badge-pill badge-primary">0</span> </button>
-              </div>
-            </div>
-
-        </div>
-  
-        <div class="row mb-2">
-          
-            <div class="col-md-6 mrg-tsm">
-                <button type="button" class="btn btn-primary btn-md">
-                <i class="fa fa-filter fa-fw"></i> Advance Filter</button>
-              </div>
-  
-        </div>
-
-        <div class="row mb-3">
-            <div class="col-md-8"></div>
-            <div class="col-md-4 mrg-tsm ">
-
-                <div class="form-group row">
-                    <label for="inputSearch" class="col-sm-2 col-form-label">Search:</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputSearch">
-                    </div>
-                  </div>
-                    
-            </div>
-        </div>
-  
-  
-        
-  
-      </div>
-  
-  
+    <div class="col-sm-12 col-md-6 col-lg-4">
+      <ol class="breadcrumb flt-RnL">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Active Contracts</li>
+      </ol>
     </div>
+
   </div>
+</div>
+
+
+<div class="card ibox-content">
+
+  <div class=" panel blank-panel">
+    <div class="panel-heading">
+
+      <div class="row mb-3">
+
+
+        <div class="col-md-12 text-center">
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-sm btn-primary" onclick="ShowContracts(99);" id="con-all"
+              data-toggle="tooltip" title="" data-original-title="All Contracts"> <i class="fa fa-bullseye fa-fw"></i>
+              All &nbsp; <span class="badge badge-pill badge-primary">118</span> </button>
+            <button type="button" class="btn btn-sm btn-white" onclick="ShowContracts(0);" id="con-open"
+              data-toggle="tooltip" title="Contract open &amp; in-process"> <i class="far fa-folder-open"></i> Open
+              &nbsp; <span class="badge badge-pill badge-primary">42</span> </button>
+            <button type="button" class="btn btn-sm btn-white" onclick="ShowContracts(1);" id="con-close"
+              data-toggle="tooltip" title="Contract working closed &amp; waiting for billing"> <i
+                class="fa fa-check fa-fw"></i> Close &nbsp; <span
+                class="badge badge-pill badge-primary">1</span></button>
+            <button type="button" class="btn btn-sm btn-white" onclick="ShowContracts(2);" id="con-billawaited"
+              data-toggle="tooltip" title="Contract ready for billing"> <i class="far fa-clock"></i> Bill Awaited
+              &nbsp; <span class="badge badge-pill badge-primary">1</span> </button>
+            <button type="button" class="btn btn-sm btn-white" onclick="ShowContracts(3);" id="con-billed"
+              data-toggle="tooltip" title="Contract bill generated"> <i class="far fa-edit"></i>
+              Billed &nbsp; <span class="badge badge-pill badge-primary">74</span> </button>
+            <button type="button" class="btn btn-sm btn-white" onclick="ShowContracts(4);" id="con-receivable"
+              data-toggle="tooltip" title="Some payment received against contract"> <i
+                class="far fa-money-bill-alt"></i>
+              Receivable &nbsp; <span class="badge badge-pill badge-primary">0</span> </button>
+            <button type="button" class="btn btn-sm btn-white" onclick="ShowContracts(5);" id="con-received"
+              data-toggle="tooltip" title="All payment received against contract"> <i class="fas fa-dollar-sign"></i>
+              Received &nbsp; <span class="badge badge-pill badge-primary">0</span> </button>
+            <button type="button" class="btn btn-sm btn-white" onclick="ShowContracts(10);" id="con-onhold"
+              data-toggle="tooltip" title="Contract currently on-hold or deferred"> <i class="far fa-hand-paper"></i>
+              On-Hold &nbsp; <span class="badge badge-pill badge-primary">0</span> </button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row mb-2">
+
+        <div class="col-md-6 mrg-tsm">
+          <button type="button" class="btn btn-primary btn-md" (click)="navigate()">
+            <i class="fa fa-filter fa-fw"></i> Advance Filter</button>
+        </div>
+
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-8"></div>
+        <div class="col-md-4 mrg-tsm ">
+
+          <div class="form-group row">
+            <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="inputSearch">
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+      <div class="panel-body">
+
+        <ngx-datatable #myTable class="bootstrap" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+          [sorts]="[{prop: 'code', dir: 'asce'}]" [rowHeight]="'auto'" [limit]="6">
+
+
+          <ngx-datatable-column name="Action">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+
+              <div class="ibox-tools text-center">
+
+                <button type="button" class="btn editIconBack">
+                  <i class="far fa-edit "></i>
+                </button>
+
+                <button type="button" class="btn deleteIconBack">
+                  <i class="far fa-trash-alt"></i>
+                </button>
+
+              </div>
+            </ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column>
+            <ng-template let-row="row" ngx-datatable-cell-template>
+
+            </ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="Age" prop="name">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              <span class="badge badge-primary">Active</span>
+              <span class="badge badge-secondary">Inactive</span>
+            </ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="Contract Details" prop="genericName">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+
+            </ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="Contract On" prop="status">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+
+
+
+
+            </ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="#PO" prop="modifiedDate">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+
+            </ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="#SC" prop="modifiedBy">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+
+            </ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="Article">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+
+
+            </ng-template>
+          </ngx-datatable-column>
+
+        </ngx-datatable>
+
+      </div>
+
+
+
+
+    </div>
+
+
+  </div>
+</div>

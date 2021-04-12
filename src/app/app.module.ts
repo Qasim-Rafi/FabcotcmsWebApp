@@ -21,6 +21,7 @@ import { ActiveContractsComponent } from './contracts/active-contracts/active-co
 import { ArchivedContractsComponent } from './contracts/archived-contracts/archived-contracts.component';
 import { BillingAndPaymentModule } from './billing-and-payment/billing-and-payment.module';
 
+import { ActiveContractDetailComponent } from './contracts/active-contracts/active-contract-detail/active-contract-detail.component';
 
 
 const appRoutes: Routes = []
@@ -35,6 +36,7 @@ const appRoutes: Routes = []
     LoginComponent,
     ActiveContractsComponent,
     ArchivedContractsComponent,
+    ActiveContractDetailComponent,
     // AddEnquiryComponent,
     // SearchEnquiryComponent,
     // AddmodalComponent,

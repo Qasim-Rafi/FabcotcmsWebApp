@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BusinessEnquryModule } from './business-enqury/business-enqury.module';
+import { ActiveContractDetailComponent } from './contracts/active-contracts/active-contract-detail/active-contract-detail.component';
 import { ActiveContractsComponent } from './contracts/active-contracts/active-contracts.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'config', loadChildren: configurationModule },
   { path: 'active-contract', component: ActiveContractsComponent },
+  { path: 'active-contract-details', component: ActiveContractDetailComponent },
   { path: 'login', component: LoginComponent },
 
 

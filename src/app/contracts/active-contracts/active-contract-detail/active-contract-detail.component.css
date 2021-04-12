@@ -1,0 +1,29 @@
+h2 {
+    color: #575d63;
+    font-weight: 100;
+  }
+  
+  .topbox-1 {
+    background-color:white;
+    height: 150px;
+    text-align: left;
+    color: gray;
+    border-radius: 3px;
+  }
+  
+  .topbox-margin-top-text {
+    font-size: 20px;
+    padding-top: 5px;
+    color: grey;
+  }
+  
+  .mid-text {
+    font-size: 30PX;
+    margin-top: -10px;
+  }
+  
+  .topbox-margin-end-text {
+    font-size: 13px;
+    margin-top: -10px;
+  }
+  
