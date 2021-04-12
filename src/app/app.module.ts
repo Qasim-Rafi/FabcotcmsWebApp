@@ -19,6 +19,8 @@ import { QuotationComponent } from './shared/MODLES/quotation/quotation.componen
 import { LoginComponent } from './login/login.component';
 import { ActiveContractsComponent } from './contracts/active-contracts/active-contracts.component';
 import { ArchivedContractsComponent } from './contracts/archived-contracts/archived-contracts.component';
+import { BillingAndPaymentModule } from './billing-and-payment/billing-and-payment.module';
+
 
 
 const appRoutes: Routes = []
@@ -63,6 +65,7 @@ const appRoutes: Routes = []
     HttpClientModule,
     BrowserAnimationsModule,
     NgxDatatableModule,
+    BillingAndPaymentModule,
     RouterModule.forRoot(appRoutes),
     ToastrModule.forRoot({
       progressBar: true,
