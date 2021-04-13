@@ -1,0 +1,372 @@
+<div class="content-header">
+
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-8">
+            <h2 class="row wrapper page-header font-weight-light"> New Commission Payment
+                <div class="ml-2 descr"> Payment received from Seller or Buyer against Commission Bill
+                </div>
+            </h2>
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-lg-4">
+            <ol class="breadcrumb flt-RnL">
+                <li class="breadcrumb-item"><a href="#">Commission Payments</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Add Payment</li>
+            </ol>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+<div class="card ibox-content">
+
+    <div class="card-header pt-1 px-0">
+        <h4 class="card-title">Commission Payment Received <Form></Form>
+        </h4>
+
+        <div class="card-tools">
+
+            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                <i class="fas fa-expand"></i>
+            </button>
+            <button type="button" class="btn btn-tool" data-card-widget="remove">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+    </div>
+
+
+
+    <div class="card-body p-0">
+
+
+        <div class="row">
+            <div class="col-md-12 p-3">
+
+                <form #commissionForm="ngForm" novalidate>
+                    <div class="form-row">
+                        <div class="col-md-12 pt-2r pb-3">
+                            <div class="col-md-6">
+                                <div class="form-Group row">
+                                    <button class="btn btn-primary float-left">
+                                        Parties
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-2 col-form-label control-label">
+                                    Supplier Name:
+                                </label>
+                                <div class="col-md-8">
+                                    <div class="input-group">
+
+                                        <ng-select name="supplier" placeholder="--- Select Suppiler ---">
+                                            <ng-option>
+                                                new-Supplier
+                                            </ng-option>
+                                        </ng-select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <small id="passwordHelpBlock" class="form-text text-lightgrey">
+                                            Parent Supplier are available for selection
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-2 col-form-label control-label">
+                                    Is Buyer Commission
+                                </label>
+
+                                <div class="col-md-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <small id="passwordHelpBlock" class="form-text text-lightgrey">
+                                            Checked if commission payment is from Buyer
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- payment Details -->
+                    <div class="form-row border-top">
+                        <div class="col-md-12 pt-2r pb-3">
+                            <div class="form-group row">
+
+                                <button class="btn btn-primary float-left">
+                                    Payment Details
+                                </button>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-md-3 col-form-label control-label">Payment
+                                    Date</label>
+                                <div class="col-md-3">
+                                    <div class="input-group">
+                                        <input type="text" placeholder="   Payment Date  "
+                                            class="form-control text-w-50">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 mrg-sm1">
+                                    <div class="input-group">
+                                        <label for="inputEmail3" class="col-form-label control-label">
+                                            Pay No.
+
+                                        </label>
+                                        <input type="text" placeholder="   Payment Number  "
+                                            class="form-control text-w-60">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!--  amount-->
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">
+                            Amount</label>
+                        <div class="col-md-2">
+                            <div class="input-group">
+                                <input type="text" class="form-control text-w-40" value="0">
+
+                            </div>
+                        </div>
+                        <div class="col-md-2 mrg-sm1">
+                            <ng-select name="supplier" placeholder="">
+                                <ng-option>
+                                    new-Supplier
+                                </ng-option>
+                            </ng-select>
+                        </div>
+
+                        <div class="col-md-3 mrg-sm1">
+                            <div class="input-group">
+                                <label for="inputEmail3" class="col-form-label control-label">
+                                    Pay Mode
+
+                                </label>
+                                <div class="col-md-8">
+                                    <ng-select name="supplier" placeholder=" Payment Mode">
+                                        <ng-option>
+                                            new-payment
+                                        </ng-option>
+                                    </ng-select>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Additional details -->
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">
+                            Additional Details</label>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control text-w-40" placeholder="Additional Details">
+                            <small id="passwordHelpBlock" class="form-text text-lightgrey">
+                                Cheque DO , IT etc Number
+                            </small>
+                        </div>
+
+                    </div>
+
+                    <!-- Bank Account -->
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">
+                            Bank Account</label>
+                            <div class="col-md-3 mrg-sm1">
+                                <ng-select name="supplier" placeholder=" From Bank">
+                                    <ng-option>
+                                        Bank
+                                    </ng-option>
+                                </ng-select>
+                            </div>
+    
+                            <div class="col-md-4 mrg-sm1">
+                                <div class="input-group">
+                                    <div class="col-md-9">
+                                        <ng-select name="supplier" placeholder=" To Bank">
+                                            <ng-option>
+                                               Bank
+                                            </ng-option>
+                                        </ng-select>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+
+                <!-- deposited in bank -->
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">
+                        Deposited in Bank</label>
+                     
+                             <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" 
+                                        value="" id="flexCheckDefault">
+                                    </div>
+             
+                        <div class="col-md-6 mrg-sm1">
+                            <div class="input-group">
+                                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">
+                                     Bank Deposit Date</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control text-w-40"
+                                             placeholder="Date At which instrument deposit in bank">
+                                        </div>
+                            </div>
+                        </div>
+                </div>
+                <!--  Sale invoice -->
+                <div class="form-row border-top">
+                    <div class="col-md-12 pt-2r pb-3">
+                        <div class="form-group row">
+                            <button class="btn btn-primary float-left">
+                                Sale Invoices
+                            </button>
+                            <!-- table -->
+                        </div>
+                            <div class="panel-body">
+                                <ngx-datatable
+                              class="bootstrap datatable-row-wrapper" [columns]="columns" [rows]="rows"
+                                  [columnMode]="'flex'" [headerHeight]="50" [footerHeight]="50" 
+                                  [rowHeight]="'auto'" [limit]="6">
+                                  
+                                  <ngx-datatable-column name="Sno" [width]="80" prop="sno" [flexGrow]="0.03"   >
+                                    <ng-template let-row="row" ngx-datatable-cell-template >
+                        
+                                    </ng-template>
+                                  </ngx-datatable-column>
+                                  <ngx-datatable-column name="Inv #" [width]="80" prop="invNum" [flexGrow]="0.05">
+                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                      
+                                    </ng-template>
+                                  </ngx-datatable-column>
+                                  <ngx-datatable-column name="Contract#" [width]="80" prop="contract" [flexGrow]="0.06">
+                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                
+                                    </ng-template>
+                                  </ngx-datatable-column>
+                                  <ngx-datatable-column name="Bill#" [width]="80" prop="bill" [flexGrow]="0.06">
+                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                
+                                    </ng-template>
+                                  </ngx-datatable-column>
+                        
+                                  <ngx-datatable-column name="Date" [width]="80" prop="date" [flexGrow]="0.06">
+                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                
+                                    </ng-template>
+                                  </ngx-datatable-column>
+                        
+                                  <ngx-datatable-column name="Inv Amount" [width]="80" prop="amount" [flexGrow]="0.06">
+                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                
+                                    </ng-template>
+                                  </ngx-datatable-column>
+                                  <ngx-datatable-column name="Received" [width]="80" prop="rec" [flexGrow]="0.06">
+                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                
+                                    </ng-template>
+                                  </ngx-datatable-column>
+                                  <ngx-datatable-column name="Balance" [width]="80" prop="blnc" [flexGrow]="0.06">
+                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                
+                                    </ng-template>
+                                  </ngx-datatable-column>
+                                  <ngx-datatable-column name="Action" [width]="80" prop="action" [flexGrow]="0.06">
+                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                
+                                    </ng-template>
+                                  </ngx-datatable-column>
+                        
+                                  <ngx-datatable-column name="Paid Amount" [width]="80" prop="paid" [flexGrow]="0.06">
+                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                
+                                    </ng-template>
+                                  </ngx-datatable-column>
+                        
+                                </ngx-datatable>
+                              </div>
+
+                              <div class="col-md-12 pt-2r pb-3">
+                              <div class="form-group row">
+                             
+                                  <div class="col-md-3 font-weight-bold">
+                                   <p >Paid Amount:</p>
+                                  </div>
+                                  <div  class="col-md-3  font-weight-bold">
+                                    <p>Blnc Amount:</p>
+                                   </div>
+                                   <div class="col-md-3  font-weight-bold">
+                                    <p>Outstanding Balance:</p>
+                                   </div>
+                                   <div class="col-md-3  font-weight-bold">
+                                    <p>Selected Inv:</p>
+                                   </div>
+                                  
+                                  </div>
+                              </div>
+                          <!-- remarks and other -->
+
+                          <div class="form-row border-top">
+                            <div class="col-md-12 pt-2r pb-3">
+                                <div class="form-group row">
+                                    <button class="btn btn-primary float-left">
+                                        Remarks/Other Conditions
+                                    </button>
+                                    <!-- table -->
+                                </div>
+                                <!-- <div class="col-md-12">
+                                    <label for="inputEmail3" 
+                                    class="col-md-3 col-form-label control-label"> Remarks </label>
+                                </div> -->
+                                <div class="form-group row">
+                                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Remarks:</label>
+                                    <div class="col-md-6">
+                                        <textarea class="form-control" rows="4" placeholder="Any Remarks Here..."
+                                         name="remarks"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 offset-md-3">
+                                        <button class="btn button-save">
+                                            <i class="fas fa-check"></i> Save &
+                                            Next</button>
+                                        <button class="btn btn-secondary ml-4">
+                                            <i class="fas fa-times">
+                                            </i> Close
+                                        </button>
+                                    </div>
+                                </div>
+
+                                </div>
+                                </div>
+                            
+
+                        
+                 </div>
+                 </div>
+                
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+</div>

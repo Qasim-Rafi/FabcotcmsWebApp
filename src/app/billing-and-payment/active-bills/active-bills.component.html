@@ -161,7 +161,7 @@
           
           <ngx-datatable-column name="Print" [width]="80" prop="print" [flexGrow]="0.03"   >
             <ng-template let-row="row" ngx-datatable-cell-template >
-
+            
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="S.No" [width]="80" prop="sno" [flexGrow]="0.05">
@@ -222,6 +222,14 @@
           <ngx-datatable-column name="Action" [width]="80" prop="action" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
         
+                <div class="ibox-tools text-center">
+                    <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top" title=""
+                      data-original-title="Edit"><i
+                        class="far fa-edit"></i></button>
+                    <button type="button" class="btn deleteIconBack" data-toggle="tooltip" data-placement="top" title=""
+                      data-original-title="Delete"><i class="far fa-trash-alt"></i></button>
+                  </div>
+
             </ng-template>
           </ngx-datatable-column>
 

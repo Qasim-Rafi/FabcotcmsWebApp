@@ -4,6 +4,7 @@ import { ActiveBillsComponent } from './active-bills/active-bills.component';
 import { CommissionPaymentComponent } from './commission-payment/commission-payment.component';
 import { ExternalAgentCommissionComponent } from './external-agent-commission/external-agent-commission.component';
 import { GenerateBillsComponent } from './generate-bills/generate-bills.component';
+import { NewCommissionPaymentComponent } from './new-commission-payment/new-commission-payment.component';
 import { PaymentCollectionComponent } from './payment-collection/payment-collection.component';
 
 const routes: Routes = [
@@ -11,7 +12,8 @@ const routes: Routes = [
 {path: 'active-bills' , component: ActiveBillsComponent},
 {path:'payment-collection' , component:PaymentCollectionComponent},
 {path:'commission-payment' , component:CommissionPaymentComponent},
-{path:'external-agent' , component:ExternalAgentCommissionComponent}
+{path:'external-agent' , component:ExternalAgentCommissionComponent},
+{path:'new-commission' , component:NewCommissionPaymentComponent}
 
 ];
 

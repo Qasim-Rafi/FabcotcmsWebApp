@@ -10,14 +10,20 @@ import { PaymentCollectionComponent } from './payment-collection/payment-collect
 import { CommissionPaymentComponent } from './commission-payment/commission-payment.component';
 import { ExternalAgentCommissionComponent } from './external-agent-commission/external-agent-commission.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { NewCommissionPaymentComponent } from './new-commission-payment/new-commission-payment.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
-  declarations: [GenerateBillsComponent, ActiveBillsComponent, OpenActiveBillComponent, PaymentCollectionComponent, CommissionPaymentComponent, ExternalAgentCommissionComponent],
+  declarations: [GenerateBillsComponent, ActiveBillsComponent, OpenActiveBillComponent, PaymentCollectionComponent, CommissionPaymentComponent, ExternalAgentCommissionComponent, NewCommissionPaymentComponent],
   imports: [
     CommonModule,
     BillingAndPaymentRoutingModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
+    NgSelectModule,
+    ReactiveFormsModule,
     NgxDatatableModule
   ]
 })
