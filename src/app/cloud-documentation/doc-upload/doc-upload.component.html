@@ -57,26 +57,29 @@
         <div class="form-row">
             <div class="col-md-12 pt-2r pb-3">
 
-                <div class="form-group row">
-                    <label class="col-md-3 col-form-label control-label">Department</label>
-                    <div class="col-md-6">
-                        <div>
-                            <ng-select placeholder="-- Select --">
-                                <ng-option>
-                                </ng-option>
-                            </ng-select>
-                        </div>
+
+                <div class="form-group row">   
+     <label class="col-md-3 col-form-label control-label">Department</label>
+
+                    <div class="col-sm-6">
+                      <ng-select required [(ngModel)]="data.departmentId"  placeholder="-- Select --" name="departmentId">
+                        <ng-option *ngFor="let i of department" [value]="i.id">{{ i.name }}
+                          <span class="text-muted" style="font-size: 11px">( {{ i.details }} )</span>
+                        </ng-option>
+                      </ng-select>
                     </div>
-                </div>
+                  </div>
+
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-md-3 col-form-label control-label">Contract</label>
                     <div class="col-md-6">
                         <div class="input-group">
 
-                            <ng-select placeholder="Contract Auto No.">
-                                <ng-option>
+                            <ng-select required [(ngModel)]="data.contractId"  placeholder="-- Select --" name="contractId">
+                                <ng-option *ngFor="let i of contracts" [value]="i.id">{{ i.name }}
+                                  <span class="text-muted" style="font-size: 11px">( {{ i.details }} )</span>
                                 </ng-option>
-                            </ng-select>
+                              </ng-select>
                             <input class="form-control text-w-4" placeholder="ENTER AND SEARCH CONTRACT">
 
                             <button type="button" class="btn btn-light btn-outline clrbtn">
@@ -97,10 +100,11 @@
                     <label class="col-md-3 col-form-label control-label">Document Type</label>
                     <div class="col-md-6">
                         <div>
-                            <ng-select placeholder="BOL- Bill of Landing">
-                                <ng-option>
+                            <ng-select required [(ngModel)]="data.typeId"  placeholder="-- Select --" name="typeId">
+                                <ng-option *ngFor="let i of type" [value]="i.id">{{ i.name }}
+                                  <span class="text-muted" style="font-size: 11px">( {{ i.details }} )</span>
                                 </ng-option>
-                            </ng-select>
+                              </ng-select>
                         </div>
 
                     </div>
@@ -138,7 +142,7 @@
                                 <i class="fa fa-cloud"></i> Upload Document
                             </button>
                         </div>
-                        <button type="button" class="btn btn clrbtn">
+                        <button type="button" routerLink="/doclist" class="btn btn clrbtn">
                             <i class="fa fa-list"></i>&nbsp;Document List
                         </button>
 

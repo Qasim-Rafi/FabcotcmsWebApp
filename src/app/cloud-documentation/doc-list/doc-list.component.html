@@ -34,11 +34,11 @@
             <div class='col-md-5 w-auto ml-auto'> -->
           <div class=" col-md-5 w-auto ml-auto" >
               <div class="btn-group mr-2">
-            <button type="button" class="btn btn-primary">
-              <i class="fa fa-cloud" routerLink="docupload"></i> Upload New Documents
+            <button type="button" routerLink="/docupload" class="btn btn-primary">
+              <i class="fa fa-cloud" ></i> Upload New Documents
             </button></div>
             <div class="btn-group mr-2">
-            <button type="button" class="btn btn-primary btn-md">
+            <button type="button" class="btn btn-primary btn-md" (click)="SearchModalForm()">
                 <i class="fa fa-search"></i>
               </button></div>
               <div class="btn-group mr-2">

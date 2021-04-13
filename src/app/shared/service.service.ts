@@ -32,6 +32,16 @@ export class ServiceService {
   getCountry() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/Countries`)
   }
+  getDepartments() {
+    return this.http.get(`${environment.apiUrl}/api/Lookups/Countries`)
+  }
+  
+  getDocumentType() {
+    return this.http.get(`${environment.apiUrl}/api/Lookups/Countries`)
+  }
+  getContracts() {
+    return this.http.get(`${environment.apiUrl}/api/Lookups/Countries`)
+  }
   getBuyers() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/Buyers`);
   }

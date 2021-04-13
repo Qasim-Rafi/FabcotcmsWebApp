@@ -12,15 +12,17 @@ import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { SearchmodalComponent } from './doc-list/searchmodal/searchmodal.component';
 
 const appRoutes: Routes = []
 
 @NgModule({
-  declarations: [DocListComponent, DocUploadComponent],
+  declarations: [DocListComponent, DocUploadComponent, SearchmodalComponent],
   imports: [
     CommonModule,
     NgxDatatableModule,
     NgbModule ,
+    FormsModule, ReactiveFormsModule,
     NgSelectModule,
     RouterModule.forRoot(appRoutes)
   ]
