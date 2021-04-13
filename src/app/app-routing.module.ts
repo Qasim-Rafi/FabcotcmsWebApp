@@ -1,7 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AppComponent } from './app.component';
+import { AuthGuard } from './auth.guard';
 import { BusinessEnquryModule } from './business-enqury/business-enqury.module';
 import { ActiveContractDetailComponent } from './contracts/active-contracts/active-contract-detail/active-contract-detail.component';
+
+import { DocListComponent } from './cloud-documentation/doc-list/doc-list.component';
+import { DocUploadComponent } from './cloud-documentation/doc-upload/doc-upload.component';
 import { ActiveContractsComponent } from './contracts/active-contracts/active-contracts.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
@@ -11,13 +16,22 @@ const configurationModule = () => import('./configuration/configuration.module')
 const businessEnquryModule = () => import('./business-enqury/business-enqury.module')
   .then(x => x.BusinessEnquryModule);
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent },
+  { path : '', redirectTo:'/login', pathMatch : 'full'},
+  { path: 'home', component: HomeComponent,
+  // canActivate:[AuthGuard]
+ },
   { path: 'config', loadChildren: configurationModule },
+  { path: 'doclist', component: DocListComponent},
+  { path: 'docupload', component: DocUploadComponent},
   { path: 'active-contract', component: ActiveContractsComponent },
   { path: 'active-contract-details', component: ActiveContractDetailComponent },
   { path: 'login', component: LoginComponent },
+
+  {
+    path: 'login', component: AppComponent,
+    children: [{ path: '', component: LoginComponent }]
+},
+
 
 
 ];

@@ -1,0 +1,153 @@
+<div class="content-header">
+
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-8">
+            <h2 class="row wrapper page-header font-weight-light"><b> Cloud Document Upload</b>
+                <div class="ml-2 descr size1"> Upload contract related scan documents in the cloud (Paperless
+                    environment) </div>
+            </h2>
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-lg-4">
+            <ol class="breadcrumb flt-RnL">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Cloud Files</li>
+            </ol>
+        </div>
+
+
+
+    </div>
+</div>
+
+
+
+
+
+
+<div class="card ibox-content">
+
+    <div class="card-header pt-1 px-0">
+        <div class="row">
+            <div class="text1">
+                <i class="fa fa-cloud-upload-alt" routerLink="docupload"></i> Scan Document Uploading Form
+            </div>
+            <span>&nbsp;&nbsp;&nbsp;Total files uploaded Today : 0</span>
+        </div>
+        <div class="card-tools">
+            <!-- <button type="button" class="btn btn-tool" data-card-widget="card-refresh" data-source="widgets.html" data-source-selector="#card-refresh-content" data-load-on-init="false">
+                  <i class="fas fa-sync-alt"></i>
+                </button> -->
+
+            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                <i class="fas fa-expand"></i>
+            </button>
+            <button type="button" class="btn btn-tool" data-card-widget="remove">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+    </div>
+    <div class="card-body p-0">
+
+
+        <div class="form-row">
+            <div class="col-md-12 pt-2r pb-3">
+
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label control-label">Department</label>
+                    <div class="col-md-6">
+                        <div>
+                            <ng-select placeholder="-- Select --">
+                                <ng-option>
+                                </ng-option>
+                            </ng-select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Contract</label>
+                    <div class="col-md-6">
+                        <div class="input-group">
+
+                            <ng-select placeholder="Contract Auto No.">
+                                <ng-option>
+                                </ng-option>
+                            </ng-select>
+                            <input class="form-control text-w-4" placeholder="ENTER AND SEARCH CONTRACT">
+
+                            <button type="button" class="btn btn-light btn-outline clrbtn">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            <button type="button" class="btn btn-outline-dark">
+                                <i class="fas fa-sync-alt"></i>
+                            </button>
+                            <small>Enter atleast 3 digits of the contract no. & press the button</small>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label control-label">Document Type</label>
+                    <div class="col-md-6">
+                        <div>
+                            <ng-select placeholder="BOL- Bill of Landing">
+                                <ng-option>
+                                </ng-option>
+                            </ng-select>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label control-label">File</label>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <button type="button" class="btn clrbtn">
+                                <i class="fa fa-folder-open"></i> Browse file to upload on Cloud Server
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label control-label">Note</label>
+                    <div class="col-md-6">
+                        <textarea name="" id="" cols="50" rows="3" class="form-control text-w-4"
+                            placeholder="Brief note about scan document"></textarea>
+
+
+                    </div>
+                </div>
+
+                
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label control-label"></label>
+                    <div class="col-md-6">
+                        <div class="btn-group mr-2">
+                            <button type="button" class="btn btn-primary">
+                                <i class="fa fa-cloud"></i> Upload Document
+                            </button>
+                        </div>
+                        <button type="button" class="btn btn clrbtn">
+                            <i class="fa fa-list"></i>&nbsp;Document List
+                        </button>
+
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>

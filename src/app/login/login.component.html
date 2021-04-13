@@ -47,18 +47,20 @@
 
           <div class="card-body">
             <p class="login-box-msg">Sign in to start your session</p>
-
-            <form class="mb-2" action="../../index3.html" method="post">
+            <div *ngIf="isLoginError" class="red-text center error-message">
+              <i class="material-icons">error</i> Incorrect username or password
+          </div>
+            <form class="mb-2" #loginForm="ngForm" action="../../index3.html" method="post" (ngSubmit)="OnSubmit(username.value,password.value)">
               <div class="input-group mb-3">
-                <input type="email" class="form-control" placeholder="Email">
+                <input type="text" class="form-control" #username ngModel name="username" placeholder="UserName">
                 <div class="input-group-append">
                   <div class="input-group-text">
-                    <span class="fas fa-envelope"></span>
+                    <span class="fas fa-user"></span>
                   </div>
                 </div>
               </div>
               <div class="input-group mb-3">
-                <input type="password" class="form-control" placeholder="Password">
+                <input type="password" #password ngModel name="password" class="form-control" placeholder="Password">
                 <div class="input-group-append">
                   <div class="input-group-text">
                     <span class="fas fa-lock"></span>
@@ -83,7 +85,7 @@
                 </div>
                 <!-- /.col -->
                 <div class="col-12">
-                  <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                  <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary btn-block">Sign In</button>
                 </div>
                 <!-- /.col -->
               </div>

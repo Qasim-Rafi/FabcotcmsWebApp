@@ -22,6 +22,10 @@ import { ArchivedContractsComponent } from './contracts/archived-contracts/archi
 import { BillingAndPaymentModule } from './billing-and-payment/billing-and-payment.module';
 
 import { ActiveContractDetailComponent } from './contracts/active-contracts/active-contract-detail/active-contract-detail.component';
+import { CloudDocumentationModule } from './cloud-documentation/cloud-documentation.module';
+
+import { AuthGuard } from './auth.guard';
+
 
 
 const appRoutes: Routes = []
@@ -62,6 +66,7 @@ const appRoutes: Routes = []
     ConfigurationModule,
     BusinessEnquryModule,
     FormsModule,
+    CloudDocumentationModule,
     NgSelectModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -82,7 +87,7 @@ const appRoutes: Routes = []
     }),
   ],
 
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

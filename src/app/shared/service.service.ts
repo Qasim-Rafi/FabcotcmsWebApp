@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
 import { Observable } from 'rxjs';
@@ -18,10 +18,17 @@ export class ServiceService {
   article: any = [];
   listCount: number;
   data: any = [];
+  rootUrl: "/api/Auth/Login";
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,) { }
 
+    userAuthentication(username, password) {
+        var data = "username=" + username + "&password=" + password + "&grant_type=password";
+        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/x-www-urlencoded','No-Auth':'True' });
+        return this.http.post('/api/Auth/Login' + '/token', data, { headers: reqHeader });
+      }
+      
   getCountry() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/Countries`)
   }
