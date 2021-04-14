@@ -112,9 +112,9 @@
                         <div class="form-group col-md-3 offset-md-2 offset-lg-2">
                             <label for="inputPassword4">Enquiry Date</label>
                             <!-- <input type="text" class="form-control date" id="enqry-date" value="Fri 26-Mar-2021"> -->
-                            <input class="form-control " ngbDatepicker #validityDate="ngbDatepicker"
-                                [(ngModel)]="data.enquiryDate" name="enquiryDate" (click)="validityDate.toggle()"
-                                [displayMonths]="2" />
+                            <input class="form-control " ngbDatepicker #enquiryDate="ngbDatepicker"
+                                [(ngModel)]="data.enquiryDate" name="enquiryDate" (click)="enquiryDate.toggle()"
+                                [displayMonths]="1" />
                         </div>
                     </div>
 
