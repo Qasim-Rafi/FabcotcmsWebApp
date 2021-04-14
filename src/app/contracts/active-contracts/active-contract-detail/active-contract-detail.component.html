@@ -35,12 +35,12 @@
 
                     <div class="box-body">
                         <div class="mid-text">35%</div>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25"
-                                aria-valuemin="0" aria-valuemax="100">25%</div>
+                        <div class="progress mt-1">
+                            <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="75"
+                                aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                         <small class="topbox-margin-end-text">Last Action @</small>
-                        <span class="text_Navy pull-right ">19-Dec-2016 11:50</span>
+                        <span class="text_Navy float-right ">19-Dec-2016 11:50</span>
                     </div>
 
 
@@ -54,17 +54,20 @@
             <div class="col-12 col-sm-6 col-md-3 pt-2">
                 <div class="topbox-1">
                     <div class="topbox-margin-top-text border-bottom"> Order Quantity
-                        <span class="badge badge-primary float-right">Active</span>
+                        <span class="badge badge-info float-right">Contract</span>
                     </div>
 
                     <div class="box-body">
                         <div class="mid-text">100,000</div>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0"
-                                aria-valuemax="100">25%</div>
+                        <div class="progress mt-1">
+                            <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="15" aria-valuemin="0"
+                                aria-valuemax="100"></div>
                         </div>
-                        <small class="topbox-margin-end-text">Last Action @</small>
-                        <span class="text_Navy pull-right ">19-Dec-2016 11:50</span>
+                        <small class="topbox-margin-end-text"> 
+                            <i class="fas fa-truck"></i>
+                            Total Delivered
+                        </small>
+                        <span class="text_Navy float-right ">0 12</span>
                     </div>
 
                     <!-- /.info-box-content -->
@@ -75,18 +78,21 @@
             <div class="col-12 col-sm-6 col-md-3 pt-2">
                 <div class="topbox-1">
                     <div class="topbox-margin-top-text border-bottom"> Sale Invoice
-                        <span class="badge badge-primary float-right">Active</span>
+                        <span class="badge badge-info float-right">Contract</span>
                     </div>
 
                 
                     <div class="box-body">
                         <div class="mid-text">241,500.00</div>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0"
-                                aria-valuemax="100">25%</div>
+                        <div class="progress mt-1">
+                            <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
                         </div>
-                        <small class="topbox-margin-end-text">Last Action @</small>
-                        <span class="text_Navy pull-right ">19-Dec-2016 11:50</span>
+                        <small class="topbox-margin-end-text">
+                            <i class="far fa-money-bill-alt"></i>
+                             Invoice Sent
+                        </small>
+                        <span class="text_Navy float-right ">0.00</span>
                     </div>
                     <!-- /.info-box-content -->
                     </div>
@@ -97,17 +103,21 @@
             <div class="col-12 col-sm-6 col-md-3 pt-2">
                 <div class="topbox-1">
                     <div class="topbox-margin-top-text border-bottom">Billing / Payment
-                        <span class="badge badge-primary float-right">Active</span>
+                        <span class="badge badge-info float-right">Contract</span>
                     </div>
 
                     <div class="box-body">
                     <div class="mid-text">35%</div>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25"
-                            aria-valuemin="0" aria-valuemax="100">25%</div>
+                    <div class="progress mt-1">
+                        <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="0"
+                            aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
-                    <small class="topbox-margin-end-text">Last Action @</small>
-                    <span class="text_Navy pull-right ">19-Dec-2016 11:50</span>
+                    <small class="topbox-margin-end-text">
+                        <i class="far fa-money-bill-alt"></i>
+                         Amount Received
+                    </small>
+                    <span class="text_Navy float-right ">0
+                    </span>
                 </div>
                     <!-- /.info-box-content -->
                 </div>
@@ -116,51 +126,68 @@
         </div>
         <!-- /.row -->
 
-        <div class="row py-5">
+        <div class="row py-3">
             <div class="col-md-9 ">
-                <button class="btn btn-danger rounded-50 px-3 mr-2">Cancle</button>
-                <button class="btn btn-danger rounded-50 px-3 mr-2">Delete</button>
-                <button class="btn btn-warning rounded-50 px-3 mr-2">On-Hold</button>
-                <button class="btn btn-info rounded-50 px-3 mr-2">Revised</button>
-                <button class="btn btn-outline-primary rounded-50 px-3 mr-2">Closed</button>
+                <button class="btn btn-danger border-rounded px-3 mr-2 ">
+                    <i class="far fa-trash-alt"></i>
+                    Delete
+                </button>
+                <button class="btn btn-danger border-rounded px-3 mr-2">
+                    <i class="fas fa-times"></i>
+                    Cancle
+                </button>
+                <button class="btn btn-warning border-rounded px-3 mr-2 text-white">
+                    <i class="fas fa-level-down-alt"></i>
+                    On-Hold
+                </button>
+                <button class="btn btn-info border-rounded px-3 mr-2">
+                    <i class="far fa-clone"></i>
+                    Revised
+                </button>
+                <button class="btn btn-outline-primary border-rounded px-3 mr-2">
+                    <i class="fas fa-check"></i>
+                    Closed
+                </button>
             </div>
-            <div class="col-md-3">
-                <button class="btn btn-outline-primary rounded-50 px-3 mr-2">Buyer</button>
-                <button class="btn btn-outline-info rounded-50 px-3 mr-2">Supplier</button>
+            <div class="col-md-3 text-right ">
+                <button class="btn btn-outline-primary border-rounded px-3 mr-2">
+                    <i class="fas fa-print"></i>
+                    Buyer
+                </button>
+                <button class="btn btn-outline-info border-rounded px-3 mr-2">
+                    <i class="fas fa-print"></i>
+                    Supplier
+                </button>
             </div>
         </div>
 
-        <div>
-            <div class="row">
-                <div class="col-md-12">
-                    <nav>
-                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                            <a class="nav-item nav-link active" id="nav-Details-tab" data-toggle="tab"
-                                href="#nav-Details" role="tab" aria-controls="nav-Details"
-                                aria-selected="true">Details</a>
-                            <a class="nav-item nav-link" id="nav-LC-tab" data-toggle="tab" href="#nav-LC" role="tab"
-                                aria-controls="nav-LC" aria-selected="false">L/C Info</a>
-                            <a class="nav-item nav-link" id="nav-Delivery-tab" data-toggle="tab" href="#nav-Delivery"
-                                role="tab" aria-controls="nav-Delivery" aria-selected="false">Delivery TL</a>
-                            <a class="nav-item nav-link" id="nav-Prod-tab" data-toggle="tab" href="#nav-Prod" role="tab"
-                                aria-controls="nav-Prod" aria-selected="false">Prod Plan</a>
-                            <a class="nav-item nav-link" id="nav-Sale-tab" data-toggle="tab" href="#nav-Sale" role="tab"
-                                aria-controls="nav-Sale" aria-selected="false">Sale Invoice </a>
-                            <a class="nav-item nav-link" id="nav-Documents-tab" data-toggle="tab" href="#nav-Documents"
-                                role="tab" aria-controls="nav-Documents" aria-selected="false">Documents</a>
-                            <a class="nav-item nav-link" id="nav-Notes-tab" data-toggle="tab" href="#nav-Notes"
-                                role="tab" aria-controls="nav-Notes" aria-selected="false">Notes</a>
-                        </div>
-                    </nav>
+            <div class="card ibox-content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <nav>
+                            <div class="nav nav-pills " id="nav-tab" role="tablist">
+                                <a class="nav-item nav-link active " id="nav-Details-tab" data-toggle="tab"
+                                    href="#nav-Details" role="tab" aria-controls="nav-Details"
+                                    aria-selected="true">Details</a>
+                                <a class="nav-item nav-link " id="nav-LC-tab" data-toggle="tab" href="#nav-LC" role="tab"
+                                    aria-controls="nav-LC" aria-selected="false">L/C Info</a>
+                                <a class="nav-item nav-link " id="nav-Delivery-tab" data-toggle="tab" href="#nav-Delivery"
+                                    role="tab" aria-controls="nav-Delivery" aria-selected="false">Delivery TL</a>
+                                <a class="nav-item nav-link " id="nav-Prod-tab" data-toggle="tab" href="#nav-Prod" role="tab"
+                                    aria-controls="nav-Prod" aria-selected="false">Prod Plan</a>
+                                <a class="nav-item nav-link " id="nav-Sale-tab" data-toggle="tab" href="#nav-Sale" role="tab"
+                                    aria-controls="nav-Sale" aria-selected="false">Sale Invoice </a>
+                                <a class="nav-item nav-link " id="nav-Documents-tab" data-toggle="tab" href="#nav-Documents"
+                                    role="tab" aria-controls="nav-Documents" aria-selected="false">Documents</a>
+                                <a class="nav-item nav-link " id="nav-Notes-tab" data-toggle="tab" href="#nav-Notes"
+                                    role="tab" aria-controls="nav-Notes" aria-selected="false">Notes</a>
+                            </div>
+                        </nav>
+                    </div>
                 </div>
-            </div>
 
-
-
-            <div class="col-md-12 bg-white">
 
                 <div class="tab-content" id="nav-tabContent">
-
                     <div class="tab-pane fade show active" id="nav-Details" role="tabpanel"
                         aria-labelledby="nav-Details-tab">
                         <div class="row border-bottom">
@@ -171,9 +198,9 @@
 
                                     <div class="col-md-9">
                                         <div class="h2 ">
-                                            <span><i class="fas fa-flag mr-3"></i></span>
+                                            <span><i class="fas fa-flag mr-3 text-secondary"></i></span>
                                             <span class=" ml-2 text_Navy">FQ-105</span>
-                                            <span class="ml-3"> 12</span>
+                                            <span class="ml-3 font-weight-light"> 73</span>
                                         </div>
                                     </div>
 
@@ -205,10 +232,11 @@
                                     </div>
                                     <div class="col-md-6">
                                         <span>Contract On:</span>
-                                        <span>
-
-                                            <i class="fas fa-history "></i>
+                                        <span class="text_Navy font-weight-bold">
+                                            
+                                            <i class="far fa-clock "></i>
                                             <span> Mon 19-Dec-2011</span>
+                                       
                                         </span>
                                     </div>
 
@@ -245,11 +273,15 @@
                                         </dl>
                                         <dl class="row">
                                             <dt class="col-sm-6">Created On:</dt>
-                                            <dd class="col-sm-6">TEST</dd>
+                                            <dd class="col-sm-6">
+                                                <i class="far fa-calendar-alt"></i>
+                                                TEST</dd>
                                         </dl>
                                         <dl class="row">
                                             <dt class="col-sm-6"> Last Updated On:</dt>
-                                            <dd class="col-sm-6">TEST</dd>
+                                            <dd class="col-sm-6">
+                                                <i class="far fa-calendar-alt"></i>
+                                                TEST</dd>
                                         </dl>
                                     </div>
 
@@ -298,19 +330,26 @@
                                 <div class="col-md-6">
                                     <dl class="row">
                                         <dt class="col-sm-6"> PO Date:</dt>
-                                        <dd class="col-sm-6">3</dd>
+                                        <dd class="col-sm-6">
+                                            <i class="far fa-calendar-alt"></i>
+                                            3</dd>
                                     </dl>
                                     <dl class="row">
                                         <dt class="col-sm-6">Approved On:
                                         </dt>
-                                        <dd class="col-sm-6"> Mr. Khawaja Muzafar sb / Mr. M. Akmal</dd>
+                                        <dd class="col-sm-6">
+                                            <i class="far fa-calendar-alt"></i>
+                                            Sat 25-Mar-2017</dd>
                                     </dl>
                                     <dl class="row">
                                         <dt class="col-sm-6">Approved By:
                                         </dt>
-                                        <dd class="col-sm-6"></dd>
+                                        <dd class="col-sm-6">
+                                            <i class="fas fa-user-tie"></i>
+                                            Abid
+                                        </dd>
                                     </dl>
-
+                                    <button class="btn btn-primary float-right"> Edit</button>
                                 </div>
                             </div>
                         </div>
@@ -380,6 +419,7 @@
                                         </dt>
                                         <dd class="col-sm-6"></dd>
                                     </dl>
+                                    <button class="btn btn-primary float-right"> Edit</button>
 
                                 </div>
                             </div>
@@ -748,10 +788,10 @@
                                             L/C #1</button>
                                     </div>
                                     <div class="col-md-3 ">
-                                        <button class="btn btn-outline-primary mr-3">
+                                        <button class="btn btn-outline-primary mr-3 border-rounded">
                                             <i class="far fa-file "></i>
                                             Edit L/C</button>
-                                        <button class="btn btn-outline-danger">
+                                        <button class="btn btn-outline-danger border-rounded">
                                             <i class="far fa-trash-alt"></i>
                                             Delete</button>
                                     </div>
@@ -941,16 +981,16 @@
                                             Sale Invoice #1 - 76543</button>
                                     </div>
                                     <div class="col-md-6 ">
-                                        <button class="btn btn-outline-info">
+                                        <button class="btn btn-outline-info border-rounded">
                                             <i class="far fa-sticky-note"></i>
                                             Credit Note</button>
-                                        <button class="btn btn-outline-warning">
+                                        <button class="btn btn-outline-warning border-rounded ml-1">
                                             <i class="far fa-sticky-note"></i>
                                             Debit Note</button>
-                                        <button class="btn btn-outline-primary">
+                                        <button class="btn btn-outline-primary border-rounded ml-1">
                                             <i class="far fa-edit"></i>
                                             Edit Invoice</button>
-                                        <button class="btn btn-outline-danger">
+                                        <button class="btn btn-outline-danger border-rounded ml-1">
                                             <i class="far fa-trash-alt"></i>
                                             Delete</button>
                                     </div>
@@ -1236,7 +1276,7 @@
 
                 </div>
             </div>
-        </div>
+    
     </div>
 
 </section>
