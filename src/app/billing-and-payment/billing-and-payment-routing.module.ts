@@ -7,6 +7,7 @@ import { ExternalAgentCommissionComponent } from './external-agent-commission/ex
 import { GenerateBillsComponent } from './generate-bills/generate-bills.component';
 import { NewCommissionPaymentComponent } from './new-commission-payment/new-commission-payment.component';
 import { PaymentCollectionComponent } from './payment-collection/payment-collection.component';
+import { PaymentFormComponent } from './payment-form/payment-form.component';
 
 const routes: Routes = [
 { path:'generate-bills' ,  component: GenerateBillsComponent},
@@ -15,7 +16,8 @@ const routes: Routes = [
 {path:'commission-payment' , component:CommissionPaymentComponent},
 {path:'external-agent' , component:ExternalAgentCommissionComponent},
 {path:'new-commission' , component:NewCommissionPaymentComponent},
-{path:'open-bill' , component:OpenActiveBillComponent}
+{path:'open-bill' , component:OpenActiveBillComponent},
+{path:'payment-form' , component:PaymentFormComponent}
 
 
 ];

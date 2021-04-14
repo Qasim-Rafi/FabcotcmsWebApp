@@ -188,7 +188,7 @@
 
           <ngx-datatable-column name="Contract #" [width]="80" prop="contractNum" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-        
+       {{row.name}}
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Bill Date" [width]="80" prop="billDate" [flexGrow]="0.06">
@@ -198,7 +198,7 @@
           </ngx-datatable-column>
           <ngx-datatable-column name="No. Sale Inv" [width]="80" prop="saleNum" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-        
+                  
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Bill Amount" [width]="80" prop="billAmount" [flexGrow]="0.06">
@@ -224,10 +224,10 @@
         
                 <div class="ibox-tools text-center">
                     <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top" title=""
-                      data-original-title="Edit"><i
+                      data-original-title="Edit" routerLink="/open-bill"><i
                         class="far fa-edit"></i></button>
                     <button type="button" class="btn deleteIconBack" data-toggle="tooltip" data-placement="top" title=""
-                      data-original-title="Delete"><i class="far fa-trash-alt"></i></button>
+          routerLink="/payment-form"><i class="fas fa-money-check-alt"></i></button>
                   </div>
 
             </ng-template>

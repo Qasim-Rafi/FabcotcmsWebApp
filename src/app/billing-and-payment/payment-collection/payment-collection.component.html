@@ -78,7 +78,7 @@
           </ngx-datatable-column>
           <ngx-datatable-column name="Receipt" [width]="80" prop="receipt" [flexGrow]="0.05">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              
+              {{row.name}}
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Bill" [width]="80" prop="bill" [flexGrow]="0.06">
@@ -115,6 +115,13 @@
           <ngx-datatable-column name="Action" [width]="80" prop="action" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
         
+              <div class="ibox-tools text-center" >
+                <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top" title=""
+                  data-original-title="Edit" routerLink="/payment-form"><i
+                    class="far fa-edit"></i></button>
+                <button type="button" class="btn deleteIconBack" data-toggle="tooltip" data-placement="top" title=""
+      routerLink="/payment-form"><i class="fas fa-trash"></i></button>
+              </div>
             </ng-template>
           </ngx-datatable-column>
 

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 // import { ToastrService } from 'ngx-toastr';
 // import { HttpClient } from '@angular/common/http';
 // import { environment } from 'src/environments/environment';
@@ -11,12 +12,15 @@ import { NgForm } from '@angular/forms';
 })
 export class NewCommissionPaymentComponent implements OnInit {
 
-  
+  statusCheck:any = {};
   rows: any = [];
   columns: any = [];
-  constructor() { }
+  constructor(private route: ActivatedRoute,) { }
 
   ngOnInit(): void {
+    this.statusCheck = this.route.snapshot.queryParams;
+    // this.objEnquiry = this.queryParems;
+    
   }
 
 }

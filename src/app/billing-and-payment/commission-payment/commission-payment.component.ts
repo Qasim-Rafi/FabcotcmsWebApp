@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-commission-payment',
@@ -6,15 +6,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./commission-payment.component.css']
 })
 export class CommissionPaymentComponent implements OnInit {
-
   rows: any = [];
   columns: any = [];
-
+// statusCheck:any;
   constructor(  private router: Router,) { }
 
   ngOnInit(): void {
   }
-  addNewCommsion() {
-    this.router.navigateByUrl('/new-commission');
+  addNewCommsion(statusCheck) {
+    // this.statusCheck = check;
+    // this.router.navigateByUrl('/new-commission');
+    this.router.navigate(['/new-commission'], { queryParams: { statusCheck: statusCheck } });
+
   };
+ 
 }
