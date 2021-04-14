@@ -19,6 +19,7 @@ export class DocListComponent implements OnInit {
   columns: any = [];
   date: number;
   myDate = Date.now();
+  cityFilter: any = [];
   constructor(
     private modalService: NgbModal,
     private http: HttpClient,
@@ -41,4 +42,5 @@ export class DocListComponent implements OnInit {
       // on dismiss
     });
   }
+
 }
