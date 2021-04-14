@@ -1,28 +1,15 @@
-td {
-    width: 33.3%;
-    border: none;
-    float: left;
-    font-size: 20px;
-  }
-  
-  small,
-  .small {
-    font-size: 80% !important;
-    font-weight: 400;
-    padding: 12px 0 0 0;
-  }
-  
-  .color{
-color:#1ab394 !important;
-font-size: 20px;
-
-  }
-  .size{
-    font-size: 14px !important;
-  }
-  .size1{
+ .size1{
     font-size: 15px !important;
   }
   .icon{
     color: grey;
   }
+
+  .date-Label{
+    font-size: 14px!important;
+    /* font-weight: 200; */
+}
+.date{
+    font-size: 22px;
+    /* font-weight: 200; */
+}

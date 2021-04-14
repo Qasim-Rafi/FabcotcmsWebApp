@@ -19,33 +19,32 @@
   <div class="card ibox-content">
     <div class="panel blank-panel">
       <div class="panel-heading">
-  
+
         <div class="row mb-3">
-          <div class="col-md-6">
-              <div  class="row">
-            <span class="size">File Created Date from</span>
-            <span class="color">&nbsp;&nbsp;Sun 14-Mar-2021</span>
-            <span class="size">&nbsp;&nbsp;to</span>
-            <span class="color">&nbsp;&nbsp;Tue 13-Apr-2021</span>
-          
-        </div>
+          <div class= "col-md-6 ">
+            <span class="date-Label">File Created Date from &nbsp;</span>
+            <span class="text_Navy  date"> Mon 15-Mar-2021 &nbsp;</span>
+            <span class="date-Label">To &nbsp;</span>
+            <span class="text_Navy  date">Wed 14-Apr-2021 &nbsp;</span>
           </div>
-          <!-- <div class='row no-gutters'>
-            <div class='col-md-5 w-auto ml-auto'> -->
-          <div class=" col-md-5 w-auto ml-auto" >
-              <div class="btn-group mr-2">
-            <button type="button" routerLink="/docupload" class="btn btn-primary">
-              <i class="fa fa-cloud" ></i> Upload New Documents
-            </button></div>
-            <div class="btn-group mr-2">
-            <button type="button" class="btn btn-primary btn-md" (click)="SearchModalForm()">
-                <i class="fa fa-search"></i>
-              </button></div>
-              <div class="btn-group mr-2">
-              <button type="button" class="btn btn-light btn-outline-secondary float-right">
+          <div class="col-md-6 mrg-tsm ">
+                <!-- refresh button -->
+
+            <button type="button" class="btn btn-light float-right">
                 <i class="fas fa-sync-alt"></i>
-              </button></div>
+                </button>
+           <!-- Filter Button -->
+                <button type="button" class="btn btn-primary float-right" (click)="SearchModalForm()">
+                <i class="fa fa-search"></i>
+            </button>
+            <!-- add new commision button -->
+            <button type="button" routerLink="/docupload" class="btn btn-primary float-right" >
+                <i class="fa fa-cloud"></i> Upload New Documents
+            </button>
+          
           </div>
+         
+
         </div>
         <div class="row">
           <div class="col-md-12 mb-4">
