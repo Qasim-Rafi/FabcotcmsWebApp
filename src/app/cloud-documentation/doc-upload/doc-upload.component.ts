@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { ServiceService } from 'src/app/shared/service.service';
+import { FilterComponent } from './filter/filter.component';
 
 @Component({
   selector: 'app-doc-upload',
@@ -13,9 +15,14 @@ department: any = [];
 contracts: any = [];
 type: any = [];
 response:any;
+date:number;
+myDate = Date.now();
+search:any=[];
   constructor(
     private service: ServiceService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private modalService: NgbModal,
+
   ) { }
 
   ngOnInit(): void 
@@ -53,4 +60,20 @@ response:any;
     })
   }
 }
+
+SearchModalForm() {
+  const modalRef = this.modalService.open(FilterComponent , { centered: true });
+  modalRef.result.then((data) => {
+    // on close
+    if (data == true) {
+      this.date = this.myDate;
+      // this.getBuyers();
+
+    }
+  }, (reason) => {
+    // on dismiss
+  });
+}
+
+
 }

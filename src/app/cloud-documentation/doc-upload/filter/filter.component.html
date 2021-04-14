@@ -1,0 +1,33 @@
+<!-- Modal -->
+
+<div class="modal-header">
+    <button type="button" class="close text-white" aria-label="Close" (click)="activeModal.dismiss()">
+        <span style="color: black" aria-hidden="true">&times;</span>
+    </button>
+    <h5 class="modal-title">
+        <i class="far fa-building"></i>
+       Select Contract
+    </h5>
+    <p class="center">Click to select particluar contract</p>
+</div>
+<div class="modal-body BG pt-2r">
+    <form #buyerEditForm="ngForm" class="justify">
+
+    <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search Contract...">
+        <div class="input-group-append">
+          <button class="btn btn-primary" type="button">
+            <i class="fa fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+</div>
+<div class="modal-footer NotBG">
+    <button class="btn btn-outline-dark" type="submit">
+        Close
+    </button>
+    <button class="btn btn-danger" type="submit">
+        Remove Selection
+    </button>
+</div>
