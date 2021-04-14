@@ -3,27 +3,31 @@ h2 {
     font-weight: 100;
   }
   
-  .topbox-1 {
-    background-color:white;
-    height: 150px;
+  .topbox-1{
+    background-color: white;
+    /* height: 150px; */
     text-align: left;
     color: gray;
     border-radius: 3px;
-  }
+}
   
   .topbox-margin-top-text {
-    font-size: 20px;
-    padding-top: 5px;
+    font-size: 16px;
+    padding: 10px;
     color: grey;
   }
   
   .mid-text {
-    font-size: 30PX;
-    margin-top: -10px;
+    font-size: 30px;
+    line-height: 32px;
   }
   
   .topbox-margin-end-text {
     font-size: 13px;
     margin-top: -10px;
+  }
+
+  .box-body {
+    padding: 10px 15px;
   }
   
