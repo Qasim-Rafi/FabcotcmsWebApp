@@ -20,6 +20,7 @@ export class DocListComponent implements OnInit {
   date: number;
   myDate = Date.now();
   cityFilter: any = [];
+  inputs = [];
   constructor(
     private modalService: NgbModal,
     private http: HttpClient,
@@ -42,5 +43,9 @@ export class DocListComponent implements OnInit {
       // on dismiss
     });
   }
+
+    add() {
+      this.inputs.splice(0,0,this.inputs.length+1);
+    }
 
 }
