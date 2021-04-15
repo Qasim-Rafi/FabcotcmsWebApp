@@ -21,7 +21,7 @@ export class EnquiryItemsComponent implements OnInit {
   color: any = [];
   loomType: any = [];
   fabricType: any = [];
-
+values=[];
 
 
   constructor(
@@ -47,7 +47,9 @@ export class EnquiryItemsComponent implements OnInit {
     return this._NgbActiveModal;
   }
 
-
+  add(){
+    this.values.push({value: ""});
+  }
 
   GetUOMDropdown() {
     this.service.getUOM().subscribe(res => {
