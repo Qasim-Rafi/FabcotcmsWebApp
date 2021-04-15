@@ -13,10 +13,10 @@ export class CommissionPaymentComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  addNewCommsion(statusCheck) {
+  addNewCommsion(statusCheck ) {
     // this.statusCheck = check;
     // this.router.navigateByUrl('/new-commission');
-    this.router.navigate(['/new-commission'], { queryParams: { statusCheck: statusCheck } });
+    this.router.navigate(['/new-commission'], { queryParams: { statusCheck: statusCheck  }  });
 
   };
  

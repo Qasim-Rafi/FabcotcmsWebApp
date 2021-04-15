@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class NewCommissionPaymentComponent implements OnInit {
 
-  statusCheck:any = {};
+  statusCheck:any={};
   rows: any = [];
   columns: any = [];
   constructor(private route: ActivatedRoute,) { }
@@ -20,7 +20,7 @@ export class NewCommissionPaymentComponent implements OnInit {
   ngOnInit(): void {
     this.statusCheck = this.route.snapshot.queryParams;
     // this.objEnquiry = this.queryParems;
-    
+    console.log(this.statusCheck)
   }
 
 }
