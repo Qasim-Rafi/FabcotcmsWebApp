@@ -14,9 +14,10 @@ import { NewCommissionPaymentComponent } from './new-commission-payment/new-comm
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { PaymentFormComponent } from './payment-form/payment-form.component';
+import { DateFilterComponent } from './date-filter/date-filter.component';
 
 @NgModule({
-  declarations: [GenerateBillsComponent, ActiveBillsComponent, OpenActiveBillComponent, PaymentCollectionComponent, CommissionPaymentComponent, ExternalAgentCommissionComponent, NewCommissionPaymentComponent, PaymentFormComponent],
+  declarations: [GenerateBillsComponent, ActiveBillsComponent, OpenActiveBillComponent, PaymentCollectionComponent, CommissionPaymentComponent, ExternalAgentCommissionComponent, NewCommissionPaymentComponent, PaymentFormComponent, DateFilterComponent],
   imports: [
     CommonModule,
     BillingAndPaymentRoutingModule,

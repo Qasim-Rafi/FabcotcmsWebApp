@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DateFilterComponent } from '../date-filter/date-filter.component';
 
 @Component({
   selector: 'app-active-bills',
@@ -10,10 +12,16 @@ export class ActiveBillsComponent implements OnInit {
   rows: any = [  {name : ["1","2","3","4"]  } ];
   columns: any = [];
 
-  constructor() { }
+  constructor( private modalService: NgbModal) { }
 
   ngOnInit(): void {
   }
  
+  dateFilterForm() {
+    
+    const modalRef = this.modalService.open(DateFilterComponent, { centered: true });
+  
+   
+  }
 
 }
