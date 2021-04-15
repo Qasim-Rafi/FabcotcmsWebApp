@@ -7,13 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ActiveBillsComponent implements OnInit {
 
-  rows: any = [];
+  rows: any = [  {name : ["1","2","3","4"]  } ];
   columns: any = [];
 
   constructor() { }
 
   ngOnInit(): void {
   }
-
+ 
 
 }
