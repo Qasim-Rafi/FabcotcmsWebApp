@@ -9,5 +9,11 @@ color: grey;
       color: white;
   }
 
-
+.progressbar{
+  height: 32px;
+  margin-bottom:20px; 
+  width: 50%;
+  background-color: #1ab394;
+  align-content: center;
+}
   

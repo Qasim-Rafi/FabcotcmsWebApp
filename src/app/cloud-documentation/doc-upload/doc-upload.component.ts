@@ -3,7 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { ServiceService } from 'src/app/shared/service.service';
 import { FilterComponent } from './filter/filter.component';
-
+import {FormBuilder, FormGroup} from '@angular/forms';
 @Component({
   selector: 'app-doc-upload',
   templateUrl: './doc-upload.component.html',
@@ -18,15 +18,29 @@ response:any;
 date:number;
 myDate = Date.now();
 search:any=[];
+error: string;
+profileForm: FormGroup;
+fileUpload = {status: '', message: '', filePath: ''};
   constructor(
     private service: ServiceService,
     private toastr: ToastrService,
     private modalService: NgbModal,
+    private fb: FormBuilder,
+
 
   ) { }
 
   ngOnInit(): void 
- { {
+ { 
+   
+  {
+this.profileForm=this.fb.group({
+  name:[''],
+  profile:['']
+});
+  }
+  
+  {
     this.service.getDepartments().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
@@ -74,6 +88,22 @@ SearchModalForm() {
     // on dismiss
   });
 }
+onSelectedFile(event) {
+  if (event.target.files.length > 0) {
+    const file = event.target.files[0];
+    this.profileForm.get('profile').setValue(file);
+  }
+}
 
+onSubmit() {
+  const formData = new FormData();
+  formData.append('name', this.profileForm.get('name').value);
+  formData.append('profile', this.profileForm.get('profile').value);
+
+  this.service.upload(formData).subscribe(
+    res => this.fileUpload = res,
+    err => this.error = err
+  );
+}
 
 }
