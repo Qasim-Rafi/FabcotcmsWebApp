@@ -120,6 +120,26 @@
               </div>
             </div>
           </div>
+          <div class="form-group row">
+          <label for="buyerContact" class="col-sm-3 col-form-label">Agent Comm</label>
+          <div class=" col-md-8">
+            <div class="row">
+              <ng-select  placeholder="Select an Agent"  name="countryId">
+                  <ng-option >
+                  </ng-option>
+                </ng-select>
+          
+              <div class="col-md-8">
+                  
+                    <div class="col-md-8 fieldmrgbtm">
+                      <input class="form-control" id="buyerContact"
+                        placeholder="Comm %"  name="buyerContact" />
+                    </div>
+              </div>
+           
+            </div>
+          </div>
+        </div>
           <div class="form-group row" *ngFor="let value of data; let i = index;">
             <label for="buyerContact" class="col-sm-3 col-form-label">Agent Comm</label>
             <div class=" col-md-8">
@@ -129,27 +149,31 @@
                     </ng-option>
                   </ng-select>
             
+                
                 <div class="col-md-8">
                     
-                      <div class="col-md-8 fieldmrgbtm">
-                        <input class="form-control" id="buyerContact"
-                          placeholder="Comm %" [(ngModel)]="value.buyerContact" name="buyerContact_{{value.id}}" />
+                    <div class="col-md-6 fieldmrgbtm">
+                      <input class="form-control" id="buyerContact"
+                        placeholder="Comm %" [(ngModel)]="value.buyerContact" name="buyerContact_{{value.id}}" />
+                        <!-- <button class="btn btn-outline-danger" type="submit" (click)="remove(i)"> -->
+                            <i class="fas fa-minus fa-xs" (click)="remove(i)" ></i>
+                            <!-- </button> -->
                       </div>
-                </div>
-             
+                    
+              </div>              
+                    
+                  
+               
               </div>
             </div>
-            <button class="btn btn-outline-danger" type="submit" (click)="remove(i)">
-                <i class="fas fa-minus"></i>
-                  Remove
-                </button>
+           
           </div>
 
           <button class="btn btn-outline-success" type="submit" (click)="addMore()">
         <i class="fas fa-plus"></i>
           Add another Agent
         </button>
-        
+       
          
     </form>
   </div>
