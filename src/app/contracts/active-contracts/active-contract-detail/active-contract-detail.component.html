@@ -349,7 +349,7 @@
                                             Abid
                                         </dd>
                                     </dl>
-                                    <button class="btn btn-primary float-right"> Edit</button>
+                                    <button class="btn btn-outline-primary float-right" (click)="PartiesForm()"> Edit</button>
                                 </div>
                             </div>
                         </div>
@@ -419,7 +419,7 @@
                                         </dt>
                                         <dd class="col-sm-6"></dd>
                                     </dl>
-                                    <button class="btn btn-primary float-right"> Edit</button>
+                                    <button class="btn btn-outline-primary float-right" (click)="ProductANDSpecificationForm()"> Edit</button>
 
                                 </div>
                             </div>
@@ -464,7 +464,8 @@
                                         </dt>
                                         <dd class="col-sm-6"> </dd>
                                     </dl>
-                                    <button class="btn btn-primary float-right"> Edit</button>
+                                    <button class="btn btn-outline-primary float-right" (click)="QuantityCosting()"> Edit</button>
+
                                 </div>
                             </div>
                         </div>
@@ -516,7 +517,8 @@
                                         </dt>
                                         <dd class="col-sm-6"> </dd>
                                     </dl>
-                                    <button class="btn btn-primary float-right"> Edit</button>
+                                    <button class="btn btn-outline-primary float-right" (click)="PaymentDelivery()"> Edit</button>
+
                                 </div>
                             </div>
                         </div>
@@ -527,9 +529,12 @@
                             <div class="row">
                                 <div class="badge badge-primary my-3">
                                     Delivery Timeline
-
                                 </div>
+
+                                <button class="btn btn-outline-primary float-right" (click)="DeliveryTimeline()"> Add </button>
+
                             </div>
+                            
 
 
                             <ngx-datatable #myTable class="bootstrap" [columnMode]="'force'" [headerHeight]="50"
@@ -637,8 +642,10 @@
                                         <dd class="col-sm-6"></dd>
                                         <dd class="col-sm-6"></dd>
                                     </dl>
-                                </div>
 
+                                    <button class="btn btn-outline-primary float-right" (click)="CommissionKickback()"> Edit</button>
+
+                                </div>
                             </div>
                         </div>
 
@@ -647,6 +654,9 @@
                                 <div class="badge badge-primary my-3">
                                     Employee Commission
                                 </div>
+                                
+                                <button class="btn btn-outline-primary float-right" (click)="EmployeeCommission()"> Add</button>
+
                             </div>
 
 
@@ -758,6 +768,9 @@
                                         <dd class="col-sm-6"></dd>
 
                                     </dl>
+
+                                    <button class="btn btn-outline-primary float-right" (click)="Remarks()"> Edit</button>
+
                                 </div>
 
                             </div>

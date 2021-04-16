@@ -25,6 +25,16 @@ import { ActiveContractDetailComponent } from './contracts/active-contracts/acti
 import { CloudDocumentationModule } from './cloud-documentation/cloud-documentation.module';
 
 import { AuthGuard } from './auth.guard';
+import { EnquiryNotesComponent } from './shared/MODLES/enquiry-notes/enquiry-notes.component';
+import { PartiesComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/parties/parties.component';
+import { ProductAndSpecificationComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/product-and-specification/product-and-specification.component';
+import { QualityCostingComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/quality-costing/quality-costing.component';
+import { PaymentDeliveryComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/payment-delivery/payment-delivery.component';
+import { DeliveryTimelineComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/delivery-timeline/delivery-timeline.component';
+import { CommisionKickbackComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/commision-kickback/commision-kickback.component';
+import { EmployeeCommissionComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/employee-commission/employee-commission.component';
+import { RemarksComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/remarks/remarks.component';
+import { QuantityCostingComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/quantity-costing/quantity-costing.component';
 
 
 
@@ -41,6 +51,16 @@ const appRoutes: Routes = []
     ActiveContractsComponent,
     ArchivedContractsComponent,
     ActiveContractDetailComponent,
+    EnquiryNotesComponent,
+    PartiesComponent,
+    ProductAndSpecificationComponent,
+    QualityCostingComponent,
+    PaymentDeliveryComponent,
+    DeliveryTimelineComponent,
+    CommisionKickbackComponent,
+    EmployeeCommissionComponent,
+    RemarksComponent,
+    QuantityCostingComponent,
     // AddEnquiryComponent,
     // SearchEnquiryComponent,
     // AddmodalComponent,
