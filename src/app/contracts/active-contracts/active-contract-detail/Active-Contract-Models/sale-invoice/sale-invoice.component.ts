@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-parties',
-  templateUrl: './parties.component.html',
-  styleUrls: ['./parties.component.css']
+  selector: 'app-sale-invoice',
+  templateUrl: './sale-invoice.component.html',
+  styleUrls: ['./sale-invoice.component.css']
 })
-export class PartiesComponent implements OnInit {
+export class SALEINVOICEComponent implements OnInit {
 
   constructor(
     private _NgbActiveModal: NgbActiveModal
@@ -18,6 +18,4 @@ export class PartiesComponent implements OnInit {
   get activeModal() {
     return this._NgbActiveModal;
   }
-
-
 }

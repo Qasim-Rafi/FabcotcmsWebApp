@@ -35,6 +35,9 @@ import { CommisionKickbackComponent } from './contracts/active-contracts/active-
 import { EmployeeCommissionComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/employee-commission/employee-commission.component';
 import { RemarksComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/remarks/remarks.component';
 import { QuantityCostingComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/quantity-costing/quantity-costing.component';
+import { LOCComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/loc/loc.component';
+import { PRODUCTPLANComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/product-plan/product-plan.component';
+import { SALEINVOICEComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/sale-invoice/sale-invoice.component';
 
 
 
@@ -61,6 +64,9 @@ const appRoutes: Routes = []
     EmployeeCommissionComponent,
     RemarksComponent,
     QuantityCostingComponent,
+    LOCComponent,
+    PRODUCTPLANComponent,
+    SALEINVOICEComponent,
     // AddEnquiryComponent,
     // SearchEnquiryComponent,
     // AddmodalComponent,

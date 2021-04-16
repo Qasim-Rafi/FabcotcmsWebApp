@@ -1,1 +1,91 @@
-<p>enquiry-notes works!</p>
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
+      <div aria-hidden="true">&times;</div>
+    </button>
+  
+    <h5 class="modal-title">
+        <i class="far fa-sticky-note"></i>
+    Add New Note
+    </h5>
+  </div>
+
+
+
+  <div class="modal-body BG pt-2r">
+    <form #NotesForm="ngForm" novalidate>
+   
+
+        <div class="form-check form-check-inline offset-md-3 pl-1">
+           
+            <label class="col-md-3 col-form-label">Note Type</label>
+           
+            <input class="form-check-input check-btn" type="checkbox" />
+            <label class="form-check-label checkboxDanger1"> Private Note</label>
+            <input class="form-check-input check-btn" type="checkbox"  />
+            <label class="form-check-label checkboxDanger1"> Public Note
+            </label>
+
+          </div>
+
+
+
+          
+        <div class="form-group row">
+            <label for="name" class="col-sm-3 col-form-label">Title</label>
+            <div class="col-sm-8">
+              <input  type="text" class="form-control"
+                placeholder="Note Title"/>
+            </div>
+          </div>
+
+
+          <div class="form-group row">
+            <label for="name" class="col-sm-3 col-form-label">Detail</label>
+            <div class="col-sm-8">
+              <textarea  type="text" class="form-control" rows="4"
+                placeholder="Note Title"></textarea>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="name" class="col-sm-3 col-form-label">Reminder</label>
+            <div class="col-sm-8">
+              <input  type="text" class="form-control" disabled
+                placeholder="Click to Set Reminder"/>
+            </div>
+          </div>
+
+          <div class="form-group row">
+        
+                <label for="name" class="col-sm-3 col-form-label">
+                <input class="form-check-input check-btn" type="checkbox" />
+                    Flag
+                </label>
+                
+                
+        
+            <div class="col-sm-3">
+              <input  type="color" class="form-control"  value="#ffffff"
+                />
+            </div>
+          </div>
+
+
+    </form>
+  </div>
+
+
+
+
+
+
+
+
+  <div class="modal-footer NotBG">
+    <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
+      Close
+    </button>
+    <button class="btn button-save" type="submit">
+      Save Note
+    </button>
+  </div>

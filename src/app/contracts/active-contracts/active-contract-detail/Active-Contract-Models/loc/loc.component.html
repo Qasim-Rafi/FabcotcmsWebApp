@@ -1,0 +1,86 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
+      <div aria-hidden="true">&times;</div>
+    </button>
+  
+    <h5 class="modal-title">
+      <i class="fa fa-plus"></i>
+     Add New L/C
+        <small>
+            <p>
+            Contract No. 16
+        </p>
+        </small>
+    </h5>
+  </div>
+
+
+  <div class="modal-body BG pt-2r">
+    <form #LCForm="ngForm" novalidate>
+   
+
+        <div class="form-group row">
+            <label for="name" class="col-sm-3 col-form-label">L/C No.</label>
+            <div class="col-sm-8">
+              <input  type="text" class="form-control"
+                placeholder="purchase order number from buyer"/>
+            </div>
+          </div>
+
+
+          <div class="form-group row">
+            <label for="description" class="col-sm-3 col-form-label ">L/C Open On</label>
+            <div class="col-sm-8" (clickOutside)="validityDate.close()">
+      
+              <input navigation="select" class="form-control  " ngbDatepicker #validityDate="ngbDatepicker"
+                (click)="validityDate.toggle()" placeholder="L/C opening date" 
+                name="validityDate" />
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="description" class="col-sm-3 col-form-label ">L/C Shipment On</label>
+            <div class="col-sm-8" (clickOutside)="validityDate.close()">
+      
+              <input navigation="select" class="form-control  " ngbDatepicker #validityDate="ngbDatepicker"
+                (click)="validityDate.toggle()" placeholder="Certificate validity date" 
+                name="validityDate" />
+                <input  type="text" class="form-control"
+                placeholder="Shipment Date Info"/>
+            </div>
+          </div>
+
+
+          
+          <div class="form-group row">
+            <label for="description" class="col-sm-3 col-form-label ">L/C Expiry Date</label>
+            <div class="col-sm-8" (clickOutside)="validityDate.close()">
+      
+              <input navigation="select" class="form-control  " ngbDatepicker #validityDate="ngbDatepicker"
+                (click)="validityDate.toggle()" placeholder="L/C Expiry date" 
+                name="validityDate" />
+            </div>
+          </div>
+
+
+
+          <div class="form-group row">
+            <label for="name" class="col-sm-3 col-form-label">Remarks</label>
+            <div class="col-sm-8">
+              <textarea  type="text" class="form-control" rows="4"
+                placeholder="L/C Additional Details here..."></textarea>
+            </div>
+          </div>
+
+
+    </form>
+  </div>
+  
+  <div class="modal-footer NotBG">
+    <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
+      Close
+    </button>
+    <button class="btn button-save" type="submit">
+      Save L/C
+    </button>
+  </div>
