@@ -15,7 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { PaymentFormComponent } from './payment-form/payment-form.component';
 import { DateFilterComponent } from './date-filter/date-filter.component';
-
+import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [GenerateBillsComponent, ActiveBillsComponent, OpenActiveBillComponent, PaymentCollectionComponent, CommissionPaymentComponent, ExternalAgentCommissionComponent, NewCommissionPaymentComponent, PaymentFormComponent, DateFilterComponent],
   imports: [
@@ -26,7 +26,8 @@ import { DateFilterComponent } from './date-filter/date-filter.component';
     FormsModule,
     NgSelectModule,
     ReactiveFormsModule,
-    NgxDatatableModule
+    NgxDatatableModule,
+    NgbDatepickerModule
   ]
 })
 export class BillingAndPaymentModule { }
