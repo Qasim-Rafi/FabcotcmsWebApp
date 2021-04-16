@@ -15,13 +15,12 @@ export class EnquiryItemsComponent implements OnInit {
   @Input() statusCheck;
   @Input() EnquiryId;
   @Input() EnquiryItemId;
-  data: any = {};
+  data:any=[{id: 0}];
   response: any;
   uomList: any = [];
   color: any = [];
   loomType: any = [];
   fabricType: any = [];
-values=[];
 
 
   constructor(
@@ -47,8 +46,9 @@ values=[];
     return this._NgbActiveModal;
   }
 
-  add(){
-    this.values.push({value: ""});
+  add() {
+    this.data.push({id: this.data.length
+    });
   }
 
   GetUOMDropdown() {
@@ -123,7 +123,7 @@ values=[];
     }
 
     this.http.
-      post(`${environment.apiUrl}/api/Enquiries/AddEnquiryItem`, varr)
+      post(`${environment.apiUrl}/api/Enquiries/AddEnquiryItem`, this.data)
       .subscribe(
         res => {
           this.response = res;
