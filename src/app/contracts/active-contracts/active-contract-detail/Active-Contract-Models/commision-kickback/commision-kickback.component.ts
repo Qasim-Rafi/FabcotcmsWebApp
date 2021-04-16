@@ -10,6 +10,7 @@ export class CommisionKickbackComponent implements OnInit {
   public data: any[] = [{
     id: 0
   }];
+  i:number;
   constructor(
     private _NgbActiveModal: NgbActiveModal
 
@@ -25,7 +26,7 @@ export class CommisionKickbackComponent implements OnInit {
       id: this.data.length,
     });
   }
-  remove(i: number) {
+  remove(i) {
     this.data.splice(i, 1);
   }
 }
