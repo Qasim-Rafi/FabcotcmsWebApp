@@ -7,10 +7,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./commision-kickback.component.css']
 })
 export class CommisionKickbackComponent implements OnInit {
-  public data: any[] = [{
-    id: 0
-  }];
-  i:number;
+ data: any=[];
   constructor(
     private _NgbActiveModal: NgbActiveModal
 
@@ -26,7 +23,7 @@ export class CommisionKickbackComponent implements OnInit {
       id: this.data.length,
     });
   }
-  remove(i) {
+  remove(i: number) {
     this.data.splice(i, 1);
   }
 }

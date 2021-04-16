@@ -155,9 +155,9 @@
                     <div class="col-md-6 fieldmrgbtm">
                       <input class="form-control" id="buyerContact"
                         placeholder="Comm %" [(ngModel)]="value.buyerContact" name="buyerContact_{{value.id}}" />
-                        <!-- <button class="btn btn-outline-danger" type="submit" (click)="remove(i)"> -->
-                            <i class="fas fa-minus fa-xs" (click)="remove(i)" ></i>
-                            <!-- </button> -->
+                        <button class="btn btn-outline-danger" type="submit" (click)="remove(i)">
+                            <i class="fas fa-minus fa-xs"  ></i>
+                            </button>
                       </div>
                     
               </div>              
@@ -179,7 +179,7 @@
   </div>
   <div class="modal-footer NotBG">
     <!-- <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" (click)="activeModal.close()">Close</button> -->
-    <button class="btn btn-outline-dark" type="submit"
+    <button class="btn btn-outline-dark" type="submit" (click)="activeModal.close()"
       >
      Close
     </button>
