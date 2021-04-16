@@ -1,1 +1,158 @@
-<p>product-and-specification works!</p>
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
+        <div aria-hidden="true">&times;</div>
+    </button>
+
+    <h5 class="modal-title">
+        <i class="fa fa-plus"></i>
+        Edit Contracts
+        <small>
+            <p>
+                Contract No. 16
+            </p>
+        </small>
+    </h5>
+</div>
+
+
+<div class="modal-body BG pt-2r">
+    <form #partiesForm="ngForm" novalidate>
+
+
+
+        <div class="form-group row">
+            <label for="name" class="col-sm-3 col-form-label text_Navy">Construction</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" placeholder="%" name="buyerName" />
+            </div>
+            <div class="col-sm-4">
+                <ng-select name="" placeholder="Fabric Type">
+                    <ng-option>
+                        Test Value
+                    </ng-option>
+                </ng-select>
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <label for="name" class="col-sm-3 col-form-label">Cons. Info</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" placeholder="Construction Additional Info" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="parentBuyerId" class="col-sm-3 col-form-label text_Navy">Article</label>
+            <div class="col-sm-8">
+                <ng-select name="" placeholder="-- Select --">
+                    <ng-option>
+                        Test Value
+                    </ng-option>
+                </ng-select>
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <label for="name" class="col-sm-3 col-form-label ">Additional Specs</label>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" placeholder="GSM" name="buyerName" />
+
+            </div>
+            <div class="input-group-append">
+                <span class="input-group-text" id="basic-addon2">+/-</span>
+                <div class="com-sm-1">
+                    <input type="text" class="form-control" placeholder="Tol/Gram" name="buyerName" />
+                </div>
+            </div>
+
+            <div class="col-sm-2">
+                <ng-select name="" placeholder="Weave">
+                    <ng-option>
+                        Test Value
+                    </ng-option>
+                </ng-select>
+            </div>
+            <div class="col-sm-2">
+                <ng-select name="" placeholder="Selvedge">
+                    <ng-option>
+                        Test Value
+                    </ng-option>
+                </ng-select>
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <label for="code" class="col-sm-3 col-form-label control-label">Width </label>
+            <div class="input-group col-sm-4">
+                <input required id="Width" type="text" class="form-control" placeholder="Width" name="Width">
+                <!-- <span class="rate">= 1 USD</span> -->
+                <div class="input-group-append">
+                    <span class="input-group-text" id="basic-addon2">= 1 USD</span>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <label for="parentBuyerId" class="col-sm-3 col-form-label ">Piece Lenght:</label>
+            <div class="col-sm-8">
+                <ng-select name="" placeholder="-- Select --">
+                    <ng-option>
+                        Test Value
+                    </ng-option>
+                </ng-select>
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <label for="parentBuyerId" class="col-sm-3 col-form-label ">Pick Insertion</label>
+            <div class="col-sm-8">
+                <ng-select name="" placeholder="Select Pick Insertion">
+                    <ng-option>
+                        Test Value
+                    </ng-option>
+                </ng-select>
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <label for="parentBuyerId" class="col-sm-3 col-form-label ">BR Warp</label>
+            <div class="col-sm-8">
+                <ng-select name="" placeholder="Select Warp ">
+                    <ng-option>
+                        Test Value
+                    </ng-option>
+                </ng-select>
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <label for="parentBuyerId" class="col-sm-3 col-form-label ">BR Weft</label>
+            <div class="col-sm-8">
+                <ng-select name="" placeholder="Select Weft">
+                    <ng-option>
+                        Test Value
+                    </ng-option>
+                </ng-select>
+            </div>
+        </div>
+
+
+    </form>
+</div>
+
+
+<div class="modal-footer NotBG">
+    <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
+        Close
+    </button>
+    <button class="btn button-save" type="submit">
+        Save
+    </button>
+</div>
