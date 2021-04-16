@@ -12,7 +12,6 @@ export class SearchmodalComponent implements OnInit {
 data:any;
 search:any;
 response:any;
-
   constructor( private _NgbActiveModal: NgbActiveModal,
     private service:ServiceService,
     private toaster:ToastrService) { }
