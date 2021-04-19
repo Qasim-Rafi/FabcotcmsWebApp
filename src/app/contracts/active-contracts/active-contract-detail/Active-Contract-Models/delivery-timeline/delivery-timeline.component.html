@@ -1,1 +1,97 @@
-<p>delivery-timeline works!</p>
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
+      <div aria-hidden="true">&times;</div>
+    </button>
+  
+    <h5 class="modal-title">
+      <i class="fas fa-clock"></i>
+      Add Shipment Schedule
+    </h5>
+  </div>
+
+
+  
+  <div class="modal-body BG pt-2r">
+    <form #partiesForm="ngForm" novalidate>
+
+        <div class="form-group row">
+            <label for="name" class="col-sm-3 col-form-label text_Navy">Shipment No.</label>
+            <div class="col-sm-7">
+              <input  type="text" class="form-control"
+                placeholder="Shipment Number Info"/>
+            </div>
+          </div>
+
+
+          <div class="form-group row">
+            <label for="description" class="col-sm-3 col-form-label text-Navy">Supplier Date</label>
+            <div class="col-sm-7" (clickOutside)="validityDate.close()">
+      
+              <input navigation="select" class="form-control text_Navy " ngbDatepicker #validityDate="ngbDatepicker"
+                (click)="validityDate.toggle()" placeholder="Shipment date received from Supplier" 
+                name="validityDate" />
+            </div>
+          </div>
+          
+
+          <div class="form-group row">
+            <label for="description" class="col-sm-3 col-form-label ">Buyer Date</label>
+            <div class="col-sm-7" (clickOutside)="validityDate2.close()">
+      
+              <input navigation="select" class="form-control  " ngbDatepicker #validityDate2="ngbDatepicker"
+                (click)="validityDate2.toggle()" placeholder="Shipment date received from Buyer" 
+                name="validityDate2" />
+            </div>
+          </div>
+          
+          <div class="form-group row">
+            <label for="description" class="col-sm-3 col-form-label text-Navy">Shipment Line</label>
+            <div class="col-sm-7">
+                <ng-select 
+                placeholder="Select Shipment Line " class="text-center">
+                <ng-option >
+                </ng-option>
+              </ng-select>
+            </div>
+          </div>
+          
+          <div class="form-group row">
+            <label for="description" class="col-sm-3 col-form-label text-Navy">Shipment Mode</label>
+            <div class="col-sm-7">
+                <ng-select 
+                placeholder="Select Shipment Mode ">
+                <ng-option >
+                    By Air
+                </ng-option>
+                <ng-option >
+                    By Sea
+                </ng-option>
+              </ng-select>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="inputEmail3" class="col-md-3 col-form-label
+             control-label">Additional Note:</label>
+            <div class="col-md-7">
+                <textarea class="form-control"
+                 rows="4" placeholder="Shipment plan additional details here..."
+                 name="remarks"></textarea>
+            </div>
+        </div>
+          
+
+    </form>
+  </div>
+  
+  <div class="modal-footer NotBG">
+    <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
+      Close
+    </button>
+    <button class="btn button-save" type="submit">
+      Save & Close
+    </button>
+    <button class="btn button-blue" type="submit">
+        Save & Next
+      </button>
+  </div>
