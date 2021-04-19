@@ -76,13 +76,13 @@ export class AddEnquiryComponent implements OnInit {
 
   ngOnInit() {
 
-    this.datePickerConfig = Object.assign
-      ({}, {
-        containerClass: 'theme-default ',
-        isAnimated: true,
-        showWeekNumbers: false,
-        dateInputFormat: 'DD/MM/YYYY',
-      }),
+    // this.datePickerConfig = Object.assign
+    //   ({}, {
+    //     containerClass: 'theme-default ',
+    //     isAnimated: true,
+    //     showWeekNumbers: false,
+    //     dateInputFormat: 'DD/MM/YYYY',
+    //   }),
 
       this.GetBuyersDropdown();
     this.GetArticlesDropdown();
