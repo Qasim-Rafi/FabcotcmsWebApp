@@ -114,8 +114,9 @@
                                     Date</label>
                                 <div class="col-md-3">
                                     <div class="input-group">
-                                        <input type="text" placeholder="   Payment Date  "
-                                            class="form-control text-w-50">
+                                        <input navigation="select" class="form-control  " ngbDatepicker #validityDate="ngbDatepicker"
+                                        (click)="validityDate.toggle()"  
+                                        name="validityDate" />
                                     </div>
                                 </div>
 
@@ -149,8 +150,17 @@
                         <div class="col-md-2 mrg-sm1">
                             <ng-select name="supplier" placeholder="">
                                 <ng-option>
-                                    new-Supplier
+                                PKR
                                 </ng-option>
+                                <ng-option>
+                                    USD
+                                    </ng-option>
+                                    <ng-option>
+                                        EUR
+                                        </ng-option>
+                                        <ng-option>
+                                            GBP
+                                            </ng-option>
                             </ng-select>
                         </div>
 
@@ -163,8 +173,18 @@
                                 <div class="col-md-8">
                                     <ng-select name="supplier" placeholder=" Payment Mode">
                                         <ng-option>
-                                            new-payment
+                                        PO
                                         </ng-option>
+                                        <ng-option>
+                                            TT
+                                            </ng-option>
+                                            <ng-option>
+                                                Cash
+                                                </ng-option>
+                                                <ng-option>
+                                                    Cheque
+                                                    </ng-option>
+                                        
                                     </ng-select>
                                 </div>
                             </div>
@@ -225,8 +245,9 @@
                                     <label for="inputEmail3" class="col-md-3 col-form-label control-label">
                                      Bank Deposit Date</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control text-w-40"
-                                             placeholder="Date At which instrument deposit in bank">
+                                            <input navigation="select" class="form-control  " ngbDatepicker #validityDate1="ngbDatepicker"
+                                            (click)="validityDate1.toggle()"  
+                                            name="validityDate1" />
                                         </div>
                             </div>
                         </div>
