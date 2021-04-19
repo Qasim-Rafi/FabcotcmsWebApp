@@ -35,6 +35,9 @@ import { CommisionKickbackComponent } from './contracts/active-contracts/active-
 import { EmployeeCommissionComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/employee-commission/employee-commission.component';
 import { RemarksComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/remarks/remarks.component';
 import { QuantityCostingComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/quantity-costing/quantity-costing.component';
+import { TemplateComponent } from './template/template.component';
+import { ContractsRoutingModule } from './contracts/contracts-routing.module';
+import { CloudDocumentationRoutingModule } from './cloud-documentation/cloud-documentation.routing.module';
 
 
 
@@ -61,6 +64,7 @@ const appRoutes: Routes = []
     EmployeeCommissionComponent,
     RemarksComponent,
     QuantityCostingComponent,
+    TemplateComponent,
     // AddEnquiryComponent,
     // SearchEnquiryComponent,
     // AddmodalComponent,
@@ -90,9 +94,12 @@ const appRoutes: Routes = []
     NgSelectModule,
     ReactiveFormsModule,
     HttpClientModule,
+    CloudDocumentationRoutingModule,
     BrowserAnimationsModule,
+    ContractsRoutingModule,
     NgxDatatableModule,
     BillingAndPaymentModule,
+    BusinessEnquryModule,
     RouterModule.forRoot(appRoutes),
     ToastrModule.forRoot({
       progressBar: true,
