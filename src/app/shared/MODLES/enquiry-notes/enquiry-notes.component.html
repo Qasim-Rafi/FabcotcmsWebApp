@@ -70,7 +70,10 @@
   <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
     Close
   </button>
-  <button class="btn button-save" type="submit"  *ngIf="statusCheck == 'EnquiryItemAddNote'" (click)="addEnquiryItem()">
+  <button class="btn button-save" type="submit"  *ngIf="statusCheck == 'EnquiryItemAddNote'" (click)="AddEnquiryNote()">
     Save Note
+  </button>
+  <button class="btn button-save" type="submit"  *ngIf="statusCheck == 'EnquiryItemEditNote'" (click)="UpdateEnquiryNote()">
+    Update Note
   </button>
 </div>

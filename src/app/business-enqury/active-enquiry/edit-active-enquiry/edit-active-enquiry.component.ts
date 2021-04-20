@@ -40,6 +40,10 @@ export class EditActiveEnquiryComponent implements OnInit {
   payment: any = [];
   price: any = [];
   city: any = [];
+  buyerDetails: any = [];
+  vendorSeller: any = [];
+  certificate: any = [];
+
 
 
 
@@ -58,7 +62,6 @@ export class EditActiveEnquiryComponent implements OnInit {
       this.queryParems = this.route.snapshot.queryParams;
       this.objEnquiry = this.queryParems.id;
       // this.enquiryId = this.objEnquiry;
-      this.getEnquiryData(this.objEnquiry);
       this.GetArticlesDropdown();
       this.GetBuyersDropdown();
       this.GetProcessDropdown();
@@ -70,11 +73,14 @@ export class EditActiveEnquiryComponent implements OnInit {
       this.GetPaymentDropdown();
       this.GetPriceDropdown();
       this.GetCityDropdown();
-      this.editEnquiryBuyerDetails(this.objEnquiry);
-      this.editEnquiryPaymentDetails(this.objEnquiry);
-      this.editEnquirySupplierDetails(this.objEnquiry);
-      this.editEnquiryConfirmationDetails(this.objEnquiry);
-      this.editEnquiryAdditionalInformation(this.objEnquiry);
+      this.GetCertificateDropdown();
+      this.GetVendorSellerDropdown();
+      this.getEnquiryData(this.objEnquiry);
+      // this.editEnquiryBuyerDetails(this.objEnquiry);
+      // this.editEnquiryPaymentDetails(this.objEnquiry);
+      // this.editEnquirySupplierDetails(this.objEnquiry);
+      // this.editEnquiryConfirmationDetails(this.objEnquiry);
+      // this.editEnquiryAdditionalInformation(this.objEnquiry);
       
 
     // this.getAllEnquiryItems();
@@ -103,6 +109,20 @@ export class EditActiveEnquiryComponent implements OnInit {
 
 
 
+  GetBuyersDropdown() {
+    this.service.getBuyers().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.buyer = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
+
+
+
 
   GetArticlesDropdown() {
     this.service.getArticles().subscribe(res => {
@@ -116,19 +136,6 @@ export class EditActiveEnquiryComponent implements OnInit {
     })
   }
 
-
-
-  GetBuyersDropdown() {
-    this.service.getBuyers().subscribe(res => {
-      this.response = res;
-      if (this.response.success == true) {
-        this.buyer = this.response.data;
-      }
-      else {
-        this.toastr.error(this.response.message, 'Message.');
-      }
-    })
-  }
 
 
   GetProcessDropdown() {
@@ -241,111 +248,135 @@ export class EditActiveEnquiryComponent implements OnInit {
     })
   }
 
+  GetVendorSellerDropdown() {
+    this.service. getVendorSeller(this.objEnquiry).subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.vendorSeller = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
 
-
-  editEnquiryBuyerDetails(enquiryId) {
-    this.http.get(`${environment.apiUrl}/api/Enquiries/GetEnquiryBuyerDetailById/` + enquiryId)
-      .subscribe(
-        res => {
-          this.response = res;
-          if (this.response.success == true) {
-            this.data = this.response.data;
-
-          }
-          else {
-            this.toastr.error(this.response.message, 'Message.');
-          }
-
-        }, err => {
-          if (err.status == 400) {
-            this.toastr.error(this.response.message, 'Message.');
-          }
-        });
+  GetCertificateDropdown() {
+    this.service. getCertification().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.certificate = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
   }
 
 
-  editEnquiryPaymentDetails(enquiryId) {
-    this.http.get(`${environment.apiUrl}/api/Enquiries/GetEnquiryPaymentDetailById/` + enquiryId)
-      .subscribe(
-        res => {
-          this.response = res;
-          if (this.response.success == true) {
-            this.data = this.response.data;
 
-          }
-          else {
-            this.toastr.error(this.response.message, 'Message.');
-          }
+  // editEnquiryBuyerDetails(enquiryId) {
+  //   this.http.get(`${environment.apiUrl}/api/Enquiries/GetEnquiryBuyerDetailById/` + enquiryId)
+  //     .subscribe(
+  //       res => {
+  //         this.response = res;
+  //         if (this.response.success == true) {
+  //           this.buyerDetails = this.response.data;
 
-        }, err => {
-          if (err.status == 400) {
-            this.toastr.error(this.response.message, 'Message.');
-          }
-        });
-  }
+  //         }
+  //         else {
+  //           this.toastr.error(this.response.message, 'Message.');
+  //         }
 
-
-  editEnquirySupplierDetails(enquiryId) {
-    this.http.get(`${environment.apiUrl}/api/Enquiries/EnquirySupplierDetailGetById/` + enquiryId)
-      .subscribe(
-        res => {
-          this.response = res;
-          if (this.response.success == true) {
-            this.data = this.response.data;
-
-          }
-          else {
-            this.toastr.error(this.response.message, 'Message.');
-          }
-
-        }, err => {
-          if (err.status == 400) {
-            this.toastr.error(this.response.message, 'Message.');
-          }
-        });
-  }
+  //       }, err => {
+  //         if (err.status == 400) {
+  //           this.toastr.error(this.response.message, 'Message.');
+  //         }
+  //       });
+  // }
 
 
-  editEnquiryConfirmationDetails(enquiryId) {
-    this.http.get(`${environment.apiUrl}/api/Enquiries/EnquiryConfirmationDetailGetById/` + enquiryId)
-      .subscribe(
-        res => {
-          this.response = res;
-          if (this.response.success == true) {
-            this.data = this.response.data;
+  // editEnquiryPaymentDetails(enquiryId) {
+  //   this.http.get(`${environment.apiUrl}/api/Enquiries/GetEnquiryPaymentDetailById/` + enquiryId)
+  //     .subscribe(
+  //       res => {
+  //         this.response = res;
+  //         if (this.response.success == true) {
+  //           this.data = this.response.data;
 
-          }
-          else {
-            this.toastr.error(this.response.message, 'Message.');
-          }
+  //         }
+  //         else {
+  //           this.toastr.error(this.response.message, 'Message.');
+  //         }
 
-        }, err => {
-          if (err.status == 400) {
-            this.toastr.error(this.response.message, 'Message.');
-          }
-        });
-  }
+  //       }, err => {
+  //         if (err.status == 400) {
+  //           this.toastr.error(this.response.message, 'Message.');
+  //         }
+  //       });
+  // }
 
 
-  editEnquiryAdditionalInformation(enquiryId) {
-    this.http.get(`${environment.apiUrl}/api/Enquiries/GetEnquiryAdditionalInfomationById/` + enquiryId)
-      .subscribe(
-        res => {
-          this.response = res;
-          if (this.response.success == true) {
-            this.data = this.response.data;
+  // editEnquirySupplierDetails(enquiryId) {
+  //   this.http.get(`${environment.apiUrl}/api/Enquiries/EnquirySupplierDetailGetById/` + enquiryId)
+  //     .subscribe(
+  //       res => {
+  //         this.response = res;
+  //         if (this.response.success == true) {
+  //           this.data = this.response.data;
 
-          }
-          else {
-            this.toastr.error(this.response.message, 'Message.');
-          }
+  //         }
+  //         else {
+  //           this.toastr.error(this.response.message, 'Message.');
+  //         }
 
-        }, err => {
-          if (err.status == 400) {
-            this.toastr.error(this.response.message, 'Message.');
-          }
-        });
-  }
+  //       }, err => {
+  //         if (err.status == 400) {
+  //           this.toastr.error(this.response.message, 'Message.');
+  //         }
+  //       });
+  // }
+
+
+  // editEnquiryConfirmationDetails(enquiryId) {
+  //   this.http.get(`${environment.apiUrl}/api/Enquiries/EnquiryConfirmationDetailGetById/` + enquiryId)
+  //     .subscribe(
+  //       res => {
+  //         this.response = res;
+  //         if (this.response.success == true) {
+  //           this.data = this.response.data;
+
+  //         }
+  //         else {
+  //           this.toastr.error(this.response.message, 'Message.');
+  //         }
+
+  //       }, err => {
+  //         if (err.status == 400) {
+  //           this.toastr.error(this.response.message, 'Message.');
+  //         }
+  //       });
+  // }
+
+
+  // editEnquiryAdditionalInformation(enquiryId) {
+  //   this.http.get(`${environment.apiUrl}/api/Enquiries/GetEnquiryAdditionalInfomationById/` + enquiryId)
+  //     .subscribe(
+  //       res => {
+  //         this.response = res;
+  //         if (this.response.success == true) {
+  //           this.data = this.response.data;
+
+  //         }
+  //         else {
+  //           this.toastr.error(this.response.message, 'Message.');
+  //         }
+
+  //       }, err => {
+  //         if (err.status == 400) {
+  //           this.toastr.error(this.response.message, 'Message.');
+  //         }
+  //       });
+  // }
 
 
 
@@ -359,13 +390,13 @@ export class EditActiveEnquiryComponent implements OnInit {
     let varr = {
 
       "enquiryId": this.objEnquiry,
-      "buyerId": this.data.buyerId,
-      "articleId": this.data.articleId,
-      "processId": this.data.processId,
-      "processTypeId": this.data.processTypeId,
-      "designTypeId": this.data.designTypeId,
-      "packagingId": this.data.packagingId,
-      "shipmentdates": this.data.shipmentdates
+      "buyerId": this.enquiryData.buyerId,
+      "articleId": this.enquiryData.articleId,
+      "processId": this.enquiryData.processId,
+      "processTypeId": this.enquiryData.processTypeId,
+      "designTypeId": this.enquiryData.designTypeId,
+      "packagingId": this.enquiryData.packagingId,
+      "shipmentdates": this.enquiryData.shipmentdates
     }
 
     this.http.
@@ -376,6 +407,154 @@ export class EditActiveEnquiryComponent implements OnInit {
           this.response = res;
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
+            this.getEnquiryData(this.objEnquiry);
+            // this.enquiryForm.reset();
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+        });
+  }
+
+  addEnquiryPaymentDetails() {
+    let varr = {
+
+      "enquiryId": this.objEnquiry,
+      "currencyRateId": this.enquiryData.currencyRateId,
+      "totalQuantity":this.enquiryData.totalQuantity,
+      "uomId": this.enquiryData.uomId,
+      "paymentTermId": this.enquiryData.paymentTermId,
+      "paymentTermDays": this.enquiryData.paymentTermDays,
+      "paymentTermInfo": this.enquiryData.paymentTermInfo,
+      "priceTermId": this.enquiryData.priceTermId,
+      "destinationId":this.enquiryData.destinationId,
+      "sellerSideCommission":this.enquiryData.sellerSideCommission,
+      "sellerSideCommissionUOMId": this.enquiryData.sellerSideCommissionUOMId,
+      "sellerSideCommissionInfo": this.enquiryData.sellerSideCommissionInfo,
+      "buyerSideCommission": this.enquiryData.buyerSideCommission,
+      "buyerSideCommissionUOMId": this.enquiryData.buyerSideCommissionUOMId,
+      "buyerSideCommissionInfo": this.enquiryData.buyerSideCommissionInfo,
+    }
+
+    this.http.
+      post(`${environment.apiUrl}/api/Enquiries/AddEnquiryPaymentDetail`, varr)
+      .subscribe(
+        res => {
+
+          this.response = res;
+          if (this.response.success == true) {
+            this.toastr.success(this.response.message, 'Message.');
+            this.getEnquiryData(this.objEnquiry);
+            // this.enquiryForm.reset();
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+        });
+  }
+
+
+
+  addEnquiryVendorDetails() {
+    let varr = {
+
+      "enquiryId": this.objEnquiry,
+      "sellerId": this.enquiryData.sellerId,
+      "costingDetail":this.enquiryData.costingDetail,
+    
+    }
+
+    this.http.
+      post(`${environment.apiUrl}/api/Enquiries/AddEnquirySupplierDetail`, varr)
+      .subscribe(
+        res => {
+
+          this.response = res;
+          if (this.response.success == true) {
+            this.toastr.success(this.response.message, 'Message.');
+            this.getEnquiryData(this.objEnquiry);
+            // this.enquiryForm.reset();
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+        });
+  }
+
+
+
+
+
+
+  addEnquiryOrderDetails() {
+    let varr = {
+
+      "enquiryId": this.objEnquiry,
+      "confirmationDate": this.enquiryData.confirmationDate,
+      "confirmationDetails": this.enquiryData.confirmationDetails,
+    
+    }
+
+    this.http.
+      post(`${environment.apiUrl}/api/Enquiries/AddEnquiryConfirmationDetail`, varr)
+      .subscribe(
+        res => {
+
+          this.response = res;
+          if (this.response.success == true) {
+            this.toastr.success(this.response.message, 'Message.');
+            this.getEnquiryData(this.objEnquiry);
+            // this.enquiryForm.reset();
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+        });
+  }
+
+
+
+
+
+  addEnquiryRemarks() {
+    let varr = {
+
+      "enquiryId": this.objEnquiry,
+      "enquiryRemarks":this.enquiryData.enquiryRemarks,
+      "enquiryOtherCondition": this.enquiryData.enquiryOtherCondition,
+      "certificateId": this.enquiryData.certificateId,
+    
+    }
+
+    this.http.
+      post(`${environment.apiUrl}​/api​/Enquiries​/AddEnquiryAdditionalInfomation`, varr)
+      .subscribe(
+        res => {
+
+          this.response = res;
+          if (this.response.success == true) {
+            this.toastr.success(this.response.message, 'Message.');
+            this.getEnquiryData(this.objEnquiry);
             // this.enquiryForm.reset();
           }
           else {
@@ -404,18 +583,12 @@ export class EditActiveEnquiryComponent implements OnInit {
 
 
 
-
-
-
-
-
-
-
-
   addQuotationform(check) {
     const modalRef = this.modalService.open(QuotationComponent, { centered: true });
     // modalRef.componentInstance.parentBuyerId = popup.id;
     modalRef.componentInstance.statusCheck = check;
+    modalRef.componentInstance.enquiryId = this.objEnquiry;
+
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
@@ -432,6 +605,7 @@ export class EditActiveEnquiryComponent implements OnInit {
     const modalRef = this.modalService.open(QuotationComponent, { centered: true });
     modalRef.componentInstance.quotationId = obj.id;
     modalRef.componentInstance.statusCheck = check;
+
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
@@ -501,9 +675,11 @@ export class EditActiveEnquiryComponent implements OnInit {
   }
 
 
-  editNoteform(check) {
+  editNoteform(check, noteObj ,enquiryObj ) {
     const modalRef = this.modalService.open(EnquiryNotesComponent, { centered: true });
     // modalRef.componentInstance.parentBuyerId = popup.id;
+    modalRef.componentInstance.NoteId = noteObj.id;
+    modalRef.componentInstance.EnquiryId = enquiryObj;
     modalRef.componentInstance.statusCheck = check;
     modalRef.result.then((data) => {
       // on close
