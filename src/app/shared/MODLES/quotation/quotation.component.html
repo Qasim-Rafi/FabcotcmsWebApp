@@ -83,7 +83,7 @@
         *ngIf="statusCheck == 'addQuotation'" (click)="addQuotation()">
         Save Quote
     </button>
-    <button class="btn button-save" type="submit" [disabled]="QuotationForm.invalid"
+    <button class="btn button-save" type="submit" [disabled]="QuotationForm.invalid" (click)="UpdateQuotation()"
         *ngIf="statusCheck == 'editQuotation'">
         Update Quote
     </button>

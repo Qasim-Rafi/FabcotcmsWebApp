@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-product-and-specification',
@@ -8,15 +7,9 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ProductAndSpecificationComponent implements OnInit {
 
-  constructor(
-    private _NgbActiveModal: NgbActiveModal
-  ) { }
+  constructor() { }
 
   ngOnInit(): void {
-  }
-
-  get activeModal() {
-    return this._NgbActiveModal;
   }
 
 }
