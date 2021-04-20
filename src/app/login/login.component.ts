@@ -25,6 +25,9 @@ invalidLogin: boolean=false;
     //   password:['',Validators.required]
     // });
   }
+  login(){
+this.router.navigateByUrl('home')
+  }
 
   OnSubmit(username,password){
     this.Service.userAuthentication(username,password).subscribe((data : any)=>{

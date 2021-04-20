@@ -39,3 +39,7 @@
   align-items: center;
   justify-content: center;
 } 
+
+.red-text{
+  color: red;
+}
