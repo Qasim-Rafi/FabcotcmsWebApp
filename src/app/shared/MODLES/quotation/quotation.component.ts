@@ -2,7 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import { GlobalConstants } from 'src/app/Common/global-constants';
 import { environment } from 'src/environments/environment';
+import Swal from 'sweetalert2';
 import { ServiceService } from '../../service.service';
 
 @Component({
@@ -20,6 +22,7 @@ export class QuotationComponent implements OnInit {
   currency: any = [];
   uom: any = [];
   @Input() EnquiryItemId;
+  @Input() quotationId;
 
 
 
@@ -37,6 +40,7 @@ export class QuotationComponent implements OnInit {
     this.GetEnquiryItemDropdown();
     this.GetUOMDropdown();
     this.GetCurrencyDropdown();
+    this.editQuotation();
   }
 
   get activeModal() {
@@ -57,7 +61,7 @@ export class QuotationComponent implements OnInit {
   }
 
   GetSellersDropdown() {
-    this.service.getSellers().subscribe(res => {
+    this.service.getVendorSeller().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
         this.seller = this.response.data;
@@ -94,9 +98,6 @@ export class QuotationComponent implements OnInit {
   }
 
 
-
-
-
   addQuotation() {
     let varr =
     {
@@ -107,7 +108,6 @@ export class QuotationComponent implements OnInit {
       "uomId": this.data.uomId,
       "validity": this.data.validity,
       "remarks": this.data.remarks,
-      "active": this.data.active,
     }
 
     this.http.
@@ -130,6 +130,67 @@ export class QuotationComponent implements OnInit {
           }
         });
   }
+
+
+
+
+  editQuotation() {
+    this.http.get(`${environment.apiUrl}/api/Enquiries/GetVendorQuotationById/` + this.quotationId)
+      .subscribe(
+        res => {
+          this.response = res;
+          if (this.response.success == true) {
+            this.data = this.response.data;
+
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+        });
+  }
+
+
+
+
+  UpdateQuotation() {
+    let varr = {
+      "enquiryItemId": this.data.enquiryItemId,
+      "sellerId": this.data.sellerId,
+      "rate": this.data.rate,
+      "currencyId": this.data.currencyId,
+      "uomId": this.data.uomId,
+      "validity": this.data.validity,
+      "remarks": this.data.remarks,
+    }
+
+    this.http.
+      put(`${environment.apiUrl}/api/Enquiries/UpdateVendorQuotation/`+ this.quotationId , varr)
+      .subscribe(
+        res => {
+
+          this.response = res;
+          if (this.response.success == true) {
+            this.toastr.success(this.response.message, 'Message.');
+            this.activeModal.close(true);
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+        });
+  }
+
+
+
 
 
 

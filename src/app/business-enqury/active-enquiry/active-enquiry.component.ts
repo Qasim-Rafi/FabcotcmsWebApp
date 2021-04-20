@@ -39,7 +39,7 @@ export class ActiveEnquiryComponent implements OnInit {
 
 
   navigateEditEnquiry(obj) {
-    this.router.navigate(['/edit-active-enquiries'], { queryParams: { id: obj.id } });
+    this.router.navigate(['/edit-active-enquiries'], { queryParams: {id: obj.id} });
   };
 
 
