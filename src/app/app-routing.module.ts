@@ -16,19 +16,23 @@ const configurationModule = () => import('./configuration/configuration.module')
   .then(x => x.ConfigurationModule);
 const businessEnquryModule = () => import('./business-enqury/business-enqury.module')
   .then(x => x.BusinessEnquryModule);
+
 const routes: Routes = [
+
+  {path:'login', redirectTo:'/login', pathMatch:'full'},
+   {path:'', component:LoginComponent},
  {
-   path:'template', component:TemplateComponent,
+   path:'', component:TemplateComponent,
    children:[
    {path:'home', component:HomeComponent,
-   canActivate:[AuthGuard],
+  //  canActivate:[AuthGuard],
   },
-   {path:'config',loadChildren:configurationModule},  
+   {path:'config',
+   loadChildren:configurationModule},  
    ]
  },
-{path:'login', component:LoginComponent},
 
-{path:'', redirectTo:'/login', pathMatch:'full'},
+
 
 ]
 
