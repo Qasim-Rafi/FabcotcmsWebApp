@@ -21,7 +21,7 @@ const routes: Routes = [
    path:'template', component:TemplateComponent,
    children:[
    {path:'home', component:HomeComponent,
-   canActivate:[AuthGuard],
+  //  canActivate:[AuthGuard],
   },
    {path:'config',loadChildren:configurationModule},  
    ]

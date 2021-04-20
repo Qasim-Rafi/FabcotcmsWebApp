@@ -8,7 +8,7 @@ import { ActiveContractsComponent } from './active-contracts/active-contracts.co
 
 const routes: Routes = [
   { path:'', component:TemplateComponent,
-  canActivate:[AuthGuard],
+  // canActivate:[AuthGuard],
 
   children:[
   { path: 'active-contract', component: ActiveContractsComponent },

@@ -29,7 +29,7 @@ import { SellerComponent } from './seller/seller.component';
 const routes: Routes = [
 
  { path:'', component:TemplateComponent,
- canActivate:[AuthGuard],
+//  canActivate:[AuthGuard],
 
   children:[
     { path: '', component: ConfigurationComponent },

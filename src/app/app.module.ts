@@ -43,6 +43,7 @@ import { CloudDocumentationRoutingModule } from './cloud-documentation/cloud-doc
 import { LOCComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/loc/loc.component';
 import { PRODUCTPLANComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/product-plan/product-plan.component';
 import { SALEINVOICEComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/sale-invoice/sale-invoice.component';
+import { BusinessEnquryRoutingModule } from './business-enqury/business-enqury-routing.module';
 
 
 
@@ -111,6 +112,7 @@ const appRoutes: Routes = []
     ContractsRoutingModule,
     NgxDatatableModule,
     BillingAndPaymentModule,
+    BusinessEnquryRoutingModule,
     BusinessEnquryModule,
     RouterModule.forRoot(appRoutes),
     ToastrModule.forRoot({

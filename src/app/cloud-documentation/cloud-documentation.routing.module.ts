@@ -8,7 +8,7 @@ import { DocUploadComponent } from './doc-upload/doc-upload.component';
 
 const routes: Routes = [
   { path:'', component:TemplateComponent,
-  canActivate:[AuthGuard],
+  // canActivate:[AuthGuard],
 
   children:[
  
