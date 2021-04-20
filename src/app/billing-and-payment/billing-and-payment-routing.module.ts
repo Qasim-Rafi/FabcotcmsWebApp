@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from '../auth.guard';
+import { AuthGuard } from '../shared/auth-service/auth.guard';
 import { TemplateComponent } from '../template/template.component';
 import { ActiveBillsComponent } from './active-bills/active-bills.component';
 import { OpenActiveBillComponent } from './active-bills/open-active-bill/open-active-bill.component';

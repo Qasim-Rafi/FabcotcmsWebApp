@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from '../auth.guard';
+import { AuthGuard } from '../shared/auth-service/auth.guard';
 import { TemplateComponent } from '../template/template.component';
 import { ActiveContractDetailComponent } from './active-contracts/active-contract-detail/active-contract-detail.component';
 import { ActiveContractsComponent } from './active-contracts/active-contracts.component';
