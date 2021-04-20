@@ -23,6 +23,8 @@ export class QuotationComponent implements OnInit {
   uom: any = [];
   @Input() EnquiryItemId;
   @Input() quotationId;
+  @Input() enquiryId;
+
 
 
 
@@ -61,7 +63,7 @@ export class QuotationComponent implements OnInit {
   }
 
   GetSellersDropdown() {
-    this.service.getVendorSeller().subscribe(res => {
+    this.service.getVendorSeller(this.enquiryId).subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
         this.seller = this.response.data;

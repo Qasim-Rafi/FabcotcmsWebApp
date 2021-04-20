@@ -13,6 +13,7 @@ import { ServiceService } from '../../service.service';
 export class EnquiryNotesComponent implements OnInit {
 
   @Input() EnquiryId;
+  @Input() NoteId;
   @Input() statusCheck;
   data: any = {};
   response: any;
@@ -26,6 +27,8 @@ export class EnquiryNotesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
+    this.EditEnquiryNote(this.NoteId);
   }
 
 
@@ -34,7 +37,7 @@ export class EnquiryNotesComponent implements OnInit {
   }
 
 
-  addEnquiryItem() {
+  AddEnquiryNote() {
     let varr =
     {
       "enquiryId": this.EnquiryId,
@@ -64,6 +67,63 @@ export class EnquiryNotesComponent implements OnInit {
           }
         });
   }
+
+
+
+
+  EditEnquiryNote(id) {
+    this.http.get(`${environment.apiUrl}/api/Enquiries/GetEnquiryNoteById/` + id)
+      .subscribe(
+        res => {
+          this.response = res;
+          if (this.response.success == true) {
+            this.data = this.response.data;
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+        });
+  }
+
+
+
+
+  UpdateEnquiryNote() {
+    let varr = {
+      "enquiryId": this.EnquiryId,
+      "isPublic": this.data.isPublic,
+      "title": this.data.title,
+      "description": this.data.description,
+      "color": this.data.color,
+    }
+
+    this.http.
+      put(`${environment.apiUrl}/api/Enquiries/UpdateEnquiryNote/` + this.NoteId, varr)
+      .subscribe(
+        res => {
+
+          this.response = res;
+          if (this.response.success == true) {
+            this.toastr.success(this.response.message, 'Message.');
+            this.activeModal.close(true);
+
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+        });
+  }
+
 
 
 
