@@ -14,7 +14,7 @@ import { PaymentFormComponent } from './payment-form/payment-form.component';
 
 const routes: Routes = [
   { path:'', component:TemplateComponent,
-  canActivate:[AuthGuard],
+  // canActivate:[AuthGuard],
 
   children:[
 { path:'generate-bills' ,  component: GenerateBillsComponent},
