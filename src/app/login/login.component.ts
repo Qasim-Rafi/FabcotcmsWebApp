@@ -26,7 +26,7 @@ invalidLogin: boolean=false;
     // });
   }
   login(){
-this.router.navigateByUrl('template/home')
+this.router.navigateByUrl('home')
   }
 
   OnSubmit(username,password){
