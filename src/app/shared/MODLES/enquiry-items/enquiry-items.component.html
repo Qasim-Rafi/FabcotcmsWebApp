@@ -29,12 +29,13 @@
 
     <div class="row justify-content-end">
         <div class="col-md-11">
-            <h4>Item</h4>
         </div>
     </div>
-    <div *ngFor="let value of values; let i = index">               
+    <div *ngFor="let value of data; let i = index">               
     <div class="row mt-3">
-        <div class="col-md-1"><h5>1</h5></div>
+        <div class="col-md-1"> 
+            <h4>Item{{i + 1}}</h4>
+        </div>
         <div class="col-md-11">
             <form #EnquiryItemForm="ngForm" novalidate>            
             
@@ -42,7 +43,7 @@
             
                     <div class="form-group col-md-2">
                         <label for="name" class="col-form-label text_Navy">Description</label>
-                        <input type="text" class="form-control" placeholder="Description" name="description" [(ngModel)]=data.description />
+                        <input type="text" class="form-control" placeholder="Description" name="description" [(ngModel)]=value.description />
                     </div>
             
                     <div class="form-group col-md-4">
@@ -51,10 +52,10 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <input type="number" class="form-control" placeholder="Quantity" name="itemQuantity"
-                                    [(ngModel)]=data.itemQuantity />
+                                    [(ngModel)]=value.itemQuantity />
                             </div>
                             <div class="col-md-8">
-                                <ng-select [(ngModel)]="data.itemUOMId" placeholder="Select UOM" name="itemUOMId">
+                                <ng-select [(ngModel)]="value.itemUOMId" placeholder="Select UOM" name="itemUOMId">
                                     <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}</ng-option>
                                 </ng-select>
                             </div>
@@ -67,17 +68,17 @@
                         <div class="row">
                             <div class="col-md-2">
                                 <input type="number" class="form-control" placeholder="%age" name="compositionPercentage"
-                                    [(ngModel)]=data.compositionPercentage />
+                                    [(ngModel)]=value.compositionPercentage />
                             </div>
                             <div class="col-md-5">
-                                <ng-select [(ngModel)]="data.compositionFebricTypeId" placeholder="Select Fabric"
+                                <ng-select [(ngModel)]="value.compositionFebricTypeId" placeholder="Select Fabric"
                                     name="compositionFebricTypeId">
                                     <ng-option *ngFor="let i of fabricType" [value]="i.id">{{ i.type }}</ng-option>
                                 </ng-select>
                             </div>
                             <div class="col-md-5">
                                 <input type="text" class="form-control" placeholder="Additional Info"
-                                    name="compositionAdditionalInfo" [(ngModel)]=data.compositionAdditionalInfo />
+                                    name="compositionAdditionalInfo" [(ngModel)]=value.compositionAdditionalInfo />
                             </div>
                         </div>
                     </div>
@@ -89,38 +90,38 @@
                     <div class="form-group col">
                         <!-- <label for="name" class="col-form-label">Construction</label> -->
                         <input type="text" class="form-control" placeholder="Construction" name="construction"
-                            [(ngModel)]=data.construction />
+                            [(ngModel)]=value.construction />
                     </div>
             
                     <div class="form-group col">
                         <!-- <label for="name" class="col-form-label">Item Color</label> -->
-                        <ng-select [(ngModel)]="data.colorId" placeholder="Item Color" name="colorId">
+                        <ng-select [(ngModel)]="value.colorId" placeholder="Item Color" name="colorId">
                             <ng-option *ngFor="let i of color" [value]="i.id">{{ i.name }}</ng-option>
                         </ng-select>
                     </div>
             
                     <div class="form-group col">
                         <!-- <label for="name" class="col-form-label">GSM / Weight</label> -->
-                        <input type="text" class="form-control" placeholder="GSM / Weight" name="weight" [(ngModel)]=data.weight />
+                        <input type="text" class="form-control" placeholder="GSM / Weight" name="weight" [(ngModel)]=value.weight />
                     </div>
             
                     <div class="form-group col">
                         <!-- <label for="name" class="col-form-label">Loom Type</label> -->
-                        <ng-select [(ngModel)]="data.loomTypeId" placeholder="Loom Type" name="loomTypeId">
+                        <ng-select [(ngModel)]="value.loomTypeId" placeholder="Loom Type" name="loomTypeId">
                             <ng-option *ngFor="let i of loomType" [value]="i.id">{{ i.type }}</ng-option>
                         </ng-select>
                     </div>
             
                     <div class="form-group col">
                         <!-- <label for="name" class="col-form-label">Size</label> -->
-                        <input type="text" class="form-control" placeholder="Size" name="size" [(ngModel)]=data.size />
+                        <input type="text" class="form-control" placeholder="Size" name="size" [(ngModel)]=value.size />
                     </div>
             
                 </div>
             
                 <div class="form-group ">
                     <!-- <label for="name" class="col-form-label ">Remarks</label> -->
-                    <textarea class="form-control" rows="3" name="remarks" placeholder="Remarks" [(ngModel)]=data.remarks>
+                    <textarea class="form-control" rows="3" name="remarks" placeholder="Remarks" [(ngModel)]=value.remarks>
                                 </textarea>
                 </div>
             

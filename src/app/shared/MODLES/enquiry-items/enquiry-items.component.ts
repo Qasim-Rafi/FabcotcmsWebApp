@@ -15,7 +15,7 @@ export class EnquiryItemsComponent implements OnInit {
   @Input() statusCheck;
   @Input() EnquiryId;
   @Input() EnquiryItemId;
-  data: any = {};
+  data: any = [{id:0}];
   response: any;
   uomList: any = [];
   color: any = [];
@@ -47,8 +47,10 @@ values=[];
     return this._NgbActiveModal;
   }
 
-  add(){
-    this.values.push({value: ""});
+  add() {
+    this.data.push({
+      id: this.data.length,
+    });
   }
 
   GetUOMDropdown() {
