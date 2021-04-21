@@ -9,6 +9,7 @@ import { EnquiryNotesComponent } from 'src/app/shared/MODLES/enquiry-notes/enqui
 import { QuotationComponent } from 'src/app/shared/MODLES/quotation/quotation.component';
 import { ServiceService } from 'src/app/shared/service.service';
 import { environment } from 'src/environments/environment';
+import { Dateformater } from 'src/app/shared/dateformater';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -17,11 +18,13 @@ import Swal from 'sweetalert2';
   styleUrls: ['./edit-active-enquiry.component.css']
 })
 export class EditActiveEnquiryComponent implements OnInit {
+  dateformater: Dateformater = new Dateformater();
   enquiryToggle: boolean = false;
   currencyToggle: boolean = false;
   vendorToggle: boolean = false;
   orderToggle: boolean = false;
   remarksToggle: boolean = false;
+  reminderToggle: boolean = false;
   queryParems: any = {};
   objEnquiry: any = {};
   // enquiryId: any = {};
@@ -502,8 +505,9 @@ export class EditActiveEnquiryComponent implements OnInit {
 
 
   addEnquiryOrderDetails() {
-    let varr = {
 
+    this.enquiryData.confirmationDate = this.dateformater.toModel(this.enquiryData.confirmationDate);
+    let varr = {
       "enquiryId": this.objEnquiry,
       "confirmationDate": this.enquiryData.confirmationDate,
       "confirmationDetails": this.enquiryData.confirmationDetails,
@@ -567,18 +571,6 @@ export class EditActiveEnquiryComponent implements OnInit {
           }
         });
   }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -793,13 +785,9 @@ export class EditActiveEnquiryComponent implements OnInit {
                 this.toastr.error(this.response.message, 'Message.');
               }
             });
-
+          }
+        })
       }
-    })
-
-  }
-
-
 
 
   deleteNote(obj) {
@@ -834,11 +822,7 @@ export class EditActiveEnquiryComponent implements OnInit {
                 this.toastr.error(this.response.message, 'Message.');
               }
             });
-
+          }
+        })
       }
-    })
-
-  }
-
-
-}
+    }
