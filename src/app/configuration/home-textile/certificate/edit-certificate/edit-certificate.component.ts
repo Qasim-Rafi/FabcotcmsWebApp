@@ -114,10 +114,6 @@ export class EditCertificateComponent implements OnInit {
 
   // -------------------------------------Edit Certificate------------------------------------
 
-
-
-
-
   editSellerCertificate() {
     this.http.get(`${environment.apiUrl}/api/Sellers/GetCertificateById/` + this.certificateID)
       .subscribe(
@@ -126,9 +122,6 @@ export class EditCertificateComponent implements OnInit {
           if (this.response.success == true) {
             this.data = this.response.data;
             this.data.validityDate = this.dateformater.fromModel(this.data.validityDate);
-
-
-
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
@@ -174,15 +167,7 @@ export class EditCertificateComponent implements OnInit {
         });
   }
 
-
-
-
-
-
-
-
-
-  //-------------------------get All Certificates-----------------------------------------
+  //-------------------------get All Certificates-----------------------------------------//
 
   getCertificate() {
     this.http.get(`${environment.apiUrl}/api/TextileGarments/GetAllCertificate`)
@@ -192,7 +177,6 @@ export class EditCertificateComponent implements OnInit {
           this.response = res;
           if (this.response.success == true) {
             this.certificate = this.response.data;
-
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
