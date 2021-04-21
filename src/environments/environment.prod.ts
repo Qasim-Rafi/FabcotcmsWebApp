@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://fabcot-cms.com/WebAPI'
+  apiUrl: 'https://egreatminds.com/WebApi'
 
 };
