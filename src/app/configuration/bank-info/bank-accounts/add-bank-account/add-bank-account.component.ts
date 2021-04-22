@@ -11,7 +11,6 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class AddBankAccountComponent implements OnInit {
   banks: any = [];
-
   response: any;
   data: any = {};
 
