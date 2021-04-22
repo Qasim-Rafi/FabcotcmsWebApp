@@ -7,7 +7,9 @@ import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { EnquiryItemsComponent } from 'src/app/shared/MODLES/enquiry-items/enquiry-items.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
+import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
   selector: 'app-active-enquiry',
@@ -142,5 +144,51 @@ export class ActiveEnquiryComponent implements OnInit {
     })
 
   }
+
+  enquiryPdf() {
+
+    let docDefinition = {
+      pageSize: 'A4',
+      info: {
+        title: 'Active Enquiry List'
+      },
+      content: [
+        {
+          text: 'Active Enquiry List',
+          style: 'heading',
+
+        },
+
+        {
+          layout: 'lightHorizontalLines',
+          table: {
+            headerRows: 1,
+            widths: [60, 80, 60, 50, 80 , 60,40],
+            body: [
+              ['Inquiry No.', 'Inquiry On', 'Customer', 'Article', 'Payment Terms' ,'Price Term' , 'Status'],
+              ...this.rows.map(row => (
+                [row.autoEnquiryNumber, row.enquiryDate, row.buyerName,row.articleName ,
+                  row.paymentTermName , row.priceTermName,
+                row.active == true ? "Active" : "In-Active"]
+              ))
+            ]
+           
+          }
+        }
+      ],
+      styles: {
+        heading: {
+          fontSize: 13,
+          alignment: 'center',
+          margin: [0, 15, 0, 30]
+        }
+      }
+
+    };
+
+
+    pdfMake.createPdf(docDefinition).download('ActiveEnquiry.pdf');
+  }
+
 
 }
