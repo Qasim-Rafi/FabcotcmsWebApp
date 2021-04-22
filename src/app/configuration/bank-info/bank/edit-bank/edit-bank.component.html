@@ -32,9 +32,6 @@
         id="branchCode" type="text" class="form-control" placeholder="Bank Branch Code"
           name="branchCode" [(ngModel)]="data.branchCode" #branchCode="ngModel"
           [ngClass]="{'error': branchCode.invalid }" />
-          <p *ngIf="branchCode.invalid">
-            Invalid Input or Length
-          </p>
       </div>
     </div>
 
@@ -78,8 +75,6 @@
           [(ngModel)]="data.details" #details="ngModel"></textarea>
       </div>
     </div>
-
-
   </form>
 </div>
 <div class="modal-footer NotBG">
