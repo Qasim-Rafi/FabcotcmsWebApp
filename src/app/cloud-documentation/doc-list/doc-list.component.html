@@ -2,8 +2,8 @@
 
     <div class="row">
       <div class="col-sm-12 col-md-6 col-lg-8">
-        <h2 class="row wrapper page-header font-weight-light"><b> Upload Document List</b>
-          <div class="ml-2 descr size1"> List of all uploaded documents(Showing last 30 days record by default) </div>
+        <h2 class="row wrapper page-header font-weight-light">Upload Document List
+          <div class="ml-2 descr text-muted"> List of all uploaded documents(Showing last 30 days record by default) </div>
         </h2>
       </div>
   
@@ -16,6 +16,10 @@
   
     </div>
   </div>
+
+
+ 
+
   <div class="card ibox-content">
     <div class="panel blank-panel">
       <div class="panel-heading">
@@ -34,11 +38,11 @@
                 <i class="fas fa-sync-alt"></i>
                 </button>
            <!-- Filter Button -->
-                <button type="button" class="btn btn-primary float-right" (click)="SearchModalForm()">
+                <button type="button" class="btn btn-primary float-right mr-1" (click)="SearchModalForm()">
                 <i class="fa fa-search"></i>
             </button>
             <!-- add new commision button -->
-            <button type="button" routerLink="/docupload" class="btn btn-primary float-right" >
+            <button type="button" routerLink="/docupload" class="btn btn-primary float-right mr-1" >
                 <i class="fa fa-cloud"></i> Upload New Documents
             </button>
           
