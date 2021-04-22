@@ -50,7 +50,7 @@
             <div *ngIf="isLoginError" class="red-text center error-message">
               <i class="material-icons">error</i> Incorrect username or password
           </div>
-            <form class="mb-2" #loginForm="ngForm" action="../../index3.html" method="post" (ngSubmit)="OnSubmit(username.value,password.value)">
+            <form class="mb-2" #loginForm="ngForm" action="../../index3.html" method="post" >
               <div class="input-group mb-3">
                 <input type="text" class="form-control" #username ngModel name="username" placeholder="UserName">
                 <div class="input-group-append">
@@ -85,7 +85,7 @@
                 </div>
                 <!-- /.col -->
                 <div class="col-12">
-                  <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary btn-block">Sign In</button>
+                  <button type="submit" class="btn btn-primary btn-block" (click)="login()">Sign In</button>
                 </div>
                 <!-- /.col -->
               </div>

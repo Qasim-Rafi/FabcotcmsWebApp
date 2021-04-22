@@ -4,6 +4,7 @@ import { EnquiryNotesComponent } from 'src/app/shared/MODLES/enquiry-notes/enqui
 import { CommisionKickbackComponent } from './Active-Contract-Models/commision-kickback/commision-kickback.component';
 import { DeliveryTimelineComponent } from './Active-Contract-Models/delivery-timeline/delivery-timeline.component';
 import { EmployeeCommissionComponent } from './Active-Contract-Models/employee-commission/employee-commission.component';
+import { ItemsComponent } from './Active-Contract-Models/items/items.component';
 import { LOCComponent } from './Active-Contract-Models/loc/loc.component';
 import { PartiesComponent } from './Active-Contract-Models/parties/parties.component';
 import { PaymentDeliveryComponent } from './Active-Contract-Models/payment-delivery/payment-delivery.component';
@@ -184,7 +185,17 @@ Note() {
   });
 }
 
+Items() {
+  const modalRef = this.modalService.open(ItemsComponent, { centered: true });
+  modalRef.result.then((data) => {
+    // on close
+    if (data == true) {
 
+    }
+  }, (reason) => {
+    // on dismiss
+  });
+}
 
 
 

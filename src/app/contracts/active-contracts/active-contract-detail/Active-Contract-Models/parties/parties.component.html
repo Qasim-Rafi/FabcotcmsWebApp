@@ -19,36 +19,120 @@
     <form #partiesForm="ngForm" novalidate>
    
 
-        <div class="form-check form-check-inline offset-md-3 pl-1">
-           
-            <label class="col-sm-3 col-form-label">Contract Type</label>
-            <input class="form-check-input check-btn" type="checkbox" name="isParentBuyer" />
-            <input class="form-check-input check-btn" type="checkbox"  />
-          </div>
+      <div class="form-group row">
+        <label for="name" class="col-sm-3 col-form-label"><strong>Puchase Order</strong></label>
+        <!-- <label for="name" class="col-sm-3 col-form-label">Puchase Order</label> -->
+        <div class="col-sm-8">
+          <input  type="text" class="form-control"
+            placeholder="purchase order number from buyer"/>
 
-        <div class="form-group row">
-            <label for="name" class="col-sm-3 col-form-label"><strong>Puchase Order</strong></label>
-            <div class="col-sm-8">
-              <input  type="text" class="form-control"
-                placeholder="purchase order number from buyer"/>
-            </div>
-          </div>
+</div>
+</div>
+      <div class="form-group row">
+        <label for="description" class="col-sm-3 col-form-label text-Navy">PO Date</label>
+        <!-- <label for="description" class="col-sm-3 col-form-label ">PO Date</label> -->
+        <div class="col-sm-8" (clickOutside)="validityDate.close()">
+  
+          <!-- <input navigation="select" class="form-control text_Navy " ngbDatepicker #validityDate="ngbDatepicker"/> -->
+          <input navigation="select" class="form-control  " ngbDatepicker #validityDate="ngbDatepicker"
+            (click)="validityDate.toggle()" placeholder="Certificate validity date" 
+            name="validityDate" />
+        </div>
+      </div>
 
-
-          <div class="form-group row">
-            <label for="description" class="col-sm-3 col-form-label text-Navy">PO Date</label>
-            <div class="col-sm-8" (clickOutside)="validityDate.close()">
+      <div class="form-group row">
+        <label for="name" class="col-sm-3 col-form-label">Contract No.</label>
+        <div class="col-sm-8">
+          <input  type="text" class="form-control"
+            placeholder="Contract Number"/>
+        </div>
+      </div>
       
-              <input navigation="select" class="form-control text_Navy " ngbDatepicker #validityDate="ngbDatepicker"
-                (click)="validityDate.toggle()" placeholder="Certificate validity date" 
-                name="validityDate" />
-            </div>
-          </div>
-          
+      <div class="form-group row">
+        <label for="description" class="col-sm-3 col-form-label text_Navy">Contract Date</label>
+        <div class="col-sm-8" (clickOutside)="validityDate.close()">
+  
+          <input navigation="select" class="form-control text_Navy " ngbDatepicker #validityDate="ngbDatepicker"
+            (click)="validityDate.toggle()" placeholder="Certificate validity date" 
+            name="validityDate" />
+        </div>
+      </div>
+
+
+      <div class="form-group row">
+        <label for="parentBuyerId" class="col-sm-3 col-form-label text_Navy">Buyer Name</label>
+        <div class="col-sm-8">
+          <ng-select name=""  placeholder="-- Select --">
+            <ng-option >
+              Test Value
+            </ng-option>
+          </ng-select>
+        </div>
+      </div>
+
+
+      <div class="form-group row">
+        <label for="parentBuyerId" class="col-sm-3 col-form-label ">Buyer POC</label>
+        <div class="col-sm-8">
+          <ng-select name=""  placeholder="-- Select --">
+            <ng-option >
+              Test Value
+            </ng-option>
+          </ng-select>
+        </div>
+      </div>
+
+
+      <div class="form-group row">
+        <label for="parentBuyerId" class="col-sm-3 col-form-label text_Navy">Seller Name</label>
+        <div class="col-sm-8">
+          <ng-select name=""  placeholder="-- Select --">
+            <ng-option >
+              Test Value
+            </ng-option>
+          </ng-select>
+        </div>
+      </div>
+
+
+      <div class="form-group row">
+        <label for="parentBuyerId" class="col-sm-3 col-form-label ">Seller POC</label>
+        <div class="col-sm-8">
+          <ng-select name=""  placeholder="-- Select --">
+            <ng-option >
+              Test Value
+            </ng-option>
+          </ng-select>
+        </div>
+      </div>
 
 
 
-    </form>
+
+      <div class="form-group row">
+        <label for="name" class="col-sm-3 col-form-label">Seller Contract #</label>
+        <div class="col-sm-8">
+          <input  type="text" class="form-control"
+            placeholder="Contract No. received from Supplier"/>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="parentBuyerId" class="col-sm-3 col-form-label ">Certification</label>
+        <div class="col-sm-8">
+          <ng-select name=""  placeholder="-- Select --">
+            <ng-option >
+              Test Value
+            </ng-option>
+          </ng-select>
+        </div>
+      </div>
+
+
+
+    </form> 
+
+
   </div>
   
   <div class="modal-footer NotBG">

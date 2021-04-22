@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from '../shared/auth-service/auth.guard';
+import { TemplateComponent } from '../template/template.component';
 import { ArticlesComponent } from './articles/articles.component';
 import { BankAccountsComponent } from './bank-info/bank-accounts/bank-accounts.component';
 import { BankComponent } from './bank-info/bank/bank.component';
 import { BuyerComponent } from './buyer/buyer.component';
 import { CityComponent } from './city/city.component';
+import { ConfigurationComponent } from './configuration.component';
 import { CountryComponent } from './country/country.component';
 import { CurrencyComponent } from './currency/currency.component';
 import { ForeignAgentComponent } from './foreign-agent/foreign-agent.component';
@@ -25,7 +28,11 @@ import { SellerComponent } from './seller/seller.component';
 
 const routes: Routes = [
 
+ { path:'', component:TemplateComponent,
+//  canActivate:[AuthGuard],
 
+  children:[
+    { path: '', component: ConfigurationComponent },
   { path: 'buyer', component: BuyerComponent },
   { path: 'seller', component: SellerComponent },
   { path: 'agent', component: ForeignAgentComponent },
@@ -47,8 +54,10 @@ const routes: Routes = [
   { path: 'country', component: CountryComponent },
   { path: 'currency', component: CurrencyComponent },
 
-];
+]
+ }
 
+]
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]

@@ -25,15 +25,15 @@
 
             <div class="row mb-3">
                 <div class="col-md-3">
-                    <h2 class="text-muted text2">Test</h2>
+                    <h2 class="text-muted text2">{{enquiryData.autoEnquiryNumber}}</h2>
                 </div>
                 <div class="col-md-9 mrg-tsm">
 
-                    <span class="text-muted text2">Test</span>
+                    <span class="text-muted text2">{{enquiryData.buyerName}}</span>
 
-                    <button type="button" class="btn btn-primary btn-md float-right"
+                    <button type="button" class="btn btn-outline-primary btn-md float-right"
                         (click)="enquiryToggle = ! enquiryToggle">
-                        <i class="fa fa-plus"></i>Edit Enquiry</button>
+                        <i class="fa fa-plus"></i>Edit Enquiry</button> 
                 </div>
             </div>
 
@@ -42,17 +42,17 @@
                     <dl class="row">
                         <dt class="col-sm-6"> Status:</dt>
                         <dd class="col-sm-6">
-                            <span class="badge badge-primary" *ngIf="objEnquiry.active == 'true'">Active</span>
-                            <span class="badge badge-secondary" *ngIf="objEnquiry.active== 'false'">Closed</span>
+                            <span class="badge badge-primary" *ngIf="enquiryData.active == 'true'">Active</span>
+                            <span class="badge badge-secondary" *ngIf="enquiryData.active== 'false'">Closed</span>
                         </dd>
                     </dl>
                     <dl class="row">
                         <dt class="col-sm-6"> Enquiry Created:</dt>
-                        <dd class="col-sm-6">{{objEnquiry.createdByName}}</dd>
+                        <dd class="col-sm-6">{{enquiryData.createdByName}}</dd>
                     </dl>
                     <dl class="row">
                         <dt class="col-sm-6"> Last Updated:</dt>
-                        <dd class="col-sm-6">{{objEnquiry.updatedByName}}</dd>
+                        <dd class="col-sm-6">{{enquiryData.updatedByName}}</dd>
                     </dl>
                 </div>
 
@@ -60,15 +60,15 @@
 
                     <dl class="row">
                         <dt class="col-sm-6"> Enquiry Date:</dt>
-                        <dd class="col-sm-6">{{objEnquiry.enquiryDate}}</dd>
+                        <dd class="col-sm-6">{{enquiryData.enquiryDate}}</dd>
                     </dl>
                     <dl class="row">
                         <dt class="col-sm-6"> Created on:</dt>
-                        <dd class="col-sm-6">{{objEnquiry.createdDateTime}}</dd>
+                        <dd class="col-sm-6">{{enquiryData.createdDateTime}}</dd>
                     </dl>
                     <dl class="row">
                         <dt class="col-sm-6"> Updated on:</dt>
-                        <dd class="col-sm-6">articleName</dd>
+                        <dd class="col-sm-6">{{enquiryData.updatedDateTime}}</dd>
                     </dl>
                 </div>
             </div>
@@ -78,15 +78,15 @@
 
                     <dl class="row">
                         <dt class="col-sm-6"> Article:</dt>
-                        <dd class="col-sm-6">{{objEnquiry.articleName}}</dd>
+                        <dd class="col-sm-6">{{enquiryData.articleName}}</dd>
                     </dl>
                     <dl class="row">
                         <dt class="col-sm-6"> Design Type:</dt>
-                        <dd class="col-sm-6">{{objEnquiry.createdDateTime}}</dd>
+                        <dd class="col-sm-6">{{enquiryData.designTypeName}}</dd>
                     </dl>
                     <dl class="row">
                         <dt class="col-sm-6"> Shipment Dates:</dt>
-                        <dd class="col-sm-6">{{objEnquiry.createdDateTime}}</dd>
+                        <dd class="col-sm-6">{{enquiryData.shipmentdates}}</dd>
                     </dl>
                 </div>
 
@@ -95,15 +95,15 @@
 
                     <dl class="row">
                         <dt class="col-sm-6"> Process:</dt>
-                        <dd class="col-sm-6"></dd>
+                        <dd class="col-sm-6">{{enquiryData.processName}}</dd>
                     </dl>
                     <dl class="row">
                         <dt class="col-sm-6">Process Type:</dt>
-                        <dd class="col-sm-6"></dd>
+                        <dd class="col-sm-6">{{enquiryData.processTypeName}}</dd>
                     </dl>
                     <dl class="row">
                         <dt class="col-sm-6"> Packaging:</dt>
-                        <dd class="col-sm-6"></dd>
+                        <dd class="col-sm-6">{{enquiryData.packagingName}}</dd>
                     </dl>
                 </div>
             </div>
@@ -116,15 +116,12 @@
                     <label for="inputEmail3" class="col-md-3 col-form-label control-label">Buyer
                         Name</label>
                     <div class="col-md-6">
-                        <div class="input-group">
-                            <select name="article" class="form-control">
-                                <option value="null" disabled> Select Article</option>
-                                <option>
-                                    1
-                                </option>
-                            </select>
-
-                        </div>
+                       
+                            <ng-select [(ngModel)]="enquiryData.buyerId" placeholder="-- Select --" name="buyerId"                          >
+                            <ng-option *ngFor="let i of buyer" [value]="i.id">{{ i.buyerName }}
+                            </ng-option>
+                          </ng-select>
+                       
                     </div>
                 </div>
 
@@ -133,15 +130,14 @@
                     <label for="inputEmail3" class="col-md-3 col-form-label control-label">Article
                         Name</label>
                     <div class="col-md-6">
-                        <div class="input-group">
-                            <select name="article" class="form-control">
-                                <option value="null" disabled> Select Article</option>
-                                <option>
-                                    1
-                                </option>
-                            </select>
+                        
+                            <ng-select [(ngModel)]="enquiryData.articleId" placeholder="-- Select --" name="articleId"
+                            #articleId="ngModel">
+                            <ng-option *ngFor="let i of article" [value]="i.id">{{ i.name }}
+                            </ng-option>
+                          </ng-select>
 
-                        </div>
+                       
                     </div>
                 </div>
 
@@ -149,29 +145,27 @@
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-md-3 col-form-label control-label">Process</label>
                     <div class="col-md-6">
-                        <div class="input-group">
-                            <select name="article" class="form-control">
-                                <option value="null" disabled> Select Article</option>
-                                <option>
-                                    1
-                                </option>
-                            </select>
+                       
+                            <ng-select [(ngModel)]="enquiryData.processId" placeholder="-- Select --" name="processId"
+                            #processId="ngModel">
+                            <ng-option *ngFor="let i of process" [value]="i.id">{{ i.name }}
+                            </ng-option>
+                          </ng-select>
 
-                        </div>
+                       
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-md-3 col-form-label control-label">Process Type</label>
                     <div class="col-md-6">
-                        <div class="input-group">
-                            <select name="article" class="form-control">
-                                <option value="null" disabled> Select Article</option>
-                                <option>
-                                    1
-                                </option>
-                            </select>
-                        </div>
+                       
+                            <ng-select [(ngModel)]="enquiryData.processTypeId" placeholder="-- Select --" name="processTypeId"
+                            #processTypeId="ngModel">
+                            <ng-option *ngFor="let i of ptype" [value]="i.id">{{ i.type }}
+                            </ng-option>
+                          </ng-select>
+                        
                     </div>
                 </div>
 
@@ -179,15 +173,14 @@
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-md-3 col-form-label control-label">Design Type</label>
                     <div class="col-md-6">
-                        <div class="input-group">
-                            <select name="article" class="form-control">
-                                <option value="null" disabled> Select Article</option>
-                                <option>
-                                    1
-                                </option>
-                            </select>
+                       
+                            <ng-select [(ngModel)]="enquiryData.designTypeId" placeholder="-- Select --" name="designTypeId"
+                            #designTypeId="ngModel">
+                            <ng-option *ngFor="let i of design" [value]="i.id">{{ i.type }}
+                            </ng-option>
+                          </ng-select>
 
-                        </div>
+                        
                     </div>
                 </div>
 
@@ -196,15 +189,13 @@
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-md-3 col-form-label control-label">Packaging</label>
                     <div class="col-md-6">
-                        <div class="input-group">
-                            <select name="article" class="form-control">
-                                <option value="null" disabled> Select Article</option>
-                                <option>
-                                    1
-                                </option>
-                            </select>
-
-                        </div>
+                       
+                            <ng-select [(ngModel)]="enquiryData.packagingId" placeholder="-- Select --" name="packagingId"
+                            #packagingId="ngModel">
+                            <ng-option *ngFor="let i of packing" [value]="i.id">{{ i.name }}
+                            </ng-option>
+                          </ng-select>
+                     
                     </div>
                 </div>
 
@@ -214,13 +205,14 @@
                     <label for="inputEmail3" class="col-md-3 col-form-label control-label">Shipment Dates</label>
                     <div class="col-md-6">
                         <div class="input-group">
-                            <textarea class="form-control" rows="3" type="text"></textarea>
+                            <textarea class="form-control" rows="3" type="text" [(ngModel)]="enquiryData.shipmentdates"
+                            name="shipmentdates"></textarea>
                         </div>
                     </div>
                 </div>
 
                 <button class="btn btn-white float-right" (click)="enquiryToggle = !enquiryToggle"> Close</button>
-                <button class="btn btn-primary float-right" (click)="enquiryToggle = !enquiryToggle"> Save</button>
+                <button class="btn btn-primary float-right" (click)=" addEnquiryBuyerDetails() ; enquiryToggle = !enquiryToggle"> Save</button>
             </div>
         </div>
 
@@ -231,7 +223,7 @@
         <div class="row border-bottom pt-4">
             <div class="col-md-12">
                 <nav>
-                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist" class="nav nav-pills">
                         <a class="nav-item nav-link active" id="nav-pricing-tab" data-toggle="tab" href="#nav-pricing"
                             role="tab" aria-controls="nav-pricing" aria-selected="true">Pricing
                             Details</a>
@@ -251,34 +243,39 @@
 
                                 <dl class="row">
                                     <dt class="col-sm-6"> Currency:</dt>
-                                    <dd class="col-sm-6"></dd>
+                                    <dd class="col-sm-6">{{enquiryData.currencyRateCode}}</dd>
                                 </dl>
                                 <dl class="row">
                                     <dt class="col-sm-6">Quantity:</dt>
-                                    <dd class="col-sm-6"></dd>
+                                    <dd class="col-sm-6">{{enquiryData.totalQuantity}}</dd>
                                 </dl>
                                 <dl class="row">
                                     <dt class="col-sm-6"> Payment terms:</dt>
-                                    <dd class="col-sm-6"></dd>
+                                    <dd class="col-sm-6">{{enquiryData.paymentTermName}}</dd>
                                 </dl>
 
                                 <dl class="row">
                                     <dt class="col-sm-6">Price terms:
                                     </dt>
-                                    <dd class="col-sm-6"></dd>
+                                    <dd class="col-sm-6">{{enquiryData.priceTermName}}</dd>
                                 </dl>
                                 <dl class="row">
                                     <dt class="col-sm-6">Supplier Commission:</dt>
-                                    <dd class="col-sm-6">{{objEnquiry.sellerSideCommission}}%</dd>
+                                    <dd class="col-sm-6">{{enquiryData.sellerSideCommissionInfo}}%</dd>
                                 </dl>
                                 <dl class="row">
                                     <dt class="col-sm-6"> Buyer Commission:
                                     </dt>
-                                    <dd class="col-sm-6">{{objEnquiry.buyerSideCommission}}%</dd>
+                                    <dd class="col-sm-6">{{enquiryData.buyerSideCommissionInfo}}%</dd>
                                 </dl>
 
-                                <button class="btn btn-primary float-right" (click)="currencyToggle = !currencyToggle">
-                                    Edit</button>
+                                
+                            </div>
+
+                            <div class="col-md-6" [ngClass]="{ noDisplay : currencyToggle==true }">
+
+                            <button class="btn btn-outline-primary float-right" (click)="currencyToggle = !currencyToggle">
+                                Edit</button>
                             </div>
                         </div>
 
@@ -289,15 +286,14 @@
                                     <label for="inputEmail3"
                                         class="col-md-3 col-form-label control-label">Currency</label>
                                     <div class="col-md-6">
-                                        <div class="input-group">
-                                            <select name="article" class="form-control">
-                                                <option value="null" disabled> Select Article</option>
-                                                <option>
-                                                    1
-                                                </option>
-                                            </select>
+                                       
+                                            <ng-select [(ngModel)]="enquiryData.currencyRateId" placeholder="-- Select --" name="currencyRateId"
+                                            #currencyRateId="ngModel">
+                                            <ng-option *ngFor="let i of currency" [value]="i.id">{{ i.currencyCode }}
+                                            </ng-option>
+                                          </ng-select>
 
-                                        </div>
+                                        
                                     </div>
                                 </div>
 
@@ -306,18 +302,17 @@
                                         Quantity</label>
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <input class="form-control" type="number" />
+                                            <input class="form-control" type="number" [(ngModel)]="enquiryData.totalQuantity" name="totalQuantity" />
                                         </div>
                                     </div>
                                     <div class="col-md-3">
-                                        <div class="input-group">
-                                            <select name="article" class="form-control">
-                                                <option value="null" disabled> Select Article</option>
-                                                <option>
-                                                    1
-                                                </option>
-                                            </select>
-                                        </div>
+                                    
+                                            <ng-select [(ngModel)]="enquiryData.uomId" placeholder="-- Select --" name="uomId"
+                                            #uomId="ngModel">
+                                            <ng-option *ngFor="let i of uom" [value]="i.id">{{ i.name }}
+                                            </ng-option>
+                                          </ng-select>
+                                    
                                     </div>
                                 </div>
 
@@ -326,47 +321,47 @@
                                         Terms</label>
                                     <div class="col-md-2">
                                         <div class="input-group">
-                                            <select name="article" class="form-control">
-                                                <option value="null" disabled> Select Payment</option>
-                                                <option>
-                                                    1
-                                                </option>
-                                            </select>
+                                            <ng-select [(ngModel)]="enquiryData.paymentTermId" placeholder="-- Select --" name="paymentTermId"
+                                            #paymentTermId="ngModel">
+                                            <ng-option *ngFor="let i of payment" [value]="i.id">{{ i.term }}
+                                            </ng-option>
+                                          </ng-select>
                                         </div>
                                     </div>
                                     <div class="col-md-2">
                                         <div class="input-group">
-                                            <input class="form-control" type="number" />
+                                            <input class="form-control" type="number" [(ngModel)]="enquiryData.paymentTermDays" name="paymentTermDays"/>
                                         </div>
                                     </div>
                                     <div class="col-md-2">
-                                        <input class="form-control" type="text" placeholder="Additional Information" />
+                                        <input class="form-control" type="text" placeholder="Additional Information" [(ngModel)]="enquiryData.paymentTermInfo" name="paymentTermInfo"/>
                                     </div>
                                 </div>
 
+                                <div class="form-group row">
                                 <label for="inputEmail3" class="col-md-3 col-form-label control-label">Price
                                     terms</label>
+
                                 <div class="col-md-3">
-                                    <div class="input-group">
-                                        <select name="priceterm" class="form-control">
-                                            <option value="null" disabled> Select Price Terms</option>
-                                            <option>
-                                                1
-                                            </option>
-                                        </select>
-                                    </div>
+                                  
+                                        <ng-select [(ngModel)]="enquiryData.priceTermId" placeholder="-- Select --" name="priceTermId"
+                                        #priceTermId="ngModel">
+                                        <ng-option *ngFor="let i of price" [value]="i.id">{{ i.term }}
+                                        </ng-option>
+                                      </ng-select>
+                                   
                                 </div>
 
-                                <div class="col-md-3 mrg-sm1">
-                                    <div class="input-group">
-                                        <select name="destinationId" class="form-control">
-                                            <option value="null" disabled> Select Destination</option>
-                                            <option>
-                                                1
-                                            </option>
-                                        </select>
-                                    </div>
+                                <div class="col-md-3">
+                                   
+                                        <ng-select [(ngModel)]="enquiryData.destinationId" placeholder="-- Select --" name="destinationId"
+                                        #destinationId="ngModel">
+                                        <ng-option *ngFor="let i of city" [value]="i.id">{{ i.name }}
+                                        </ng-option>
+                                      </ng-select>
+                                   
                                 </div>
+                            </div>
 
 
                                 <div class="form-group row">
@@ -380,7 +375,7 @@
                                             <div class="col-md-4">
                                                 <div class="input-group">
                                                     <input type="text" placeholder="Comm%" class="form-control"
-                                                        name="sellerSideCommission">
+                                                        name="sellerSideCommission" [(ngModel)]="enquiryData.sellerSideCommission" name="sellerSideCommission">
                                                     <div class="input-group-append">
                                                         <span class="input-group-text" id="basic-addon2">per</span>
                                                     </div>
@@ -388,18 +383,16 @@
                                             </div>
 
                                             <div class="col-md-4 mrg-sm1">
-                                                <select class="form-control col-md-12" name="sellerSideCommissionUOMId">
-                                                    <option selected disabled> Select UOM </option>
-                                                    <option>
-
-                                                    </option>
-
-                                                </select>
+                                                <ng-select [(ngModel)]="enquiryData.sellerSideCommissionUOMId" placeholder="-- Select --" name="sellerSideCommissionUOMId"
+                                                #sellerSideCommissionUOMId="ngModel">
+                                                <ng-option *ngFor="let i of uom" [value]="i.id">{{ i.name }}
+                                                </ng-option>
+                                              </ng-select>
                                             </div>
 
                                             <div class="col-md-4 mrg-sm1">
                                                 <input type="text" placeholder="Additional Info." class="form-control"
-                                                    name="sellerSideCommissionInfo">
+                                                 [(ngModel)]="enquiryData.sellerSideCommissionInfo" name="sellerSideCommissionInfo">
                                             </div>
                                         </div>
                                         <small id="passwordHelpBlock" class="form-text text-lightgrey">
@@ -418,7 +411,7 @@
                                             <div class="col-md-4">
                                                 <div class="input-group">
                                                     <input type="text" placeholder="Comm%" class="form-control"
-                                                        name="buyerSideCommission">
+                                                        name="buyerSideCommission" [(ngModel)]="enquiryData.buyerSideCommission" >
                                                     <div class="input-group-append">
                                                         <span class="input-group-text" id="basic-addon2">per</span>
                                                     </div>
@@ -426,16 +419,15 @@
                                             </div>
 
                                             <div class="col-md-4 mrg-sm1">
-                                                <select class="form-control col-md-12" name="buyerSideCommissionUOMId">
-                                                    <option selected disabled> Select UOM </option>
-                                                    <option>
-
-                                                    </option>
-                                                </select>
+                                                <ng-select [(ngModel)]="enquiryData.buyerSideCommissionUOMId" placeholder="-- Select --" name="buyerSideCommissionUOMId"
+                                                #buyerSideCommissionUOMId="ngModel">
+                                                <ng-option *ngFor="let i of uom" [value]="i.id">{{ i.name }}
+                                                </ng-option>
+                                              </ng-select>
                                             </div>
 
                                             <div class="col-md-4 mrg-sm1">
-                                                <input type="text" placeholder="Additional Info." class="form-control">
+                                                <input type="text" placeholder="Additional Info." class="form-control"  name="buyerSideCommissionInfo" [(ngModel)]="enquiryData.buyerSideCommissionInfo">
                                             </div>
                                         </div>
                                         <small id="passwordHelpBlock" class="form-text text-lightgrey">
@@ -445,7 +437,7 @@
                                 </div>
 
                                 <button class="btn btn-primary float-right"
-                                    (click)="currencyToggle = !currencyToggle">Save</button>
+                                    (click)="currencyToggle = !currencyToggle" (click)=" addEnquiryPaymentDetails()">Save</button>
                                 <button class="btn btn-light float-right" (click)="currencyToggle = !currencyToggle">
                                     Close</button>
 
@@ -457,13 +449,12 @@
                     <div class="tab-pane fade" id="nav-vendor" role="tabpanel" aria-labelledby="nav-vendor-tab">
                         <div [ngClass]="{ noDisplay : vendorToggle==true }">
                             <dl class="row">
-                                <dt class="col-sm-6"> Selected Vendor:
-                                </dt>
-                                <dd class="col-sm-6"></dd>
+                                <dt class="col-sm-6"> Selected Vendor:</dt>
+                                <dd class="col-sm-6">{{enquiryData.sellerName}}</dd>
                             </dl>
                             <dl class="row">
                                 <dt class="col-sm-6"> Final Costing:</dt>
-                                <dd class="col-sm-6"></dd>
+                                <dd class="col-sm-6">{{enquiryData.costingDetail}}</dd>
                             </dl>
                             <button class="btn btn-primary float-right" (click)="vendorToggle = !vendorToggle">
                                 Edit</button>
@@ -475,15 +466,14 @@
                                 <label for="inputEmail3" class="col-md-3 col-form-label control-label">Suplier /
                                     Seller</label>
                                 <div class="col-md-6">
-                                    <div class="input-group">
-                                        <select name="article" class="form-control">
-                                            <option value="null" disabled> Select Article</option>
-                                            <option>
-                                                1
-                                            </option>
-                                        </select>
 
-                                    </div>
+                                        <ng-select [(ngModel)]="enquiryData.sellerId" placeholder="-- Select --" name="sellerId"
+                                       >
+                                        <ng-option *ngFor="let i of vendorSeller" [value]="i.id">{{ i.sellerName }}
+                                        </ng-option>
+                                      </ng-select>
+
+
                                 </div>
                             </div>
 
@@ -492,12 +482,13 @@
                                 <label for="inputEmail3" class="col-md-3 col-form-label control-label">Costing</label>
                                 <div class="col-md-6">
                                     <div class="input-group">
-                                        <textarea rows="3" class="form-control"></textarea>
+                                        <textarea rows="3" class="form-control" [(ngModel)]="enquiryData.costingDetail"
+                                        name="costingDetail"></textarea>
                                     </div>
                                 </div>
                             </div>
 
-                            <button class="btn btn-primary float-right" (click)="vendorToggle = !vendorToggle">
+                            <button class="btn btn-primary float-right" (click)="addEnquiryVendorDetails(); vendorToggle = !vendorToggle" > 
                                 Save</button>
                             <button class="btn btn-white float-right" (click)="vendorToggle = !vendorToggle">
                                 Close</button>
@@ -513,11 +504,11 @@
                             <dl class="row">
                                 <dt class="col-sm-6">Order Confirm On:
                                 </dt>
-                                <dd class="col-sm-6"></dd>
+                                <dd class="col-sm-6">{{enquiryData.confirmationDate}}</dd>
                             </dl>
                             <dl class="row">
                                 <dt class="col-sm-6"> Details:</dt>
-                                <dd class="col-sm-6"></dd>
+                                <dd class="col-sm-6">{{enquiryData.confirmationDetails}}</dd>
                             </dl>
 
                             <button class="btn btn-primary float-right" (click)="orderToggle = !orderToggle">
@@ -532,7 +523,8 @@
                                 <div class="col-md-6">
                                     <div class="input-group">
                                         <input class="form-control " ngbDatepicker #validityDate="ngbDatepicker"
-                                            (click)="validityDate.toggle()" [displayMonths]="1" />
+                                            (click)="validityDate.toggle()" [displayMonths]="1" 
+                                            [(ngModel)]="enquiryData.confirmationDate" name="confirmationDate"/>
                                     </div>
                                 </div>
                             </div>
@@ -542,11 +534,11 @@
                                 <label for="inputEmail3" class="col-md-3 col-form-label control-label">Details</label>
                                 <div class="col-md-6">
                                     <div class="input-group">
-                                        <textarea rows="3" class="form-control"></textarea>
+                                        <textarea rows="3" class="form-control"  [(ngModel)]="enquiryData.confirmationDetails" name="confirmationDetails"></textarea>
                                     </div>
                                 </div>
                             </div>
-                            <button class="btn btn-primary" (click)="orderToggle = !orderToggle">
+                            <button class="btn btn-primary" (click)="addEnquiryOrderDetails() ; orderToggle = !orderToggle">
                                 Save</button>
                             <button class="btn btn-white" (click)="orderToggle = !orderToggle">
                                 Close</button>
@@ -558,19 +550,18 @@
                         <div [ngClass]="{ noDisplay : remarksToggle==true }">
                             <dl class="row">
                                 <dt class="col-sm-6">Enquiry Remarks:
-
                                 </dt>
-                                <dd class="col-sm-6"></dd>
+                                <dd class="col-sm-6">{{enquiryData.enquiryRemarks}}</dd>
                             </dl>
                             <dl class="row">
                                 <dt class="col-sm-6"> Other Condition:
                                 </dt>
-                                <dd class="col-sm-6"></dd>
+                                <dd class="col-sm-6">{{enquiryData.enquiryOtherCondition}}</dd>
                             </dl>
                             <dl class="row">
                                 <dt class="col-sm-6">Certifications:
                                 </dt>
-                                <dd class="col-sm-6"></dd>
+                                <dd class="col-sm-6">{{enquiryData.certificateName}}</dd>
                             </dl>
 
                             <button class="btn btn-primary float-right" (click)="remarksToggle = !remarksToggle">
@@ -584,7 +575,7 @@
                                 <label for="inputEmail3" class="col-md-3 col-form-label control-label">Remarks</label>
                                 <div class="col-md-6">
                                     <div class="input-group">
-                                        <textarea rows="3" class="form-control"></textarea>
+                                        <textarea rows="3" class="form-control" [(ngModel)]="enquiryData.enquiryRemarks" name="enquiryRemarks"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -594,7 +585,7 @@
                                     Conditions</label>
                                 <div class="col-md-6">
                                     <div class="input-group">
-                                        <textarea rows="3" class="form-control"></textarea>
+                                        <textarea rows="3" class="form-control" [(ngModel)]="enquiryData.enquiryOtherCondition" name="enquiryOtherCondition"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -604,18 +595,16 @@
                                 <label for="inputEmail3"
                                     class="col-md-3 col-form-label control-label">Certificates</label>
                                 <div class="col-md-6">
-                                    <div class="input-group">
-                                        <select name="article" class="form-control">
-                                            <option value="null" disabled> Select Certificates</option>
-                                            <option>
-                                                1
-                                            </option>
-                                        </select>
-                                    </div>
+                                  
+                                        <ng-select [(ngModel)]="enquiryData.certificateId" placeholder="-- Select --" name="certificateId">
+                                        <ng-option *ngFor="let i of certificate" [value]="i.id">{{ i.name }}
+                                        </ng-option>
+                                      </ng-select>
+                                   
                                 </div>
                             </div>
 
-                            <button class="btn btn-primary float-right" (click)="remarksToggle = !remarksToggle">
+                            <button class="btn btn-primary float-right" (click)="addEnquiryRemarks(); remarksToggle = !remarksToggle">
                                 Save Info</button>
                             <button class="btn btn-white float-right" (click)="remarksToggle = !remarksToggle">
                                 Close</button>
@@ -628,7 +617,7 @@
         <!-- ----------------------------------------------------- -->
 
 
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <ul class="nav nav-tabs" id="myTab" role="tablist" class="nav nav-pills">
             <li class="nav-item">
                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
                     aria-selected="true">Enquiry Items</a>
@@ -643,7 +632,7 @@
 
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                <div class="row">
+                <div class="row my-4">
 
                     <button type="button" class="btn btn-primary btn-md float-right"
                         (click)="addEnquiryItemform('AddEnquiryItem', objEnquiry)">
@@ -652,7 +641,7 @@
                 </div>
 
 
-                <div class="row" *ngFor="let obj of enquiryItem.enquiryItemList ; let x = index">
+                <div class="row" *ngFor="let obj of enquiryData.enquiryItemList ; let x = index">
                     <div class="col-md-1 col-sm-3 col-xs-3 forum-info" data-original-title="POCs">
                         <div class="poc-icon">
                             <a class="faq-question text-muted text-s-lg text-w-3" data-toggle="collapse" role="button"
@@ -723,10 +712,10 @@
                                 </div>
                                 <div class="col-md-2 border ">
                                     <button type="button" class="btn editIconBack"
-                                        (click)="editQuotationform('editQuotation')">
+                                        (click)="editQuotationform('editQuotation' , quote)">
                                         <i class="far fa-edit"></i>
                                     </button>
-                                    <button type="button" class="btn deleteIconBack">
+                                    <button type="button" class="btn deleteIconBack" (click)=" deleteQuotation(quote)">
                                         <i class="far fa-trash-alt"></i>
                                     </button>
                                 </div>
@@ -739,7 +728,29 @@
 
             </div>
             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                <button class="btn btn-primary"> Add New Quote</button>
+               
+                <button class="btn btn-primary" (click)="addNoteform('EnquiryItemAddNote', objEnquiry)"> Add New Note</button>
+            
+
+                <div class="row text-center pt-3" *ngFor="let note of enquiryData.enquiryNoteList ">
+                    <div class="col-md-2 border p-2 ">id:{{note.id}}</div>
+                    <div class="col-md-2 border p-2">title: {{note.title}}</div>
+                    <div class="col-md-2 border p-2">description: {{note.description}}</div>
+                    <div class="col-md-2 border p-2">remarks: {{note.remarks}}</div>
+                    <div class="col-md-2 border p-2">
+                        <div class="badge badge-primary" *ngIf="note.active == true">Active</div>
+                        <div class="badge badge-secondary" *ngIf="note.active == false">Inactive</div>
+                    </div>
+                    <div class="col-md-2 border ">
+                        <button type="button" class="btn editIconBack" (click)="editNoteform('EnquiryItemEditNote', note , objEnquiry)">
+                            <i class="far fa-edit"></i>
+                        </button>
+                        <button type="button" class="btn deleteIconBack" (click)="deleteNote(note)">
+                            <i class="far fa-trash-alt"></i>
+                        </button>
+                    </div>
+                </div>
+
             </div>
         </div>
 
@@ -749,11 +760,108 @@
 
     <!-- --------------------------------------------------- -->
     <div class="col-md-4">
-
-        <div class="py-3">
+    
+        <div class=" bg-white p-3 ">
             Next Follow-Up
+    
+            <div [ngClass]="{ noDisplay : reminderToggle==true }">
+                <button class="btn btn-white  float-right" (click)="reminderToggle = !reminderToggle "><i
+                        class="fas fa-sync"></i> </button>
+                <button class="btn btn-primary  float-right" (click)="reminderToggle = !reminderToggle "><i
+                        class="fas fa-edit "></i> </button>
+            </div>
+    
+            <div [ngClass]="{ noDisplay : reminderToggle==false }">
+                <button class="btn btn-white  float-right" (click)="reminderToggle = !reminderToggle "><i class="fas fa-times"></i> </button>
+                <button class="btn btn-primary  float-right" (click)="reminderToggle = !reminderToggle "><i class="fas fa-check"></i> </button>
+    
+                <input class="form-control " ngbDatepicker #reminderDate="ngbDatepicker" (click)="reminderDate.toggle()" placeholder="Reminder"
+                    [displayMonths]="1" />
+            </div>
+
+
+
+
+
+
         </div>
 
-        <button class="btn btn-primary"><i class="fas fa-edit"></i> </button>
+        <div class="mt-3 bg-white p-3">
+            Enquiry Work Completed
+            <div class="mid-text">35%</div>
+            <div class="progress mt-1">
+                <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="75"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <div class="text_Navy mt-2">19-Dec-2016 11:50</div>
+
+        </div>
+
+        <div class="bg-primary mt-3 rounded-lg">
+            <!-- <div class="p-3 d-inline-block">
+            <i class="far fa-clock fa-5x"></i> 
+        </div>
+        <div class="float-right">Time Spent</div> -->
+
+            <div class="row p-3">
+                <div class="col-md-4 ">
+                    <i class="far fa-clock fa-5x"></i> 
+                </div>
+                <div class="col-md-8 text-right">
+                    <span>Time Spent</span>
+                    <div class="h2">
+                        0 
+                        <span class="text-small">Hr</span>
+                        0 
+                        <span class="text-small">Min</span>
+                    </div>
+                   
+                </div>
+            </div>
+  
+
+        </div>
+        
+
+        <div class="row">
+            <div class="col-md-12 mt-3">
+                <button class="btn btn-outline-info btn-block btn-lg text-center  ">
+        
+                    <i class="fas fa-print"></i>
+                    <span class="ml-2 text-small"> Enquiry Preview </span>
+        
+                </button>
+                <button class="btn btn-outline-success btn-block btn-lg text-center  ">
+        
+                    <i class="fas fa-print"></i>
+                    <span class="ml-2 text-small"> Enquiry Preview w/o Customer</span>
+        
+                </button>
+                <button class="btn btn-warning btn-block btn-lg text-center  ">
+        
+                    <i class="fas fa-level-down-alt fa-md"></i>
+                    <span class="ml-2 text-small"> Enquiry On-hold </span>
+        
+                </button>
+                <button class="btn btn-danger btn-block btn-lg text-center  ">
+        
+                    <i class="far fa-trash-alt fa-md"></i>
+                    <span class="ml-2 text-small"> Enquiry Cancle </span>
+        
+                </button>
+                <button class="btn btn-info btn-block btn-lg text-center ">
+        
+                    <i class="fas fa-file-archive fa-md"></i>
+                    <span class="ml-2 text-small "> Enquiry Archived </span>
+        
+                </button>
+                <button class="btn btn-primary btn-block btn-lg text-center ">
+        
+                    <i class="fas fa-file-archive fa-md"></i>
+                    <span class="ml-2 text-small "> Create Contract </span>
+        
+                </button>
+            </div>
+        </div>
 
     </div>

@@ -20,148 +20,28 @@
    
 
         <div class="form-group row">
-            <label for="name" class="col-sm-3 col-form-label text_Navy">Quantity</label>
-            <div class="col-sm-2">
-              <input  type="text" class="form-control"
-                placeholder="Quantity value (only numbers)"/>
+            <label for="name" class="col-sm-3 col-form-label text_Navy">Currency</label>
+            <div class="col-sm-6">
+              <ng-select 
+              placeholder="Currency">
+              <ng-option >
+                  PKR
+              </ng-option>
+              <ng-option >
+                  USD
+              </ng-option>
+              <ng-option >
+                  EUR
+              </ng-option>
+              <ng-option >
+                  GBP
+              </ng-option>
+          </ng-select>
             </div>
-            <div class="col-sm-2">
-                    <ng-select 
-                    placeholder="Unit">
-                    <ng-option >
-                        Sets
-                    </ng-option>
-                    <ng-option >
-                        Yards
-                    </ng-option>
-                    <ng-option >
-                        Meters
-                    </ng-option>
-                    <ng-option >
-                        Pieces
-                    </ng-option>
-                    <ng-option >
-                        Unit
-                    </ng-option>
-                </ng-select>
-            
-              </div>
-              <div class="col-sm-3">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1"> 
-                                  +/- 
-                              </span>
-                              </div>
-                              <input type="text" class="form-control" placeholder="qty tolerance" >
-                              <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1"> 
-                                  %
-                              </span>
-                              </div>
-                        </div>
-               </div>
+ 
 
           </div>
 
-          
-        <div class="form-group row">
-            <label for="name" class="col-sm-3 col-form-label text_Navy">Rate</label>
-            <div class="col-sm-2">
-              <input  type="text" class="form-control"
-                placeholder="Rate"/>
-            </div>
-            <div class="col-sm-2">
-                    <ng-select 
-                    placeholder="Currency">
-                    <ng-option >
-                        PKR
-                    </ng-option>
-                    <ng-option >
-                        USD
-                    </ng-option>
-                    <ng-option >
-                        EUR
-                    </ng-option>
-                    <ng-option >
-                        GBP
-                    </ng-option>
-                </ng-select>
-         
-            </div>
-              <div class="col-sm-3">
-                <ng-select 
-                placeholder="Unit">
-                <ng-option >
-                    Sets
-                </ng-option>
-                <ng-option >
-                    Yards
-                </ng-option>
-                <ng-option >
-                    Meters
-                </ng-option>
-                <ng-option >
-                    Pieces
-                </ng-option>
-                <ng-option >
-                    Unit
-                </ng-option>
-            </ng-select>
-               </div>
-
-          </div>
-
-          
-        <div class="form-group row">
-            <label for="name" class="col-sm-3 col-form-label ">Taxes</label>
-              <div class="col-sm-3">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1"> 
-                                 GST
-                              </span>
-                              </div>
-                              <input type="text" class="form-control" >
-                              <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1"> 
-                                  %
-                              </span>
-                              </div>
-                        </div>
-               </div>
-
-               <div class="col-sm-4">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1"> 
-                            W.I.Tax
-                      </span>
-                      </div>
-                      <input type="text" class="form-control" >
-                      <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1"> 
-                          %
-                      </span>
-                      </div>
-                </div>
-       </div>
-
-    
-
-          </div>
-
-          <div class="form-group row">
-            <label for="description" class="col-sm-3 col-form-label text-Navy">Total Cost</label>
-            <div class="col-sm-3">
-                <input type="text" class="form-control" value=""  placeholder="Total Cost">
-            </div>
-            <div class="col-sm-4">
-                <input type="text" class="form-control" value="" placeholder="Total Cost with GST">
-            </div>
-            
-          </div>
-    
     </form>
   </div>
   

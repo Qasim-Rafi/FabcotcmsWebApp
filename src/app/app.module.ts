@@ -24,7 +24,7 @@ import { BillingAndPaymentModule } from './billing-and-payment/billing-and-payme
 import { ActiveContractDetailComponent } from './contracts/active-contracts/active-contract-detail/active-contract-detail.component';
 import { CloudDocumentationModule } from './cloud-documentation/cloud-documentation.module';
 
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from './shared/auth-service/auth.guard';
 import { EnquiryNotesComponent } from './shared/MODLES/enquiry-notes/enquiry-notes.component';
 import { PartiesComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/parties/parties.component';
 import { ProductAndSpecificationComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/product-and-specification/product-and-specification.component';
@@ -35,9 +35,17 @@ import { CommisionKickbackComponent } from './contracts/active-contracts/active-
 import { EmployeeCommissionComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/employee-commission/employee-commission.component';
 import { RemarksComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/remarks/remarks.component';
 import { QuantityCostingComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/quantity-costing/quantity-costing.component';
+
+import { TemplateComponent } from './template/template.component';
+import { ContractsRoutingModule } from './contracts/contracts-routing.module';
+import { CloudDocumentationRoutingModule } from './cloud-documentation/cloud-documentation.routing.module';
+
 import { LOCComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/loc/loc.component';
 import { PRODUCTPLANComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/product-plan/product-plan.component';
 import { SALEINVOICEComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/sale-invoice/sale-invoice.component';
+import { BusinessEnquryRoutingModule } from './business-enqury/business-enqury-routing.module';
+import { ItemsComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/items/items.component';
+
 
 
 
@@ -64,9 +72,14 @@ const appRoutes: Routes = []
     EmployeeCommissionComponent,
     RemarksComponent,
     QuantityCostingComponent,
+
+    TemplateComponent,
+
     LOCComponent,
     PRODUCTPLANComponent,
     SALEINVOICEComponent,
+    ItemsComponent,
+
     // AddEnquiryComponent,
     // SearchEnquiryComponent,
     // AddmodalComponent,
@@ -96,9 +109,13 @@ const appRoutes: Routes = []
     NgSelectModule,
     ReactiveFormsModule,
     HttpClientModule,
+    CloudDocumentationRoutingModule,
     BrowserAnimationsModule,
+    ContractsRoutingModule,
     NgxDatatableModule,
     BillingAndPaymentModule,
+    BusinessEnquryRoutingModule,
+    BusinessEnquryModule,
     RouterModule.forRoot(appRoutes),
     ToastrModule.forRoot({
       progressBar: true,

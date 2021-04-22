@@ -14,89 +14,53 @@
   <div class="modal-body BG pt-2r">
     <form #CityForm="ngForm" novalidate>
    
-        <div class="form-group row">
-            <label for="buyerContact" class="col-sm-3 col-form-label">Kickback</label>
+      <div class="form-group row">
+        <label for="sellercomm" class="col-sm-3 col-form-label text_Navy">Comm Seller side</label>
+        <div class=" col-md-8">
+          <div class="row">
+            <div class="col-md-4 fieldmrgbtm">
+              <input class="form-control" id="sellercomm"
+                placeholder="Comm %" name="sellercomm" />
+  
+            </div>
+            per
+            <div class="col-md-4">
+                <ng-select  placeholder="Unit" name="unitId">
+                    <ng-option >
+                    </ng-option>
+                  </ng-select>
+            </div>
+            <small>FabCot Commission in %age, if UOM not selected
+
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="addinfo" class="col-sm-3 col-form-label">Additional Info</label>
+        <div class=" col-md-20">
+          <div class="row">
+            <div class="col-md-20 fieldmrgbtm">
+              <input class="form-control" id="addinfo"
+                placeholder="Something about FabCot Commission" name="addinfo" />
+  
+            </div>
+          </div>
+        </div>
+      </div>
+          <div class="form-group row">
+            <label for="buyercomm" class="col-sm-3 col-form-label text_Navy">Comm Buyer side</label>
             <div class=" col-md-8">
               <div class="row">
                 <div class="col-md-4 fieldmrgbtm">
-                  <input class="form-control" id="buyerContact"
-                    placeholder="kickback%" name="buyerContact" />
-                </div>
-                per
-                <div class="col-md-4">
-                    <ng-select  placeholder="Unit" name="countryId">
-                        <ng-option >
-                        </ng-option>
-                      </ng-select>
-                </div>
-                <small>
-                Kickback in %age, if UOM not selected
-
-                </small>
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="buyerContact" class="col-sm-3 col-form-label">Beneficiary</label>
-            <div class=" col-md-20">
-              <div class="row">
-                <div class="col-md-20 fieldmrgbtm">
-                  <input class="form-control" id="buyerContact"
-                    placeholder="kickback beneficiary name" name="buyerContact" />
-      
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="buyerContact" class="col-sm-3 col-form-label text_Navy">FabCot Comm</label>
-            <div class=" col-md-8">
-              <div class="row">
-                <div class="col-md-4 fieldmrgbtm">
-                  <input class="form-control" id="buyerContact"
-                    placeholder="comm %" name="buyerContact" />
-      
-                </div>
-                per
-                <div class="col-md-4">
-                    <ng-select  placeholder="Unit" name="countryId">
-                        <ng-option >
-                        </ng-option>
-                      </ng-select>
-                </div>
-                <small>
-                    FabCot Commission in %age, if UOM not selected
-
-                </small>
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="buyerContact" class="col-sm-3 col-form-label">Additional Info</label>
-            <div class=" col-md-20">
-              <div class="row">
-                <div class="col-md-20 fieldmrgbtm">
-                  <input class="form-control" id="buyerContact"
-                    placeholder="Something about FabCot Commission" name="buyerContact" />
-      
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="buyerContact" class="col-sm-3 col-form-label text_Navy">Comm Buyer side</label>
-            <div class=" col-md-8">
-              <div class="row">
-                <div class="col-md-4 fieldmrgbtm">
-                  <input class="form-control" id="buyerContact"
-                    placeholder="Comm %" name="buyerContact" />
+                  <input class="form-control" id="buyercomm"
+                    placeholder="Comm %" name="buyercomm" />
       
                 </div>
                 per
                 <div class="col-md-4">
-                    <ng-select  placeholder="Unit" name="countryId">
+                    <ng-select  placeholder="Unit" name="unitId">
                         <ng-option >
                         </ng-option>
                       </ng-select>
@@ -109,19 +73,19 @@
           </div>
 
           <div class="form-group row">
-            <label for="buyerContact" class="col-sm-3 col-form-label">Additional Info</label>
+            <label for="buyerinfo" class="col-sm-3 col-form-label">Additional Info</label>
             <div class=" col-md-20">
               <div class="row">
                 <div class="col-md-20 fieldmrgbtm">
-                  <input class="form-control" id="buyerContact"
-                    placeholder="Something about buyer side Commission" name="buyerContact" />
+                  <input class="form-control" id="buyerinfo"
+                    placeholder="Something about buyer side Commission" name="buyerinfo" />
       
                 </div>
               </div>
             </div>
           </div>
           <div class="form-group row">
-          <label for="buyerContact" class="col-sm-3 col-form-label">Agent Comm</label>
+          <label for="agentcomm" class="col-sm-3 col-form-label">Agent Comm</label>
           <div class=" col-md-8">
             <div class="row">
               <ng-select  placeholder="Select an Agent"  name="countryId">
@@ -132,8 +96,8 @@
               <div class="col-md-8">
                   
                     <div class="col-md-8 fieldmrgbtm">
-                      <input class="form-control" id="buyerContact"
-                        placeholder="Comm %"  name="buyerContact" />
+                      <input class="form-control" id="agentcomm"
+                        placeholder="Comm %"  name="agentcomm" />
                     </div>
               </div>
            
@@ -141,10 +105,10 @@
           </div>
         </div>
           <div class="form-group row" *ngFor="let value of data; let i = index;">
-            <label for="buyerContact" class="col-sm-3 col-form-label">Agent Comm</label>
+            <label for="agentcomm" class="col-sm-3 col-form-label">Agent Comm</label>
             <div class=" col-md-8">
               <div class="row">
-                <ng-select  placeholder="Select an Agent" [(ngModel)]="value.countryId" name="countryId_{{value.id}}">
+                <ng-select  placeholder="Select an Agent" [(ngModel)]="value.agentId" name="agentId_{{value.id}}">
                     <ng-option >
                     </ng-option>
                   </ng-select>
@@ -153,8 +117,8 @@
                 <div class="col-md-8">
                     
                     <div class="col-md-6 fieldmrgbtm">
-                      <input class="form-control" id="buyerContact"
-                        placeholder="Comm %" [(ngModel)]="value.buyerContact" name="buyerContact_{{value.id}}" />
+                      <input class="form-control" id="agent"
+                        placeholder="Comm %" [(ngModel)]="value.agent" name="agent_{{value.id}}" />
                         <button class="btn btn-outline-danger" type="submit" (click)="remove(i)">
                             <i class="fas fa-minus fa-xs"  ></i>
                             </button>

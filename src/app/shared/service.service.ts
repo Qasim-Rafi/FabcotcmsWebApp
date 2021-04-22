@@ -147,6 +147,9 @@ export class ServiceService {
   getCurrency() {
     return this.http.get(`${environment.apiUrl}/api/Configs/GetAllCurrencyRate`);
   }
+  getVendorSeller(enquiryId) {
+    return this.http.get(`${environment.apiUrl}/api/Lookups/SellerFromQuotations/` + enquiryId);
+  }
 
 
 

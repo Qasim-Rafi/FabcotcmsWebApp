@@ -76,13 +76,13 @@ export class AddEnquiryComponent implements OnInit {
 
   ngOnInit() {
 
-    this.datePickerConfig = Object.assign
-      ({}, {
-        containerClass: 'theme-default ',
-        isAnimated: true,
-        showWeekNumbers: false,
-        dateInputFormat: 'DD/MM/YYYY',
-      }),
+    // this.datePickerConfig = Object.assign
+    //   ({}, {
+    //     containerClass: 'theme-default ',
+    //     isAnimated: true,
+    //     showWeekNumbers: false,
+    //     dateInputFormat: 'DD/MM/YYYY',
+    //   }),
 
       this.GetBuyersDropdown();
     this.GetArticlesDropdown();
@@ -288,9 +288,11 @@ export class AddEnquiryComponent implements OnInit {
   //       });
   // }
 
-  addenquiryCertificateForm() {
+  addenquiryCertificateForm(check) {
     const modalRef = this.modalService.open(EditCertificateComponent, { centered: true });
+    modalRef.componentInstance.statusCheck = check;
     modalRef.result.then((data) => {
+
       // on close
       if (data == true) {
         //  this.date = this.myDate;
@@ -454,7 +456,6 @@ export class AddEnquiryComponent implements OnInit {
       // on dismiss
     });
   }
-
 
   addEnquiry() {
     this.data.enquiryDate = this.dateformater.toModel(this.data.enquiryDate);

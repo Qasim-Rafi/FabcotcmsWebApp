@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BusinessEnquryRoutingModule } from './business-enqury-routing.module';
 import { AddEnquiryComponent } from './add-enquiry/add-enquiry.component';
 import { ActiveEnquiryComponent } from './active-enquiry/active-enquiry.component';
 import { SearchEnquiryComponent } from './search-enquiry/search-enquiry.component';
@@ -29,7 +28,6 @@ import { NgSelectModule } from '@ng-select/ng-select';
 
   imports: [
     CommonModule,
-    BusinessEnquryRoutingModule,
     NgbModule,
     BrowserModule,
     AppRoutingModule,
