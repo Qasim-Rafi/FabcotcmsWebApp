@@ -46,9 +46,6 @@
       <div class="col-8">
         <input pattern="[a-zA-Z0-9]{0,34}" id="iban" type="text" class="form-control" placeholder="IBAN" name="iban"
           [(ngModel)]="data.iban" #iban="ngModel" [ngClass]="{ error: iban.invalid }" maxlength="34" />
-        <p *ngIf="iban.invalid">
-          Invalid Input or Length
-        </p>
       </div>
     </div>
 
@@ -58,9 +55,6 @@
         <input pattern="[0-9]{8,11}" id="swiftCode" type="text" class="form-control" placeholder="Account Swift Code"
           name="swiftCode" [(ngModel)]="data.swiftCode" #swiftCode="ngModel" [ngClass]="{ error: swiftCode.invalid }"
           maxlength="11" />
-        <p *ngIf="swiftCode.invalid">
-          Invalid Input or Length
-        </p>
       </div>
     </div>
 
