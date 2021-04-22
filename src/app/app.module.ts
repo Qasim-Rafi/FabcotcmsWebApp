@@ -44,6 +44,7 @@ import { LOCComponent } from './contracts/active-contracts/active-contract-detai
 import { PRODUCTPLANComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/product-plan/product-plan.component';
 import { SALEINVOICEComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/sale-invoice/sale-invoice.component';
 import { BusinessEnquryRoutingModule } from './business-enqury/business-enqury-routing.module';
+import { ItemsComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/items/items.component';
 
 
 
@@ -77,6 +78,7 @@ const appRoutes: Routes = []
     LOCComponent,
     PRODUCTPLANComponent,
     SALEINVOICEComponent,
+    ItemsComponent,
 
     // AddEnquiryComponent,
     // SearchEnquiryComponent,
