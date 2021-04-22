@@ -7,7 +7,8 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./product-plan.component.css']
 })
 export class PRODUCTPLANComponent implements OnInit {
-
+  rows: any = [];
+  columns: any = [];
   constructor(
     private _NgbActiveModal: NgbActiveModal
   ) { }

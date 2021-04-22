@@ -4,16 +4,9 @@
     </button>
   
     <h5 class="modal-title">
-        <i class="fas fa-industry mr-3"></i>
-      Add Production Status
-      <small>
-            
-              <p class="h6 text-center" >Buyer:38</p>  
-              <p class="h6 text-center" >Supplier:24</p>
-              <p class="h6 text-center" >Article:12</p>  
-              <p class="h6 text-center" >Quantity:200 </p>  
-      
-        </small>
+        <i class="fas fa-plus mr-3"></i>
+        Add Action Item in Contract
+    
     </h5>
   </div>
 
@@ -21,100 +14,40 @@
   <div class="modal-body BG pt-2r">
     <form #ProductionPlanForm="ngForm" novalidate>
    
-        <div class="form-group row">
-            <label for="parentBuyerId" class="col-sm-3 col-form-label text_Navy">L/C No.
-            </label>
-            <div class="col-sm-8">
-              <ng-select name=""  placeholder="Select L/C">
-                <ng-option >
-                  Test Value
-                </ng-option>
-              </ng-select>
-            </div>
-          </div>
-     
-        <div class="form-group row">
-            <label for="description" class="col-sm-3 col-form-label text_Navy">Inspection Date
-            </label>
-            <div class="col-sm-8" (clickOutside)="validityDate.close()">
-      
-              <input navigation="select" class="form-control  " ngbDatepicker #validityDate="ngbDatepicker"
-                (click)="validityDate.toggle()" placeholder="Certificate validity date" 
-                name="validityDate" />
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="name" class="col-sm-3 col-form-label">Starting Date</label>
-            <div class="col-sm-8">
-              <input  type="text" class="form-control"
-                placeholder="purchase order number from buyer"/>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="name" class="col-sm-3 col-form-label">Looms</label>
-            <div class="col-sm-4">
-              <input  type="number" class="form-control"
-                placeholder="looms planned"/>
-            </div>
-            <div class="col-sm-4">
-              <input  type="number" class="form-control"
-                placeholder="looms running"/>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="name" class="col-sm-3 col-form-label">Production</label>
-            <div class="col-sm-4">
-              <input  type="number" class="form-control"
-                placeholder="per loom production"/>
-            </div>
-            <div class="col-sm-4">
-              <input  type="number" class="form-control"
-                placeholder="per day production"/>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="name" class="col-sm-3 col-form-label">Stock Position</label>
-            <div class="col-sm-4">
-              <input  type="number" class="form-control"
-                placeholder="Pack Stock"/>
-            </div>
-            <div class="col-sm-4">
-              <input  type="number" class="form-control"
-                placeholder="Loose Stock"/>
-            </div>
-          </div>
-
-
-          <div class="form-group row">
-            <label for="name" class="col-sm-3 col-form-label">Total Stock </label>
-            <div class="col-sm-8">
-              <input  type="number" class="form-control" disabled
-                placeholder="Pack Stock"/>
-            </div>
-            </div>
         
-
-          <div class="form-group row">
-            <label for="description" class="col-sm-3 col-form-label ">Completion Date</label>
-            <div class="col-sm-8" (clickOutside)="validityDate.close()">
-              <input navigation="select" class="form-control  " ngbDatepicker #validityDate="ngbDatepicker"
-                (click)="validityDate.toggle()" placeholder="Producttion Expected Completion Date" 
-                name="validityDate" />
-            </div>
-          </div>
-     
-          <div class="form-group row">
-            <label for="description" class="col-sm-3 col-form-label ">L/C latest Shipment date
-            </label>
-            <div class="col-sm-8" >
-           
-            </div>
-          </div>
-
+      <div class="row justify-content-end">
+      <div class="col-md-4">
+        <div class="input-group col-md-offset-3 float-right">
+          <label>Search:</label>
+          <input type="text" placeholder="" class="input form-control w-50"
+             />
+        </div>
+      </div>
+        </div>
+        <br>
+        <div #myTable class="panel-body">
+      
+          <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows"
+            [sorts]="[{ prop: 'id,name', dir: 'asce' }]" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+            [rowHeight]="'auto'" [limit]="10">
+            <ngx-datatable-column prop="id" name="S. No." [width]="20">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                {{ row.id }}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column prop="id" name="Select to Add" [width]="20">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                {{ row.id }}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column prop="id" name="Action Items" [width]="20">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                {{ row.id }}
+              </ng-template>
+            </ngx-datatable-column>
+          </ngx-datatable>
+        
+        </div>
 
 
     </form>
@@ -127,6 +60,6 @@
       Close
     </button>
     <button class="btn button-save" type="submit">
-      Save 
+      Add Action Item
     </button>
   </div>
