@@ -23,6 +23,7 @@ import { PackingComponent } from './product/packing/packing.component';
 import { PaymentTermComponent } from './product/payment-term/payment-term.component';
 import { PriceTermComponent } from './product/price-term/price-term.component';
 import { SellerComponent } from './seller/seller.component';
+import { SystemUsersComponent } from './system-users/system-users.component';
 
 
 
@@ -53,6 +54,7 @@ const routes: Routes = [
   { path: 'city', component: CityComponent },
   { path: 'country', component: CountryComponent },
   { path: 'currency', component: CurrencyComponent },
+  { path: 'system-users', component: SystemUsersComponent },
 
 ]
  }

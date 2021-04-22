@@ -150,8 +150,12 @@ export class ServiceService {
   getVendorSeller(enquiryId) {
     return this.http.get(`${environment.apiUrl}/api/Lookups/SellerFromQuotations/` + enquiryId);
   }
-
-
+  getUserType() {
+    return this.http.get(`${environment.apiUrl}/api/Lookups/UserTypes`);
+  }
+  getDepartment() {
+    return this.http.get(`${environment.apiUrl}/api/Lookups/Departments`);
+  }
 
 
   login(loginData) {
