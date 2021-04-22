@@ -21,7 +21,8 @@ import { SALEINVOICEComponent } from './Active-Contract-Models/sale-invoice/sale
   styleUrls: ['./active-contract-detail.component.css']
 })
 export class ActiveContractDetailComponent implements OnInit {
-
+  rows: any = [];
+  columns: any = [];
   constructor(
     private modalService: NgbModal,
   ) { }
