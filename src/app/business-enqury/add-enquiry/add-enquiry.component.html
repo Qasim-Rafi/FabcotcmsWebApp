@@ -1,23 +1,3 @@
-<!-- <div class="content-header p-4">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-12">
-                <h2 class="m-6">New Enquiries </h2>
-            </div>
-        </div>
-    </div>
-</div> -->
-
-
-<!-- <div class="content-header">
-    <div class="col-sm-12 mb-4">
-      <h2 class="row wrapper page-header font-weight-light"> New Enquiries
-      </h2>
-    </div>
-  </div> -->
-
-
-
 <div class="content-header">
 
     <div class="row">
@@ -34,7 +14,7 @@
                 <li class="breadcrumb-item active" aria-current="page">Add New Enquiry</li>
             </ol>
         </div>
-
+   
     </div>
 </div>
 
@@ -80,10 +60,6 @@
     </div>
 
 
-    <!-- <div class="headline">
-        Enquiry Form
-    </div> -->
-
     <div class="card-body p-0">
 
 
@@ -101,8 +77,8 @@
                         <div class="form-group col-md-2">
                             <label for="inputPassword4">Auto</label>
                             <!-- <input type="password" class="form-control" id="inputPassword4"> -->
-                            <input type="text"  class="form-control text-w-4"
-                                name="autoEnquiryNumber" [(ngModel)]="data.autoEnquiryNumber" readonly="">
+                            <input type="text" placeholder="Auto Enquiry no." class="form-control text-w-4"
+                                id="enqry-autono" value="000092" readonly="">
                         </div>
                         <div class="form-group col-md-3">
                             <label for="inputPassword4">(Manual)</label>
@@ -118,7 +94,80 @@
                         </div>
                     </div>
 
-                    <div class="form-row">
+                            <div class="form-row pb-3">
+
+                                
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail3" class="col-form-label control-label">Buyer Name</label>
+                    
+                                    <div class="input-group">
+                                        <ng-select name="buyer" class="input-w px-0" [(ngModel)]="data.buyerId"
+                                            placeholder="-- Select --">
+                                            <ng-option *ngFor="let i of buyer" [value]="i.id">{{ i.buyerName }}
+                                            </ng-option>
+                                        </ng-select>
+                    
+                                        <!-- <button class="btn btn-outline-primary " (click)="addenquiryBuyerForm()">
+                                            <i class="fa fa-plus"></i>
+                                        </button> -->
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-primary" type="button" id="button-addon2" (click)="addenquiryBuyerForm()">
+                                                <i class="fa fa-plus"></i></button>
+                                          </div>
+                    
+                                    </div>
+                    
+                                </div>
+                    
+
+
+
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail3" class="col-form-label control-label">Article Name</label>
+                    
+                                    <div class="input-group">
+                    
+                                        <ng-select name="article" class="input-w px-0" [(ngModel)]="data.articleId"
+                                            placeholder="-- Select --">
+                                            <ng-option *ngFor="let i of article" [value]="i.id">{{ i.name }}
+                                            </ng-option>
+                                        </ng-select>
+                    
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-primary" type="button" id="button-addon2" (click)="addenquiryArticleForm()">
+                                                <i class="fa fa-plus"></i></button>
+                                          </div>
+
+                                        
+                                    </div>
+                    
+                                </div>
+
+
+                                <!-- <div class="form-group col-md-6">
+                                    <label for="inputEmail3" class="col-form-label control-label">Article Name</label>
+                    
+                                    <div class="input-group">
+                    
+                                        <ng-select name="article" class="input-w px-0" [(ngModel)]="data.articleId"
+                                            placeholder="-- Select --">
+                                            <ng-option *ngFor="let i of article" [value]="i.id">{{ i.name }}
+                                            </ng-option>
+                                        </ng-select>
+                    
+                                        <button class="btn btn-outline-primary " (click)="addenquiryArticleForm()">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </div>
+                    
+                                </div> -->
+                            </div>
+                    
+                       
+
+
+
+                    <!-- <div class="form-row">
                         <div class="col-md-12 pt-2r pb-3">
 
                             <div class="form-group row">
@@ -127,7 +176,7 @@
                                 <div class="col-md-6">
                                     <div class="input-group">
 
-                                        <ng-select name="buyer " [(ngModel)]="data.buyerId" placeholder="-- Select --">
+                                        <ng-select name="buyer" class="col-md-11" [(ngModel)]="data.buyerId" placeholder="-- Select --">
                                             <ng-option *ngFor="let i of buyer" [value]="i.id">{{ i.buyerName }}
                                             </ng-option>
                                         </ng-select>
@@ -161,290 +210,345 @@
                             </div>
 
                         </div>
-                    </div>
+                    </div> -->
 
 
-                    <div class="form-row border-top">
-                        <div class="col-md-12 pt-2r pb-3">
+                    <div class="border-top">
+                        <div class=" pt-3 pb-3">
 
-                            <div class="form-group row">
-                                <label for="inputEmail3" class="col-md-3 col-form-label control-label">Process</label>
-                                <div class="col-md-6">
+                            <div class="form-row">
+
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail3" class="col-form-label control-label">Process</label>
+                                
                                     <div class="input-group">
 
-
-                                        <ng-select name="process " [(ngModel)]="data.processId"
+                                        <ng-select name="process" class="input-w px-0" [(ngModel)]="data.processId"
                                             placeholder="-- Select --">
                                             <ng-option *ngFor="let i of process" [value]="i.id">{{ i.name }}
                                             </ng-option>
                                         </ng-select>
 
-                                        <span class="float-left">
+                                        <!-- <span class="float-left">
                                             <button class="btn btn-success " (click)="addenquiryProcessForm()">
                                                 <i class="fa fa-plus"></i>
                                             </button>
-                                        </span>
+                                        </span> -->
+
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-primary" type="button" id="button-addon2" (click)="addenquiryProcessForm()">
+                                                <i class="fa fa-plus"></i></button>
+                                          </div>
+
                                     </div>
-                                </div>
+                                
                             </div>
 
-                            <div class="form-group row">
-                                <label for="inputEmail3" class="col-md-3 col-form-label control-label">Process
-                                    Type</label>
-                                <div class="col-md-6">
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail3" class="col-form-label control-label">Process Type</label>
+                                
                                     <div class="input-group">
-                                        <ng-select name="processTypeId " [(ngModel)]="data.processTypeId"
+                                        <ng-select name="processTypeId" class="input-w px-0" [(ngModel)]="data.processTypeId"
                                             placeholder="-- Select --">
                                             <ng-option *ngFor="let i of ptype" [value]="i.id">{{ i.type }}
                                             </ng-option>
                                         </ng-select>
-                                        <span class="float-left">
-                                            <button class="btn btn-success " (click)="addProcessTypeForm()">
+
+                                        <!-- <span class="float-left">
+                                            <button class="btn btn-outline-primary " (click)="addProcessTypeForm()">
                                                 <i class="fa fa-plus"></i>
                                             </button>
-                                        </span>
+                                        </span> -->
+
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-primary" type="button" id="button-addon2" (click)="addProcessTypeForm()">
+                                                <i class="fa fa-plus"></i></button>
+                                          </div>
+
                                     </div>
-                                </div>
+                                
                             </div>
 
-                            <div class="form-group row">
-                                <label for="inputEmail3" class="col-md-3 col-form-label control-label">Design
-                                    Type</label>
-                                <div class="col-md-6">
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail3" class="col-form-label control-label">Design Type</label>
+                                
                                     <div class="input-group">
-                                        <ng-select name="designTypeId " [(ngModel)]="data.designTypeId"
+                                        <ng-select name="designTypeId " class="input-w px-0" [(ngModel)]="data.designTypeId"
                                             placeholder="-- Select --">
                                             <ng-option *ngFor="let i of design" [value]="i.id">{{ i.type }}
                                             </ng-option>
                                         </ng-select>
-                                        <span class="float-left">
-                                            <button class="btn btn-success " (click)="addDesignTypeForm()">
+
+                                        <!-- <span class="float-left">
+                                            <button class="btn btn-outline-primary " (click)="addDesignTypeForm()">
                                                 <i class="fa fa-plus"></i>
                                             </button>
-                                        </span>
+                                        </span> -->
+
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-primary" type="button" id="button-addon2" (click)="addDesignTypeForm()">
+                                                <i class="fa fa-plus"></i></button>
+                                          </div>
+
+                                        
+
                                     </div>
-                                </div>
+                                
                             </div>
 
-                            <div class="form-group row">
-                                <label for="inputEmail3" class="col-md-3 col-form-label control-label">Packaging</label>
-                                <div class="col-md-6">
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail3" class="col-form-label control-label">Packaging</label>
+                                
                                     <div class="input-group">
-                                        <ng-select name="packagingId " [(ngModel)]="data.packagingId"
+                                        <ng-select name="packagingId " class="input-w px-0" [(ngModel)]="data.packagingId"
                                             placeholder="-- Select --">
                                             <ng-option *ngFor="let i of packaging" [value]="i.id">{{ i.name }}
                                             </ng-option>
                                         </ng-select>
-                                        <span class="float-left">
-                                            <button class="btn btn-success " (click)="addPackingForm()">
+
+                                        <!-- <span class="float-left">
+                                            <button class="btn btn-outline-primary " (click)="addPackingForm()">
                                                 <i class="fa fa-plus"></i>
                                             </button>
-                                        </span>
+                                        </span> -->
+
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-primary" type="button" id="button-addon2" (click)="addPackingForm()">
+                                                <i class="fa fa-plus"></i></button>
+                                          </div>
+
                                     </div>
-                                </div>
+                                
+                            </div>
+
                             </div>
 
                         </div>
                     </div>
 
 
-                    <div class="row border-top">
-                        <div class="col-md-12 pt-2r pb-3">
+                    <div class="border-top">
+                        <div class="pt-3 pb-3">
 
-                            <div class="form-group row">
-                                <label for="inputEmail3" class="col-md-3 col-form-label control-label">Payment
-                                    Terms</label>
-                                <div class="col-md-6">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="input-group">
-                                                <ng-select name="packagingId " [(ngModel)]="data.paymentTermId"
-                                                    placeholder="-- Select --">
-                                                    <ng-option *ngFor="let i of payment" [value]="i.id">{{ i.term }}
+                            <div class="form-row">
+                            
+                                <div class="form-group col-md-12">
+                                    <label for="inputEmail3" class="col-form-label control-label">Payment Terms</label>
+
+                                    
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="input-group">
+                                                    <ng-select name="packagingId" class="input-w px-0" [(ngModel)]="data.paymentTermId" placeholder="-- Select --">
+                                                        <ng-option *ngFor="let i of payment" [value]="i.id">{{ i.term }}
+                                                        </ng-option>
+                                                    </ng-select>
+                            
+                                                    <!-- <button class="btn btn-outline-primary ">
+                                                        <i class="fa fa-plus" (click)="addPaymentForm()"></i>
+                                                    </button> -->
+
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-outline-primary" type="button" id="button-addon2" (click)="addPaymentForm()">
+                                                            <i class="fa fa-plus"></i></button>
+                                                      </div>
+
+                                                </div>
+                                            </div>
+                            
+                                            <div class="col-md-2 mrg-sm1">
+                                                <input type="text" pattern="[0-9]" maxlength="3" placeholder="Days." class="form-control"
+                                                    [(ngModel)]="data.paymentTermDays" name="paymentTermDays">
+                                            </div>
+                            
+                                            <div class="col-md-4 mrg-sm1">
+                                                <input type="text" placeholder="Additional Info." class="form-control"
+                                                    [(ngModel)]="data.paymentTermInfo" name="paymentTermInfo">
+                                            </div>
+                            
+                                        </div>
+                                    
+                            
+                                </div>
+                            
+                                <div class="form-group col-md-12">
+                                    <label for="inputEmail3" class="col-form-label control-label">Price terms</label>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="input-group">
+                                                    <ng-select name="priceTermId" class="input-w px-0" [(ngModel)]="data.priceTermId"
+                                                        placeholder="-- Select --">
+                                                        <ng-option *ngFor="let i of priceterm" [value]="i.id">{{ i.term }}
+                                                        </ng-option>
+                                                    </ng-select>
+                                        
+                                    
+                                                    <!-- <button class="btn btn-outline-primary ">
+                                                        <i class="fa fa-plus" (click)="addPriceForm()"></i>
+                                                    </button> -->
+
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-outline-primary" type="button" id="button-addon2" (click)="addPriceForm()">
+                                                            <i class="fa fa-plus"></i></button>
+                                                      </div>
+                                        
+                                                </div>
+                                            </div>
+                                        
+                                            <div class="col-md-6 mrg-sm1">
+                                                <div class="input-group">
+                                        
+                                                    <ng-select name="destinationId" class="input-w px-0" [(ngModel)]="data.destinationId"
+                                                        placeholder="-- Select City --">
+                                                        <ng-option *ngFor="let i of city" [value]="i.id">{{ i.name }}
+                                                        </ng-option>
+                                                    </ng-select>
+                                        
+                                        
+                                                    <!-- <button class="btn btn-outline-primary " (click)="addenquiryCity('CityAdd', 'cityForm')">
+                                                        <i class="fa fa-plus"></i>
+                                                    </button> -->
+
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-outline-primary" type="button" id="button-addon2" (click)="addenquiryCity('CityAdd', 'cityForm')">
+                                                            <i class="fa fa-plus"></i></button>
+                                                      </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                            
+                            
+                                <div class="form-group col-md-12">
+                                    <label for="inputEmail3" class="col-form-label control-label">Suppiler Side Commission</label>
+                            
+                                    
+                                        <div class="row">
+                            
+                                            <div class="col-md-4">
+                                                <div class="input-group">
+                                                    <input type="text" placeholder="Comm%" class="form-control"
+                                                        [(ngModel)]="data.sellerSideCommission" name="sellerSideCommission">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text" id="basic-addon2">per</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                            
+                                            <div class="col-md-4 mrg-sm1">
+                            
+                                                <ng-select name="sellerSideCommissionUOMId " [(ngModel)]="data.sellerSideCommissionUOMId"
+                                                    placeholder="-- Select UOM --">
+                                                    <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
                                                     </ng-option>
                                                 </ng-select>
-
-                                                <button class="btn btn-success ">
-                                                    <i class="fa fa-plus" (click)="addPaymentForm()"></i>
-                                                </button>
+                            
                                             </div>
+                            
+                                            <div class="col-md-4 mrg-sm1">
+                                                <input type="text" placeholder="Additional Info." class="form-control"
+                                                    [(ngModel)]="data.sellerSideCommissionInfo" name="sellerSideCommissionInfo">
+                                            </div>
+                            
                                         </div>
 
-                                        <div class="col-md-2 mrg-sm1">
-                                            <input type="text" pattern="[0-9]" maxlength="3" placeholder="Days."
-                                                class="form-control" [(ngModel)]="data.paymentTermDays"
-                                                name="paymentTermDays">
-                                        </div>
-
-                                        <div class="col-md-4 mrg-sm1">
-                                            <input type="text" placeholder="Additional Info." class="form-control"
-                                                [(ngModel)]="data.paymentTermInfo" name="paymentTermInfo">
-                                        </div>
-
-                                    </div>
+                                        <small id="passwordHelpBlock" class="form-text text-lightgrey">
+                                            FabCot Seller Side Commission in %age, if UOM not selected
+                                        </small>
+                                    
+                            
                                 </div>
-
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="inputEmail3" class="col-md-3 col-form-label control-label">Price
-                                    terms</label>
-                                <div class="col-md-3">
-                                    <div class="input-group">
-                                        <ng-select name="priceTermId " [(ngModel)]="data.priceTermId"
-                                            placeholder="-- Select --">
-                                            <ng-option *ngFor="let i of priceterm" [value]="i.id">{{ i.term }}
-                                            </ng-option>
-                                        </ng-select>
-
-
-                                        <button class="btn btn-success ">
-                                            <i class="fa fa-plus" (click)="addPriceForm()"></i>
-                                        </button>
-
-                                    </div>
-                                </div>
-
-                                <div class="col-md-3 mrg-sm1">
-                                    <div class="input-group">
-
-                                        <ng-select name="destinationId " [(ngModel)]="data.destinationId"
-                                            placeholder="-- Select --">
-                                            <ng-option *ngFor="let i of city" [value]="i.id">{{ i.name }}
-                                            </ng-option>
-                                        </ng-select>
-
-
-                                        <button class="btn btn-success "
-                                            (click)="addenquiryCity('CityAdd', 'cityForm')">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="form-group row">
-                                <label for="inputEmail3" class="col-md-3 col-form-label control-label">Suppiler Side
-                                    Commission</label>
-
-                                <div class="col-md-6">
-                                    <div class="row">
-
-                                        <div class="col-md-4">
-                                            <div class="input-group">
-                                                <input type="text" placeholder="Comm%" class="form-control"
-                                                    [(ngModel)]="data.sellerSideCommission" name="sellerSideCommission">
-                                                <div class="input-group-append">
-                                                    <span class="input-group-text" id="basic-addon2">per</span>
+                            
+                                <div class="form-group col-md-12">
+                                    <label for="code" class="col-form-label control-label">Buyer Side Commission</label>
+                            
+                                    
+                                        <div class="row">
+                            
+                                            <div class="col-md-4">
+                                                <div class="input-group">
+                                                    <input type="text" placeholder="Comm%" class="form-control"
+                                                        [(ngModel)]="data.buyerSideCommission" name="buyerSideCommission">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text" id="basic-addon2">per</span>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-
-                                        <div class="col-md-4 mrg-sm1">
-
-                                            <ng-select name="sellerSideCommissionUOMId "
-                                                [(ngModel)]="data.sellerSideCommissionUOMId" placeholder="-- Select --">
-                                                <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
-                                                </ng-option>
-                                            </ng-select>
-
-                                        </div>
-
-                                        <div class="col-md-4 mrg-sm1">
-                                            <input type="text" placeholder="Additional Info." class="form-control"
-                                                [(ngModel)]="data.sellerSideCommissionInfo"
-                                                name="sellerSideCommissionInfo">
-                                        </div>
-
-                                    </div>
-                                    <small id="passwordHelpBlock" class="form-text text-lightgrey">
-                                        FabCot Seller Side Commission in %age, if UOM not selected
-                                    </small>
-                                </div>
-
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="code" class="col-md-3 col-form-label control-label">Buyer Side
-                                    Commission</label>
-
-                                <div class="col-md-6">
-                                    <div class="row">
-
-                                        <div class="col-md-4">
-                                            <div class="input-group">
-                                                <input type="text" placeholder="Comm%" class="form-control"
-                                                    [(ngModel)]="data.buyerSideCommission" name="buyerSideCommission">
-                                                <div class="input-group-append">
-                                                    <span class="input-group-text" id="basic-addon2">per</span>
-                                                </div>
+                            
+                                            <div class="col-md-4 mrg-sm1">
+                            
+                                                <ng-select name="buyerSideCommissionUOMId " [(ngModel)]="data.buyerSideCommissionUOMId"
+                                                    placeholder="-- Select UOM --">
+                                                    <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
+                                                    </ng-option>
+                                                </ng-select>
+                                            </div>
+                            
+                                            <div class="col-md-4 mrg-sm1">
+                                                <input type="text" placeholder="Additional Info." class="form-control"
+                                                    [(ngModel)]="data.buyerSideCommissionInfo" name="buyerSideCommissionInfo">
                                             </div>
                                         </div>
-
-                                        <div class="col-md-4 mrg-sm1">
-
-                                            <ng-select name="buyerSideCommissionUOMId "
-                                                [(ngModel)]="data.buyerSideCommissionUOMId" placeholder="-- Select --">
-                                                <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
-                                                </ng-option>
-                                            </ng-select>
-                                        </div>
-
-                                        <div class="col-md-4 mrg-sm1">
-                                            <input type="text" placeholder="Additional Info." class="form-control"
-                                                [(ngModel)]="data.buyerSideCommissionInfo"
-                                                name="buyerSideCommissionInfo">
-                                        </div>
-                                    </div>
-                                    <small id="passwordHelpBlock" class="form-text text-lightgrey">
-                                        FabCot Buyer Side ommission in %age, if UOM not selected
-                                    </small>
+                                        <small id="passwordHelpBlock" class="form-text text-lightgrey">
+                                            FabCot Buyer Side ommission in %age, if UOM not selected
+                                        </small>
+                                    
                                 </div>
+
                             </div>
                         </div>
                     </div>
 
-                    <div class="row border-top">
-                        <div class="col-md-12 pt-2r pb-3">
-                            <div class="form-group row">
-                                <label for="inputEmail3"
-                                    class="col-md-3 col-form-label control-label">Certification:</label>
-                                <div class="col-md-6">
-                                    <div class="input-group">
-                                        <ng-select name="certificateId " [(ngModel)]="data.certificateId"
-                                            placeholder="-- Select --">
-                                            <ng-option *ngFor="let i of certification" [value]="i.id">{{ i.name }}
-                                            </ng-option>
-                                        </ng-select>
-                                        <button class="btn btn-success " (click)="addenquiryCertificateForm()">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="inputEmail3" class="col-md-3 col-form-label control-label">Remarks:</label>
-                                <div class="col-md-6">
-                                    <textarea class="form-control" rows="4" placeholder="Any Remarks Here..."
-                                        [(ngModel)]="data.remarks" name="remarks"></textarea>
-                                </div>
-                            </div>
 
 
-                            <div class="form-group row">
-                                <label for="inputEmail3" class="col-md-3 col-form-label control-label">Other
-                                    Condition:</label>
-                                <div class="col-md-6">
-                                    <textarea class="form-control" rows="4" placeholder="Any Conditions Here..."
-                                        [(ngModel)]="data.additionalInfo" name="additionalInfo"></textarea>
+                    <div class=" border-top ">
+                        <div class=" pt-3 pb-3">
+
+                            <div class="form-row">
+                            
+                                <div class="form-group col-md-12">
+                                    <label for="inputEmail3" class="col-form-label control-label">Certification:</label>
+                            
+                                    
+                                        <div class="input-group">
+                                            <ng-select name="certificateId" class="input-w1 px-0" [(ngModel)]="data.certificateId" placeholder="-- Select --">
+                                                <ng-option *ngFor="let i of certification" [value]="i.id">{{ i.name }}
+                                                </ng-option>
+                                            </ng-select>
+
+                                            <!-- <button class="btn btn-outline-primary " (click)="addenquiryCertificateForm()">
+                                                <i class="fa fa-plus"></i>
+                                            </button> -->
+
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-primary" type="button" id="button-addon2" (click)="addenquiryCertificateForm('CertificateAdd')">
+                                                    <i class="fa fa-plus"></i></button>
+                                              </div>
+
+                                        </div>
+                                    
                                 </div>
+                            
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail3" class="col-form-label control-label">Remarks:</label>
+                                        <textarea class="form-control" rows="4" placeholder="Any Remarks Here..." [(ngModel)]="data.remarks"
+                                            name="remarks"></textarea>
+                                </div>
+                            
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail3" class="col-form-label control-label">Other Condition:</label>
+                                        <textarea class="form-control" rows="4" placeholder="Any Conditions Here..."
+                                            [(ngModel)]="data.additionalInfo" name="additionalInfo"></textarea>                                    
+                                </div>
+                            
                             </div>
+
                         </div>
                     </div>
+
                     <div class="row">
-                        <div class="col-md-6 offset-md-3">
+                        <div class="col-md-12">
                             <button class="btn button-save" (click)="addEnquiry()">
                                 <i class="fas fa-check"></i> Save &
                                 Next</button>
@@ -454,7 +558,9 @@
                             </button>
                         </div>
                     </div>
+
                 </form>
+
             </div>
         </div>
 
