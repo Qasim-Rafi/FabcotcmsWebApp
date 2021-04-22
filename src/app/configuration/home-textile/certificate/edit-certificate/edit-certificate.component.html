@@ -33,13 +33,13 @@
 
 <div class="modal-body BG pt-2r">
   <form #certificateForm="ngForm" novalidate>
-    <div class="form-group row" [class.has-error]="name.invalid && name.touched" *ngIf="
+    <div class="form-group row" *ngIf="
         statusCheck == 'CertificateEdit' || statusCheck == 'CertificateAdd'
       ">
       <label for="name" class="col-sm-3 col-form-label control-label text_Navy">Certificate</label>
       <div class="col-sm-8">
-        <input required id="name" type="text" class="form-control" placeholder="Certificate name" name="name"
-          [(ngModel)]="data.name" #name="ngModel" [ngClass]="{ error: name.invalid && name.touched }" />
+        <input appAutofocus required id="name" type="text" class="form-control" placeholder="Certificate name"
+          name="name" [(ngModel)]="data.name" #name="ngModel" [ngClass]="{ error: name.invalid }" />
       </div>
     </div>
 

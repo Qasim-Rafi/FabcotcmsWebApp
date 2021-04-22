@@ -15,7 +15,7 @@
     <div class="form-group row" [class.has-error]="name.invalid">
       <label for="name" class="col-sm-3 col-form-label control-label text_Navy">Process Name </label>
       <div class="col-sm-8">
-        <input maxlength="100" required id="name" type="text" class="form-control" placeholder="Process name" name="name"
+        <input appAutofocus maxlength="100" required id="name" type="text" class="form-control" placeholder="Process name" name="name"
           [(ngModel)]="data.name" #name="ngModel" [ngClass]="{'error': name.invalid }">
         <small>Add Process Description</small>
       </div>
