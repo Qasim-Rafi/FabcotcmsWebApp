@@ -58,6 +58,7 @@ export class AddEnquiryComponent implements OnInit {
   ptype: any = {};
   certification: any = {};
   priceterm: any = {};
+  autoEnquiryNo: number;
   dateformater: Dateformater = new Dateformater();
 
   constructor(private http: HttpClient,
@@ -81,8 +82,8 @@ export class AddEnquiryComponent implements OnInit {
     //     showWeekNumbers: false,
     //     dateInputFormat: 'DD/MM/YYYY',
     //   }),
-
-      this.GetBuyersDropdown();
+    this. getAutoEnquiryNo();
+    this.GetBuyersDropdown();
     this.GetArticlesDropdown();
     this.GetPaymentDropdown();
     this.GetPackingDropdown();
@@ -94,6 +95,30 @@ export class AddEnquiryComponent implements OnInit {
     this.GetCityDropdown();
     this.GetUOMDropdown();
 
+  }
+
+
+  getAutoEnquiryNo() {
+    this.http.get(`${environment.apiUrl}/api/Enquiries/GetNextEnquiryNumber`)
+      .subscribe(
+        res => {
+
+          this.response = res;
+          if (this.response.success == true) {
+            this.autoEnquiryNo = this.response.data;
+
+
+
+          }
+          else {
+            this.toastr.error('Something went Worng', 'Message.');
+          }
+
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error('Something went Worng', 'Message.');
+          }
+        });
   }
 
   GetArticlesDropdown() {
@@ -477,7 +502,7 @@ export class AddEnquiryComponent implements OnInit {
       "buyerSideCommission": this.data.buyerSideCommission,
       "buyerSideCommissionUOMId": this.data.buyerSideCommissionUOMId,
       "buyerSideCommissionInfo": this.data.buyerSideCommissionInfo,
-      "certificateId": this.data.certificateId,
+      "certificateIds": this.data.certificateIds,
       "remarks": this.data.remarks,
       "additionalInfo": this.data.additionalInfo,
       "departmentId": this.data.departmentId,

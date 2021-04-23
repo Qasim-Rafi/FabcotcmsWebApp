@@ -1,4 +1,15 @@
 
+.forum-info {
+  text-align: center;
+  overflow: hidden;
+}
+
+.views-number {
+  font-size: 20px;
+  line-height: 18px;
+  font-weight: 400;
+  color: #535353;
+}
 
 
 .list {
