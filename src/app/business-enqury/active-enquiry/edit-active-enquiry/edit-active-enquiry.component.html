@@ -254,7 +254,7 @@
     
                                     <dl class="row">
                                         <dt class="col-sm-3"> Currency:</dt>
-                                        <dd class="col-sm-9">1234{{enquiryData.currencyRateCode}}</dd>
+                                        <dd class="col-sm-9">{{enquiryData.currencyRateCode}}</dd>
                                     
                                         <dt class="col-sm-3">Quantity:</dt>
                                         <dd class="col-sm-9">{{enquiryData.totalQuantity}}</dd>
@@ -266,10 +266,10 @@
                                         <dd class="col-sm-9">{{enquiryData.priceTermName}}</dd>
                                     
                                         <dt class="col-sm-3">Supplier Commission:</dt>
-                                        <dd class="col-sm-9">{{enquiryData.sellerSideCommissionInfo}}%</dd>
+                                        <dd class="col-sm-9">{{enquiryData.sellerSideCommission}}%</dd>
                                     
                                         <dt class="col-sm-3"> Buyer Commission:</dt>
-                                        <dd class="col-sm-9">{{enquiryData.buyerSideCommissionInfo}}% 
+                                        <dd class="col-sm-9">{{enquiryData.buyerSideCommission}}% 
 
                                             <button class="btn btn-outline-primary float-right btn-sm"
                                         (click)="currencyToggle = !currencyToggle"> Edit</button>
@@ -522,7 +522,7 @@
                             <div [ngClass]="{ noDisplay : orderToggle==true }">
                                 <dl class="row">
                                     <dt class="col-sm-3">Order Confirm On:</dt>
-                                    <dd class="col-sm-9">{{enquiryData.confirmationDate}}</dd>
+                                    <dd class="col-sm-9">{{confirmOn}}</dd>
                                 
                                     <dt class="col-sm-3"> Details:</dt>
                                     <dd class="col-sm-9">{{enquiryData.confirmationDetails}}
