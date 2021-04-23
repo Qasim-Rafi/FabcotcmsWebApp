@@ -46,6 +46,7 @@ export class EditActiveEnquiryComponent implements OnInit {
   buyerDetails: any = [];
   vendorSeller: any = [];
   certificate: any = [];
+  confirmOn: string;
 
 
 
@@ -98,6 +99,10 @@ export class EditActiveEnquiryComponent implements OnInit {
           this.response = res;
           if (this.response.success == true) {
             this.enquiryData = this.response.data;
+             this.confirmOn = this.enquiryData.confirmationDate;
+            this.enquiryData.confirmationDate = this.dateformater.fromModel(this.enquiryData.confirmationDate);
+
+            
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
@@ -109,6 +114,9 @@ export class EditActiveEnquiryComponent implements OnInit {
           }
         });
   }
+
+
+
 
 
 
@@ -551,7 +559,7 @@ export class EditActiveEnquiryComponent implements OnInit {
     }
 
     this.http.
-      post(`${environment.apiUrl}​/api​/Enquiries​/AddEnquiryAdditionalInfomation`, varr)
+      post(`${environment.apiUrl}/api/Enquiries/AddEnquiryAdditionalInfomation`, varr)
       .subscribe(
         res => {
 

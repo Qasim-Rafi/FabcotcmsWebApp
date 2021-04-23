@@ -19,15 +19,50 @@ export class ServiceService {
   article: any = [];
   listCount: number;
   data: any = [];
+  user:any;
   rootUrl: "/api/Auth/Login";
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,) { }
 
-    userAuthentication(username, password) {
-        var data = "username=" + username + "&password=" + password + "&grant_type=password";
-        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/x-www-urlencoded','No-Auth':'True' });
-        return this.http.post('/api/Auth/Login' + '/token', data, { headers: reqHeader });
+    userAuthentication(data) {
+        // var data = "username=" + username + "&password=" + password + "&grant_type=password";
+        // var reqHeader = new HttpHeaders({ 'Content-Type': 'application/x-www-urlencoded','No-Auth':'True' });
+        // return this.http.post('/api/Auth/Login' + '/token', data, { headers: reqHeader });
+
+
+        return this.http.post(`${environment.apiUrl}/api/auth/login`, data)
+        .pipe(
+          map((res:any) => {
+            this.response = res;
+            //if(this.response.massage){}
+            if(this.response.success==true)
+        {
+          this.user = this.response.data;
+        }
+            if (this.user)
+              {
+               
+      
+                  localStorage.setItem('token',this.user.token);
+                  localStorage.setItem('role',this.user.role);
+
+                  //this.authenticateUser(this.userRole);
+              //     setTimeout(()=>{                           
+              //       localStorage.removeItem('token');
+              //        this.router.navigate(['/first-page']);
+              //  }, 172800000);
+                  
+      
+       
+          
+    
+                  return this.response;
+              }
+              return this.response;
+          })
+      
+        );
       }
 
 //file upload service starts here

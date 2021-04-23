@@ -22,6 +22,16 @@ export class EnquiryItemsComponent implements OnInit {
   loomType: any = [];
   fabricType: any = [];
 values=[];
+  description: any=[];
+  itemQuantity: any=[];
+  itemUOMId: any=[];
+  compositionPercentage: any=[];
+  compositionFebricTypeId: any=[];
+  compositionAdditionalInfo: any=[];
+  construction: any=[];
+  weight: any=[];
+  size: any=[];
+  remarks: any=[];
 
 
   constructor(
@@ -47,7 +57,7 @@ values=[];
     return this._NgbActiveModal;
   }
 
-  add() {
+  addMore() {
     this.data.push({
       id: this.data.length,
     });
@@ -107,25 +117,10 @@ values=[];
 
 
   addEnquiryItem() {
-    let varr =
-    {
-      "enquiryId": this.EnquiryId,
-      "description": this.data.description,
-      "itemQuantity": this.data.itemQuantity,
-      "itemUOMId": this.data.itemUOMId,
-      "compositionPercentage": this.data.compositionPercentage,
-      "compositionFebricTypeId": this.data.compositionFebricTypeId,
-      "compositionAdditionalInfo": this.data.compositionAdditionalInfo,
-      "construction": this.data.construction,
-      "colorId": this.data.colorId,
-      "weight": this.data.weight,
-      "loomTypeId": this.data.loomTypeId,
-      "size": this.data.size,
-      "remarks": this.data.remarks,
-    }
+    this.data;
 
     this.http.
-      post(`${environment.apiUrl}/api/Enquiries/AddEnquiryItem`, varr)
+      post(`${environment.apiUrl}/api/Enquiries/AddEnquiryItem`, this.data)
       .subscribe(
         res => {
           this.response = res;
@@ -137,7 +132,7 @@ values=[];
           else {
             this.toastr.error(this.response.message, 'Message.');
           }
-
+        
         }, err => {
           if (err.status == 400) {
             this.toastr.error(this.response.message, 'Message.');
