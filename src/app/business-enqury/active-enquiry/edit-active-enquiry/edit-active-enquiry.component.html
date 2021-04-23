@@ -233,8 +233,7 @@
                     <nav>
                         <div class="nav nav-tabs" id="nav-tab" role="tablist" class="nav nav-pills">
                             <a class="nav-item nav-link active" id="nav-pricing-tab" data-toggle="tab" href="#nav-pricing"
-                                role="tab" aria-controls="nav-pricing" aria-selected="true">Pricing
-                                Details</a>
+                                role="tab" aria-controls="nav-pricing" aria-selected="true">Pricing Details</a>
                             <a class="nav-item nav-link" id="nav-vendor-tab" data-toggle="tab" href="#nav-vendor" role="tab"
                                 aria-controls="nav-vendor" aria-selected="false">Vendor Details</a>
                             <a class="nav-item nav-link" id="nav-order-tab" data-toggle="tab" href="#nav-order" role="tab"
@@ -243,9 +242,12 @@
                                 role="tab" aria-controls="nav-enquiry" aria-selected="false">Enquiry Remarks </a>
                         </div>
                     </nav>
+
                     <div class="tab-content pt-3" id="nav-tabContent">
-                        <div class="tab-pane fade show active" id="nav-pricing" role="tabpanel"
-                            aria-labelledby="nav-pricing-tab">
+
+
+                        <!-- --------------------------- Tab 1 -------------------------- -->
+                        <div class="tab-pane fade show active" id="nav-pricing" role="tabpanel" aria-labelledby="nav-pricing-tab">
 
                             <div class="row">
                                 <div class="col-md-12" [ngClass]="{ noDisplay : currencyToggle==true }">
@@ -461,14 +463,14 @@
     
                         </div>
     
+                        <!-- --------------------------- Tab 2 -------------------------- -->
                         <div class="tab-pane fade" id="nav-vendor" role="tabpanel" aria-labelledby="nav-vendor-tab">
 
                             <div [ngClass]="{ noDisplay : vendorToggle==true }">
                                 <dl class="row">
                                     <dt class="col-sm-3"> Selected Vendor:</dt>
                                     <dd class="col-sm-9">{{enquiryData.sellerName}}</dd>
-                                </dl>
-                                <dl class="row">
+                                
                                     <dt class="col-sm-3"> Final Costing:</dt>
                                     <dd class="col-sm-9">{{enquiryData.costingDetail}}
 
@@ -478,7 +480,7 @@
                                 </dl>
                             </div>
 
-    
+    <!-- ------------------------------form---------------------- -->
                             <div class="row">
                                 <div class="col-md-12 py-3" [ngClass]="{ noDisplay : vendorToggle==false }">
                             
@@ -513,130 +515,126 @@
                             </div>
                         </div>
     
-    
+                        <!-- --------------------------- Tab 3 -------------------------- -->
                         <div class="tab-pane fade" id="nav-order" role="tabpanel" aria-labelledby="nav-order-tab">
     
     
                             <div [ngClass]="{ noDisplay : orderToggle==true }">
                                 <dl class="row">
-                                    <dt class="col-sm-6">Order Confirm On:
-                                    </dt>
-                                    <dd class="col-sm-6">{{enquiryData.confirmationDate}}</dd>
-                                </dl>
-                                <dl class="row">
-                                    <dt class="col-sm-6"> Details:</dt>
-                                    <dd class="col-sm-6">{{enquiryData.confirmationDetails}}</dd>
+                                    <dt class="col-sm-3">Order Confirm On:</dt>
+                                    <dd class="col-sm-9">{{enquiryData.confirmationDate}}</dd>
+                                
+                                    <dt class="col-sm-3"> Details:</dt>
+                                    <dd class="col-sm-9">{{enquiryData.confirmationDetails}}
+
+                                        <button class="btn btn-outline-primary float-right btn-sm" (click)="orderToggle = !orderToggle"> Edit</button>
+
+                                    </dd>
                                 </dl>
     
-                                <button class="btn btn-primary float-right" (click)="orderToggle = !orderToggle">
-                                    Edit</button>
+                                
                             </div>
     
-    
-                            <div [ngClass]="{ noDisplay : orderToggle==false }">
-                                <div class="form-group row">
-                                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Confirmation
-                                        On:</label>
-                                    <div class="col-md-6">
-                                        <div class="input-group">
-                                            <input class="form-control " ngbDatepicker #validityDate="ngbDatepicker"
-                                                (click)="validityDate.toggle()" [displayMonths]="1"
-                                                [(ngModel)]="enquiryData.confirmationDate" name="confirmationDate" />
+                            <div class="row">
+                                <div class="col-md-12 py-3" [ngClass]="{ noDisplay : orderToggle==false }">
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">Confirmation On:</label>
+                                        <div class="col-md-6">
+                                            <div class="input-group">
+                                                <input class="form-control " ngbDatepicker #validityDate="ngbDatepicker"
+                                                    (click)="validityDate.toggle()" [displayMonths]="1" [(ngModel)]="enquiryData.confirmationDate"
+                                                    name="confirmationDate" />
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-    
-    
-                                <div class="form-group row">
-                                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Details</label>
-                                    <div class="col-md-6">
-                                        <div class="input-group">
-                                            <textarea rows="3" class="form-control"
-                                                [(ngModel)]="enquiryData.confirmationDetails"
-                                                name="confirmationDetails"></textarea>
+                            
+                            
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">Details</label>
+                                        <div class="col-md-6">
+                                            <div class="input-group">
+                                                <textarea rows="3" class="form-control" [(ngModel)]="enquiryData.confirmationDetails"
+                                                    name="confirmationDetails"></textarea>
+                                            </div>
                                         </div>
                                     </div>
+                                    <button class="btn btn-light float-right ml-1" (click)="orderToggle = !orderToggle">Close</button>
+                                    <button class="btn btn-primary float-right" (click)="addEnquiryOrderDetails() ; orderToggle = !orderToggle">Save</button>
+                                    
                                 </div>
-                                <button class="btn btn-primary"
-                                    (click)="addEnquiryOrderDetails() ; orderToggle = !orderToggle">
-                                    Save</button>
-                                <button class="btn btn-white" (click)="orderToggle = !orderToggle">
-                                    Close</button>
                             </div>
+
                         </div>
-    
+
+                        <!-- --------------------------- Tab 4 -------------------------- -->
                         <div class="tab-pane fade" id="nav-enquiry" role="tabpanel" aria-labelledby="nav-enquiry-tab">
     
                             <div [ngClass]="{ noDisplay : remarksToggle==true }">
                                 <dl class="row">
-                                    <dt class="col-sm-6">Enquiry Remarks:
-                                    </dt>
-                                    <dd class="col-sm-6">{{enquiryData.enquiryRemarks}}</dd>
-                                </dl>
-                                <dl class="row">
-                                    <dt class="col-sm-6"> Other Condition:
-                                    </dt>
-                                    <dd class="col-sm-6">{{enquiryData.enquiryOtherCondition}}</dd>
-                                </dl>
-                                <dl class="row">
-                                    <dt class="col-sm-6">Certifications:
-                                    </dt>
-                                    <dd class="col-sm-6">{{enquiryData.certificateName}}</dd>
+                                    <dt class="col-sm-3">Enquiry Remarks:</dt>
+                                    <dd class="col-sm-9">{{enquiryData.enquiryRemarks}}</dd>
+                                
+                                    <dt class="col-sm-3"> Other Condition:</dt>
+                                    <dd class="col-sm-9">{{enquiryData.enquiryOtherCondition}}</dd>
+                                
+                                    <dt class="col-sm-3">Certifications:</dt>
+                                    <dd class="col-sm-9">{{enquiryData.certificateName}}
+                                        <button class="btn btn-outline-primary float-right btn-sm" (click)="remarksToggle = !remarksToggle">Edit</button>
+                                    </dd>
                                 </dl>
     
-                                <button class="btn btn-primary float-right" (click)="remarksToggle = !remarksToggle">
-                                    Edit</button>
                             </div>
     
-                            <div [ngClass]="{ noDisplay : remarksToggle==false }">
-    
-    
-                                <div class="form-group row">
-                                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Remarks</label>
-                                    <div class="col-md-6">
-                                        <div class="input-group">
-                                            <textarea rows="3" class="form-control" [(ngModel)]="enquiryData.enquiryRemarks"
-                                                name="enquiryRemarks"></textarea>
+
+
+                            <div class="row">
+                                <div class="col-md-12 py-3" [ngClass]="{ noDisplay : remarksToggle==false }">
+                            
+                            
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">Remarks</label>
+                                        <div class="col-md-6">
+                                            <div class="input-group">
+                                                <textarea rows="3" class="form-control" [(ngModel)]="enquiryData.enquiryRemarks"
+                                                    name="enquiryRemarks"></textarea>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-    
-                                <div class="form-group row">
-                                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Other
-                                        Conditions</label>
-                                    <div class="col-md-6">
-                                        <div class="input-group">
-                                            <textarea rows="3" class="form-control"
-                                                [(ngModel)]="enquiryData.enquiryOtherCondition"
-                                                name="enquiryOtherCondition"></textarea>
+                            
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">Other
+                                            Conditions</label>
+                                        <div class="col-md-6">
+                                            <div class="input-group">
+                                                <textarea rows="3" class="form-control" [(ngModel)]="enquiryData.enquiryOtherCondition"
+                                                    name="enquiryOtherCondition"></textarea>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-    
-    
-                                <div class="form-group row">
-                                    <label for="inputEmail3"
-                                        class="col-md-3 col-form-label control-label">Certificates</label>
-                                    <div class="col-md-6">
-    
-                                        <ng-select [(ngModel)]="enquiryData.certificateId" placeholder="-- Select --"
-                                            name="certificateId">
-                                            <ng-option *ngFor="let i of certificate" [value]="i.id">{{ i.name }}
-                                            </ng-option>
-                                        </ng-select>
-    
+                            
+                            
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">Certificates</label>
+                                        <div class="col-md-6">
+                            
+                                            <ng-select [(ngModel)]="enquiryData.certificateId" placeholder="-- Select --" name="certificateId">
+                                                <ng-option *ngFor="let i of certificate" [value]="i.id">{{ i.name }}
+                                                </ng-option>
+                                            </ng-select>
+                            
+                                        </div>
                                     </div>
+                            
+                                    <button class="btn btn-light float-right ml-1" (click)="remarksToggle = !remarksToggle">Close</button>
+                                    <button class="btn btn-primary float-right" (click)="addEnquiryRemarks(); remarksToggle = !remarksToggle">Save Info</button>
+                                    
                                 </div>
-    
-                                <button class="btn btn-primary float-right"
-                                    (click)="addEnquiryRemarks(); remarksToggle = !remarksToggle">
-                                    Save Info</button>
-                                <button class="btn btn-white float-right" (click)="remarksToggle = !remarksToggle">
-                                    Close</button>
                             </div>
+
                         </div>
 
                     </div>
+
                 </div>
             </div>
     
