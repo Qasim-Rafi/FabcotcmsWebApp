@@ -60,8 +60,6 @@ export class AddEnquiryComponent implements OnInit {
   priceterm: any = {};
   dateformater: Dateformater = new Dateformater();
 
-
-
   constructor(private http: HttpClient,
     private toastr: ToastrService,
     private modalService: NgbModal,

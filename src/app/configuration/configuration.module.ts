@@ -73,7 +73,10 @@ import { SellerPocComponent } from './seller/seller-poc/seller-poc.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { AutofocusDirective } from '../shared/autofocus-directive/autofocus.directive';
 // import { ClipboardModule } from '@angular/cdk/clipboard';
-import {ClipboardModule} from 'ngx-clipboard'
+import {ClipboardModule} from 'ngx-clipboard';
+import { SystemUsersComponent } from './system-users/system-users.component';
+import { AddEditSystemUserComponent } from './system-users/add-edit-system-user/add-edit-system-user.component';
+
 @NgModule({
   declarations: [
     ConfigurationComponent,
@@ -106,7 +109,7 @@ import {ClipboardModule} from 'ngx-clipboard'
     EditPaymentComponent,
     PriceTermComponent,
     AddPriceComponent,
-    EditPriceComponent, BankComponent, BankAccountsComponent, AddBankComponent, EditBankComponent, AddBankAccountComponent, EditBankAccountComponent, ProcessComponent, ProcessTypeComponent, DesignTypeComponent, LoomTypeComponent, CertificateComponent, ColorComponent, TimeActionItemsComponent, EditCertificateComponent, EditColorComponent, AddColorComponent, AddDesignTypeComponent, EditDesignTypeComponent, AddLoomTypeComponent, EditLoomTypeComponent, EditProcessComponent, AddProcessComponent, AddProcessTypeComponent, EditProcessTypeComponent, EditTimeActionComponent, AddTimeActionComponent, AddCurrencyComponent, EditCurrencyComponent, SellerPocComponent,
+    EditPriceComponent, BankComponent, BankAccountsComponent, AddBankComponent, EditBankComponent, AddBankAccountComponent, EditBankAccountComponent, ProcessComponent, ProcessTypeComponent, DesignTypeComponent, LoomTypeComponent, CertificateComponent, ColorComponent, TimeActionItemsComponent, EditCertificateComponent, EditColorComponent, AddColorComponent, AddDesignTypeComponent, EditDesignTypeComponent, AddLoomTypeComponent, EditLoomTypeComponent, EditProcessComponent, AddProcessComponent, AddProcessTypeComponent, EditProcessTypeComponent, EditTimeActionComponent, AddTimeActionComponent, AddCurrencyComponent, EditCurrencyComponent, SellerPocComponent, SystemUsersComponent, AddEditSystemUserComponent,
 
 
   ],

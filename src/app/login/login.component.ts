@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup, FormBuilder, Validators} from '@angular/forms';
+import {FormGroup, FormBuilder, Validators, NgForm} from '@angular/forms';
 import { ServiceService } from '../shared/service.service';
 import {Router} from '@angular/router'
 import { HttpErrorResponse } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,9 +14,12 @@ loginForm: FormGroup;
 invalidLogin: boolean=false;
   message: any;
   isLoginError: boolean=false;
+  data:any={};
+  response:any;
   constructor(
     private FormBuilder:FormBuilder,
     private router: Router,
+    private toastr: ToastrService,
     private Service: ServiceService
   ) { }
 
@@ -29,10 +33,16 @@ invalidLogin: boolean=false;
     this.router.navigate(['/home']);
   }
 
-  OnSubmit(username,password){
-    this.Service.userAuthentication(username,password).subscribe((data : any)=>{
-     localStorage.setItem('userToken',data.access_token);
-     this.router.navigate(['/home']);
+  OnSubmit(form: NgForm){
+    this.Service.userAuthentication(this.data).subscribe((data : any)=>{
+      this.response= data;
+      if (this.response.success == true) {
+        this.router.navigate(['/home']);
+    
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
    },
    (err : HttpErrorResponse)=>{
      this.isLoginError = true;

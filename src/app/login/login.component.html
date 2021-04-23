@@ -33,92 +33,101 @@
 
 
     
-<section class="content">
-  <div class="container-fluid">
-    <div class="login-page1">
-    
-      <div class="login-box">
-        <!-- /.login-logo -->
-        <div class="card card-outline card-primary">
 
-          <div class="card-header text-center">
-            <a href="../../index2.html" class="h1"><img src="assets/fabcot.png" width="200" alt="Fabcot Logo"></a>
-          </div>
-
-          <div class="card-body">
-            <p class="login-box-msg">Sign in to start your session</p>
-            <div *ngIf="isLoginError" class="red-text center error-message">
-              <i class="material-icons">error</i> Incorrect username or password
-          </div>
-            <form class="mb-2" #loginForm="ngForm" action="../../index3.html" method="post" >
-              <div class="input-group mb-3">
-                <input type="text" class="form-control" #username ngModel name="username" placeholder="UserName">
-                <div class="input-group-append">
-                  <div class="input-group-text">
-                    <span class="fas fa-user"></span>
-                  </div>
-                </div>
-              </div>
-              <div class="input-group mb-3">
-                <input type="password" #password ngModel name="password" class="form-control" placeholder="Password">
-                <div class="input-group-append">
-                  <div class="input-group-text">
-                    <span class="fas fa-lock"></span>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-12 text-center">
-
-                  <!-- <div class="icheck-primary">
-                    <input type="checkbox" id="remember">
-                    <label for="remember">
-                      Remember Me
-                    </label>
-                  </div> -->
-
-                  <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Remember Me</label>
-                  </div>
-
-                </div>
-                <!-- /.col -->
-                <div class="col-12">
-                  <button type="submit" class="btn btn-primary btn-block" (click)="login()">Sign In</button>
-                </div>
-                <!-- /.col -->
-              </div>
-            </form>
-
-            <!-- <div class="social-auth-links text-center mt-2 mb-3">
-              <a href="#" class="btn btn-block btn-primary">
-                <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
-              </a>
-              <a href="#" class="btn btn-block btn-danger">
-                <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
-              </a>
-            </div> -->
-
-            <!-- /.social-auth-links -->
-
-            <p class="mb-4 text-center">
-              <a href="forgot-password.html">I forgot my password</a>
-            </p>
-
-            <p class="mb-0 text-center">
-              FabCot International Enterprises® © 2021 All rights reserved
-            </p>
-
-          </div>
-          <!-- /.card-body -->
+ 
+    <div class="OuterClass">
+      <img class="OuterClassimg" src="assets/bg.jpg" width="70%" alt="Fabcot Logo">
+      <div class="card card-outline shadow">
+        <div class="card-header text-center">
+          <a href="../../index2.html" class="h1"><img src="assets/fabcot.png" width="200" alt="Fabcot Logo"></a>
         </div>
-        <!-- /.card -->
+
+        <div class="card-body">
+          <h2 class="login-box-msg">Sign in to start your session</h2>
+          <div *ngIf="isLoginError" class="red-text center error-message">
+            <i class="material-icons">error</i> Incorrect username or password
+        </div>
+          <form class="mb-2" #loginForm="ngForm" (ngSubmit)="OnSubmit(loginForm)">
+            <div class="input-group mb-3">
+              <!-- <label for="username">UserName</label> -->
+              <input type="text" class="form-control form-control-lg" placeholder="UserName" #username="ngModel" name="username" [(ngModel)]="data.username" required
+              [ngClass]="{error: username.invalid && username.touched}">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-user"></span>
+                </div>
+              </div>
+            </div>
+            <div class="input-group mb-3"> 
+              <input type="password" #password="ngModel" name="password" [(ngModel)]="data.password" class="form-control form-control-lg" placeholder="Password" required
+              [ngClass]="{error: password.invalid && password.touched}">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-lock"></span>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+
+                <!-- <div class="icheck-primary">
+                  <input type="checkbox" id="remember">
+                  <label for="remember">
+                    Remember Me
+                  </label>
+                </div> -->
+
+                <div class="form-group form-check">
+                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                  <label class="form-check-label" for="exampleCheck1">Remember Me</label>
+                </div>
+
+              </div>
+              <!-- /.col -->
+              <div class="col-12">
+                <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary btn-block btn-lg rounded">Sign In</button>
+              </div>
+              <!-- /.col -->
+            </div>
+          </form>
+
+          <!-- <div class="social-auth-links text-center mt-2 mb-3">
+            <a href="#" class="btn btn-block btn-primary">
+              <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+            </a>
+            <a href="#" class="btn btn-block btn-danger">
+              <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+            </a>
+          </div> -->
+
+          <!-- /.social-auth-links -->
+
+          <p class="mb-4 text-center">
+            <a href="forgot-password.html">I forgot my password</a>
+          </p>
+<!-- <div class="card-footer">
+  <p class="mb-0 text-center">
+    FabCot International Enterprises® © 2021 All rights reserved
+  </p>
+</div> -->
+          <!-- <p class="mb-0 text-center">
+            FabCot International Enterprises® © 2021 All rights reserved
+          </p> -->
+
+        </div>
+
+        <div class="card-footer">
+          <p class="mb-0 text-center">
+            FabCot International Enterprises® © 2021 All rights reserved
+          </p>
+        </div>
+
+
       </div>
-    
+
     </div>
-  </div>
-</section>
+  
+
     
 
 
