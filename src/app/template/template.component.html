@@ -103,38 +103,38 @@
               <!-- Add icons to the links using the .nav-icon class
                  with font-awesome or any other icon font library -->
               <li class="nav-item">
-                <a routerLink="home" class="nav-link">
+                <a routerLink="home" class="nav-link" routerLinkActive="active">
                   <i class="fa fa-home"></i>
                   <p>Home</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a routerLink="/product" class="nav-link">
+                <a class="nav-link">
                   <i class="fas fa-phone-volume nav-icon"></i>
                   <p>Business Enquiry</p>
                   <i class="right fas fa-angle-left"></i>
                 </a>
                 <ul class="nav nav-treeview sublist">
                   <li class="nav-item">
-                    <a routerLink="/enquiries" class="nav-link">
+                    <a routerLink="/enquiry/enquiries" class="nav-link" routerLinkActive="active">
                       <i class="fas fa-plus nav-icon"></i>
                       <p>Add New Enquiry</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a routerLink="/active-enquiries" class="nav-link">
+                    <a routerLink="/enquiry/active-enquiries" class="nav-link" routerLinkActive="active">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Active Enquiries</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a routerLink="home" class="nav-link">
+                    <a routerLink="home" class="nav-link" routerLinkActive="active">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Archived Enquiries</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a routerLink="/search-enquiries" class="nav-link">
+                    <a routerLink="/enquiry/search-enquiries" class="nav-link" routerLinkActive="active">
                       <i class="fas fa-search nav-icon"></i>
                       <p>Search Enquiry</p>
                     </a>
@@ -150,7 +150,7 @@
                 </a>
                 <ul class="nav nav-treeview sublist">
                   <li class="nav-item">
-                    <a routerLink="/active-contract" class="nav-link">
+                    <a routerLink="/contract/active-contract" class="nav-link" routerLinkActive="active">
                       <i class="fas fa-plus nav-icon"></i>
                       <p>Active Contracts</p>
                     </a>
@@ -165,7 +165,7 @@
               </li>
   
               <li class="nav-item">
-                <a routerLink="/billing-and-payment" class="nav-link">
+                <a class="nav-link">
                   <i class="far fa-money-bill-alt"></i>
                   <p>Billing & Payment</p>
                   <i class="right fas fa-angle-left"></i>
@@ -173,13 +173,13 @@
                 <!-- new  -->
                 <ul class="nav nav-treeview sublist">
                   <li class="nav-item">
-                    <a routerLink="/generate-bills" class="nav-link">
+                    <a routerLink="/billing-and-payment/generate-bills" class="nav-link" routerLinkActive="active">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Generate Bills</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a routerLink="/active-bills"  class="nav-link">
+                    <a routerLink="/billing-and-payment/active-bills"  class="nav-link" routerLinkActive="active">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Active Bills</p>
                     </a>
@@ -191,19 +191,19 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a routerLink="/payment-collection" class="nav-link">
+                    <a routerLink="/billing-and-payment/payment-collection" class="nav-link" routerLinkActive="active">
                       <i class="far fa-money-bill-alt"></i>
                       <p>Payment/Collection</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a routerLink="/commission-payment" class="nav-link">
+                    <a routerLink="/billing-and-payment/commission-payment" class="nav-link" routerLinkActive="active">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Commission Payment</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a routerLink="/external-agent" class="nav-link">
+                    <a routerLink="/billing-and-payment/external-agent" class="nav-link" routerLinkActive="active">
                       <i class="far fa-circle nav-icon"></i>
                       <p> External Agent Commission</p>
                     </a>
@@ -212,34 +212,34 @@
               </li>
   
               <li class="nav-item">
-                <a routerLink="home" class="nav-link">
+                <a routerLink="home" class="nav-link" routerLinkActive="active">
                   <i class="fas fa-brain"></i>
                   <p>Productvity</p>
                 </a>
               </li>
   
               <li class="nav-item">
-                <a routerLink="home" class="nav-link">
+                <a routerLink="home" class="nav-link" routerLinkActive="active">
                   <i class="fas fa-chart-line"></i>
                   <p>Reports</p>
                 </a>
               </li>
   
               <li class="nav-item">
-                <a routerLink="home" class="nav-link">
+                <a class="nav-link">
                   <i class="fas fa-cloud"></i>
                   <p>Cloud Documents</p>
                   <i class="right fas fa-angle-left"></i>
                 </a>
-                <ul class="nav nav-treeview sublist">
+                <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a routerLink="/doclist" class="nav-link">
+                    <a routerLink="/cloud/doclist" class="nav-link" routerLinkActive="active">
                       <i class="fas fa-list nav-icon"></i>
                       <p>Document List</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a routerLink="/docupload" class="nav-link">
+                    <a routerLink="/cloud/docupload" class="nav-link" routerLinkActive="active">
                       <i class="fas fa-cloud"></i>
                       <p>Document Upload</p>
                     </a>
@@ -254,56 +254,56 @@
                 </a>
                 <ul class="nav nav-treeview sublist">
                   <li class="nav-item">
-                    <a routerLink="/buyer" class="nav-link">
+                    <a routerLink="/config/buyer" class="nav-link" routerLinkActive="active">
                       <i class="fas fa-hands-helping"></i>
                       <p>Buyers</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a routerLink="/seller" class="nav-link">
+                    <a routerLink="/config/seller" class="nav-link" routerLinkActive="active">
                       <i class="fas fa-industry"></i>
                       <p>Sellers</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a routerLink="/agent" class="nav-link">
+                    <a routerLink="/config/agent" class="nav-link" routerLinkActive="active">
                       <i class="fas fa-user-tie"></i>
                       <p>Foreign External Agents</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a routerLink="/article" class="nav-link">
+                    <a routerLink="/config/article" class="nav-link" routerLinkActive="active">
                       <i class="fas fa-anchor"></i>
                       <p>Articles</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a routerLink="/product" class="nav-link">
+                    <a routerLink="/config/product" class="nav-link" routerLinkActive="active">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Product</p>
                       <i class="right fas fa-angle-left"></i>
                     </a>
                     <ul class="nav nav-treeview sublist">
                       <li class="nav-item">
-                        <a routerLink="/fabric-type" class="nav-link">
+                        <a routerLink="/config/fabric-type" class="nav-link" routerLinkActive="active">
                           <i class="far fa-circle nav-icon"></i>
                           <p>Fabric Type</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a routerLink="/packing" class="nav-link">
+                        <a routerLink="/config/packing" class="nav-link" routerLinkActive="active">
                           <i class="far fa-circle nav-icon"></i>
                           <p>Packing</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a routerLink="/price-term" class="nav-link">
+                        <a routerLink="/config/price-term" class="nav-link" routerLinkActive="active">
                           <i class="far fa-circle nav-icon"></i>
                           <p>Price Term</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a routerLink="/payment-term" class="nav-link">
+                        <a routerLink="/config/payment-term" class="nav-link" routerLinkActive="active">
                           <i class="far fa-circle nav-icon"></i>
                           <p>Payment Term</p>
                         </a>
@@ -318,43 +318,43 @@
                     </a>
                     <ul class="nav nav-treeview sublist">
                       <li class="nav-item">
-                        <a routerLink="/process" class="nav-link">
+                        <a routerLink="/config/process" class="nav-link" routerLinkActive="active">
                           <i class="far fa-circle nav-icon"></i>
                           <p>Process</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a routerLink="/process-type" class="nav-link">
+                        <a routerLink="/config/process-type" class="nav-link" routerLinkActive="active">
                           <i class="far fa-circle nav-icon"></i>
                           <p>Process Type</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a routerLink="/design-type" class="nav-link">
+                        <a routerLink="/config/design-type" class="nav-link" routerLinkActive="active">
                           <i class="far fa-circle nav-icon"></i>
                           <p>Design Type</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a routerLink="/loom-type" class="nav-link">
+                        <a routerLink="/config/loom-type" class="nav-link" routerLinkActive="active">
                           <i class="far fa-circle nav-icon"></i>
                           <p>Loom Type</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a routerLink="/certificate" class="nav-link">
+                        <a routerLink="/config/certificate" class="nav-link" routerLinkActive="active">
                           <i class="far fa-circle nav-icon"></i>
                           <p>Certificate</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a routerLink="/color" class="nav-link">
+                        <a routerLink="/config/color" class="nav-link" routerLinkActive="active">
                           <i class="far fa-circle nav-icon"></i>
                           <p>Color</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a routerLink="/time-action-items" class="nav-link">
+                        <a routerLink="/config/time-action-items" class="nav-link" routerLinkActive="active">
                           <i class="far fa-circle nav-icon"></i>
                           <p>Time & Action Items</p>
                         </a>
@@ -370,13 +370,13 @@
                     </a>
                     <ul class="nav nav-treeview sublist">
                       <li class="nav-item">
-                        <a routerLink="/bank" class="nav-link">
+                        <a routerLink="/config/bank" class="nav-link" routerLinkActive="active">
                           <i class="far fa-circle nav-icon"></i>
                           <p>Bank</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a routerLink="/bank-accounts" class="nav-link">
+                        <a routerLink="/config/bank-accounts" class="nav-link" routerLinkActive="active">
                           <i class="far fa-circle nav-icon"></i>
                           <p>Bank Account</p>
                         </a>
@@ -384,43 +384,43 @@
                     </ul>
                   </li>
                   <li class="nav-item">
-                    <a routerLink="/city" class="nav-link">
+                    <a routerLink="/config/city" class="nav-link" routerLinkActive="active">
                       <i class="fas fa-map-marker-alt"></i>
                       <p>City Location</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a routerLink="/country" class="nav-link">
+                    <a routerLink="/config/country" class="nav-link" routerLinkActive="active">
                       <i class="far fa-map"></i>
                       <p>Country</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a routerLink="/system-users" class="nav-link">
+                    <a routerLink="/config/system-users" class="nav-link" routerLinkActive="active">
                       <i class="far fa-map"></i>
                       <p>System Users</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a routerLink="/organization" class="nav-link">
+                    <a routerLink="/config/organization" class="nav-link" routerLinkActive="active">
                       <i class="fas fa-sitemap"></i>
                       <p>Organization</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a routerLink="/generalsettings" class="nav-link">
+                    <a routerLink="/config/generalsettings" class="nav-link" routerLinkActive="active">
                       <i class="fas fa-wrench"></i>
                       <p>General Settings</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a routerLink="/notificationsettings" class="nav-link">
+                    <a routerLink="/config/notificationsettings" class="nav-link" routerLinkActive="active">
                       <i class="fas fa-bell"></i>
                       <p>Notification Settings</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a routerLink="/currency" class="nav-link">
+                    <a routerLink="/config/currency" class="nav-link" routerLinkActive="active">
                       <i class="fab fa-btc"></i>
                       <p>Currency Rate</p>
                     </a>
@@ -429,7 +429,7 @@
               </li>
   
               <li class="nav-item">
-                <a routerLink="home" class="nav-link">
+                <a routerLink="home" class="nav-link" routerLinkActive="active">
                   <i class="fas fa-question-circle"></i>
                   <p>Help</p>
                 </a>

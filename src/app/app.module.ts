@@ -45,6 +45,8 @@ import { PRODUCTPLANComponent } from './contracts/active-contracts/active-contra
 import { SALEINVOICEComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/sale-invoice/sale-invoice.component';
 import { BusinessEnquryRoutingModule } from './business-enqury/business-enqury-routing.module';
 import { ItemsComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/items/items.component';
+import { CloudDocumentationComponent } from './cloud-documentation/cloud-documentations.component';
+import { LayoutComponent } from './template/layout/layout.omponent';
 
 
 
@@ -72,13 +74,13 @@ const appRoutes: Routes = []
     EmployeeCommissionComponent,
     RemarksComponent,
     QuantityCostingComponent,
-
     TemplateComponent,
-
+    LayoutComponent,
     LOCComponent,
     PRODUCTPLANComponent,
     SALEINVOICEComponent,
     ItemsComponent,
+    CloudDocumentationComponent,
 
     // AddEnquiryComponent,
     // SearchEnquiryComponent,
@@ -116,6 +118,7 @@ const appRoutes: Routes = []
     BillingAndPaymentModule,
     BusinessEnquryRoutingModule,
     BusinessEnquryModule,
+    RouterModule,
     RouterModule.forRoot(appRoutes),
     ToastrModule.forRoot({
       progressBar: true,

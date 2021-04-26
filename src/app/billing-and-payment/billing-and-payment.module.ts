@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AppRoutingModule } from '../app-routing.module';
+// import { AppRoutingModule } from '../app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BillingAndPaymentRoutingModule } from './billing-and-payment-routing.module';
 import { GenerateBillsComponent } from './generate-bills/generate-bills.component';
@@ -17,11 +17,20 @@ import { PaymentFormComponent } from './payment-form/payment-form.component';
 import { DateFilterComponent } from './date-filter/date-filter.component';
 import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
-  declarations: [GenerateBillsComponent, ActiveBillsComponent, OpenActiveBillComponent, PaymentCollectionComponent, CommissionPaymentComponent, ExternalAgentCommissionComponent, NewCommissionPaymentComponent, PaymentFormComponent, DateFilterComponent],
+  declarations: [
+    GenerateBillsComponent,
+    ActiveBillsComponent,
+    OpenActiveBillComponent,
+    PaymentCollectionComponent,
+    CommissionPaymentComponent,
+    ExternalAgentCommissionComponent,
+    NewCommissionPaymentComponent,
+    PaymentFormComponent,
+    DateFilterComponent],
   imports: [
     CommonModule,
     BillingAndPaymentRoutingModule,
-    AppRoutingModule,
+    // AppRoutingModule,
     HttpClientModule,
     FormsModule,
     NgSelectModule,

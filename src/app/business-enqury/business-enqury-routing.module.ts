@@ -8,7 +8,7 @@ import { AddEnquiryComponent } from './add-enquiry/add-enquiry.component';
 import { SearchEnquiryComponent } from './search-enquiry/search-enquiry.component';
 
 const routes: Routes = [
-    { path:'', component:TemplateComponent,
+    { path:'enquiry', component:TemplateComponent,
     // canActivate:[AuthGuard],
   
     children:[
