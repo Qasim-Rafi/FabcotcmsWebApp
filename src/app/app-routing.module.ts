@@ -15,13 +15,13 @@ const businessEnquryModule = () => import('./business-enqury/business-enqury.mod
   // .then(x => x.CloudDocumentationModule);
 const routes: Routes = [
 
-  {path:'', redirectTo:'/login', pathMatch:'full'},
-   {path:'login', component:LoginComponent},
+  {path:'login', redirectTo:'login', pathMatch:'full'},
+   {path:'', component:LoginComponent},
  {
    path:'', component:TemplateComponent,
    children:[
    {path:'home', component:HomeComponent,
-   canActivate:[AuthGuard],
+  //  canActivate:[AuthGuard],
   },
    {
      path:'config',
