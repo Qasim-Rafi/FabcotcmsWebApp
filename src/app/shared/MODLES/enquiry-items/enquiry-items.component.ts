@@ -21,7 +21,7 @@ export class EnquiryItemsComponent implements OnInit {
   color: any = [];
   loomType: any = [];
   fabricType: any = [];
-values=[];
+  values=[];
   description: any=[];
   itemQuantity: any=[];
   itemUOMId: any=[];
@@ -117,7 +117,13 @@ values=[];
 
 
   addEnquiryItem() {
-    this.data;
+   
+    for(let i=0; i<this.data.lenght;i++ )
+    {
+      this.data[i] = Object.assign(this.data[i], {
+        enquiryId: this.EnquiryId,
+      })
+    }
 
     this.http.
       post(`${environment.apiUrl}/api/Enquiries/AddEnquiryItem`, this.data)
@@ -201,8 +207,6 @@ values=[];
           }
         });
   }
-
-
 
 
 }

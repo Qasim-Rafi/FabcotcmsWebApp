@@ -63,7 +63,7 @@ export class QuotationComponent implements OnInit {
   }
 
   GetSellersDropdown() {
-    this.service.getVendorSeller(this.enquiryId).subscribe(res => {
+    this.service.getSellers().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
         this.seller = this.response.data;

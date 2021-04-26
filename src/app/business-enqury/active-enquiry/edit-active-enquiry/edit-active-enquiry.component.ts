@@ -441,7 +441,7 @@ export class EditActiveEnquiryComponent implements OnInit {
     let varr = {
 
       "enquiryId": this.objEnquiry,
-      "currencyRateId": this.enquiryData.currencyRateId,
+      "currencyId": this.enquiryData.currencyId,
       "totalQuantity":this.enquiryData.totalQuantity,
       "uomId": this.enquiryData.uomId,
       "paymentTermId": this.enquiryData.paymentTermId,
