@@ -645,12 +645,32 @@
 
                         <!-- --------------------------- Tab 5 -------------------------- -->
                         <div class="tab-pane fade" id="nav-enquiryItems" role="tabpanel" aria-labelledby="nav-enquiryItems-tab">
-                            <div class="row ">
-                                <div class="col-md-12 my-4">
+                            <div class="row my-4">
+
+                                <div class="col-md-3">
+                                </div>
+
+                                <div class="col-md-4">
+                                    <form action="simple-results.html">
+                                        <div class="input-group input-group-sm">
+                                            <input type="search" class="form-control" placeholder="Type your keywords here">
+                                            <div class="input-group-append">
+                                                <button type="submit" class="btn btn-default">
+                                                    <i class="fa fa-search"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div class="col-md-5">
 
                                 <button type="button" class="btn btn-primary btn-sm float-right"
                                     (click)="addEnquiryItemform('AddEnquiryItem', objEnquiry)">
-                                    <i class="fa fa-plus"></i>Add Enquiry Item</button>
+                                    <i class="fa fa-plus"></i> &nbsp;Add Enquiry Item</button>
+
+                                    <button type="button" class="btn btn-primary btn-sm float-right mx-2">
+                                    <i class="fa fa-plus"></i> &nbsp;Add Bulk Quote</button>
 
                                 </div>
                             </div>
@@ -741,10 +761,40 @@
 
                         <!-- --------------------------- Tab 6 -------------------------- -->
                         <div class="tab-pane fade" id="nav-notes" role="tabpanel" aria-labelledby="nav-notes-tab">
-                            
-                                <button class="btn btn-primary" (click)="addNoteform('EnquiryItemAddNote', objEnquiry)"> Add New Note</button>
-                
-                                <div class="row text-center pt-3" *ngFor="let note of enquiryData.enquiryNoteList ">
+                        
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button class="btn btn-primary btn-sm float-right" (click)="addNoteform('EnquiryItemAddNote', objEnquiry)">
+                                    <i class="far fa-sticky-note"></i> &nbsp; Add New Note </button>
+                                </div>
+                            </div>
+                        
+                            <div class="row pt-3">
+                        
+                                <div class="col-md-8">
+                        
+                                </div>
+                        
+                                <div class="col-md-4">
+                        
+                                    <form action="simple-results.html">
+                                        <div class="input-group input-group-sm">
+                                            <input type="search" class="form-control" placeholder="Search">
+                                            <div class="input-group-append">
+                                                <button type="submit" class="btn btn-default">
+                                                    <i class="fa fa-search"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                        
+                                </div>
+                            </div>
+                        
+                        
+                        
+                            <div class="text-center pt-3">
+                                <div class="row" *ngFor="let note of enquiryData.enquiryNoteList ">
                                     <div class="col-md-2 border p-2 ">id:{{note.id}}</div>
                                     <div class="col-md-2 border p-2">title: {{note.title}}</div>
                                     <div class="col-md-2 border p-2">description: {{note.description}}</div>
@@ -763,7 +813,34 @@
                                         </button>
                                     </div>
                                 </div>
+                            </div>
 
+                            <div class="row py-3">
+
+                                <div class="col-md-8">
+                                    <p>Showing 0 to 0 of 0 entries</p>
+                                </div>
+
+                                <div class="col-md-4">
+                                    
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination justify-content-end">
+                                          <li class="page-item disabled">
+                                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                                          </li>
+                                          <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                          <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                          <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                          <li class="page-item">
+                                            <a class="page-link" href="#">Next</a>
+                                          </li>
+                                        </ul>
+                                      </nav>
+                                    
+                                </div>
+                            </div>
+                        
+                        
                         </div>
 
                     </div>
