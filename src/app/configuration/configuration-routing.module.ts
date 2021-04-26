@@ -29,7 +29,7 @@ import { SystemUsersComponent } from './system-users/system-users.component';
 
 const routes: Routes = [
 
- { path:'', component:TemplateComponent,
+ { path:'config', component:TemplateComponent,
 //  canActivate:[AuthGuard],
 
   children:[
