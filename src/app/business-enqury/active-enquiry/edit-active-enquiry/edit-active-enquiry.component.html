@@ -264,7 +264,7 @@
     
                                     <dl class="row">
                                         <dt class="col-sm-3"> Currency:</dt>
-                                        <dd class="col-sm-9">{{enquiryData.currencyRateCode}}</dd>
+                                        <dd class="col-sm-9">{{enquiryData.currencyCode}}</dd>
                                     
                                         <dt class="col-sm-3">Quantity:</dt>
                                         <dd class="col-sm-9">{{enquiryData.totalQuantity}}</dd>
@@ -307,8 +307,8 @@
                                             class="col-md-3 col-form-label control-label">Currency</label>
                                         <div class="col-md-6">
     
-                                            <ng-select [(ngModel)]="enquiryData.currencyRateId" placeholder="-- Select --"
-                                                name="currencyRateId" #currencyRateId="ngModel">
+                                            <ng-select [(ngModel)]="enquiryData.currencyId" placeholder="-- Select --"
+                                                name="currencyId" #currencyId="ngModel">
                                                 <ng-option *ngFor="let i of currency" [value]="i.id">{{ i.currencyCode }}
                                                 </ng-option>
                                             </ng-select>
