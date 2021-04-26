@@ -4,11 +4,11 @@ import { AddEnquiryComponent } from './add-enquiry/add-enquiry.component';
 import { ActiveEnquiryComponent } from './active-enquiry/active-enquiry.component';
 import { SearchEnquiryComponent } from './search-enquiry/search-enquiry.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from '../app-routing.module';
+// import { BrowserModule } from '@angular/platform-browser';
+// import { AppRoutingModule } from '../app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { ToastrModule } from 'ngx-toastr';
@@ -29,14 +29,14 @@ import { NgSelectModule } from '@ng-select/ng-select';
   imports: [
     CommonModule,
     NgbModule,
-    BrowserModule,
-    AppRoutingModule,
+    // BrowserModule,
+    // AppRoutingModule,
     NgxDatatableModule,
     FormsModule,
     NgSelectModule,
     ReactiveFormsModule,
     HttpClientModule,
-    BrowserAnimationsModule,
+    // BrowserAnimationsModule,
     ToastrModule.forRoot({
       progressBar: true,
       timeOut: 3000
