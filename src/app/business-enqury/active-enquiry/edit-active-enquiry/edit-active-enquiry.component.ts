@@ -11,7 +11,9 @@ import { ServiceService } from 'src/app/shared/service.service';
 import { environment } from 'src/environments/environment';
 import { Dateformater } from 'src/app/shared/dateformater';
 import Swal from 'sweetalert2';
-
+import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 @Component({
   selector: 'app-edit-active-enquiry',
   templateUrl: './edit-active-enquiry.component.html',
@@ -47,7 +49,7 @@ export class EditActiveEnquiryComponent implements OnInit {
   vendorSeller: any = [];
   certificate: any = [];
   confirmOn: string;
-
+  // entries: any = [];
 
 
 
@@ -101,6 +103,9 @@ export class EditActiveEnquiryComponent implements OnInit {
             this.enquiryData = this.response.data;
              this.confirmOn = this.enquiryData.confirmationDate;
             this.enquiryData.confirmationDate = this.dateformater.fromModel(this.enquiryData.confirmationDate);
+// console.log(this.enquiryData);
+
+
 
             
           }
@@ -833,4 +838,157 @@ export class EditActiveEnquiryComponent implements OnInit {
           }
         })
       }
+  
+      printPreview() {
+        let docDefinition = {
+          pageSize: 'A4',
+          pageOrientation: 'landscape',
+          pageMargins: [ 10, 40, 10, 0 ],
+          info: {
+            title: 'Enquiry Preview'
+          },
+          content: [
+                 {
+             
+              table: {
+                headerRows: 1,
+                widths: ['100%'],
+                body: [
+                [{
+                  style: 'heading',
+                  text: 'FABCOT ENQUIRY SHEET'
+                }],
+                  ]
+               
+              }
+
+            },
+
+            {
+              style: 'commonTable',
+              table: {
+                headerRows: 1,
+                widths: ['13%' , '20%' , '13%' , '20%' , '13%', '21%'],
+                body: [
+               [
+                  { style:'propertyName' ,text: 'Date' } , 
+              {  style:'propertyValue', text : this.enquiryData['enquiryDate']},
+              {  style:'propertyName',text: 'Enquiry#' } , 
+              {  style:'propertyValue', text : this.enquiryData['autoEnquiryNumber']},
+              {  style:'propertyName',text: 'Customer' } , 
+              {  style:'propertyValue', text : this.enquiryData['buyerName']},
+               ]
+              ]
+                }
+            },
+
+            {
+              style: 'commonTable',
+              table: {
+                headerRows: 1,
+                widths: ['13%' , '20%' , '13%' , '20%' , '13%', '21%'],
+                body: [
+               [
+                  { style:'propertyName' ,text: 'Article' } , 
+              {  style:'propertyValue', text : this.enquiryData['articleName']},
+              {  style:'propertyName',text: 'Process' } , 
+              {  style:'propertyValue', text : this.enquiryData['processName']},
+              {  style:'propertyName',text: 'Process Type' } , 
+              {  style:'propertyValue', text : this.enquiryData['processTypeName']},
+               ]
+              ]
+                }
+            },
+            {
+              style: 'commonTable',
+              table: {
+                headerRows: 1,
+                widths: ['20%' , '30%' , '20%' , '30%' ],
+                body: [
+               [
+                  { style:'propertyName' ,text: 'Design Type' } , 
+              {  style:'propertyValue', text : this.enquiryData['designTypeName']},
+              {  style:'propertyName',text: 'Packaging' } , 
+              {  style:'propertyValue', text : this.enquiryData['packagingName']},
+               ]
+              ]
+                }
+            },
+            {
+              style: 'commonTable',
+              table: {
+                headerRows: 1,
+                widths: ['20%' , '15%' , '20%' , '45%' ],
+                body: [
+               
+                  { style:'propertyName' ,text: 'Shipment' } , 
+              {  style:'propertyValue', text : this.enquiryData['paymentTermDays']},
+              {  style:'propertyName',text: 'Payment Terms' } , 
+              {  style:'propertyValue', text : this.enquiryData['paymentTermName']},
+               
+              ]
+                }
+            },
+            {
+              margin: [0 , -10 , 0 , 0],
+              table:{
+                headerRows:1,
+                widths: [ '15%' , '30%' , '15%' , '10%' , '5%' , '5%' , '10%' , '10%' ],
+                body:[
+                  [ {text:'Description' , style: 'tableheader' , }, {text:'Composition & Construction' , style: 'tableheader'},
+                   {text:'Color' , style: 'tableheader'}, {text:'Quantity' , style: 'tableheader'} 
+                  ,{text:'Gsm' , style: 'tableheader'} , {text:'Size' , style: 'tableheader'}, 
+                  {text:'Loom Type' , style: 'tableheader'}, {text:'Seller', style: 'tableheader'}
+                ],
+          // [ 'Value 1', 'Value 2', 'Value 3', 'Value 4' , '5' , '6' , '7' , '8' ]
+          ...this.enquiryData['enquiryItemList'].map((row=>
+            [row.description, row.construction, row.colorId,
+              row.itemQuantity, row.id , row.size , row.loomTypeId , row.createdByName]
+            ))
+        
+                ]
+              }
+            }
+            
+          ],
+          styles: {
+            heading: {
+              fillColor: '#f3f3f4',
+              fontSize: 20,
+              bold: true,
+              color: '#4d4b4b',
+              alignment: 'center',
+              margin : 4
+             },
+            commonTable:{
+              margin: [0 , 25 , 0 , 0]     
+            },
+            propertyName:{
+              alignment: 'center',
+               bold:true,
+               fontSize: 10,
+               margin:2
+            },
+            propertyValue:{
+              alignment: 'center',  
+              fontSize: 10,
+              margin:2
+
+            },
+            tableheader: {
+              fillColor: '#f3f3f4',
+              fontSize: 10,
+              bold: true,
+              color: '#4d4b4b',
+              alignment: 'center',
+              margin:8
+            
+             }
+          }
+        };
+        pdfMake.createPdf(docDefinition).print();
+    
+      }
+    
+    
     }
