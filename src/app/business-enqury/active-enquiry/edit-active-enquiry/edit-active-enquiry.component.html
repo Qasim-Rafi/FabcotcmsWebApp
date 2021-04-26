@@ -23,9 +23,9 @@
 
 <div class="row">
 
-    <div class="col-md-8">
+    <div class="col-md-9">
     
-        <div class="card ibox-content">
+        <div class="card ibox-content text-muted">
     
     
             <div [ngClass]="{ noDisplay : enquiryToggle==true }">
@@ -232,14 +232,24 @@
                 <div class="col-md-12">
                     <nav>
                         <div class="nav nav-tabs" id="nav-tab" role="tablist" class="nav nav-pills">
+
                             <a class="nav-item nav-link active" id="nav-pricing-tab" data-toggle="tab" href="#nav-pricing"
                                 role="tab" aria-controls="nav-pricing" aria-selected="true">Pricing Details</a>
+
                             <a class="nav-item nav-link" id="nav-vendor-tab" data-toggle="tab" href="#nav-vendor" role="tab"
                                 aria-controls="nav-vendor" aria-selected="false">Vendor Details</a>
+
                             <a class="nav-item nav-link" id="nav-order-tab" data-toggle="tab" href="#nav-order" role="tab"
                                 aria-controls="nav-order" aria-selected="false">Order Details</a>
+
                             <a class="nav-item nav-link" id="nav-enquiry-tab" data-toggle="tab" href="#nav-enquiry"
                                 role="tab" aria-controls="nav-enquiry" aria-selected="false">Enquiry Remarks </a>
+
+                            <a class="nav-item nav-link" id="nav-enquiryItems-tab" data-toggle="tab" href="#nav-enquiryItems"
+                                role="tab" aria-controls="nav-enquiryItems" aria-selected="false">Enquiry Items <span class="badge badge-primary">0</span></a>
+
+                                <a class="nav-item nav-link" id="nav-notes-tab" data-toggle="tab" href="#nav-notes"
+                                role="tab" aria-controls="nav-notes" aria-selected="false">Notes / Activities <span class="badge badge-primary">0</span> </a>
                         </div>
                     </nav>
 
@@ -254,7 +264,7 @@
     
                                     <dl class="row">
                                         <dt class="col-sm-3"> Currency:</dt>
-                                        <dd class="col-sm-9">1234{{enquiryData.currencyRateCode}}</dd>
+                                        <dd class="col-sm-9">{{enquiryData.currencyCode}}</dd>
                                     
                                         <dt class="col-sm-3">Quantity:</dt>
                                         <dd class="col-sm-9">{{enquiryData.totalQuantity}}</dd>
@@ -266,10 +276,10 @@
                                         <dd class="col-sm-9">{{enquiryData.priceTermName}}</dd>
                                     
                                         <dt class="col-sm-3">Supplier Commission:</dt>
-                                        <dd class="col-sm-9">{{enquiryData.sellerSideCommissionInfo}}%</dd>
+                                        <dd class="col-sm-9">{{enquiryData.sellerSideCommission}}%</dd>
                                     
                                         <dt class="col-sm-3"> Buyer Commission:</dt>
-                                        <dd class="col-sm-9">{{enquiryData.buyerSideCommissionInfo}}% 
+                                        <dd class="col-sm-9">{{enquiryData.buyerSideCommission}}% 
 
                                             <button class="btn btn-outline-primary float-right btn-sm"
                                         (click)="currencyToggle = !currencyToggle"> Edit</button>
@@ -297,8 +307,8 @@
                                             class="col-md-3 col-form-label control-label">Currency</label>
                                         <div class="col-md-6">
     
-                                            <ng-select [(ngModel)]="enquiryData.currencyRateId" placeholder="-- Select --"
-                                                name="currencyRateId" #currencyRateId="ngModel">
+                                            <ng-select [(ngModel)]="enquiryData.currencyId" placeholder="-- Select --"
+                                                name="currencyId" #currencyId="ngModel">
                                                 <ng-option *ngFor="let i of currency" [value]="i.id">{{ i.currencyCode }}
                                                 </ng-option>
                                             </ng-select>
@@ -522,7 +532,7 @@
                             <div [ngClass]="{ noDisplay : orderToggle==true }">
                                 <dl class="row">
                                     <dt class="col-sm-3">Order Confirm On:</dt>
-                                    <dd class="col-sm-9">{{enquiryData.confirmationDate}}</dd>
+                                    <dd class="col-sm-9">{{confirmOn}}</dd>
                                 
                                     <dt class="col-sm-3"> Details:</dt>
                                     <dd class="col-sm-9">{{enquiryData.confirmationDetails}}
@@ -633,6 +643,206 @@
 
                         </div>
 
+                        <!-- --------------------------- Tab 5 -------------------------- -->
+                        <div class="tab-pane fade" id="nav-enquiryItems" role="tabpanel" aria-labelledby="nav-enquiryItems-tab">
+                            <div class="row my-4">
+
+                                <div class="col-md-3">
+                                </div>
+
+                                <div class="col-md-4">
+                                    <form action="simple-results.html">
+                                        <div class="input-group input-group-sm">
+                                            <input type="search" class="form-control" placeholder="Type your keywords here">
+                                            <div class="input-group-append">
+                                                <button type="submit" class="btn btn-default">
+                                                    <i class="fa fa-search"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div class="col-md-5">
+
+                                <button type="button" class="btn btn-primary btn-sm float-right"
+                                    (click)="addEnquiryItemform('AddEnquiryItem', objEnquiry)">
+                                    <i class="fa fa-plus"></i> &nbsp;Add Enquiry Item</button>
+
+                                    <button type="button" class="btn btn-primary btn-sm float-right mx-2">
+                                    <i class="fa fa-plus"></i> &nbsp;Add Bulk Quote</button>
+
+                                </div>
+                            </div>
+                            
+                            <div class="row py-3" *ngFor="let obj of enquiryData.enquiryItemList ; let x = index">
+                                <div class="col-md-1 col-sm-3 col-xs-3 forum-info" data-original-title="POCs">
+                                    <div class="poc-icon">
+                                        <a class="faq-question text-muted text-s-lg text-w-3" data-toggle="collapse" role="button"
+                                            href="#enquiryItemList-{{ x }}" aria-expanded="false" aria-controls="collapseExample">
+                                            <span class="fa fa-expand-alt"></span>1</a>
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <a class="faq-question ">{{obj.description}}</a>
+                                    <div class="small mb-1">Color : Composition : {{ obj.compositionPercentage}}%
+                                        fabName
+                                        | Construction: {{obj.construction}}
+                                        Size: {{obj.size}} </div>
+                                    <div class="small">Added by <strong>{{obj.createdByName}} </strong>
+                                        <div class="m-l-lg" style="display: inline-block;">
+                                            <i class="far fa-clock"></i> Date : {{obj.createdDateTime}}
+                                        </div>
+            
+                                    </div>
+                                </div>
+            
+                                <div class="col-md-3">
+                                    <div class="ibox-tools">
+                                        <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top"
+                                            title="" data-original-title="Edit" (click)=" addQuotationform('addQuotation' ) ">
+                                            <i class="fas fa-paperclip"></i>
+                                        </button>
+                                        <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top"
+                                            title="" data-original-title="Edit"
+                                            (click)=" EditEnquiryItemform('EditEnquiryItem', obj)">
+                                            <i class="far fa-edit "></i>
+                                        </button>
+                                        <button type="button" class="btn deleteIconBack" data-toggle="tooltip" data-placement="top"
+                                            title="" data-original-title="Delete" (click)=" deleteEnquiryItem(obj)">
+                                            <i class="far fa-trash-alt"></i>
+                                        </button>
+            
+                                    </div>
+                                </div>
+            
+            
+                                <div class="col-md-1 forum-info" data-toggle="tooltip" data-placement="top" title=""
+                                    style="border-left: 1px solid #d0d0d0" data-original-title="Total Contracts">
+                                    <span class="views-number">1</span>
+                                    <div><small>Sets</small></div>
+                                </div>
+            
+                                <!-- ----------------End Of Row-------------------- -->
+            
+                                <div class="collapse" id="enquiryItemList-{{ x }}">
+                                    <div class="card-body mt-4 BG">
+                                        <div class="row">
+                                        </div>
+            
+                                        <h2>Vendor Quotes</h2>
+            
+                                        <div class="row text-center pt-3" *ngFor="let quote of obj.vendorQuotationList ">
+                                            <div class="col-md-2 border p-2 ">id:{{quote.id}}</div>
+                                            <div class="col-md-2 border p-2">sellerId: {{quote.sellerId}}</div>
+                                            <div class="col-md-2 border p-2">currencyId: {{quote.currencyId}}</div>
+                                            <div class="col-md-2 border p-2">remarks: {{quote.remarks}}</div>
+                                            <div class="col-md-2 border p-2">
+                                                <div class="badge badge-primary" *ngIf="quote.active == true">Active</div>
+                                                <div class="badge badge-secondary" *ngIf="quote.active == false">Inactive</div>
+                                            </div>
+                                            <div class="col-md-2 border ">
+                                                <button type="button" class="btn editIconBack"
+                                                    (click)="editQuotationform('editQuotation' , quote)">
+                                                    <i class="far fa-edit"></i>
+                                                </button>
+                                                <button type="button" class="btn deleteIconBack" (click)=" deleteQuotation(quote)">
+                                                    <i class="far fa-trash-alt"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!----------------------------------------------------------------------------->
+                            </div>
+    
+
+                        </div>
+
+                        <!-- --------------------------- Tab 6 -------------------------- -->
+                        <div class="tab-pane fade" id="nav-notes" role="tabpanel" aria-labelledby="nav-notes-tab">
+                        
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button class="btn btn-primary btn-sm float-right" (click)="addNoteform('EnquiryItemAddNote', objEnquiry)">
+                                    <i class="far fa-sticky-note"></i> &nbsp; Add New Note </button>
+                                </div>
+                            </div>
+                        
+                            <div class="row pt-3">
+                        
+                                <div class="col-md-8">
+                        
+                                </div>
+                        
+                                <div class="col-md-4">
+                        
+                                    <form action="simple-results.html">
+                                        <div class="input-group input-group-sm">
+                                            <input type="search" class="form-control" placeholder="Search">
+                                            <div class="input-group-append">
+                                                <button type="submit" class="btn btn-default">
+                                                    <i class="fa fa-search"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                        
+                                </div>
+                            </div>
+                        
+                        
+                        
+                            <div class="text-center pt-3">
+                                <div class="row" *ngFor="let note of enquiryData.enquiryNoteList ">
+                                    <div class="col-md-2 border p-2 ">id:{{note.id}}</div>
+                                    <div class="col-md-2 border p-2">title: {{note.title}}</div>
+                                    <div class="col-md-2 border p-2">description: {{note.description}}</div>
+                                    <div class="col-md-2 border p-2">remarks: {{note.remarks}}</div>
+                                    <div class="col-md-2 border p-2">
+                                        <div class="badge badge-primary" *ngIf="note.active == true">Active</div>
+                                        <div class="badge badge-secondary" *ngIf="note.active == false">Inactive</div>
+                                    </div>
+                                    <div class="col-md-2 border ">
+                                        <button type="button" class="btn editIconBack"
+                                            (click)="editNoteform('EnquiryItemEditNote', note , objEnquiry)">
+                                            <i class="far fa-edit"></i>
+                                        </button>
+                                        <button type="button" class="btn deleteIconBack" (click)="deleteNote(note)">
+                                            <i class="far fa-trash-alt"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row py-3">
+
+                                <div class="col-md-8">
+                                    <p>Showing 0 to 0 of 0 entries</p>
+                                </div>
+
+                                <div class="col-md-4">
+                                    
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination justify-content-end">
+                                          <li class="page-item disabled">
+                                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                                          </li>
+                                          <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                          <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                          <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                          <li class="page-item">
+                                            <a class="page-link" href="#">Next</a>
+                                          </li>
+                                        </ul>
+                                      </nav>
+                                    
+                                </div>
+                            </div>
+                        
+                        
+                        </div>
+
                     </div>
 
                 </div>
@@ -641,145 +851,7 @@
             <!-- ----------------------------------------------------- -->
     
     
-            <ul class="nav nav-tabs" id="myTab" role="tablist" class="nav nav-pills">
-                <li class="nav-item">
-                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
-                        aria-selected="true">Enquiry Items</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                        aria-controls="profile" aria-selected="false">Notes / Activities</a>
-                </li>
-            </ul>
-
-            <!-- --------------------------------------------- -->
-    
-    
-            <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                    <div class="row my-4">
-    
-                        <button type="button" class="btn btn-primary btn-md float-right"
-                            (click)="addEnquiryItemform('AddEnquiryItem', objEnquiry)">
-                            <i class="fa fa-plus"></i>Add Enquiry Item</button>
-    
-                    </div>
-    
-    
-                    <div class="row" *ngFor="let obj of enquiryData.enquiryItemList ; let x = index">
-                        <div class="col-md-1 col-sm-3 col-xs-3 forum-info" data-original-title="POCs">
-                            <div class="poc-icon">
-                                <a class="faq-question text-muted text-s-lg text-w-3" data-toggle="collapse" role="button"
-                                    href="#enquiryItemList-{{ x }}" aria-expanded="false" aria-controls="collapseExample">
-                                    <span class="fa fa-expand-alt"></span>1</a>
-                            </div>
-                        </div>
-                        <div class="col-md-7">
-                            <a class="faq-question ">{{obj.description}}</a>
-                            <div class="small mb-1">Color : Composition : {{ obj.compositionPercentage}}%
-                                fabName
-                                | Construction: {{obj.construction}}
-                                Size: {{obj.size}} </div>
-                            <div class="small">Added by <strong>{{obj.createdByName}} </strong>
-                                <div class="m-l-lg" style="display: inline-block;">
-                                    <i class="far fa-clock"></i> Date : {{obj.createdDateTime}}
-                                </div>
-    
-                            </div>
-                        </div>
-    
-                        <div class="col-md-2">
-                            <div class="ibox-tools">
-                                <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top"
-                                    title="" data-original-title="Edit" (click)=" addQuotationform('addQuotation' ) ">
-                                    <i class="fas fa-paperclip"></i>
-                                </button>
-                                <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top"
-                                    title="" data-original-title="Edit"
-                                    (click)=" EditEnquiryItemform('EditEnquiryItem', obj)">
-                                    <i class="far fa-edit "></i>
-                                </button>
-                                <button type="button" class="btn deleteIconBack" data-toggle="tooltip" data-placement="top"
-                                    title="" data-original-title="Delete" (click)=" deleteEnquiryItem(obj)">
-                                    <i class="far fa-trash-alt"></i>
-                                </button>
-    
-                            </div>
-                        </div>
-    
-    
-                        <div class="col-md-1 forum-info" data-toggle="tooltip" data-placement="top" title=""
-                            style="border-left: 1px solid #d0d0d0" data-original-title="Total Contracts">
-                            <span class="views-number">1</span>
-                            <div><small>Sets</small></div>
-                        </div>
-    
-                        <!-- ----------------End Of Row-------------------- -->
-    
-    
-    
-    
-                        <div class="collapse" id="enquiryItemList-{{ x }}">
-                            <div class="card-body mt-4 BG">
-                                <div class="row">
-                                </div>
-    
-                                <h2>Vendor Quotes</h2>
-    
-                                <div class="row text-center pt-3" *ngFor="let quote of obj.vendorQuotationList ">
-                                    <div class="col-md-2 border p-2 ">id:{{quote.id}}</div>
-                                    <div class="col-md-2 border p-2">sellerId: {{quote.sellerId}}</div>
-                                    <div class="col-md-2 border p-2">currencyId: {{quote.currencyId}}</div>
-                                    <div class="col-md-2 border p-2">remarks: {{quote.remarks}}</div>
-                                    <div class="col-md-2 border p-2">
-                                        <div class="badge badge-primary" *ngIf="quote.active == true">Active</div>
-                                        <div class="badge badge-secondary" *ngIf="quote.active == false">Inactive</div>
-                                    </div>
-                                    <div class="col-md-2 border ">
-                                        <button type="button" class="btn editIconBack"
-                                            (click)="editQuotationform('editQuotation' , quote)">
-                                            <i class="far fa-edit"></i>
-                                        </button>
-                                        <button type="button" class="btn deleteIconBack" (click)=" deleteQuotation(quote)">
-                                            <i class="far fa-trash-alt"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!----------------------------------------------------------------------------->
-                    </div>
-    
-    
-                </div>
-                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-    
-                    <button class="btn btn-primary" (click)="addNoteform('EnquiryItemAddNote', objEnquiry)"> Add New
-                        Note</button>
-    
-    
-                    <div class="row text-center pt-3" *ngFor="let note of enquiryData.enquiryNoteList ">
-                        <div class="col-md-2 border p-2 ">id:{{note.id}}</div>
-                        <div class="col-md-2 border p-2">title: {{note.title}}</div>
-                        <div class="col-md-2 border p-2">description: {{note.description}}</div>
-                        <div class="col-md-2 border p-2">remarks: {{note.remarks}}</div>
-                        <div class="col-md-2 border p-2">
-                            <div class="badge badge-primary" *ngIf="note.active == true">Active</div>
-                            <div class="badge badge-secondary" *ngIf="note.active == false">Inactive</div>
-                        </div>
-                        <div class="col-md-2 border ">
-                            <button type="button" class="btn editIconBack"
-                                (click)="editNoteform('EnquiryItemEditNote', note , objEnquiry)">
-                                <i class="far fa-edit"></i>
-                            </button>
-                            <button type="button" class="btn deleteIconBack" (click)="deleteNote(note)">
-                                <i class="far fa-trash-alt"></i>
-                            </button>
-                        </div>
-                    </div>
-    
-                </div>
-            </div>
+            
     
         </div>
     </div>
@@ -787,7 +859,7 @@
 
 
     <!-- --------------------------------------------------- -->
-    <div class="col-md-4">
+    <div class="col-md-3">
     
         <div class=" bg-white p-3 ">
             Next Follow-Up
@@ -859,7 +931,7 @@
                     <span class="ml-2 text-small"> Enquiry Preview </span>
         
                 </button>
-                <button class="btn btn-outline-success btn-block btn-lg text-center  ">
+                <button class="btn btn-outline-success btn-block btn-lg text-center  " (click)="printPreview()">
         
                     <i class="fas fa-print"></i>
                     <span class="ml-2 text-small"> Enquiry Preview w/o Customer</span>
