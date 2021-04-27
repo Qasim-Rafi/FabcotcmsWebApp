@@ -41,11 +41,16 @@ dt {
 
   
   .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-    color: #ffffff;
+    color: #ffffff !important;
     background-color: #1ab394;
     /* padding: 10px 25px;
     font-size: 15px;
     font-weight: 500; */
+}
+
+.nav-pills .nav-link{
+  color: #6c757d !important;
+  background-color: #f4f4f4;
 }
 
 .nav-pills .nav-link:not(.active):hover {
