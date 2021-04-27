@@ -13,7 +13,7 @@ import { PaymentCollectionComponent } from './payment-collection/payment-collect
 import { PaymentFormComponent } from './payment-form/payment-form.component';
 
 const routes: Routes = [
-  { path:'', component:TemplateComponent,
+  { path:'billing-and-payment', component:TemplateComponent,
   // canActivate:[AuthGuard],
 
   children:[

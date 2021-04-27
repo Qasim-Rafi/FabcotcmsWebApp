@@ -12,10 +12,10 @@ import { EditAgentFormComponent } from './foreign-agent/edit-agent-form/edit-age
 import { NgbDatepickerModule, } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import { BrowserModule } from '@angular/platform-browser';
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { AppRoutingModule } from '../app-routing.module';
+// import { AppRoutingModule } from '../app-routing.module';
 import { BuyerComponent } from './buyer/buyer.component';
 import { AddBuyerComponent } from './buyer/add-buyer/add-buyer.component';
 import { EditBuyerComponent } from './buyer/edit-buyer/edit-buyer.component';
@@ -121,15 +121,15 @@ import { AddEditSystemUserComponent } from './system-users/add-edit-system-user/
     CommonModule,
     ConfigurationRoutingModule,
     NgbDatepickerModule,
-    BrowserModule,
-    AppRoutingModule,
+    // BrowserModule,
+    // AppRoutingModule,
     ClipboardModule,
     NgxDatatableModule,
     FormsModule,
     NgSelectModule,
     ReactiveFormsModule,
     HttpClientModule,
-    BrowserAnimationsModule,
+    // BrowserAnimationsModule,
     ToastrModule.forRoot({
       progressBar: true,
       timeOut: 3000
