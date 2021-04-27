@@ -70,22 +70,21 @@
           
           <ngx-datatable-column name="Contract Date" [width]="80" prop="contractDate" [flexGrow]="0.03"   >
             <ng-template let-row="row" ngx-datatable-cell-template >
-
+         {{row.contractDate}}
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Countract No." [width]="80" prop="contractNum" [flexGrow]="0.05">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Buyer" [width]="80" prop="buyer" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-        
+        {{row.buyerId}}
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Seller" [width]="80" prop="seller" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-        
+        {{row.sellerId}}
             </ng-template>
           </ngx-datatable-column>
 
