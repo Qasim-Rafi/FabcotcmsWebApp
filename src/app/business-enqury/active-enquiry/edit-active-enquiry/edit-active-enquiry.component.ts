@@ -991,4 +991,50 @@ export class EditActiveEnquiryComponent implements OnInit {
       }
     
     
+
+
+      AddReminder() {
+        Swal.fire({
+          title: 'Reminder', //'Are you sure?',
+          text: 'Your has been set for the Enquiry no. FG-011 on 03/03/2019 ' ,
+          icon: 'success',
+          showCancelButton: false,
+          confirmButtonColor: '#1ab394  ',
+          cancelButtonColor: '#dae0e5',
+          cancelButtonText: 'No',
+          confirmButtonText: 'OK',
+          reverseButtons: true,
+          position: 'top',
+        }).then((result) => {
+          if (result.isConfirmed) {
+    
+            this.toastr.success('Reminder Saved')
+
+            // this.http.delete(`${environment.apiUrl}/api/Buyers/DeleteBuyer/` + id.id)
+            //   .subscribe(
+            //     res => {
+            //       this.response = res;
+            //       if (this.response.success == true) {
+            //         this.toastr.error(this.response.message, 'Message.');
+            //         this.getBuyers();
+            //       }
+            //       else {
+            //         this.toastr.error(this.response.message, 'Message.');
+            //       }
+    
+            //     }, err => {
+            //       if (err.status == 400) {
+            //         this.toastr.error(this.response.message, 'Message.');
+            //       }
+            //     });
+    
+          }
+        })
+    
+      }
+
+
+
+
+
     }
