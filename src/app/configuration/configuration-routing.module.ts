@@ -20,6 +20,7 @@ import { ProcessTypeComponent } from './home-textile/process-type/process-type.c
 import { ProcessComponent } from './home-textile/process/process.component';
 import { TimeActionItemsComponent } from './home-textile/time-action-items/time-action-items.component';
 import { NotificationSettingsComponent } from './notification-settings/notification-settings.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 import { FabricTypeComponent } from './product/fabric-type/fabric-type.component';
 import { PackingComponent } from './product/packing/packing.component';
 import { PaymentTermComponent } from './product/payment-term/payment-term.component';
@@ -59,6 +60,7 @@ const routes: Routes = [
   { path: 'system-users', component: SystemUsersComponent },
   { path: 'general-settings', component: GeneralSettingsComponent },
   { path: 'notification-settings', component: NotificationSettingsComponent},
+  { path: 'notification', component: NotificationsComponent},
 
 ]
  }

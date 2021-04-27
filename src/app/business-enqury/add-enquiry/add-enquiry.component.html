@@ -130,7 +130,8 @@
                     
                                     <div class="input-group">
                     
-                                        <ng-select name="article" class="input-w px-0" [(ngModel)]="data.articleId"
+                                        <ng-select name="article" #articleId="ngModel" class="input-w px-0" [(ngModel)]="data.articleId"
+                                        [ngClass]="{ 'error': enquiryForm.submitted && articleId.invalid }" required
                                             placeholder="-- Select --">
                                             <ng-option *ngFor="let i of article" [value]="i.id">{{ i.name }}
                                             </ng-option>
