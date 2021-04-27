@@ -888,7 +888,7 @@
             <div [ngClass]="{ noDisplay : reminderToggle==false }">
             
                 <button class="btn btn-white float-right btn-xs" (click)="reminderToggle = !reminderToggle "><i class="fas fa-times"></i> </button>
-                <button class="btn btn-primary float-right btn-xs mb-3" (click)="reminderToggle = !reminderToggle "><i class="fas fa-check"></i> </button>
+                <button class="btn btn-primary float-right btn-xs" (click)="reminderToggle = !reminderToggle; AddReminder() "><i class="fas fa-check"></i> </button>
             
 
                 <input class="form-control " ngbDatepicker #reminderDate="ngbDatepicker" (click)="reminderDate.toggle()" placeholder="Reminder"
