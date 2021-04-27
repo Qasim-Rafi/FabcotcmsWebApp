@@ -132,9 +132,17 @@ dt {
 }
 
 .text-small{
-  font-size: 15px;
+  font-size: 14px;
 }
-
+.navlinkpdg{
+  padding: 0.5rem 10px !important;
+}
+.dropdown-menueqry{
+  min-width: 40px !important;
+}
+.btn-sm-eqry {
+  padding: 0.25rem 0.8rem !important;
+}
 
 .btn-success {
   background-color: #1a7bb9 !important;
@@ -181,4 +189,7 @@ dt {
   line-height: 18px;
   font-weight: 400;
   color: #535353;
+}
+.dataTables_length {
+  float: left;
 }

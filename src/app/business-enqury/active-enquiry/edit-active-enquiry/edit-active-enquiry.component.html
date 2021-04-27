@@ -233,22 +233,22 @@
                     <nav>
                         <div class="nav nav-tabs" id="nav-tab" role="tablist" class="nav nav-pills">
 
-                            <a class="nav-item nav-link active" id="nav-pricing-tab" data-toggle="tab" href="#nav-pricing"
+                            <a class="nav-item nav-link navlinkpdg active mb-1" id="nav-pricing-tab" data-toggle="tab" href="#nav-pricing"
                                 role="tab" aria-controls="nav-pricing" aria-selected="true">Pricing Details</a>
 
-                            <a class="nav-item nav-link" id="nav-vendor-tab" data-toggle="tab" href="#nav-vendor" role="tab"
+                            <a class="nav-item nav-link navlinkpdg mb-1" id="nav-vendor-tab" data-toggle="tab" href="#nav-vendor" role="tab"
                                 aria-controls="nav-vendor" aria-selected="false">Vendor Details</a>
 
-                            <a class="nav-item nav-link" id="nav-order-tab" data-toggle="tab" href="#nav-order" role="tab"
+                            <a class="nav-item nav-link navlinkpdg mb-1" id="nav-order-tab" data-toggle="tab" href="#nav-order" role="tab"
                                 aria-controls="nav-order" aria-selected="false">Order Details</a>
 
-                            <a class="nav-item nav-link" id="nav-enquiry-tab" data-toggle="tab" href="#nav-enquiry"
+                            <a class="nav-item nav-link navlinkpdg mb-1" id="nav-enquiry-tab" data-toggle="tab" href="#nav-enquiry"
                                 role="tab" aria-controls="nav-enquiry" aria-selected="false">Enquiry Remarks </a>
 
-                            <a class="nav-item nav-link" id="nav-enquiryItems-tab" data-toggle="tab" href="#nav-enquiryItems"
+                            <a class="nav-item nav-link navlinkpdg mb-1" id="nav-enquiryItems-tab" data-toggle="tab" href="#nav-enquiryItems"
                                 role="tab" aria-controls="nav-enquiryItems" aria-selected="false">Enquiry Items <span class="badge badge-primary">0</span></a>
 
-                                <a class="nav-item nav-link" id="nav-notes-tab" data-toggle="tab" href="#nav-notes"
+                                <a class="nav-item nav-link navlinkpdg mb-1" id="nav-notes-tab" data-toggle="tab" href="#nav-notes"
                                 role="tab" aria-controls="nav-notes" aria-selected="false">Notes / Activities <span class="badge badge-primary">0</span> </a>
                         </div>
                     </nav>
@@ -772,7 +772,18 @@
                             <div class="row pt-3">
                         
                                 <div class="col-md-8">
-                        
+                                    <div class="dropdown">
+                                        Show &nbsp;
+                                        <button class="btn btn-outline-secondary btn-sm dropdown-toggle btn-sm-eqry" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                          10
+                                        </button>
+                                        &nbsp; Entries
+                                        <div class="dropdown-menu dropdown-menueqry" aria-labelledby="dropdownMenuButton">
+                                          <a class="dropdown-item" href="#">25</a>
+                                          <a class="dropdown-item" href="#">50</a>
+                                          <a class="dropdown-item" href="#">100</a>
+                                        </div>
+                                      </div>
                                 </div>
                         
                                 <div class="col-md-4">
@@ -877,7 +888,7 @@
             <div [ngClass]="{ noDisplay : reminderToggle==false }">
             
                 <button class="btn btn-white float-right btn-xs" (click)="reminderToggle = !reminderToggle "><i class="fas fa-times"></i> </button>
-                <button class="btn btn-primary float-right btn-xs" (click)="reminderToggle = !reminderToggle "><i class="fas fa-check"></i> </button>
+                <button class="btn btn-primary float-right btn-xs mb-3" (click)="reminderToggle = !reminderToggle "><i class="fas fa-check"></i> </button>
             
 
                 <input class="form-control " ngbDatepicker #reminderDate="ngbDatepicker" (click)="reminderDate.toggle()" placeholder="Reminder"
@@ -914,7 +925,7 @@
 
             <div class="row p-3">
                 <div class="col-md-4 ">
-                    <i class="far fa-clock fa-5x"></i> 
+                    <i class="far fa-clock fa-4x"></i> 
                 </div>
                 <div class="col-md-8 text-right">
                     <span>Time Spent</span>
