@@ -25,6 +25,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./add-enquiry.component.css']
 })
 export class AddEnquiryComponent implements OnInit {
+  dateofBirthField:any;
   datePickerConfig: Partial<BsDatepickerConfig>;
   listCount: number;
   myDate = Date.now();
@@ -502,7 +503,7 @@ export class AddEnquiryComponent implements OnInit {
       "buyerSideCommission": this.data.buyerSideCommission,
       "buyerSideCommissionUOMId": this.data.buyerSideCommissionUOMId,
       "buyerSideCommissionInfo": this.data.buyerSideCommissionInfo,
-      "certificateIds": this.data.certificateIds.toString(),
+      "certificateIds": this.data.certificateIds,
       "remarks": this.data.remarks,
       "additionalInfo": this.data.additionalInfo,
       "departmentId": this.data.departmentId,

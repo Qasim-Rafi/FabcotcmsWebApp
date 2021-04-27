@@ -1,3 +1,4 @@
+
 /* DropDown Search */
 @import "~@ng-select/ng-select/themes/default.theme.css";
 
@@ -349,7 +350,10 @@ title {
 .active-enqury-pdg {
   padding: 28px !important;
 }
-
+.required-denote {
+  margin-left: 5px;
+  color: #f62d51;
+}
 .agents-pdg {
   padding: 20px !important;
 }

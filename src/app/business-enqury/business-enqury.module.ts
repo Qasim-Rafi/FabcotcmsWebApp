@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AddEnquiryComponent } from './add-enquiry/add-enquiry.component';
 import { ActiveEnquiryComponent } from './active-enquiry/active-enquiry.component';
 import { SearchEnquiryComponent } from './search-enquiry/search-enquiry.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateParserFormatter, NgbDatepickerModule, NgbModule, NgbTimepickerModule } from '@ng-bootstrap/ng-bootstrap';
 // import { BrowserModule } from '@angular/platform-browser';
 // import { AppRoutingModule } from '../app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -36,6 +36,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     NgSelectModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgbDatepickerModule,
+    NgbTimepickerModule,
     // BrowserAnimationsModule,
     ToastrModule.forRoot({
       progressBar: true,

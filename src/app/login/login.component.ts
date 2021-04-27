@@ -38,6 +38,7 @@ invalidLogin: boolean=false;
       this.response= data;
       if (this.response.success == true) {
         this.router.navigate(['/home']);
+        this.reload();
     
       }
       else {
@@ -48,4 +49,12 @@ invalidLogin: boolean=false;
      this.isLoginError = true;
    });
  }
+
+ reload(){
+  // this.router.navigate(['/home']);
+ this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+ this.router.onSameUrlNavigation = 'reload';
+ this.router.navigate(['/home']);
+
+}
 }
