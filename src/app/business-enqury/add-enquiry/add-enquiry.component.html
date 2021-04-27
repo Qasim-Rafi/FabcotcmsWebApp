@@ -66,7 +66,7 @@
         <div class="row">
             <div class="col-md-12 p-3">
 
-                <form #enquiryForm="ngForm" novalidate>
+                <form #enquiryForm="ngForm" name="form" novalidate (ngSubmit)="enquiryForm.form.valid && addEnquiry()">
                     <div class="form-row">
                         <div class="form-group col-xl-1 col-md-2 col-lg-2">
                             <label for="inputEmail4">Enquiry #</label>
@@ -88,24 +88,27 @@
                         <div class="form-group col-md-3 offset-md-2 offset-lg-2">
                             <label for="inputPassword4">Enquiry Date</label>
                             <!-- <input type="text" class="form-control date" id="enqry-date" value="Fri 26-Mar-2021"> -->
-                            <input class="form-control " ngbDatepicker #enquiryDate="ngbDatepicker"
+                            <input class="form-control datetimepicker-input" ngbDatepicker #enquiryDate="ngbDatepicker"
                                 [(ngModel)]="data.enquiryDate" name="enquiryDate" (click)="enquiryDate.toggle()"
-                                [displayMonths]="1" />
+                                [displayMonths]="1">
                         </div>
                     </div>
 
                             <div class="form-row pb-3">
 
                                 
+
+
                                 <div class="form-group col-md-6">
-                                    <label for="inputEmail3" class="col-form-label control-label">Buyer Name</label>
+                                    <label for="inputEmail3" class="col-form-label control-label">Buyer Name<span class="required-denote">*</span></label>
                     
                                     <div class="input-group">
-                                        <ng-select name="buyer" class="input-w px-0" [(ngModel)]="data.buyerId"
-                                            placeholder="-- Select --">
+                                        <ng-select name="buyerId" #buyerId="ngModel" class="input-w px-0" [(ngModel)]="data.buyerId"
+                                            placeholder="-- Select --" [ngClass]="{ 'error': enquiryForm.submitted && buyerId.invalid }" required>
                                             <ng-option *ngFor="let i of buyer" [value]="i.id">{{ i.buyerName }}
                                             </ng-option>
                                         </ng-select>
+                                       
                     
                                         <!-- <button class="btn btn-outline-primary " (click)="addenquiryBuyerForm()">
                                             <i class="fa fa-plus"></i>
@@ -549,7 +552,7 @@
 
                     <div class="row">
                         <div class="col-md-12">
-                            <button class="btn button-save" (click)="addEnquiry()">
+                            <button class="btn button-save" type="submit">
                                 <i class="fas fa-check"></i> Save &
                                 Next</button>
                             <button class="btn btn-secondary ml-4" (click)="navigate()">
