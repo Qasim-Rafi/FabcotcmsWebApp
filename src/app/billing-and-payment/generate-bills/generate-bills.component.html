@@ -75,6 +75,7 @@
           </ngx-datatable-column>
           <ngx-datatable-column name="Countract No." [width]="80" prop="contractNum" [flexGrow]="0.05">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              {{row.contractNum}}
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Buyer" [width]="80" prop="buyer" [flexGrow]="0.06">
