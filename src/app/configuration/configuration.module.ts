@@ -78,6 +78,7 @@ import { SystemUsersComponent } from './system-users/system-users.component';
 import { AddEditSystemUserComponent } from './system-users/add-edit-system-user/add-edit-system-user.component';
 import { GeneralSettingsComponent } from './general-settings/general-settings.component';
 import { NotificationSettingsComponent } from './notification-settings/notification-settings.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 @NgModule({
   declarations: [
@@ -111,7 +112,7 @@ import { NotificationSettingsComponent } from './notification-settings/notificat
     EditPaymentComponent,
     PriceTermComponent,
     AddPriceComponent,
-    EditPriceComponent, BankComponent, BankAccountsComponent, AddBankComponent, EditBankComponent, AddBankAccountComponent, EditBankAccountComponent, ProcessComponent, ProcessTypeComponent, DesignTypeComponent, LoomTypeComponent, CertificateComponent, ColorComponent, TimeActionItemsComponent, EditCertificateComponent, EditColorComponent, AddColorComponent, AddDesignTypeComponent, EditDesignTypeComponent, AddLoomTypeComponent, EditLoomTypeComponent, EditProcessComponent, AddProcessComponent, AddProcessTypeComponent, EditProcessTypeComponent, EditTimeActionComponent, AddTimeActionComponent, AddCurrencyComponent, EditCurrencyComponent, SellerPocComponent, SystemUsersComponent, AddEditSystemUserComponent, GeneralSettingsComponent, NotificationSettingsComponent,
+    EditPriceComponent, BankComponent, BankAccountsComponent, AddBankComponent, EditBankComponent, AddBankAccountComponent, EditBankAccountComponent, ProcessComponent, ProcessTypeComponent, DesignTypeComponent, LoomTypeComponent, CertificateComponent, ColorComponent, TimeActionItemsComponent, EditCertificateComponent, EditColorComponent, AddColorComponent, AddDesignTypeComponent, EditDesignTypeComponent, AddLoomTypeComponent, EditLoomTypeComponent, EditProcessComponent, AddProcessComponent, AddProcessTypeComponent, EditProcessTypeComponent, EditTimeActionComponent, AddTimeActionComponent, AddCurrencyComponent, EditCurrencyComponent, SellerPocComponent, SystemUsersComponent, AddEditSystemUserComponent, GeneralSettingsComponent, NotificationSettingsComponent, NotificationsComponent,
 
 
   ],
