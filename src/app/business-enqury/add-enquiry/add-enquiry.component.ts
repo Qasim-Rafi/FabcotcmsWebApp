@@ -519,6 +519,7 @@ export class AddEnquiryComponent implements OnInit {
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
             this.enquiryForm.reset();
+            this.router.navigate(['/enquiry/active-enquiries']);
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
