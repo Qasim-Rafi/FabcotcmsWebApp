@@ -18,7 +18,8 @@ export class GeneralSettingsComponent implements OnInit {
   rows: any = [];
   cityFilter: any = [];
   CityCount: number;
-  
+  id: any;
+  localId: any;
   @ViewChild(NgForm) settingsForm;
 
   constructor(
@@ -30,6 +31,8 @@ export class GeneralSettingsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.localId = localStorage.getItem('GeneralSettingsID')
+    this.getbyid(this.localId);
     // this.getSettings(this.settingsId);
 
   }
@@ -37,51 +40,89 @@ export class GeneralSettingsComponent implements OnInit {
   //   return this._NgbActiveModal;
   // }
   addGeneralSettings() {
-    let varr = {
-"systemEmailAddress": this.data.email,
-"emailFromName": this.data.name,
-"beforeLCReminderDays": this.data.reminderdays,
-"systemNotificationRecipient": this.data.recipient,
-"contractTitleMessage": this.data.titlemessage,
-"termsAndCondition":this.data.termsandcondition,
-"amountDecimalPoints": this.data.amount,
-"quantityDecimalPoints": this.data.quantity,
-"deptEmailAddress":this.data.deptemail,
-"deptPhoneNo": this.data.deptphone,
-     
+    if (this.localId != '') {
+      let varr = {
+        "systemEmailAddress": this.data.systemEmailAddress,
+        "emailFromName": this.data.emailFromName,
+        "beforeLCReminderDays": this.data.beforeLCReminderDays,
+        "systemNotificationRecipient": this.data.systemNotificationRecipient,
+        "contractTitleMessage": this.data.contractTitleMessage,
+        "termsAndCondition": this.data.termsAndCondition,
+        "amountDecimalPoints": this.data.amountDecimalPoints,
+        "quantityDecimalPoints": this.data.quantityDecimalPoints,
+        "deptEmailAddress": this.data.deptEmailAddress,
+        "deptPhoneNo": this.data.deptPhoneNo,
+
+      }
+      this.http.put(`${environment.apiUrl}/api/Configs/UpdateGeneralSetting/` + this.localId, varr)
+        .subscribe(
+          res => {
+            this.response = res;
+            if (this.response.success == true) {
+              this.id = this.response.data;
+              this.toastr.success(this.response.message, 'Message.');
+              this.getbyid(this.id);
+            }
+            else {
+              this.toastr.error(this.response.message, 'Message.');
+            }
+
+          }, err => {
+            if (err.status == 400) {
+              this.toastr.error(this.response.message, 'Message.');
+            }
+          });
+
     }
+    else {
+      let varr = {
+        "systemEmailAddress": this.data.systemEmailAddress,
+        "emailFromName": this.data.emailFromName,
+        "beforeLCReminderDays": this.data.beforeLCReminderDays,
+        "systemNotificationRecipient": this.data.systemNotificationRecipient,
+        "contractTitleMessage": this.data.contractTitleMessage,
+        "termsAndCondition": this.data.termsAndCondition,
+        "amountDecimalPoints": this.data.amountDecimalPoints,
+        "quantityDecimalPoints": this.data.quantityDecimalPoints,
+        "deptEmailAddress": this.data.deptEmailAddress,
+        "deptPhoneNo": this.data.deptPhoneNo,
 
-    this.http.
-      post(`${environment.apiUrl}/api/Configs/AddGeneralSetting`, varr)
-      .subscribe(
-        res => {
+      }
 
-          this.response = res;
-          if (this.response.success == true) {
-            this.data=this.response.data;
-            this.toastr.success(this.response.message, 'Message.');
-            this.getbyid(this.data.id)
+      this.http.
+        post(`${environment.apiUrl}/api/Configs/AddGeneralSetting`, varr)
+        .subscribe(
+          res => {
 
-            // this.notifForm.reset();
-            // this.activeModal.close(true);
-          }
-          else {
-            this.toastr.error(this.response.message, 'Message.');
-          }
+            this.response = res;
+            if (this.response.success == true) {
+              this.id = this.response.data;
+              this.toastr.success(this.response.message, 'Message.');
+              localStorage.setItem('GeneralSettingsID', this.id);
+              this.getbyid(this.id);
 
-        }, err => {
-          if (err.status == 400) {
-            this.toastr.error(this.response.message, 'Message.');
-          }
-        });
+              // this.notifForm.reset();
+              // this.activeModal.close(true);
+            }
+            else {
+              this.toastr.error(this.response.message, 'Message.');
+            }
+
+          }, err => {
+            if (err.status == 400) {
+              this.toastr.error(this.response.message, 'Message.');
+            }
+          });
+    }
   }
-// getbyid(id){
+  // getbyid(id){
 
-// }
+  // }
 
 
-getbyid(id){ {
-    this.http.get(`${environment.apiUrl}/api/Configs/GetGeneralSettingById` + id)
+  getbyid(id) {
+
+    this.http.get(`${environment.apiUrl}/api/Configs/GetGeneralSettingById/` + id)
       .subscribe(
         res => {
           this.response = res;
@@ -97,6 +138,6 @@ getbyid(id){ {
             this.toastr.error(this.response.message, 'Message.');
           }
         });
+
   }
-}
 }
