@@ -66,7 +66,7 @@
         <div class="row">
             <div class="col-md-12 p-3">
 
-                <form #enquiryForm="ngForm" novalidate (ngSubmit)="addEnquiry()">
+                <form #enquiryForm="ngForm" novalidate (ngSubmit)="addEnquiry(enquiryForm)">
                     <div class="form-row">
                         <div class="form-group col-xl-1 col-md-2 col-lg-2">
                             <label for="inputEmail4">Enquiry #</label>
@@ -90,7 +90,7 @@
                             <!-- <input type="text" class="form-control date" id="enqry-date" value="Fri 26-Mar-2021"> -->
                             <input class="form-control datetimepicker-input" ngbDatepicker #enquiryDate="ngbDatepicker"
                                 [(ngModel)]="data.enquiryDate" name="enquiryDate" (click)="enquiryDate.toggle()"
-                                [displayMonths]="1">
+                                required>
                         </div>
                     </div>
 
@@ -555,7 +555,7 @@
 
                     <div class="row">
                         <div class="col-md-12">
-                            <button class="btn button-save" type="submit">
+                            <button class="btn button-save"  type="submit">
                                 <i class="fas fa-check"></i> Save &
                                 Next</button>
                             <button class="btn btn-secondary ml-4" (click)="navigate()">

@@ -481,55 +481,61 @@ export class AddEnquiryComponent implements OnInit {
     });
   }
 
-  addEnquiry() {
-    this.data.enquiryDate = this.dateformater.toModel(this.data.enquiryDate);
-    let varr = {
-
-      "enquiryDate": this.data.enquiryDate,
-      "buyerId": this.data.buyerId,
-      "articleId": this.data.articleId,
-      "processId": this.data.processId,
-      "processTypeId": this.data.processTypeId,
-      "designTypeId": this.data.designTypeId,
-      "packagingId": this.data.packagingId,
-      "paymentTermId": this.data.paymentTermId,
-      "paymentTermDays": this.data.paymentTermDays,
-      "paymentTermInfo": this.data.paymentTermInfo,
-      "priceTermId": this.data.priceTermId,
-      "destinationId": this.data.destinationId,
-      "sellerSideCommission": this.data.sellerSideCommission,
-      "sellerSideCommissionUOMId": this.data.sellerSideCommissionUOMId,
-      "sellerSideCommissionInfo": this.data.sellerSideCommissionInfo,
-      "buyerSideCommission": this.data.buyerSideCommission,
-      "buyerSideCommissionUOMId": this.data.buyerSideCommissionUOMId,
-      "buyerSideCommissionInfo": this.data.buyerSideCommissionInfo,
-      "certificateIds": this.data.certificateIds != null ? this.data.certificateIds.toString() : null,
-      "remarks": this.data.remarks,
-      "additionalInfo": this.data.additionalInfo,
-      "departmentId": this.data.departmentId,
+  addEnquiry(form:NgForm) {
+    if(form.status =="INVALID"){
 
     }
-
-    this.http.
-      post(`${environment.apiUrl}/api/Enquiries/AddEnquiry`, varr)
-      .subscribe(
-        res => {
-
-          this.response = res;
-          if (this.response.success == true) {
-            this.toastr.success(this.response.message, 'Message.');
-            this.enquiryForm.reset();
-            this.router.navigate(['/enquiry/active-enquiries']);
-          }
-          else {
-            this.toastr.error(this.response.message, 'Message.');
-          }
-
-        }, err => {
-          if (err.status == 400) {
-            this.toastr.error(this.response.message, 'Message.');
-          }
-        });
+    else{
+      this.data.enquiryDate = this.dateformater.toModel(this.data.enquiryDate);
+      let varr = {
+  
+        "enquiryDate": this.data.enquiryDate,
+        "buyerId": this.data.buyerId,
+        "articleId": this.data.articleId,
+        "processId": this.data.processId,
+        "processTypeId": this.data.processTypeId,
+        "designTypeId": this.data.designTypeId,
+        "packagingId": this.data.packagingId,
+        "paymentTermId": this.data.paymentTermId,
+        "paymentTermDays": this.data.paymentTermDays,
+        "paymentTermInfo": this.data.paymentTermInfo,
+        "priceTermId": this.data.priceTermId,
+        "destinationId": this.data.destinationId,
+        "sellerSideCommission": this.data.sellerSideCommission,
+        "sellerSideCommissionUOMId": this.data.sellerSideCommissionUOMId,
+        "sellerSideCommissionInfo": this.data.sellerSideCommissionInfo,
+        "buyerSideCommission": this.data.buyerSideCommission,
+        "buyerSideCommissionUOMId": this.data.buyerSideCommissionUOMId,
+        "buyerSideCommissionInfo": this.data.buyerSideCommissionInfo,
+        "certificateIds": this.data.certificateIds != null ? this.data.certificateIds.toString() : null,
+        "remarks": this.data.remarks,
+        "additionalInfo": this.data.additionalInfo,
+        "departmentId": this.data.departmentId,
+  
+      }
+  
+      this.http.
+        post(`${environment.apiUrl}/api/Enquiries/AddEnquiry`, varr)
+        .subscribe(
+          res => {
+  
+            this.response = res;
+            if (this.response.success == true) {
+              this.toastr.success(this.response.message, 'Message.');
+              this.enquiryForm.reset();
+              this.router.navigate(['/enquiry/active-enquiries']);
+            }
+            else {
+              this.toastr.error(this.response.message, 'Message.');
+            }
+  
+          }, err => {
+            if (err.status == 400) {
+              this.toastr.error(this.response.message, 'Message.');
+            }
+          });
+    }
+    
   }
 
 
