@@ -66,7 +66,7 @@
         <div class="row">
             <div class="col-md-12 p-3">
 
-                <form #enquiryForm="ngForm" name="form" novalidate (ngSubmit)="enquiryForm.form.valid && addEnquiry()">
+                <form #enquiryForm="ngForm" name="form" novalidate (ngSubmit)="enquiryForm.valid && addEnquiry()">
                     <div class="form-row">
                         <div class="form-group col-xl-1 col-md-2 col-lg-2">
                             <label for="inputEmail4">Enquiry #</label>
@@ -227,8 +227,8 @@
                                 
                                     <div class="input-group">
 
-                                        <ng-select name="process" class="input-w px-0" [(ngModel)]="data.processId"
-                                            placeholder="-- Select --">
+                                        <ng-select name="processId"  #processId="ngModel" class="input-w px-0" [(ngModel)]="data.processId"
+                                            placeholder="-- Select --" [ngClass]="{ 'error': enquiryForm.submitted && processId.invalid }" required>
                                             <ng-option *ngFor="let i of process" [value]="i.id">{{ i.name }}
                                             </ng-option>
                                         </ng-select>
@@ -252,8 +252,8 @@
                                 <label for="inputEmail3" class="col-form-label control-label">Process Type</label>
                                 
                                     <div class="input-group">
-                                        <ng-select name="processTypeId" class="input-w px-0" [(ngModel)]="data.processTypeId"
-                                            placeholder="-- Select --">
+                                        <ng-select name="processTypeId" #processTypeId="ngModel"  class="input-w px-0" [(ngModel)]="data.processTypeId"
+                                            placeholder="-- Select --" [ngClass]="{ 'error': enquiryForm.submitted && processTypeId.invalid }" required>
                                             <ng-option *ngFor="let i of ptype" [value]="i.id">{{ i.type }}
                                             </ng-option>
                                         </ng-select>
@@ -277,8 +277,8 @@
                                 <label for="inputEmail3" class="col-form-label control-label">Design Type</label>
                                 
                                     <div class="input-group">
-                                        <ng-select name="designTypeId " class="input-w px-0" [(ngModel)]="data.designTypeId"
-                                            placeholder="-- Select --">
+                                        <ng-select name="designTypeId " #designTypeId="ngModel"  class="input-w px-0" [(ngModel)]="data.designTypeId"
+                                            placeholder="-- Select --" [ngClass]="{ 'error': enquiryForm.submitted && designTypeId.invalid }" required>
                                             <ng-option *ngFor="let i of design" [value]="i.id">{{ i.type }}
                                             </ng-option>
                                         </ng-select>
@@ -304,8 +304,8 @@
                                 <label for="inputEmail3" class="col-form-label control-label">Packaging</label>
                                 
                                     <div class="input-group">
-                                        <ng-select name="packagingId " class="input-w px-0" [(ngModel)]="data.packagingId"
-                                            placeholder="-- Select --">
+                                        <ng-select name="packagingId " #packagingId="ngModel" class="input-w px-0" [(ngModel)]="data.packagingId"
+                                            placeholder="-- Select --" [ngClass]="{ 'error': enquiryForm.submitted && packagingId.invalid }" required>
                                             <ng-option *ngFor="let i of packaging" [value]="i.id">{{ i.name }}
                                             </ng-option>
                                         </ng-select>
@@ -343,7 +343,8 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="input-group">
-                                                    <ng-select name="packagingId" class="input-w px-0" [(ngModel)]="data.paymentTermId" placeholder="-- Select --">
+                                                    <ng-select name="paymentTermId"  #paymentTermId="ngModel" class="input-w px-0" [(ngModel)]="data.paymentTermId"
+                                                     placeholder="-- Select --" [ngClass]="{ 'error': enquiryForm.submitted && paymentTermId.invalid }" required>
                                                         <ng-option *ngFor="let i of payment" [value]="i.id">{{ i.term }}
                                                         </ng-option>
                                                     </ng-select>
@@ -361,7 +362,7 @@
                                             </div>
                             
                                             <div class="col-md-2 mrg-sm1">
-                                                <input type="text" pattern="[0-9]" maxlength="3" placeholder="Days." class="form-control"
+                                                <input type="text" pattern="[0-9]" #paymentTermDays="ngModel" maxlength="3" placeholder="Days." class="form-control"
                                                     [(ngModel)]="data.paymentTermDays" name="paymentTermDays">
                                             </div>
                             
@@ -380,8 +381,8 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="input-group">
-                                                    <ng-select name="priceTermId" class="input-w px-0" [(ngModel)]="data.priceTermId"
-                                                        placeholder="-- Select --">
+                                                    <ng-select name="priceTermId" #priceTermId="ngModel" class="input-w px-0" [(ngModel)]="data.priceTermId"
+                                                        placeholder="-- Select --" [ngClass]="{ 'error': enquiryForm.submitted && priceTermId.invalid }" required >
                                                         <ng-option *ngFor="let i of priceterm" [value]="i.id">{{ i.term }}
                                                         </ng-option>
                                                     </ng-select>
@@ -402,8 +403,8 @@
                                             <div class="col-md-6 mrg-sm1">
                                                 <div class="input-group">
                                         
-                                                    <ng-select name="destinationId" class="input-w px-0" [(ngModel)]="data.destinationId"
-                                                        placeholder="-- Select City --">
+                                                    <ng-select name="destinationId"  #destinationId="ngModel" class="input-w px-0" [(ngModel)]="data.destinationId"
+                                                        placeholder="-- Select City --" [ngClass]="{ 'error': enquiryForm.submitted && destinationId.invalid }" required >
                                                         <ng-option *ngFor="let i of city" [value]="i.id">{{ i.name }}
                                                         </ng-option>
                                                     </ng-select>
@@ -432,8 +433,8 @@
                             
                                             <div class="col-md-4">
                                                 <div class="input-group">
-                                                    <input type="text" placeholder="Comm%" class="form-control"
-                                                        [(ngModel)]="data.sellerSideCommission" name="sellerSideCommission">
+                                                    <input type="text" placeholder="Comm%" #sellerSideCommission="ngModel" class="form-control"
+                                                        [(ngModel)]="data.sellerSideCommission" name="sellerSideCommission" [ngClass]="{ 'error': enquiryForm.submitted && sellerSideCommission.invalid }" required >
                                                     <div class="input-group-append">
                                                         <span class="input-group-text" id="basic-addon2">per</span>
                                                     </div>
@@ -442,8 +443,8 @@
                             
                                             <div class="col-md-4 mrg-sm1">
                             
-                                                <ng-select name="sellerSideCommissionUOMId " [(ngModel)]="data.sellerSideCommissionUOMId"
-                                                    placeholder="-- Select UOM --">
+                                                <ng-select name="sellerSideCommissionUOMId " #sellerSideCommissionUOMId="ngModel" [(ngModel)]="data.sellerSideCommissionUOMId"
+                                                    placeholder="-- Select UOM --" [ngClass]="{ 'error': enquiryForm.submitted && sellerSideCommissionUOMId.invalid }" required >
                                                     <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
                                                     </ng-option>
                                                 </ng-select>
@@ -472,8 +473,9 @@
                             
                                             <div class="col-md-4">
                                                 <div class="input-group">
-                                                    <input type="text" placeholder="Comm%" class="form-control"
-                                                        [(ngModel)]="data.buyerSideCommission" name="buyerSideCommission">
+                                                    <input type="text" placeholder="Comm%" #buyerSideCommission="ngModel" class="form-control"
+                                                        [(ngModel)]="data.buyerSideCommission" name="buyerSideCommission"
+                                                        [ngClass]="{ 'error': enquiryForm.submitted && buyerSideCommission.invalid }" required>
                                                     <div class="input-group-append">
                                                         <span class="input-group-text" id="basic-addon2">per</span>
                                                     </div>
@@ -482,8 +484,8 @@
                             
                                             <div class="col-md-4 mrg-sm1">
                             
-                                                <ng-select name="buyerSideCommissionUOMId " [(ngModel)]="data.buyerSideCommissionUOMId"
-                                                    placeholder="-- Select UOM --">
+                                                <ng-select name="buyerSideCommissionUOMId " #buyerSideCommissionUOMId="ngModel" [(ngModel)]="data.buyerSideCommissionUOMId"
+                                                    placeholder="-- Select UOM --" [ngClass]="{ 'error': enquiryForm.submitted && buyerSideCommissionUOMId.invalid }" required>
                                                     <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
                                                     </ng-option>
                                                 </ng-select>
