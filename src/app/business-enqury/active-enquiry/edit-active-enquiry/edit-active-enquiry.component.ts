@@ -148,6 +148,10 @@ export class EditActiveEnquiryComponent implements OnInit {
             this.enquiryData = this.response.data;
              this.confirmOn = this.enquiryData.confirmationDate;
             this.enquiryData.confirmationDate = this.dateformater.fromModel(this.enquiryData.confirmationDate);
+            this.fetch((data) => {
+              this.rows = data;
+              // this.listCount= this.rows.length;
+            });
 // console.log(this.enquiryData);
  
           }
@@ -1050,8 +1054,10 @@ export class EditActiveEnquiryComponent implements OnInit {
             this.enquiryData.followUpDate = this.dateformater.toModel(this.enquiryData.followUpDate);
     
             let varr = {
+
               "enquiryId": this.objEnquiry,
-              "followUpDate": this.enquiryData.followUpDate,
+              "followUpDate":this.enquiryData.followUpDate,
+            
             }
         
             this.http.
@@ -1063,7 +1069,6 @@ export class EditActiveEnquiryComponent implements OnInit {
                   if (this.response.success == true) {
                     this.toastr.success(this.response.message, 'Message.');
                     this.getEnquiryData(this.objEnquiry);
-                    // this.enquiryForm.reset();
                   }
                   else {
                     this.toastr.error(this.response.message, 'Message.');
