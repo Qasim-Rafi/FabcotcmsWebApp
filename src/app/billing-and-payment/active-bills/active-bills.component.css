@@ -18,6 +18,10 @@
     font-size: 30px;
     font-weight: 100;
 }
+.topbox-small-text {
+  font-size: 14px;
+  color: #777777;
+}
 .date-Label{
     font-size: 16px!important;
     font-weight: 200;
