@@ -503,7 +503,7 @@ export class AddEnquiryComponent implements OnInit {
       "buyerSideCommission": this.data.buyerSideCommission,
       "buyerSideCommissionUOMId": this.data.buyerSideCommissionUOMId,
       "buyerSideCommissionInfo": this.data.buyerSideCommissionInfo,
-      "certificateIds": this.data.certificateIds,
+      "certificateIds": this.data.certificateIds != null ? this.data.certificateIds.toString() : null,
       "remarks": this.data.remarks,
       "additionalInfo": this.data.additionalInfo,
       "departmentId": this.data.departmentId,
