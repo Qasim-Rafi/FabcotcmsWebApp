@@ -20,7 +20,7 @@ export class CommissionPaymentComponent implements OnInit {
   addNewCommsion(statusCheck ) {
     // this.statusCheck = check;
     // this.router.navigateByUrl('/new-commission');
-    this.router.navigate(['/new-commission'], { queryParams: { statusCheck: statusCheck  }  });
+    this.router.navigate(['/billing-and-payment/new-commission'], { queryParams: { statusCheck: statusCheck  }  });
 
   };
   dateFilterForm() {

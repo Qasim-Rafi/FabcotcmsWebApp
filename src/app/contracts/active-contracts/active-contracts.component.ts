@@ -18,7 +18,7 @@ export class ActiveContractsComponent implements OnInit {
 
   navigate() {
 
-    this.router.navigateByUrl('/active-contract-details');
+    this.router.navigateByUrl('/contract/active-contract-details');
   }
 
 

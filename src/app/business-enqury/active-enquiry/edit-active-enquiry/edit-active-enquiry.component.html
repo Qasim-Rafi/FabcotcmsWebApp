@@ -236,8 +236,7 @@
                             <a class="nav-item nav-link navlinkpdg active mb-1" id="nav-pricing-tab" data-toggle="tab" href="#nav-pricing"
                                 role="tab" aria-controls="nav-pricing" aria-selected="true">Pricing Details</a>
 
-                            <a class="nav-item nav-link navlinkpdg mb-1" id="nav-vendor-tab" data-toggle="tab" href="#nav-vendor" role="tab"
-                                aria-controls="nav-vendor" aria-selected="false">Vendor Details</a>
+                            
 
                             <a class="nav-item nav-link navlinkpdg mb-1" id="nav-order-tab" data-toggle="tab" href="#nav-order" role="tab"
                                 aria-controls="nav-order" aria-selected="false">Order Details</a>
@@ -247,6 +246,9 @@
 
                             <a class="nav-item nav-link navlinkpdg mb-1" id="nav-enquiryItems-tab" data-toggle="tab" href="#nav-enquiryItems"
                                 role="tab" aria-controls="nav-enquiryItems" aria-selected="false">Enquiry Items <span class="badge badge-primary">0</span></a>
+
+                                <a class="nav-item nav-link navlinkpdg mb-1" id="nav-vendor-tab" data-toggle="tab" href="#nav-vendor" role="tab"
+                                aria-controls="nav-vendor" aria-selected="false">Vendor Details</a>
 
                                 <a class="nav-item nav-link navlinkpdg mb-1" id="nav-notes-tab" data-toggle="tab" href="#nav-notes"
                                 role="tab" aria-controls="nav-notes" aria-selected="false">Notes / Activities <span class="badge badge-primary">0</span> </a>
@@ -309,7 +311,7 @@
     
                                             <ng-select [(ngModel)]="enquiryData.currencyId" placeholder="-- Select --"
                                                 name="currencyId" #currencyId="ngModel">
-                                                <ng-option *ngFor="let i of currency" [value]="i.id">{{ i.currencyCode }}
+                                                <ng-option *ngFor="let i of currency" [value]="i.id">{{ i.code }}
                                                 </ng-option>
                                             </ng-select>
     
@@ -458,7 +460,7 @@
                                                 </div>
                                             </div>
                                             <small id="passwordHelpBlock" class="form-text text-lightgrey">
-                                                FabCot Buyer Side ommission in %age, if UOM not selected
+                                                FabCot Buyer Side commission in %age, if UOM not selected
                                             </small>
                                         </div>
                                     </div>
@@ -806,7 +808,7 @@
                         
                         
                             <div class="text-center pt-3">
-                                <div class="row" *ngFor="let note of enquiryData.enquiryNoteList ">
+                                <!-- <div class="row" *ngFor="let note of enquiryData.enquiryNoteList ">
                                     <div class="col-md-2 border p-2 ">id:{{note.id}}</div>
                                     <div class="col-md-2 border p-2">title: {{note.title}}</div>
                                     <div class="col-md-2 border p-2">description: {{note.description}}</div>
@@ -824,35 +826,69 @@
                                             <i class="far fa-trash-alt"></i>
                                         </button>
                                     </div>
-                                </div>
+                                </div> -->
+
+                                <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'"
+                                  [rowHeight]="'auto'"
+                                [limit]="6">
+                        
+                        
+                                <!-- <ngx-datatable-column name="S. No." [width]="5" prop="">
+                                  <ng-template let-rowIndex="rowIndex" let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                    {{rowIndex + 1}}
+                        
+                                  </ng-template>
+                                </ngx-datatable-column> -->
+
+                                <ngx-datatable-column name="User" [width]="10" prop="">
+                                  <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                    {{row.createdByName}}
+                        
+                                  </ng-template>
+                                </ngx-datatable-column>
+                        
+                                <ngx-datatable-column name="Time" [width]="2" prop="code">
+                                  <ng-template let-row="row" ngx-datatable-cell-template>
+                                    {{row.createdDateTime}}
+                                  </ng-template>
+                                </ngx-datatable-column>
+                        
+                                <ngx-datatable-column name="Note Details" [width]="3" prop="name">
+                                  <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                    {{row.description}}
+                                  </ng-template>
+                                </ngx-datatable-column>
+                        
+                                <ngx-datatable-column name="" [width]="4">
+                                  <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                        
+                                    <div class="ibox-tools text-center">
+                        
+                                      <button type="button" class="btn editIconBack"
+                                      (click)="editNoteform('EnquiryItemEditNote', row , objEnquiry)">
+                                      <i class="far fa-edit"></i>
+                                  </button>
+                                  <button type="button" class="btn deleteIconBack" (click)="deleteNote(row)">
+                                      <i class="far fa-trash-alt"></i>
+                                  </button>
+                        
+                                    </div>
+                        
+    
+                                  </ng-template>
+                                </ngx-datatable-column>
+                        
+                              </ngx-datatable>
+
+
                             </div>
 
-                            <div class="row py-3">
-
+                            <!-- <div class="row py-3">
                                 <div class="col-md-8">
                                     <p>Showing 0 to 0 of 0 entries</p>
                                 </div>
-
-                                <div class="col-md-4">
-                                    
-                                    <nav aria-label="Page navigation example">
-                                        <ul class="pagination justify-content-end">
-                                          <li class="page-item disabled">
-                                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                                          </li>
-                                          <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                          <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                          <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                          <li class="page-item">
-                                            <a class="page-link" href="#">Next</a>
-                                          </li>
-                                        </ul>
-                                      </nav>
-                                    
-                                </div>
-                            </div>
-                        
-                        
+                            </div> -->
+                     
                         </div>
 
                     </div>
@@ -884,7 +920,21 @@
                         class="fas fa-sync"></i> </button>
                 <button class="btn btn-primary float-right btn-xs mx-1" (click)="reminderToggle = !reminderToggle "><i
                         class="fas fa-edit "></i> </button>
-            </div>
+            
+                        <div  *ngFor="let reminder of enquiryData.enquiryFollowUpList "> 
+
+                            <div class=" text_Navy h3">
+
+                            {{reminder.followUpDateToDisplay}}
+
+                            <button type="button" class="btn deleteIconBack" data-toggle="tooltip" data-placement="top"
+                            title="" data-original-title="Delete">
+                            <i class="far fa-trash-alt"></i>
+                        </button>
+                        </div>
+                        </div>
+                        
+                    </div>
     
             <div [ngClass]="{ noDisplay : reminderToggle==false }">
             
@@ -893,13 +943,10 @@
             
 
                 <input class="form-control " ngbDatepicker #reminderDate="ngbDatepicker" (click)="reminderDate.toggle()" placeholder="Reminder"
-                    [displayMonths]="1" />
+                    [displayMonths]="1" [(ngModel)]="enquiryData.followUpDate" />
 
             </div>
-        
-
-
-
+    
         </div>
 
 
@@ -980,7 +1027,6 @@
         
                     <i class="fas fa-file-archive fa-md"></i>
                     <span class="ml-2 text-small "> Create Contract </span>
-        
                 </button>
             </div>
         </div>

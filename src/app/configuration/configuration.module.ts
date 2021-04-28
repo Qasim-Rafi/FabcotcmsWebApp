@@ -9,7 +9,7 @@ import { AddSellerFormComponent } from './seller/add-seller-form/add-seller-form
 import { ForeignAgentComponent } from './foreign-agent/foreign-agent.component';
 import { AddAgentFormComponent } from './foreign-agent/add-agent-form/add-agent-form.component';
 import { EditAgentFormComponent } from './foreign-agent/edit-agent-form/edit-agent-form.component';
-import { NgbDatepickerModule, } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDatepickerModule, NgbModule, } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import { BrowserModule } from '@angular/platform-browser';
@@ -73,7 +73,7 @@ import { SellerPocComponent } from './seller/seller-poc/seller-poc.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { AutofocusDirective } from '../shared/autofocus-directive/autofocus.directive';
 // import { ClipboardModule } from '@angular/cdk/clipboard';
-import {ClipboardModule} from 'ngx-clipboard';
+import { ClipboardModule } from 'ngx-clipboard';
 import { SystemUsersComponent } from './system-users/system-users.component';
 import { AddEditSystemUserComponent } from './system-users/add-edit-system-user/add-edit-system-user.component';
 import { GeneralSettingsComponent } from './general-settings/general-settings.component';
@@ -112,7 +112,41 @@ import { NotificationsComponent } from './notifications/notifications.component'
     EditPaymentComponent,
     PriceTermComponent,
     AddPriceComponent,
-    EditPriceComponent, BankComponent, BankAccountsComponent, AddBankComponent, EditBankComponent, AddBankAccountComponent, EditBankAccountComponent, ProcessComponent, ProcessTypeComponent, DesignTypeComponent, LoomTypeComponent, CertificateComponent, ColorComponent, TimeActionItemsComponent, EditCertificateComponent, EditColorComponent, AddColorComponent, AddDesignTypeComponent, EditDesignTypeComponent, AddLoomTypeComponent, EditLoomTypeComponent, EditProcessComponent, AddProcessComponent, AddProcessTypeComponent, EditProcessTypeComponent, EditTimeActionComponent, AddTimeActionComponent, AddCurrencyComponent, EditCurrencyComponent, SellerPocComponent, SystemUsersComponent, AddEditSystemUserComponent, GeneralSettingsComponent, NotificationSettingsComponent, NotificationsComponent,
+    EditPriceComponent,
+    BankComponent,
+    BankAccountsComponent,
+    AddBankComponent,
+    EditBankComponent,
+    AddBankAccountComponent,
+    EditBankAccountComponent,
+    ProcessComponent,
+    ProcessTypeComponent,
+    DesignTypeComponent,
+    LoomTypeComponent,
+    CertificateComponent,
+    ColorComponent,
+    TimeActionItemsComponent,
+    EditCertificateComponent,
+    EditColorComponent,
+    AddColorComponent,
+    AddDesignTypeComponent,
+    EditDesignTypeComponent,
+    AddLoomTypeComponent,
+    EditLoomTypeComponent,
+    EditProcessComponent,
+    AddProcessComponent,
+    AddProcessTypeComponent,
+    EditProcessTypeComponent,
+    EditTimeActionComponent,
+    AddTimeActionComponent,
+    AddCurrencyComponent,
+    EditCurrencyComponent,
+    SellerPocComponent,
+    SystemUsersComponent,
+    AddEditSystemUserComponent,
+    GeneralSettingsComponent,
+    NotificationSettingsComponent,
+    NotificationsComponent,
 
 
   ],
@@ -129,6 +163,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
     ClipboardModule,
     NgxDatatableModule,
     FormsModule,
+    NgbModule,
     NgSelectModule,
     ReactiveFormsModule,
     HttpClientModule,
