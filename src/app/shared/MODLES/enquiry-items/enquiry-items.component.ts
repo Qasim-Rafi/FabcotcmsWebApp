@@ -118,7 +118,7 @@ export class EnquiryItemsComponent implements OnInit {
 
   addEnquiryItem() {
    
-    for(let i=0; i<this.data.lenght;i++ )
+    for(let i=0; i<this.data.length;i++ )
     {
       this.data[i] = Object.assign(this.data[i], {
         enquiryId: this.EnquiryId,

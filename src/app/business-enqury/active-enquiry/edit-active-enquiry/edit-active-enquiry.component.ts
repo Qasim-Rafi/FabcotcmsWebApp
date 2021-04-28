@@ -27,6 +27,8 @@ export class EditActiveEnquiryComponent implements OnInit {
   orderToggle: boolean = false;
   remarksToggle: boolean = false;
   reminderToggle: boolean = false;
+  rows: any = [];
+  columns: any = [];
   queryParems: any = {};
   objEnquiry: any = {};
   // enquiryId: any = {};
@@ -49,6 +51,9 @@ export class EditActiveEnquiryComponent implements OnInit {
   vendorSeller: any = [];
   certificate: any = [];
   confirmOn: string;
+ noteFilter: any = [];
+ noteApi = '/api/Enquiries/GetAllEnquiryNote/' + this.objEnquiry;
+
   // entries: any = [];
 
 
@@ -82,15 +87,55 @@ export class EditActiveEnquiryComponent implements OnInit {
       this.GetCertificateDropdown();
       this.GetVendorSellerDropdown();
       this.getEnquiryData(this.objEnquiry);
+     
       // this.editEnquiryBuyerDetails(this.objEnquiry);
       // this.editEnquiryPaymentDetails(this.objEnquiry);
       // this.editEnquirySupplierDetails(this.objEnquiry);
       // this.editEnquiryConfirmationDetails(this.objEnquiry);
       // this.editEnquiryAdditionalInformation(this.objEnquiry);
-      
+      // this.getAllEnquiryItems();
 
-    // this.getAllEnquiryItems();
+
+      this.fetch((data) => {
+        this.rows = data;
+        // this.listCount= this.rows.length;
+      });
   }
+
+
+
+  fetch(cb) {
+    
+    this.http
+    .get(`${environment.apiUrl}/api/Enquiries/GetAllEnquiryNote/` + this.objEnquiry)
+    .subscribe(res => {
+      this.response = res;
+     
+    if(this.response.success==true)
+    {
+    this.data =this.response.data;
+    cb(this.data);
+    }
+    else{
+      this.toastr.error(this.response.message, 'Message.');
+    }
+      // this.spinner.hide();
+    }, err => {
+      if ( err.status == 400) {
+ this.toastr.error(err.error.message, 'Message.');
+      }
+    //  this.spinner.hide();
+    });
+  }
+
+
+
+
+
+
+
+
+
 
 
 
@@ -104,10 +149,7 @@ export class EditActiveEnquiryComponent implements OnInit {
              this.confirmOn = this.enquiryData.confirmationDate;
             this.enquiryData.confirmationDate = this.dateformater.fromModel(this.enquiryData.confirmationDate);
 // console.log(this.enquiryData);
-
-
-
-            
+ 
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
@@ -990,8 +1032,6 @@ export class EditActiveEnquiryComponent implements OnInit {
     
       }
     
-    
-
 
       AddReminder() {
         Swal.fire({
@@ -1007,26 +1047,33 @@ export class EditActiveEnquiryComponent implements OnInit {
           position: 'top',
         }).then((result) => {
           if (result.isConfirmed) {
+            this.enquiryData.followUpDate = this.dateformater.toModel(this.enquiryData.followUpDate);
     
-            this.toastr.success('Reminder Saved')
-
-            // this.http.delete(`${environment.apiUrl}/api/Buyers/DeleteBuyer/` + id.id)
-            //   .subscribe(
-            //     res => {
-            //       this.response = res;
-            //       if (this.response.success == true) {
-            //         this.toastr.error(this.response.message, 'Message.');
-            //         this.getBuyers();
-            //       }
-            //       else {
-            //         this.toastr.error(this.response.message, 'Message.');
-            //       }
-    
-            //     }, err => {
-            //       if (err.status == 400) {
-            //         this.toastr.error(this.response.message, 'Message.');
-            //       }
-            //     });
+            let varr = {
+              "enquiryId": this.objEnquiry,
+              "followUpDate": this.enquiryData.followUpDate,
+            }
+        
+            this.http.
+              post(`${environment.apiUrl}/api/Enquiries/AddEnquiryFollowUp`, varr)
+              .subscribe(
+                res => {
+        
+                  this.response = res;
+                  if (this.response.success == true) {
+                    this.toastr.success(this.response.message, 'Message.');
+                    this.getEnquiryData(this.objEnquiry);
+                    // this.enquiryForm.reset();
+                  }
+                  else {
+                    this.toastr.error(this.response.message, 'Message.');
+                  }
+        
+                }, err => {
+                  if (err.status == 400) {
+                    this.toastr.error(this.response.message, 'Message.');
+                  }
+                });
     
           }
         })

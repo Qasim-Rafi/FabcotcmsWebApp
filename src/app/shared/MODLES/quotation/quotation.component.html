@@ -46,7 +46,7 @@
             <div class="col-md-3">
                 <ng-select placeholder="-- Select Currency --" name="currencyId" [(ngModel)]="data.currencyId">
                     <ng-option *ngFor="let obj of currency" [value]="obj.id">
-                        {{obj.currencyCode}}
+                        {{obj.code}}
                     </ng-option>
                 </ng-select>
             </div>
