@@ -1,12 +1,9 @@
 <div class="content-header">
+
     <div class="row">
       <div class="col-sm-12 col-md-6 col-lg-8">
-        <h2 class="row wrapper page-header font-weight-light">
-          Active Bills
-          <div class="ml-2 descr">
-            Contract Bills. Awating for payments . 
-            Default last 90 days record displayed
-          </div>
+        <h2 class="row wrapper page-header font-weight-light">Active Bills
+          <div class="ml-2 descr">Contract Bills. Awating for payments . Default last 90 days record displayed</div>
         </h2>
       </div>
   
@@ -19,107 +16,104 @@
         </ol>
       </div>
     </div>
-    <div class="container-fluid">
-        <!-- Info boxes -->
-        <div class="row">
-          <div class="col-12 col-sm-6 col-md-3 pt-2">
-            <div class="topbox">
-              <div class="topbox-margin-top-text">Active Bills
-                <div class=" float-right fontSize">
-                  <span class="text_Navy fontSize"> 100</span>
-                  <i class="fa fa-bolt text_Navy"  ></i>
-  
-                </div>
 
-              </div>  
-             
-            
-              <div class="topbox-margin-mid-text">
-                116
-              </div>
-         
-            </div>
+
+
+    
         
-          </div>
-         
-          <div class="col-12 col-sm-6 col-md-3 pt-2">
-            <div class="topbox">
-              <div class="topbox-margin-top-text"> Total Amount
-                <div class=" float-right fontSize">
-                  <span class="text_Navy fontSize"> 0%</span>
-                  <i class="fa fa-bolt text_Navy"  ></i>
-  
-                </div>
-
-              </div>
-             
-              <div class="topbox-margin-mid-text">
-                0
-              </div>
     
-            </div>
-          
-          </div>
-    
-      <div class="col-12 col-sm-6 col-md-3 pt-2">
-            <div class="topbox">
-              <div class="topbox-margin-top-text"> Balance Amount
-                <div class=" float-right fontSize">
-                  <span class="text_Navy fontSize"> 100 %</span>
-                  <i class="fa fa-bolt text_Navy"  ></i>
-  
-                </div>
-              </div>
-    
-              <div class="topbox-margin-mid-text">
-                1
-                
-              </div>
-            </div>
-          </div>
       
-          <div class="col-12 col-sm-6 col-md-3 pt-2">
-            <div class="topbox">
-              <div class="topbox-margin-top-text"> Tax Amount
-
-                <div class=" float-right fontSize">
-                  <span class="text_Navy fontSize"> 100 %</span>
-                  <i class="fa fa-bolt text_Navy"  ></i>
-  
-                </div>
-              </div>
-    
-              <div class="topbox-margin-mid-text">
-                0
-              </div>
-            </div>
-            <!-- /.info-box -->
-          </div>
-          <!-- /.col -->
-        </div>
-    
-      </div>
 
   </div>
 
+<!--Start Info boxes -->
+<div class="row mb-4">
+
+  <div class="col-12 col-sm-6 col-md-3">
+    <div class="topbox">
+
+      <div class="topbox-margin-top-text">Active Bills
+        <div class=" float-right fontSize">
+          <span class="text_Navy fontSize"> 100 </span>
+          <i class="fa fa-bolt text_Navy"></i>
+        </div>
+      </div>  
+     
+      <div class="topbox-margin-mid-text">116 <span class="topbox-small-text">bills</span></div>
+ 
+    </div>
+  </div>
+ 
+  <div class="col-12 col-sm-6 col-md-3">
+    <div class="topbox">
+
+      <div class="topbox-margin-top-text"> Total Amount
+        <div class=" float-right fontSize">
+          <span class="text_Navy fontSize"> 0% </span>
+          <i class="fa fa-bolt text_Navy"></i>
+        </div>
+      </div>
+     
+      <div class="topbox-margin-mid-text">9,098.53 <span class="topbox-small-text">Rs./$</span></div>
+
+    </div>
+  </div>
+
+
+
+<div class="col-12 col-sm-6 col-md-3">
+    <div class="topbox">
+
+      <div class="topbox-margin-top-text"> Balance Amount
+        <div class=" float-right fontSize">
+          <span class="text_Navy fontSize"> 100 % </span>
+          <i class="fa fa-bolt text_Navy"></i>
+        </div>
+      </div>
+
+      <div class="topbox-margin-mid-text">9,098.53 <span class="topbox-small-text">Rs./$</span></div>
+
+    </div>
+  </div>
+
+
+
+  <div class="col-12 col-sm-6 col-md-3">
+    <div class="topbox">
+
+      <div class="topbox-margin-top-text"> Tax Amount
+        <div class=" float-right fontSize">
+          <span class="text_Navy fontSize"> 0 % </span>
+          <i class="fa fa-bolt text_Navy"  ></i>
+        </div>
+      </div>
+
+      <div class="topbox-margin-mid-text">0</div>
+
+    </div>
+  </div>
+
+</div>
+<!--End Info boxes -->
 
 
   <div class="card ibox-content">
     <div class="panel blank-panel">
       
       <div class="panel-heading">
+
         <div class="row mb-3">
+
           <div class= "col-md-6 ">
               <span class="date-Label">Date From &nbsp;</span>
              <span class="text_Navy  date"> 23-Jan-2021 &nbsp;</span>
              <span class="date-Label">To &nbsp;</span>
              <span class="text_Navy  date">20-July-2021 &nbsp;</span>
           </div>
+
           <div class="col-md-6 mrg-tsm">
-            <button type="button" class="btn btn-light  btn-md float-right" >
-              <i class="fas fa-sync-alt"></i>
-              </button>
-            <button type="button" class="btn btn-primary  btn-md float-right" (click)="dateFilterForm()">
+            <button type="button" class="btn btn-light float-right" ><i class="fas fa-sync-alt"></i></button>
+            <button type="button" class="btn btn-primary float-right mr-1" (click)="dateFilterForm()">
                 <i class="fa fa-filter"></i>
             </button>
    
@@ -129,143 +123,158 @@
 
         </div>
      
-        <div class="row mb-3">
-            <div class="form-check">
-             
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                <label class="form-check-label" for="flexCheckDefault">
+        <div class="row mb-3 justify-content-center">
+
+          <form>
+            <div class="form-row">
+              <div class="col-auto">
+                <div class="form-check mt-2">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                  <label class="form-check-label" for="flexCheckDefault">
                     Check to Select All Contracts
-                </label>
-           
-               
-                <button type="button" class="btn btn-primary  btn-md float-right">
-                    <i class="fa fa-print"></i> Bulk Print
-                </button>
-         
+                  </label>
+                </div>
               </div>
-          </div>
+          
+              <div class="col-auto">
+                <button type="button" class="btn btn-primary  btn-md float-right">
+                  <i class="fa fa-print"></i> Bulk Print
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
       
   
-        <div class="row" >
-          <div class="col-md-12 mb-4">
+        <div class="row">
+          <div class="col-md-12 mb-3">
+        
             <div class="row justify-content-end">
+
               <div class="col-md-4">
                 <div class="input-group col-md-offset-3">
                   <input type="text" placeholder="Search..." class="input form-control w-50" />
                 </div>
               </div>
-<!--  -->
+        
+              <div class="html5buttons mrg-tsm">
+                <div class="dt-buttons btn-group">
+                  <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0" aria-controls="DataTables_Table_0"
+                    ngxClipboard><span>Copy</span>
+                  </a>
+                  <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
+                    aria-controls="DataTables_Table_0"><span>CSV</span></a>
+                  <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
+                    aria-controls="DataTables_Table_0"><span>Excel</span></a>
+                  <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0"
+                    aria-controls="DataTables_Table_0"><span>PDF</span></a>
+                  <a class="btn btn-default buttons-print bg-white" tabindex="0"
+                    aria-controls="DataTables_Table_0"><span>Print</span></a>
+                </div>
+              </div>
+        
+            </div>
+        
+            <p>Showing 1 to 14 of 14 entries</p>
+        
+          </div>
+        </div>
 
- 
-<div class="html5buttons mrg-tsm">
-    <div class="dt-buttons btn-group">
-      <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0"
-        aria-controls="DataTables_Table_0" ngxClipboard
-        ><span>Copy</span>
-      </a>
-      <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
-        aria-controls="DataTables_Table_0"
-        ><span>CSV</span></a>
-      <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
-        aria-controls="DataTables_Table_0"><span>Excel</span></a>
-      <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0"
-        aria-controls="DataTables_Table_0"
-    
-        ><span>PDF</span></a>
-      <a class="btn btn-default buttons-print bg-white" tabindex="0"
-        aria-controls="DataTables_Table_0"
-        ><span>Print</span></a>
-    </div>
-  </div>
+      </div>
 
 
+<!--Start panel body -->      
+      <div class="panel-body">
 
+        <div class="row mb-2">
+          <div class="col-md-12">
+            <div class="input-group">
+              <input type="text" placeholder="Search..." class="input form-control w-50" />
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="panel-body">
-        <ngx-datatable
-      class="bootstrap datatable-row-wrapper" [columns]="columns" [rows]="rows"
-          [columnMode]="'flex'" [headerHeight]="50" [footerHeight]="50" 
-          [rowHeight]="'auto'" [limit]="6">
-          
-          <ngx-datatable-column name="Print" [width]="80" prop="print" [flexGrow]="0.03"   >
-            <ng-template let-row="row" ngx-datatable-cell-template >
+
+        <ngx-datatable class="bootstrap datatable-row-wrapper" [columns]="columns" [rows]="rows" [columnMode]="'flex'"
+          [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="6">
+      
+          <ngx-datatable-column name="Print" [width]="80" prop="print" [flexGrow]="0.05">
+            <ng-template let-row="row" ngx-datatable-cell-template>
               <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="S.No" [width]="80" prop="sno" [flexGrow]="0.05">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              
+      
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Bill For" [width]="80" prop="billFor" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-        
+      
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Bill To" [width]="80" prop="billTo" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-        
+      
             </ng-template>
           </ngx-datatable-column>
-
+      
           <ngx-datatable-column name="Bill #" [width]="80" prop="billNum" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-        
+      
             </ng-template>
           </ngx-datatable-column>
-
+      
           <ngx-datatable-column name="Contract #" [width]="80" prop="contractNum" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-       {{row.name}}
+              {{row.name}}
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Bill Date" [width]="80" prop="billDate" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-        
+      
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="No. Sale Inv" [width]="80" prop="saleNum" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  
+      
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Bill Amount" [width]="80" prop="billAmount" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-        
+      
             </ng-template>
           </ngx-datatable-column>
-
+      
           <ngx-datatable-column name="Tax Amount" [width]="80" prop="txtAmount" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-        
+      
             </ng-template>
           </ngx-datatable-column>
-
+      
           <ngx-datatable-column name="Due Date" [width]="80" prop="date" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-        
+      
             </ng-template>
           </ngx-datatable-column>
-
-          <ngx-datatable-column name="Action" [width]="80" prop="action" [flexGrow]="0.06">
+      
+          <ngx-datatable-column name="Action" [width]="80" prop="action" [flexGrow]="0.08">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-        
-                <div class="ibox-tools text-center">
-                    <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top" title=""
-                      data-original-title="Edit" routerLink="/open-bill"><i
-                        class="far fa-edit"></i></button>
-                    <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top" title=""
-          routerLink="/payment-form"><i class="fas fa-money-check-alt"></i></button>
-                  </div>
-
+      
+              <div class="ibox-tools text-center">
+                <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top" title=""
+                  data-original-title="Edit" routerLink="/open-bill"><i class="far fa-edit"></i></button>
+                <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top" title=""
+                  routerLink="/payment-form"><i class="fas fa-money-check-alt"></i></button>
+              </div>
+      
             </ng-template>
           </ngx-datatable-column>
-
+      
         </ngx-datatable>
       </div>
+
+
+
     </div>
     </div>
