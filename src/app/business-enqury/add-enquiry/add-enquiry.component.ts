@@ -71,7 +71,7 @@ export class AddEnquiryComponent implements OnInit {
   ) { }
 
   navigate() {
-    this.router.navigateByUrl('/active-enquiries');
+    this.router.navigateByUrl('/enquiry/active-enquiries');
   };
 
   ngOnInit() {
