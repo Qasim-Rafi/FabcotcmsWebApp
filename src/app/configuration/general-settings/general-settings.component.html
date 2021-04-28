@@ -49,12 +49,13 @@
         <div class="row">
             <div class="col-md-12 p-3">
 
-                <form #enquiryForm="ngForm" novalidate>
+                <form #settingsForm="ngForm" novalidate>
 
                     <div class="form-group row">
-                        <label class="col-md-3 col-form-label control-label">System Emai Address</label>
+                        <label class="col-md-3 col-form-label control-label">System Email Address</label>
                         <div class="col-md-6">
-                            <input name="" id="" cols="50" rows="2" class="form-control text-w-4"
+                            <input required type="email" name="email" id="email" cols="50" rows="2" class="form-control text-w-4"
+                            [(ngModel)]="data.email" #email="ngModel"
                                 placeholder="Email address of system..." />
                         </div>
                     </div>
@@ -62,7 +63,8 @@
                     <div class="form-group row">
                         <label class="col-md-3 col-form-label control-label">Email From Name</label>
                         <div class="col-md-6">
-                            <input name="" id="" cols="50" rows="2" class="form-control text-w-4"
+                            <input name="name" id="name" cols="50" rows="2" class="form-control text-w-4"
+                            [(ngModel)]="data.name" #name="ngModel"
                                 placeholder="FabCot" />
                         </div>
                     </div>
@@ -71,7 +73,8 @@
                     <div class="form-group row">
                         <label class="col-md-3 col-form-label control-label">Before L/C Reminder Days</label>
                         <div class="col-md-6">
-                            <input name="" id="" cols="50" rows="2" class="form-control text-w-4"
+                            <input name="reminderdays" id="reminderdays" cols="50" rows="2" class="form-control text-w-4"
+                            [(ngModel)]="data.reminderdays" #reminderdays="ngModel"
                                 placeholder="0" />
                         </div>
                     </div>
@@ -80,7 +83,8 @@
                     <div class="form-group row">
                         <label class="col-md-3 col-form-label control-label">System Notification Recipient</label>
                         <div class="col-md-6">
-                            <textarea name="" id="" cols="50" rows="2" class="form-control text-w-4"
+                            <textarea name="recipient" id="recipient" cols="50" rows="2" class="form-control text-w-4"
+                            [(ngModel)]="data.recipient" #recipient="ngModel"
                                 placeholder="Email IDs to whom system notification sent, saparated by:"></textarea>
                         </div>
                     </div>
@@ -89,7 +93,8 @@
                     <div class="form-group row">
                         <label class="col-md-3 col-form-label control-label">Contract Title Message</label>
                         <div class="col-md-6">
-                            <textarea name="" id="" cols="50" rows="4" class="form-control text-w-4"
+                            <textarea name="titlemessage" id="titlemessage" cols="50" rows="4" class="form-control text-w-4"
+                            [(ngModel)]="data.titlemessage" #titlemessage="ngModel"
                                 placeholder="Message title to appear in contrcat preview under attention"></textarea>
                         </div>
                     </div>
@@ -98,7 +103,8 @@
                     <div class="form-group row">
                         <label class="col-md-3 col-form-label control-label">Terms and Condition</label>
                         <div class="col-md-6">
-                            <textarea name="" id="" cols="50" rows="10" class="form-control text-w-4"
+                            <textarea name="termsandcondition" id="termsandcondition" cols="50" rows="10" class="form-control text-w-4"
+                            [(ngModel)]="data.termsandcondition" #termsandcondition="ngModel"
                                 placeholder="Terms and conditions to appear in contracts"></textarea>
                         </div>
                     </div>
@@ -106,7 +112,8 @@
                     <div class="form-group row">
                         <label class="col-md-3 col-form-label control-label">Amount Decimal Points</label>
                         <div class="col-md-6">
-                            <input name="" id="" cols="50" rows="2" class="form-control text-w-4"
+                            <input name="amount" id="amount" cols="50" rows="2" class="form-control text-w-4"
+                            [(ngModel)]="data.amount" #amount="ngModel"
                                 placeholder="2" />
                         </div>
                     </div>
@@ -114,7 +121,8 @@
                     <div class="form-group row">
                         <label class="col-md-3 col-form-label control-label">Quantity Decimal Points</label>
                         <div class="col-md-6">
-                            <input name="" id="" cols="50" rows="2" class="form-control text-w-4"
+                            <input name="quantity" id="quantity" cols="50" rows="2" class="form-control text-w-4"
+                            [(ngModel)]="data.quantity" #quantity="ngModel"
                                 placeholder="0" />
                         </div>
                     </div>
@@ -122,7 +130,8 @@
                     <div class="form-group row">
                         <label class="col-md-3 col-form-label control-label">Deptt Email Address</label>
                         <div class="col-md-6">
-                            <input name="" id="" cols="50" rows="2" class="form-control text-w-4"
+                            <input name="deptemail" id="deptemail" cols="50" rows="2" class="form-control text-w-4"
+                            [(ngModel)]="data.deptemail" #deptemail="ngModel"
                                 placeholder="Department Email Address" />
                         </div>
                     </div>
@@ -130,7 +139,8 @@
                     <div class="form-group row">
                         <label class="col-md-3 col-form-label control-label">Deptt Phone No.</label>
                         <div class="col-md-6">
-                            <input name="" id="" cols="50" rows="2" class="form-control text-w-4"
+                            <input name="deptphone" id="deptphone" cols="50" rows="2" class="form-control text-w-4"
+                            [(ngModel)]="data.deptphone" #deptphone="ngModel"
                                 placeholder="Department Phone number" />
                         </div>
                     </div>
@@ -139,7 +149,7 @@
                     <div class="form-group row">
                         <div class="col-md-3 col-form-label control-label"></div>
                         <div class="col-md-6">
-                            <button class="btn button-save">Save Settings</button>
+                            <button class="btn button-save" type="submit" (click)="addGeneralSettings()" [disabled]="settingsForm.invalid">Save Settings</button>
 
                         </div>
                     </div>

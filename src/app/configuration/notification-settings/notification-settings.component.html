@@ -48,7 +48,7 @@
                     <div class="form-group row input-group">
                         <label class="col-md-4 col-form-label control-label ">Closed since x days & Un Billed</label>
                         <div class="col-md-6">                                <div class="input-group mb-2">
-                                    <input type="text" class=" form-control col-md-4" placeholder="30">
+                                    <input type="text" name="daysclosedunbilled" id="daysclosedunbilled" [(ngModel)]="data.daysclosedunbilled" #daysclosedunbilled="ngModel" class=" form-control col-md-4" placeholder="30">
                                     <div class="input-group-append">
                                       <span class="input-group-text">Days</span>
                                     </div>
@@ -58,7 +58,7 @@
                     <div class="form-group row input-group">
                         <label class="col-md-4 col-form-label control-label ">Bill generated & payment pending since x days</label>
                         <div class="col-md-6">                                <div class="input-group mb-2">
-                                    <input type="text" class="form-control col-md-4" placeholder="30">
+                                    <input type="text" name="paymentpending" id="paymentpending" [(ngModel)]="data.paymentpending" #paymentpending="ngModel"  class="form-control col-md-4" placeholder="30">
                                     <div class="input-group-append">
                                       <span class="input-group-text">Days</span>
                                     </div>
@@ -68,7 +68,7 @@
                     <div class="form-group row input-group">
                         <label class="col-md-4 col-form-label control-label ">Bill generated & partial Payment Pending</label>
                         <div class="col-md-6">                                <div class="input-group mb-2">
-                                    <input type="text" class="form-control col-md-4" placeholder="60">
+                                    <input type="text" name="partialpaymentpending" id="partialpaymentpending" [(ngModel)]="data.partialpaymentpending" #partialpaymentpending="ngModel"  class="form-control col-md-4" placeholder="60">
                                     <div class="input-group-append">
                                       <span class="input-group-text">Days</span>
                                     </div>
@@ -78,7 +78,7 @@
                     <div class="form-group row input-group">
                         <label class="col-md-4 col-form-label control-label ">Contract is in open and working state</label>
                         <div class="col-md-6">                                <div class="input-group mb-2">
-                                    <input type="text" class="form-control col-md-4" placeholder="180">
+                                    <input type="text" name="workingstate" id="workingstate" [(ngModel)]="data.workingstate" #workingstate="ngModel"  class="form-control col-md-4" placeholder="180">
                                     <div class="input-group-append">
                                       <span class="input-group-text">Days</span>
                                     </div>
@@ -88,7 +88,7 @@
                     <div class="form-group row input-group">
                         <label class="col-md-4 col-form-label control-label ">User / Agent Not Login since x days</label>
                         <div class="col-md-6">                                <div class="input-group mb-2">
-                                    <input type="text" class="form-control col-md-4" placeholder="7">
+                                    <input type="text" name="agentnotlogin" id="agentnotlogin" [(ngModel)]="data.agentnotlogin" #agentnotlogin="ngModel" class="form-control col-md-4" placeholder="7"/>
                                     <div class="input-group-append">
                                       <span class="input-group-text">Days</span>
                                     </div>
@@ -98,7 +98,7 @@
                     <div class="form-group row input-group">
                         <label class="col-md-4 col-form-label control-label ">Vouchers needs approval from CEO</label>
                         <div class="col-md-6">                                <div class="input-group mb-2">
-                                    <input type="text" class="form-control col-md-4" placeholder="2">
+                                    <input type="text" name="approval" id="approval" [(ngModel)]="data.approval" #approval="ngModel" class="form-control col-md-4" placeholder="2">
                                     <div class="input-group-append">
                                       <span class="input-group-text">Days</span>
                                     </div>
@@ -108,7 +108,7 @@
                     <div class="form-group row input-group">
                         <label class="col-md-4 col-form-label control-label ">No of days left for L/C closure & not delivered yet</label>
                         <div class="col-md-6">                                <div class="input-group mb-2">
-                                    <input type="text" class="form-control col-md-4" placeholder="7">
+                                    <input type="text" name="closure" id="closure" [(ngModel)]="data.closure" #closure="ngModel" class="form-control col-md-4" placeholder="7">
                                     <div class="input-group-append">
                                       <span class="input-group-text">Days</span>
                                     </div>
@@ -119,7 +119,7 @@
                     <div class="form-group row">
                         <label class="col-md-4 col-form-label control-label">Notification Details</label>
                         <div class="col-md-6">
-                            <textarea name="" id="" cols="50" rows="4" class="form-control text-w-4"
+                            <textarea name="details" id="details" [(ngModel)]="data.details" #details="ngModel" cols="50" rows="4" class="form-control text-w-4"
                                 placeholder=""></textarea>
                         </div>
                     </div>
@@ -127,7 +127,7 @@
                     <div class="form-group row">
                         <div class="col-md-4 col-form-label control-label"></div>
                         <div class="col-md-6">
-                            <button class="btn button-save">Save Settings</button>
+                            <button class="btn button-save" (click)="addNotification()">Save Settings</button>
 
                         </div>
                     </div>
