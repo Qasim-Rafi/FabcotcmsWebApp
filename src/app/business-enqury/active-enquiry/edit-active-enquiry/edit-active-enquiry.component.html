@@ -590,7 +590,7 @@
                                     <dd class="col-sm-9">{{enquiryData.enquiryOtherCondition}}</dd>
                                 
                                     <dt class="col-sm-3">Certifications:</dt>
-                                    <dd class="col-sm-9">{{enquiryData.certificateName}}
+                                    <dd class="col-sm-9">{{enquiryData.certificateNames}}
                                         <button class="btn btn-outline-primary float-right btn-sm" (click)="remarksToggle = !remarksToggle">Edit</button>
                                     </dd>
                                 </dl>
@@ -629,7 +629,7 @@
                                         <label for="inputEmail3" class="col-md-3 col-form-label control-label">Certificates</label>
                                         <div class="col-md-6">
                             
-                                            <ng-select [(ngModel)]="enquiryData.certificateId" placeholder="-- Select --" name="certificateId">
+                                            <ng-select [(ngModel)]="enquiryData.certificateIds" placeholder="-- Select --" name="certificateIds">
                                                 <ng-option *ngFor="let i of certificate" [value]="i.id">{{ i.name }}
                                                 </ng-option>
                                             </ng-select>

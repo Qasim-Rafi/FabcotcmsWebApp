@@ -605,7 +605,7 @@ export class EditActiveEnquiryComponent implements OnInit {
       "enquiryId": this.objEnquiry,
       "enquiryRemarks":this.enquiryData.enquiryRemarks,
       "enquiryOtherCondition": this.enquiryData.enquiryOtherCondition,
-      "certificateId": this.enquiryData.certificateId,
+      "certificateIds": this.enquiryData.certificateIds != null ? this.enquiryData.certificateIds.toString() : null,
     
     }
 
