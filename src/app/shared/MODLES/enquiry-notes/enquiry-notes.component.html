@@ -32,7 +32,10 @@
       <label for="name" class="col-sm-3 col-form-label">Title</label>
       <div class="col-sm-8">
         <input type="text" class="form-control" placeholder="Note Title"
-        [(ngModel)]="data.title " name="title" />
+        [(ngModel)]="data.title " name="title" 
+        #title="ngModel" 
+        [ngClass]="{ 'error': NotesForm.submitted && title.invalid }" required
+        />
       </div>
     </div>
 
@@ -62,18 +65,17 @@
       </div>
     </div>
 
-
+    <div class="modal-footer NotBG">
+      <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
+        Close
+      </button>
+      <button class="btn button-save" type="submit"  *ngIf="statusCheck == 'EnquiryItemAddNote'" (click)="AddEnquiryNote()">
+        Save Note
+      </button>
+      <button class="btn button-save" type="submit"  *ngIf="statusCheck == 'EnquiryItemEditNote'" (click)="UpdateEnquiryNote()">
+        Update Note
+      </button>
+    </div>
   </form>
 </div>
 
-<div class="modal-footer NotBG">
-  <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
-    Close
-  </button>
-  <button class="btn button-save" type="submit"  *ngIf="statusCheck == 'EnquiryItemAddNote'" (click)="AddEnquiryNote()">
-    Save Note
-  </button>
-  <button class="btn button-save" type="submit"  *ngIf="statusCheck == 'EnquiryItemEditNote'" (click)="UpdateEnquiryNote()">
-    Update Note
-  </button>
-</div>

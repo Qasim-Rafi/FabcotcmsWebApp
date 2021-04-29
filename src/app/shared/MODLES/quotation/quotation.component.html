@@ -29,7 +29,8 @@
         <div class="form-group row">
             <label for="countryId" class="col-sm-3 col-form-label">Supplier / Seller</label>
             <div class="col-sm-8">
-                <ng-select placeholder="Select Vendor" name="sellerId" [(ngModel)]="data.sellerId">
+                <ng-select placeholder="Select Vendor" name="sellerId" [(ngModel)]="data.sellerId" #sellerId="ngModel" 
+                  [ngClass]="{ 'error': QuotationForm.submitted && sellerId.invalid }" required >
                     <ng-option *ngFor="let obj of seller" [value]="obj.id"> {{obj.sellerName}}
                     </ng-option>
                 </ng-select>
@@ -41,17 +42,28 @@
             <label for="name" class="col-sm-3 col-form-label ">Price / Rate</label>
 
             <div class="col-md-2">
-                <input type="number" class="form-control" placeholder="Rate" name="rate" [(ngModel)]="data.rate" />
+                <input type="number" class="form-control" placeholder="Rate" name="rate" [(ngModel)]="data.rate" 
+                #rate="ngModel" 
+                [ngClass]="{ 'error': QuotationForm.submitted && rate.invalid }" required
+                />
             </div>
             <div class="col-md-3">
-                <ng-select placeholder="-- Select Currency --" name="currencyId" [(ngModel)]="data.currencyId">
-                    <ng-option *ngFor="let obj of currency" [value]="obj.id">
+                <ng-select placeholder="-- Select Currency --" name="currencyId" [(ngModel)]="data.currencyId"
+                #currencyId="ngModel" 
+                [ngClass]="{ 'error': QuotationForm.submitted && currencyId.invalid }" required
+                >
+                    <ng-option *ngFor="let obj of currency" [value]="obj.id"
+                
+                    >
                         {{obj.code}}
                     </ng-option>
                 </ng-select>
             </div>
             <div class="col-md-3">
-                <ng-select placeholder="-- Select UOM --" name="uomId" [(ngModel)]="data.uomId">
+                <ng-select placeholder="-- Select UOM --" name="uomId" [(ngModel)]="data.uomId"
+                #uomId="ngModel" 
+                [ngClass]="{ 'error': QuotationForm.submitted && uomId.invalid }" required
+                >
                     <ng-option *ngFor="let obj of uom" [value]="obj.id">
                         {{obj.unit}}
                     </ng-option>
@@ -63,7 +75,10 @@
             <label for="name" class="col-sm-3 col-form-label ">Validity</label>
             <div class="col-sm-8">
                 <input type="number" class="form-control" placeholder="Quote Validity Date" name="validity"
-                    [(ngModel)]="data.validity" />
+                    [(ngModel)]="data.validity" 
+                    #validity="ngModel" 
+                    [ngClass]="{ 'error': QuotationForm.submitted && validity.invalid }" required
+                    />
             </div>
         </div>
 
@@ -73,18 +88,18 @@
             <textarea class="col-sm-8 form-control" rows="3" placeholder="Quote Additional Details here..."
                 name="remarks" [(ngModel)]="data.remarks"></textarea>
         </div>
+        <div class="modal-footer NotBG">
+            <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
+                Close
+            </button>
+            <button class="btn button-save" type="submit" 
+                *ngIf="statusCheck == 'addQuotation'" (click)="addQuotation()">
+                Save Quote
+            </button>
+            <button class="btn button-save" type="submit" (click)="UpdateQuotation()"
+                *ngIf="statusCheck == 'editQuotation'">
+                Update Quote
+            </button>
+        </div>
     </form>
-</div>
-<div class="modal-footer NotBG">
-    <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
-        Close
-    </button>
-    <button class="btn button-save" type="submit" [disabled]="QuotationForm.invalid"
-        *ngIf="statusCheck == 'addQuotation'" (click)="addQuotation()">
-        Save Quote
-    </button>
-    <button class="btn button-save" type="submit" [disabled]="QuotationForm.invalid" (click)="UpdateQuotation()"
-        *ngIf="statusCheck == 'editQuotation'">
-        Update Quote
-    </button>
 </div>
