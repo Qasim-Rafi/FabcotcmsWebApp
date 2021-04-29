@@ -44,7 +44,7 @@ Swal.fire({
   if (result.isConfirmed) {
  localStorage.clear();
  localStorage.removeItem('token');
- this.router.navigate(['/login']);
+ this.router.navigate(['']);
 //  location.reload();
   } else if (result.isDenied) {
     

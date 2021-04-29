@@ -24,6 +24,7 @@ invalidLogin: boolean=false;
   ) { }
 
   ngOnInit() {
+    
     // this.loginForm= this.FormBuilder.group({
     //   username:['', Validators.compose([Validators.required])],
     //   password:['',Validators.required]
@@ -51,10 +52,10 @@ invalidLogin: boolean=false;
  }
 
  reload(){
-  // this.router.navigate(['/home']);
+  // this.router.navigate(['home']);
  this.router.routeReuseStrategy.shouldReuseRoute = () => false;
  this.router.onSameUrlNavigation = 'reload';
- this.router.navigate(['/home']);
+ this.router.navigate(['home']);
 
 }
 }
