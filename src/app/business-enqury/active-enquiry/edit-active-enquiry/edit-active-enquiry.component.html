@@ -59,7 +59,7 @@
                     <div class="col-md-6">
                         <dl class="row">
                             <dt class="col-sm-4"> Enquiry Date:</dt>
-                            <dd class="col-sm-8 text_Navy"><i class="far fa-clock"></i> &nbsp; {{enquiryData.enquiryDate}}</dd>
+                            <dd class="col-sm-8 text_Navy"><i class="far fa-clock"></i> &nbsp; {{enquiryData.enquiryDate}} <span class="badge badge-warning">{{enquiryData.enquiryAge}} D</span></dd>
                         </dl>
                     </div>
                 </div>
@@ -70,7 +70,7 @@
                         
                         <dl class="row">
                             <dt class="col-sm-6"> Enquiry Created:</dt>
-                            <dd class="col-sm-6">{{enquiryData.createdByName}}</dd>
+                            <dd class="col-sm-6">{{enquiryData.createdByName}} </dd>
                         
                             <dt class="col-sm-6"> Last Updated:</dt>
                             <dd class="col-sm-6">{{enquiryData.updatedByName}}</dd>
@@ -81,10 +81,10 @@
     
                         <dl class="row">
                             <dt class="col-sm-4"> Created on:</dt>
-                            <dd class="col-sm-8"><i class="far fa-calendar-alt"></i> &nbsp; {{enquiryData.createdDateTime}}</dd>
+                            <dd class="col-sm-8"><i class="far fa-calendar-alt"></i> &nbsp; {{enquiryData.createdDateTime}} <span class="badge badge-primary">{{enquiryData.enquiryAge}} D</span></dd>
                         
                             <dt class="col-sm-4"> Updated on:</dt>
-                            <dd class="col-sm-8"><i class="far fa-calendar-alt"></i> &nbsp; {{enquiryData.updatedDateTime}}</dd>
+                            <dd class="col-sm-8"><i class="far fa-calendar-alt"></i> &nbsp; {{enquiryData.updatedDateTime}}  <span class="badge badge-primary">{{enquiryData.enquiryAge}} D</span></dd>
                         </dl>
                     </div>
                 </div>
