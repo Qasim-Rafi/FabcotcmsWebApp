@@ -245,13 +245,13 @@
                                 role="tab" aria-controls="nav-enquiry" aria-selected="false">Enquiry Remarks </a>
 
                             <a class="nav-item nav-link navlinkpdg mb-1" id="nav-enquiryItems-tab" data-toggle="tab" href="#nav-enquiryItems"
-                                role="tab" aria-controls="nav-enquiryItems" aria-selected="false">Enquiry Items <span class="badge badge-primary">0</span></a>
+                                role="tab" aria-controls="nav-enquiryItems" aria-selected="false">Enquiry Items <span class="badge badge-primary">{{enquiryData.enquiryItemList.length}}</span></a>
 
                                 <a class="nav-item nav-link navlinkpdg mb-1" id="nav-vendor-tab" data-toggle="tab" href="#nav-vendor" role="tab"
                                 aria-controls="nav-vendor" aria-selected="false">Vendor Details</a>
 
                                 <a class="nav-item nav-link navlinkpdg mb-1" id="nav-notes-tab" data-toggle="tab" href="#nav-notes"
-                                role="tab" aria-controls="nav-notes" aria-selected="false">Notes / Activities <span class="badge badge-primary">0</span> </a>
+                                role="tab" aria-controls="nav-notes" aria-selected="false">Notes / Activities <span class="badge badge-primary">{{enquiryData.enquiryNoteList.length}}</span> </a>
                         </div>
                     </nav>
 
@@ -702,7 +702,7 @@
                                 <div class="col-md-3">
                                     <div class="ibox-tools">
                                         <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top"
-                                            title="" data-original-title="Edit" (click)=" addQuotationform('addQuotation' ) ">
+                                            title="" data-original-title="Edit" (click)=" addQuotationform('addQuotation', obj ) ">
                                             <i class="fas fa-paperclip"></i>
                                         </button>
                                         <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top"

@@ -20,12 +20,10 @@
         <div class="form-group row">
             <label for="countryId" class="col-sm-3 col-form-label">Enquiry Item</label>
             <div class="col-sm-8">
-                <ng-select placeholder="-- Select --" name="sellerId" [(ngModel)]="data.enquiryItemId">
-                    <ng-option *ngFor="let obj of enquiryItem" [value]="obj.id">{{obj.description}}
-                    </ng-option>
-                </ng-select>
+                <input class="form-control" type="text" disabled  value="{{EnquiryItemName}}" />
             </div>
         </div>
+
         <div class="form-group row">
             <label for="countryId" class="col-sm-3 col-form-label">Supplier / Seller</label>
             <div class="col-sm-8">
