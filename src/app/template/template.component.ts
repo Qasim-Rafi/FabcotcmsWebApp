@@ -13,6 +13,15 @@ export class TemplateComponent implements OnInit {
   constructor( private router: Router,) { }
 
   ngOnInit(): void {
+    $('li.dropdown.mega-dropdown a').on('click', function (event) {
+      $(this).parent().toggleClass("open");
+  });
+  
+  $('body').on('click', function (e) {
+      if (!$('li.dropdown.mega-dropdown').is(e.target) && $('li.dropdown.mega-dropdown').has(e.target).length === 0 && $('.open').has(e.target).length === 0) {
+          $('li.dropdown.mega-dropdown').removeClass('open');
+      }
+  });
   }
   alert(){
     // Swal.fire({
