@@ -32,7 +32,10 @@ export class GeneralSettingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.localId = localStorage.getItem('GeneralSettingsID')
-    this.getbyid(this.localId);
+    if(this.localId != null){
+      this.getbyid(this.localId);
+
+    }
     // this.getSettings(this.settingsId);
 
   }
@@ -40,7 +43,8 @@ export class GeneralSettingsComponent implements OnInit {
   //   return this._NgbActiveModal;
   // }
   addGeneralSettings() {
-    if (this.localId != '') {
+    let SomeId =localStorage.getItem('GeneralSettingsID')
+    if (SomeId != null) {
       let varr = {
         "systemEmailAddress": this.data.systemEmailAddress,
         "emailFromName": this.data.emailFromName,
@@ -110,7 +114,7 @@ export class GeneralSettingsComponent implements OnInit {
 
           }, err => {
             if (err.status == 400) {
-              this.toastr.error(this.response.message, 'Message.');
+              this.toastr.error(err.error.message, 'Message.');
             }
           });
     }
@@ -135,7 +139,7 @@ export class GeneralSettingsComponent implements OnInit {
 
         }, err => {
           if (err.status == 400) {
-            this.toastr.error(this.response.message, 'Message.');
+            this.toastr.error(err.error.message, 'Message.');
           }
         });
 
