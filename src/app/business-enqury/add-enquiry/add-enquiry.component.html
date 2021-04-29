@@ -89,8 +89,8 @@
                             <label for="inputPassword4">Enquiry Date</label>
                             <!-- <input type="text" class="form-control date" id="enqry-date" value="Fri 26-Mar-2021"> -->
                             <input class="form-control datetimepicker-input" ngbDatepicker #enquiryDate="ngbDatepicker"
-                                [(ngModel)]="data.enquiryDate" name="enquiryDate" (click)="enquiryDate.toggle()"
-                                required>
+                                [(ngModel)]="myDate" name="enquiryDate" (click)="enquiryDate.toggle()"
+                                required >
                         </div>
                     </div>
 
@@ -126,7 +126,7 @@
 
 
                                 <div class="form-group col-md-6">
-                                    <label for="inputEmail3" class="col-form-label control-label">Article Name</label>
+                                    <label for="inputEmail3" class="col-form-label control-label">Article Name<span class="required-denote">*</span></label>
                     
                                     <div class="input-group">
                     
@@ -223,7 +223,7 @@
                             <div class="form-row">
 
                             <div class="form-group col-md-6">
-                                <label for="inputEmail3" class="col-form-label control-label">Process</label>
+                                <label for="inputEmail3" class="col-form-label control-label">Process<span class="required-denote">*</span></label>
                                 
                                     <div class="input-group">
 
@@ -249,7 +249,7 @@
                             </div>
 
                             <div class="form-group col-md-6">
-                                <label for="inputEmail3" class="col-form-label control-label">Process Type</label>
+                                <label for="inputEmail3" class="col-form-label control-label">Process Type<span class="required-denote">*</span></label>
                                 
                                     <div class="input-group">
                                         <ng-select name="processTypeId" #processTypeId="ngModel"  class="input-w px-0" [(ngModel)]="data.processTypeId"
@@ -274,7 +274,7 @@
                             </div>
 
                             <div class="form-group col-md-6">
-                                <label for="inputEmail3" class="col-form-label control-label">Design Type</label>
+                                <label for="inputEmail3" class="col-form-label control-label">Design Type<span class="required-denote">*</span></label>
                                 
                                     <div class="input-group">
                                         <ng-select name="designTypeId " #designTypeId="ngModel"  class="input-w px-0" [(ngModel)]="data.designTypeId"
@@ -301,7 +301,7 @@
                             </div>
 
                             <div class="form-group col-md-6">
-                                <label for="inputEmail3" class="col-form-label control-label">Packaging</label>
+                                <label for="inputEmail3" class="col-form-label control-label">Packaging<span class="required-denote">*</span></label>
                                 
                                     <div class="input-group">
                                         <ng-select name="packagingId " #packagingId="ngModel" class="input-w px-0" [(ngModel)]="data.packagingId"
@@ -337,7 +337,7 @@
                             <div class="form-row">
                             
                                 <div class="form-group col-md-12">
-                                    <label for="inputEmail3" class="col-form-label control-label">Payment Terms</label>
+                                    <label for="inputEmail3" class="col-form-label control-label">Payment Terms<span class="required-denote">*</span></label>
 
                                     
                                         <div class="row">
@@ -377,7 +377,7 @@
                                 </div>
                             
                                 <div class="form-group col-md-12">
-                                    <label for="inputEmail3" class="col-form-label control-label">Price terms</label>
+                                    <label for="inputEmail3" class="col-form-label control-label">Price terms<span class="required-denote">*</span></label>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="input-group">
@@ -426,14 +426,14 @@
                             
                             
                                 <div class="form-group col-md-12">
-                                    <label for="inputEmail3" class="col-form-label control-label">Suppiler Side Commission</label>
+                                    <label for="inputEmail3" class="col-form-label control-label">Suppiler Side Commission<span class="required-denote">*</span></label>
                             
                                     
                                         <div class="row">
                             
                                             <div class="col-md-4">
                                                 <div class="input-group">
-                                                    <input type="text" placeholder="Comm%" #sellerSideCommission="ngModel" class="form-control"
+                                                    <input type="number" placeholder="Comm%" #sellerSideCommission="ngModel" class="form-control"
                                                         [(ngModel)]="data.sellerSideCommission" name="sellerSideCommission" [ngClass]="{ 'error': enquiryForm.submitted && sellerSideCommission.invalid }" required >
                                                     <div class="input-group-append">
                                                         <span class="input-group-text" id="basic-addon2">per</span>
@@ -466,14 +466,14 @@
                                 </div>
                             
                                 <div class="form-group col-md-12">
-                                    <label for="code" class="col-form-label control-label">Buyer Side Commission</label>
+                                    <label for="code" class="col-form-label control-label">Buyer Side Commission<span class="required-denote">*</span></label>
                             
                                     
                                         <div class="row">
                             
                                             <div class="col-md-4">
                                                 <div class="input-group">
-                                                    <input type="text" placeholder="Comm%" #buyerSideCommission="ngModel" class="form-control"
+                                                    <input type="number" placeholder="Comm%" #buyerSideCommission="ngModel" class="form-control"
                                                         [(ngModel)]="data.buyerSideCommission" name="buyerSideCommission"
                                                         [ngClass]="{ 'error': enquiryForm.submitted && buyerSideCommission.invalid }" required>
                                                     <div class="input-group-append">
