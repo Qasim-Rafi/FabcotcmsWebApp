@@ -78,14 +78,15 @@
                         <div class="form-row">
             
                             <div class="form-group col-3 modalBorder">
-                                <input type="text" class="form-control" placeholder="Description" name="description_{{i}}" [(ngModel)]=value.description />
+                                <input type="text" class="form-control" placeholder="Description" name="description_{{i}}"  #description="ngModel" 
+                                 [(ngModel)]=value.description  [ngClass]="{ 'error': EnquiryItemForm.submitted && description.invalid }" required />
                             </div>
                     
                             <div class="form-group col-3 modalBorder">
                                 <div class="row">
                                     <div class="col-lg-4">
-                                        <input type="number" class="form-control" placeholder="Qty" name="itemQuantity_{{i}}"
-                                            [(ngModel)]=value.itemQuantity />
+                                        <input type="number" class="form-control" placeholder="Qty" name="itemQuantity_{{i}}" #itemQuantity="ngModel" 
+                                            [(ngModel)]=value.itemQuantity  [ngClass]="{ 'error': EnquiryItemForm.submitted && itemQuantity.invalid }" required   />
                                     </div>
                                     <div class="col-lg-8 mrg-tsm">
                                         <ng-select [(ngModel)]="value.itemUOMId" placeholder="Select UOM" name="itemUOMId_{{i}}">
@@ -152,13 +153,30 @@
                     </div>
 
                 </div>
-
-                
-
-            
-            </form>
-
+               
             <button class="btn btn-primary float-right mt-3" (click)="addMore()">Add More</button>
+    
+        
+            <div class="modal-footer NotBG">
+                <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
+                    Close
+                </button>
+                <button *ngIf="statusCheck == 'AddEnquiryItem'"  
+                            class="btn button-save" type="submit" (click) = "addEnquiryItem()" >
+                                Save & Next
+                            </button>
+                <button *ngIf="statusCheck == 'AddEnquiryItem'" class="btn button-save" type="submit" (click) = "addEnquiryItem()">
+                    Save & Exit
+                </button>
+                <button *ngIf="statusCheck == 'EditEnquiryItem'" class="btn button-save" type="submit" (click)="updateEnquiry()">
+                    Update Item
+                </button>
+            
+            </div>
+
+            </form>
+       
+
 
         </div>
     </div>
@@ -271,18 +289,5 @@
 </div>
 
 
-<div class="modal-footer NotBG">
-    <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
-        Close
-    </button>
-    <button *ngIf="statusCheck == 'AddEnquiryItem'" class="btn button-save" type="submit" (click)="addEnquiryItem()">
-        Save & Next
-    </button>
-    <button *ngIf="statusCheck == 'AddEnquiryItem'" class="btn button-save" type="submit" (click)="addEnquiryItem()">
-        Save & Exit
-    </button>
-    <button *ngIf="statusCheck == 'EditEnquiryItem'" class="btn button-save" type="submit" (click)="updateEnquiry()">
-        Update Item
-    </button>
 
-</div>
+
