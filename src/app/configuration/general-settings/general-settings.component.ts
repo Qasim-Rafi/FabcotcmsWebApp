@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm,ReactiveFormsModule } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { ServiceService } from 'src/app/shared/service.service';
@@ -12,12 +12,10 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./general-settings.component.css']
 })
 export class GeneralSettingsComponent implements OnInit {
-  @Input() settingsId;
+  // @Input() settingsId;
   data: any = {};
   response: any;
-  rows: any = [];
-  cityFilter: any = [];
-  CityCount: number;
+  // rows: any = [];
   id: any;
   localId: any;
   @ViewChild(NgForm) settingsForm;

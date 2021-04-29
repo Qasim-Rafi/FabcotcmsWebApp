@@ -10,7 +10,8 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./notification-settings.component.css']
 })
 export class NotificationSettingsComponent implements OnInit {
-
+  id: any;
+  localId: any;
   data: any = {};
   response: any;
   @ViewChild(NgForm) notifForm;
@@ -20,20 +21,56 @@ export class NotificationSettingsComponent implements OnInit {
     // private _NgbActiveModal: NgbActiveModal
   ) { }
   ngOnInit(): void {
+    this.localId = localStorage.getItem('NotificationSettingsID')
+    if(this.localId != null){
+      this.getbyid(this.localId);
   }
-
-
-
-  addNotification() {
+}
+addNotification(){
+  let SomeId =localStorage.getItem('NotificationSettingsID')
+    if (SomeId != null) {
     let varr = {
-      "daysCloseUnBilled":this.data.daysclosedunbilled,
-"daysBGpaymentpending":this.data.paymentpending,
-"daysBGPartialPaymentPendingDays": this.data.partialpaymentpending,
-"daysContractWorkingState":this.data.workingstate,
-"daysAgentNotLogin":this.data.agentnotlogin,
-"daysCEOApprovalForVoucher":this.data.approval,
-"daysLeftLCClosureNotDeliver": this.data.closure,
-"notificationDetail": this.data.details
+      "daysCloseUnBilled":this.data.daysCloseUnBilled,
+      "daysBGpaymentpending":this.data.daysBGpaymentpending,
+      "daysBGPartialPaymentPendingDays": this.data.daysBGPartialPaymentPendingDays,
+      "daysContractWorkingState":this.data.daysContractWorkingState,
+      "daysAgentNotLogin":this.data.daysAgentNotLogin,
+      "daysCEOApprovalForVoucher":this.data.daysCEOApprovalForVoucher,
+      "daysLeftLCClosureNotDeliver": this.data.daysLeftLCClosureNotDeliver,
+      "notificationDetail": this.data.notificationDetail
+
+    }
+    this.http.put(`${environment.apiUrl}/api/Configs/UpdateNotificationSetting/` + this.localId, varr)
+      .subscribe(
+        res => {
+          this.response = res;
+          if (this.response.success == true) {
+            this.id = this.response.data;
+            this.toastr.success(this.response.message, 'Message.');
+            this.getbyid(this.id);
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+        });
+
+  }
+  else {
+    let varr = {
+      "daysCloseUnBilled":this.data.daysCloseUnBilled,
+      "daysBGpaymentpending":this.data.daysBGpaymentpending,
+      "daysBGPartialPaymentPendingDays": this.data.daysBGPartialPaymentPendingDays,
+      "daysContractWorkingState":this.data.daysContractWorkingState,
+      "daysAgentNotLogin":this.data.daysAgentNotLogin,
+      "daysCEOApprovalForVoucher":this.data.daysCEOApprovalForVoucher,
+      "daysLeftLCClosureNotDeliver": this.data.daysLeftLCClosureNotDeliver,
+      "notificationDetail": this.data.notificationDetail
+
     }
 
     this.http.
@@ -43,7 +80,13 @@ export class NotificationSettingsComponent implements OnInit {
 
           this.response = res;
           if (this.response.success == true) {
+            this.id = this.response.data;
             this.toastr.success(this.response.message, 'Message.');
+            localStorage.setItem('NotificationSettingsID', this.id);
+            this.getbyid(this.id);
+
+            // this.notifForm.reset();
+            // this.activeModal.close(true);
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
@@ -55,4 +98,30 @@ export class NotificationSettingsComponent implements OnInit {
           }
         });
   }
+}
+// getbyid(id){
+
+// }
+
+
+getbyid(id) {
+
+  this.http.get(`${environment.apiUrl}/api/Configs/GetNotificationSettingById/` + id)
+    .subscribe(
+      res => {
+        this.response = res;
+        if (this.response.success == true) {
+          this.data = this.response.data;
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+
+      }, err => {
+        if (err.status == 400) {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+      });
+
+}
 }
