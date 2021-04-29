@@ -131,14 +131,6 @@ export class EditActiveEnquiryComponent implements OnInit {
 
 
 
-
-
-
-
-
-
-
-
   getEnquiryData(row) {
     this.http.get(`${environment.apiUrl}/api/Enquiries/GetEnquiryById/` + row)
       .subscribe(
@@ -655,11 +647,11 @@ export class EditActiveEnquiryComponent implements OnInit {
   }
 
 
-  editQuotationform(check, obj) {
+  editQuotationform(check, objQuotation , objEnquiry) {
     const modalRef = this.modalService.open(QuotationComponent, { centered: true });
-    modalRef.componentInstance.quotationId = obj.id;
+    modalRef.componentInstance.quotationId = objQuotation.id;
     modalRef.componentInstance.statusCheck = check;
-    modalRef.componentInstance.EnquiryItemName = obj.description;
+    modalRef.componentInstance.EnquiryItemName = objEnquiry.description;
     
     modalRef.result.then((data) => {
       // on close

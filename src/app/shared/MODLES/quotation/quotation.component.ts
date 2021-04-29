@@ -43,10 +43,10 @@ export class QuotationComponent implements OnInit {
     this.GetEnquiryItemDropdown();
     this.GetUOMDropdown();
     this.GetCurrencyDropdown();
-    this.editQuotation();
-    // if (this.statusCheck == 'editQuotation') {
-     
-    // }
+    
+    if (this.statusCheck == 'editQuotation') {
+      this.editQuotation();
+    }
   }
 
   get activeModal() {
