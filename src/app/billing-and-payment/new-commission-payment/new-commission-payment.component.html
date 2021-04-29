@@ -56,26 +56,27 @@
                 <form #commissionForm="ngForm" novalidate>
                     <div class="form-row">
                         <div class="col-md-12 pt-2r pb-3">
-                            <div class="col-md-6">
-                                <div class="form-Group row">
+                            <div class="col-md-12">
+                                <span class="badge badge-primary">Parties</span>
+                                <!-- <div class="form-Group row">
                                     <button class="btn btn-primary float-left">
                                         Parties
                                     </button>
-                                </div>
+                                </div> -->
                             </div>
+
                             <div class="form-group row">
-                                <label class="col-md-2 col-form-label control-label">
+                                <label class="col-md-3 col-form-label control-label">
                                     Supplier Name:
                                 </label>
-                                <div class="col-md-8">
-                                    <div class="input-group">
-
-                                        <ng-select name="supplier" placeholder="--- Select Suppiler ---">
-                                            <ng-option>
-                                                new-Supplier
-                                            </ng-option>
-                                        </ng-select>
-                                    </div>
+                                <div class="col-md-6">
+                                
+                                
+                                    <ng-select name="supplier" placeholder="--- Select Suppiler ---">
+                                        <ng-option>new-Supplier</ng-option>
+                                    </ng-select>
+                                
+                                
                                     <div class="col-md-6">
                                         <small id="passwordHelpBlock" class="form-text text-lightgrey">
                                             Parent Supplier are available for selection
@@ -83,8 +84,10 @@
                                     </div>
                                 </div>
                             </div>
+
+
                             <div class="form-group row">
-                                <label class="col-md-2 col-form-label control-label">
+                                <label class="col-md-3 col-form-label control-label">
                                     Is Buyer Commission
                                 </label>
 
@@ -100,95 +103,92 @@
                         </div>
 
                     </div>
+
+
+
                     <!-- payment Details -->
                     <div class="form-row border-top">
                         <div class="col-md-12 pt-2r pb-3">
-                            <div class="form-group row">
-
-                                <button class="btn btn-primary float-left">
-                                    Payment Details
-                                </button>
-                            </div>
-                            <div class="form-group row">
-                                <label for="inputEmail3" class="col-md-3 col-form-label control-label">Payment
-                                    Date</label>
-                                <div class="col-md-3">
-                                    <div class="input-group">
-                                        <input navigation="select" class="form-control  " ngbDatepicker #validityDate="ngbDatepicker"
-                                        (click)="validityDate.toggle()"  
-                                        name="validityDate" />
-                                    </div>
-                                </div>
-
-                                <div class="col-md-3 mrg-sm1">
-                                    <div class="input-group">
-                                        <label for="inputEmail3" class="col-form-label control-label">
-                                            Pay No.
-
-                                        </label>
-                                        <input type="text" placeholder="   Payment Number  "
-                                            class="form-control text-w-60">
-                                    </div>
-                                </div>
-
+                            
+                            <div class="col-md-12">
+                                <span class="badge badge-primary">Payment Details</span>
                             </div>
 
                         </div>
-
                     </div>
+
+
+                    <div class="form-group row">
+                    
+                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">Payment Date</label>
+                    
+                        <div class="col-md-6">
+                            <div class="row">
+                    
+                    
+                                <div class="col-md-5">
+                                    <div class="input-group">
+                                        <input navigation="select" class="form-control  " ngbDatepicker #validityDate="ngbDatepicker"
+                                            (click)="validityDate.toggle()" name="validityDate" />
+                                    </div>
+                                </div>
+                    
+                                <div class="col-md-7 mrg-sm1">
+                                    <div class="input-group">
+                                        <label for="inputEmail3" class="col-form-label control-label col-md-4">Pay No.</label>
+                    
+                                        <div class="col-md-8">
+                                            <input type="text" placeholder="Payment Number" class="form-control text-w-60">
+                                        </div>
+                                    </div>
+                                </div>
+                    
+                            </div>
+                        </div>
+                    
+                    </div>
+
+
 
                     <!--  amount-->
                     <div class="form-group row">
-                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">
-                            Amount</label>
-                        <div class="col-md-2">
+                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">Amount</label>
+                        <div class="col-md-6">
+                            <div class="row">
+
+                            
+                        <div class="col-md-3">
                             <div class="input-group">
                                 <input type="text" class="form-control text-w-40" value="0">
-
                             </div>
                         </div>
+
                         <div class="col-md-2 mrg-sm1">
                             <ng-select name="supplier" placeholder="">
-                                <ng-option>
-                                PKR
-                                </ng-option>
-                                <ng-option>
-                                    USD
-                                    </ng-option>
-                                    <ng-option>
-                                        EUR
-                                        </ng-option>
-                                        <ng-option>
-                                            GBP
-                                            </ng-option>
+                                <ng-option>PKR</ng-option>
+                                <ng-option>USD</ng-option>
+                                <ng-option>EUR</ng-option>
+                                <ng-option>GBP</ng-option>
                             </ng-select>
                         </div>
 
-                        <div class="col-md-3 mrg-sm1">
+                        <div class="col-md-7 mrg-sm1">
                             <div class="input-group">
-                                <label for="inputEmail3" class="col-form-label control-label">
-                                    Pay Mode
-
-                                </label>
+                                <label for="inputEmail3" class="col-form-label control-label col-md-4">Pay Mode</label>
                                 <div class="col-md-8">
                                     <ng-select name="supplier" placeholder=" Payment Mode">
-                                        <ng-option>
-                                        PO
-                                        </ng-option>
-                                        <ng-option>
-                                            TT
-                                            </ng-option>
-                                            <ng-option>
-                                                Cash
-                                                </ng-option>
-                                                <ng-option>
-                                                    Cheque
-                                                    </ng-option>
-                                        
+                                        <ng-option>PO</ng-option>
+                                        <ng-option>TT</ng-option>
+                                        <ng-option>Cash</ng-option>
+                                        <ng-option>Cheque</ng-option>
+                                
                                     </ng-select>
                                 </div>
                             </div>
                         </div>
+
+                    </div>
+                </div>
 
                     </div>
 
@@ -232,25 +232,29 @@
 
                 <!-- deposited in bank -->
                 <div class="form-group row">
-                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">
-                        Deposited in Bank</label>
-                     
-                             <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" 
-                                        value="" id="flexCheckDefault">
-                                    </div>
-             
-                        <div class="col-md-6 mrg-sm1">
-                            <div class="input-group">
-                                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">
-                                     Bank Deposit Date</label>
-                                        <div class="col-md-8">
-                                            <input navigation="select" class="form-control  " ngbDatepicker #validityDate1="ngbDatepicker"
-                                            (click)="validityDate1.toggle()"  
-                                            name="validityDate1" />
-                                        </div>
+                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Deposited in Bank</label>
+                
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-1">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                </div>
                             </div>
+                
+                            <div class="col-md-11 mrg-sm1">
+                                <div class="input-group">
+                                    <label for="inputEmail3" class="col-md-4 col-form-label control-label col-md-4">
+                                        Bank Deposit Date</label>
+                                    <div class="col-md-8">
+                                        <input navigation="select" class="form-control  " ngbDatepicker #validityDate1="ngbDatepicker"
+                                            (click)="validityDate1.toggle()" name="validityDate1" />
+                                    </div>
+                                </div>
+                            </div>
+                
                         </div>
+                    </div>
                 </div>
                 <!--  Sale invoice -->
                 <div class="form-row border-top">
