@@ -315,6 +315,7 @@ export class EditActiveEnquiryComponent implements OnInit {
       this.response = res;
       if (this.response.success == true) {
         this.vendorSeller = this.response.data;
+        
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -634,17 +635,19 @@ export class EditActiveEnquiryComponent implements OnInit {
 
 
 
-  addQuotationform(check) {
+  addQuotationform(check, obj ) {
     const modalRef = this.modalService.open(QuotationComponent, { centered: true });
     // modalRef.componentInstance.parentBuyerId = popup.id;
     modalRef.componentInstance.statusCheck = check;
     modalRef.componentInstance.enquiryId = this.objEnquiry;
+    modalRef.componentInstance.EnquiryItemId = obj.id;
+    modalRef.componentInstance.EnquiryItemName = obj.description;
 
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
         this.getEnquiryData(this.objEnquiry);
-
+        this.GetVendorSellerDropdown();
       }
     }, (reason) => {
       // on dismiss
@@ -656,12 +659,13 @@ export class EditActiveEnquiryComponent implements OnInit {
     const modalRef = this.modalService.open(QuotationComponent, { centered: true });
     modalRef.componentInstance.quotationId = obj.id;
     modalRef.componentInstance.statusCheck = check;
-
+    modalRef.componentInstance.EnquiryItemName = obj.description;
+    
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
         this.getEnquiryData(this.objEnquiry);
-
+        this.GetVendorSellerDropdown();
       }
     }, (reason) => {
       // on dismiss
