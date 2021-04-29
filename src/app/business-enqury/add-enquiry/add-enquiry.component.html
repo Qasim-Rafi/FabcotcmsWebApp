@@ -88,9 +88,17 @@
                         <div class="form-group col-md-3 offset-md-2 offset-lg-2">
                             <label for="inputPassword4">Enquiry Date</label>
                             <!-- <input type="text" class="form-control date" id="enqry-date" value="Fri 26-Mar-2021"> -->
-                            <input class="form-control datetimepicker-input" ngbDatepicker #enquiryDate="ngbDatepicker"
-                                [(ngModel)]="myDate" name="enquiryDate" (click)="enquiryDate.toggle()"
-                                required >
+                            <div class="input-group date" (clickOutside)="enquiryDatePicker.close()">
+                                <input type="text" class="form-control  datetimepicker-input" (click)="enquiryDatePicker.toggle()"
+                                  placeholder="Date" #enquiryDatePicker="ngbDatepicker" #enquiryDate="ngModel" [(ngModel)]="enquiryDateField"
+                                  name="enquiryDate" ngbDatepicker required
+                                >
+                        
+                                  
+                                <div class="input-group-append" (click)="enquiryDatePicker.toggle()">
+                                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
+                              </div>
                         </div>
                     </div>
 
