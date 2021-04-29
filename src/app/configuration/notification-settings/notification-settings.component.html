@@ -47,93 +47,117 @@
 
                     <div class="form-group row input-group">
                         <label class="col-md-4 col-form-label control-label ">Closed since x days & Un Billed</label>
-                        <div class="col-md-6">                                <div class="input-group mb-2">
-                                    <input type="text" name="daysclosedunbilled" id="daysclosedunbilled" [(ngModel)]="data.daysclosedunbilled" #daysclosedunbilled="ngModel" class=" form-control col-md-4" placeholder="30">
-                                    <div class="input-group-append">
-                                      <span class="input-group-text">Days</span>
-                                    </div>
-                                    </div>
-                          </div>
+                        <div class="col-md-6">
+                            <div class="input-group mb-2">
+                                <input type="number" name="daysCloseUnBilled" id="daysclosedunbilled"
+                                    [(ngModel)]="data.daysCloseUnBilled" #daysCloseUnBilled="ngModel"
+                                    class=" form-control col-md-4" placeholder="30">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">Days</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group row input-group">
-                        <label class="col-md-4 col-form-label control-label ">Bill generated & payment pending since x days</label>
-                        <div class="col-md-6">                                <div class="input-group mb-2">
-                                    <input type="text" name="paymentpending" id="paymentpending" [(ngModel)]="data.paymentpending" #paymentpending="ngModel"  class="form-control col-md-4" placeholder="30">
-                                    <div class="input-group-append">
-                                      <span class="input-group-text">Days</span>
-                                    </div>
-                                    </div>
-                          </div>
+                        <label class="col-md-4 col-form-label control-label ">Bill generated & payment pending since x
+                            days</label>
+                        <div class="col-md-6">
+                            <div class="input-group mb-2">
+                                <input type="number" name="daysBGpaymentpending" id="paymentpending"
+                                    [(ngModel)]="data.daysBGpaymentpending" #daysBGpaymentpending="ngModel"
+                                    class="form-control col-md-4" placeholder="30">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">Days</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group row input-group">
-                        <label class="col-md-4 col-form-label control-label ">Bill generated & partial Payment Pending</label>
-                        <div class="col-md-6">                                <div class="input-group mb-2">
-                                    <input type="text" name="partialpaymentpending" id="partialpaymentpending" [(ngModel)]="data.partialpaymentpending" #partialpaymentpending="ngModel"  class="form-control col-md-4" placeholder="60">
-                                    <div class="input-group-append">
-                                      <span class="input-group-text">Days</span>
-                                    </div>
-                                    </div>
-                          </div>
+                        <label class="col-md-4 col-form-label control-label ">Bill generated & partial Payment
+                            Pending</label>
+                        <div class="col-md-6">
+                            <div class="input-group mb-2">
+                                <input type="number" name="daysBGPartialPaymentPendingDays" id="partialpaymentpending"
+                                    [(ngModel)]="data.daysBGPartialPaymentPendingDays" #daysBGPartialPaymentPendingDays="ngModel"
+                                    class="form-control col-md-4" placeholder="60">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">Days</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group row input-group">
-                        <label class="col-md-4 col-form-label control-label ">Contract is in open and working state</label>
-                        <div class="col-md-6">                                <div class="input-group mb-2">
-                                    <input type="text" name="workingstate" id="workingstate" [(ngModel)]="data.workingstate" #workingstate="ngModel"  class="form-control col-md-4" placeholder="180">
-                                    <div class="input-group-append">
-                                      <span class="input-group-text">Days</span>
-                                    </div>
-                                    </div>
-                          </div>
+                        <label class="col-md-4 col-form-label control-label ">Contract is in open and working
+                            state</label>
+                        <div class="col-md-6">
+                            <div class="input-group mb-2">
+                                <input type="number" name="daysContractWorkingState" id="workingstate" [(ngModel)]="data.daysContractWorkingState"
+                                    #daysContractWorkingState="ngModel" class="form-control col-md-4" placeholder="180">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">Days</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group row input-group">
-                        <label class="col-md-4 col-form-label control-label ">User / Agent Not Login since x days</label>
-                        <div class="col-md-6">                                <div class="input-group mb-2">
-                                    <input type="text" name="agentnotlogin" id="agentnotlogin" [(ngModel)]="data.agentnotlogin" #agentnotlogin="ngModel" class="form-control col-md-4" placeholder="7"/>
-                                    <div class="input-group-append">
-                                      <span class="input-group-text">Days</span>
-                                    </div>
-                                    </div>
-                          </div>
+                        <label class="col-md-4 col-form-label control-label ">User / Agent Not Login since x
+                            days</label>
+                        <div class="col-md-6">
+                            <div class="input-group mb-2">
+                                <input type="number" name="daysAgentNotLogin" id="agentnotlogin"
+                                    [(ngModel)]="data.daysAgentNotLogin" #daysAgentNotLogin="ngModel"
+                                    class="form-control col-md-4" placeholder="7" />
+                                <div class="input-group-append">
+                                    <span class="input-group-text">Days</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    
                     <div class="form-group row input-group">
                         <label class="col-md-4 col-form-label control-label ">Vouchers needs approval from CEO</label>
-                        <div class="col-md-6">                                <div class="input-group mb-2">
-                                    <input type="text" name="approval" id="approval" [(ngModel)]="data.approval" #approval="ngModel" class="form-control col-md-4" placeholder="2">
-                                    <div class="input-group-append">
-                                      <span class="input-group-text">Days</span>
-                                    </div>
-                                    </div>
-                          </div>
+                        <div class="col-md-6">
+                            <div class="input-group mb-2">
+                                <input type="number" name="daysCEOApprovalForVoucher" id="approval" [(ngModel)]="data.daysCEOApprovalForVoucher"
+                                    #daysCEOApprovalForVoucher="ngModel" class="form-control col-md-4" placeholder="2">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">Days</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group row input-group">
-                        <label class="col-md-4 col-form-label control-label ">No of days left for L/C closure & not delivered yet</label>
-                        <div class="col-md-6">                                <div class="input-group mb-2">
-                                    <input type="text" name="closure" id="closure" [(ngModel)]="data.closure" #closure="ngModel" class="form-control col-md-4" placeholder="7">
-                                    <div class="input-group-append">
-                                      <span class="input-group-text">Days</span>
-                                    </div>
-                                    </div>
-                          </div>
+                        <label class="col-md-4 col-form-label control-label ">No of days left for L/C closure & not
+                            delivered yet</label>
+                        <div class="col-md-6">
+                            <div class="input-group mb-2">
+                                <input type="number" name="daysLeftLCClosureNotDeliver" id="closure" [(ngModel)]="data.daysLeftLCClosureNotDeliver"
+                                    #daysLeftLCClosureNotDeliver="ngModel" class="form-control col-md-4" placeholder="7">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">Days</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="col-md-4 col-form-label control-label">Notification Details</label>
                         <div class="col-md-6">
-                            <textarea name="details" id="details" [(ngModel)]="data.details" #details="ngModel" cols="50" rows="4" class="form-control text-w-4"
-                                placeholder=""></textarea>
+                            <textarea name="notificationDetail" id="details" [(ngModel)]="data.notificationDetail" #notificationDetail="ngModel"
+                                cols="50" rows="4" class="form-control text-w-4" placeholder=""></textarea>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-md-4 col-form-label control-label"></div>
                         <div class="col-md-6">
-                            <button class="btn button-save" (click)="addNotification()">Save Settings</button>
+                            <button class="btn button-save" type="submit" (click)="addNotification()">Save Settings</button>
 
                         </div>
                     </div>
 
 
-            </form>
+                </form>
 
             </div>
         </div>
