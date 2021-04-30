@@ -41,7 +41,7 @@ export class EnquiryNotesComponent implements OnInit {
     let varr =
     {
       "enquiryId": this.EnquiryId,
-      "isPublic": this.data.isPublic.toString(),
+      "isPublic": this.data.isPublic,
       "title": this.data.title,
       "description": this.data.description,
       "color": this.data.color,

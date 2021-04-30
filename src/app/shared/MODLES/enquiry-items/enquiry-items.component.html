@@ -148,13 +148,15 @@
                         <div class="form-row form-group modalBorder">
                             <textarea class="form-control" rows="3" name="remarks_{{i}}" placeholder="Remarks"
                                 [(ngModel)]=value.remarks></textarea>
+                               
                         </div>
+                        <button *ngIf="statusCheck != 'EditEnquiryItem'" class="btn btn-primary float-right mt-3" (click)="addMore()">Add More</button>
                         
                     </div>
 
                 </div>
                
-            <button class="btn btn-primary float-right mt-3" (click)="addMore()">Add More</button>
+         
     
         
             <div class="modal-footer NotBG">

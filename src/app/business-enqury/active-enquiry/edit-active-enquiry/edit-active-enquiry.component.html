@@ -49,9 +49,8 @@
                         <dl class="row">
                             <dt class="col-sm-6"> Status:</dt>
                             <dd class="col-sm-6">
-                                <span class="badge badge-primary" *ngIf="enquiryData.active == 'true'">Active</span>
-                                <span class="badge badge-secondary" *ngIf="enquiryData.active== 'false'">Closed</span>
-                                <span class="badge badge-primary">Active</span>
+                                <span class="badge badge-primary" *ngIf="enquiryData.active == true">Active</span>
+                                <span class="badge badge-secondary" *ngIf="enquiryData.active==false">Closed</span>
                             </dd>
                         </dl>
                     </div>
@@ -59,7 +58,7 @@
                     <div class="col-md-6">
                         <dl class="row">
                             <dt class="col-sm-4"> Enquiry Date:</dt>
-                            <dd class="col-sm-8 text_Navy"><i class="far fa-clock"></i> &nbsp; {{enquiryData.enquiryDate}}</dd>
+                            <dd class="col-sm-8 text_Navy"><i class="far fa-clock"></i> &nbsp; {{enquiryData.enquiryDate}} <span class="badge badge-warning">{{enquiryData.enquiryAge}} D</span></dd>
                         </dl>
                     </div>
                 </div>
@@ -70,7 +69,7 @@
                         
                         <dl class="row">
                             <dt class="col-sm-6"> Enquiry Created:</dt>
-                            <dd class="col-sm-6">{{enquiryData.createdByName}}</dd>
+                            <dd class="col-sm-6">{{enquiryData.createdByName}} </dd>
                         
                             <dt class="col-sm-6"> Last Updated:</dt>
                             <dd class="col-sm-6">{{enquiryData.updatedByName}}</dd>
@@ -81,10 +80,10 @@
     
                         <dl class="row">
                             <dt class="col-sm-4"> Created on:</dt>
-                            <dd class="col-sm-8"><i class="far fa-calendar-alt"></i> &nbsp; {{enquiryData.createdDateTime}}</dd>
+                            <dd class="col-sm-8"><i class="far fa-calendar-alt"></i> &nbsp; {{enquiryData.createdDateTime}} <span class="badge badge-primary">{{enquiryData.enquiryAge}} D</span></dd>
                         
                             <dt class="col-sm-4"> Updated on:</dt>
-                            <dd class="col-sm-8"><i class="far fa-calendar-alt"></i> &nbsp; {{enquiryData.updatedDateTime}}</dd>
+                            <dd class="col-sm-8"><i class="far fa-calendar-alt"></i> &nbsp; {{enquiryData.updatedDateTime}}  <span class="badge badge-primary">{{enquiryData.enquiryAge}} D</span></dd>
                         </dl>
                     </div>
                 </div>
@@ -245,13 +244,13 @@
                                 role="tab" aria-controls="nav-enquiry" aria-selected="false">Enquiry Remarks </a>
 
                             <a class="nav-item nav-link navlinkpdg mb-1" id="nav-enquiryItems-tab" data-toggle="tab" href="#nav-enquiryItems"
-                                role="tab" aria-controls="nav-enquiryItems" aria-selected="false">Enquiry Items <span class="badge badge-primary">0</span></a>
+                                role="tab" aria-controls="nav-enquiryItems" aria-selected="false">Enquiry Items <span class="badge badge-primary">{{enquiryData.enquiryItemList.length}}</span></a>
 
                                 <a class="nav-item nav-link navlinkpdg mb-1" id="nav-vendor-tab" data-toggle="tab" href="#nav-vendor" role="tab"
                                 aria-controls="nav-vendor" aria-selected="false">Vendor Details</a>
 
                                 <a class="nav-item nav-link navlinkpdg mb-1" id="nav-notes-tab" data-toggle="tab" href="#nav-notes"
-                                role="tab" aria-controls="nav-notes" aria-selected="false">Notes / Activities <span class="badge badge-primary">0</span> </a>
+                                role="tab" aria-controls="nav-notes" aria-selected="false">Notes / Activities <span class="badge badge-primary">{{enquiryData.enquiryNoteList.length}}</span> </a>
                         </div>
                     </nav>
 
@@ -465,8 +464,8 @@
                                         </div>
                                     </div>
     
-                                    <button class="btn btn-light float-right ml-1" (click)="currencyToggle = !currencyToggle">Close</button>
-                                    <button class="btn btn-primary float-right" (click)="currencyToggle = !currencyToggle"
+                                    <button class="btn btn-light float-right ml-1 btn-sm" (click)="currencyToggle = !currencyToggle">Close</button>
+                                    <button class="btn btn-primary float-right btn-sm" (click)="currencyToggle = !currencyToggle"
                                         (click)=" addEnquiryPaymentDetails()">Save</button>
                                     
     
@@ -520,8 +519,8 @@
                                         </div>
                                     </div>
                             
-                                    <button class="btn btn-light float-right ml-1" (click)="vendorToggle = !vendorToggle">Close</button>
-                                    <button class="btn btn-primary float-right" (click)="addEnquiryVendorDetails(); vendorToggle = !vendorToggle">Save</button>
+                                    <button class="btn btn-light float-right ml-1 btn-sm" (click)="vendorToggle = !vendorToggle">Close</button>
+                                    <button class="btn btn-primary float-right btn-sm" (click)="addEnquiryVendorDetails(); vendorToggle = !vendorToggle">Save</button>
                                     
                                 </div>
                             </div>
@@ -570,8 +569,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <button class="btn btn-light float-right ml-1" (click)="orderToggle = !orderToggle">Close</button>
-                                    <button class="btn btn-primary float-right" (click)="addEnquiryOrderDetails() ; orderToggle = !orderToggle">Save</button>
+                                    <button class="btn btn-light float-right ml-1 btn-sm" (click)="orderToggle = !orderToggle">Close</button>
+                                    <button class="btn btn-primary float-right btn-sm" (click)="addEnquiryOrderDetails() ; orderToggle = !orderToggle">Save</button>
                                     
                                 </div>
                             </div>
@@ -590,7 +589,7 @@
                                     <dd class="col-sm-9">{{enquiryData.enquiryOtherCondition}}</dd>
                                 
                                     <dt class="col-sm-3">Certifications:</dt>
-                                    <dd class="col-sm-9">{{enquiryData.certificateName}}
+                                    <dd class="col-sm-9">{{enquiryData.certificateNames}}
                                         <button class="btn btn-outline-primary float-right btn-sm" (click)="remarksToggle = !remarksToggle">Edit</button>
                                     </dd>
                                 </dl>
@@ -629,7 +628,7 @@
                                         <label for="inputEmail3" class="col-md-3 col-form-label control-label">Certificates</label>
                                         <div class="col-md-6">
                             
-                                            <ng-select [(ngModel)]="enquiryData.certificateId" placeholder="-- Select --" name="certificateId">
+                                            <ng-select [(ngModel)]="enquiryData.certificateIds" placeholder="-- Select --" name="certificateIds">
                                                 <ng-option *ngFor="let i of certificate" [value]="i.id">{{ i.name }}
                                                 </ng-option>
                                             </ng-select>
@@ -637,8 +636,8 @@
                                         </div>
                                     </div>
                             
-                                    <button class="btn btn-light float-right ml-1" (click)="remarksToggle = !remarksToggle">Close</button>
-                                    <button class="btn btn-primary float-right" (click)="addEnquiryRemarks(); remarksToggle = !remarksToggle">Save Info</button>
+                                    <button class="btn btn-light float-right ml-1 btn-sm" (click)="remarksToggle = !remarksToggle">Close</button>
+                                    <button class="btn btn-primary float-right btn-sm" (click)="addEnquiryRemarks(); remarksToggle = !remarksToggle">Save Info</button>
                                     
                                 </div>
                             </div>
@@ -682,27 +681,26 @@
                                     <div class="poc-icon">
                                         <a class="faq-question text-muted text-s-lg text-w-3" data-toggle="collapse" role="button"
                                             href="#enquiryItemList-{{ x }}" aria-expanded="false" aria-controls="collapseExample">
-                                            <span class="fa fa-expand-alt"></span>1</a>
+                                            <span class="fa fa-expand-alt"></span>{{obj.vendorQuotationList.length}}</a>
                                     </div>
                                 </div>
                                 <div class="col-md-7">
                                     <a class="faq-question ">{{obj.description}}</a>
-                                    <div class="small mb-1">Color : Composition : {{ obj.compositionPercentage}}%
-                                        fabName
-                                        | Construction: {{obj.construction}}
+                                    <div class="small mb-1">{{obj.colorName}} Composition : {{ obj.compositionPercentage}}%
+                                        {{obj.compositionFebricTypeName}}
+                                        | {{obj.construction}}
                                         Size: {{obj.size}} </div>
                                     <div class="small">Added by <strong>{{obj.createdByName}} </strong>
                                         <div class="m-l-lg" style="display: inline-block;">
                                             <i class="far fa-clock"></i> Date : {{obj.createdDateTime}}
                                         </div>
-            
                                     </div>
                                 </div>
             
                                 <div class="col-md-3">
                                     <div class="ibox-tools">
                                         <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top"
-                                            title="" data-original-title="Edit" (click)=" addQuotationform('addQuotation' ) ">
+                                            title="" data-original-title="Edit" (click)=" addQuotationform('addQuotation', obj ) ">
                                             <i class="fas fa-paperclip"></i>
                                         </button>
                                         <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top"
@@ -721,8 +719,8 @@
             
                                 <div class="col-md-1 forum-info" data-toggle="tooltip" data-placement="top" title=""
                                     style="border-left: 1px solid #d0d0d0" data-original-title="Total Contracts">
-                                    <span class="views-number">1</span>
-                                    <div><small>Sets</small></div>
+                                    <span class="views-number">{{obj.itemQuantity}}</span>
+                                    <div><small>{{obj.itemUOMName}}</small></div>
                                 </div>
             
                                 <!-- ----------------End Of Row-------------------- -->
@@ -745,7 +743,7 @@
                                             </div>
                                             <div class="col-md-2 border ">
                                                 <button type="button" class="btn editIconBack"
-                                                    (click)="editQuotationform('editQuotation' , quote)">
+                                                    (click)="editQuotationform('editQuotation' , quote, obj)">
                                                     <i class="far fa-edit"></i>
                                                 </button>
                                                 <button type="button" class="btn deleteIconBack" (click)=" deleteQuotation(quote)">
@@ -805,61 +803,30 @@
                                 </div>
                             </div>
                         
-                        
-                        
-                            <div class="text-center pt-3">
-                                <!-- <div class="row" *ngFor="let note of enquiryData.enquiryNoteList ">
-                                    <div class="col-md-2 border p-2 ">id:{{note.id}}</div>
-                                    <div class="col-md-2 border p-2">title: {{note.title}}</div>
-                                    <div class="col-md-2 border p-2">description: {{note.description}}</div>
-                                    <div class="col-md-2 border p-2">remarks: {{note.remarks}}</div>
-                                    <div class="col-md-2 border p-2">
-                                        <div class="badge badge-primary" *ngIf="note.active == true">Active</div>
-                                        <div class="badge badge-secondary" *ngIf="note.active == false">Inactive</div>
-                                    </div>
-                                    <div class="col-md-2 border ">
-                                        <button type="button" class="btn editIconBack"
-                                            (click)="editNoteform('EnquiryItemEditNote', note , objEnquiry)">
-                                            <i class="far fa-edit"></i>
-                                        </button>
-                                        <button type="button" class="btn deleteIconBack" (click)="deleteNote(note)">
-                                            <i class="far fa-trash-alt"></i>
-                                        </button>
-                                    </div>
-                                </div> -->
 
-                                <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'"
-                                  [rowHeight]="'auto'"
-                                [limit]="6">
-                        
-                        
-                                <!-- <ngx-datatable-column name="S. No." [width]="5" prop="">
-                                  <ng-template let-rowIndex="rowIndex" let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                    {{rowIndex + 1}}
-                        
-                                  </ng-template>
-                                </ngx-datatable-column> -->
+                                <ngx-datatable #myTable class="bootstrap mt-5" [columns]="columns" [rows]="rows" [columnMode]="'force'"
+                                [headerHeight]="10" [footerHeight]="50"  [rowHeight]="'auto'" [limit]="6">  
 
-                                <ngx-datatable-column name="User" [width]="10" prop="">
+                                <ngx-datatable-column name="User" [width]="5" prop="created">
                                   <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                                     {{row.createdByName}}
                         
                                   </ng-template>
                                 </ngx-datatable-column>
-                        
-                                <ngx-datatable-column name="Time" [width]="2" prop="code">
-                                  <ng-template let-row="row" ngx-datatable-cell-template>
-                                    {{row.createdDateTime}}
-                                  </ng-template>
-                                </ngx-datatable-column>
-                        
-                                <ngx-datatable-column name="Note Details" [width]="3" prop="name">
+                              
+                                <ngx-datatable-column name="Time" [width]="5" prop="code">
+                                    <ng-template let-row="row" ngx-datatable-cell-template>
+                                      {{row.createdDateTime}}
+                                    </ng-template>
+                                  </ngx-datatable-column>
+
+                                <ngx-datatable-column name="Note Details" [width]="5" prop="description">
                                   <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                                     {{row.description}}
                                   </ng-template>
                                 </ngx-datatable-column>
                         
-                                <ngx-datatable-column name="" [width]="4">
+                                <ngx-datatable-column name="" [width]="5">
                                   <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                         
                                     <div class="ibox-tools text-center">
@@ -881,7 +848,7 @@
                               </ngx-datatable>
 
 
-                            </div>
+                            
 
                             <!-- <div class="row py-3">
                                 <div class="col-md-8">
@@ -1023,8 +990,9 @@
                     <span class="ml-2 text-small "> Enquiry Archived </span>
         
                 </button>
-                <button class="btn btn-primary btn-block btn-lg text-center ">
-        
+                <button class="btn btn-primary btn-block btn-lg text-center "
+                *ngIf=" enquiryData.sellerId != null &&  enquiryData.confirmationDate != '' ">
+
                     <i class="fas fa-file-archive fa-md"></i>
                     <span class="ml-2 text-small "> Create Contract </span>
                 </button>

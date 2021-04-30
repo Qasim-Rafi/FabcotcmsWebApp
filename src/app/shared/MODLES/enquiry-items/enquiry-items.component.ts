@@ -170,24 +170,24 @@ export class EnquiryItemsComponent implements OnInit {
 
 
   updateEnquiry() {
-    let varr = {
-      "enquiryId": this.data.enquiryId,
-      "description": this.data.description,
-      "itemQuantity": this.data.itemQuantity,
-      "itemUOMId": this.data.itemUOMId,
-      "compositionPercentage": this.data.compositionPercentage,
-      "compositionFebricTypeId": this.data.compositionFebricTypeId,
-      "compositionAdditionalInfo": this.data.compositionAdditionalInfo,
-      "construction": this.data.construction,
-      "colorId": this.data.colorId,
-      "weight": this.data.weight,
-      "loomTypeId": this.data.loomTypeId,
-      "size": this.data.size,
-      "remarks": this.data.remarks,
-    }
+    // let varr = {
+    //   "enquiryId": this.data.enquiryId,
+    //   "description": this.data.description,
+    //   "itemQuantity": this.data.itemQuantity,
+    //   "itemUOMId": this.data.itemUOMId,
+    //   "compositionPercentage": this.data.compositionPercentage,
+    //   "compositionFebricTypeId": this.data.compositionFebricTypeId,
+    //   "compositionAdditionalInfo": this.data.compositionAdditionalInfo,
+    //   "construction": this.data.construction,
+    //   "colorId": this.data.colorId,
+    //   "weight": this.data.weight,
+    //   "loomTypeId": this.data.loomTypeId,
+    //   "size": this.data.size,
+    //   "remarks": this.data.remarks,
+    // }
 
     this.http.
-      put(`${environment.apiUrl}/api/Enquiries/UpdateEnquiryItem/` + this.EnquiryItemId, varr)
+      put(`${environment.apiUrl}/api/Enquiries/UpdateEnquiryItem/` + this.EnquiryItemId, this.data)
       .subscribe(
         res => {
 

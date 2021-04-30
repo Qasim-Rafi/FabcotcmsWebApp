@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { AddEnquiryComponent } from './add-enquiry/add-enquiry.component';
 import { ActiveEnquiryComponent } from './active-enquiry/active-enquiry.component';
 import { SearchEnquiryComponent } from './search-enquiry/search-enquiry.component';
@@ -46,6 +46,10 @@ import { NgSelectModule } from '@ng-select/ng-select';
     ConfirmationPopoverModule.forRoot({
       confirmButtonType: 'danger', // set defaults here
     }),
+  ],
+  providers: [
+    DatePipe
+
   ]
 })
 export class BusinessEnquryModule { }

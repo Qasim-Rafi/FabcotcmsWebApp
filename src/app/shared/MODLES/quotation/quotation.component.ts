@@ -22,6 +22,7 @@ export class QuotationComponent implements OnInit {
   currency: any = [];
   uom: any = [];
   @Input() EnquiryItemId;
+  @Input() EnquiryItemName;
   @Input() quotationId;
   @Input() enquiryId;
 
@@ -42,7 +43,10 @@ export class QuotationComponent implements OnInit {
     this.GetEnquiryItemDropdown();
     this.GetUOMDropdown();
     this.GetCurrencyDropdown();
-    this.editQuotation();
+    
+    if (this.statusCheck == 'editQuotation') {
+      this.editQuotation();
+    }
   }
 
   get activeModal() {
@@ -103,7 +107,7 @@ export class QuotationComponent implements OnInit {
   addQuotation() {
     let varr =
     {
-      "enquiryItemId": this.data.enquiryItemId,
+      "enquiryItemId": this.EnquiryItemId,
       "sellerId": this.data.sellerId,
       "rate": this.data.rate,
       "currencyId": this.data.currencyId,
