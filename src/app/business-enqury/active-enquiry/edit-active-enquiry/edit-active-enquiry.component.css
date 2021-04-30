@@ -193,3 +193,10 @@ dt {
 .dataTables_length {
   float: left;
 }
+
+
+@media only screen and (max-width: 1280px) {
+  .navlinkpdg{
+    padding: 0.5rem 8px !important;
+  }
+}
