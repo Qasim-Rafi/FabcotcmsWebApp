@@ -26,7 +26,7 @@
         <div class="topbox-1">
           <div class="topbox-margin-top-text"> Contract Active</div>
           <div class="topbox-margin-mid-text">
-            116
+            {{rows.openCount}}
           </div>
           <div class="topbox-margin-end-text">Contract currently in process</div>
           <!-- /.info-box-content -->
@@ -40,7 +40,7 @@
           <div class="topbox-margin-top-text"> Contract On-Hold</div>
 
           <div class="topbox-margin-mid-text">
-            0
+           {{rows.onHoldCount}}
           </div>
           <div class="topbox-margin-end-text">Contract currently On-hold</div>
           <!-- /.info-box-content -->
@@ -54,7 +54,7 @@
           <div class="topbox-margin-top-text"> Contract Closed</div>
 
           <div class="topbox-margin-mid-text">
-            1
+            {{rows.closedCount}}
           </div>
           <div class="topbox-margin-end-text">Contract closed with no success</div>
           <!-- /.info-box-content -->
@@ -68,7 +68,7 @@
           <div class="topbox-margin-top-text"> Contract Done</div>
 
           <div class="topbox-margin-mid-text">
-            0
+           {{rows.doneCount}}
           </div>
           <div class="topbox-margin-end-text">Contract Successfully done & closed</div>
           <!-- /.info-box-content -->
@@ -89,7 +89,7 @@
           <div class="midbox-top-text"><b> Active Enquries</b></div>
 
           <div class=" midbox-mid-text-1 ">
-            2
+            {{rows2.activeEnquiryCount}}
           </div>
           <div class="midbox-end-text">Business Enquiries for Custmers</div>
           <!-- /.info-box-content -->
@@ -105,7 +105,7 @@
           <div class="midbox-top-text "><b> User Login</b></div>
 
           <div class=" midbox-mid-text-2">
-            4
+       {{rows2.activeUsersCount}}
           </div>
           <div class="midbox-end-text">User currently active in system</div>
           <!-- /.info-box-content -->
@@ -119,7 +119,7 @@
           <div class="midbox-top-text"><b> Billed Amount</b></div>
 
           <div class=" midbox-mid-text-3 ">
-            0
+            {{rows2.billedAmount}}
           </div>
           <div class="midbox-end-text">Total Billed Amount</div>
           <!-- /.info-box-content -->
@@ -133,7 +133,7 @@
           <div class="midbox-top-text "><b> Received Amount</b></div>
 
           <div class=" midbox-mid-text-4 ">
-            0
+            {{rows2.receivedAmount}}
           </div>
           <div class="midbox-end-text">Total Received Amount </div>
           <!-- /.info-box-content -->
