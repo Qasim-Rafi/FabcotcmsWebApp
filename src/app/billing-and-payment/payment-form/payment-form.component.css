@@ -1,0 +1,23 @@
+.input-wdt{
+    width: 95% !important;
+}
+
+@media only screen and (max-width: 1366px), (max-width: 1440px) {
+    .input-wdt{
+        width: 92% !important;
+    }
+    
+  }
+
+  @media only screen and (max-width: 1280px) {
+    .input-wdt{
+        width: 91% !important;
+    }
+    
+  }
+  @media only screen and (max-width: 1024px) {
+    .input-wdt{
+        width: 87% !important;
+    }
+    
+  }
