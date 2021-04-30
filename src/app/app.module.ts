@@ -47,6 +47,7 @@ import { BusinessEnquryRoutingModule } from './business-enqury/business-enqury-r
 import { ItemsComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/items/items.component';
 import { CloudDocumentationComponent } from './cloud-documentation/cloud-documentations.component';
 import { LayoutComponent } from './template/layout/layout.omponent';
+import { ColorPickerModule } from 'ngx-color-picker';
 
 
 
@@ -119,6 +120,7 @@ const appRoutes: Routes = []
     BusinessEnquryRoutingModule,
     BusinessEnquryModule,
     RouterModule,
+    ColorPickerModule,
     RouterModule.forRoot(appRoutes),
     ToastrModule.forRoot({
       progressBar: true,

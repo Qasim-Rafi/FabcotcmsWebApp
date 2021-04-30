@@ -686,8 +686,8 @@
                                 </div>
                                 <div class="col-md-7">
                                     <a class="faq-question ">{{obj.description}}</a>
-                                    <div class="small mb-1">{{obj.colorName}} Composition : {{ obj.compositionPercentage}}%
-                                        {{obj.compositionFebricTypeName}}
+                                    <div class="small mb-1"><span class="text_Navy">{{obj.colorName}}</span> {{ obj.compositionPercentage}}%
+                                        {{obj.compositionFebricTypeName}} {{obj.compositionAdditionalInfo}}
                                         | {{obj.construction}}
                                         Size: {{obj.size}} </div>
                                     <div class="small">Added by <strong>{{obj.createdByName}} </strong>
@@ -733,7 +733,7 @@
                                         <h2>Vendor Quotes</h2>
             
                                         <div class="row text-center pt-3" *ngFor="let quote of obj.vendorQuotationList ">
-                                            <div class="col-md-2 border p-2 ">id:{{quote.id}}</div>
+                                            <div class="col-md-2 border p-2">id:{{quote.id}}</div>
                                             <div class="col-md-2 border p-2">sellerId: {{quote.sellerId}}</div>
                                             <div class="col-md-2 border p-2">currencyId: {{quote.currencyId}}</div>
                                             <div class="col-md-2 border p-2">remarks: {{quote.remarks}}</div>
@@ -751,6 +751,73 @@
                                                 </button>
                                             </div>
                                         </div>
+
+
+
+                                        <!-- <ngx-datatable #myTable class="bootstrap mt-5" [columns]="columns" [rows]="rows" [columnMode]="'force'"
+                                        [headerHeight]="10" [footerHeight]="50"  [rowHeight]="'auto'" [limit]="6">  
+        
+                                        <ngx-datatable-column name="S.No." [width]="5" prop="created">
+                                          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                          
+                                
+                                          </ng-template>
+                                        </ngx-datatable-column>
+                                      
+                                        <ngx-datatable-column name="Vendor" [width]="5" prop="code">
+                                            <ng-template let-row="row" ngx-datatable-cell-template>
+                                              {{row.sellerName}}
+                                            </ng-template>
+                                          </ngx-datatable-column>
+        
+                                        <ngx-datatable-column name="Certificate" [width]="5" prop="description">
+                                          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                            {{row.description}}
+                                          </ng-template>
+                                        </ngx-datatable-column>
+                                        
+                                        <ngx-datatable-column name="Price" [width]="5" prop="description">
+                                          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                            {{row.description}}
+                                          </ng-template>
+                                        </ngx-datatable-column>
+                                       
+                                        <ngx-datatable-column name="Validity" [width]="5" prop="description">
+                                          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                            {{row.validity}} days
+                                          </ng-template>
+                                        </ngx-datatable-column>
+                                       
+                                        <ngx-datatable-column name="Date" [width]="5" prop="description">
+                                          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                            {{row.createdDateTime}}
+                                          </ng-template>
+                                        </ngx-datatable-column>
+                                
+                                        <ngx-datatable-column name="Action" [width]="5">
+                                          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                
+                                            <div class="ibox-tools text-center">
+                                
+                                                <button type="button" class="btn editIconBack"
+                                                    (click)="editQuotationform('editQuotation' , row, obj)">
+                                                    <i class="far fa-edit"></i>
+                                                </button>
+                                                <button type="button" class="btn deleteIconBack" (click)=" deleteQuotation(row)">
+                                                    <i class="far fa-trash-alt"></i>
+                                                </button>
+                                
+                                            </div>
+                                
+            
+                                          </ng-template>
+                                        </ngx-datatable-column>
+                                
+                                      </ngx-datatable> -->
+
+
+
+
                                     </div>
                                 </div>
                                 <!----------------------------------------------------------------------------->
@@ -780,9 +847,9 @@
                                         </button>
                                         &nbsp; Entries
                                         <div class="dropdown-menu dropdown-menueqry" aria-labelledby="dropdownMenuButton">
-                                            <a class="dropdown-item" href="#">25</a>
-                                            <a class="dropdown-item" href="#">50</a>
-                                            <a class="dropdown-item" href="#">100</a>
+                                            <a class="dropdown-item" >25</a>
+                                            <a class="dropdown-item" >50</a>
+                                            <a class="dropdown-item" >100</a>
                                         </div>
                                     </div>
                                 </div>
