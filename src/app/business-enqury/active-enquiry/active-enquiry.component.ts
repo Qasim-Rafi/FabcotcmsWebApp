@@ -144,7 +144,44 @@ export class ActiveEnquiryComponent implements OnInit {
     })
 
   }
+  cloneEnquiry(obj){
 
+    let varr = {
+  
+      "enquiryId": obj.id,
+      "autoEnquiryNumber":obj.autoEnquiryNumber,
+      "enquiryDate": obj.enquiryDate,
+      "buyerName": obj.buyerName,
+      "articleName" : obj.articleName,
+      "paymentTermName":obj.paymentTermName,
+      "priceTermName":obj.priceTermName
+    
+    }
+     this.http.put(`${environment.apiUrl}/api/Enquiries/CloneEnquiry/`+obj.id , varr )
+          .subscribe(
+            res => {
+    
+              this.response = res;
+              if (this.response.success == true) {
+                this.data = this.response.data;
+                this.temp = [this.data];
+              this.toastr.success(this.response.message, 'Message.');
+              this.fetch((data) => {
+                this.rows = data;
+                 });
+               }
+              else {
+                this.toastr.error(this.response.message, 'Message.');
+              }
+    
+            }, err => {
+              if (err.status == 400) {
+                this.toastr.error(this.response.message, 'Message.');
+              }
+            });
+  
+  
+  }
   enquiryPdf() {
 
     let docDefinition = {
