@@ -18,16 +18,8 @@ export class EnquiryNotesComponent implements OnInit {
   data: any = {};
   response: any;
 
-  public arrayColors: any = {
-    color1: '#000000',
-    color2: '#a0a0a0',
-    color3: '#1ab394',
-    color4: '#ed5565',
-    color5: '#1c84c6',
-    color6: '#f8ac59',
-    color7: '#23c6c8',
-  };
-   selectedColor = this.data.color;
+
+  //  selectedColor = this.data.color;
 
   constructor(
     private _NgbActiveModal: NgbActiveModal,
@@ -37,10 +29,6 @@ export class EnquiryNotesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
-
-    console.log(this.selectedColor);
-
     this.EditEnquiryNote(this.NoteId);
   }
 
@@ -51,7 +39,7 @@ export class EnquiryNotesComponent implements OnInit {
 
 
   AddEnquiryNote() {
-    this.data.color = this.selectedColor;
+    // this.data.color = this.selectedColor;
     let varr =
     {
       "enquiryId": this.EnquiryId,
@@ -59,6 +47,7 @@ export class EnquiryNotesComponent implements OnInit {
       "title": this.data.title,
       "description": this.data.description,
       "color": this.data.color,
+      "flag": this.data.flag,
     }
 
     this.http.
@@ -114,6 +103,7 @@ export class EnquiryNotesComponent implements OnInit {
       "title": this.data.title,
       "description": this.data.description,
       "color": this.data.color,
+      "flag": this.data.flag,
     }
 
     this.http.

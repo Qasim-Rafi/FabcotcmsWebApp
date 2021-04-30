@@ -677,9 +677,14 @@
                             </div>
                             
                             <div class="row py-3" *ngFor="let obj of enquiryData.enquiryItemList ; let x = index">
+
+                                <div class="col-md-12">
+                                    <div class="row">
+
+                                    
                                 <div class="col-md-1 col-sm-3 col-xs-3 forum-info" data-original-title="POCs">
                                     <div class="poc-icon">
-                                        <a class="faq-question text-muted text-s-lg text-w-3" data-toggle="collapse" role="button"
+                                        <a (click)="fetch2(obj)" class="faq-question text-muted text-s-lg text-w-3" data-toggle="collapse" role="button"
                                             href="#enquiryItemList-{{ x }}" aria-expanded="false" aria-controls="collapseExample">
                                             <span class="fa fa-expand-alt"></span>{{obj.vendorQuotationList.length}}</a>
                                     </div>
@@ -722,104 +727,85 @@
                                     <span class="views-number">{{obj.itemQuantity}}</span>
                                     <div><small>{{obj.itemUOMName}}</small></div>
                                 </div>
+
+                            </div>
+                        </div>
             
                                 <!-- ----------------End Of Row-------------------- -->
-            
-                                <div class="collapse" id="enquiryItemList-{{ x }}">
-                                    <div class="card-body mt-4 BG">
-                                        <div class="row">
-                                        </div>
-            
-                                        <h2>Vendor Quotes</h2>
-            
-                                        <div class="row text-center pt-3" *ngFor="let quote of obj.vendorQuotationList ">
-                                            <div class="col-md-2 border p-2">id:{{quote.id}}</div>
-                                            <div class="col-md-2 border p-2">sellerId: {{quote.sellerId}}</div>
-                                            <div class="col-md-2 border p-2">currencyId: {{quote.currencyId}}</div>
-                                            <div class="col-md-2 border p-2">remarks: {{quote.remarks}}</div>
-                                            <div class="col-md-2 border p-2">
-                                                <div class="badge badge-primary" *ngIf="quote.active == true">Active</div>
-                                                <div class="badge badge-secondary" *ngIf="quote.active == false">Inactive</div>
-                                            </div>
-                                            <div class="col-md-2 border ">
-                                                <button type="button" class="btn editIconBack"
-                                                    (click)="editQuotationform('editQuotation' , quote, obj)">
-                                                    <i class="far fa-edit"></i>
-                                                </button>
-                                                <button type="button" class="btn deleteIconBack" (click)=" deleteQuotation(quote)">
-                                                    <i class="far fa-trash-alt"></i>
-                                                </button>
-                                            </div>
-                                        </div>
 
-
-
-                                        <!-- <ngx-datatable #myTable class="bootstrap mt-5" [columns]="columns" [rows]="rows" [columnMode]="'force'"
-                                        [headerHeight]="10" [footerHeight]="50"  [rowHeight]="'auto'" [limit]="6">  
-        
-                                        <ngx-datatable-column name="S.No." [width]="5" prop="created">
-                                          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                          
                                 
-                                          </ng-template>
-                                        </ngx-datatable-column>
-                                      
-                                        <ngx-datatable-column name="Vendor" [width]="5" prop="code">
-                                            <ng-template let-row="row" ngx-datatable-cell-template>
-                                              {{row.sellerName}}
-                                            </ng-template>
-                                          </ngx-datatable-column>
+                                    <div class="col-md-12">
+
+                                        <div class="collapse" id="enquiryItemList-{{ x }}">
+                                            <div class="card-body mt-4 ">
+                                                <h2>Vendor Quotes</h2>
+                                            </div>
         
-                                        <ngx-datatable-column name="Certificate" [width]="5" prop="description">
-                                          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                            {{row.description}}
-                                          </ng-template>
-                                        </ngx-datatable-column>
+                                                <ngx-datatable #myTable class="bootstrap mt-5" [columns]="columns" [rows]="rows" [columnMode]="'force'"
+                                                [headerHeight]="10" [footerHeight]="50"  [rowHeight]="'auto'" [limit]="6">  
+                
+                                                <ngx-datatable-column name="S.No." [width]="0">
+                                                  <ng-template let-rowIndex="rowIndex" let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                                    {{rowIndex + 1}}
+                                                  </ng-template>
+                                                </ngx-datatable-column>
+                                              
+                                                <ngx-datatable-column name="Vendor" [width]="5">
+                                                    <ng-template let-row="row" ngx-datatable-cell-template>
+                                                      {{row.sellerName}}
+                                                    </ng-template>
+                                                  </ngx-datatable-column>
+                
+                                                <ngx-datatable-column name="Certificate" [width]="5" >
+                                                  <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                                    {{row.certificates}}
+                                                  </ng-template>
+                                                </ngx-datatable-column>
+                                                
+                                                <ngx-datatable-column name="Price" [width]="5" >
+                                                  <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                                    {{row.currencyName}} {{row.rate}}/{{row.uomName}}
+                                                  </ng-template>
+                                                </ngx-datatable-column>
+                                               
+                                                <ngx-datatable-column name="Validity" [width]="5" >
+                                                  <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                                    {{row.validity}} days
+                                                  </ng-template>
+                                                </ngx-datatable-column>
+                                               
+                                                <ngx-datatable-column name="Date" [width]="10" >
+                                                  <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                                    {{row.createdDateTime}}
+                                                  </ng-template>
+                                                </ngx-datatable-column>
                                         
-                                        <ngx-datatable-column name="Price" [width]="5" prop="description">
-                                          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                            {{row.description}}
-                                          </ng-template>
-                                        </ngx-datatable-column>
-                                       
-                                        <ngx-datatable-column name="Validity" [width]="5" prop="description">
-                                          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                            {{row.validity}} days
-                                          </ng-template>
-                                        </ngx-datatable-column>
-                                       
-                                        <ngx-datatable-column name="Date" [width]="5" prop="description">
-                                          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                            {{row.createdDateTime}}
-                                          </ng-template>
-                                        </ngx-datatable-column>
-                                
-                                        <ngx-datatable-column name="Action" [width]="5">
-                                          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                
-                                            <div class="ibox-tools text-center">
-                                
-                                                <button type="button" class="btn editIconBack"
-                                                    (click)="editQuotationform('editQuotation' , row, obj)">
-                                                    <i class="far fa-edit"></i>
-                                                </button>
-                                                <button type="button" class="btn deleteIconBack" (click)=" deleteQuotation(row)">
-                                                    <i class="far fa-trash-alt"></i>
-                                                </button>
-                                
-                                            </div>
-                                
-            
-                                          </ng-template>
-                                        </ngx-datatable-column>
-                                
-                                      </ngx-datatable> -->
-
-
-
+                                                <ngx-datatable-column name="Action" [width]="5">
+                                                  <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                                    <div class="ibox-tools text-center">
+                                                        <button type="button" class="btn editIconBack"
+                                                            (click)="editQuotationform('editQuotation' , row, obj)">
+                                                            <i class="far fa-edit"></i>
+                                                        </button>
+                                                        <button type="button" class="btn deleteIconBack" (click)=" deleteQuotation(row)">
+                                                            <i class="far fa-trash-alt"></i>
+                                                        </button>
+                                                    </div>
+                                                  </ng-template>
+                                                </ngx-datatable-column>
+                                              </ngx-datatable>
+        
+        
+        
+        
+                                          
+                                        </div>
+                                        
 
                                     </div>
-                                </div>
+                                
+            
+                                
                                 <!----------------------------------------------------------------------------->
                             </div>
     
@@ -874,20 +860,20 @@
                                 <ngx-datatable #myTable class="bootstrap mt-5" [columns]="columns" [rows]="rows" [columnMode]="'force'"
                                 [headerHeight]="10" [footerHeight]="50"  [rowHeight]="'auto'" [limit]="6">  
 
-                                <ngx-datatable-column name="User" [width]="5" prop="created">
+                                <ngx-datatable-column name="User" [width]="5">
                                   <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                                     {{row.createdByName}}
                         
                                   </ng-template>
                                 </ngx-datatable-column>
                               
-                                <ngx-datatable-column name="Time" [width]="5" prop="code">
+                                <ngx-datatable-column name="Time" [width]="5">
                                     <ng-template let-row="row" ngx-datatable-cell-template>
                                       {{row.createdDateTime}}
                                     </ng-template>
                                   </ngx-datatable-column>
 
-                                <ngx-datatable-column name="Note Details" [width]="5" prop="description">
+                                <ngx-datatable-column name="Note Details" [width]="5" >
                                   <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                                     {{row.description}}
                                   </ng-template>
@@ -915,14 +901,6 @@
                               </ngx-datatable>
 
 
-                            
-
-                            <!-- <div class="row py-3">
-                                <div class="col-md-8">
-                                    <p>Showing 0 to 0 of 0 entries</p>
-                                </div>
-                            </div> -->
-                     
                         </div>
 
                     </div>
