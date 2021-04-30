@@ -93,7 +93,33 @@ export class ActiveEnquiryComponent implements OnInit {
   }
 
 
+  copyRecord(value){
 
+    this.http
+      .put(`${environment.apiUrl}/api/Enquiries/CloneEnquiry/`+value.id,{})
+      .subscribe(res => {
+        this.response = res;
+        // this.listCount = this.response.data.length;
+
+        if (this.response.success == true) {
+          this.fetch((data) => {
+            this.rows = data;
+          });
+      
+     
+    
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+        // this.spinner.hide();
+      }, err => {
+        if (err.status == 400) {
+          this.toastr.error(err.error.message, 'Message.');;
+        }
+        //  this.spinner.hide();
+      });
+  }
 
 
 
