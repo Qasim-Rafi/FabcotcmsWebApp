@@ -55,7 +55,9 @@
                         <label class="col-md-3 col-form-label control-label">System Email Address</label>
                         <div class="col-md-6">
                             <input required type="email" name="systemEmailAddress" cols="50" rows="2" class="form-control text-w-4"
-                            [(ngModel)]="data.systemEmailAddress" #email="ngModel"
+                            [(ngModel)]="data.systemEmailAddress" #systemEmailAddress="ngModel"
+
+                            
                                 placeholder="Email address of system..." />
                         </div>
                     </div>
@@ -73,7 +75,7 @@
                     <div class="form-group row">
                         <label class="col-md-3 col-form-label control-label">Before L/C Reminder Days</label>
                         <div class="col-md-6">
-                            <input name="beforeLCReminderDays" id="reminderdays" cols="50" rows="2" class="form-control text-w-4"
+                            <input type="number" name="beforeLCReminderDays" id="reminderdays" cols="50" rows="2" class="form-control text-w-4"
                             [(ngModel)]="data.beforeLCReminderDays" #beforeLCReminderDays="ngModel"
                                 placeholder="0" />
                         </div>
@@ -130,7 +132,7 @@
                     <div class="form-group row">
                         <label class="col-md-3 col-form-label control-label">Deptt Email Address</label>
                         <div class="col-md-6">
-                            <input name="deptEmailAddress" id="deptemail" cols="50" rows="2" class="form-control text-w-4"
+                            <input type="email" name="deptEmailAddress" id="deptemail" cols="50" rows="2" class="form-control text-w-4"
                             [(ngModel)]="data.deptEmailAddress" #deptEmailAddress="ngModel"
                                 placeholder="Department Email Address" />
                         </div>
@@ -149,7 +151,7 @@
                     <div class="form-group row">
                         <div class="col-md-3 col-form-label control-label"></div>
                         <div class="col-md-6">
-                            <button class="btn button-save" type="submit" (click)="addGeneralSettings()" [disabled]="settingsForm.invalid">Save Settings</button>
+                            <button class="btn button-save" type="submit" (click)="addGeneralSettings()">Save Settings</button>
 
                         </div>
                     </div>

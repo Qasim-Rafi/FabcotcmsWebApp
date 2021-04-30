@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm,ReactiveFormsModule } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { ServiceService } from 'src/app/shared/service.service';
@@ -12,12 +12,10 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./general-settings.component.css']
 })
 export class GeneralSettingsComponent implements OnInit {
-  @Input() settingsId;
+  // @Input() settingsId;
   data: any = {};
   response: any;
-  rows: any = [];
-  cityFilter: any = [];
-  CityCount: number;
+  // rows: any = [];
   id: any;
   localId: any;
   @ViewChild(NgForm) settingsForm;
@@ -32,7 +30,10 @@ export class GeneralSettingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.localId = localStorage.getItem('GeneralSettingsID')
-    this.getbyid(this.localId);
+    if(this.localId != null){
+      this.getbyid(this.localId);
+
+    }
     // this.getSettings(this.settingsId);
 
   }
@@ -40,7 +41,8 @@ export class GeneralSettingsComponent implements OnInit {
   //   return this._NgbActiveModal;
   // }
   addGeneralSettings() {
-    if (this.localId != '') {
+    let SomeId =localStorage.getItem('GeneralSettingsID')
+    if (SomeId != null) {
       let varr = {
         "systemEmailAddress": this.data.systemEmailAddress,
         "emailFromName": this.data.emailFromName,
@@ -110,7 +112,7 @@ export class GeneralSettingsComponent implements OnInit {
 
           }, err => {
             if (err.status == 400) {
-              this.toastr.error(this.response.message, 'Message.');
+              this.toastr.error(err.error.message, 'Message.');
             }
           });
     }
@@ -135,7 +137,7 @@ export class GeneralSettingsComponent implements OnInit {
 
         }, err => {
           if (err.status == 400) {
-            this.toastr.error(this.response.message, 'Message.');
+            this.toastr.error(err.error.message, 'Message.');
           }
         });
 
