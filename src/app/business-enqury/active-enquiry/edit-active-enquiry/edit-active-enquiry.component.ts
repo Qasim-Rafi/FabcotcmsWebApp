@@ -101,10 +101,7 @@ export class EditActiveEnquiryComponent implements OnInit {
         this.rows = data;
         // this.listCount= this.rows.length;
       });
-      this.fetch2((data) => {
-        this.rows = data;
-        // this.listCount= this.rows.length;
-      });
+
   }
 
   getEnquiryData(row) {
@@ -120,6 +117,7 @@ export class EditActiveEnquiryComponent implements OnInit {
               this.rows = data;
               // this.listCount= this.rows.length;
             });
+         
  // console.log(this.enquiryData);
  
           }
@@ -160,17 +158,17 @@ export class EditActiveEnquiryComponent implements OnInit {
   }
 
 
-  fetch2(cb) {
+  fetch2( obj) {
     
     this.http
-    .get(`${environment.apiUrl}/api/Enquiries/GetAllVendorQuotation/` + this.enquiryData.enquiryItemList.id)
+    .get(`${environment.apiUrl}/api/Enquiries/GetAllVendorQuotation/` + obj.id)
     .subscribe(res => {
       this.response = res;
      
     if(this.response.success==true)
     {
     this.data =this.response.data;
-    cb(this.data);
+    this.rows = this.data
     }
     else{
       this.toastr.error(this.response.message, 'Message.');
@@ -840,7 +838,7 @@ export class EditActiveEnquiryComponent implements OnInit {
   deleteQuotation(obj) {
     Swal.fire({
       title: GlobalConstants.deleteTitle, //'Are you sure?',
-      text: GlobalConstants.deleteMessage + ' ' + '"' + obj.remarks + '"',
+      text: GlobalConstants.deleteMessage + ' ' + '"' + obj.sellerName + '"',
       icon: 'error',
       showCancelButton: true,
       confirmButtonColor: '#ed5565',
