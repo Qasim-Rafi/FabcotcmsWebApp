@@ -27,8 +27,7 @@
 <div class="card ibox-content">
 
     <div class="card-header pt-1 px-0">
-        <h4 class="card-title">Sale Receipt / Payment form  
-        </h4>
+        <h4 class="card-title">Sale Receipt / Payment form</h4>
 
         <div class="card-tools">
 
@@ -48,254 +47,251 @@
 
 
     <div class="card-body p-0">
-   <div class="row">
-       <div class="col-md-12 p-3">
-           <form #paymentForm="ngForm" novalidate>
-               <div class="form-row">
-                   <div class="col-md-12 pt-2r pb-3">
-                       <div class="form-group row">
-                        <label  class="col-md-3 col-form-label control-label">
-                            Payment Date</label>
-                            <div class="col-md-3">
-                                <div class="input-group">
-                                  
+
+
+        <div class="row">
+            <div class="col-md-12 p-3">
+
+                <form #paymentForm="ngForm" novalidate>
+
+                    <div class="form-row">
+                        <div class="col-md-12 pt-2r pb-3">
+
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label control-label">Payment Date</label>
+
+                                <div class="col-md-3">
+                                    <div class="input-group">
+
                                         <div class="input-group-prepend">
-                                          <span class="input-group-text" id="basic-addon1"> 
-                                            <i class="fas fa-calendar-alt"></i>
-                                        </span>
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <i class="fas fa-calendar-alt"></i>
+                                            </span>
                                         </div>
-                                      
-              <input navigation="select" class="form-control  " ngbDatepicker #validityDate2="ngbDatepicker"
-              (click)="validityDate2.toggle()" placeholder="Shipment date received from Buyer" 
-              name="validityDate2" />
-                                    
+
+                                        <input navigation="select" class="form-control  " ngbDatepicker
+                                            #validityDate2="ngbDatepicker" (click)="validityDate2.toggle()"
+                                            placeholder="Shipment date received from Buyer" name="validityDate2" />
+
+                                    </div>
                                 </div>
                             </div>
-                       </div>
-                       <div class="form-group row">
-                        <label  class="col-md-3 col-form-label control-label">
-                            Pay Receipt #</label>
-                            <div class="col-md-3">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1"> 
-                                            <i class="fas fa-scroll"></i>
-                                      </span>
-                                      </div>
-                                      <input type="text" class="form-control date">
+
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label control-label">
+                                    Pay Receipt #</label>
+                                <div class="col-md-3">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <i class="fas fa-scroll"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control date">
+                                    </div>
                                 </div>
                             </div>
-                       </div>
-                       <div class="form-group row">
-                        <label  class="col-md-3 col-form-label control-label">
-                            Contract No.</label>
-                            <div class="col-md-3">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1"> 
-                                            <i class="far fa-handshake"></i>
-                                      </span>
-                                      </div>
-                                      <input type="text" class="form-control date">
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <input type="text" class="form-control date"
-                                placeholder="Manual Contract No." >
-                            </div>
-                       </div>
-                       <div class="form-group row">
-                        <label  class="col-md-3 col-form-label control-label">
-                            Bill #</label>
-                            <div class="col-md-3">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1"> 
-                                            <i class="fas fa-file-invoice-dollar"></i>
-                                      </span>
-                                      </div>
-                                      <input type="text" class="form-control" >
-                                </div>
-                            </div>
-                       </div>
-                       <div class="form-group row">
-                        <label  class="col-md-3 col-form-label control-label">
-                            Supplier Name</label>
-                            <div class="col-md-6">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1"> 
-                                          <i class="fa fa-industry"></i>
-                                      </span>
-                                      </div>
-                                      <input type="text" class="form-control" >
-                                </div>
-                            </div>
-                       </div>
-                       <div class="form-group row">
-                        <label  class="col-md-3 col-form-label control-label">
-                            Sale Invoice No.</label>
-                            <div class="col-md-6">
-                                <div class="input-group">
-                                    <div class="input-group-prepend ">
-                                        <span class="input-group-text"> 
-                                            <i class="fas fa-file-invoice"></i>
-                                      </span>
-                                    
-                                      </div>
-                                      <div class="col-md-10">
-                                      <ng-select 
-                                      placeholder="">
-                                      <ng-option >
-                                      </ng-option>
-                                    </ng-select>
-                                </div>
-                                     
-                                </div>
-                            </div>
-                       </div>
-                       <div class="form-group row">
-                        <label  class="col-md-3 col-form-label control-label">
-                            Amount</label>
-                            <div class="col-md-2">
-                                <ng-select 
-                                placeholder="">
-                                <ng-option >
-                                    PKR
-                                </ng-option>
-                                <ng-option >
-                                    USD
-                                </ng-option>
-                                <ng-option >
-                                    EUR
-                                </ng-option>
-                                <ng-option >
-                                    GBP
-                                </ng-option>
 
-                            </ng-select>
-                            </div>
-                            <div class="col-md-2 mrg-sm1">
-                                <div class="input-group">
-                                <input type="text" class="form-control" >
-                            </div>
-                            </div>
-                            <div class="col-md-2 mrg-sm1">
-                                <div class="input-group">
-                                <input type="text" class="form-control" >
-                            </div>
-                            </div>
-                            <div class="col-md-2 mrg-sm1">
-                                <div class="input-group">
-                                <input type="text" class="form-control" >
-                            </div>
-                            </div>
-                       </div>
-                       <div class="form-group row">
-                        <label  class="col-md-3 col-form-label control-label">
-                            Payment Mode</label>
-                            <div class="col-md-2">
-                                <ng-select 
-                                placeholder="">
-                                <ng-option >
-                                    PO
-                                </ng-option>
-                                <ng-option >
-                                    TT
-                                </ng-option>
-                        
-                            <ng-option >
-                                Cash
-                            </ng-option>
-                            <ng-option >
-                                Cheque
-                            </ng-option>
-                        </ng-select>
-                        </div>
-                            <div class="col-md-4 ">
-                                <input type="text" class="form-control"
-                                placeholder="Additional Info(Cheque No., PO/DD No. etc)" >
-                            </div>
-                            
-
-                       </div>
-
-
-
-                   </div>
-               </div>
-
-               <div class="form-row border-top">
-                <div class="col-md-12 pt-2r pb-3">
-                    <div class="form-group row">
-                        <label  class="col-md-3 col-form-label control-label">
-                            Bank Account</label>
-                            <div class="col-md-2">
-                                <ng-select 
-                                placeholder="Select a Bank Account">
-                                <ng-option >
-                                </ng-option>
-
-                            </ng-select>
-                        </div>
-                            <div class="col-md-4 ">
-                                <input type="text" class="form-control"
-                                placeholder="Additional Info" >
-                            </div>
-
-                    </div>
-                    <div class="form-group row">
-                        <label  class="col-md-3 col-form-label control-label">
-                            Deposited in Bank</label>
-                            <div class="col-md-2">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="">
-                                </div>
-                        
-                            </div>
-                            <div class="col-md-1 ">
-                                <label  class=" col-form-label control-label">
-                                    Deposited Date</label>
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label control-label">
+                                    Contract No.</label>
+                                <div class="col-md-3">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <i class="far fa-handshake"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control date">
+                                    </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <input navigation="select" class="form-control  " ngbDatepicker #validityDate3="ngbDatepicker"
-              (click)="validityDate3.toggle()"  
-              name="validityDate3" />
+                                    <input type="text" class="form-control date" placeholder="Manual Contract No.">
                                 </div>
-                            
-                           
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label control-label">
+                                    Bill #</label>
+                                <div class="col-md-3">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <i class="fas fa-file-invoice-dollar"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label control-label">Supplier Name</label>
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <i class="fa fa-industry"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label control-label">Sale Invoice No.</label>
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend ">
+                                            <span class="input-group-text">
+                                                <i class="fas fa-file-invoice"></i>
+                                            </span>
+
+                                        </div>
+                                        <div class="input-wdt">
+                                            <ng-select placeholder="">
+                                                <ng-option>
+                                                </ng-option>
+                                            </ng-select>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label control-label">Amount</label>
+                                <div class="div col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <ng-select placeholder="">
+                                                <ng-option>PKR</ng-option>
+                                                <ng-option>USD</ng-option>
+                                                <ng-option>EUR</ng-option>
+                                                <ng-option>GBP</ng-option>
+                                            </ng-select>
+                                        </div>
+                                        <div class="col-md-3 mrg-sm1">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 mrg-sm1">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 mrg-sm1">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label control-label">
+                                    Payment Mode</label>
+                                <div class="col-md-2">
+                                    <ng-select placeholder="">
+                                        <ng-option>
+                                            PO
+                                        </ng-option>
+                                        <ng-option>
+                                            TT
+                                        </ng-option>
+
+                                        <ng-option>
+                                            Cash
+                                        </ng-option>
+                                        <ng-option>
+                                            Cheque
+                                        </ng-option>
+                                    </ng-select>
+                                </div>
+                                <div class="col-md-4 ">
+                                    <input type="text" class="form-control"
+                                        placeholder="Additional Info(Cheque No., PO/DD No. etc)">
+                                </div>
+
+
+                            </div>
+
+                        </div>
                     </div>
-                   
-                        <div class="form-group row">
-                            <label for="inputEmail3" class="col-md-3 col-form-label
+
+                    <div class="form-row border-top">
+                        <div class="col-md-12 pt-2r pb-3">
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label control-label">
+                                    Bank Account</label>
+                                <div class="col-md-2">
+                                    <ng-select placeholder="Select a Bank Account">
+                                        <ng-option>
+                                        </ng-option>
+
+                                    </ng-select>
+                                </div>
+                                <div class="col-md-4 ">
+                                    <input type="text" class="form-control" placeholder="Additional Info">
+                                </div>
+
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label control-label">Deposited in Bank</label>
+                                <div class="col-md-2">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="">
+                                    </div>
+
+                                </div>
+                                <div class="col-md-1 ">
+                                    <label class=" col-form-label control-label">
+                                        Deposited Date</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <input navigation="select" class="form-control  " ngbDatepicker
+                                        #validityDate3="ngbDatepicker" (click)="validityDate3.toggle()"
+                                        name="validityDate3" />
+                                </div>
+
+
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-md-3 col-form-label
                              control-label">Additional Note:</label>
-                            <div class="col-md-6">
-                                <textarea class="form-control"
-                                 rows="4" placeholder="Any Additional note here..."
-                                 name="remarks"></textarea>
+                                <div class="col-md-6">
+                                    <textarea class="form-control" rows="4" placeholder="Any Additional note here..."
+                                        name="remarks"></textarea>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-md-6 offset-md-3">
-                                <button class="btn button-save" >
-                                    <i class="fas fa-check"></i> Save 
-                                    Payment Info</button>
-                                <button class="btn btn-secondary ml-4" routerLink="/payment-collection">
-                                    <i class="fas fa-times">
-                                    </i> Close
-                                </button>
+                            <div class="row">
+                                <div class="col-md-6 offset-md-3">
+                                    <button class="btn button-save">
+                                        <i class="fas fa-check"></i> Save
+                                        Payment Info</button>
+                                    <button class="btn btn-secondary ml-2" routerLink="/payment-collection">
+                                        <i class="fas fa-times">
+                                        </i> Close
+                                    </button>
+                                </div>
                             </div>
+
                         </div>
-        
-                    </div>
                     </div>
 
-           </form>
-       </div>
-   </div>
+                </form>
 
+            </div>
+        </div>
 
 
     </div>
+
+
 </div>

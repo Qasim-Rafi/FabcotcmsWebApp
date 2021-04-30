@@ -19,13 +19,16 @@ import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { Dateformater } from 'src/app/shared/dateformater';
 import { Router } from '@angular/router';
 
+
+import * as moment from 'moment';
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-add-enquiry',
   templateUrl: './add-enquiry.component.html',
   styleUrls: ['./add-enquiry.component.css']
 })
 export class AddEnquiryComponent implements OnInit {
-  dateofBirthField:any;
+  enquiryDateField:any;
   datePickerConfig: Partial<BsDatepickerConfig>;
   listCount: number;
   myDate = Date.now();
@@ -44,7 +47,7 @@ export class AddEnquiryComponent implements OnInit {
   paymentId: any[];
   term: any[];
   priceId: any[];
-
+  myDates = new Date();
   rows: any = [];
   columns: any = [];
   // country1: any = [];
@@ -61,21 +64,27 @@ export class AddEnquiryComponent implements OnInit {
   priceterm: any = {};
   autoEnquiryNo: number;
   dateformater: Dateformater = new Dateformater();
-
+  today:any;
   constructor(private http: HttpClient,
     private toastr: ToastrService,
     private modalService: NgbModal,
     private service: ServiceService,
     private router: Router,
+    public datepipe: DatePipe
+ 
 
-  ) { }
+  ) {
+    // this.today = this.datePipe.transform(this.myDates, 'dd-MM-yyyy');
+   }
 
   navigate() {
     this.router.navigateByUrl('/enquiry/active-enquiries');
   };
 
   ngOnInit() {
-
+    // const format2 = "dd-MM-yyyy"
+    // var date2 = new Date();
+    // this.today = moment(date2).format(format2);
     // this.datePickerConfig = Object.assign
     //   ({}, {
     //     containerClass: 'theme-default ',
@@ -83,6 +92,9 @@ export class AddEnquiryComponent implements OnInit {
     //     showWeekNumbers: false,
     //     dateInputFormat: 'DD/MM/YYYY',
     //   }),
+    let olddate=new Date();
+    let latest_date =this.datepipe.transform(olddate, 'yyyy-MM-dd');
+    this.enquiryDateField =this.dateformater.fromModel(latest_date);
     this. getAutoEnquiryNo();
     this.GetBuyersDropdown();
     this.GetArticlesDropdown();
@@ -95,6 +107,8 @@ export class AddEnquiryComponent implements OnInit {
     this.GetPriceTermDropdown();
     this.GetCityDropdown();
     this.GetUOMDropdown();
+
+
 
   }
 
@@ -486,7 +500,7 @@ export class AddEnquiryComponent implements OnInit {
 
     }
     else{
-      this.data.enquiryDate = this.dateformater.toModel(this.data.enquiryDate);
+      this.data.enquiryDate = this.dateformater.toModel(this.enquiryDateField);
       let varr = {
   
         "enquiryDate": this.data.enquiryDate,
@@ -501,10 +515,10 @@ export class AddEnquiryComponent implements OnInit {
         "paymentTermInfo": this.data.paymentTermInfo,
         "priceTermId": this.data.priceTermId,
         "destinationId": this.data.destinationId,
-        "sellerSideCommission": this.data.sellerSideCommission,
+        "sellerSideCommission": this.data.sellerSideCommission.toString(),
         "sellerSideCommissionUOMId": this.data.sellerSideCommissionUOMId,
         "sellerSideCommissionInfo": this.data.sellerSideCommissionInfo,
-        "buyerSideCommission": this.data.buyerSideCommission,
+        "buyerSideCommission": this.data.buyerSideCommission.toString(),
         "buyerSideCommissionUOMId": this.data.buyerSideCommissionUOMId,
         "buyerSideCommissionInfo": this.data.buyerSideCommissionInfo,
         "certificateIds": this.data.certificateIds != null ? this.data.certificateIds.toString() : null,
