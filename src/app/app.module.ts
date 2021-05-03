@@ -8,7 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { ToastrModule } from 'ngx-toastr';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateParserFormatter, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ConfigurationModule } from './configuration/configuration.module';
 import { BusinessEnquryModule } from './business-enqury/business-enqury.module';
 import { HomeComponent } from './home/home.component';
@@ -48,6 +48,7 @@ import { ItemsComponent } from './contracts/active-contracts/active-contract-det
 import { CloudDocumentationComponent } from './cloud-documentation/cloud-documentations.component';
 import { LayoutComponent } from './template/layout/layout.omponent';
 import { ColorPickerModule } from 'ngx-color-picker';
+import { DateConvertor } from './shared/date-formater';
 
 
 
@@ -135,7 +136,8 @@ const appRoutes: Routes = []
     }),
   ],
 
-  providers: [AuthGuard],
+  providers: [AuthGuard,
+    {provide: NgbDateParserFormatter, useFactory: () => new DateConvertor('EEE, dd-MMM-yyyy')}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
