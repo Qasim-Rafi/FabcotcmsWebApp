@@ -39,6 +39,7 @@ invalidLogin: boolean=false;
       this.response= data;
       if (this.response.success == true) {
         this.router.navigate(['/home']);
+        this.router.navigate(['/enquiry']);
         this.reload();
     
       }
@@ -52,10 +53,10 @@ invalidLogin: boolean=false;
  }
 
  reload(){
-  // this.router.navigate(['home']);
- this.router.routeReuseStrategy.shouldReuseRoute = () => false;
- this.router.onSameUrlNavigation = 'reload';
- this.router.navigate(['home']);
+
+   this.router.navigate(['home']);
+//    this.router.navigate('/', {skipLocationChange: true}).then(()=>
+//  this.router.navigate(['home']));
 
 }
 }
