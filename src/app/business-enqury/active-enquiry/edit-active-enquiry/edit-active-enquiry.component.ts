@@ -53,6 +53,7 @@ export class EditActiveEnquiryComponent implements OnInit {
   confirmOn: string;
  noteFilter: any = [];
  noteList: any = {};
+ totalComplete:any;
  noteApi = '/api/Enquiries/GetAllEnquiryNote/' + this.objEnquiry;
 
   // entries: any = [];
