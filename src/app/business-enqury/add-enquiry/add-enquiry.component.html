@@ -412,8 +412,8 @@
                                                 <div class="input-group">
                                         
                                                     <ng-select name="destinationId"  #destinationId="ngModel" class="input-w px-0" [(ngModel)]="data.destinationId"
-                                                        placeholder="-- Select City --" [ngClass]="{ 'error': enquiryForm.submitted && destinationId.invalid }" required >
-                                                        <ng-option *ngFor="let i of city" [value]="i.id">{{ i.name }}
+                                                        placeholder="-- Select Destination --" [ngClass]="{ 'error': enquiryForm.submitted && destinationId.invalid }" required >
+                                                        <ng-option *ngFor="let i of city" [value]="i.id">{{ i.name }} <span class="text-secondary" style="font-size: 11px">{{i.country}}</span> 
                                                         </ng-option>
                                                     </ng-select>
                                         
