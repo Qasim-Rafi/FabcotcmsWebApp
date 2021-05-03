@@ -102,11 +102,11 @@
                                                 <i class="far fa-handshake"></i>
                                             </span>
                                         </div>
-                                        <input type="text" class="form-control date">
+                                        <input type="text" class="form-control date" readonly>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control date" placeholder="Manual Contract No.">
+                                    <input type="text" class="form-control date" placeholder="Manual Contract No." readonly>
                                 </div>
                             </div>
 
@@ -134,7 +134,7 @@
                                                 <i class="fa fa-industry"></i>
                                             </span>
                                         </div>
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -174,17 +174,17 @@
                                         </div>
                                         <div class="col-md-3 mrg-sm1">
                                             <div class="input-group">
-                                                <input type="text" class="form-control">
+                                                <input type="text" class="form-control" placeholder="Paid Amount">
                                             </div>
                                         </div>
                                         <div class="col-md-3 mrg-sm1">
                                             <div class="input-group">
-                                                <input type="text" class="form-control">
+                                                <input type="text" class="form-control" placeholder="tax Amount">
                                             </div>
                                         </div>
                                         <div class="col-md-3 mrg-sm1">
                                             <div class="input-group">
-                                                <input type="text" class="form-control">
+                                                <input type="text" class="form-control" placeholder="Deduction">
                                             </div>
                                         </div>
                                     </div>
@@ -272,9 +272,12 @@
 
                             <div class="row">
                                 <div class="col-md-6 offset-md-3">
-                                    <button class="btn button-save">
+                                    <button class="btn button-save" *ngIf="statusCheck.statusCheck == 'addPayment'">
                                         <i class="fas fa-check"></i> Save
                                         Payment Info</button>
+                                        <button class="btn button-save" *ngIf="statusCheck.statusCheck == 'editPayment'">
+                                            <i class="fas fa-check"></i> Update
+                                            Payment Info</button>
                                     <button class="btn btn-secondary ml-2" routerLink="/payment-collection">
                                         <i class="fas fa-times">
                                         </i> Close
