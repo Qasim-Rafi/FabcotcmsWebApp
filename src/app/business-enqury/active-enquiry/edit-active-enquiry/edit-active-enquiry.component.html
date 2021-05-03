@@ -120,14 +120,16 @@
                 </div>
             </div>
     
-    
+            <form #buyerForm="ngForm" novalidate>
             <div class="row">
-                <div class="col-md-12 border-bottom pb-3" [ngClass]="{ noDisplay : enquiryToggle==false }">
+               
+                <div  class="col-md-12 border-bottom pb-3" [ngClass]="{ noDisplay : enquiryToggle==false }">
                     <div class="form-group row">
                         <label for="inputEmail3" class="col-md-3 col-form-label control-label">Buyer Name</label>
                         <div class="col-md-6">
     
-                            <ng-select [(ngModel)]="enquiryData.buyerId" placeholder="-- Select --" name="buyerId">
+                            <ng-select required [(ngModel)]="enquiryData.buyerId" placeholder="-- Select --" 
+                            #buyerId="ngModel" [ngClass]="{ error: buyerId.invalid }" name="buyerId">
                                 <ng-option *ngFor="let i of buyer" [value]="i.id">{{ i.buyerName }}
                                 </ng-option>
                             </ng-select>
@@ -219,12 +221,15 @@
                             </div>
                         </div>
                     </div>
+                
     
-                    <button class="btn btn-light float-right ml-1" (click)="enquiryToggle = !enquiryToggle"> Close</button>
-                    <button class="btn btn-primary float-right"
+                    <!-- <button class="btn btn-light float-right ml-1" (click)="enquiryToggle = !enquiryToggle"> Close</button> -->
+                    <button class="btn btn-primary float-right" [disabled]="buyerForm.invalid"
                         (click)=" addEnquiryBuyerDetails() ; enquiryToggle = !enquiryToggle"> Save</button>
                 </div>
+            
             </div>
+        </form>
     
     
             <div class="row border-bottom pt-4">
@@ -669,9 +674,9 @@
                                 <button type="button" class="btn btn-primary btn-sm float-right"
                                     (click)="addEnquiryItemform('AddEnquiryItem', objEnquiry)">
                                     <i class="fa fa-plus"></i> &nbsp;Add Enquiry Item</button>
-
+<!-- 
                                     <button type="button" class="btn btn-primary btn-sm float-right mx-2">
-                                    <i class="fa fa-plus"></i> &nbsp;Add Bulk Quote</button>
+                                    <i class="fa fa-plus"></i> &nbsp;Add Bulk Quote</button> -->
 
                                 </div>
                             </div>
@@ -928,7 +933,7 @@
             
     
             <div [ngClass]="{ noDisplay : reminderToggle==true }">
-                <button class="btn btn-outline-secondary float-right btn-xs " (click)="reminderToggle = !reminderToggle "><i
+                <button class="btn btn-outline-secondary float-right btn-xs " ><i
                         class="fas fa-sync"></i> </button>
                 <button class="btn btn-primary float-right btn-xs mx-1" (click)="reminderToggle = !reminderToggle "><i
                         class="fas fa-edit "></i> </button>
@@ -940,7 +945,7 @@
                             {{reminder.followUpDateToDisplay}}
 
                             <button type="button" class="btn deleteIconBack" data-toggle="tooltip" data-placement="top"
-                            title="" data-original-title="Delete">
+                            title="" data-original-title="Delete" (click)="deleteReminder(reminder)">
                             <i class="far fa-trash-alt"></i>
                         </button>
                         </div>
