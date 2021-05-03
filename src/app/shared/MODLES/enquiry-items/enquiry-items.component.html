@@ -52,15 +52,15 @@
                     </div>
             
                     <div class="form-group col modalBorder">
-                        <label for="name" class="col-form-label">Quantity</label>
-                    </div>
-            
-                    <div class="form-group col modalBorder">
                         <label for="name" class="col-form-label ">Composition</label>
                     </div>
 
                     <div class="form-group col modalBorder">
                         <label for="name" class="col-form-label">Construction</label>
+                    </div>
+
+                    <div class="form-group col modalBorder">
+                        <label for="name" class="col-form-label">Quantity</label>
                     </div>
             
                 </div>
@@ -80,20 +80,6 @@
                             <div class="form-group col-3 modalBorder">
                                 <input type="text" class="form-control" placeholder="Description" name="description_{{i}}"  #description="ngModel" 
                                  [(ngModel)]=value.description  [ngClass]="{ 'error': EnquiryItemForm.submitted && description.invalid }" required />
-                            </div>
-                    
-                            <div class="form-group col-3 modalBorder">
-                                <div class="row">
-                                    <div class="col-lg-4">
-                                        <input type="number" min="0" class="form-control" placeholder="Qty" name="itemQuantity_{{i}}" #itemQuantity="ngModel" 
-                                            [(ngModel)]=value.itemQuantity  [ngClass]="{ 'error': EnquiryItemForm.submitted && itemQuantity.invalid }" required   />
-                                    </div>
-                                    <div class="col-lg-8 mrg-tsm">
-                                        <ng-select [(ngModel)]="value.itemUOMId" placeholder="Select UOM" name="itemUOMId_{{i}}">
-                                            <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}</ng-option>
-                                        </ng-select>
-                                    </div>
-                                </div>
                             </div>
                     
                             <div class="form-group col-3 modalBorder">
@@ -118,16 +104,24 @@
                             <div class="form-group col-3 modalBorder">
                                 <input type="text" class="form-control" placeholder="Construction" name="construction_{{i}}" [(ngModel)]=value.construction/>
                             </div>
+
+                            <div class="form-group col-3 modalBorder">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <input type="number" min="0" class="form-control" placeholder="Qty" name="itemQuantity_{{i}}" #itemQuantity="ngModel" 
+                                            [(ngModel)]=value.itemQuantity  [ngClass]="{ 'error': EnquiryItemForm.submitted && itemQuantity.invalid }" required   />
+                                    </div>
+                                    <div class="col-lg-8 mrg-tsm">
+                                        <ng-select [(ngModel)]="value.itemUOMId" placeholder="Select UOM" name="itemUOMId_{{i}}">
+                                            <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}</ng-option>
+                                        </ng-select>
+                                    </div>
+                                </div>
+                            </div>
                     
                         </div>
                      
                         <div class="form-row">
-                    
-                            <div class="form-group col-3 modalBorder">
-                                <ng-select [(ngModel)]="value.colorId" placeholder="Item Color" name="colorId_{{i}}">
-                                    <ng-option *ngFor="let i of color" [value]="i.id">{{ i.name }}</ng-option>
-                                </ng-select>
-                            </div>
                     
                             <div class="form-group col-3 modalBorder">
                                 <input type="text" class="form-control" placeholder="GSM / Weight" name="weight_{{i}}" [(ngModel)]=value.weight />
@@ -141,6 +135,12 @@
                     
                             <div class="form-group col-3 modalBorder">
                                 <input type="text" class="form-control" placeholder="Size" name="size_{{i}}" [(ngModel)]=value.size />
+                            </div>
+
+                            <div class="form-group col-3 modalBorder">
+                                <ng-select [(ngModel)]="value.colorId" placeholder="Item Color" name="colorId_{{i}}">
+                                    <ng-option *ngFor="let i of color" [value]="i.id">{{ i.name }}</ng-option>
+                                </ng-select>
                             </div>
                     
                         </div>
