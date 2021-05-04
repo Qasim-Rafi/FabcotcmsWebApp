@@ -79,6 +79,8 @@ import { AddEditSystemUserComponent } from './system-users/add-edit-system-user/
 import { GeneralSettingsComponent } from './general-settings/general-settings.component';
 import { NotificationSettingsComponent } from './notification-settings/notification-settings.component';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { CapabilityComponent } from './capability/capability.component';
+import { AddEditCapabilityComponent } from './capability/add-edit-capability/add-edit-capability.component';
 
 @NgModule({
   declarations: [
@@ -147,6 +149,8 @@ import { NotificationsComponent } from './notifications/notifications.component'
     GeneralSettingsComponent,
     NotificationSettingsComponent,
     NotificationsComponent,
+    CapabilityComponent,
+    AddEditCapabilityComponent,
 
 
   ],

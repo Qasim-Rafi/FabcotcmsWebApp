@@ -17,7 +17,7 @@
         <label for="code" class="col-sm-3 col-form-label control-label text-grey" >Article Code </label>
         
         <div class="col-sm-8">
-          <input required
+          <input 
           appAutofocus
            id="code" 
            type="text" 
@@ -29,7 +29,7 @@
            maxlength="50"
             [(ngModel)]="data.code" 
             #code="ngModel" 
-            [ngClass]="{'error': code.invalid }"/>
+            />
             <small>Standard code for the article</small>
           
         </div>
