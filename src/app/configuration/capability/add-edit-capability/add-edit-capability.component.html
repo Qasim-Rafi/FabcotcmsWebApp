@@ -1,0 +1,46 @@
+<div class="modal-header" *ngIf = "FormName == 'capabilityForm'">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <div *ngIf="statusCheck == 'add'">
+      <h5 class="modal-title">
+        <i class="fa fa-map fa-fw"></i>
+        Add Capability
+      </h5>
+      </div>
+    <div *ngIf="statusCheck == 'edit'">
+    <h5 class="modal-title">
+      <i class="fa fa-map fa-fw"></i>
+      Edit Capability
+    </h5>
+  </div>
+  
+  </div>
+
+  <div class="modal-body BG pt-2r">
+    <form #addAgentForm="ngForm" novalidate>
+  
+  
+    <div class="form-group row">
+        <label for="code" class="col-sm-3 col-form-label control-label text_Navy">Capability Name </label>
+        <div class="col-sm-8">
+            <input appAutofocus required maxlength="80" minlength="3" type="text" class="form-control"
+                placeholder="name" name="name" [(ngModel)]="data.name" #name="ngModel"
+                [ngClass]="{'error': name.invalid}">
+        </div>
+    </div>
+
+
+  
+    </form>
+  </div>
+  <div class="modal-footer NotBG" *ngIf = "FormName == 'capabilityForm'">
+   
+    <button  [disabled]="addAgentForm.invalid" *ngIf="statusCheck == 'add' " class="btn button-save" type="submit" (click)="addCapability()">
+      Add Capability
+    </button>
+    <button [disabled]="addAgentForm.invalid" *ngIf="statusCheck == 'edit'" class="btn button-save" type="submit" (click)="UpdateCapability()">
+      Update Capability
+    </button>
+  
+  </div>

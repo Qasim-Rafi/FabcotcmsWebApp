@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-payment-collection',
@@ -10,8 +11,11 @@ export class PaymentCollectionComponent implements OnInit {
   rows: any = [  {name : ["1","2","3","4"]  } ];
   columns: any = [];
 
-  constructor() { }
-
+ 
+    constructor(    private router: Router,) { }
+  navigatePaymentForm(statusCheck ) {
+    this.router.navigate(['/billing-and-payment/payment-form'], { queryParams: { statusCheck: statusCheck  }  });
+ };
   ngOnInit(): void {
   }
 
