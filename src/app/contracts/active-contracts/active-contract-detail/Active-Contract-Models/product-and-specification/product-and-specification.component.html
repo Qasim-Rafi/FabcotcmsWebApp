@@ -21,9 +21,9 @@
         <div class="form-group row">
             <label for="articleId" class="col-sm-3 col-form-label text_Navy">Article</label>
             <div class="col-sm-8">
-                <ng-select name="" placeholder="-- Select --">
-                    <ng-option>
-                        Test Value
+                <ng-select name="articleId" placeholder="-- Select --" [(ngModel)]="data.articleId">
+                    <ng-option *ngFor="let i of article" [value]="i.id">
+                        {{i.name}}
                     </ng-option>
                 </ng-select>
             </div>
@@ -33,9 +33,9 @@
         <div class="form-group row">
             <label for="processId" class="col-sm-3 col-form-label">Process</label>
             <div class="col-sm-8">
-                <ng-select name="" placeholder="-- Select --">
-                    <ng-option>
-                        Test Value
+                <ng-select name="processId" placeholder="-- Select --" [(ngModel)]="data.processId">
+                    <ng-option *ngFor="let i of process" [value]="i.id">
+                        {{i.name}}
                     </ng-option>
                 </ng-select>
             </div>
@@ -46,9 +46,9 @@
         <div class="form-group row">
             <label for="processTypeId" class="col-sm-3 col-form-label">Process Type</label>
             <div class="col-sm-8">
-                <ng-select name="" placeholder="-- Select --">
-                    <ng-option>
-                        Test Value
+                <ng-select name="processTypeId" placeholder="-- Select --" [(ngModel)]="data.processTypeId">
+                    <ng-option *ngFor="let i of processType" [value]="i.id">
+                        {{i.type}}
                     </ng-option>
                 </ng-select>
             </div>
@@ -58,9 +58,9 @@
         <div class="form-group row">
             <label for="designTypeId" class="col-sm-3 col-form-label">Design Type</label>
             <div class="col-sm-8">
-                <ng-select name="" placeholder="-- Select --">
-                    <ng-option>
-                        Test Value
+                <ng-select name="designTypeId" placeholder="-- Select --" [(ngModel)]="data.designTypeId">
+                    <ng-option *ngFor="let i of designType" [value]="i.id">
+                        {{i.type}}
                     </ng-option>
                 </ng-select>
             </div>
@@ -74,7 +74,7 @@
     <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
         Close
     </button>
-    <button class="btn button-save" type="submit">
+    <button class="btn button-save" type="submit" (click)=" addContractProduct()">
         Save
     </button>
 </div>

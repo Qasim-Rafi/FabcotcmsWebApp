@@ -20,21 +20,11 @@
         <div class="form-group row">
             <label for="name" class="col-sm-3 col-form-label">Payment Mode</label>
             <div class="col-sm-4">
-                <ng-select 
-                placeholder="Mode of payment">
-                <ng-option >
-                    PO
+              <ng-select name="paymentMode" placeholder="-- Select --" [(ngModel)]="data.paymentMode">
+                <ng-option *ngFor="let i of paymentMode" [value]="i.id">
+                    {{i}}
                 </ng-option>
-                <ng-option>
-                    TT
-                </ng-option>
-                <ng-option>
-                    Cash
-                </ng-option>
-                <ng-option>
-                    Cheque
-                </ng-option>
-              </ng-select>
+            </ng-select>
             </div>
           </div>
 
@@ -42,15 +32,16 @@
           <div class="form-group row">
             <label for="description" class="col-sm-3 col-form-label text-Navy">Payment Terms</label>
             <div class="col-sm-4">
-                <ng-select 
-                placeholder="Payment Terms">
-                <ng-option >
+              <ng-select name="paymentTermId" placeholder="-- Select --" [(ngModel)]="data.paymentTermId">
+                <ng-option *ngFor="let i of payment" [value]="i.id">
+                    {{i.term}}
                 </ng-option>
-              </ng-select>
+            </ng-select>
             </div>
             <div class="col-md-3 mrg-sm1">
                 <div class="input-group">
-                <input type="text" class="form-control" value="" placeholder="days">
+                <input type="number" min="0" class="form-control" placeholder="days" name="paymentTermDays"
+                [(ngModel)]="data.paymentTermDays">
             </div>
             </div>
       
@@ -59,7 +50,9 @@
           <div class="form-group row">
             <label for="description" class="col-sm-3 col-form-label text-Navy"></label>
             <div class="col-sm-7">
-                <input type="text" class="form-control" value="" placeholder="Payment term Additional Info">
+                <input type="text" class="form-control" placeholder="Payment term Additional Info"
+                name="paymentTermInfo"
+                [(ngModel)]="data.paymentTermInfo">
             </div>
           </div>
           
@@ -67,35 +60,36 @@
           <div class="form-group row">
             <label for="description" class="col-sm-3 col-form-label text-Navy"></label>
             <div class="col-sm-7">
-                <input type="text" class="form-control" value="" placeholder="Buyer side payment term info" >
+                <input type="text" class="form-control" placeholder="Buyer side payment term info"  name="buyerSidePaymentTermInfo"
+                [(ngModel)]="data.buyerSidePaymentTermInfo">
             </div>
           </div>
 
           <div class="form-group row">
             <label for="description" class="col-sm-3 col-form-label text-Navy">Packing</label>
             <div class="col-sm-7">
-                <ng-select 
-                placeholder="-- Select -- " class="text-center">
-                <ng-option >
+              <ng-select name="packingId" placeholder="-- Select --" [(ngModel)]="data.packingId"  >
+                <ng-option *ngFor="let i of packing" [value]="i.id">
+                    {{i.name}}
                 </ng-option>
-              </ng-select>
+            </ng-select>
             </div>
           </div>
           <div class="form-group row">
             <label for="description" class="col-sm-3 col-form-label text_Navy">Price / Delivery</label>
             <div class="col-sm-3">
-                <ng-select 
-                placeholder="Price Terms ">
-                <ng-option >
+              <ng-select name="priceTermId" placeholder="-- Select --" [(ngModel)]="data.priceTermId">
+                <ng-option *ngFor="let i of price" [value]="i.id">
+                    {{i.term}}
                 </ng-option>
-              </ng-select>
+            </ng-select>
             </div>
             <div class="col-sm-4 ">
-                    <ng-select 
-                    placeholder=" Select Destination ">
-                    <ng-option >
-                    </ng-option>
-                  </ng-select>
+              <ng-select name="destinationId" placeholder="-- Select --" [(ngModel)]="data.destinationId">
+                <ng-option *ngFor="let i of city" [value]="i.id">
+                    {{i.name}} <span class="text-secondary" style="font-size: 11px">{{i.country}}</span>
+                </ng-option>
+            </ng-select>
           
             </div>
       
@@ -108,7 +102,7 @@
     <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
       Close
     </button>
-    <button class="btn button-save" type="submit">
+    <button class="btn button-save" type="submit" (click)="addContractPaymentDelivery()">
       Save 
     </button>
   </div>

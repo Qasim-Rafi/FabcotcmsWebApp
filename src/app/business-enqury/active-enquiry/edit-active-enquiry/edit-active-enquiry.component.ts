@@ -54,7 +54,7 @@ export class EditActiveEnquiryComponent implements OnInit {
  noteFilter: any = [];
  noteList: any = {};
  totalComplete:any;
- noteApi = '/api/Enquiries/GetAllEnquiryNote/' + this.objEnquiry;
+ 
 
   // entries: any = [];
 
@@ -359,115 +359,6 @@ export class EditActiveEnquiryComponent implements OnInit {
 
 
 
-  // editEnquiryBuyerDetails(enquiryId) {
-  //   this.http.get(`${environment.apiUrl}/api/Enquiries/GetEnquiryBuyerDetailById/` + enquiryId)
-  //     .subscribe(
-  //       res => {
-  //         this.response = res;
-  //         if (this.response.success == true) {
-  //           this.buyerDetails = this.response.data;
-
-  //         }
-  //         else {
-  //           this.toastr.error(this.response.message, 'Message.');
-  //         }
-
-  //       }, err => {
-  //         if (err.status == 400) {
-  //           this.toastr.error(this.response.message, 'Message.');
-  //         }
-  //       });
-  // }
-
-
-  // editEnquiryPaymentDetails(enquiryId) {
-  //   this.http.get(`${environment.apiUrl}/api/Enquiries/GetEnquiryPaymentDetailById/` + enquiryId)
-  //     .subscribe(
-  //       res => {
-  //         this.response = res;
-  //         if (this.response.success == true) {
-  //           this.data = this.response.data;
-
-  //         }
-  //         else {
-  //           this.toastr.error(this.response.message, 'Message.');
-  //         }
-
-  //       }, err => {
-  //         if (err.status == 400) {
-  //           this.toastr.error(this.response.message, 'Message.');
-  //         }
-  //       });
-  // }
-
-
-  // editEnquirySupplierDetails(enquiryId) {
-  //   this.http.get(`${environment.apiUrl}/api/Enquiries/EnquirySupplierDetailGetById/` + enquiryId)
-  //     .subscribe(
-  //       res => {
-  //         this.response = res;
-  //         if (this.response.success == true) {
-  //           this.data = this.response.data;
-
-  //         }
-  //         else {
-  //           this.toastr.error(this.response.message, 'Message.');
-  //         }
-
-  //       }, err => {
-  //         if (err.status == 400) {
-  //           this.toastr.error(this.response.message, 'Message.');
-  //         }
-  //       });
-  // }
-
-
-  // editEnquiryConfirmationDetails(enquiryId) {
-  //   this.http.get(`${environment.apiUrl}/api/Enquiries/EnquiryConfirmationDetailGetById/` + enquiryId)
-  //     .subscribe(
-  //       res => {
-  //         this.response = res;
-  //         if (this.response.success == true) {
-  //           this.data = this.response.data;
-
-  //         }
-  //         else {
-  //           this.toastr.error(this.response.message, 'Message.');
-  //         }
-
-  //       }, err => {
-  //         if (err.status == 400) {
-  //           this.toastr.error(this.response.message, 'Message.');
-  //         }
-  //       });
-  // }
-
-
-  // editEnquiryAdditionalInformation(enquiryId) {
-  //   this.http.get(`${environment.apiUrl}/api/Enquiries/GetEnquiryAdditionalInfomationById/` + enquiryId)
-  //     .subscribe(
-  //       res => {
-  //         this.response = res;
-  //         if (this.response.success == true) {
-  //           this.data = this.response.data;
-
-  //         }
-  //         else {
-  //           this.toastr.error(this.response.message, 'Message.');
-  //         }
-
-  //       }, err => {
-  //         if (err.status == 400) {
-  //           this.toastr.error(this.response.message, 'Message.');
-  //         }
-  //       });
-  // }
-
-
-
-
-
-
 
 
   addEnquiryBuyerDetails() {
@@ -768,31 +659,6 @@ export class EditActiveEnquiryComponent implements OnInit {
       // on dismiss
     });
   }
-
-
-  // getAllEnquiryItems() {
-  //   this.http.get(`${environment.apiUrl}/api/Enquiries/GetAllEnquiryItem`)
-  //     .subscribe(
-  //       res => {
-
-  //         this.response = res;
-  //         if (this.response.success == true) {
-  //           this.enquiryItem = this.response.data;
-  //           this.temp = [...this.enquiryItem];
-  //           // this.listCount = this.response.data.length;
-  //           // this.getTotalPOCs();
-  //         }
-  //         else {
-  //           this.toastr.error(this.response.message, 'Message.');
-  //         }
-
-  //       }, err => {
-  //         if (err.status == 400) {
-  //           this.toastr.error(this.response.message, 'Message.');
-  //         }
-  //       });
-  // }
-
 
   deleteEnquiryItem(obj) {
     Swal.fire({
@@ -1152,6 +1018,84 @@ export class EditActiveEnquiryComponent implements OnInit {
         })
     
       }
+
+
+      GenerateContract() {
+        let varr = {
+          "enquiryId": this.objEnquiry,
+          "autoContractNumber": "string",
+          "contractOwner": "string",
+          "active": true,
+          "poNumber": 0,
+          "poDate": this.data.poDate,
+          "contractNo": 0,
+          "contractDate": "string",
+          "buyerId": 0,
+          "buyerPOCId": 0,
+          "sellerId": 0,
+          "sellerPOCId": 0,
+          "sellerContract": "string",
+          "certificateId": 0,
+          "articlelId": 0,
+          "processId": 0,
+          "processTypeId": 0,
+          "designTypeId": 0,
+          "currencyId": 0,
+          "quantity": 0,
+          "contractCost": 0,
+          "paymentMode": "string",
+          "paymentTermId": 0,
+          "paymentTermDays": 0,
+          "paymentTermInfo": "string",
+          "buyerSidePaymentTermInfo": "string",
+          "packingId": 0,
+          "priceTermId": 0,
+          "destinationId": 0,
+          "lcNumber": 0,
+          "lcOpenOn": "string",
+          "lcShipmentOn": "string",
+          "lcExpiryDate": "string",
+          "remarks": "string",
+          "sellerSideCommission": "string",
+          "sellerSideCommissionUOMId": 0,
+          "sellerAdditionalInfo": "string",
+          "buyerSideCommission": "string",
+          "buyerSideCommissionUOMId": 0,
+          "buyerAdditionalInfo": "string",
+          "agenetName": "string",
+          "agenetCommission": "string",
+          "userId": 0,
+          "beneficiaryCriteriaId": 0,
+          "criteriaDetail": "string",
+          "contractRemarks": "string",
+          "buyerRemarks": "string",
+          "otherConditionRemarks": "string",
+          "title": "string"
+        }
+    
+        this.http.
+          post(`${environment.apiUrl}/api/Contracts/AddContract`, varr)
+          .subscribe(
+            res => {
+    
+              this.response = res;
+              if (this.response.success == true) {
+                this.toastr.success(this.response.message, 'Message.');
+    
+              }
+              else {
+                this.toastr.error(this.response.message, 'Message.');
+              }
+    
+            }, err => {
+              if (err.status == 400) {
+                this.toastr.error(this.response.message, 'Message.');
+              }
+            });
+      }
+
+
+
 
 
 
