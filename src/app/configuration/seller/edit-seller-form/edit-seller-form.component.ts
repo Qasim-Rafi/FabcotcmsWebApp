@@ -116,7 +116,8 @@ export class EditSellerFormComponent implements OnInit {
           if (this.response.success == true) {
             this.data = this.response.data;
 
-
+            this.data.machineIds = this.data.machineIds.split(',');
+            this.data.capabilitiesIds = this.data.capabilitiesIds.split(',');
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
@@ -142,8 +143,8 @@ export class EditSellerFormComponent implements OnInit {
       "faxNumber": this.data.faxNumber,
       "ntnNumber": this.data.ntnNumber,
       "gstNumber": this.data.gstNumber,
-      "machineId": this.data.machineId,
-      "capabilitiesIds": this.data.capabilitiesIds,
+      "machineIds": this.data.machineIds !=null?this.data.machineIds.toString():null,
+      "capabilitiesIds": this.data.capabilitiesIds != null ?this.data.capabilitiesIds.toString() : null,
       "majorStrength": this.data.majorStrength,
       "leadTime": this.data.leadTime,
       "sellerDetails": this.data.sellerDetails,
