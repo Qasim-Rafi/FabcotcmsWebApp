@@ -192,7 +192,7 @@ export class ServiceService {
     return this.http.get(`${environment.apiUrl}/api/Enquiries/GetAllEnquiryItem`);
   }
   getCurrency() {
-    return this.http.get(`${environment.apiUrl}/api/Lookups/CurrencyTypes`);
+    return this.http.get(`${environment.apiUrl}/api/Configs/GetAllCurrencyRate`);
   }
   getVendorSeller(enquiryId) {
     return this.http.get(`${environment.apiUrl}/api/Lookups/SellerFromQuotations/` + enquiryId);
