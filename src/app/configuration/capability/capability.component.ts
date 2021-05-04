@@ -93,7 +93,48 @@ editcapabilityForm(row, check, name) {
     // on dismiss
   });
 }
+ //  --------------------- Delete Country ---------------------------//
 
+ deleteCapability(row) {
+
+  Swal.fire({
+    title: GlobalConstants.deleteTitle, //'Are you sure?',
+    text: GlobalConstants.deleteMessage + ' ' + '"' + row.name + '"',
+    icon: 'error',
+    showCancelButton: true,
+    confirmButtonColor: '#ed5565',
+    cancelButtonColor: '#dae0e5',
+    cancelButtonText: 'No',
+    confirmButtonText: 'Yes',
+    reverseButtons: true,
+    position: 'top',
+  }).then((result) => {
+    if (result.isConfirmed) {
+
+      this.http.delete(`${environment.apiUrl}/api/Configs/DeleteCapability/` + row.id)
+        .subscribe(
+          res => {
+            this.response = res;
+            if (this.response.success == true) {
+              this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
+              this.service.fetch((data) => {
+                this.rows = data;
+              }, this.capabilityUrl);
+
+            }
+            else {
+              this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
+            }
+
+          }, err => {
+            if (err.status == 400) {
+              this.toastr.error(err.erroe.message, 'Message.');
+            }
+          });
+    }
+  })
+
+}
    // --------------------------Export as Excel file----------------------------------//
 
 
