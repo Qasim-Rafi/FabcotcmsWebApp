@@ -1,6 +1,11 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 import { EnquiryNotesComponent } from 'src/app/shared/MODLES/enquiry-notes/enquiry-notes.component';
+import { ServiceService } from 'src/app/shared/service.service';
+import { environment } from 'src/environments/environment';
 import { CommisionKickbackComponent } from './Active-Contract-Models/commision-kickback/commision-kickback.component';
 import { DeliveryTimelineComponent } from './Active-Contract-Models/delivery-timeline/delivery-timeline.component';
 import { EmployeeCommissionComponent } from './Active-Contract-Models/employee-commission/employee-commission.component';
@@ -23,18 +28,35 @@ import { SALEINVOICEComponent } from './Active-Contract-Models/sale-invoice/sale
 export class ActiveContractDetailComponent implements OnInit {
   rows: any = [];
   columns: any = [];
+  queryParems: any = {};
+  contractId: any = {};
+  contractPartiesData: any = {};
+  response: any;
+
   constructor(
     private modalService: NgbModal,
+    private route: ActivatedRoute,
+    private http: HttpClient,
+    private service: ServiceService,
+    private toastr: ToastrService,
   ) { }
 
   ngOnInit(): void {
+    this.queryParems = this.route.snapshot.queryParams;
+    this.contractId = this.queryParems.id;
+
+    this.getContractPartiesData();
   }
+
+
 
 
   
 PartiesForm() {
   const modalRef = this.modalService.open(PartiesComponent, { centered: true });
+  modalRef.componentInstance.contractId = this.contractId;
   modalRef.result.then((data) => {
+  
     // on close
     if (data == true) {
 
@@ -45,8 +67,37 @@ PartiesForm() {
 }
 
 
+
+
+getContractPartiesData() {
+  this.http.get(`${environment.apiUrl}/api/Contracts/GetContractPartiesById/` + this.contractId)
+    .subscribe(
+      res => {
+        this.response = res;
+        if (this.response.success == true) {
+          this.contractPartiesData = this.response.data;
+          
+
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+
+      }, err => {
+        if (err.status == 400) {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+      });
+}
+
+
+
+
+
 ProductANDSpecificationForm() {
   const modalRef = this.modalService.open(ProductAndSpecificationComponent, { centered: true });
+  modalRef.componentInstance.contractId = this.contractId;
+
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
@@ -59,6 +110,8 @@ ProductANDSpecificationForm() {
 
 QuantityCosting() {
   const modalRef = this.modalService.open(QuantityCostingComponent, { centered: true });
+  modalRef.componentInstance.contractId = this.contractId;
+
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
@@ -72,6 +125,8 @@ QuantityCosting() {
 
 PaymentDelivery() {
   const modalRef = this.modalService.open(PaymentDeliveryComponent, { centered: true });
+  modalRef.componentInstance.contractId = this.contractId;
+
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
@@ -84,6 +139,8 @@ PaymentDelivery() {
 
 DeliveryTimeline() {
   const modalRef = this.modalService.open(DeliveryTimelineComponent, { centered: true });
+  modalRef.componentInstance.contractId = this.contractId;
+
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
@@ -97,6 +154,8 @@ DeliveryTimeline() {
 
 CommissionKickback() {
   const modalRef = this.modalService.open(CommisionKickbackComponent, { centered: true });
+  modalRef.componentInstance.contractId = this.contractId;
+
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
@@ -110,6 +169,8 @@ CommissionKickback() {
 
 EmployeeCommission() {
   const modalRef = this.modalService.open(EmployeeCommissionComponent, { centered: true });
+  modalRef.componentInstance.contractId = this.contractId;
+
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
@@ -123,6 +184,8 @@ EmployeeCommission() {
 
 Remarks() {
   const modalRef = this.modalService.open(RemarksComponent, { centered: true });
+  modalRef.componentInstance.contractId = this.contractId;
+
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
@@ -139,6 +202,8 @@ Remarks() {
 
 LOCform() {
   const modalRef = this.modalService.open(LOCComponent, { centered: true });
+  modalRef.componentInstance.contractId = this.contractId;
+
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
@@ -152,6 +217,8 @@ LOCform() {
 
 ProductionPlanform() {
   const modalRef = this.modalService.open(PRODUCTPLANComponent, { centered: true });
+  modalRef.componentInstance.contractId = this.contractId;
+
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
@@ -164,6 +231,8 @@ ProductionPlanform() {
 
 saleInvoice() {
   const modalRef = this.modalService.open(SALEINVOICEComponent, { centered: true });
+  modalRef.componentInstance.contractId = this.contractId;
+
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
@@ -176,6 +245,8 @@ saleInvoice() {
 
 Note() {
   const modalRef = this.modalService.open(EnquiryNotesComponent, { centered: true });
+  modalRef.componentInstance.contractId = this.contractId;
+
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
@@ -188,6 +259,8 @@ Note() {
 
 Items() {
   const modalRef = this.modalService.open(ItemsComponent, { centered: true });
+  modalRef.componentInstance.contractId = this.contractId;
+
   modalRef.result.then((data) => {
     // on close
     if (data == true) {

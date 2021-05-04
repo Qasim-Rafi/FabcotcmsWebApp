@@ -131,14 +131,26 @@ export class ServiceService {
   getBuyers() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/Buyers`);
   }
+  getBuyersPOC() {
+    return this.http.get(`${environment.apiUrl}/api/Buyers/GetAllPOC`);
+  }
   getSellers() {
     return this.http.get(`${environment.apiUrl}/api/Sellers/GetSellers`);
+  }
+  getSellersPOC() {
+    return this.http.get(`${environment.apiUrl}/api/Sellers/GetAllPOC`);
+  }
+  getAgents() {
+    return this.http.get(`${environment.apiUrl}/api/Configs/GetAllExternalAgent`)
   }
   getArticles() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/Articles`)
   }
   getPaymentTerm() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/PaymentTerms`)
+  }
+  getPaymentMode() {
+    return this.http.get(`${environment.apiUrl}/api/Lookups/PaymentModes`)
   }
   getPackaging() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/Packagings`)

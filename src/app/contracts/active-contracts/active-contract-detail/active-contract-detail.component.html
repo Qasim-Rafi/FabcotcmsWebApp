@@ -1,5 +1,5 @@
 <div class="content-header">
-
+{{contractId}}
     <div class="row">
         <div class="col-sm-12 col-md-6 col-lg-8">
             <h2 class="row wrapper page-header font-weight-light"> Contract Details
@@ -308,9 +308,9 @@
                                 <div class="col-md-6">
 
                                     <dl class="row">
-                                        <dt class="col-sm-6">Purchase Order #:
+                                        <dt class="col-sm-6">Purchase Order #: 
                                         </dt>
-                                        <dd class="col-sm-6"></dd>
+                                        <dd class="col-sm-6">{{contractPartiesData.poNumber}}</dd>
                                     </dl>
                                     <dl class="row">
                                         <dt class="col-sm-6">Buyer Name:</dt>
@@ -433,7 +433,7 @@
                                         <dd class="col-sm-6">12</dd>
                                     </dl>
                                     <dl class="row">
-                                        <dt class="col-sm-6">Contract Cost::
+                                        <dt class="col-sm-6">Contract Cost:
                                         </dt>
                                         <dd class="col-sm-6"></dd>
                                         <dd class="col-sm-6"></dd>
@@ -441,6 +441,8 @@
                                     <button class="btn btn-outline-primary float-right" (click)="QuantityCosting()"> Edit</button>
 
                                 </div>
+
+                                
 
                                
                             </div>

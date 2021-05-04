@@ -23,7 +23,7 @@
         <label for="name" class="col-sm-3 col-form-label"><strong>Puchase Order</strong></label>
         <!-- <label for="name" class="col-sm-3 col-form-label">Puchase Order</label> -->
         <div class="col-sm-8">
-          <input  type="text" class="form-control"
+          <input  type="number" min="0" class="form-control" [(ngModel)]=" data.poNumber" name="poNumber"
             placeholder="purchase order number from buyer"/>
 
 </div>
@@ -31,30 +31,30 @@
       <div class="form-group row">
         <label for="description" class="col-sm-3 col-form-label text-Navy">PO Date</label>
         <!-- <label for="description" class="col-sm-3 col-form-label ">PO Date</label> -->
-        <div class="col-sm-8" (clickOutside)="validityDate.close()">
+        <div class="col-sm-8" (clickOutside)="poDate.close()">
   
           <!-- <input navigation="select" class="form-control text_Navy " ngbDatepicker #validityDate="ngbDatepicker"/> -->
-          <input navigation="select" class="form-control  " ngbDatepicker #validityDate="ngbDatepicker"
-            (click)="validityDate.toggle()" placeholder="Certificate validity date" 
-            name="validityDate" />
+          <input navigation="select" class="form-control  " ngbDatepicker #poDate="ngbDatepicker"
+            (click)="poDate.toggle()" placeholder="Certificate validity date" 
+            name="poDate" [(ngModel)]="data.poDate" />
         </div>
       </div>
 
       <div class="form-group row">
         <label for="name" class="col-sm-3 col-form-label">Contract No.</label>
         <div class="col-sm-8">
-          <input  type="text" class="form-control"
+          <input  type="text" class="form-control" [(ngModel)]="data.contractNo" name="contractNo"
             placeholder="Contract Number"/>
         </div>
       </div>
       
       <div class="form-group row">
         <label for="description" class="col-sm-3 col-form-label text_Navy">Contract Date</label>
-        <div class="col-sm-8" (clickOutside)="validityDate.close()">
+        <div class="col-sm-8" (clickOutside)="contractDate.close()">
   
-          <input navigation="select" class="form-control text_Navy " ngbDatepicker #validityDate="ngbDatepicker"
-            (click)="validityDate.toggle()" placeholder="Certificate validity date" 
-            name="validityDate" />
+          <input navigation="select" class="form-control text_Navy " ngbDatepicker #contractDate="ngbDatepicker"
+            (click)="contractDate.toggle()" placeholder="Certificate validity date" [(ngModel)]="data.contractDate"
+            name="contractDate" />
         </div>
       </div>
 
@@ -62,9 +62,9 @@
       <div class="form-group row">
         <label for="parentBuyerId" class="col-sm-3 col-form-label text_Navy">Buyer Name</label>
         <div class="col-sm-8">
-          <ng-select name=""  placeholder="-- Select --">
-            <ng-option >
-              Test Value
+          <ng-select name="buyerId"  placeholder="-- Select --" [(ngModel)]=" data.buyerId">
+            <ng-option *ngFor="let i of buyer" [value]="i.id">
+              {{i.buyerName}}
             </ng-option>
           </ng-select>
         </div>
@@ -72,11 +72,11 @@
 
 
       <div class="form-group row">
-        <label for="parentBuyerId" class="col-sm-3 col-form-label ">Buyer POC</label>
+        <label for="buyerPOCId" class="col-sm-3 col-form-label ">Buyer POC</label>
         <div class="col-sm-8">
-          <ng-select name=""  placeholder="-- Select --">
-            <ng-option >
-              Test Value
+          <ng-select name="buyerPOCId"  placeholder="-- Select --" [(ngModel)]=" data.buyerPOCId">
+            <ng-option *ngFor="let i of buyerPOC" [value]="i.buyerPOCId">
+             {{i.name}}
             </ng-option>
           </ng-select>
         </div>
@@ -84,11 +84,11 @@
 
 
       <div class="form-group row">
-        <label for="parentBuyerId" class="col-sm-3 col-form-label text_Navy">Seller Name</label>
+        <label for="sellerId" class="col-sm-3 col-form-label text_Navy">Seller Name</label>
         <div class="col-sm-8">
-          <ng-select name=""  placeholder="-- Select --">
-            <ng-option >
-              Test Value
+          <ng-select name="sellerId"  placeholder="-- Select --" [(ngModel)]=" data.sellerId">
+            <ng-option *ngFor="let i of seller" [value]="i.id">
+              {{i.sellerName}}
             </ng-option>
           </ng-select>
         </div>
@@ -96,50 +96,43 @@
 
 
       <div class="form-group row">
-        <label for="parentBuyerId" class="col-sm-3 col-form-label ">Seller POC</label>
+        <label for="sellerPOCId" class="col-sm-3 col-form-label ">Seller name</label>
         <div class="col-sm-8">
-          <ng-select name=""  placeholder="-- Select --">
-            <ng-option >
-              Test Value
+          <ng-select name="sellerPOCId"   placeholder="-- Select --" [(ngModel)]="data.sellerPOCId">
+            <ng-option *ngFor="let i of sellerPOC" [value]="i.selllerPOCId" >
+              {{i.name}}
             </ng-option>
           </ng-select>
         </div>
       </div>
-
-
 
 
       <div class="form-group row">
         <label for="name" class="col-sm-3 col-form-label">Seller Contract #</label>
         <div class="col-sm-8">
-          <input  type="text" class="form-control"
+          <input  type="text" class="form-control" [(ngModel)]="data.sellerContract" name="sellerContract"
             placeholder="Contract No. received from Supplier"/>
         </div>
       </div>
 
       <div class="form-group row">
-        <label for="parentBuyerId" class="col-sm-3 col-form-label ">Certification</label>
+        <label for="certificateId" class="col-sm-3 col-form-label ">Certification</label>
         <div class="col-sm-8">
-          <ng-select name=""  placeholder="-- Select --">
-            <ng-option >
-              Test Value
+          <ng-select name="certificateId"  placeholder="-- Select --" [(ngModel)]="data.certificateId">
+            <ng-option *ngFor="let i of certificate" [value]="i.id">
+              {{i.name}}
             </ng-option>
           </ng-select>
         </div>
       </div>
-
-
-
     </form> 
-
-
   </div>
   
   <div class="modal-footer NotBG">
     <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
       Close
     </button>
-    <button class="btn button-save" type="submit">
+    <button class="btn button-save" type="submit" (click)="addContractParties()">
       Save 
     </button>
   </div>
