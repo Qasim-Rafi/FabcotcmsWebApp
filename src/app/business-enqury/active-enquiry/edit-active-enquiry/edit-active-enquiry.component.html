@@ -1038,9 +1038,8 @@
                     <span class="ml-2 text-small "> Enquiry Archived </span>
         
                 </button>
-                <button class="btn btn-primary btn-block btn-lg text-center "
-                *ngIf=" enquiryData.sellerId != null &&  enquiryData.confirmationDate != '' ">
-
+                <button class="btn btn-primary btn-block btn-lg text-center " (click)="GenerateContract()"
+                        *ngIf=" enquiryData.sellerId != null &&  enquiryData.confirmationDate != '' ">
                     <i class="fas fa-file-archive fa-md"></i>
                     <span class="ml-2 text-small "> Create Contract </span>
                 </button>

@@ -6,6 +6,7 @@ import { ArticlesComponent } from './articles/articles.component';
 import { BankAccountsComponent } from './bank-info/bank-accounts/bank-accounts.component';
 import { BankComponent } from './bank-info/bank/bank.component';
 import { BuyerComponent } from './buyer/buyer.component';
+import { CapabilityComponent } from './capability/capability.component';
 import { CityComponent } from './city/city.component';
 import { ConfigurationComponent } from './configuration.component';
 import { CountryComponent } from './country/country.component';
@@ -61,6 +62,7 @@ const routes: Routes = [
   { path: 'general-settings', component: GeneralSettingsComponent },
   { path: 'notification-settings', component: NotificationSettingsComponent},
   { path: 'notification', component: NotificationsComponent},
+  { path: 'capability', component: CapabilityComponent},
 
 ]
  }

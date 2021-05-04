@@ -22,7 +22,7 @@
         <div class="form-group row">
             <label for="name" class="col-sm-3 col-form-label">L/C No.</label>
             <div class="col-sm-8">
-              <input  type="text" class="form-control"
+              <input  type="text" class="form-control" name="lcNumber" [(ngModel)]="data.lcNumber"
                 placeholder="purchase order number from buyer"/>
             </div>
           </div>
@@ -30,23 +30,26 @@
 
           <div class="form-group row">
             <label for="description" class="col-sm-3 col-form-label ">L/C Open On</label>
-            <div class="col-sm-8" (clickOutside)="validityDate.close()">
+            <div class="col-sm-8" (clickOutside)="enquiryDatePicker.close()">
       
-              <input navigation="select" class="form-control  " ngbDatepicker #validityDate="ngbDatepicker"
-                (click)="validityDate.toggle()" placeholder="L/C opening date" 
-                name="validityDate" />
+              <input type="text" class="form-control  datetimepicker-input" (click)="enquiryDatePicker.toggle()"
+              placeholder="Date" #enquiryDatePicker="ngbDatepicker" #lcOpenOn="ngModel" [(ngModel)]="data.lcOpenOn"
+              name="lcOpenOn" ngbDatepicker 
+            >
             </div>
           </div>
 
           <div class="form-group row">
             <label for="description" class="col-sm-3 col-form-label ">L/C Shipment On</label>
-            <div class="col-sm-8" (clickOutside)="validityDate.close()">
+            <div class="col-sm-8" (clickOutside)="enquiryDatePicker.close()">
       
-              <input navigation="select" class="form-control  " ngbDatepicker #validityDate="ngbDatepicker"
-                (click)="validityDate.toggle()" placeholder="Certificate validity date" 
-                name="validityDate" />
+          
+              <input navigation="select" class="form-control text_Navy " ngbDatepicker #lcShipmentOn="ngbDatepicker"
+              (click)="lcShipmentOn.toggle()" placeholder="Certificate validity date" [(ngModel)]="data.lcShipmentOn"
+              name="lcShipmentOn" />
+
                 <input  type="text" class="form-control"
-                placeholder="Shipment Date Info"/>
+                placeholder="Shipment Date Info" />
             </div>
           </div>
 
@@ -54,11 +57,11 @@
           
           <div class="form-group row">
             <label for="description" class="col-sm-3 col-form-label ">L/C Expiry Date</label>
-            <div class="col-sm-8" (clickOutside)="validityDate.close()">
+            <div class="col-sm-8" (clickOutside)="enquiryDatePicker.close()">
       
-              <input navigation="select" class="form-control  " ngbDatepicker #validityDate="ngbDatepicker"
-                (click)="validityDate.toggle()" placeholder="L/C Expiry date" 
-                name="validityDate" />
+              <input navigation="select" class="form-control text_Navy " ngbDatepicker #lcExpiryDate="ngbDatepicker"
+              (click)="lcExpiryDate.toggle()" placeholder="Certificate validity date" [(ngModel)]="data.lcExpiryDate"
+              name="lcExpiryDate" />
             </div>
           </div>
 
@@ -67,7 +70,7 @@
           <div class="form-group row">
             <label for="name" class="col-sm-3 col-form-label">Remarks</label>
             <div class="col-sm-8">
-              <textarea  type="text" class="form-control" rows="4"
+              <textarea  type="text" class="form-control" rows="4"  name="remarks" [(ngModel)]="data.remarks"
                 placeholder="L/C Additional Details here..."></textarea>
             </div>
           </div>
@@ -80,7 +83,7 @@
     <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
       Close
     </button>
-    <button class="btn button-save" type="submit">
+    <button class="btn button-save" type="submit" (click)="addContractLOC()">
       Save L/C
     </button>
   </div>
