@@ -120,14 +120,16 @@
                 </div>
             </div>
     
-    
+            <form #buyerForm="ngForm" novalidate>
             <div class="row">
-                <div class="col-md-12 border-bottom pb-3" [ngClass]="{ noDisplay : enquiryToggle==false }">
+               
+                <div  class="col-md-12 border-bottom pb-3" [ngClass]="{ noDisplay : enquiryToggle==false }">
                     <div class="form-group row">
                         <label for="inputEmail3" class="col-md-3 col-form-label control-label">Buyer Name</label>
                         <div class="col-md-6">
     
-                            <ng-select [(ngModel)]="enquiryData.buyerId" placeholder="-- Select --" name="buyerId">
+                            <ng-select required [(ngModel)]="enquiryData.buyerId" placeholder="-- Select --" 
+                            #buyerId="ngModel" [ngClass]="{ error: buyerId.invalid }" name="buyerId">
                                 <ng-option *ngFor="let i of buyer" [value]="i.id">{{ i.buyerName }}
                                 </ng-option>
                             </ng-select>
@@ -219,12 +221,15 @@
                             </div>
                         </div>
                     </div>
+                
     
-                    <button class="btn btn-light float-right ml-1" (click)="enquiryToggle = !enquiryToggle"> Close</button>
-                    <button class="btn btn-primary float-right"
+                    <!-- <button class="btn btn-light float-right ml-1" (click)="enquiryToggle = !enquiryToggle"> Close</button> -->
+                    <button class="btn btn-primary float-right" [disabled]="buyerForm.invalid"
                         (click)=" addEnquiryBuyerDetails() ; enquiryToggle = !enquiryToggle"> Save</button>
                 </div>
+            
             </div>
+        </form>
     
     
             <div class="row border-bottom pt-4">
@@ -235,21 +240,19 @@
                             <a class="nav-item nav-link navlinkpdg active mb-1" id="nav-pricing-tab" data-toggle="tab" href="#nav-pricing"
                                 role="tab" aria-controls="nav-pricing" aria-selected="true">Pricing Details</a>
 
+                            <a class="nav-item nav-link navlinkpdg mb-1" id="nav-enquiryItems-tab" data-toggle="tab" href="#nav-enquiryItems"
+                                role="tab" aria-controls="nav-enquiryItems" aria-selected="false">Enquiry Items <span class="badge badge-primary">{{enquiryData.enquiryItemList.length}}</span></a>
                             
+                            <a class="nav-item nav-link navlinkpdg mb-1" id="nav-enquiry-tab" data-toggle="tab" href="#nav-enquiry"
+                                role="tab" aria-controls="nav-enquiry" aria-selected="false">Enquiry Remarks </a>
+
+                            <a class="nav-item nav-link navlinkpdg mb-1" id="nav-vendor-tab" data-toggle="tab" href="#nav-vendor" role="tab"
+                                aria-controls="nav-vendor" aria-selected="false">Vendor Details</a>
 
                             <a class="nav-item nav-link navlinkpdg mb-1" id="nav-order-tab" data-toggle="tab" href="#nav-order" role="tab"
                                 aria-controls="nav-order" aria-selected="false">Order Details</a>
 
-                            <a class="nav-item nav-link navlinkpdg mb-1" id="nav-enquiry-tab" data-toggle="tab" href="#nav-enquiry"
-                                role="tab" aria-controls="nav-enquiry" aria-selected="false">Enquiry Remarks </a>
-
-                            <a class="nav-item nav-link navlinkpdg mb-1" id="nav-enquiryItems-tab" data-toggle="tab" href="#nav-enquiryItems"
-                                role="tab" aria-controls="nav-enquiryItems" aria-selected="false">Enquiry Items <span class="badge badge-primary">{{enquiryData.enquiryItemList.length}}</span></a>
-
-                                <a class="nav-item nav-link navlinkpdg mb-1" id="nav-vendor-tab" data-toggle="tab" href="#nav-vendor" role="tab"
-                                aria-controls="nav-vendor" aria-selected="false">Vendor Details</a>
-
-                                <a class="nav-item nav-link navlinkpdg mb-1" id="nav-notes-tab" data-toggle="tab" href="#nav-notes"
+                            <a class="nav-item nav-link navlinkpdg mb-1" id="nav-notes-tab" data-toggle="tab" href="#nav-notes"
                                 role="tab" aria-controls="nav-notes" aria-selected="false">Notes / Activities <span class="badge badge-primary">{{enquiryData.enquiryNoteList.length}}</span> </a>
                         </div>
                     </nav>
@@ -473,176 +476,6 @@
                             </div>
     
                         </div>
-    
-                        <!-- --------------------------- Tab 5 -------------------------- -->
-                        <div class="tab-pane fade" id="nav-vendor" role="tabpanel" aria-labelledby="nav-vendor-tab">
-
-                            <div [ngClass]="{ noDisplay : vendorToggle==true }">
-                                <dl class="row">
-                                    <dt class="col-sm-3"> Selected Vendor:</dt>
-                                    <dd class="col-sm-9">{{enquiryData.sellerName}}</dd>
-                                
-                                    <dt class="col-sm-3"> Final Costing:</dt>
-                                    <dd class="col-sm-9">{{enquiryData.costingDetail}}
-
-                                        <button class="btn btn-outline-primary float-right btn-sm" (click)="vendorToggle = !vendorToggle"> Edit</button>
-
-                                    </dd>
-                                </dl>
-                            </div>
-
-    <!-- ------------------------------form---------------------- -->
-                            <div class="row">
-                                <div class="col-md-12 py-3" [ngClass]="{ noDisplay : vendorToggle==false }">
-                            
-                                    <div class="form-group row">
-                                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">Suplier / Seller</label>
-                                        <div class="col-md-6">
-                            
-                                            <ng-select [(ngModel)]="enquiryData.sellerId" placeholder="-- Select --" name="sellerId">
-                                                <ng-option *ngFor="let i of vendorSeller" [value]="i.id">{{ i.sellerName }}
-                                                </ng-option>
-                                            </ng-select>
-                            
-                            
-                                        </div>
-                                    </div>
-                            
-                            
-                                    <div class="form-group row">
-                                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">Costing</label>
-                                        <div class="col-md-6">
-                                            <div class="input-group">
-                                                <textarea rows="3" class="form-control" [(ngModel)]="enquiryData.costingDetail"
-                                                    name="costingDetail"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                            
-                                    <button class="btn btn-light float-right ml-1 btn-sm" (click)="vendorToggle = !vendorToggle">Close</button>
-                                    <button class="btn btn-primary float-right btn-sm" (click)="addEnquiryVendorDetails(); vendorToggle = !vendorToggle">Save</button>
-                                    
-                                </div>
-                            </div>
-                        </div>
-    
-                        <!-- --------------------------- Tab 2 -------------------------- -->
-                        <div class="tab-pane fade" id="nav-order" role="tabpanel" aria-labelledby="nav-order-tab">
-    
-    
-                            <div [ngClass]="{ noDisplay : orderToggle==true }">
-                                <dl class="row">
-                                    <dt class="col-sm-3">Order Confirm On:</dt>
-                                    <dd class="col-sm-9">{{confirmOn}}</dd>
-                                
-                                    <dt class="col-sm-3"> Details:</dt>
-                                    <dd class="col-sm-9">{{enquiryData.confirmationDetails}}
-
-                                        <button class="btn btn-outline-primary float-right btn-sm" (click)="orderToggle = !orderToggle"> Edit</button>
-
-                                    </dd>
-                                </dl>
-    
-                                
-                            </div>
-    
-                            <div class="row">
-                                <div class="col-md-12 py-3" [ngClass]="{ noDisplay : orderToggle==false }">
-                                    <div class="form-group row">
-                                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">Confirmation On:</label>
-                                        <div class="col-md-6">
-                                            <div class="input-group">
-                                                <input class="form-control " ngbDatepicker #validityDate="ngbDatepicker"
-                                                    (click)="validityDate.toggle()" [displayMonths]="1" [(ngModel)]="enquiryData.confirmationDate"
-                                                    name="confirmationDate" />
-                                            </div>
-                                        </div>
-                                    </div>
-                            
-                            
-                                    <div class="form-group row">
-                                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">Details</label>
-                                        <div class="col-md-6">
-                                            <div class="input-group">
-                                                <textarea rows="3" class="form-control" [(ngModel)]="enquiryData.confirmationDetails"
-                                                    name="confirmationDetails"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <button class="btn btn-light float-right ml-1 btn-sm" (click)="orderToggle = !orderToggle">Close</button>
-                                    <button class="btn btn-primary float-right btn-sm" (click)="addEnquiryOrderDetails() ; orderToggle = !orderToggle">Save</button>
-                                    
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <!-- --------------------------- Tab 3 -------------------------- -->
-                        <div class="tab-pane fade" id="nav-enquiry" role="tabpanel" aria-labelledby="nav-enquiry-tab">
-    
-                            <div [ngClass]="{ noDisplay : remarksToggle==true }">
-                                <dl class="row">
-                                    <dt class="col-sm-3">Enquiry Remarks:</dt>
-                                    <dd class="col-sm-9">{{enquiryData.enquiryRemarks}}</dd>
-                                
-                                    <dt class="col-sm-3"> Other Condition:</dt>
-                                    <dd class="col-sm-9">{{enquiryData.enquiryOtherCondition}}</dd>
-                                
-                                    <dt class="col-sm-3">Certifications:</dt>
-                                    <dd class="col-sm-9">{{enquiryData.certificateNames}}
-                                        <button class="btn btn-outline-primary float-right btn-sm" (click)="remarksToggle = !remarksToggle">Edit</button>
-                                    </dd>
-                                </dl>
-    
-                            </div>
-    
-
-
-                            <div class="row">
-                                <div class="col-md-12 py-3" [ngClass]="{ noDisplay : remarksToggle==false }">
-                            
-                            
-                                    <div class="form-group row">
-                                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">Remarks</label>
-                                        <div class="col-md-6">
-                                            <div class="input-group">
-                                                <textarea rows="3" class="form-control" [(ngModel)]="enquiryData.enquiryRemarks"
-                                                    name="enquiryRemarks"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                            
-                                    <div class="form-group row">
-                                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">Other
-                                            Conditions</label>
-                                        <div class="col-md-6">
-                                            <div class="input-group">
-                                                <textarea rows="3" class="form-control" [(ngModel)]="enquiryData.enquiryOtherCondition"
-                                                    name="enquiryOtherCondition"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                            
-                            
-                                    <div class="form-group row">
-                                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">Certificates</label>
-                                        <div class="col-md-6">
-                            
-                                            <ng-select [(ngModel)]="enquiryData.certificateIds" placeholder="-- Select --" name="certificateIds">
-                                                <ng-option *ngFor="let i of certificate" [value]="i.id">{{ i.name }}
-                                                </ng-option>
-                                            </ng-select>
-                            
-                                        </div>
-                                    </div>
-                            
-                                    <button class="btn btn-light float-right ml-1 btn-sm" (click)="remarksToggle = !remarksToggle">Close</button>
-                                    <button class="btn btn-primary float-right btn-sm" (click)="addEnquiryRemarks(); remarksToggle = !remarksToggle">Save Info</button>
-                                    
-                                </div>
-                            </div>
-
-                        </div>
 
                         <!-- --------------------------- Tab 4 -------------------------- -->
                         <div class="tab-pane fade" id="nav-enquiryItems" role="tabpanel" aria-labelledby="nav-enquiryItems-tab">
@@ -669,9 +502,9 @@
                                 <button type="button" class="btn btn-primary btn-sm float-right"
                                     (click)="addEnquiryItemform('AddEnquiryItem', objEnquiry)">
                                     <i class="fa fa-plus"></i> &nbsp;Add Enquiry Item</button>
-
+<!-- 
                                     <button type="button" class="btn btn-primary btn-sm float-right mx-2">
-                                    <i class="fa fa-plus"></i> &nbsp;Add Bulk Quote</button>
+                                    <i class="fa fa-plus"></i> &nbsp;Add Bulk Quote</button> -->
 
                                 </div>
                             </div>
@@ -811,6 +644,176 @@
     
 
                         </div>
+    
+                        <!-- --------------------------- Tab 3 -------------------------- -->
+                        <div class="tab-pane fade" id="nav-enquiry" role="tabpanel" aria-labelledby="nav-enquiry-tab">
+    
+                            <div [ngClass]="{ noDisplay : remarksToggle==true }">
+                                <dl class="row">
+                                    <dt class="col-sm-3">Enquiry Remarks:</dt>
+                                    <dd class="col-sm-9">{{enquiryData.enquiryRemarks}}</dd>
+                                
+                                    <dt class="col-sm-3"> Other Condition:</dt>
+                                    <dd class="col-sm-9">{{enquiryData.enquiryOtherCondition}}</dd>
+                                
+                                    <dt class="col-sm-3">Certifications:</dt>
+                                    <dd class="col-sm-9">{{enquiryData.certificateNames}}
+                                        <button class="btn btn-outline-primary float-right btn-sm" (click)="remarksToggle = !remarksToggle">Edit</button>
+                                    </dd>
+                                </dl>
+    
+                            </div>
+    
+
+
+                            <div class="row">
+                                <div class="col-md-12 py-3" [ngClass]="{ noDisplay : remarksToggle==false }">
+                            
+                            
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">Remarks</label>
+                                        <div class="col-md-6">
+                                            <div class="input-group">
+                                                <textarea rows="3" class="form-control" [(ngModel)]="enquiryData.enquiryRemarks"
+                                                    name="enquiryRemarks"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                            
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">Other
+                                            Conditions</label>
+                                        <div class="col-md-6">
+                                            <div class="input-group">
+                                                <textarea rows="3" class="form-control" [(ngModel)]="enquiryData.enquiryOtherCondition"
+                                                    name="enquiryOtherCondition"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                            
+                            
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">Certificates</label>
+                                        <div class="col-md-6">
+                            
+                                            <ng-select [(ngModel)]="enquiryData.certificateIds" placeholder="-- Select --" name="certificateIds">
+                                                <ng-option *ngFor="let i of certificate" [value]="i.id">{{ i.name }}
+                                                </ng-option>
+                                            </ng-select>
+                            
+                                        </div>
+                                    </div>
+                            
+                                    <button class="btn btn-light float-right ml-1 btn-sm" (click)="remarksToggle = !remarksToggle">Close</button>
+                                    <button class="btn btn-primary float-right btn-sm" (click)="addEnquiryRemarks(); remarksToggle = !remarksToggle">Save Info</button>
+                                    
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- --------------------------- Tab 5 -------------------------- -->
+                        <div class="tab-pane fade" id="nav-vendor" role="tabpanel" aria-labelledby="nav-vendor-tab">
+
+                            <div [ngClass]="{ noDisplay : vendorToggle==true }">
+                                <dl class="row">
+                                    <dt class="col-sm-3"> Selected Vendor:</dt>
+                                    <dd class="col-sm-9">{{enquiryData.sellerName}}</dd>
+                                
+                                    <dt class="col-sm-3"> Final Costing:</dt>
+                                    <dd class="col-sm-9">{{enquiryData.costingDetail}}
+
+                                        <button class="btn btn-outline-primary float-right btn-sm" (click)="vendorToggle = !vendorToggle"> Edit</button>
+
+                                    </dd>
+                                </dl>
+                            </div>
+
+    <!-- ------------------------------form---------------------- -->
+                            <div class="row">
+                                <div class="col-md-12 py-3" [ngClass]="{ noDisplay : vendorToggle==false }">
+                            
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">Suplier / Seller</label>
+                                        <div class="col-md-6">
+                            
+                                            <ng-select [(ngModel)]="enquiryData.sellerId" placeholder="-- Select --" name="sellerId">
+                                                <ng-option *ngFor="let i of vendorSeller" [value]="i.id">{{ i.sellerName }}
+                                                </ng-option>
+                                            </ng-select>
+                            
+                            
+                                        </div>
+                                    </div>
+                            
+                            
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">Costing</label>
+                                        <div class="col-md-6">
+                                            <div class="input-group">
+                                                <textarea rows="3" class="form-control" [(ngModel)]="enquiryData.costingDetail"
+                                                    name="costingDetail"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                            
+                                    <button class="btn btn-light float-right ml-1 btn-sm" (click)="vendorToggle = !vendorToggle">Close</button>
+                                    <button class="btn btn-primary float-right btn-sm" (click)="addEnquiryVendorDetails(); vendorToggle = !vendorToggle">Save</button>
+                                    
+                                </div>
+                            </div>
+                        </div>
+    
+                        <!-- --------------------------- Tab 2 -------------------------- -->
+                        <div class="tab-pane fade" id="nav-order" role="tabpanel" aria-labelledby="nav-order-tab">
+    
+    
+                            <div [ngClass]="{ noDisplay : orderToggle==true }">
+                                <dl class="row">
+                                    <dt class="col-sm-3">Order Confirm On:</dt>
+                                    <dd class="col-sm-9">{{confirmOn}}</dd>
+                                
+                                    <dt class="col-sm-3"> Details:</dt>
+                                    <dd class="col-sm-9">{{enquiryData.confirmationDetails}}
+
+                                        <button class="btn btn-outline-primary float-right btn-sm" (click)="orderToggle = !orderToggle"> Edit</button>
+
+                                    </dd>
+                                </dl>
+    
+                                
+                            </div>
+    
+                            <div class="row">
+                                <div class="col-md-12 py-3" [ngClass]="{ noDisplay : orderToggle==false }">
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">Confirmation On:</label>
+                                        <div class="col-md-6">
+                                            <div class="input-group">
+                                                <input class="form-control " ngbDatepicker #validityDate="ngbDatepicker"
+                                                    (click)="validityDate.toggle()" [displayMonths]="1" [(ngModel)]="enquiryData.confirmationDate"
+                                                    name="confirmationDate" />
+                                            </div>
+                                        </div>
+                                    </div>
+                            
+                            
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">Details</label>
+                                        <div class="col-md-6">
+                                            <div class="input-group">
+                                                <textarea rows="3" class="form-control" [(ngModel)]="enquiryData.confirmationDetails"
+                                                    name="confirmationDetails"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-light float-right ml-1 btn-sm" (click)="orderToggle = !orderToggle">Close</button>
+                                    <button class="btn btn-primary float-right btn-sm" (click)="addEnquiryOrderDetails() ; orderToggle = !orderToggle">Save</button>
+                                    
+                                </div>
+                            </div>
+
+                        </div>
 
                         <!-- --------------------------- Tab 6 -------------------------- -->
                         <div class="tab-pane fade" id="nav-notes" role="tabpanel" aria-labelledby="nav-notes-tab">
@@ -928,7 +931,7 @@
             
     
             <div [ngClass]="{ noDisplay : reminderToggle==true }">
-                <button class="btn btn-outline-secondary float-right btn-xs " (click)="reminderToggle = !reminderToggle "><i
+                <button class="btn btn-outline-secondary float-right btn-xs " ><i
                         class="fas fa-sync"></i> </button>
                 <button class="btn btn-primary float-right btn-xs mx-1" (click)="reminderToggle = !reminderToggle "><i
                         class="fas fa-edit "></i> </button>
@@ -940,7 +943,7 @@
                             {{reminder.followUpDateToDisplay}}
 
                             <button type="button" class="btn deleteIconBack" data-toggle="tooltip" data-placement="top"
-                            title="" data-original-title="Delete">
+                            title="" data-original-title="Delete" (click)="deleteReminder(reminder)">
                             <i class="far fa-trash-alt"></i>
                         </button>
                         </div>

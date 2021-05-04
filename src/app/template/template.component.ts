@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-
+import * as $ from 'jquery';
+import * as AdminLte from 'admin-lte';
 @Component({
   selector: 'app-template',
   templateUrl: './template.component.html',
@@ -60,6 +61,10 @@ Swal.fire({
   }
 })
   }
-
+  ngAfterViewInit() {
+    $('[data-widget="treeview"]').each(function() {
+        AdminLte.Treeview._jQueryInterface.call($(this), 'init');
+    });
+  }
 
 }

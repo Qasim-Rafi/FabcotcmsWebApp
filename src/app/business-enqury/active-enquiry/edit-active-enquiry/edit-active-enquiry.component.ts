@@ -1112,7 +1112,49 @@ export class EditActiveEnquiryComponent implements OnInit {
       }
 
 
+      
+
+      deleteReminder(objReminder) {
+        Swal.fire({
+          title: GlobalConstants.deleteTitle, //'Are you sure?',
+          text: GlobalConstants.deleteMessage + 'reminder of' + '"' + objReminder.followUpDate + '"',
+          icon: 'error',
+          showCancelButton: true,
+          confirmButtonColor: '#ed5565',
+          cancelButtonColor: '#dae0e5',
+          cancelButtonText: 'No',
+          confirmButtonText: 'Yes',
+          reverseButtons: true,
+          position: 'top',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.http.
+              delete(`${environment.apiUrl}/api/Enquiries/DeleteEnquiryFollowUp/`+ objReminder.id )
+              .subscribe(
+                res => {
+        
+                  this.response = res;
+                  if (this.response.success == true) {
+                    this.toastr.error(this.response.message, 'Message.');
+                    this.getEnquiryData(this.objEnquiry);
+                  }
+                  else {
+                    this.toastr.error(this.response.message, 'Message.');
+                  }
+        
+                }, err => {
+                  if (err.status == 400) {
+                    this.toastr.error(this.response.message, 'Message.');
+                  }
+                });
+    
+          }
+        })
+    
+      }
 
 
 
-    }
+      }
+
+    

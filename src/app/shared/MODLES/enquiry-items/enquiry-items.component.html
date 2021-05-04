@@ -47,20 +47,27 @@
                         <label for="name" class="col-form-label">S No</label>
                     </div>
 
-                    <div class="form-group col modalBorder">
-                        <label for="name" class="col-form-label">Description</label>
-                    </div>
-            
-                    <div class="form-group col modalBorder">
-                        <label for="name" class="col-form-label">Quantity</label>
-                    </div>
-            
-                    <div class="form-group col modalBorder">
-                        <label for="name" class="col-form-label ">Composition</label>
-                    </div>
-
-                    <div class="form-group col modalBorder">
-                        <label for="name" class="col-form-label">Construction</label>
+                    <div class="col">
+                        <div class="form-row">
+                    
+                    
+                            <div class="form-group col-3 modalBorder">
+                                <label for="name" class="col-form-label">Description</label>
+                            </div>
+                    
+                            <div class="form-group col-4 modalBorder">
+                                <label for="name" class="col-form-label ">Composition</label>
+                            </div>
+                    
+                            <div class="form-group col-2 modalBorder">
+                                <label for="name" class="col-form-label">Construction</label>
+                            </div>
+                    
+                            <div class="form-group col-3 modalBorder">
+                                <label for="name" class="col-form-label">Quantity</label>
+                            </div>
+                    
+                        </div>
                     </div>
             
                 </div>
@@ -68,25 +75,51 @@
 <!-- ---------------------End Heading-------------------- -->
 
                 <div class="form-row" *ngFor="let value of data; let i = index;">
-
+                
                     <div class=" modalBorder d-inline ">
                         <div class="h6 pdngLR">{{i+1}}</div>
                     </div>
-
+                
                     <div class="col">
-
+                
                         <div class="form-row">
-            
+                
                             <div class="form-group col-3 modalBorder">
-                                <input type="text" class="form-control" placeholder="Description" name="description_{{i}}"  #description="ngModel" 
-                                 [(ngModel)]=value.description  [ngClass]="{ 'error': EnquiryItemForm.submitted && description.invalid }" required />
+                                <input type="text" class="form-control" placeholder="Description" name="description_{{i}}"
+                                    #description="ngModel" [(ngModel)]=value.description
+                                    [ngClass]="{ 'error': EnquiryItemForm.submitted && description.invalid }" required />
                             </div>
-                    
+                
+                            <div class="form-group col-4 modalBorder">
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <input type="number" min="0" class="form-control" placeholder="%age"
+                                            name="compositionPercentage_{{i}}" [(ngModel)]=value.compositionPercentage />
+                                    </div>
+                                    <div class="col-lg-5 mrg-tsm">
+                                        <ng-select [(ngModel)]="value.compositionFebricTypeId" placeholder="Select Fabric"
+                                            name="compositionFebricTypeId_{{i}}">
+                                            <ng-option *ngFor="let i of fabricType" [value]="i.id">{{ i.type }}</ng-option>
+                                        </ng-select>
+                                    </div>
+                                    <div class="col-lg-4 mrg-tsm">
+                                        <input type="text" class="form-control" placeholder="Additional Info"
+                                            name="compositionAdditionalInfo_{{i}}" [(ngModel)]=value.compositionAdditionalInfo />
+                                    </div>
+                                </div>
+                            </div>
+                
+                            <div class="form-group col-2 modalBorder">
+                                <input type="text" class="form-control" placeholder="Construction" name="construction_{{i}}"
+                                    [(ngModel)]=value.construction />
+                            </div>
+                
                             <div class="form-group col-3 modalBorder">
                                 <div class="row">
                                     <div class="col-lg-4">
-                                        <input type="number" min="0" class="form-control" placeholder="Qty" name="itemQuantity_{{i}}" #itemQuantity="ngModel" 
-                                            [(ngModel)]=value.itemQuantity  [ngClass]="{ 'error': EnquiryItemForm.submitted && itemQuantity.invalid }" required   />
+                                        <input type="number" min="0" class="form-control" placeholder="Qty" name="itemQuantity_{{i}}"
+                                            #itemQuantity="ngModel" [(ngModel)]=value.itemQuantity
+                                            [ngClass]="{ 'error': EnquiryItemForm.submitted && itemQuantity.invalid }" required />
                                     </div>
                                     <div class="col-lg-8 mrg-tsm">
                                         <ng-select [(ngModel)]="value.itemUOMId" placeholder="Select UOM" name="itemUOMId_{{i}}">
@@ -95,62 +128,40 @@
                                     </div>
                                 </div>
                             </div>
-                    
-                            <div class="form-group col-3 modalBorder">
-                                <div class="row">
-                                    <div class="col-lg-2">
-                                        <input type="number" min="0" class="form-control" placeholder="%age" name="compositionPercentage_{{i}}"
-                                            [(ngModel)]=value.compositionPercentage />
-                                    </div>
-                                    <div class="col-lg-5 mrg-tsm">
-                                        <ng-select [(ngModel)]="value.compositionFebricTypeId" placeholder="Select Fabric"
-                                            name="compositionFebricTypeId_{{i}}">
-                                            <ng-option *ngFor="let i of fabricType" [value]="i.id">{{ i.type }}</ng-option>
-                                        </ng-select>
-                                    </div>
-                                    <div class="col-lg-5 mrg-tsm">
-                                        <input type="text" class="form-control" placeholder="Additional Info"
-                                            name="compositionAdditionalInfo_{{i}}" [(ngModel)]=value.compositionAdditionalInfo />
-                                    </div>
-                                </div>
-                            </div>
-        
-                            <div class="form-group col-3 modalBorder">
-                                <input type="text" class="form-control" placeholder="Construction" name="construction_{{i}}" [(ngModel)]=value.construction/>
-                            </div>
-                    
+                
                         </div>
-                     
+                
                         <div class="form-row">
-                    
+                
+                            <div class="form-group col-3 modalBorder">
+                                <input type="text" class="form-control" placeholder="GSM / Weight" name="weight_{{i}}"
+                                    [(ngModel)]=value.weight />
+                            </div>
+                
+                            <div class="form-group col-4 modalBorder">
+                                <ng-select [(ngModel)]="value.loomTypeId" placeholder="Loom Type" name="loomTypeId_{{i}}">
+                                    <ng-option *ngFor="let i of loomType" [value]="i.id">{{ i.type }}</ng-option>
+                                </ng-select>
+                            </div>
+                
+                            <div class="form-group col-2 modalBorder">
+                                <input type="text" class="form-control" placeholder="Size" name="size_{{i}}" [(ngModel)]=value.size />
+                            </div>
+                
                             <div class="form-group col-3 modalBorder">
                                 <ng-select [(ngModel)]="value.colorId" placeholder="Item Color" name="colorId_{{i}}">
                                     <ng-option *ngFor="let i of color" [value]="i.id">{{ i.name }}</ng-option>
                                 </ng-select>
                             </div>
-                    
-                            <div class="form-group col-3 modalBorder">
-                                <input type="text" class="form-control" placeholder="GSM / Weight" name="weight_{{i}}" [(ngModel)]=value.weight />
-                            </div>
-                    
-                            <div class="form-group col-3 modalBorder">
-                                <ng-select [(ngModel)]="value.loomTypeId" placeholder="Loom Type" name="loomTypeId_{{i}}">
-                                    <ng-option *ngFor="let i of loomType" [value]="i.id">{{ i.type }}</ng-option>
-                                </ng-select>
-                            </div>
-                    
-                            <div class="form-group col-3 modalBorder">
-                                <input type="text" class="form-control" placeholder="Size" name="size_{{i}}" [(ngModel)]=value.size />
-                            </div>
-                    
+                
                         </div>
-                            
+                
                         <div class="form-row form-group modalBorder">
                             <textarea class="form-control" rows="3" name="remarks_{{i}}" placeholder="Remarks"
                                 [(ngModel)]=value.remarks></textarea>
-                               
+                
                         </div>
-                        
+                
                     </div>
                 </div>
                
@@ -164,10 +175,10 @@
                 <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
                     Close
                 </button>
-                <button *ngIf="statusCheck == 'AddEnquiryItem'"  
+                <!-- <button *ngIf="statusCheck == 'AddEnquiryItem'"  
                             class="btn button-save" type="submit" (click) = "addEnquiryItem()" >
                                 Save & Next
-                            </button>
+                            </button> -->
                 <button *ngIf="statusCheck == 'AddEnquiryItem'" class="btn button-save" type="submit" (click) = "addEnquiryItem()">
                     Save & Exit
                 </button>

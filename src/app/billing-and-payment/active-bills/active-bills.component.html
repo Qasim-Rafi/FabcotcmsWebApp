@@ -175,8 +175,6 @@
         
             </div>
         
-            <p>Showing 1 to 14 of 14 entries</p>
-        
           </div>
         </div>
 
@@ -186,13 +184,7 @@
 <!--Start panel body -->      
       <div class="panel-body">
 
-        <div class="row mb-2">
-          <div class="col-md-12">
-            <div class="input-group">
-              <input type="text" placeholder="Search..." class="input form-control w-50" />
-            </div>
-          </div>
-        </div>
+       
 
 
         <ngx-datatable class="bootstrap datatable-row-wrapper" [columns]="columns" [rows]="rows" [columnMode]="'flex'"
@@ -263,10 +255,10 @@
         
                 <div class="ibox-tools text-center">
                     <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top" title=""
-                      data-original-title="Edit" routerLink="/billing-and-payment/open-bill"><i
+                      data-original-title="Edit" (click) =  "navigateOpenBill(row)"><i
                         class="far fa-edit"></i></button>
                     <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top" title=""
-          routerLink="/billing-and-payment/payment-form"><i class="fas fa-money-check-alt"></i></button>
+          (click) = "navigatePaymentForm('addPayment')"><i class="fas fa-money-check-alt"></i></button>
                   </div>
 
             </ng-template>
