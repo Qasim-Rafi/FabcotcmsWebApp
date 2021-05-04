@@ -11,47 +11,42 @@
 
   
   <div class="modal-body BG pt-2r">
-    <form #partiesForm="ngForm" novalidate>
+    <form #ItemForm="ngForm" novalidate>
         <div class="form-group row">
-            <label for="name" class="col-sm-3 col-form-label text_Navy">Item Description</label>
+            <label for="description" class="col-sm-3 col-form-label text_Navy">Item Description</label>
             <div class="col-sm-6">
-                <input type="text" class="form-control" value="" placeholder="Description">
+                <input type="text" class="form-control" id="description"
+                name="description" [(ngModel)]="data.description" #description="ngModel"
+                value="" placeholder="Description" />
                
             </div>
           </div>
 
 
           <div class="form-group row">
-            <label for="description" class="col-sm-3 col-form-label text_Navy">Item Quantity</label>
+            <label for="itemQuantity" class="col-sm-3 col-form-label text_Navy">Item Quantity</label>
             <div class="col-sm-2">
-                <input type="number" class="form-control" value="" placeholder="Quantity">
+                <input type="number" 
+                id="itemQuantity"
+                name="itemQuantity" [(ngModel)]="data.itemQuantity" #itemQuantity="ngModel"
+                class="form-control" value="" placeholder="Quantity" />
             </div>
             <div class="col-md-4">
                
-                    <ng-select 
-                    placeholder="Select UOM">
-                    <ng-option >
-                        Sets
-                    </ng-option>
-                    <ng-option>
-                        Yards
-                    </ng-option>
-                    <ng-option>
-                        Meters
-                    </ng-option>
-                    <ng-option>
-                        Unit
-                    </ng-option>
-                  </ng-select>
+              <ng-select [(ngModel)]="itemUOMId" placeholder="Select UOM" name="itemUOMId">
+                <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}</ng-option>
+            </ng-select>
 
             </div>
       
           </div>
 
           <div class="form-group row">
-            <label for="description" class="col-sm-3 col-form-label ">Construction</label>
+            <label for="construction" class="col-sm-3 col-form-label ">Construction</label>
             <div class="col-sm-6">
-                <input type="text" class="form-control" value="" placeholder="Item Composition">
+                <input type="text" class="form-control" value="" placeholder="Item Composition"
+                id="construction"
+                name="construction" [(ngModel)]="data.construction" #construction="ngModel" />
                
             </div>
           </div>
@@ -60,19 +55,18 @@
           <div class="form-group row">
             <label for="description" class="col-sm-3 col-form-label text-Navy">Item Color</label>
             <div class="col-sm-6">
-                <ng-select 
-                placeholder="Select Color" class="text-center">
-                <ng-option >
-                </ng-option>
-              </ng-select>
+              <ng-select [(ngModel)]="colorId" placeholder="Select Color" name="colorId">
+                <ng-option *ngFor="let i of color" [value]="i.id">{{ i.name }}</ng-option>
+            </ng-select>
                
             </div>
           </div>
 
           <div class="form-group row">
-            <label for="description" class="col-sm-3 col-form-label text-Navy">GSM / Weight</label>
+            <label for="weight" class="col-sm-3 col-form-label text-Navy">GSM / Weight</label>
             <div class="col-sm-6">
-                <input type="text" class="form-control" value="" placeholder="Item GSM / Weight">
+                <input type="text" class="form-control" id="weight"
+                name="weight" [(ngModel)]="data.weight" #weight="ngModel" value="" placeholder="Item GSM / Weight">
                
             </div>
           </div>
@@ -80,85 +74,63 @@
           <div class="form-group row">
             <label for="description" class="col-sm-3 col-form-label text-Navy">Loom Type</label>
             <div class="col-sm-6">
-                <ng-select 
-                placeholder="Select Loom Type" class="text-center">
-                <ng-option >
-                </ng-option>
-              </ng-select>
-               
+              <ng-select [(ngModel)]="contractCurrencyId" placeholder="Select Loom Type" name="loomTypeId">
+                <ng-option *ngFor="let i of loomType" [value]="i.id">{{ i.type }}</ng-option>
+            </ng-select>
+              
             </div>
           </div>
 
           <div class="form-group row">
-            <label for="description" class="col-sm-3 col-form-label text-Navy">Size</label>
+            <label for="size" class="col-sm-3 col-form-label text-Navy">Size</label>
             <div class="col-sm-6">
-                <input type="text" class="form-control" value="" placeholder="Item Size">
+                <input type="text" id="size"
+                name="size" [(ngModel)]="data.size" #size="ngModel" class="form-control" value="" placeholder="Item Size">
                
             </div>
           </div>
 
 
           <div class="form-group row">
-            <label for="description" class="col-sm-3 col-form-label text_Navy">Price / Rate</label>
+            <label for="contractRate" class="col-sm-3 col-form-label text_Navy">Price / Rate</label>
             <div class="col-sm-2">
-                <input type="number" class="form-control" value="" placeholder="Rate">
+                <input type="number" id="contractRate"
+                name="contractRate" [(ngModel)]="data.contractRate" #contractRate="ngModel" class="form-control" value="" placeholder="Rate">
             </div>
             <div class="col-md-2">
                
-                <ng-select 
-                placeholder="Select Currency">
-                <ng-option >
-                    PKR
-                </ng-option>
-                <ng-option>
-                    USD
-                </ng-option>
-                <ng-option>
-                    EUR
-                </ng-option>
-                <ng-option>
-                    GBP
-                </ng-option>
-              </ng-select>
+              <ng-select [(ngModel)]="contractCurrencyId" placeholder="Select Currency" name="contractCurrencyId">
+                <ng-option *ngFor="let i of currency" [value]="i.id">{{ i.currencyCode }}</ng-option>
+            </ng-select>
 
         </div>
   
             <div class="col-md-2">
                
-                    <ng-select 
-                    placeholder="Select UOM">
-                    <ng-option >
-                        Sets
-                    </ng-option>
-                    <ng-option>
-                        Yards
-                    </ng-option>
-                    <ng-option>
-                        Meters
-                    </ng-option>
-                    <ng-option>
-                        Unit
-                    </ng-option>
-                  </ng-select>
+              <ng-select [(ngModel)]="itemUOMId" placeholder="Select UOM" name="itemUOMId">
+                <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}</ng-option>
+            </ng-select>
 
             </div>
       
           </div>
 
           <div class="form-group row">
-            <label for="description" class="col-sm-3 col-form-label text-Navy">Cost</label>
+            <label for="contractCost" class="col-sm-3 col-form-label text-Navy">Cost</label>
             <div class="col-sm-6">
-                <input type="text" class="form-control" value="" placeholder="" readonly>
+                <input type="text" class="form-control" value="" placeholder="" id="contractCost"
+                name="contractCost" [(ngModel)]="data.contractCost" #contractCost="ngModel">
                
             </div>
           </div>
 
           <div class="form-group row">
-            <label for="remarkbuyer" class="col-sm-3 col-form-label text_grey"> Remarks</label>
+            <label for="remarks" class="col-sm-3 col-form-label text_grey"> Remarks</label>
             <div class="col-sm-6">
               <textarea 
-               class="form-control" id="remarkbuyer" rows="5" placeholder="Item Additional details here ..."
-                name="remarkbuyer"  ></textarea>
+               class="form-control" id="remarks"
+               name="description" [(ngModel)]="data.remarksn" #remarks="ngModel" rows="5" placeholder="Item Additional details here ..."
+                name="remarks"  ></textarea>
             </div>
           </div> 
 
@@ -170,10 +142,10 @@
       Close
     </button>
  
-    <button class="btn button-save" type="submit">
+    <button class="btn button-save" (click)="addItem()" type="submit">
         Save & Next
       </button>
-      <button class="btn button-save" type="submit">
+      <button class="btn button-save" (click)="addItem()" type="submit">
         Save & Close
       </button>
   </div>

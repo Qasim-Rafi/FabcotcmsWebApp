@@ -17,12 +17,13 @@ const routes: Routes = [
 
   {path:'login', redirectTo:'login', pathMatch:'full'},
    {path:'', component:LoginComponent},
+
  {
    path:'', component:TemplateComponent,
    children:[
-   {path:'home', component:HomeComponent,
-  //  canActivate:[AuthGuard],
-  },
+    {path:'home', component:HomeComponent,
+    //  canActivate:[AuthGuard],
+    },
    {
      path:'config',
    loadChildren:'./configuration/configuration.module#ConfigurationModule',
