@@ -65,7 +65,7 @@
 
       <div class="row mb-2">
         <div class="col-md-6 mrg-tsm">
-          <button type="button" class="btn btn-primary btn-md" (click)="navigate()">
+          <button type="button" class="btn btn-primary btn-md">
             <i class="fa fa-filter fa-fw"></i> Advance Filter</button>
         </div>
       </div>
@@ -87,16 +87,15 @@
 
       <div class="panel-body">
 
-        <ngx-datatable #myTable class="bootstrap" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-          [sorts]="[{prop: 'code', dir: 'asce'}]" [rowHeight]="'auto'" [limit]="6">
-
-
+        <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'"
+        [headerHeight]="50" [footerHeight]="50" [sorts]="[{prop: 'code', dir: 'asce'}]" [rowHeight]="'auto'"
+        [limit]="6">
           <ngx-datatable-column name="Action">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
 
               <div class="ibox-tools text-center">
 
-                <button type="button" class="btn editIconBack">
+                <button type="button" class="btn editIconBack" (click)="navigateEditContract(row)">
                   <i class="far fa-edit "></i>
                 </button>
 
@@ -116,23 +115,20 @@
 
           <ngx-datatable-column name="Age" prop="name">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              <span class="badge badge-primary">Active</span>
-              <span class="badge badge-secondary">Inactive</span>
+              <span class="badge badge-primary" *ngIf="row.active==true">Active</span>
+              <span class="badge badge-secondary" *ngIf="row.active==false">Inactive</span>
             </ng-template>
           </ngx-datatable-column>
 
           <ngx-datatable-column name="Contract Details" prop="genericName">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-
+              {{row.enquiryId}}
             </ng-template>
           </ngx-datatable-column>
 
           <ngx-datatable-column name="Contract On" prop="status">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-
-
-
-
+              
             </ng-template>
           </ngx-datatable-column>
 

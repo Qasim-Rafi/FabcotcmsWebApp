@@ -76,8 +76,8 @@ export class ActiveEnquiryComponent implements OnInit {
         this.listCount = this.response.data.length;
 
         if (this.response.success == true) {
-          this.data = this.response.data;
-          this.temp = [this.data];
+          this.data = this.response.data.enquiryList;
+          this.temp = [this.data]; 
           cb(this.data);
         }
         else {

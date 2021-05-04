@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
+import { ServiceService } from 'src/app/shared/service.service';
 
 @Component({
   selector: 'app-add-seller-form',
@@ -16,12 +17,15 @@ export class AddSellerFormComponent implements OnInit {
   seller: any[];
   country: any = [];
   countryId: null;
+  certification: any = [];
+  capabilities:any=[];
   @ViewChild(NgForm) sellerForm;
   // @ViewChild('sellerName') private elementRef: ElementRef;
 
 
 
   constructor(
+    private service: ServiceService,
     private http: HttpClient,
     private toastr: ToastrService,
     private _NgbActiveModal: NgbActiveModal
@@ -30,6 +34,8 @@ export class AddSellerFormComponent implements OnInit {
   ngOnInit(): void {
     this.getCountry();
     this.getParentSellers();
+    this.GetCertificationDropdown();
+    this.GetCapabilitiesDropdown();
   }
 
 
@@ -63,7 +69,28 @@ export class AddSellerFormComponent implements OnInit {
         });
   }
 
-
+  GetCertificationDropdown() {
+    this.service.getCertification().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.certification = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
+  GetCapabilitiesDropdown() {
+    this.service.getCapabilities().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.capabilities = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
 
 
 
@@ -101,8 +128,8 @@ export class AddSellerFormComponent implements OnInit {
       "faxNumber": this.data.sellerFax,
       "ntnNumber": this.data.sellerNTN,
       "gstNumber": this.data.sellerGST,
-      "machineId": this.data.machineId,
-      "capabilitiesId": this.data.capabilitiesId,
+      "machineIds": this.data.machineId !=null?this.data.machineId.toString():null,
+      "capabilitiesIds": this.data.capabilitiesIds != null ?this.data.capabilitiesIds.toString() : null,
       "majorStrength": this.data.sellerStrenght,
       "leadTime": this.data.leadTime,
       "sellerDetails": this.data.sellerDetails,
