@@ -169,6 +169,11 @@ export class ServiceService {
     return this.http.get(`${environment.apiUrl}/api/Lookups/Certifications`)
 
   }
+  getCapabilities() {
+    return this.http.get(`${environment.apiUrl}/api/Lookups/Capabilities`)
+
+  }
+  
   getPriceTerm() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/PriceTerms`)
 
