@@ -137,7 +137,8 @@ const appRoutes: Routes = []
   ],
 
   providers: [AuthGuard,
-    {provide: NgbDateParserFormatter, useFactory: () => new DateConvertor('EEE, dd-MMM-yyyy')}],
+    // {provide: NgbDateParserFormatter, useFactory: () => new DateConvertor('EEE, dd-MMM-yyyy')}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

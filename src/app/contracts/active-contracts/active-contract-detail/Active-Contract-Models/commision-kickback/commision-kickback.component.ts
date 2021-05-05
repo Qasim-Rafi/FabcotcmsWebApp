@@ -80,7 +80,7 @@ export class CommisionKickbackComponent implements OnInit {
         this.response = res;
         if (this.response.success == true) {
           this.commission = this.response.data;
-          this.commission.agenetName= parseInt(this.commission.agenetName);
+          // this.commission.agenetName= parseInt(this.commission.agenetName);
           
         }
         else {
@@ -108,7 +108,7 @@ export class CommisionKickbackComponent implements OnInit {
       "buyerSideCommission": this.commission.buyerSideCommission.toString(),
       "buyerSideCommissionUOMId": this.commission.buyerSideCommissionUOMId,
       "buyerAdditionalInfo": this.commission.buyerAdditionalInfo,
-      "agenetName": this.commission.agenetName.toString(),
+      "agentId": this.commission.agentId,
       "agenetCommission": this.commission.agenetCommission.toString(),
     }
 

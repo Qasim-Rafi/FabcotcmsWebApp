@@ -2,7 +2,7 @@
     <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
       <span aria-hidden="true">&times;</span>
     </button>
-    <div >
+    <div>
       <h5 class="modal-title">
         <i class="fas fa-plus"></i>
         Add New Beneficiary
@@ -16,8 +16,9 @@
         <div class="form-group row">
             <label class="col-sm-3 col-form-label text_Navy">Agent</label>
             <div class="col-sm-8">
-              <ng-select placeholder="Select an agent" name="agentId">
-                <ng-option >
+              <ng-select placeholder="Select an agent" name="agentId" [(ngModel)]="data.userId">
+                <ng-option *ngFor="let i of agent" [value]="i.id">
+                  {{i.name}}
                 </ng-option>
               </ng-select>
             </div>
@@ -25,8 +26,9 @@
       <div class="form-group row">
         <label class="col-sm-3 col-form-label text_Navy">Criteria</label>
         <div class="col-sm-8">
-          <ng-select placeholder="Select a criteria" name="criteriaId">
-            <ng-option >
+          <ng-select placeholder="Select an agent" name="agentId" [(ngModel)]="data.beneficiaryCriteriaId">
+            <ng-option *ngFor="let i of agent" [value]="i.id">
+              {{i.name}}
             </ng-option>
           </ng-select>
         </div>
@@ -34,9 +36,9 @@
       <div class="form-group row">
         <label for="details" class="col-sm-3 col-form-label">Detail</label>
         <div class="col-sm-8">
-          <textarea 
+          <textarea [(ngModel)]="data.criteriaDetail"
            class="form-control" id="details" rows="5" placeholder="Criteria Details"
-            name="details"  ></textarea>
+            name="criteriaDetail" ></textarea>
         </div>
       </div>  
     </form>
