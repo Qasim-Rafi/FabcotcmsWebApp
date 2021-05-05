@@ -24,31 +24,54 @@
           </div>
 
 
-          <div class="form-group row">
+          <!-- <div class="form-group row">
             <label for="description" class="col-sm-3 col-form-label text-Navy">Supplier Date</label>
-            <div class="col-sm-7" (clickOutside)="validityDate.close()">
+            <div class="col-sm-7">
       
               <input navigation="select" class="form-control text_Navy "
               id="supplierDate" name="supplierDate" [(ngModel)]="data.supplierDate" #supplierDate="ngModel"
-              ngbDatepicker #validityDate="ngbDatepicker"
-                (click)="validityDate.toggle()" placeholder="Shipment date received from Supplier" 
-                name="validityDate" />
+               placeholder="Shipment date received from Supplier"/>
             </div>
-          </div>
+          </div> -->
+          <div class="form-group">
+            <label for="description">Supplier Date</label>
+            <div class="input-group date" (clickOutside)="supplierDatePicker.close()">
+                <input type="text" class="form-control  datetimepicker-input" (click)="supplierDatePicker.toggle()"
+                  placeholder="Date" #supplierDatePicker="ngbDatepicker" #supplierDate="ngModel" [(ngModel)]="supplierDateField"
+                  name="supplierDate" ngbDatepicker required />
+        
+                  
+                <div class="input-group-append" (click)="supplierDatePicker.toggle()">
+                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                </div>
+              </div>
+        </div>
           
-
-          <div class="form-group row">
-            <label for="description" class="col-sm-3 col-form-label ">Buyer Date</label>
-            <div class="col-sm-7" (clickOutside)="validityDate2.close()">
+        <div class="form-group">
+          <label for="description">Buyer Date</label>
+          <div class="input-group date" (clickOutside)="buyerDatePicker.close()">
+              <input type="text" class="form-control  datetimepicker-input" (click)="buyerDatePicker.toggle()"
+                placeholder="Date" #buyerDatePicker="ngbDatepicker" #buyerDate="ngModel" [(ngModel)]="buyerDateField"
+                name="buyerDate" ngbDatepicker required />
       
-              <input navigation="select" class="form-control"
+                
+              <div class="input-group-append" (click)="buyerDatePicker.toggle()">
+                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+              </div>
+            </div>
+      </div>
+
+          <!-- <div class="form-group row">
+            <label for="description" class="col-sm-3 col-form-label ">Buyer Date</label>
+            <div class="col-sm-7">
+      
+              <input class="form-control"
               id="buyerDate" name="buyerDate" [(ngModel)]="data.buyerDate" #buyerDate="ngModel"
-              ngbDatepicker #validityDate2="ngbDatepicker"
-                (click)="validityDate2.toggle()" placeholder="Shipment date received from Buyer" 
-                name="validityDate2" />
+              placeholder="Shipment date received from Buyer" 
+                 />
             </div>
           </div>
-          
+           -->
           <div class="form-group row">
             <label for="description" class="col-sm-3 col-form-label text-Navy">Shipment Line</label>
             <div class="col-sm-7">
