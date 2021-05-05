@@ -4,7 +4,11 @@ import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { ToastrService } from 'ngx-toastr';
+
 import { GlobalConstants } from 'src/app/Common/global-constants';
+
+import { Dateformater } from 'src/app/shared/dateformater';
+
 import { EnquiryNotesComponent } from 'src/app/shared/MODLES/enquiry-notes/enquiry-notes.component';
 import { ServiceService } from 'src/app/shared/service.service';
 import { environment } from 'src/environments/environment';
@@ -29,13 +33,23 @@ import { SALEINVOICEComponent } from './Active-Contract-Models/sale-invoice/sale
   styleUrls: ['./active-contract-detail.component.css']
 })
 export class ActiveContractDetailComponent implements OnInit {
+  dateformater: Dateformater = new Dateformater();
   rows: any = [];
   columns: any = [];
   queryParems: any = {};
   ItemCount: number;
   contractId: any = {};
   itemId: any = {};
+
+  contractData: any = {};
+
   contractPartiesData: any = {};
+  contractProductData: any = {};
+  contractCostingData: any = {};
+  contractPaymentData: any = {};
+  contractLOCdata: any = {};
+  contractCommissionData: any = {};
+  contractRemarksData: any = {};
   response: any;
   ItemFilter: any = [];
   ItemUrl = '/api/Contracts/GetAllContractItem';
@@ -54,7 +68,9 @@ export class ActiveContractDetailComponent implements OnInit {
     this.queryParems = this.route.snapshot.queryParams;
     this.contractId = this.queryParems.id;
 
+    this.getContractData();
     this.getContractPartiesData();
+
     {
       this.service.fetch((data) => {
         this.ItemFilter = [...data];
@@ -69,11 +85,40 @@ export class ActiveContractDetailComponent implements OnInit {
         this.ItemCount = this.rows.length;
       }, this.shipmentUrl);
     }
+
+    this.getContractProductData();
+    this.getContractCostingData();
+    this.getContractPaymentData();
+    this.getContractLOC();
+    this.getContractRemarkData();
+    this.getContractCommisionData();
+
   }
 
 
 
-
+  getContractData() {
+    this.http.get(`${environment.apiUrl}/api/Contracts/GetContractById/` + this.contractId)
+      .subscribe(
+        res => {
+          this.response = res;
+          if (this.response.success == true) {
+            this.contractData = this.response.data;
+            
+  
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+  
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+        });
+  }
+  
+  
   
 PartiesForm() {
   const modalRef = this.modalService.open(PartiesComponent, { centered: true });
@@ -82,7 +127,7 @@ PartiesForm() {
   
     // on close
     if (data == true) {
-
+      this.getContractPartiesData();
     }
   }, (reason) => {
     // on dismiss
@@ -124,12 +169,37 @@ ProductANDSpecificationForm() {
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
+    this.getContractProductData();
 
     }
   }, (reason) => {
     // on dismiss
   });
 }
+
+
+
+
+getContractProductData() {
+  this.http.get(`${environment.apiUrl}/api/Contracts/GetContractProductSpecificationById/` + this.contractId)
+    .subscribe(
+      res => {
+        this.response = res;
+        if (this.response.success == true) {
+          this.contractProductData = this.response.data;
+          
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+
+      }, err => {
+        if (err.status == 400) {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+      });
+}
+
 
 QuantityCosting() {
   const modalRef = this.modalService.open(QuantityCostingComponent, { centered: true });
@@ -138,11 +208,34 @@ QuantityCosting() {
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
+      this.getContractCostingData();
 
     }
   }, (reason) => {
     // on dismiss
   });
+}
+
+
+
+getContractCostingData() {
+  this.http.get(`${environment.apiUrl}/api/Contracts/GetContractCostingById/` + this.contractId)
+    .subscribe(
+      res => {
+        this.response = res;
+        if (this.response.success == true) {
+          this.contractCostingData = this.response.data;
+          
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+
+      }, err => {
+        if (err.status == 400) {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+      });
 }
 
 
@@ -153,12 +246,39 @@ PaymentDelivery() {
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
+      this.getContractPaymentData();
 
     }
   }, (reason) => {
     // on dismiss
   });
 }
+
+
+
+
+getContractPaymentData() {
+  this.http.get(`${environment.apiUrl}/api/Contracts/GetContractPaymentDeliveryById/` + this.contractId)
+    .subscribe(
+      res => {
+        this.response = res;
+        if (this.response.success == true) {
+          this.contractPaymentData = this.response.data;
+          
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+
+      }, err => {
+        if (err.status == 400) {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+      });
+}
+
+
+
 
 DeliveryTimeline() {
   const modalRef = this.modalService.open(DeliveryTimelineComponent, { centered: true });
@@ -182,12 +302,43 @@ CommissionKickback() {
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
+      this.getContractCommisionData();
 
     }
   }, (reason) => {
     // on dismiss
   });
 }
+
+
+
+
+
+getContractCommisionData(){
+  this.http.get(`${environment.apiUrl}/api/Contracts/GetContractCommissionById/` + this.contractId)
+  .subscribe(
+    res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.contractCommissionData = this.response.data;
+        // this.contractCommissionData.agenetName= parseInt(this.contractCommissionData.agenetName);
+        
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+
+    }, err => {
+      if (err.status == 400) {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    });
+  
+}
+
+
+
+
 
 
 EmployeeCommission() {
@@ -212,11 +363,36 @@ Remarks() {
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
+      this.getContractRemarkData();
 
     }
   }, (reason) => {
     // on dismiss
   });
+}
+
+
+
+
+
+getContractRemarkData() {
+  this.http.get(`${environment.apiUrl}/api/Contracts/GetContractRemarkById/` + this.contractId)
+    .subscribe(
+      res => {
+        this.response = res;
+        if (this.response.success == true) {
+          this.contractRemarksData = this.response.data;
+          
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+
+      }, err => {
+        if (err.status == 400) {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+      });
 }
 
 
@@ -230,11 +406,40 @@ LOCform() {
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
+      this.getContractLOC();
 
     }
   }, (reason) => {
     // on dismiss
   });
+}
+
+
+
+
+
+
+getContractLOC() {
+  this.http.get(`${environment.apiUrl}/api/Contracts/GetContractLetterCreditById/` + this.contractId)
+    .subscribe(
+      res => {
+        this.response = res;
+        if (this.response.success == true) {
+          this.contractLOCdata = this.response.data;
+          this.contractLOCdata.lcExpiryDate = this.dateformater.fromModel(this.contractLOCdata.lcExpiryDate);
+
+
+          
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+
+      }, err => {
+        if (err.status == 400) {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+      });
 }
 
 

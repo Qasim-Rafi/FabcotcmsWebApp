@@ -141,7 +141,7 @@ export class ServiceService {
     return this.http.get(`${environment.apiUrl}/api/Sellers/GetAllPOC`);
   }
   getAgents() {
-    return this.http.get(`${environment.apiUrl}/api/Configs/GetAllExternalAgent`)
+    return this.http.get(`${environment.apiUrl}/api/Lookups/ExternalAgents`)
   }
   getArticles() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/Articles`)
@@ -210,6 +210,9 @@ export class ServiceService {
   }
   getDepartment() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/Departments`);
+  }
+  getCriteria(agentId) {
+    return this.http.get(`${environment.apiUrl}/api/Lookups/BeneficiaryCriterias/` + agentId);
   }
 
 

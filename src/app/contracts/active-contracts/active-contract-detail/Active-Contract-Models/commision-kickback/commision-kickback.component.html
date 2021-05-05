@@ -87,11 +87,13 @@
         </div>
       </div>
     </div>
+
+
     <div class="form-group row">
       <label for="agentcomm" class="col-sm-3 col-form-label">Agent Comm</label>
       <div class=" col-md-8">
         <div class="row">
-          <ng-select name="agenetName" placeholder="Select Agent" [(ngModel)]=" commission.agenetName">
+          <ng-select name="agenetName" placeholder="Select Agent" [(ngModel)]="commission.agentId">
             <ng-option *ngFor="let i of agents" [value]="i.id">
               {{i.name}}
             </ng-option>
@@ -107,11 +109,15 @@
         </div>
       </div>
     </div>
+
+
+
+
     <div class="form-group row" *ngFor="let value of data; let i = index;">
       <label for="agentcomm" class="col-sm-3 col-form-label">Agent Comm</label>
       <div class=" col-md-8">
         <div class="row">
-          <ng-select placeholder="Select an Agent" [(ngModel)]="value.agenetCommission" name="agentId_{{value.id}}">
+          <ng-select placeholder="Select an Agent" [(ngModel)]="value.agentId" name="agentId_{{value.id}}">
             <ng-option *ngFor="let i of agents" [value]="i.id">
               {{i.name}}
             </ng-option>
@@ -121,7 +127,7 @@
           <div class="col-md-8">
 
             <div class="col-md-6 fieldmrgbtm">
-              <input class="form-control" id="agent" placeholder="Comm %" [(ngModel)]="value.agent" type="number" min="0"
+              <input class="form-control" id="agent" placeholder="Comm %" [(ngModel)]="value.agenetCommission" type="number" min="0"
                 name="agent_{{value.id}}" />
 
               <button class="btn btn-outline-danger" type="submit" (click)="remove(i)">
@@ -130,8 +136,6 @@
             </div>
 
           </div>
-
-
 
         </div>
       </div>

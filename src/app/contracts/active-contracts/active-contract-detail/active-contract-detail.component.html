@@ -202,6 +202,16 @@
                         <div class="col-md-12">
 
 
+
+                                    <div class="col-md-9">
+                                        <div class="h2 ">
+                                            <span><i class="fas fa-flag mr-3 text-secondary"></i></span>
+                                            <span class=" ml-2 text_Navy"></span>
+                                            <span class="ml-3 font-weight-light"> 73</span>
+                                        </div>
+                                    </div>
+
+
                             <div class="row my-3">
 
                                 <div class="col-md-9">
@@ -219,6 +229,34 @@
                                     <button class="btn btn-white ">
                                         <i class="fas fa-sync-alt"></i></button>
                                 </div>
+
+
+
+                    <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="row">
+
+                                            <div class="col-md-4 text-right">Status & Stage:</div>
+                                            <div class="col-md-8">
+                                                <span>
+                                                    <span class="badge badge-primary" *ngIf="contractData.active == true">Active</span>
+                                                    <span class="badge badge-secondary" *ngIf="contractData.active == false">Inactive</span>
+                                                    <div class="badge badge-info ml-1">OPEN</div>
+                                                    <button class="btn "><i class="fas fa-history "></i></button>
+                                                    <div class="badge badge-primary ml-3">APPROVED</div>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <span>Contract On:</span>
+                                        <span class="text_Navy font-weight-bold">
+                                            
+                                            <i class="far fa-clock "></i>
+                                            <span> {{contractData.createdDateTime}}</span>
+                                       
+                                        </span>
+                                    </div>
 
 
                             </div>
@@ -242,8 +280,47 @@
                                     <span>Contract On:</span>
                                     <span class="text_Navy font-weight-bold">
 
+
                                         <i class="far fa-clock "></i>
                                         <span> Mon 19-Dec-2011</span>
+
+                                <div class="row border-bottom">
+                                    <div class="col-md-6">
+                                        <dl class="row">
+                                            <dt class="col-sm-6">Contract Owner:</dt>
+                                            <dd class="col-sm-6">
+                                                {{contractData.contractOwner}}
+                                            </dd>
+                                        </dl>
+                                        <dl class="row">
+                                            <dt class="col-sm-6">Created By:</dt>
+                                            <dd class="col-sm-6">{{contractData.createdByName}}</dd>
+                                        </dl>
+                                        <dl class="row">
+                                            <dt class="col-sm-6"> Last Updated By:</dt>
+                                            <dd class="col-sm-6">{{contractData.updatedByName}}</dd>
+                                        </dl>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <dl class="row">
+                                            <dt class="col-sm-6">Contract ID:</dt>
+                                            <dd class="col-sm-6">{{contractData.autoContractNumber}}</dd>
+                                        </dl>
+                                        <dl class="row">
+                                            <dt class="col-sm-6">Created On:</dt>
+                                            <dd class="col-sm-6">
+                                                <i class="far fa-calendar-alt"></i>
+                                                {{contractData.createdDateTime}}</dd>
+                                        </dl>
+                                        <dl class="row">
+                                            <dt class="col-sm-6"> Last Updated On:</dt>
+                                            <dd class="col-sm-6">
+                                                <i class="far fa-calendar-alt"></i>
+                                                {{contractData.updatedDateTime}}</dd>
+                                        </dl>
+                                    </div>
+
 
                                     </span>
                                 </div>
@@ -258,6 +335,7 @@
 
                             <div class="row border-bottom">
                                 <div class="col-md-6">
+
                                     <dl class="row">
                                         <dt class="col-sm-6">Contract Owner:</dt>
                                         <dd class="col-sm-6">
@@ -271,26 +349,75 @@
                                     <dl class="row">
                                         <dt class="col-sm-6"> Last Updated By:</dt>
                                         <dd class="col-sm-6">TEST</dd>
+
+
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Purchase Order #: 
+                                        </dt>
+                                        <dd class="col-sm-6">{{contractPartiesData.poNumber}}</dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Buyer Name:</dt>
+                                        <dd class="col-sm-6">{{contractPartiesData.buyerName}}</dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6"> Buyer POC:</dt>
+                                        <dd class="col-sm-6">{{contractPartiesData.buyerPOCName}}</dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6"> Supplier Name:</dt>
+                                        <dd class="col-sm-6">{{contractPartiesData.sellerName}}</dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6"> Supplier POC:</dt>
+                                        <dd class="col-sm-6"> {{contractPartiesData.sellerPOCName}}</dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Supplier Contract #:
+                                        </dt>
+                                        <dd class="col-sm-6">{{contractPartiesData.sellerContract}}</dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Supplier Certification:
+                                        </dt>
+                                        <dd class="col-sm-6">MISSING</dd>
+
                                     </dl>
                                 </div>
 
                                 <div class="col-md-6">
                                     <dl class="row">
+
                                         <dt class="col-sm-6">Contract ID:</dt>
                                         <dd class="col-sm-6">TEST</dd>
+
+                                        <dt class="col-sm-6"> PO Date:</dt>
+                                        <dd class="col-sm-6">
+                                            <i class="far fa-calendar-alt"></i>
+                                            {{contractPartiesData.poDate}}</dd>
+
                                     </dl>
                                     <dl class="row">
                                         <dt class="col-sm-6">Created On:</dt>
                                         <dd class="col-sm-6">
                                             <i class="far fa-calendar-alt"></i>
+
                                             TEST
                                         </dd>
+
+                                            MISSING</dd>
+
                                     </dl>
                                     <dl class="row">
                                         <dt class="col-sm-6"> Last Updated On:</dt>
                                         <dd class="col-sm-6">
+
                                             <i class="far fa-calendar-alt"></i>
                                             TEST
+
+                                            <i class="fas fa-user-tie"></i>
+                                            MISSING
+
                                         </dd>
                                     </dl>
                                 </div>
@@ -305,6 +432,7 @@
                                 Parties
                             </div>
                         </div>
+
 
                         <div class="row">
                             <div class="col-md-6">
@@ -372,6 +500,39 @@
                         </div>
                     </div>
 
+                   <div class="row">
+                                <div class="col-md-6">
+
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Article:
+                                        </dt>
+                                        <dd class="col-sm-6">{{contractProductData.articleName}}</dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Process:
+                                        </dt>
+                                        <dd class="col-sm-6">{{contractProductData.processName}}</dd>
+                                    </dl>
+                                   
+                                  
+                                </div>
+
+                                <div class="col-md-6">
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Process type:
+                                        </dt>
+                                        <dd class="col-sm-6">{{contractProductData.processTypeName}}</dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Design type:
+
+                                        </dt>
+                                        <dd class="col-sm-6">{{contractProductData.designTypeName}} </dd>
+                                    </dl>
+                                   
+                                    <button class="btn btn-outline-primary float-right" (click)="ProductANDSpecificationForm()"> Edit</button>
+
+
                     <div class="border-bottom">
                         <div class="row">
                             <div class="badge badge-primary my-3">
@@ -405,7 +566,8 @@
                                 <dl class="row">
                                     <dt class="col-sm-6">Process type:
 
-                                    </dt>
+
+                                   </dt>
                                     <dd class="col-sm-6"> </dd>
                                 </dl>
 
@@ -415,6 +577,25 @@
                             </div>
                         </div>
                     </div>
+
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Currency:
+                                        </dt>
+                                        <dd class="col-sm-6">MISSING</dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Quantity:
+                                        </dt>
+                                        <dd class="col-sm-6">MISSING</dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Contract Cost:
+                                        </dt>
+                                        <dd class="col-sm-6">MISSING</dd>
+                                        <dd class="col-sm-6">MISSING</dd>
+                                    </dl>
+                                    <button class="btn btn-outline-primary float-right" (click)="QuantityCosting()"> Edit</button>
+
 
 
                     <div class="border-bottom">
@@ -450,6 +631,33 @@
                             </div>
 
 
+
+
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Payment terms:</dt>
+                                        <dd class="col-sm-6">MISSING</dd>
+                                    </dl>
+                                   
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Price / Delivery terms:
+                                        </dt>
+                                        <dd class="col-sm-6">MISSING</dd>
+                                        <dd class="col-sm-6"></dd>
+                                    </dl>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <dl class="row">
+                                        <dt class="col-sm-6">
+                                            Payment Mode:</dt>
+                                        <dd class="col-sm-6">{{contractPaymentData.paymentMode}}</dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Packing:
+                                        </dt>
+                                        <dd class="col-sm-6">MISSING</dd>
+                                    </dl>
+                                    <button class="btn btn-outline-primary float-right" (click)="PaymentDelivery()"> Edit</button>
 
 
                         </div>
@@ -501,6 +709,40 @@
 
 
 
+                                    <dl class="row">
+                                        <dt class="col-sm-6">L/C No:
+                                            
+                                        </dt>
+                                        <dd class="col-sm-6">{{contractLOCdata.lcNumber}}</dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6">L/C Ship Date:
+                                        </dt>
+                                        <dd class="col-sm-6">{{contractLOCdata.lcShipmentOn}}</dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6">L/C Note:
+                                        </dt>
+                                        <dd class="col-sm-6">{{contractLOCdata.remarks}}</dd>
+                                        <dd class="col-sm-6">Check krna</dd>
+                                    </dl>
+                                    
+                                </div>
+
+                                <div class="col-md-6">
+                                    <dl class="row">
+                                        <dt class="col-sm-6">
+                                            L/C Date:</dt>
+                                        <dd class="col-sm-6">{{contractLOCdata.lcOpenOn}}</dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6">L/C Expire On:
+                                        </dt>
+                                        <dd class="col-sm-6">{{contractLOCdata.lcExpiryDate}} </dd>
+                                    </dl>
+                                    <button class="btn btn-outline-primary float-right" (click)="LOCform()"> Edit</button>
+
+
                     <div class="border-bottom">
                         <div class="row">
                             <div class="badge badge-primary my-3">
@@ -546,8 +788,27 @@
                                 </dl>
                                 <button class="btn btn-outline-primary float-right" (click)="LOCform()"> Edit</button>
 
+
                             </div>
                         </div>
+
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Seller side Commission:
+                                        </dt>
+                                        <dd class="col-sm-6">{{contractCommissionData.sellerSideCommission}}% / {{contractCommissionData.sellerSideCommissionUOMName}}</dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Buyer side Commission:
+                                        </dt>
+                                        <dd class="col-sm-6">{{contractCommissionData.buyerSideCommission}}% / {{contractCommissionData.buyerSideCommissionUOMName}}</dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Foreign Agent Comm:
+                                        </dt>
+                                        <dd class="col-sm-6">{{contractCommissionData.agenetCommission}}%</dd>
+                                        <dd class="col-sm-6">{{contractCommissionData.agenetCommission}}%</dd>
+                                    </dl>
+
 
 
 
@@ -686,6 +947,7 @@
                                 <dl class="row">
                                     <dt class="col-sm-6">Remarks:
 
+
                                     </dt>
                                     <dd class="col-sm-6"></dd>
                                 </dl>
@@ -706,6 +968,28 @@
                                     <dt class="col-sm-6">Preview Title:
                                     </dt>
                                     <dd class="col-sm-6"></dd>
+
+                                        </dt>
+                                        <dd class="col-sm-6">{{contractRemarksData.contractRemarks}}</dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Buyer Remarks:
+
+                                        </dt>
+                                        <dd class="col-sm-6">{{contractRemarksData.buyerRemarks}}</dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Other Condition:
+
+                                        </dt>
+                                        <dd class="col-sm-6">{{contractRemarksData.otherConditionRemarks}}</dd>
+
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Preview Title:
+                                        </dt>
+                                        <dd class="col-sm-6">{{contractRemarksData.title}}</dd>
+
 
                                 </dl>
 
