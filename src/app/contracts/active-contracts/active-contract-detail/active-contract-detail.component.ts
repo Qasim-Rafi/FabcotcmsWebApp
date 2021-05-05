@@ -426,7 +426,7 @@ getContractLOC() {
         this.response = res;
         if (this.response.success == true) {
           this.contractLOCdata = this.response.data;
-          this.contractLOCdata.lcExpiryDate = this.dateformater.fromModel(this.contractLOCdata.lcExpiryDate);
+         
 
 
           

@@ -17,7 +17,7 @@
             <label class="col-sm-3 col-form-label text_Navy">Agent</label>
             <div class="col-sm-8">
               <ng-select placeholder="Select an agent" name="agentId" [(ngModel)]="data.userId">
-                <ng-option *ngFor="let i of agent" [value]="i.id">
+                <ng-option *ngFor="let i of user" [value]="i.id">
                   {{i.name}}
                 </ng-option>
               </ng-select>
@@ -26,8 +26,8 @@
       <div class="form-group row">
         <label class="col-sm-3 col-form-label text_Navy">Criteria</label>
         <div class="col-sm-8">
-          <ng-select placeholder="Select an agent" name="agentId" [(ngModel)]="data.beneficiaryCriteriaId">
-            <ng-option *ngFor="let i of agent" [value]="i.id">
+          <ng-select placeholder="Select Criteria" name="agentId" [(ngModel)]="data.beneficiaryCriteriaId">
+            <ng-option *ngFor="let i of criteria" [value]="i.id">
               {{i.name}}
             </ng-option>
           </ng-select>
