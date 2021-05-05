@@ -21,7 +21,7 @@
             <label for="name" class="col-sm-3 col-form-label">Payment Mode</label>
             <div class="col-sm-4">
               <ng-select name="paymentMode" placeholder="-- Select --" [(ngModel)]="data.paymentMode">
-                <ng-option *ngFor="let i of paymentMode" [value]="i.id">
+                <ng-option *ngFor="let i of paymentMode" [value]="i">
                     {{i}}
                 </ng-option>
             </ng-select>
