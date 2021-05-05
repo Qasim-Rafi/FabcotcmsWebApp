@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -19,12 +19,15 @@ export class ItemsComponent implements OnInit {
   itemUOMId: any=[];
   loomTypeId:any[];
   colorId:any[];
+  FormName: any;
   uomList: any = [];
   color: any = [];
   loomType: any = [];
 currency: any[];
+@Input() itemId;
 
   @ViewChild(NgForm) ItemForm;
+  @Input() statusCheck;
 
   constructor(
     private http: HttpClient,
@@ -39,10 +42,80 @@ currency: any[];
     this.GetUOMDropdown();
     this.GetColorDropdown();
     this.GetLoomDropdown();
+    this.statusCheck = this.statusCheck;
+    if (this.statusCheck == 'ItemEdit') {
+      this.editItem();
+    }
   }
   get activeModal() {
     return this._NgbActiveModal;
   }
+  editItem() {
+    this.http.get(`${environment.apiUrl}/api/Contracts/GetContractItemById/` + this.itemId)
+      .subscribe(
+        res => {
+          this.response = res;
+          if (this.response.success == true) {
+
+            this.data = this.response.data;
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+        });
+  }
+
+
+
+  UpdateItem() {
+    let varr = {
+      "description": this.data.description,
+      "enquiryId": this.data.enquiryId,
+      "contractId": this.data.contractId,
+      "itemQuantity": this.data.itemQuantity,
+      "itemUOMId": this.data.itemUOMId,
+      "compositionPercentage": this.data.compositionPercentage,
+      "compositionFebricTypeId": this.data.compositionFebricTypeId,
+      "compositionAdditionalInfo": this.data.compositionAdditionalInfo,
+      "construction": this.data.construction,
+      "colorId": this.data.colorId,
+      "weight": this.data.weight,
+      "loomTypeId":this.data.loomTypeId,
+      "size":this.data.size,
+      "remarks": this.data.remarks,
+      "active": true,
+      "contractRate": this.data.contractRate,
+      "contractCurrencyId": this.data.contractCurrencyId,
+      "contractUOMId": this.data.contractUOMId,
+      "contractCost": this.data.contractCost
+    }
+
+    this.http.
+      put(`${environment.apiUrl}/api/Contracts/UpdateContractItem/` + this.itemId, varr)
+      .subscribe(
+        res => {
+
+          this.response = res;
+          if (this.response.success == true) {
+            this.toastr.success(this.response.message, 'Message.');
+            this.activeModal.close(true);
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+        });
+  }
+
 
   GetUOMDropdown() {
     this.service.getUOM().subscribe(res => {
