@@ -199,6 +199,9 @@ export class ServiceService {
   getCurrency() {
     return this.http.get(`${environment.apiUrl}/api/Configs/GetAllCurrencyRate`);
   }
+  getCurrencyType() {
+    return this.http.get(`${environment.apiUrl}/api/Lookups/CurrencyTypes`);
+  }
   getVendorSeller(enquiryId) {
     return this.http.get(`${environment.apiUrl}/api/Lookups/SellerFromQuotations/` + enquiryId);
   }
@@ -208,8 +211,11 @@ export class ServiceService {
   getDepartment() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/Departments`);
   }
-  getCriteria(agentId) {
-    return this.http.get(`${environment.apiUrl}/api/Lookups/BeneficiaryCriterias/` + agentId);
+  getCriteria(userId) {
+    return this.http.get(`${environment.apiUrl}/api/Lookups/BeneficiaryCriterias/` + userId);
+  }
+  getUsers() {
+    return this.http.get(`${environment.apiUrl}/api/Users/GetUsers` );
   }
 
 

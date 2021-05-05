@@ -39,7 +39,7 @@ export class QuantityCostingComponent implements OnInit {
 
   
   GetCurrencyDropdown() {
-    this.service.getCurrency().subscribe(res => {
+    this.service.getCurrencyType().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
         this.currency = this.response.data;

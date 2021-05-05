@@ -208,7 +208,7 @@
                                         <div class="h2 ">
                                             <span><i class="fas fa-flag mr-3 text-secondary"></i></span>
                                             <span class=" ml-2 text_Navy"></span>
-                                            <span class="ml-3 font-weight-light"> 73</span>
+                                            <span class="ml-3 font-weight-light"> {{contractData.buyerName}}</span>
                                         </div>
                                     </div>
 
@@ -426,18 +426,18 @@
                                     <dl class="row">
                                         <dt class="col-sm-6">Currency:
                                         </dt>
-                                        <dd class="col-sm-6">MISSING</dd>
+                                        <dd class="col-sm-6">{{contractCostingData.currencyName}}</dd>
                                     </dl>
                                     <dl class="row">
                                         <dt class="col-sm-6">Quantity:
                                         </dt>
-                                        <dd class="col-sm-6">MISSING</dd>
+                                        <dd class="col-sm-6">{{contractCostingData.quantity}}</dd>
                                     </dl>
                                     <dl class="row">
                                         <dt class="col-sm-6">Contract Cost:
                                         </dt>
-                                        <dd class="col-sm-6">MISSING</dd>
-                                        <dd class="col-sm-6">MISSING</dd>
+                                        <dd class="col-sm-6">{{contractCostingData.currencyName}} {{contractCostingData.quantity}}</dd>
+                                     
                                     </dl>
                                     <button class="btn btn-outline-primary float-right" (click)="QuantityCosting()"> Edit</button>
 
@@ -462,13 +462,13 @@
 
                                     <dl class="row">
                                         <dt class="col-sm-6">Payment terms:</dt>
-                                        <dd class="col-sm-6">MISSING</dd>
+                                        <dd class="col-sm-6">{{contractPaymentData.paymentTermName}} {{contractPaymentData.paymentTermDays}}  {{contractPaymentData.paymentTermInfo}}   </dd>
                                     </dl>
                                    
                                     <dl class="row">
                                         <dt class="col-sm-6">Price / Delivery terms:
                                         </dt>
-                                        <dd class="col-sm-6">MISSING</dd>
+                                        <dd class="col-sm-6">{{contractPaymentData.priceTermName}} {{contractPaymentData.destinationName}}</dd>
                                         <dd class="col-sm-6"></dd>
                                     </dl>
                                 </div>
@@ -482,7 +482,7 @@
                                     <dl class="row">
                                         <dt class="col-sm-6">Packing:
                                         </dt>
-                                        <dd class="col-sm-6">MISSING</dd>
+                                        <dd class="col-sm-6">{{contractPaymentData.packingName}}</dd>
                                     </dl>
                                     <button class="btn btn-outline-primary float-right" (click)="PaymentDelivery()"> Edit</button>
 

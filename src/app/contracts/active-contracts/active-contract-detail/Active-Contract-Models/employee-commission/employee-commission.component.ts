@@ -14,7 +14,8 @@ export class EmployeeCommissionComponent implements OnInit {
 
   @Input() contractId;
   data:any ={};
-  agent:any ={};
+  user:any ={};
+  criteria:any ={};
   response: any;
     
     constructor(
@@ -25,8 +26,9 @@ export class EmployeeCommissionComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    
-    this.getContractEmployeeCommissionData();
+      this.GetUserDropdown();
+      this.GetCriteriaDropdown();
+      this.getContractEmployeeCommissionData();
 
   }
   get activeModal() {
@@ -36,11 +38,24 @@ export class EmployeeCommissionComponent implements OnInit {
 
 
 
-  GetAgentDropdown() {
-    this.service.getAgents().subscribe(res => {
+  GetUserDropdown() {
+    this.service.getUsers().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.agent = this.response.data;
+        this.user = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
+
+
+  GetCriteriaDropdown() {
+    this.service.getCriteria( this.user.id).subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.criteria = this.response.data;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');

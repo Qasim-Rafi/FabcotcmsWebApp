@@ -42,6 +42,9 @@ export class LOCComponent implements OnInit {
           if (this.response.success == true) {
             this.data = this.response.data;
             this.data.lcExpiryDate = this.dateformater.fromModel(this.data.lcExpiryDate);
+            this.data.lcShipmentOn = this.dateformater.fromModel(this.data.lcShipmentOn);
+            this.data.lcOpenOn = this.dateformater.fromModel(this.data.lcOpenOn);
+            
   
 
             
