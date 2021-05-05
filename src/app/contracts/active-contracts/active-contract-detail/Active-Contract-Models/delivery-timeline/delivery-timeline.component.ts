@@ -37,10 +37,10 @@ export class DeliveryTimelineComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    let olddate=new Date();
-    let latest_date =this.datepipe.transform(olddate, 'yyyy-MM-dd');
-    this.supplierDateField =this.dateformater.fromModel(latest_date);
-    this.buyerDateField =this.dateformater.fromModel(latest_date);
+    // let olddate=new Date();
+    // let latest_date =this.datepipe.transform(olddate, 'yyyy-MM-dd');
+    // this.supplierDateField =this.dateformater.fromModel(latest_date);
+    // this.buyerDateField =this.dateformater.fromModel(latest_date);
     this.GetMode();
     this.statusCheck = this.statusCheck;
     if (this.statusCheck == 'shipmentEdit') {
@@ -82,8 +82,8 @@ export class DeliveryTimelineComponent implements OnInit {
     })
   }
   addshipment() {
-    this.data.supplierDate = this.dateformater.toModel(this.data.supplierDate);
-    this.data.buyerDate = this.dateformater.toModel(this.data.buyerDate);
+    this.data.supplierDate = this.dateformater.toModel(this.supplierDateField);
+    this.data.buyerDate = this.dateformater.toModel(this.buyerDateField);
 
     let varr = {
       "contractId":this.data.contractId,
