@@ -63,15 +63,9 @@
           <div class="form-group row">
             <label for="description" class="col-sm-3 col-form-label text-Navy">Shipment Mode</label>
             <div class="col-sm-7">
-                <ng-select 
-                placeholder="Select Shipment Mode ">
-                <ng-option >
-                    By Air
-                </ng-option>
-                <ng-option >
-                    By Sea
-                </ng-option>
-              </ng-select>
+              <ng-select [(ngModel)]="shipmentMode" placeholder="Select Shipment Mode" name="shipmentMode">
+                <ng-option *ngFor="let i of mode" [value]="i.id">{{ i.shipmentMode }}</ng-option>
+            </ng-select>
             </div>
           </div>
 
@@ -95,7 +89,7 @@
       Close
     </button>
     <button class="btn button-save" type="submit" 
-    (click)="adddelivery()">
+    (click)="addshipment()">
       Save & Close
     </button>
     <button class="btn button-blue" type="submit">

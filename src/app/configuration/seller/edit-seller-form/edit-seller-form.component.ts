@@ -143,7 +143,7 @@ export class EditSellerFormComponent implements OnInit {
       "faxNumber": this.data.faxNumber,
       "ntnNumber": this.data.ntnNumber,
       "gstNumber": this.data.gstNumber,
-      "machineIds": this.data.machineIds !=null?this.data.machineIds.toString():null,
+      "certificatedeIds": this.data.certificatedeIds !=null?this.data.certificatedeIds.toString():null,
       "capabilitiesIds": this.data.capabilitiesIds != null ?this.data.capabilitiesIds.toString() : null,
       "majorStrength": this.data.majorStrength,
       "leadTime": this.data.leadTime,
