@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { ToastrService } from 'ngx-toastr';
@@ -24,6 +25,7 @@ export class DeliveryTimelineComponent implements OnInit {
   myDate = Date.now();
   mode: any = [];
   shipmentMode: any=[];
+  queryParems: any = {};
   @Input() shipmentId;
   dateformater: Dateformater = new Dateformater();
   @ViewChild(NgForm) deliveryForm;
@@ -31,12 +33,14 @@ export class DeliveryTimelineComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private toastr: ToastrService,
+    private route: ActivatedRoute,
     private _NgbActiveModal: NgbActiveModal,
     private service: ServiceService,
     public datepipe: DatePipe
     ) { }
 
   ngOnInit(): void {
+    this.queryParems = this.route.snapshot.queryParams;
     // let olddate=new Date();
     // let latest_date =this.datepipe.transform(olddate, 'yyyy-MM-dd');
     // this.supplierDateField =this.dateformater.fromModel(latest_date);
@@ -86,7 +90,7 @@ export class DeliveryTimelineComponent implements OnInit {
     this.data.buyerDate = this.dateformater.toModel(this.buyerDateField);
 
     let varr = {
-      "contractId":this.data.contractId,
+      "contractId":this.queryParems.contractId,
   "shipmentNo": this.data.shipmentNo,
   "supplierDate": this.data.supplierDate,
   "buyerDate":this.data.buyerDate,
