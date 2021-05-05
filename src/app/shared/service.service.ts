@@ -181,6 +181,9 @@ export class ServiceService {
   getCity() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/Destinations`)
   }
+  getMode() {
+    return this.http.get(`${environment.apiUrl}/api/Lookups/ShipmentModes`)
+  }
   getUOM() {
     return this.http.get(`${environment.apiUrl}/api/Enquiries/GetAllUOM`)
   }

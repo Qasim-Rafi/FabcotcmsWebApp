@@ -1,12 +1,18 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { ToastrService } from 'ngx-toastr';
+
+import { GlobalConstants } from 'src/app/Common/global-constants';
+
 import { Dateformater } from 'src/app/shared/dateformater';
+
 import { EnquiryNotesComponent } from 'src/app/shared/MODLES/enquiry-notes/enquiry-notes.component';
 import { ServiceService } from 'src/app/shared/service.service';
 import { environment } from 'src/environments/environment';
+import Swal from 'sweetalert2';
 import { CommisionKickbackComponent } from './Active-Contract-Models/commision-kickback/commision-kickback.component';
 import { DeliveryTimelineComponent } from './Active-Contract-Models/delivery-timeline/delivery-timeline.component';
 import { EmployeeCommissionComponent } from './Active-Contract-Models/employee-commission/employee-commission.component';
@@ -31,8 +37,12 @@ export class ActiveContractDetailComponent implements OnInit {
   rows: any = [];
   columns: any = [];
   queryParems: any = {};
+  ItemCount: number;
   contractId: any = {};
+  itemId: any = {};
+
   contractData: any = {};
+
   contractPartiesData: any = {};
   contractProductData: any = {};
   contractCostingData: any = {};
@@ -41,6 +51,10 @@ export class ActiveContractDetailComponent implements OnInit {
   contractCommissionData: any = {};
   contractRemarksData: any = {};
   response: any;
+  ItemFilter: any = [];
+  ItemUrl = '/api/Contracts/GetAllContractItem';
+  shipmentUrl:'/api/Contracts/GetAllContractShipmentSchedule/';
+  @ViewChild('myTable') table: DatatableComponent;
 
   constructor(
     private modalService: NgbModal,
@@ -56,12 +70,29 @@ export class ActiveContractDetailComponent implements OnInit {
 
     this.getContractData();
     this.getContractPartiesData();
+
+    {
+      this.service.fetch((data) => {
+        this.ItemFilter = [...data];
+        this.rows = data;
+        this.ItemCount = this.rows.length;
+      }, this.ItemUrl);
+    }
+    {
+      this.service.fetch((data) => {
+        this.ItemFilter = [...data];
+        this.rows = data;
+        this.ItemCount = this.rows.length;
+      }, this.shipmentUrl);
+    }
+
     this.getContractProductData();
     this.getContractCostingData();
     this.getContractPaymentData();
     this.getContractLOC();
     this.getContractRemarkData();
     this.getContractCommisionData();
+
   }
 
 
@@ -454,20 +485,93 @@ Note() {
   });
 }
 
-Items() {
-  const modalRef = this.modalService.open(ItemsComponent, { centered: true });
-  modalRef.componentInstance.contractId = this.contractId;
+// Items() {
+//   const modalRef = this.modalService.open(ItemsComponent, { centered: true });
+//   modalRef.componentInstance.itemId = this.itemId;
 
+//   modalRef.result.then((data) => {
+//     // on close
+//     if (data == true) {
+
+//     }
+//   }, (reason) => {
+//     // on dismiss
+//   });
+// }
+Items(check, name) {
+  const modalRef = this.modalService.open(ItemsComponent, { centered: true });
+  modalRef.componentInstance.statusCheck = check;
+  modalRef.componentInstance.FormName = name;
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
+      this.service.fetch((data) => {
+        this.rows = data;
+        this.ItemCount = this.rows.length;
+      }, this.ItemUrl);
+
 
     }
   }, (reason) => {
     // on dismiss
   });
 }
+editItem(row, check, name) {
+  const modalRef = this.modalService.open(ItemsComponent, { centered: true });
+  modalRef.componentInstance.itemId = row.id; //just for edit.. to access the needed row
+  modalRef.componentInstance.statusCheck = check;
+  modalRef.componentInstance.FormName = name;
 
+  modalRef.result.then((data) => {
+    // on close
+    if (data == true) {
+      this.service.fetch((data) => {
+        this.rows = data;
+      }, this.ItemUrl);
+    }
+  }, (reason) => {
+    // on dismiss
+  });
+}
+
+deleteItem(id) {
+  Swal.fire({
+    title: GlobalConstants.deleteTitle, //'Are you sure?',
+    text: GlobalConstants.deleteMessage + ' ' + '"' + id.description + '"',
+    icon: 'error',
+    showCancelButton: true,
+    confirmButtonColor: '#ed5565',
+    cancelButtonColor: '#dae0e5',
+    cancelButtonText: 'No',
+    confirmButtonText: 'Yes',
+    reverseButtons: true,
+    position: 'top',
+  }).then((result) => {
+    if (result.isConfirmed) {
+
+      this.http.delete(`${environment.apiUrl}/api/Contracts/DeleteContractItem/` + id.id)
+        .subscribe(
+          res => {
+            this.response = res;
+            if (this.response.success == true) {
+              this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
+              this.service.fetch((data) => {
+                this.rows = data;
+              }, this.ItemUrl);
+
+            }
+            else {
+              this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
+            }
+
+          }, err => {
+            if (err.status == 400) {
+              this.toastr.error(this.response.message, 'Message.');
+            }
+          });
+    }
+  })
+}
 
 
 }

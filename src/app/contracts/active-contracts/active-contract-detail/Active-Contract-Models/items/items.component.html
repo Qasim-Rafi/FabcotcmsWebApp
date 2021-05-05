@@ -1,13 +1,20 @@
-<div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
-      <div aria-hidden="true">&times;</div>
-    </button>
-  
+<div class="modal-header" *ngIf="FormName == 'ItemForm'">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <div *ngIf="statusCheck == 'ItemAdd'">
     <h5 class="modal-title">
-      <i class="fa fa-plus"></i>
+      <i class="far fa-plus fa-fw"></i>
       Add New Item
     </h5>
   </div>
+  <div *ngIf="statusCheck == 'ItemEdit'">
+    <h5 class="modal-title">
+      <i class="far fa-edit fa-fw"></i>
+      Edit Item
+    </h5>
+  </div>
+</div>
 
   
   <div class="modal-body BG pt-2r">
@@ -137,7 +144,7 @@
     </form>
   </div>
   
-  <div class="modal-footer NotBG">
+  <!-- <div class="modal-footer NotBG">
     <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
       Close
     </button>
@@ -148,4 +155,17 @@
       <button class="btn button-save" (click)="addItem()" type="submit">
         Save & Close
       </button>
+  </div> -->
+
+  <div class="modal-footer NotBG" *ngIf="FormName == 'ItemForm'">
+    <!-- <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" (click)="activeModal.close()">Close</button> -->
+    <button [disabled]="ItemForm.invalid" *ngIf="statusCheck == 'ItemAdd'" class="btn button-save" type="submit"
+      (click)="addItem()">
+      Save Item
+    </button>
+  
+    <button [disabled]="ItemForm.invalid" *ngIf="statusCheck == 'ItemEdit'" class="btn button-save" type="submit"
+      (click)="UpdateItem()">
+      Update Item
+    </button>
   </div>
