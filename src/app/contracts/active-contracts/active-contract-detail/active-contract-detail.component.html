@@ -744,75 +744,78 @@
                                 </div>
                             </div>
                             <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows"
-        [sorts]="[{ prop: 'id,name', dir: 'asce' }]" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-        [rowHeight]="'auto'" [limit]="10">
-    
-        <ngx-datatable-column name="Item Detail" prop="description" [width]="80">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{ row.description}}
-            </ng-template>
-          </ngx-datatable-column>
-        <ngx-datatable-column name="Construcrion" prop="construction" [width]="80">
-          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            {{ row.construction}}
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Composition" prop="compositionPercentage" [width]="80">
-          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            {{ row.compositionPercentage }}
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Loom Type" prop="loomTypeId" [width]="80">
-          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            {{ row.loomTypeId }}
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Sizes" prop="size" [width]="80">
-          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            {{ row.size }}
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="GSM/Weight" prop="weight" [width]="80">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{ row.weight }}
-            </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="QTY" prop="itemQuantity" [width]="80">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{ row.itemQuantity }}
-            </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="Unit Price" prop="weight" [width]="80">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{ row.weight }}
-            </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="Amount" prop="weight" [width]="80">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{ row.weight }}
-            </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="Commission" prop="commission" [width]="80">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{ row.commission }}
-            </ng-template>
-          </ngx-datatable-column>
-        <ngx-datatable-column name="Action" [width]="80">
-          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                [sorts]="[{ prop: 'id,name', dir: 'asce' }]" [columnMode]="'force'" [headerHeight]="50"
+                                [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
+
+                                <ngx-datatable-column name="Item Detail" prop="description" [width]="80">
+                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                        {{ row.description}}
+                                    </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column name="Construcrion" prop="construction" [width]="80">
+                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                        {{ row.construction}}
+                                    </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column name="Composition" prop="compositionPercentage" [width]="80">
+                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                        {{ row.compositionPercentage }}
+                                    </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column name="Loom Type" prop="loomTypeId" [width]="80">
+                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                        {{ row.loomType}}
+                                    </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column name="Sizes" prop="size" [width]="80">
+                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                        {{ row.size }}
+                                    </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column name="GSM/Weight" prop="weight" [width]="80">
+                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                        {{ row.weight }}
+                                    </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column name="QTY" prop="itemQuantity" [width]="80">
+                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                        {{ row.itemQuantity }}
+                                    </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column name="Unit Price" prop="contractRate" [width]="80">
+                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                        {{ row.contractRate }}
+                                    </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column name="Amount" prop="contractCost" [width]="80">
+                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                        {{ row.contractCost }}
+                                    </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column name="Commission" prop="commission" [width]="80">
+                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                        {{ row.commission }}
+                                    </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column name="Action" [width]="80">
+                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
 
 
-            <div class="ibox-tools text-center">
-                <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top" title=""
-                  data-original-title="Edit" (click)="editItem(row, 'ItemEdit','ItemForm')"><i class="far fa-edit"></i></button>
-  
-                <button type="button" class="btn deleteIconBack" data-toggle="tooltip" data-placement="top" title=""
-                  data-original-title="Delete" (click)="deleteItem(row)"> <i class="far fa-trash-alt"></i></button>
-              </div>
+                                        <div class="ibox-tools text-center">
+                                            <button type="button" class="btn editIconBack" data-toggle="tooltip"
+                                                data-placement="top" title="" data-original-title="Edit"
+                                                (click)="editItem(row, 'ItemEdit','ItemForm')"><i
+                                                    class="far fa-edit"></i></button>
 
-          </ng-template>
-        </ngx-datatable-column>
-      </ngx-datatable>
-    
+                                            <button type="button" class="btn deleteIconBack" data-toggle="tooltip"
+                                                data-placement="top" title="" data-original-title="Delete"
+                                                (click)="deleteItem(row)"> <i class="far fa-trash-alt"></i></button>
+                                        </div>
+
+                                    </ng-template>
+                                </ngx-datatable-column>
+                            </ngx-datatable>
+
                         </div>
                     </div>
                 </div>
@@ -856,33 +859,45 @@
                                     </ng-template>
                                 </ngx-datatable-column>
 
-                                <ngx-datatable-column name="Shipment Number" prop="name">
+                                <ngx-datatable-column name="Shipment Number" prop="shipmentNo">
                                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                        {{ row.shipmentNo }}
+
                                     </ng-template>
                                 </ngx-datatable-column>
 
-                                <ngx-datatable-column name="Supplier Date" prop="genericName">
+                                <ngx-datatable-column name="Supplier Date" prop="supplierDate">
                                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                        {{ row.supplierDate }}
+
                                     </ng-template>
                                 </ngx-datatable-column>
 
-                                <ngx-datatable-column name="Buyer Date" prop="status">
+                                <ngx-datatable-column name="Buyer Date" prop="buyerDate">
                                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                        {{ row.buyerDate }}
+
                                     </ng-template>
                                 </ngx-datatable-column>
 
-                                <ngx-datatable-column name="Ship Line" prop="modifiedDate">
+                                <ngx-datatable-column name="Ship Line" prop="shipmentLine">
                                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                        {{ row.shipmentLine }}
+
                                     </ng-template>
                                 </ngx-datatable-column>
 
-                                <ngx-datatable-column name="Ship Mode" prop="modifiedBy">
+                                <ngx-datatable-column name="Ship Mode" prop="shipmentMode">
                                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                        {{ row.shipmentMode }}
+
                                     </ng-template>
                                 </ngx-datatable-column>
 
                                 <ngx-datatable-column name="Remarks">
                                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                        {{ row.shipmentRemarks }}
+
                                     </ng-template>
                                 </ngx-datatable-column>
                                 <ngx-datatable-column name="Action">
