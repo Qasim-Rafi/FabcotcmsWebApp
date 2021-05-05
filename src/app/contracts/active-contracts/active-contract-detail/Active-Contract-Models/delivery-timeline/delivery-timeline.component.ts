@@ -1,10 +1,8 @@
-import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { ToastrService } from 'ngx-toastr';
 import { Dateformater } from 'src/app/shared/dateformater';
 import { ServiceService } from 'src/app/shared/service.service';
@@ -17,12 +15,8 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./delivery-timeline.component.css']
 })
 export class DeliveryTimelineComponent implements OnInit {
-  supplierDateField:any;
-  buyerDateField:any;
-  datePickerConfig: Partial<BsDatepickerConfig>;
   data: any = {};
   response: any;
-  myDate = Date.now();
   mode: any = [];
   shipmentMode: any=[];
   queryParems: any = {};
@@ -35,16 +29,17 @@ export class DeliveryTimelineComponent implements OnInit {
     private toastr: ToastrService,
     private route: ActivatedRoute,
     private _NgbActiveModal: NgbActiveModal,
-    private service: ServiceService,
-    public datepipe: DatePipe
-    ) { }
+    private service: ServiceService) { }
 
   ngOnInit(): void {
+<<<<<<< HEAD
     this.queryParems = this.route.snapshot.queryParams;
     // let olddate=new Date();
     // let latest_date =this.datepipe.transform(olddate, 'yyyy-MM-dd');
     // this.supplierDateField =this.dateformater.fromModel(latest_date);
     // this.buyerDateField =this.dateformater.fromModel(latest_date);
+=======
+>>>>>>> parent of 6019933 (delivery)
     this.GetMode();
     this.statusCheck = this.statusCheck;
     if (this.statusCheck == 'shipmentEdit') {
