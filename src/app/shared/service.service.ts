@@ -131,14 +131,26 @@ export class ServiceService {
   getBuyers() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/Buyers`);
   }
+  getBuyersPOC() {
+    return this.http.get(`${environment.apiUrl}/api/Buyers/GetAllPOC`);
+  }
   getSellers() {
     return this.http.get(`${environment.apiUrl}/api/Sellers/GetSellers`);
+  }
+  getSellersPOC() {
+    return this.http.get(`${environment.apiUrl}/api/Sellers/GetAllPOC`);
+  }
+  getAgents() {
+    return this.http.get(`${environment.apiUrl}/api/Lookups/ExternalAgents`)
   }
   getArticles() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/Articles`)
   }
   getPaymentTerm() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/PaymentTerms`)
+  }
+  getPaymentMode() {
+    return this.http.get(`${environment.apiUrl}/api/Lookups/PaymentModes`)
   }
   getPackaging() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/Packagings`)
@@ -157,12 +169,20 @@ export class ServiceService {
     return this.http.get(`${environment.apiUrl}/api/Lookups/Certifications`)
 
   }
+  getCapabilities() {
+    return this.http.get(`${environment.apiUrl}/api/Lookups/Capabilities`)
+
+  }
+  
   getPriceTerm() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/PriceTerms`)
 
   }
   getCity() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/Destinations`)
+  }
+  getMode() {
+    return this.http.get(`${environment.apiUrl}/api/Lookups/ShipmentModes`)
   }
   getUOM() {
     return this.http.get(`${environment.apiUrl}/api/Enquiries/GetAllUOM`)
@@ -180,6 +200,9 @@ export class ServiceService {
     return this.http.get(`${environment.apiUrl}/api/Enquiries/GetAllEnquiryItem`);
   }
   getCurrency() {
+    return this.http.get(`${environment.apiUrl}/api/Configs/GetAllCurrencyRate`);
+  }
+  getCurrencyType() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/CurrencyTypes`);
   }
   getVendorSeller(enquiryId) {
@@ -190,6 +213,12 @@ export class ServiceService {
   }
   getDepartment() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/Departments`);
+  }
+  getCriteria(userId) {
+    return this.http.get(`${environment.apiUrl}/api/Lookups/BeneficiaryCriterias/` + userId);
+  }
+  getUsers() {
+    return this.http.get(`${environment.apiUrl}/api/Users/GetUsers` );
   }
 
 

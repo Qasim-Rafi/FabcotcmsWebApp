@@ -92,21 +92,22 @@
     </div>
 
     <div class="form-group row">
-      <label for="inputEmail3" class="col-sm-3 col-form-label">Machine Details</label>
+      <label for="inputEmail3" class="col-sm-3 col-form-label">Certificate(s)</label>
       <div class="col-sm-8">
-        <select class="form-control" [(ngModel)]="data.machineId">
-          <option>Select Machine Details</option>
-          <option>Sweden</option>
-        </select>
+        <ng-select [multiple]="true" name="certificatedeIds" class="input-w1 px-0" [(ngModel)]="data.certificatedeIds" placeholder="-- Select --">
+          <ng-option *ngFor="let i of certification" [value]="i.id">{{ i.name }}
+          </ng-option>
+      </ng-select>
       </div>
     </div>
+
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-3 col-form-label">Capabilities</label>
       <div class="col-sm-8">
-        <select class="form-control" [(ngModel)]="data.capabilitiesId">
-          <option>Nothing Selected</option>
-          <option>Sweden</option>
-        </select>
+        <ng-select [multiple]="true" name="capabilitiesIds" class="input-w1 px-0" [(ngModel)]="data.capabilitiesIds" placeholder="-- Select --">
+          <ng-option *ngFor="let i of capabilities" [value]="i.id">{{ i.name }}
+          </ng-option>
+      </ng-select>
       </div>
     </div>
 

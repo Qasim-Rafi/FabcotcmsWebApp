@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ServiceService } from 'src/app/shared/service.service';
 
 @Component({
   selector: 'app-edit-seller-form',
@@ -19,10 +20,12 @@ export class EditSellerFormComponent implements OnInit {
   machineId = null;
   capabilitiesId = null;
   sellerCertificate: any = []
-
+  certification: any = [];
+  capabilities:any=[];
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
+    private service: ServiceService,
     private _NgbActiveModal: NgbActiveModal,) { }
 
 
@@ -31,12 +34,36 @@ export class EditSellerFormComponent implements OnInit {
     this.editSeller(this.Id);
     this.getCountry();
     this.getParentSellers();
+    this.GetCertificationDropdown();
+    this.GetCapabilitiesDropdown();
   }
 
   get activeModal() {
     return this._NgbActiveModal;
   }
 
+  GetCertificationDropdown() {
+    this.service.getCertification().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.certification = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
+  GetCapabilitiesDropdown() {
+    this.service.getCapabilities().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.capabilities = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
 
 
   getParentSellers() {
@@ -89,7 +116,8 @@ export class EditSellerFormComponent implements OnInit {
           if (this.response.success == true) {
             this.data = this.response.data;
 
-
+            this.data.machineIds = this.data.machineIds.split(',');
+            this.data.capabilitiesIds = this.data.capabilitiesIds.split(',');
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
@@ -115,8 +143,8 @@ export class EditSellerFormComponent implements OnInit {
       "faxNumber": this.data.faxNumber,
       "ntnNumber": this.data.ntnNumber,
       "gstNumber": this.data.gstNumber,
-      "machineId": this.data.machineId,
-      "capabilitiesId": this.data.capabilitiesId,
+      "certificatedeIds": this.data.certificatedeIds !=null?this.data.certificatedeIds.toString():null,
+      "capabilitiesIds": this.data.capabilitiesIds != null ?this.data.capabilitiesIds.toString() : null,
       "majorStrength": this.data.majorStrength,
       "leadTime": this.data.leadTime,
       "sellerDetails": this.data.sellerDetails,

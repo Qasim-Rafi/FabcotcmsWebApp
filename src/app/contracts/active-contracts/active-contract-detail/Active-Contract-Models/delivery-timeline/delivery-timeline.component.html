@@ -12,12 +12,13 @@
 
   
   <div class="modal-body BG pt-2r">
-    <form #partiesForm="ngForm" novalidate>
+    <form #deliveryForm="ngForm" novalidate>
 
         <div class="form-group row">
             <label for="name" class="col-sm-3 col-form-label text_Navy">Shipment No.</label>
             <div class="col-sm-7">
               <input  type="text" class="form-control"
+              id="shipmentNo" name="shipmentNo" [(ngModel)]="data.shipmentNo" #shipmentNo="ngModel"
                 placeholder="Shipment Number Info"/>
             </div>
           </div>
@@ -27,7 +28,9 @@
             <label for="description" class="col-sm-3 col-form-label text-Navy">Supplier Date</label>
             <div class="col-sm-7" (clickOutside)="validityDate.close()">
       
-              <input navigation="select" class="form-control text_Navy " ngbDatepicker #validityDate="ngbDatepicker"
+              <input navigation="select" class="form-control text_Navy "
+              id="supplierDate" name="supplierDate" [(ngModel)]="data.supplierDate" #supplierDate="ngModel"
+              ngbDatepicker #validityDate="ngbDatepicker"
                 (click)="validityDate.toggle()" placeholder="Shipment date received from Supplier" 
                 name="validityDate" />
             </div>
@@ -38,7 +41,9 @@
             <label for="description" class="col-sm-3 col-form-label ">Buyer Date</label>
             <div class="col-sm-7" (clickOutside)="validityDate2.close()">
       
-              <input navigation="select" class="form-control  " ngbDatepicker #validityDate2="ngbDatepicker"
+              <input navigation="select" class="form-control"
+              id="buyerDate" name="buyerDate" [(ngModel)]="data.buyerDate" #buyerDate="ngModel"
+              ngbDatepicker #validityDate2="ngbDatepicker"
                 (click)="validityDate2.toggle()" placeholder="Shipment date received from Buyer" 
                 name="validityDate2" />
             </div>
@@ -58,15 +63,9 @@
           <div class="form-group row">
             <label for="description" class="col-sm-3 col-form-label text-Navy">Shipment Mode</label>
             <div class="col-sm-7">
-                <ng-select 
-                placeholder="Select Shipment Mode ">
-                <ng-option >
-                    By Air
-                </ng-option>
-                <ng-option >
-                    By Sea
-                </ng-option>
-              </ng-select>
+              <ng-select [(ngModel)]="shipmentMode" placeholder="Select Shipment Mode" name="shipmentMode">
+                <ng-option *ngFor="let i of mode" [value]="i.id">{{ i.shipmentMode }}</ng-option>
+            </ng-select>
             </div>
           </div>
 
@@ -75,6 +74,7 @@
              control-label">Additional Note:</label>
             <div class="col-md-7">
                 <textarea class="form-control"
+              id="shipmentRemarks" name="shipmentRemarks" [(ngModel)]="data.shipmentRemarks" #shipmentRemarks="ngModel"
                  rows="4" placeholder="Shipment plan additional details here..."
                  name="remarks"></textarea>
             </div>
@@ -88,7 +88,8 @@
     <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
       Close
     </button>
-    <button class="btn button-save" type="submit">
+    <button class="btn button-save" type="submit" 
+    (click)="addshipment()">
       Save & Close
     </button>
     <button class="btn button-blue" type="submit">
