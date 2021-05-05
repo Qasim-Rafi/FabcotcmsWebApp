@@ -71,7 +71,9 @@
 
                                         <input navigation="select" class="form-control  " ngbDatepicker
                                             #validityDate2="ngbDatepicker" (click)="validityDate2.toggle()"
-                                            placeholder="Shipment date received from Buyer" name="validityDate2" />
+                                            placeholder="Shipment date received from Buyer" name="validityDate2"
+                                            name="paymentDate" [(ngModel)]="data.paymentDate" #paymentDate="ngModel"
+                                            />
 
                                     </div>
                                 </div>
@@ -87,7 +89,8 @@
                                                 <i class="fas fa-scroll"></i>
                                             </span>
                                         </div>
-                                        <input type="text" class="form-control date">
+                                        <input type="text" class="form-control date"  
+                                          name="receiptNumber" [(ngModel)]="data.receiptNumber" #receiptNumber="ngModel">
                                     </div>
                                 </div>
                             </div>
@@ -102,7 +105,9 @@
                                                 <i class="far fa-handshake"></i>
                                             </span>
                                         </div>
-                                        <input type="text" class="form-control date" readonly>
+                                        <input type="text" class="form-control date" readonly
+                                        name="contractId" [(ngModel)]="data.contractId" #contractId="ngModel"
+                                        >
                                     </div>
                                 </div>
                                 <div class="col-md-3">
@@ -120,7 +125,9 @@
                                                 <i class="fas fa-file-invoice-dollar"></i>
                                             </span>
                                         </div>
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control"
+                                        name="contractBillId" [(ngModel)]="data.contractBillId" #contractBillId="ngModel"
+                                        >
                                     </div>
                                 </div>
                             </div>
@@ -134,7 +141,9 @@
                                                 <i class="fa fa-industry"></i>
                                             </span>
                                         </div>
-                                        <input type="text" class="form-control" readonly>
+                                        <input type="text" class="form-control" readonly
+                                        name="selerId" [(ngModel)]="data.selerId" #selerId="ngModel"
+                                        >
                                     </div>
                                 </div>
                             </div>
@@ -165,26 +174,30 @@
                                 <div class="div col-md-6">
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <ng-select placeholder="">
-                                                <ng-option>PKR</ng-option>
-                                                <ng-option>USD</ng-option>
-                                                <ng-option>EUR</ng-option>
-                                                <ng-option>GBP</ng-option>
+                                            <ng-select placeholder=""  [(ngModel)]="data.currencyId" name="currencyId">
+                                                <ng-option *ngFor="let i of currency" [value]="i.id">{{ i.code }}
+                                                    <span *ngIf="i.name !=null" class="text-muted" style="font-size: 11px">( {{ i.name }} )</span>
+                                                  </ng-option>
                                             </ng-select>
                                         </div>
                                         <div class="col-md-3 mrg-sm1">
                                             <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="Paid Amount">
+                                                <input type="text" class="form-control" placeholder="Paid Amount"
+                                                name="paidAmount" [(ngModel)]="data.paidAmount" #paidAmount="ngModel"
+                                                >
                                             </div>
                                         </div>
                                         <div class="col-md-3 mrg-sm1">
                                             <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="tax Amount">
+                                                <input type="text" class="form-control" placeholder="tax Amount"
+                                                name="taxAmount" [(ngModel)]="data.taxAmount" #taxAmount="ngModel">
                                             </div>
                                         </div>
                                         <div class="col-md-3 mrg-sm1">
                                             <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="Deduction">
+                                                <input type="text" class="form-control" placeholder="Deduction"
+                                                name="deductionAmount" [(ngModel)]="data.deductionAmount" #deductionAmount="ngModel"
+                                                >
                                             </div>
                                         </div>
                                     </div>
@@ -195,25 +208,18 @@
                                 <label class="col-md-3 col-form-label control-label">
                                     Payment Mode</label>
                                 <div class="col-md-2">
-                                    <ng-select placeholder="">
-                                        <ng-option>
-                                            PO
-                                        </ng-option>
-                                        <ng-option>
-                                            TT
-                                        </ng-option>
+                                    <ng-select placeholder=""    
+                                       name="paymentMode" [(ngModel)]="data.paymentMode" #paymentMode="ngModel">
+                                      <ng-option>
 
-                                        <ng-option>
-                                            Cash
-                                        </ng-option>
-                                        <ng-option>
-                                            Cheque
-                                        </ng-option>
+                                      </ng-option>
                                     </ng-select>
                                 </div>
                                 <div class="col-md-4 ">
                                     <input type="text" class="form-control"
-                                        placeholder="Additional Info(Cheque No., PO/DD No. etc)">
+                                        placeholder="Additional Info(Cheque No., PO/DD No. etc)"
+                                        name="paymentDescription" [(ngModel)]="data.paymentDescription" #paymentDescription="ngModel"
+                                        >
                                 </div>
 
 
@@ -228,14 +234,18 @@
                                 <label class="col-md-3 col-form-label control-label">
                                     Bank Account</label>
                                 <div class="col-md-2">
-                                    <ng-select placeholder="Select a Bank Account">
-                                        <ng-option>
-                                        </ng-option>
+                                    <ng-select placeholder="Select a Bank Account"
+                                    name="bankAccountId" [(ngModel)]="data.bankAccountId" #bankAccountId="ngModel"
+                                    >
+                                    <ng-option *ngFor="let i of bankAcc" [value]="i.id">{{ i.accountName }}
+                                      </ng-option>
 
                                     </ng-select>
                                 </div>
                                 <div class="col-md-4 ">
-                                    <input type="text" class="form-control" placeholder="Additional Info">
+                                    <input type="text" class="form-control" placeholder="Additional Info"
+                                    name="accountDescription" [(ngModel)]="data.accountDescription" #accountDescription="ngModel"
+                                    >
                                 </div>
 
                             </div>
@@ -244,7 +254,9 @@
                                 <label class="col-md-3 col-form-label control-label">Deposited in Bank</label>
                                 <div class="col-md-2">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="">
+                                        <input class="form-check-input" type="checkbox" value=""
+                                        name="isDepositedInBank" [(ngModel)]="data.isDepositedInBank" #isDepositedInBank="ngModel"
+                                        >
                                     </div>
 
                                 </div>
@@ -255,7 +267,9 @@
                                 <div class="col-md-3">
                                     <input navigation="select" class="form-control  " ngbDatepicker
                                         #validityDate3="ngbDatepicker" (click)="validityDate3.toggle()"
-                                        name="validityDate3" />
+                                        name="validityDate3"
+                                        name="depositeDate" [(ngModel)]="data.depositeDate" #depositeDate="ngModel"
+                                        />
                                 </div>
 
 
@@ -272,10 +286,14 @@
 
                             <div class="row">
                                 <div class="col-md-6 offset-md-3">
-                                    <button class="btn button-save" *ngIf="statusCheck.statusCheck == 'addPayment'">
+                                    <button class="btn button-save" *ngIf="statusCheck.statusCheck == 'addPayment'"
+                                    (click) = " addPayment()"
+                                    >
                                         <i class="fas fa-check"></i> Save
                                         Payment Info</button>
-                                        <button class="btn button-save" *ngIf="statusCheck.statusCheck == 'editPayment'">
+                                        <button class="btn button-save" *ngIf="statusCheck.statusCheck == 'editPayment'"
+                                        (click) = "UpdatePayment()"
+                                        >
                                             <i class="fas fa-check"></i> Update
                                             Payment Info</button>
                                     <button class="btn btn-secondary ml-2" routerLink="/payment-collection">
