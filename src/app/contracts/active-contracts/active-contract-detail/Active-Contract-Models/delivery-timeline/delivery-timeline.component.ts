@@ -32,14 +32,11 @@ export class DeliveryTimelineComponent implements OnInit {
     private service: ServiceService) { }
 
   ngOnInit(): void {
-<<<<<<< HEAD
     this.queryParems = this.route.snapshot.queryParams;
     // let olddate=new Date();
     // let latest_date =this.datepipe.transform(olddate, 'yyyy-MM-dd');
     // this.supplierDateField =this.dateformater.fromModel(latest_date);
     // this.buyerDateField =this.dateformater.fromModel(latest_date);
-=======
->>>>>>> parent of 6019933 (delivery)
     this.GetMode();
     this.statusCheck = this.statusCheck;
     if (this.statusCheck == 'shipmentEdit') {
