@@ -27,22 +27,26 @@
         <br>
         <div #myTable class="panel-body">
       
-          <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows"
+          <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="tnaList"
             [sorts]="[{ prop: 'id,name', dir: 'asce' }]" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-            [rowHeight]="'auto'" [limit]="10">
+            [rowHeight]="'auto'" [limit]="10"
+            [selected]="selected"
+            [selectionType]="SelectionType.checkbox"
+            (activate)='onActivate($event)'
+            >
             <ngx-datatable-column prop="id" name="S. No." [width]="20">
-              <ng-template let-row="row" ngx-datatable-cell-template>
-                {{ row.id }}
+              <ng-template let-row="row" let-rowIndex="rowIndex"  ngx-datatable-cell-template>
+                {{ rowIndex+1 }}
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column prop="id" name="Select to Add" [width]="20">
-              <ng-template let-row="row" ngx-datatable-cell-template>
-                {{ row.id }}
+            <ngx-datatable-column prop="selected" name="Select to Add" [width]="20">
+              <ng-template let-row="row" ngx-datatable-cell-template  >
+               <input type="checkbox">
               </ng-template>
             </ngx-datatable-column>
             <ngx-datatable-column prop="id" name="Action Items" [width]="20">
               <ng-template let-row="row" ngx-datatable-cell-template>
-                {{ row.id }}
+                {{ row.name }}
               </ng-template>
             </ngx-datatable-column>
           </ngx-datatable>
@@ -59,7 +63,7 @@
     <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
       Close
     </button>
-    <button class="btn button-save" type="submit">
+    <button class="btn button-save" type="submit" (click) = "addTna()">
       Add Action Item
     </button>
   </div>

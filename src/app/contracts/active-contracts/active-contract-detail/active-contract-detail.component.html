@@ -931,7 +931,7 @@
                                             </div>
                                               </div>
                                               <br>
-                                        <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows"
+                                        <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows2"
                                           [sorts]="[{ prop: 'id,name', dir: 'asce' }]" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
                                           [rowHeight]="'auto'" [limit]="10">
                                           <ngx-datatable-column prop="id" name="S. No." [width]="20">
@@ -939,16 +939,45 @@
                                               {{ row.id }}
                                             </ng-template>
                                           </ngx-datatable-column>
-                                          <ngx-datatable-column prop="id" name="Select to Add" [width]="20">
+                                          <ngx-datatable-column prop="id" name="Action Item" [width]="20">
                                             <ng-template let-row="row" ngx-datatable-cell-template>
-                                              {{ row.id }}
+                                              {{ row.tnaIds }}
                                             </ng-template>
                                           </ngx-datatable-column>
-                                          <ngx-datatable-column prop="id" name="Action Items" [width]="20">
+                                          <ngx-datatable-column prop="id" name="Start Date" [width]="20">
                                             <ng-template let-row="row" ngx-datatable-cell-template>
-                                              {{ row.id }}
+                                              {{ row.startDate }}
                                             </ng-template>
                                           </ngx-datatable-column>
+                                          <ngx-datatable-column prop="id" name="End Date" [width]="20">
+                                            <ng-template let-row="row" ngx-datatable-cell-template>
+                                              {{ row.endDate }}
+                                            </ng-template>
+                                          </ngx-datatable-column>
+                                          <ngx-datatable-column prop="id" name="Quantity" [width]="20">
+                                            <ng-template let-row="row" ngx-datatable-cell-template>
+                                              {{ row.quantity }}
+                                            </ng-template>
+                                          </ngx-datatable-column>
+                                          <ngx-datatable-column prop="id" name="Details" [width]="20">
+                                            <ng-template let-row="row" ngx-datatable-cell-template>
+                                              {{ row.details }}
+                                
+                                            </ng-template>
+                                          </ngx-datatable-column>
+                                          <ngx-datatable-column prop="id" name="Action" [width]="20">
+                                            <ng-template let-row="row" ngx-datatable-cell-template>
+                                             
+                                            <div class="ibox-tools text-center">
+                                                <button type="button" class="btn editIconBack"  (click) = "EditTna(row)" ><i
+                                                    class="far fa-edit"></i></button>
+                                                <!-- <button type="button" class="btn deleteIconBack" data-toggle="tooltip" data-placement="top" title=""
+                                                  data-original-title="Delete" (click)="deleteCountry(row)"><i class="far fa-trash-alt"></i></button> -->
+                                              </div>
+                                            </ng-template>
+                                          </ngx-datatable-column>
+                                         
+                                          
                                         </ngx-datatable>
                                       
                                       </div>
@@ -1002,12 +1031,7 @@
                                                 <dt class="col-sm-6">Quantity:</dt>
                                                 <dd class="col-sm-6"></dd>
                                             </dl>
-                                            <dl class="row">
-                                                <dt class="col-sm-6">Invoice Amount:
-    
-                                                </dt>
-                                                <dd class="col-sm-6">3</dd>
-                                            </dl>
+                                       
                                             <dl class="row">
                                                 <dt class="col-sm-6">Last Updated by:
     
@@ -1015,13 +1039,7 @@
                                                 </dt>
                                                 <dd class="col-sm-6">3</dd>
                                             </dl>
-                                            <dl class="row">
-                                                <dt class="col-sm-6">Buyer Payment:
-    
-    
-                                                </dt>
-                                                <dd class="col-sm-6">3</dd>
-                                            </dl>
+                                            
                                             <dl class="row">
                                                 <dt class="col-sm-6">Remarks:
     
@@ -1046,16 +1064,11 @@
                                                 <dd class="col-sm-6">12</dd>
                                             </dl>
                                             <dl class="row">
-                                                <dt class="col-sm-6">Unit Rate:
+                                                <dt class="col-sm-6">Invoice Amount:
                                                 </dt>
                                                 <dd class="col-sm-6"></dd>
                                             </dl>
-                                            <dl class="row">
-                                                <dt class="col-sm-6">Tax Amount:
-    
-                                                </dt>
-                                                <dd class="col-sm-6">3</dd>
-                                            </dl>
+                                           
                                             <dl class="row">
                                                 <dt class="col-sm-6">Last Updated on:
     
@@ -1063,23 +1076,50 @@
                                                 </dt>
                                                 <dd class="col-sm-6">3</dd>
                                             </dl>
-                                            <dl class="row">
-                                                <dt class="col-sm-6">L/C BL Date:
-    
-    
-                                                </dt>
-                                                <dd class="col-sm-6">3</dd>
-                                            </dl>
-                                            <dl class="row">
-                                                <dt class="col-sm-6">Tax Challan Info:
-    
-                                                </dt>
-                                                <dd class="col-sm-6">3</dd>
-                                            </dl>
+                                            
+                                          
                                         </div>
                                     </div>
                                 </div>
+                                
                             </div>
+                            <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows2"
+                                          [sorts]="[{ prop: 'id,name', dir: 'asce' }]" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+                                          [rowHeight]="'auto'" [limit]="10">
+                                          <ngx-datatable-column prop="id" name="Invoice Item" [width]="20">
+                                            <ng-template let-row="row" ngx-datatable-cell-template>
+                                              {{ row.id }}
+                                            </ng-template>
+                                          </ngx-datatable-column>
+                                          <ngx-datatable-column prop="id" name="Quantity" [width]="20">
+                                            <ng-template let-row="row" ngx-datatable-cell-template>
+                                              {{ row.tnaIds }}
+                                            </ng-template>
+                                          </ngx-datatable-column>
+                                          <ngx-datatable-column prop="id" name="Amount" [width]="20">
+                                            <ng-template let-row="row" ngx-datatable-cell-template>
+                                              {{ row.startDate }}
+                                            </ng-template>
+                                          </ngx-datatable-column>
+                                          <ngx-datatable-column prop="id" name="Remarks" [width]="20">
+                                            <ng-template let-row="row" ngx-datatable-cell-template>
+                                              {{ row.endDate }}
+                                            </ng-template>
+                                          </ngx-datatable-column>
+                                          <ngx-datatable-column prop="id" name="Action" [width]="20">
+                                            <ng-template let-row="row" ngx-datatable-cell-template>
+                                             
+                                            <div class="ibox-tools text-center">
+                                                <button type="button" class="btn editIconBack"  (click) = "EditTna(row)" ><i
+                                                    class="far fa-edit"></i></button>
+                                                <button type="button" class="btn deleteIconBack" data-toggle="tooltip" data-placement="top" title=""
+                                                  data-original-title="Delete" ><i class="far fa-trash-alt"></i></button>
+                                              </div>
+                                            </ng-template>
+                                          </ngx-datatable-column>
+                                         
+                                          
+                                        </ngx-datatable>
                         </div>
     
     
