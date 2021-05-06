@@ -15,6 +15,8 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./delivery-timeline.component.css']
 })
 export class DeliveryTimelineComponent implements OnInit {
+  // supplierDateField:any;
+  // buyerDateField:any;
   data: any = {};
   response: any;
   mode: any = [];
