@@ -3,10 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import { GlobalConstants } from 'src/app/Common/global-constants';
 import { Dateformater } from 'src/app/shared/dateformater';
 import { EnquiryNotesComponent } from 'src/app/shared/MODLES/enquiry-notes/enquiry-notes.component';
 import { ServiceService } from 'src/app/shared/service.service';
 import { environment } from 'src/environments/environment';
+import Swal from 'sweetalert2';
 import { CommisionKickbackComponent } from './Active-Contract-Models/commision-kickback/commision-kickback.component';
 import { DeliveryTimelineComponent } from './Active-Contract-Models/delivery-timeline/delivery-timeline.component';
 import { EmployeeCommissionComponent } from './Active-Contract-Models/employee-commission/employee-commission.component';
@@ -30,6 +32,7 @@ import { SALEINVOICEComponent } from './Active-Contract-Models/sale-invoice/sale
 export class ActiveContractDetailComponent implements OnInit {
   dateformater: Dateformater = new Dateformater();
   rows: any = [];
+  data:any = {};
   columns: any = [];
   queryParems: any = {};
   contractId: any = {};
@@ -63,6 +66,13 @@ export class ActiveContractDetailComponent implements OnInit {
     this.getContractLOC();
     this.getContractRemarkData();
     this.getContractCommisionData();
+
+
+
+    this.fetch((data) => {
+      this.rows = data;
+      // this.listCount= this.rows.length;
+    });
   }
 
 
@@ -311,9 +321,10 @@ getContractCommisionData(){
 
 
 
-EmployeeCommission() {
+EmployeeCommission(status) {
   const modalRef = this.modalService.open(EmployeeCommissionComponent, { centered: true });
   modalRef.componentInstance.contractId = this.contractId;
+  modalRef.componentInstance.statusCheck = status;
 
   modalRef.result.then((data) => {
     // on close
@@ -324,6 +335,94 @@ EmployeeCommission() {
     // on dismiss
   });
 }
+
+editEmployeeCommission(status , row) {
+  const modalRef = this.modalService.open(EmployeeCommissionComponent, { centered: true });
+  modalRef.componentInstance.contractId = this.contractId;
+  modalRef.componentInstance.statusCheck = status;
+  modalRef.componentInstance.beneficiaryId = row.id;
+
+  modalRef.result.then((data) => {
+    // on close
+    if (data == true) {
+
+    }
+  }, (reason) => {
+    // on dismiss
+  });
+}
+
+fetch(cb) {
+    
+  this.http
+  .get(`${environment.apiUrl}/api/Contracts/GetAllContractBeneficiary/` + this.contractId)
+  .subscribe(res => {
+    this.response = res;
+   
+  if(this.response.success==true)
+  {
+  this.data =this.response.data;
+  cb(this.data);
+  }
+  else{
+    this.toastr.error(this.response.message, 'Message.');
+  }
+    // this.spinner.hide();
+  }, err => {
+    if ( err.status == 400) {
+this.toastr.error(err.error.message, 'Message.');
+    }
+  //  this.spinner.hide();
+  });
+}
+
+
+
+deleteCommission(row) {
+  Swal.fire({
+    title: GlobalConstants.deleteTitle, //'Are you sure?',
+    text: GlobalConstants.deleteMessage + ' ' + '"' + row.criteriaDetail + '"',
+    icon: 'error',
+    showCancelButton: true,
+    confirmButtonColor: '#ed5565',
+    cancelButtonColor: '#dae0e5',
+    cancelButtonText: 'No',
+    confirmButtonText: 'Yes',
+    reverseButtons: true,
+    position: 'top',
+  }).then((result) => {
+    if (result.isConfirmed) {
+
+      this.http.delete(`${environment.apiUrl}/api/Enquiries/DeleteEnquiryItem/` + row.id )
+        .subscribe(
+          res => {
+            this.response = res;
+            if (this.response.success == true) {
+              this.toastr.error(this.response.message, 'Message.');
+              // this.getAllEnquiryItems();
+              // this.getEnquiryData(this.objEnquiry);
+              this.fetch((data) => {
+                this.rows = data;
+                // this.listCount= this.rows.length;
+              });
+
+            }
+            else {
+              this.toastr.error(this.response.message, 'Message.');
+            }
+
+          }, err => {
+            if (err.status == 400) {
+              this.toastr.error(this.response.message, 'Message.');
+            }
+          });
+
+    }
+  })
+
+}
+
+
 
 
 Remarks() {

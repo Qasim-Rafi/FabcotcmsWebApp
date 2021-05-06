@@ -117,7 +117,7 @@
       <label for="agentcomm" class="col-sm-3 col-form-label">Agent Comm</label>
       <div class=" col-md-8">
         <div class="row">
-          <ng-select placeholder="Select an Agent" [(ngModel)]="value.agentId" name="agentId_{{value.id}}">
+          <ng-select placeholder="Select an Agent" [(ngModel)]="value.agentId" name="agentId_{{i}}">
             <ng-option *ngFor="let i of agents" [value]="i.id">
               {{i.name}}
             </ng-option>
@@ -128,7 +128,7 @@
 
             <div class="col-md-6 fieldmrgbtm">
               <input class="form-control" id="agent" placeholder="Comm %" [(ngModel)]="value.agenetCommission" type="number" min="0"
-                name="agent_{{value.id}}" />
+                name="agent_{{i}}" />
 
               <button class="btn btn-outline-danger" type="submit" (click)="remove(i)">
                 <i class="fas fa-minus fa-xs"></i>

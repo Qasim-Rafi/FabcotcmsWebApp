@@ -696,7 +696,11 @@
                                         <label for="inputEmail3" class="col-md-3 col-form-label control-label">Certificates</label>
                                         <div class="col-md-6">
                             
-                                            <ng-select [(ngModel)]="enquiryData.certificateIds" placeholder="-- Select --" name="certificateIds">
+                                            <!-- <ng-select [multiple]="true" [(ngModel)]="enquiryData.certificateIds" placeholder="-- Select --" name="certificateIds">
+                                                <ng-option *ngFor="let i of certificate" [value]="i.id">{{ i.name }}
+                                                </ng-option>
+                                            </ng-select> -->
+                                            <ng-select [multiple]="true"  [(ngModel)]="enquiryData.certificateIds" placeholder="-- Select --" name="certificateIds">
                                                 <ng-option *ngFor="let i of certificate" [value]="i.id">{{ i.name }}
                                                 </ng-option>
                                             </ng-select>
@@ -1039,7 +1043,7 @@
         
                 </button>
                 <button class="btn btn-primary btn-block btn-lg text-center " (click)="GenerateContract()"
-                        *ngIf=" enquiryData.sellerId != null &&  enquiryData.confirmationDate != '' ">
+                        *ngIf=" enquiryData.showContractButton == true">
                     <i class="fas fa-file-archive fa-md"></i>
                     <span class="ml-2 text-small "> Create Contract </span>
                 </button>
