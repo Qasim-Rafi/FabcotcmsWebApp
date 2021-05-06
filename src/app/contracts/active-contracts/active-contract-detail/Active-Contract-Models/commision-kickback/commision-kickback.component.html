@@ -123,7 +123,7 @@
       <div class=" col-md-7">
         <div class="row">
           <div class=" col-md-6">
-            <ng-select placeholder="Select an Agent" [(ngModel)]="value.agentId" name="agentId_{{value.id}}">
+            <ng-select placeholder="Select an Agent" [(ngModel)]="value.agentId" name="agentId_{{i}}">
               <ng-option *ngFor="let i of agents" [value]="i.id">
                 {{i.name}}
               </ng-option>
