@@ -9,6 +9,7 @@ import { ServiceService } from 'src/app/shared/service.service';
 import { environment } from 'src/environments/environment';
 import { CommisionKickbackComponent } from './Active-Contract-Models/commision-kickback/commision-kickback.component';
 import { DeliveryTimelineComponent } from './Active-Contract-Models/delivery-timeline/delivery-timeline.component';
+import { EditTnaComponent } from './Active-Contract-Models/edit-tna/edit-tna.component';
 import { EmployeeCommissionComponent } from './Active-Contract-Models/employee-commission/employee-commission.component';
 import { ItemsComponent } from './Active-Contract-Models/items/items.component';
 import { LOCComponent } from './Active-Contract-Models/loc/loc.component';
@@ -42,6 +43,8 @@ export class ActiveContractDetailComponent implements OnInit {
   contractCommissionData: any = {};
   contractRemarksData: any = {};
   response: any;
+  TnaData: any = {};
+  rows2: any = [  {name : ["1","2","3","4"]  } ];
 
   constructor(
     private modalService: NgbModal,
@@ -63,6 +66,7 @@ export class ActiveContractDetailComponent implements OnInit {
     this.getContractLOC();
     this.getContractRemarkData();
     this.getContractCommisionData();
+    this.getContractTnA()
   }
 
 
@@ -469,6 +473,37 @@ Items() {
   });
 }
 
+getContractTnA() {
+  this.http.get(`${environment.apiUrl}/api/Contracts/GetContractTimeActionById/` + this.contractId)
+    .subscribe(
+      res => {
+        this.response = res;
+        if (this.response.success == true) {
+          this.TnaData = this.response.data;
+          
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+        }
 
+      }, err => {
+        if (err.status == 400) {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+      });
+}
+EditTna(row) {
+  const modalRef = this.modalService.open(EditTnaComponent, { centered: true });
+  modalRef.componentInstance.contractId = this.contractId;
+
+  modalRef.result.then((data) => {
+    // on close
+    if (data == true) {
+
+    }
+  }, (reason) => {
+    // on dismiss
+  });
+}
 
 }

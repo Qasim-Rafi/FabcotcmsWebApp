@@ -16,28 +16,34 @@
 
 
         <div class="form-group row">
-            <label for="name" class="col-sm-3 col-form-label text_Navy" >Sale Inv. No.</label>
+            <label for="saleInvoiceNo" class="col-sm-3 col-form-label text_Navy" >Sale Inv. No.</label>
             <div class="col-sm-8">
               <input  type="text" class="form-control"
-                placeholder="Sale Invoice number"/>
+                placeholder="Sale Invoice number"  name="saleInvoiceNo"  
+                 [(ngModel)]="data.saleInvoiceNo" #saleInvoiceNo="ngModel"/>
             </div>
           </div>
 
 
           <div class="form-group row">
-            <label for="description" class="col-sm-3 col-form-label text_Navy">Sale Inv. Date</label>
-            <div class="col-sm-8" (clickOutside)="validityDate.close()">
+            <label for="saleInvoiceDate" class="col-sm-3 col-form-label text_Navy">Sale Inv. Date</label>
+            <div class="col-sm-8" (clickOutside)="saleInvoiceDate.close()">
       
-              <input navigation="select" class="form-control  " ngbDatepicker #validityDate="ngbDatepicker"
-                (click)="validityDate.toggle()" placeholder="Sale Invoice date" 
-                name="validityDate" />
+              <input navigation="select" class="form-control  " ngbDatepicker #saleInvoiceDate="ngbDatepicker"
+                (click)="saleInvoiceDate.toggle()" placeholder="Sale Invoice date" 
+                name="saleInvoiceDate"   
+                [(ngModel)]="data.saleInvoiceDate" #saleInvoiceDate="ngModel"/>
             </div>
           </div>
 
           <div class="form-group row">
-            <label for="name" class="col-sm-3 col-form-label ">Remarks</label>
+            <label for="saleInvoiceRemarks" class="col-sm-3 col-form-label ">Remarks</label>
             <div class="col-sm-8">
-            <textarea name="remarks" rows="3" class="form-control"  placeholder="Sale invoice additional details here..."></textarea>  
+            <textarea name="remarks" rows="3" class="form-control" 
+             placeholder="Sale invoice additional details here..."
+             name="saleInvoiceRemarks"   
+             [(ngModel)]="data.saleInvoiceRemarks" #saleInvoiceRemarks="ngModel"
+             ></textarea>  
             </div>
           </div>
           
@@ -50,7 +56,7 @@
     <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
       Close
     </button>
-    <button class="btn button-save" type="submit">
+    <button class="btn button-save" type="submit" (click)="addSaleInvoice()">
       Save Sale Invoice
     </button>
   </div>
