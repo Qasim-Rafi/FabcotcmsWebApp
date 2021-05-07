@@ -367,10 +367,15 @@ editEmployeeCommission(status , row) {
   modalRef.componentInstance.statusCheck = status;
   modalRef.componentInstance.beneficiaryId = row.id;
 
+
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
 
+      this.fetch((data) => {
+        this.rows = data;
+        // this.listCount= this.rows.length;
+      });
     }
   }, (reason) => {
     // on dismiss
@@ -418,7 +423,7 @@ deleteCommission(row) {
   }).then((result) => {
     if (result.isConfirmed) {
 
-      this.http.delete(`${environment.apiUrl}/api/Enquiries/DeleteEnquiryItem/` + row.id )
+      this.http.delete(`${environment.apiUrl}/api/Contracts/DeleteContractBeneficiary/` + row.id )
         .subscribe(
           res => {
             this.response = res;
@@ -428,7 +433,7 @@ deleteCommission(row) {
               // this.getEnquiryData(this.objEnquiry);
               this.fetch((data) => {
                 this.rows = data;
-                // this.listCount= this.rows.length;
+        
               });
 
             }

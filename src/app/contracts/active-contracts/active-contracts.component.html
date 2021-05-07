@@ -115,38 +115,40 @@
 
           <ngx-datatable-column name="Age" prop="name">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              <span class="badge badge-primary" *ngIf="row.active==true">Active</span>
-              <span class="badge badge-secondary" *ngIf="row.active==false">Inactive</span>
+              <span class="badge badge-primary">{{row.contractAge}}</span>
+             
             </ng-template>
           </ngx-datatable-column>
 
           <ngx-datatable-column name="Contract Details" prop="genericName">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{row.enquiryId}}
+              {{row.autoContractNumber}}
+              B:{{row.buyerName}}
+              S:{{row.sellerName}}
             </ng-template>
           </ngx-datatable-column>
 
           <ngx-datatable-column name="Contract On" prop="status">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              
+              {{row.contractOn}}
             </ng-template>
           </ngx-datatable-column>
 
           <ngx-datatable-column name="#PO" prop="modifiedDate">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-
+              {{row.poNumber}}
             </ng-template>
           </ngx-datatable-column>
 
           <ngx-datatable-column name="#SC" prop="modifiedBy">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-
+              {{row.scNumber}}
             </ng-template>
           </ngx-datatable-column>
 
           <ngx-datatable-column name="Article">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-
+              {{row.articleName}}
 
             </ng-template>
           </ngx-datatable-column>
