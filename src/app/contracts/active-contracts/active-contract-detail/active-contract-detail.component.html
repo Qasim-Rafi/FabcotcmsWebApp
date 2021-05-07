@@ -981,7 +981,7 @@
                                     </div>
                                 </div>
     
-                                <div class="card-body  BG">
+                                <div class="card-body  BG" *ngFor="let x of invoiceData; let i = index;">
                                     <div class="row">
                                         <div class="col-md-6 p-3">
                                             <button class="btn btn-info">
@@ -1001,7 +1001,7 @@
                                                 <dt class="col-sm-6">Sale Invoice No.:
     
                                                 </dt>
-                                                <dd class="col-sm-6">12</dd>
+                                                <dd class="col-sm-6">{{x.saleInvoiceNo}}</dd>
                                             </dl>
                                             <dl class="row">
                                                 <dt class="col-sm-6">Quantity:</dt>
@@ -1013,7 +1013,7 @@
     
     
                                                 </dt>
-                                                <dd class="col-sm-6">3</dd>
+                                                <dd class="col-sm-6">{{x.saleInvoiceDate}}</dd>
                                             </dl>
                                             
                                             <dl class="row">
@@ -1021,7 +1021,7 @@
     
     
                                                 </dt>
-                                                <dd class="col-sm-6">3</dd>
+                                                <dd class="col-sm-6">{{x.saleInvoiceRemarks}}</dd>
                                             </dl>
                                         </div>
     
@@ -1031,18 +1031,18 @@
     
     
                                                 </dt>
-                                                <dd class="col-sm-6"></dd>
+                                                <dd class="col-sm-6">{{x.id}}</dd>
                                             </dl>
                                             <dl class="row">
                                                 <dt class="col-sm-6">Invoice Date:
     
                                                 </dt>
-                                                <dd class="col-sm-6">12</dd>
+                                                <dd class="col-sm-6">{{x.saleInvoiceDate}}</dd>
                                             </dl>
                                             <dl class="row">
                                                 <dt class="col-sm-6">Invoice Amount:
                                                 </dt>
-                                                <dd class="col-sm-6"></dd>
+                                                <dd class="col-sm-6">test</dd>
                                             </dl>
                                            
                                             <dl class="row">
@@ -1055,53 +1055,66 @@
                                             
                                           
                                         </div>
+                                    
+                                    </div>
+                                    <div class="row mb-3">
                                         <div class="col-md-6">
-                                            <button class="btn btn-primary" (click)="AddsaleInvoiceItem('add')">
+                                         <h2> Sale Invoice Items</h2>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <button class="btn btn-primary float-right" (click)="AddsaleInvoiceItem('add',x)">
                                                 <i class="fas fa-plus"></i>
                                                 Add Sale Invoice Item</button>
                                         </div>
+
                                     </div>
+
+
+                                    <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="x.saleInvoiceItemList"
+                                    [sorts]="[{ prop: 'id,name', dir: 'asce' }]" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+                                    [rowHeight]="'auto'" [limit]="10">
+                                    <ngx-datatable-column prop="id" name="Invoice Item" [width]="20">
+                                      <ng-template let-row="row" ngx-datatable-cell-template>
+                                        {{ row.id }}
+                                      </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column prop="id" name="Quantity" [width]="20">
+                                      <ng-template let-row="row" ngx-datatable-cell-template>
+                                        {{ row.tnaIds }}
+                                      </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column prop="id" name="Amount" [width]="20">
+                                      <ng-template let-row="row" ngx-datatable-cell-template>
+                                        {{ row.startDate }}
+                                      </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column prop="id" name="Remarks" [width]="20">
+                                      <ng-template let-row="row" ngx-datatable-cell-template>
+                                        {{ row.endDate }}
+                                      </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column prop="id" name="Action" [width]="20">
+                                      <ng-template let-row="row" ngx-datatable-cell-template>
+                                       
+                                      <div class="ibox-tools text-center">
+                                          <button type="button" class="btn editIconBack"  (click)="AddsaleInvoiceItem('edit',x)"><i
+                                              class="far fa-edit"></i></button>
+                                          <button type="button" class="btn deleteIconBack" data-toggle="tooltip" data-placement="top" title=""
+                                            data-original-title="Delete" ><i class="far fa-trash-alt"></i></button>
+                                        </div>
+                                      </ng-template>
+                                    </ngx-datatable-column>
+                                   
+                                    
+                                  </ngx-datatable>
+
+
+
                                 </div>
                                 
                             </div>
                         
-                            <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows2"
-                                          [sorts]="[{ prop: 'id,name', dir: 'asce' }]" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-                                          [rowHeight]="'auto'" [limit]="10">
-                                          <ngx-datatable-column prop="id" name="Invoice Item" [width]="20">
-                                            <ng-template let-row="row" ngx-datatable-cell-template>
-                                              {{ row.id }}
-                                            </ng-template>
-                                          </ngx-datatable-column>
-                                          <ngx-datatable-column prop="id" name="Quantity" [width]="20">
-                                            <ng-template let-row="row" ngx-datatable-cell-template>
-                                              {{ row.tnaIds }}
-                                            </ng-template>
-                                          </ngx-datatable-column>
-                                          <ngx-datatable-column prop="id" name="Amount" [width]="20">
-                                            <ng-template let-row="row" ngx-datatable-cell-template>
-                                              {{ row.startDate }}
-                                            </ng-template>
-                                          </ngx-datatable-column>
-                                          <ngx-datatable-column prop="id" name="Remarks" [width]="20">
-                                            <ng-template let-row="row" ngx-datatable-cell-template>
-                                              {{ row.endDate }}
-                                            </ng-template>
-                                          </ngx-datatable-column>
-                                          <ngx-datatable-column prop="id" name="Action" [width]="20">
-                                            <ng-template let-row="row" ngx-datatable-cell-template>
-                                             
-                                            <div class="ibox-tools text-center">
-                                                <button type="button" class="btn editIconBack"  (click)="AddsaleInvoiceItem('edit')"><i
-                                                    class="far fa-edit"></i></button>
-                                                <button type="button" class="btn deleteIconBack" data-toggle="tooltip" data-placement="top" title=""
-                                                  data-original-title="Delete" ><i class="far fa-trash-alt"></i></button>
-                                              </div>
-                                            </ng-template>
-                                          </ngx-datatable-column>
-                                         
-                                          
-                                        </ngx-datatable>
+                            
                         </div>
     
     
