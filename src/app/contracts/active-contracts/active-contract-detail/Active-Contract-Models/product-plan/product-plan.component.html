@@ -32,7 +32,8 @@
             [rowHeight]="'auto'" [limit]="10"
             [selected]="selected"
             [selectionType]="SelectionType.checkbox"
-            (activate)='onActivate($event)'
+            (select)="onSelect($event)"
+            (activate)="onActivate($event)"
             >
             <ngx-datatable-column prop="id" name="S. No." [width]="20">
               <ng-template let-row="row" let-rowIndex="rowIndex"  ngx-datatable-cell-template>

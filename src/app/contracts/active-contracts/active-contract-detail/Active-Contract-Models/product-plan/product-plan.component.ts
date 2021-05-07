@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -13,12 +13,15 @@ import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
 })
 export class PRODUCTPLANComponent implements OnInit {
   checkboxData: any = [];
+  @Input() contractId;
+
   columns: any = [];
   tnaList: any = [];
   selected = [];
+  data:any ={};
+  response: any;
   // ColumnMode = ColumnMode;
   SelectionType = SelectionType;
-  response: any;
   constructor(
     private _NgbActiveModal: NgbActiveModal,
     private route: ActivatedRoute,
@@ -50,23 +53,49 @@ export class PRODUCTPLANComponent implements OnInit {
       }
     })
   }
-  // onSelect({ selected }) {
-  //   console.log('Select Event', selected);
-  // }
+  onSelect({ selected }) {
+    console.log('Select Event', selected);
+  }
   // onSelect(row) {
   //   console.log(row)
   // }
 
   onActivate(event) {
-    // console.log('Activate Event', event );
-    this.checkboxData = event.row;
+    console.log('Activate Event', event );
+      if (event.type == 'click'){
+        this.checkboxData.push(event.row.id);
+      }
    
-  }
-  addTna() {
-
-  console.log(this.checkboxData)
-
 }
+
+    addTna() {
+      let varr = {
+        "contractId":this.data.contractId,
+    "tnaIds": this.checkboxData.toString()
+      }
+      this.http.
+        post(`${environment.apiUrl}​/api​/Contracts​/AddContractTimeAction`, varr)
+        .subscribe(
+          res => {
+  
+            this.response = res;
+            if (this.response.success == true) {
+              this.toastr.success(this.response.message, 'Message.');
+
+              this.activeModal.close(true);
+            }
+            else {
+              this.toastr.error(this.response.message, 'Message.');
+            }
+  
+          }, err => {
+            if (err.status == 400) {
+              this.toastr.error(this.response.message, 'Message.');
+            }
+          });
+    }
+
+
 
  
 }

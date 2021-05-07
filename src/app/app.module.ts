@@ -50,6 +50,7 @@ import { LayoutComponent } from './template/layout/layout.omponent';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { DateConvertor } from './shared/date-formater';
 import { EditTnaComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/edit-tna/edit-tna.component';
+import { SaleInvoiceItemComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/sale-invoice-item/sale-invoice-item.component';
 
 
 
@@ -85,6 +86,7 @@ const appRoutes: Routes = []
     ItemsComponent,
     CloudDocumentationComponent,
     EditTnaComponent,
+    SaleInvoiceItemComponent,
 
     // AddEnquiryComponent,
     // SearchEnquiryComponent,

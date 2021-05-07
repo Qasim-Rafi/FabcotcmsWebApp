@@ -22,6 +22,7 @@ import { PRODUCTPLANComponent } from './Active-Contract-Models/product-plan/prod
 import { QualityCostingComponent } from './Active-Contract-Models/quality-costing/quality-costing.component';
 import { QuantityCostingComponent } from './Active-Contract-Models/quantity-costing/quantity-costing.component';
 import { RemarksComponent } from './Active-Contract-Models/remarks/remarks.component';
+import { SaleInvoiceItemComponent } from './Active-Contract-Models/sale-invoice-item/sale-invoice-item.component';
 import { SALEINVOICEComponent } from './Active-Contract-Models/sale-invoice/sale-invoice.component';
 
 @Component({
@@ -609,5 +610,30 @@ EditTna(row) {
     // on dismiss
   });
 }
+AddsaleInvoiceItem(check) {
+  const modalRef = this.modalService.open(SaleInvoiceItemComponent, { centered: true });
+  modalRef.componentInstance.contractId = this.contractId;
+  modalRef.componentInstance.statusCheck = check;
+  modalRef.result.then((data) => {
+    // on close
+    if (data == true) {
 
+    }
+  }, (reason) => {
+    // on dismiss
+  });
+}
+EditsaleInvoiceItem(check) {
+  const modalRef = this.modalService.open(SaleInvoiceItemComponent, { centered: true });
+  modalRef.componentInstance.contractId = this.contractId;
+  modalRef.componentInstance.statusCheck = check;
+  modalRef.result.then((data) => {
+    // on close
+    if (data == true) {
+
+    }
+  }, (reason) => {
+    // on dismiss
+  });
+}
 }
