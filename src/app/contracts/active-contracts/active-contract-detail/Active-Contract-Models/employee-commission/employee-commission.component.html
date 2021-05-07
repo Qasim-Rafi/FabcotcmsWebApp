@@ -56,12 +56,22 @@
       >
      Close
     </button>
-    <button class="btn btn-save" type="submit" (click)="addContractEmployeeCommission()"
+    <button class="btn btn-save" type="submit" *ngIf="statusCheck == 'AddCommission'" (click)="addContractEmployeeCommission()"
     >
     Save  & Exit
   </button>
+
+  <button class="btn btn-save" type="submit" *ngIf="statusCheck == 'editCommission'" (click)=" updateContractEmployeeCommission()"
+    >
+    Save  & Exit
+  </button>
+
   <button class="btn btn-next" type="submit" *ngIf="statusCheck == 'AddCommission'" (click)="addContractEmployeeCommission()"
   >
   Save  & Next
 </button>
   </div>
+
+
+
+ 

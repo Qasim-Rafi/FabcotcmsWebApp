@@ -568,7 +568,7 @@
                                         <dl class="row">
                                             <dt class="col-sm-6">Foreign Agent Comm:
                                             </dt>
-                                            <dd class="col-sm-6">{{contractCommissionData.agenetCommission}}%</dd>
+                                            <dd class="col-sm-6" *ngFor="let i of contractCommissionData.agentCommissions">{{i.agenetCommission}}%</dd>
                                             
                                         </dl>
     
@@ -596,20 +596,18 @@
                                 <ngx-datatable-column name="S. No." [width]="5" prop="">
                                     <ng-template let-rowIndex="rowIndex" let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                                       {{rowIndex + 1}}
-                                      {{row.id}}
-                          
                                     </ng-template>
                                   </ngx-datatable-column>
     
-                                    <ngx-datatable-column>
-                                        <ng-template name="Agent" let-row="row" ngx-datatable-cell-template>
-                                            
+                                    <ngx-datatable-column  name="Agent">
+                                        <ng-template let-row="row" ngx-datatable-cell-template>
+                                            {{row.agentName}}
                                         </ng-template>
                                     </ngx-datatable-column>
     
                                     <ngx-datatable-column name="Criteria" prop="name">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                           
+                                            {{row.beneficiaryCriteriaName}}
                                         </ng-template>
                                     </ngx-datatable-column>
     
