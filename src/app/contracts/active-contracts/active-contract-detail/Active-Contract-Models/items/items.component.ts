@@ -21,6 +21,7 @@ export class ItemsComponent implements OnInit {
   colorId:any[];
   FormName: any;
   uomList: any = [];
+  uomList1: any = [];
   color: any = [];
   loomType: any = [];
 currency: any[];

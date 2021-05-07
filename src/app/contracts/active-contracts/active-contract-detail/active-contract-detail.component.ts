@@ -47,9 +47,10 @@ export class ActiveContractDetailComponent implements OnInit {
   contractCommissionData: any = {};
   contractRemarksData: any = {};
   response: any;
+  ItemCount: number;
   TnaData: any = {};
   rows2: any = [  {name : ["1","2","3","4"]  } ];
-
+  ItemUrl = '/api/Contracts/GetAllContractItem';
   constructor(
     private modalService: NgbModal,
     private route: ActivatedRoute,
@@ -626,6 +627,80 @@ EditsaleInvoiceItem(check) {
     // on close
     if (data == true) {
 
+    }
+  }, (reason) => {
+    // on dismiss
+  });
+}
+addItems(check, name) {
+  const modalRef = this.modalService.open(ItemsComponent, { centered: true });
+  modalRef.componentInstance.statusCheck = check;
+  modalRef.componentInstance.FormName = name;
+  modalRef.result.then((data) => {
+    // on close
+    if (data == true) {
+      this.service.fetch((data) => {
+        this.rows = data;
+        this.ItemCount = this.rows.length;
+      }, this.ItemUrl);
+
+
+    }
+  }, (reason) => {
+    // on dismiss
+  });
+}
+
+deleteItem(id) {
+  Swal.fire({
+    title: GlobalConstants.deleteTitle, //'Are you sure?',
+    text: GlobalConstants.deleteMessage + ' ' + '"' + id.description + '"',
+    icon: 'error',
+    showCancelButton: true,
+    confirmButtonColor: '#ed5565',
+    cancelButtonColor: '#dae0e5',
+    cancelButtonText: 'No',
+    confirmButtonText: 'Yes',
+    reverseButtons: true,
+    position: 'top',
+  }).then((result) => {
+    if (result.isConfirmed) {
+
+      this.http.delete(`${environment.apiUrl}/api/Contracts/DeleteContractItem/` + id.id)
+        .subscribe(
+          res => {
+            this.response = res;
+            if (this.response.success == true) {
+              this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
+              this.service.fetch((data) => {
+                this.rows = data;
+              }, this.ItemUrl);
+
+            }
+            else {
+              this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
+            }
+
+          }, err => {
+            if (err.status == 400) {
+              this.toastr.error(this.response.message, 'Message.');
+            }
+          });
+    }
+  })
+}
+editItem(row, check, name) {
+  const modalRef = this.modalService.open(ItemsComponent, { centered: true });
+  modalRef.componentInstance.itemId = row.id; //just for edit.. to access the needed row
+  modalRef.componentInstance.statusCheck = check;
+  modalRef.componentInstance.FormName = name;
+
+  modalRef.result.then((data) => {
+    // on close
+    if (data == true) {
+      this.service.fetch((data) => {
+        this.rows = data;
+      }, this.ItemUrl);
     }
   }, (reason) => {
     // on dismiss
