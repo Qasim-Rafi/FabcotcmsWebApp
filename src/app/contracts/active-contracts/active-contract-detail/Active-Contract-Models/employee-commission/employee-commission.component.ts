@@ -72,7 +72,7 @@ export class EmployeeCommissionComponent implements OnInit {
 
 
   getContractEmployeeCommissionData() {
-    this.http.get(`${environment.apiUrl}/api/Contracts/GetBeneficiaryCriteriaById/` + this.beneficiaryId)
+    this.http.get(`${environment.apiUrl}/api/Contracts/GetContractBeneficiaryById/` + this.beneficiaryId)
       .subscribe(
         res => {
           this.response = res;
@@ -125,6 +125,53 @@ export class EmployeeCommissionComponent implements OnInit {
           }
         });
   }
+
+
+
+
+
+
+  updateContractEmployeeCommission() {
+    
+    let varr = {
+      "contractId": this.contractId,
+      "userId": this.data.userId,
+      "beneficiaryCriteriaId": this.data.beneficiaryCriteriaId,
+      "criteriaDetail": this.data.criteriaDetail,
+    }
+
+    this.http.
+      put(`${environment.apiUrl}/api/Contracts/UpdateContractBeneficiary/`+ this.beneficiaryId , varr)
+      .subscribe(
+        res => {
+
+          this.response = res;
+          if (this.response.success == true) {
+            this.toastr.success(this.response.message, 'Message.');
+      
+            this.activeModal.close(true);
+            this.getContractEmployeeCommissionData();
+         
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+        });
+  }
+
+
+
+
+
+
+
+
+
 
 
 
