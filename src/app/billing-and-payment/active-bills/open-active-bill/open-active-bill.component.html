@@ -2,9 +2,9 @@
     <div class="row">
         <div class="col-sm-12 col-md-6 col-lg-8">
             <h2 class="row wrapper page-header font-weight-light">
-                <b>Bill #6700</b>
+                <b>Bill {{rows.billNumber}}</b>
                 <div class="ml-2 descr">
-                    Billing detail of Bill <b>#6700</b> against Contract <b>#RT-3642-I</b>
+                    Billing detail of Bill <b>{{rows.billNumber}}</b> against Contract <b>{{rows.contractNumber}}</b>
                 </div>
             </h2>
         </div>
@@ -56,31 +56,31 @@
             <!-- right side content -->
 <div class="float-right">
             <span class="text-font1">
-                Bill No.:<span class="weight">6700</span>
+                Bill No.:<span class="weight">{{rows.billNumber}}</span>
             </span>
             <br>
             <span class="text-font1">
-                Bill Dt.: <span class="bold text-font1">18-Jan-2021</span>
+                Bill Dt.: <span class="bold text-font1">{{rows.billDate}}</span>
             </span>
         </div>
             <!-- left side content -->
             <div class="float-left">
             <span class="text-font1">
-                Seller:<span class="bold text-font1">Rustam Towel (Pvt) Ltd.</span>
+                Seller:<span class="bold text-font1">{{rows.sellerName}}</span>
             </span>
             <br>
             <span class="text-font1">
-                Buyer:<span class="bold text-font1">XXX LUTZ KG.</span>
-            </span>
-            <br>
-
-            <span class="text-font1">
-                Fabcot Contract No:<span class="bold text-font1"> RT-3642-I</span>
+                Buyer:<span class="bold text-font1">{{rows.buyerName}}</span>
             </span>
             <br>
 
             <span class="text-font1">
-                Contract Date:<span class="bold text-font1">Fri 09-Oct-2020</span>
+                Fabcot Contract No:<span class="bold text-font1"> {{rows.contractNumber}}</span>
+            </span>
+            <br>
+
+            <span class="text-font1">
+                Contract Date:<span class="bold text-font1">{{rows.contractDate}}</span>
             </span>
             <br>
             <span class="text-font1">

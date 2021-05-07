@@ -35,17 +35,17 @@ export class SALEINVOICEComponent implements OnInit {
 
   
   addSaleInvoice() {
-    // this.data.saleInvoiceDate = this.dateformater.toModel(this.data.saleInvoiceDate);
+     this.data.saleInvoiceDate = this.dateformater.toModel(this.data.saleInvoiceDate);
     let varr = {
 
-      // "contractId": this.data.contractId,
+      "contractId": this.contractId,
       "saleInvoiceNo": this.data.saleInvoiceNo,
       "saleInvoiceDate":this.data.saleInvoiceDate,
       "saleInvoiceRemarks":this.data.saleInvoiceRemarks
     }
 
     this.http.
-      post(`${environment.apiUrl}/api/Contracts/AddContractSaleInvoice`+ this.contractId , varr)
+      post(`${environment.apiUrl}/api/Contracts/AddContractSaleInvoice`, varr)
       .subscribe(
         res => {
 

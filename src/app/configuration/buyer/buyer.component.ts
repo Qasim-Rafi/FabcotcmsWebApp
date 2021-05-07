@@ -100,6 +100,7 @@ export class BuyerComponent implements OnInit {
           this.response = res;
           if (this.response.success == true) {
             this.buyer = this.response.data;
+            console.log(this.buyer)
             this.temp = [...this.buyer];
             this.listCount = this.response.data.length;
             this.getTotalPOCs();

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { GlobalConstants } from 'src/app/Common/global-constants';
@@ -67,6 +67,7 @@ export class EditActiveEnquiryComponent implements OnInit {
     private http: HttpClient,
     private service: ServiceService,
     private toastr: ToastrService,
+    private router: Router,
 
   ) { }
 
@@ -1034,6 +1035,7 @@ export class EditActiveEnquiryComponent implements OnInit {
               this.response = res;
               if (this.response.success == true) {
                 this.toastr.success(this.response.message, 'Message.');
+                this.router.navigate(['/contract/active-contract']);
     
               }
               else {

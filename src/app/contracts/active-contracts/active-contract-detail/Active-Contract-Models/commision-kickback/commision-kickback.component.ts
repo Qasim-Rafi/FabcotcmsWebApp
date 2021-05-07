@@ -105,6 +105,9 @@ export class CommisionKickbackComponent implements OnInit {
     for(let i=0; i<this.data.length;i++ )
     {
       this.data[i] = Object.assign(this.data[i], {
+
+        "agentId": this.commission.agentId,
+        "agentCommission": this.commission.agentCommission,
     
       })
     }
@@ -119,7 +122,7 @@ export class CommisionKickbackComponent implements OnInit {
       "buyerSideCommissionUOMId": this.commission.buyerSideCommissionUOMId,
       "buyerAdditionalInfo": this.commission.buyerAdditionalInfo,
       "agentId": this.commission.agentId,
-      "agenetCommission": this.commission.agenetCommission.toString(),
+      "agentCommissions": this.data,
     }
 
     this.http.
