@@ -251,6 +251,7 @@ export class SellerComponent implements OnInit {
           if (this.response.success == true) {
 
             this.seller = this.response.data;
+            console.log(this.seller)
             this.sellerFilter = [...this.seller];
             this.sellerCount = this.response.data.length;
             this.getTotalPOCs();

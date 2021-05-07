@@ -23,6 +23,7 @@ export class PaymentFormComponent implements OnInit {
   paymentMode: any = {};
   bankAcc: any = {};
 
+  bill: any = {};
 
 
   response: any;
@@ -45,6 +46,7 @@ export class PaymentFormComponent implements OnInit {
 
     this.fetch((data) => {
       this.rows = data;
+      // this.listCount= this.rows.length;
     });
     this.GetCurrencyDropdown()
     this.GetSaleInvoiceDropdown()
@@ -54,7 +56,7 @@ export class PaymentFormComponent implements OnInit {
   fetch(cb) {
     
     this.http
-    .get(`${environment.apiUrl}/api/BillingPayments/GetBillPaymentById/` + this.paymentId)
+    .get(`${environment.apiUrl}/api/BillingPayments/GetContractBillById/` + this.paymentId)
     .subscribe(res => {
       this.response = res;
      
@@ -74,13 +76,17 @@ export class PaymentFormComponent implements OnInit {
     //  this.spinner.hide();
     });
   }
+
+ 
+
+
   UpdatePayment() {
     let varr = {
       "contractId": this.data.contractId,
       "contractBillId": this.data.contractBillId,
       "selerId": this.data.selerId,
       "receiptNumber": this.data.receiptNumber,
-      "paymentDate": this.data.paymentDate,
+      // "paymentDate": this.data.paymentDate,
       "paidAmount": this.data.paidAmount,
       "taxAmount": this.data.taxAmount,
       "deductionAmount": this.data.deductionAmount,
@@ -117,9 +123,11 @@ export class PaymentFormComponent implements OnInit {
   addPayment() {
 
       let varr = {
-        "contractId": this.data.contractId,
-        "contractBillId": this.data.contractBillId,
-        "selerId": this.data.selerId,
+        "contractId": this.bill.contractId,
+        "contractBillId": this.paymentId,
+        "buyerId": this.bill.buyerName,
+        "selerId": this.bill.sellerName,
+        "saleInvoiceId": this.data.saleInvoiceId,
         "receiptNumber": this.data.receiptNumber,
         "paymentDate": this.data.paymentDate,
         "paidAmount": this.data.paidAmount,
@@ -135,7 +143,7 @@ export class PaymentFormComponent implements OnInit {
     
 
     this.http.
-      post(`${environment.apiUrl}/api/BillingPayments/AddBillPayment`, varr)
+      post(`${environment.apiUrl}/api/BillingPayments/AddBillPayment/`, varr)
       .subscribe(
         res => {
 
@@ -160,7 +168,6 @@ export class PaymentFormComponent implements OnInit {
       this.response = res;
       if (this.response.success == true) {
         this.currency = this.response.data;
-    
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
