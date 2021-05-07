@@ -34,12 +34,12 @@
 
       <div class="topbox-margin-top-text">Active Bills
         <div class=" float-right fontSize">
-          <span class="text_Navy fontSize"> 100 </span>
+          <span class="text_Navy fontSize"> </span>
           <i class="fa fa-bolt text_Navy"></i>
         </div>
       </div>  
      
-      <div class="topbox-margin-mid-text">116 <span class="topbox-small-text">bills</span></div>
+      <div class="topbox-margin-mid-text">{{rows.activeBillCount}} <span class="topbox-small-text">bills</span></div>
  
     </div>
   </div>
@@ -54,7 +54,7 @@
         </div>
       </div>
      
-      <div class="topbox-margin-mid-text">9,098.53 <span class="topbox-small-text">Rs./$</span></div>
+      <div class="topbox-margin-mid-text">{{rows.totalAmount}} <span class="topbox-small-text">Rs./$</span></div>
 
     </div>
   </div>
@@ -71,7 +71,7 @@
         </div>
       </div>
 
-      <div class="topbox-margin-mid-text">9,098.53 <span class="topbox-small-text">Rs./$</span></div>
+      <div class="topbox-margin-mid-text">{{rows.balanceAmount}}<span class="topbox-small-text">Rs./$</span></div>
 
     </div>
   </div>
@@ -88,7 +88,7 @@
         </div>
       </div>
 
-      <div class="topbox-margin-mid-text">0</div>
+      <div class="topbox-margin-mid-text">{{rows.taxAmount}}</div>
 
     </div>
   </div>
@@ -187,7 +187,7 @@
        
 
 
-        <ngx-datatable class="bootstrap datatable-row-wrapper" [columns]="columns" [rows]="rows" [columnMode]="'flex'"
+        <ngx-datatable class="bootstrap datatable-row-wrapper" [columns]="columns" [rows]="rows.activeBills" [columnMode]="'flex'"
           [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="6">
       
           <ngx-datatable-column name="Print" [width]="80" prop="print" [flexGrow]="0.05">
@@ -196,57 +196,57 @@
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="S.No" [width]="80" prop="sno" [flexGrow]="0.05">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-      
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template >
+            {{row.contractId}}
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Bill For" [width]="80" prop="billFor" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-      
+      {{row.sellerName}}
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Bill To" [width]="80" prop="billTo" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-      
+      {{row.buyerName}}
             </ng-template>
           </ngx-datatable-column>
       
           <ngx-datatable-column name="Bill #" [width]="80" prop="billNum" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-      
+      {{row.billNumber}}
             </ng-template>
           </ngx-datatable-column>
       
           <ngx-datatable-column name="Contract #" [width]="80" prop="contractNum" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{row.name}}
+              {{row.contractId}}
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Bill Date" [width]="80" prop="billDate" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-      
+              {{row.billDate}} 
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="No. Sale Inv" [width]="80" prop="saleNum" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-      
+         {{row.numberOfSaleInvoices}}
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Bill Amount" [width]="80" prop="billAmount" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-      
+      {{row.billAmount}}
             </ng-template>
           </ngx-datatable-column>
       
           <ngx-datatable-column name="Tax Amount" [width]="80" prop="txtAmount" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-      
+         {{row.taxAmount}}
             </ng-template>
           </ngx-datatable-column>
       
           <ngx-datatable-column name="Due Date" [width]="80" prop="date" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-      
+       {{row.dueDate}}
             </ng-template>
           </ngx-datatable-column>
       
@@ -258,7 +258,7 @@
                       data-original-title="Edit" (click) =  "navigateOpenBill(row)"><i
                         class="far fa-edit"></i></button>
                     <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top" title=""
-          (click) = "navigatePaymentForm('addPayment')"><i class="fas fa-money-check-alt"></i></button>
+          (click) = "navigatePaymentForm('addPayment' , row)"><i class="fas fa-money-check-alt"></i></button>
                   </div>
 
             </ng-template>

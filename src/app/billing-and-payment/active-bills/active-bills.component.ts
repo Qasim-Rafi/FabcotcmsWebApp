@@ -16,8 +16,14 @@ import { Router } from '@angular/router';
 })
 export class ActiveBillsComponent implements OnInit {
 
-  rows: any = [  {name : ["1","2","3","4"]  } ];
+  // rows: any = [  {name : ["1","2","3","4"]  } ];
   columns: any = [];
+  response: any = [];
+
+  rows: any = [];
+  data: any = [];
+
+
   url = '/api/BillingPayments/GetAllContractBill'
   constructor(    private service: ServiceService,
     private http: HttpClient,
@@ -26,19 +32,42 @@ export class ActiveBillsComponent implements OnInit {
     private modalService: NgbModal
     ) { }
 
-    navigatePaymentForm(statusCheck ) {
-      this.router.navigate(['/billing-and-payment/payment-form'], { queryParams: { statusCheck: statusCheck  }  });
+    navigatePaymentForm(statusCheck , obj ) {
+      this.router.navigate(['/billing-and-payment/payment-form'], { queryParams: { statusCheck: statusCheck  , id:obj.id }  });
    };
     navigateOpenBill(obj) {
       this.router.navigate(['/billing-and-payment/open-bill'], { queryParams: {id: obj.id} });
     };
  
   ngOnInit(): void {
-    this.service.fetch((data)=>{
-        //  this.rows = data;
-    } , this.url)
+    this.fetch((data) => {
+      this.rows = data;
+      // this.listCount= this.rows.length;
+    });
   }
- 
+  fetch(cb) {
+    
+    this.http
+    .get(`${environment.apiUrl}/api/BillingPayments/GetAllContractBill`)
+    .subscribe(res => {
+      this.response = res;
+     
+    if(this.response.success==true)
+    {
+    this.data =this.response.data;
+    cb(this.data);
+    }
+    else{
+      this.toastr.error(this.response.message, 'Message.');
+    }
+      // this.spinner.hide();
+    }, err => {
+      if ( err.status == 400) {
+  this.toastr.error(err.error.message, 'Message.');
+      }
+    //  this.spinner.hide();
+    });
+  }
   dateFilterForm() {
     
     const modalRef = this.modalService.open(DateFilterComponent, { centered: true });
