@@ -48,6 +48,7 @@ export class ActiveContractDetailComponent implements OnInit {
   contractRemarksData: any = {};
   response: any;
   TnaData: any = {};
+  invoiceData:any =[];
   rows2: any = [  {name : ["1","2","3","4"]  } ];
 
   constructor(
@@ -70,7 +71,7 @@ export class ActiveContractDetailComponent implements OnInit {
     this.getContractLOC();
     this.getContractRemarkData();
     this.getContractCommisionData();
-
+this.getSaleInvoice();
 
 
     this.fetch((data) => {
@@ -80,7 +81,26 @@ export class ActiveContractDetailComponent implements OnInit {
     this.getContractTnA()
   }
 
-
+  getSaleInvoice() {
+    this.http.get(`${environment.apiUrl}/api/Contracts/GetAllContractSaleInvoice`)
+      .subscribe(
+        res => {
+          this.response = res;
+          if (this.response.success == true) {
+            this.invoiceData = this.response.data;
+            
+  
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+  
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+        });
+  }
 
   getContractData() {
     this.http.get(`${environment.apiUrl}/api/Contracts/GetContractById/` + this.contractId)
@@ -347,10 +367,15 @@ editEmployeeCommission(status , row) {
   modalRef.componentInstance.statusCheck = status;
   modalRef.componentInstance.beneficiaryId = row.id;
 
+
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
 
+      this.fetch((data) => {
+        this.rows = data;
+        // this.listCount= this.rows.length;
+      });
     }
   }, (reason) => {
     // on dismiss
@@ -398,7 +423,7 @@ deleteCommission(row) {
   }).then((result) => {
     if (result.isConfirmed) {
 
-      this.http.delete(`${environment.apiUrl}/api/Enquiries/DeleteEnquiryItem/` + row.id )
+      this.http.delete(`${environment.apiUrl}/api/Contracts/DeleteContractBeneficiary/` + row.id )
         .subscribe(
           res => {
             this.response = res;
@@ -408,7 +433,7 @@ deleteCommission(row) {
               // this.getEnquiryData(this.objEnquiry);
               this.fetch((data) => {
                 this.rows = data;
-                // this.listCount= this.rows.length;
+        
               });
 
             }
@@ -605,9 +630,10 @@ EditTna(row) {
     // on dismiss
   });
 }
-AddsaleInvoiceItem(check) {
+AddsaleInvoiceItem(check,value) {
   const modalRef = this.modalService.open(SaleInvoiceItemComponent, { centered: true });
   modalRef.componentInstance.contractId = this.contractId;
+  modalRef.componentInstance.contractSaleInvoiceId = value.id;
   modalRef.componentInstance.statusCheck = check;
   modalRef.result.then((data) => {
     // on close
