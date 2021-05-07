@@ -12,7 +12,8 @@ import { environment } from 'src/environments/environment';
 })
 export class CommisionKickbackComponent implements OnInit {
   @Input() contractId;
-  data:any =[];
+  // data:any =[];
+  data : any = [{ id: 0}];
   commission:any={};
   agents:any={};
   uom:any={};
@@ -36,6 +37,7 @@ export class CommisionKickbackComponent implements OnInit {
   get activeModal() {
     return this._NgbActiveModal;
   }
+
   addMore() {
     this.data.push({
       id: this.data.length,
@@ -98,6 +100,14 @@ export class CommisionKickbackComponent implements OnInit {
 
 
   addContractCommision() {
+
+
+    for(let i=0; i<this.data.length;i++ )
+    {
+      this.data[i] = Object.assign(this.data[i], {
+    
+      })
+    }
 
     let varr = {
 

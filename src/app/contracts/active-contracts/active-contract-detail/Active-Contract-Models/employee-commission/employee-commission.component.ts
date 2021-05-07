@@ -13,9 +13,11 @@ import { environment } from 'src/environments/environment';
 export class EmployeeCommissionComponent implements OnInit {
 
   @Input() contractId;
+  @Input() statusCheck;
+  @Input() beneficiaryId;
   data:any ={};
-  user:any ={};
-  criteria:any ={};
+  user:any = [];
+  criteria:any = {};
   response: any;
     
     constructor(
@@ -27,8 +29,12 @@ export class EmployeeCommissionComponent implements OnInit {
 
   ngOnInit(): void {
       this.GetUserDropdown();
-      this.GetCriteriaDropdown();
-      this.getContractEmployeeCommissionData();
+      this.GetUserDropdown();
+     
+      if(this.statusCheck == 'editCommission'){
+
+            this.getContractEmployeeCommissionData();
+      }
 
   }
   get activeModal() {
@@ -52,7 +58,7 @@ export class EmployeeCommissionComponent implements OnInit {
 
 
   GetCriteriaDropdown() {
-    this.service.getCriteria( this.user.id).subscribe(res => {
+    this.service.getCriteria(this.data.userId).subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
         this.criteria = this.response.data;
@@ -66,7 +72,7 @@ export class EmployeeCommissionComponent implements OnInit {
 
 
   getContractEmployeeCommissionData() {
-    this.http.get(`${environment.apiUrl}/api/Contracts/GetBeneficiaryCriteriaById/` + this.contractId)
+    this.http.get(`${environment.apiUrl}/api/Contracts/GetBeneficiaryCriteriaById/` + this.beneficiaryId)
       .subscribe(
         res => {
           this.response = res;

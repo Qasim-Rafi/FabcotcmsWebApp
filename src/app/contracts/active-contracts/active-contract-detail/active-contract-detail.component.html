@@ -545,7 +545,7 @@
                                             <dt class="col-sm-6">L/C Note:
                                             </dt>
                                             <dd class="col-sm-6">{{contractLOCdata.remarks}}</dd>
-                                            <dd class="col-sm-6">Check krna</dd>
+                                            
                                         </dl>
                                         
                                     </div>
@@ -576,6 +576,8 @@
     
                             </div>
     
+                            <!---------- Commission (Supplier, Buyer & External Agent) ---------->
+
                             <div class="border-bottom">
                                 <div class="row">
                                     <div class="col-md-12">
@@ -602,7 +604,7 @@
                                             <dt class="col-sm-6">Foreign Agent Comm:
                                             </dt>
                                             <dd class="col-sm-6">{{contractCommissionData.agenetCommission}}%</dd>
-                                            <dd class="col-sm-6">{{contractCommissionData.agenetCommission}}%</dd>
+                                            
                                         </dl>
     
                                         
@@ -614,6 +616,8 @@
                                 </div>
                             </div>
     
+                            <!---------- Employee Commission ---------->
+
                             <div class="border-bottom">
                                 <div class="row">
                                     <div class="col-md-12">
@@ -621,88 +625,67 @@
                                             Employee Commission
                                         </div>
                                     </div>
-    
+                                    
                                 </div>
 
                                 <div class="row">
                                     <div class="col-md-12 mb-4">
-                                        <button class="btn btn-outline-primary float-right" (click)="EmployeeCommission()"> Add</button>
+                                        <button class="btn btn-outline-primary float-right" (click)="EmployeeCommission('AddCommission')"> Add</button>
                                     </div>
                                 </div>
     
     
-                                <ngx-datatable #myTable class="bootstrap" [columnMode]="'force'" [headerHeight]="50"
-                                    [footerHeight]="50" [sorts]="[{prop: 'code', dir: 'asce'}]" [rowHeight]="'auto'"
-                                    [limit]="6">
+                                <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'"
+                                [headerHeight]="50" [footerHeight]="50" [sorts]="[{prop: 'code', dir: 'asce'}]" [rowHeight]="'auto'"
+                                [limit]="6">
     
     
-                                    <ngx-datatable-column name="Action">
+                                <ngx-datatable-column name="S. No." [width]="5" prop="">
+                                    <ng-template let-rowIndex="rowIndex" let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                      {{rowIndex + 1}}
+                                      {{row.id}}
+                          
+                                    </ng-template>
+                                  </ngx-datatable-column>
+    
+                                    <ngx-datatable-column>
+                                        <ng-template name="Agent" let-row="row" ngx-datatable-cell-template>
+                                            
+                                        </ng-template>
+                                    </ngx-datatable-column>
+    
+                                    <ngx-datatable-column name="Criteria" prop="name">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                           
+                                        </ng-template>
+                                    </ngx-datatable-column>
     
+                                    <ngx-datatable-column name="Details" prop="genericName">
+                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                            {{row.criteriaDetail}}
+                                        </ng-template>
+                                    </ngx-datatable-column>
+    
+                                    <ngx-datatable-column name="Action" prop="status">
+                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                                             <div class="ibox-tools text-center">
     
-                                                <button type="button" class="btn editIconBack">
+                                                <button type="button" class="btn editIconBack" (click)="editEmployeeCommission('editCommission' , row)">
                                                     <i class="far fa-edit "></i>
                                                 </button>
     
-                                                <button type="button" class="btn deleteIconBack">
+                                                    <button type="button" class="btn deleteIconBack" (click)="deleteCommission(row)">
                                                     <i class="far fa-trash-alt"></i>
                                                 </button>
     
                                             </div>
                                         </ng-template>
                                     </ngx-datatable-column>
-    
-                                    <ngx-datatable-column>
-                                        <ng-template let-row="row" ngx-datatable-cell-template>
-    
-                                        </ng-template>
-                                    </ngx-datatable-column>
-    
-                                    <ngx-datatable-column name="Age" prop="name">
-                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                            <span class="badge badge-primary">Active</span>
-                                            <span class="badge badge-secondary">Inactive</span>
-                                        </ng-template>
-                                    </ngx-datatable-column>
-    
-                                    <ngx-datatable-column name="Contract Details" prop="genericName">
-                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-    
-                                        </ng-template>
-                                    </ngx-datatable-column>
-    
-                                    <ngx-datatable-column name="Contract On" prop="status">
-                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-    
-    
-    
-    
-                                        </ng-template>
-                                    </ngx-datatable-column>
-    
-                                    <ngx-datatable-column name="#PO" prop="modifiedDate">
-                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-    
-                                        </ng-template>
-                                    </ngx-datatable-column>
-    
-                                    <ngx-datatable-column name="#SC" prop="modifiedBy">
-                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-    
-                                        </ng-template>
-                                    </ngx-datatable-column>
-    
-                                    <ngx-datatable-column name="Article">
-                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-    
-    
-                                        </ng-template>
-                                    </ngx-datatable-column>
                                 </ngx-datatable>
-    
                             </div>
     
+                            <!---------- Remarks / Other Conditions ---------->
+
                             <div class="border-bottom">
                                 <div class="row">
                                     <div class="col-md-12">
@@ -755,33 +738,39 @@
     
 
 
+                        <!---------- Remarks / Other Conditions ---------->
+
+
 
                         <div class="tab-pane fade show " id="nav-items" role="tabpanel" aria-labelledby="nav-items-tab">
-                            <div class="row border-bottom">
-                                <div class="col-md-12 px-5 py-1">
+                            <div class="row">
+
+                                <div class="col-md-12 px-5 pt-3">
+
                                     <div class="row">
                                         <div class="col-sm-12 col-md-6 col-lg-8 text-muted">
-                                            <h1 class="row wrapper page-header font-weight-light">
+                                            <h1 class="wrapper page-header font-weight-light">
                                                 <i class="fas fa-list nav-icon"></i>
                                                 Items
                                             </h1>
                                         </div>
                                         <div class="col-sm-12 col-md-6 col-lg-4">
-                                            <button class="btn btn-outline-primary" (click)="Items()">
+                                            <button class="btn btn-outline-primary float-right" (click)="Items()">
                                                 <i class="fas fa-plus"></i>
                                                 Add New Item </button>
                                         </div>
                                     </div>
+
                                     <div class="row justify-content-end">
-                                            
-                                        <div class="col-md-4">
-                                          <div class="input-group col-md-offset-3 float-right">
-                                            <label>Search:</label>
-                                            <input type="text" placeholder="" class="input form-control w-50"
-                                               />
-                                          </div>
+                                        <div class="col-md-6">
+                                            <div class="input-group row">
+                                                <label class="col-sm-2 col-form-label">Search:</label>
+                                                <input type="text" placeholder="" class="input form-control w-50" />
+                                            </div>
                                         </div>
-                                          </div>
+                                    </div>
+
+
                                     <ngx-datatable #myTable class="bootstrap" [columnMode]="'force'" [headerHeight]="50"
                                         [footerHeight]="50" [sorts]="[{prop: 'code', dir: 'asce'}]" [rowHeight]="'auto'"
                                         [limit]="6">
@@ -853,7 +842,11 @@
                                             </ng-template>
                                         </ngx-datatable-column>
                                     </ngx-datatable>
+
+
                                 </div>
+
+
                             </div>
                             </div>
     
@@ -1128,10 +1121,16 @@
                                             
                                           
                                         </div>
+                                        <div class="col-md-6">
+                                            <button class="btn btn-primary" (click)="AddsaleInvoiceItem('add')">
+                                                <i class="fas fa-plus"></i>
+                                                Add Sale Invoice Item</button>
+                                        </div>
                                     </div>
                                 </div>
                                 
                             </div>
+                        
                             <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows2"
                                           [sorts]="[{ prop: 'id,name', dir: 'asce' }]" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
                                           [rowHeight]="'auto'" [limit]="10">
@@ -1159,7 +1158,7 @@
                                             <ng-template let-row="row" ngx-datatable-cell-template>
                                              
                                             <div class="ibox-tools text-center">
-                                                <button type="button" class="btn editIconBack"  (click) = "EditTna(row)" ><i
+                                                <button type="button" class="btn editIconBack"  (click)="AddsaleInvoiceItem('edit')"><i
                                                     class="far fa-edit"></i></button>
                                                 <button type="button" class="btn deleteIconBack" data-toggle="tooltip" data-placement="top" title=""
                                                   data-original-title="Delete" ><i class="far fa-trash-alt"></i></button>
