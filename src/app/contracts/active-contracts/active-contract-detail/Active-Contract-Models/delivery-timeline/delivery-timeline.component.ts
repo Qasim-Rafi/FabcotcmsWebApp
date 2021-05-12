@@ -84,7 +84,7 @@ export class DeliveryTimelineComponent implements OnInit {
     // this.data.buyerDate = this.dateformater.toModel(this.buyerDateField);
 
     let varr = {
-      "contractId":this.queryParems.contractId,
+      "contractId":this.data.contractId,
   "shipmentNo": this.data.shipmentNo,
   "supplierDate": this.data.supplierDate,
   "buyerDate":this.data.buyerDate,
