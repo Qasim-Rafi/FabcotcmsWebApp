@@ -17,6 +17,7 @@ export class ItemsComponent implements OnInit {
   values=[];
   contractCurrencyId:any[];
   itemUOMId: any=[];
+  itemUOMId1: any=[];
   loomTypeId:any[];
   colorId:any[];
   FormName: any;

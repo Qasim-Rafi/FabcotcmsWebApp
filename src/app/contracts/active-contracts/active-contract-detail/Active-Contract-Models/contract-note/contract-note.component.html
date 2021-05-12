@@ -1,0 +1,99 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
+      <div aria-hidden="true">&times;</div>
+    </button>
+  
+    <h5 class="modal-title" *ngIf="statusCheck == 'contractAddNote'">
+      <i class="far fa-sticky-note"></i>
+      Add New Note
+    </h5>
+    <h5 class="modal-title" *ngIf="statusCheck == 'contractEditNote'">
+      <i class="far fa-sticky-note"></i>
+      Edit Note
+    </h5>
+  </div>
+  
+  
+  
+  <div class="modal-body BG pt-2r">
+    <form #NotesForm="ngForm" novalidate>
+  
+      <div class="form-group row">
+        <label for="name" class="col-sm-3 col-form-label">Note Type</label>
+        <div class="col-sm-8 pt-2">
+  
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+            <label class="form-check-label" for="inlineRadio1">Is Public</label>
+          </div>
+  
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+            <label class="form-check-label" for="inlineRadio1">Is Private</label>
+          </div>
+          
+        </div>
+      </div>
+  
+  
+  
+      <div class="form-group row">
+        <label for="name" class="col-sm-3 col-form-label">Title</label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" placeholder="Note Title"
+          [(ngModel)]="data.title " name="title" 
+          #title="ngModel" 
+          [ngClass]="{ 'error': NotesForm.submitted && title.invalid }" required
+          />
+        </div>
+      </div>
+  
+  
+      <div class="form-group row">
+        <label for="name" class="col-sm-3 col-form-label">Detail</label>
+        <div class="col-sm-8">
+          <textarea required type="text" class="form-control" rows="4" placeholder="Details..." #details="ngModel" 
+          [(ngModel)]="data.description " name="description"  [ngClass]="{ 'error': NotesForm.submitted && details.invalid }"></textarea>
+        </div>
+      </div>
+  
+      <div class="form-group row">
+        <label for="name" class="col-sm-3 col-form-label">Reminder</label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" disabled placeholder="Click to Set Reminder" />
+        </div>
+      </div>
+  
+      <div class="form-group row">
+        <label for="name" class="col-sm-3 col-form-label">
+          <input class="form-check-input check-btn" type="checkbox" [(ngModel)]="data.flag" name="flag" />
+          Flag
+        </label>
+        <div class="col-sm-6 form-inline">
+          <input type="color" class="form-control col-md-6 mr-3" [(ngModel)]="data.color " name="color" />
+          <button class="btn" style="background-color:#000000;" (click)="data.color = '#000000'" ></button>
+          <button class="btn ml-1" style="background-color:#a0a0a0;" (click)="data.color = '#a0a0a0'" ></button>
+          <button class="btn ml-1" style="background-color:#1ab394;" (click)="data.color = '#1ab394'" ></button>
+          <button class="btn ml-1" style="background-color:#ed5565;" (click)="data.color = '#ed5565'" ></button>
+          <button class="btn ml-1" style="background-color:#1c84c6;" (click)="data.color = '#1c84c6'" ></button>
+          <button class="btn ml-1" style="background-color:#f8ac59;" (click)="data.color = '#f8ac59'" ></button>
+          <button class="btn ml-1" style="background-color:#23c6c8;" (click)="data.color = '#23c6c8'" ></button>
+  
+        </div>
+      </div>
+  
+      <div class="modal-footer NotBG">
+        <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
+          Close
+        </button>
+        <button class="btn button-save" type="submit"  *ngIf="statusCheck == 'contractAddNote'" (click)="AddContractNote()">
+          Save Note
+        </button>
+        <button class="btn button-save" type="submit"  *ngIf="statusCheck == 'contractEditNote'" (click)="UpdateContractNote()">
+          Update Note
+        </button>
+      </div>
+    </form>
+  </div>
+  
+  

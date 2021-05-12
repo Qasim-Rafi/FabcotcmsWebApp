@@ -10,6 +10,7 @@ import { ServiceService } from 'src/app/shared/service.service';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 import { CommisionKickbackComponent } from './Active-Contract-Models/commision-kickback/commision-kickback.component';
+import { ContractNoteComponent } from './Active-Contract-Models/contract-note/contract-note.component';
 import { DeliveryTimelineComponent } from './Active-Contract-Models/delivery-timeline/delivery-timeline.component';
 import { EditTnaComponent } from './Active-Contract-Models/edit-tna/edit-tna.component';
 import { EmployeeCommissionComponent } from './Active-Contract-Models/employee-commission/employee-commission.component';
@@ -48,10 +49,16 @@ export class ActiveContractDetailComponent implements OnInit {
   contractRemarksData: any = {};
   response: any;
   ItemCount: number;
+  contractCount: number;
+  shipmentCount: number;
+  ItemFilter: any = [];
+  shipmentFilter: any = [];
+  noteFilter: any = [];
   TnaData: any = {};
   invoiceData:any =[];
-  rows2: any = [  {name : ["1","2","3","4"]  } ];
   ItemUrl = '/api/Contracts/GetAllContractItem';
+  noteUrl='/api/Contracts/GetAllContractNote';
+  shipmentUrl='/api/Contracts/GetAllContractShipmentSchedule/{contractId}';
   constructor(
     private modalService: NgbModal,
     private route: ActivatedRoute,
@@ -61,6 +68,26 @@ export class ActiveContractDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+          this.service.fetch((data) => {
+        this.ItemFilter = [...data];
+        this.rows = data;
+        this.ItemCount = this.rows.length;
+      }, this.ItemUrl);
+    
+    {
+      this.service.fetch((data) => {
+        this.shipmentFilter = [...data];
+        this.rows = data;
+        this.shipmentCount = this.rows.length;
+      }, this.shipmentUrl);
+    }
+    {
+      this.service.fetch((data) => {
+        this.noteFilter = [...data];
+        this.rows = data;
+        this.contractCount = this.rows.length;
+      }, this.noteUrl);
+    }
     this.queryParems = this.route.snapshot.queryParams;
     this.contractId = this.queryParems.id;
 
@@ -585,19 +612,37 @@ Note() {
   });
 }
 
-Items() {
-  const modalRef = this.modalService.open(ItemsComponent, { centered: true });
-  modalRef.componentInstance.contractId = this.contractId;
-
+ContractNotes(check, name) {
+  const modalRef = this.modalService.open(ContractNoteComponent, { centered: true });
+  modalRef.componentInstance.statusCheck = check;
+  modalRef.componentInstance.FormName = name;
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
+      this.service.fetch((data) => {
+        this.rows = data;
+        this.contractCount = this.rows.length;
+      }, this.noteUrl);
+
 
     }
   }, (reason) => {
     // on dismiss
   });
 }
+// Items() {
+//   const modalRef = this.modalService.open(ItemsComponent, { centered: true });
+//   modalRef.componentInstance.contractId = this.contractId;
+
+//   modalRef.result.then((data) => {
+//     // on close
+//     if (data == true) {
+
+//     }
+//   }, (reason) => {
+//     // on dismiss
+//   });
+// }
 
 getContractTnA() {
   this.http.get(`${environment.apiUrl}/api/Contracts/GetContractTimeActionById/` + this.contractId)
@@ -676,7 +721,61 @@ addItems(check, name) {
     // on dismiss
   });
 }
+deleteContractNote(id) {
+  Swal.fire({
+    title: GlobalConstants.deleteTitle, //'Are you sure?',
+    text: GlobalConstants.deleteMessage + ' ' + '"' + id.description + '"',
+    icon: 'error',
+    showCancelButton: true,
+    confirmButtonColor: '#ed5565',
+    cancelButtonColor: '#dae0e5',
+    cancelButtonText: 'No',
+    confirmButtonText: 'Yes',
+    reverseButtons: true,
+    position: 'top',
+  }).then((result) => {
+    if (result.isConfirmed) {
 
+      this.http.delete(`${environment.apiUrl}/api/Contracts/DeleteContractNote` + id.id)
+        .subscribe(
+          res => {
+            this.response = res;
+            if (this.response.success == true) {
+              this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
+              this.service.fetch((data) => {
+                this.rows = data;
+              }, this.noteUrl);
+
+            }
+            else {
+              this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
+            }
+
+          }, err => {
+            if (err.status == 400) {
+              this.toastr.error(this.response.message, 'Message.');
+            }
+          });
+    }
+  })
+}
+editContractNote(row, check, name) {
+  const modalRef = this.modalService.open(ContractNoteComponent, { centered: true });
+  modalRef.componentInstance.NoteId = row.id; //just for edit.. to access the needed row
+  modalRef.componentInstance.statusCheck = check;
+  modalRef.componentInstance.FormName = name;
+
+  modalRef.result.then((data) => {
+    // on close
+    if (data == true) {
+      this.service.fetch((data) => {
+        this.rows = data;
+      }, this.noteUrl);
+    }
+  }, (reason) => {
+    // on dismiss
+  });
+}
 deleteItem(id) {
   Swal.fire({
     title: GlobalConstants.deleteTitle, //'Are you sure?',

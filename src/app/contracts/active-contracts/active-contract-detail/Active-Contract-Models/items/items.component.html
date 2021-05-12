@@ -40,7 +40,7 @@
             </div>
             <div class="col-md-4">
                
-              <ng-select [(ngModel)]="itemUOMId" placeholder="Select UOM" name="itemUOMId">
+              <ng-select [(ngModel)]="data.itemUOMId" placeholder="Select UOM" name="itemUOMId">
                 <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}</ng-option>
             </ng-select>
 
@@ -60,9 +60,9 @@
           
 
           <div class="form-group row">
-            <label for="color" class="col-sm-3 col-form-label text-Navy">Item Color</label>
+            <label for="description" class="col-sm-3 col-form-label text-Navy">Item Color</label>
             <div class="col-sm-6">
-              <ng-select [(ngModel)]="colorId" placeholder="Select Color" name="colorId">
+              <ng-select [(ngModel)]="data.colorId" placeholder="Select Color" name="colorId">
                 <ng-option *ngFor="let i of color" [value]="i.id">{{ i.name }}</ng-option>
             </ng-select>
                
@@ -81,7 +81,7 @@
           <div class="form-group row">
             <label for="loomTypeId" class="col-sm-3 col-form-label text-Navy">Loom Type</label>
             <div class="col-sm-6">
-              <ng-select [(ngModel)]="contractCurrencyId" placeholder="Select Loom Type" name="loomTypeId">
+              <ng-select [(ngModel)]="data.loomTypeId" placeholder="Select Loom Type" name="loomTypeId">
                 <ng-option *ngFor="let i of loomType" [value]="i.id">{{ i.type }}</ng-option>
             </ng-select>
               
@@ -106,7 +106,7 @@
             </div>
             <div class="col-md-2">
                
-              <ng-select [(ngModel)]="contractCurrencyId" placeholder="Select Currency" name="contractCurrencyId">
+              <ng-select [(ngModel)]="data.contractCurrencyId" placeholder="Select Currency" name="contractCurrencyId">
                 <ng-option *ngFor="let i of currency" [value]="i.id">{{ i.currencyCode }}</ng-option>
             </ng-select>
 
@@ -114,7 +114,7 @@
   
             <div class="col-md-2">
                
-              <ng-select [(ngModel)]="itemUOMId" placeholder="Select UOM" name="itemUOMId">
+              <ng-select [(ngModel)]="data.itemUOMId" placeholder="Select UOM" name="itemUOMId">
                 <ng-option *ngFor="let i of uomList1" [value]="i.id">{{ i.name }}</ng-option>
             </ng-select>
 
@@ -136,7 +136,7 @@
             <div class="col-sm-6">
               <textarea 
                class="form-control" id="remarks"
-               name="description" [(ngModel)]="data.remarksn" #remarks="ngModel" rows="5" placeholder="Item Additional details here ..."
+               name="description" [(ngModel)]="data.remarks" #remarks="ngModel" rows="5" placeholder="Item Additional details here ..."
                 name="remarks"  ></textarea>
             </div>
           </div> 
