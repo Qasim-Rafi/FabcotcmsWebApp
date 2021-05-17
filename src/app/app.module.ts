@@ -51,7 +51,7 @@ import { ColorPickerModule } from 'ngx-color-picker';
 import { DateConvertor } from './shared/date-formater';
 import { EditTnaComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/edit-tna/edit-tna.component';
 import { SaleInvoiceItemComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/sale-invoice-item/sale-invoice-item.component';
-
+import { ContractNoteComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/contract-note/contract-note.component';
 
 
 
@@ -87,6 +87,7 @@ const appRoutes: Routes = []
     CloudDocumentationComponent,
     EditTnaComponent,
     SaleInvoiceItemComponent,
+    ContractNoteComponent,
 
     // AddEnquiryComponent,
     // SearchEnquiryComponent,
