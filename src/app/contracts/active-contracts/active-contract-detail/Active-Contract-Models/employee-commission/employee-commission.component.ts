@@ -70,6 +70,19 @@ export class EmployeeCommissionComponent implements OnInit {
     })
   }
 
+  GetCriteriaDropdownEdit(idEdit) {
+    let id = idEdit;
+    this.service.getCriteria(id).subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.criteria = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
+
 
 
   getContractEmployeeCommissionData() {
@@ -79,7 +92,7 @@ export class EmployeeCommissionComponent implements OnInit {
           this.response = res;
           if (this.response.success == true) {
             this.data = this.response.data;
-            
+            this.GetCriteriaDropdownEdit(this.data.userId)
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
