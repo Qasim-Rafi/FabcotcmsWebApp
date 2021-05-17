@@ -57,8 +57,9 @@ export class EmployeeCommissionComponent implements OnInit {
   }
 
 
-  GetCriteriaDropdown() {
-    this.service.getCriteria(this.data.userId).subscribe(res => {
+  GetCriteriaDropdown(event) {
+    let id = event;
+    this.service.getCriteria(id).subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
         this.criteria = this.response.data;
