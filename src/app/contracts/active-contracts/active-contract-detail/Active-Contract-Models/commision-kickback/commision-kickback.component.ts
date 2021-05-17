@@ -39,9 +39,7 @@ export class CommisionKickbackComponent implements OnInit {
   }
 
   addMore() {
-    this.data.push({
-      id: this.data.length,
-    });
+    this.data.push({id: this.data.length});
   }
   remove(i: number) {
     this.data.splice(i, 1);
@@ -102,15 +100,15 @@ export class CommisionKickbackComponent implements OnInit {
   addContractCommision() {
 
 
-    for(let i=0; i<this.data.length;i++ )
-    {
-      this.data[i] = Object.assign(this.data[i], {
+    // for(let i=0; i<this.data.length;i++ )
+    // {
+    //   this.data[i] = Object.assign(this.data[i], {
 
-        "agentId": this.commission.agentId,
-        "agentCommission": this.commission.agentCommission,
+    //     "agentId": this.commission.agentId,
+    //     "agentCommission": this.commission.agentCommission,
     
-      })
-    }
+    //   })
+    // }
 
     let varr = {
 
@@ -132,7 +130,7 @@ export class CommisionKickbackComponent implements OnInit {
 
           this.response = res;
           if (this.response.success == true) {
-            this.toastr.success(this.response.message, 'Message.');
+            this.toastr.success(this.response.message, 'Message.');varr
             // this.getEnquiryData(this.objEnquiry);
             this.activeModal.close(true);
             this.getContractCommisionData();
