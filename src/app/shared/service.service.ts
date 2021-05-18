@@ -214,8 +214,8 @@ export class ServiceService {
   getDepartment() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/Departments`);
   }
-  getCriteria(userId) {
-    return this.http.get(`${environment.apiUrl}/api/Lookups/BeneficiaryCriterias/` + userId);
+  getCriteria(id) {
+    return this.http.get(`${environment.apiUrl}/api/Lookups/BeneficiaryCriterias/` + id);
   }
   getUsers() {
     return this.http.get(`${environment.apiUrl}/api/Users/GetUsers` );
