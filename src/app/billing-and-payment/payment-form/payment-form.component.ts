@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { GlobalConstants } from 'src/app/Common/global-constants';
+import { Dateformater } from 'src/app/shared/dateformater';
 import { ServiceService } from 'src/app/shared/service.service';
 import { environment } from 'src/environments/environment';
 
@@ -13,10 +14,15 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./payment-form.component.css']
 })
 export class PaymentFormComponent implements OnInit {
+  dateformater: Dateformater = new Dateformater();
   statusCheck:any={};
   queryParems:any={};
   paymentId:any={};
   data: any = {};
+  data2: any = {};
+  paymentdata: any = [];
+
+
   rows: any = {};
   currency: any = {};
   saleInvoice: any = {};
@@ -46,8 +52,10 @@ export class PaymentFormComponent implements OnInit {
 
     this.fetch((data) => {
       this.rows = data;
-      // this.listCount= this.rows.length;
+      console.log("contract bill by id",this.rows)
     });
+    this.getData(this.paymentId);
+
     this.GetCurrencyDropdown()
     this.GetSaleInvoiceDropdown()
     this.GetPaymentModeDropdown()
@@ -77,16 +85,61 @@ export class PaymentFormComponent implements OnInit {
     });
   }
 
+//   fetch2(cb) {
+    
+//     this.http.get(`${environment.apiUrl}/api​/BillingPayments​/GetBillPaymentById​/` + this.paymentId)
+//     .subscribe(res => {
+//       this.response = res;
+     
+//     if(this.response.success==true)
+//     {
+//     this.data =this.response.data;
+//     cb(this.data);
+//     }
+//     else{
+//       this.toastr.error(this.response.message, 'Message.');
+//     }
+//       // this.spinner.hide();
+//     }, err => {
+//       if ( err.status == 400) {
+//  this.toastr.error(err.error.message, 'Message.');
+//       }
+//     //  this.spinner.hide();
+//     });
+//   }
+
+
+   getData(id) {
+    this.http
+    .get(`${environment.apiUrl}/api/BillingPayments/GetBillPaymentById/` + id)
+    .subscribe(res => {
+      this.response = res;
+          if (this.response.success == true) {
+            this.data = this.response.data;
+        }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          }
  
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+        });
+  }
 
 
   UpdatePayment() {
+    this.data.paymentDate = this.dateformater.toModel(this.data.paymentDate);
+    this.data.depositeDate = this.dateformater.toModel(this.data.depositeDate);
     let varr = {
-      "contractId": this.data.contractId,
-      "contractBillId": this.data.contractBillId,
-      "selerId": this.data.selerId,
+      "contractId": 2,
+      "contractBillId": this.paymentId,
+      "buyerId": this.data.buyerName,
+      "selerId": this.data.sellerName,
+      "saleInvoiceId": this.data.saleInvoiceId,
       "receiptNumber": this.data.receiptNumber,
-      // "paymentDate": this.data.paymentDate,
+      "paymentDate": this.data.paymentDate,
       "paidAmount": this.data.paidAmount,
       "taxAmount": this.data.taxAmount,
       "deductionAmount": this.data.deductionAmount,
@@ -99,7 +152,7 @@ export class PaymentFormComponent implements OnInit {
     }
 
     this.http.
-      put(`${environment.apiUrl}/api/Configs/UpdateCountry/` + this.paymentId, varr)
+      put(`${environment.apiUrl}/api/BillingPayments/UpdateBillPayment/` + this.paymentId, varr)
       .subscribe(
         res => {
 
@@ -121,26 +174,27 @@ export class PaymentFormComponent implements OnInit {
 
 
   addPayment() {
-
+    this.data.paymentDate = this.dateformater.toModel(this.data.paymentDate);
+    this.data.depositeDate = this.dateformater.toModel(this.data.depositeDate);
       let varr = {
-        // "contractId": this.bill.contractId,
-        // "contractBillId": this.paymentId,
-        "buyerId": this.bill.buyerName,
-        "selerId": this.bill.sellerName,
-        "saleInvoiceId": this.data.saleInvoiceId,
+       
+        "contractId": 2,
+        "contractBillId": this.paymentId,
+        "buyerId": this.data.buyerName,
+        "selerId": this.data.sellerName,
+        "saleInvoiceId": 0,
         "receiptNumber": this.data.receiptNumber,
         "paymentDate": this.data.paymentDate,
         "paidAmount": this.data.paidAmount,
         "taxAmount": this.data.taxAmount,
         "deductionAmount": this.data.deductionAmount,
-        "paymentMode": this.data.paymentMode,
+        "paymentMode": "any",
         "paymentDescription":this.data.paymentDescription,
         "bankAccountId": this.data.bankAccountId,
         "accountDescription": this.data.accountDescription,
         "isDepositedInBank": this.data.isDepositedInBank,
         "depositeDate": this.data.depositeDate
       }
-    
 
     this.http.
       post(`${environment.apiUrl}/api/BillingPayments/AddBillPayment/`, varr)
