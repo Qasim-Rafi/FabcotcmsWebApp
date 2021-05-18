@@ -28,6 +28,7 @@ url = '/api/BillingPayments/GetAllContractForBillGeneration'
   ngOnInit(): void {
     this.service.fetch((data)=>{
          this.rows = data;
+         console.log(this.rows)
     } , this.url)
   }
 

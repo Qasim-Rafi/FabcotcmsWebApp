@@ -123,8 +123,8 @@ export class PaymentFormComponent implements OnInit {
   addPayment() {
 
       let varr = {
-        "contractId": this.bill.contractId,
-        "contractBillId": this.paymentId,
+        // "contractId": this.bill.contractId,
+        // "contractBillId": this.paymentId,
         "buyerId": this.bill.buyerName,
         "selerId": this.bill.sellerName,
         "saleInvoiceId": this.data.saleInvoiceId,

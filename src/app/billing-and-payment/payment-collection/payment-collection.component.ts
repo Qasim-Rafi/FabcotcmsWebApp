@@ -14,7 +14,7 @@ import { ServiceService } from 'src/app/shared/service.service';
 })
 export class PaymentCollectionComponent implements OnInit {
 
-  rows: any = [  {name : ["1","2","3","4"]  } ];
+  rows: any = [];
   columns: any = [];
   url = '/api/BillingPayments/GetAllBillPayment'
   constructor(    private service: ServiceService,
@@ -28,7 +28,8 @@ export class PaymentCollectionComponent implements OnInit {
  };
   ngOnInit(): void {
 this.service.fetch((data)=>{
-
+  this.rows = data;
+  console.log(this.rows)
 } , this.url)
 
   }
