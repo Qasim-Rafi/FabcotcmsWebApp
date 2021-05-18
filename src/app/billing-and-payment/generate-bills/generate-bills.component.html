@@ -78,7 +78,7 @@
           </ngx-datatable-column>
           <ngx-datatable-column name="Countract No." [width]="80" prop="contractNum" [flexGrow]="0.05">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{row.contractNum}}
+              {{row.autoContractNumber}}
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Buyer" [width]="80" prop="buyer" [flexGrow]="0.06">
@@ -88,7 +88,7 @@
           </ngx-datatable-column>
           <ngx-datatable-column name="Seller" [width]="80" prop="seller" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-        {{row.sellerId}}
+        {{row.sellerName}}
             </ng-template>
           </ngx-datatable-column>
 

@@ -42,6 +42,7 @@ export class ActiveBillsComponent implements OnInit {
   ngOnInit(): void {
     this.fetch((data) => {
       this.rows = data;
+      console.log(this.rows)
       // this.listCount= this.rows.length;
     });
   }
