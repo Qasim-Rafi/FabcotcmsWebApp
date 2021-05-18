@@ -127,7 +127,7 @@
         <!-- /.row -->
 
         <div class="row py-3">
-            <div class="col-md-9 ">
+            <div class="col-md-8 ">
                 <button class="btn btn-danger border-rounded px-3 mr-2 ">
                     <i class="far fa-trash-alt"></i>
                     Delete
@@ -149,7 +149,7 @@
                     Closed
                 </button>
             </div>
-            <div class="col-md-3 text-right ">
+            <div class="col-md-4 text-right ">
                 <button class="btn btn-outline-primary border-rounded px-3 mr-2">
                     <i class="fas fa-print"></i>
                     B
@@ -175,30 +175,34 @@
                     <nav>
                         <div class="nav nav-pills " id="nav-tab" role="tablist">
                             <a class="nav-item nav-link active " id="nav-Details-tab" data-toggle="tab"
-                                href="#nav-Details" role="tab" aria-controls="nav-Details" aria-selected="true">Contract
-                                Details</a>
+                                href="#nav-Details" role="tab" aria-controls="nav-Details" aria-selected="true">Contract Details</a>
+
                             <a class="nav-item nav-link " id="nav-items-tab" data-toggle="tab" href="#nav-items"
-                                role="tab" aria-controls="nav-items" aria-selected="false">Items</a>
+                                role="tab" aria-controls="nav-items" aria-selected="false">Item &nbsp;<span class="badge badge-pill badge-light">1</span></a>
+                                
                             <a class="nav-item nav-link " id="nav-Shipment-tab" data-toggle="tab" href="#nav-Shipment"
-                                role="tab" aria-controls="nav-Shipment" aria-selected="false">Shipment Dates</a>
+                                role="tab" aria-controls="nav-Shipment" aria-selected="false">Shipment Dates  &nbsp;<span class="badge badge-pill badge-primary">0</span></a>
+
                             <a class="nav-item nav-link " id="nav-Time-tab" data-toggle="tab" href="#nav-Time"
-                                role="tab" aria-controls="nav-Time" aria-selected="false">Time & Action</a>
+                                role="tab" aria-controls="nav-Time" aria-selected="false">Time & Action  &nbsp;<span class="badge badge-pill badge-primary">0</span></a>
                             <a class="nav-item nav-link " id="nav-Sale-tab" data-toggle="tab" href="#nav-Sale"
-                                role="tab" aria-controls="nav-Sale" aria-selected="false">Sale Invoice </a>
+                                role="tab" aria-controls="nav-Sale" aria-selected="false">Sale Invoice  &nbsp;<span class="badge badge-pill badge-primary">0</span></a>
                             <!-- <a class="nav-item nav-link " id="nav-Documents-tab" data-toggle="tab" href="#nav-Documents"
                                         role="tab" aria-controls="nav-Documents" aria-selected="false">Documents</a> -->
                             <a class="nav-item nav-link " id="nav-Notes-tab" data-toggle="tab" href="#nav-Notes"
-                                role="tab" aria-controls="nav-Notes" aria-selected="false">Notes / Activity</a>
+                                role="tab" aria-controls="nav-Notes" aria-selected="false">Notes / Activity  &nbsp;<span class="badge badge-pill badge-primary">0</span></a>
                         </div>
                     </nav>
                 </div>
             </div>
 
+            <hr>
 
             <div class="tab-content" id="nav-tabContent">
+
                 <div class="tab-pane fade show active" id="nav-Details" role="tabpanel"
                     aria-labelledby="nav-Details-tab">
-                    <div class="row border-bottom">
+                    <div class="border-bottom">
                         <div class="col-md-12">
 
 
@@ -343,7 +347,7 @@
                                 <dl class="row">
                                     <dt class="col-sm-6">Supplier Certification:
                                     </dt>
-                                    <dd class="col-sm-6">MISSING</dd>
+                                    <dd class="col-sm-6">{{contractPartiesData.certificateNames}}</dd>
                                 </dl>
                             </div>
 
@@ -360,7 +364,7 @@
                                     </dt>
                                     <dd class="col-sm-6">
                                         <i class="far fa-calendar-alt"></i>
-                                        MISSING
+                                        {{contractData.approvedOn}}
                                     </dd>
                                 </dl>
                                 <dl class="row">
@@ -368,7 +372,7 @@
                                     </dt>
                                     <dd class="col-sm-6">
                                         <i class="fas fa-user-tie"></i>
-                                        MISSING
+                                        {{contractData.approvedByName}}
                                     </dd>
                                 </dl>
                                 <button class="btn btn-outline-primary float-right" (click)="PartiesForm()">
@@ -757,237 +761,251 @@
                 </div>
 
 
-
-                <!---------- Remarks / Other Conditions ---------->
-
-
+                <!---------- Items Tab ---------->
 
                 <div class="tab-pane fade show " id="nav-items" role="tabpanel" aria-labelledby="nav-items-tab">
-                    <div class="row border-bottom">
-                        <div class="col-md-12 px-5 py-1">
-                            <div class="row">
-                                <div class="col-sm-12 col-md-6 col-lg-8 text-muted">
-                                    <h1 class="row wrapper page-header font-weight-light">
-                                        <i class="fas fa-list nav-icon"></i>
-                                        Items
-                                    </h1>
-                                </div>
-                                <div class="col-sm-12 col-md-6 col-lg-4">
-                                    <button class="btn btn-outline-primary" (click)="addItems('ItemAdd', 'ItemForm')">
-                                        <i class="fas fa-plus"></i>
-                                        Add New Item </button>
-                                </div>
-                            </div>
-                            <div class="row justify-content-end">
-
-                                <div class="col-md-4">
-                                    <div class="input-group col-md-offset-3 float-right">
-                                        <label>Search:</label>
-                                        <input type="text" placeholder="" class="input form-control w-50" />
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12 py-1">
+                                <div class="row mb-2">
+                                    <div class="col-sm-12 col-md-6 col-lg-8 text-muted">
+                                        <h1 class="font-weight-light">
+                                            <i class="fas fa-list mr-3"></i>
+                                            Items
+                                        </h1>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-4 text-right">
+                                        <button class="btn btn-outline-primary" (click)="addItems('ItemAdd', 'ItemForm')">
+                                            <i class="fas fa-plus"></i>
+                                            Add New Item </button>
                                     </div>
                                 </div>
-                            </div>
-                            <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows"
-                                [sorts]="[{ prop: 'id,name', dir: 'asce' }]" [columnMode]="'force'" [headerHeight]="50"
-                                [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
-
-                                <ngx-datatable-column name="Item Detail" prop="description" [width]="80">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                        {{ row.description}}
-                                    </ng-template>
-                                </ngx-datatable-column>
-                                <ngx-datatable-column name="Construcrion" prop="construction" [width]="80">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                        {{ row.construction}}
-                                    </ng-template>
-                                </ngx-datatable-column>
-                                <ngx-datatable-column name="Composition" prop="compositionPercentage" [width]="80">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                        {{ row.compositionPercentage }}
-                                    </ng-template>
-                                </ngx-datatable-column>
-                                <ngx-datatable-column name="Loom Type" prop="loomTypeId" [width]="80">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                        {{ row.loomTypeId }}
-                                    </ng-template>
-                                </ngx-datatable-column>
-                                <ngx-datatable-column name="Sizes" prop="size" [width]="80">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                        {{ row.size }}
-                                    </ng-template>
-                                </ngx-datatable-column>
-                                <ngx-datatable-column name="GSM/Weight" prop="weight" [width]="80">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                        {{ row.weight }}
-                                    </ng-template>
-                                </ngx-datatable-column>
-                                <ngx-datatable-column name="QTY" prop="itemQuantity" [width]="80">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                        {{ row.itemQuantity }}
-                                    </ng-template>
-                                </ngx-datatable-column>
-                                <ngx-datatable-column name="Unit Price" prop="weight" [width]="80">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                        {{ row.weight }}
-                                    </ng-template>
-                                </ngx-datatable-column>
-                                <ngx-datatable-column name="Amount" prop="weight" [width]="80">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                        {{ row.weight }}
-                                    </ng-template>
-                                </ngx-datatable-column>
-                                <ngx-datatable-column name="Commission" prop="commission" [width]="80">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                        {{ row.commission }}
-                                    </ng-template>
-                                </ngx-datatable-column>
-                                <ngx-datatable-column name="Action" [width]="80">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-
-
-                                        <div class="ibox-tools text-center">
-                                            <button type="button" class="btn editIconBack" data-toggle="tooltip"
-                                                data-placement="top" title="" data-original-title="Edit"
-                                                (click)="editItem(row, 'ItemEdit','ItemForm')"><i
-                                                    class="far fa-edit"></i></button>
-
-                                            <button type="button" class="btn deleteIconBack" data-toggle="tooltip"
-                                                data-placement="top" title="" data-original-title="Delete"
-                                                (click)="deleteItem(row)"> <i class="far fa-trash-alt"></i></button>
+                                <div class="row justify-content-end">
+                
+                                    <div class="col-md-4">
+                                        <!-- <div class="input-group col-md-offset-3 float-right">
+                                                        <label>Search:</label>
+                                                        <input type="text" placeholder="" class="input form-control w-50" />
+                                                    </div> -->
+                
+                                        <div class="form-group row">
+                                            <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" id="inputSearch">
+                                            </div>
                                         </div>
-
-                                    </ng-template>
-                                </ngx-datatable-column>
-                            </ngx-datatable>
-
+                
+                                    </div>
+                                </div>
+                                <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows"
+                                    [sorts]="[{ prop: 'id,name', dir: 'asce' }]" [columnMode]="'force'" [headerHeight]="50"
+                                    [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
+                
+                                    <ngx-datatable-column name="Item Detail" prop="description" [width]="80">
+                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                            {{ row.description}}
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column name="Construcrion" prop="construction" [width]="80">
+                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                            {{ row.construction}}
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column name="Composition" prop="compositionPercentage" [width]="80">
+                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                            {{ row.compositionPercentage }}
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column name="Loom Type" prop="loomTypeId" [width]="80">
+                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                            {{ row.loomTypeId }}
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column name="Sizes" prop="size" [width]="80">
+                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                            {{ row.size }}
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column name="GSM/Weight" prop="weight" [width]="80">
+                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                            {{ row.weight }}
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column name="QTY" prop="itemQuantity" [width]="80">
+                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                            {{ row.itemQuantity }}
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column name="Unit Price" prop="weight" [width]="80">
+                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                            {{ row.weight }}
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column name="Amount" prop="weight" [width]="80">
+                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                            {{ row.weight }}
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column name="Commission" prop="commission" [width]="80">
+                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                            {{ row.commission }}
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column name="Action" [width]="80">
+                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                
+                
+                                            <div class="ibox-tools text-center">
+                                                <button type="button" class="btn editIconBack" data-toggle="tooltip"
+                                                    data-placement="top" title="" data-original-title="Edit"
+                                                    (click)="editItem(row, 'ItemEdit','ItemForm')"><i class="far fa-edit"></i></button>
+                
+                                                <button type="button" class="btn deleteIconBack" data-toggle="tooltip"
+                                                    data-placement="top" title="" data-original-title="Delete"
+                                                    (click)="deleteItem(row)"> <i class="far fa-trash-alt"></i></button>
+                                            </div>
+                
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                </ngx-datatable>
+                
+                            </div>
+                
                         </div>
-
                     </div>
                 </div>
 
+
+                <!---------- Shipment Dates Tab ---------->
 
                 <div class="tab-pane fade show " id="nav-Shipment" role="tabpanel" aria-labelledby="nav-Shipment-tab">
-                    <div class="row border-bottom">
-                        <div class="col-md-12 px-5 py-1">
-                            <div class="row">
-                                <div class="col-sm-12 col-md-6 col-lg-8 text-muted">
-                                    <h1 class="row wrapper page-header font-weight-light">
-                                        <i class="fas fa-truck mr-3 "></i>
-                                        Shipment Dates
-                                    </h1>
-                                </div>
-                                <div class="col-sm-12 col-md-6 col-lg-4">
-                                    <button class="btn btn-outline-primary" (click)="DeliveryTimeline()">
-                                        <i class="fas fa-plus"></i>
-                                        Add Deliveries </button>
-                                </div>
-                            </div>
-                            <div class="row justify-content-end">
-
-                                <div class="col-md-4">
-                                    <div class="input-group col-md-offset-3 float-right">
-                                        <label>Search:</label>
-                                        <input type="text" placeholder="" class="input form-control w-50" />
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12 py-1">
+                                <div class="row mb-2">
+                                    <div class="col-sm-12 col-md-6 col-lg-8 text-muted">
+                                        <h1 class="font-weight-light">
+                                            <i class="fas fa-truck mr-3 "></i>
+                                            Shipment Dates
+                                        </h1>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-4 text-right">
+                                        <button class="btn btn-outline-primary" (click)="DeliveryTimeline()">
+                                            <i class="fas fa-plus"></i>
+                                            Add Deliveries </button>
                                     </div>
                                 </div>
-                            </div>
-                            <br>
-                            <ngx-datatable #myTable class="bootstrap" [columnMode]="'force'" [headerHeight]="50"
-                                [footerHeight]="50" [sorts]="[{prop: 'code', dir: 'asce'}]" [rowHeight]="'auto'"
-                                [limit]="6">
-
-
-
-                                <ngx-datatable-column name="S.No.">
-                                    <ng-template let-row="row" ngx-datatable-cell-template>
-                                    </ng-template>
-                                </ngx-datatable-column>
-
-                                <ngx-datatable-column name="Shipment Number" prop="name">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                    </ng-template>
-                                </ngx-datatable-column>
-
-                                <ngx-datatable-column name="Supplier Date" prop="genericName">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                    </ng-template>
-                                </ngx-datatable-column>
-
-                                <ngx-datatable-column name="Buyer Date" prop="status">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                    </ng-template>
-                                </ngx-datatable-column>
-
-                                <ngx-datatable-column name="Ship Line" prop="modifiedDate">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                    </ng-template>
-                                </ngx-datatable-column>
-
-                                <ngx-datatable-column name="Ship Mode" prop="modifiedBy">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                    </ng-template>
-                                </ngx-datatable-column>
-
-                                <ngx-datatable-column name="Remarks">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                    </ng-template>
-                                </ngx-datatable-column>
-                                <ngx-datatable-column name="Action">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-
-                                        <div class="ibox-tools text-center">
-
-                                            <button type="button" class="btn editIconBack">
-                                                <i class="far fa-edit "></i>
-                                            </button>
-
-                                            <button type="button" class="btn deleteIconBack">
-                                                <i class="far fa-trash-alt"></i>
-                                            </button>
-
+                                <div class="row justify-content-end">
+                
+                                    <div class="col-md-4">
+                                        <div class="form-group row">
+                                            <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" id="inputSearch">
+                                            </div>
                                         </div>
-                                    </ng-template>
-                                </ngx-datatable-column>
-
-                            </ngx-datatable>
+                                    </div>
+                                </div>
+                
+                                <ngx-datatable #myTable class="bootstrap" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+                                    [sorts]="[{prop: 'code', dir: 'asce'}]" [rowHeight]="'auto'" [limit]="6">
+                
+                
+                
+                                    <ngx-datatable-column name="S.No.">
+                                        <ng-template let-row="row" ngx-datatable-cell-template>
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                
+                                    <ngx-datatable-column name="Shipment Number" prop="name">
+                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                
+                                    <ngx-datatable-column name="Supplier Date" prop="genericName">
+                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                
+                                    <ngx-datatable-column name="Buyer Date" prop="status">
+                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                
+                                    <ngx-datatable-column name="Ship Line" prop="modifiedDate">
+                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                
+                                    <ngx-datatable-column name="Ship Mode" prop="modifiedBy">
+                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                
+                                    <ngx-datatable-column name="Remarks">
+                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column name="Action">
+                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                
+                                            <div class="ibox-tools text-center">
+                
+                                                <button type="button" class="btn editIconBack">
+                                                    <i class="far fa-edit "></i>
+                                                </button>
+                
+                                                <button type="button" class="btn deleteIconBack">
+                                                    <i class="far fa-trash-alt"></i>
+                                                </button>
+                
+                                            </div>
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                
+                                </ngx-datatable>
+                            </div>
                         </div>
                     </div>
                 </div>
 
 
+                <!---------- Time & Action Plan Tab ---------->
+
                 <div class="tab-pane fade show " id="nav-Time" role="tabpanel" aria-labelledby="nav-Time-tab">
-                    <div class="row border-bottom">
-                        <div class="col-md-12 px-5 py-1">
-                            <div class="row">
-                                <div class="col-sm-12 col-md-6 col-lg-8 text-muted">
-                                    <h1 class="row wrapper page-header font-weight-light">
-                                        <i class="far fa-clock mr-3"></i>
-                                        Time & Action Plan
-                                    </h1>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12 py-1">
+                                <div class="row mb-2">
+                                    <div class="col-sm-12 col-md-6 col-lg-8 text-muted">
+                                        <h1 class="font-weight-light">
+                                            <i class="far fa-clock mr-3"></i>
+                                            Time & Action Plan
+                                        </h1>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-4 text-right">
+                                        <button class="btn btn-outline-primary" (click)="ProductionPlanform()">
+                                            <i class="fas fa-plus"></i>
+                                            Add Time & Action </button>
+                                    </div>
                                 </div>
-                                <div class="col-sm-12 col-md-6 col-lg-4">
-                                    <button class="btn btn-outline-primary" (click)="ProductionPlanform()">
-                                        <i class="fas fa-plus"></i>
-                                        Add Time & Action </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body  BG">
-                            <div #myTable class="panel-body">
-
+                
+                
                                 <div class="row justify-content-end">
-
+                
                                     <div class="col-md-4">
-                                        <div class="input-group col-md-offset-3 float-right">
-                                            <label>Search:</label>
-                                            <input type="text" placeholder="" class="input form-control w-50" />
+                                        <div class="form-group row">
+                                            <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" id="inputSearch">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <br>
+                
                                 <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows"
-                                    [sorts]="[{ prop: 'id,name', dir: 'asce' }]" [columnMode]="'force'"
-                                    [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
+                                    [sorts]="[{ prop: 'id,name', dir: 'asce' }]" [columnMode]="'force'" [headerHeight]="50"
+                                    [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
                                     <ngx-datatable-column prop="id" name="S. No." [width]="20">
                                         <ng-template let-row="row" ngx-datatable-cell-template>
                                             {{ row.id }}
@@ -1016,185 +1034,186 @@
                                     <ngx-datatable-column prop="id" name="Details" [width]="20">
                                         <ng-template let-row="row" ngx-datatable-cell-template>
                                             {{ row.details }}
-
+                
                                         </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column prop="id" name="Action" [width]="20">
                                         <ng-template let-row="row" ngx-datatable-cell-template>
-
+                
                                             <div class="ibox-tools text-center">
                                                 <button type="button" class="btn editIconBack" (click)="EditTna(row)"><i
                                                         class="far fa-edit"></i></button>
                                                 <!-- <button type="button" class="btn deleteIconBack" data-toggle="tooltip" data-placement="top" title=""
-                                                  data-original-title="Delete" (click)="deleteCountry(row)"><i class="far fa-trash-alt"></i></button> -->
+                                                                                  data-original-title="Delete" (click)="deleteCountry(row)"><i class="far fa-trash-alt"></i></button> -->
                                             </div>
                                         </ng-template>
                                     </ngx-datatable-column>
-
-
+                
+                
                                 </ngx-datatable>
-
+                
                             </div>
                         </div>
                     </div>
                 </div>
 
 
+                <!---------- Sale Invoices Tab ---------->
+
                 <div class="tab-pane fade show " id="nav-Sale" role="tabpanel" aria-labelledby="nav-Sale-tab">
-                    <div class="row border-bottom">
-                        <div class="col-md-12 px-5 py-1">
-                            <div class="row">
-                                <div class="col-sm-12 col-md-6 col-lg-8 text-muted">
-                                    <h1 class="row wrapper page-header font-weight-light">
-                                        <i class="fas fa-receipt mr-3"></i>
-                                        Sale Invoices
-
-                                    </h1>
-                                </div>
-                                <div class="col-sm-12 col-md-6 col-lg-4">
-                                    <button class="btn btn-outline-primary" (click)="saleInvoice()">
-                                        <i class="fas fa-plus"></i>
-                                        Add Sale Invoice </button>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12 py-1">
+                                <div class="row mb-2">
+                                    <div class="col-sm-12 col-md-6 col-lg-8 text-muted">
+                                        <h1 class="row wrapper page-header font-weight-light">
+                                            <i class="fas fa-receipt mr-3"></i>
+                                            Sale Invoices
+                
+                                        </h1>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-4 text-right">
+                                        <button class="btn btn-outline-primary" (click)="saleInvoice()">
+                                            <i class="fas fa-plus"></i>
+                                            Add Sale Invoice </button>
+                                    </div>
                                 </div>
                             </div>
+                
+                            <div class="card-body  BG" *ngFor="let x of invoiceData; let i = index;">
+                                <div class="row">
+                                    <div class="col-md-6 p-3">
+                                        <button class="btn btn-info">
+                                            Sale Invoice #1 - 76543</button>
+                                    </div>
+                
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <dl class="row">
+                                            <dt class="col-sm-6">Sale Invoice Status:
+                
+                                            </dt>
+                                            <dd class="col-sm-6"></dd>
+                                        </dl>
+                                        <dl class="row">
+                                            <dt class="col-sm-6">Sale Invoice No.:
+                
+                                            </dt>
+                                            <dd class="col-sm-6">{{x.saleInvoiceNo}}</dd>
+                                        </dl>
+                                        <dl class="row">
+                                            <dt class="col-sm-6">Quantity:</dt>
+                                            <dd class="col-sm-6"></dd>
+                                        </dl>
+                
+                                        <dl class="row">
+                                            <dt class="col-sm-6">Last Updated by:
+                
+                
+                                            </dt>
+                                            <dd class="col-sm-6">{{x.saleInvoiceDate}}</dd>
+                                        </dl>
+                
+                                        <dl class="row">
+                                            <dt class="col-sm-6">Remarks:
+                
+                
+                                            </dt>
+                                            <dd class="col-sm-6">{{x.saleInvoiceRemarks}}</dd>
+                                        </dl>
+                                    </div>
+                
+                                    <div class="col-md-6">
+                                        <dl class="row">
+                                            <dt class="col-sm-6">Sale Invoice ID:
+                
+                
+                                            </dt>
+                                            <dd class="col-sm-6">{{x.id}}</dd>
+                                        </dl>
+                                        <dl class="row">
+                                            <dt class="col-sm-6">Invoice Date:
+                
+                                            </dt>
+                                            <dd class="col-sm-6">{{x.saleInvoiceDate}}</dd>
+                                        </dl>
+                                        <dl class="row">
+                                            <dt class="col-sm-6">Invoice Amount:
+                                            </dt>
+                                            <dd class="col-sm-6">test</dd>
+                                        </dl>
+                
+                                        <dl class="row">
+                                            <dt class="col-sm-6">Last Updated on:
+                
+                
+                                            </dt>
+                                            <dd class="col-sm-6">3</dd>
+                                        </dl>
+                
+                
+                                    </div>
+                
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <h2> Sale Invoice Items</h2>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button class="btn btn-primary float-right" (click)="AddsaleInvoiceItem('add',x)">
+                                            <i class="fas fa-plus"></i>
+                                            Add Sale Invoice Item</button>
+                                    </div>
+                
+                                </div>
+                
+                
+                                <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="x.saleInvoiceItemList"
+                                    [sorts]="[{ prop: 'id,name', dir: 'asce' }]" [columnMode]="'force'" [headerHeight]="50"
+                                    [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
+                                    <ngx-datatable-column prop="id" name="Invoice Item" [width]="20">
+                                        <ng-template let-row="row" ngx-datatable-cell-template>
+                                            {{ row.id }}
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column prop="id" name="Quantity" [width]="20">
+                                        <ng-template let-row="row" ngx-datatable-cell-template>
+                                            {{ row.tnaIds }}
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column prop="id" name="Amount" [width]="20">
+                                        <ng-template let-row="row" ngx-datatable-cell-template>
+                                            {{ row.startDate }}
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column prop="id" name="Remarks" [width]="20">
+                                        <ng-template let-row="row" ngx-datatable-cell-template>
+                                            {{ row.endDate }}
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column prop="id" name="Action" [width]="20">
+                                        <ng-template let-row="row" ngx-datatable-cell-template>
+                
+                                            <div class="ibox-tools text-center">
+                                                <button type="button" class="btn editIconBack" (click)="AddsaleInvoiceItem('edit',x)"><i
+                                                        class="far fa-edit"></i></button>
+                                                <button type="button" class="btn deleteIconBack" data-toggle="tooltip"
+                                                    data-placement="top" title="" data-original-title="Delete"><i
+                                                        class="far fa-trash-alt"></i></button>
+                                            </div>
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                
+                
+                                </ngx-datatable>
+                
+                
+                
+                            </div>
+                
                         </div>
-
-                        <div class="card-body  BG" *ngFor="let x of invoiceData; let i = index;">
-                            <div class="row">
-                                <div class="col-md-6 p-3">
-                                    <button class="btn btn-info">
-                                        Sale Invoice #1 - 76543</button>
-                                </div>
-
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Sale Invoice Status:
-
-                                        </dt>
-                                        <dd class="col-sm-6"></dd>
-                                    </dl>
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Sale Invoice No.:
-
-                                        </dt>
-                                        <dd class="col-sm-6">{{x.saleInvoiceNo}}</dd>
-                                    </dl>
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Quantity:</dt>
-                                        <dd class="col-sm-6"></dd>
-                                    </dl>
-
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Last Updated by:
-
-
-                                        </dt>
-                                        <dd class="col-sm-6">{{x.saleInvoiceDate}}</dd>
-                                    </dl>
-
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Remarks:
-
-
-                                        </dt>
-                                        <dd class="col-sm-6">{{x.saleInvoiceRemarks}}</dd>
-                                    </dl>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Sale Invoice ID:
-
-
-                                        </dt>
-                                        <dd class="col-sm-6">{{x.id}}</dd>
-                                    </dl>
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Invoice Date:
-
-                                        </dt>
-                                        <dd class="col-sm-6">{{x.saleInvoiceDate}}</dd>
-                                    </dl>
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Invoice Amount:
-                                        </dt>
-                                        <dd class="col-sm-6">test</dd>
-                                    </dl>
-
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Last Updated on:
-
-
-                                        </dt>
-                                        <dd class="col-sm-6">3</dd>
-                                    </dl>
-
-
-                                </div>
-
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <h2> Sale Invoice Items</h2>
-                                </div>
-                                <div class="col-md-6">
-                                    <button class="btn btn-primary float-right" (click)="AddsaleInvoiceItem('add',x)">
-                                        <i class="fas fa-plus"></i>
-                                        Add Sale Invoice Item</button>
-                                </div>
-
-                            </div>
-
-
-                            <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="x.saleInvoiceItemList"
-                                [sorts]="[{ prop: 'id,name', dir: 'asce' }]" [columnMode]="'force'" [headerHeight]="50"
-                                [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
-                                <ngx-datatable-column prop="id" name="Invoice Item" [width]="20">
-                                    <ng-template let-row="row" ngx-datatable-cell-template>
-                                        {{ row.id }}
-                                    </ng-template>
-                                </ngx-datatable-column>
-                                <ngx-datatable-column prop="id" name="Quantity" [width]="20">
-                                    <ng-template let-row="row" ngx-datatable-cell-template>
-                                        {{ row.tnaIds }}
-                                    </ng-template>
-                                </ngx-datatable-column>
-                                <ngx-datatable-column prop="id" name="Amount" [width]="20">
-                                    <ng-template let-row="row" ngx-datatable-cell-template>
-                                        {{ row.startDate }}
-                                    </ng-template>
-                                </ngx-datatable-column>
-                                <ngx-datatable-column prop="id" name="Remarks" [width]="20">
-                                    <ng-template let-row="row" ngx-datatable-cell-template>
-                                        {{ row.endDate }}
-                                    </ng-template>
-                                </ngx-datatable-column>
-                                <ngx-datatable-column prop="id" name="Action" [width]="20">
-                                    <ng-template let-row="row" ngx-datatable-cell-template>
-
-                                        <div class="ibox-tools text-center">
-                                            <button type="button" class="btn editIconBack"
-                                                (click)="AddsaleInvoiceItem('edit',x)"><i
-                                                    class="far fa-edit"></i></button>
-                                            <button type="button" class="btn deleteIconBack" data-toggle="tooltip"
-                                                data-placement="top" title="" data-original-title="Delete"><i
-                                                    class="far fa-trash-alt"></i></button>
-                                        </div>
-                                    </ng-template>
-                                </ngx-datatable-column>
-
-
-                            </ngx-datatable>
-
-
-
-                        </div>
-
-                    </div>
-
-
+                    </div>               
                 </div>
 
 
@@ -1289,76 +1308,82 @@
                         </div> -->
 
 
+                <!---------- Notes/Activity Tab ---------->
+
                 <div class="tab-pane fade show " id="nav-Notes" role="tabpanel" aria-labelledby="nav-Notes-tab">
-                    <div class="row border-bottom">
-                        <div class="col-md-12 px-5 py-1">
-                            <div class="row">
-                                <div class="col-sm-12 col-md-6 col-lg-8 text-muted">
-                                    <h1 class="row wrapper page-header font-weight-light">
-                                        <i class="far fa-file-alt mr-3"></i>
-                                        Notes
-                                    </h1>
-                                </div>
-                                <div class="col-sm-12 col-md-6 col-lg-4">
-                                    <button class="btn btn-outline-primary" (click)="ContractNotes('contractAddNote','NotesForm')">
-                                        <i class="fas fa-plus"></i>
-                                        Add New Note </button>
-                                </div>
-
-                            </div>
-                            <div class="row justify-content-end">
-
-                                <div class="col-md-4">
-                                    <div class="input-group col-md-offset-3 float-right">
-                                        <label>Search:</label>
-                                        <input type="text" placeholder="" class="input form-control w-50" />
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12 py-1">
+                                <div class="row mb-2">
+                                    <div class="col-sm-12 col-md-6 col-lg-8 text-muted">
+                                        <h1 class="font-weight-light">
+                                            <i class="far fa-file-alt mr-3"></i>
+                                            Notes
+                                        </h1>
                                     </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-4 text-right">
+                                        <button class="btn btn-outline-primary" (click)="ContractNotes('contractAddNote','NotesForm')">
+                                            <i class="fas fa-plus"></i>
+                                            Add New Note </button>
+                                    </div>
+                
                                 </div>
-                            </div>
-                            <br>
-                            <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows"
-                                [sorts]="[{ prop: 'id,name', dir: 'asce' }]" [columnMode]="'force'" [headerHeight]="50"
-                                [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
-
-                                <ngx-datatable-column name="Title" prop="description" [width]="80">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                        {{ row.title}}
-                                    </ng-template>
-                                </ngx-datatable-column>
-                                <ngx-datatable-column name="Age" prop="itemQuantity" [width]="80">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                        {{ row.description }}
-                                    </ng-template>
-                                </ngx-datatable-column>
-                                <ngx-datatable-column name="By " prop="weight" [width]="80">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                        {{ row.color }}
-                                    </ng-template>
-                                </ngx-datatable-column>
-                                <ngx-datatable-column name="ON" prop="weight" [width]="80">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                        {{ row.color }}
-                                    </ng-template>
-                                </ngx-datatable-column>
-                                <ngx-datatable-column name="Action" [width]="80">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-
-
-                                        <div class="ibox-tools text-center">
-                                            <div class="ibox-tools text-center">
-                                                <button type="button" class="btn editIconBack" data-toggle="tooltip"
-                                                    data-placement="top" title="" data-original-title="Edit"
-                                                    (click)="editContractNote(row, 'contractEditNote','NotesForm')"><i
-                                                        class="far fa-edit"></i></button>
-    
-                                                <button type="button" class="btn deleteIconBack" data-toggle="tooltip"
-                                                    data-placement="top" title="" data-original-title="Delete"
-                                                    (click)="deleteContractNote(row)"> <i class="far fa-trash-alt"></i></button>
+                                <div class="row justify-content-end">
+                
+                                    <div class="col-md-4">
+                                        <div class="form-group row">
+                                            <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" id="inputSearch">
                                             </div>
                                         </div>
-                                    </ng-template>
-                                </ngx-datatable-column>
-                            </ngx-datatable>
+                                    </div>
+                                </div>
+                
+                                <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows"
+                                    [sorts]="[{ prop: 'id,name', dir: 'asce' }]" [columnMode]="'force'" [headerHeight]="50"
+                                    [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
+                
+                                    <ngx-datatable-column name="Title" prop="description" [width]="80">
+                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                            {{ row.title}}
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column name="Age" prop="itemQuantity" [width]="80">
+                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                            {{ row.description }}
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column name="By " prop="weight" [width]="80">
+                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                            {{ row.color }}
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column name="ON" prop="weight" [width]="80">
+                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                            {{ row.color }}
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column name="Action" [width]="80">
+                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                
+                
+                                            <div class="ibox-tools text-center">
+                                                <div class="ibox-tools text-center">
+                                                    <button type="button" class="btn editIconBack" data-toggle="tooltip"
+                                                        data-placement="top" title="" data-original-title="Edit"
+                                                        (click)="editContractNote(row, 'contractEditNote','NotesForm')"><i
+                                                            class="far fa-edit"></i></button>
+                
+                                                    <button type="button" class="btn deleteIconBack" data-toggle="tooltip"
+                                                        data-placement="top" title="" data-original-title="Delete"
+                                                        (click)="deleteContractNote(row)"> <i class="far fa-trash-alt"></i></button>
+                                                </div>
+                                            </div>
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                </ngx-datatable>
+                            </div>
                         </div>
                     </div>
                 </div>

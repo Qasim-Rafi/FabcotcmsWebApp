@@ -99,6 +99,11 @@ ng-dropdown-panel {
 }
 
 /* ----------------------------------------------------------------------- */
+h1,
+.h1 {
+  font-size: 30px !important;
+}
+
 h2,
 .h2 {
   font-size: 24px !important;

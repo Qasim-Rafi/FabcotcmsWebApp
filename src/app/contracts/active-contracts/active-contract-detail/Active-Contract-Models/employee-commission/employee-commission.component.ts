@@ -63,6 +63,8 @@ export class EmployeeCommissionComponent implements OnInit {
       this.response = res;
       if (this.response.success == true) {
         this.criteria = this.response.data;
+        this.data.beneficiaryCriteriaId = 2; 
+
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
