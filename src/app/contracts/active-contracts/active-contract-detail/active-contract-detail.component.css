@@ -44,6 +44,13 @@ h2 {
     font-weight: 500; */
 }
 
+
+.nav-link.active .badge-primary {
+  color: #1ab394;
+  background-color: #ffffff !important;
+
+}
+
 .nav-pills .nav-link:not(.active):hover {
   color: #6c757d !important;
   background-color: #e8e8e8;

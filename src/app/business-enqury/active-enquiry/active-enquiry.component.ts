@@ -73,7 +73,7 @@ export class ActiveEnquiryComponent implements OnInit {
       .get(`${environment.apiUrl}/api/Enquiries/GetAllEnquiry`)
       .subscribe(res => {
         this.response = res;
-        this.listCount = this.response.data.length;
+        this.listCount = this.response.data.enquiryList.length;
 
         if (this.response.success == true) {
           this.data = this.response.data.enquiryList;
@@ -128,7 +128,7 @@ export class ActiveEnquiryComponent implements OnInit {
   deleteEnquiry(obj) {
     Swal.fire({
       title: GlobalConstants.deleteTitle, //'Are you sure?',
-      text: GlobalConstants.deleteMessage + ' ' + '"' + obj.enquiryNumber + '"',
+      text: GlobalConstants.deleteMessage + ' ' + '"' + obj.autoEnquiryNumber + '"',
       icon: 'error',
       showCancelButton: true,
       confirmButtonColor: '#ed5565',

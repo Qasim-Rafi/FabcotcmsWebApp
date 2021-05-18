@@ -65,6 +65,7 @@ export class AddEnquiryComponent implements OnInit {
   autoEnquiryNo: number;
   dateformater: Dateformater = new Dateformater();
   today:any;
+  
   constructor(private http: HttpClient,
     private toastr: ToastrService,
     private modalService: NgbModal,
@@ -498,9 +499,11 @@ export class AddEnquiryComponent implements OnInit {
   addEnquiry(form:NgForm) {
     if(form.status =="INVALID"){
 
+      this.toastr.error("Invalid Form", 'Message.');
     }
     else{
       this.data.enquiryDate = this.dateformater.toModel(this.enquiryDateField);
+  
       let varr = {
   
         "enquiryDate": this.data.enquiryDate,
@@ -511,7 +514,7 @@ export class AddEnquiryComponent implements OnInit {
         "designTypeId": this.data.designTypeId,
         "packagingId": this.data.packagingId,
         "paymentTermId": this.data.paymentTermId,
-        "paymentTermDays": this.data.paymentTermDays,
+        "paymentTermDays": this.data.paymentTermDays  == undefined ? 0 : this.data.paymentTermDays ,
         "paymentTermInfo": this.data.paymentTermInfo,
         "priceTermId": this.data.priceTermId,
         "destinationId": this.data.destinationId,

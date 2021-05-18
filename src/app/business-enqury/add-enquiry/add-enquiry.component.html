@@ -370,7 +370,7 @@
                                             </div>
                             
                                             <div class="col-md-2 mrg-sm1">
-                                                <input type="text" pattern="[0-9]" #paymentTermDays="ngModel" maxlength="3" placeholder="Days." class="form-control"
+                                                <input type="number" min="0" #paymentTermDays="ngModel" placeholder="Days." class="form-control"
                                                     [(ngModel)]="data.paymentTermDays" name="paymentTermDays">
                                             </div>
                             
@@ -441,7 +441,7 @@
                             
                                             <div class="col-md-4">
                                                 <div class="input-group">
-                                                    <input type="number" placeholder="Comm%" #sellerSideCommission="ngModel" class="form-control"
+                                                    <input type="number" min="0" placeholder="Comm%" #sellerSideCommission="ngModel" class="form-control"
                                                         [(ngModel)]="data.sellerSideCommission" name="sellerSideCommission" [ngClass]="{ 'error': enquiryForm.submitted && sellerSideCommission.invalid }" required >
                                                     <div class="input-group-append">
                                                         <span class="input-group-text" id="basic-addon2">per</span>
@@ -481,7 +481,7 @@
                             
                                             <div class="col-md-4">
                                                 <div class="input-group">
-                                                    <input type="number" placeholder="Comm%" #buyerSideCommission="ngModel" class="form-control"
+                                                    <input type="number" min="0" placeholder="Comm%" #buyerSideCommission="ngModel" class="form-control"
                                                         [(ngModel)]="data.buyerSideCommission" name="buyerSideCommission"
                                                         [ngClass]="{ 'error': enquiryForm.submitted && buyerSideCommission.invalid }" required>
                                                     <div class="input-group-append">
