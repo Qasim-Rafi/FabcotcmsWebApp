@@ -31,6 +31,7 @@ export class OpenActiveBillComponent implements OnInit {
 
     this.fetch((data) => {
       this.rows = data;
+      console.log(this.rows)
       // this.listCount= this.rows.length;
     });
 
