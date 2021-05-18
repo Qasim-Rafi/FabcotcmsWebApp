@@ -128,7 +128,7 @@ export class ActiveEnquiryComponent implements OnInit {
   deleteEnquiry(obj) {
     Swal.fire({
       title: GlobalConstants.deleteTitle, //'Are you sure?',
-      text: GlobalConstants.deleteMessage + ' ' + '"' + obj.enquiryNumber + '"',
+      text: GlobalConstants.deleteMessage + ' ' + '"' + obj.autoEnquiryNumber + '"',
       icon: 'error',
       showCancelButton: true,
       confirmButtonColor: '#ed5565',
