@@ -2,11 +2,19 @@
     <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
       <div aria-hidden="true">&times;</div>
     </button>
-  
-    <h5 class="modal-title">
-      <i class="fas fa-clock"></i>
-      Add Shipment Schedule
-    </h5>
+ 
+    <div *ngIf="statusCheck == 'shipmentAdd'">
+      <h5 class="modal-title">
+        <i class="fas fa-clock"></i>
+        Add Shipment Schedule
+      </h5>
+    </div>
+    <div *ngIf="statusCheck == 'shipmentEdit'">
+      <h5 class="modal-title">
+        <i class="far fa-edit fa-fw"></i>
+        Edit Shipment Schedule
+      </h5>
+    </div>
   </div>
 
 
@@ -53,9 +61,8 @@
             <label for="description" class="col-sm-3 col-form-label text-Navy">Shipment Line</label>
             <div class="col-sm-7">
                 <ng-select 
-                placeholder="Select Shipment Line " class="text-center">
-                <ng-option >
-                </ng-option>
+                placeholder="Select Shipment Line " [(ngModel)]="shipmentLine" class="text-center" name="shipmentLine">
+                <ng-option *ngFor="let i of shipmentLine" [value]="i.id">{{ i.shipmentLine }}</ng-option>
               </ng-select>
             </div>
           </div>
@@ -63,8 +70,8 @@
           <div class="form-group row">
             <label for="description" class="col-sm-3 col-form-label text-Navy">Shipment Mode</label>
             <div class="col-sm-7">
-              <ng-select [(ngModel)]="shipmentMode" placeholder="Select Shipment Mode" name="shipmentMode">
-                <ng-option *ngFor="let i of mode" [value]="i.id">{{ i.shipmentMode }}</ng-option>
+              <ng-select [(ngModel)]="shipmentMode" class="text-center" placeholder="Select Shipment Mode" name="shipmentMode">
+                <ng-option *ngFor="let i of shipmentMode" [value]="i.id">{{ i.shipmentMode }}</ng-option>
             </ng-select>
             </div>
           </div>
@@ -84,7 +91,7 @@
     </form>
   </div>
   
-  <div class="modal-footer NotBG">
+  <!-- <div class="modal-footer NotBG">
     <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
       Close
     </button>
@@ -95,4 +102,21 @@
     <button class="btn button-blue" type="submit">
         Save & Next
       </button>
+  </div> -->
+  <div class="modal-footer NotBG">
+    <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
+      Close
+    </button>
+    <button  *ngIf="statusCheck == 'shipmentAdd'" class="btn button-save" type="submit"
+      (click)="addshipment()">
+      Save & Close
+    </button>
+    <button  *ngIf="statusCheck == 'shipmentAdd'" class="btn button-blue" type="submit"
+    (click)="addshipment()">
+    Save & Next
+  </button>
+    <button  *ngIf="statusCheck == 'shipmentEdit'" class="btn button-save" type="submit"
+      (click)="Updateshipment()">
+      Update
+    </button>
   </div>

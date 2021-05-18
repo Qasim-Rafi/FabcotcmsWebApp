@@ -20,11 +20,15 @@ export class DeliveryTimelineComponent implements OnInit {
   data: any = {};
   response: any;
   mode: any = [];
+  buyerDate: any=[];
+  supplierDate: any=[];
+  FormName: any;
   shipmentMode: any=[];
+  shipmentLine: any=[];
   queryParems: any = {};
   @Input() shipmentId;
   dateformater: Dateformater = new Dateformater();
-  @ViewChild(NgForm) deliveryForm;
+  @ViewChild(NgForm) shipmentForm;
   @Input() statusCheck;
   constructor(
     private http: HttpClient,
@@ -39,7 +43,7 @@ export class DeliveryTimelineComponent implements OnInit {
     // let latest_date =this.datepipe.transform(olddate, 'yyyy-MM-dd');
     // this.supplierDateField =this.dateformater.fromModel(latest_date);
     // this.buyerDateField =this.dateformater.fromModel(latest_date);
-    this.GetMode();
+    // this.GetMode();
     this.statusCheck = this.statusCheck;
     if (this.statusCheck == 'shipmentEdit') {
       this.editshipment();
@@ -80,18 +84,18 @@ export class DeliveryTimelineComponent implements OnInit {
     })
   }
   addshipment() {
-    // this.data.supplierDate = this.dateformater.toModel(this.supplierDateField);
-    // this.data.buyerDate = this.dateformater.toModel(this.buyerDateField);
+    this.data.supplierDate = this.dateformater.toModel(this.data.supplierDate);
+    this.data.buyerDate = this.dateformater.toModel(this.data.buyerDate);
 
-    let varr = {
-      "contractId":this.data.contractId,
-  "shipmentNo": this.data.shipmentNo,
-  "supplierDate": this.data.supplierDate,
-  "buyerDate":this.data.buyerDate,
-  "shipmentLine": this.data.shipmentLine,
-  "shipmentMode":this.data.shipmentMode,
-  "shipmentRemarks": this.data.shipmentRemarks
-    }
+  //   let varr = {
+  //     "contractId":this.data.contractId,
+  // "shipmentNo": this.data.shipmentNo,
+  // "supplierDate": this.data.supplierDate,
+  // "buyerDate":this.data.buyerDate,
+  // "shipmentLine": this.data.shipmentLine,
+  // "shipmentMode":this.data.shipmentMode,
+  // "shipmentRemarks": this.data.shipmentRemarks
+  //   }
     // this.data.lcOpenOn = this.dateformater.toModel(this.data.lcOpenOn);
 
     // let varr = {
@@ -106,7 +110,7 @@ export class DeliveryTimelineComponent implements OnInit {
     // }
 
     this.http.
-      post(`${environment.apiUrl}/api/Contracts/AddContractShipmentSchedule`, varr)
+      post(`${environment.apiUrl}/api/Contracts/AddContractShipmentSchedule`, this.data)
       .subscribe(
         res => {
 
@@ -114,7 +118,7 @@ export class DeliveryTimelineComponent implements OnInit {
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
 
-            this.deliveryForm.reset();
+            this.shipmentForm.reset();
             this.activeModal.close(true);
           }
           else {

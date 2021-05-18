@@ -773,7 +773,7 @@
                                     </h1>
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-lg-4">
-                                    <button class="btn btn-outline-primary" (click)="addItems('ItemAdd', 'ItemForm')">
+                                    <button class="btn btn-outline-primary" (click)="addContractItemform('ItemAdd', 'ItemForm')">
                                         <i class="fas fa-plus"></i>
                                         Add New Item </button>
                                 </div>
@@ -848,7 +848,7 @@
                                         <div class="ibox-tools text-center">
                                             <button type="button" class="btn editIconBack" data-toggle="tooltip"
                                                 data-placement="top" title="" data-original-title="Edit"
-                                                (click)="editItem(row, 'ItemEdit','ItemForm')"><i
+                                                (click)="EditContractItemform(row, 'ItemEdit','ItemForm')"><i
                                                     class="far fa-edit"></i></button>
 
                                             <button type="button" class="btn deleteIconBack" data-toggle="tooltip"
@@ -877,7 +877,7 @@
                                     </h1>
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-lg-4">
-                                    <button class="btn btn-outline-primary" (click)="DeliveryTimeline()">
+                                    <button class="btn btn-outline-primary" (click)="ContractShipment('shipmentAdd')">
                                         <i class="fas fa-plus"></i>
                                         Add Deliveries </button>
                                 </div>
@@ -900,51 +900,57 @@
 
                                 <ngx-datatable-column name="S.No.">
                                     <ng-template let-row="row" ngx-datatable-cell-template>
+                                        {{ row.id }}
                                     </ng-template>
                                 </ngx-datatable-column>
 
                                 <ngx-datatable-column name="Shipment Number" prop="name">
                                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                        {{ row.shipmentNo }}
                                     </ng-template>
                                 </ngx-datatable-column>
 
                                 <ngx-datatable-column name="Supplier Date" prop="genericName">
                                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                        {{ row.supplierDate }}
                                     </ng-template>
                                 </ngx-datatable-column>
 
                                 <ngx-datatable-column name="Buyer Date" prop="status">
                                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                        {{ row.buyerDate }}
                                     </ng-template>
                                 </ngx-datatable-column>
 
                                 <ngx-datatable-column name="Ship Line" prop="modifiedDate">
                                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                        {{ row.shipmentLine }}
                                     </ng-template>
                                 </ngx-datatable-column>
 
                                 <ngx-datatable-column name="Ship Mode" prop="modifiedBy">
                                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                        {{ row.shipmentMode }}
                                     </ng-template>
                                 </ngx-datatable-column>
 
                                 <ngx-datatable-column name="Remarks">
                                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                        {{ row.shipmentRemarks }}
                                     </ng-template>
                                 </ngx-datatable-column>
                                 <ngx-datatable-column name="Action">
                                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
 
                                         <div class="ibox-tools text-center">
+                                            <button type="button" class="btn editIconBack" data-toggle="tooltip"
+                                                data-placement="top" title="" data-original-title="Edit"
+                                                (click)="editContractShipment('shipmentEdit',row)"><i
+                                                    class="far fa-edit"></i></button>
 
-                                            <button type="button" class="btn editIconBack">
-                                                <i class="far fa-edit "></i>
-                                            </button>
-
-                                            <button type="button" class="btn deleteIconBack">
-                                                <i class="far fa-trash-alt"></i>
-                                            </button>
-
+                                            <button type="button" class="btn deleteIconBack" data-toggle="tooltip"
+                                                data-placement="top" title="" data-original-title="Delete"
+                                                (click)="deleteContractShipment(row)"> <i class="far fa-trash-alt"></i></button>
                                         </div>
                                     </ng-template>
                                 </ngx-datatable-column>

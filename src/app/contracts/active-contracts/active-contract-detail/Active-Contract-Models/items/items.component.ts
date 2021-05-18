@@ -27,6 +27,7 @@ export class ItemsComponent implements OnInit {
   loomType: any = [];
 currency: any[];
 @Input() itemId;
+@Input() ContractItemId;
 
   @ViewChild(NgForm) ItemForm;
   @Input() statusCheck;
@@ -42,18 +43,19 @@ currency: any[];
    
     this.GetCurrency();
     this.GetUOMDropdown();
+    // this.GetUOMDropdown1();
     this.GetColorDropdown();
     this.GetLoomDropdown();
     this.statusCheck = this.statusCheck;
     if (this.statusCheck == 'ItemEdit') {
-      this.editItem();
+      this.editItem(this.ContractItemId);
     }
   }
   get activeModal() {
     return this._NgbActiveModal;
   }
-  editItem() {
-    this.http.get(`${environment.apiUrl}/api/Contracts/GetContractItemById/` + this.itemId)
+  editItem(ContractItemId) {
+    this.http.get(`${environment.apiUrl}/api/Contracts/GetContractItemById/` + ContractItemId)
       .subscribe(
         res => {
           this.response = res;
@@ -75,30 +77,30 @@ currency: any[];
 
 
   UpdateItem() {
-    let varr = {
-      "description": this.data.description,
-      "enquiryId": this.data.enquiryId,
-      "contractId": this.data.contractId,
-      "itemQuantity": this.data.itemQuantity,
-      "itemUOMId": this.data.itemUOMId,
-      "compositionPercentage": this.data.compositionPercentage,
-      "compositionFebricTypeId": this.data.compositionFebricTypeId,
-      "compositionAdditionalInfo": this.data.compositionAdditionalInfo,
-      "construction": this.data.construction,
-      "colorId": this.data.colorId,
-      "weight": this.data.weight,
-      "loomTypeId":this.data.loomTypeId,
-      "size":this.data.size,
-      "remarks": this.data.remarks,
-      "active": true,
-      "contractRate": this.data.contractRate,
-      "contractCurrencyId": this.data.contractCurrencyId,
-      "contractUOMId": this.data.contractUOMId,
-      "contractCost": this.data.contractCost
-    }
+    // let varr = {
+    //   "description": this.data.description,
+    //   "enquiryId": this.data.enquiryId,
+    //   "contractId": this.data.contractId,
+    //   "itemQuantity": this.data.itemQuantity,
+    //   "itemUOMId": this.data.itemUOMId,
+    //   "compositionPercentage": this.data.compositionPercentage,
+    //   "compositionFebricTypeId": this.data.compositionFebricTypeId,
+    //   "compositionAdditionalInfo": this.data.compositionAdditionalInfo,
+    //   "construction": this.data.construction,
+    //   "colorId": this.data.colorId,
+    //   "weight": this.data.weight,
+    //   "loomTypeId":this.data.loomTypeId,
+    //   "size":this.data.size,
+    //   "remarks": this.data.remarks,
+    //   "active": true,
+    //   "contractRate": this.data.contractRate,
+    //   "contractCurrencyId": this.data.contractCurrencyId,
+    //   "contractUOMId": this.data.contractUOMId,
+    //   "contractCost": this.data.contractCost
+    // }
 
     this.http.
-      put(`${environment.apiUrl}/api/Contracts/UpdateContractItem/` + this.itemId, varr)
+      put(`${environment.apiUrl}/api/Contracts/UpdateContractItem/` + this.ContractItemId, this.data)
       .subscribe(
         res => {
 
@@ -124,6 +126,16 @@ currency: any[];
       this.response = res;
       if (this.response.success == true) {
         this.uomList = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }GetUOMDropdown1() {
+    this.service.getUOM().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.uomList1 = this.response.data;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -170,30 +182,30 @@ currency: any[];
   }
 
   addItem() {
-    let varr = {
-      "description": this.data.description,
-      "enquiryId": this.data.enquiryId,
-      "contractId": this.data.contractId,
-      "itemQuantity": this.data.itemQuantity,
-      "itemUOMId": this.data.itemUOMId,
-      "compositionPercentage": this.data.compositionPercentage,
-      "compositionFebricTypeId": this.data.compositionFebricTypeId,
-      "compositionAdditionalInfo": this.data.compositionAdditionalInfo,
-      "construction": this.data.construction,
-      "colorId": this.data.colorId,
-      "weight": this.data.weight,
-      "loomTypeId":this.data.loomTypeId,
-      "size":this.data.size,
-      "remarks": this.data.remarks,
-      "active": true,
-      "contractRate": this.data.contractRate,
-      "contractCurrencyId": this.data.contractCurrencyId,
-      "contractUOMId": this.data.contractUOMId,
-      "contractCost": this.data.contractCost
-    }
+    // let varr = {
+    //   "description": this.data.description,
+    //   "enquiryId": this.data.enquiryId,
+    //   "contractId": this.data.contractId,
+    //   "itemQuantity": this.data.itemQuantity,
+    //   "itemUOMId": this.data.itemUOMId,
+    //   "compositionPercentage": this.data.compositionPercentage,
+    //   "compositionFebricTypeId": this.data.compositionFebricTypeId,
+    //   "compositionAdditionalInfo": this.data.compositionAdditionalInfo,
+    //   "construction": this.data.construction,
+    //   "colorId": this.data.colorId,
+    //   "weight": this.data.weight,
+    //   "loomTypeId":this.data.loomTypeId,
+    //   "size":this.data.size,
+    //   "remarks": this.data.remarks,
+    //   "active": true,
+    //   "contractRate": this.data.contractRate,
+    //   "contractCurrencyId": this.data.contractCurrencyId,
+    //   "contractUOMId": this.data.contractUOMId,
+    //   "contractCost": this.data.contractCost
+    // }
 
     this.http.
-      post(`${environment.apiUrl}/api/Contracts/AddContractItem`, varr)
+      post(`${environment.apiUrl}/api/Contracts/AddContractItem`, this.data)
       .subscribe(
         res => {
 
