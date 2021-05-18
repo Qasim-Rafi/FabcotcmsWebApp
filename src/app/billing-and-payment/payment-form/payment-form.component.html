@@ -208,11 +208,10 @@
                                 <label class="col-md-3 col-form-label control-label">
                                     Payment Mode</label>
                                 <div class="col-md-2">
-                                    <ng-select placeholder=""    
-                                       name="paymentMode" [(ngModel)]="data.paymentMode" #paymentMode="ngModel">
-                                      <ng-option>
-
-                                      </ng-option>
+                                    <ng-select name="paymentMode" placeholder="-- Select --" [(ngModel)]="data.paymentMode">
+                                        <ng-option *ngFor="let i of paymentMode" [value]="i">
+                                            {{i}}
+                                        </ng-option>
                                     </ng-select>
                                 </div>
                                 <div class="col-md-4 ">
@@ -234,8 +233,9 @@
                                 <label class="col-md-3 col-form-label control-label">
                                     Bank Account</label>
                                 <div class="col-md-2">
-                                    <ng-select placeholder="Select a Bank Account"
+                                    <ng-select placeholder="--Select--"
                                     name="bankAccountId" [(ngModel)]="data.bankAccountId" #bankAccountId="ngModel"
+                                
                                     >
                                     <ng-option *ngFor="let i of bankAcc" [value]="i.id">{{ i.accountName }}
                                       </ng-option>

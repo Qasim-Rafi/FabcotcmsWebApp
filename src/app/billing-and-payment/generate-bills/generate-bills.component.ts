@@ -6,6 +6,8 @@ import { ToastrService } from 'ngx-toastr';
 import { ServiceService } from 'src/app/shared/service.service';
 import { environment } from 'src/environments/environment';
 import { GlobalConstants } from '../../Common/global-constants';
+import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
+
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 @Component({
   selector: 'app-generate-bills',
@@ -20,7 +22,13 @@ export class GenerateBillsComponent implements OnInit {
     private modalService: NgbModal
     ) { }
   data: any = {};
+  data2: any = {};
+
   rows: any = [];
+  selected = [];
+  checkboxData: any = [];
+  SelectionType = SelectionType;
+
   columns: any = [];
   response: any;
 
@@ -28,21 +36,37 @@ url = '/api/BillingPayments/GetAllContractForBillGeneration'
   ngOnInit(): void {
     this.service.fetch((data)=>{
          this.rows = data;
-         console.log(this.rows)
+         console.log( this.rows)
     } , this.url)
+    
   }
 
-  generateBill() {
-    let varr = {
-      "contractId": this.data.contractId,
-      "billNumber": this.data.billNum,
-      "billForBuyerId": this.data.billForBuyerId,
-      "billForSelerId": this.data.billForSelerId,
-      "billAmount": this.data.billAmount,
-      "taxAmount": this.data.taxAmount,
-      "dueDate": this.data.dueDate
-    }
+  onSelect({ selected }) {
+    console.log('Select Event', selected);
+  }
+  // onSelect(row) {
+  //   console.log(row)
+  // }
 
+  onActivate(event) {
+    console.log('Activated Event', event );
+      if (event.type == 'click' && event.type != 'dblclick' && event.type != 'mouseenter'){
+        this.checkboxData.push({['id']:event.row.id , ['buyerId']:event.row.buyerId ,
+         ['sellerId']:event.row.sellerId , ['taxAmount']:event.row.id });
+        console.log(this.checkboxData)
+      }
+   
+}
+
+  generateBill() {
+    // console.log("checkbox data in " , this.checkboxData)
+    let varr = {
+      "contractId": this.checkboxData,
+      "billForBuyerId": this.checkboxData[0],
+      "billForSelerId": this.checkboxData.sellerId,
+      "taxAmount": this.checkboxData.taxAmount,
+      "dueDate": "2021-05-27"
+    }
     this.http.
       post(`${environment.apiUrl}/api/BillingPayments/GenerateContractBill`, varr)
       .subscribe(
