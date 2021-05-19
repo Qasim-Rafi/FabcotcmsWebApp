@@ -5,7 +5,7 @@
 
   <h5 class="modal-title" *ngIf="statusCheck == 'EnquiryItemAddNote'">
     <i class="far fa-sticky-note"></i>
-    Add New Note111
+    Add New Note
   </h5>
   <h5 class="modal-title" *ngIf="statusCheck == 'EnquiryItemEditNote'">
     <i class="far fa-sticky-note"></i>
@@ -84,7 +84,7 @@
         <input class="form-check-input check-btn" type="checkbox" [(ngModel)]="data.flag" name="flag" />
         Flag
       </label>
-      <div class="col-sm-6 form-inline">
+      <div class="col-sm-8 form-inline">
         <input type="color" class="form-control col-md-4 mr-3" [(ngModel)]="data.color " name="color" />
         <button class="btn" style="background-color:#000000;" (click)="data.color = '#000000'" ></button>
         <button class="btn ml-1" style="background-color:#a0a0a0;" (click)="data.color = '#a0a0a0'" ></button>
