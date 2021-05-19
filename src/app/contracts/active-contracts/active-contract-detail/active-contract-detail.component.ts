@@ -56,9 +56,11 @@ export class ActiveContractDetailComponent implements OnInit {
   noteFilter: any = [];
   TnaData: any = {};
   invoiceData:any =[];
+  shipmentData: any = {};
+
   ItemUrl = '/api/Contracts/GetAllContractItem';
   noteUrl='/api/Contracts/GetAllContractNote';
-  shipmentUrl='/api/Contracts/GetAllContractShipmentSchedule/{contractId}';
+  shipmentUrl='/api/Contracts/GetAllContractShipmentSchedule/' + this.contractId;
   constructor(
     private modalService: NgbModal,
     private route: ActivatedRoute,
@@ -73,14 +75,6 @@ export class ActiveContractDetailComponent implements OnInit {
         this.rows = data;
         this.ItemCount = this.rows.length;
       }, this.ItemUrl);
-    
-    {
-      this.service.fetch((data) => {
-        this.shipmentFilter = [...data];
-        this.rows = data;
-        this.shipmentCount = this.rows.length;
-      }, this.shipmentUrl);
-    }
     {
       this.service.fetch((data) => {
         this.noteFilter = [...data];
@@ -100,8 +94,7 @@ export class ActiveContractDetailComponent implements OnInit {
     this.getContractRemarkData();
     this.getContractCommisionData();
 this.getSaleInvoice();
-
-
+this.getShipmentData();
     this.fetch((data) => {
       this.rows = data;
       // this.listCount= this.rows.length;
@@ -129,6 +122,29 @@ this.getSaleInvoice();
           }
         });
   }
+
+  
+  getShipmentData() {
+    this.http.get(`${environment.apiUrl}/api/Contracts/GetAllContractShipmentSchedule/` + this.contractId)
+      .subscribe(
+        res => {
+          this.response = res;
+          if (this.response.success == true) {
+            this.shipmentData = this.response.data;
+            this.rows = this.shipmentData;
+  
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+  
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+        });
+  }
+  
 
   getContractData() {
     this.http.get(`${environment.apiUrl}/api/Contracts/GetContractById/` + this.contractId)
@@ -313,9 +329,26 @@ getContractPaymentData() {
 
 
 
-DeliveryTimeline() {
+DeliveryTimeline(check) {
   const modalRef = this.modalService.open(DeliveryTimelineComponent, { centered: true });
   modalRef.componentInstance.contractId = this.contractId;
+    modalRef.componentInstance.statusCheck = check;
+
+  modalRef.result.then((data) => {
+    // on close
+    if (data == true) {
+
+    }
+  }, (reason) => {
+    // on dismiss
+  });
+}
+EditDeliveryTimeline(check , row) {
+  const modalRef = this.modalService.open(DeliveryTimelineComponent, { centered: true });
+  modalRef.componentInstance.contractId = this.contractId;
+  modalRef.componentInstance.id = row.id;
+
+    modalRef.componentInstance.statusCheck = check;
 
   modalRef.result.then((data) => {
     // on close
