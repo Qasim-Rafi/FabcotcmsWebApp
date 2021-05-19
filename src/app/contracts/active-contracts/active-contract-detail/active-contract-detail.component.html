@@ -211,7 +211,7 @@
                                     <div class="h2 ">
                                         <span><i class="fas fa-flag mr-3 text-secondary"></i></span>
                                         <span class=" ml-2 text_Navy"></span>
-                                        <span class="ml-3 font-weight-light"> {{contractData.buyerName}}</span>
+                                        <span class="ml-3 font-weight-light"> {{contractData.buyerName}} <span class="text-muted">(Enq # {{contractData.autoEnquiryNumber}})</span> </span>
                                     </div>
                                 </div>
 
@@ -222,8 +222,6 @@
                                     <button class="btn btn-white ">
                                         <i class="fas fa-sync-alt"></i></button>
                                 </div>
-
-
                             </div>
 
                             <div class="row">
@@ -239,7 +237,7 @@
                                                     *ngIf="contractData.active == false">Inactive</span>
                                                 <div class="badge badge-info ml-1">OPEN</div>
                                                 <button class="btn "><i class="fas fa-history "></i></button>
-                                                <div class="badge badge-primary ml-3">APPROVED</div>
+                                                <div class="badge badge-primary ml-3">Pending</div>
                                             </span>
                                         </div>
                                     </div>

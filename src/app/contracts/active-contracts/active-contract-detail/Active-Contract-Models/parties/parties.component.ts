@@ -54,7 +54,7 @@ export class PartiesComponent implements OnInit {
           this.response = res;
           if (this.response.success == true) {
             this.data = this.response.data;
-            this.data.certificateIds = parseInt(this.data.certificateIds);
+            this.data.certificateIds = this.data.certificateIds != null ? parseInt(this.data.certificateIds) : this.data.certificateIds;
             this.data.poDate = this.dateformater.fromModel(this.data.poDate);
             this.data.contractDate = this.dateformater.fromModel(this.data.contractDate);
             
@@ -148,7 +148,7 @@ export class PartiesComponent implements OnInit {
     let varr = {
 
       "contractId": this.contractId,
-      "poNumber": this.data.poNumber.toString(),
+      "poNumber": this.data.poNumber,
       "poDate": this.data.poDate,
       "contractNo": this.data.contractNo,
       "contractDate": this.data.contractDate,
@@ -157,7 +157,7 @@ export class PartiesComponent implements OnInit {
       "sellerId": this.data.sellerId,
       "sellerPOCId": this.data.sellerPOCId,
       "sellerContract":this.data.sellerContract,
-      "certificateIds": this.data.certificateIds.toString(),
+      "certificateIds": this.data.certificateIds != null ? this.data.certificateIds.toString() : null,
     }
 
     this.http.
