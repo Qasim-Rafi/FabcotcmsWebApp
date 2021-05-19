@@ -3,9 +3,13 @@
       <div aria-hidden="true">&times;</div>
     </button>
   
-    <h5 class="modal-title">
+    <h5 class="modal-title" *ngIf = "statusCheck == 'add'">
       <i class="fas fa-clock"></i>
       Add Shipment Schedule
+    </h5>
+    <h5 class="modal-title" *ngIf = "statusCheck == 'edit'">
+      <i class="fas fa-clock"></i>
+      Edit Shipment Schedule
     </h5>
   </div>
 
@@ -63,8 +67,8 @@
           <div class="form-group row">
             <label for="description" class="col-sm-3 col-form-label text-Navy">Shipment Mode</label>
             <div class="col-sm-7">
-              <ng-select [(ngModel)]="shipmentMode" placeholder="Select Shipment Mode" name="shipmentMode">
-                <ng-option *ngFor="let i of mode" [value]="i.id">{{ i.shipmentMode }}</ng-option>
+              <ng-select [(ngModel)]="data.shipmentMode" placeholder="Select Shipment Mode" name="shipmentMode" #shipmentMode = "ngModel">
+                <ng-option *ngFor="let i of mode" [value]="i">{{ i }}</ng-option>
             </ng-select>
             </div>
           </div>
@@ -88,7 +92,7 @@
     <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
       Close
     </button>
-    <button class="btn button-save" type="submit" 
+    <button class="btn button-save" type="submit"  *ngIf = "statusCheck == 'add'"
     (click)="addshipment()">
       Save & Close
     </button>

@@ -2,10 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { id } from '@swimlane/ngx-datatable';
-import { data } from 'jquery';
 import { ToastrService } from 'ngx-toastr';
 import { ServiceService } from 'src/app/shared/service.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-payment-collection',
@@ -14,8 +13,12 @@ import { ServiceService } from 'src/app/shared/service.service';
 })
 export class PaymentCollectionComponent implements OnInit {
 
-  rows: any = [  {name : ["1","2","3","4"]  } ];
-  columns: any = [];
+  rows: any = {};
+  data: any = {};
+
+response: any = {};
+
+  columns: any = {};
   url = '/api/BillingPayments/GetAllBillPayment'
   constructor(    private service: ServiceService,
     private http: HttpClient,
@@ -27,10 +30,35 @@ export class PaymentCollectionComponent implements OnInit {
     this.router.navigate(['/billing-and-payment/payment-form'], { queryParams: { statusCheck: statusCheck  , id:obj.id }  });
  };
   ngOnInit(): void {
-this.service.fetch((data)=>{
-
-} , this.url)
+    this.fetch((data) => {
+      this.rows = data;
+      console.log(this.rows)
+      // this.listCount= this.rows.length;
+    });
 
   }
-
+  
+  fetch(cb) {
+    
+    this.http
+    .get(`${environment.apiUrl}/api/BillingPayments/GetAllBillPayment`)
+    .subscribe(res => {
+      this.response = res;
+     
+    if(this.response.success==true)
+    {
+    this.data =this.response.data;
+    cb(this.data);
+    }
+    else{
+      this.toastr.error(this.response.message, 'Message.');
+    }
+      // this.spinner.hide();
+    }, err => {
+      if ( err.status == 400) {
+ this.toastr.error(err.error.message, 'Message.');
+      }
+    //  this.spinner.hide();
+    });
+  }
 }

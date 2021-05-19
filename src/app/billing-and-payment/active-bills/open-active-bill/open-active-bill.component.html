@@ -84,7 +84,7 @@
             </span>
             <br>
             <span class="text-font1">
-                Article:<span class="bold text-font1">Towels</span>
+                Article:<span class="bold text-font1">{{rows.contractArticleName}}</span>
             </span>
     
         </div>
@@ -113,14 +113,14 @@
 <br>
 <div class="float-right">
  <span class=" bold text-font1">
-    Sub Total: <span class="text-font1 underline">USD 873.75</span>
+    Sub Total: <span class="text-font1 underline">{{rows.invoiceSubTotalAmount}}</span>
 </span>
 <br>
 <span class=" bold text-font1">
-    TAX : <span class="text-font1 underline">USD 0.00</span>
+    TAX : <span class="text-font1 underline">{{rows.invoiceTaxAmount}}</span>
 </span><br>
 <span class=" bold text-font1">
-    TOTAL : <span class="bold text-font1 underline">USD 873.75</span>
+    TOTAL : <span class="bold text-font1 underline">{{rows.invoiceTotalAmount}}</span>
 </span>
 </div>
  <!-- left side content -->
@@ -131,36 +131,36 @@
 <span>Our Bank detail as under for FTT</span>
 <br>
 <span class=" float-left ">
-    Title of Account:<span >XXX LUTZ KG.</span>
+    Title of Account:<span >{{rows.accountName}}</span>
 </span>
 <br>
 
 <span class=" float-left ">
-    Address:<span > RT-3642-I</span>
+    Address:<span >{{rows.bankAddress}} </span>
 </span>
 <br>
 
 <span class=" float-left ">
-    Bank Name:<span>Fri 09-Oct-2020</span>
+    Bank Name:<span>{{rows.bankName}}</span>
 </span>
 <br>
 <span class=" float-left ">
-    Bank Account Number:<span >Towels</span>
+    Bank Account Number:<span >{{rows.accountNumber}}</span>
 </span><br>
 <span class=" float-left ">
-    IBAN Number:<span >Towels</span>
+    IBAN Number:<span >{{rows.iban}}</span>
 </span><br>
 <span class=" float-left ">
-    Swift Code:<span >Towels</span>
+    Swift Code:<span >{{rows.swiftCode}}</span>
 </span><br>
 <span class=" float-left ">
-    Bank Branch:<span >Towels</span>
+    Bank Branch:<span >{{rows.branchName}}</span>
 </span>
 <span class=" float-left ">
-    Account Type:<span >Towels</span>
+    Account Type:<span >{{rows.type}}</span>
 </span><br>
 <span class=" float-left ">
-    Bank Address:<span >Towels</span>
+    Bank Address:<span >{{rows.bankAddress}}</span>
 </span>
 <br>
 <!-- End button -->
