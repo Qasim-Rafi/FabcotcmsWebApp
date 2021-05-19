@@ -36,6 +36,7 @@ export class ActiveContractDetailComponent implements OnInit {
   dateformater: Dateformater = new Dateformater();
   rows: any = [];
   data:any = {};
+  items:any = {};
   columns: any = [];
   queryParems: any = {};
   contractId: any = {};
@@ -70,11 +71,12 @@ export class ActiveContractDetailComponent implements OnInit {
   ngOnInit(): void {
     this.queryParems = this.route.snapshot.queryParams;
     this.contractId = this.queryParems.id;
-          this.service.fetch((data) => {
-        this.ItemFilter = [...data];
-        this.rows = data;
-        this.ItemCount = this.rows.length;
-      }, this.ItemUrl);
+
+      //     this.service.fetch((data) => {
+      //   this.ItemFilter = [...data];
+      //   this.rows = data;
+      //   this.ItemCount = this.rows.length;
+      // }, this.ItemUrl);
     
     {
       this.service.fetch((data) => {
@@ -106,8 +108,52 @@ this.getSaleInvoice();
       this.rows = data;
       // this.listCount= this.rows.length;
     });
+
+
+    this.getAllItems((data) => {
+      this.rows = data;
+      // this.listCount= this.rows.length;
+    });
+
+
+
     this.getContractTnA()
   }
+
+
+
+
+
+  getAllItems(cb) {
+
+    this.http
+      .get(`${environment.apiUrl}/api/Contracts/GetAllContractItem/`+ this.contractId)
+      .subscribe(res => {
+        this.response = res;
+        
+
+        if (this.response.success == true) {
+          this.items = this.response.data
+          this.ItemFilter = [this.items]; 
+          cb(this.items);
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+        // this.spinner.hide();
+      }, err => {
+        if (err.status == 400) {
+          this.toastr.error(err.error.message, 'Message.');;
+        }
+        //  this.spinner.hide();
+      });
+  }
+
+
+
+
+
+
 
   getSaleInvoice() {
     this.http.get(`${environment.apiUrl}/api/Contracts/GetAllContractSaleInvoice`)
@@ -707,13 +753,16 @@ addItems(check, name) {
   const modalRef = this.modalService.open(ItemsComponent, { centered: true });
   modalRef.componentInstance.statusCheck = check;
   modalRef.componentInstance.FormName = name;
+  modalRef.componentInstance.contractId = this.contractId ;
+
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
-      this.service.fetch((data) => {
+      this.getAllItems((data) => {
         this.rows = data;
-        this.ItemCount = this.rows.length;
-      }, this.ItemUrl);
+        // this.listCount= this.rows.length;
+      });
+  
 
 
     }
@@ -797,9 +846,10 @@ deleteItem(id) {
             this.response = res;
             if (this.response.success == true) {
               this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
-              this.service.fetch((data) => {
+              this.getAllItems((data) => {
                 this.rows = data;
-              }, this.ItemUrl);
+                // this.listCount= this.rows.length;
+              });
 
             }
             else {
@@ -819,13 +869,16 @@ editItem(row, check, name) {
   modalRef.componentInstance.itemId = row.id; //just for edit.. to access the needed row
   modalRef.componentInstance.statusCheck = check;
   modalRef.componentInstance.FormName = name;
+  modalRef.componentInstance.contractId = this.contractId ;
 
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
-      this.service.fetch((data) => {
+      this.getAllItems((data) => {
         this.rows = data;
-      }, this.ItemUrl);
+        // this.listCount= this.rows.length;
+      });
+  
     }
   }, (reason) => {
     // on dismiss

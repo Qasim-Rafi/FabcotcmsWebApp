@@ -25,8 +25,10 @@ export class ItemsComponent implements OnInit {
   uomList1: any = [];
   color: any = [];
   loomType: any = [];
-currency: any[];
-@Input() itemId;
+  currency: any[];
+  @Input() itemId;
+  @Input() enquiryId;
+  @Input() contractId;
 
   @ViewChild(NgForm) ItemForm;
   @Input() statusCheck;
@@ -52,6 +54,7 @@ currency: any[];
   get activeModal() {
     return this._NgbActiveModal;
   }
+ 
   editItem() {
     this.http.get(`${environment.apiUrl}/api/Contracts/GetContractItemById/` + this.itemId)
       .subscribe(
@@ -77,8 +80,7 @@ currency: any[];
   UpdateItem() {
     let varr = {
       "description": this.data.description,
-      "enquiryId": this.data.enquiryId,
-      "contractId": this.data.contractId,
+      "contractId": this.contractId,
       "itemQuantity": this.data.itemQuantity,
       "itemUOMId": this.data.itemUOMId,
       "compositionPercentage": this.data.compositionPercentage,
@@ -98,7 +100,7 @@ currency: any[];
     }
 
     this.http.
-      put(`${environment.apiUrl}/api/Contracts/UpdateContractItem/` + this.itemId, varr)
+      put(`${environment.apiUrl}/api/Contracts/UpdateContractItem/`+ this.itemId ,varr)
       .subscribe(
         res => {
 
@@ -172,8 +174,7 @@ currency: any[];
   addItem() {
     let varr = {
       "description": this.data.description,
-      "enquiryId": this.data.enquiryId,
-      "contractId": this.data.contractId,
+      "contractId": this.contractId,
       "itemQuantity": this.data.itemQuantity,
       "itemUOMId": this.data.itemUOMId,
       "compositionPercentage": this.data.compositionPercentage,
