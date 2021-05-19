@@ -92,7 +92,7 @@
                 
                             <div class="form-group col-4 modalBorder">
                                 <div class="row">
-                                    <div class="col-lg-3">
+                                    <div class="col-lg-3 pr-0">
                                         <input type="number" min="0" class="form-control" placeholder="%age"
                                             name="compositionPercentage_{{i}}" [(ngModel)]=value.compositionPercentage />
                                     </div>
@@ -102,7 +102,7 @@
                                             <ng-option *ngFor="let i of fabricType" [value]="i.id">{{ i.type }}</ng-option>
                                         </ng-select>
                                     </div>
-                                    <div class="col-lg-4 mrg-tsm">
+                                    <div class="col-lg-4 mrg-tsm pl-0">
                                         <input type="text" class="form-control" placeholder="Additional Info"
                                             name="compositionAdditionalInfo_{{i}}" [(ngModel)]=value.compositionAdditionalInfo />
                                     </div>
@@ -116,7 +116,7 @@
                 
                             <div class="form-group col-3 modalBorder">
                                 <div class="row">
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-4 pr-0">
                                         <input type="number" min="0" class="form-control" placeholder="Qty" name="itemQuantity_{{i}}"
                                             #itemQuantity="ngModel" [(ngModel)]=value.itemQuantity
                                             [ngClass]="{ 'error': EnquiryItemForm.submitted && itemQuantity.invalid }" required />
