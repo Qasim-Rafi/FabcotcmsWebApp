@@ -655,7 +655,7 @@
                         </div>
 
 
-                        <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows"
+                        <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows1"
                             [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
                             [sorts]="[{prop: 'code', dir: 'asce'}]" [rowHeight]="'auto'" [limit]="6">
 
@@ -794,7 +794,7 @@
                 
                                     </div>
                                 </div>
-                                <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows"
+                                <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows2"
                                     [sorts]="[{ prop: 'id,name', dir: 'asce' }]" [columnMode]="'force'" [headerHeight]="50"
                                     [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
                 
@@ -1337,34 +1337,27 @@
                                     </div>
                                 </div>
                 
-                                <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows"
+                                <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows3"
                                     [sorts]="[{ prop: 'id,name', dir: 'asce' }]" [columnMode]="'force'" [headerHeight]="50"
                                     [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
                 
-                                    <ngx-datatable-column name="Title" prop="description" [width]="80">
+                                    <ngx-datatable-column name="User" prop="description" [width]="80">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                            {{ row.title}}
+                                            {{ row.createdByName }}
                                         </ng-template>
                                     </ngx-datatable-column>
-                                    <ngx-datatable-column name="Age" prop="itemQuantity" [width]="80">
+                                    <ngx-datatable-column name="Time" prop="itemQuantity" [width]="80">
+                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                            {{ row.createdDateTime }}
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column name="Note Details " prop="weight" [width]="80">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                                             {{ row.description }}
                                         </ng-template>
                                     </ngx-datatable-column>
-                                    <ngx-datatable-column name="By " prop="weight" [width]="80">
-                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                            {{ row.color }}
-                                        </ng-template>
-                                    </ngx-datatable-column>
-                                    <ngx-datatable-column name="ON" prop="weight" [width]="80">
-                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                            {{ row.color }}
-                                        </ng-template>
-                                    </ngx-datatable-column>
                                     <ngx-datatable-column name="Action" [width]="80">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                
-                
                                             <div class="ibox-tools text-center">
                                                 <div class="ibox-tools text-center">
                                                     <button type="button" class="btn editIconBack" data-toggle="tooltip"
