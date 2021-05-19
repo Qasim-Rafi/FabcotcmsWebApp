@@ -68,6 +68,8 @@ export class ActiveContractDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.queryParems = this.route.snapshot.queryParams;
+    this.contractId = this.queryParems.id;
           this.service.fetch((data) => {
         this.ItemFilter = [...data];
         this.rows = data;
@@ -88,8 +90,6 @@ export class ActiveContractDetailComponent implements OnInit {
         this.contractCount = this.rows.length;
       }, this.noteUrl);
     }
-    this.queryParems = this.route.snapshot.queryParams;
-    this.contractId = this.queryParems.id;
 
     this.getContractData();
     this.getContractPartiesData();
