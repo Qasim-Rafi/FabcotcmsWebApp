@@ -122,6 +122,7 @@ export class EnquiryItemsComponent implements OnInit {
     {
       this.data[i] = Object.assign(this.data[i], {
         enquiryId: this.EnquiryId,
+       
       })
     }
 
@@ -185,7 +186,6 @@ export class EnquiryItemsComponent implements OnInit {
     //   "size": this.data.size,
     //   "remarks": this.data.remarks,
     // }
-
     this.http.
       put(`${environment.apiUrl}/api/Enquiries/UpdateEnquiryItem/` + this.EnquiryItemId, this.data)
       .subscribe(
