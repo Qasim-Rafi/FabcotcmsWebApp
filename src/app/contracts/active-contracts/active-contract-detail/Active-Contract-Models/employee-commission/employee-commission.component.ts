@@ -129,7 +129,6 @@ export class EmployeeCommissionComponent implements OnInit {
             this.toastr.success(this.response.message, 'Message.');
             // this.getEnquiryData(this.objEnquiry);
             this.activeModal.close(true);
-            this.getContractEmployeeCommissionData();
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
@@ -166,7 +165,6 @@ export class EmployeeCommissionComponent implements OnInit {
             this.toastr.success(this.response.message, 'Message.');
       
             this.activeModal.close(true);
-            this.getContractEmployeeCommissionData();
          
           }
           else {

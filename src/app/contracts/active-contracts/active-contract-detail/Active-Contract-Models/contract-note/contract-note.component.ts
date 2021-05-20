@@ -13,6 +13,7 @@ export class ContractNoteComponent implements OnInit {
   @Input() EnquiryId;
   @Input() NoteId;
   @Input() statusCheck;
+  @Input() contractId;
   data: any = {};
   response: any;
 
@@ -44,8 +45,7 @@ export class ContractNoteComponent implements OnInit {
     // this.data.color = this.selectedColor;
     let varr =
     {
-      "enquiryId": this.data.EnquiryId,
-      "contractId":this.data.contactId,
+      "contractId":this.contractId,
       "isPublic": this.data.isPublic,
       "title": this.data.title,
       "description": this.data.description,
@@ -102,8 +102,7 @@ export class ContractNoteComponent implements OnInit {
 
   UpdateContractNote() {
     let varr = {
-      "enquiryId": this.data.EnquiryId,
-      "contractId":this.data.contactId,
+      "contractId":this.contractId,
       "isPublic": this.data.isPublic,
       "title": this.data.title,
       "description": this.data.description,

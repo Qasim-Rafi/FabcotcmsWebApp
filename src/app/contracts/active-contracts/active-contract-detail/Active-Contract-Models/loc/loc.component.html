@@ -7,15 +7,15 @@
       <i class="fa fa-plus"></i>
      Add New L/C
         <small>
-            <p>
-            Contract No. 16
+            <p class="mb-0">
+            Contract No. {{data.autoContractNumber}}
         </p>
         </small>
     </h5>
   </div>
 
 
-  <div class="modal-body BG pt-2r">
+  <div class="modal-body BG pt-4">
     <form #LCForm="ngForm" novalidate>
    
 
@@ -34,8 +34,7 @@
       
               <input type="text" class="form-control  datetimepicker-input" (click)="enquiryDatePicker.toggle()"
               placeholder="Date" #enquiryDatePicker="ngbDatepicker" #lcOpenOn="ngModel" [(ngModel)]="data.lcOpenOn"
-              name="lcOpenOn" ngbDatepicker 
-            >
+              name="lcOpenOn" ngbDatepicker >
             </div>
           </div>
 
@@ -44,7 +43,7 @@
             <div class="col-sm-8" (clickOutside)="enquiryDatePicker.close()">
       
           
-              <input navigation="select" class="form-control text_Navy " ngbDatepicker #lcShipmentOn="ngbDatepicker"
+              <input navigation="select" class="form-control text_Navy mb-1" ngbDatepicker #lcShipmentOn="ngbDatepicker"
               (click)="lcShipmentOn.toggle()" placeholder="Certificate validity date" [(ngModel)]="data.lcShipmentOn"
               name="lcShipmentOn" />
 

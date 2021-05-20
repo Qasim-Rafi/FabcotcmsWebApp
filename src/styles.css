@@ -437,6 +437,9 @@ select {
   width: 50% !important;
 }
 
+.form-group {
+  margin-bottom: 0.5rem !important;
+}
 
 @media only screen and (max-width: 767px) {
   .mrg-tsm {
