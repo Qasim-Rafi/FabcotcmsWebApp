@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { GlobalConstants } from 'src/app/Common/global-constants';
@@ -104,7 +105,14 @@ export class QuotationComponent implements OnInit {
   }
 
 
-  addQuotation() {
+  addQuotation(form:NgForm) {
+    if(form.status =="INVALID"){
+
+      this.toastr.error("Kindly Fill the Required Fields", 'Message.');
+    }
+
+    else{
+
     let varr =
     {
       "enquiryItemId": this.EnquiryItemId,
@@ -135,6 +143,7 @@ export class QuotationComponent implements OnInit {
             this.toastr.error(this.response.message, 'Message.');
           }
         });
+      }
   }
 
 
