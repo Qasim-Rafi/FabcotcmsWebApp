@@ -7,7 +7,7 @@
       <i class="fa fa-edit"></i>
         Edit Contracts
         <small>
-            <p>
+            <p class="mb-0">
             Contract No. {{data.autoContractNumber}}
         </p>
         </small>
@@ -19,7 +19,7 @@
     <form #costingForm="ngForm" novalidate>
         <div class="form-group row">
             <label for="name" class="col-sm-3 col-form-label text_Navy">Currency</label>
-            <div class="col-sm-6">
+            <div class="col-sm-8">
               <ng-select name="currencyId" placeholder="-- Select --" [(ngModel)]="data.currencyId">
                 <ng-option *ngFor="let i of currency" [value]="i.id">
                     {{i.name}}

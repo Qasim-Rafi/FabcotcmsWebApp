@@ -73,6 +73,10 @@ dt {
 color: #676a6c !important;
 }
 
+dd{
+  margin-bottom: 0rem !important;
+  }
+
 .col-md-6 dl{
   line-height: 10px !important;
 }
