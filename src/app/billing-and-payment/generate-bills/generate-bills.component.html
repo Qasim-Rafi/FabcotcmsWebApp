@@ -34,7 +34,7 @@
         </div>
         <div class="row my-3">
           <div class="col-md-12 mrg-tsm text-center">
-            <button type="button" class="btn btn-primary btn-lg ">
+            <button type="button" class="btn btn-primary btn-lg " (click) = "generateBill()">
               <i class="fas fa-play"></i> &nbsp; Generate Bill
             </button>
           </div>
@@ -69,8 +69,14 @@
         <ngx-datatable
       class="bootstrap datatable-row-wrapper" [columns]="columns" [rows]="rows"
           [columnMode]="'flex'" [headerHeight]="50" [footerHeight]="50" 
-          [rowHeight]="'auto'" [limit]="6">
-          
+          [rowHeight]="'auto'" [limit]="6"
+            (activate)="onActivate($event)"
+          >
+          <ngx-datatable-column prop="selected" name="Select" [width]="20"   [flexGrow]="0.03">
+            <ng-template let-row="row" ngx-datatable-cell-template  >
+             <input type="checkbox">
+            </ng-template>
+          </ngx-datatable-column>
           <ngx-datatable-column name="Contract Date" [width]="80" prop="contractDate" [flexGrow]="0.03"   >
             <ng-template let-row="row" ngx-datatable-cell-template >
          {{row.contractDate}}
@@ -83,7 +89,7 @@
           </ngx-datatable-column>
           <ngx-datatable-column name="Buyer" [width]="80" prop="buyer" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-        {{row.buyerId}}
+        {{row.buyerName}}
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Seller" [width]="80" prop="seller" [flexGrow]="0.06">

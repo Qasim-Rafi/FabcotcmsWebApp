@@ -213,7 +213,7 @@
                                     <div class="h2 ">
                                         <span><i class="fas fa-flag mr-3 text-secondary"></i></span>
                                         <span class=" ml-2 text_Navy"></span>
-                                        <span class="ml-3 font-weight-light"> {{contractData.buyerName}}</span>
+                                        <span class="ml-3 font-weight-light"> {{contractData.buyerName}} <span class="text-muted">(Enq # {{contractData.autoEnquiryNumber}})</span> </span>
                                     </div>
                                 </div>
 
@@ -224,8 +224,6 @@
                                     <button class="btn btn-outline-secondary ml-1">
                                         <i class="fas fa-sync-alt"></i></button>
                                 </div>
-
-
                             </div>
 
                             <div class="row">
@@ -242,7 +240,7 @@
                                                 <div class="badge badge-info ml-1">OPEN</div>
                                                 <!-- <button class="btn "><i class="fas fa-history "></i></button> -->
                                                 <button class="btn btn-outline-secondary btn-xs ml-1"><i class="fas fa-history "></i></button>
-                                                <div class="badge badge-primary ml-1">APPROVED</div>
+                                                <div class="badge badge-primary ml-1">Pending</div>
                                             
                                         </div>
                                     </div>
@@ -671,7 +669,7 @@
                         </div>
 
 
-                        <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows"
+                        <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows1"
                             [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
                             [sorts]="[{prop: 'code', dir: 'asce'}]" [rowHeight]="'auto'" [limit]="6">
 
@@ -810,7 +808,7 @@
                 
                                     </div>
                                 </div>
-                                <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows"
+                                <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows2"
                                     [sorts]="[{ prop: 'id,name', dir: 'asce' }]" [columnMode]="'force'" [headerHeight]="50"
                                     [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
                 
@@ -851,12 +849,12 @@
                                     </ngx-datatable-column>
                                     <ngx-datatable-column name="Unit Price" prop="weight" [width]="80">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                            {{ row.weight }}
+                                            {{ row.contractRate }}
                                         </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column name="Amount" prop="weight" [width]="80">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                            {{ row.weight }}
+                                            {{ row.contractCost }}
                                         </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column name="Commission" prop="commission" [width]="80">
@@ -903,7 +901,7 @@
                                         </h1>
                                     </div>
                                     <div class="col-sm-12 col-md-6 col-lg-4 text-right">
-                                        <button class="btn btn-outline-primary" (click)="DeliveryTimeline()">
+                                        <button class="btn btn-outline-primary" (click)="DeliveryTimeline('add')">
                                             <i class="fas fa-plus"></i>
                                             Add Deliveries </button>
                                     </div>
@@ -920,7 +918,7 @@
                                     </div>
                                 </div>
                 
-                                <ngx-datatable #myTable class="bootstrap" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+                                <ngx-datatable #myTable class="bootstrap" [columnMode]="'force'" [headerHeight]="50" [rows]="rows" [footerHeight]="50"
                                     [sorts]="[{prop: 'code', dir: 'asce'}]" [rowHeight]="'auto'" [limit]="6">
                 
                 
@@ -932,31 +930,37 @@
                 
                                     <ngx-datatable-column name="Shipment Number" prop="name">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                       {{row.shipmentNo}}
                                         </ng-template>
                                     </ngx-datatable-column>
                 
                                     <ngx-datatable-column name="Supplier Date" prop="genericName">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                       {{row.supplierDate}}
                                         </ng-template>
                                     </ngx-datatable-column>
                 
                                     <ngx-datatable-column name="Buyer Date" prop="status">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                      {{row.buyerDate}}
                                         </ng-template>
                                     </ngx-datatable-column>
                 
                                     <ngx-datatable-column name="Ship Line" prop="modifiedDate">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                       {{row.shipmentLine}}
                                         </ng-template>
                                     </ngx-datatable-column>
                 
                                     <ngx-datatable-column name="Ship Mode" prop="modifiedBy">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                       {{row.shipmentMode}}
                                         </ng-template>
                                     </ngx-datatable-column>
                 
                                     <ngx-datatable-column name="Remarks">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                       {{row.shipmentRemarks}}
                                         </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column name="Action">
@@ -964,7 +968,7 @@
                 
                                             <div class="ibox-tools text-center">
                 
-                                                <button type="button" class="btn editIconBack">
+                                                <button type="button" class="btn editIconBack" (click)="EditDeliveryTimeline('edit' , row)">
                                                     <i class="far fa-edit "></i>
                                                 </button>
                 
@@ -1353,34 +1357,27 @@
                                     </div>
                                 </div>
                 
-                                <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows"
+                                <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows3"
                                     [sorts]="[{ prop: 'id,name', dir: 'asce' }]" [columnMode]="'force'" [headerHeight]="50"
                                     [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
                 
-                                    <ngx-datatable-column name="Title" prop="description" [width]="80">
+                                    <ngx-datatable-column name="User" prop="description" [width]="80">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                            {{ row.title}}
+                                            {{ row.createdByName }}
                                         </ng-template>
                                     </ngx-datatable-column>
-                                    <ngx-datatable-column name="Age" prop="itemQuantity" [width]="80">
+                                    <ngx-datatable-column name="Time" prop="itemQuantity" [width]="80">
+                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                            {{ row.createdDateTime }}
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column name="Note Details " prop="weight" [width]="80">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                                             {{ row.description }}
                                         </ng-template>
                                     </ngx-datatable-column>
-                                    <ngx-datatable-column name="By " prop="weight" [width]="80">
-                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                            {{ row.color }}
-                                        </ng-template>
-                                    </ngx-datatable-column>
-                                    <ngx-datatable-column name="ON" prop="weight" [width]="80">
-                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                            {{ row.color }}
-                                        </ng-template>
-                                    </ngx-datatable-column>
                                     <ngx-datatable-column name="Action" [width]="80">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                
-                
                                             <div class="ibox-tools text-center">
                                                 <div class="ibox-tools text-center">
                                                     <button type="button" class="btn editIconBack" data-toggle="tooltip"

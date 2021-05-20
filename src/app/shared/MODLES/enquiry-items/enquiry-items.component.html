@@ -97,7 +97,7 @@
                                             name="compositionPercentage_{{i}}" [(ngModel)]=value.compositionPercentage />
                                     </div>
                                     <div class="col-lg-5 mrg-tsm">
-                                        <ng-select [(ngModel)]="value.compositionFebricTypeId" placeholder="Select Fabric"
+                                        <ng-select [(ngModel)]="value.compositionFebricTypeId" placeholder="Select Fabric" required
                                             name="compositionFebricTypeId_{{i}}">
                                             <ng-option *ngFor="let i of fabricType" [value]="i.id">{{ i.type }}</ng-option>
                                         </ng-select>
@@ -139,17 +139,17 @@
                             </div>
                 
                             <div class="form-group col-4 modalBorder">
-                                <ng-select [(ngModel)]="value.loomTypeId" placeholder="Loom Type" name="loomTypeId_{{i}}">
+                                <ng-select [(ngModel)]="value.loomTypeId" placeholder="Loom Type" name="loomTypeId_{{i}}" required>
                                     <ng-option *ngFor="let i of loomType" [value]="i.id">{{ i.type }}</ng-option>
                                 </ng-select>
                             </div>
                 
                             <div class="form-group col-2 modalBorder">
-                                <input type="text" class="form-control" placeholder="Size" name="size_{{i}}" [(ngModel)]=value.size />
+                                <input type="text" class="form-control" placeholder="Size" name="size_{{i}}" [(ngModel)]=value.size  required/>
                             </div>
                 
                             <div class="form-group col-3 modalBorder">
-                                <ng-select [(ngModel)]="value.colorId" placeholder="Item Color" name="colorId_{{i}}">
+                                <ng-select [(ngModel)]="value.colorId" placeholder="Item Color" name="colorId_{{i}}" required>
                                     <ng-option *ngFor="let i of color" [value]="i.id">{{ i.name }}</ng-option>
                                 </ng-select>
                             </div>
@@ -167,7 +167,7 @@
                
          <div class="row">
              <div class="col-md-12">
-            <button *ngIf="statusCheck != 'EditEnquiryItem'" class="btn btn-primary float-right mt-3" (click)="addMore()">Add More</button>
+            <button *ngIf="statusCheck != 'EditEnquiryItem'" class="btn btn-primary float-right mt-3" (click)="addMore()" [disabled]="EnquiryItemForm.invalid">Add More</button>
         </div>
          </div>
     

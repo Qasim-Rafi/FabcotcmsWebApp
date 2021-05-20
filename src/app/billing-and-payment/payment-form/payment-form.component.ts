@@ -1,11 +1,15 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { GlobalConstants } from 'src/app/Common/global-constants';
+import { Dateformater } from 'src/app/shared/dateformater';
 import { ServiceService } from 'src/app/shared/service.service';
 import { environment } from 'src/environments/environment';
+import { DatePipe } from '@angular/common';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-payment-form',
@@ -13,15 +17,20 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./payment-form.component.css']
 })
 export class PaymentFormComponent implements OnInit {
+  dateformater: Dateformater = new Dateformater();
   statusCheck:any={};
   queryParems:any={};
   paymentId:any={};
   data: any = {};
+  @ViewChild(NgForm) paymentForm;
+  paymentdata: any = {};
   rows: any = {};
   currency: any = {};
   saleInvoice: any = {};
   paymentMode: any = {};
   bankAcc: any = {};
+  paymentDateField:any;
+  depositeDateField:any;
 
   bill: any = {};
 
@@ -34,6 +43,8 @@ export class PaymentFormComponent implements OnInit {
     private http: HttpClient,
     private service: ServiceService,
     private toastr: ToastrService,
+    public datepipe: DatePipe,
+    private router: Router,
 
   ) { }
 
@@ -44,10 +55,18 @@ export class PaymentFormComponent implements OnInit {
     this.queryParems = this.route.snapshot.queryParams;
     this.paymentId = this.queryParems.id;
 
+    // let olddate=new Date();
+    // let latest_date =this.datepipe.transform(olddate, 'yyyy-MM-dd');
+    // this.paymentDateField =this.dateformater.fromModel(latest_date);
+    // this.depositeDateField =this.dateformater.fromModel(latest_date);
+
+
     this.fetch((data) => {
       this.rows = data;
-      // this.listCount= this.rows.length;
+      console.log("contract bill by id",this.rows)
     });
+    this.getData(this.paymentId);
+
     this.GetCurrencyDropdown()
     this.GetSaleInvoiceDropdown()
     this.GetPaymentModeDropdown()
@@ -77,36 +96,83 @@ export class PaymentFormComponent implements OnInit {
     });
   }
 
+//   fetch2(cb) {
+    
+//     this.http.get(`${environment.apiUrl}/api​/BillingPayments​/GetBillPaymentById​/` + this.paymentId)
+//     .subscribe(res => {
+//       this.response = res;
+     
+//     if(this.response.success==true)
+//     {
+//     this.data =this.response.data;
+//     cb(this.data);
+//     }
+//     else{
+//       this.toastr.error(this.response.message, 'Message.');
+//     }
+//       // this.spinner.hide();
+//     }, err => {
+//       if ( err.status == 400) {
+//  this.toastr.error(err.error.message, 'Message.');
+//       }
+//     //  this.spinner.hide();
+//     });
+//   }
+
+
+   getData(id) {
+    this.http
+    .get(`${environment.apiUrl}/api/BillingPayments/GetBillPaymentById/` + id)
+    .subscribe(res => {
+      this.response = res;
+          if (this.response.success == true) {
+            this.paymentdata = this.response.data;
+    //         this.paymentdata.paymentDate = this.dateformater.fromModel(this.paymentdata.paymentDate);
+    // this.paymentdata.depositeDate = this.dateformater.fromModel(this.paymentdata.depositeDate);
+        }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          }
  
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+        });
+  }
 
 
   UpdatePayment() {
+    this.paymentdata.paymentDate = this.dateformater.toModel(this.paymentDateField);
+    this.paymentdata.depositeDate = this.dateformater.toModel(this.depositeDateField);
     let varr = {
-      "contractId": this.data.contractId,
-      "contractBillId": this.data.contractBillId,
-      "selerId": this.data.selerId,
-      "receiptNumber": this.data.receiptNumber,
-      // "paymentDate": this.data.paymentDate,
-      "paidAmount": this.data.paidAmount,
-      "taxAmount": this.data.taxAmount,
-      "deductionAmount": this.data.deductionAmount,
-      "paymentMode": this.data.paymentMode,
-      "paymentDescription":this.data.paymentDescription,
-      "bankAccountId": this.data.bankAccountId,
-      "accountDescription": this.data.accountDescription,
-      "isDepositedInBank": this.data.isDepositedInBank,
-      "depositeDate": this.data.depositeDate
+      "contractId": this.paymentdata.contractId,
+      "contractBillId": this.paymentId,
+      "buyerId": this.paymentdata.billForBuyerId,
+      "selerId": this.paymentdata.billForSelerId,
+      "saleInvoiceId": 0,
+      "receiptNumber": this.paymentdata.receiptNumber,
+      "paymentDate": this.paymentdata.paymentDate,
+      "paidAmount": this.paymentdata.paidAmount,
+      "taxAmount": this.paymentdata.taxAmount,
+      "deductionAmount": this.paymentdata.deductionAmount,
+      "paymentMode": this.paymentdata.paymentMode,
+      "paymentDescription":this.paymentdata.paymentDescription,
+      "bankAccountId": this.paymentdata.bankAccountId,
+      "accountDescription": this.paymentdata.accountDescription,
+      "isDepositedInBank": this.paymentdata.isDepositedInBank,
+      "depositeDate": this.paymentdata.depositeDate
     }
 
     this.http.
-      put(`${environment.apiUrl}/api/Configs/UpdateCountry/` + this.paymentId, varr)
+      put(`${environment.apiUrl}/api/BillingPayments/UpdateBillPayment/` + this.paymentId, varr)
       .subscribe(
         res => {
 
           this.response = res;
           if (this.response.success == true) {
             this.toastr.success(GlobalConstants.updateMessage, 'Message.');
-         
+            this.router.navigate(['/billing-and-payment/payment-collection']);
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
@@ -121,13 +187,18 @@ export class PaymentFormComponent implements OnInit {
 
 
   addPayment() {
+    // this.data.paymentDate = this.dateformater.toModel(this.data.paymentDate);
+    this.data.paymentDate = this.dateformater.toModel(this.paymentDateField);
+    this.data.depositeDate = this.dateformater.toModel(this.depositeDateField);
 
+    // this.data.depositeDate = this.dateformater.toModel(this.data.depositeDate);
       let varr = {
-        // "contractId": this.bill.contractId,
-        // "contractBillId": this.paymentId,
-        "buyerId": this.bill.buyerName,
-        "selerId": this.bill.sellerName,
-        "saleInvoiceId": this.data.saleInvoiceId,
+       
+        "contractId": this.data.contractId,
+        "contractBillId": this.paymentId,
+        "buyerId": this.data.billForBuyerId,
+        "selerId": this.data.billForSelerId,
+        "saleInvoiceId": 0,
         "receiptNumber": this.data.receiptNumber,
         "paymentDate": this.data.paymentDate,
         "paidAmount": this.data.paidAmount,
@@ -140,7 +211,6 @@ export class PaymentFormComponent implements OnInit {
         "isDepositedInBank": this.data.isDepositedInBank,
         "depositeDate": this.data.depositeDate
       }
-    
 
     this.http.
       post(`${environment.apiUrl}/api/BillingPayments/AddBillPayment/`, varr)
@@ -150,7 +220,9 @@ export class PaymentFormComponent implements OnInit {
           this.response = res;
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
-         
+            this.paymentForm.reset();
+            this.router.navigate(['/billing-and-payment/payment-collection']);
+
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
