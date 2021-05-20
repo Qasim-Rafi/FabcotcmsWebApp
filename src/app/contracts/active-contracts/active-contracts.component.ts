@@ -34,9 +34,31 @@ export class ActiveContractsComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetch((data) => {
+      this.temp = [...data]; 
       this.rows = data;
     });
   }
+
+
+
+
+  searchFilter(event) {
+    const val = event.target.value.toLowerCase();
+    // filter our data
+    const temp = this.temp.filter(function (d) {
+      return (d.autoContractNumber.toLowerCase().indexOf(val) !== -1 || !val);
+    });
+    this.rows = temp;
+  }
+
+
+
+
+
+
+
+
+
 
 
   navigateEditContract(obj) {

@@ -130,7 +130,7 @@
     
     <div class="panel-body">
       <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'"
-        [headerHeight]="50" [footerHeight]="50" [sorts]="[{prop: 'inquiry', dir: 'asce'}]" [rowHeight]="'auto'"
+        [headerHeight]="50" [footerHeight]="50" [sorts]="[{prop: 'autoEnquiryNumber', dir: 'desc'}]" [rowHeight]="'auto'"
         [limit]="6">
 
         <ngx-datatable-column name="Enquiry No." [width]="5" prop="autoEnquiryNumber">
