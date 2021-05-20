@@ -105,7 +105,7 @@ export class ActiveContractDetailComponent implements OnInit {
     this.getSaleInvoice();
 
 
-    this.fetch((empData) => {
+    this.getAllBenificery((empData) => {
       this.rows1 = empData;
       // this.listCount= this.rows.length;
     });
@@ -499,7 +499,7 @@ EmployeeCommission(status) {
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
-      this.fetch((empData) => {
+      this.getAllBenificery((empData) => {
         this.rows1 = empData;
         // this.listCount= this.rows.length;
       });
@@ -521,7 +521,7 @@ editEmployeeCommission(status , row) {
     // on close
     if (data == true) {
 
-      this.fetch((empData) => {
+      this.getAllBenificery((empData) => {
         this.rows1 = empData;
         // this.listCount= this.rows.length;
       });
@@ -531,7 +531,7 @@ editEmployeeCommission(status , row) {
   });
 }
 
-fetch(cb) {
+getAllBenificery(cb) {
     
   this.http
   .get(`${environment.apiUrl}/api/Contracts/GetAllContractBeneficiary/` + this.contractId)
@@ -580,7 +580,7 @@ deleteCommission(row) {
               this.toastr.error(this.response.message, 'Message.');
               // this.getAllEnquiryItems();
               // this.getEnquiryData(this.objEnquiry);
-              this.fetch((empData) => {
+              this.getAllBenificery((empData) => {
                 this.rows1 = empData;
                 // this.listCount= this.rows.length;
               });

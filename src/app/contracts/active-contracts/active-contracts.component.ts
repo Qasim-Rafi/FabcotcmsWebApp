@@ -152,10 +152,4 @@ deleteContract(obj) {
 
 
 
-
-
-
-
-
-
 }
