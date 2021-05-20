@@ -199,6 +199,8 @@
 
             <div class="tab-content" id="nav-tabContent">
 
+                <!---------- Contract Details Tab ---------->
+
                 <div class="tab-pane fade show active" id="nav-Details" role="tabpanel"
                     aria-labelledby="nav-Details-tab">
                     <div class="border-bottom">
@@ -211,19 +213,17 @@
                                     <div class="h2 ">
                                         <span><i class="fas fa-flag mr-3 text-secondary"></i></span>
                                         <span class=" ml-2 text_Navy"></span>
-                                        <span class="ml-3 font-weight-light"> {{contractData.buyerName}}</span>
+                                        <span class="ml-3 font-weight-light"> {{contractData.buyerName}} <span class="text-muted">(Enq # {{contractData.autoEnquiryNumber}})</span> </span>
                                     </div>
                                 </div>
 
-                                <div class="col-md-3 float-right">
+                                <div class="col-md-3 text-right">
 
                                     <button class="btn btn-primary ">
                                         <i class="far fa-bell"></i> No Reminder Set</button>
-                                    <button class="btn btn-white ">
+                                    <button class="btn btn-outline-secondary ml-1">
                                         <i class="fas fa-sync-alt"></i></button>
                                 </div>
-
-
                             </div>
 
                             <div class="row">
@@ -232,15 +232,16 @@
 
                                         <div class="col-md-4 text-right">Status & Stage:</div>
                                         <div class="col-md-8">
-                                            <span>
+                                            
                                                 <span class="badge badge-primary"
                                                     *ngIf="contractData.active == true">Active</span>
                                                 <span class="badge badge-secondary"
                                                     *ngIf="contractData.active == false">Inactive</span>
                                                 <div class="badge badge-info ml-1">OPEN</div>
-                                                <button class="btn "><i class="fas fa-history "></i></button>
-                                                <div class="badge badge-primary ml-3">APPROVED</div>
-                                            </span>
+                                                <!-- <button class="btn "><i class="fas fa-history "></i></button> -->
+                                                <button class="btn btn-outline-secondary btn-xs ml-1"><i class="fas fa-history "></i></button>
+                                                <div class="badge badge-primary ml-1">Pending</div>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -374,13 +375,22 @@
                                         {{contractData.approvedByName}}
                                     </dd>
                                 </dl>
+                                
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 mb-4">
                                 <button class="btn btn-outline-primary float-right" (click)="PartiesForm()">
                                     Edit</button>
                             </div>
                         </div>
+
                     </div>
 
                     <div class="border-bottom">
+
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="badge badge-primary my-3">
@@ -424,12 +434,14 @@
                             </div>
 
                         </div>
+
                         <div class="row">
                             <div class="col-md-12 mb-4">
                                 <button class="btn btn-outline-primary float-right"
                                     (click)="ProductANDSpecificationForm()"> Edit</button>
                             </div>
                         </div>
+
                     </div>
 
 
@@ -657,7 +669,7 @@
                         </div>
 
 
-                        <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows"
+                        <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows1"
                             [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
                             [sorts]="[{prop: 'code', dir: 'asce'}]" [rowHeight]="'auto'" [limit]="6">
 
@@ -796,7 +808,7 @@
                 
                                     </div>
                                 </div>
-                                <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows"
+                                <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows2"
                                     [sorts]="[{ prop: 'id,name', dir: 'asce' }]" [columnMode]="'force'" [headerHeight]="50"
                                     [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
                 
@@ -837,12 +849,12 @@
                                     </ngx-datatable-column>
                                     <ngx-datatable-column name="Unit Price" prop="weight" [width]="80">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                            {{ row.weight }}
+                                            {{ row.contractRate }}
                                         </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column name="Amount" prop="weight" [width]="80">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                            {{ row.weight }}
+                                            {{ row.contractCost }}
                                         </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column name="Commission" prop="commission" [width]="80">
@@ -889,7 +901,7 @@
                                         </h1>
                                     </div>
                                     <div class="col-sm-12 col-md-6 col-lg-4 text-right">
-                                        <button class="btn btn-outline-primary" (click)="DeliveryTimeline('add')">
+                                        <button class="btn btn-outline-primary" (click)="addShipmentTimeline('add')">
                                             <i class="fas fa-plus"></i>
                                             Add Deliveries </button>
                                     </div>
@@ -906,13 +918,14 @@
                                     </div>
                                 </div>
                 
-                                <ngx-datatable #myTable class="bootstrap" [columnMode]="'force'" [headerHeight]="50" [rows]="rows" [footerHeight]="50"
+                                <ngx-datatable #myTable class="bootstrap" [columnMode]="'force'" [headerHeight]="50" [rows]="rows4" [footerHeight]="50"
                                     [sorts]="[{prop: 'code', dir: 'asce'}]" [rowHeight]="'auto'" [limit]="6">
                 
                 
                 
                                     <ngx-datatable-column name="S.No.">
                                         <ng-template let-row="row" ngx-datatable-cell-template>
+                                            {{ row.id }}
                                         </ng-template>
                                     </ngx-datatable-column>
                 
@@ -956,11 +969,15 @@
                 
                                             <div class="ibox-tools text-center">
                 
-                                                <button type="button" class="btn editIconBack" (click)="EditDeliveryTimeline('edit' , row)">
+                                                <button type="button" class="btn editIconBack" 
+                                                (click)="EditShipmentTimeline('edit' , row)"
+                                                >
                                                     <i class="far fa-edit "></i>
                                                 </button>
                 
-                                                <button type="button" class="btn deleteIconBack">
+                                                <button type="button" class="btn deleteIconBack"
+                                                (click)="deleteShipmentTimeline(row)"
+                                                >
                                                     <i class="far fa-trash-alt"></i>
                                                 </button>
                 
@@ -1345,34 +1362,27 @@
                                     </div>
                                 </div>
                 
-                                <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows"
+                                <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows3"
                                     [sorts]="[{ prop: 'id,name', dir: 'asce' }]" [columnMode]="'force'" [headerHeight]="50"
                                     [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
                 
-                                    <ngx-datatable-column name="Title" prop="description" [width]="80">
+                                    <ngx-datatable-column name="User" prop="description" [width]="80">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                            {{ row.title}}
+                                            {{ row.createdByName }}
                                         </ng-template>
                                     </ngx-datatable-column>
-                                    <ngx-datatable-column name="Age" prop="itemQuantity" [width]="80">
+                                    <ngx-datatable-column name="Time" prop="itemQuantity" [width]="80">
+                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                            {{ row.createdDateTime }}
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column name="Note Details " prop="weight" [width]="80">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                                             {{ row.description }}
                                         </ng-template>
                                     </ngx-datatable-column>
-                                    <ngx-datatable-column name="By " prop="weight" [width]="80">
-                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                            {{ row.color }}
-                                        </ng-template>
-                                    </ngx-datatable-column>
-                                    <ngx-datatable-column name="ON" prop="weight" [width]="80">
-                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                            {{ row.color }}
-                                        </ng-template>
-                                    </ngx-datatable-column>
                                     <ngx-datatable-column name="Action" [width]="80">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                
-                
                                             <div class="ibox-tools text-center">
                                                 <div class="ibox-tools text-center">
                                                     <button type="button" class="btn editIconBack" data-toggle="tooltip"

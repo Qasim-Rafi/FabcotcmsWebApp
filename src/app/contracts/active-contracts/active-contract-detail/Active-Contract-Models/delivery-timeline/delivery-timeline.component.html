@@ -92,11 +92,15 @@
     <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
       Close
     </button>
-    <button class="btn button-save" type="submit"  *ngIf = "statusCheck == 'add'"
+    <button *ngIf="statusCheck == 'add'" class="btn button-save" type="submit"
     (click)="addshipment()">
       Save & Close
     </button>
-    <button class="btn button-blue" type="submit">
+    <button *ngIf="statusCheck == 'add'" class="btn button-blue" type="submit">
         Save & Next
       </button>
+      <button *ngIf="statusCheck == 'edit'" class="btn button-save" type="submit"
+      (click)="Updateshipment()">
+      Update Item
+    </button>
   </div>

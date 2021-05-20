@@ -6,17 +6,17 @@
     <h5 class="modal-title">
       <i class="fas fa-edit"></i>
       Edit Contract<br>
-      <div class="font">Contract No. 16</div>
+      <div class="font">Contract No. {{data.autoContractNumber}}</div>
     </h5>
   </div>
 </div>
 
-<div class="modal-body BG pt-2r">
+<div class="modal-body BG pt-4">
   <form #CityForm="ngForm" novalidate>
 
     <div class="form-group row">
       <label for="sellercomm" class="col-sm-3 col-form-label text_Navy">Comm Seller side</label>
-      <div class=" col-md-7">
+      <div class=" col-md-8">
         <div class="row">
           <div class="col fieldmrgbtm">
             <input class="form-control" placeholder="Comm %" name="sellerSideCommission" type="number" min="0"
@@ -48,7 +48,7 @@
     <div class="form-group row">
       <label for="addinfo" class="col-sm-3 col-form-label">Additional Info</label>
       
-          <div class="col-md-7 fieldmrgbtm">
+          <div class="col-md-8 fieldmrgbtm">
             <input class="form-control" id="addinfo" placeholder="Something about FabCot Commission"
               name="sellerAdditionalInfo" [(ngModel)]=" commission.sellerAdditionalInfo" />
           </div>
@@ -57,7 +57,7 @@
 
     <div class="form-group row">
       <label for="buyercomm" class="col-sm-3 col-form-label text_Navy">Comm Buyer side</label>
-      <div class=" col-md-7">
+      <div class=" col-md-8">
         <div class="row">
           <div class="col fieldmrgbtm">
             <input class="form-control" placeholder="Comm %" name="buyerSideCommission" type="number" min="0"
@@ -87,7 +87,7 @@
     <div class="form-group row">
       <label for="buyerinfo" class="col-sm-3 col-form-label">Additional Info</label>
     
-      <div class="col-md-7 fieldmrgbtm">
+      <div class="col-md-8 fieldmrgbtm">
         <input class="form-control" id="buyerinfo" placeholder="Something about buyer side Commission"
           name="buyerAdditionalInfo" [(ngModel)]=" commission.buyerAdditionalInfo" />
       </div>
@@ -97,7 +97,7 @@
 
     <div class="form-group row" *ngFor="let a of data; let i = index;">
       <label for="agentcomm" class="col-sm-3 col-form-label">Agent Comm</label>
-      <div class=" col-md-7">
+      <div class=" col-md-8">
         <div class="row">
           <div class=" col-md-6">
             <ng-select placeholder="Select an Agent" [(ngModel)]="a.agentId" name="agentId_{{i}}">

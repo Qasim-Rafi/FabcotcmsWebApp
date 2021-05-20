@@ -28,7 +28,7 @@
 
 
 
-<div class="modal-body BG pt-2r" >
+<div class="modal-body BG pt-3" >
 
     <!-- <div class="row justify-content-end">
         <div class="col-md-11">
@@ -43,9 +43,9 @@
             
                 <div class="form-row text-center bgLgray" >
             
-                    <div class="form-group d-inline modalBorder">
+                    <!-- <div class="form-group d-inline modalBorder">
                         <label for="name" class="col-form-label">S No</label>
-                    </div>
+                    </div> -->
 
                     <div class="col">
                         <div class="form-row">
@@ -76,9 +76,9 @@
 
                 <div class="form-row" *ngFor="let value of data; let i = index;">
                 
-                    <div class=" modalBorder d-inline ">
+                    <!-- <div class=" modalBorder d-inline ">
                         <div class="h6 pdngLR">{{i+1}}</div>
-                    </div>
+                    </div> -->
                 
                     <div class="col">
                 
@@ -92,7 +92,7 @@
                 
                             <div class="form-group col-4 modalBorder">
                                 <div class="row">
-                                    <div class="col-lg-3">
+                                    <div class="col-lg-3 pr-0">
                                         <input type="number" min="0" class="form-control" placeholder="%age"
                                             name="compositionPercentage_{{i}}" [(ngModel)]=value.compositionPercentage />
                                     </div>
@@ -102,7 +102,7 @@
                                             <ng-option *ngFor="let i of fabricType" [value]="i.id">{{ i.type }}</ng-option>
                                         </ng-select>
                                     </div>
-                                    <div class="col-lg-4 mrg-tsm">
+                                    <div class="col-lg-4 mrg-tsm pl-0">
                                         <input type="text" class="form-control" placeholder="Additional Info"
                                             name="compositionAdditionalInfo_{{i}}" [(ngModel)]=value.compositionAdditionalInfo />
                                     </div>
@@ -116,7 +116,7 @@
                 
                             <div class="form-group col-3 modalBorder">
                                 <div class="row">
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-4 pr-0">
                                         <input type="number" min="0" class="form-control" placeholder="Qty" name="itemQuantity_{{i}}"
                                             #itemQuantity="ngModel" [(ngModel)]=value.itemQuantity
                                             [ngClass]="{ 'error': EnquiryItemForm.submitted && itemQuantity.invalid }" required />
@@ -166,27 +166,12 @@
                 </div>
                
          <div class="row">
-             <div class="col-md-12 mb-3">
+             <div class="col-md-12">
             <button *ngIf="statusCheck != 'EditEnquiryItem'" class="btn btn-primary float-right mt-3" (click)="addMore()" [disabled]="EnquiryItemForm.invalid">Add More</button>
         </div>
          </div>
     
-            <div class="modal-footer NotBG">
-                <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
-                    Close
-                </button>
-                <!-- <button *ngIf="statusCheck == 'AddEnquiryItem'"  
-                            class="btn button-save" type="submit" (click) = "addEnquiryItem()" >
-                                Save & Next
-                            </button> -->
-                <button *ngIf="statusCheck == 'AddEnquiryItem'" class="btn button-save" type="submit" (click) = "addEnquiryItem()">
-                    Save & Exit
-                </button>
-                <button *ngIf="statusCheck == 'EditEnquiryItem'" class="btn button-save" type="submit" (click)="updateEnquiry()">
-                    Update Item
-                </button>
             
-            </div>
 
             </form>
 
@@ -297,6 +282,23 @@
 
 
     </form> -->
+
+</div>
+
+<div class="modal-footer NotBG">
+    <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
+        Close
+    </button>
+    <!-- <button *ngIf="statusCheck == 'AddEnquiryItem'"  
+                class="btn button-save" type="submit" (click) = "addEnquiryItem()" >
+                    Save & Next
+                </button> -->
+    <button *ngIf="statusCheck == 'AddEnquiryItem'" class="btn button-save" type="submit" (click) = "addEnquiryItem()">
+        Save & Exit
+    </button>
+    <button *ngIf="statusCheck == 'EditEnquiryItem'" class="btn button-save" type="submit" (click)="updateEnquiry()">
+        Update Item
+    </button>
 
 </div>
 

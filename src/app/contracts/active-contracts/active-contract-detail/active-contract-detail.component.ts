@@ -34,8 +34,17 @@ import { SALEINVOICEComponent } from './Active-Contract-Models/sale-invoice/sale
 
 export class ActiveContractDetailComponent implements OnInit {
   dateformater: Dateformater = new Dateformater();
+ 
   rows: any = [];
+  rows1: any = [];
+  rows2: any = [];
+  rows3: any = [];
+  rows4: any = [];
   data:any = {};
+  items:any = {};
+  empData:any = {};
+  shipment:any = {};
+  contractNote:any = {};
   columns: any = [];
   queryParems: any = {};
   contractId: any = {};
@@ -55,12 +64,10 @@ export class ActiveContractDetailComponent implements OnInit {
   shipmentFilter: any = [];
   noteFilter: any = [];
   TnaData: any = {};
-  invoiceData:any =[];
   shipmentData: any = {};
-
-  ItemUrl = '/api/Contracts/GetAllContractItem';
-  noteUrl='/api/Contracts/GetAllContractNote';
-  shipmentUrl='/api/Contracts/GetAllContractShipmentSchedule/' + this.contractId;
+  invoiceData:any =[];
+ 
+  shipmentUrl='/api/Contracts/GetAllContractShipmentSchedule/{contractId}';
   constructor(
     private modalService: NgbModal,
     private route: ActivatedRoute,
@@ -72,18 +79,7 @@ export class ActiveContractDetailComponent implements OnInit {
   ngOnInit(): void {
     this.queryParems = this.route.snapshot.queryParams;
     this.contractId = this.queryParems.id;
-          this.service.fetch((data) => {
-        this.ItemFilter = [...data];
-        this.rows = data;
-        this.ItemCount = this.rows.length;
-      }, this.ItemUrl);
-    {
-      this.service.fetch((data) => {
-        this.noteFilter = [...data];
-        this.rows = data;
-        this.contractCount = this.rows.length;
-      }, this.noteUrl);
-    }
+   
 
     this.getContractData();
     this.getContractPartiesData();
@@ -93,14 +89,115 @@ export class ActiveContractDetailComponent implements OnInit {
     this.getContractLOC();
     this.getContractRemarkData();
     this.getContractCommisionData();
-this.getSaleInvoice();
-this.getShipmentData();
-    this.fetch((data) => {
-      this.rows = data;
+    this.getContractTnA();
+    this.getSaleInvoice();
+
+
+    this.fetch((empData) => {
+      this.rows1 = empData;
       // this.listCount= this.rows.length;
     });
-    this.getContractTnA()
+
+
+    this.getAllItems((itemsData) => {
+      this.rows2 = itemsData;
+      // this.listCount= this.rows.length;
+    });
+
+    this.getAllNotes((NotesData) => {
+      this.rows3 = NotesData;
+      // this.listCount= this.rows.length;
+    });
+    this.getAllShipmentDates((shipmentData) => {
+      this.rows4 = shipmentData;
+    });
+
   }
+
+
+
+
+
+  getAllItems(cb) {
+
+    this.http
+      .get(`${environment.apiUrl}/api/Contracts/GetAllContractItem/`+ this.contractId)
+      .subscribe(res => {
+        this.response = res;
+        
+
+        if (this.response.success == true) {
+          this.items = this.response.data
+          this.ItemFilter = [this.items]; 
+          cb(this.items);
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+        // this.spinner.hide();
+      }, err => {
+        if (err.status == 400) {
+          this.toastr.error(err.error.message, 'Message.');;
+        }
+        //  this.spinner.hide();
+      });
+  }
+
+
+
+  getAllNotes(cb) {
+
+    this.http
+      .get(`${environment.apiUrl}/api/Contracts/GetAllContractNote/`+ this.contractId)
+      .subscribe(res => {
+        this.response = res;
+        
+
+        if (this.response.success == true) {
+          this.contractNote = this.response.data
+          this.noteFilter = [this.contractNote]; 
+          cb(this.contractNote);
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+        // this.spinner.hide();
+      }, err => {
+        if (err.status == 400) {
+          this.toastr.error(err.error.message, 'Message.');;
+        }
+        //  this.spinner.hide();
+      });
+  }
+
+
+
+  getAllShipmentDates(cb) {
+
+    this.http
+      .get(`${environment.apiUrl}/api/Contracts/GetAllContractShipmentSchedule/`+ this.contractId)
+      .subscribe(res => {
+        this.response = res;
+        
+
+        if (this.response.success == true) {
+          this.shipment = this.response.data
+          this.shipmentFilter = [this.shipment]; 
+          cb(this.shipment);
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+        // this.spinner.hide();
+      }, err => {
+        if (err.status == 400) {
+          this.toastr.error(err.error.message, 'Message.');;
+        }
+        //  this.spinner.hide();
+      });
+  }
+
+
 
   getSaleInvoice() {
     this.http.get(`${environment.apiUrl}/api/Contracts/GetAllContractSaleInvoice`)
@@ -123,27 +220,6 @@ this.getShipmentData();
         });
   }
 
-  
-  getShipmentData() {
-    this.http.get(`${environment.apiUrl}/api/Contracts/GetAllContractShipmentSchedule/` + this.contractId)
-      .subscribe(
-        res => {
-          this.response = res;
-          if (this.response.success == true) {
-            this.shipmentData = this.response.data;
-            this.rows = this.shipmentData;
-  
-          }
-          else {
-            this.toastr.error(this.response.message, 'Message.');
-          }
-  
-        }, err => {
-          if (err.status == 400) {
-            this.toastr.error(this.response.message, 'Message.');
-          }
-        });
-  }
   
 
   getContractData() {
@@ -328,39 +404,6 @@ getContractPaymentData() {
 
 
 
-
-DeliveryTimeline(check) {
-  const modalRef = this.modalService.open(DeliveryTimelineComponent, { centered: true });
-  modalRef.componentInstance.contractId = this.contractId;
-    modalRef.componentInstance.statusCheck = check;
-
-  modalRef.result.then((data) => {
-    // on close
-    if (data == true) {
-
-    }
-  }, (reason) => {
-    // on dismiss
-  });
-}
-EditDeliveryTimeline(check , row) {
-  const modalRef = this.modalService.open(DeliveryTimelineComponent, { centered: true });
-  modalRef.componentInstance.contractId = this.contractId;
-  modalRef.componentInstance.id = row.id;
-
-    modalRef.componentInstance.statusCheck = check;
-
-  modalRef.result.then((data) => {
-    // on close
-    if (data == true) {
-
-    }
-  }, (reason) => {
-    // on dismiss
-  });
-}
-
-
 CommissionKickback() {
   const modalRef = this.modalService.open(CommisionKickbackComponent, { centered: true });
   modalRef.componentInstance.contractId = this.contractId;
@@ -415,6 +458,10 @@ EmployeeCommission(status) {
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
+      this.fetch((empData) => {
+        this.rows1 = empData;
+        // this.listCount= this.rows.length;
+      });
 
     }
   }, (reason) => {
@@ -433,8 +480,8 @@ editEmployeeCommission(status , row) {
     // on close
     if (data == true) {
 
-      this.fetch((data) => {
-        this.rows = data;
+      this.fetch((empData) => {
+        this.rows1 = empData;
         // this.listCount= this.rows.length;
       });
     }
@@ -452,8 +499,8 @@ fetch(cb) {
    
   if(this.response.success==true)
   {
-  this.data =this.response.data;
-  cb(this.data);
+  this.empData =this.response.data;
+  cb(this.empData);
   }
   else{
     this.toastr.error(this.response.message, 'Message.');
@@ -492,9 +539,9 @@ deleteCommission(row) {
               this.toastr.error(this.response.message, 'Message.');
               // this.getAllEnquiryItems();
               // this.getEnquiryData(this.objEnquiry);
-              this.fetch((data) => {
-                this.rows = data;
-        
+              this.fetch((empData) => {
+                this.rows1 = empData;
+                // this.listCount= this.rows.length;
               });
 
             }
@@ -634,10 +681,13 @@ saleInvoice() {
 Note() {
   const modalRef = this.modalService.open(EnquiryNotesComponent, { centered: true });
   modalRef.componentInstance.contractId = this.contractId;
-
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
+      this.getAllNotes((NotesData) => {
+        this.rows3 = NotesData;
+        // this.listCount= this.rows.length;
+      });
 
     }
   }, (reason) => {
@@ -649,15 +699,14 @@ ContractNotes(check, name) {
   const modalRef = this.modalService.open(ContractNoteComponent, { centered: true });
   modalRef.componentInstance.statusCheck = check;
   modalRef.componentInstance.FormName = name;
+  modalRef.componentInstance.contractId = this.contractId;
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
-      this.service.fetch((data) => {
-        this.rows = data;
-        this.contractCount = this.rows.length;
-      }, this.noteUrl);
-
-
+      this.getAllNotes((NotesData) => {
+        this.rows3 = NotesData;
+        // this.listCount= this.rows.length;
+      });
     }
   }, (reason) => {
     // on dismiss
@@ -740,13 +789,16 @@ addItems(check, name) {
   const modalRef = this.modalService.open(ItemsComponent, { centered: true });
   modalRef.componentInstance.statusCheck = check;
   modalRef.componentInstance.FormName = name;
+  modalRef.componentInstance.contractId = this.contractId ;
+
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
-      this.service.fetch((data) => {
-        this.rows = data;
-        this.ItemCount = this.rows.length;
-      }, this.ItemUrl);
+      this.getAllItems((itemsData) => {
+        this.rows2 = itemsData;
+        // this.listCount= this.rows.length;
+      });
+  
 
 
     }
@@ -769,15 +821,16 @@ deleteContractNote(id) {
   }).then((result) => {
     if (result.isConfirmed) {
 
-      this.http.delete(`${environment.apiUrl}/api/Contracts/DeleteContractNote` + id.id)
+      this.http.delete(`${environment.apiUrl}/api/Contracts/DeleteContractNote/` + id.id)
         .subscribe(
           res => {
             this.response = res;
             if (this.response.success == true) {
               this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
-              this.service.fetch((data) => {
-                this.rows = data;
-              }, this.noteUrl);
+              this.getAllNotes((NotesData) => {
+                this.rows3 = NotesData;
+                // this.listCount= this.rows.length;
+              });
 
             }
             else {
@@ -797,13 +850,15 @@ editContractNote(row, check, name) {
   modalRef.componentInstance.NoteId = row.id; //just for edit.. to access the needed row
   modalRef.componentInstance.statusCheck = check;
   modalRef.componentInstance.FormName = name;
+  modalRef.componentInstance.contractId =this.contractId;
 
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
-      this.service.fetch((data) => {
-        this.rows = data;
-      }, this.noteUrl);
+      this.getAllNotes((NotesData) => {
+        this.rows3 = NotesData;
+        // this.listCount= this.rows.length;
+      });
     }
   }, (reason) => {
     // on dismiss
@@ -830,9 +885,10 @@ deleteItem(id) {
             this.response = res;
             if (this.response.success == true) {
               this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
-              this.service.fetch((data) => {
-                this.rows = data;
-              }, this.ItemUrl);
+              this.getAllItems((itemsData) => {
+                this.rows2 = itemsData;
+                // this.listCount= this.rows.length;
+              });
 
             }
             else {
@@ -852,16 +908,99 @@ editItem(row, check, name) {
   modalRef.componentInstance.itemId = row.id; //just for edit.. to access the needed row
   modalRef.componentInstance.statusCheck = check;
   modalRef.componentInstance.FormName = name;
+  modalRef.componentInstance.contractId = this.contractId ;
 
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
-      this.service.fetch((data) => {
-        this.rows = data;
-      }, this.ItemUrl);
+      this.getAllItems((itemsData) => {
+        this.rows2 = itemsData;
+        // this.listCount= this.rows.length;
+      });
+  
     }
   }, (reason) => {
     // on dismiss
   });
 }
+addShipmentTimeline(check) {
+  const modalRef = this.modalService.open(DeliveryTimelineComponent, { centered: true });
+  modalRef.componentInstance.statusCheck = check;
+  modalRef.componentInstance.contractId = this.contractId ;
+
+  modalRef.result.then((data) => {
+    // on close
+    if (data == true) {
+      this.getAllShipmentDates((shipmentData) => {
+        this.rows4 = shipmentData;
+        // this.listCount= this.rows.length;
+      });
+  
+
+
+    }
+  }, (reason) => {
+    // on dismiss
+  });
+}
+EditShipmentTimeline(check , row) {
+  const modalRef = this.modalService.open(DeliveryTimelineComponent, { centered: true });
+  modalRef.componentInstance.shipmentId = row.id; //just for edit.. to access the needed row
+  modalRef.componentInstance.statusCheck = check;
+  modalRef.componentInstance.contractId =this.contractId;
+
+  modalRef.result.then((data) => {
+    // on close
+    if (data == true) {
+      this.getAllShipmentDates((shipmentData) => {
+        this.rows4 = shipmentData;
+        // this.listCount= this.rows.length;
+      });
+    }
+  }, (reason) => {
+    // on dismiss
+  });
+}
+deleteShipmentTimeline(id) {
+  Swal.fire({
+    title: GlobalConstants.deleteTitle, //'Are you sure?',
+    text: GlobalConstants.deleteMessage + ' ' + '"' + id.shipmentNo + '"',
+    icon: 'error',
+    showCancelButton: true,
+    confirmButtonColor: '#ed5565',
+    cancelButtonColor: '#dae0e5',
+    cancelButtonText: 'No',
+    confirmButtonText: 'Yes',
+    reverseButtons: true,
+    position: 'top',
+  }).then((result) => {
+    if (result.isConfirmed) {
+
+      this.http.delete(`${environment.apiUrl}/api/Contracts/DeleteContractShipmentSchedule/` + id.id)
+        .subscribe(
+          res => {
+            this.response = res;
+            if (this.response.success == true) {
+              this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
+              this.getAllShipmentDates((shipmentData) => {
+                this.rows4 = shipmentData;
+                // this.listCount= this.rows.length;
+              });
+
+            }
+            else {
+              this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
+            }
+
+          }, err => {
+            if (err.status == 400) {
+              this.toastr.error(this.response.message, 'Message.');
+            }
+          });
+    }
+  })
+}
+
+
+
 }

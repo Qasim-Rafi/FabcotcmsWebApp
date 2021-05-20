@@ -70,8 +70,6 @@
       class="bootstrap datatable-row-wrapper" [columns]="columns" [rows]="rows"
           [columnMode]="'flex'" [headerHeight]="50" [footerHeight]="50" 
           [rowHeight]="'auto'" [limit]="6"
-          
-            (select)="onSelect($event)"
             (activate)="onActivate($event)"
           >
           <ngx-datatable-column prop="selected" name="Select" [width]="20"   [flexGrow]="0.03">
