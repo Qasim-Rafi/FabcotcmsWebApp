@@ -7,6 +7,7 @@ import { EditCurrencyComponent } from './edit-currency/edit-currency.component';
 import { AddCurrencyComponent } from './add-currency/add-currency.component';
 import Swal from 'sweetalert2/dist/sweetalert2.js'; 
 import { GlobalConstants } from 'src/app/Common/global-constants';
+import { ClipboardService } from 'ngx-clipboard';
 
 @Component({
   selector: 'app-currency',
@@ -18,11 +19,13 @@ export class CurrencyComponent implements OnInit {
   listCount: number;
   response:any;
   rows:any=[];
+  copyData:any=[];
   columns:any=[];
   data:any={};
   myDate=Date.now();
 
   constructor(private http:HttpClient,
+    private _clipboardService: ClipboardService,
     private toastr: ToastrService,
     private modalService: NgbModal,) { }
 
@@ -155,7 +158,36 @@ export class CurrencyComponent implements OnInit {
        });
   } 
   
-
+  copyCurrencyList() {
+    this.copyData.push('S. No.'.padEnd(10) + 'Valid Form'.padEnd(10) +
+    'Currency'.padEnd(10) +'Rate'.padEnd(10)+ 'Details'.padEnd(10)+ 'Updated By'.padEnd(10) + 'Updated Onn \n');
+  
+  for (let i = 0; i < this.rows.length; i++) {
+    let tempData =  this.rows[i].id
+      +''.padEnd(5)
+    + this.rows[i].validFrom
+    +''.padEnd(5)
+    + this.rows[i].currencyCode
+    +''.padEnd(5)
+    + this.rows[i].rate
+    +''.padEnd(5)
+    + this.rows[i].details
+    +''.padEnd(5)
+    + this.rows[i].createdByName
+    +''.padEnd(5)
+    + this.rows[i].updatedDateTime
+    +'\n';
+    this.copyData.push(tempData);
+  }
+  this._clipboardService.copy(this.copyData)
+  
+  Swal.fire({
+    title: GlobalConstants.copySuccess,
+    footer: 'Copied' + '\n' + this.listCount + '\n' + 'row/s to clipboard',
+    showConfirmButton: false,
+    timer: 2000,
+  })
+  }
 
 }
 
