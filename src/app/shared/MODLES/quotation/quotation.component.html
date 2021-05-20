@@ -14,7 +14,7 @@
     </h5>
 </div>
 
-<div class="modal-body BG pt-2r">
+<div class="modal-body BG">
     <form #QuotationForm="ngForm" novalidate>
 
         <div class="form-group row">
@@ -83,21 +83,27 @@
 
         <div class="form-group row">
             <label for="remarks" class="col-sm-3 col-form-label ">Notes</label>
-            <textarea class="col-sm-8 form-control" rows="3" placeholder="Quote Additional Details here..."
+            
+            <div class="col-sm-8">
+            <textarea class="form-control" rows="3" placeholder="Quote Additional Details here..."
                 name="remarks" [(ngModel)]="data.remarks"></textarea>
+            </div>
         </div>
-        <div class="modal-footer NotBG">
-            <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
-                Close
-            </button>
-            <button class="btn button-save" type="submit" 
-                *ngIf="statusCheck == 'addQuotation'" (click)="addQuotation()">
-                Save Quote
-            </button>
-            <button class="btn button-save" type="submit" (click)="UpdateQuotation()"
-                *ngIf="statusCheck == 'editQuotation'">
-                Update Quote
-            </button>
-        </div>
+        
     </form>
+</div>
+
+
+<div class="modal-footer NotBG">
+    <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
+        Close
+    </button>
+    <button class="btn button-save" type="submit" 
+        *ngIf="statusCheck == 'addQuotation'" (click)="addQuotation()">
+        Save Quote
+    </button>
+    <button class="btn button-save" type="submit" (click)="UpdateQuotation()"
+        *ngIf="statusCheck == 'editQuotation'">
+        Update Quote
+    </button>
 </div>
