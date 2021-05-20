@@ -21,51 +21,60 @@ export class GenerateBillsComponent implements OnInit {
     private toastr: ToastrService,
     private modalService: NgbModal
     ) { }
-  data: any = {};
-  data2: any = {};
 
-  rows: any = [];
-  selected = [];
-  checkboxData: any = [];
-  SelectionType = SelectionType;
 
-  columns: any = [];
-  response: any;
 
-url = '/api/BillingPayments/GetAllContractForBillGeneration'
-  ngOnInit(): void {
-    this.service.fetch((data)=>{
-         this.rows = data;
-         console.log( this.rows)
-    } , this.url)
-    
-  }
+      contractIds: any = [];
+      data: any = {};
+      rows: any = [];
+      checkboxData: any = [];
+      SelectionType = SelectionType;
 
-  onSelect({ selected }) {
-    console.log('Select Event', selected);
-  }
-  // onSelect(row) {
-  //   console.log(row)
-  // }
-
-  onActivate(event) {
-    console.log('Activated Event', event );
-      if (event.type == 'click' && event.type != 'dblclick' && event.type != 'mouseenter'){
-        this.checkboxData.push({['id']:event.row.id , ['buyerId']:event.row.buyerId ,
-         ['sellerId']:event.row.sellerId , ['taxAmount']:event.row.id });
-        console.log(this.checkboxData)
-      }
+      columns: any = [];
+      response: any;
+      url = '/api/BillingPayments/GetAllContractForBillGeneration'
+      
    
-}
+    
+      ngOnInit(): void {
+        this.service.fetch((data)=>{
+            this.rows = data;
+            console.log( this.rows)
+        } , this.url)
+        
+      }
+
+      onActivate(event) {
+        // console.log('Activated Event', event );
+          if (event.type === 'click' ){
+            this.checkboxData.push({['id']:event.row.id , 
+                                    // ['buyerId']:event.row.buyerId ,
+                                    // ['sellerId']:event.row.sellerId , 
+                                    // ['taxAmount']:event.row.id
+                                   });
+                                   
+            console.log(this.checkboxData)
+          }
+          
+          for(let i=0; i<this.checkboxData.length; i++ )
+        {
+            this.contractIds[i] = this.checkboxData[i].id;
+            
+        }
+
+          
+      
+    }
 
   generateBill() {
     // console.log("checkbox data in " , this.checkboxData)
+  
     let varr = {
-      "contractId": this.checkboxData,
-      "billForBuyerId": this.checkboxData[0],
-      "billForSelerId": this.checkboxData.sellerId,
-      "taxAmount": this.checkboxData.taxAmount,
-      "dueDate": "2021-05-27"
+      "contractIds": this.contractIds,
+      // "billForBuyerId": this.data,
+      // "billForSelerId": this.checkboxData.sellerId,
+      // "taxAmount": this.checkboxData.taxAmount,
+      // "dueDate": "2021-05-27"
     }
     this.http.
       post(`${environment.apiUrl}/api/BillingPayments/GenerateContractBill`, varr)
