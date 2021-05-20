@@ -901,7 +901,7 @@
                                         </h1>
                                     </div>
                                     <div class="col-sm-12 col-md-6 col-lg-4 text-right">
-                                        <button class="btn btn-outline-primary" (click)="DeliveryTimeline('add')">
+                                        <button class="btn btn-outline-primary" (click)="addShipmentTimeline('add')">
                                             <i class="fas fa-plus"></i>
                                             Add Deliveries </button>
                                     </div>
@@ -918,13 +918,14 @@
                                     </div>
                                 </div>
                 
-                                <ngx-datatable #myTable class="bootstrap" [columnMode]="'force'" [headerHeight]="50" [rows]="rows" [footerHeight]="50"
+                                <ngx-datatable #myTable class="bootstrap" [columnMode]="'force'" [headerHeight]="50" [rows]="rows4" [footerHeight]="50"
                                     [sorts]="[{prop: 'code', dir: 'asce'}]" [rowHeight]="'auto'" [limit]="6">
                 
                 
                 
                                     <ngx-datatable-column name="S.No.">
                                         <ng-template let-row="row" ngx-datatable-cell-template>
+                                            {{ row.id }}
                                         </ng-template>
                                     </ngx-datatable-column>
                 
@@ -968,11 +969,15 @@
                 
                                             <div class="ibox-tools text-center">
                 
-                                                <button type="button" class="btn editIconBack" (click)="EditDeliveryTimeline('edit' , row)">
+                                                <button type="button" class="btn editIconBack" 
+                                                (click)="EditShipmentTimeline('edit' , row)"
+                                                >
                                                     <i class="far fa-edit "></i>
                                                 </button>
                 
-                                                <button type="button" class="btn deleteIconBack">
+                                                <button type="button" class="btn deleteIconBack"
+                                                (click)="deleteShipmentTimeline(row)"
+                                                >
                                                     <i class="far fa-trash-alt"></i>
                                                 </button>
                 
