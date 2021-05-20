@@ -131,10 +131,10 @@
     
     <div class="panel-body">
       <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'"
-        [headerHeight]="50" [footerHeight]="50" [sorts]="[{prop: 'Inquiry No.', dir: 'asce'}]" [rowHeight]="'auto'"
+        [headerHeight]="50" [footerHeight]="50" [sorts]="[{prop: 'inquiry', dir: 'asce'}]" [rowHeight]="'auto'"
         [limit]="6">
 
-        <ngx-datatable-column name="Enquiry No." [width]="5" prop="Inquiry No.">
+        <ngx-datatable-column name="Enquiry No." [width]="5" prop="inquiry">
           <ng-template let-row="row" ngx-datatable-cell-template>
             {{row.autoEnquiryNumber}}
           </ng-template>
@@ -144,7 +144,7 @@
             {{row.enquiryDate}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Customer" [width]="80" prop="Customer">
+        <ngx-datatable-column name="Customer" [width]="80" prop="name">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.buyerName}}
           </ng-template>

@@ -52,6 +52,7 @@ export class ActiveEnquiryComponent implements OnInit {
 
     // this.editEnquiry(this.enquiryId);
     this.fetch((data) => {
+      this.temp = [...data]; 
       this.rows = data;
     });
 
@@ -79,8 +80,8 @@ export class ActiveEnquiryComponent implements OnInit {
         this.listCount = this.response.data.enquiryList.length;
 
         if (this.response.success == true) {
-          this.data = this.response.data.enquiryList;
           this.temp = [this.data]; 
+          this.data = this.response.data.enquiryList;
           cb(this.data);
         }
         else {
