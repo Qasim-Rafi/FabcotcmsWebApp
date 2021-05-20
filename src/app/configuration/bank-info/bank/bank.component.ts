@@ -10,6 +10,7 @@ import { GlobalConstants } from 'src/app/Common/global-constants';
 import { ServiceService } from 'src/app/shared/service.service';
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
+import { ClipboardService } from 'ngx-clipboard';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -23,6 +24,7 @@ export class BankComponent implements OnInit {
   bankCount: number;
   response: any;
   rows: any = [];
+  copyData: any = [];
   columns: any = [];
   data: any = {};
   myDate = Date.now();
@@ -31,6 +33,7 @@ export class BankComponent implements OnInit {
  
   constructor(private http: HttpClient,
     private toastr: ToastrService,
+    private _clipboardService: ClipboardService,
     private service:ServiceService,
     private modalService: NgbModal,) { }
 
@@ -258,6 +261,36 @@ printBankList() {
   pdfMake.createPdf(docDefinition).print();
 }
 
+copyBankList() {
+  this.copyData.push('S. No.'.padEnd(10) + 'Bank Name'.padEnd(10) +
+  'Branch Code'.padEnd(10)+'Branch Name'.padEnd(10)+ 'Location'.padEnd(10)+ 'Address'.padEnd(10) + 'Details \n');
+
+for (let i = 0; i < this.rows.length; i++) {
+  let tempData =  this.rows[i].id
+    +''.padEnd(5)
+  + this.rows[i].name
+  +''.padEnd(5)
+  + this.rows[i].branchCode
+  +''.padEnd(5)
+  + this.rows[i].branchName
+  +''.padEnd(5)
+  + this.rows[i].location
+  +''.padEnd(5)
+  + this.rows[i].address
+  +''.padEnd(5)
+  + this.rows[i].details
+  +'\n';
+  this.copyData.push(tempData);
+}
+this._clipboardService.copy(this.copyData)
+
+Swal.fire({
+  title: GlobalConstants.copySuccess,
+  footer: 'Copied' + '\n' + this.bankCount + '\n' + 'rows to clipboard',
+  showConfirmButton: false,
+  timer: 2000,
+})
+}
 
 
 }
