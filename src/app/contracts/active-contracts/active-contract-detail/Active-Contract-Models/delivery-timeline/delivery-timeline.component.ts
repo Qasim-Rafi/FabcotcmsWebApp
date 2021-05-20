@@ -22,10 +22,11 @@ export class DeliveryTimelineComponent implements OnInit {
   mode: any = [];
   shipmentMode: any=[];
   queryParems: any = {};
-  @Input() shipmentId;
+  @Input() id;
   dateformater: Dateformater = new Dateformater();
   @ViewChild(NgForm) deliveryForm;
   @Input() statusCheck;
+  @Input() contractId;
   constructor(
     private http: HttpClient,
     private toastr: ToastrService,
@@ -39,18 +40,19 @@ export class DeliveryTimelineComponent implements OnInit {
     // let latest_date =this.datepipe.transform(olddate, 'yyyy-MM-dd');
     // this.supplierDateField =this.dateformater.fromModel(latest_date);
     // this.buyerDateField =this.dateformater.fromModel(latest_date);
-    this.GetMode();
+    // this.GetMode()
+    this.GetShipmentModeDropdown()
     this.statusCheck = this.statusCheck;
-    if (this.statusCheck == 'shipmentEdit') {
-      this.editshipment();
+    if (this.statusCheck == 'edit') {
+      this.getshipment();
     }
   }
 
   get activeModal() {
     return this._NgbActiveModal;
   }
-  editshipment() {
-    this.http.get(`${environment.apiUrl}/api/Contracts/GetContractShipmentScheduleById` + this.shipmentId)
+  getshipment() {
+    this.http.get(`${environment.apiUrl}/api/Contracts/GetContractShipmentScheduleById` + this.id)
       .subscribe(
         res => {
           this.response = res;
@@ -68,8 +70,20 @@ export class DeliveryTimelineComponent implements OnInit {
           }
         });
   }
-  GetMode() {
-    this.service.getMode().subscribe(res => {
+  // GetMode() {
+  //   this.service.getMode().subscribe(res => {
+  //     this.response = res;
+  //     if (this.response.success == true) {
+  //       this.mode = this.response.data;
+  //     }
+  //     else {
+  //       this.toastr.error(this.response.message, 'Message.');
+  //     }
+  //   })
+  // }
+  GetShipmentModeDropdown() {
+    this.http.get(`${environment.apiUrl}/api/Lookups/ShipmentModes`).
+    subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
         this.mode = this.response.data;
@@ -80,15 +94,15 @@ export class DeliveryTimelineComponent implements OnInit {
     })
   }
   addshipment() {
-    // this.data.supplierDate = this.dateformater.toModel(this.supplierDateField);
-    // this.data.buyerDate = this.dateformater.toModel(this.buyerDateField);
+    this.data.supplierDate = this.dateformater.toModel(this.data.supplierDate);
+    this.data.buyerDate = this.dateformater.toModel(this.data.buyerDate);
 
     let varr = {
-      "contractId":this.data.contractId,
+      "contractId":this.contractId,
   "shipmentNo": this.data.shipmentNo,
   "supplierDate": this.data.supplierDate,
   "buyerDate":this.data.buyerDate,
-  "shipmentLine": this.data.shipmentLine,
+  // "shipmentLine": this.data.shipmentLine,
   "shipmentMode":this.data.shipmentMode,
   "shipmentRemarks": this.data.shipmentRemarks
     }
@@ -139,7 +153,7 @@ export class DeliveryTimelineComponent implements OnInit {
     }
 
     this.http.
-      put(`${environment.apiUrl}//api/Contracts/UpdateContractShipmentSchedule/` + this.shipmentId, varr)
+      put(`${environment.apiUrl}//api/Contracts/UpdateContractShipmentSchedule/` + this.id, varr)
       .subscribe(
         res => {
 

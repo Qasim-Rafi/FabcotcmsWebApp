@@ -62,6 +62,7 @@ export class ActiveContractDetailComponent implements OnInit {
   shipmentFilter: any = [];
   noteFilter: any = [];
   TnaData: any = {};
+  shipmentData: any = {};
   invoiceData:any =[];
  
   shipmentUrl='/api/Contracts/GetAllContractShipmentSchedule/{contractId}';
@@ -205,6 +206,29 @@ export class ActiveContractDetailComponent implements OnInit {
           }
         });
   }
+
+  
+  getShipmentData() {
+    this.http.get(`${environment.apiUrl}/api/Contracts/GetAllContractShipmentSchedule/` + this.contractId)
+      .subscribe(
+        res => {
+          this.response = res;
+          if (this.response.success == true) {
+            this.shipmentData = this.response.data;
+            this.rows = this.shipmentData;
+  
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+  
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+        });
+  }
+  
 
   getContractData() {
     this.http.get(`${environment.apiUrl}/api/Contracts/GetContractById/` + this.contractId)
@@ -389,9 +413,26 @@ getContractPaymentData() {
 
 
 
-DeliveryTimeline() {
+DeliveryTimeline(check) {
   const modalRef = this.modalService.open(DeliveryTimelineComponent, { centered: true });
   modalRef.componentInstance.contractId = this.contractId;
+    modalRef.componentInstance.statusCheck = check;
+
+  modalRef.result.then((data) => {
+    // on close
+    if (data == true) {
+
+    }
+  }, (reason) => {
+    // on dismiss
+  });
+}
+EditDeliveryTimeline(check , row) {
+  const modalRef = this.modalService.open(DeliveryTimelineComponent, { centered: true });
+  modalRef.componentInstance.contractId = this.contractId;
+  modalRef.componentInstance.id = row.id;
+
+    modalRef.componentInstance.statusCheck = check;
 
   modalRef.result.then((data) => {
     // on close
