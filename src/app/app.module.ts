@@ -4,7 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { ToastrModule } from 'ngx-toastr';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
@@ -52,6 +52,7 @@ import { DateConvertor } from './shared/date-formater';
 import { EditTnaComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/edit-tna/edit-tna.component';
 import { SaleInvoiceItemComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/sale-invoice-item/sale-invoice-item.component';
 import { ContractNoteComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/contract-note/contract-note.component';
+import { AuthInterceptor } from './shared/auth-service/auth.interceptor';
 
 
 
@@ -142,6 +143,11 @@ const appRoutes: Routes = []
   ],
 
   providers: [AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
     // {provide: NgbDateParserFormatter, useFactory: () => new DateConvertor('EEE, dd-MMM-yyyy')}
   ],
   bootstrap: [AppComponent]
