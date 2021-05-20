@@ -39,9 +39,11 @@ export class ActiveContractDetailComponent implements OnInit {
   rows1: any = [];
   rows2: any = [];
   rows3: any = [];
+  rows4: any = [];
   data:any = {};
   items:any = {};
   empData:any = {};
+  shipment:any = {};
   contractNote:any = {};
   columns: any = [];
   queryParems: any = {};
@@ -77,20 +79,6 @@ export class ActiveContractDetailComponent implements OnInit {
   ngOnInit(): void {
     this.queryParems = this.route.snapshot.queryParams;
     this.contractId = this.queryParems.id;
-
-      //     this.service.fetch((data) => {
-      //   this.ItemFilter = [...data];
-      //   this.rows = data;
-      //   this.ItemCount = this.rows.length;
-      // }, this.ItemUrl);
-    
-    {
-      this.service.fetch((data) => {
-        this.shipmentFilter = [...data];
-        this.rows = data;
-        this.shipmentCount = this.rows.length;
-      }, this.shipmentUrl);
-    }
    
 
     this.getContractData();
@@ -120,7 +108,9 @@ export class ActiveContractDetailComponent implements OnInit {
       this.rows3 = NotesData;
       // this.listCount= this.rows.length;
     });
-
+    this.getAllShipmentDates((shipmentData) => {
+      this.rows4 = shipmentData;
+    });
 
   }
 
@@ -182,7 +172,30 @@ export class ActiveContractDetailComponent implements OnInit {
 
 
 
+  getAllShipmentDates(cb) {
 
+    this.http
+      .get(`${environment.apiUrl}/api/Contracts/GetAllContractShipmentSchedule/`+ this.contractId)
+      .subscribe(res => {
+        this.response = res;
+        
+
+        if (this.response.success == true) {
+          this.shipment = this.response.data
+          this.shipmentFilter = [this.shipment]; 
+          cb(this.shipment);
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+        // this.spinner.hide();
+      }, err => {
+        if (err.status == 400) {
+          this.toastr.error(err.error.message, 'Message.');;
+        }
+        //  this.spinner.hide();
+      });
+  }
 
 
 
@@ -207,27 +220,6 @@ export class ActiveContractDetailComponent implements OnInit {
         });
   }
 
-  
-  getShipmentData() {
-    this.http.get(`${environment.apiUrl}/api/Contracts/GetAllContractShipmentSchedule/` + this.contractId)
-      .subscribe(
-        res => {
-          this.response = res;
-          if (this.response.success == true) {
-            this.shipmentData = this.response.data;
-            this.rows = this.shipmentData;
-  
-          }
-          else {
-            this.toastr.error(this.response.message, 'Message.');
-          }
-  
-        }, err => {
-          if (err.status == 400) {
-            this.toastr.error(this.response.message, 'Message.');
-          }
-        });
-  }
   
 
   getContractData() {
@@ -410,39 +402,6 @@ getContractPaymentData() {
       });
 }
 
-
-
-
-DeliveryTimeline(check) {
-  const modalRef = this.modalService.open(DeliveryTimelineComponent, { centered: true });
-  modalRef.componentInstance.contractId = this.contractId;
-    modalRef.componentInstance.statusCheck = check;
-
-  modalRef.result.then((data) => {
-    // on close
-    if (data == true) {
-
-    }
-  }, (reason) => {
-    // on dismiss
-  });
-}
-EditDeliveryTimeline(check , row) {
-  const modalRef = this.modalService.open(DeliveryTimelineComponent, { centered: true });
-  modalRef.componentInstance.contractId = this.contractId;
-  modalRef.componentInstance.id = row.id;
-
-    modalRef.componentInstance.statusCheck = check;
-
-  modalRef.result.then((data) => {
-    // on close
-    if (data == true) {
-
-    }
-  }, (reason) => {
-    // on dismiss
-  });
-}
 
 
 CommissionKickback() {
@@ -964,4 +923,84 @@ editItem(row, check, name) {
     // on dismiss
   });
 }
+addShipmentTimeline(check) {
+  const modalRef = this.modalService.open(DeliveryTimelineComponent, { centered: true });
+  modalRef.componentInstance.statusCheck = check;
+  modalRef.componentInstance.contractId = this.contractId ;
+
+  modalRef.result.then((data) => {
+    // on close
+    if (data == true) {
+      this.getAllShipmentDates((shipmentData) => {
+        this.rows4 = shipmentData;
+        // this.listCount= this.rows.length;
+      });
+  
+
+
+    }
+  }, (reason) => {
+    // on dismiss
+  });
+}
+EditShipmentTimeline(check , row) {
+  const modalRef = this.modalService.open(DeliveryTimelineComponent, { centered: true });
+  modalRef.componentInstance.shipmentId = row.id; //just for edit.. to access the needed row
+  modalRef.componentInstance.statusCheck = check;
+  modalRef.componentInstance.contractId =this.contractId;
+
+  modalRef.result.then((data) => {
+    // on close
+    if (data == true) {
+      this.getAllShipmentDates((shipmentData) => {
+        this.rows4 = shipmentData;
+        // this.listCount= this.rows.length;
+      });
+    }
+  }, (reason) => {
+    // on dismiss
+  });
+}
+deleteShipmentTimeline(id) {
+  Swal.fire({
+    title: GlobalConstants.deleteTitle, //'Are you sure?',
+    text: GlobalConstants.deleteMessage + ' ' + '"' + id.shipmentNo + '"',
+    icon: 'error',
+    showCancelButton: true,
+    confirmButtonColor: '#ed5565',
+    cancelButtonColor: '#dae0e5',
+    cancelButtonText: 'No',
+    confirmButtonText: 'Yes',
+    reverseButtons: true,
+    position: 'top',
+  }).then((result) => {
+    if (result.isConfirmed) {
+
+      this.http.delete(`${environment.apiUrl}/api/Contracts/DeleteContractShipmentSchedule/` + id.id)
+        .subscribe(
+          res => {
+            this.response = res;
+            if (this.response.success == true) {
+              this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
+              this.getAllShipmentDates((shipmentData) => {
+                this.rows4 = shipmentData;
+                // this.listCount= this.rows.length;
+              });
+
+            }
+            else {
+              this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
+            }
+
+          }, err => {
+            if (err.status == 400) {
+              this.toastr.error(this.response.message, 'Message.');
+            }
+          });
+    }
+  })
+}
+
+
+
 }

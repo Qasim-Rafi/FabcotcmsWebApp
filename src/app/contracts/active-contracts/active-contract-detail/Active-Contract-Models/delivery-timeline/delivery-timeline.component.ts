@@ -22,7 +22,7 @@ export class DeliveryTimelineComponent implements OnInit {
   mode: any = [];
   shipmentMode: any=[];
   queryParems: any = {};
-  @Input() id;
+  @Input() shipmentId;
   dateformater: Dateformater = new Dateformater();
   @ViewChild(NgForm) deliveryForm;
   @Input() statusCheck;
@@ -36,23 +36,37 @@ export class DeliveryTimelineComponent implements OnInit {
 
   ngOnInit(): void {
     this.queryParems = this.route.snapshot.queryParams;
-    // let olddate=new Date();
-    // let latest_date =this.datepipe.transform(olddate, 'yyyy-MM-dd');
-    // this.supplierDateField =this.dateformater.fromModel(latest_date);
-    // this.buyerDateField =this.dateformater.fromModel(latest_date);
-    // this.GetMode()
     this.GetShipmentModeDropdown()
     this.statusCheck = this.statusCheck;
     if (this.statusCheck == 'edit') {
-      this.getshipment();
+      this.editshipment();
     }
   }
 
   get activeModal() {
     return this._NgbActiveModal;
   }
-  getshipment() {
-    this.http.get(`${environment.apiUrl}/api/Contracts/GetContractShipmentScheduleById` + this.id)
+  // getshipment() {
+  //   this.http.get(`${environment.apiUrl}/api/Contracts/GetContractShipmentScheduleById` + this.id)
+  //     .subscribe(
+  //       res => {
+  //         this.response = res;
+  //         if (this.response.success == true) {
+
+  //           this.data = this.response.data;
+  //         }
+  //         else {
+  //           this.toastr.error(this.response.message, 'Message.');
+  //         }
+
+  //       }, err => {
+  //         if (err.status == 400) {
+  //           this.toastr.error(this.response.message, 'Message.');
+  //         }
+  //       });
+  // }
+  editshipment() {
+    this.http.get(`${environment.apiUrl}/api/Contracts/GetContractShipmentScheduleById/` + this.shipmentId)
       .subscribe(
         res => {
           this.response = res;
@@ -70,17 +84,6 @@ export class DeliveryTimelineComponent implements OnInit {
           }
         });
   }
-  // GetMode() {
-  //   this.service.getMode().subscribe(res => {
-  //     this.response = res;
-  //     if (this.response.success == true) {
-  //       this.mode = this.response.data;
-  //     }
-  //     else {
-  //       this.toastr.error(this.response.message, 'Message.');
-  //     }
-  //   })
-  // }
   GetShipmentModeDropdown() {
     this.http.get(`${environment.apiUrl}/api/Lookups/ShipmentModes`).
     subscribe(res => {
@@ -106,18 +109,6 @@ export class DeliveryTimelineComponent implements OnInit {
   "shipmentMode":this.data.shipmentMode,
   "shipmentRemarks": this.data.shipmentRemarks
     }
-    // this.data.lcOpenOn = this.dateformater.toModel(this.data.lcOpenOn);
-
-    // let varr = {
-
-    //   "contractId": this.contractId,
-    //   "lcNumber": this.data.lcNumber,
-    //   "lcOpenOn": this.data.lcOpenOn,
-    //   "lcShipmentOn": this.data.lcShipmentOn,
-    //   "lcShipmentInfo": this.data.lcShipmentInfo,
-    //   "lcExpiryDate":this.data.lcExpiryDate,
-    //   "remarks": this.data.remarks,
-    // }
 
     this.http.
       post(`${environment.apiUrl}/api/Contracts/AddContractShipmentSchedule`, varr)
@@ -142,18 +133,19 @@ export class DeliveryTimelineComponent implements OnInit {
         });
   }
   Updateshipment() {
+ 
     let varr = {
-      "contractId":this.data.contractId,
+      "contractId":this.contractId,
       "shipmentNo": this.data.shipmentNo,
       "supplierDate": this.data.supplierDate,
       "buyerDate":this.data.buyerDate,
-      "shipmentLine": this.data.shipmentLine,
+      // "shipmentLine": this.data.shipmentLine,
       "shipmentMode":this.data.shipmentMode,
       "shipmentRemarks": this.data.shipmentRemarks
     }
 
     this.http.
-      put(`${environment.apiUrl}//api/Contracts/UpdateContractShipmentSchedule/` + this.id, varr)
+      put(`${environment.apiUrl}/api/Contracts/UpdateContractShipmentSchedule/` + this.shipmentId, varr)
       .subscribe(
         res => {
 
