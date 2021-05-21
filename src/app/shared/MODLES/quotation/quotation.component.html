@@ -111,7 +111,7 @@
         Close
     </button>
     <button class="btn button-save" type="submit" 
-        *ngIf="statusCheck == 'addQuotation'" (click)="addQuotation()">
+        *ngIf="statusCheck == 'addQuotation'" (click)="addQuotation(QuotationForm)">
         Save Quote
     </button>
     <button class="btn button-save" type="submit" (click)="UpdateQuotation()"
