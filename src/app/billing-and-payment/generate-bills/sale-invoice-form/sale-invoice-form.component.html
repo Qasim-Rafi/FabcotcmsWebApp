@@ -1,0 +1,81 @@
+<!-- Modal -->
+
+<div class="modal-header">
+    <button type="button" class="close text-white" aria-label="Close" (click)="activeModal.dismiss()">
+        <span style="color: black" aria-hidden="true">&times;</span>
+    </button>
+    <h5 class="modal-title">
+        <i class="far fa-file-alt"></i>
+        Sales Invoice for Contract <strong>FG-130</strong>
+    </h5>
+    <span class="center">Expected Bill (as per Contract): Seller = 0 (Commission = 10%)</span><br>
+    <span class="center">Expected Bill (as per Sale Inv): Seller = 0 (Commission = 10 %)</span>
+</div>
+<div class="modal-body BG pt-2r">
+    <form #buyerEditForm="ngForm" class="justify">
+        <ngx-datatable class="bootstrap datatable-row-wrapper" [columns]="columns" [rows]="rows.activeBills" [columnMode]="'flex'"
+        [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="6">
+    
+        <ngx-datatable-column name="ID" [width]="80" prop="print" [flexGrow]="0.05">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Contract No." [width]="80" prop="sno" [flexGrow]="0.05">
+          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template >
+          
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Sale Inv No" [width]="80" prop="billFor" [flexGrow]="0.06">
+          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+    
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Seller" [width]="80" prop="billTo" [flexGrow]="0.06">
+          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+   
+          </ng-template>
+        </ngx-datatable-column>
+    
+        <ngx-datatable-column name="Buyer" [width]="80" prop="billNum" [flexGrow]="0.06">
+          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+    
+          </ng-template>
+        </ngx-datatable-column>
+    
+        <ngx-datatable-column name="Sale Inv Amount" [width]="80" prop="contractNum" [flexGrow]="0.06">
+          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+            
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Status" [width]="80" prop="billDate" [flexGrow]="0.06">
+          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+            
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Exp. Seller Bill" [width]="80" prop="saleNum" [flexGrow]="0.06">
+          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+       
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Exp.Buyer Bill" [width]="80" prop="billAmount" [flexGrow]="0.06">
+          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+    
+          </ng-template>
+        </ngx-datatable-column>
+    
+        <ngx-datatable-column name="Created On" [width]="80" prop="txtAmount" [flexGrow]="0.06">
+          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+     
+          </ng-template>
+        </ngx-datatable-column>
+    
+    </ngx-datatable>
+    
+    </form>
+</div>
+<div class="modal-footer NotBG">
+    <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
+        <i class="fas fa-times"></i> Close
+      </button>
+</div>
