@@ -63,7 +63,6 @@ export class PaymentFormComponent implements OnInit {
 
     this.fetch((data) => {
       this.rows = data;
-      console.log("contract bill by id",this.rows)
     });
     this.getData(this.paymentId);
 
