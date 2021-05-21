@@ -21,7 +21,14 @@ export class ActiveContractsComponent implements OnInit {
   rows: any = [];
   columns: any = [];
   temp: any[];
-
+  allCount: number;
+  openCount:number;
+  closedCount: number;
+  billAwaitedCount: number;
+  billedCount: number;
+  receivableCount: number;
+  receivedCount: number;
+  onHoldCount: number;
 
 
   constructor(
@@ -109,7 +116,15 @@ fetch(cb) {
       this.response = res;
 
       if (this.response.success == true) {
-        this.data = this.response.data;
+        this.data = this.response.data.list;
+        this.allCount = this.response.data.allCount;
+        this.openCount = this.response.data.openCount;
+        this.closedCount = this.response.data.closedCount;
+        this.billAwaitedCount = this.response.data.billAwaitedCount;
+        this.billedCount = this.response.data.billedCount;
+        this.receivableCount = this.response.data.receivableCount;
+        this.receivedCount = this.response.data.receivedCount;
+        this.onHoldCount = this.response.data.onHoldCount;
         this.temp = [this.data]; 
         cb(this.data);
       }

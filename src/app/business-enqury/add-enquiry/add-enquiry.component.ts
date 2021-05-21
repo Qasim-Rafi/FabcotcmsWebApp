@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
@@ -28,6 +28,19 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./add-enquiry.component.css']
 })
 export class AddEnquiryComponent implements OnInit {
+  
+    newArticle : any;
+    newBuyer : any;
+    newPayment: any;
+    newPacking: any;
+    newDesign: any;
+    newProcess: any;
+    newProcessType: any;
+    newCertificate: any;
+    newCity: any;
+    newPrice: any;
+
+
   enquiryDateField:any;
   datePickerConfig: Partial<BsDatepickerConfig>;
   listCount: number;
@@ -42,7 +55,7 @@ export class AddEnquiryComponent implements OnInit {
   uomList: any = [];
   type: any[];
   package: any[];
-  city: any[];
+  city: any={};
   certificateId: any[];
   paymentId: any[];
   term: any[];
@@ -141,7 +154,9 @@ export class AddEnquiryComponent implements OnInit {
     this.service.getArticles().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.article = this.response.data;
+        
+        this.article = this.response.data.list;
+        this.newArticle = this.response.data.lastId
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -154,7 +169,9 @@ export class AddEnquiryComponent implements OnInit {
     this.service.getBuyers().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.buyer = this.response.data;
+        this.buyer = this.response.data.list;
+        this.newBuyer = this.response.data.lastId
+       
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -167,7 +184,8 @@ export class AddEnquiryComponent implements OnInit {
     this.service.getPaymentTerm().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.payment = this.response.data;
+        this.payment = this.response.data.list;
+        this.newPayment = this.response.data.lastId;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -179,7 +197,8 @@ export class AddEnquiryComponent implements OnInit {
     this.service.getPackaging().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.packaging = this.response.data;
+        this.packaging = this.response.data.list;
+        this.newPacking = this.response.data.lastId
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -191,7 +210,8 @@ export class AddEnquiryComponent implements OnInit {
     this.service.getDesignType().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.design = this.response.data;
+        this.design = this.response.data.list;
+        this.newDesign = this.response.data.lastId
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -203,7 +223,8 @@ export class AddEnquiryComponent implements OnInit {
     this.service.getProcess().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.process = this.response.data;
+        this.process = this.response.data.list;
+        this.newProcess = this.response.data.lastId
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -215,7 +236,8 @@ export class AddEnquiryComponent implements OnInit {
     this.service.getProcessType().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.ptype = this.response.data;
+        this.ptype = this.response.data.list;
+        this.newProcessType = this.response.data.lastId
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -227,7 +249,8 @@ export class AddEnquiryComponent implements OnInit {
     this.service.getCertification().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.certification = this.response.data;
+        this.certification = this.response.data.list;
+        this.newCertificate = this.response.data.lastId
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -239,7 +262,8 @@ export class AddEnquiryComponent implements OnInit {
     this.service.getPriceTerm().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.priceterm = this.response.data;
+        this.priceterm = this.response.data.list;
+        this.newPrice = this.response.data.lastId
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -260,72 +284,18 @@ export class AddEnquiryComponent implements OnInit {
   }
 
 
-  // GetCountryDropdown() {
-  //   this.service.getCountry().subscribe(res => {
-  //     this.response = res;
-  //     if (this.response.success == true) {
-  //       this.country = this.response.data;
-  //     }
-  //     else {
-  //       this.toastr.error(this.response.message, 'Message.');
-  //     }
-  //   })
-  // }
-
   GetCityDropdown() {
     this.service.getCity().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.city = this.response.data;
+        this.city = this.response.data.list;
+        this.newCity = this.response.data.lastId
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
       }
     })
   }
-
-
-  // getenquiryBuyers() {
-  //   this.http.get(`${environment.apiUrl}/api/Buyers/GetBuyers`)
-  //     .subscribe(
-  //       res => {
-
-  //         this.response = res;
-  //         if (this.response.success == true) {
-  //           this.buyer = this.response.data;
-  //           this.listCount = this.buyer.length;
-
-  //         }
-  //         else {
-  //           this.toastr.error(this.response.message, 'Message.');
-  //         }
-
-  //       }, err => {
-  //         if (err.status == 400) {
-  //           this.toastr.error(this.response.message, 'Message.');
-  //         }
-  //       });
-  // }
-
-
-  // getenquiryCountry() {
-  //   this.http.get(`${environment.apiUrl}/api/Lookups/Countries`)
-  //     .subscribe(
-  //       res => {
-  //         this.response = res;
-  //         if (this.response.success == true) {
-  //           this.country = this.response.data;
-  //         }
-  //         else {
-  //           this.toastr.error(this.response.message, 'Message.');
-  //         }
-
-  //       }, err => {
-  //         if (err.status == 400) {
-  //           this.toastr.error(this.response.message, 'Message.');
-  //         }
-  //       });
-  // }
 
   addenquiryCertificateForm(check) {
     const modalRef = this.modalService.open(EditCertificateComponent, { centered: true });
@@ -336,6 +306,8 @@ export class AddEnquiryComponent implements OnInit {
       if (data == true) {
         //  this.date = this.myDate;
         this.GetCertificationDropdown();
+        this.certification.id = this.newCertificate;
+        this.data.certificateIds = this.certification.id+1
 
 
 
@@ -357,6 +329,9 @@ export class AddEnquiryComponent implements OnInit {
       if (data == true) {
         //  this.date = this.cityDate;
         this.GetCityDropdown();
+        this.city.id = this.newCity;
+        this.data.destinationId = this.city.id+1
+     
 
       }
     }, (reason) => {
@@ -372,6 +347,8 @@ export class AddEnquiryComponent implements OnInit {
         this.date = this.myDate;
         // this.getenquiryBuyers();
         this.service.getBuyers();
+        this.buyer.id = this.newBuyer;
+        this.data.buyerId = this.buyer.id+1
 
       }
     }, (reason) => {
@@ -385,9 +362,10 @@ export class AddEnquiryComponent implements OnInit {
       // on close
       if (data == true) {
         //  this.date = this.myDate;
+      
         this.GetArticlesDropdown();
-
-
+        this.article.id = this.newArticle;
+        this.data.articleId = this.article.id+1
 
       }
     }, (reason) => {
@@ -402,10 +380,10 @@ export class AddEnquiryComponent implements OnInit {
       if (data == true) {
         //  this.date = this.myDate;
         this.GetProcessDropdown();
-
-
-
+        this.process.id = this.newProcess;
+        this.data.processId = this.process.id+1
       }
+      
     }, (reason) => {
       // on dismiss
     });
@@ -419,6 +397,8 @@ export class AddEnquiryComponent implements OnInit {
       if (data == true) {
         //  this.date = this.myDate;
         this.GetPackingDropdown();
+        this.packaging.id = this.newPacking;
+        this.data.packagingId = this.packaging.id+1
 
 
 
@@ -435,6 +415,8 @@ export class AddEnquiryComponent implements OnInit {
       if (data == true) {
         //  this.date = this.myDate;
         this.GetDesignDropdown();
+        this.design.id = this.newDesign;
+        this.data.designTypeId = this.design.id+1
 
 
 
@@ -453,6 +435,8 @@ export class AddEnquiryComponent implements OnInit {
       if (data == true) {
         //  this.date = this.myDate;
         this.GetProcessTypeDropdown();
+        this.ptype.id = this.newProcessType;
+        this.data.processTypeId = this.ptype.id+1
 
 
 
@@ -471,6 +455,8 @@ export class AddEnquiryComponent implements OnInit {
       if (data == true) {
         //  this.date = this.myDate;
         this.GetPaymentDropdown();
+        this.payment.id = this.newPayment;
+        this.data.paymentTermId = this.payment.id+1
 
 
 
@@ -487,6 +473,8 @@ export class AddEnquiryComponent implements OnInit {
       if (data == true) {
         //  this.date = this.myDate;
         this.GetPriceTermDropdown();
+        this.priceterm.id = this.newPrice;
+        this.data.priceTermId = this.priceterm.id+1
 
 
 

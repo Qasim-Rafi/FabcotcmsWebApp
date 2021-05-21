@@ -27,6 +27,7 @@ export class AddBuyerComponent implements OnInit {
   ngOnInit(): void {
     this.getCountry();
     this.getParentBuyer();
+    
   }
 
   get activeModal() {
@@ -76,7 +77,17 @@ export class AddBuyerComponent implements OnInit {
 
 
 
-  addBuyer() {
+  addBuyer(form:NgForm) {
+
+    if(form.status == "INVALID"){
+
+      this.toastr.error("Invalid Form", 'Message.');
+    }
+
+else
+
+{
+
     let varr = {
       "buyerCode": this.data.buyerCode,
       "buyerName": this.data.buyerName,
@@ -115,5 +126,6 @@ export class AddBuyerComponent implements OnInit {
           }
         });
   }
+}
 
 }

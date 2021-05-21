@@ -131,19 +131,19 @@
                     <i class="far fa-trash-alt"></i>
                     Delete
                 </button>
-                <button class="btn btn-danger border-rounded px-3 mr-2">
+                <button class="btn btn-danger border-rounded px-3 mr-2" (click)="UpdateContractStatus('Closed')">
                     <i class="fas fa-times"></i>
                     Cancle
                 </button>
-                <button class="btn btn-warning border-rounded px-3 mr-2 text-white">
+                <button class="btn btn-warning border-rounded px-3 mr-2 text-white" (click)="UpdateContractStatus('OnHold')">
                     <i class="fas fa-level-down-alt"></i>
                     On-Hold
                 </button>
-                <button class="btn btn-info border-rounded px-3 mr-2">
+                <button class="btn btn-info border-rounded px-3 mr-2" >
                     <i class="far fa-clone"></i>
                     Revised
                 </button>
-                <button class="btn btn-outline-primary border-rounded px-3 mr-2">
+                <button class="btn btn-outline-primary border-rounded px-3 mr-2" (click)="UpdateContractStatus('Closed')">
                     <i class="fas fa-check"></i>
                     Closed
                 </button>

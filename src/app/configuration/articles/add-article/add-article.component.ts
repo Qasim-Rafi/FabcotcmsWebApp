@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -10,6 +10,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./add-article.component.css']
 })
 export class AddArticleComponent implements OnInit {
+  @Input() new;
   data:any={};
   response: any;
   active = true;
@@ -49,6 +50,7 @@ export class AddArticleComponent implements OnInit {
         this.response = res;
         if (this.response.success == true){
           this.toastr.success(this.response.message, 'Message.');
+          this.new = this.response.data.
       
           // this.buyerForm.reset();
           this.activeModal.close(true);

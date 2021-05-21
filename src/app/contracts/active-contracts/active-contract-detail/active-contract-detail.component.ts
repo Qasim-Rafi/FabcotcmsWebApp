@@ -1003,4 +1003,33 @@ deleteShipmentTimeline(id) {
 
 
 
+UpdateContractStatus(status)
+{ 
+  let varr ={}
+
+  this.http.
+  put(`${environment.apiUrl}/api/Contracts/UpdateContractStatus/`+this.contractId + `/`+ status , varr)
+  .subscribe(
+    res=> { 
+
+      this.response = res;
+      if (this.response.success == true){
+        this.toastr.success(this.response.message, 'Message.');
+     
+      }
+      else {
+        this.toastr.error('Something went Worng', 'Message.');
+          }
+
+    }, err => {
+      if (err.status == 400) {
+        this.toastr.error('Something went Worng', 'Message.');
+      }
+    });
+}
+
+
+
+
+
 }

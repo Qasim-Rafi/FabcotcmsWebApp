@@ -190,16 +190,11 @@ export class EditActiveEnquiryComponent implements OnInit {
 
 
 
-
-
-
-
-
   GetBuyersDropdown() {
     this.service.getBuyers().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.buyer = this.response.data;
+        this.buyer = this.response.data.list;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -214,7 +209,7 @@ export class EditActiveEnquiryComponent implements OnInit {
     this.service.getArticles().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.article = this.response.data;
+        this.article = this.response.data.list;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -228,7 +223,7 @@ export class EditActiveEnquiryComponent implements OnInit {
     this.service.getProcess().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.process = this.response.data;
+        this.process = this.response.data.list;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -240,7 +235,7 @@ export class EditActiveEnquiryComponent implements OnInit {
     this.service.getProcessType().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.ptype = this.response.data;
+        this.ptype = this.response.data.list;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -253,7 +248,7 @@ export class EditActiveEnquiryComponent implements OnInit {
     this.service.getDesignType().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.design = this.response.data;
+        this.design = this.response.data.list;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -265,7 +260,7 @@ export class EditActiveEnquiryComponent implements OnInit {
     this.service. getPackaging().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.packing = this.response.data;
+        this.packing = this.response.data.list;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -289,7 +284,7 @@ export class EditActiveEnquiryComponent implements OnInit {
     this.service. getCurrencyType().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.currency = this.response.data;
+        this.currency = this.response.data.list;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -302,7 +297,7 @@ export class EditActiveEnquiryComponent implements OnInit {
     this.service. getPaymentTerm().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.payment = this.response.data;
+        this.payment = this.response.data.list;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -314,7 +309,7 @@ export class EditActiveEnquiryComponent implements OnInit {
     this.service. getPriceTerm().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.price = this.response.data;
+        this.price = this.response.data.list;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -326,7 +321,7 @@ export class EditActiveEnquiryComponent implements OnInit {
     this.service. getCity().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.city = this.response.data;
+        this.city = this.response.data.list;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -338,7 +333,7 @@ export class EditActiveEnquiryComponent implements OnInit {
     this.service. getVendorSeller(this.objEnquiry).subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.vendorSeller = this.response.data;
+        this.vendorSeller = this.response.data.list;
         
       }
       else {
@@ -351,7 +346,7 @@ export class EditActiveEnquiryComponent implements OnInit {
     this.service. getCertification().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.certificate = this.response.data;
+        this.certificate = this.response.data.list;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -1051,6 +1046,48 @@ export class EditActiveEnquiryComponent implements OnInit {
               }
             });
       }
+
+
+
+      UpdateEnquiryStatus(status)
+      { 
+        let varr ={}
+
+        this.http.
+        put(`${environment.apiUrl}/api/Enquiries/UpdateEnquiryStatus/`+this.objEnquiry + `/`+ status , varr)
+        .subscribe(
+          res=> { 
+      
+            this.response = res;
+            if (this.response.success == true){
+              this.toastr.success(this.response.message, 'Message.');
+           
+            }
+            else {
+              this.toastr.error('Something went Worng', 'Message.');
+                }
+    
+          }, err => {
+            if (err.status == 400) {
+              this.toastr.error('Something went Worng', 'Message.');
+            }
+          });
+      }
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
