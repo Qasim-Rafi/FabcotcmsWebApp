@@ -10,6 +10,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import { ClipboardService } from 'ngx-clipboard';
+import { ServiceService } from 'src/app/shared/service.service';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -31,6 +32,7 @@ export class ActiveEnquiryComponent implements OnInit {
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
+    private service: ServiceService,
     private router: Router,
     private _clipboardService: ClipboardService,
     private modalService: NgbModal,
@@ -211,6 +213,7 @@ export class ActiveEnquiryComponent implements OnInit {
   
   
   }
+
   enquiryPdf() {
 
     let docDefinition = {
@@ -285,7 +288,8 @@ export class ActiveEnquiryComponent implements OnInit {
 
 
     this.copyData.push('Enquiry No.'.padEnd(max1) + 'Enquiry On.'.padEnd(max2) +
-      'Customer'.padEnd(max6) + 'Article'.padEnd(max3) + 'Payment Terms'.padEnd(max4)+ 'Price Terms'.padEnd(max5) + 'Status \n');
+      'Customer'.padEnd(max6) + 'Article'.padEnd(max3) + 'Payment Terms'.padEnd(max4)+ 
+      'Price Terms'.padEnd(max5) + 'Status \n');
 
     for (let i = 0; i < this.rows.length; i++) {
       let tempData =  this.rows[i].autoEnquiryNumber.padEnd(max1) 
@@ -306,6 +310,77 @@ export class ActiveEnquiryComponent implements OnInit {
       timer: 2000,
     })
   }
+  activeEnquiryExcelFile(){
+    const filtered = this.rows.map(row => ({
+      EnquiryNo: row.autoEnquiryNumber,
+      EnquiryOn: row.enquiryDate,
+      Customer: row.buyerName,
+      Article: row.articleName,
+      PaymentTerms: row.paymentTermName,
+      PriceTerms: row.priceTermName,
+      Status: row.active == true ? "Active" : "In-Active",
+    }));
+
+    this.service.exportAsExcelFile(filtered, 'Active Enquiries');
+
+  }
+  activeEnquiryCsvFile(){
+    const filtered = this.rows.map(row => ({
+      EnquiryNo: row.autoEnquiryNumber,
+      EnquiryOn: row.enquiryDate,
+      Customer: row.buyerName,
+      Article: row.articleName,
+      PaymentTerms: row.paymentTermName,
+      PriceTerms: row.priceTermName,
+      Status: row.active == true ? "Active" : "In-Active", }));
+  
+    this.service.exportAsCsvFile(filtered, 'Active Enquiries');
+  
+  }
+  printactiveEnquiryList() {
+
+    let docDefinition = {
+      pageSize: 'A4',
+      info: {
+        title: 'Active Enquiry List'
+      },
+      content: [
+        {
+          text: 'Active Enquiry List',
+          style: 'heading',
+
+        },
+        {
+          layout: 'lightHorizontalLines',
+          table: {
+            headerRows: 1,
+            widths: [60, 80, 60, 50, 80 , 60,40],
+            body: [
+              ['Inquiry No.', 'Inquiry On', 'Customer', 'Article', 'Payment Terms' ,'Price Term' , 'Status'],
+              ...this.rows.map(row => (
+                [row.autoEnquiryNumber, row.enquiryDate, row.buyerName,row.articleName ,
+                  row.paymentTermName , row.priceTermName,
+                row.active == true ? "Active" : "In-Active"]
+              ))
+            ]
+           
+          }
+        }
+      ],
+      styles: {
+        heading: {
+          fontSize: 18,
+          alignment: 'center',
+          margin: [0, 15, 0, 30]
+        }
+      }
+    };
+
+    // const win = window.open('', "tempWinForPdf");
+    pdfMake.createPdf(docDefinition).print();
+
+  }
+  
 }
 
 
