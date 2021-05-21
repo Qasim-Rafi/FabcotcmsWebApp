@@ -16,6 +16,8 @@ import { GlobalConstants } from 'src/app/Common/global-constants';
 })
 export class EditTnaComponent implements OnInit {
   dateformater: Dateformater = new Dateformater();  
+@Input() tnaId;
+@Input() id;
 
   @Input() contractId;
   data:any ={};
@@ -59,18 +61,17 @@ export class EditTnaComponent implements OnInit {
         });
   }
   UpdateTna() {
-    this.data.startDate = this.dateformater.fromModel(this.data.startDate);
-    this.data.endDate = this.dateformater.fromModel(this.data.endDate);
+    this.data.startDate = this.dateformater.toModel(this.data.startDate);
+    this.data.endDate = this.dateformater.toModel(this.data.endDate);
     let varr = {
-      "contractId": this.data.contractId,
+      "tnaId": this.tnaId,
       "startDate": this.data.startDate,
       "endDate": this.data.endDate,
-      "quantity": this.data.quantity,
+      "quantity": this.data.quantity.toString(),
       "details": this.data.details
     }
 
-    this.http.
-      put(`${environment.apiUrl}/api/Contracts/UpdateContractTimeAction/` + this.contractId, varr)
+    this.http.put(`${environment.apiUrl}/api/Contracts/UpdateContractTimeAction/` + this.id, varr)
       .subscribe(
         res => {
 

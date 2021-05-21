@@ -64,10 +64,17 @@ export class ActiveContractDetailComponent implements OnInit {
   shipmentFilter: any = [];
   noteFilter: any = [];
   TnaData: any = {};
+  TnaFilter: any = {};
+
   shipmentData: any = {};
   invoiceData:any =[];
  
   shipmentUrl='/api/Contracts/GetAllContractShipmentSchedule/{contractId}';
+  // tna data
+  rows5: any = [];
+  id: any = {};
+  tnaId: any = {};
+  
   constructor(
     private modalService: NgbModal,
     private route: ActivatedRoute,
@@ -89,9 +96,13 @@ export class ActiveContractDetailComponent implements OnInit {
     this.getContractLOC();
     this.getContractRemarkData();
     this.getContractCommisionData();
-    this.getContractTnA();
     this.getSaleInvoice();
 
+    this.getContractTnA((Tna)=>{
+      this.rows5 = Tna;
+      this.TnaFilter = [...Tna];
+
+    });
 
     this.getAllBenificery((empData) => {
       this.rows1 = empData;
@@ -114,7 +125,13 @@ export class ActiveContractDetailComponent implements OnInit {
 
   }
 
-
+  searchTna(event) {
+    const val = event.target.value.toLowerCase();
+    const temp = this.TnaFilter.filter(function (d) {
+      return (d.tnaItem.toLowerCase().indexOf(val) !== -1 || !val);
+    });
+    this.rows5 = temp;
+  }
 
 
 
@@ -651,18 +668,22 @@ getContractLOC() {
 
 
 ProductionPlanform() {
+  
   const modalRef = this.modalService.open(PRODUCTPLANComponent, { centered: true });
   modalRef.componentInstance.contractId = this.contractId;
 
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
-
+      this.getContractTnA((Tna)=>{
+        this.rows5 = Tna;
+      });
     }
   }, (reason) => {
     // on dismiss
   });
 }
+
 
 saleInvoice() {
   const modalRef = this.modalService.open(SALEINVOICEComponent, { centered: true });
@@ -725,15 +746,14 @@ ContractNotes(check, name) {
 //     // on dismiss
 //   });
 // }
-
-getContractTnA() {
-  this.http.get(`${environment.apiUrl}/api/Contracts/GetContractTimeActionById/` + this.contractId)
+getContractTnA(cb) {
+  this.http.get(`${environment.apiUrl}/api/Contracts/GetAllContractTimeAction/` + this.contractId)
     .subscribe(
       res => {
         this.response = res;
         if (this.response.success == true) {
           this.TnaData = this.response.data;
-          
+          cb(this.TnaData)
         }
         else {
           this.toastr.error(this.response.message, 'Message.');
@@ -745,14 +765,20 @@ getContractTnA() {
         }
       });
 }
+
 EditTna(row) {
   const modalRef = this.modalService.open(EditTnaComponent, { centered: true });
   modalRef.componentInstance.contractId = this.contractId;
+  modalRef.componentInstance.id = row.id;
+  modalRef.componentInstance.tnaId = row.tnaId;
+
 
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
-
+      this.getContractTnA((Tna)=>{
+        this.rows5 = Tna;
+      });
     }
   }, (reason) => {
     // on dismiss
