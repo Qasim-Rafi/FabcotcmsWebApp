@@ -802,7 +802,7 @@
                                         <div class="form-group row">
                                             <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="inputSearch" (keyup)="searchItems($event)">
+                                                <input type="text" class="form-control" id="inputSearch" (keyup)="searchItems($event)" placeholder="Search by Items..">
                                             </div>
                                         </div>
                 
@@ -823,9 +823,9 @@
                                             {{ row.construction}}
                                         </ng-template>
                                     </ngx-datatable-column>
-                                    <ngx-datatable-column name="Composition" prop="compositionPercentage" [width]="80">
+                                    <ngx-datatable-column name="Composition" prop="compositionAdditionalInfo" [width]="80">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                            {{ row.compositionPercentage }}
+                                            {{ row.compositionAdditionalInfo }}
                                         </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column name="Loom Type" prop="loomTypeId" [width]="80">
@@ -913,7 +913,7 @@
                                         <div class="form-group row">
                                             <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="inputSearch" (keyup)="searchShipmentDates($event)">
+                                                <input type="text" class="form-control" id="inputSearch" (keyup)="searchShipmentDates($event)" placeholder="Search by Shipment Dates..">
                                             </div>
                                         </div>
                                     </div>
@@ -1364,7 +1364,7 @@
                                         <div class="form-group row">
                                             <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="inputSearch" (keyup)="searchNotes($event)">
+                                                <input type="text" class="form-control" id="inputSearch" (keyup)="searchNotes($event)" placeholder="Search by Contract Notes..">
                                             </div>
                                         </div>
                                     </div>
