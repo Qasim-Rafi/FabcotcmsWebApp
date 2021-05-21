@@ -194,7 +194,7 @@ export class ItemsComponent implements OnInit {
     }
 
     this.http.
-      post(`${environment.apiUrl}/api/Contracts/AddContractItem`, varr)
+      post(`${environment.apiUrl}/api/Contracts/AddContractItem/`, varr)
       .subscribe(
         res => {
 
