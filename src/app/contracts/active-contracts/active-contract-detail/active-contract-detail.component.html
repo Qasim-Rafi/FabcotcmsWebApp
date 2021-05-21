@@ -1019,23 +1019,24 @@
                                         <div class="form-group row">
                                             <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="inputSearch">
+                                                <input type="text" class="form-control" id="inputSearch" placeholder="Search by Action Item.."
+                                                 (keyup)="searchTna($event)">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                 
-                                <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows"
-                                    [sorts]="[{ prop: 'id,name', dir: 'asce' }]" [columnMode]="'force'" [headerHeight]="50"
+                                <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows5"
+                                    [sorts]="[{ prop: 'id,tnaItem', dir: 'asce' }]" [columnMode]="'force'" [headerHeight]="50"
                                     [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
                                     <ngx-datatable-column prop="id" name="S. No." [width]="20">
-                                        <ng-template let-row="row" ngx-datatable-cell-template>
-                                            {{ row.id }}
+                                        <ng-template let-row="row"   let-rowIndex="rowIndex"  ngx-datatable-cell-template>
+                                            {{rowIndex + 1}}
                                         </ng-template>
                                     </ngx-datatable-column>
-                                    <ngx-datatable-column prop="id" name="Action Item" [width]="20">
+                                    <ngx-datatable-column  name="Action Item" [width]="20" prop="tnaItem">
                                         <ng-template let-row="row" ngx-datatable-cell-template>
-                                            {{ row.tnaIds }}
+                                            {{ row.tnaItem }}
                                         </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column prop="id" name="Start Date" [width]="20">
@@ -1065,9 +1066,10 @@
                                             <div class="ibox-tools text-center">
                                                 <button type="button" class="btn editIconBack" (click)="EditTna(row)"><i
                                                         class="far fa-edit"></i></button>
-                                                <!-- <button type="button" class="btn deleteIconBack" data-toggle="tooltip" data-placement="top" title=""
-                                                                                  data-original-title="Delete" (click)="deleteCountry(row)"><i class="far fa-trash-alt"></i></button> -->
-                                            </div>
+                                                        <button type="button" class="btn editIconBack"><i
+                                                            class="fa fa-history"></i></button>
+
+                                                    </div>
                                         </ng-template>
                                     </ngx-datatable-column>
                 
