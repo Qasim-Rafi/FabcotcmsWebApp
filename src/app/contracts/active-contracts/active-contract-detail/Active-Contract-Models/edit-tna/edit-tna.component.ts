@@ -60,6 +60,7 @@ export class EditTnaComponent implements OnInit {
           }
         });
   }
+  
   UpdateTna() {
     this.data.startDate = this.dateformater.toModel(this.data.startDate);
     this.data.endDate = this.dateformater.toModel(this.data.endDate);
