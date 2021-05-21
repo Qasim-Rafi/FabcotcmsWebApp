@@ -266,47 +266,28 @@ systemUserrCsvFile(){
   //------------------------------------ Copy Country list --------------------///
 
   copySystemUserList() {
-    let count1 = this.rows.map(x => x.name.length);
-    let max1 = count1.reduce((a, b) => Math.max(a, b));
-    // let count3 = this.rows.map(x => x.username.length);
-    // let max3 = count3.reduce((a, b) => Math.max(a, b));
-    // let count4 = this.rows.map(x => x.email.length);
-    // let max4 = count4.reduce((a, b) => Math.max(a, b));
-    // let count5 = this.rows.map(x => x.department.length);
-    // let max5 = count5.reduce((a, b) => Math.max(a, b));
-    // let count6 = this.rows.map(x => x.role.length);
-    // let max6 = count6.reduce((a, b) => Math.max(a, b));
-    // let count7 = this.rows.map(x => x.active == true ? "Active".length : "In-Active".length);
-    // let max7 = count7.reduce((a, b) => Math.max(a, b));
-    max1 = max1 + 10;
-    // max3 = max3 + 10;
-    // max4 = max4 + 10;
-    // max5 = max5 + 10;
-    // max6 = max6 + 10;
-    // max7 = max7 + 10;
-
-    // ................................................ headings replace yours............................
-
-    this.copyData.push('S No.' + 'Full Name'.padEnd(max1) +
-    'Changed On' + '| Changed By \n');
-    // ................................................ headings............................
-
-    // ................................................ coloum data...........replace your coloum names.................
+      this.copyData.push('S. No.'.padEnd(10) + 'Capability Name'.padEnd(10) + 'Created On' + '|Created By \n');
+    
     for (let i = 0; i < this.rows.length; i++) {
-      let tempData = this.rows[i].id + this.rows[i].name.padEnd(max1)
-        +
-        + this.rows[i].createdDateTime + this.rows[i].createdByName + '\n';
+      let tempData =  this.rows[i].id
+        +''.padEnd(5)
+      + this.rows[i].name
+      +''.padEnd(5)
+      + this.rows[i].createdDateTime
+      +''.padEnd(5)
+      + this.rows[i].createdByName+
+       '\n';
       this.copyData.push(tempData);
     }
     this._clipboardService.copy(this.copyData)
-    // ............................row.active == true ? "Active" : "In-Active".................... coloum this.data............................
-
+    
     Swal.fire({
       title: GlobalConstants.copySuccess,
       footer: 'Copied' + '\n' + this.systemUsersCount + '\n' + 'rows to clipboard',
       showConfirmButton: false,
       timer: 2000,
     })
-  }
+    }
+    
 
 }

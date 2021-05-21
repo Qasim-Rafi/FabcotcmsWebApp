@@ -5,6 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { ServiceService } from 'src/app/shared/service.service';
 import { environment } from 'src/environments/environment';
+import { ChangeBankAccountComponent } from './change-bank-account/change-bank-account.component';
 
 @Component({
   selector: 'app-open-active-bill',
@@ -17,7 +18,8 @@ export class OpenActiveBillComponent implements OnInit {
   response: any;
   data: any = {};
   rows: any = {};
-
+  date: number;
+  myDate = Date.now();
   constructor(   private route: ActivatedRoute,
     private modalService: NgbModal,
     private http: HttpClient,
@@ -60,4 +62,21 @@ export class OpenActiveBillComponent implements OnInit {
     //  this.spinner.hide();
     });
   }
+
+  ChangeBankForm() {
+    const modalRef = this.modalService.open(ChangeBankAccountComponent , { centered: true });
+    modalRef.result.then((data) => {
+      // on close
+      if (data == true) {
+        this.date = this.myDate;
+        // this.getBuyers();
+
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
+
+
+
 }

@@ -3,7 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import { GlobalConstants } from 'src/app/Common/global-constants';
 import { environment } from 'src/environments/environment';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-active-contracts',
@@ -32,9 +34,31 @@ export class ActiveContractsComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetch((data) => {
+      this.temp = [...data]; 
       this.rows = data;
     });
   }
+
+
+
+
+  searchFilter(event) {
+    const val = event.target.value.toLowerCase();
+    // filter our data
+    const temp = this.temp.filter(function (d) {
+      return (d.autoContractNumber.toLowerCase().indexOf(val) !== -1 || !val);
+    });
+    this.rows = temp;
+  }
+
+
+
+
+
+
+
+
+
 
 
   navigateEditContract(obj) {
@@ -105,6 +129,48 @@ fetch(cb) {
 
 
 
+deleteContract(obj) {
+  Swal.fire({
+    title: GlobalConstants.deleteTitle, //'Are you sure?',
+    text: GlobalConstants.deleteMessage + ' ' + '"' + obj.autoContractNumber + '"',
+    icon: 'error',
+    showCancelButton: true,
+    confirmButtonColor: '#ed5565',
+    cancelButtonColor: '#dae0e5',
+    cancelButtonText: 'No',
+    confirmButtonText: 'Yes',
+    reverseButtons: true,
+    position: 'top',
+  }).then((result) => {
+    if (result.isConfirmed) {
+
+      this.http.delete(`${environment.apiUrl}/api/Contracts/DeleteContract/` + obj.id)
+        .subscribe(
+          res => {
+            this.response = res;
+            if (this.response.success == true) {
+              this.toastr.error(this.response.message, 'Message.');
+              // this.getAllEnquiryItems();
+              this.fetch((data) => {
+                this.rows = data;
+              });
+              
+
+            }
+            else {
+              this.toastr.error(this.response.message, 'Message.');
+            }
+
+          }, err => {
+            if (err.status == 400) {
+              this.toastr.error(this.response.message, 'Message.');
+            }
+          });
+
+    }
+  })
+
+}
 
 
 
