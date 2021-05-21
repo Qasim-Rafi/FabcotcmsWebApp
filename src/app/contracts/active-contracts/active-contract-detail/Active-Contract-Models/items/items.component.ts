@@ -22,6 +22,7 @@ export class ItemsComponent implements OnInit {
   colorId:any[];
   FormName: any;
   uomList: any = [];
+  fabric: any = [];
   uomList1: any = [];
   color: any = [];
   loomType: any = [];
@@ -44,6 +45,7 @@ export class ItemsComponent implements OnInit {
    
     this.GetCurrency();
     this.GetUOMDropdown();
+    this.GetFabricDropdown();
     this.GetColorDropdown();
     this.GetLoomDropdown();
     this.statusCheck = this.statusCheck;
@@ -126,6 +128,17 @@ export class ItemsComponent implements OnInit {
       this.response = res;
       if (this.response.success == true) {
         this.uomList = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
+  GetFabricDropdown() {
+    this.service.getFabricType().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.fabric = this.response.data;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
