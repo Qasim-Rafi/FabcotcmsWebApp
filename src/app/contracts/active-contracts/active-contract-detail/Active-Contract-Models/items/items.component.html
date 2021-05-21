@@ -4,7 +4,7 @@
   </button>
   <div *ngIf="statusCheck == 'ItemAdd'">
     <h5 class="modal-title">
-      <i class="far fa-plus fa-fw"></i>
+      <i class="fas fa-plus"></i>
       Add New Item
     </h5>
   </div>
@@ -49,11 +49,37 @@
           </div>
 
           <div class="form-group row">
-            <label for="compositionAdditionalInfo" class="col-sm-3 col-form-label ">Composition</label>
+            <label for="" class="col-sm-3 col-form-label">Construcrion</label>
+            <div class="col-sm-2">
+                <input type="number" id="compositionPercentage"
+                name="compositionPercentage" [(ngModel)]="data.compositionPercentage" #compositionPercentage="ngModel" class="form-control" value="" placeholder="%age">
+            </div>
+            <div class="col-md-2">
+               
+              <ng-select [(ngModel)]="data.compositionFebricTypeId" placeholder="Select Fabric Type" name="compositionFebricTypeId">
+                <ng-option *ngFor="let i of fabric" [value]="i.id">{{ i.type }}</ng-option>
+            </ng-select>
+
+        </div>
+  
+            <div class="col-md-2">
+               
+              <input type="Text" id="compositionAdditionalInfo"
+              name="compositionAdditionalInfo" [(ngModel)]="data.compositionAdditionalInfo" #compositionAdditionalInfo="ngModel" class="form-control" value="" placeholder="Additional Info">
+          
+
+            </div>
+      
+          </div>
+
+
+
+          <div class="form-group row">
+            <label for="construction" class="col-sm-3 col-form-label ">Composition</label>
             <div class="col-sm-6">
                 <input type="text" class="form-control" value="" placeholder="Item Composition"
-                id="compositionAdditionalInfo"
-                name="compositionAdditionalInfo" [(ngModel)]="data.compositionAdditionalInfo" #construction="ngModel" />
+                id="construction"
+                name="construction" [(ngModel)]="data.construction" #construction="ngModel" />
                
             </div>
           </div>

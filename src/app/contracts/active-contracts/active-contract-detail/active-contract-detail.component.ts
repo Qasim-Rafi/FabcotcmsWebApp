@@ -833,10 +833,7 @@ EditTna(row) {
 }
 TnaHistory(row) {
   const modalRef = this.modalService.open(TnaLogHistoryComponent, { centered: true });
-  modalRef.componentInstance.contractId = this.contractId;
   modalRef.componentInstance.id = row.id;
-  modalRef.componentInstance.tnaId = row.tnaId;
-
 
   modalRef.result.then((data) => {
     // on close

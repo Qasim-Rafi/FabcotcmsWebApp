@@ -34,7 +34,7 @@ export class AddTimeActionComponent implements OnInit {
     }
 
     this.http.
-      post(`${environment.apiUrl}/api/TextileGarments/Add`, varr)
+      post(`${environment.apiUrl}/api/TextileGarments/AddTnaAction`, varr)
       .subscribe(
         res => {
 
