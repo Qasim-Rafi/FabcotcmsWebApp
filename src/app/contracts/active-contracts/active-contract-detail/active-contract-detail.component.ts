@@ -66,7 +66,6 @@ export class ActiveContractDetailComponent implements OnInit {
   noteFilter: any = [];
   TnaData: any = {};
   TnaFilter: any = {};
-
   shipmentData: any = {};
   invoiceData:any =[];
  
@@ -113,15 +112,19 @@ export class ActiveContractDetailComponent implements OnInit {
 
     this.getAllItems((itemsData) => {
       this.rows2 = itemsData;
+      this.ItemFilter = [...itemsData];
       // this.listCount= this.rows.length;
     });
 
     this.getAllNotes((NotesData) => {
       this.rows3 = NotesData;
+      this.noteFilter = [...NotesData];
       // this.listCount= this.rows.length;
     });
     this.getAllShipmentDates((shipmentData) => {
       this.rows4 = shipmentData;
+      this.shipmentFilter = [...shipmentData];
+
     });
 
   }
@@ -133,7 +136,49 @@ export class ActiveContractDetailComponent implements OnInit {
     });
     this.rows5 = temp;
   }
+  searchItems(event) {
+    const val = event.target.value.toLowerCase();
+    const temp = this.ItemFilter.filter(function (d) {
+      return (
+      d.description.toLowerCase().indexOf(val) !== -1 || 
+      // d.construction.toLowerCase().indexOf(val) !== -1 ||
+      // d.compositionPercentage.toLowerCase().indexOf(val) !== -1 ||
+      // d.loomTypeId.toLowerCase().indexOf(val) !== -1 ||
+      // d.size.toLowerCase().indexOf(val) !== -1 ||
+      // d.weight.toLowerCase().indexOf(val) !== -1 || 
+      // d.itemQuantity.toLowerCase().indexOf(val) !== -1 ||
+      // d.contractRate.toLowerCase().indexOf(val) !== -1 ||
+      // d.contractCost.toLowerCase().indexOf(val) !== -1 ||
+      // d.commission.toLowerCase().indexOf(val) !== -1 ||
+      !val);
+    });
+    this.rows2 = temp;
+  }
+   searchShipmentDates(event) {
+    const val = event.target.value.toLowerCase();
+    const temp = this.shipmentFilter.filter(function (d) {
+      return (
+      d.shipmentNo.toLowerCase().indexOf(val) !== -1 ||
+      d.buyerDate.toLowerCase().indexOf(val) !== -1 ||
+      d.shipmentMode.toLowerCase().indexOf(val) !== -1 ||
+      d.supplierDate.toLowerCase().indexOf(val) !== -1 ||
+      d.shipmentRemarks.toLowerCase().indexOf(val) !== -1 ||
+      !val);
+    });
+    this.rows4 = temp;
+  }
 
+  searchNotes(event) {
+    const val = event.target.value.toLowerCase();
+    const temp = this.noteFilter.filter(function (d) {
+      return (
+      d.createdByName.toLowerCase().indexOf(val) !== -1 ||
+      d.description.toLowerCase().indexOf(val) !== -1 ||
+      d.createdDateTime.toLowerCase().indexOf(val) !== -1 ||
+      !val);
+    });
+    this.rows3 = temp;
+  }
 
 
   getAllItems(cb) {

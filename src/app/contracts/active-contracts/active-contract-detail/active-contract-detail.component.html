@@ -180,12 +180,12 @@
                                 role="tab" aria-controls="nav-items" aria-selected="false">Item &nbsp;<span class="badge badge-pill badge-primary">{{rows2.length}}</span></a>
                                 
                             <a class="nav-item nav-link " id="nav-Shipment-tab" data-toggle="tab" href="#nav-Shipment"
-                                role="tab" aria-controls="nav-Shipment" aria-selected="false">Shipment Dates  &nbsp;<span class="badge badge-pill badge-primary">0</span></a>
+                                role="tab" aria-controls="nav-Shipment" aria-selected="false">Shipment Dates  &nbsp;<span class="badge badge-pill badge-primary">{{rows4.length}}</span></a>
 
                             <a class="nav-item nav-link " id="nav-Time-tab" data-toggle="tab" href="#nav-Time"
-                                role="tab" aria-controls="nav-Time" aria-selected="false">Time & Action  &nbsp;<span class="badge badge-pill badge-primary">0</span></a>
+                                role="tab" aria-controls="nav-Time" aria-selected="false">Time & Action  &nbsp;<span class="badge badge-pill badge-primary">{{rows5.length}}</span></a>
                             <a class="nav-item nav-link " id="nav-Sale-tab" data-toggle="tab" href="#nav-Sale"
-                                role="tab" aria-controls="nav-Sale" aria-selected="false">Sale Invoice  &nbsp;<span class="badge badge-pill badge-primary">0</span></a>
+                                role="tab" aria-controls="nav-Sale" aria-selected="false">Sale Invoice  &nbsp;<span class="badge badge-pill badge-primary">{{rows.length}}</span></a>
                             <!-- <a class="nav-item nav-link " id="nav-Documents-tab" data-toggle="tab" href="#nav-Documents"
                                         role="tab" aria-controls="nav-Documents" aria-selected="false">Documents</a> -->
                             <a class="nav-item nav-link " id="nav-Notes-tab" data-toggle="tab" href="#nav-Notes"
@@ -802,14 +802,15 @@
                                         <div class="form-group row">
                                             <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="inputSearch">
+                                                <input type="text" class="form-control" id="inputSearch" (keyup)="searchItems($event)">
                                             </div>
                                         </div>
                 
                                     </div>
                                 </div>
                                 <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows2"
-                                    [sorts]="[{ prop: 'id,name', dir: 'asce' }]" [columnMode]="'force'" [headerHeight]="50"
+                                    [sorts]="[{ prop: 'description,construction,compositionPercentage,loomTypeId
+                                    size,weight,itemQuantity,contractRate,contractCost,commission', dir: 'asce' }]" [columnMode]="'force'" [headerHeight]="50"
                                     [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
                 
                                     <ngx-datatable-column name="Item Detail" prop="description" [width]="80">
@@ -847,12 +848,12 @@
                                             {{ row.itemQuantity }}
                                         </ng-template>
                                     </ngx-datatable-column>
-                                    <ngx-datatable-column name="Unit Price" prop="weight" [width]="80">
+                                    <ngx-datatable-column name="Unit Price" prop="contractRate" [width]="80">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                                             {{ row.contractRate }}
                                         </ng-template>
                                     </ngx-datatable-column>
-                                    <ngx-datatable-column name="Amount" prop="weight" [width]="80">
+                                    <ngx-datatable-column name="Amount" prop="contractCost" [width]="80">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                                             {{ row.contractCost }}
                                         </ng-template>
@@ -912,14 +913,15 @@
                                         <div class="form-group row">
                                             <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="inputSearch">
+                                                <input type="text" class="form-control" id="inputSearch" (keyup)="searchShipmentDates($event)">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                 
                                 <ngx-datatable #myTable class="bootstrap" [columnMode]="'force'" [headerHeight]="50" [rows]="rows4" [footerHeight]="50"
-                                    [sorts]="[{prop: 'code', dir: 'asce'}]" [rowHeight]="'auto'" [limit]="6">
+                                    [sorts]="[{prop: 'shipmentNo,supplierDate,buyerDate,shipmentLine,shipmentMode,
+                                    shipmentRemarks, ', dir: 'asce'}]" [rowHeight]="'auto'" [limit]="6">
                 
                 
                 
@@ -929,37 +931,37 @@
                                         </ng-template>
                                     </ngx-datatable-column>
                 
-                                    <ngx-datatable-column name="Shipment Number" prop="name">
+                                    <ngx-datatable-column name="Shipment Number" prop="shipmentNo">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                                        {{row.shipmentNo}}
                                         </ng-template>
                                     </ngx-datatable-column>
                 
-                                    <ngx-datatable-column name="Supplier Date" prop="genericName">
+                                    <ngx-datatable-column name="Supplier Date" prop="supplierDate">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                                        {{row.supplierDate}}
                                         </ng-template>
                                     </ngx-datatable-column>
                 
-                                    <ngx-datatable-column name="Buyer Date" prop="status">
+                                    <ngx-datatable-column name="Buyer Date" prop="buyerDate">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                                       {{row.buyerDate}}
                                         </ng-template>
                                     </ngx-datatable-column>
                 
-                                    <ngx-datatable-column name="Ship Line" prop="modifiedDate">
+                                    <ngx-datatable-column name="Ship Line" prop="shipmentLine">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                                        {{row.shipmentLine}}
                                         </ng-template>
                                     </ngx-datatable-column>
                 
-                                    <ngx-datatable-column name="Ship Mode" prop="modifiedBy">
+                                    <ngx-datatable-column name="Ship Mode" prop="shipmentMode">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                                        {{row.shipmentMode}}
                                         </ng-template>
                                     </ngx-datatable-column>
                 
-                                    <ngx-datatable-column name="Remarks">
+                                    <ngx-datatable-column name="Remarks" prop="shipmentRemarks">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                                        {{row.shipmentRemarks}}
                                         </ng-template>
@@ -1362,27 +1364,27 @@
                                         <div class="form-group row">
                                             <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="inputSearch">
+                                                <input type="text" class="form-control" id="inputSearch" (keyup)="searchNotes($event)">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                 
                                 <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows3"
-                                    [sorts]="[{ prop: 'id,name', dir: 'asce' }]" [columnMode]="'force'" [headerHeight]="50"
+                                    [sorts]="[{ prop: 'createdByName,createdDateTime,description', dir: 'asce' }]" [columnMode]="'force'" [headerHeight]="50"
                                     [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
                 
-                                    <ngx-datatable-column name="User" prop="description" [width]="80">
+                                    <ngx-datatable-column name="User" prop="createdByName" [width]="80">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                                             {{ row.createdByName }}
                                         </ng-template>
                                     </ngx-datatable-column>
-                                    <ngx-datatable-column name="Time" prop="itemQuantity" [width]="80">
+                                    <ngx-datatable-column name="Time" prop="createdDateTime" [width]="80">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                                             {{ row.createdDateTime }}
                                         </ng-template>
                                     </ngx-datatable-column>
-                                    <ngx-datatable-column name="Note Details " prop="weight" [width]="80">
+                                    <ngx-datatable-column name="Note Details " prop="description" [width]="80">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                                             {{ row.description }}
                                         </ng-template>
