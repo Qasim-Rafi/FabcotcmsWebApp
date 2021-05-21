@@ -14,8 +14,8 @@
     </h5>
 </div>
 
-<div class="modal-body BG pt-2r">
-    <form #QuotationForm="ngForm" novalidate>
+<div class="modal-body BG pt-2r" > 
+    <form #QuotationForm="ngForm" novalidate  >
 
         <div class="form-group row">
             <label for="countryId" class="col-sm-3 col-form-label">Enquiry Item</label>
@@ -91,7 +91,7 @@
                 Close
             </button>
             <button class="btn button-save" type="submit" 
-                *ngIf="statusCheck == 'addQuotation'" (click)="addQuotation()">
+                *ngIf="statusCheck == 'addQuotation'"  (click)="addQuotation(QuotationForm)">
                 Save Quote
             </button>
             <button class="btn button-save" type="submit" (click)="UpdateQuotation()"

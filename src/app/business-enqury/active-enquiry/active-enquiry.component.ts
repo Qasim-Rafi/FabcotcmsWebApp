@@ -65,8 +65,7 @@ export class ActiveEnquiryComponent implements OnInit {
     const val = event.target.value.toLowerCase();
     // filter our data
     const temp = this.temp.filter(function (d) {
-      return (d.code.toLowerCase().indexOf(val) !== -1 ||
-        d.name.toLowerCase().indexOf(val) !== -1 || !val);
+      return ( d.autoEnquiryNumber.toLowerCase().indexOf(val) !== -1 || !val );
     });
     this.rows = temp;
   }
@@ -82,8 +81,8 @@ export class ActiveEnquiryComponent implements OnInit {
         this.listCount = this.response.data.enquiryList.length;
 
         if (this.response.success == true) {
-          this.temp = [this.data]; 
           this.data = this.response.data.enquiryList;
+          this.temp = [this.data];
           cb(this.data);
         }
         else {

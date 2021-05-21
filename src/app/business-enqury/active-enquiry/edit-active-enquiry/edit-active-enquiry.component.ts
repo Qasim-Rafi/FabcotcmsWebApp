@@ -54,7 +54,7 @@ export class EditActiveEnquiryComponent implements OnInit {
  noteFilter: any = [];
  noteList: any = {};
  totalComplete:any;
- 
+ userName: any ; 
 
   // entries: any = [];
 
@@ -73,6 +73,7 @@ export class EditActiveEnquiryComponent implements OnInit {
 
   ngOnInit(): void {
 
+      this.userName=localStorage.getItem('loggedInUserName');
       this.queryParems = this.route.snapshot.queryParams;
       this.objEnquiry = this.queryParems.id;
       // this.enquiryId = this.objEnquiry;
