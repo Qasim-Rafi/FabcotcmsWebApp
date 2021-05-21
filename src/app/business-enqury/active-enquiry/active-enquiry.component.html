@@ -106,6 +106,7 @@
                 <div class="dt-buttons btn-group">
                   <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0"
                     aria-controls="DataTables_Table_0" ngxClipboard
+                    (click)="copyEnquiryList()"
                 
                     ><span>Copy</span>
                   </a>
@@ -130,35 +131,35 @@
     
     <div class="panel-body">
       <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'"
-        [headerHeight]="50" [footerHeight]="50" [sorts]="[{prop: 'Inquiry No.', dir: 'asce'}]" [rowHeight]="'auto'"
+        [headerHeight]="50" [footerHeight]="50" [sorts]="[{prop: 'autoEnquiryNumber', dir: 'desc'}]" [rowHeight]="'auto'"
         [limit]="6">
 
-        <ngx-datatable-column name="Enquiry No." [width]="5" prop="Inquiry No.">
+        <ngx-datatable-column name="Enquiry No." [width]="5" prop="autoEnquiryNumber">
           <ng-template let-row="row" ngx-datatable-cell-template>
             {{row.autoEnquiryNumber}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Enquiry On." [width]="80" prop="Inquiry On.">
+        <ngx-datatable-column name="Enquiry On." [width]="80" prop="enquiryDate">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.enquiryDate}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Customer" [width]="80" prop="Customer">
+        <ngx-datatable-column name="Customer" [width]="80" prop="buyerName">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.buyerName}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Article" [width]="5" prop="Article">
+        <ngx-datatable-column name="Article" [width]="5" prop="articleName">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.articleName}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Payment Terms" [width]="80" prop="Payment Terms">
+        <ngx-datatable-column name="Payment Terms" [width]="80" prop="paymentTermName">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.paymentTermName}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Price Terms" [width]="80" prop="Price Terms">
+        <ngx-datatable-column name="Price Terms" [width]="80" prop="priceTermName">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.priceTermName}}
           </ng-template>

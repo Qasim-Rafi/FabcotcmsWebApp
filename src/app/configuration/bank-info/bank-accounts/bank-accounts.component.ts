@@ -10,6 +10,7 @@ import { GlobalConstants } from 'src/app/Common/global-constants';
 import { ServiceService } from 'src/app/shared/service.service';
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
+import { ClipboardService } from 'ngx-clipboard';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -23,12 +24,14 @@ export class BankAccountsComponent implements OnInit {
   response: any;
   rows: any = [];
   columns: any = [];
+  copyData: any = [];
   data: any = {};
   bankAccFilter: any[];
   bankAccUrl = '/api/Configs/GetAllBankAccount'
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
+    private _clipboardService: ClipboardService,
     private service: ServiceService,
     private modalService: NgbModal,) { }
 
@@ -261,7 +264,39 @@ bankAccCsvFile(){
 
     pdfMake.createPdf(docDefinition).print();
   }
-
+  copyBankAccountList() {
+    this.copyData.push('S. No.'.padEnd(10) + 'Account Name'.padEnd(10) +
+    'Account Number'.padEnd(10)+'IBAN'.padEnd(10)+ 'Swift Code'.padEnd(10)+ 'Account Type'.padEnd(10)+ 'Bank'.padEnd(10) + 'Branch \n');
+  
+  for (let i = 0; i < this.rows.length; i++) {
+    let tempData =  this.rows[i].id
+      +''.padEnd(5)
+    + this.rows[i].accountName
+    +''.padEnd(5)
+    + this.rows[i].accountNumber
+    +''.padEnd(5)
+    + this.rows[i].iban
+    +''.padEnd(5)
+    + this.rows[i].swiftCode
+    +''.padEnd(5)
+    + this.rows[i].type
+    +''.padEnd(5)
+    + this.rows[i].bankName
+    +''.padEnd(5)
+    + this.rows[i].branchName
+    +'\n';
+    this.copyData.push(tempData);
+  }
+  this._clipboardService.copy(this.copyData)
+  
+  Swal.fire({
+    title: GlobalConstants.copySuccess,
+    footer: 'Copied' + '\n' + this.bankAccCount + '\n' + 'row/s to clipboard',
+    showConfirmButton: false,
+    timer: 2000,
+  })
+  }
+  
 }
 
 

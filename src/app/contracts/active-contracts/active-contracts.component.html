@@ -79,7 +79,7 @@
           <div class="form-group row">
             <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" id="inputSearch">
+              <input type="text" class="form-control" id="inputSearch" (keyup)="searchFilter($event)">
             </div>
           </div>
 
@@ -90,7 +90,7 @@
       <div class="panel-body">
 
         <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'"
-        [headerHeight]="50" [footerHeight]="50" [sorts]="[{prop: 'code', dir: 'asce'}]" [rowHeight]="'auto'"
+        [headerHeight]="50" [footerHeight]="50" [sorts]="[{prop: 'autoContractNumber', dir: 'decs'}]" [rowHeight]="'auto'"
         [limit]="6">
           <ngx-datatable-column name="Action">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
@@ -101,7 +101,7 @@
                   <i class="far fa-edit "></i>
                 </button>
 
-                <button type="button" class="btn deleteIconBack">
+                <button type="button" class="btn deleteIconBack" (click)="deleteContract(row)">
                   <i class="far fa-trash-alt"></i>
                 </button>
 
@@ -115,14 +115,14 @@
             </ng-template>
           </ngx-datatable-column>
 
-          <ngx-datatable-column name="Age" prop="name">
+          <ngx-datatable-column name="Age" prop="contractAge">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
               <span class="badge badge-primary">{{row.contractAge}}</span>
              
             </ng-template>
           </ngx-datatable-column>
 
-          <ngx-datatable-column name="Contract Details" prop="genericName">
+          <ngx-datatable-column name="Contract Details" prop="autoContractNumber">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
               {{row.autoContractNumber}}
               B:{{row.buyerName}}
@@ -130,25 +130,25 @@
             </ng-template>
           </ngx-datatable-column>
 
-          <ngx-datatable-column name="Contract On" prop="status">
+          <ngx-datatable-column name="Contract On" prop="contractOn">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
               {{row.contractOn}}
             </ng-template>
           </ngx-datatable-column>
 
-          <ngx-datatable-column name="#PO" prop="modifiedDate">
+          <ngx-datatable-column name="#PO" prop="poNumber">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
               {{row.poNumber}}
             </ng-template>
           </ngx-datatable-column>
 
-          <ngx-datatable-column name="#SC" prop="modifiedBy">
+          <ngx-datatable-column name="#SC" prop="scNumber">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
               {{row.scNumber}}
             </ng-template>
           </ngx-datatable-column>
 
-          <ngx-datatable-column name="Article">
+          <ngx-datatable-column name="Article" prop="articleName">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
               {{row.articleName}}
 

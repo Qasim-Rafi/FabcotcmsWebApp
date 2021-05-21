@@ -10,10 +10,11 @@ import * as AdminLte from 'admin-lte';
 })
 export class TemplateComponent implements OnInit {
   title = 'Project';
-  
+  userName:string;
   constructor( private router: Router,) { }
 
   ngOnInit(): void {
+    this.userName=localStorage.getItem('loggedInUserName');
     $('li.dropdown.mega-dropdown a').on('click', function (event) {
       $(this).parent().toggleClass("open");
   });

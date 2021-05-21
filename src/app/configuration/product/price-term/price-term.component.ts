@@ -10,6 +10,7 @@ import { GlobalConstants } from 'src/app/Common/global-constants';
 import { ServiceService } from 'src/app/shared/service.service';
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
+import { ClipboardService } from 'ngx-clipboard';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -22,6 +23,7 @@ export class PriceTermComponent implements OnInit {
 
   response: any;
   rows: any = [];
+  copyData: any = [];
   data: any = {};
   columns: any = [];
   priceTermCount: number;
@@ -30,6 +32,7 @@ export class PriceTermComponent implements OnInit {
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
+    private _clipboardService: ClipboardService,
     private service: ServiceService,
     private modalService: NgbModal,) { }
 
@@ -250,6 +253,34 @@ export class PriceTermComponent implements OnInit {
     pdfMake.createPdf(docDefinition).print();
   }
 
+  copyPriceTermList() {
+    this.copyData.push('S. No.'.padEnd(10) + 'Price Terms'.padEnd(10) +
+    'Details'.padEnd(10)+'Status'.padEnd(10)+ 'Last Changed On' + '|Updated By \n');
+
+  for (let i = 0; i < this.rows.length; i++) {
+    let tempData =  this.rows[i].id
+      +''.padEnd(5)
+    + this.rows[i].term
+    +''.padEnd(5)
+    + this.rows[i].description
+    +''.padEnd(5)
+    + this.rows[i].active
+    +''.padEnd(5)
+    + this.rows[i].updatedDateTime
+    +''.padEnd(5)
+    + this.rows[i].updatedByName+
+     '\n';
+    this.copyData.push(tempData);
+  }
+  this._clipboardService.copy(this.copyData)
+
+  Swal.fire({
+    title: GlobalConstants.copySuccess,
+    footer: 'Copied' + '\n' + this.priceTermCount + '\n' + 'rows to clipboard',
+    showConfirmButton: false,
+    timer: 2000,
+  })
+}
 
 
 }

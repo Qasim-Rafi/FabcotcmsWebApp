@@ -11,6 +11,7 @@ import { GlobalConstants } from 'src/app/Common/global-constants';
 import { ServiceService } from 'src/app/shared/service.service';
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
+import { ClipboardService } from 'ngx-clipboard';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 
@@ -27,6 +28,7 @@ export class ForeignAgentComponent implements OnInit {
   columns: any = [];
   data: any = {};
   agentCount: number;
+  copyData: any = [];
   date: number;
   myDate = Date.now();
   agentFilter: any[];
@@ -34,6 +36,7 @@ export class ForeignAgentComponent implements OnInit {
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
+    private _clipboardService: ClipboardService,
     private service: ServiceService,
     private modalService: NgbModal,) { }
 
@@ -287,8 +290,43 @@ export class ForeignAgentComponent implements OnInit {
 
     pdfMake.createPdf(docDefinition).print();
   }
+  copyAgentList() {
+   
 
+    this.copyData.push('Agent Code'.padEnd(10) + 'Agent Name'.padEnd(10) +
+      'Agent Type'.padEnd(10) + 'Address'.padEnd(10) + 'Email'.padEnd(10) + 'Contact No.'.padEnd(10)+'Status'.padEnd(10)+ 'Side'.padEnd(10) + 'Last Updated On' + '|By \n');
 
+    for (let i = 0; i < this.rows.length; i++) {
+      let tempData =  this.rows[i].code
+        +''.padEnd(5)
+      + this.rows[i].name
+      +''.padEnd(5)
+      + this.rows[i].agentTypeId
+      +''.padEnd(5)
+      + this.rows[i].address
+      +''.padEnd(5)
+      + this.rows[i].emailAddress
+      +''.padEnd(5)
+      + this.rows[i].cellNumber
+      +''.padEnd(5)
+      + this.rows[i].active
+      +''.padEnd(5)
+      + this.rows[i].agentSideId
+      +''.padEnd(5)
+      + this.rows[i].updatedDateTime
+      +''.padEnd(5)
+      + this.rows[i].createdByName+
+       '\n';
+      this.copyData.push(tempData);
+    }
+    this._clipboardService.copy(this.copyData)
 
+    Swal.fire({
+      title: GlobalConstants.copySuccess,
+      footer: 'Copied' + '\n' + this.agentCount + '\n' + 'rows to clipboard',
+      showConfirmButton: false,
+      timer: 2000,
+    })
+  }
 
 }
