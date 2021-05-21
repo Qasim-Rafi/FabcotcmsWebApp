@@ -160,16 +160,20 @@
               <div class="html5buttons mrg-tsm">
                 <div class="dt-buttons btn-group">
                   <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0" aria-controls="DataTables_Table_0"
-                    ngxClipboard><span>Copy</span>
+                   (click)="copyBillsList()" ngxClipboard><span>Copy</span>
                   </a>
                   <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
-                    aria-controls="DataTables_Table_0"><span>CSV</span></a>
+                  (click)="activeBillsCsvFile()" 
+                  aria-controls="DataTables_Table_0"><span>CSV</span></a>
                   <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
-                    aria-controls="DataTables_Table_0"><span>Excel</span></a>
+                  (click)="activeBillsExcelFile()"  
+                  aria-controls="DataTables_Table_0"><span>Excel</span></a>
                   <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0"
-                    aria-controls="DataTables_Table_0"><span>PDF</span></a>
+                  (click)="ActiveBillsListPdf()"  
+                  aria-controls="DataTables_Table_0"><span>PDF</span></a>
                   <a class="btn btn-default buttons-print bg-white" tabindex="0"
-                    aria-controls="DataTables_Table_0"><span>Print</span></a>
+                  (click)="printActiveBillsList()"  
+                  aria-controls="DataTables_Table_0"><span>Print</span></a>
                 </div>
               </div>
         
@@ -219,7 +223,7 @@
       
           <ngx-datatable-column name="Contract #" [width]="80" prop="contractNum" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{row.contractId}}
+              {{row.autoContractNumber}}
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Bill Date" [width]="80" prop="billDate" [flexGrow]="0.06">

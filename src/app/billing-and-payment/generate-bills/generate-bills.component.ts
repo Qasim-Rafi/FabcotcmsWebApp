@@ -9,6 +9,8 @@ import { GlobalConstants } from '../../Common/global-constants';
 import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
 
 import Swal from 'sweetalert2/dist/sweetalert2.js';
+import { SaleInvoiceFormComponent } from './sale-invoice-form/sale-invoice-form.component';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-generate-bills',
   templateUrl: './generate-bills.component.html',
@@ -19,7 +21,9 @@ export class GenerateBillsComponent implements OnInit {
   constructor(    private service: ServiceService,
     private http: HttpClient,
     private toastr: ToastrService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private router: Router,
+
     ) { }
 
 
@@ -29,7 +33,8 @@ export class GenerateBillsComponent implements OnInit {
       rows: any = [];
       checkboxData: any = [];
       SelectionType = SelectionType;
-
+      date: number;
+      myDate = Date.now();
       columns: any = [];
       response: any;
       url = '/api/BillingPayments/GetAllContractForBillGeneration'
@@ -39,7 +44,6 @@ export class GenerateBillsComponent implements OnInit {
       ngOnInit(): void {
         this.service.fetch((data)=>{
             this.rows = data;
-            console.log( this.rows)
         } , this.url)
         
       }
@@ -68,7 +72,10 @@ export class GenerateBillsComponent implements OnInit {
 
   generateBill() {
     // console.log("checkbox data in " , this.checkboxData)
-  
+  if(this.contractIds.length === 0){
+    this.toastr.error("PLease select atleast one contract to generate bill" , 'Message')
+  }
+  else{
     let varr = {
       "contractIds": this.contractIds,
       // "billForBuyerId": this.data,
@@ -84,6 +91,8 @@ export class GenerateBillsComponent implements OnInit {
           this.response = res;
           if (this.response.success == true) {
             this.toastr.success(GlobalConstants.addMessage, 'Message.');
+            this.router.navigate(['/billing-and-payment/active-bills']);
+
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
@@ -94,5 +103,19 @@ export class GenerateBillsComponent implements OnInit {
             this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
           }
         });
+      }
+      }
+  SaleInvoiceForm() {
+    const modalRef = this.modalService.open(SaleInvoiceFormComponent , { centered: true });
+    modalRef.result.then((data) => {
+      // on close
+      if (data == true) {
+        this.date = this.myDate;
+        // this.getBuyers();
+
+      }
+    }, (reason) => {
+      // on dismiss
+    });
   }
 }

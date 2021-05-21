@@ -15,7 +15,7 @@
   
   
   
-  <div class="modal-body BG pt-2r">
+  <div class="modal-body BG pt-4">
     <form #NotesForm="ngForm" novalidate>
   
       <div class="form-group row">
@@ -82,18 +82,19 @@
         </div>
       </div>
   
-      <div class="modal-footer NotBG">
-        <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
-          Close
-        </button>
-        <button class="btn button-save" type="submit"  *ngIf="statusCheck == 'contractAddNote'" (click)="AddContractNote()">
-          Save Note
-        </button>
-        <button class="btn button-save" type="submit"  *ngIf="statusCheck == 'contractEditNote'" (click)="UpdateContractNote()">
-          Update Note
-        </button>
-      </div>
+      
     </form>
   </div>
   
+  <div class="modal-footer NotBG">
+    <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
+      Close
+    </button>
+    <button class="btn button-save" type="submit"  *ngIf="statusCheck == 'contractAddNote'" (click)="AddContractNote()">
+      Save Note
+    </button>
+    <button class="btn button-save" type="submit"  *ngIf="statusCheck == 'contractEditNote'" (click)="UpdateContractNote()">
+      Update Note
+    </button>
+  </div>
   

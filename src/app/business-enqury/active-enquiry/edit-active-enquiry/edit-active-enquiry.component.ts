@@ -115,6 +115,7 @@ export class EditActiveEnquiryComponent implements OnInit {
           if (this.response.success == true) {
             this.enquiryData = this.response.data;
              this.confirmOn = this.enquiryData.confirmationDate;
+             console.log("enquiry Data" , this.enquiryData)
             this.enquiryData.confirmationDate = this.dateformater.fromModel(this.enquiryData.confirmationDate);
             this.fetch((data) => {
               this.rows = data;
@@ -877,8 +878,8 @@ export class EditActiveEnquiryComponent implements OnInit {
                 ],
           // [ 'Value 1', 'Value 2', 'Value 3', 'Value 4' , '5' , '6' , '7' , '8' ]
           ...this.enquiryData['enquiryItemList'].map((row=>
-            [row.description, row.construction, row.colorId,
-              row.itemQuantity, row.id , row.size , row.loomTypeId , row.createdByName]
+            [row.description, row.construction, row.colorName,
+              row.itemQuantity, row.weight , row.size , row.loomTypeName , row.createdByName]
             ))
         
                 ]

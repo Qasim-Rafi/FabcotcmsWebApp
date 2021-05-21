@@ -53,6 +53,7 @@ import { EditTnaComponent } from './contracts/active-contracts/active-contract-d
 import { SaleInvoiceItemComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/sale-invoice-item/sale-invoice-item.component';
 import { ContractNoteComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/contract-note/contract-note.component';
 import { AuthInterceptor } from './shared/auth-service/auth.interceptor';
+import { TnaLogHistoryComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/tna-log-history/tna-log-history.component';
 
 
 
@@ -89,6 +90,7 @@ const appRoutes: Routes = []
     EditTnaComponent,
     SaleInvoiceItemComponent,
     ContractNoteComponent,
+    TnaLogHistoryComponent,
 
     // AddEnquiryComponent,
     // SearchEnquiryComponent,

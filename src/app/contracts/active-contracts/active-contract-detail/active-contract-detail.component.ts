@@ -25,6 +25,7 @@ import { QuantityCostingComponent } from './Active-Contract-Models/quantity-cost
 import { RemarksComponent } from './Active-Contract-Models/remarks/remarks.component';
 import { SaleInvoiceItemComponent } from './Active-Contract-Models/sale-invoice-item/sale-invoice-item.component';
 import { SALEINVOICEComponent } from './Active-Contract-Models/sale-invoice/sale-invoice.component';
+import { TnaLogHistoryComponent } from './Active-Contract-Models/tna-log-history/tna-log-history.component';
 
 @Component({
   selector: 'app-active-contract-detail',
@@ -64,10 +65,16 @@ export class ActiveContractDetailComponent implements OnInit {
   shipmentFilter: any = [];
   noteFilter: any = [];
   TnaData: any = {};
+  TnaFilter: any = {};
   shipmentData: any = {};
   invoiceData:any =[];
  
   shipmentUrl='/api/Contracts/GetAllContractShipmentSchedule/{contractId}';
+  // tna data
+  rows5: any = [];
+  id: any = {};
+  tnaId: any = {};
+  
   constructor(
     private modalService: NgbModal,
     private route: ActivatedRoute,
@@ -89,9 +96,13 @@ export class ActiveContractDetailComponent implements OnInit {
     this.getContractLOC();
     this.getContractRemarkData();
     this.getContractCommisionData();
-    this.getContractTnA();
     this.getSaleInvoice();
 
+    this.getContractTnA((Tna)=>{
+      this.rows5 = Tna;
+      this.TnaFilter = [...Tna];
+
+    });
 
     this.getAllBenificery((empData) => {
       this.rows1 = empData;
@@ -101,21 +112,73 @@ export class ActiveContractDetailComponent implements OnInit {
 
     this.getAllItems((itemsData) => {
       this.rows2 = itemsData;
+      this.ItemFilter = [...itemsData];
       // this.listCount= this.rows.length;
     });
 
     this.getAllNotes((NotesData) => {
       this.rows3 = NotesData;
+      this.noteFilter = [...NotesData];
       // this.listCount= this.rows.length;
     });
     this.getAllShipmentDates((shipmentData) => {
       this.rows4 = shipmentData;
+      this.shipmentFilter = [...shipmentData];
+
     });
 
   }
 
+  searchTna(event) {
+    const val = event.target.value.toLowerCase();
+    const temp = this.TnaFilter.filter(function (d) {
+      return (d.tnaItem.toLowerCase().indexOf(val) !== -1 || !val);
+    });
+    this.rows5 = temp;
+  }
+  searchItems(event) {
+    const val = event.target.value.toLowerCase();
+    const temp = this.ItemFilter.filter(function (d) {
+      return (
+      d.description.toLowerCase().indexOf(val) !== -1 || 
+      // d.construction.toLowerCase().indexOf(val) !== -1 ||
+      // d.compositionPercentage.toLowerCase().indexOf(val) !== -1 ||
+      // d.loomTypeId.toLowerCase().indexOf(val) !== -1 ||
+      // d.size.toLowerCase().indexOf(val) !== -1 ||
+      // d.weight.toLowerCase().indexOf(val) !== -1 || 
+      // d.itemQuantity.toLowerCase().indexOf(val) !== -1 ||
+      // d.contractRate.toLowerCase().indexOf(val) !== -1 ||
+      // d.contractCost.toLowerCase().indexOf(val) !== -1 ||
+      // d.commission.toLowerCase().indexOf(val) !== -1 ||
+      !val);
+    });
+    this.rows2 = temp;
+  }
+   searchShipmentDates(event) {
+    const val = event.target.value.toLowerCase();
+    const temp = this.shipmentFilter.filter(function (d) {
+      return (
+      d.shipmentNo.toLowerCase().indexOf(val) !== -1 ||
+      d.buyerDate.toLowerCase().indexOf(val) !== -1 ||
+      d.shipmentMode.toLowerCase().indexOf(val) !== -1 ||
+      d.supplierDate.toLowerCase().indexOf(val) !== -1 ||
+      d.shipmentRemarks.toLowerCase().indexOf(val) !== -1 ||
+      !val);
+    });
+    this.rows4 = temp;
+  }
 
-
+  searchNotes(event) {
+    const val = event.target.value.toLowerCase();
+    const temp = this.noteFilter.filter(function (d) {
+      return (
+      d.createdByName.toLowerCase().indexOf(val) !== -1 ||
+      d.description.toLowerCase().indexOf(val) !== -1 ||
+      d.createdDateTime.toLowerCase().indexOf(val) !== -1 ||
+      !val);
+    });
+    this.rows3 = temp;
+  }
 
 
   getAllItems(cb) {
@@ -651,18 +714,22 @@ getContractLOC() {
 
 
 ProductionPlanform() {
+  
   const modalRef = this.modalService.open(PRODUCTPLANComponent, { centered: true });
   modalRef.componentInstance.contractId = this.contractId;
 
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
-
+      this.getContractTnA((Tna)=>{
+        this.rows5 = Tna;
+      });
     }
   }, (reason) => {
     // on dismiss
   });
 }
+
 
 saleInvoice() {
   const modalRef = this.modalService.open(SALEINVOICEComponent, { centered: true });
@@ -725,15 +792,14 @@ ContractNotes(check, name) {
 //     // on dismiss
 //   });
 // }
-
-getContractTnA() {
-  this.http.get(`${environment.apiUrl}/api/Contracts/GetContractTimeActionById/` + this.contractId)
+getContractTnA(cb) {
+  this.http.get(`${environment.apiUrl}/api/Contracts/GetAllContractTimeAction/` + this.contractId)
     .subscribe(
       res => {
         this.response = res;
         if (this.response.success == true) {
           this.TnaData = this.response.data;
-          
+          cb(this.TnaData)
         }
         else {
           this.toastr.error(this.response.message, 'Message.');
@@ -745,13 +811,36 @@ getContractTnA() {
         }
       });
 }
+
 EditTna(row) {
   const modalRef = this.modalService.open(EditTnaComponent, { centered: true });
   modalRef.componentInstance.contractId = this.contractId;
+  modalRef.componentInstance.id = row.id;
+  modalRef.componentInstance.tnaId = row.tnaId;
+
 
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
+      this.getContractTnA((Tna)=>{
+        this.rows5 = Tna;
+      });
+
+    }
+  }, (reason) => {
+    // on dismiss
+  });
+}
+TnaHistory(row) {
+  const modalRef = this.modalService.open(TnaLogHistoryComponent, { centered: true });
+  modalRef.componentInstance.id = row.id;
+
+  modalRef.result.then((data) => {
+    // on close
+    if (data == true) {
+      this.getContractTnA((Tna)=>{
+        this.rows5 = Tna;
+      });
 
     }
   }, (reason) => {
