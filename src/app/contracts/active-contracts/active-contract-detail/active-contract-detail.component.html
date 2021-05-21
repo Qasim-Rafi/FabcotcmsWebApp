@@ -1030,7 +1030,7 @@
                                     [sorts]="[{ prop: 'id,tnaItem', dir: 'asce' }]" [columnMode]="'force'" [headerHeight]="50"
                                     [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
                                     <ngx-datatable-column prop="id" name="S. No." [width]="20">
-                                        <ng-template let-row="row"   let-rowIndex="rowIndex"  ngx-datatable-cell-template>
+                                        <ng-template    let-rowIndex="rowIndex"  ngx-datatable-cell-template>
                                             {{rowIndex + 1}}
                                         </ng-template>
                                     </ngx-datatable-column>
@@ -1066,7 +1066,7 @@
                                             <div class="ibox-tools text-center">
                                                 <button type="button" class="btn editIconBack" (click)="EditTna(row)"><i
                                                         class="far fa-edit"></i></button>
-                                                        <button type="button" class="btn editIconBack"><i
+                                                        <button type="button" class="btn editIconBack" (click) = "TnaHistory(row)"> <i
                                                             class="fa fa-history"></i></button>
 
                                                     </div>

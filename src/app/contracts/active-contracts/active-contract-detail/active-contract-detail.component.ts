@@ -25,6 +25,7 @@ import { QuantityCostingComponent } from './Active-Contract-Models/quantity-cost
 import { RemarksComponent } from './Active-Contract-Models/remarks/remarks.component';
 import { SaleInvoiceItemComponent } from './Active-Contract-Models/sale-invoice-item/sale-invoice-item.component';
 import { SALEINVOICEComponent } from './Active-Contract-Models/sale-invoice/sale-invoice.component';
+import { TnaLogHistoryComponent } from './Active-Contract-Models/tna-log-history/tna-log-history.component';
 
 @Component({
   selector: 'app-active-contract-detail',
@@ -768,6 +769,24 @@ getContractTnA(cb) {
 
 EditTna(row) {
   const modalRef = this.modalService.open(EditTnaComponent, { centered: true });
+  modalRef.componentInstance.contractId = this.contractId;
+  modalRef.componentInstance.id = row.id;
+  modalRef.componentInstance.tnaId = row.tnaId;
+
+
+  modalRef.result.then((data) => {
+    // on close
+    if (data == true) {
+      this.getContractTnA((Tna)=>{
+        this.rows5 = Tna;
+      });
+    }
+  }, (reason) => {
+    // on dismiss
+  });
+}
+TnaHistory(row) {
+  const modalRef = this.modalService.open(TnaLogHistoryComponent, { centered: true });
   modalRef.componentInstance.contractId = this.contractId;
   modalRef.componentInstance.id = row.id;
   modalRef.componentInstance.tnaId = row.tnaId;
