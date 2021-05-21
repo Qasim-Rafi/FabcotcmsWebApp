@@ -9,6 +9,7 @@ import { GlobalConstants } from '../../Common/global-constants';
 import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
 
 import Swal from 'sweetalert2/dist/sweetalert2.js';
+import { SaleInvoiceFormComponent } from './sale-invoice-form/sale-invoice-form.component';
 @Component({
   selector: 'app-generate-bills',
   templateUrl: './generate-bills.component.html',
@@ -29,7 +30,8 @@ export class GenerateBillsComponent implements OnInit {
       rows: any = [];
       checkboxData: any = [];
       SelectionType = SelectionType;
-
+      date: number;
+      myDate = Date.now();
       columns: any = [];
       response: any;
       url = '/api/BillingPayments/GetAllContractForBillGeneration'
@@ -94,5 +96,18 @@ export class GenerateBillsComponent implements OnInit {
             this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
           }
         });
+  }
+  SaleInvoiceForm() {
+    const modalRef = this.modalService.open(SaleInvoiceFormComponent , { centered: true });
+    modalRef.result.then((data) => {
+      // on close
+      if (data == true) {
+        this.date = this.myDate;
+        // this.getBuyers();
+
+      }
+    }, (reason) => {
+      // on dismiss
+    });
   }
 }

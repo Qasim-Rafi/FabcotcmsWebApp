@@ -16,6 +16,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { PaymentFormComponent } from './payment-form/payment-form.component';
 import { DateFilterComponent } from './date-filter/date-filter.component';
 import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
+import { ChangeBankAccountComponent } from './active-bills/open-active-bill/change-bank-account/change-bank-account.component';
+import { SaleInvoiceFormComponent } from './generate-bills/sale-invoice-form/sale-invoice-form.component';
 @NgModule({
   declarations: [
     GenerateBillsComponent,
@@ -26,7 +28,9 @@ import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
     ExternalAgentCommissionComponent,
     NewCommissionPaymentComponent,
     PaymentFormComponent,
-    DateFilterComponent],
+    DateFilterComponent,
+    ChangeBankAccountComponent,
+    SaleInvoiceFormComponent],
   imports: [
     CommonModule,
     BillingAndPaymentRoutingModule,

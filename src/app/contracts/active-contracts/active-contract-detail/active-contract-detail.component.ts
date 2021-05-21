@@ -780,6 +780,7 @@ EditTna(row) {
       this.getContractTnA((Tna)=>{
         this.rows5 = Tna;
       });
+
     }
   }, (reason) => {
     // on dismiss
@@ -798,6 +799,7 @@ TnaHistory(row) {
       this.getContractTnA((Tna)=>{
         this.rows5 = Tna;
       });
+
     }
   }, (reason) => {
     // on dismiss
