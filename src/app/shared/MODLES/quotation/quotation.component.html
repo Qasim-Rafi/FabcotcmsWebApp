@@ -89,19 +89,7 @@
                 name="remarks" [(ngModel)]="data.remarks"></textarea>
             </div>
         </div>
-        <div class="modal-footer NotBG">
-            <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
-                Close
-            </button>
-            <button class="btn button-save" type="submit" 
-                *ngIf="statusCheck == 'addQuotation'"  (click)="addQuotation(QuotationForm)">
-                Save Quote
-            </button>
-            <button class="btn button-save" type="submit" (click)="UpdateQuotation()"
-                *ngIf="statusCheck == 'editQuotation'">
-                Update Quote
-            </button>
-        </div>
+      
     </form>
 </div>
 
