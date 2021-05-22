@@ -36,8 +36,7 @@ listCount: number;
   ngOnInit(): void {
     this.fetch((data) => {
       this.rows = data;
-      console.log(this.rows)
-      // this.listCount= this.rows.length;
+      this.listCount = this.rows.length;
     });
 
   }
@@ -65,6 +64,49 @@ listCount: number;
     //  this.spinner.hide();
     });
   }
+
+  deletePayment(row) {
+    Swal.fire({
+      title: GlobalConstants.deleteTitle, //'Are you sure?',
+      text: GlobalConstants.deleteMessage + 'Payment Receipt# ' + '"' + row.receiptNumber + '"',
+      icon: 'error',
+      showCancelButton: true,
+      confirmButtonColor: '#ed5565',
+      cancelButtonColor: '#dae0e5',
+      cancelButtonText: 'No',
+      confirmButtonText: 'Yes',
+      reverseButtons: true,
+      position: 'top',
+    }).then((result) => {
+      if (result.isConfirmed) {
+  
+        this.http.delete(`${environment.apiUrl}/api/BillingPayments/DeleteBillPayment/` + row.id )
+          .subscribe(
+            res => {
+              this.response = res;
+              if (this.response.success == true) {
+                this.toastr.error(this.response.message, 'Message.');
+                this.fetch((data) => {
+                  this.rows = data;
+                });
+  
+              }
+              else {
+                this.toastr.error(this.response.message, 'Message.');
+              }
+  
+            }, err => {
+              if (err.status == 400) {
+                this.toastr.error(this.response.message, 'Message.');
+              }
+            });
+  
+      }
+    })
+  
+  }
+  
+
   copyPaymentList() {
     this.copyData.push('S:Seller/B:Buyer'.padEnd(10) + 'Receipt'.padEnd(10) +
     'Bill'.padEnd(10) +'Contract'.padEnd(10)+ 'Sale Invoice'.padEnd(10)+ 'Bill Date'.padEnd(10)+ 'Payment On'.padEnd(10)+ 'Net Amount'.padEnd(10)+ 'Payment Mode \n');

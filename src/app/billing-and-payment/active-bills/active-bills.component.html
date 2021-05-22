@@ -223,7 +223,7 @@
       
           <ngx-datatable-column name="Contract #" [width]="80" prop="contractNum" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{row.contractId}}
+              {{row.autoContractNumber}}
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Bill Date" [width]="80" prop="billDate" [flexGrow]="0.06">
