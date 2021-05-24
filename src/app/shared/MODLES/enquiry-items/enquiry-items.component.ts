@@ -4,6 +4,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
 import { ServiceService } from '../../service.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-enquiry-items',
@@ -116,8 +117,13 @@ export class EnquiryItemsComponent implements OnInit {
 
 
 
-  addEnquiryItem() {
+  addEnquiryItem( form:NgForm) {
    
+    if(form.status =="INVALID"){
+
+      this.toastr.error("Invalid Form", 'Message.');
+    }
+    else{
     for(let i=0; i<this.data.length;i++ )
     {
       this.data[i] = Object.assign(this.data[i], {
@@ -146,6 +152,7 @@ export class EnquiryItemsComponent implements OnInit {
           }
         });
   }
+}
 
 
 
@@ -170,22 +177,14 @@ export class EnquiryItemsComponent implements OnInit {
 
 
 
-  updateEnquiry() {
-    // let varr = {
-    //   "enquiryId": this.data.enquiryId,
-    //   "description": this.data.description,
-    //   "itemQuantity": this.data.itemQuantity,
-    //   "itemUOMId": this.data.itemUOMId,
-    //   "compositionPercentage": this.data.compositionPercentage,
-    //   "compositionFebricTypeId": this.data.compositionFebricTypeId,
-    //   "compositionAdditionalInfo": this.data.compositionAdditionalInfo,
-    //   "construction": this.data.construction,
-    //   "colorId": this.data.colorId,
-    //   "weight": this.data.weight,
-    //   "loomTypeId": this.data.loomTypeId,
-    //   "size": this.data.size,
-    //   "remarks": this.data.remarks,
-    // }
+  updateEnquiry(form:NgForm) {
+
+    if(form.status =="INVALID"){
+
+      this.toastr.error("Invalid Form", 'Message.');
+    }
+    else{
+  
     this.http.
       put(`${environment.apiUrl}/api/Enquiries/UpdateEnquiryItem/` + this.EnquiryItemId, this.data)
       .subscribe(
@@ -207,6 +206,7 @@ export class EnquiryItemsComponent implements OnInit {
           }
         });
   }
+}
 
 
 }

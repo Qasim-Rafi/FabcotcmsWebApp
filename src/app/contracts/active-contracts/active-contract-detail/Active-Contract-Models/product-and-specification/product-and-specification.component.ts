@@ -44,7 +44,7 @@ export class ProductAndSpecificationComponent implements OnInit {
     this.service.getArticles().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.article = this.response.data;
+        this.article = this.response.data.list;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -56,7 +56,7 @@ export class ProductAndSpecificationComponent implements OnInit {
     this.service.getProcess().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.process = this.response.data;
+        this.process = this.response.data.list;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -69,7 +69,7 @@ export class ProductAndSpecificationComponent implements OnInit {
     this.service.getProcessType().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.processType = this.response.data;
+        this.processType = this.response.data.list;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -81,7 +81,7 @@ export class ProductAndSpecificationComponent implements OnInit {
     this.service.getDesignType().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.designType = this.response.data;
+        this.designType = this.response.data.list;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');

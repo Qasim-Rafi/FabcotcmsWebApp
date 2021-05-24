@@ -58,7 +58,7 @@ export class PaymentDeliveryComponent implements OnInit {
     this.service.getPaymentTerm().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.payment = this.response.data;
+        this.payment = this.response.data.list;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -71,7 +71,7 @@ export class PaymentDeliveryComponent implements OnInit {
     this.service.getPackaging().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.packing = this.response.data;
+        this.packing = this.response.data.list;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -84,7 +84,7 @@ export class PaymentDeliveryComponent implements OnInit {
     this.service.getCity().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.city = this.response.data;
+        this.city = this.response.data.list;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -97,7 +97,7 @@ export class PaymentDeliveryComponent implements OnInit {
     this.service.getPriceTerm().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.price = this.response.data;
+        this.price = this.response.data.list;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -142,6 +142,7 @@ export class PaymentDeliveryComponent implements OnInit {
       "packingId": this.data.packingId,
       "priceTermId": this.data.priceTermId,
       "destinationId": this.data.destinationId,
+    
     }
 
     this.http.
