@@ -815,8 +815,8 @@ getContractTnA(cb) {
 EditTna(row) {
   const modalRef = this.modalService.open(EditTnaComponent, { centered: true });
   modalRef.componentInstance.contractId = this.contractId;
-  modalRef.componentInstance.id = row.id;
-  modalRef.componentInstance.tnaId = row.tnaId;
+  // modalRef.componentInstance.id = row.id;
+  modalRef.componentInstance.tnaId = row.id;
 
 
   modalRef.result.then((data) => {
