@@ -21,6 +21,7 @@ export class CurrencyComponent implements OnInit {
   rows:any=[];
   copyData:any=[];
   columns:any=[];
+  currencyFilter: any = [];
   data:any={};
   myDate=Date.now();
 
@@ -31,11 +32,24 @@ export class CurrencyComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetch((data) => {
+      this.currencyFilter = [...data];
       this.rows = data;
       this.listCount= this.rows.length;
     });
   }
-
+  searchcurrency(event) {
+    const val = event.target.value.toLowerCase();
+    const temp = this.currencyFilter.filter(function (d) {
+      return (
+      // d.id.toLowerCase().indexOf(val) !== -1 ||
+      // d.validFrom.toLowerCase().indexOf(val) !== -1 ||
+      d.currencyCode.toLowerCase().indexOf(val) !== -1 ||
+      // d.rate.toLowerCase().indexOf(val) !== -1 ||
+      d.details.toLowerCase().indexOf(val) !== -1 ||
+      !val);
+    });
+    this.rows = temp;
+  }
   
   fetch(cb) {
     let that = this;

@@ -50,7 +50,16 @@ export class SystemUsersComponent implements OnInit {
     search(event) {
       const val = event.target.value.toLowerCase();
       const temp = this.systemUsersFilter.filter(function (d) {
-        return (d.name.toLowerCase().indexOf(val) !== -1 || !val);
+        return (
+        d.fullName.toLowerCase().indexOf(val) !== -1 ||
+        d.username.toLowerCase().indexOf(val) !== -1 ||
+        d.email.toLowerCase().indexOf(val) !== -1 || 
+        d.department.toLowerCase().indexOf(val) !== -1 ||
+        d.role.toLowerCase().indexOf(val) !== -1 ||
+        // d.createdDateTime.toLowerCase().indexOf(val) !== -1 ||
+        // d.createdByName.toLowerCase().indexOf(val) !== -1 ||
+
+        !val);
       });
       this.rows = temp;
     }

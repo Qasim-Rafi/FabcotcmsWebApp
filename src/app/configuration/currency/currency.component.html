@@ -44,7 +44,9 @@
           <div class="row justify-content-end">
             <div class=" col-md-4">
               <div class="input-group col-md-offset-3">
-                <input type="text" placeholder="Search" class="input form-control w-50">
+                <input type="text"
+                (keyup)="searchcurrency($event)"
+                 placeholder="Search" class="input form-control w-50">
               </div>
             </div>
 
@@ -75,27 +77,27 @@
       <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'"
         [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
 
-        <ngx-datatable-column name="S. No." [width]="5" prop="code">
+        <ngx-datatable-column name="S. No." [width]="5" prop="id">
           <ng-template let-row="row" ngx-datatable-cell-template>
             {{row.id}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Valid Form" [width]="40">
+        <ngx-datatable-column name="Valid Form" [width]="40" prop="validFrom">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.validFrom}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Currency" [width]="20">
+        <ngx-datatable-column name="Currency" [width]="20" prop="currencyCode">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.currencyCode}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Rate" [width]="5">
+        <ngx-datatable-column name="Rate" [width]="5" prop="rate">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.rate}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Details" [width]="80">
+        <ngx-datatable-column name="Details" [width]="80" prop="details">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.details}}
           </ng-template>
