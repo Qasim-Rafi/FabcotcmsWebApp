@@ -183,8 +183,8 @@
                 class="btn button-save" type="submit" (click) = "addEnquiryItem()" >
                     Save & Next
                 </button> -->
-    <button *ngIf="statusCheck == 'AddEnquiryItem'" class="btn button-save" type="submit" (click) = "addEnquiryItem(EnquiryItemForm )">
-        Save & Exit
+    <button *ngIf="statusCheck == 'AddEnquiryItem'" class="btn button-save" type="submit" (click) = "addEnquiryItem(EnquiryItemForm)">
+        Save
     </button>
     <button *ngIf="statusCheck == 'EditEnquiryItem'" class="btn button-save" type="submit" (click)="updateEnquiry(EnquiryItemForm)">
         Update Item

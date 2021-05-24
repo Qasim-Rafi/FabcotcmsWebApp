@@ -17,7 +17,7 @@ import { GlobalConstants } from 'src/app/Common/global-constants';
 export class EditTnaComponent implements OnInit {
   dateformater: Dateformater = new Dateformater();  
 @Input() tnaId;
-@Input() id;
+// @Input() id;
 
   @Input() contractId;
   data:any ={};
@@ -40,7 +40,7 @@ export class EditTnaComponent implements OnInit {
 
 
   getTnaData() {
-    this.http.get(`${environment.apiUrl}/api/Contracts/GetContractTimeActionById/` + this.contractId)
+    this.http.get(`${environment.apiUrl}/api/Contracts/GetContractTimeActionById/` + this.tnaId)
       .subscribe(
         res => {
           this.response = res;
@@ -72,7 +72,7 @@ export class EditTnaComponent implements OnInit {
       "details": this.data.details
     }
 
-    this.http.put(`${environment.apiUrl}/api/Contracts/UpdateContractTimeAction/` + this.id, varr)
+    this.http.put(`${environment.apiUrl}/api/Contracts/UpdateContractTimeAction/` + this.tnaId, varr)
       .subscribe(
         res => {
 
