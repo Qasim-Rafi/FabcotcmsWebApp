@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
@@ -50,8 +51,20 @@ export class EditArticleComponent implements OnInit {
   }
 
 
-  UpdateArticle()
+  UpdateArticle(form:NgForm)
   {
+
+
+    if(form.status == "INVALID"){
+
+      this.toastr.error("Invalid Form", 'Message.');
+    }
+
+else
+
+{
+
+
     let varr=  {
       "code": this.data.code,
       "name": this.data.name,
@@ -80,6 +93,7 @@ export class EditArticleComponent implements OnInit {
         }
       });
   }
+}
 
 
 

@@ -10,15 +10,15 @@
 </div>
 
 <div class="modal-body BG pt-2r">
-  <form #addPriceForm="ngForm" novalidate>
+  <form #addPriceForm="ngForm" novalidate (ngSubmit)="addPrice(addPriceForm)" >
 
     <div class="form-group row" [class.has-error]="term.invalid ">
-      <label for="term" class="col-sm-3 col-form-label control-label text_Navy">Price Term </label>
+      <label for="term" class="col-sm-3 col-form-label control-label text_Navy">Price Term<span class="required-denote">*</span>  </label>
       <div class="col-sm-8">
         <input required id="term"  appAutofocus
         maxlength="100"
         type="text" class="form-control" placeholder="Price Term" name="term"
-          [(ngModel)]="data.term" #term="ngModel" [ngClass]="{'error': term.invalid }">
+          [(ngModel)]="data.term" #term="ngModel" [ngClass]="{'error': term.invalid && addPriceForm.submitted}">
         <small>Add Price Term</small>
       </div>
     </div>
@@ -47,10 +47,11 @@
     </div>
 
 
-  </form>
-</div>
+
 <div class="modal-footer NotBG">
-  <button class="btn button-save" type="submit" (click)="addPrice()" [disabled]="addPriceForm.invalid">
+  <button class="btn button-save" type="submit" >
     Save Price Term
   </button>
+</div>
+</form>
 </div>

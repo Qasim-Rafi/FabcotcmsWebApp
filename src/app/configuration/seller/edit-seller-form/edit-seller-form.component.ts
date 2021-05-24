@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ServiceService } from 'src/app/shared/service.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-seller-form',
@@ -132,7 +133,14 @@ export class EditSellerFormComponent implements OnInit {
 
 
 
-  updateSeller() {
+  updateSeller(form:NgForm) {
+    if(form.status == "INVALID"){
+
+      this.toastr.error("Invalid Form", 'Message.');
+    }
+
+else
+{
     let varr = {
       "sellerCode": this.data.sellerCode,
       "sellerName": this.data.sellerName,
@@ -173,5 +181,5 @@ export class EditSellerFormComponent implements OnInit {
         });
   }
 
-
+  }
 }

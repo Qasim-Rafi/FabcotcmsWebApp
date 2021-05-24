@@ -10,13 +10,13 @@
 </div>
 
 <div class="modal-body BG pt-2r">
-  <form #addAgentForm="ngForm" novalidate>
+  <form #addAgentForm="ngForm" novalidate (ngSubmit)=" addDesign(addAgentForm)">
 
     <div class="form-group row" [class.has-error]="type.invalid">
-      <label for="type" class="col-sm-3 col-form-label control-label text_Navy">Design Type </label>
+      <label for="type" class="col-sm-3 col-form-label control-label text_Navy">Design Type <span class="required-denote">*</span></label>
       <div class="col-sm-8">
         <input appAutofocus maxlength="100" required id="type" type="text" class="form-control" placeholder="Design Type" name="type"
-          [(ngModel)]="data.type" #type="ngModel" [ngClass]="{'error': type.invalid }">
+          [(ngModel)]="data.type" #type="ngModel" [ngClass]="{'error': type.invalid && addAgentForm.submitted }">
         <small>Add Design Type Description</small>
       </div>
     </div>
@@ -42,13 +42,14 @@
     </div>
 
 
-  </form>
-</div>
+ 
 
 <div class="modal-footer NotBG">
   <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal"
     (click)="activeModal.close()">Close</button>
-  <button class="btn button-save" type="submit" (click)=" addDesign()" [disabled]="addAgentForm.invalid">
+  <button class="btn button-save" type="submit"  >
     Save Design Type
   </button>
+</div>
+</form>
 </div>

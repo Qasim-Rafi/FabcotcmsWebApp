@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { GlobalConstants } from 'src/app/Common/global-constants'
 import { ServiceService } from 'src/app/shared/service.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-add-edit-system-user',
@@ -20,6 +21,8 @@ export class AddEditSystemUserComponent implements OnInit {
   @Input() FormName;
   userType:any=[];
   department:any=[];
+  @ViewChild(NgForm) addAgentForm;
+
   constructor(private http: HttpClient,
     private toastr: ToastrService,
     private service: ServiceService,
@@ -54,7 +57,13 @@ export class AddEditSystemUserComponent implements OnInit {
         });
   }
 
-  UpdateSystemUse() {
+  UpdateSystemUse(form:NgForm) {
+
+    if(form.status == 'INVALID'){
+
+       this.toastr.error("Invalid Form", 'Message.');
+    }
+    else{
     let varr = {
       "username": this.data.username,
       "fullName": this.data.fullName,
@@ -83,9 +92,17 @@ export class AddEditSystemUserComponent implements OnInit {
           }
         });
   }
+}
 // -------------------------------------ADD User FROM ---------------------------
 
-addSystemUser() {
+addSystemUser(form:NgForm) {
+
+  if(form.status == 'INVALID'){
+
+     this.toastr.error("Invalid Form", 'Message.');
+
+  }
+  else{
   let varr = {
     "username": this.data.username,
     "fullName": this.data.fullName,
@@ -117,6 +134,7 @@ addSystemUser() {
         }
       });
 }
+}
 
 GetUserTypeDropdown() {
   this.service.getUserType().subscribe(res => {
@@ -144,5 +162,19 @@ GetDepartmentDropdown() {
 
   get activeModal() {
     return this._NgbActiveModal;
+  }
+
+  onSubmit(buttonType): void {
+    if (buttonType === "addSystemUser"){
+  
+      this.addSystemUser(this.addAgentForm); 
+    }
+  
+    if (buttonType === "UpdateSystemUse"){
+  
+      this.UpdateSystemUse(this.addAgentForm); 
+  
+    }
+  
   }
 }

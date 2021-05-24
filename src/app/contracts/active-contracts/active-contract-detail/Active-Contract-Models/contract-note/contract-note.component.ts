@@ -16,6 +16,8 @@ export class ContractNoteComponent implements OnInit {
   @Input() contractId;
   data: any = {};
   response: any;
+  isPublic = "False" 
+ 
 
 
   //  selectedColor = this.data.color;
@@ -43,10 +45,12 @@ export class ContractNoteComponent implements OnInit {
 
   AddContractNote() {
     // this.data.color = this.selectedColor;
+  
+
     let varr =
     {
       "contractId":this.contractId,
-      "isPublic": this.data.isPublic,
+      "isPublic": this.isPublic,
       "title": this.data.title,
       "description": this.data.description,
       "color": this.data.color,
@@ -85,6 +89,7 @@ export class ContractNoteComponent implements OnInit {
           this.response = res;
           if (this.response.success == true) {
             this.data = this.response.data;
+            this.isPublic=this.data.isPublic;
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
@@ -103,7 +108,7 @@ export class ContractNoteComponent implements OnInit {
   UpdateContractNote() {
     let varr = {
       "contractId":this.contractId,
-      "isPublic": this.data.isPublic,
+      "isPublic": this.isPublic,
       "title": this.data.title,
       "description": this.data.description,
       "color": this.data.color,

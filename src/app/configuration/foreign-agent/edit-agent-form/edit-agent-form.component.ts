@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-agent-form',
@@ -94,8 +95,16 @@ export class EditAgentFormComponent implements OnInit {
   }
 
 
-  UpdateAgent()
+  UpdateAgent(form:NgForm)
   {
+    if(form.status == "INVALID"){
+
+      this.toastr.error("Invalid Form", 'Message.');
+    }
+
+else
+
+{
     let varr=  {
       "agentTypeId": this.data.agentTypeId,
       "agentSideId": this.data.agentSideId,
@@ -132,4 +141,5 @@ export class EditAgentFormComponent implements OnInit {
         }
       });
   }
+}
 }

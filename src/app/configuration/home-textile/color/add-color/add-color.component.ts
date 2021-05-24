@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-add-color',
   templateUrl: './add-color.component.html',
@@ -25,8 +26,13 @@ export class AddColorComponent implements OnInit {
   }
 
   
-  addColor()
+  addColor(form:NgForm )
   {
+    if (form.status == "INVALID") {
+
+      this.toastr.error("Invalid Form", 'Message.');
+    }
+    else{
     let varr=  {
       "name": this.data.name,
       "description": this.data.description,
@@ -56,7 +62,7 @@ export class AddColorComponent implements OnInit {
       });
   }
 
-
+}
 
 
 }

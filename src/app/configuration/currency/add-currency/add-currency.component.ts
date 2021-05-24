@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-add-currency',
@@ -23,8 +24,15 @@ export class AddCurrencyComponent implements OnInit {
     return this._NgbActiveModal;
   }
   
-  addCurrency()
+  addCurrency(form:NgForm)
   {
+    if (form.status == "INVALID") {
+
+      this.toastr.error("Invalid Form", 'Message.');
+    }
+
+    else{
+
     let varr=  {
       "validFrom": this.data.validFrom,
       "currencyCode":  this.data.currencyCode,
@@ -54,5 +62,6 @@ export class AddCurrencyComponent implements OnInit {
         }
       });
   }
+}
 
 }

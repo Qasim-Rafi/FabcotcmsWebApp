@@ -11,7 +11,7 @@
 </div>
 
 <div class="modal-body BG pt-2r">
-  <form #addAgentForm="ngForm" novalidate>
+  <form #addAgentForm="ngForm" novalidate (ngSubmit)="UpdateAgent(addAgentForm)">
 
 
     <div class="form-group row">
@@ -40,11 +40,11 @@
     </div>
 
     <div class="form-group row" [class.has-error]="name.invalid && name.touched">
-      <label for="name" class="col-sm-3 col-form-label control-label text_Navy">Name
+      <label for="name" class="col-sm-3 col-form-label control-label text_Navy">Name<span class="required-denote">*</span>
       </label>
       <div class="col-sm-8">
         <input appAutofocus required id="name" type="text" class="form-control" placeholder="Enter Agent full name" name="name"
-          [(ngModel)]="data.name" #name="ngModel" [ngClass]="{ error: name.invalid }" />
+          [(ngModel)]="data.name" #name="ngModel" [ngClass]="{ error: name.invalid && addAgentForm.submitted }" />
       </div>
     </div>
 
@@ -57,9 +57,10 @@
     </div>
 
     <div class="form-group row">
-      <label for="city" class="col-sm-3 col-form-label">City</label>
+      <label for="city" class="col-sm-3 col-form-label">City<span class="required-denote">*</span></label>
       <div class="col-sm-8">
-        <ng-select [(ngModel)]="data.cityId" required placeholder="-- Select --" name="city">
+        <ng-select [(ngModel)]="data.cityId" required placeholder="-- Select --" name="city" name="cityId" #cityId="ngModel"
+        [ngClass]="{error: cityId.invalid && addAgentForm.submitted}">
           <ng-option *ngFor="let i of city" [value]="i.id">{{ i.name }}
           </ng-option>
         </ng-select>
@@ -137,13 +138,15 @@
         </textarea>
       </div>
     </div>
-  </form>
-</div>
+   
+
 <div class="modal-footer NotBG">
   <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
     Close
   </button>
-  <button class="btn button-save" type="submit" (click)="UpdateAgent()" [disabled]="addAgentForm.invalid">
+  <button class="btn button-save" type="submit" >
     Update Agent
   </button>
+</div>
+</form>
 </div>

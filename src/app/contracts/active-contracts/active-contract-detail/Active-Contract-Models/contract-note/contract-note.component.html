@@ -23,13 +23,13 @@
         <div class="col-sm-8 pt-2">
   
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="True" [(ngModel)]="data.isPublic">
-            <label class="form-check-label" for="inlineRadio1">Is Public</label>
+            <input class="form-check-input" type="radio" name="Public" id="Public" value="True" [(ngModel)]="isPublic">
+            <label class="form-check-label" for="Public">Is Public</label>
           </div>
   
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="False" [(ngModel)]="data.isPublic" >
-            <label class="form-check-label" for="inlineRadio1">Is Private</label>
+            <input class="form-check-input" type="radio" name="Private" id="Private" value="False" [(ngModel)]="isPublic" >
+            <label class="form-check-label" for="Private">Is Private</label>
           </div>
           
         </div>
@@ -40,7 +40,7 @@
       <div class="form-group row">
         <label for="name" class="col-sm-3 col-form-label">Title</label>
         <div class="col-sm-8">
-          <input type="text" class="form-control" placeholder="Note Title"
+          <input appAutofocus type="text" class="form-control" placeholder="Note Title"
           [(ngModel)]="data.title " name="title" 
           #title="ngModel" 
           [ngClass]="{ 'error': NotesForm.submitted && title.invalid }" required

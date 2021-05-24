@@ -23,7 +23,7 @@
 
     <div class="form-group row" [class.has-error]="code.invalid && code.touched"
     >
-      <label for="code" class="col-sm-3 col-form-label control-label text_Navy">Country Name </label>
+      <label for="code" class="col-sm-3 col-form-label control-label text_Navy">Country Name<span class="required-denote">*</span> </label>
       <div class="col-sm-8">
         <input 
         appAutofocus
@@ -37,7 +37,7 @@
           name="name"
           [(ngModel)]="data.name"
            #code="ngModel" 
-           [ngClass]="{'error': code.invalid}">
+           [ngClass]="{'error': code.invalid && addAgentForm.submitted}">
       </div>
     </div>
 
@@ -63,15 +63,16 @@
     </div>
 
 
-  </form>
-</div>
+
 <div class="modal-footer NotBG" *ngIf = "FormName == 'countryForm'">
  
-  <button  [disabled]="code.invalid" *ngIf="statusCheck == 'add' " class="btn button-save" type="submit" (click)="addCountry()">
+  <button   *ngIf="statusCheck == 'add' " class="btn button-save" type="submit" (click)="onSubmit('addCountry')">
     Add Country
   </button>
-  <button [disabled]="code.invalid" *ngIf="statusCheck == 'edit'" class="btn button-save" type="submit" (click)="UpdateCountry()">
+  <button *ngIf="statusCheck == 'edit'" class="btn button-save" type="submit" (click)="onSubmit('UpdateCountry')" >
     Update Country
   </button>
 
+</div>
+</form>
 </div>

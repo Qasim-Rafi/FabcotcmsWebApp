@@ -10,13 +10,13 @@
 </div>
 
 <div class="modal-body BG pt-2r">
-  <form #addAgentForm="ngForm" novalidate>
+  <form #addAgentForm="ngForm" novalidate (ngSubmit)="UpdateColor(addAgentForm)" >
 
     <div class="form-group row" [class.has-error]="name.invalid">
-      <label for="name" class="col-sm-3 col-form-label control-label text_Navy">Color </label>
+      <label for="name" class="col-sm-3 col-form-label control-label text_Navy">Color<span class="required-denote">*</span> </label>
       <div class="col-sm-8">
         <input appAutofocus maxlength="20" required id="name" type="text" class="form-control" placeholder="Color" name="name"
-          [(ngModel)]="data.name" #name="ngModel" [ngClass]="{'error': name.invalid }">
+          [(ngModel)]="data.name" #name="ngModel" [ngClass]="{'error': name.invalid && addAgentForm.submitted}">
         <small>Add color name</small>
       </div>
     </div>
@@ -40,13 +40,14 @@
       </div>
     </div>
     
-  </form>
-</div>
+ 
 
 <div class="modal-footer NotBG">
   <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal"
     (click)="activeModal.close()">Close</button>
-  <button class="btn button-save" type="submit" (click)="UpdateColor()" [disabled]="addAgentForm.invalid">
+  <button class="btn button-save" type="submit" >
     Update Color
   </button>
+</div>
+</form>
 </div>

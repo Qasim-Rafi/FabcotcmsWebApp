@@ -19,7 +19,7 @@
 <div class="modal-body BG pt-2r">
   <form #CityForm="ngForm" novalidate>
     <div class="form-group row">
-      <label for="name" class="col-sm-3 col-form-label control-label text_Navy">City Name </label>
+      <label for="name" class="col-sm-3 col-form-label control-label text_Navy">City Name<span class="required-denote">*</span></label>
       <div class="col-sm-8">
         <input
         appAutofocus
@@ -33,15 +33,16 @@
         name="name" 
         [(ngModel)]="data.name" 
         #name="ngModel"
-        [ngClass]="{ error: CityForm.invalid }"
+        [ngClass]="{ error: name.invalid && CityForm.submitted}"
          />
       </div>
     </div>
 
     <div class="form-group row">
-      <label class="col-sm-3 col-form-label text-grey">Country Name</label>
+      <label class="col-sm-3 col-form-label text-grey">Country Name<span class="required-denote">*</span></label>
       <div class="col-sm-8">
-        <ng-select required [(ngModel)]="data.countryId"  placeholder="-- Select --" name="countryId">
+        <ng-select required [(ngModel)]="data.countryId"  placeholder="-- Select --" name="countryId" #countryId="ngModel"
+        [ngClass]="{ error: countryId.invalid && CityForm.submitted}">
           <ng-option *ngFor="let i of country" [value]="i.id">{{ i.name }}
             <span class="text-muted" style="font-size: 11px">( {{ i.details }} )</span>
           </ng-option>
@@ -67,17 +68,18 @@
       </div>
     </div>
 
-  </form>
-</div>
+
 <div class="modal-footer NotBG" *ngIf="FormName == 'cityForm'">
   <!-- <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" (click)="activeModal.close()">Close</button> -->
-  <button [disabled]="CityForm.invalid" *ngIf="statusCheck == 'CityAdd'" class="btn button-save" type="submit"
-    (click)="addCity()">
+  <button *ngIf="statusCheck == 'CityAdd'" class="btn button-save" type="submit"
+     (click)="onSubmit('addCity')">
     Save City
   </button>
 
-  <button [disabled]="CityForm.invalid" *ngIf="statusCheck == 'CityEdit'" class="btn button-save" type="submit"
-    (click)="UpdateCity()">
+  <button *ngIf="statusCheck == 'CityEdit'" class="btn button-save" type="submit"
+     (click)="onSubmit('UpdateCity')">
     Update City
   </button>
+</div>
+  </form>
 </div>

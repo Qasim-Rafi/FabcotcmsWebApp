@@ -17,6 +17,9 @@ export class EnquiryNotesComponent implements OnInit {
   @Input() statusCheck;
   data: any = {};
   response: any;
+  isPublic = "False" 
+  
+  
 
 
   //  selectedColor = this.data.color;
@@ -40,10 +43,11 @@ export class EnquiryNotesComponent implements OnInit {
 
   AddEnquiryNote() {
     // this.data.color = this.selectedColor;
+
     let varr =
     {
       "enquiryId": this.EnquiryId,
-      "isPublic": this.data.isPublic,
+      "isPublic": this.isPublic,
       "title": this.data.title,
       "description": this.data.description,
       "color": this.data.color,
@@ -81,6 +85,8 @@ export class EnquiryNotesComponent implements OnInit {
           this.response = res;
           if (this.response.success == true) {
             this.data = this.response.data;
+            this.isPublic=this.data.isPublic;
+
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
@@ -99,7 +105,7 @@ export class EnquiryNotesComponent implements OnInit {
   UpdateEnquiryNote() {
     let varr = {
       "enquiryId": this.EnquiryId,
-      "isPublic": this.data.isPublic,
+      "isPublic": this.isPublic,
       "title": this.data.title,
       "description": this.data.description,
       "color": this.data.color,

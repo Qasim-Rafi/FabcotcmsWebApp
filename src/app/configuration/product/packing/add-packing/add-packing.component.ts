@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-add-packing',
@@ -27,8 +28,13 @@ export class AddPackingComponent implements OnInit {
     return this._NgbActiveModal;
   }
 
-  addPacking()
+  addPacking(form:NgForm)
   {
+    if (form.status == "INVALID") {
+
+      this.toastr.error("Invalid Form", 'Message.');
+    }
+    else{
     let varr=  {
       "name": this.data.name,
       "description":  this.data.description,
@@ -58,7 +64,7 @@ export class AddPackingComponent implements OnInit {
         }
       });
   }
-
+}
 
 
 }

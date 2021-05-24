@@ -96,16 +96,7 @@ export class AddEnquiryComponent implements OnInit {
   };
 
   ngOnInit() {
-    // const format2 = "dd-MM-yyyy"
-    // var date2 = new Date();
-    // this.today = moment(date2).format(format2);
-    // this.datePickerConfig = Object.assign
-    //   ({}, {
-    //     containerClass: 'theme-default ',
-    //     isAnimated: true,
-    //     showWeekNumbers: false,
-    //     dateInputFormat: 'DD/MM/YYYY',
-    //   }),
+ 
     let olddate=new Date();
     let latest_date =this.datepipe.transform(olddate, 'yyyy-MM-dd');
     this.enquiryDateField =this.dateformater.fromModel(latest_date);
@@ -121,9 +112,6 @@ export class AddEnquiryComponent implements OnInit {
     this.GetPriceTermDropdown();
     this.GetCityDropdown();
     this.GetUOMDropdown();
-
-
-
   }
 
 
@@ -135,9 +123,6 @@ export class AddEnquiryComponent implements OnInit {
           this.response = res;
           if (this.response.success == true) {
             this.autoEnquiryNo = this.response.data;
-
-
-
           }
           else {
             this.toastr.error('Something went Worng', 'Message.');
@@ -356,13 +341,13 @@ export class AddEnquiryComponent implements OnInit {
     });
   }
 
+  
   addenquiryArticleForm() {
     const modalRef = this.modalService.open(AddArticleComponent, { centered: true });
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        //  this.date = this.myDate;
-      
+     
         this.GetArticlesDropdown();
         this.article.id = this.newArticle;
         this.data.articleId = this.article.id+1
@@ -373,6 +358,7 @@ export class AddEnquiryComponent implements OnInit {
     });
 
   }
+
   addenquiryProcessForm() {
     const modalRef = this.modalService.open(AddProcessComponent, { centered: true });
     modalRef.result.then((data) => {
@@ -388,6 +374,7 @@ export class AddEnquiryComponent implements OnInit {
       // on dismiss
     });
   }
+
   // packaging form
 
   addPackingForm() {

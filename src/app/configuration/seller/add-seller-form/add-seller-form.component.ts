@@ -117,7 +117,14 @@ export class AddSellerFormComponent implements OnInit {
 
 
 
-  addSeller() {
+  addSeller(form:NgForm) {
+
+    if (form.status == "INVALID") {
+
+      this.toastr.error("Invalid Form", 'Message.');
+    }
+
+else{
     let varr = {
       "sellerCode": this.data.sellerCode,
       "sellerName": this.data.sellerName,
@@ -158,5 +165,5 @@ export class AddSellerFormComponent implements OnInit {
         });
   }
 
-
+}
 }

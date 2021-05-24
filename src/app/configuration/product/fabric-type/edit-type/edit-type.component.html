@@ -9,16 +9,16 @@
 </div>
 
 <div class="modal-body BG pt-2r">
-  <form #addTypeForm="ngForm" novalidate>
+  <form #addTypeForm="ngForm" novalidate  (ngSubmit)=" UpdateType(addTypeForm)">
 
 
-    <div class="form-group row" [class.has-error]="type.invalid && type.touched">
-      <label for="type" class="col-sm-3 col-form-label control-label text_Navy">Fabric Type </label>
+    <div class="form-group row">
+      <label for="type" class="col-sm-3 col-form-label control-label text_Navy">Fabric Type<span class="required-denote">*</span>  </label>
       <div class="col-sm-8">
         <input appAutofocus required id="type" type="text" class="form-control" placeholder="Name" name="type"
           [(ngModel)]="data.type" 
           maxlength="100"
-          #type="ngModel" [ngClass]="{'error': type.invalid && type.touched}">
+          #type="ngModel" [ngClass]="{'error': type.invalid && addTypeForm.submitted}">
         <small>Add Fabric Description</small>
       </div>
     </div>
@@ -46,11 +46,13 @@
       </div>
     </div>
 
-  </form>
 
-</div>
 <div class="modal-footer ">
-  <button class="btn button-save" type="submit" (click)=" UpdateType()" [disabled]="addTypeForm.invalid">
+  <button class="btn button-save" type="submit" >
     Update Fabric Type
   </button>
+</div>
+
+</form>
+
 </div>

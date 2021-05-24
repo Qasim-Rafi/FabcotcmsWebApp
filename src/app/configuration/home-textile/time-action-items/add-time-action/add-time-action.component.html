@@ -10,13 +10,13 @@
 </div>
 
 <div class="modal-body BG pt-2r">
-  <form #addAgentForm="ngForm" novalidate>
+  <form #addAgentForm="ngForm" novalidate (ngSubmit)="addAction(addAgentForm)" >
 
     <div class="form-group row" [class.has-error]="name.invalid ">
-      <label for="name" class="col-sm-3 col-form-label control-label text_Navy">Action Name </label>
+      <label for="name" class="col-sm-3 col-form-label control-label text_Navy">Action Name <span class="required-denote">*</span> </label>
       <div class="col-sm-8">
         <input appAutofocus maxlength="100" required id="name" type="text" class="form-control" placeholder="Action Name" name="name"
-          [(ngModel)]="data.name" #name="ngModel" [ngClass]="{'error': name.invalid }">
+          [(ngModel)]="data.name" #name="ngModel" [ngClass]="{'error': name.invalid && addAgentForm.submitted}">
       </div>
     </div>
 
@@ -30,13 +30,14 @@
 
 
 
-  </form>
-</div>
+ 
 <div class="modal-footer NotBG">
   <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal"
     (click)="activeModal.close()">Close</button>
 
-  <button class="btn button-save" type="submit" (click)="addAction()" [disabled]="addAgentForm.invalid">
+  <button class="btn button-save" type="submit" >
     Save Action
   </button>
+</div>
+</form>
 </div>

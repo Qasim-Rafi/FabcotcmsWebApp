@@ -10,13 +10,13 @@
 </div>
 
 <div class="modal-body BG pt-2r">
-  <form #addAgentForm="ngForm" novalidate>
+  <form #addAgentForm="ngForm" novalidate (ngSubmit)="UpdateProcess(addAgentForm)">
 
     <div class="form-group row" [class.has-error]="name.invalid">
-      <label for="name" class="col-sm-3 col-form-label control-label text_Navy">Process Name </label>
+      <label for="name" class="col-sm-3 col-form-label control-label text_Navy">Process Name<span class="required-denote">*</span> </label>
       <div class="col-sm-8">
         <input appAutofocus maxlength="100" required id="name" type="text" class="form-control" placeholder="Process name" name="name"
-          [(ngModel)]="data.name" #name="ngModel" [ngClass]="{'error': name.invalid }">
+          [(ngModel)]="data.name" #name="ngModel" [ngClass]="{'error': name.invalid && addAgentForm.submitted}">
         <small>Add Process Description</small>
       </div>
     </div>
@@ -42,10 +42,11 @@
     </div>
 
 
-  </form>
-</div>
+ 
 <div class="modal-footer NotBG">
-  <button class="btn button-save" type="submit" (click)="UpdateProcess()" [disabled]="addAgentForm.invalid">
+  <button class="btn button-save" type="submit"  >
     Update Process
   </button>
+</div>
+</form>
 </div>

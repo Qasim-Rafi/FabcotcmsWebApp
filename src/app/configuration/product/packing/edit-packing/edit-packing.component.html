@@ -10,16 +10,16 @@
 </div>
 
 <div class="modal-body BG pt-2r">
-  <form #addPackingForm="ngForm" novalidate>
+  <form #addPackingForm="ngForm" novalidate (ngSubmit)="UpdatePacking(addPackingForm)">
 
 
     <div class="form-group row" [class.has-error]="name.invalid && name.touched">
-      <label for="name" class="col-sm-3 col-form-label control-label text_Navy">Packing Name </label>
+      <label for="name" class="col-sm-3 col-form-label control-label text_Navy">Packing Name<span class="required-denote">*</span>  </label>
       <div class="col-sm-8">
         <input appAutofocus required id="name" type="text" class="form-control" placeholder="Packing name" name="name"
           [(ngModel)]="data.name" #name="ngModel" 
           maxlength="100"
-          [ngClass]="{'error': name.invalid}">
+          [ngClass]="{'error': name.invalid && addPackingForm.submitted}">
         <small>Add Packing Description</small>
       </div>
     </div>
@@ -48,11 +48,12 @@
     </div>
 
 
-  </form>
-</div>
+
 <div class="modal-footer NotBG">
 
-  <button class="btn button-save" type="submit" (click)="UpdatePacking()" [disabled]="addPackingForm.invalid">
+  <button class="btn button-save" type="submit" >
     Update Packing
   </button>
+</div>
+</form>
 </div>

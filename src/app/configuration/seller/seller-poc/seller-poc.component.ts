@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { id } from '@swimlane/ngx-datatable';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
 
@@ -20,6 +22,8 @@ export class SellerPocComponent implements OnInit {
   response: any;
   SellerName: any = {};
   BuyerName: any = {};
+  @ViewChild(NgForm) sellerPOC;
+
   // includeInContractPreview = true;
 
   constructor(private http: HttpClient,
@@ -85,7 +89,13 @@ export class SellerPocComponent implements OnInit {
   // ----------------------- Add Seller POC-------------------------//
 
 
-  addSellerPOC() {
+  addSellerPOC(form:NgForm) {
+    if (form.status == "INVALID") {
+
+      this.toastr.error("Invalid Form", 'Message.');
+    }
+
+    else{
     let varr = {
       "name": this.data.name,
       "email": this.data.email,
@@ -119,6 +129,7 @@ export class SellerPocComponent implements OnInit {
           }
         });
   }
+}
 
 
   // ------------------Edit Seller Poc---------------------------------//
@@ -146,7 +157,13 @@ export class SellerPocComponent implements OnInit {
 
 
 
-  UpdateSellerPOC() {
+  UpdateSellerPOC(form:NgForm) {
+    if (form.status == "INVALID") {
+
+      this.toastr.error("Invalid Form", 'Message.');
+    }
+
+    else{
     let varr = {
 
       "name": this.data.name,
@@ -180,6 +197,7 @@ export class SellerPocComponent implements OnInit {
           }
         });
   }
+}
 
 
 
@@ -210,7 +228,13 @@ export class SellerPocComponent implements OnInit {
 
   // -------------------------------Add Buyer POC----------------------------//
 
-  addBuyerPOC() {
+  addBuyerPOC(form:NgForm) {
+    if (form.status == "INVALID") {
+
+      this.toastr.error("Invalid Form", 'Message.');
+    }
+
+    else{
     let varr = {
       "name": this.data.name,
       "email": this.data.email,
@@ -244,6 +268,7 @@ export class SellerPocComponent implements OnInit {
           }
         });
   }
+}
 
 
   // ------------------Edit Buyer Poc---------------------------------//
@@ -271,7 +296,13 @@ export class SellerPocComponent implements OnInit {
 
 
 
-  UpdateBuyerPOC() {
+  UpdateBuyerPOC(form:NgForm) {
+    if (form.status == "INVALID") {
+
+      this.toastr.error("Invalid Form", 'Message.');
+    }
+
+    else{
     let varr = {
 
       "name": this.data.name,
@@ -305,6 +336,35 @@ export class SellerPocComponent implements OnInit {
           }
         });
   }
+}
 
+
+  onSubmit(buttonType): void {
+    if (buttonType === "addSellerPOC") {
+
+      this.addSellerPOC(this.sellerPOC); 
+    }
+
+    if (buttonType === "UpdateSellerPOC") {
+    
+    this.UpdateSellerPOC(this.sellerPOC); }
+
+    
+    if (buttonType === "addBuyerPOC") {
+
+    
+        this.addBuyerPOC(this.sellerPOC);
+      }
+    
+     if (buttonType === "UpdateBuyerPOC")  {
+    
+        this.UpdateBuyerPOC(this.sellerPOC);
+      
+    }
+
+
+
+
+  }
 
 }

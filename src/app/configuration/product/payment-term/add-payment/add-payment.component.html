@@ -10,15 +10,15 @@
 </div>
 
 <div class="modal-body BG pt-2r">
-  <form #addPaymentForm="ngForm" novalidate>
+  <form #addPaymentForm="ngForm" novalidate (ngSubmit)="addPayment(addPaymentForm)">
 
     <div class="form-group row" [class.has-error]="term.invalid ">
-      <label for="term" class="col-sm-3 col-form-label control-label text_Navy">Payment Term</label>
+      <label for="term" class="col-sm-3 col-form-label control-label text_Navy">Payment Term<span class="required-denote">*</span> </label>
       <div class="col-sm-8">
         <input appAutofocus required id="term" type="text" 
         maxlength="100"
         class="form-control" placeholder="Payment Term Name" name="term"
-          [(ngModel)]="data.term" #term="ngModel" [ngClass]="{'error': term.invalid }">
+          [(ngModel)]="data.term" #term="ngModel" [ngClass]="{'error': term.invalid && addPaymentForm.submitted }">
         <small>Add Payment Term</small>
       </div>
     </div>
@@ -46,10 +46,11 @@
       </div>
     </div>
 
-  </form>
-</div>
+
 <div class="modal-footer NotBG">
-  <button class="btn button-save" type="submit" (click)="addPayment()" [disabled]="addPaymentForm.invalid">
+  <button class="btn button-save" type="submit" >
     Save Payment Term
   </button>
+</div>
+</form>
 </div>

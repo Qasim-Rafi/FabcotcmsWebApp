@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { GlobalConstants } from 'src/app/Common/global-constants'
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-country',
@@ -17,6 +18,8 @@ export class EditCountryComponent implements OnInit {
   @Input() countryId;
   @Input() statusCheck;
   @Input() FormName;
+  @ViewChild(NgForm) addAgentForm;
+
   constructor(private http: HttpClient,
     private toastr: ToastrService,
     private _NgbActiveModal: NgbActiveModal) { }
@@ -51,7 +54,13 @@ export class EditCountryComponent implements OnInit {
         });
   }
 
-  UpdateCountry() {
+  UpdateCountry(form:NgForm) {
+
+     if (form.status == "INVALID") {
+
+        this.toastr.error("Invalid Form", 'Message.');
+      }
+      else{
     let varr = {
       "name": this.data.name,
       "details": this.data.details,
@@ -78,10 +87,17 @@ export class EditCountryComponent implements OnInit {
           }
         });
   }
+}
 
   // -------------------------------------ADD COUNTRY FROM ---------------------------
 
-  addCountry() {
+  addCountry(form:NgForm) {
+
+     if (form.status == "INVALID") {
+
+        this.toastr.error("Invalid Form", 'Message.');
+      }
+      else{
 
 
     let varr = {
@@ -112,6 +128,22 @@ export class EditCountryComponent implements OnInit {
           }
         });
   }
+}
+
+
+onSubmit(buttonType): void {
+  if (buttonType === "addCountry"){
+
+    this.addCountry(this.addAgentForm); 
+  }
+
+  if (buttonType === "UpdateCountry"){
+
+    this.UpdateCountry(this.addAgentForm); 
+
+  }
+
+}
 
 
 }

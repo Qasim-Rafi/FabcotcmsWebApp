@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-buyer',
@@ -100,7 +101,14 @@ export class EditBuyerComponent implements OnInit {
   }
 
 
-  updateBuyer() {
+  updateBuyer(form:NgForm) {
+
+    if(form.status == "INVALID"){
+
+      this.toastr.error("Invalid Form", 'Message.');
+    }
+
+    else{
     let varr = {
       "buyerCode": this.data.buyerCode,
       "buyerName": this.data.buyerName,
@@ -138,4 +146,5 @@ export class EditBuyerComponent implements OnInit {
           }
         });
   }
+}
 }

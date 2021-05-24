@@ -10,7 +10,7 @@
 </div>
 
 <div class="modal-body BG pt-2r">
-  <form #addAgentForm="ngForm" novalidate>
+  <form #addAgentForm="ngForm" novalidate (ngSubmit)="UpdateBank(addAgentForm)" >
 
 
     <div class="form-group row" [class.has-error]="name.invalid ">
@@ -19,7 +19,7 @@
         <input required appAutofocus
         maxlength="100"
         id="name" type="text" class="form-control" placeholder="Bank Name" name="name"
-          [(ngModel)]="data.name" #name="ngModel" [ngClass]="{'error': name.invalid }">
+          [(ngModel)]="data.name" #name="ngModel" [ngClass]="{'error': name.invalid && addAgentForm.submitted}">
       </div>
     </div>
 
@@ -31,7 +31,7 @@
         pattern="[0-9]{5,15}"
         id="branchCode" type="text" class="form-control" placeholder="Bank Branch Code"
           name="branchCode" [(ngModel)]="data.branchCode" #branchCode="ngModel"
-          [ngClass]="{'error': branchCode.invalid }" />
+          [ngClass]="{'error': branchCode.invalid && addAgentForm.submitted}" />
       </div>
     </div>
 
@@ -52,7 +52,7 @@
         <input required 
         maxlength="200"
         id="location" type="text" class="form-control" placeholder="Bank Location" name="location"
-          [(ngModel)]="data.location" #location="ngModel" [ngClass]="{'error': location.invalid }">
+          [(ngModel)]="data.location" #location="ngModel" [ngClass]="{'error': location.invalid && addAgentForm.submitted }">
       </div>
     </div>
 
@@ -62,7 +62,7 @@
         <input required 
         maxlength="300"
         id="address" type="text" class="form-control" placeholder="bank address" name="address"
-          [(ngModel)]="data.address" #address="ngModel" [ngClass]="{'error': address.invalid }">
+          [(ngModel)]="data.address" #address="ngModel" [ngClass]="{'error': address.invalid && addAgentForm.submitted}">
       </div>
     </div>
 
@@ -75,13 +75,14 @@
           [(ngModel)]="data.details" #details="ngModel"></textarea>
       </div>
     </div>
-  </form>
-</div>
+ 
 <div class="modal-footer NotBG">
   <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal"
     (click)="activeModal.close()">Close</button>
 
-  <button class="btn button-save" type="submit" (click)="UpdateBank()">
+  <button class="btn button-save" type="submit" >
     Update Bank
   </button>
+</div>
+</form>
 </div>

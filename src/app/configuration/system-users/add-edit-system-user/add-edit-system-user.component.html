@@ -26,7 +26,7 @@
         <div class="col-sm-8">
             <input appAutofocus required maxlength="80" minlength="3" type="text" class="form-control"
                 placeholder="User name" name="username" [(ngModel)]="data.username" #username="ngModel"
-                [ngClass]="{'error': username.invalid}">
+                [ngClass]="{'error': username.invalid && addAgentForm.submitted}">
         </div>
     </div>
 
@@ -35,7 +35,7 @@
         <div class="col-sm-8">
             <input appAutofocus required maxlength="80" minlength="3" type="text" class="form-control"
                 placeholder="User name" name="fullName" [(ngModel)]="data.fullName" #fullName="ngModel"
-                [ngClass]="{'error': fullName.invalid}">
+                [ngClass]="{'error': fullName.invalid && addAgentForm.submitted}">
         </div>
     </div>
 
@@ -56,7 +56,7 @@
         <label for="userTypeId" class="col-sm-3 col-form-label">User Type</label>  
         <div class="col-sm-8">
           <ng-select [(ngModel)]="data.userTypeId" required placeholder="-- Select --" name="userTypeId"
-            #userTypeId="ngModel" [ngClass]="{ error: userTypeId.invalid }">
+            #userTypeId="ngModel" [ngClass]="{ error: userTypeId.invalid && addAgentForm.submitted}">
             <ng-option *ngFor="let i of userType" [value]="i.id">{{ i.name }}
   
               <!-- <span *ngIf="i.details !=null" class="text-muted" style="font-size: 11px">{{ i.details }}</span> -->
@@ -70,7 +70,7 @@
         <label for="departmentId" class="col-sm-3 col-form-label">Department</label>  
         <div class="col-sm-8">
           <ng-select [(ngModel)]="data.departmentId" required placeholder="-- Select --" name="departmentId"
-            #departmentId="ngModel" [ngClass]="{ error: departmentId.invalid }">
+            #departmentId="ngModel" [ngClass]="{ error: departmentId.invalid && addAgentForm.submitted}">
             <ng-option *ngFor="let i of department" [value]="i.id">{{ i.name }}
   
               <!-- <span *ngIf="i.details !=null" class="text-muted" style="font-size: 11px">{{ i.details }}</span> -->
@@ -121,15 +121,16 @@
       </div> -->
   
   
-    </form>
-  </div>
+  
   <div class="modal-footer NotBG" *ngIf = "FormName == 'systemUserForm'">
    
-    <button  [disabled]="addAgentForm.invalid" *ngIf="statusCheck == 'add' " class="btn button-save" type="submit" (click)="addSystemUser()">
+    <button  *ngIf="statusCheck == 'add' " class="btn button-save" type="submit" (click)="onSubmit('addSystemUser')" >
       Add Country
     </button>
-    <button [disabled]="addAgentForm.invalid" *ngIf="statusCheck == 'edit'" class="btn button-save" type="submit" (click)="UpdateSystemUse()">
+    <button *ngIf="statusCheck == 'edit'" class="btn button-save" type="submit" (click)="onSubmit('UpdateSystemUse')" >
       Update Country
     </button>
   
   </div>
+</form>
+</div>
