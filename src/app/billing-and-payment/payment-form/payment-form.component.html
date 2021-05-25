@@ -2,7 +2,11 @@
 
     <div class="row">
         <div class="col-sm-12 col-md-6 col-lg-8">
-            <h2 class="row wrapper page-header font-weight-light"> Update Sale Receipt
+            <h2 class="row wrapper page-header font-weight-light" *ngIf = "statusCheck.statusCheck == 'addPayment'"> New Sale Receipt 
+                <div class="ml-2 descr"> Add sales receipt / received payment into the system against contract bill
+                </div>
+            </h2>
+            <h2 class="row wrapper page-header font-weight-light" *ngIf = "statusCheck.statusCheck == 'editPayment'"> Update Sale Receipt
                 <div class="ml-2 descr"> Update sales receipt / received payment into the system against contract bill
                 </div>
             </h2>
@@ -11,7 +15,12 @@
         <div class="col-sm-12 col-md-6 col-lg-4">
             <ol class="breadcrumb flt-RnL">
                 <li class="breadcrumb-item"><a href="#">Payment Collection</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Update Sale Receipt</li>
+               
+                <li class="breadcrumb-item active"  *ngIf = "statusCheck.statusCheck == 'addPayment'"
+                 aria-current="page">Add New Sale Receipt</li>
+                <li class="breadcrumb-item active"  *ngIf = "statusCheck.statusCheck == 'editPayment'" 
+                aria-current="page">Update Sale Receipt</li>
+           
             </ol>
         </div>
 
@@ -75,15 +84,21 @@
                                             name="paymentDate" [(ngModel)]="data.paymentDate" #paymentDate="ngModel"
                                             /> -->
 
-                                            <input type="text" class="form-control  datetimepicker-input" (click)="paymentDatePicker.toggle()"
+                                            <!-- <input type="text" class="form-control  datetimepicker-input" (click)="paymentDatePicker.toggle()"
                                             placeholder="Date"  *ngIf = "statusCheck.statusCheck == 'addPayment'" #paymentDatePicker="ngbDatepicker" #paymentDate="ngModel" [(ngModel)]="paymentDateField"
                                             name="paymentDate" ngbDatepicker
-                                          >
+                                          > -->
+                                          <input navigation="select" class="form-control  " ngbDatepicker #paymentDate="ngbDatepicker"
+                                          (click)="paymentDate.toggle()" placeholder="Payment Date" *ngIf = "statusCheck.statusCheck == 'addPayment'"
+                                          name="paymentDate"  [(ngModel)]="data.paymentDate" #paymentDate="ngModel" />
+
                                           <input type="text" class="form-control  datetimepicker-input" (click)="paymentDatePicker.toggle()"
-                                          placeholder="Date"  *ngIf = "statusCheck.statusCheck == 'editPayment'" #paymentDatePicker="ngbDatepicker" #paymentDate="ngModel" [(ngModel)]="paymentDateField"
+                                          placeholder=" Payment Date"  *ngIf = "statusCheck.statusCheck == 'editPayment'" 
+                                          #paymentDatePicker="ngbDatepicker" #paymentDate="ngModel" [(ngModel)]="paymentdata.paymentDate"
                                           name="paymentDate" ngbDatepicker
                                         >
 
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -335,15 +350,15 @@
                             </div>
 
                             <div class="form-group row">
-                                <label class="col-md-3 col-form-label control-label">Deposited in Bank</label>
+                                <label class="col-md-3 col-form-label control-label" id="scales">Deposited in Bank</label>
                                 <div class="col-md-2">
-                                    <div class="form-check" *ngIf = "statusCheck.statusCheck == 'addPayment'">
-                                        <input class="form-check-input" type="checkbox" value=""
+                                    <div class="form-check form-check-label" *ngIf = "statusCheck.statusCheck == 'addPayment'">
+                                        <input for="scales" id="isDepositedInBank" class="form-check-input" type="checkbox" value=""
                                         name="isDepositedInBank" [(ngModel)]="data.isDepositedInBank" #isDepositedInBank="ngModel"
                                         >
                                     </div>
                                     <div class="form-check" *ngIf = "statusCheck.statusCheck == 'editPayment'">
-                                        <input class="form-check-input" type="checkbox" value=""
+                                        <input for="scales" id="isDepositedInBank" class="form-check-input" type="checkbox" value=""
                                         name="isDepositedInBank" [(ngModel)]="paymentdata.isDepositedInBank" #isDepositedInBank="ngModel"
                                         >
                                     </div>
@@ -359,22 +374,23 @@
                                         name="validityDate3"
                                         name="depositeDate" [(ngModel)]="data.depositeDate" #depositeDate="ngModel"
                                         /> -->
-                                        <input type="text" class="form-control  datetimepicker-input" (click)="depositeDatePicker.toggle()"
+                                        <!-- <input type="text" class="form-control  datetimepicker-input" (click)="depositeDatePicker.toggle()"
                                         placeholder="Date" #depositeDatePicker="ngbDatepicker" #depositeDate="ngModel" [(ngModel)]="paymentdata.depositeDate"
                                         name="depositeDate" ngbDatepicker
-                                      >
+                                      > -->
+                                      <input navigation="select" class="form-control  " ngbDatepicker #depositeDate="ngbDatepicker"
+                                      (click)="depositeDate.toggle()" placeholder="Deposited Date" *ngIf = "statusCheck.statusCheck == 'addPayment'"
+                                      name="depositeDate"  [(ngModel)]="data.depositeDate" #depositeDate="ngModel" />
+
                                 </div>
 
                                 <div class="col-md-3" *ngIf = "statusCheck.statusCheck == 'editPayment'">
-                                    <!-- <input navigation="select" class="form-control  " ngbDatepicker
+                                    <input navigation="select" class="form-control  " ngbDatepicker
                                         #validityDate3="ngbDatepicker" (click)="validityDate3.toggle()"
-                                        name="validityDate3"
-                                        name="depositeDate" [(ngModel)]="data.depositeDate" #depositeDate="ngModel"
-                                        /> -->
-                                        <input type="text" class="form-control  datetimepicker-input" (click)="depositeDatePicker.toggle()"
-                                        placeholder="Date" #depositeDatePicker="ngbDatepicker" #depositeDate="ngModel" [(ngModel)]="depositeDateField"
-                                        name="depositeDate" ngbDatepicker
-                                      >
+                                        name="validityDate3" placeholder="Deposited Date"
+                                        name="depositeDate" [(ngModel)]="paymentdata.depositeDate" #depositeDate="ngModel"
+                                        />
+                                     
                                 </div>
 
 

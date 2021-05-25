@@ -39,7 +39,7 @@
             </button>
           </div>
         </div>
-
+<!-- 
         <div class="row mb-3">
           <div class="col-md-12">
             <div class="form-check">
@@ -49,7 +49,7 @@
               </label>
             </div>
           </div>
-        </div>
+        </div> -->
       
   
         <div class="row" >
@@ -57,7 +57,8 @@
             <div class="row justify-content-end">
               <div class="col-md-4">
                 <div class="input-group col-md-offset-3">
-                  <input type="text" placeholder="Search..." class="input form-control w-50" />
+                  <input type="text" placeholder="Search..." class="input form-control w-50"
+                   (keyup)="search($event)"/>
                 </div>
               </div>
             </div>
@@ -70,11 +71,18 @@
       class="bootstrap datatable-row-wrapper" [columns]="columns" [rows]="rows"
           [columnMode]="'flex'" [headerHeight]="50" [footerHeight]="50" 
           [rowHeight]="'auto'" [limit]="6"
-            (activate)="onActivate($event)"
+            (select)="onSelect($event)"
+            [selected]="selected"
+            [selectionType]="SelectionType.checkbox"
+            
           >
-          <ngx-datatable-column prop="selected" name="Select" [width]="20"   [flexGrow]="0.03">
+          <ngx-datatable-column prop="selected" name="Select" [width]="20"   [flexGrow]="0.03"
+          [width]="30"
+          [headerCheckboxable]="true"
+          [checkboxable]="true"
+          >
             <ng-template let-row="row" ngx-datatable-cell-template  >
-             <input type="checkbox">
+             <!-- <input type="checkbox"> -->
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Contract Date" [width]="80" prop="contractDate" [flexGrow]="0.03"   >

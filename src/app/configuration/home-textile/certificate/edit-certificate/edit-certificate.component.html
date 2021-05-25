@@ -4,7 +4,7 @@
   </button>
   <div *ngIf="statusCheck == 'CertificateAdd'">
     <h5 class="modal-title">
-      <i class="far fa-edit fa-fw"></i>
+      <i class="fa fa-plus fa-fw"></i>
       Add Certificate
     </h5>
   </div>
@@ -31,108 +31,115 @@
   </div>
 </div>
 
-<div class="modal-body BG pt-2r">
+<div class="modal-body BG p-0">
   <form #certificateForm="ngForm" novalidate>
-    <div class="form-group row" *ngIf="
+
+    <div class="col-md-12 py-3">
+
+      <div class="form-group row" *ngIf="
         statusCheck == 'CertificateEdit' || statusCheck == 'CertificateAdd'
       ">
-      <label for="name" class="col-sm-3 col-form-label control-label text_Navy">Certificate Name<span class="required-denote">*</span></label>
-      <div class="col-sm-8">
-        <input appAutofocus required id="name" type="text" class="form-control" placeholder="Certificate name"
-          name="name" [(ngModel)]="data.name" #name="ngModel" [ngClass]="{ error: name.invalid && certificateForm.submitted }" />
-      </div>
-    </div>
-
-    <div class="form-group row" *ngIf="
-    statusCheck == 'SellerEdit' || statusCheck == 'SellerAdd'
-  ">
-      <label for="name" class="col-sm-3 col-form-label control-label text_Navy">Certificate<span class="required-denote">*</span>
-      </label>
-      <div class="col-sm-8">
-        <ng-select required placeholder="-- Select --" [(ngModel)]="data.certificateId" name="certificateId"
-        [ngClass]="{ error: certificateId.invalid && certificateForm.submitted}" #certificateId="ngModel">
-          <ng-option *ngFor="let i of certificate" [value]="i.id">
-            {{ i.name }}</ng-option>
-        </ng-select>
-      </div>
-    </div>
-
-    <div class="form-group row" *ngIf="
-    statusCheck == 'SellerEdit' || statusCheck == 'SellerAdd'">
-      <label for="description" class="col-sm-3 col-form-label text-Navy">Validity Date</label>
-      <div class="col-sm-8" (clickOutside)="validityDate.close()">
-
-        <input navigation="select" class="form-control text_Navy " ngbDatepicker #validityDate="ngbDatepicker"
-          (click)="validityDate.toggle()" placeholder="Certificate validity date" [(ngModel)]="data.validityDate"
-          name="validityDate" />
-      </div>
-
-    </div>
-
-    <div class="form-group row" *ngIf="statusCheck == 'CertificateEdit' || statusCheck == 'CertificateAdd'">
-      <label for="description" class="col-sm-3 col-form-label text-grey">Description</label>
-      <div class="col-sm-8">
-        <textarea maxlength="300" class="form-control" id="description" rows="3"
-          placeholder="Brief Certificate description here ..." name="description" [(ngModel)]="data.description"
-          #description="ngModel"></textarea>
-      </div>
-    </div>
-    <div class="form-group row" *ngIf="
-    statusCheck == 'SellerEdit' || statusCheck == 'SellerAdd'
-  ">
-      <label for="description" class="col-sm-3 col-form-label text-grey">Remarks</label>
-      <div class="col-sm-8">
-        <textarea maxlength="300" class="form-control" id="description" rows="3"
-          placeholder="Brief Certificate description here ..." name="description" [(ngModel)]="data.description"
-          #description="ngModel"></textarea>
-      </div>
-    </div>
-
-    <div class="form-group row" *ngIf="statusCheck == 'CertificateEdit' || statusCheck == 'CertificateAdd'
-      ">
-      <label for="active" class="col-sm-3 col-form-label text-grey"></label>
-      <div class="col-sm-8">
-        <div class="form-check form-check-inline">
-          <input class="form-check-input check-btn" type="checkbox" name="active" [(ngModel)]="data.active"
-            #active="ngModel" />
-          <label for="active" class="form-check-label text-grey" id="active">Marked as Active</label>
+        <label for="name" class="col-sm-3 col-form-label control-label text_Navy">Certificate Name<span
+            class="required-denote">*</span></label>
+        <div class="col-sm-8">
+          <input appAutofocus required id="name" type="text" class="form-control" placeholder="Certificate name"
+            name="name" [(ngModel)]="data.name" #name="ngModel"
+            [ngClass]="{ error: name.invalid && certificateForm.submitted }" />
         </div>
       </div>
+
+      <div class="form-group row" *ngIf="
+    statusCheck == 'SellerEdit' || statusCheck == 'SellerAdd'
+  ">
+        <label for="name" class="col-sm-3 col-form-label control-label text_Navy">Certificate<span
+            class="required-denote">*</span>
+        </label>
+        <div class="col-sm-8">
+          <ng-select required placeholder="-- Select --" [(ngModel)]="data.certificateId" name="certificateId"
+            [ngClass]="{ error: certificateId.invalid && certificateForm.submitted}" #certificateId="ngModel">
+            <ng-option *ngFor="let i of certificate" [value]="i.id">
+              {{ i.name }}</ng-option>
+          </ng-select>
+        </div>
+      </div>
+
+      <div class="form-group row" *ngIf="
+    statusCheck == 'SellerEdit' || statusCheck == 'SellerAdd'">
+        <label for="description" class="col-sm-3 col-form-label text-Navy">Validity Date</label>
+        <div class="col-sm-8" (clickOutside)="validityDate.close()">
+
+          <input navigation="select" class="form-control text_Navy " ngbDatepicker #validityDate="ngbDatepicker"
+            (click)="validityDate.toggle()" placeholder="Certificate validity date" [(ngModel)]="data.validityDate"
+            name="validityDate" />
+        </div>
+
+      </div>
+
+      <div class="form-group row" *ngIf="statusCheck == 'CertificateEdit' || statusCheck == 'CertificateAdd'">
+        <label for="description" class="col-sm-3 col-form-label text-grey">Description</label>
+        <div class="col-sm-8">
+          <textarea maxlength="300" class="form-control" id="description" rows="3"
+            placeholder="Brief Certificate description here ..." name="description" [(ngModel)]="data.description"
+            #description="ngModel"></textarea>
+        </div>
+      </div>
+
+      <div class="form-group row" *ngIf="
+    statusCheck == 'SellerEdit' || statusCheck == 'SellerAdd'
+  ">
+        <label for="description" class="col-sm-3 col-form-label text-grey">Remarks</label>
+        <div class="col-sm-8">
+          <textarea maxlength="300" class="form-control" id="description" rows="3"
+            placeholder="Brief Certificate description here ..." name="description" [(ngModel)]="data.description"
+            #description="ngModel"></textarea>
+        </div>
+      </div>
+
+      <div class="form-group row" *ngIf="statusCheck == 'CertificateEdit' || statusCheck == 'CertificateAdd'
+      ">
+        <label for="active" class="col-sm-3 col-form-label text-grey"></label>
+        <div class="col-sm-8">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input check-btn" type="checkbox" name="active" [(ngModel)]="data.active"
+              #active="ngModel" />
+            <label for="active" class="form-check-label text-grey" id="active">Marked as Active</label>
+          </div>
+        </div>
+      </div>
+
     </div>
- 
 
-<div class="modal-footer NotBG">
-  <!-- <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" (click)="activeModal.close()">Close</button> -->
-  <button *ngIf="statusCheck == 'CertificateAdd'" class="btn button-save"
-    type="submit" (click)="onSubmit('addCertificate')">
-    Save Certificate
-  </button>
+    <div class="modal-footer NotBG">
+      <!-- <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" (click)="activeModal.close()">Close</button> -->
+      <button *ngIf="statusCheck == 'CertificateAdd'" class="btn button-save" type="submit"
+        (click)="onSubmit('addCertificate')">
+        Save Certificate
+      </button>
 
-  <button  *ngIf="statusCheck == 'CertificateEdit'" class="btn button-save"
-    type="submit" (click)="onSubmit('UpdateCertificate')">
-    Update Certificate
-  </button>
+      <button *ngIf="statusCheck == 'CertificateEdit'" class="btn button-save" type="submit"
+        (click)="onSubmit('UpdateCertificate')">
+        Update Certificate
+      </button>
 
-  <div *ngIf="statusCheck == 'SellerAdd'">
-    <button type="button" class="btn btn-outline-secondary mr-2" data-dismiss="modal" (click)="activeModal.close()">
-      Close
-    </button>
+      <div *ngIf="statusCheck == 'SellerAdd'">
+        <button type="button" class="btn btn-outline-secondary mr-2" data-dismiss="modal" (click)="activeModal.close()">
+          Close
+        </button>
 
-    <button class="btn button-save" type="submit" (click)="onSubmit('addSellerCertificate')" >
-      Save
-    </button>
-  </div>
+        <button class="btn button-save" type="submit" (click)="onSubmit('addSellerCertificate')">
+          Save
+        </button>
+      </div>
 
-  <div *ngIf="statusCheck == 'SellerEdit'">
-    <button type="button" class="btn btn-outline-secondary mr-2" data-dismiss="modal" (click)="activeModal.close()">
-      Close
-    </button>
+      <div *ngIf="statusCheck == 'SellerEdit'">
+        <button type="button" class="btn btn-outline-secondary mr-2" data-dismiss="modal" (click)="activeModal.close()">
+          Close
+        </button>
 
-    <button class="btn button-save" type="submit" (click)="onSubmit('UpdateSellerCertificate')"
-      >
-      Update
-    </button>
-  </div>
-</div>
-</form>
+        <button class="btn button-save" type="submit" (click)="onSubmit('UpdateSellerCertificate')">
+          Update
+        </button>
+      </div>
+    </div>
+  </form>
 </div>
