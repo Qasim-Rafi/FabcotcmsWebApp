@@ -35,6 +35,7 @@ export class ActiveBillsComponent implements OnInit {
   activeData : any =  [];
   SelectionType = SelectionType;
   ids : string;
+  billFilter: any = {};
 
   url = '/api/BillingPayments/GetAllContractBill'
   constructor(    private service: ServiceService,
@@ -54,14 +55,26 @@ export class ActiveBillsComponent implements OnInit {
  
   ngOnInit(): void {
     this.fetch((data) => {
+      // this.billFilter = [...data];
+      
       this.rows = data;
       this.listCount = this.rows.length;
     });
-    this.fetch((data) => {
-      this.bulkData = data;
-    });
+    // this.fetch((data) => {
+    //   this.bulkData = data;
+    // });
     // this.getData()
   }
+
+  search(event) {
+    const val = event.target.value.toLowerCase();
+    const temp = this.billFilter.filter(function (d) {
+      return (d.autoContractNumber.toLowerCase().indexOf(val) !== -1 ||
+        d.sellerName.toLowerCase().indexOf(val) !== -1 || d.buyerName.toLowerCase().indexOf(val) !== -1 || !val);
+    });
+    this.rows = temp;
+  }
+
   fetch(cb) {
     
     this.http

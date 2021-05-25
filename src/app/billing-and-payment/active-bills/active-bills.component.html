@@ -127,14 +127,14 @@
 
           <form>
             <div class="form-row">
-              <div class="col-auto">
+              <!-- <div class="col-auto">
                 <div class="form-check mt-2">
                   <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                   <label class="form-check-label" for="flexCheckDefault">
                     Check to Select All Contracts
                   </label>
                 </div>
-              </div>
+              </div> -->
           
               <div class="col-auto">
                 <button type="button" class="btn btn-primary  btn-md float-right" (click)= "print()">
@@ -153,7 +153,9 @@
 
               <div class="col-md-4">
                 <div class="input-group col-md-offset-3">
-                  <input type="text" placeholder="Search..." class="input form-control w-50" />
+                  <input type="text" placeholder="Search..." class="input form-control w-50"
+                  (keyup)="search($event)"
+                  />
                 </div>
               </div>
         
@@ -207,8 +209,8 @@
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="S.No" [width]="80" prop="sno" [flexGrow]="0.05">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template >
-            {{row.contractId}}
+            <ng-template let-row="row" let-rowIndex="rowIndex" let-expanded="expanded" ngx-datatable-cell-template >
+            {{rowIndex+1}}
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Bill For" [width]="80" prop="billFor" [flexGrow]="0.06">

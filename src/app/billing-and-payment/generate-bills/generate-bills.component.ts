@@ -30,6 +30,8 @@ export class GenerateBillsComponent implements OnInit {
 
       contractIds: any = [];
       data: any = {};
+      billFilter: any = {};
+
       rows: any = [];
       selected: any = [];
 
@@ -45,9 +47,19 @@ export class GenerateBillsComponent implements OnInit {
     
       ngOnInit(): void {
         this.service.fetch((data)=>{
+      this.billFilter = [...data];
+
             this.rows = data;
         } , this.url)
         
+      }
+      search(event) {
+        const val = event.target.value.toLowerCase();
+        const temp = this.billFilter.filter(function (d) {
+          return (d.autoContractNumber.toLowerCase().indexOf(val) !== -1 ||
+            d.sellerName.toLowerCase().indexOf(val) !== -1 || d.buyerName.toLowerCase().indexOf(val) !== -1 || !val);
+        });
+        this.rows = temp;
       }
       onSelect({ selected }) {
         console.log('Select Event', selected, this.selected);
