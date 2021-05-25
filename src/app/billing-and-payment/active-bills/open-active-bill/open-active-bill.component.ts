@@ -7,7 +7,7 @@ import { ServiceService } from 'src/app/shared/service.service';
 import { environment } from 'src/environments/environment';
 import { ChangeBankAccountComponent } from './change-bank-account/change-bank-account.component';
 import pdfMake from "pdfmake/build/pdfmake";
-
+import { ToWords } from 'to-words';
 @Component({
   selector: 'app-open-active-bill',
   templateUrl: './open-active-bill.component.html',
@@ -21,19 +21,22 @@ export class OpenActiveBillComponent implements OnInit {
   rows: any = {};
   date: number;
   myDate = Date.now();
+  words : string;
+  words2 : string = "word";
+
   constructor(   private route: ActivatedRoute,
     private modalService: NgbModal,
     private http: HttpClient,
     private service: ServiceService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
     ) { }
 
   ngOnInit(): void {
     this.queryParems = this.route.snapshot.queryParams;
     this.bill_id = this.queryParems.id;
-
     this.fetch((data) => {
       this.rows = data;
+  
     });
 
   }
@@ -48,6 +51,9 @@ export class OpenActiveBillComponent implements OnInit {
     if(this.response.success==true)
     {
     this.data =this.response.data;
+    const toWords = new ToWords();
+    this.words = toWords.convert(this.data.invoiceTotalAmount);
+
     cb(this.data);
     }
     else{
@@ -129,7 +135,7 @@ export class OpenActiveBillComponent implements OnInit {
       {text: 'Tax :' , style:'text16'},
       { text: this.rows['invoiceTaxAmount'], style:'text15'},
       {text: 'Total:' , style:'text18' },
-      { text: this.rows['invoiceTotalAmount']},
+      { text: this.rows['invoiceTotalAmount'], style:'text15'},
          ],
       styles: {
         heading: {
@@ -159,7 +165,7 @@ export class OpenActiveBillComponent implements OnInit {
           text14 : {margin:[380 , 20, 0 ,0 ]},
           text15 : {margin:[440 , -13, 0 ,0 ]},
           text16 : {margin:[400 , 0, 0 ,0 ]},
-          text18 : {margin:[300 , 0, 0 ,0 ]},        
+          text18 : {margin:[400 , 0, 0 ,0 ]},        
       }
     };
 
