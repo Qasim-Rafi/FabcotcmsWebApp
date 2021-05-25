@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import { ServiceService } from 'src/app/shared/service.service';
 import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-contract-note',
@@ -16,8 +17,8 @@ export class ContractNoteComponent implements OnInit {
   @Input() contractId;
   data: any = {};
   response: any;
-  isPublic = "False" 
- 
+  isPublic = "False"
+
 
 
   //  selectedColor = this.data.color;
@@ -26,7 +27,7 @@ export class ContractNoteComponent implements OnInit {
     private _NgbActiveModal: NgbActiveModal,
     private http: HttpClient,
     private toastr: ToastrService,
-
+    private service: ServiceService
   ) { }
 
   ngOnInit(): void {
@@ -45,17 +46,17 @@ export class ContractNoteComponent implements OnInit {
 
   AddContractNote() {
     // this.data.color = this.selectedColor;
-  
+
 
     let varr =
     {
-      "contractId":this.contractId,
+      "contractId": this.contractId,
       "isPublic": this.isPublic,
       "title": this.data.title,
       "description": this.data.description,
       "color": this.data.color,
       "flag": this.data.flag,
-      "active":this.data.active
+      "active": this.data.active
     }
 
     this.http.
@@ -72,7 +73,10 @@ export class ContractNoteComponent implements OnInit {
             this.toastr.error(this.response.message, 'Message.');
           }
 
-        }, err => {
+        }, (err: HttpErrorResponse) => {
+          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+          this.toastr.error(messages.toString(), 'Message.');
+          console.log(messages);
           if (err.status == 400) {
             this.toastr.error(this.response.message, 'Message.');
           }
@@ -89,7 +93,7 @@ export class ContractNoteComponent implements OnInit {
           this.response = res;
           if (this.response.success == true) {
             this.data = this.response.data;
-            this.isPublic=this.data.isPublic;
+            this.isPublic = this.data.isPublic;
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
@@ -107,13 +111,13 @@ export class ContractNoteComponent implements OnInit {
 
   UpdateContractNote() {
     let varr = {
-      "contractId":this.contractId,
+      "contractId": this.contractId,
       "isPublic": this.isPublic,
       "title": this.data.title,
       "description": this.data.description,
       "color": this.data.color,
       "flag": this.data.flag,
-      "active":this.data.active
+      "active": this.data.active
     }
 
     this.http.
@@ -142,3 +146,5 @@ export class ContractNoteComponent implements OnInit {
 
 
 }
+
+
