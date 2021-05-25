@@ -67,6 +67,10 @@ this.getdropdown();
   get activeModal() {
     return this._NgbActiveModal;
   }
+
+
+
+  
   getdropdown() {
     this.http.get(`${environment.apiUrl}/api/Lookups/ContractSaleInvoiceItems/` + this.contractId)
       .subscribe(
