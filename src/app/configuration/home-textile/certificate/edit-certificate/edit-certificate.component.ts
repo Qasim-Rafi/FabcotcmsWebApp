@@ -1,11 +1,12 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { NgbActiveModal, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker'
 import { Dateformater } from 'src/app/shared/dateformater';
 import { NgForm } from '@angular/forms';
+import { ServiceService } from 'src/app/shared/service.service';
 
 
 
@@ -34,6 +35,7 @@ export class EditCertificateComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
+    private service: ServiceService,
     private toastr: ToastrService,
     private _NgbActiveModal: NgbActiveModal,
 
@@ -79,11 +81,11 @@ export class EditCertificateComponent implements OnInit {
 
 
   addSellerCertificate(form:NgForm) {
-    if (form.status == "INVALID") {
+    // if (form.status == "INVALID") {
 
-      this.toastr.error("Invalid Form", 'Message.');
-    }
-    else{
+    //   this.toastr.error("Invalid Form", 'Message.');
+    // }
+    // else{
     this.data.validityDate = this.dateformater.toModel(this.data.validityDate);
     let varr = {
       "certificateId": this.data.certificateId,
@@ -111,13 +113,16 @@ export class EditCertificateComponent implements OnInit {
             this.toastr.error(this.response.message, 'Message.');
           }
 
-        }, err => {
+        }, (err: HttpErrorResponse) => {
+          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+          this.toastr.error(messages.toString(), 'Message.');
+          console.log(messages);
           if (err.status == 400) {
             this.toastr.error(this.response.message, 'Message.');
           }
         });
   }
-}
+// }
 
 
   // -------------------------------------Edit Certificate------------------------------------
@@ -145,11 +150,11 @@ export class EditCertificateComponent implements OnInit {
 
 
   UpdateSellerCertificate(form:NgForm) {
-    if (form.status == "INVALID") {
+    // if (form.status == "INVALID") {
 
-      this.toastr.error("Invalid Form", 'Message.');
-    }
-    else{
+    //   this.toastr.error("Invalid Form", 'Message.');
+    // }
+    // else{
     this.data.validityDate = this.dateformater.toModel(this.data.validityDate);
     let varr = {
       "certificateId": this.data.certificateId,
@@ -173,13 +178,16 @@ export class EditCertificateComponent implements OnInit {
             this.toastr.error(this.response.message, 'Message.');
           }
 
-        }, err => {
+        }, (err: HttpErrorResponse) => {
+          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+          this.toastr.error(messages.toString(), 'Message.');
+          console.log(messages);
           if (err.status == 400) {
             this.toastr.error(this.response.message, 'Message.');
           }
         });
   }
-}
+// }
 
   //-------------------------get All Certificates-----------------------------------------//
 

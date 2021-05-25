@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -119,12 +119,12 @@ export class AddSellerFormComponent implements OnInit {
 
   addSeller(form:NgForm) {
 
-    if (form.status == "INVALID") {
+//     if (form.status == "INVALID") {
 
-      this.toastr.error("Invalid Form", 'Message.');
-    }
+//       this.toastr.error("Invalid Form", 'Message.');
+//     }
 
-else{
+// else{
     let varr = {
       "sellerCode": this.data.sellerCode,
       "sellerName": this.data.sellerName,
@@ -158,12 +158,14 @@ else{
             this.toastr.error(this.response.message, 'Message.');
           }
 
-        }, err => {
+        },(err: HttpErrorResponse) => {
+          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+          this.toastr.error(messages.toString(), 'Message.');
+          console.log(messages);
           if (err.status == 400) {
             this.toastr.error(this.response.message, 'Message.');
           }
         });
   }
-
 }
-}
+// }
