@@ -71,7 +71,10 @@ export class DeliveryTimelineComponent implements OnInit {
         res => {
           this.response = res;
           if (this.response.success == true) {
-
+            this.data.supplierDate = this.dateformater.fromModel(this.data.supplierDate);
+            this.data.buyerDate = this.dateformater.fromModel(this.data.buyerDate);
+            
+            
             this.data = this.response.data;
           }
           else {

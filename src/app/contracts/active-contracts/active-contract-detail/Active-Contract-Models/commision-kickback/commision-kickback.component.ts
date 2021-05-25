@@ -13,7 +13,9 @@ import { environment } from 'src/environments/environment';
 export class CommisionKickbackComponent implements OnInit {
   @Input() contractId;
   // data:any =[];
-  data : any = [{ id: 0}];
+  data : any = [
+    // { id: 0}
+  ];
   commission:any={};
   agents:any={};
   uom:any={};
