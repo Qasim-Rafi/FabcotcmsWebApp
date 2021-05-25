@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ServiceService } from 'src/app/shared/service.service';
 
 @Component({
   selector: 'app-add-bank-account',
@@ -16,7 +17,9 @@ export class AddBankAccountComponent implements OnInit {
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
-    private _NgbActiveModal: NgbActiveModal) { }
+    private _NgbActiveModal: NgbActiveModal,
+    private service: ServiceService
+    ) { }
 
   ngOnInit(): void {
     this.getBanks();
@@ -79,10 +82,13 @@ export class AddBankAccountComponent implements OnInit {
             this.toastr.error('Something went Worng', 'Message.');
           }
 
-        }, err => {
-          if (err.status == 400) {
-            this.toastr.error('Something went Worng', 'Message.');
-          }
+        }, (err: HttpErrorResponse) => {
+          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+          this.toastr.error(messages.toString(), 'Message.');
+          console.log(messages);
+          // if (err.status == 400) {
+          //   this.toastr.error(this.response.message, 'Message.');
+          // }
         });
   }
 

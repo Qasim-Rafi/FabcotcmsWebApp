@@ -1,6 +1,6 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ServiceService } from 'src/app/shared/service.service';
@@ -73,12 +73,12 @@ export class EditCityComponent implements OnInit {
   //ADD CITIES
 
   addCity(form:NgForm) {
-      if (form.status == "INVALID") {
+      // if (form.status == "INVALID") {
 
-        this.toastr.error("Invalid Form", 'Message.');
-      }
+      //   this.toastr.error("Invalid Form", 'Message.');
+      // }
 
-      else{
+      // else{
     let varr = {
       "name": this.data.name,
       "details": this.data.details,
@@ -103,14 +103,16 @@ export class EditCityComponent implements OnInit {
             this.toastr.error(this.response.message, 'Message.');
           }
 
-        }, err => {
+        }, (err: HttpErrorResponse) => {
+          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+          this.toastr.error(messages.toString(), 'Message.');
+          console.log(messages);
           if (err.status == 400) {
             this.toastr.error(this.response.message, 'Message.');
           }
-
         });
   }
-}
+// }
 
   //GET CITY
   getCity() {

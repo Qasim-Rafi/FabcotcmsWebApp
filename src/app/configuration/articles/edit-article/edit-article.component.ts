@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import { ServiceService } from 'src/app/shared/service.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -17,7 +18,8 @@ export class EditArticleComponent implements OnInit {
 
 
   constructor(private http:HttpClient,
-              private toastr: ToastrService,
+    private service: ServiceService,
+    private toastr: ToastrService,
               private _NgbActiveModal: NgbActiveModal) { }
 
   ngOnInit(): void {
@@ -55,15 +57,6 @@ export class EditArticleComponent implements OnInit {
   {
 
 
-    if(form.status == "INVALID"){
-
-      this.toastr.error("Invalid Form", 'Message.');
-    }
-
-else
-
-{
-
 
     let varr=  {
       "code": this.data.code,
@@ -87,14 +80,13 @@ else
           this.toastr.error('Something went Worng', 'Message.');
             }
 
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error('Something went Worng', 'Message.');
-        }
+      }, (err: HttpErrorResponse) => {
+        const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+        this.toastr.error(messages.toString(), 'Message.');
+        console.log(messages);
       });
   }
 }
 
 
 
-}
