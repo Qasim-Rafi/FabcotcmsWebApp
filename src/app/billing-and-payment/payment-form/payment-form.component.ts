@@ -126,8 +126,8 @@ export class PaymentFormComponent implements OnInit {
       this.response = res;
           if (this.response.success == true) {
             this.paymentdata = this.response.data;
-    //         this.paymentdata.paymentDate = this.dateformater.fromModel(this.paymentdata.paymentDate);
-    // this.paymentdata.depositeDate = this.dateformater.fromModel(this.paymentdata.depositeDate);
+            this.paymentdata.paymentDate = this.dateformater.fromModel(this.paymentdata.paymentDate);
+           this.paymentdata.depositeDate = this.dateformater.fromModel(this.paymentdata.depositeDate);
         }
           else {
             this.toastr.error(this.response.message, 'Message.');
@@ -187,8 +187,11 @@ export class PaymentFormComponent implements OnInit {
 
   addPayment() {
     // this.data.paymentDate = this.dateformater.toModel(this.data.paymentDate);
-    this.data.paymentDate = this.dateformater.toModel(this.paymentDateField);
-    this.data.depositeDate = this.dateformater.toModel(this.depositeDateField);
+    // this.data.paymentDate = this.dateformater.toModel(this.paymentDateField);
+    // this.data.depositeDate = this.dateformater.toModel(this.depositeDateField);
+
+    this.data.paymentDate = this.dateformater.toModel(this.data.paymentDate);
+    this.data.depositeDate = this.dateformater.toModel(this.data.depositeDate);
 
     // this.data.depositeDate = this.dateformater.toModel(this.data.depositeDate);
       let varr = {
@@ -202,6 +205,7 @@ export class PaymentFormComponent implements OnInit {
         "paymentDate": this.data.paymentDate,
         "paidAmount": this.data.paidAmount,
         "taxAmount": this.data.taxAmount,
+        "currencyId": this.data.currencyId,
         "deductionAmount": this.data.deductionAmount,
         "paymentMode": this.data.paymentMode,
         "paymentDescription":this.data.paymentDescription,
@@ -277,7 +281,7 @@ export class PaymentFormComponent implements OnInit {
       this.response = res;
       if (this.response.success == true) {
         this.bankAcc = this.response.data;
-    
+  
       }
       else {
         this.toastr.error(this.response.message, 'Message.');

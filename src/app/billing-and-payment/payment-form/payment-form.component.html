@@ -75,15 +75,21 @@
                                             name="paymentDate" [(ngModel)]="data.paymentDate" #paymentDate="ngModel"
                                             /> -->
 
-                                            <input type="text" class="form-control  datetimepicker-input" (click)="paymentDatePicker.toggle()"
+                                            <!-- <input type="text" class="form-control  datetimepicker-input" (click)="paymentDatePicker.toggle()"
                                             placeholder="Date"  *ngIf = "statusCheck.statusCheck == 'addPayment'" #paymentDatePicker="ngbDatepicker" #paymentDate="ngModel" [(ngModel)]="paymentDateField"
                                             name="paymentDate" ngbDatepicker
-                                          >
+                                          > -->
+                                          <input navigation="select" class="form-control  " ngbDatepicker #paymentDate="ngbDatepicker"
+                                          (click)="paymentDate.toggle()" placeholder="Start Date" *ngIf = "statusCheck.statusCheck == 'addPayment'"
+                                          name="paymentDate"  [(ngModel)]="data.paymentDate" #paymentDate="ngModel" />
+
                                           <input type="text" class="form-control  datetimepicker-input" (click)="paymentDatePicker.toggle()"
-                                          placeholder="Date"  *ngIf = "statusCheck.statusCheck == 'editPayment'" #paymentDatePicker="ngbDatepicker" #paymentDate="ngModel" [(ngModel)]="paymentDateField"
+                                          placeholder="Date"  *ngIf = "statusCheck.statusCheck == 'editPayment'" 
+                                          #paymentDatePicker="ngbDatepicker" #paymentDate="ngModel" [(ngModel)]="paymentdata.paymentDate"
                                           name="paymentDate" ngbDatepicker
                                         >
 
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -359,22 +365,23 @@
                                         name="validityDate3"
                                         name="depositeDate" [(ngModel)]="data.depositeDate" #depositeDate="ngModel"
                                         /> -->
-                                        <input type="text" class="form-control  datetimepicker-input" (click)="depositeDatePicker.toggle()"
+                                        <!-- <input type="text" class="form-control  datetimepicker-input" (click)="depositeDatePicker.toggle()"
                                         placeholder="Date" #depositeDatePicker="ngbDatepicker" #depositeDate="ngModel" [(ngModel)]="paymentdata.depositeDate"
                                         name="depositeDate" ngbDatepicker
-                                      >
+                                      > -->
+                                      <input navigation="select" class="form-control  " ngbDatepicker #depositeDate="ngbDatepicker"
+                                      (click)="depositeDate.toggle()" placeholder="Start Date" *ngIf = "statusCheck.statusCheck == 'addPayment'"
+                                      name="depositeDate"  [(ngModel)]="data.depositeDate" #depositeDate="ngModel" />
+
                                 </div>
 
                                 <div class="col-md-3" *ngIf = "statusCheck.statusCheck == 'editPayment'">
-                                    <!-- <input navigation="select" class="form-control  " ngbDatepicker
+                                    <input navigation="select" class="form-control  " ngbDatepicker
                                         #validityDate3="ngbDatepicker" (click)="validityDate3.toggle()"
                                         name="validityDate3"
-                                        name="depositeDate" [(ngModel)]="data.depositeDate" #depositeDate="ngModel"
-                                        /> -->
-                                        <input type="text" class="form-control  datetimepicker-input" (click)="depositeDatePicker.toggle()"
-                                        placeholder="Date" #depositeDatePicker="ngbDatepicker" #depositeDate="ngModel" [(ngModel)]="depositeDateField"
-                                        name="depositeDate" ngbDatepicker
-                                      >
+                                        name="depositeDate" [(ngModel)]="paymentdata.depositeDate" #depositeDate="ngModel"
+                                        />
+                                     
                                 </div>
 
 
