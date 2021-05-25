@@ -2,7 +2,7 @@ export class GlobalConstants {
 
     public static deleteTitle: string = "Confirm Delete";
 
-    public static deleteMessage: string =  "Are you sure to delete ";
+    public static deleteMessage: string =  "Are you sure you want to delete ";
 
     public static deleteSuccess: string =  "Record deleted Successfully!!! ";
     public static copySuccess: string =  "Copied to Clipboard ";
