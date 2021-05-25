@@ -10,4 +10,6 @@ export class GlobalConstants {
     public static exceptionMessage: string =  "Something went wrong ";
     public static addMessage: string =  "Record Added successfully!!";
     public static updateMessage: string =  "Record Updated successfully!!";
+    public static requiredFieldMissing: string =  "Required field is missing";
+
 }

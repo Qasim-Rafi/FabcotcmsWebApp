@@ -30,7 +30,11 @@ export class GenerateBillsComponent implements OnInit {
 
       contractIds: any = [];
       data: any = {};
+      billFilter: any = {};
+
       rows: any = [];
+      selected: any = [];
+
       checkboxData: any = [];
       SelectionType = SelectionType;
       date: number;
@@ -43,32 +47,56 @@ export class GenerateBillsComponent implements OnInit {
     
       ngOnInit(): void {
         this.service.fetch((data)=>{
+      this.billFilter = [...data];
+
             this.rows = data;
         } , this.url)
         
       }
-
-      onActivate(event) {
+      search(event) {
+        const val = event.target.value.toLowerCase();
+        const temp = this.billFilter.filter(function (d) {
+          return (d.autoContractNumber.toLowerCase().indexOf(val) !== -1 ||
+            d.sellerName.toLowerCase().indexOf(val) !== -1 || d.buyerName.toLowerCase().indexOf(val) !== -1 || !val);
+        });
+        this.rows = temp;
+      }
+      onSelect({ selected }) {
+        console.log('Select Event', selected, this.selected);
+    
+        // this.selected.splice(0, this.selected.length);
+        // this.selected.push(...selected);
+        for(let i=0; i<selected.length; i++ )
+        {
+            this.contractIds[i] = selected[i].id;
+            
+        }
+      }
+      // displayCheck(row) {
+      //   console.log(row.id)
+      //   return row.id;
+      // }
+      // onActivate(event) {
         // console.log('Activated Event', event );
-          if (event.type === 'click' ){
-            this.checkboxData.push({['id']:event.row.id , 
+          // if (event.type === 'click' ){
+          //   this.checkboxData.push({['id']:event.row.contractBillId , 
                                     // ['buyerId']:event.row.buyerId ,
                                     // ['sellerId']:event.row.sellerId , 
                                     // ['taxAmount']:event.row.id
-                                   });
+    //                                });
                                    
-            console.log(this.checkboxData)
-          }
+    //         console.log( "checkbox",this.checkboxData)
+    //       }
           
-          for(let i=0; i<this.checkboxData.length; i++ )
-        {
-            this.contractIds[i] = this.checkboxData[i].id;
+    //       for(let i=0; i<this.checkboxData.length; i++ )
+    //     {
+    //         this.contractIds[i] = this.checkboxData[i].id;
             
-        }
+    //     }
 
           
       
-    }
+    // }
 
   generateBill() {
     // console.log("checkbox data in " , this.checkboxData)

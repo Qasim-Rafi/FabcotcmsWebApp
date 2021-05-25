@@ -41,6 +41,7 @@ export class ActiveContractDetailComponent implements OnInit {
   rows2: any = [];
   rows3: any = [];
   rows4: any = [];
+  rows6: any = [];
   data:any = {};
   items:any = {};
   empData:any = {};
@@ -57,6 +58,7 @@ export class ActiveContractDetailComponent implements OnInit {
   contractLOCdata: any = {};
   contractCommissionData: any = {};
   contractRemarksData: any = {};
+  saleInvoiceData: any = {};
   response: any;
   ItemCount: number;
   contractCount: number;
@@ -68,6 +70,9 @@ export class ActiveContractDetailComponent implements OnInit {
   TnaFilter: any = {};
   shipmentData: any = {};
   invoiceData:any =[];
+  invoiceItemFilter = [];
+  invoiceItem = {};
+
   
  
   shipmentUrl='/api/Contracts/GetAllContractShipmentSchedule/{contractId}';
@@ -126,6 +131,11 @@ export class ActiveContractDetailComponent implements OnInit {
     this.getAllShipmentDates((shipmentData) => {
       this.rows4 = shipmentData;
       this.shipmentFilter = [...shipmentData];
+
+    });
+    this.getAllInvoiceItems((invoiceItem) => {
+      this.rows5 = invoiceItem;
+      this.invoiceItemFilter = [...invoiceItem];
 
     });
 
@@ -265,7 +275,7 @@ export class ActiveContractDetailComponent implements OnInit {
 
 
   getSaleInvoice() {
-    this.http.get(`${environment.apiUrl}/api/Contracts/GetAllContractSaleInvoice`)
+    this.http.get(`${environment.apiUrl}/api/Contracts/GetAllContractSaleInvoice/`+ this.contractId )
       .subscribe(
         res => {
           this.response = res;
@@ -284,6 +294,55 @@ export class ActiveContractDetailComponent implements OnInit {
           }
         });
   }
+
+
+
+
+  deleteSaleInvoice(obj) {
+    Swal.fire({
+      title: GlobalConstants.deleteTitle, //'Are you sure?',
+      text: GlobalConstants.deleteMessage + ' ' + '"' + obj.saleInvoiceRemarks + '"',
+      icon: 'error',
+      showCancelButton: true,
+      confirmButtonColor: '#ed5565',
+      cancelButtonColor: '#dae0e5',
+      cancelButtonText: 'No',
+      confirmButtonText: 'Yes',
+      reverseButtons: true,
+      position: 'top',
+    }).then((result) => {
+      if (result.isConfirmed) {
+  
+        this.http.delete(`${environment.apiUrl}/api/Contracts/DeleteContractSaleInvoice/` + obj.id )
+          .subscribe(
+            res => {
+              this.response = res;
+              if (this.response.success == true) {
+                this.toastr.error(this.response.message, 'Message.');
+                this.getSaleInvoice();
+  
+              }
+              else {
+                this.toastr.error(this.response.message, 'Message.');
+              }
+  
+            }, err => {
+              if (err.status == 400) {
+                this.toastr.error(this.response.message, 'Message.');
+              }
+            });
+  
+      }
+    })
+  
+  }
+  
+
+
+
+
+
+
 
   
 
@@ -733,19 +792,57 @@ ProductionPlanform() {
 }
 
 
-saleInvoice() {
+addSaleInvoice(status) {
   const modalRef = this.modalService.open(SALEINVOICEComponent, { centered: true });
   modalRef.componentInstance.contractId = this.contractId;
+  modalRef.componentInstance.statusCheck = status;
+
 
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
+      this.getSaleInvoice();
 
     }
   }, (reason) => {
     // on dismiss
   });
 }
+
+
+
+editSaleInvoice(status, obj) {
+  const modalRef = this.modalService.open(SALEINVOICEComponent, { centered: true });
+  modalRef.componentInstance.contractId = this.contractId;
+  modalRef.componentInstance.statusCheck = status;
+  modalRef.componentInstance.invoiceId = obj.id;
+
+  modalRef.result.then((data) => {
+    // on close
+    if (data == true) {
+      this.getSaleInvoice();
+
+    }
+  }, (reason) => {
+    // on dismiss
+  });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Note() {
   const modalRef = this.modalService.open(EnquiryNotesComponent, { centered: true });
@@ -849,6 +946,35 @@ TnaHistory(row) {
     // on dismiss
   });
 }
+
+getAllInvoiceItems(cb) {
+
+  this.http
+    .get(`${environment.apiUrl}/api/Contracts/GetAllSaleInvoiceItem/`+ this.contractId)
+    .subscribe(res => {
+      this.response = res;
+      
+
+      if (this.response.success == true) {
+        this.invoiceItem = this.response.data
+        this.invoiceItemFilter = [this.invoiceItem]; 
+        cb(this.invoiceItem);
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+      // this.spinner.hide();
+    }, err => {
+      if (err.status == 400) {
+        this.toastr.error(err.error.message, 'Message.');;
+      }
+      //  this.spinner.hide();
+    });
+}
+
+
+
+
 AddsaleInvoiceItem(check,value) {
   const modalRef = this.modalService.open(SaleInvoiceItemComponent, { centered: true });
   modalRef.componentInstance.contractId = this.contractId;
@@ -863,10 +989,12 @@ AddsaleInvoiceItem(check,value) {
     // on dismiss
   });
 }
-EditsaleInvoiceItem(check) {
+EditsaleInvoiceItem(check , obj ) {
   const modalRef = this.modalService.open(SaleInvoiceItemComponent, { centered: true });
   modalRef.componentInstance.contractId = this.contractId;
   modalRef.componentInstance.statusCheck = check;
+  modalRef.componentInstance.inVoiceId = obj.id;
+
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
@@ -876,6 +1004,9 @@ EditsaleInvoiceItem(check) {
     // on dismiss
   });
 }
+
+
+
 addItems(check, name) {
   const modalRef = this.modalService.open(ItemsComponent, { centered: true });
   modalRef.componentInstance.statusCheck = check;

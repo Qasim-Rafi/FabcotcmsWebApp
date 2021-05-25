@@ -99,11 +99,10 @@ export class EditCountryComponent implements OnInit {
       }
       else{
 
-
     let varr = {
       "name": this.data.name,
       "details": this.data.details,
-      "active": this.active
+      "active": this.data.active
     }
 
     this.http.

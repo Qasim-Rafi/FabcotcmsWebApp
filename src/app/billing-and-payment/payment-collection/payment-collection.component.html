@@ -128,7 +128,7 @@
           </ngx-datatable-column>
           <ngx-datatable-column name="Net Amount" [width]="80" prop="amount" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-      
+      {{row.netAmount}}
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Payment Mode" [width]="80" prop="mode" [flexGrow]="0.06">

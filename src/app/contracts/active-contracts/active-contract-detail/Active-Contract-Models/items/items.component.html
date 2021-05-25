@@ -20,10 +20,14 @@
   <div class="modal-body BG pt-4">
     <form #ItemForm="ngForm" novalidate>
         <div class="form-group row">
-            <label for="description" class="col-sm-3 col-form-label text_Navy">Item Description</label>
+            <label for="description" class="col-sm-3 col-form-label text_Navy">Item Description
+              <span
+        class="required-denote">*</span>
+            </label>
             <div class="col-sm-8">
-                <input type="text" class="form-control" id="description"
+                <input required appAutofocus  type="text" class="form-control" id="description"
                 name="description" [(ngModel)]="data.description" #description="ngModel"
+                [ngClass]="{ error: description.invalid && ItemForm.submitted  }"
                 value="" placeholder="Description" />
                
             </div>
@@ -31,16 +35,19 @@
 
 
           <div class="form-group row">
-            <label for="itemQuantity" class="col-sm-3 col-form-label text_Navy">Item Quantity</label>
+            <label for="itemQuantity" class="col-sm-3 col-form-label text_Navy">Item Quantity
+    
+            </label>
             <div class="col-sm-3">
                 <input type="number" 
                 id="itemQuantity"
-                name="itemQuantity" [(ngModel)]="data.itemQuantity" #itemQuantity="ngModel"
+              name="itemQuantity" [(ngModel)]="data.itemQuantity" #itemQuantity="ngModel"
                 class="form-control" value="" placeholder="Quantity" />
             </div>
             <div class="col-md-5">
                
-              <ng-select [(ngModel)]="data.itemUOMId" placeholder="Select UOM" name="itemUOMId">
+              <ng-select
+              [(ngModel)]="data.itemUOMId" placeholder="Select UOM" name="itemUOMId">
                 <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}</ng-option>
             </ng-select>
 
@@ -185,12 +192,12 @@
 
   <div class="modal-footer NotBG" *ngIf="FormName == 'ItemForm'">
     <!-- <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" (click)="activeModal.close()">Close</button> -->
-    <button [disabled]="ItemForm.invalid" *ngIf="statusCheck == 'ItemAdd'" class="btn button-save" type="submit"
+    <button *ngIf="statusCheck == 'ItemAdd'" class="btn button-save" type="submit"
       (click)="addItem()">
       Save Item
     </button>
   
-    <button [disabled]="ItemForm.invalid" *ngIf="statusCheck == 'ItemEdit'" class="btn button-save" type="submit"
+    <button  *ngIf="statusCheck == 'ItemEdit'" class="btn button-save" type="submit"
       (click)="UpdateItem()">
       Update Item
     </button>

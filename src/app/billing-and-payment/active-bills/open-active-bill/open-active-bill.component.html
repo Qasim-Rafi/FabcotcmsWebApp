@@ -33,7 +33,7 @@
                     </span>
                 </div>
                 <div class="col-md-6 mrg-tsm">
-                    <button type="button" class="btn btn-primary btn-md float-right">
+                    <button type="button" class="btn btn-primary btn-md float-right" (click)= "print()">
                         <i class="fa fa-print"></i> Print Bill
                     </button>
                 </div>
@@ -100,11 +100,11 @@
 
     </tr>
     <tr>
-      <td>RT-3642-1</td>
-      <td>07-Jan-21</td>
-      <td>17,475.00</td>
-      <td>5%</td>
-      <td>873.75</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
 
     </tr>
   </table>
@@ -125,7 +125,7 @@
 </div>
  <!-- left side content -->
  <span class=" float-left text-font1">
-    Amount In Words:<span class="bold text-font1 underline">&nbsp;&nbsp;Eight Hundreds Seventy Three</span>
+    Amount In Words:<span class="bold text-font1 underline">&nbsp;&nbsp; {{words}}</span>
 </span>
 <br>
 <span>Our Bank detail as under for FTT</span>

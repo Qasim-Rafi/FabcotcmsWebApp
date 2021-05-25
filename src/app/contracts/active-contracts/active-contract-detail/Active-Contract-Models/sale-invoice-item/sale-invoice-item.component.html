@@ -23,7 +23,7 @@
             <div class="col-sm-7">
                
                     <ng-select name="invoiceItem"  placeholder="-- Select --" name="invoiceItem " #invoiceItem="ngModel" [(ngModel)]="data.invoiceItem" >
-                      <ng-option *ngFor="let i of itemData" [value]="i.id">{{ i.name }}
+                      <ng-option *ngFor="let i of itemData" [value]="i.id">{{ i.description }}
                       </ng-option>
                     </ng-select>
 
