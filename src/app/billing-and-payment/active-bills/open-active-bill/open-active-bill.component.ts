@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ServiceService } from 'src/app/shared/service.service';
 import { environment } from 'src/environments/environment';
 import { ChangeBankAccountComponent } from './change-bank-account/change-bank-account.component';
+import pdfMake from "pdfmake/build/pdfmake";
 
 @Component({
   selector: 'app-open-active-bill',
@@ -76,5 +77,95 @@ export class OpenActiveBillComponent implements OnInit {
   }
 
 
+  print() {
+    let docDefinition = {
+      pageSize: 'A4',     
+      info: {
+        title: 'Active Bills List'
+      },
+      content: [
+        {
+          text: 'Fabcot International FZE ',
+          style: 'heading',
+
+        },
+        {
+    text: 'Flexi Office ,RAKEZ Business ZONE F-Z RAK , United Arab Emirates.',
+    style: 'heading2'
+       
+  },
+       {text: 'Seller:'  },
+       { text: this.rows['sellerName'], style:'text1'},
+      {  text:'Bill No.:' , style:'text2'},
+      { text: this.rows['billNumber'], style:'text3'},
+      {  text:'Bill Date:' , style:'text4' },
+      { text: this.rows['billDate'], style:'text5'},
+       {  text: 'Buyer:'  , style:'text6'},
+       { text: this.rows['buyerName'], style:'text1'},
+      {  text: 'Fabcot Contract Number :' , style:'text9' },
+      { text: this.rows['contractNumber'], style:'text10'},
+      {text: 'Contract Date :' , style:'text11'},
+      { text: this.rows['contractDate'], style:'text12'},
+      {text: 'Article :' , },
+      { text: this.rows['contractArticleName'], style:'text13'},
+      {
+        margin: [0 , 10 , 0 , 0],
+
+        table:{
+
+          headerRows:1,
+          widths: [75, 90, 130, 70, 120],
+
+          body:[
+            ['SaleInvoice #', 'SaleInvoice Date', 'Invoice Amount(PKR)', 'Commission', 'Total Amount(PKR)'],
+        // ...this.rows['contractSaleInvoices'].map((row=>
+        //   [row.saleInvoiceNo]
+        //   ))
+          ]
+        }
+      },
+      {  text: 'Sub Total :' , style:'text14' },
+      { text: this.rows['invoiceSubTotalAmount'], style:'text15'},
+      {text: 'Tax :' , style:'text16'},
+      { text: this.rows['invoiceTaxAmount'], style:'text15'},
+      {text: 'Total:' , style:'text18' },
+      { text: this.rows['invoiceTotalAmount']},
+         ],
+      styles: {
+        heading: {
+          fontSize: 18,
+          alignment: 'center',
+          margin: [0, 0, 0, 0]
+        },
+        
+          heading2:{
+                fontSize: 10,
+                alignment: 'center',
+                // [ left , up , right  , down]
+                margin: [0 , -3 , 0 , 25]
+
+          },
+          text1 : {
+            margin:[38 ,-15, 0 ,0 ]
+          },
+          text2 : {margin:[380 ,0, 0 ,0 ]},
+          text3 : {margin:[425 ,-15, 0 ,0 ]},
+          text4 : {margin:[380 ,0, 0 ,0 ]},
+          text5 : {margin:[430 , -15, 0 ,0 ]},
+          text6 : {margin:[0 , -25, 0 ,0 ]},
+          text10 : {margin:[140 , -15, 0 ,0 ]},
+          text12 : {margin:[90 , -15, 0 ,0 ]},
+          text13 : {margin:[50 , -15, 0 ,0 ]},
+          text14 : {margin:[380 , 20, 0 ,0 ]},
+          text15 : {margin:[440 , -13, 0 ,0 ]},
+          text16 : {margin:[400 , 0, 0 ,0 ]},
+          text18 : {margin:[300 , 0, 0 ,0 ]},        
+      }
+    };
+
+    // const win = window.open('', "tempWinForPdf");
+    pdfMake.createPdf(docDefinition).print();
+
+  }
 
 }

@@ -9,133 +9,143 @@
     Edit Buyer
   </h5>
 </div>
-<div class="modal-body BG pt-2r">
+<div class="modal-body BG p-0">
+
   <form #buyerEditForm="ngForm" novalidate (ngSubmit)="updateBuyer(buyerEditForm)">
-    <div class="form-group row">
-      <label for="name" class="col-sm-3 col-form-label">Buyer Name</label>
-      <div class="col-sm-8">
-        <input appAutofocus required maxlength="60" id="buyerName" type="text" class="form-control"
-          placeholder="Buyer name" name="buyerName" [(ngModel)]="data.buyerName" #name="ngModel"
-          [ngClass]="{ error: name.invalid && buyerEditForm.submitted }" />
+
+    <div class="col-md-12 py-3">
+
+      <div class="form-group row">
+        <label for="name" class="col-sm-3 col-form-label">Buyer Name</label>
+        <div class="col-sm-8">
+          <input appAutofocus required maxlength="60" id="buyerName" type="text" class="form-control"
+            placeholder="Buyer name" name="buyerName" [(ngModel)]="data.buyerName" #name="ngModel"
+            [ngClass]="{ error: name.invalid && buyerEditForm.submitted }" />
+        </div>
       </div>
-    </div>
 
-    <div class="form-group row">
-      <label for="bill-address" class="col-sm-3 col-form-label">Billing Address</label>
-      <div class="col-sm-8">
-        <textarea class="form-control" id="billingAddress" rows="3" placeholder="Buyer mailing address"
-          name="billingAddress" [(ngModel)]="data.billingAddress" #billingAddress="ngModel"></textarea>
+      <div class="form-group row">
+        <label for="bill-address" class="col-sm-3 col-form-label">Billing Address</label>
+        <div class="col-sm-8">
+          <textarea class="form-control" id="billingAddress" rows="3" placeholder="Buyer mailing address"
+            name="billingAddress" [(ngModel)]="data.billingAddress" #billingAddress="ngModel"></textarea>
+        </div>
       </div>
-    </div>
 
-    <div class="form-group row">
-      <label for="delivery-address" class="col-sm-3 col-form-label">Delivery Address</label>
-      <div class="col-sm-8">
-        <textarea class="form-control" id="deliveryAddress" rows="3" placeholder="Buyer delivery address"
-          name="deliveryAddress" [(ngModel)]="data.deliveryAddress" #deliveryAddress="ngModel"></textarea>
+      <div class="form-group row">
+        <label for="delivery-address" class="col-sm-3 col-form-label">Delivery Address</label>
+        <div class="col-sm-8">
+          <textarea class="form-control" id="deliveryAddress" rows="3" placeholder="Buyer delivery address"
+            name="deliveryAddress" [(ngModel)]="data.deliveryAddress" #deliveryAddress="ngModel"></textarea>
+        </div>
       </div>
-    </div>
 
-    <div class="form-group row">
-      <label for="country" class="col-sm-3 col-form-label">Country</label>
+      <div class="form-group row">
+        <label for="country" class="col-sm-3 col-form-label">Country</label>
 
-      <div class="col-sm-8">
-        <ng-select [(ngModel)]="data.countryId" required placeholder="-- Select --" name="countryId"
-          #countryId="ngModel" [ngClass]="{ error: countryId.invalid }">
-          <ng-option *ngFor="let i of country" [value]="i.id">{{ i.name }}
-            <span *ngIf="i.details !=null" class="text-muted" style="font-size: 11px">({{ i.details }})</span>
-          </ng-option>
-        </ng-select>
+        <div class="col-sm-8">
+          <ng-select [(ngModel)]="data.countryId" required placeholder="-- Select --" name="countryId"
+            #countryId="ngModel" [ngClass]="{ error: countryId.invalid }">
+            <ng-option *ngFor="let i of country" [value]="i.id">{{ i.name }}
+              <span *ngIf="i.details !=null" class="text-muted" style="font-size: 11px">({{ i.details }})</span>
+            </ng-option>
+          </ng-select>
+        </div>
       </div>
-    </div>
 
-    <div class="form-group row">
-      <label for="contactNoPrimary" class="col-sm-3 col-form-label">Contact Nos.</label>
+      <div class="form-group row">
+        <label for="contactNoPrimary" class="col-sm-3 col-form-label">Contact Nos.</label>
 
-      <div class="col-sm-8">
-        <div class="row">
-          <div class="col-sm-6">
-            <input pattern="[+0-9-]{7,15}" minlength="7" maxlength="15" type="text" class="form-control"
-              id="contactNoPrimary" placeholder="Primary Contact No." name="contactNoPrimary"
-              [(ngModel)]="data.contactNoPrimary" #contactNoPrimary="ngModel" [ngClass]="{
+        <div class="col-sm-8">
+          <div class="row">
+            <div class="col-sm-6">
+              <input pattern="[+0-9-]{7,15}" minlength="7" maxlength="15" type="text" class="form-control"
+                id="contactNoPrimary" placeholder="Primary Contact No." name="contactNoPrimary"
+                [(ngModel)]="data.contactNoPrimary" #contactNoPrimary="ngModel" [ngClass]="{
                 error: contactNoPrimary.invalid && buyerEditForm.submitted
               }" />
-     
-          </div>
-          <div class="col-sm-6">
-            <input pattern="[+0-9-]{7,15}" minlength="7" maxlength="15" type="text" class="form-control"
-              id="contactNoSecondary" placeholder="Other Contact No." name="contactNoSecondary"
-              [(ngModel)]="data.contactNoSecondary" #contactNoSecondary="ngModel" [ngClass]="{
+
+            </div>
+            <div class="col-sm-6">
+              <input pattern="[+0-9-]{7,15}" minlength="7" maxlength="15" type="text" class="form-control"
+                id="contactNoSecondary" placeholder="Other Contact No." name="contactNoSecondary"
+                [(ngModel)]="data.contactNoSecondary" #contactNoSecondary="ngModel" [ngClass]="{
                 error: contactNoSecondary.invalid && buyerEditForm.submitted
               }" />
-      
+
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="form-group row">
-      <label for="faxNumber" class="col-sm-3 col-form-label">Fax Number</label>
-      <div class="col-sm-8">
-        <input pattern="[0-9]{7,15}" maxlength="15" minlength="7" type="text" class="form-control" id="faxNumber"
-          placeholder="Buyer Fax No." name="faxNumber" [(ngModel)]="data.faxNumber" #faxNumber="ngModel"
-          [ngClass]="{ error: faxNumber.invalid && buyerEditForm.submitted }" />
+      <div class="form-group row">
+        <label for="faxNumber" class="col-sm-3 col-form-label">Fax Number</label>
+        <div class="col-sm-8">
+          <input pattern="[0-9]{7,15}" maxlength="15" minlength="7" type="text" class="form-control" id="faxNumber"
+            placeholder="Buyer Fax No." name="faxNumber" [(ngModel)]="data.faxNumber" #faxNumber="ngModel"
+            [ngClass]="{ error: faxNumber.invalid && buyerEditForm.submitted }" />
 
+        </div>
       </div>
-    </div>
 
-    <div class="form-group row">
-      <label for="ntnNumber" class="col-sm-3 col-form-label">NTN/GST Nos.</label>
+      <div class="form-group row">
+        <label for="ntnNumber" class="col-sm-3 col-form-label">NTN/GST Nos.</label>
 
-      <div class="col-sm-8">
-        <div class="row">
-          <div class="col-sm-6">
-            <input maxlength="7" pattern="[0-9]{0,7}" type="text" class="form-control" id="ntnNumber"
-              placeholder="NTN No." name="ntnNumber" [(ngModel)]="data.ntnNumber" #ntnNumber="ngModel"
-              [ngClass]="{ error: ntnNumber.invalid && buyerEditForm.submitted }" />
-          </div>
-          <div class="col-sm-6">
-            <input pattern="[0-9]{7,15}" maxlength="15" minlength="7" type="text" class="form-control" id="gstNumber"
-              placeholder="GST No." name="gstNumber" [(ngModel)]="data.gstNumber" #gstNumber="ngModel"
-              [ngClass]="{ error: gstNumber.invalid && buyerEditForm.submitted }" />
+        <div class="col-sm-8">
+          <div class="row">
+            <div class="col-sm-6">
+              <input maxlength="7" pattern="[0-9]{0,7}" type="text" class="form-control" id="ntnNumber"
+                placeholder="NTN No." name="ntnNumber" [(ngModel)]="data.ntnNumber" #ntnNumber="ngModel"
+                [ngClass]="{ error: ntnNumber.invalid && buyerEditForm.submitted }" />
+            </div>
+            <div class="col-sm-6">
+              <input pattern="[0-9]{7,15}" maxlength="15" minlength="7" type="text" class="form-control" id="gstNumber"
+                placeholder="GST No." name="gstNumber" [(ngModel)]="data.gstNumber" #gstNumber="ngModel"
+                [ngClass]="{ error: gstNumber.invalid && buyerEditForm.submitted }" />
 
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="form-group row">
-      <label for="buyerDetails" class="col-sm-3 col-form-label">Buyer Details</label>
-      <div class="col-sm-8">
-        <textarea class="form-control" id="buyerDetails" rows="4" placeholder="Buyer additional details here ..."
-          name="buyerDetails" [(ngModel)]="data.buyerDetails" #buyerDetails="ngModel"></textarea>
+      <div class="form-group row">
+        <label for="buyerDetails" class="col-sm-3 col-form-label">Buyer Details</label>
+        <div class="col-sm-8">
+          <textarea class="form-control" id="buyerDetails" rows="4" placeholder="Buyer additional details here ..."
+            name="buyerDetails" [(ngModel)]="data.buyerDetails" #buyerDetails="ngModel"></textarea>
+        </div>
       </div>
-    </div>
 
-    <div class="form-check form-check-inline offset-md-3 pl-1">
-      <input class="form-check-input check-btn" type="checkbox" name="isParentBuyer" [(ngModel)]="data.isParentBuyer" />
-      <label class="form-check-label">Parent Buyer</label>
-    </div>
-
-    <div class="form-group row">
-      <label for="parentBuyerId" class="col-sm-3 col-form-label">Parent Buyer</label>
-      <div class="col-sm-8">
-        <ng-select name="parentSellerId" [(ngModel)]="data.parentBuyerId" placeholder="-- Select --"
-          #isParentBuyer="ngModel">
-          <ng-option *ngFor="let i of buyer" [value]="i.id">
-            {{ i.buyerName }}
-          </ng-option>
-        </ng-select>
+      <div class="form-check form-check-inline offset-md-3 pl-1">
+        <input class="form-check-input check-btn" type="checkbox" name="isParentBuyer"
+          [(ngModel)]="data.isParentBuyer" />
+        <label class="form-check-label">Parent Buyer</label>
       </div>
+
+      <div class="form-group row">
+        <label for="parentBuyerId" class="col-sm-3 col-form-label">Parent Buyer</label>
+        <div class="col-sm-8">
+          <ng-select name="parentSellerId" [(ngModel)]="data.parentBuyerId" placeholder="-- Select --"
+            #isParentBuyer="ngModel">
+            <ng-option *ngFor="let i of buyer" [value]="i.id">
+              {{ i.buyerName }}
+            </ng-option>
+          </ng-select>
+        </div>
+      </div>
+
     </div>
- 
-<div class="modal-footer NotBG">
-  <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
-    Close
-  </button>
-  <button class="btn button-save" type="submit">
-    Update Buyer
-  </button>
-</div>
-</form>
+
+
+    <div class="modal-footer NotBG">
+      <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal"
+        (click)="activeModal.close()">
+        Close
+      </button>
+      <button class="btn button-save" type="submit">
+        Update Buyer
+      </button>
+    </div>
+  </form>
+
 </div>

@@ -68,6 +68,7 @@ export class ActiveContractDetailComponent implements OnInit {
   TnaFilter: any = {};
   shipmentData: any = {};
   invoiceData:any =[];
+  
  
   shipmentUrl='/api/Contracts/GetAllContractShipmentSchedule/{contractId}';
   // tna data
@@ -84,6 +85,7 @@ export class ActiveContractDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // this.userName=localStorage.getItem('loggedInUserName');
     this.queryParems = this.route.snapshot.queryParams;
     this.contractId = this.queryParems.id;
    

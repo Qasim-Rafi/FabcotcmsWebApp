@@ -3,51 +3,56 @@
     <span aria-hidden="true">&times;</span>
   </button>
   <h5 class="modal-title">
-    <i class="fa fa-bolt fa-fw"></i>
+    <i class="fa fa-plus"></i>
     Add Color
   </h5>
 
 </div>
 
-<div class="modal-body BG pt-2r">
+<div class="modal-body BG p-0">
   <form #addAgentForm="ngForm" novalidate (ngSubmit)="addColor(addAgentForm)">
 
-    <div class="form-group row" [class.has-error]="name.invalid">
-      <label for="name" class="col-sm-3 col-form-label control-label text_Navy">Color<span class="required-denote">*</span> </label>
-      <div class="col-sm-8">
-        <input appAutofocus maxlength="20" required id="name" type="text" class="form-control" placeholder="Color" name="name"
-          [(ngModel)]="data.name" #name="ngModel" [ngClass]="{'error': name.invalid && addAgentForm.submitted}">
-        <small>Add color name</small>
-      </div>
-    </div>
+    <div class="col-md-12 py-3">
 
-    <div class="form-group row">
-      <label for="description" class="col-sm-3 col-form-label text-grey">Description</label>
-      <div class="col-sm-8">
-        <textarea maxlength="300"  class="form-control" id="description" rows="3" placeholder="Brief Color description here ..."
-          name="description" [(ngModel)]="data.description" #description="ngModel"></textarea>
-      </div>
-    </div>
-
- 
-    <div class="form-group row">
-      <label for="active" class="col-sm-3 col-form-label text-grey"></label>
-      <div class="col-sm-8">
-        <div class="form-check form-check-inline">
-          <input checked class="form-check-input check-btn " type="checkbox" name="active" [(ngModel)]="active"
-            >
-          <label for="active" class="form-check-label text-grey" id="active">Marked as Active</label>
+      <div class="form-group row" [class.has-error]="name.invalid">
+        <label for="name" class="col-sm-3 col-form-label control-label text_Navy">Color<span
+            class="required-denote">*</span> </label>
+        <div class="col-sm-8">
+          <input appAutofocus maxlength="20" required id="name" type="text" class="form-control" placeholder="Color"
+            name="name" [(ngModel)]="data.name" #name="ngModel"
+            [ngClass]="{'error': name.invalid && addAgentForm.submitted}">
+          <small>Add color name</small>
         </div>
       </div>
+
+      <div class="form-group row">
+        <label for="description" class="col-sm-3 col-form-label text-grey">Description</label>
+        <div class="col-sm-8">
+          <textarea maxlength="300" class="form-control" id="description" rows="3"
+            placeholder="Brief Color description here ..." name="description" [(ngModel)]="data.description"
+            #description="ngModel"></textarea>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="active" class="col-sm-3 col-form-label text-grey"></label>
+        <div class="col-sm-8">
+          <div class="form-check form-check-inline">
+            <input checked class="form-check-input check-btn " type="checkbox" name="active" [(ngModel)]="active">
+            <label for="active" class="form-check-label text-grey" id="active">Marked as Active</label>
+          </div>
+        </div>
+      </div>
+
     </div>
 
 
-   
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">Close</button>
-    <button class="btn button-save" type="submit"  >
-      Save Color
-    </button>
-  </div>
-</form>
+    <div class="modal-footer NotBG">
+      <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal"
+        (click)="activeModal.close()">Close</button>
+      <button class="btn button-save" type="submit">
+        Save Color
+      </button>
+    </div>
+  </form>
 </div>

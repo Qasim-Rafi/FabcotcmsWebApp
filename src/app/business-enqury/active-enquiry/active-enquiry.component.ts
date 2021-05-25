@@ -28,6 +28,9 @@ export class ActiveEnquiryComponent implements OnInit {
   copyData: any = [];
   temp: any = [];
   @Input() enquiryId;
+  onHoldCount:any
+  closedCount:any
+  confirmedCount:any
 
 
   constructor(private http: HttpClient,
@@ -78,10 +81,14 @@ export class ActiveEnquiryComponent implements OnInit {
       .get(`${environment.apiUrl}/api/Enquiries/GetAllEnquiry`)
       .subscribe(res => {
         this.response = res;
-        this.listCount = this.response.data.enquiryList.length;
 
         if (this.response.success == true) {
+          
           this.data = this.response.data.enquiryList;
+          this.listCount = this.response.data.activeCount;
+          this.onHoldCount = this.response.data.onHoldCount
+          this.closedCount = this.response.data.closedCount
+          this.confirmedCount = this.response.data.confirmedCount
           this.temp = [this.data];
           cb(this.data);
         }
