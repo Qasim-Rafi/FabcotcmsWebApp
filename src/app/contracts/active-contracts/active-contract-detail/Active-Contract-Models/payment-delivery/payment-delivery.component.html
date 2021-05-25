@@ -16,7 +16,7 @@
 
   
   <div class="modal-body BG pt-4">
-    <form #partiesForm="ngForm" novalidate>
+    <form #partiesForm="ngForm" novalidate (ngSubmit)="addContractPaymentDelivery(partiesForm)">
         <div class="form-group row">
             <label for="name" class="col-sm-3 col-form-label">Payment Mode</label>
             <div class="col-sm-4">
@@ -32,7 +32,10 @@
           <div class="form-group row">
             <label for="description" class="col-sm-3 col-form-label text-Navy">Payment Terms</label>
             <div class="col-sm-4">
-              <ng-select name="paymentTermId" placeholder="-- Select --" [(ngModel)]="data.paymentTermId">
+              <ng-select required name="paymentTermId" placeholder="-- Select --" [(ngModel)]="data.paymentTermId"
+              #paymentTermId="ngModel" 
+              [ngClass]="{'error': paymentTermId.invalid && partiesForm.submitted }"
+              >
                 <ng-option *ngFor="let i of payment" [value]="i.id">
                     {{i.term}}
                 </ng-option>
@@ -40,8 +43,10 @@
             </div>
             <div class="col-md-4 mrg-sm1">
                 <div class="input-group">
-                <input type="number" min="0" class="form-control" placeholder="days" name="paymentTermDays"
-                [(ngModel)]="data.paymentTermDays">
+                <input required type="number" min="0" class="form-control" placeholder="days" name="paymentTermDays"
+                [(ngModel)]="data.paymentTermDays"
+                #paymentTermDays="ngModel" 
+              [ngClass]="{'error': paymentTermDays.invalid && partiesForm.submitted }">
             </div>
             </div>
       
@@ -69,7 +74,8 @@
           <div class="form-group row">
             <label for="description" class="col-sm-3 col-form-label text-Navy">Packing</label>
             <div class="col-sm-8">
-              <ng-select name="packingId" placeholder="-- Select --" [(ngModel)]="data.packingId"  >
+              <ng-select required name="packingId" placeholder="-- Select --" [(ngModel)]="data.packingId"  #packingId="ngModel" 
+              [ngClass]="{'error': packingId.invalid && partiesForm.submitted }" >
                 <ng-option *ngFor="let i of packing" [value]="i.id">
                     {{i.name}}
                 </ng-option>
@@ -81,7 +87,8 @@
             <label for="description" class="col-sm-3 col-form-label text_Navy">Price / Delivery</label>
 
             <div class="col-sm-4">
-              <ng-select name="priceTermId" placeholder="-- Select --" [(ngModel)]="data.priceTermId">
+              <ng-select required name="priceTermId" placeholder="-- Select --" [(ngModel)]="data.priceTermId" #priceTermId="ngModel" 
+              [ngClass]="{'error': priceTermId.invalid && partiesForm.submitted }" >
                 <ng-option *ngFor="let i of price" [value]="i.id">
                     {{i.term}}
                 </ng-option>
@@ -89,7 +96,8 @@
             </div>
 
             <div class="col-sm-4 ">
-              <ng-select name="destinationId" placeholder="-- Select --" [(ngModel)]="data.destinationId">
+              <ng-select required name="destinationId" placeholder="-- Select --" [(ngModel)]="data.destinationId" #destinationId="ngModel" 
+              [ngClass]="{'error': destinationId.invalid && partiesForm.submitted }">
                 <ng-option *ngFor="let i of city" [value]="i.id">
                   {{i.name}} <span class="text-secondary" style="font-size: 11px">{{i.country}}</span>
                 </ng-option>
@@ -98,14 +106,15 @@
 
           </div>
 
-    </form>
-  </div>
+  
   
   <div class="modal-footer NotBG">
     <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
       Close
     </button>
-    <button class="btn button-save" type="submit" (click)="addContractPaymentDelivery()">
+    <button class="btn button-save" type="submit" >
       Save 
     </button>
   </div>
+</form>
+</div>

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { ServiceService } from 'src/app/shared/service.service';
@@ -116,7 +117,14 @@ export class ProductAndSpecificationComponent implements OnInit {
 
 
 
-  addContractProduct() {
+  addContractProduct(form:NgForm) {
+
+    if(form.status == "INVALID"){
+
+      this.toastr.error("Invalid Form", 'Message.');
+    }
+
+    else{
 
     let varr = {
 
@@ -150,6 +158,7 @@ export class ProductAndSpecificationComponent implements OnInit {
           }
         });
   }
+}
 
 
 

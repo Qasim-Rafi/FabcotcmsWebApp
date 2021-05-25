@@ -18,6 +18,7 @@
         <input appAutofocus required maxlength="60" type="text" class="form-control"
           placeholder="Buyer name" name="buyerName" [(ngModel)]="data.buyerName" #buyerName="ngModel"
           [ngClass]="{ 'error': buyerForm.submitted &&  buyerName.invalid }" />
+          
       </div>
     </div>
 

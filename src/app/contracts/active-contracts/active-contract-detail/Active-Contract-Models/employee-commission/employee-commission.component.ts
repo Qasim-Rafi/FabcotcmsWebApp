@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
+import { resetFakeAsyncZone } from '@angular/core/testing';
+import { NgForm } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { ServiceService } from 'src/app/shared/service.service';
@@ -63,7 +65,14 @@ export class EmployeeCommissionComponent implements OnInit {
       this.response = res;
       if (this.response.success == true) {
         this.criteria = this.response.data;
-        this.data.beneficiaryCriteriaId = 2; 
+        if(this.criteria.length == 0){
+
+            this.data.beneficiaryCriteriaId = null
+        }
+        else{
+            this.data.beneficiaryCriteriaId = this.criteria[0].id
+        }
+        // this.data.beneficiaryCriteriaId = 2; 
 
       }
       else {
@@ -110,8 +119,13 @@ export class EmployeeCommissionComponent implements OnInit {
 
 
 
-  addContractEmployeeCommission() {
+  addContractEmployeeCommission(form:NgForm) {
     
+    if(form.status == "INVALID"){
+
+      this.toastr.error("Invalid Form", 'Message.');
+    }
+    else{
     let varr = {
       "contractId": this.contractId,
       "userId": this.data.userId,
@@ -140,14 +154,20 @@ export class EmployeeCommissionComponent implements OnInit {
           }
         });
   }
+}
 
 
 
 
 
 
-  updateContractEmployeeCommission() {
+  updateContractEmployeeCommission(form:NgForm) {
     
+    if(form.status == "INVALID"){
+
+      this.toastr.error("Invalid Form", 'Message.');
+    }
+    else{
     let varr = {
       "contractId": this.contractId,
       "userId": this.data.userId,
@@ -177,6 +197,7 @@ export class EmployeeCommissionComponent implements OnInit {
           }
         });
   }
+}
 
 
 

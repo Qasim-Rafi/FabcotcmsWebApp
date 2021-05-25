@@ -51,11 +51,10 @@ export class EditActiveEnquiryComponent implements OnInit {
   vendorSeller: any = [];
   certificate: any = [];
   confirmOn: string;
- noteFilter: any = [];
- noteList: any = {};
- totalComplete:any;
- userName: any ; 
-
+  noteFilter: any = [];
+  noteList: any = {};
+  totalComplete:any;
+  userName: any ; 
   // entries: any = [];
 
 
@@ -72,6 +71,7 @@ export class EditActiveEnquiryComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    
 
       this.userName=localStorage.getItem('loggedInUserName');
       this.queryParems = this.route.snapshot.queryParams;
