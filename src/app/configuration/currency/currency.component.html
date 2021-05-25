@@ -75,6 +75,8 @@
 
     <div class="panel-body">
       <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'"
+      [sorts]="[{prop: 'id,validFrom,currencyCode,rate,details,
+      createdByName,updatedDateTime ', dir: 'asce'}]"
         [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
 
         <ngx-datatable-column name="S. No." [width]="5" prop="id">

@@ -68,6 +68,7 @@ export class ActiveContractDetailComponent implements OnInit {
   TnaFilter: any = {};
   shipmentData: any = {};
   invoiceData:any =[];
+  
  
   shipmentUrl='/api/Contracts/GetAllContractShipmentSchedule/{contractId}';
   // tna data
@@ -84,6 +85,7 @@ export class ActiveContractDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // this.userName=localStorage.getItem('loggedInUserName');
     this.queryParems = this.route.snapshot.queryParams;
     this.contractId = this.queryParems.id;
    
@@ -815,8 +817,8 @@ getContractTnA(cb) {
 EditTna(row) {
   const modalRef = this.modalService.open(EditTnaComponent, { centered: true });
   modalRef.componentInstance.contractId = this.contractId;
-  modalRef.componentInstance.id = row.id;
-  modalRef.componentInstance.tnaId = row.tnaId;
+  // modalRef.componentInstance.id = row.id;
+  modalRef.componentInstance.tnaId = row.id;
 
 
   modalRef.result.then((data) => {

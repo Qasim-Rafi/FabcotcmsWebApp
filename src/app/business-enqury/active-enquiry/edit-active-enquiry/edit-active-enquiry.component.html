@@ -783,10 +783,9 @@
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-md-3 col-form-label control-label">Confirmation On:</label>
                                         <div class="col-md-6">
-                                            <div class="input-group">
-                                                <input class="form-control " ngbDatepicker #validityDate="ngbDatepicker"
-                                                    (click)="validityDate.toggle()" [displayMonths]="1" [(ngModel)]="enquiryData.confirmationDate"
-                                                    name="confirmationDate" />
+                                            <div class="input-group"> 
+                                                <input class="form-control " ngbDatepicker #validityDate="ngbDatepicker" [minDate]="{year: 2000, month: 1, day: 1}"
+                                                    (click)="validityDate.toggle()" [(ngModel)]="enquiryData.confirmationDate" name="confirmationDate" />
                                             </div>
                                         </div>
                                     </div>

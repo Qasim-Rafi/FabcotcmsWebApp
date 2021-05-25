@@ -22,7 +22,8 @@
         <div class="form-group row">
             <label class="col-sm-3 col-form-label text_Navy">Agent</label>
             <div class="col-sm-8">
-              <ng-select placeholder="Select an Agent" name="userId" [(ngModel)]="data.userId" (change)="GetCriteriaDropdown($event)">
+              <ng-select required placeholder="Select an Agent" name="userId" [(ngModel)]="data.userId" (change)="GetCriteriaDropdown($event)"  #userId="ngModel" 
+              [ngClass]="{'error': userId.invalid && CityForm.submitted }">
                 <ng-option *ngFor="let i of user" [value]="i.id" >
                   {{i.fullName}}
                 </ng-option>
@@ -33,7 +34,8 @@
       <div class="form-group row">
         <label class="col-sm-3 col-form-label text_Navy">Criteria</label>
         <div class="col-sm-8">
-          <ng-select placeholder="Select Criteria" name="beneficiaryCriteriaId" [(ngModel)]="data.beneficiaryCriteriaId">
+          <ng-select required placeholder="Select Criteria" name="beneficiaryCriteriaId" [(ngModel)]="data.beneficiaryCriteriaId" #beneficiaryCriteriaId="ngModel" 
+          [ngClass]="{'error': beneficiaryCriteriaId.invalid && CityForm.submitted }">
             <ng-option *ngFor="let i of criteria" [value]="i.id">
               {{i.criteriaName}}
             </ng-option>
@@ -48,29 +50,27 @@
             name="criteriaDetail" ></textarea>
         </div>
       </div>  
-    </form>
-  </div>
+   
   <div class="modal-footer NotBG">
     <!-- <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" (click)="activeModal.close()">Close</button> -->
     <button class="btn btn-outline-dark" type="submit" (click)="activeModal.close()"
       >
      Close
     </button>
-    <button class="btn btn-save" type="submit" *ngIf="statusCheck == 'AddCommission'" (click)="addContractEmployeeCommission()"
+    <button class="btn btn-save" type="submit" *ngIf="statusCheck == 'AddCommission'" (click)="addContractEmployeeCommission(CityForm)"
     >
-    Save  & Exit
+    Save
   </button>
 
-  <button class="btn btn-save" type="submit" *ngIf="statusCheck == 'editCommission'" (click)=" updateContractEmployeeCommission()"
+  <button class="btn btn-save" type="submit" *ngIf="statusCheck == 'editCommission'" (click)=" updateContractEmployeeCommission(CityForm)"
     >
-    Save  & Exit
+    Save
   </button>
 
-  <button class="btn btn-next" type="submit" *ngIf="statusCheck == 'AddCommission'" (click)="addContractEmployeeCommission()"
-  >
-  Save  & Next
-</button>
   </div>
+
+</form>
+</div>
 
 
 

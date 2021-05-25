@@ -19,102 +19,100 @@ export class ServiceService {
   article: any = [];
   listCount: number;
   data: any = [];
-  user:any;
+  user: any;
   rootUrl: "/api/Auth/Login";
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,) { }
 
-    userAuthentication(data) {
-        // var data = "username=" + username + "&password=" + password + "&grant_type=password";
-        // var reqHeader = new HttpHeaders({ 'Content-Type': 'application/x-www-urlencoded','No-Auth':'True' });
-        // return this.http.post('/api/Auth/Login' + '/token', data, { headers: reqHeader });
+  userAuthentication(data) {
+    // var data = "username=" + username + "&password=" + password + "&grant_type=password";
+    // var reqHeader = new HttpHeaders({ 'Content-Type': 'application/x-www-urlencoded','No-Auth':'True' });
+    // return this.http.post('/api/Auth/Login' + '/token', data, { headers: reqHeader });
 
 
-        return this.http.post(`${environment.apiUrl}/api/auth/login`, data)
-        .pipe(
-          map((res:any) => {
-            this.response = res;
-            //if(this.response.massage){}
-            if(this.response.success==true)
-        {
-          this.user = this.response.data;
-        }
-            if (this.user)
-              {
-               
-      
-                  localStorage.setItem('token',this.user.token);
-                  localStorage.setItem('role',this.user.role);
-                  localStorage.setItem('loggedInUserName',this.user.loggedInUserName);
-
-                  //this.authenticateUser(this.userRole);
-              //     setTimeout(()=>{                           
-              //       localStorage.removeItem('token');
-              //        this.router.navigate(['/first-page']);
-              //  }, 172800000);
-                  
-      
-       
-          
-    
-                  return this.response;
-              }
-              return this.response;
-          })
-      
-        );
-      }
-
-//file upload service starts here
+    return this.http.post(`${environment.apiUrl}/api/auth/login`, data)
+      .pipe(
+        map((res: any) => {
+          this.response = res;
+          //if(this.response.massage){}
+          if (this.response.success == true) {
+            this.user = this.response.data;
+          }
+          if (this.user) {
 
 
-      upload(formData) {
-        return this.http.post<any>(`${environment.apiUrl}/api/Lookups/Countries`, formData, {
-          reportProgress: true,
-          observe: 'events'
-        }).pipe(
-          map(event => this.getEventMessage(event, formData)),
-          catchError(this.handleError)
-        );
-      }  
-      private getEventMessage(event: HttpEvent<any>, formData) {
+            localStorage.setItem('token', this.user.token);
+            localStorage.setItem('role', this.user.role);
+            localStorage.setItem('loggedInUserName', this.user.loggedInUserName);
 
-        switch (event.type) {
-          case HttpEventType.UploadProgress:
-            return this.fileUploadProgress(event);
+            //this.authenticateUser(this.userRole);
+            //     setTimeout(()=>{                           
+            //       localStorage.removeItem('token');
+            //        this.router.navigate(['/first-page']);
+            //  }, 172800000);
+
+
+
+
+
+            return this.response;
+          }
+          return this.response;
+        })
+
+      );
+  }
+
+  //file upload service starts here
+
+
+  upload(formData) {
+    return this.http.post<any>(`${environment.apiUrl}/api/Lookups/Countries`, formData, {
+      reportProgress: true,
+      observe: 'events'
+    }).pipe(
+      map(event => this.getEventMessage(event, formData)),
+      catchError(this.handleError)
+    );
+  }
+  private getEventMessage(event: HttpEvent<any>, formData) {
+
+    switch (event.type) {
+      case HttpEventType.UploadProgress:
+        return this.fileUploadProgress(event);
         break;
-          case HttpEventType.Response:
-            return this.apiResponse(event);
+      case HttpEventType.Response:
+        return this.apiResponse(event);
         break;
-          default:
-            return `File "${formData.get('profile').name}" surprising upload event: ${event.type}.`;
-        }
-      }
-      private fileUploadProgress(event) {
-        const percentDone = Math.round(100 * event.loaded / event.total);
-        return { status: 'progress', message: percentDone };
-      }
-    
-      private apiResponse(event) {
-        return event.body;
-      }
-    
-      private handleError(error: HttpErrorResponse) {
-        if (error.error instanceof ErrorEvent) {
-          // A client-side or network error occurred. Handle it accordingly.
-          console.error('An error occurred:', error.error.message);
-        } else {
-          // The backend returned an unsuccessful response code.
-          // The response body may contain clues as to what went wrong,
-          console.error(`Backend returned code ${error.status}, ` + `body was: ${error.error}`);
-        }
-        // return an observable with a user-facing error message
-        return throwError('Something bad happened. Please try again later.');
-      }    
-      
+      default:
+        return `File "${formData.get('profile').name}" surprising upload event: ${event.type}.`;
+    }
+  }
+  private fileUploadProgress(event) {
+    const percentDone = Math.round(100 * event.loaded / event.total);
+    return { status: 'progress', message: percentDone };
+  }
 
-//file upload service ends here
+  private apiResponse(event) {
+    return event.body;
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', error.error.message);
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong,
+      console.error(`Backend returned code ${error.status}, ` + `body was: ${error.error}`);
+    }
+    // return an observable with a user-facing error message
+    return throwError('Something bad happened. Please try again later.');
+  }
+
+
+  //file upload service ends here
 
   getCountry() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/Countries`)
@@ -122,7 +120,7 @@ export class ServiceService {
   getDepartments() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/Departments`)
   }
-  
+
   getDocumentType() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/DocumentTypes`)
   }
@@ -174,7 +172,7 @@ export class ServiceService {
     return this.http.get(`${environment.apiUrl}/api/Lookups/Capabilities`)
 
   }
-  
+
   getPriceTerm() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/PriceTerms`)
 
@@ -219,7 +217,7 @@ export class ServiceService {
     return this.http.get(`${environment.apiUrl}/api/Lookups/BeneficiaryCriterias/` + id);
   }
   getUsers() {
-    return this.http.get(`${environment.apiUrl}/api/Users/GetUsers` );
+    return this.http.get(`${environment.apiUrl}/api/Users/GetUsers`);
   }
 
 
@@ -286,13 +284,35 @@ export class ServiceService {
     FileSaver.saveAs(data, fileName + CSV_EXTENSION);
   }
 
+  extractErrorMessagesFromErrorResponse(errorResponse: HttpErrorResponse) {
+    // 1 - Create empty array to store errors
+    const errors = [];
 
+    // 2 - check if the error object is present in the response
+    if (errorResponse.error) {
 
+      // 4 - Check for Laravel form validation error messages object
+      if (errorResponse.error.errors) {
+
+        // 5 - For each error property (which is a form field)
+        for (const property in errorResponse.error.errors) {
+
+          if (errorResponse.error.errors.hasOwnProperty(property)) {
+
+            // 6 - Extract it's array of errors
+            const propertyErrors: Array<string> = errorResponse.error.errors[property];
+
+            // 7 - Push all errors in the array to the errors array
+            propertyErrors.forEach(error => errors.push(error + "\n"));
+          }
+
+        }
+
+      }
+
+    }
+    return errors;
+  }
 }
 
-
-
-function cb(data: any) {
-  throw new Error('Function not implemented.');
-}
 

@@ -51,11 +51,10 @@ export class EditActiveEnquiryComponent implements OnInit {
   vendorSeller: any = [];
   certificate: any = [];
   confirmOn: string;
- noteFilter: any = [];
- noteList: any = {};
- totalComplete:any;
- userName: any ; 
-
+  noteFilter: any = [];
+  noteList: any = {};
+  totalComplete:any;
+  userName: any ; 
   // entries: any = [];
 
 
@@ -72,6 +71,7 @@ export class EditActiveEnquiryComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    
 
       this.userName=localStorage.getItem('loggedInUserName');
       this.queryParems = this.route.snapshot.queryParams;
@@ -117,13 +117,15 @@ export class EditActiveEnquiryComponent implements OnInit {
              this.confirmOn = this.enquiryData.confirmationDate;
              console.log("enquiry Data" , this.enquiryData)
             this.enquiryData.confirmationDate = this.dateformater.fromModel(this.enquiryData.confirmationDate);
+            if(this.enquiryData.totalQuantity == 0)
+            {
+              this.enquiryData.totalQuantity = "";
+            }
             this.fetch((data) => {
               this.rows = data;
               // this.listCount= this.rows.length;
             });
          
- // console.log(this.enquiryData);
- 
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
@@ -285,7 +287,7 @@ export class EditActiveEnquiryComponent implements OnInit {
     this.service. getCurrencyType().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.currency = this.response.data.list;
+        this.currency = this.response.data;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -334,7 +336,7 @@ export class EditActiveEnquiryComponent implements OnInit {
     this.service. getVendorSeller(this.objEnquiry).subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.vendorSeller = this.response.data.list;
+        this.vendorSeller = this.response.data;
         
       }
       else {

@@ -97,7 +97,7 @@
                                             name="compositionPercentage_{{i}}" [(ngModel)]=value.compositionPercentage />
                                     </div>
                                     <div class="col-lg-5 mrg-tsm">
-                                        <ng-select [(ngModel)]="value.compositionFebricTypeId" placeholder="Select Fabric" required
+                                        <ng-select [(ngModel)]="value.compositionFebricTypeId" placeholder="Select Fabric" 
                                             name="compositionFebricTypeId_{{i}}">
                                             <ng-option *ngFor="let i of fabricType" [value]="i.id">{{ i.type }}</ng-option>
                                         </ng-select>
@@ -139,17 +139,17 @@
                             </div>
                 
                             <div class="form-group col-4 modalBorder">
-                                <ng-select [(ngModel)]="value.loomTypeId" placeholder="Loom Type" name="loomTypeId_{{i}}" required>
+                                <ng-select [(ngModel)]="value.loomTypeId" placeholder="Loom Type" name="loomTypeId_{{i}}" >
                                     <ng-option *ngFor="let i of loomType" [value]="i.id">{{ i.type }}</ng-option>
                                 </ng-select>
                             </div>
                 
                             <div class="form-group col-2 modalBorder">
-                                <input type="text" class="form-control" placeholder="Size" name="size_{{i}}" [(ngModel)]=value.size  required/>
+                                <input type="text" class="form-control" placeholder="Size" name="size_{{i}}" [(ngModel)]=value.size  />
                             </div>
                 
                             <div class="form-group col-3 modalBorder">
-                                <ng-select [(ngModel)]="value.colorId" placeholder="Item Color" name="colorId_{{i}}" required>
+                                <ng-select [(ngModel)]="value.colorId" placeholder="Item Color" name="colorId_{{i}}" >
                                     <ng-option *ngFor="let i of color" [value]="i.id">{{ i.name }}</ng-option>
                                 </ng-select>
                             </div>
@@ -173,117 +173,7 @@
     
             
 
-            </form>
-
-        </div>
-    </div>
-
-   
-    
-
-    
-
-
-    <!-- <form #EnquiryItemForm="ngForm" novalidate>
-        <div class="form-group row">
-            <label for="name" class="col-sm-3 col-form-label text_Navy">Item Description</label>
-            <div class="col-sm-8">
-                <input type="text" class="form-control" placeholder="Description" name="description"
-                    [(ngModel)]=data.description />
-            </div>
-        </div>
-
-
-        <div class="form-group row">
-            <label for="name" class="col-sm-3 col-form-label text_Navy">Item Quantity</label>
-
-            <div class="col-md-3">
-                <input type="number" class="form-control" placeholder="Quantity" name="itemQuantity"
-                    [(ngModel)]=data.itemQuantity />
-            </div>
-            <div class="col-md-5">
-                <ng-select [(ngModel)]="data.itemUOMId" placeholder="Select UOM" name="itemUOMId">
-                    <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}</ng-option>
-                </ng-select>
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <label for="name" class="col-sm-3 col-form-label ">Composition</label>
-
-            <div class="col-md-2">
-                <input type="number" class="form-control" placeholder="%age" name="compositionPercentage"
-                    [(ngModel)]=data.compositionPercentage />
-            </div>
-            <div class="col-md-3">
-                <ng-select [(ngModel)]="data.compositionFebricTypeId" placeholder="Select Fabric"
-                    name="compositionFebricTypeId">
-                    <ng-option *ngFor="let i of fabricType" [value]="i.id">{{ i.type }}</ng-option>
-                </ng-select>
-            </div>
-            <div class="col-md-3">
-                <input type="text" class="form-control" placeholder="Additional Info" name="compositionAdditionalInfo"
-                    [(ngModel)]=data.compositionAdditionalInfo />
-            </div>
-        </div>
-
-
-        <div class="form-group row">
-            <label for="name" class="col-md-3 col-form-label ">Construction</label>
-            <div class="col-md-8">
-                <input type="text" class="form-control" placeholder="Construction" name="construction"
-                    [(ngModel)]=data.construction />
-            </div>
-        </div>
-
-
-        <div class="form-group row">
-            <label for="countryId" class="col-sm-3 col-form-label">Item Color</label>
-            <div class="col-sm-8">
-                <ng-select [(ngModel)]="data.colorId" placeholder="Color" name="colorId">
-                    <ng-option *ngFor="let i of color" [value]="i.id">{{ i.name }}</ng-option>
-                </ng-select>
-            </div>
-        </div>
-
-
-        <div class="form-group row">
-            <label for="name" class="col-sm-3 col-form-label ">GSM / Weight</label>
-            <div class="col-sm-8">
-                <input type="text" class="form-control" placeholder="Description" name="weight"
-                    [(ngModel)]=data.weight />
-            </div>
-        </div>
-
-
-        <div class="form-group row">
-            <label for="countryId" class="col-sm-3 col-form-label">Loom Type </label>
-            <div class="col-sm-8">
-                <ng-select [(ngModel)]="data.loomTypeId" placeholder="Loom Type" name="loomTypeId">
-                    <ng-option *ngFor="let i of loomType" [value]="i.id">{{ i.type }}</ng-option>
-                </ng-select>
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <label for="name" class="col-sm-3 col-form-label ">Size</label>
-            <div class="col-sm-8">
-                <input type="text" class="form-control" placeholder="Description" name="size" [(ngModel)]=data.size />
-            </div>
-        </div>
-
-
-        <div class="form-group row">
-            <label for="name" class="col-sm-3 col-form-label ">Remarks</label>
-            <textarea class="col-sm-8 form-control" rows="3" name="remarks" [(ngModel)]=data.remarks>
-            </textarea>
-        </div>
-
-
-
-    </form> -->
-
-</div>
+  
 
 <div class="modal-footer NotBG">
     <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
@@ -293,13 +183,22 @@
                 class="btn button-save" type="submit" (click) = "addEnquiryItem()" >
                     Save & Next
                 </button> -->
-    <button *ngIf="statusCheck == 'AddEnquiryItem'" class="btn button-save" type="submit" (click) = "addEnquiryItem()">
-        Save & Exit
+    <button *ngIf="statusCheck == 'AddEnquiryItem'" class="btn button-save" type="submit" (click) = "addEnquiryItem(EnquiryItemForm)">
+        Save
     </button>
-    <button *ngIf="statusCheck == 'EditEnquiryItem'" class="btn button-save" type="submit" (click)="updateEnquiry()">
+    <button *ngIf="statusCheck == 'EditEnquiryItem'" class="btn button-save" type="submit" (click)="updateEnquiry(EnquiryItemForm)">
         Update Item
     </button>
 
+</div>
+
+
+
+
+
+</form>
+</div>
+</div>
 </div>
 
 

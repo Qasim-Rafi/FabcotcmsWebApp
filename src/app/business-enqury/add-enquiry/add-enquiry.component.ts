@@ -154,6 +154,7 @@ export class AddEnquiryComponent implements OnInit {
     this.service.getBuyers().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
+
         this.buyer = this.response.data.list;
         this.newBuyer = this.response.data.lastId
        
@@ -329,9 +330,9 @@ export class AddEnquiryComponent implements OnInit {
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        this.date = this.myDate;
-        // this.getenquiryBuyers();
-        this.service.getBuyers();
+
+    
+        this.GetBuyersDropdown();
         this.buyer.id = this.newBuyer;
         this.data.buyerId = this.buyer.id+1
 
@@ -339,7 +340,7 @@ export class AddEnquiryComponent implements OnInit {
     }, (reason) => {
       // on dismiss
     });
-  }
+  } 
 
   
   addenquiryArticleForm() {
