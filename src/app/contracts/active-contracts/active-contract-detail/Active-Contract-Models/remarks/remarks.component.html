@@ -12,51 +12,83 @@
     </div>
   </div>
   
-  <div class="modal-body BG pt-4">
-    <form #CityForm="ngForm" novalidate>
+
+ 
+    
+
+
+  <div class="modal-body BG p-0">
+    <form  #CityForm="ngForm" novalidate>
+
+      <div class="row justify-content-center">
+      <div class="col-md-10 py-3">
    
-        <div class="form-group row">
+        <div class="form-group">
+            <label for="contractRemarks" class="col-form-label text_grey">Remarks</label>
+            
+              <textarea [(ngModel)]="data.contractRemarks"
+               class="form-control" rows="4" placeholder="Contract remarks here ..."
+                name="contractRemarks"  ></textarea>
+            
+          </div>
+
+          
+          <!-- <div class="form-group row">
             <label for="contractRemarks" class="col-sm-3 col-form-label text_grey">Remarks</label>
             <div class="col-sm-8">
               <textarea [(ngModel)]="data.contractRemarks"
-               class="form-control" rows="5" placeholder="Contract remarks here ..."
+               class="form-control" rows="4" placeholder="Contract remarks here ..."
                 name="contractRemarks"  ></textarea>
             </div>
-          </div> 
-          <div class="form-group row">
-            <label for="buyerRemarks" class="col-sm-3 col-form-label text_grey">Buyers Remarks</label>
-            <div class="col-sm-8">
+          </div> -->
+
+        <div class="form-group ">
+            <label for="buyerRemarks" class=" col-form-label text_grey">Buyers Remarks</label>
+            
               <textarea [(ngModel)]="data.buyerRemarks"
-               class="form-control" rows="5" placeholder="Buyer side contract remarks here ..."
+               class="form-control" rows="4" placeholder="Buyer side contract remarks here ..."
                 name="buyerRemarks"  ></textarea>
-            </div>
+            
           </div> 
           
-          <div class="form-group row" >
-            <label for="otherConditionRemarks" class="col-sm-3 col-form-label text_grey">Other Condition</label>
-            <div class="col-sm-8">
+        <div class="form-group " >
+            <label for="otherConditionRemarks" class="col-form-label text_grey">Other Condition</label>
+            
               <textarea [(ngModel)]="data.otherConditionRemarks"
-               class="form-control" rows="7" placeholder="Any other terms and conditions"
+               class="form-control" rows="4" placeholder="Any other terms and conditions"
                 name="otherConditionRemarks"  ></textarea>
-            </div>
+            
           </div> 
-      <div class="form-group row">
-        <label for="title" class="col-sm-3 col-form-label text_grey">Title</label>
-        <div class="col-sm-8">
+
+      <div class="form-group">
+        <label for="title" class="col-form-label text_grey">Title</label>
+        
           <textarea [(ngModel)]="data.title"
            class="form-control" rows="4" placeholder="Contract preview title ..."
             name="title"  ></textarea>
-        </div>
+        
       </div>  
+
+    </div>
+    </div>
+
+
+      <div class="modal-footer NotBG">
+        <!-- <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" (click)="activeModal.close()">Close</button> -->
+        <button class="btn btn-outline-dark" type="submit" (click)="activeModal.close()"
+          >
+         Close
+        </button>
+      <button class="btn btn-save" type="submit" (click)="addContractRemark()">
+      Save
+    </button>
+      </div>
+
+
     </form>
   </div>
-  <div class="modal-footer NotBG">
-    <!-- <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" (click)="activeModal.close()">Close</button> -->
-    <button class="btn btn-outline-dark" type="submit" (click)="activeModal.close()"
-      >
-     Close
-    </button>
-  <button class="btn btn-save" type="submit" (click)="addContractRemark()">
-  Save
-</button>
-  </div>
+
+
+
+
+  

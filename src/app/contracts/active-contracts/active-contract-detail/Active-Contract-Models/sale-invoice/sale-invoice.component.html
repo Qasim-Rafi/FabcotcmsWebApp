@@ -3,17 +3,20 @@
       <div aria-hidden="true">&times;</div>
     </button>
   
-    <h5 class="modal-title">
+    <h5 class="modal-title" *ngIf="statusCheck == 'addInvoice'">
       <i class="fa fa-plus"></i>
        Add New Sale Invoice
+    </h5>
+    
+    <h5 class="modal-title" *ngIf="statusCheck == 'editInvoice'">
+      <i class="fa fa-plus"></i>
+       Edit Sale Invoice
     </h5>
   </div>
 
 
   <div class="modal-body BG pt-4">
     <form #InvoiceForm="ngForm" novalidate>
-   
-
 
         <div class="form-group row">
             <label for="saleInvoiceNo" class="col-sm-3 col-form-label text_Navy" >Sale Inv. No.</label>
@@ -56,7 +59,10 @@
     <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
       Close
     </button>
-    <button class="btn button-save" type="submit" (click)="addSaleInvoice()">
+    <button class="btn button-save" type="submit" (click)="addSaleInvoice()" *ngIf="statusCheck == 'addInvoice'">
+      Save Sale Invoice
+    </button>
+    <button class="btn button-save" type="submit" (click)="updateSaleInvoice()" *ngIf="statusCheck == 'editInvoice'">
       Save Sale Invoice
     </button>
   </div>
