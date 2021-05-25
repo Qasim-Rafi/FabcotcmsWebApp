@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { environment } from 'src/environments/environment';
@@ -119,11 +119,7 @@ export class EnquiryItemsComponent implements OnInit {
 
   addEnquiryItem( form:NgForm) {
    
-    if(form.status =="INVALID"){
-
-      this.toastr.error("Invalid Form", 'Message.');
-    }
-    else{
+    
     for(let i=0; i<this.data.length;i++ )
     {
       this.data[i] = Object.assign(this.data[i], {
@@ -146,13 +142,16 @@ export class EnquiryItemsComponent implements OnInit {
             this.toastr.error(this.response.message, 'Message.');
           }
         
-        }, err => {
-          if (err.status == 400) {
-            this.toastr.error(this.response.message, 'Message.');
-          }
+        },(err: HttpErrorResponse) => {
+          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+          this.toastr.error(messages.toString(), 'Message.');
+          console.log(messages);
+          // if (err.status == 400) {
+          //   this.toastr.error(this.response.message, 'Message.');
+          // }
         });
   }
-}
+
 
 
 

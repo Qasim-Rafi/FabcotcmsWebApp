@@ -71,11 +71,9 @@ export class DeliveryTimelineComponent implements OnInit {
         res => {
           this.response = res;
           if (this.response.success == true) {
+            this.data = this.response.data;
             this.data.supplierDate = this.dateformater.fromModel(this.data.supplierDate);
             this.data.buyerDate = this.dateformater.fromModel(this.data.buyerDate);
-            
-            
-            this.data = this.response.data;
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
@@ -157,6 +155,9 @@ export class DeliveryTimelineComponent implements OnInit {
 
           this.response = res;
           if (this.response.success == true) {
+            // this.data = this.response.data;
+            this.data.supplierDate = this.dateformater.fromModel(this.data.supplierDate);
+            this.data.buyerDate = this.dateformater.fromModel(this.data.buyerDate);
             this.toastr.success(this.response.message, 'Message.');
             this.activeModal.close(true);
           }
