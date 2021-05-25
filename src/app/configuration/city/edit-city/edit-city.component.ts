@@ -107,9 +107,6 @@ export class EditCityComponent implements OnInit {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
-          if (err.status == 400) {
-            this.toastr.error(this.response.message, 'Message.');
-          }
         });
   }
 // }
