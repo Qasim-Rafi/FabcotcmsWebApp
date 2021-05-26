@@ -111,7 +111,7 @@
         <label for="accountNumber" class="col-sm-3 col-form-label control-label text-grey">Account
         </label>
         <div class="col-sm-8">
-          <input id="accountNumber" type="text" pattern="[0-9]{8,11}" class="form-control"
+          <input id="accountNumber" minlength="8" maxlength="15" type="text" class="form-control"
             placeholder="Enter Agent Account No." name="accountNumber" [(ngModel)]="data.accountNumber"
             #accountNumber="ngModel" [ngClass]="{error : accountNumber.invalid && accountNumber.touched}" />
 
