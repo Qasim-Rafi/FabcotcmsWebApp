@@ -41,7 +41,7 @@ export class BankComponent implements OnInit {
     this.service.fetch((data) => {
       this.rows = data;
       this.bankFilter = [...this.rows];
-      
+      this.bankCount = this.rows.length;
     } , this.bankUrl);
 
   }
@@ -83,6 +83,7 @@ export class BankComponent implements OnInit {
                 this.toastr.error(this.response.message, 'Message.');
                 this.service.fetch((data) => {
                   this.rows = data;
+                  this.bankCount = this.rows.length;
                 } , this.bankUrl);
 
               }

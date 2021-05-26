@@ -102,7 +102,7 @@ export class EditCountryComponent implements OnInit {
     let varr = {
       "name": this.data.name,
       "details": this.data.details,
-      "active": this.data.active
+      "active": this.active
     }
 
     this.http.

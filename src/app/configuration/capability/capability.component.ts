@@ -153,7 +153,7 @@ editcapabilityForm(row, check, name) {
       CreatedOn: row.createdDateTime + ' | ' + row.createdByName
     }));
 
-    this.service.exportAsExcelFile(filtered, 'Countries');
+    this.service.exportAsExcelFile(filtered, 'Capability List');
 
   }
 
@@ -167,7 +167,7 @@ systemUserrCsvFile(){
     CreatedOn: row.createdDateTime + ' | ' + row.createdByName
   }));
 
-  this.service.exportAsCsvFile(filtered, 'Countries');
+  this.service.exportAsCsvFile(filtered, 'Capability List');
 
 }
 
@@ -215,7 +215,7 @@ systemUserrCsvFile(){
     };
 
 
-    pdfMake.createPdf(docDefinition).download('UserList.pdf');
+    pdfMake.createPdf(docDefinition).download('CapabilityList.pdf');
   }
 
   //-------------------------------------- Print country List ------------------------- ///
@@ -226,11 +226,11 @@ systemUserrCsvFile(){
       pageSize: 'A4',
       pageOrientation: 'landscape',
       info: {
-        title: 'User List'
+        title: 'Capability List'
       },
       content: [
         {
-          text: 'User List',
+          text: 'Capability List',
           style: 'heading',
 
         },
