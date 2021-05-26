@@ -120,6 +120,7 @@
                 </div>
             </div>
     
+
             <form #buyerForm="ngForm" novalidate>
             <div class="row">
                
@@ -467,7 +468,7 @@
     
                         </div>
 
-                        <!-- --------------------------- Tab 4 -------------------------- -->
+                        <!-- --------------------------- Enquiry Items Tab -------------------------- -->
                         <div class="tab-pane fade" id="nav-enquiryItems" role="tabpanel" aria-labelledby="nav-enquiryItems-tab">
                             <div class="row my-4">
 
@@ -512,7 +513,8 @@
                                             <span class="fa fa-expand-alt"></span>{{obj.vendorQuotationList.length}}</a>
                                     </div>
                                 </div>
-                                <div class="col-md-7">
+
+                                <div class="col-md-6">
                                     <a class="faq-question ">{{obj.description}}</a>
                                     <div class="small mb-1"><span class="text_Navy">{{obj.colorName}}</span> {{ obj.compositionPercentage}}%
                                         {{obj.compositionFebricTypeName}} {{obj.compositionAdditionalInfo}}
@@ -545,7 +547,7 @@
                                 </div>
             
             
-                                <div class="col-md-1 forum-info" data-toggle="tooltip" data-placement="top" title=""
+                                <div class="col-md-2 forum-info" data-toggle="tooltip" data-placement="top" title=""
                                     style="border-left: 1px solid #d0d0d0" data-original-title="Total Contracts">
                                     <span class="views-number">{{obj.itemQuantity}}</span>
                                     <div><small>{{obj.itemUOMName}}</small></div>

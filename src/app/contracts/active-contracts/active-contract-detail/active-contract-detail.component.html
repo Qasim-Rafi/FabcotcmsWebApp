@@ -1258,17 +1258,23 @@
                             </div>
 
                             <div class="card-body  BG" *ngFor="let x of invoiceData; let i = index;">
+
                                 <div class="row">
-                                    <div class="col-md-6 p-3">
+                                    <div class="col-md-6 py-3">
                                         <button class="btn btn-info">
                                             Sale Invoice #1 - 76543</button>
                                     </div>
                                 </div>
 
+                                <div class="row">
+                                    <div class="col-md-12 mb-3">
                                 <button class="btn btn-outline-primary" (click)="editSaleInvoice('editInvoice',x)"> <i class="far fa-edit"></i> Edit Invoice
                                 </button>
                                 <button class="btn btn-outline-danger ml-3 "  (click)="deleteSaleInvoice(x)"> <i class="far fa-trash-alt"></i>
                                     Delete</button>
+
+                                    </div>
+                                </div>
 
                                 <div class="row">
                                     <div class="col-md-6">
@@ -1338,6 +1344,7 @@
                                     </div>
 
                                 </div>
+
                                 <div class="row mb-3">
                                     <div class="col-md-6">
                                         <h2> Sale Invoice Items</h2>

@@ -28,7 +28,7 @@
 
 
 
-<div class="modal-body BG pt-3" >
+<div class="modal-body BG p-0" >
 
     <!-- <div class="row justify-content-end">
         <div class="col-md-11">
@@ -36,10 +36,11 @@
     </div> -->
 
     <div class="row">
-
         <div class="col-md-12">
             
-            <form #EnquiryItemForm="ngForm" novalidate>             
+            <form #EnquiryItemForm="ngForm" novalidate>    
+                
+                <div class="col-md-12 pt-3 pb-2 px-3">
             
                 <div class="form-row text-center bgLgray" >
             
@@ -172,17 +173,14 @@
          </div>
     
             
-
+         </div>
   
 
 <div class="modal-footer NotBG">
     <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
         Close
     </button>
-    <!-- <button *ngIf="statusCheck == 'AddEnquiryItem'"  
-                class="btn button-save" type="submit" (click) = "addEnquiryItem()" >
-                    Save & Next
-                </button> -->
+    
     <button *ngIf="statusCheck == 'AddEnquiryItem'" class="btn button-save" type="submit" (click) = "addEnquiryItem(EnquiryItemForm)">
         Save
     </button>
@@ -197,7 +195,12 @@
 
 
 </form>
+
+
+
+
 </div>
+
 </div>
 </div>
 

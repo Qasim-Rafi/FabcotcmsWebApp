@@ -22,19 +22,19 @@
         </div>
       </div>
      
-  <div class="faq-item shadow-sm" >
-    <div class="row">
+  <div class="faq-item shadow-sm" *ngFor="let i of bankAcc" >
+    <div class="row" (click)="Show(i)">
      
   
-      <div class="col-md-7, color">
+      <div class="col-md-7, color" > 
   
         <a class="faq-question "></a>
   
   
         <div class="small mb-1"></div>
-        <h5>Fabcot International FZE</h5>
-        <span><i class="fas fa-chart-area"></i>&nbsp;Dubai Islamic Bank &nbsp;&nbsp;<i class="fas fa-map-marker-alt"></i>&nbsp;Dubai, UAE</span><br>
-        <p><b><i class="fas fa-globe-africa"></i>&nbsp;Flexi Office, RAKEZ Business ZONE F-Z RAK,United Arab Emirates</b></p>
+        <h5>{{i.accountName}}</h5>
+        <span><i class="fas fa-chart-area"></i>&nbsp;{{i.bankName}} &nbsp;&nbsp;<i class="fas fa-map-marker-alt"></i>&nbsp;Dubai, UAE</span><br>
+        <p><b><i class="fas fa-globe-africa"></i>&nbsp;{{i.bankAddress}}</b></p>
 
       </div>
 
