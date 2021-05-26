@@ -38,8 +38,9 @@ export class ProcessComponent implements OnInit {
 
   ngOnInit(): void {
     this.service.fetch((data) => {
-      this.processFilter = [...data];
       this.rows = data;
+      this.processFilter = [...this.rows];
+
       this.processCount = this.rows.length;
     }, this.processUrl);
   }
@@ -108,6 +109,8 @@ export class ProcessComponent implements OnInit {
       if (data == true) {
         this.service.fetch((data) => {
           this.rows = data;
+      this.processFilter = [...this.rows];
+
           this.processCount = this.rows.length;
         }, this.processUrl);
 

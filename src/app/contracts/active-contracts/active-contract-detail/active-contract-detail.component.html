@@ -229,9 +229,9 @@
 
                             <div class="col-md-3 text-right">
 
-                                <button class="btn btn-primary ">
+                                <button class="btn btn-primary btn-sm">
                                     <i class="far fa-bell"></i> No Reminder Set</button>
-                                <button class="btn btn-outline-secondary ml-1">
+                                <button class="btn btn-outline-secondary btn-sm ml-1">
                                     <i class="fas fa-sync-alt"></i></button>
                             </div>
                         </div>
@@ -257,7 +257,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <span>Contract On:</span>
+                                <span>Contract On:</span> &nbsp;
                                 <span class="text_Navy font-weight-bold">
 
                                     <i class="far fa-clock "></i>
@@ -324,7 +324,7 @@
 
                         <div class="tab-content" id="nav-tabContent">
 
-                            <!-- -------Tab 1----------- -->
+                            <!-- -------General Information Tab 1----------- -->
                             <div class="tab-pane fade show active" id="nav-general" role="tabpanel"
                                 aria-labelledby="nav-general-tab">
 
@@ -383,7 +383,7 @@
 
                             </div>
 
-                            <!-- -------Tab 2----------- -->
+                            <!-- -------Parties Tab 2----------- -->
                             <div class="tab-pane fade show " id="nav-parties" role="tabpanel"
                                 aria-labelledby="nav-parties-tab">
 
@@ -466,14 +466,14 @@
 
                                 <div class="row">
                                     <div class="col-md-12 mb-4">
-                                        <button class="btn btn-outline-primary float-right" (click)="PartiesForm()">
+                                        <button class="btn btn-outline-primary btn-sm float-right" (click)="PartiesForm()">
                                             Edit</button>
                                     </div>
                                 </div>
 
                             </div>
 
-                            <!-- -------Tab 3----------- -->
+                            <!-- -------Product & Specification Tab 3----------- -->
                             <div class="tab-pane fade show " id="nav-product" role="tabpanel"
                                 aria-labelledby="nav-product-tab">
 
@@ -527,7 +527,7 @@
 
                                 <div class="row">
                                     <div class="col-md-12 mb-4">
-                                        <button class="btn btn-outline-primary float-right"
+                                        <button class="btn btn-outline-primary btn-sm float-right"
                                             (click)="ProductANDSpecificationForm()"> Edit</button>
                                     </div>
                                 </div>
@@ -535,7 +535,7 @@
 
                             </div>
 
-                            <!-- -------Tab 4----------- -->
+                            <!-- -------Quantity & Costing Tab 4----------- -->
                             <div class="tab-pane fade show " id="nav-quantity" role="tabpanel"
                                 aria-labelledby="nav-quantity-tab">
 
@@ -582,14 +582,14 @@
 
                                 <div class="row">
                                     <div class="col-md-12 mb-4">
-                                        <button class="btn btn-outline-primary float-right" (click)="QuantityCosting()">
+                                        <button class="btn btn-outline-primary btn-sm float-right" (click)="QuantityCosting()">
                                             Edit</button>
                                     </div>
                                 </div>
 
                             </div>
 
-                            <!-- -------Tab 5----------- -->
+                            <!-- -------Payment & Delivery Terms Tab 5----------- -->
                             <div class="tab-pane fade show " id="nav-payment" role="tabpanel"
                                 aria-labelledby="nav-payment-tab">
 
@@ -643,14 +643,14 @@
 
                                 <div class="row">
                                     <div class="col-md-12 mb-4">
-                                        <button class="btn btn-outline-primary float-right" (click)="PaymentDelivery()">
+                                        <button class="btn btn-outline-primary btn-sm float-right" (click)="PaymentDelivery()">
                                             Edit</button>
                                     </div>
                                 </div>
 
                             </div>
 
-                            <!-- -------Tab 6----------- -->
+                            <!-- -------Letter of Credit (L/C) Tab 6----------- -->
                             <div class="tab-pane fade show " id="nav-letterCredit" role="tabpanel"
                                 aria-labelledby="nav-letterCredit-tab">
 
@@ -707,7 +707,7 @@
 
                                 <div class="row">
                                     <div class="col-md-12 mb-4">
-                                        <button class="btn btn-outline-primary float-right" (click)="LOCform()">
+                                        <button class="btn btn-outline-primary btn-sm float-right" (click)="LOCform()">
                                             Edit</button>
                                     </div>
                                 </div>
@@ -716,7 +716,7 @@
 
                             </div>
 
-                            <!-- -------Tab 7----------- -->
+                            <!-- -------Commission Tab 7----------- -->
                             <div class="tab-pane fade show " id="nav-commission" role="tabpanel"
                                 aria-labelledby="nav-commission-tab">
 
@@ -760,7 +760,7 @@
 
                                     </div>
                                     <div class="col-md-12 mb-4">
-                                        <button class="btn btn-outline-primary float-right"
+                                        <button class="btn btn-outline-primary btn-sm float-right"
                                             (click)="CommissionKickback()">
                                             Edit</button>
                                     </div>
@@ -769,7 +769,7 @@
 
                             </div>
 
-                            <!-- -------Tab 8----------- -->
+                            <!-- -------Employee Commission Tab 8----------- -->
                             <div class="tab-pane fade show " id="nav-employee" role="tabpanel"
                                 aria-labelledby="nav-employee-tab">
 
@@ -787,7 +787,7 @@
 
                                 <div class="row">
                                     <div class="col-md-12 mb-4">
-                                        <button class="btn btn-outline-primary float-right"
+                                        <button class="btn btn-outline-primary btn-sm float-right"
                                             (click)="EmployeeCommission('AddCommission')"> Add</button>
                                     </div>
                                 </div>
@@ -853,7 +853,7 @@
 
                                         <div class="col-sm-12 text-muted">
                                             <h4 class="font-weight-light">
-                                                Employee Commission
+                                                Remarks / Other Conditions
                                             </h4>
                                         </div>
 
@@ -893,7 +893,7 @@
 
                                     </div>
                                     <div class="col-md-12 mb-4">
-                                        <button class="btn btn-outline-primary float-right" (click)="Remarks()">
+                                        <button class="btn btn-outline-primary btn-sm float-right" (click)="Remarks()">
                                             Edit</button>
                                     </div>
 
@@ -930,7 +930,7 @@
                                         </h1>
                                     </div>
                                     <div class="col-sm-12 col-md-6 col-lg-4 text-right">
-                                        <button class="btn btn-outline-primary"
+                                        <button class="btn btn-outline-primary btn-sm"
                                             (click)="addItems('ItemAdd', 'ItemForm')">
                                             <i class="fas fa-plus"></i>
                                             Add New Item </button>
@@ -1050,7 +1050,7 @@
                                         </h1>
                                     </div>
                                     <div class="col-sm-12 col-md-6 col-lg-4 text-right">
-                                        <button class="btn btn-outline-primary" (click)="addShipmentTimeline('add')">
+                                        <button class="btn btn-outline-primary btn-sm" (click)="addShipmentTimeline('add')">
                                             <i class="fas fa-plus"></i>
                                             Add Deliveries </button>
                                     </div>
@@ -1156,7 +1156,7 @@
                                         </h1>
                                     </div>
                                     <div class="col-sm-12 col-md-6 col-lg-4 text-right">
-                                        <button class="btn btn-outline-primary" (click)="ProductionPlanform()">
+                                        <button class="btn btn-outline-primary btn-sm" (click)="ProductionPlanform()">
                                             <i class="fas fa-plus"></i>
                                             Add Time & Action </button>
                                     </div>
@@ -1239,6 +1239,7 @@
 
                 <div class="tab-pane fade show " id="nav-Sale" role="tabpanel" aria-labelledby="nav-Sale-tab">
                     <div class="col-md-12">
+
                         <div class="row">
                             <div class="col-md-12 py-1">
                                 <div class="row mb-2">
@@ -1250,161 +1251,175 @@
                                         </h1>
                                     </div>
                                     <div class="col-sm-12 col-md-6 col-lg-4 text-right">
-                                        <button class="btn btn-outline-primary" (click)="addSaleInvoice('addInvoice')">
+                                        <button class="btn btn-outline-primary btn-sm" (click)="addSaleInvoice('addInvoice')">
                                             <i class="fas fa-plus"></i>
                                             Add Sale Invoice </button>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="card-body  BG" *ngFor="let x of invoiceData; let i = index;">
 
-                                <div class="row">
-                                    <div class="col-md-6 py-3">
-                                        <button class="btn btn-info">
-                                            Sale Invoice #1 - 76543</button>
-                                    </div>
+
+                        <div class="card-body  BG" *ngFor="let x of invoiceData; let i = index;">
+
+                            <div class="row pb-5">
+                                <div class="col-md-6 ">
+                                    <button class="btn btn-info btn-sm">
+                                        Sale Invoice #1 - 76543</button>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-md-12 mb-3">
-                                <button class="btn btn-outline-primary" (click)="editSaleInvoice('editInvoice',x)"> <i class="far fa-edit"></i> Edit Invoice
-                                </button>
-                                <button class="btn btn-outline-danger ml-3 "  (click)="deleteSaleInvoice(x)"> <i class="far fa-trash-alt"></i>
-                                    Delete</button>
-
-                                    </div>
+                                <div class="col-md-6 text-right">
+                                    <button class="btn btn-outline-primary btn-sm" (click)="editSaleInvoice('editInvoice',x)"> <i class="far fa-edit"></i> Edit Invoice
+                                    </button>
+                                    <button class="btn btn-outline-danger btn-sm ml-3 "  (click)="deleteSaleInvoice(x)"> <i class="far fa-trash-alt"></i>
+                                        Delete</button>
                                 </div>
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <dl class="row">
-                                            <dt class="col-sm-6">Sale Invoice Status:
-
-                                            </dt>
-                                            <dd class="col-sm-6"></dd>
-                                        </dl>
-                                        <dl class="row">
-                                            <dt class="col-sm-6">Sale Invoice No.:
-
-                                            </dt>
-                                            <dd class="col-sm-6">{{x.saleInvoiceNo}}</dd>
-                                        </dl>
-                                        <dl class="row">
-                                            <dt class="col-sm-6">Quantity:</dt>
-                                            <dd class="col-sm-6"></dd>
-                                        </dl>
-
-                                        <dl class="row">
-                                            <dt class="col-sm-6">Last Updated by:
-
-
-                                            </dt>
-                                            <dd class="col-sm-6">{{x.saleInvoiceDate}}</dd>
-                                        </dl>
-
-                                        <dl class="row">
-                                            <dt class="col-sm-6">Remarks:
-
-
-                                            </dt>
-                                            <dd class="col-sm-6">{{x.saleInvoiceRemarks}}</dd>
-                                        </dl>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <dl class="row">
-                                            <dt class="col-sm-6">Sale Invoice ID:
-
-
-                                            </dt>
-                                            <dd class="col-sm-6">{{x.id}}</dd>
-                                        </dl>
-                                        <dl class="row">
-                                            <dt class="col-sm-6">Invoice Date:
-
-                                            </dt>
-                                            <dd class="col-sm-6">{{x.saleInvoiceDate}}</dd>
-                                        </dl>
-                                        <dl class="row">
-                                            <dt class="col-sm-6">Invoice Amount:
-                                            </dt>
-                                            <dd class="col-sm-6">test</dd>
-                                        </dl>
-
-                                        <dl class="row">
-                                            <dt class="col-sm-6">Last Updated on:
-
-
-                                            </dt>
-                                            <dd class="col-sm-6">3</dd>
-                                        </dl>
-
-
-                                    </div>
-
-                                </div>
-
-                                <div class="row mb-3">
-                                    <div class="col-md-6">
-                                        <h2> Sale Invoice Items</h2>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <button class="btn btn-primary float-right"
-                                            (click)="AddsaleInvoiceItem('add',x)">
-                                            <i class="fas fa-plus"></i>
-                                            Add Sale Invoice Item</button>
-                                    </div>
-
-                                </div>
-
-
-                                <ngx-datatable #myTable class="bootstrap" [columns]="columns"
-                                    [rows]="x.saleInvoiceItemList" [sorts]="[{ prop: 'id,name', dir: 'asce' }]"
-                                    [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'"
-                                    [limit]="10">
-                                    <ngx-datatable-column prop="id" name="Invoice Item" [width]="20">
-                                        <ng-template let-row="row" ngx-datatable-cell-template>
-                                            {{ row.invoiceItem }}
-                                        </ng-template>
-                                    </ngx-datatable-column>
-                                    <ngx-datatable-column prop="id" name="Quantity" [width]="20">
-                                        <ng-template let-row="row" ngx-datatable-cell-template>
-                                            {{ row.quatity }}
-                                        </ng-template>
-                                    </ngx-datatable-column>
-                                    <ngx-datatable-column prop="id" name="Amount" [width]="20">
-                                        <ng-template let-row="row" ngx-datatable-cell-template>
-                                            {{ row.amount }}
-                                        </ng-template>
-                                    </ngx-datatable-column>
-                                    <ngx-datatable-column prop="id" name="Remarks" [width]="20">
-                                        <ng-template let-row="row" ngx-datatable-cell-template>
-                                            {{ row.saleInvoiceItemRemarks }}
-                                        </ng-template>
-                                    </ngx-datatable-column>
-                                    <ngx-datatable-column prop="id" name="Action" [width]="20">
-                                        <ng-template let-row="row" ngx-datatable-cell-template>
-
-                                            <div class="ibox-tools text-center">
-                                                <button type="button" class="btn editIconBack"
-                                                    (click)="EditsaleInvoiceItem('edit',row)"><i
-                                                        class="far fa-edit"></i></button>
-                                                <button type="button" class="btn deleteIconBack" data-toggle="tooltip"
-                                                    data-placement="top" title="" data-original-title="Delete" (click)="deleteInvoiceItem(row)"><i
-                                                        class="far fa-trash-alt"></i></button>
-                                            </div>
-                                        </ng-template>
-                                    </ngx-datatable-column>
-
-
-                                </ngx-datatable>
-
-
 
                             </div>
 
+                            <!-- <div class="row">
+                                <div class="col-md-12 mb-3">
+                                    <button class="btn btn-outline-primary" (click)="editSaleInvoice('editInvoice',x)"> <i class="far fa-edit"></i>
+                                        Edit Invoice
+                                    </button>
+                                    <button class="btn btn-outline-danger ml-3 " (click)="deleteSaleInvoice(x)"> <i class="far fa-trash-alt"></i>
+                                        Delete</button>
+                            
+                                </div>
+                            </div> -->
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Sale Invoice Status:
+
+                                        </dt>
+                                        <dd class="col-sm-6"></dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Sale Invoice No.:
+
+                                        </dt>
+                                        <dd class="col-sm-6">{{x.saleInvoiceNo}}</dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Quantity:</dt>
+                                        <dd class="col-sm-6"></dd>
+                                    </dl>
+
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Last Updated by:
+
+
+                                        </dt>
+                                        <dd class="col-sm-6">{{x.saleInvoiceDate}}</dd>
+                                    </dl>
+
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Remarks:
+
+
+                                        </dt>
+                                        <dd class="col-sm-6">{{x.saleInvoiceRemarks}}</dd>
+                                    </dl>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Sale Invoice ID:
+
+
+                                        </dt>
+                                        <dd class="col-sm-6">{{x.id}}</dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Invoice Date:
+
+                                        </dt>
+                                        <dd class="col-sm-6">{{x.saleInvoiceDate}}</dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Invoice Amount:
+                                        </dt>
+                                        <dd class="col-sm-6">test</dd>
+                                    </dl>
+
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Last Updated on:
+
+
+                                        </dt>
+                                        <dd class="col-sm-6">3</dd>
+                                    </dl>
+
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <h2> Sale Invoice Items</h2>
+                                </div>
+                                <div class="col-md-6">
+                                    <button class="btn btn-primary btn-sm float-right"
+                                        (click)="AddsaleInvoiceItem('add',x)">
+                                        <i class="fas fa-plus"></i>
+                                        Add Sale Invoice Item</button>
+                                </div>
+
+                            </div>
+
+
+                            <ngx-datatable #myTable class="bootstrap" [columns]="columns"
+                                [rows]="x.saleInvoiceItemList" [sorts]="[{ prop: 'id,name', dir: 'asce' }]"
+                                [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'"
+                                [limit]="10">
+                                <ngx-datatable-column prop="id" name="Invoice Item" [width]="20">
+                                    <ng-template let-row="row" ngx-datatable-cell-template>
+                                        {{ row.invoiceItem }}
+                                    </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column prop="id" name="Quantity" [width]="20">
+                                    <ng-template let-row="row" ngx-datatable-cell-template>
+                                        {{ row.quatity }}
+                                    </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column prop="id" name="Amount" [width]="20">
+                                    <ng-template let-row="row" ngx-datatable-cell-template>
+                                        {{ row.amount }}
+                                    </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column prop="id" name="Remarks" [width]="20">
+                                    <ng-template let-row="row" ngx-datatable-cell-template>
+                                        {{ row.saleInvoiceItemRemarks }}
+                                    </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column prop="id" name="Action" [width]="20">
+                                    <ng-template let-row="row" ngx-datatable-cell-template>
+
+                                        <div class="ibox-tools text-center">
+                                            <button type="button" class="btn editIconBack"
+                                                (click)="EditsaleInvoiceItem('edit',row)"><i
+                                                    class="far fa-edit"></i></button>
+                                            <button type="button" class="btn deleteIconBack" data-toggle="tooltip"
+                                                data-placement="top" title="" data-original-title="Delete" (click)="deleteInvoiceItem(row)"><i
+                                                    class="far fa-trash-alt"></i></button>
+                                        </div>
+                                    </ng-template>
+                                </ngx-datatable-column>
+
+
+                            </ngx-datatable>
+
+
+
                         </div>
+
+
+
                     </div>
                 </div>
 
@@ -1514,7 +1529,7 @@
                                         </h1>
                                     </div>
                                     <div class="col-sm-12 col-md-6 col-lg-4 text-right">
-                                        <button class="btn btn-outline-primary"
+                                        <button class="btn btn-outline-primary btn-sm"
                                             (click)="ContractNotes('contractAddNote','NotesForm')">
                                             <i class="fas fa-plus"></i>
                                             Add New Note </button>

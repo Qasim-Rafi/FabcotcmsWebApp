@@ -38,8 +38,9 @@ export class DesignTypeComponent implements OnInit {
 
   ngOnInit(): void {
     this.service.fetch((data) => {
-      this.designFilter = [...data];
       this.rows = data;
+      this.designFilter = [...this.rows];
+
       this.designCount = this.rows.length;
     }, this.designUrl);
   }
@@ -107,6 +108,8 @@ export class DesignTypeComponent implements OnInit {
       if (data == true) {
         this.service.fetch((data) => {
           this.rows = data;
+      this.designFilter = [...this.rows];
+
           this.designCount = this.rows.length;
         }, this.designUrl);
 

@@ -38,8 +38,9 @@ export class PriceTermComponent implements OnInit {
 
   ngOnInit(): void {
     this.service.fetch((data) => {
-      this.priceTermFilter = [...data];
       this.rows = data;
+      this.priceTermFilter = [...this.rows];
+       
       this.priceTermCount = this.rows.length;
     }, this.PriceTermUrl);
   }
@@ -107,6 +108,8 @@ export class PriceTermComponent implements OnInit {
 
         this.service.fetch((data) => {
           this.rows = data;
+      this.priceTermFilter = [...this.rows];
+
         }, this.PriceTermUrl);
 
 

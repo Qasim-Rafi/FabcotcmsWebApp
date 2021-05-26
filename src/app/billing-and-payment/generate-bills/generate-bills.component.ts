@@ -62,10 +62,7 @@ export class GenerateBillsComponent implements OnInit {
         this.rows = temp;
       }
       onSelect({ selected }) {
-        console.log('Select Event', selected, this.selected);
-    
-        // this.selected.splice(0, this.selected.length);
-        // this.selected.push(...selected);
+        // console.log('Select Event', selected, this.selected);
         for(let i=0; i<selected.length; i++ )
         {
             this.contractIds[i] = selected[i].id;
@@ -99,7 +96,6 @@ export class GenerateBillsComponent implements OnInit {
     // }
 
   generateBill() {
-    // console.log("checkbox data in " , this.checkboxData)
   if(this.contractIds.length === 0){
     this.toastr.error("PLease select atleast one contract to generate bill" , 'Message')
   }

@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
 import { ServiceService } from 'src/app/shared/service.service';
+import { Dateformater } from 'src/app/shared/dateformater';
 
 @Component({
 
@@ -14,7 +15,7 @@ import { ServiceService } from 'src/app/shared/service.service';
 
 })
 export class EditCurrencyComponent implements OnInit {
-
+  dateformater: Dateformater = new Dateformater();
   data:any={};
   response: any;
   @Input() userId;
@@ -41,6 +42,8 @@ export class EditCurrencyComponent implements OnInit {
         this.response = res;
         if (this.response.success == true){
           this.data =this.response.data; 
+    this.data.validFrom = this.dateformater.fromModel(this.data.validFrom);
+
         }
         else {
           this.toastr.error('Something went Worng', 'Message.');
@@ -59,6 +62,7 @@ export class EditCurrencyComponent implements OnInit {
 
   UpdateCurrency(form:NgForm)
   {
+    this.data.validFrom = this.dateformater.toModel(this.data.validFrom);
     if (form.status == "INVALID") {
 
       this.toastr.error("Invalid Form", 'Message.');

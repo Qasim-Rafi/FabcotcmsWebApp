@@ -21,6 +21,8 @@ export class PaymentCollectionComponent implements OnInit {
   copyData: any = [];
 response: any = {};
 listCount: number;
+paymentFilter: any = {};
+
   columns: any = {};
   url = '/api/BillingPayments/GetAllBillPayment'
   constructor(    private service: ServiceService,
@@ -36,12 +38,21 @@ listCount: number;
  };
   ngOnInit(): void {
     this.fetch((data) => {
+      this.paymentFilter = [...data];
+
       this.rows = data;
       this.listCount = this.rows.length;
     });
 
   }
-  
+  search(event) {
+    const val = event.target.value.toLowerCase();
+    const temp = this.paymentFilter.filter(function (d) {
+      return (d.receiptNumber.toLowerCase().indexOf(val) !== -1 ||
+        d.billNumber.toLowerCase().indexOf(val) !== -1 || d.contractNumber.toLowerCase().indexOf(val) !== -1 || !val);
+    });
+    this.rows = temp;
+  }
   fetch(cb) {
     
     this.http

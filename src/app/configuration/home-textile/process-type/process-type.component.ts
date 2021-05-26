@@ -38,8 +38,9 @@ export class ProcessTypeComponent implements OnInit {
 
   ngOnInit(): void {
     this.service.fetch((data) => {
-      this.processTypeFilter = [...data];
       this.rows = data;
+      this.processTypeFilter = [...this.rows];
+
       this.processTypeCount = this.rows.length;
     }, this.processTypeUrl);
   }
@@ -108,6 +109,8 @@ deleteProcess(id) {
       if (data == true) {
         this.service.fetch((data) => {
           this.rows = data;
+      this.processTypeFilter = [...this.rows];
+
           this.processTypeCount = this.rows.length;
         }, this.processTypeUrl);
 

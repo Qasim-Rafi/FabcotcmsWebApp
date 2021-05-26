@@ -1,9 +1,10 @@
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import { GlobalConstants } from 'src/app/Common/global-constants';
 import { ServiceService } from 'src/app/shared/service.service';
 import { environment } from 'src/environments/environment';
 
@@ -13,6 +14,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./change-bank-account.component.css']
 })
 export class ChangeBankAccountComponent implements OnInit {
+  @Input() bill_id;
  bankAcc : any = {}
   data:any;
 search:any;
@@ -31,10 +33,11 @@ constructor(
 ) { }
 
   ngOnInit(): void   {
+    console.log(this.bill_id)
     this.GetBankAccDropdown((data)=>{
 
       this.bankAcc = data
-      console.log(this.bankAcc)
+     
     })
     this.service.getDocumentType().subscribe(res => {
       this.response = res;
@@ -63,7 +66,25 @@ constructor(
       }
     })
   }
-  Show(id){
-console.log("id" , id)
+  Show(obj){
+    let varr = {    
+    }
+this.http.put(`${environment.apiUrl}/api/BillingPayments/ChangeBankAccount/` + this.bill_id + obj.id,varr)
+  .subscribe(
+    res => {
+
+      this.response = res;
+      if (this.response.success == true) {
+        this.toastr.success(GlobalConstants.updateMessage, 'Message.');
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+
+    }, err => {
+      if (err.status == 400) {
+        this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
+      }
+    });
   }
 }

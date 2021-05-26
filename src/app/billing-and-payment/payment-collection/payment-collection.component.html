@@ -55,7 +55,9 @@
               
                 <div class="col-md-4">
                   <div class="input-group col-md-offset-3">
-                    <input type="text" placeholder="Search..." class="input form-control w-50" />
+                    <input type="text" placeholder="Search..." class="input form-control w-50" 
+                    (keyup)="search($event)"
+                    />
                   </div>
                 </div>
               

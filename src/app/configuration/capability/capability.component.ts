@@ -40,8 +40,9 @@ export class CapabilityComponent implements OnInit {
 
     ngOnInit(): void {
       this.service.fetch((data) => {
-        this.capabilityFilter = [...data];
         this.rows = data;
+        this.capabilityFilter = [...this.rows];
+
         this.systemUsersCount = this.rows.length;
       }, this.capabilityUrl);
     }
@@ -65,6 +66,8 @@ export class CapabilityComponent implements OnInit {
     if (data == true) {
       this.service.fetch((data) => {
         this.rows = data;
+        this.capabilityFilter = [...this.rows];
+
         this.systemUsersCount = this.rows.length;
       }, this.capabilityUrl);
     }
@@ -150,7 +153,7 @@ editcapabilityForm(row, check, name) {
       CreatedOn: row.createdDateTime + ' | ' + row.createdByName
     }));
 
-    this.service.exportAsExcelFile(filtered, 'Countries');
+    this.service.exportAsExcelFile(filtered, 'Capability List');
 
   }
 
@@ -164,7 +167,7 @@ systemUserrCsvFile(){
     CreatedOn: row.createdDateTime + ' | ' + row.createdByName
   }));
 
-  this.service.exportAsCsvFile(filtered, 'Countries');
+  this.service.exportAsCsvFile(filtered, 'Capability List');
 
 }
 
@@ -212,7 +215,7 @@ systemUserrCsvFile(){
     };
 
 
-    pdfMake.createPdf(docDefinition).download('UserList.pdf');
+    pdfMake.createPdf(docDefinition).download('CapabilityList.pdf');
   }
 
   //-------------------------------------- Print country List ------------------------- ///
@@ -223,11 +226,11 @@ systemUserrCsvFile(){
       pageSize: 'A4',
       pageOrientation: 'landscape',
       info: {
-        title: 'User List'
+        title: 'Capability List'
       },
       content: [
         {
-          text: 'User List',
+          text: 'Capability List',
           style: 'heading',
 
         },
