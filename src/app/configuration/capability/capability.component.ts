@@ -40,8 +40,9 @@ export class CapabilityComponent implements OnInit {
 
     ngOnInit(): void {
       this.service.fetch((data) => {
-        this.capabilityFilter = [...data];
         this.rows = data;
+        this.capabilityFilter = [...this.rows];
+
         this.systemUsersCount = this.rows.length;
       }, this.capabilityUrl);
     }
@@ -65,6 +66,8 @@ export class CapabilityComponent implements OnInit {
     if (data == true) {
       this.service.fetch((data) => {
         this.rows = data;
+        this.capabilityFilter = [...this.rows];
+
         this.systemUsersCount = this.rows.length;
       }, this.capabilityUrl);
     }

@@ -40,8 +40,9 @@ export class SystemUsersComponent implements OnInit {
 
   ngOnInit(): void {
     this.service.fetch((data) => {
-      this.systemUsersFilter = [...data];
       this.rows = data;
+      this.systemUsersFilter = [...this.rows];
+
       this.systemUsersCount = this.rows.length;
     }, this.systemUsersUrl);
   }
@@ -75,6 +76,8 @@ export class SystemUsersComponent implements OnInit {
     if (data == true) {
       this.service.fetch((data) => {
         this.rows = data;
+      this.systemUsersFilter = [...this.rows];
+
         this.systemUsersCount = this.rows.length;
       }, this.systemUsersUrl);
     }

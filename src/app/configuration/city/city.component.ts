@@ -38,8 +38,9 @@ export class CityComponent implements OnInit {
 
   ngOnInit(): void {
     this.service.fetch((data) => {
-      this.cityFilter = [...data];
       this.rows = data;
+      this.cityFilter = [...this.rows];
+
       this.CityCount = this.rows.length;
     }, this.cityUrl);
 
@@ -107,6 +108,7 @@ export class CityComponent implements OnInit {
       if (data == true) {
         this.service.fetch((data) => {
           this.rows = data;
+      this.cityFilter = [...this.rows];       
           this.CityCount = this.rows.length;
         }, this.cityUrl);
 
