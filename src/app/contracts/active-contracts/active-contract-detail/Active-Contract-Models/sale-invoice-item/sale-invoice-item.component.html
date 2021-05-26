@@ -57,25 +57,27 @@
           <textarea class="form-control" rows="4" placeholder="Invoice Item additional details here..."
             name="saleInvoiceItemRemarks" [(ngModel)]="data.saleInvoiceItemRemarks"></textarea>
         </div>
+          
+      </div>
       </div>
 
-    </div>
 
 
+      <div class="modal-footer NotBG">
+        <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
+          Close
+        </button>
+        <button class="btn button-save" type="submit" (click)="addSaleInvoiceItem()" *ngIf = "statusCheck == 'add'" >
+          Save
+        </button>
+        <button class="btn button-save" type="submit" *ngIf = "statusCheck == 'edit'"  (click)="updateInvoiceItem()">
+          Update Item
+        </button>
+     
+      </div>
 
-    <div class="modal-footer NotBG">
-      <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal"
-        (click)="activeModal.close()">
-        Close
-      </button>
-      <button class="btn button-save" type="submit" (click)="addSaleInvoiceItem()" *ngIf="statusCheck == 'add'">
-        Save & Close
-      </button>
-      <button class="btn button-save" type="submit" *ngIf="statusCheck == 'edit'">
-        Update Item
-      </button>
 
-    </div>
+    </form>
+  </div>
+  
 
-  </form>
-</div>
