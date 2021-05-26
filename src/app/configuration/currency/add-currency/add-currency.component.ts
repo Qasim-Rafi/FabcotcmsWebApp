@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
 import { ServiceService } from 'src/app/shared/service.service';
+import { Dateformater } from 'src/app/shared/dateformater';
 
 @Component({
   selector: 'app-add-currency',
@@ -12,6 +13,7 @@ import { ServiceService } from 'src/app/shared/service.service';
   styleUrls: ['./add-currency.component.css']
 })
 export class AddCurrencyComponent implements OnInit {
+  dateformater: Dateformater = new Dateformater();
   data:any={};
   response: any;
   constructor(private http:HttpClient,
@@ -28,13 +30,14 @@ export class AddCurrencyComponent implements OnInit {
   
   addCurrency(form:NgForm)
   {
+    
     // if (form.status == "INVALID") {
 
     //   this.toastr.error("Invalid Form", 'Message.');
     // }
 
     // else{
-
+      this.data.validFrom = this.dateformater.toModel(this.data.validFrom);
     let varr=  {
       "validFrom": this.data.validFrom,
       "currencyCode":  this.data.currencyCode,
