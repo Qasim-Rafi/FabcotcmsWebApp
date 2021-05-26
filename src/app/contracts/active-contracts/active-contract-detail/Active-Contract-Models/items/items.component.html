@@ -24,25 +24,23 @@
 
         <div class="form-group row">
             <label for="description" class="col-sm-3 col-form-label text_Navy">Item Description
-              <span
-        class="required-denote">*</span>
+              <span class="required-denote">*</span>
             </label>
             <div class="col-sm-8">
-                <input required appAutofocus  type="text" class="form-control" id="description"
-                name="description" [(ngModel)]="data.description" #description="ngModel"
-                [ngClass]="{ error: description.invalid && ItemForm.submitted  }"
+                <input required appAutofocus  type="text" class="form-control" id="description" name="description" [(ngModel)]="data.description" #description="ngModel"
+                [ngClass]="{ 'error': description.invalid && ItemForm.submitted }"
                 value="" placeholder="Description" />
                
             </div>
           </div>
 
           <div class="form-group row">
-            <label for="itemQuantity" class="col-sm-3 col-form-label text_Navy">Item Quantity
+            <label for="itemQuantity" class="col-sm-3 col-form-label text_Navy">Item Quantity<span class="required-denote">*</span>
     
             </label>
             <div class="col-sm-3">
-                <input type="number" 
-                id="itemQuantity"
+                <input type="number" min="0" required
+                id="itemQuantity" [ngClass]="{ 'error': itemQuantity.invalid && ItemForm.submitted }" #itemQuantity="ngModel"
               name="itemQuantity" [(ngModel)]="data.itemQuantity" #itemQuantity="ngModel"
                 class="form-control" value="" placeholder="Quantity" />
             </div>
@@ -58,9 +56,9 @@
           </div>
 
           <div class="form-group row">
-            <label for="construction" class="col-sm-3 col-form-label">Construcrion</label>
+            <label for="construction" class="col-sm-3 col-form-label">Construcrion</label><span class="required-denote">*</span>
             <div class="col-sm-2">
-                <input type="number" id="compositionPercentage"
+                <input type="number" id="compositionPercentage" min="0" required [ngClass]="{ 'error': compositionPercentage.invalid && ItemForm.submitted }" #compositionPercentage="ngModel"
                 name="compositionPercentage" [(ngModel)]="data.compositionPercentage" #compositionPercentage="ngModel" class="form-control" value="" placeholder="%age">
             </div>
             <div class="col-md-3">
@@ -132,7 +130,7 @@
           <div class="form-group row">
             <label for="contractRate" class="col-sm-3 col-form-label text_Navy">Price / Rate</label>
             <div class="col-sm-2">
-                <input type="number" id="contractRate"
+                <input type="number" id="contractRate" min="0"
                 name="contractRate" [(ngModel)]="data.contractRate" #contractRate="ngModel" class="form-control" value="" placeholder="Rate">
             </div>
             <div class="col-md-3">
@@ -179,7 +177,7 @@
   <div class="modal-footer NotBG" *ngIf="FormName == 'ItemForm'">
     <!-- <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" (click)="activeModal.close()">Close</button> -->
     <button *ngIf="statusCheck == 'ItemAdd'" class="btn button-save" type="submit"
-      (click)="addItem()">
+      (click)="addItem(ItemForm)">
       Save Item
     </button>
   
@@ -189,5 +187,5 @@
     </button>
   </div>
 
-</form>
+  </form>
   </div>

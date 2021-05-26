@@ -28,6 +28,7 @@ export class EditActiveEnquiryComponent implements OnInit {
   remarksToggle: boolean = false;
   reminderToggle: boolean = false;
   rows: any = [];
+  rows1: any = [];
   columns: any = [];
   queryParems: any = {};
   objEnquiry: any = {};
@@ -36,6 +37,7 @@ export class EditActiveEnquiryComponent implements OnInit {
   response: any;
   enquiryData: any = [];
   temp: any[];
+  temp2: any[];
   article: any = [];
   buyer: any = [];
   process: any = [];
@@ -100,12 +102,43 @@ export class EditActiveEnquiryComponent implements OnInit {
       // this.getAllEnquiryItems();
 
 
-      this.fetch((data) => {
-        this.rows = data;
+      this.fetch((NotesData) => {
+        this.rows1 = this.noteList;
+        this.noteFilter = [...this.noteList];
         // this.listCount= this.rows.length;
       });
 
   }
+
+
+
+
+
+
+  itemSearch(event) {
+    const val = event.target.value.toLowerCase();
+
+    const temp = this.temp.filter(function (d) {
+      return (
+        d.description.toLowerCase().indexOf(val) !== -1 || !val);
+    });
+    this.enquiryData.enquiryItemList = temp;
+
+  }
+
+
+
+  noteSearch(event) {
+    const val = event.target.value.toLowerCase();
+
+    const temp2 = this.temp2.filter(function (d) {
+      return (
+        d.description.toLowerCase().indexOf(val) !== -1 || !val);
+    });
+    this.noteList = temp2;
+
+  }
+
 
   getEnquiryData(row) {
     this.http.get(`${environment.apiUrl}/api/Enquiries/GetEnquiryById/` + row)
@@ -122,9 +155,11 @@ export class EditActiveEnquiryComponent implements OnInit {
               this.enquiryData.totalQuantity = "";
             }
             this.fetch((data) => {
-              this.rows = data;
+              this.rows1 = this.data;
               // this.listCount= this.rows.length;
             });
+
+            this.temp = [...this.enquiryData.enquiryItemList];
          
           }
           else {
@@ -932,7 +967,7 @@ export class EditActiveEnquiryComponent implements OnInit {
       AddReminder() {
         Swal.fire({
           title: 'Reminder', //'Are you sure?',
-          text: 'Your has been set for the Enquiry no. FG-011 on 03/03/2019 ' ,
+          text: 'Your Reminder has been set for the Enquiry no. '+ this.enquiryData.autoEnquiryNumber ,
           icon: 'success',
           showCancelButton: false,
           confirmButtonColor: '#1ab394  ',

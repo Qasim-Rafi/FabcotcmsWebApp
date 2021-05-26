@@ -20,57 +20,64 @@
 
     <div class="col-md-12 pt-3 pb-2">
 
-    <div class="form-group row">
-      <label for="name" class="col-sm-3 col-form-label">L/C No.</label>
-      <div class="col-sm-8">
-        <input type="text" class="form-control" name="lcNumber" [(ngModel)]="data.lcNumber"
-          placeholder="purchase order number from buyer" />
+      <div class="form-group row">
+        <label for="name" class="col-sm-3 col-form-label">L/C No.</label> <span class="required-denote">*</span>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" name="lcNumber" [(ngModel)]="data.lcNumber" required
+            #lcNumber="ngModel" [ngClass]="{ 'error': lcNumber.invalid && LCForm.submitted }"
+            placeholder="purchase order number from buyer" />
+        </div>
       </div>
-    </div>
 
-    <div class="form-group row">
-      <label for="description" class="col-sm-3 col-form-label ">L/C Open On</label>
-      <div class="col-sm-8" (clickOutside)="enquiryDatePicker.close()">
+      <div class="form-group row">
+        <label for="description" class="col-sm-3 col-form-label ">L/C Open On</label><span
+          class="required-denote">*</span>
+        <div class="col-sm-8" (clickOutside)="enquiryDatePicker.close()">
 
-        <input type="text" class="form-control  datetimepicker-input" (click)="enquiryDatePicker.toggle()"
-          placeholder="Date" #enquiryDatePicker="ngbDatepicker" #lcOpenOn="ngModel" [(ngModel)]="data.lcOpenOn"
-          name="lcOpenOn" ngbDatepicker>
+          <input type="text" class="form-control  datetimepicker-input" (click)="enquiryDatePicker.toggle()" required
+            #lcOpenOn="ngModel" [ngClass]="{ 'error': lcOpenOn.invalid && LCForm.submitted }" placeholder="Date"
+            #enquiryDatePicker="ngbDatepicker" #lcOpenOn="ngModel" [(ngModel)]="data.lcOpenOn" name="lcOpenOn"
+            ngbDatepicker>
+        </div>
       </div>
-    </div>
 
-    <div class="form-group row">
-      <label for="description" class="col-sm-3 col-form-label ">L/C Shipment On</label>
-      <div class="col-sm-8" (clickOutside)="enquiryDatePicker.close()">
+      <div class="form-group row">
+        <label for="description" class="col-sm-3 col-form-label ">L/C Shipment On</label><span
+          class="required-denote">*</span>
+        <div class="col-sm-8" (clickOutside)="enquiryDatePicker.close()">
 
 
-        <input navigation="select" class="form-control text_Navy mb-1" ngbDatepicker #lcShipmentOn="ngbDatepicker"
-          (click)="lcShipmentOn.toggle()" placeholder="Certificate validity date" [(ngModel)]="data.lcShipmentOn"
-          name="lcShipmentOn" />
+          <input navigation="select" class="form-control text_Navy mb-1" ngbDatepicker #validity="ngbDatepicker"
+            required #lcShipmentOn="ngModel" [ngClass]="{ 'error': lcShipmentOn.invalid && LCForm.submitted }"
+            (click)="validity.toggle()" placeholder="Certificate validity date" [(ngModel)]="data.lcShipmentOn"
+            name="lcShipmentOn" />
 
-        <input type="text" class="form-control" name="lcShipmentInfo" [(ngModel)]="data.lcShipmentInfo"
-          placeholder="Shipment Date Info" />
+          <input type="text" class="form-control" name="lcShipmentInfo" [(ngModel)]="data.lcShipmentInfo"
+            placeholder="Shipment Date Info" />
+        </div>
       </div>
-    </div>
 
-    <div class="form-group row">
-      <label for="description" class="col-sm-3 col-form-label ">L/C Expiry Date</label>
-      <div class="col-sm-8" (clickOutside)="enquiryDatePicker.close()">
+      <div class="form-group row">
+        <label for="description" class="col-sm-3 col-form-label ">L/C Expiry Date</label><span
+          class="required-denote">*</span>
+        <div class="col-sm-8" (clickOutside)="enquiryDatePicker.close()">
 
-        <input navigation="select" class="form-control text_Navy " ngbDatepicker #lcExpiryDate="ngbDatepicker"
-          (click)="lcExpiryDate.toggle()" placeholder="Certificate validity date" [(ngModel)]="data.lcExpiryDate"
-          name="lcExpiryDate" />
+          <input navigation="select" class="form-control text_Navy " ngbDatepicker #validity="ngbDatepicker"
+            required #lcExpiryDate="ngModel" [ngClass]="{ 'error': lcExpiryDate.invalid && LCForm.submitted }"
+            (click)="validity.toggle()" placeholder="Certificate validity date" [(ngModel)]="data.lcExpiryDate"
+            name="lcExpiryDate" />
+        </div>
       </div>
-    </div>
 
-    <div class="form-group row">
-      <label for="name" class="col-sm-3 col-form-label">Remarks</label>
-      <div class="col-sm-8">
-        <textarea type="text" class="form-control" rows="4" name="remarks" [(ngModel)]="data.remarks"
-          placeholder="L/C Additional Details here..."></textarea>
+      <div class="form-group row">
+        <label for="name" class="col-sm-3 col-form-label">Remarks</label>
+        <div class="col-sm-8">
+          <textarea type="text" class="form-control" rows="4" name="remarks" [(ngModel)]="data.remarks"
+            placeholder="L/C Additional Details here..."></textarea>
+        </div>
       </div>
-    </div>
 
-</div>
+    </div>
 
 
     <div class="modal-footer NotBG">
@@ -78,10 +85,9 @@
         (click)="activeModal.close()">
         Close
       </button>
-      <button class="btn button-save" type="submit" (click)="addContractLOC()">
+      <button class="btn button-save" type="submit" (click)="addContractLOC(LCForm)">
         Save L/C
       </button>
     </div>
-
   </form>
 </div>
