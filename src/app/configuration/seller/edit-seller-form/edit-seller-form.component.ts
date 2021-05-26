@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -35,8 +35,8 @@ export class EditSellerFormComponent implements OnInit {
     this.editSeller(this.Id);
     this.getCountry();
     this.getParentSellers();
-    this.GetCertificationDropdown();
-    this.GetCapabilitiesDropdown();
+    // this.GetCertificationDropdown();
+    // this.GetCapabilitiesDropdown();
   }
 
   get activeModal() {
@@ -133,14 +133,14 @@ export class EditSellerFormComponent implements OnInit {
 
 
 
-  updateSeller(form:NgForm) {
-    if(form.status == "INVALID"){
+  updateSeller() {
+//     if(form.status == "INVALID"){
 
-      this.toastr.error("Invalid Form", 'Message.');
-    }
+//       this.toastr.error("Invalid Form", 'Message.');
+//     }
 
-else
-{
+// else
+// {
     let varr = {
       "sellerCode": this.data.sellerCode,
       "sellerName": this.data.sellerName,
@@ -174,12 +174,12 @@ else
             this.toastr.error(this.response.message, 'Message.');
           }
 
-        }, err => {
-          if (err.status == 400) {
-            this.toastr.error(this.response.message, 'Message.');
-          }
+        },(err: HttpErrorResponse) => {
+          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+          this.toastr.error(messages.toString(), 'Message.');
+          console.log(messages);
         });
   }
 
   }
-}
+// }

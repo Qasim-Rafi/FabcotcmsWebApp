@@ -244,7 +244,7 @@ export class PackingComponent implements OnInit {
             widths: [30, 80, 80, 50, 170],
             body: [
               ['S.no.', 'Packing Name', 'Details', 'Status', 'Update Date Time | Updated By'],
-              ...this.data.map(row => (
+              ...this.rows.map(row => (
                 [row.id, row.name, row.description, row.active == true ? "Active" : "In-Active",
                 row.updatedDateTime + '|' + row.updatedByName
                 ]

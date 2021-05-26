@@ -140,17 +140,17 @@
             {{row.id}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Price Terms" [width]="80">
+        <ngx-datatable-column name="Price Terms" [width]="80" prop="term">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.term}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Details" [width]="80">
+        <ngx-datatable-column name="Details" [width]="80" prop="description">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.description}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Status" [width]="80">
+        <ngx-datatable-column name="Status" [width]="80" prop="active">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             
             <span class="badge badge-primary" *ngIf="row.active==true">Active</span>
@@ -165,7 +165,7 @@
 
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Last Changed On | Updated By" [width]="80">
+        <ngx-datatable-column name="Last Changed On | Updated By" [width]="80" prop="updatedByName">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.updatedDateTime}} | {{row.updatedByName}}
           </ng-template>
