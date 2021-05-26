@@ -3,12 +3,14 @@
       <span aria-hidden="true">&times;</span>
     </button>
     <div >
-      <h5 class="modal-title">
+
+      <h5 class="modal-title py-0">
         <i class="fas fa-edit"></i>
         Remarks and Other Conditions
         <br>
-        <div class="font">Contract No. {{data.autoContractNumber}}</div>
+        <!-- <div class="font">Contract No. {{data.autoContractNumber}}</div> -->
       </h5>
+      <div class="font text-muted text-center">Contract No. {{data.autoContractNumber}}</div>
     </div>
   </div>
   
@@ -27,7 +29,7 @@
             <label for="contractRemarks" class="col-form-label text_grey">Remarks</label>
             
               <textarea [(ngModel)]="data.contractRemarks"
-               class="form-control" rows="4" placeholder="Contract remarks here ..."
+               class="form-control" rows="3" placeholder="Contract remarks here ..."
                 name="contractRemarks"  ></textarea>
             
           </div>
@@ -46,7 +48,7 @@
             <label for="buyerRemarks" class=" col-form-label text_grey">Buyers Remarks</label>
             
               <textarea [(ngModel)]="data.buyerRemarks"
-               class="form-control" rows="4" placeholder="Buyer side contract remarks here ..."
+               class="form-control" rows="3" placeholder="Buyer side contract remarks here ..."
                 name="buyerRemarks"  ></textarea>
             
           </div> 
@@ -55,7 +57,7 @@
             <label for="otherConditionRemarks" class="col-form-label text_grey">Other Condition</label>
             
               <textarea [(ngModel)]="data.otherConditionRemarks"
-               class="form-control" rows="4" placeholder="Any other terms and conditions"
+               class="form-control" rows="3" placeholder="Any other terms and conditions"
                 name="otherConditionRemarks"  ></textarea>
             
           </div> 
@@ -64,7 +66,7 @@
         <label for="title" class="col-form-label text_grey">Title</label>
         
           <textarea [(ngModel)]="data.title"
-           class="form-control" rows="4" placeholder="Contract preview title ..."
+           class="form-control" rows="3" placeholder="Contract preview title ..."
             name="title"  ></textarea>
         
       </div>  
