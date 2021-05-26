@@ -40,8 +40,9 @@ export class PackingComponent implements OnInit {
 
   ngOnInit(): void {
     this.service.fetch((data) => {
-      this.packingFilter = [...data];
       this.rows = data;
+      this.packingFilter = [...this.rows];
+
       this.packingCount = this.rows.length;
     }, this.packingUrl);
   }
@@ -110,6 +111,7 @@ export class PackingComponent implements OnInit {
         //  this.date = this.myDate;
         this.service.fetch((data) => {
           this.rows = data;
+          this.packingFilter = [...this.rows];
 
           this.packingCount = this.rows.length;
         }, this.packingUrl);

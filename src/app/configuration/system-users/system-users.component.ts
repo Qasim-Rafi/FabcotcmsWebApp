@@ -40,8 +40,9 @@ export class SystemUsersComponent implements OnInit {
 
   ngOnInit(): void {
     this.service.fetch((data) => {
-      this.systemUsersFilter = [...data];
       this.rows = data;
+      this.systemUsersFilter = [...this.rows];
+
       this.systemUsersCount = this.rows.length;
     }, this.systemUsersUrl);
   }
@@ -75,6 +76,8 @@ export class SystemUsersComponent implements OnInit {
     if (data == true) {
       this.service.fetch((data) => {
         this.rows = data;
+      this.systemUsersFilter = [...this.rows];
+
         this.systemUsersCount = this.rows.length;
       }, this.systemUsersUrl);
     }
@@ -106,44 +109,44 @@ editSystemUserForm(row, check, name) {
 
  //  --------------------- Delete Country ---------------------------//
 
- deleteCountry(id) {
+ deleteUser(obj) {
 
-  // Swal.fire({
-  //   title: GlobalConstants.deleteTitle, //'Are you sure?',
-  //   text: GlobalConstants.deleteMessage + ' ' + '"' + id.name + '"',
-  //   icon: 'error',
-  //   showCancelButton: true,
-  //   confirmButtonColor: '#ed5565',
-  //   cancelButtonColor: '#dae0e5',
-  //   cancelButtonText: 'No',
-  //   confirmButtonText: 'Yes',
-  //   reverseButtons: true,
-  //   position: 'top',
-  // }).then((result) => {
-  //   if (result.isConfirmed) {
+  Swal.fire({
+    title: GlobalConstants.deleteTitle, //'Are you sure?',
+    text: GlobalConstants.deleteMessage + ' ' + '"' + obj.username + '"',
+    icon: 'error',
+    showCancelButton: true,
+    confirmButtonColor: '#ed5565',
+    cancelButtonColor: '#dae0e5',
+    cancelButtonText: 'No',
+    confirmButtonText: 'Yes',
+    reverseButtons: true,
+    position: 'top',
+  }).then((result) => {
+    if (result.isConfirmed) {
 
-  //     this.http.delete(`${environment.apiUrl}/api/Configs/DeleteCountry/` + id.id)
-  //       .subscribe(
-  //         res => {
-  //           this.response = res;
-  //           if (this.response.success == true) {
-  //             this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
-  //             this.service.fetch((data) => {
-  //               this.rows = data;
-  //             }, this.CountryUrl);
+      this.http.delete(`${environment.apiUrl}/api/Users/DeleteUser/` + obj.id)
+        .subscribe(
+          res => {
+            this.response = res;
+            if (this.response.success == true) {
+              this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
+              this.service.fetch((data) => {
+                this.rows = data;
+              }, this.systemUsersUrl);
 
-  //           }
-  //           else {
-  //             this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
-  //           }
+            }
+            else {
+              this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
+            }
 
-  //         }, err => {
-  //           if (err.status == 400) {
-  //             this.toastr.error(this.response.message, 'Message.');
-  //           }
-  //         });
-  //   }
-  // })
+          }, err => {
+            if (err.status == 400) {
+              this.toastr.error(this.response.message, 'Message.');
+            }
+          });
+    }
+  })
 
 }
 
@@ -162,7 +165,7 @@ editSystemUserForm(row, check, name) {
       CreatedOn: row.createdDateTime + ' | ' + row.createdByName
     }));
 
-    this.service.exportAsExcelFile(filtered, 'Countries');
+    this.service.exportAsExcelFile(filtered, 'System Users');
 
   }
 
@@ -180,7 +183,7 @@ systemUserrCsvFile(){
     CreatedOn: row.createdDateTime + ' | ' + row.createdByName
   }));
 
-  this.service.exportAsCsvFile(filtered, 'Countries');
+  this.service.exportAsCsvFile(filtered, 'System Users');
 
 }
 

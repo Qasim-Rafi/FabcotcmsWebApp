@@ -39,8 +39,9 @@ export class FabricTypeComponent implements OnInit {
 
   ngOnInit(): void {
     this.service.fetch((data) => {
-      this.fabricFilter = [...data];
       this.rows = data;
+      this.fabricFilter = [...this.rows];
+
       this.fabricTypeCount = this.rows.length;
     }, this.fabricTypeUrl);
   }
@@ -110,6 +111,8 @@ export class FabricTypeComponent implements OnInit {
         //  this.date = this.myDate;
         this.service.fetch((data) => {
           this.rows = data;
+      this.fabricFilter = [...this.rows];
+
           this.fabricTypeCount = this.rows.length;
         }, this.fabricTypeUrl);
 

@@ -18,10 +18,14 @@
         <label for="validFrom" class="col-sm-3 col-form-label control-label">Form Validity</label>
         <span class="required-denote">*</span>
         <div class="col-sm-8">
-          <input required 
-          [ngClass]="{'error': validFrom.invalid && addAgentForm.submitted }"
-          id="validFrom" type="text" class="form-control" name="validFrom" [(ngModel)]="data.validFrom"
-            #validFrom="ngModel">
+          <!-- <input required id="validFrom" type="date"  value="validForm" class="form-control" placeholder="Date" name="validFrom"
+          [(ngModel)]="data.validFrom" #validFrom="ngModel" [ngClass]="{'error': validFrom.invalid && addAgentForm.submitted}"> -->
+
+          <input navigation="select" class="form-control  " ngbDatepicker
+          #validityDate3="ngbDatepicker" (click)="validityDate3.toggle()"
+          name="validityDate3" placeholder=""
+          name="validFrom" [(ngModel)]="data.validFrom" #validFrom="ngModel"
+          />
         </div>
       </div>
 

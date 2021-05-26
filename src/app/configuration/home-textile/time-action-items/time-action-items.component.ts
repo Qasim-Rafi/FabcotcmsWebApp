@@ -39,6 +39,7 @@ export class TimeActionItemsComponent implements OnInit {
   ngOnInit(): void {
     this.service.fetch((data) => {
       this.rows = data;
+      this.TnaFilter = [...this.rows];
       this.TnaCount = this.rows.length;
     } , this.TnaUrl);
   }
@@ -107,6 +108,8 @@ export class TimeActionItemsComponent implements OnInit {
       if (data == true) {
         this.service.fetch((data) => {
           this.rows = data;
+      this.TnaFilter = [...this.rows];
+
           this.TnaCount = this.rows.length;
         } , this.TnaUrl);
 
