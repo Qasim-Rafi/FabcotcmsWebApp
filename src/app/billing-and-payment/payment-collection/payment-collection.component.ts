@@ -31,7 +31,8 @@ listCount: number;
     private modalService: NgbModal
     ) { }
   navigatePaymentForm(statusCheck  , obj) {
-    this.router.navigate(['/billing-and-payment/payment-form'], { queryParams: { statusCheck: statusCheck  , id:obj.id }  });
+    this.router.navigate(['/billing-and-payment/payment-form'], { queryParams: { statusCheck: statusCheck  , 
+      id:obj.id , contractId:obj.contractId }  });
  };
   ngOnInit(): void {
     this.fetch((data) => {

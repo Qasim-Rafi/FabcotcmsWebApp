@@ -83,95 +83,174 @@ export class OpenActiveBillComponent implements OnInit {
   }
 
 
-  print() {
-    let docDefinition = {
-      pageSize: 'A4',     
-      info: {
-        title: 'Active Bills List'
-      },
-      content: [
-        {
-          text: 'Fabcot International FZE ',
-          style: 'heading',
+  // print() {
+  //   let docDefinition = {
+  //     pageSize: 'A4',     
+  //     info: {
+  //       title: 'Active Bills List'
+  //     },
+  //     content: [
+  //       {
+  //         text: 'Fabcot International FZE ',
+  //         style: 'heading',
 
-        },
-        {
-    text: 'Flexi Office ,RAKEZ Business ZONE F-Z RAK , United Arab Emirates.',
-    style: 'heading2'
+  //       },
+  //       {
+  //   text: 'Flexi Office ,RAKEZ Business ZONE F-Z RAK , United Arab Emirates.',
+  //   style: 'heading2'
        
-  },
-       {text: 'Seller:'  },
-       { text: this.rows['sellerName'], style:'text1'},
-      {  text:'Bill No.:' , style:'text2'},
-      { text: this.rows['billNumber'], style:'text3'},
-      {  text:'Bill Date:' , style:'text4' },
-      { text: this.rows['billDate'], style:'text5'},
-       {  text: 'Buyer:'  , style:'text6'},
-       { text: this.rows['buyerName'], style:'text1'},
-      {  text: 'Fabcot Contract Number :' , style:'text9' },
-      { text: this.rows['contractNumber'], style:'text10'},
-      {text: 'Contract Date :' , style:'text11'},
-      { text: this.rows['contractDate'], style:'text12'},
-      {text: 'Article :' , },
-      { text: this.rows['contractArticleName'], style:'text13'},
-      {
-        margin: [0 , 10 , 0 , 0],
+  // },
+  //      {text: 'Seller:'  },
+  //      { text: this.rows['sellerName'], style:'text1'},
+  //     {  text:'Bill No.:' , style:'text2'},
+  //     { text: this.rows['billNumber'], style:'text3'},
+  //     {  text:'Bill Date:' , style:'text4' },
+  //     { text: this.rows['billDate'], style:'text5'},
+  //      {  text: 'Buyer:'  , style:'text6'},
+  //      { text: this.rows['buyerName'], style:'text1'},
+  //     {  text: 'Fabcot Contract Number :' , style:'text9' },
+  //     { text: this.rows['contractNumber'], style:'text10'},
+  //     {text: 'Contract Date :' , style:'text11'},
+  //     { text: this.rows['contractDate'], style:'text12'},
+  //     {text: 'Article :' , },
+  //     { text: this.rows['contractArticleName'], style:'text13'},
+  //     {
+  //       margin: [0 , 10 , 0 , 0],
 
-        table:{
+  //       table:{
 
-          headerRows:1,
-          widths: [75, 90, 130, 70, 120],
+  //         headerRows:1,
+  //         widths: [75, 90, 130, 70, 120],
 
-          body:[
-            ['SaleInvoice #', 'SaleInvoice Date', 'Invoice Amount(PKR)', 'Commission', 'Total Amount(PKR)'],
-        // ...this.rows['contractSaleInvoices'].map((row=>
-        //   [row.saleInvoiceNo]
-        //   ))
-          ]
-        }
-      },
-      {  text: 'Sub Total :' , style:'text14' },
-      { text: this.rows['invoiceSubTotalAmount'], style:'text15'},
-      {text: 'Tax :' , style:'text16'},
-      { text: this.rows['invoiceTaxAmount'], style:'text15'},
-      {text: 'Total:' , style:'text18' },
-      { text: this.rows['invoiceTotalAmount'], style:'text15'},
-         ],
-      styles: {
-        heading: {
-          fontSize: 18,
-          alignment: 'center',
-          margin: [0, 0, 0, 0]
-        },
+  //         body:[
+  //           ['SaleInvoice #', 'SaleInvoice Date', 'Invoice Amount(PKR)', 'Commission', 'Total Amount(PKR)'],
+  //       // ...this.rows['contractSaleInvoices'].map((row=>
+  //       //   [row.saleInvoiceNo]
+  //       //   ))
+  //         ]
+  //       }
+  //     },
+  //     {  text: 'Sub Total :' , style:'text14' },
+  //     { text: this.rows['invoiceSubTotalAmount'], style:'text15'},
+  //     {text: 'Tax :' , style:'text16'},
+  //     { text: this.rows['invoiceTaxAmount'], style:'text15'},
+  //     {text: 'Total:' , style:'text18' },
+  //     { text: this.rows['invoiceTotalAmount'], style:'text15'},
+  //        ],
+  //     styles: {
+  //       heading: {
+  //         fontSize: 18,
+  //         alignment: 'center',
+  //         margin: [0, 0, 0, 0]
+  //       },
         
-          heading2:{
-                fontSize: 10,
-                alignment: 'center',
-                // [ left , up , right  , down]
-                margin: [0 , -3 , 0 , 25]
+  //         heading2:{
+  //               fontSize: 10,
+  //               alignment: 'center',
+  //               // [ left , up , right  , down]
+  //               margin: [0 , -3 , 0 , 25]
 
+  //         },
+  //         text1 : {
+  //           margin:[38 ,-15, 0 ,0 ]
+  //         },
+  //         text2 : {margin:[380 ,0, 0 ,0 ]},
+  //         text3 : {margin:[425 ,-15, 0 ,0 ]},
+  //         text4 : {margin:[380 ,0, 0 ,0 ]},
+  //         text5 : {margin:[430 , -15, 0 ,0 ]},
+  //         text6 : {margin:[0 , -25, 0 ,0 ]},
+  //         text10 : {margin:[140 , -15, 0 ,0 ]},
+  //         text12 : {margin:[90 , -15, 0 ,0 ]},
+  //         text13 : {margin:[50 , -15, 0 ,0 ]},
+  //         text14 : {margin:[380 , 20, 0 ,0 ]},
+  //         text15 : {margin:[440 , -13, 0 ,0 ]},
+  //         text16 : {margin:[400 , 0, 0 ,0 ]},
+  //         text18 : {margin:[400 , 0, 0 ,0 ]},        
+  //     }
+  //   };
+
+  //   // const win = window.open('', "tempWinForPdf");
+  //   pdfMake.createPdf(docDefinition).print();
+
+  // }
+
+print(){
+  let docDefinition = {
+    pageSize: 'A3',
+      
+          info: {
+            title: 'Bill generated'
           },
-          text1 : {
-            margin:[38 ,-15, 0 ,0 ]
+          content: [
+            {
+              table:{headerRows: 1 , widths:['100%'],
+            body: [
+              [{text:'Fabcot International FZE' , style:'heading'}],] }
+            },
+            {
+              layout:'noBorders',
+              margin: [0 , 50 , 0 , 0],
+              table:{headerRows:1 ,  widths:['5%' , '77%' , '7%' , '12%'],
+            body:[ [{text: 'Seller :'} , {text: this.rows['sellerName'] , style:'leftAlign'},
+            {text:'Bill # :'} ,{text:this.rows['billNumber']}
+          
+          ]]
+            }
+            },
+            {
+              layout:'noBorders',
+              table:{headerRows:1 ,  widths:['5%' , '75%' , '7%' , '15%'],
+            body:[ [{text: 'Buyer :'} , {text: this.rows['buyerName'] , style:'leftAlign'},
+            {text:'Bill Date :'} ,{text:this.rows['billDate']}
+          
+          ]]
+            }
+            },
+            {
+              layout:'noBorders',
+              table:{headerRows:1 ,  widths:['20%' , '80%' ],
+            body:[ [{text: 'Fabcot Contract Number :'} , {text: this.rows['contractNumber'] , style:'leftAlign'}
+          
+          ]]
+            }
+            },
+            {
+              layout:'noBorders',
+              table:{headerRows:1 ,  widths:['15%' , '90%' ],
+            body:[ [{text: 'Contract Date :'} , {text: this.rows['contractDate'] , style:'leftAlign'}
+          
+          ]]
+            }
+            },
+            {
+              layout:'noBorders',
+              table:{headerRows:1 ,  widths:['7%' , '93%' ],
+            body:[ [{text: 'Article :'} , {text: this.rows['contractArticleName'] , style:'leftAlign'}
+          
+          ]]
+            }
+            },
+            
+
+            
+          ],
+          styles:{
+           heading:{
+            fillColor: '#f3f3f4',
+            fontSize: 20,
+            bold: true,
+            color: '#4d4b4b',
+            alignment: 'center',
+            margin : 4
+
+           },
+           leftAlign:{alignment: 'left'}
           },
-          text2 : {margin:[380 ,0, 0 ,0 ]},
-          text3 : {margin:[425 ,-15, 0 ,0 ]},
-          text4 : {margin:[380 ,0, 0 ,0 ]},
-          text5 : {margin:[430 , -15, 0 ,0 ]},
-          text6 : {margin:[0 , -25, 0 ,0 ]},
-          text10 : {margin:[140 , -15, 0 ,0 ]},
-          text12 : {margin:[90 , -15, 0 ,0 ]},
-          text13 : {margin:[50 , -15, 0 ,0 ]},
-          text14 : {margin:[380 , 20, 0 ,0 ]},
-          text15 : {margin:[440 , -13, 0 ,0 ]},
-          text16 : {margin:[400 , 0, 0 ,0 ]},
-          text18 : {margin:[400 , 0, 0 ,0 ]},        
-      }
-    };
 
-    // const win = window.open('', "tempWinForPdf");
-    pdfMake.createPdf(docDefinition).print();
+  };
+  pdfMake.createPdf(docDefinition).print();
 
-  }
+}
+
 
 }
