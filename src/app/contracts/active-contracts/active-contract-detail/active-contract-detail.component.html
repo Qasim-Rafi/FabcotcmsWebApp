@@ -1358,22 +1358,22 @@
                                     [limit]="10">
                                     <ngx-datatable-column prop="id" name="Invoice Item" [width]="20">
                                         <ng-template let-row="row" ngx-datatable-cell-template>
-                                            {{ row.id }}
+                                            {{ row.invoiceItem }}
                                         </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column prop="id" name="Quantity" [width]="20">
                                         <ng-template let-row="row" ngx-datatable-cell-template>
-                                            {{ row.tnaIds }}
+                                            {{ row.quatity }}
                                         </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column prop="id" name="Amount" [width]="20">
                                         <ng-template let-row="row" ngx-datatable-cell-template>
-                                            {{ row.startDate }}
+                                            {{ row.amount }}
                                         </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column prop="id" name="Remarks" [width]="20">
                                         <ng-template let-row="row" ngx-datatable-cell-template>
-                                            {{ row.endDate }}
+                                            {{ row.saleInvoiceItemRemarks }}
                                         </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column prop="id" name="Action" [width]="20">
@@ -1381,10 +1381,10 @@
 
                                             <div class="ibox-tools text-center">
                                                 <button type="button" class="btn editIconBack"
-                                                    (click)="AddsaleInvoiceItem('edit',x)"><i
+                                                    (click)="EditsaleInvoiceItem('edit',row)"><i
                                                         class="far fa-edit"></i></button>
                                                 <button type="button" class="btn deleteIconBack" data-toggle="tooltip"
-                                                    data-placement="top" title="" data-original-title="Delete"><i
+                                                    data-placement="top" title="" data-original-title="Delete" (click)="deleteInvoiceItem(row)"><i
                                                         class="far fa-trash-alt"></i></button>
                                             </div>
                                         </ng-template>

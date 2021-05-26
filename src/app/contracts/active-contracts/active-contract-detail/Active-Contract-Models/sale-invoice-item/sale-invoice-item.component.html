@@ -69,9 +69,9 @@
       Close
     </button>
     <button class="btn button-save" type="submit" (click)="addSaleInvoiceItem()" *ngIf = "statusCheck == 'add'" >
-      Save & Close
+      Save
     </button>
-    <button class="btn button-save" type="submit" *ngIf = "statusCheck == 'edit'" >
+    <button class="btn button-save" type="submit" *ngIf = "statusCheck == 'edit'"  (click)="updateInvoiceItem()">
       Update Item
     </button>
  

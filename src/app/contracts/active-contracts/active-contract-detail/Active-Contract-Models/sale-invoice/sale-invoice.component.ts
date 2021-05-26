@@ -83,6 +83,8 @@ export class SALEINVOICEComponent implements OnInit {
           if (this.response.success == true) {
             this.data = this.response.data;
             this.data.saleInvoiceDate = this.dateformater.fromModel(this.data.saleInvoiceDate);
+            
+
           }
           else {
             this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
@@ -101,7 +103,7 @@ export class SALEINVOICEComponent implements OnInit {
 
   
   updateSaleInvoice() {
-
+    this.data.saleInvoiceDate = this.dateformater.toModel(this.data.saleInvoiceDate);
    let varr = {
     "contractId": this.contractId,
     "saleInvoiceNo": this.data.saleInvoiceNo,

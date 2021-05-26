@@ -104,6 +104,7 @@ export class ActiveContractDetailComponent implements OnInit {
     this.getContractRemarkData();
     this.getContractCommisionData();
     this.getSaleInvoice();
+    
 
     this.getContractTnA((Tna)=>{
       this.rows5 = Tna;
@@ -134,7 +135,7 @@ export class ActiveContractDetailComponent implements OnInit {
 
     });
     this.getAllInvoiceItems((invoiceItem) => {
-      this.rows5 = invoiceItem;
+      this.rows6 = invoiceItem;
       this.invoiceItemFilter = [...invoiceItem];
 
     });
@@ -796,8 +797,6 @@ addSaleInvoice(status) {
   const modalRef = this.modalService.open(SALEINVOICEComponent, { centered: true });
   modalRef.componentInstance.contractId = this.contractId;
   modalRef.componentInstance.statusCheck = status;
-
-
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
@@ -816,12 +815,10 @@ editSaleInvoice(status, obj) {
   modalRef.componentInstance.contractId = this.contractId;
   modalRef.componentInstance.statusCheck = status;
   modalRef.componentInstance.invoiceId = obj.id;
-
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
       this.getSaleInvoice();
-
     }
   }, (reason) => {
     // on dismiss
@@ -983,6 +980,7 @@ AddsaleInvoiceItem(check,value) {
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
+      this.getSaleInvoice();
 
     }
   }, (reason) => {
@@ -993,17 +991,63 @@ EditsaleInvoiceItem(check , obj ) {
   const modalRef = this.modalService.open(SaleInvoiceItemComponent, { centered: true });
   modalRef.componentInstance.contractId = this.contractId;
   modalRef.componentInstance.statusCheck = check;
-  modalRef.componentInstance.inVoiceId = obj.id;
+  modalRef.componentInstance.contractSaleInvoiceId = obj.contractSaleInvoiceId;
+  modalRef.componentInstance.invoiceItemId = obj.id;
 
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
+      this.getSaleInvoice();
 
     }
   }, (reason) => {
     // on dismiss
   });
 }
+
+
+deleteInvoiceItem(id) {
+  Swal.fire({
+    title: GlobalConstants.deleteTitle, //'Are you sure?',
+    text: GlobalConstants.deleteMessage + ' ' + '"' + id.invoiceItem + '"',
+    icon: 'error',
+    showCancelButton: true,
+    confirmButtonColor: '#ed5565',
+    cancelButtonColor: '#dae0e5',
+    cancelButtonText: 'No',
+    confirmButtonText: 'Yes',
+    reverseButtons: true,
+    position: 'top',
+  }).then((result) => {
+    if (result.isConfirmed) {
+
+      this.http.delete(`${environment.apiUrl}/api/Contracts/DeleteSaleInvoiceItem/` + id.id)
+        .subscribe(
+          res => {
+            this.response = res;
+            if (this.response.success == true) {
+              this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
+              this.getSaleInvoice();
+
+
+            }
+            else {
+              this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
+            }
+
+          }, err => {
+            if (err.status == 400) {
+              this.toastr.error(this.response.message, 'Message.');
+            }
+          });
+    }
+  })
+}
+
+
+
+
+
 
 
 
