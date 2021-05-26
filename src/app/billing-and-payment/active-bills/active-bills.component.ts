@@ -37,6 +37,7 @@ export class ActiveBillsComponent implements OnInit {
   ids : string;
   billFilter: any = {};
 
+
   url = '/api/BillingPayments/GetAllContractBill'
   constructor(    private service: ServiceService,
     private http: HttpClient,
@@ -59,6 +60,8 @@ export class ActiveBillsComponent implements OnInit {
       // this.billFilter = [...data];
       
       this.rows = data;
+      this.billFilter = [...data];
+
       this.listCount = this.rows.length;
     });
   }
@@ -66,8 +69,8 @@ export class ActiveBillsComponent implements OnInit {
   search(event) {
     const val = event.target.value.toLowerCase();
     const temp = this.billFilter.filter(function (d) {
-      return (d.autoContractNumber.toLowerCase().indexOf(val) !== -1 ||
-        d.sellerName.toLowerCase().indexOf(val) !== -1 || d.buyerName.toLowerCase().indexOf(val) !== -1 || !val);
+      return (d.sellerName.toLowerCase().indexOf(val) !== -1 ||
+        d.buyerName.toLowerCase().indexOf(val) !== -1 || d.billNumber.toLowerCase().indexOf(val) !== -1 || !val);
     });
     this.rows = temp;
   }
@@ -93,12 +96,6 @@ export class ActiveBillsComponent implements OnInit {
       }
     });
   }
-//   onActivate(event) {
-//       if (event.type === 'click' ){
-//         this.checkboxData.push(event.row.id);
-//              console.log(this.checkboxData)                    
-//       }        
-// }
 
 onSelect({ selected }) {
   console.log('Select Event', selected, this.selected);
