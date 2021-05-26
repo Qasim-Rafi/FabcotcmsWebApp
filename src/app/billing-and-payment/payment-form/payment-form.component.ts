@@ -17,8 +17,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./payment-form.component.css']
 })
 export class PaymentFormComponent implements OnInit {
+
   dateformater: Dateformater = new Dateformater();
   statusCheck:any={};
+  contractId:any={};
+
   queryParems:any={};
   paymentId:any={};
   data: any = {};
@@ -54,6 +57,7 @@ export class PaymentFormComponent implements OnInit {
 
     this.queryParems = this.route.snapshot.queryParams;
     this.paymentId = this.queryParems.id;
+    this.contractId = this.queryParems.contractId
 
     // let olddate=new Date();
     // let latest_date =this.datepipe.transform(olddate, 'yyyy-MM-dd');
@@ -149,7 +153,7 @@ export class PaymentFormComponent implements OnInit {
       "contractBillId": this.paymentId,
       "buyerId": this.paymentdata.billForBuyerId,
       "selerId": this.paymentdata.billForSelerId,
-      "saleInvoiceId": 0,
+      "saleInvoiceId": this.data.saleInvoiceId,
       "receiptNumber": this.paymentdata.receiptNumber,
       "paymentDate": this.paymentdata.paymentDate,
       "paidAmount": this.paymentdata.paidAmount,
@@ -200,7 +204,7 @@ export class PaymentFormComponent implements OnInit {
         "contractBillId": this.paymentId,
         "buyerId": this.data.billForBuyerId,
         "selerId": this.data.billForSelerId,
-        "saleInvoiceId": 0,
+        "saleInvoiceId": this.data.saleInvoiceId,
         "receiptNumber": this.data.receiptNumber,
         "paymentDate": this.data.paymentDate,
         "paidAmount": this.data.paidAmount,
@@ -250,12 +254,11 @@ export class PaymentFormComponent implements OnInit {
     })
   }
   GetSaleInvoiceDropdown() {
-    this.http.get(`${environment.apiUrl}/api/Lookups/SaleInvoices/` + this.paymentId).
+    this.http.get(`${environment.apiUrl}/api/Lookups/SaleInvoices/` + this.contractId).
     subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
         this.saleInvoice = this.response.data;
-    
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
