@@ -41,8 +41,9 @@ export class PaymentTermComponent implements OnInit {
 
   ngOnInit(): void {
     this.service.fetch((data) => {
-      this.paymentTermFilter = [...data];
       this.rows = data;
+      this.paymentTermFilter = [...this.rows];
+
       this.paymentTermCount = this.rows.length;
     }, this.paymentTermUrl);
   }
@@ -109,6 +110,8 @@ export class PaymentTermComponent implements OnInit {
       if (data == true) {
         this.service.fetch((data) => {
           this.rows = data;
+      this.paymentTermFilter = [...this.rows];
+
           this.paymentTermCount = this.rows.length;
         }, this.paymentTermUrl);
       }

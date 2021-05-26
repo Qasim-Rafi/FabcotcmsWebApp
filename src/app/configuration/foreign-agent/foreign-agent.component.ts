@@ -42,8 +42,9 @@ export class ForeignAgentComponent implements OnInit {
 
   ngOnInit(): void {
     this.service.fetch((data) => {
-      this.agentFilter = [...data];
       this.rows = data;
+      this.agentFilter = [...this.rows];
+
       this.agentCount = this.rows.length
     }, this.agentUrl);
   }
@@ -116,8 +117,9 @@ export class ForeignAgentComponent implements OnInit {
       if (data == true) {
         this.date = this.myDate;
         this.service.fetch((data) => {
-          this.agentFilter = [...data];
           this.rows = data;
+          this.agentFilter = [...this.rows];
+
           this.agentCount = this.rows.length;
         }, this.agentUrl);
 

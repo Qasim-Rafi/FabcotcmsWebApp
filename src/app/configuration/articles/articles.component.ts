@@ -40,8 +40,9 @@ export class ArticlesComponent implements OnInit {
 
     
     this.service.fetch((data) => {
-      this.articleFilter = [...data];
       this.rows = data;
+      this.articleFilter = [...this.rows];
+
       this.articleCount = this.rows.length
     }, this.articleUrl);
 
@@ -113,6 +114,8 @@ export class ArticlesComponent implements OnInit {
       if (data == true) {
         this.service.fetch((data) => {
           this.rows = data;
+      this.articleFilter = [...this.rows];
+
           this.articleCount = this.rows.length;
         }, this.articleUrl);
 

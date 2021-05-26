@@ -39,8 +39,9 @@ export class BankComponent implements OnInit {
 
   ngOnInit(): void {
     this.service.fetch((data) => {
-      this.bankFilter = [...data];
       this.rows = data;
+      this.bankFilter = [...this.rows];
+      
     } , this.bankUrl);
 
   }
@@ -109,8 +110,9 @@ export class BankComponent implements OnInit {
       if (data == true) {
         //  this.date = this.myDate;
         this.service.fetch((data) => {
-          this.bankFilter = [...data];
+         
           this.rows = data;
+          this.bankFilter = [...this.rows];
           this.bankCount = this.rows.length;
         } , this.bankUrl);
 

@@ -38,8 +38,9 @@ export class LoomTypeComponent implements OnInit {
 
   ngOnInit(): void {
     this.service.fetch((data) => {
-      this.loomFilter = [...data];
       this.rows = data;
+      this.loomFilter = [...this.rows];
+
       this.loomCount = this.rows.length;
     }, this.loomUrl);
   }
@@ -107,6 +108,8 @@ export class LoomTypeComponent implements OnInit {
       if (data == true) {
         this.service.fetch((data) => {
           this.rows = data;
+      this.loomFilter = [...this.rows];
+
           this.loomCount = this.rows.length;
         }, this.loomUrl);
 

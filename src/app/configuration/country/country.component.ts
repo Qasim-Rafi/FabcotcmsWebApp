@@ -39,8 +39,9 @@ export class CountryComponent implements OnInit {
 
   ngOnInit(): void {
     this.service.fetch((data) => {
-      this.countryFilter = [...data];
       this.rows = data;
+      this.countryFilter = [...this.rows];
+
       this.countryCount = this.rows.length;
     }, this.CountryUrl);
 
@@ -110,6 +111,8 @@ export class CountryComponent implements OnInit {
       if (data == true) {
         this.service.fetch((data) => {
           this.rows = data;
+      this.countryFilter = [...this.rows];
+
           this.countryCount = this.rows.length;
         }, this.CountryUrl);
       }
