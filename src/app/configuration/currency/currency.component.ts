@@ -32,8 +32,9 @@ export class CurrencyComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetch((data) => {
-      this.currencyFilter = [...data];
       this.rows = data;
+      this.currencyFilter = [...this.rows];
+  
       this.listCount= this.rows.length;
     });
   }
@@ -144,6 +145,7 @@ export class CurrencyComponent implements OnInit {
           //  this.date = this.myDate;
            this.fetch((data) => {
             this.rows = data;
+      this.currencyFilter = [...this.rows];
         
           });
          

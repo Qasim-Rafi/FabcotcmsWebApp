@@ -38,8 +38,9 @@ export class ColorComponent implements OnInit {
 
   ngOnInit(): void {
     this.service.fetch((data) => {
-      this.clrFilter = [...data];
       this.rows = data;
+      this.clrFilter = [...this.rows];
+
       this.clrCount = this.rows.length;
     }, this.clrUrl);
   }
@@ -106,6 +107,8 @@ export class ColorComponent implements OnInit {
       if (data == true) {
         this.service.fetch((data) => {
           this.rows = data;
+      this.clrFilter = [...this.rows];
+
           this.clrCount = this.rows.length;
         }, this.clrUrl);
 

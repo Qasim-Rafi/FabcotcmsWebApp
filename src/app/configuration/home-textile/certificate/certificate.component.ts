@@ -37,8 +37,9 @@ export class CertificateComponent implements OnInit {
 
   ngOnInit(): void {
     this.service.fetch((data) => {
-      this.certificateFilter = [...data];
       this.rows = data;
+      this.certificateFilter = [...this.rows];
+
       this.certificateCount = this.rows.length;
     }, this.certificateUrl);
   }
@@ -109,6 +110,8 @@ export class CertificateComponent implements OnInit {
         //  this.date = this.myDate;
         this.service.fetch((data) => {
           this.rows = data;
+      this.certificateFilter = [...this.rows];
+
           this.certificateCount = this.rows.length;
         }, this.certificateUrl);
 
