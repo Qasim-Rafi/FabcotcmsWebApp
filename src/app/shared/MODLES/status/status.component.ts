@@ -66,7 +66,9 @@ export class StatusComponent implements OnInit {
 
   UpdateContractStatus()
 { 
-  let varr = {"reason":this.reason}
+  let varr = {
+    "reason":this.reason
+  }
 
   this.http.
   put(`${environment.apiUrl}/api/Contracts/UpdateContractStatus/`+this.ContractId + `/`+ this.action , varr)
