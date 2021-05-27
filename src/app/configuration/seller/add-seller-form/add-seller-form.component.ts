@@ -127,7 +127,7 @@ export class AddSellerFormComponent implements OnInit {
       "faxNumber": this.data.sellerFax,
       "ntnNumber": this.data.sellerNTN,
       "gstNumber": this.data.sellerGST,
-      "certificatedeIds": this.data.certificatedeIds.toString(),
+      "certificatedeIds": this.data.certificatedeIds,
       "capabilitiesIds": this.data.capabilitiesIds.toString(),
       "majorStrength": this.data.sellerStrenght,
       "leadTime": this.data.leadTime,
