@@ -78,19 +78,13 @@
                                             </span>
                                         </div>
 
-                                        <!-- <input navigation="select" class="form-control  " ngbDatepicker
-                                            #paymentDate="ngbDatepicker" (click)="paymentDate.toggle()"
-                                            placeholder="Shipment date received from Buyer" name="paymentDate"
-                                            name="paymentDate" [(ngModel)]="data.paymentDate" #paymentDate="ngModel"
-                                            /> -->
-
-                                            <!-- <input type="text" class="form-control  datetimepicker-input" (click)="paymentDatePicker.toggle()"
-                                            placeholder="Date"  *ngIf = "statusCheck.statusCheck == 'addPayment'" #paymentDatePicker="ngbDatepicker" #paymentDate="ngModel" [(ngModel)]="paymentDateField"
-                                            name="paymentDate" ngbDatepicker
-                                          > -->
-                                          <input navigation="select" class="form-control  " ngbDatepicker #paymentDate="ngbDatepicker"
+                       
+                                          <!-- <input navigation="select" class="form-control  " ngbDatepicker #paymentDate="ngbDatepicker"
                                           (click)="paymentDate.toggle()" placeholder="Payment Date" *ngIf = "statusCheck.statusCheck == 'addPayment'"
-                                          name="paymentDate"  [(ngModel)]="data.paymentDate" #paymentDate="ngModel" />
+                                          name="paymentDate"  [(ngModel)]="data.paymentDate" #paymentDate="ngModel" /> -->
+                                          <input navigation="select" class="form-control text_Navy " *ngIf = "statusCheck.statusCheck == 'addPayment'" ngbDatepicker #paymentDate="ngbDatepicker"
+                                          (click)="paymentDate.toggle()" placeholder="payment date" [(ngModel)]="data.paymentDate"
+                                          name="paymentDate" />
 
                                           <input type="text" class="form-control  datetimepicker-input" (click)="paymentDatePicker.toggle()"
                                           placeholder=" Payment Date"  *ngIf = "statusCheck.statusCheck == 'editPayment'" 
@@ -193,16 +187,24 @@
                                             </span>
 
                                         </div>
-                                        <div class="input-wdt" *ngIf = "statusCheck.statusCheck == 'addPayment'">
-                                            <ng-select placeholder="">
-                                                <ng-option>
-                                                </ng-option>
+                                        <div class="col-md-2"  *ngIf = "statusCheck.statusCheck == 'addPayment'">
+                                            <ng-select placeholder="--Select--"
+                                            name="bankAccountId" [(ngModel)]="data.saleInvoiceId" #saleInvoiceId="ngModel"
+                                        
+                                            >
+                                            <ng-option *ngFor="let i of saleInvoice" [value]="i.id">{{ i.saleInvoiceNo }}
+                                              </ng-option>
+        
                                             </ng-select>
                                         </div>
                                         <div class="input-wdt" *ngIf = "statusCheck.statusCheck == 'editPayment'">
-                                            <ng-select placeholder="">
-                                                <ng-option>
-                                                </ng-option>
+                                            <ng-select placeholder="--Select--"
+                                            name="bankAccountId" [(ngModel)]="paymentdata.saleInvoiceId" #saleInvoiceId="ngModel"
+                                        
+                                            >
+                                            <ng-option *ngFor="let i of saleInvoice" [value]="i.id">{{ i.saleInvoiceNo }}
+                                              </ng-option>
+        
                                             </ng-select>
                                         </div>
 

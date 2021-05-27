@@ -98,10 +98,10 @@
       <th>Commission</th>
       <th>Total Amount (USD)</th>
 
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
+    </tr >
+    <tr *ngFor = "let i of rows.contractSaleInvoices">
+      <td>{{i.saleInvoiceNo}}</td>
+      <td>{{i.saleInvoiceDate}}</td>
       <td></td>
       <td></td>
       <td></td>
