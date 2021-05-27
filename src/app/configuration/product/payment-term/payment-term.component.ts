@@ -238,8 +238,8 @@ export class PaymentTermComponent implements OnInit {
             headerRows: 1,
             widths: [30, 80, 80, 50, 170],
             body: [
-              ['S.no.', 'Payment Term', 'Details', 'Status', 'Update Date Time | Updated By'],
-              ...this.data.map(row => (
+              ['S.no.', 'Price Terms', 'Details', 'Status', 'Last Changed On | Updated By'],
+              ...this.rows.map(row => (
                 [row.id, row.term, row.description, row.active == true ? "Active" : "In-Active",
                 row.updatedDateTime + '|' + row.updatedByName
                 ]

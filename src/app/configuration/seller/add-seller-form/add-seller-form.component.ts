@@ -34,8 +34,8 @@ export class AddSellerFormComponent implements OnInit {
   ngOnInit(): void {
     this.getCountry();
     this.getParentSellers();
-    this.GetCertificationDropdown();
-    this.GetCapabilitiesDropdown();
+    // this.GetCertificationDropdown();
+    // this.GetCapabilitiesDropdown();
   }
 
 
@@ -70,15 +70,22 @@ export class AddSellerFormComponent implements OnInit {
   }
 
   GetCertificationDropdown() {
-    this.service.getCertification().subscribe(res => {
-      this.response = res;
-      if (this.response.success == true) {
-        this.certification = this.response.data;
-      }
-      else {
-        this.toastr.error(this.response.message, 'Message.');
-      }
-    })
+    this.http.get(`${environment.apiUrl}/api/Lookups/Certifications`)
+    .subscribe(
+      res => {
+        this.response = res;
+        if (this.response.success == true) {
+          this.certification = this.response.data;
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+
+      }, err => {
+        if (err.status == 400) {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+      });
   }
   GetCapabilitiesDropdown() {
     this.service.getCapabilities().subscribe(res => {
@@ -117,7 +124,7 @@ export class AddSellerFormComponent implements OnInit {
 
 
 
-  addSeller(form:NgForm) {
+  addSeller() {
 
 //     if (form.status == "INVALID") {
 
@@ -126,7 +133,7 @@ export class AddSellerFormComponent implements OnInit {
 
 // else{
     let varr = {
-      "sellerCode": this.data.sellerCode,
+      // "sellerCode": this.data.sellerCode,
       "sellerName": this.data.sellerName,
       "billingAddress": this.data.sellerBillAddress,
       "countryId": this.data.countryId,
@@ -135,8 +142,8 @@ export class AddSellerFormComponent implements OnInit {
       "faxNumber": this.data.sellerFax,
       "ntnNumber": this.data.sellerNTN,
       "gstNumber": this.data.sellerGST,
-      "certificatedeIds": this.data.certificatedeIds !=null?this.data.certificatedeIds.toString():null,
-      "capabilitiesIds": this.data.capabilitiesIds != null ?this.data.capabilitiesIds.toString() : null,
+      "certificatedeIds": this.data.certificatedeIds,
+      "capabilitiesIds": this.data.capabilitiesIds,
       "majorStrength": this.data.sellerStrenght,
       "leadTime": this.data.leadTime,
       "sellerDetails": this.data.sellerDetails,
@@ -162,9 +169,7 @@ export class AddSellerFormComponent implements OnInit {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
-          if (err.status == 400) {
-            this.toastr.error(this.response.message, 'Message.');
-          }
+         
         });
   }
 }

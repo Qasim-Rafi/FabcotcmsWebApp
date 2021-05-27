@@ -149,38 +149,38 @@
             {{row.name}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name=" Agent Type" [width]="10">
+        <ngx-datatable-column name=" Agent Type" [width]="10" prop="agentTypeId">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.agentTypeId}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Address" [width]="20">
+        <ngx-datatable-column name="Address" [width]="20" prop="address">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.address}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Email" [width]="20">
+        <ngx-datatable-column name="Email" [width]="20" prop="emailAddress">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.emailAddress}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Contact Nos." [width]="10">
+        <ngx-datatable-column name="Contact Nos." [width]="10" prop="cellNumber">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.cellNumber}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Status " [width]="5">
+        <ngx-datatable-column name="Status " [width]="5" prop="active">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             <span class="badge badge-primary" *ngIf="row.active==true">Active</span>
             <span class="badge badge-secondary" *ngIf="row.active==false">Inactive</span>
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Side" [width]="5">
+        <ngx-datatable-column name="Side" [width]="5" prop="agentSideId">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.agentSideId}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Last Updated On | By" [width]="80">
+        <ngx-datatable-column name="Last Updated On | By" [width]="80" prop="createdByName">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.updatedDateTime}} | {{row.createdByName}}
           </ng-template>

@@ -86,7 +86,7 @@ export class DesignTypeComponent implements OnInit {
 
               }
               else {
-                this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
+                this.toastr.error(this.response.message, 'Message.');
               }
 
             }, err => {
