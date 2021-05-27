@@ -73,7 +73,7 @@ export class EditCountryComponent implements OnInit {
 
           this.response = res;
           if (this.response.success == true) {
-                   this.toastr.error(this.response.message, 'Message.');
+                   this.toastr.success(this.response.message, 'Message.');
 
             this.activeModal.close(true);
           }
@@ -108,7 +108,7 @@ export class EditCountryComponent implements OnInit {
 
           this.response = res;
           if (this.response.success == true) {
-            this.toastr.error(this.response.message, 'Message.');
+            this.toastr.success(this.response.message, 'Message.');
             this.activeModal.close(true);
           }
           else {

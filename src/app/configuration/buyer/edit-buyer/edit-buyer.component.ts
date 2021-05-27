@@ -105,12 +105,7 @@ export class EditBuyerComponent implements OnInit {
 
   updateBuyer(form:NgForm) {
 
-    // if(form.status == "INVALID"){
-
-    //   this.toastr.error("Invalid Form", 'Message.');
-    // }
-
-    // else{
+  
     let varr = {
       "buyerCode": this.data.buyerCode,
       "buyerName": this.data.buyerName,
