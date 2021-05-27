@@ -36,7 +36,7 @@ export class EditSellerFormComponent implements OnInit {
     this.getCountry();
     this.getParentSellers();
     // this.GetCertificationDropdown();
-    // this.GetCapabilitiesDropdown();
+    this.GetCapabilitiesDropdown();
   }
 
   get activeModal() {
@@ -134,13 +134,6 @@ export class EditSellerFormComponent implements OnInit {
 
 
   updateSeller() {
-//     if(form.status == "INVALID"){
-
-//       this.toastr.error("Invalid Form", 'Message.');
-//     }
-
-// else
-// {
     let varr = {
       "sellerCode": this.data.sellerCode,
       "sellerName": this.data.sellerName,
@@ -182,4 +175,3 @@ export class EditSellerFormComponent implements OnInit {
   }
 
   }
-// }

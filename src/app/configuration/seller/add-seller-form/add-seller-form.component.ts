@@ -17,7 +17,7 @@ export class AddSellerFormComponent implements OnInit {
   seller: any[];
   country: any = [];
   countryId: null;
-  certification: any = [];
+  certification:any=[];
   capabilities:any=[];
   @ViewChild(NgForm) sellerForm;
   // @ViewChild('sellerName') private elementRef: ElementRef;
@@ -35,7 +35,7 @@ export class AddSellerFormComponent implements OnInit {
     this.getCountry();
     this.getParentSellers();
     // this.GetCertificationDropdown();
-    // this.GetCapabilitiesDropdown();
+    this.GetCapabilitiesDropdown();
   }
 
 
@@ -70,22 +70,15 @@ export class AddSellerFormComponent implements OnInit {
   }
 
   GetCertificationDropdown() {
-    this.http.get(`${environment.apiUrl}/api/Lookups/Certifications`)
-    .subscribe(
-      res => {
-        this.response = res;
-        if (this.response.success == true) {
-          this.certification = this.response.data;
-        }
-        else {
-          this.toastr.error(this.response.message, 'Message.');
-        }
-
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error(this.response.message, 'Message.');
-        }
-      });
+    this.service.getCertification().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.certification = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
   }
   GetCapabilitiesDropdown() {
     this.service.getCapabilities().subscribe(res => {
@@ -125,15 +118,7 @@ export class AddSellerFormComponent implements OnInit {
 
 
   addSeller() {
-
-//     if (form.status == "INVALID") {
-
-//       this.toastr.error("Invalid Form", 'Message.');
-//     }
-
-// else{
     let varr = {
-      // "sellerCode": this.data.sellerCode,
       "sellerName": this.data.sellerName,
       "billingAddress": this.data.sellerBillAddress,
       "countryId": this.data.countryId,
@@ -143,12 +128,13 @@ export class AddSellerFormComponent implements OnInit {
       "ntnNumber": this.data.sellerNTN,
       "gstNumber": this.data.sellerGST,
       "certificatedeIds": this.data.certificatedeIds,
-      "capabilitiesIds": this.data.capabilitiesIds,
+      "capabilitiesIds": this.data.capabilitiesIds.toString(),
       "majorStrength": this.data.sellerStrenght,
       "leadTime": this.data.leadTime,
       "sellerDetails": this.data.sellerDetails,
       "isParentSeller": this.data.isParentSeller,
-      "parentSellerId": this.data.parentSellerId
+      "parentSellerId": this.data.parentSellerId,
+      "active": true
     }
 
     this.http.
