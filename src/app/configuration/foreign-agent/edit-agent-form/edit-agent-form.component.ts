@@ -15,8 +15,8 @@ export class EditAgentFormComponent implements OnInit {
   @Input() userId;
   data:any={};
   response: any;
-  agentTypeId: null;
-  agentSideId: null;
+  Side: any = [];
+  Type:any=[];
   city: any = [];
   banks: any = [];
 
@@ -27,7 +27,9 @@ export class EditAgentFormComponent implements OnInit {
 
   ngOnInit(): void {
     this. getBanks();
-    this.getCity();
+    this.getCity(); 
+    this.GetAgentSide();
+    this.GetAgentType();
     this.editAgent( );
   } 
 
@@ -54,7 +56,29 @@ export class EditAgentFormComponent implements OnInit {
         });
   }
 
+  GetAgentSide() {
+    this.service.getAgentSide().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.Side = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
 
+  GetAgentType() {
+    this.service.getAgentType().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.Type= this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
 
   getBanks() {
     this.http.get(`${environment.apiUrl}/api/Lookups/Banks`)
@@ -97,34 +121,12 @@ export class EditAgentFormComponent implements OnInit {
   }
 
 
-  UpdateAgent(form:NgForm)
+  UpdateAgent()
   {
-//     if(form.status == "INVALID"){
 
-//       this.toastr.error("Invalid Form", 'Message.');
-//     }
-
-// else
-
-// {
-    let varr=  {
-      "agentTypeId": this.data.agentTypeId,
-      "agentSideId": this.data.agentSideId,
-      "name": this.data.name,
-      "address": this.data.address,
-      "cityId": this.data.cityId,
-      "emailAddress": this.data.emailAddress,
-      "cellNumber": this.data.cellNumber,
-      "landlineNumber": this.data.landlineNumber,
-      "bankName": this.data.bankName,
-      "accountNumber": this.data.accountNumber,
-      "accountTitle": this.data.accountTitle,
-      "swiftCode": this.data.swiftCode,
-      "details": this.data.details
-    }
 
     this.http.
-    put(`${environment.apiUrl}/api/Configs/UpdateExternalAgent/`+this.userId,varr)
+    put(`${environment.apiUrl}/api/Configs/UpdateExternalAgent/`+this.userId,this.data)
     .subscribe(
       res=> { 
   

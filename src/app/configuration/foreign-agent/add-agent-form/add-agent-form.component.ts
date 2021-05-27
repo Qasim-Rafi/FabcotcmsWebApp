@@ -14,11 +14,12 @@ import { ServiceService } from 'src/app/shared/service.service';
 export class AddAgentFormComponent implements OnInit {
   data:any={};
   response: any;
-  agentTypeId = null;
-  agentSideId = null;
+  // agentSide=null;
+  // agentType = null;
   city: any = [];
   banks: any = [];
- 
+  Side: any = [];
+  Type:any=[];
 
 
   constructor(private http:HttpClient,
@@ -30,7 +31,8 @@ export class AddAgentFormComponent implements OnInit {
 
     this.getCity();
     this.getBanks();
-    
+    this.GetAgentSide();
+    this.GetAgentType();
   }
 
 
@@ -50,12 +52,14 @@ export class AddAgentFormComponent implements OnInit {
             this.city = this.response.data;
           }
           else {
-            this.toastr.error('Something went Worng', 'Message.');
+                    this.toastr.error(this.response.message, 'Message.');
+
           }
 
         }, err => {
           if (err.status == 400) {
-            this.toastr.error('Something went Worng', 'Message.');
+                    this.toastr.error(this.response.message, 'Message.');
+
           }
         });
   }
@@ -71,51 +75,46 @@ export class AddAgentFormComponent implements OnInit {
             this.banks = this.response.data;
           }
           else {
-            this.toastr.error('Something went Worng', 'Message.');
+                   this.toastr.error(this.response.message, 'Message.');
+
           }
 
         }, err => {
           if (err.status == 400) {
-            this.toastr.error('Something went Worng', 'Message.');
+                    this.toastr.error(this.response.message, 'Message.');
+
           }
         });
   }
 
+  GetAgentSide() {
+    this.service.getAgentSide().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.Side = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
 
+  GetAgentType() {
+    this.service.getAgentType().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.Type= this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
 
-
-
-  addAgent(form:NgForm)
+  addAgent()
   {
-
-//     if(form.status == "INVALID"){
-
-//       this.toastr.error("Invalid Form", 'Message.');
-//     }
-
-// else
-
-// {
-
-
-    let varr=  {
-      "agentTypeId": this.data.agentTypeId,
-      "agentSideId": this.data.agentSideId,
-      "name": this.data.name,
-      "address": this.data.address,
-      "cityId": this.data.cityId,
-      "emailAddress": this.data.emailAddress,
-      "cellNumber": this.data.cellNumber,
-      "landlineNumber": this.data.landlineNumber,
-      "bankName": this.data.bankName,
-      "accountNumber": this.data.accountNumber,
-      "accountTitle": this.data.accountTitle,
-      "swiftCode": this.data.swiftCode,
-      "details": this.data.details
-    }
-
     this.http.
-    post(`${environment.apiUrl}/api/Configs/AddExternalAgent`,varr)
+    post(`${environment.apiUrl}/api/Configs/AddExternalAgent`,this.data)
     .subscribe(
       res=> { 
   
