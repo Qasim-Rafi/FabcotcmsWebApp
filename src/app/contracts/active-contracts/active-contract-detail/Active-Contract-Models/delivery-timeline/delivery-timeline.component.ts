@@ -46,25 +46,7 @@ export class DeliveryTimelineComponent implements OnInit {
   get activeModal() {
     return this._NgbActiveModal;
   }
-  // getshipment() {
-  //   this.http.get(`${environment.apiUrl}/api/Contracts/GetContractShipmentScheduleById` + this.id)
-  //     .subscribe(
-  //       res => {
-  //         this.response = res;
-  //         if (this.response.success == true) {
 
-  //           this.data = this.response.data;
-  //         }
-  //         else {
-  //           this.toastr.error(this.response.message, 'Message.');
-  //         }
-
-  //       }, err => {
-  //         if (err.status == 400) {
-  //           this.toastr.error(this.response.message, 'Message.');
-  //         }
-  //       });
-  // }
   editshipment() {
     this.http.get(`${environment.apiUrl}/api/Contracts/GetContractShipmentScheduleById/` + this.shipmentId)
       .subscribe(
@@ -74,6 +56,7 @@ export class DeliveryTimelineComponent implements OnInit {
             this.data = this.response.data;
             this.data.supplierDate = this.dateformater.fromModel(this.data.supplierDate);
             this.data.buyerDate = this.dateformater.fromModel(this.data.buyerDate);
+            
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
@@ -97,7 +80,17 @@ export class DeliveryTimelineComponent implements OnInit {
       }
     })
   }
-  addshipment() {
+  addshipment(form:NgForm) {
+
+   if(form.status =="INVALID"){
+
+      this.toastr.error("Kindly Fill the Required Fields", 'Message.');
+    }
+
+    else{
+
+
+
     this.data.supplierDate = this.dateformater.toModel(this.data.supplierDate);
     this.data.buyerDate = this.dateformater.toModel(this.data.buyerDate);
 
@@ -135,8 +128,15 @@ export class DeliveryTimelineComponent implements OnInit {
             this.toastr.error(this.response.message, 'Message.');
           }
         });
-  }
-  Updateshipment() {
+  }}
+  Updateshipment(form:NgForm) {
+
+       if(form.status =="INVALID"){
+
+      this.toastr.error("Kindly Fill the Required Fields", 'Message.');
+    }
+
+    else{
     this.data.supplierDate = this.dateformater.toModel(this.data.supplierDate);
     this.data.buyerDate = this.dateformater.toModel(this.data.buyerDate);
     let varr = {
@@ -173,5 +173,5 @@ export class DeliveryTimelineComponent implements OnInit {
         });
   }
 
-
+}
 }

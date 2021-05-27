@@ -13,6 +13,7 @@ import { Dateformater } from 'src/app/shared/dateformater';
 import Swal from 'sweetalert2';
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
+import { StatusComponent } from 'src/app/shared/MODLES/status/status.component';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 @Component({
   selector: 'app-edit-active-enquiry',
@@ -37,7 +38,7 @@ export class EditActiveEnquiryComponent implements OnInit {
   response: any;
   enquiryData: any = [];
   temp: any[];
-  temp2: any[];
+  // temp2: any[];
   article: any = [];
   buyer: any = [];
   process: any = [];
@@ -103,8 +104,8 @@ export class EditActiveEnquiryComponent implements OnInit {
 
 
       this.fetch((NotesData) => {
-        this.rows1 = this.noteList;
-        this.noteFilter = [...this.noteList];
+        this.rows1 = NotesData;
+        this.noteFilter = [...NotesData];
         // this.listCount= this.rows.length;
       });
 
@@ -131,11 +132,10 @@ export class EditActiveEnquiryComponent implements OnInit {
   noteSearch(event) {
     const val = event.target.value.toLowerCase();
 
-    const temp2 = this.temp2.filter(function (d) {
-      return (
-        d.description.toLowerCase().indexOf(val) !== -1 || !val);
+    const temp = this.noteFilter.filter(function (d) {
+      return (d.description.toLowerCase().indexOf(val) !== -1 || !val);
     });
-    this.noteList = temp2;
+    this.rows1 = temp;
 
   }
 
@@ -154,11 +154,6 @@ export class EditActiveEnquiryComponent implements OnInit {
             {
               this.enquiryData.totalQuantity = "";
             }
-            this.fetch((data) => {
-              this.rows1 = this.data;
-              // this.listCount= this.rows.length;
-            });
-
             this.temp = [...this.enquiryData.enquiryItemList];
          
           }
@@ -184,6 +179,7 @@ export class EditActiveEnquiryComponent implements OnInit {
     if(this.response.success==true)
     {
     this.noteList =this.response.data;
+    this.noteFilter = [this.noteList]; 
     cb(this.noteList);
     }
     else{
@@ -669,7 +665,11 @@ export class EditActiveEnquiryComponent implements OnInit {
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        this.getEnquiryData(this.objEnquiry);
+        this.fetch((NotesData) => {
+          this.rows1 = NotesData;
+          this.noteFilter = [...NotesData];
+          // this.listCount= this.rows.length;
+        });
 
       }
     }, (reason) => {
@@ -687,7 +687,11 @@ export class EditActiveEnquiryComponent implements OnInit {
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        this.getEnquiryData(this.objEnquiry);
+        this.fetch((NotesData) => {
+          this.rows1 = NotesData;
+          this.noteFilter = [...NotesData];
+          // this.listCount= this.rows.length;
+        });
 
       }
     }, (reason) => {
@@ -796,7 +800,11 @@ export class EditActiveEnquiryComponent implements OnInit {
               this.response = res;
               if (this.response.success == true) {
                 this.toastr.error(this.response.message, 'Message.');
-                this.getEnquiryData(this.objEnquiry);
+                this.fetch((NotesData) => {
+                  this.rows1 = NotesData;
+                  this.noteFilter = [...NotesData];
+                  // this.listCount= this.rows.length;
+                });
 
               }
               else {
@@ -1087,32 +1095,27 @@ export class EditActiveEnquiryComponent implements OnInit {
 
 
 
-      UpdateEnquiryStatus(status)
-      { 
-        let varr ={}
 
-        this.http.
-        put(`${environment.apiUrl}/api/Enquiries/UpdateEnquiryStatus/`+this.objEnquiry + `/`+ status , varr)
-        .subscribe(
-          res=> { 
-      
-            this.response = res;
-            if (this.response.success == true){
-              this.toastr.success(this.response.message, 'Message.');
-           
-            }
-            else {
-              this.toastr.error('Something went Worng', 'Message.');
-                }
+
+      statusform(status,action,component) {
+        const modalRef = this.modalService.open(StatusComponent, { centered: true });
+        // modalRef.componentInstance.parentBuyerId = popup.id;
+        modalRef.componentInstance.EnquiryId = this.objEnquiry;
+        modalRef.componentInstance.statusCheck = status;
+        modalRef.componentInstance.action = action;
+        modalRef.componentInstance.component = component;
+        modalRef.result.then((data) => {
+          // on close
+          if (data == true) {
+          
     
-          }, err => {
-            if (err.status == 400) {
-              this.toastr.error('Something went Worng', 'Message.');
-            }
-          });
+          }
+        }, (reason) => {
+          // on dismiss
+        });
       }
     
-
+    
 
 
 

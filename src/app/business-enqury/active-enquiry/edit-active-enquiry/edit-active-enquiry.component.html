@@ -892,10 +892,7 @@
                                   <button type="button" class="btn deleteIconBack" (click)="deleteNote(row)">
                                       <i class="far fa-trash-alt"></i>
                                   </button>
-                        
                                     </div>
-                        
-    
                                   </ng-template>
                                 </ngx-datatable-column>
                         
@@ -1034,23 +1031,23 @@
         
                 </button>
 
-                <button class="btn btn-warning btn-block btn-lg text-center  " (click)="UpdateEnquiryStatus('OnHold')">
+                <button class="btn btn-warning btn-block btn-lg text-center  " (click)=" statusform('EnquiryOnHold','OnHold','enquiry')">
         
                     <i class="fas fa-level-down-alt fa-md"></i>
                     <span class="ml-2 text-small"> Enquiry On-hold </span>
         
                 </button>
 
-                <button class="btn btn-danger btn-block btn-lg text-center " (click)="UpdateEnquiryStatus('OnHold')">
+                <button class="btn btn-danger btn-block btn-lg text-center " (click)=" statusform('EnquiryCancle','Cancel','enquiry')">
         
                     <i class="far fa-trash-alt fa-md"></i>
-                    <span class="ml-2 text-small"> Enquiry cancel </span>
+                    <span class="ml-2 text-small"> Enquiry Cancel </span>
         
                 </button>
-                <button class="btn btn-info btn-block btn-lg text-center " (click)="UpdateEnquiryStatus('OnHold')" >
+                <button class="btn btn-info btn-block btn-lg text-center " (click)=" statusform('EnquiryArchived', 'Archive','enquiry')" >
         
                     <i class="fas fa-file-archive fa-md"></i>
-                    <span class="ml-2 text-small "> Enquiry Archived </span>
+                    <span class="ml-2 text-small "> Enquiry Archive </span>
         
                 </button>
                 <button class="btn btn-primary btn-block btn-lg text-center " (click)="GenerateContract()"

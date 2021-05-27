@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { GlobalConstants } from 'src/app/Common/global-constants';
 import { Dateformater } from 'src/app/shared/dateformater';
 import { EnquiryNotesComponent } from 'src/app/shared/MODLES/enquiry-notes/enquiry-notes.component';
+import { StatusComponent } from 'src/app/shared/MODLES/status/status.component';
 import { ServiceService } from 'src/app/shared/service.service';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
@@ -149,6 +150,7 @@ export class ActiveContractDetailComponent implements OnInit {
     });
     this.rows5 = temp;
   }
+  
   searchItems(event) {
     const val = event.target.value.toLowerCase();
     const temp = this.ItemFilter.filter(function (d) {
@@ -858,6 +860,7 @@ Note() {
     if (data == true) {
       this.getAllNotes((NotesData) => {
         this.rows3 = NotesData;
+        this.noteFilter = [...NotesData];
         // this.listCount= this.rows.length;
       });
     this.getContractData();
@@ -879,6 +882,7 @@ ContractNotes(check, name) {
     if (data == true) {
       this.getAllNotes((NotesData) => {
         this.rows3 = NotesData;
+        this.noteFilter = [...NotesData];
         // this.listCount= this.rows.length;
       });
     this.getContractData();
@@ -925,7 +929,8 @@ EditTna(row) {
   const modalRef = this.modalService.open(EditTnaComponent, { centered: true });
   modalRef.componentInstance.contractId = this.contractId;
   // modalRef.componentInstance.id = row.id;
-  modalRef.componentInstance.tnaId = row.id;
+  modalRef.componentInstance.Id = row.id;
+  modalRef.componentInstance.tnaId = row.tnaId;
 
 
   modalRef.result.then((data) => {
@@ -933,8 +938,9 @@ EditTna(row) {
     if (data == true) {
       this.getContractTnA((Tna)=>{
         this.rows5 = Tna;
+        this.TnaFilter = [...Tna];
+  
       });
-    this.getContractData();
 
 
     }
@@ -951,8 +957,9 @@ TnaHistory(row) {
     if (data == true) {
       this.getContractTnA((Tna)=>{
         this.rows5 = Tna;
+        this.TnaFilter = [...Tna];
+  
       });
-    this.getContractData();
 
 
     }
@@ -1117,6 +1124,7 @@ deleteContractNote(id) {
               this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
               this.getAllNotes((NotesData) => {
                 this.rows3 = NotesData;
+                this.noteFilter = [...NotesData];
                 // this.listCount= this.rows.length;
               });
 
@@ -1145,6 +1153,7 @@ editContractNote(row, check, name) {
     if (data == true) {
       this.getAllNotes((NotesData) => {
         this.rows3 = NotesData;
+        this.noteFilter = [...NotesData];
         // this.listCount= this.rows.length;
       });
     this.getContractData();
@@ -1309,31 +1318,27 @@ deleteShipmentTimeline(id) {
 
 
 
-UpdateContractStatus(status)
-{ 
-  let varr ={}
 
-  this.http.
-  put(`${environment.apiUrl}/api/Contracts/UpdateContractStatus/`+this.contractId + `/`+ status , varr)
-  .subscribe(
-    res=> { 
 
-      this.response = res;
-      if (this.response.success == true){
-        this.toastr.success(this.response.message, 'Message.');
-     
-      }
-      else {
-        this.toastr.error('Something went Worng', 'Message.');
+ statusform(status,action,component) {
+        const modalRef = this.modalService.open(StatusComponent, { centered: true });
+        // modalRef.componentInstance.parentBuyerId = popup.id;
+        modalRef.componentInstance.ContractId = this.contractId;
+        modalRef.componentInstance.statusCheck = status;
+        modalRef.componentInstance.action = action;
+        modalRef.componentInstance.component = component;
+        modalRef.result.then((data) => {
+          // on close
+          if (data == true) {
+          
+    
           }
-
-    }, err => {
-      if (err.status == 400) {
-        this.toastr.error('Something went Worng', 'Message.');
+        }, (reason) => {
+          // on dismiss
+        });
       }
-    });
-}
-
+    
+    
 
 
 

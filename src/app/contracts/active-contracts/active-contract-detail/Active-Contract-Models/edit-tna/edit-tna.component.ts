@@ -17,6 +17,7 @@ import { GlobalConstants } from 'src/app/Common/global-constants';
 export class EditTnaComponent implements OnInit {
   dateformater: Dateformater = new Dateformater();  
 @Input() tnaId;
+@Input() Id;
 // @Input() id;
 
   @Input() contractId;
@@ -33,6 +34,7 @@ export class EditTnaComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.getTnaData();
   }
   get activeModal() {
     return this._NgbActiveModal;
@@ -40,7 +42,7 @@ export class EditTnaComponent implements OnInit {
 
 
   getTnaData() {
-    this.http.get(`${environment.apiUrl}/api/Contracts/GetContractTimeActionById/` + this.tnaId)
+    this.http.get(`${environment.apiUrl}/api/Contracts/GetContractTimeActionById/` + this.Id)
       .subscribe(
         res => {
           this.response = res;
@@ -72,7 +74,7 @@ export class EditTnaComponent implements OnInit {
       "details": this.data.details
     }
 
-    this.http.put(`${environment.apiUrl}/api/Contracts/UpdateContractTimeAction/` + this.tnaId, varr)
+    this.http.put(`${environment.apiUrl}/api/Contracts/UpdateContractTimeAction/` + this.Id, varr)
       .subscribe(
         res => {
 
