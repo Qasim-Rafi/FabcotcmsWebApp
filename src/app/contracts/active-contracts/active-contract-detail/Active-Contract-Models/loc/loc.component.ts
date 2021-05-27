@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { Dateformater } from 'src/app/shared/dateformater';
@@ -62,10 +63,20 @@ export class LOCComponent implements OnInit {
 
 
 
-  addContractLOC() {
+  addContractLOC(form:NgForm) {
+    
+    
+    
+       if(form.status =="INVALID"){
+
+      this.toastr.error("Kindly Fill the Required Fields", 'Message.');
+    }
+
+    else{
     this.data.lcExpiryDate = this.dateformater.toModel(this.data.lcExpiryDate);
     this.data.lcShipmentOn = this.dateformater.toModel(this.data.lcShipmentOn);
     this.data.lcOpenOn = this.dateformater.toModel(this.data.lcOpenOn);
+
 
     let varr = {
 
@@ -101,7 +112,7 @@ export class LOCComponent implements OnInit {
           }
         });
   }
-
+}
 
 
 }
