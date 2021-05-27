@@ -458,9 +458,11 @@
                                         </div>
                                     </div>
     
-                                    <button class="btn btn-light float-right ml-1 btn-sm" (click)="currencyToggle = !currencyToggle">Close</button>
-                                    <button class="btn btn-primary float-right btn-sm" (click)="currencyToggle = !currencyToggle"
+                                    
+                                    <button class="btn btn-primary float-right ml-1 btn-sm" (click)="currencyToggle = !currencyToggle"
                                         (click)=" addEnquiryPaymentDetails()">Save</button>
+
+                                    <button class="btn btn-light float-right btn-sm" (click)="currencyToggle = !currencyToggle">Close</button>
                                     
     
                                 </div>
@@ -472,10 +474,7 @@
                         <div class="tab-pane fade" id="nav-enquiryItems" role="tabpanel" aria-labelledby="nav-enquiryItems-tab">
                             <div class="row my-4">
 
-                                <div class="col-md-2">
-                                </div>
-
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <form action="simple-results.html">
                                         <div class="input-group input-group-sm">
                                             <input type="search" class="form-control" placeholder="Type your keywords here">
@@ -637,7 +636,7 @@
 
                         </div>
     
-                        <!-- --------------------------- Tab 3 -------------------------- -->
+                        <!-- ---------------------------Enquiry Remarks Tab -------------------------- -->
                         <div class="tab-pane fade" id="nav-enquiry" role="tabpanel" aria-labelledby="nav-enquiry-tab">
     
                             <div [ngClass]="{ noDisplay : remarksToggle==true }">
@@ -700,15 +699,16 @@
                                         </div>
                                     </div>
                             
-                                    <button class="btn btn-light float-right ml-1 btn-sm" (click)="remarksToggle = !remarksToggle">Close</button>
-                                    <button class="btn btn-primary float-right btn-sm" (click)="addEnquiryRemarks(); remarksToggle = !remarksToggle">Save Info</button>
+                                    
+                                    <button class="btn btn-primary float-right ml-1 btn-sm" (click)="addEnquiryRemarks(); remarksToggle = !remarksToggle">Save Info</button>
+                                    <button class="btn btn-light float-right btn-sm" (click)="remarksToggle = !remarksToggle">Close</button>
                                     
                                 </div>
                             </div>
 
                         </div>
 
-                        <!-- --------------------------- Tab 5 -------------------------- -->
+                        <!-- ---------------------------Vendor Tab -------------------------- -->
                         <div class="tab-pane fade" id="nav-vendor" role="tabpanel" aria-labelledby="nav-vendor-tab">
 
                             <div [ngClass]="{ noDisplay : vendorToggle==true }">
@@ -753,14 +753,14 @@
                                         </div>
                                     </div>
                             
-                                    <button class="btn btn-light float-right ml-1 btn-sm" (click)="vendorToggle = !vendorToggle">Close</button>
-                                    <button class="btn btn-primary float-right btn-sm" (click)="addEnquiryVendorDetails(); vendorToggle = !vendorToggle">Save</button>
+                                    <button class="btn btn-primary float-right ml-1  btn-sm" (click)="addEnquiryVendorDetails(); vendorToggle = !vendorToggle">Save</button>
+                                    <button class="btn btn-light float-right btn-sm" (click)="vendorToggle = !vendorToggle">Close</button>
                                     
                                 </div>
                             </div>
                         </div>
     
-                        <!-- --------------------------- Tab 2 -------------------------- -->
+                        <!-- ---------------------------Order Tab -------------------------- -->
                         <div class="tab-pane fade" id="nav-order" role="tabpanel" aria-labelledby="nav-order-tab">
     
     
@@ -802,15 +802,17 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <button class="btn btn-light float-right ml-1 btn-sm" (click)="orderToggle = !orderToggle">Close</button>
-                                    <button class="btn btn-primary float-right btn-sm" (click)="addEnquiryOrderDetails() ; orderToggle = !orderToggle">Save</button>
+
+                                    
+                                    <button class="btn btn-primary float-right ml-1 btn-sm" (click)="addEnquiryOrderDetails() ; orderToggle = !orderToggle">Save</button>
+                                    <button class="btn btn-light float-right btn-sm" (click)="orderToggle = !orderToggle">Close</button>
                                     
                                 </div>
                             </div>
 
                         </div>
 
-                        <!-- --------------------------- Tab 6 -------------------------- -->
+                        <!-- --------------------------- Note Tab -------------------------- -->
                         <div class="tab-pane fade" id="nav-notes" role="tabpanel" aria-labelledby="nav-notes-tab">
                         
                             <div class="row">
