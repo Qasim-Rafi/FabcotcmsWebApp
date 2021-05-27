@@ -165,17 +165,23 @@
                 
                     </div>
                 </div>
-               
+                
          <div class="row">
              <div class="col-md-12">
             <button *ngIf="statusCheck != 'EditEnquiryItem'" class="btn btn-primary float-right mt-3" (click)="addMore()" [disabled]="EnquiryItemForm.invalid">Add More</button>
         </div>
          </div>
-    
-            
+         <div class="row">
+         <div class="col-md-12">
+             <button class="btn btn-outline-danger mt-2 float-right" (click)="remove()" type="submit"
+            >Revert Last
+            <i class="fas fa-minus fa-xs"></i></button>
+        </div>   
          </div>
-  
 
+      
+  
+</div>
 <div class="modal-footer NotBG">
     <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
         Close
