@@ -3,12 +3,13 @@
 }
 .text-s-md {
   vertical-align: middle;
-  font-size: 20px;
+  font-size: 16px;
   color: rgb(53, 53, 53);
+  font-weight: 400;
 }
 .text {
   color: rgb(255, 255, 255) !important;
-  font-size: 25px;
+  font-size: 20px;
 }
 .headline {
   font-size: 16px;
@@ -20,4 +21,8 @@
   padding: 1.75rem;
   vertical-align: middle;
   border-bottom: 1px solid #dee2e6;
+}
+
+.px-1{
+  padding: 0 8px 0 5px !important;
 }

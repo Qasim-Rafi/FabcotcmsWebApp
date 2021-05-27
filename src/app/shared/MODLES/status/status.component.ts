@@ -40,7 +40,7 @@ export class StatusComponent implements OnInit {
     let varr = {
     
       "reason":this.reason,
-      "enquiryId":this.ContractId,
+      "enquiryId":this.EnquiryId,
       "status":this.action
     }
     

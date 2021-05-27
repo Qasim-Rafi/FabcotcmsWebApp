@@ -190,14 +190,8 @@ export class PaymentFormComponent implements OnInit {
 
 
   addPayment() {
-    // this.data.paymentDate = this.dateformater.toModel(this.data.paymentDate);
-    // this.data.paymentDate = this.dateformater.toModel(this.paymentDateField);
-    // this.data.depositeDate = this.dateformater.toModel(this.depositeDateField);
-
     this.data.paymentDate = this.dateformater.toModel(this.data.paymentDate);
     this.data.depositeDate = this.dateformater.toModel(this.data.depositeDate);
-
-    // this.data.depositeDate = this.dateformater.toModel(this.data.depositeDate);
       let varr = {
        
         "contractId": this.data.contractId,
