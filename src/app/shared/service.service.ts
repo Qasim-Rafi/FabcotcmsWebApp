@@ -170,9 +170,13 @@ export class ServiceService {
   }
   getCapabilities() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/Capabilities`)
-
   }
-
+getAgentSide(){
+  return this.http.get(`${environment.apiUrl}/api/Lookups/AgentSide`)
+}
+getAgentType(){
+  return this.http.get(`${environment.apiUrl}/api/Lookups/AgentType`)
+}
   getPriceTerm() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/PriceTerms`)
 

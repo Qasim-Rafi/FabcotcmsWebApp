@@ -17,7 +17,7 @@ export class AddSellerFormComponent implements OnInit {
   seller: any[];
   country: any = [];
   countryId: null;
-  certification: any = [];
+  certification:any=[];
   capabilities:any=[];
   @ViewChild(NgForm) sellerForm;
   // @ViewChild('sellerName') private elementRef: ElementRef;
@@ -34,7 +34,7 @@ export class AddSellerFormComponent implements OnInit {
   ngOnInit(): void {
     this.getCountry();
     this.getParentSellers();
-    this.GetCertificationDropdown();
+    // this.GetCertificationDropdown();
     this.GetCapabilitiesDropdown();
   }
 
@@ -117,16 +117,8 @@ export class AddSellerFormComponent implements OnInit {
 
 
 
-  addSeller(form:NgForm) {
-
-//     if (form.status == "INVALID") {
-
-//       this.toastr.error("Invalid Form", 'Message.');
-//     }
-
-// else{
+  addSeller() {
     let varr = {
-      "sellerCode": this.data.sellerCode,
       "sellerName": this.data.sellerName,
       "billingAddress": this.data.sellerBillAddress,
       "countryId": this.data.countryId,
@@ -135,13 +127,14 @@ export class AddSellerFormComponent implements OnInit {
       "faxNumber": this.data.sellerFax,
       "ntnNumber": this.data.sellerNTN,
       "gstNumber": this.data.sellerGST,
-      "certificatedeIds": this.data.certificatedeIds !=null?this.data.certificatedeIds.toString():null,
-      "capabilitiesIds": this.data.capabilitiesIds != null ?this.data.capabilitiesIds.toString() : null,
+      "certificatedeIds": this.data.certificatedeIds,
+      "capabilitiesIds": this.data.capabilitiesIds.toString(),
       "majorStrength": this.data.sellerStrenght,
       "leadTime": this.data.leadTime,
       "sellerDetails": this.data.sellerDetails,
       "isParentSeller": this.data.isParentSeller,
-      "parentSellerId": this.data.parentSellerId
+      "parentSellerId": this.data.parentSellerId,
+      "active": true
     }
 
     this.http.
@@ -162,9 +155,7 @@ export class AddSellerFormComponent implements OnInit {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
-          if (err.status == 400) {
-            this.toastr.error(this.response.message, 'Message.');
-          }
+         
         });
   }
 }

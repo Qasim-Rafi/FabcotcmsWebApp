@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { GlobalConstants } from 'src/app/Common/global-constants';
 import { Dateformater } from 'src/app/shared/dateformater';
 import { EnquiryNotesComponent } from 'src/app/shared/MODLES/enquiry-notes/enquiry-notes.component';
+import { StatusComponent } from 'src/app/shared/MODLES/status/status.component';
 import { ServiceService } from 'src/app/shared/service.service';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
@@ -149,6 +150,7 @@ export class ActiveContractDetailComponent implements OnInit {
     });
     this.rows5 = temp;
   }
+  
   searchItems(event) {
     const val = event.target.value.toLowerCase();
     const temp = this.ItemFilter.filter(function (d) {
@@ -378,6 +380,7 @@ PartiesForm() {
     // on close
     if (data == true) {
       this.getContractPartiesData();
+      this.getContractData();
     }
   }, (reason) => {
     // on dismiss
@@ -420,6 +423,8 @@ ProductANDSpecificationForm() {
     // on close
     if (data == true) {
     this.getContractProductData();
+    this.getContractData();
+
 
     }
   }, (reason) => {
@@ -459,7 +464,8 @@ QuantityCosting() {
     // on close
     if (data == true) {
       this.getContractCostingData();
-
+      this.getContractData();
+      
     }
   }, (reason) => {
     // on dismiss
@@ -497,6 +503,8 @@ PaymentDelivery() {
     // on close
     if (data == true) {
       this.getContractPaymentData();
+      this.getContractData();
+
 
     }
   }, (reason) => {
@@ -537,6 +545,8 @@ CommissionKickback() {
     // on close
     if (data == true) {
       this.getContractCommisionData();
+      this.getContractData();
+
 
     }
   }, (reason) => {
@@ -587,6 +597,8 @@ EmployeeCommission(status) {
         this.rows1 = empData;
         // this.listCount= this.rows.length;
       });
+      this.getContractData();
+
 
     }
   }, (reason) => {
@@ -696,6 +708,8 @@ Remarks() {
     // on close
     if (data == true) {
       this.getContractRemarkData();
+      this.getContractData();
+
 
     }
   }, (reason) => {
@@ -786,7 +800,10 @@ ProductionPlanform() {
       this.getContractTnA((Tna)=>{
         this.rows5 = Tna;
       });
+    
+      this.getContractData();
     }
+
   }, (reason) => {
     // on dismiss
   });
@@ -801,6 +818,8 @@ addSaleInvoice(status) {
     // on close
     if (data == true) {
       this.getSaleInvoice();
+      this.getContractData();
+
 
     }
   }, (reason) => {
@@ -819,21 +838,13 @@ editSaleInvoice(status, obj) {
     // on close
     if (data == true) {
       this.getSaleInvoice();
+    this.getContractData();
+
     }
   }, (reason) => {
     // on dismiss
   });
 }
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -849,8 +860,11 @@ Note() {
     if (data == true) {
       this.getAllNotes((NotesData) => {
         this.rows3 = NotesData;
+        this.noteFilter = [...NotesData];
         // this.listCount= this.rows.length;
       });
+    this.getContractData();
+
 
     }
   }, (reason) => {
@@ -868,8 +882,11 @@ ContractNotes(check, name) {
     if (data == true) {
       this.getAllNotes((NotesData) => {
         this.rows3 = NotesData;
+        this.noteFilter = [...NotesData];
         // this.listCount= this.rows.length;
       });
+    this.getContractData();
+
     }
   }, (reason) => {
     // on dismiss
@@ -912,7 +929,8 @@ EditTna(row) {
   const modalRef = this.modalService.open(EditTnaComponent, { centered: true });
   modalRef.componentInstance.contractId = this.contractId;
   // modalRef.componentInstance.id = row.id;
-  modalRef.componentInstance.tnaId = row.id;
+  modalRef.componentInstance.Id = row.id;
+  modalRef.componentInstance.tnaId = row.tnaId;
 
 
   modalRef.result.then((data) => {
@@ -920,7 +938,10 @@ EditTna(row) {
     if (data == true) {
       this.getContractTnA((Tna)=>{
         this.rows5 = Tna;
+        this.TnaFilter = [...Tna];
+  
       });
+
 
     }
   }, (reason) => {
@@ -936,7 +957,10 @@ TnaHistory(row) {
     if (data == true) {
       this.getContractTnA((Tna)=>{
         this.rows5 = Tna;
+        this.TnaFilter = [...Tna];
+  
       });
+
 
     }
   }, (reason) => {
@@ -981,6 +1005,8 @@ AddsaleInvoiceItem(check,value) {
     // on close
     if (data == true) {
       this.getSaleInvoice();
+    this.getContractData();
+
 
     }
   }, (reason) => {
@@ -998,6 +1024,8 @@ EditsaleInvoiceItem(check , obj ) {
     // on close
     if (data == true) {
       this.getSaleInvoice();
+    this.getContractData();
+
 
     }
   }, (reason) => {
@@ -1064,6 +1092,7 @@ addItems(check, name) {
         this.rows2 = itemsData;
         // this.listCount= this.rows.length;
       });
+      this.getContractData();
   
 
 
@@ -1095,6 +1124,7 @@ deleteContractNote(id) {
               this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
               this.getAllNotes((NotesData) => {
                 this.rows3 = NotesData;
+                this.noteFilter = [...NotesData];
                 // this.listCount= this.rows.length;
               });
 
@@ -1123,8 +1153,11 @@ editContractNote(row, check, name) {
     if (data == true) {
       this.getAllNotes((NotesData) => {
         this.rows3 = NotesData;
+        this.noteFilter = [...NotesData];
         // this.listCount= this.rows.length;
       });
+    this.getContractData();
+
     }
   }, (reason) => {
     // on dismiss
@@ -1185,6 +1218,8 @@ editItem(row, check, name) {
       });
   
     }
+    this.getContractData();
+
   }, (reason) => {
     // on dismiss
   });
@@ -1199,8 +1234,15 @@ addShipmentTimeline(check) {
     if (data == true) {
       this.getAllShipmentDates((shipmentData) => {
         this.rows4 = shipmentData;
-        // this.listCount= this.rows.length;
+       
       });
+      this.getAllShipmentDates((shipmentData) => {
+        this.rows4 = shipmentData;
+        this.shipmentFilter = [...shipmentData];
+  
+      });
+    this.getContractData();
+
   
 
 
@@ -1222,6 +1264,13 @@ EditShipmentTimeline(check , row) {
         this.rows4 = shipmentData;
         // this.listCount= this.rows.length;
       });
+      this.getAllShipmentDates((shipmentData) => {
+        this.rows4 = shipmentData;
+        this.shipmentFilter = [...shipmentData];
+  
+      });
+    this.getContractData();
+
     }
   }, (reason) => {
     // on dismiss
@@ -1269,31 +1318,27 @@ deleteShipmentTimeline(id) {
 
 
 
-UpdateContractStatus(status)
-{ 
-  let varr ={}
 
-  this.http.
-  put(`${environment.apiUrl}/api/Contracts/UpdateContractStatus/`+this.contractId + `/`+ status , varr)
-  .subscribe(
-    res=> { 
 
-      this.response = res;
-      if (this.response.success == true){
-        this.toastr.success(this.response.message, 'Message.');
-     
-      }
-      else {
-        this.toastr.error('Something went Worng', 'Message.');
+ statusform(status,action,component) {
+        const modalRef = this.modalService.open(StatusComponent, { centered: true });
+        // modalRef.componentInstance.parentBuyerId = popup.id;
+        modalRef.componentInstance.ContractId = this.contractId;
+        modalRef.componentInstance.statusCheck = status;
+        modalRef.componentInstance.action = action;
+        modalRef.componentInstance.component = component;
+        modalRef.result.then((data) => {
+          // on close
+          if (data == true) {
+          
+    
           }
-
-    }, err => {
-      if (err.status == 400) {
-        this.toastr.error('Something went Worng', 'Message.');
+        }, (reason) => {
+          // on dismiss
+        });
       }
-    });
-}
-
+    
+    
 
 
 

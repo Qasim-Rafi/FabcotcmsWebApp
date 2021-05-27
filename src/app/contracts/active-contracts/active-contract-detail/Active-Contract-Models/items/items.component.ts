@@ -80,6 +80,9 @@ export class ItemsComponent implements OnInit {
 
 
   UpdateItem() {
+
+
+
     let varr = {
       "description": this.data.description,
       "contractId": this.contractId,
@@ -184,7 +187,16 @@ export class ItemsComponent implements OnInit {
     })
   }
 
-  addItem() {
+  addItem(form:NgForm) {
+
+
+   if(form.status =="INVALID"){
+
+      this.toastr.error("Kindly Fill the Required Fields", 'Message.');
+    }
+
+    else{
+
     let varr = {
       "description": this.data.description,
       "contractId": this.contractId,
@@ -225,11 +237,10 @@ export class ItemsComponent implements OnInit {
         }, (err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
-          console.log(messages);
-          if (err.status == 400) {
-            this.toastr.error(this.response.message, 'Message.');
-          }
+
         });
 
   }
-  }
+}
+}
+  

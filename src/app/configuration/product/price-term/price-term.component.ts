@@ -233,7 +233,7 @@ export class PriceTermComponent implements OnInit {
             widths: [30, 100, 80, 50, 150],
             body: [
               ['S.no.', 'Price Term', 'Details', 'Status', 'Update Date Time | Updated By'],
-              ...this.data.map(row => (
+              ...this.rows.map(row => (
                 [row.id, row.term, row.description, row.active == true ? "Active" : "In-Active",
                 row.updatedDateTime + '|' + row.updatedByName
                 ]

@@ -317,7 +317,8 @@
                                         <label for="inputEmail3" class="col-md-3 col-form-label control-label">Total Quantity</label>
                                         <div class="col-md-3">
                                             <div class="input-group">
-                                                <input class="form-control" type="number" min="0"
+                                                <input class="form-control" type="number" min="0" required #totalQuantity="ngModel"
+                                                [ngClass]="{ error: totalQuantity.invalid }"
                                                     [(ngModel)]="enquiryData.totalQuantity" name="totalQuantity" />
                                             </div>
                                         </div>
@@ -477,7 +478,7 @@
                                 <div class="col-md-6">
                                     <form action="simple-results.html">
                                         <div class="input-group input-group-sm">
-                                            <input type="search" class="form-control" placeholder="Type your keywords here">
+                                            <input type="search" class="form-control" placeholder="Item Description here..." (keyup)="itemSearch($event)">
                                             <div class="input-group-append">
                                                 <button type="submit" class="btn btn-default">
                                                     <i class="fa fa-search"></i>
@@ -787,7 +788,8 @@
                                         <div class="col-md-6">
                                             <div class="input-group"> 
                                                 <input class="form-control " ngbDatepicker #validityDate="ngbDatepicker" [minDate]="{year: 2000, month: 1, day: 1}"
-                                                    (click)="validityDate.toggle()" [(ngModel)]="enquiryData.confirmationDate" name="confirmationDate" />
+                                                    (click)="validityDate.toggle()" [(ngModel)]="enquiryData.confirmationDate" name="confirmationDate" #confirmationDate="ngModel"
+                                                    [ngClass]="{ error: confirmationDate.invalid }"/>
                                             </div>
                                         </div>
                                     </div>
@@ -844,7 +846,7 @@
                         
                                     <form action="simple-results.html">
                                         <div class="input-group input-group-sm">
-                                            <input type="search" class="form-control" placeholder="Search">
+                                            <input type="search" class="form-control" placeholder="Search" (keyup)="noteSearch($event)">
                                             <div class="input-group-append">
                                                 <button type="submit" class="btn btn-default">
                                                     <i class="fa fa-search"></i>
@@ -857,7 +859,7 @@
                             </div>
                         
 
-                                <ngx-datatable #myTable class="bootstrap mt-3" [columns]="columns" [rows]="rows" [columnMode]="'force'"
+                                <ngx-datatable #myTable class="bootstrap mt-3" [columns]="columns" [rows]="rows1" [columnMode]="'force'"
                                 [headerHeight]="10" [footerHeight]="50"  [rowHeight]="'auto'" [limit]="6">  
 
                                 <ngx-datatable-column name="User" [width]="5">
@@ -891,10 +893,7 @@
                                   <button type="button" class="btn deleteIconBack" (click)="deleteNote(row)">
                                       <i class="far fa-trash-alt"></i>
                                   </button>
-                        
                                     </div>
-                        
-    
                                   </ng-template>
                                 </ngx-datatable-column>
                         
@@ -1033,23 +1032,23 @@
         
                 </button>
 
-                <button class="btn btn-warning btn-block btn-lg text-center  " (click)="UpdateEnquiryStatus('OnHold')">
+                <button class="btn btn-warning btn-block btn-lg text-center  " (click)=" statusform('EnquiryOnHold','OnHold','enquiry')">
         
                     <i class="fas fa-level-down-alt fa-md"></i>
                     <span class="ml-2 text-small"> Enquiry On-hold </span>
         
                 </button>
 
-                <button class="btn btn-danger btn-block btn-lg text-center " (click)="UpdateEnquiryStatus('OnHold')">
+                <button class="btn btn-danger btn-block btn-lg text-center " (click)=" statusform('EnquiryCancle','Cancel','enquiry')">
         
                     <i class="far fa-trash-alt fa-md"></i>
-                    <span class="ml-2 text-small"> Enquiry cancel </span>
+                    <span class="ml-2 text-small"> Enquiry Cancel </span>
         
                 </button>
-                <button class="btn btn-info btn-block btn-lg text-center " (click)="UpdateEnquiryStatus('OnHold')" >
+                <button class="btn btn-info btn-block btn-lg text-center " (click)=" statusform('EnquiryArchived', 'Archive','enquiry')" >
         
                     <i class="fas fa-file-archive fa-md"></i>
-                    <span class="ml-2 text-small "> Enquiry Archived </span>
+                    <span class="ml-2 text-small "> Enquiry Archive </span>
         
                 </button>
                 <button class="btn btn-primary btn-block btn-lg text-center " (click)="GenerateContract()"

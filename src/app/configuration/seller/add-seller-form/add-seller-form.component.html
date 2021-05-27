@@ -11,7 +11,7 @@
   </h5>
 </div>
 <div class="modal-body BG p-0">
-  <form #sellerForm="ngForm" novalidate (ngSumbit)="addSeller(sellerForm)">
+  <form #sellerForm="ngForm" novalidate >
 
     <div class="col-md-12 pt-3 pb-2">
 
@@ -19,12 +19,12 @@
         <label for="sellerName" class="col-sm-3 col-form-label text_Navy">Seller Name<span
             class="required-denote">*</span></label>
         <div class="col-sm-8">
-          <input appAutofocus required maxlength="60" id="sellerName" class="form-control" placeholder="Seller name"
-            name="sellerName" [(ngModel)]="data.sellerName" #name="ngModel"
-            [ngClass]="{ error: sellerForm.submitted  && name.invalid }" />
+          <input appAutofocus required maxlength="60" type="text" class="form-control" placeholder="Seller name"
+            name="sellerName" [(ngModel)]="data.sellerName" #sellerName="ngModel"
+            [ngClass]="{ error: sellerForm.submitted  && sellerName.invalid }" />
         </div>
       </div>
-
+  
       <div class="form-group row">
         <label for="sellerBillAddress" class="col-sm-3 col-form-label">Billing Address</label>
         <div class="col-sm-8">
@@ -48,7 +48,7 @@
           </ng-select>
         </div>
       </div>
-
+  
       <div class="form-group row">
         <label for="sellerContact" class="col-sm-3 col-form-label">Contact Nos.</label>
         <div class="col-sm-8">
@@ -99,26 +99,28 @@
       </div>
 
       <div class="form-group row">
-        <label for="inputEmail3" class="col-sm-3 col-form-label">Certificate(s)</label>
+        <label for="certificatedeIds" class="col-sm-3 col-form-label">Certificate(s)</label>
         <div class="col-sm-8">
-          <ng-select [multiple]="true" name="certificatedeIds" class="input-w1 px-0" [(ngModel)]="data.certificatedeIds"
-            placeholder="-- Select --">
+          <ng-select [multiple]="true" [(ngModel)]="data.certificatedeIds" placeholder="-- Select --" name="certificatedeIds"
+            #certificatedeIds="ngModel">
             <ng-option *ngFor="let i of certification" [value]="i.id">{{ i.name }}
             </ng-option>
           </ng-select>
         </div>
       </div>
+ 
 
       <div class="form-group row">
-        <label for="inputEmail3" class="col-sm-3 col-form-label">Capabilities</label>
+        <label for="capabilitiesIds" class="col-sm-3 col-form-label">Capabilities</label>
         <div class="col-sm-8">
-          <ng-select [multiple]="true" name="capabilitiesIds" class="input-w1 px-0" [(ngModel)]="data.capabilitiesIds"
-            placeholder="-- Select --">
+          <ng-select [multiple]="true" [(ngModel)]="data.capabilitiesIds" placeholder="-- Select --" name="capabilitiesIds"
+            #capabilitiesIds="ngModel">
             <ng-option *ngFor="let i of capabilities" [value]="i.id">{{ i.name }}
             </ng-option>
           </ng-select>
         </div>
       </div>
+
 
       <div class="form-group row">
         <label for="sellerStrenght" class="col-sm-3 col-form-label">Major Strenghts</label>
@@ -171,7 +173,7 @@
         (click)="activeModal.close()">
         Close
       </button>
-      <button type="submit" class="btn button-save">
+      <button type="submit" class="btn button-save" (click)="addSeller()">
         Save Seller
       </button>
     </div>
