@@ -13,6 +13,7 @@ import { Dateformater } from 'src/app/shared/dateformater';
 import Swal from 'sweetalert2';
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
+import { StatusComponent } from 'src/app/shared/MODLES/status/status.component';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 @Component({
   selector: 'app-edit-active-enquiry',
@@ -28,6 +29,7 @@ export class EditActiveEnquiryComponent implements OnInit {
   remarksToggle: boolean = false;
   reminderToggle: boolean = false;
   rows: any = [];
+  rows1: any = [];
   columns: any = [];
   queryParems: any = {};
   objEnquiry: any = {};
@@ -36,6 +38,7 @@ export class EditActiveEnquiryComponent implements OnInit {
   response: any;
   enquiryData: any = [];
   temp: any[];
+  // temp2: any[];
   article: any = [];
   buyer: any = [];
   process: any = [];
@@ -100,12 +103,42 @@ export class EditActiveEnquiryComponent implements OnInit {
       // this.getAllEnquiryItems();
 
 
-      this.fetch((data) => {
-        this.rows = data;
+      this.fetch((NotesData) => {
+        this.rows1 = NotesData;
+        this.noteFilter = [...NotesData];
         // this.listCount= this.rows.length;
       });
 
   }
+
+
+
+
+
+
+  itemSearch(event) {
+    const val = event.target.value.toLowerCase();
+
+    const temp = this.temp.filter(function (d) {
+      return (
+        d.description.toLowerCase().indexOf(val) !== -1 || !val);
+    });
+    this.enquiryData.enquiryItemList = temp;
+
+  }
+
+
+
+  noteSearch(event) {
+    const val = event.target.value.toLowerCase();
+
+    const temp = this.noteFilter.filter(function (d) {
+      return (d.description.toLowerCase().indexOf(val) !== -1 || !val);
+    });
+    this.rows1 = temp;
+
+  }
+
 
   getEnquiryData(row) {
     this.http.get(`${environment.apiUrl}/api/Enquiries/GetEnquiryById/` + row)
@@ -121,10 +154,7 @@ export class EditActiveEnquiryComponent implements OnInit {
             {
               this.enquiryData.totalQuantity = "";
             }
-            this.fetch((data) => {
-              this.rows = data;
-              // this.listCount= this.rows.length;
-            });
+            this.temp = [...this.enquiryData.enquiryItemList];
          
           }
           else {
@@ -149,6 +179,7 @@ export class EditActiveEnquiryComponent implements OnInit {
     if(this.response.success==true)
     {
     this.noteList =this.response.data;
+    this.noteFilter = [this.noteList]; 
     cb(this.noteList);
     }
     else{
@@ -634,7 +665,11 @@ export class EditActiveEnquiryComponent implements OnInit {
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        this.getEnquiryData(this.objEnquiry);
+        this.fetch((NotesData) => {
+          this.rows1 = NotesData;
+          this.noteFilter = [...NotesData];
+          // this.listCount= this.rows.length;
+        });
 
       }
     }, (reason) => {
@@ -652,7 +687,11 @@ export class EditActiveEnquiryComponent implements OnInit {
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        this.getEnquiryData(this.objEnquiry);
+        this.fetch((NotesData) => {
+          this.rows1 = NotesData;
+          this.noteFilter = [...NotesData];
+          // this.listCount= this.rows.length;
+        });
 
       }
     }, (reason) => {
@@ -761,7 +800,11 @@ export class EditActiveEnquiryComponent implements OnInit {
               this.response = res;
               if (this.response.success == true) {
                 this.toastr.error(this.response.message, 'Message.');
-                this.getEnquiryData(this.objEnquiry);
+                this.fetch((NotesData) => {
+                  this.rows1 = NotesData;
+                  this.noteFilter = [...NotesData];
+                  // this.listCount= this.rows.length;
+                });
 
               }
               else {
@@ -932,7 +975,7 @@ export class EditActiveEnquiryComponent implements OnInit {
       AddReminder() {
         Swal.fire({
           title: 'Reminder', //'Are you sure?',
-          text: 'Your has been set for the Enquiry no. FG-011 on 03/03/2019 ' ,
+          text: 'Your Reminder has been set for the Enquiry no. '+ this.enquiryData.autoEnquiryNumber ,
           icon: 'success',
           showCancelButton: false,
           confirmButtonColor: '#1ab394  ',
@@ -1052,32 +1095,27 @@ export class EditActiveEnquiryComponent implements OnInit {
 
 
 
-      UpdateEnquiryStatus(status)
-      { 
-        let varr ={}
 
-        this.http.
-        put(`${environment.apiUrl}/api/Enquiries/UpdateEnquiryStatus/`+this.objEnquiry + `/`+ status , varr)
-        .subscribe(
-          res=> { 
-      
-            this.response = res;
-            if (this.response.success == true){
-              this.toastr.success(this.response.message, 'Message.');
-           
-            }
-            else {
-              this.toastr.error('Something went Worng', 'Message.');
-                }
+
+      statusform(status,action,component) {
+        const modalRef = this.modalService.open(StatusComponent, { centered: true });
+        // modalRef.componentInstance.parentBuyerId = popup.id;
+        modalRef.componentInstance.EnquiryId = this.objEnquiry;
+        modalRef.componentInstance.statusCheck = status;
+        modalRef.componentInstance.action = action;
+        modalRef.componentInstance.component = component;
+        modalRef.result.then((data) => {
+          // on close
+          if (data == true) {
+          
     
-          }, err => {
-            if (err.status == 400) {
-              this.toastr.error('Something went Worng', 'Message.');
-            }
-          });
+          }
+        }, (reason) => {
+          // on dismiss
+        });
       }
     
-
+    
 
 
 

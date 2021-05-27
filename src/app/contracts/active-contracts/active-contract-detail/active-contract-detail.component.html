@@ -131,12 +131,12 @@
                     <i class="far fa-trash-alt"></i>
                     Delete
                 </button>
-                <button class="btn btn-danger border-rounded px-3 mr-2" (click)="UpdateContractStatus('Closed')">
+                <button class="btn btn-danger border-rounded px-3 mr-2" (click)="statusform('ContractCancel','Cancel','contract')">
                     <i class="fas fa-times"></i>
                     Cancle
                 </button>
                 <button class="btn btn-warning border-rounded px-3 mr-2 text-white"
-                    (click)="UpdateContractStatus('OnHold')">
+                    (click)="statusform('ContractOnHold','OnHold','contract')">
                     <i class="fas fa-level-down-alt"></i>
                     On-Hold
                 </button>
@@ -145,7 +145,7 @@
                     Revised
                 </button>
                 <button class="btn btn-outline-primary border-rounded px-3 mr-2"
-                    (click)="UpdateContractStatus('Closed')">
+                    (click)="statusform('ContractClosed','Closed','contract')">
                     <i class="fas fa-check"></i>
                     Closed
                 </button>
@@ -977,7 +977,7 @@
                                     </ngx-datatable-column>
                                     <ngx-datatable-column name="Loom Type" prop="loomTypeId" [width]="80">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                            {{ row.loomTypeId }}
+                                            {{ row.loomTypeName }}
                                         </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column name="Sizes" prop="size" [width]="80">
