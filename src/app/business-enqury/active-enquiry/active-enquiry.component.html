@@ -32,9 +32,9 @@
       <button type="button" class="btn btn-tool" data-card-widget="maximize">
         <i class="fas fa-expand"></i>
       </button>
-      <button type="button" class="btn btn-tool" data-card-widget="remove">
+      <!-- <button type="button" class="btn btn-tool" data-card-widget="remove">
         <i class="fas fa-times"></i>
-      </button>
+      </button> -->
     </div>
 
   </div>
@@ -46,10 +46,10 @@
 
       <div class="col-6 col-md-3 col-lg-6 col-xl-3 active-enqury-pdg">
         <button type="button" class="btn btn-primary text ">
-          <i class="fas fa-phone px-1"></i>
+          <i class="fas fa-phone-alt px-1"></i>
           <span class="text-muted text ml-1 ">{{listCount}}</span>
         </button>
-        <span class="text-muted text-s-md  ml-2">Active</span>
+        <span class="text-s-md  ml-2">Active</span>
       </div>
 
       <div class="col-6 col-md-3 col-lg-6 col-xl-3 active-enqury-pdg">
@@ -57,23 +57,25 @@
           <i class="far fa-check-circle px-1"></i>
           <span class="text-muted text ml-1">{{confirmedCount}}</span>
         </button>
-        <span class="text-muted text-s-md  ml-2">Confirmed</span>
+        <span class="text-s-md  ml-2">Confirmed</span>
       </div>
 
       <div class="col-6 col-md-3 col-lg-6 col-xl-3 active-enqury-pdg">
         <button type="button" class="btn btn-danger m-r-sm text ">
-          <i class="far fa-window-close px-1"></i>
+          <!-- <i class="far fa-window-close px-1"></i> -->
+          <i class="far fa-file-archive  px-1"></i>
           <span class="text-muted text ml-1">{{closedCount}}</span>
         </button>
-        <span class="text-muted text-s-md  ml-2">Closed</span>
+        <span class="text-s-md  ml-2">Closed</span>
       </div>
 
       <div class="col-6 col-md-3 col-lg-6 col-xl-3 active-enqury-pdg">
         <button type="button" class="btn btn-secondary m-r-sm text ">
-          <i class="fas fa-mug-hot px-1"></i>
+          <!-- <i class="fas fa-mug-hot px-1"></i> -->
+          <i class="fas fa-level-down-alt px-1"></i>
           <span class="text-muted text ml-1">{{onHoldCount}}</span>
         </button>
-        <span class="text-muted text-s-md  ml-2">On-Hold</span>
+        <span class="text-s-md  ml-2">On-Hold</span>
       </div>
 
  
@@ -88,48 +90,56 @@
         </div>
       </div> -->
 
-      <div class="col-md-12 mt-4">
-        <button type="button" class="btn btn-primary float-right mrg-tsm" (click)=" navigateAddEnquiry()">
+      <div class="row">
+      <div class="col-md-12 mt-3 mb-4">
+        <button type="button" class="btn btn-primary btn-sm float-right mrg-tsm" (click)=" navigateAddEnquiry()">
           <i class="fa fa-plus"></i> Add New Enqury</button>
-        </div>
+      </div>
+    </div>
+
+          
           <div class="row">
-          <div class="col-md-12 mb-4">
-            <div class="row justify-content-end">
-              <div class="col-md-4">
-                <div class="input-group col-md-offset-3">
-                  <input type="text" placeholder="Enquiry Number" class="input form-control w-50"
-                    (keyup)="updateFilter($event)" />
+            <div class="col-md-12 mb-3">
+              <div class="row justify-content-end">
+
+                <div class="col-md-4 pr-0">
+
+                  <div class="form-group row">
+                    <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
+                    <div class="col-sm-9">
+                      <input type="text" placeholder="Enquiry Number" class="input form-control form-control-sm"
+                      (keyup)="updateFilter($event)" />
+                    </div>
                 </div>
-              </div>
-  
-              <div class="html5buttons mrg-tsm">
-                <div class="dt-buttons btn-group">
-                  <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0"
-                    aria-controls="DataTables_Table_0" ngxClipboard
-                    (click)="copyEnquiryList()"
+
+
+                  <!-- <div class="input-group col-md-offset-3">
+                    
+                    <input type="text" placeholder="Enquiry Number" class="input form-control w-50"
+                      (keyup)="updateFilter($event)" />
+                    
+                  </div> -->
+                </div>
+          
+                <div class="html5buttons mrg-tsm">
+                  <div class="dt-buttons btn-group btn-group-sm ">
+                    <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0" aria-controls="DataTables_Table_0"
+                      ngxClipboard (click)="copyEnquiryList()"><span>Copy</span>
+                    </a>
+                    <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0" aria-controls="DataTables_Table_0"
+                      (click)="activeEnquiryCsvFile()"><span>CSV</span></a>
+                    <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
+                      (click)="activeEnquiryExcelFile()" aria-controls="DataTables_Table_0"><span>Excel</span></a>
+                    <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0" aria-controls="DataTables_Table_0"
+                      (click)="enquiryPdf()"><span>PDF</span></a>
+                    <a class="btn btn-default buttons-print bg-white" tabindex="0" (click)="printactiveEnquiryList()"
+                      aria-controls="DataTables_Table_0"><span>Print</span></a>
+                  </div>
+                </div>
                 
-                    ><span>Copy</span>
-                  </a>
-                  <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
-                    aria-controls="DataTables_Table_0"
-                   (click)="activeEnquiryCsvFile()"
-                    ><span>CSV</span></a>
-                  <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
-                  (click)="activeEnquiryExcelFile()"
-                    aria-controls="DataTables_Table_0" ><span>Excel</span></a>
-                  <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0"
-                    aria-controls="DataTables_Table_0"
-                    (click)="enquiryPdf()"
-                    ><span>PDF</span></a>
-                  <a class="btn btn-default buttons-print bg-white" tabindex="0"
-                  (click)="printactiveEnquiryList()"  
-                  aria-controls="DataTables_Table_0"
-                    ><span>Print</span></a>
-                </div>
               </div>
             </div>
           </div>
-        </div>
      
     
     <div class="panel-body">
