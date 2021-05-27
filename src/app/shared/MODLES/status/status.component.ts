@@ -37,10 +37,15 @@ export class StatusComponent implements OnInit {
 
   UpdateEnquiryStatus()
   { 
-     let varr = {"reason":this.reason}
+    let varr = {
+    
+      "reason":this.reason,
+      "enquiryId":this.ContractId,
+      "status":this.action
+    }
     
     this.http.
-    put(`${environment.apiUrl}/api/Enquiries/UpdateEnquiryStatus/`+this.EnquiryId + `/`+ this.action , varr)
+    put(`${environment.apiUrl}/api/Enquiries/UpdateEnquiryStatus`, varr)
     .subscribe(
       res=> { 
   
@@ -66,10 +71,15 @@ export class StatusComponent implements OnInit {
 
   UpdateContractStatus()
 { 
-  let varr = {"reason":this.reason}
+  let varr = {
+    
+    "reason":this.reason,
+    "contractId":this.ContractId,
+    "status":this.action
+  }
 
   this.http.
-  put(`${environment.apiUrl}/api/Contracts/UpdateContractStatus/`+this.ContractId + `/`+ this.action , varr)
+  put(`${environment.apiUrl}/api/Contracts/UpdateContractStatus`, varr)
   .subscribe(
     res=> { 
 
