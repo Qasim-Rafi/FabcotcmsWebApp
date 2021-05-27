@@ -920,45 +920,106 @@
     <!-- --------------------------------------------------- -->
     <div class="col-md-3">
     
-        <div class=" clearfix ibox-content p-3">
-            
-           <span class="float-left"> Next Follow-Up </span>
 
-            
-    
-            <div [ngClass]="{ noDisplay : reminderToggle==true }">
-                <button class="btn btn-outline-secondary float-right btn-xs " ><i
-                        class="fas fa-sync"></i> </button>
-                <button class="btn btn-primary float-right btn-xs mx-1" (click)="reminderToggle = !reminderToggle "><i
-                        class="fas fa-edit "></i> </button>
-            
-                        <div  *ngFor="let reminder of enquiryData.enquiryFollowUpList "> 
+      
 
-                            <div class=" text_Navy h3">
 
-                            {{reminder.followUpDateToDisplay}}
+        <div class="ibox-content p-3">
+        
+            <div class="row mb-2">
 
-                            <button type="button" class="btn deleteIconBack" data-toggle="tooltip" data-placement="top"
-                            title="" data-original-title="Delete" (click)="deleteReminder(reminder)">
-                            <i class="far fa-trash-alt"></i>
-                        </button>
-                        </div>
-                        </div>
-                        
+                <div class="col-md-6">
+                    <span> Next Follow-Up </span>
+                </div>
+
+                <div class="col-md-6">
+
+                    <div [ngClass]="{ noDisplay : reminderToggle==true }">
+                        <button class="btn btn-outline-secondary float-right btn-xs "><i class="fas fa-sync"></i> </button>
+                        <button class="btn btn-primary float-right btn-xs mx-1" (click)="reminderToggle = !reminderToggle ">
+                            <i class="fas fa-edit "></i> </button>       
                     </div>
-    
-            <div [ngClass]="{ noDisplay : reminderToggle==false }">
-            
-                <button class="btn btn-white float-right btn-xs" (click)="reminderToggle = !reminderToggle "><i class="fas fa-times"></i> </button>
-                <button class="btn btn-primary float-right btn-xs" (click)="reminderToggle = !reminderToggle; AddReminder() "><i class="fas fa-check"></i> </button>
-            
 
-                <input class="form-control " ngbDatepicker #reminderDate="ngbDatepicker" (click)="reminderDate.toggle()" placeholder="Reminder"
-                    [displayMonths]="1" [(ngModel)]="enquiryData.followUpDate" />
+                    <div [ngClass]="{ noDisplay : reminderToggle==false }">
+                        <button class="btn btn-white float-right btn-xs" (click)="reminderToggle = !reminderToggle "><i
+                                class="fas fa-times"></i> </button>
+                        <button class="btn btn-primary float-right btn-xs" (click)="reminderToggle = !reminderToggle; AddReminder() ">
+                            <i class="fas fa-check"></i> </button>
+                    </div>
+                    
+                </div>
 
             </div>
-    
+
+            <div class="row">
+                <div class="col-md-12">
+                <div [ngClass]="{ noDisplay : reminderToggle==false }">
+                        <input class="form-control" ngbDatepicker #reminderDate="ngbDatepicker" (click)="reminderDate.toggle()"
+                            placeholder="Reminder" [displayMonths]="1" [(ngModel)]="enquiryData.followUpDate" />
+                    </div>
+                </div>
+
+
+                <div class="col-md-12">
+                    <div *ngFor="let reminder of enquiryData.enquiryFollowUpList ">
+                        <div class=" text_Navy h4 mb-0">
+            
+                            {{reminder.followUpDateToDisplay}}
+            
+                            <button type="button" class="btn deleteIconBack" data-toggle="tooltip" data-placement="top" title=""
+                                data-original-title="Delete" (click)="deleteReminder(reminder)">
+                                <i class="far fa-trash-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div> 
+        
         </div>
+
+
+        <!-- <div class=" clearfix ibox-content p-3 mt-3">
+        
+            <span class="float-left"> Next Follow-Up </span>
+        
+        
+        
+            <div [ngClass]="{ noDisplay : reminderToggle==true }">
+                <button class="btn btn-outline-secondary float-right btn-xs "><i class="fas fa-sync"></i> </button>
+                <button class="btn btn-primary float-right btn-xs mx-1" (click)="reminderToggle = !reminderToggle ">
+                    <i class="fas fa-edit "></i> </button>
+        
+                <div *ngFor="let reminder of enquiryData.enquiryFollowUpList ">
+                    <div class=" text_Navy h3">
+        
+                        {{reminder.followUpDateToDisplay}}
+        
+                        <button type="button" class="btn deleteIconBack" data-toggle="tooltip" data-placement="top" title=""
+                            data-original-title="Delete" (click)="deleteReminder(reminder)">
+                            <i class="far fa-trash-alt"></i>
+                        </button>
+                    </div>
+                </div>
+        
+            </div>
+        
+            <div [ngClass]="{ noDisplay : reminderToggle==false }">
+        
+                <button class="btn btn-white float-right btn-xs" (click)="reminderToggle = !reminderToggle "><i
+                        class="fas fa-times"></i> </button>
+                <button class="btn btn-primary float-right btn-xs" (click)="reminderToggle = !reminderToggle; AddReminder() ">
+                    <i class="fas fa-check"></i> </button>
+        
+        
+                    
+                <input class="form-control" ngbDatepicker #reminderDate="ngbDatepicker" (click)="reminderDate.toggle()"
+                    placeholder="Reminder" [displayMonths]="1" [(ngModel)]="enquiryData.followUpDate" />
+        
+                
+            </div>
+        
+        </div> -->
 
 
         <!---------- Time Spent ---------->
