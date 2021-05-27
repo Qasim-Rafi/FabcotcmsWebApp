@@ -55,8 +55,11 @@ export class ArticlesComponent implements OnInit {
     const val = event.target.value.toLowerCase();
 
     const temp = this.articleFilter.filter(function (d) {
-      return (d.code.toLowerCase().indexOf(val) !== -1 ||
-        d.name.toLowerCase().indexOf(val) !== -1 || !val);
+      return (
+        // d.code.toLowerCase().indexOf(val) !== -1 ||
+        d.name.toLowerCase().indexOf(val) !== -1 ||
+        // d.genericName.toLowerCase().indexOf(val) !== -1 || 
+        !val);
     });
     this.rows = temp;
   }
