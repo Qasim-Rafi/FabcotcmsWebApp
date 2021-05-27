@@ -95,19 +95,6 @@
               {{ row.name }}
             </ng-template>
           </ngx-datatable-column>
-   
-        
-
-          
-         
-
-  
-          <ngx-datatable-column name="Created On |Created By" [width]="80" prop="date" [flexGrow]="0.07" >
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{ row.createdDateTime }} | {{ row.createdByName }}
-            </ng-template>
-          </ngx-datatable-column>
-  
           <ngx-datatable-column name="Action" [width]="80" prop="code" [flexGrow]="0.03">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
   

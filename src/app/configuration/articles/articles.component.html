@@ -104,7 +104,7 @@
         [limit]="6">
 
 
-        <ngx-datatable-column name="S. No." [width]="5" prop="">
+        <ngx-datatable-column name="S. No." [width]="5" prop="id">
           <ng-template let-rowIndex="rowIndex" let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{rowIndex + 1}}
 
@@ -129,7 +129,7 @@
           </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column name="Status" [width]="5" prop="status">
+        <ngx-datatable-column name="Status" [width]="5" prop="active">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
 
             <span class="badge badge-primary" *ngIf="row.active==true">Active</span>
@@ -151,7 +151,7 @@
           </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column name="Last Updated By" [width]="80" prop="modifiedBy">
+        <ngx-datatable-column name="Last Updated By" [width]="80" prop="createdByName">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.createdByName}}
           </ng-template>
