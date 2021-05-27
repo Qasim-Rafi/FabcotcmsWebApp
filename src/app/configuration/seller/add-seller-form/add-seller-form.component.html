@@ -48,18 +48,7 @@
           </ng-select>
         </div>
       </div>
-      <!-- <div class="form-group row">
-        <label for="countryId" class="col-sm-3 col-form-label">Country<span class="required-denote">*</span></label>
-        <div class="col-sm-8">
-          <ng-select [(ngModel)]="data.countryId" required placeholder="-- Select --" name="countryId"
-            #countryId="ngModel" [ngClass]="{ error: sellerForm.submitted && countryId.invalid }">
-            <ng-option *ngFor="let i of country" [value]="i.id">{{ i.name }}
-              <span *ngIf="i.details !=null" class="text-muted" style="font-size: 11px">({{ i.details }})</span>
-            </ng-option>
-          </ng-select>
-        </div>
-      </div> -->
-
+  
       <div class="form-group row">
         <label for="sellerContact" class="col-sm-3 col-form-label">Contact Nos.</label>
         <div class="col-sm-8">
@@ -110,39 +99,28 @@
       </div>
 
       <div class="form-group row">
-        <label for="inputEmail3" class="col-sm-3 col-form-label">Certificate(s)</label>
+        <label for="certificatedeIds" class="col-sm-3 col-form-label">Certificate(s)</label>
         <div class="col-sm-8">
-          <ng-select [multiple]="true" name="certificatedeIds"
-          #certificatedeIds="ngModel"
-           class="input-w1 px-0" [(ngModel)]="data.certificatedeIds"
-            placeholder="-- Select --">
+          <ng-select [multiple]="true" [(ngModel)]="data.certificatedeIds" placeholder="-- Select --" name="certificatedeIds"
+            #certificatedeIds="ngModel">
             <ng-option *ngFor="let i of certification" [value]="i.id">{{ i.name }}
             </ng-option>
           </ng-select>
         </div>
       </div>
- <!-- <div class="form-group row">
-        <label for="countryId" class="col-sm-3 col-form-label">Country<span class="required-denote">*</span></label>
-        <div class="col-sm-8">
-          <ng-select [(ngModel)]="data.countryId" required placeholder="-- Select --" name="countryId"
-            #countryId="ngModel" [ngClass]="{ error: sellerForm.submitted && countryId.invalid }">
-            <ng-option *ngFor="let i of country" [value]="i.id">{{ i.name }}
-              <span *ngIf="i.details !=null" class="text-muted" style="font-size: 11px">({{ i.details }})</span>
-            </ng-option>
-          </ng-select>
-        </div>
-      </div> -->
+ 
+
       <div class="form-group row">
-        <label for="inputEmail3" class="col-sm-3 col-form-label">Capabilities</label>
+        <label for="capabilitiesIds" class="col-sm-3 col-form-label">Capabilities</label>
         <div class="col-sm-8">
-          <ng-select #capabilitiesIds="ngModel"
-           name="capabilitiesIds" class="input-w1 px-0" [(ngModel)]="data.capabilitiesIds"
-            placeholder="-- Select --">
+          <ng-select [multiple]="true" [(ngModel)]="data.capabilitiesIds" placeholder="-- Select --" name="capabilitiesIds"
+            #capabilitiesIds="ngModel">
             <ng-option *ngFor="let i of capabilities" [value]="i.id">{{ i.name }}
             </ng-option>
           </ng-select>
         </div>
       </div>
+
 
       <div class="form-group row">
         <label for="sellerStrenght" class="col-sm-3 col-form-label">Major Strenghts</label>
