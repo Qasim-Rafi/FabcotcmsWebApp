@@ -17,6 +17,7 @@ export class EnquiryItemsComponent implements OnInit {
   @Input() EnquiryId;
   @Input() EnquiryItemId;
   data: any = [{id:0}];
+  data1: any = [{id:1}];
   response: any;
   uomList: any = [];
   color: any = [];
@@ -63,7 +64,9 @@ export class EnquiryItemsComponent implements OnInit {
       id: this.data.length,
     });
   }
-
+  remove() {
+    this.data.splice(this.data.i, 1);
+  }
   GetUOMDropdown() {
     this.service.getUOM().subscribe(res => {
       this.response = res;
