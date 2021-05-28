@@ -65,12 +65,13 @@ export class ActiveBillsComponent implements OnInit {
       this.listCount = this.rows.length;
     });
   }
-
   search(event) {
     const val = event.target.value.toLowerCase();
+
     const temp = this.billFilter.filter(function (d) {
-      return (d.sellerName.toLowerCase().indexOf(val) !== -1 ||
-        d.buyerName.toLowerCase().indexOf(val) !== -1 || d.billNumber.toLowerCase().indexOf(val) !== -1 || !val);
+      return (
+        d.billNumber.toLowerCase().indexOf(val) !== -1 ||
+        !val);
     });
     this.rows = temp;
   }
@@ -85,6 +86,7 @@ export class ActiveBillsComponent implements OnInit {
     if(this.response.success==true)
     {
     this.data =this.response.data;
+
     cb(this.data);
     }
     else{
@@ -100,8 +102,6 @@ export class ActiveBillsComponent implements OnInit {
 onSelect({ selected }) {
   console.log('Select Event', selected, this.selected);
 
-  // this.selected.splice(0, this.selected.length);
-  // this.selected.push(...selected);
   for(let i=0; i<selected.length; i++ )
   {
       this.checkboxData[i] = selected[i].id;

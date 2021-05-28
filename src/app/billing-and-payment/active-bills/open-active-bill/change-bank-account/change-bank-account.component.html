@@ -14,7 +14,8 @@
     <form #buyerEditForm="ngForm" class="justify">
 
     <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search Contract...">
+        <input type="text" class="form-control" placeholder="Search Bank Account..."
+        (keyup)="updateFilter($event)">
         <div class="input-group-append">
           <button class="btn btn-primary" type="button">
             <i class="fa fa-search"></i>
@@ -23,7 +24,7 @@
       </div>
      
   <div class="faq-item shadow-sm" *ngFor="let i of bankAcc" >
-    <div class="row" (click)="Show(i)">
+    <div class="row" (click)="change(i)">
      
   
       <div class="col-md-7, color" > 

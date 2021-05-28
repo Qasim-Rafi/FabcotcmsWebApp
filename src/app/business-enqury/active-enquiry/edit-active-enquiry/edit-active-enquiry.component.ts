@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -414,6 +414,7 @@ export class EditActiveEnquiryComponent implements OnInit {
           this.response = res;
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
+            this.enquiryToggle = !this.enquiryToggle
             this.getEnquiryData(this.objEnquiry);
             // this.enquiryForm.reset();
           }
@@ -455,6 +456,7 @@ export class EditActiveEnquiryComponent implements OnInit {
 
           this.response = res;
           if (this.response.success == true) {
+            // this.currencyToggle = !this.currencyToggle
             this.toastr.success(this.response.message, 'Message.');
             this.getEnquiryData(this.objEnquiry);
             // this.enquiryForm.reset();
@@ -463,10 +465,10 @@ export class EditActiveEnquiryComponent implements OnInit {
             this.toastr.error(this.response.message, 'Message.');
           }
 
-        }, err => {
-          if (err.status == 400) {
-            this.toastr.error(this.response.message, 'Message.');
-          }
+        },(err: HttpErrorResponse) => {
+          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+          this.toastr.error(messages.toString(), 'Message.');
+          console.log(messages);
         });
   }
 
@@ -489,6 +491,7 @@ export class EditActiveEnquiryComponent implements OnInit {
           this.response = res;
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
+            this.vendorToggle = !this.vendorToggle;
             this.getEnquiryData(this.objEnquiry);
             // this.enquiryForm.reset();
           }
@@ -527,6 +530,7 @@ export class EditActiveEnquiryComponent implements OnInit {
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
             this.getEnquiryData(this.objEnquiry);
+            this.orderToggle = !this.orderToggle;
             // this.enquiryForm.reset();
           }
           else {
@@ -820,7 +824,7 @@ export class EditActiveEnquiryComponent implements OnInit {
         })
       }
   
-      printPreview() {
+      printPreviewWithCustomer() {
         let docDefinition = {
           pageSize: 'A4',
           pageOrientation: 'landscape',
@@ -899,6 +903,21 @@ export class EditActiveEnquiryComponent implements OnInit {
               style: 'commonTable',
               table: {
                 headerRows: 1,
+                widths: ['20%' , '30%' , '20%' , '30%' ],
+                body: [
+               [
+                  { style:'propertyName' ,text: 'Shipment' } , 
+              {  style:'propertyValue', text : this.enquiryData['shipmentDates']},
+              {  style:'propertyName',text: 'Payment Terms' } , 
+              {  style:'propertyValue', text : this.enquiryData['paymentTermName']},
+               ]
+              ]
+                }
+            },
+            {
+              style: 'commonTable',
+              table: {
+                headerRows: 1,
                 widths: ['20%' , '15%' , '20%' , '45%' ],
                 body: [
                
@@ -910,6 +929,7 @@ export class EditActiveEnquiryComponent implements OnInit {
               ]
                 }
             },
+            
             {
               margin: [0 , -10 , 0 , 0],
               table:{
@@ -971,6 +991,172 @@ export class EditActiveEnquiryComponent implements OnInit {
     
       }
     
+      printPreview() {
+        let docDefinition = {
+          pageSize: 'A4',
+          pageOrientation: 'landscape',
+          pageMargins: [ 10, 40, 10, 0 ],
+          info: {
+            title: 'Enquiry Preview'
+          },
+          content: [
+                 {
+             
+              table: {
+                headerRows: 1,
+                widths: ['100%'],
+                body: [
+                [{
+                  style: 'heading',
+                  text: 'FABCOT ENQUIRY SHEET'
+                }],
+                  ]
+               
+              }
+
+            },
+
+            {
+              style: 'commonTable',
+              table: {
+                headerRows: 1,
+                widths: ['25%' , '25%' , '25%' , '25%' ],
+                body: [
+               [
+                  { style:'propertyName' ,text: 'Date' } , 
+              {  style:'propertyValue', text : this.enquiryData['enquiryDate']},
+              {  style:'propertyName',text: 'Enquiry#' } , 
+              {  style:'propertyValue', text : this.enquiryData['autoEnquiryNumber']},
+               ]
+              ]
+                }
+            },
+
+            {
+              style: 'commonTable',
+              table: {
+                headerRows: 1,
+                widths: ['13%' , '20%' , '13%' , '20%' , '13%', '21%'],
+                body: [
+               [
+                  { style:'propertyName' ,text: 'Article' } , 
+              {  style:'propertyValue', text : this.enquiryData['articleName']},
+              {  style:'propertyName',text: 'Process' } , 
+              {  style:'propertyValue', text : this.enquiryData['processName']},
+              {  style:'propertyName',text: 'Process Type' } , 
+              {  style:'propertyValue', text : this.enquiryData['processTypeName']},
+               ]
+              ]
+                }
+            },
+            {
+              style: 'commonTable',
+              table: {
+                headerRows: 1,
+                widths: ['20%' , '30%' , '20%' , '30%' ],
+                body: [
+               [
+                  { style:'propertyName' ,text: 'Design Type' } , 
+              {  style:'propertyValue', text : this.enquiryData['designTypeName']},
+              {  style:'propertyName',text: 'Packaging' } , 
+              {  style:'propertyValue', text : this.enquiryData['packagingName']},
+               ]
+              ]
+                }
+            },
+            {
+              style: 'commonTable',
+              table: {
+                headerRows: 1,
+                widths: ['20%' , '30%' , '20%' , '30%' ],
+                body: [
+               [
+                  { style:'propertyName' ,text: 'Shipment' } , 
+              {  style:'propertyValue', text : this.enquiryData['shipmentDates']},
+              {  style:'propertyName',text: 'Payment Terms' } , 
+              {  style:'propertyValue', text : this.enquiryData['paymentTermName']},
+               ]
+              ]
+                }
+            },
+            {
+              style: 'commonTable',
+              table: {
+                headerRows: 1,
+                widths: ['20%' , '15%' , '20%' , '45%' ],
+                body: [
+               
+                  { style:'propertyName' ,text: 'Shipment' } , 
+              {  style:'propertyValue', text : this.enquiryData['paymentTermDays']},
+              {  style:'propertyName',text: 'Payment Terms' } , 
+              {  style:'propertyValue', text : this.enquiryData['paymentTermName']},
+               
+              ]
+                }
+            },
+            
+            {
+              margin: [0 , -10 , 0 , 0],
+              table:{
+                headerRows:1,
+                widths: [ '15%' , '30%' , '15%' , '10%' , '5%' , '5%' , '10%' , '10%' ],
+                body:[
+                  [ {text:'Description' , style: 'tableheader' , }, {text:'Composition & Construction' , style: 'tableheader'},
+                   {text:'Color' , style: 'tableheader'}, {text:'Quantity' , style: 'tableheader'} 
+                  ,{text:'Gsm' , style: 'tableheader'} , {text:'Size' , style: 'tableheader'}, 
+                  {text:'Loom Type' , style: 'tableheader'}, {text:'Seller', style: 'tableheader'}
+                ],
+          // [ 'Value 1', 'Value 2', 'Value 3', 'Value 4' , '5' , '6' , '7' , '8' ]
+          ...this.enquiryData['enquiryItemList'].map((row=>
+            [row.description, row.construction, row.colorName,
+              row.itemQuantity, row.weight , row.size , row.loomTypeName , row.createdByName]
+            ))
+        
+                ]
+              }
+            }
+            
+          ],
+          styles: {
+            heading: {
+              fillColor: '#f3f3f4',
+              fontSize: 20,
+              bold: true,
+              color: '#4d4b4b',
+              alignment: 'center',
+              margin : 4
+             },
+            commonTable:{
+              margin: [0 , 25 , 0 , 0]     
+            },
+            propertyName:{
+              alignment: 'center',
+               bold:true,
+               fontSize: 10,
+               margin:2
+            },
+            propertyValue:{
+              alignment: 'center',  
+              fontSize: 10,
+              margin:2
+
+            },
+            tableheader: {
+              fillColor: '#f3f3f4',
+              fontSize: 10,
+              bold: true,
+              color: '#4d4b4b',
+              alignment: 'center',
+              margin:8
+            
+             }
+          }
+        };
+        pdfMake.createPdf(docDefinition).print();
+    
+      }
+   
+
 
       AddReminder() {
         Swal.fire({
@@ -1107,7 +1293,7 @@ export class EditActiveEnquiryComponent implements OnInit {
         modalRef.result.then((data) => {
           // on close
           if (data == true) {
-          
+            this.getEnquiryData(this.objEnquiry);
     
           }
         }, (reason) => {
@@ -1119,7 +1305,39 @@ export class EditActiveEnquiryComponent implements OnInit {
 
 
 
+      statusOpen()
+      { 
+        let varr = {
+        
+          "reason":"Open",
+          "enquiryId": this.objEnquiry,
+          "status": "Open"
+        }
+        
+        this.http.
+        put(`${environment.apiUrl}/api/Enquiries/UpdateEnquiryStatus`, varr)
+        .subscribe(
+          res=> { 
+      
+            this.response = res;
+            if (this.response.success == true){
+              this.toastr.success(this.response.message, 'Message.');
+            this.getEnquiryData(this.objEnquiry);
 
+           
+            }
+            else {
+              this.toastr.error('Something went Worng', 'Message.');
+                }
+    
+          }, err => {
+            if (err.status == 400) {
+              this.toastr.error('Something went Worng', 'Message.');
+            }
+          });
+      }
+    
+    
 
 
 

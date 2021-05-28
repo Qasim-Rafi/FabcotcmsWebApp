@@ -18,6 +18,8 @@ export class ChangeBankAccountComponent implements OnInit {
  bankAcc : any = {}
   data:any;
 search:any;
+bankFilter: any = [];
+temp: any[];
 response:any;
 constructor(
 
@@ -34,11 +36,7 @@ constructor(
 
   ngOnInit(): void   {
     console.log(this.bill_id)
-    this.GetBankAccDropdown((data)=>{
-
-      this.bankAcc = data
-     
-    })
+    this.GetBankAccDropdown()
     this.service.getDocumentType().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
@@ -49,33 +47,46 @@ constructor(
       }
     })
   }
+  updateFilter(event) {
+    const val = event.target.value.toLowerCase();
+
+    const temp = this.temp.filter(function (d) {
+      return (
+        d.accountName.toLowerCase().indexOf(val) !== -1 ||
+        d.bankName.toLowerCase().indexOf(val) !== -1 || !val);
+    });
+    this.bankFilter = temp;
+
+  }
+
   get activeModal() {
     return this._NgbActiveModal;
   }
 
-  GetBankAccDropdown(cb) {
+  GetBankAccDropdown() {
     this.http.get(`${environment.apiUrl}/api/Lookups/BankAccounts`).
     subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
         this.bankAcc = this.response.data;
-  cb(this.bankAcc)
+        this.temp = [...this.bankAcc];
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
       }
     })
   }
-  Show(obj){
+  change(obj){
     let varr = {    
     }
-this.http.put(`${environment.apiUrl}/api/BillingPayments/ChangeBankAccount/` + this.bill_id + obj.id,varr)
+this.http.put(`${environment.apiUrl}/api/BillingPayments/ChangeBankAccount/` + this.bill_id + '/' +obj.id,varr)
   .subscribe(
     res => {
-
       this.response = res;
       if (this.response.success == true) {
-        this.toastr.success(GlobalConstants.updateMessage, 'Message.');
+        this.toastr.success(this.response.message, 'Message.');
+      this.activeModal.close();
+      
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -83,7 +94,7 @@ this.http.put(`${environment.apiUrl}/api/BillingPayments/ChangeBankAccount/` + t
 
     }, err => {
       if (err.status == 400) {
-        this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
+        this.toastr.error(this.response.message, 'Message.');
       }
     });
   }

@@ -82,14 +82,9 @@ export class DeliveryTimelineComponent implements OnInit {
   }
   addshipment(form:NgForm) {
 
-   if(form.status =="INVALID"){
-
-      this.toastr.error("Kindly Fill the Required Fields", 'Message.');
-    }
-
-    else{
 
 
+    
 
     this.data.supplierDate = this.dateformater.toModel(this.data.supplierDate);
     this.data.buyerDate = this.dateformater.toModel(this.data.buyerDate);
@@ -124,19 +119,12 @@ export class DeliveryTimelineComponent implements OnInit {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
-          if (err.status == 400) {
-            this.toastr.error(this.response.message, 'Message.');
-          }
+          
         });
-  }}
+  }
   Updateshipment(form:NgForm) {
 
-       if(form.status =="INVALID"){
-
-      this.toastr.error("Kindly Fill the Required Fields", 'Message.');
-    }
-
-    else{
+      
     this.data.supplierDate = this.dateformater.toModel(this.data.supplierDate);
     this.data.buyerDate = this.dateformater.toModel(this.data.buyerDate);
     let varr = {
@@ -166,12 +154,12 @@ export class DeliveryTimelineComponent implements OnInit {
             this.toastr.error(this.response.message, 'Message.');
           }
 
-        }, err => {
-          if (err.status == 400) {
-            this.toastr.error(this.response.message, 'Message.');
-          }
+        }, (err: HttpErrorResponse) => {
+          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+          this.toastr.error(messages.toString(), 'Message.');
+
         });
   }
 
-}
+
 }
