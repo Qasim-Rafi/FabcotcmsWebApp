@@ -131,7 +131,7 @@ export class PaymentFormComponent implements OnInit {
           if (this.response.success == true) {
             this.paymentdata = this.response.data;
             this.paymentdata.paymentDate = this.dateformater.fromModel(this.paymentdata.paymentDate);
-           this.paymentdata.depositeDate = this.dateformater.fromModel(this.paymentdata.depositeDate);
+            this.paymentdata.depositeDate = this.dateformater.fromModel(this.paymentdata.depositeDate);
         }
           else {
             this.toastr.error(this.response.message, 'Message.');
@@ -146,14 +146,15 @@ export class PaymentFormComponent implements OnInit {
 
 
   UpdatePayment() {
-    this.paymentdata.paymentDate = this.dateformater.toModel(this.paymentDateField);
-    this.paymentdata.depositeDate = this.dateformater.toModel(this.depositeDateField);
+    this.paymentdata.paymentDate = this.dateformater.toModel(this.paymentdata.paymentDate);
+    this.paymentdata.depositeDate = this.dateformater.toModel(this.paymentdata.depositeDate);
     let varr = {
       "contractId": this.paymentdata.contractId,
-      "contractBillId": this.paymentId,
-      "buyerId": this.paymentdata.billForBuyerId,
-      "selerId": this.paymentdata.billForSelerId,
-      "saleInvoiceId": this.data.saleInvoiceId,
+      "contractBillId": this.paymentdata.contractBillId,
+      "buyerId": this.paymentdata.buyerId,
+      "selerId": this.paymentdata.selerId,
+      "billNumber": this.paymentdata.billNumber,
+      "saleInvoiceId": this.paymentdata.saleInvoiceId,
       "receiptNumber": this.paymentdata.receiptNumber,
       "paymentDate": this.paymentdata.paymentDate,
       "paidAmount": this.paymentdata.paidAmount,
