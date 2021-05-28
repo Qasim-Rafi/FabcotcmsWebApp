@@ -59,13 +59,12 @@
       </div>
 
       <div class="form-group row">
-        <label for="description" class="col-sm-3 col-form-label ">L/C Expiry Date</label><span
-          class="required-denote">*</span>
-        <div class="col-sm-8" (clickOutside)="enquiryDatePicker.close()">
+        <label for="description" class="col-sm-3 col-form-label ">L/C Expiry Date</label><span class="required-denote">*</span>
+        <div class="col-sm-8" (clickOutside)="validity2.close()">
 
-          <input navigation="select" class="form-control text_Navy " ngbDatepicker #validity="ngbDatepicker"
+          <input class="form-control text_Navy " ngbDatepicker #validity2="ngbDatepicker"
             required #lcExpiryDate="ngModel" [ngClass]="{ 'error': lcExpiryDate.invalid && LCForm.submitted }"
-            (click)="validity.toggle()" placeholder="Certificate validity date" [(ngModel)]="data.lcExpiryDate"
+            (click)="validity2.toggle()" placeholder="Certificate validity date" [(ngModel)]="data.lcExpiryDate"
             name="lcExpiryDate" />
         </div>
       </div>
