@@ -8,6 +8,7 @@ import { GlobalConstants } from 'src/app/Common/global-constants';
 import { ServiceService } from 'src/app/shared/service.service';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
+import pdfMake from "pdfmake/build/pdfmake";
 
 @Component({
   selector: 'app-payment-collection',
@@ -149,6 +150,130 @@ paymentFilter: any = {};
     showConfirmButton: false,
     timer: 2000,
   })
+  }
+
+  paymentExcelFile(){
+    const filtered = this.rows.map(row => ({
+      SNo: row.contractId,
+      Seller:row.sellerName ,
+      Buyer: row.buyerName,
+      ReceiptNo: row.receiptNumber,
+      BillNo: row.billNumber,
+      ContractNo: row.contractNumber,
+      SaleInvoice: row.saleInvoiceNo,
+      PaymentOn: row.paymentDate,
+      NetAmount: row.netAmount,
+      PaymentMode: row.paymentMode
+      
+    }));
+
+    this.service.exportAsExcelFile(filtered, 'Payment List');
+
+  }
+  paymentCsvFile(){
+    const filtered = this.rows.map(row => ({
+      SNo: row.contractId,
+      Seller:row.sellerName ,
+      Buyer: row.buyerName,
+      ReceiptNo: row.receiptNumber,
+      BillNo: row.billNumber,
+      ContractNo: row.contractNumber,
+      SaleInvoice: row.saleInvoiceNo,
+      PaymentOn: row.paymentDate,
+      NetAmount: row.netAmount,
+      PaymentMode: row.paymentMode
+      
+    }));
+
+    this.service.exportAsCsvFile(filtered, 'Payment List');
+
+  }
+
+  printActiveBillsList() {
+
+    let docDefinition = {
+      pageSize: 'A3',
+      info: {
+        title: 'Payment List'
+      },
+      content: [
+        {
+          text: 'Payment List',
+          style: 'heading',
+
+        },
+        {
+          layout: 'lightHorizontalLines',
+          table: {
+            headerRows: 1,
+            widths: [40, 50, 50, 40, 70 , 60,80,70,70,60],
+            body: [
+              ['S No.', 'Seller Name', 'Buyer Name','Receipt Number' , 'Bill#',
+               'Contract No' ,'Sale Invoice' , 'Payment On','Net Amount','Payment Mode'],
+              ...this.rows.map(row => (
+                [row.contractId, row.sellerName, row.buyerName, row.receiptNumber ,row.billNumber ,
+                  row.contractNumber , row.saleInvoiceNo,row.paymentDate,row.netAmount, row.paymentMode]
+              ))
+            ]
+           
+          }
+        }
+      ],
+      styles: {
+        heading: {
+          fontSize: 18,
+          alignment: 'center',
+          margin: [0, 15, 0, 30]
+        }
+      }
+    };
+
+    // const win = window.open('', "tempWinForPdf");
+    pdfMake.createPdf(docDefinition).print();
+
+  }
+  printActiveBillspdf() {
+
+    let docDefinition = {
+      pageSize: 'A3',
+      info: {
+        title: 'Payment List'
+      },
+      content: [
+        {
+          text: 'Payment List',
+          style: 'heading',
+
+        },
+        {
+          layout: 'lightHorizontalLines',
+          table: {
+            headerRows: 1,
+            widths: [40, 50, 50, 40, 70 , 60,80,70,70,60],
+            body: [
+              ['S No.', 'Seller Name', 'Buyer Name','Receipt Number' , 'Bill#',
+               'Contract No' ,'Sale Invoice' , 'Payment On','Net Amount','Payment Mode'],
+              ...this.rows.map(row => (
+                [row.contractId, row.sellerName, row.buyerName, row.receiptNumber ,row.billNumber ,
+                  row.contractNumber , row.saleInvoiceNo,row.paymentDate,row.netAmount, row.paymentMode]
+              ))
+            ]
+           
+          }
+        }
+      ],
+      styles: {
+        heading: {
+          fontSize: 18,
+          alignment: 'center',
+          margin: [0, 15, 0, 30]
+        }
+      }
+    };
+
+    // const win = window.open('', "tempWinForPdf");
+    pdfMake.createPdf(docDefinition).download('Payment List');
+
   }
 
 }

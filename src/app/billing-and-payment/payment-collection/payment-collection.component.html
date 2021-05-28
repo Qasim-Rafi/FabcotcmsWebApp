@@ -67,13 +67,21 @@
                     (click)="copyPaymentList()"  ngxClipboard><span>Copy</span>
                     </a>
                     <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
-                      aria-controls="DataTables_Table_0"><span>CSV</span></a>
+                      aria-controls="DataTables_Table_0"
+                      (click) = "paymentCsvFile()"
+                      ><span>CSV</span></a>
                     <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
-                      aria-controls="DataTables_Table_0"><span>Excel</span></a>
+                      aria-controls="DataTables_Table_0"
+                      (click)=" paymentExcelFile()"
+                      ><span>Excel</span></a>
                     <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0"
-                      aria-controls="DataTables_Table_0"><span>PDF</span></a>
+                      aria-controls="DataTables_Table_0"
+                      (click) = "printActiveBillspdf()"
+                      ><span>PDF</span></a>
                     <a class="btn btn-default buttons-print bg-white" tabindex="0"
-                      aria-controls="DataTables_Table_0"><span>Print</span></a>
+                      aria-controls="DataTables_Table_0"
+                      (click) = "printActiveBillsList()"
+                      ><span>Print</span></a>
                   </div>
                 </div>
 

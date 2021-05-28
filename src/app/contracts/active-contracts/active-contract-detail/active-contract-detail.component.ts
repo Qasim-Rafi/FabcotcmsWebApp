@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -345,6 +345,33 @@ export class ActiveContractDetailComponent implements OnInit {
 
 
 
+
+
+  approveContract()
+  {
+    let varr=  {    }
+
+    this.http.
+    put(`${environment.apiUrl}/api/Contracts/ApproveContract/`+this.contractId,varr)
+    .subscribe(
+      res=> { 
+  
+        this.response = res;
+        if (this.response.success == true){
+          this.toastr.success(this.response.message, 'Message.');
+          this.getContractData()
+        
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+            }
+
+      }, (err: HttpErrorResponse) => {
+        const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+        this.toastr.error(messages.toString(), 'Message.');
+        console.log(messages);
+      });
+  }
 
 
   
@@ -1331,6 +1358,7 @@ deleteShipmentTimeline(id) {
           // on close
           if (data == true) {
           
+            this.getContractData();
     
           }
         }, (reason) => {
@@ -1338,6 +1366,39 @@ deleteShipmentTimeline(id) {
         });
       }
     
+    
+      statusOpen()
+      { 
+        let varr = {
+        
+          "reason":"Open",
+          "contractId": this.contractId,
+          "status": "Open"
+        }
+        
+        this.http.
+        put(`${environment.apiUrl}/api/Contracts/UpdateContractStatus`, varr)
+        .subscribe(
+          res=> { 
+      
+            this.response = res;
+            if (this.response.success == true){
+              this.toastr.success(this.response.message, 'Message.');
+              this.getContractData();
+
+
+           
+            }
+            else {
+              this.toastr.error('Something went Worng', 'Message.');
+                }
+    
+          }, err => {
+            if (err.status == 400) {
+              this.toastr.error('Something went Worng', 'Message.');
+            }
+          });
+      }
     
 
 
