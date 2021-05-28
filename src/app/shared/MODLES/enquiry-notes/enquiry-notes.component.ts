@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
@@ -26,6 +26,7 @@ export class EnquiryNotesComponent implements OnInit {
 
   constructor(
     private _NgbActiveModal: NgbActiveModal,
+    private service: ServiceService,
     private http: HttpClient,
     private toastr: ToastrService,
 
@@ -68,10 +69,11 @@ export class EnquiryNotesComponent implements OnInit {
             this.toastr.error(this.response.message, 'Message.');
           }
 
-        }, err => {
-          if (err.status == 400) {
-            this.toastr.error(this.response.message, 'Message.');
-          }
+        },(err: HttpErrorResponse) => {
+          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+          this.toastr.error(messages.toString(), 'Message.');
+          console.log(messages);
+         
         });
   }
 
