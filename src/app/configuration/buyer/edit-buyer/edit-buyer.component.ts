@@ -19,7 +19,7 @@ export class EditBuyerComponent implements OnInit {
   states: any;
   buyer: any[];
   countryId: null;
-
+  active: boolean;
 
 
 
@@ -86,8 +86,7 @@ export class EditBuyerComponent implements OnInit {
           this.response = res;
           if (this.response.success == true) {
             this.data = this.response.data;
-
-
+            this.active = this.data.isParentBuyer
 
 
           }
@@ -118,7 +117,7 @@ export class EditBuyerComponent implements OnInit {
       "ntnNumber": this.data.ntnNumber,
       "gstNumber": this.data.gstNumber,
       "buyerDetails": this.data.buyerDetails,
-      "isParentBuyer": this.data.isParentBuyer,
+      "isParentBuyer": this.active,
       "parentBuyerId": this.data.parentBuyerId,
     }
 
