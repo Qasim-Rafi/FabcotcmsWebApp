@@ -1,9 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { id } from '@swimlane/ngx-datatable';
 import { ToastrService } from 'ngx-toastr';
+import { ServiceService } from 'src/app/shared/service.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -27,6 +28,7 @@ export class SellerPocComponent implements OnInit {
   // includeInContractPreview = true;
 
   constructor(private http: HttpClient,
+    private service: ServiceService,
     private toastr: ToastrService,
     private _NgbActiveModal: NgbActiveModal) { }
 
@@ -90,12 +92,7 @@ export class SellerPocComponent implements OnInit {
 
 
   addSellerPOC(form:NgForm) {
-    if (form.status == "INVALID") {
-
-      this.toastr.error("Invalid Form", 'Message.');
-    }
-
-    else{
+  
     let varr = {
       "name": this.data.name,
       "email": this.data.email,
@@ -123,13 +120,13 @@ export class SellerPocComponent implements OnInit {
             this.toastr.error(this.response.message, 'Message.');
           }
 
-        }, err => {
-          if (err.status == 400) {
-            this.toastr.error(this.response.message, 'Message.');
-          }
+        },(err: HttpErrorResponse) => {
+          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+          this.toastr.error(messages.toString(), 'Message.');
+          console.log(messages);
         });
   }
-}
+
 
 
   // ------------------Edit Seller Poc---------------------------------//
@@ -158,12 +155,7 @@ export class SellerPocComponent implements OnInit {
 
 
   UpdateSellerPOC(form:NgForm) {
-    if (form.status == "INVALID") {
-
-      this.toastr.error("Invalid Form", 'Message.');
-    }
-
-    else{
+ 
     let varr = {
 
       "name": this.data.name,
@@ -191,12 +183,12 @@ export class SellerPocComponent implements OnInit {
             this.toastr.error(this.response.message, 'Message.');
           }
 
-        }, err => {
-          if (err.status == 400) {
-            this.toastr.error(this.response.message, 'Message.');
-          }
+        },(err: HttpErrorResponse) => {
+          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+          this.toastr.error(messages.toString(), 'Message.');
+          console.log(messages);
         });
-  }
+
 }
 
 
@@ -229,12 +221,7 @@ export class SellerPocComponent implements OnInit {
   // -------------------------------Add Buyer POC----------------------------//
 
   addBuyerPOC(form:NgForm) {
-    if (form.status == "INVALID") {
-
-      this.toastr.error("Invalid Form", 'Message.');
-    }
-
-    else{
+  
     let varr = {
       "name": this.data.name,
       "email": this.data.email,
@@ -262,12 +249,12 @@ export class SellerPocComponent implements OnInit {
             this.toastr.error(this.response.message, 'Message.');
           }
 
-        }, err => {
-          if (err.status == 400) {
-            this.toastr.error(this.response.message, 'Message.');
-          }
+        },(err: HttpErrorResponse) => {
+          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+          this.toastr.error(messages.toString(), 'Message.');
+          console.log(messages);
         });
-  }
+  
 }
 
 

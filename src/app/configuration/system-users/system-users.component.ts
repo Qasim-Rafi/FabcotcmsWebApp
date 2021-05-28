@@ -130,14 +130,14 @@ editSystemUserForm(row, check, name) {
           res => {
             this.response = res;
             if (this.response.success == true) {
-              this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
+              this.toastr.error(this.response.message, 'Message.');
               this.service.fetch((data) => {
                 this.rows = data;
               }, this.systemUsersUrl);
 
             }
             else {
-              this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
+              this.toastr.error(this.response.message, 'Message.');
             }
 
           }, err => {

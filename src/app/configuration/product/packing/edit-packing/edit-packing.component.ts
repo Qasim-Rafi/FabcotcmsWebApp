@@ -38,28 +38,21 @@ export class EditPackingComponent implements OnInit {
             this.data = this.response.data;
           }
           else {
-            this.toastr.error('Something went Worng', 'Message.');
+            this.toastr.error(this.response.message, 'Message.');
           }
 
         }, (err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
-           if (err.status == 400) {
-          this.toastr.error(this.response.message, 'Message.');
-        }
+          
         });
   }
 
 
 
   UpdatePacking(form:NgForm) {
-    if (form.status == "INVALID") {
-
-      this.toastr.error("Invalid Form", 'Message.');
-    }
-
-    else{
+  
     let varr = {
       "name": this.data.name,
       "description": this.data.description,
@@ -84,12 +77,10 @@ export class EditPackingComponent implements OnInit {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
-           if (err.status == 400) {
-          this.toastr.error(this.response.message, 'Message.');
-        }
+      
         });
   }
 
-}
+
 
 }

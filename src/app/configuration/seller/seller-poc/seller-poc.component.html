@@ -21,15 +21,19 @@
     Edit Seller POC
     <h6>{{ SellerName }}</h6>
   </h5>
+
   <h5 class="modal-title" id="exampleModalScrollableTitle" *ngIf="statusCheck == 'BuyerEditPOC'">
     <i class="far fa-edit"></i>
     Edit Buyer POC
     <h6>{{ BuyerName }}</h6>
   </h5>
+  
 </div>
 
-<div class="modal-body pt-2r" style="background-color: #f8fafb">
+<div class="modal-body p-0" style="background-color: #f8fafb">
   <form  #sellerPOC="ngForm" novalidate >
+
+    <div class="col-md-12 pt-3 pb-2">
 
     <div class="form-group row">
       <label for="sellerPOCname" class="col-sm-3 col-form-label text_Navy">POC Name<span class="required-denote">*</span></label>
@@ -87,7 +91,7 @@
       <label class="form-check-label">Include in Contract Preview</label>
     </div>
 
-
+</div>
 
 
 <div class="modal-footer NotBG">
@@ -119,5 +123,6 @@
 
 
 </div>
+
 </form>
 </div>

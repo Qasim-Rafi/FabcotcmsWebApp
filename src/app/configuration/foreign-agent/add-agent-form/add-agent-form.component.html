@@ -11,32 +11,32 @@
 </div>
 
 <div class="modal-body BG p-0">
-  <form #addAgentForm="ngForm" novalidate (ngSubmit)="addAgent(addAgentForm)">
+  <form #addAgentForm="ngForm" novalidate (ngSubmit)="addAgent()">
 
     <div class="col-md-12 py-3">
 
       <div class="form-group row">
-        <label name="agentTypeId" class="col-sm-3 col-form-label text_Navy" [(ngModel)]="agentTypeId">
+        <label for="agentType" class="col-sm-3 col-form-label text_Navy">
           Type</label>
         <div class="col-sm-8">
-          <select class="form-control">
-            <option selected disabled>External Agent</option>
-          </select>
+          <ng-select name="agentType" class="input-w1 px-0" [(ngModel)]="data.agentType"
+            placeholder="-- Select --">
+            <ng-option *ngFor="let i of Type" [value]="i">{{ i }}
+            </ng-option>
+          </ng-select>
         </div>
       </div>
 
       <div class="form-group row">
-        <label name="agentSideId" class="col-sm-3 col-form-label text_Navy" [(ngModel)]="agentSideId">
+        <label for="agentSide" class="col-sm-3 col-form-label text_Navy">
           Side
         </label>
         <div class="col-sm-8">
-          <select class="form-control">
-            <option selected disabled>Buyer side Agent</option>
-
-            <option *ngFor="let i of agentSideId" [value]="i.id">
-              {{ i.id }}
-            </option>
-          </select>
+          <ng-select name="agentSide" class="input-w1 px-0" [(ngModel)]="data.agentSide"
+            placeholder="-- Select --">
+            <ng-option *ngFor="let i of Side" [value]="i">{{ i }}
+            </ng-option>
+          </ng-select>
         </div>
       </div>
 
