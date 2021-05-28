@@ -569,7 +569,7 @@
                                                 <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'"
                                                 [headerHeight]="10" [footerHeight]="50"  [rowHeight]="'auto'" [limit]="6">  
                 
-                                                <ngx-datatable-column name="S.No." [width]="0">
+                                                <ngx-datatable-column name="S.No." [width]="5">
                                                   <ng-template let-rowIndex="rowIndex" let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                                                     {{rowIndex + 1}}
                                                   </ng-template>
@@ -599,7 +599,7 @@
                                                   </ng-template>
                                                 </ngx-datatable-column>
                                                
-                                                <ngx-datatable-column name="Date" [width]="10" >
+                                                <ngx-datatable-column name="Date" [width]="6" >
                                                   <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                                                     {{row.createdDateTime}}
                                                   </ng-template>
