@@ -1111,7 +1111,7 @@ export class EditActiveEnquiryComponent implements OnInit {
         modalRef.result.then((data) => {
           // on close
           if (data == true) {
-          
+            this.getEnquiryData(this.objEnquiry);
     
           }
         }, (reason) => {
@@ -1123,7 +1123,39 @@ export class EditActiveEnquiryComponent implements OnInit {
 
 
 
+      statusOpen()
+      { 
+        let varr = {
+        
+          "reason":"Open",
+          "enquiryId": this.objEnquiry,
+          "status": "Open"
+        }
+        
+        this.http.
+        put(`${environment.apiUrl}/api/Enquiries/UpdateEnquiryStatus`, varr)
+        .subscribe(
+          res=> { 
+      
+            this.response = res;
+            if (this.response.success == true){
+              this.toastr.success(this.response.message, 'Message.');
+            this.getEnquiryData(this.objEnquiry);
 
+           
+            }
+            else {
+              this.toastr.error('Something went Worng', 'Message.');
+                }
+    
+          }, err => {
+            if (err.status == 400) {
+              this.toastr.error('Something went Worng', 'Message.');
+            }
+          });
+      }
+    
+    
 
 
 
