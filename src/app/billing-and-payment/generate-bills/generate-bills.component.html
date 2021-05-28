@@ -74,7 +74,7 @@
             (select)="onSelect($event)"
             [selected]="selected"
             [selectionType]="SelectionType.checkbox"
-            
+            [sorts]="[{ prop: 'id', dir: 'asce' }]"
           >
           <ngx-datatable-column prop="selected" name="Select" [width]="20"   [flexGrow]="0.03"
           [width]="30"
@@ -90,18 +90,18 @@
          {{row.contractDate}}
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Countract No." [width]="80" prop="contractNum" [flexGrow]="0.05">
+          <ngx-datatable-column name="Countract No." [width]="80" prop="autoContractNumber" [flexGrow]="0.05">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
               {{row.autoContractNumber}}
              <button (click)="SaleInvoiceForm()"><i class="far fa-newspaper"></i></button> 
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Buyer" [width]="80" prop="buyer" [flexGrow]="0.06">
+          <ngx-datatable-column name="Buyer" [width]="80" prop="buyerName" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
         {{row.buyerName}}
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Seller" [width]="80" prop="seller" [flexGrow]="0.06">
+          <ngx-datatable-column name="Seller" [width]="80" prop="sellerName" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
         {{row.sellerName}}
             </ng-template>

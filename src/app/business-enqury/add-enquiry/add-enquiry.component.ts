@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ServiceService } from 'src/app/shared/service.service';
@@ -473,12 +473,7 @@ export class AddEnquiryComponent implements OnInit {
   }
 
   addEnquiry(form:NgForm) {
-    if(form.status =="INVALID"){
 
-      this.toastr.error("Invalid Form", 'Message.');
-    }
-    else{
-      this.data.enquiryDate = this.dateformater.toModel(this.enquiryDateField);
   
       let varr = {
   
@@ -523,14 +518,14 @@ export class AddEnquiryComponent implements OnInit {
               this.toastr.error(this.response.message, 'Message.');
             }
   
-          }, err => {
-            if (err.status == 400) {
-              this.toastr.error(this.response.message, 'Message.');
-            }
+          },(err: HttpErrorResponse) => {
+            const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+            this.toastr.error(messages.toString(), 'Message.');
+            console.log(messages);
           });
     }
     
-  }
+  
 
 
 

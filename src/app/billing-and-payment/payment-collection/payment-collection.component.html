@@ -102,46 +102,48 @@
 
       <div class="panel-body">
         <ngx-datatable class="bootstrap datatable-row-wrapper" [columns]="columns" [rows]="rows" [columnMode]="'flex'"
-          [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="6">
+          [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="6"
+          [sorts]="[{ prop: 'id', dir: 'asce' }]"
+          >
       
-          <ngx-datatable-column name="S:Seller/B:Buyer" [width]="80" prop="sellerBuyer" [flexGrow]="0.03">
+          <ngx-datatable-column name="S:Seller/B:Buyer" [width]="80" prop="buyerName" [flexGrow]="0.03">
             <ng-template let-row="row" ngx-datatable-cell-template>
               B:{{row.buyerName}}
               S:{{row.selerName}}
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Receipt" [width]="80" prop="receipt" [flexGrow]="0.05">
+          <ngx-datatable-column name="Receipt" [width]="80" prop="receiptNumber" [flexGrow]="0.05">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
               {{row.receiptNumber}}
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Bill" [width]="80" prop="bill" [flexGrow]="0.06">
+          <ngx-datatable-column name="Bill" [width]="80" prop="billNumber" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
       {{row.billNumber}}
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Contract" [width]="80" prop="contract" [flexGrow]="0.06">
+          <ngx-datatable-column name="Contract" [width]="80" prop="contractNumber" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
       {{row.contractNumber}}
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Sale Invoice" [width]="80" prop="invoice" [flexGrow]="0.06">
+          <ngx-datatable-column name="Sale Invoice" [width]="80" prop="saleInvoiceNo" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
       {{row.saleInvoiceNo}}
             </ng-template>
           </ngx-datatable-column>
       
-          <ngx-datatable-column name="Payment On" [width]="80" prop="date" [flexGrow]="0.06">
+          <ngx-datatable-column name="Payment On" [width]="80" prop="paymentDate" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
       {{row.paymentDate}}
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Net Amount" [width]="80" prop="amount" [flexGrow]="0.06">
+          <ngx-datatable-column name="Net Amount" [width]="80" prop="netAmount" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
       {{row.netAmount}}
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Payment Mode" [width]="80" prop="mode" [flexGrow]="0.06">
+          <ngx-datatable-column name="Payment Mode" [width]="80" prop="paymentMode" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
       {{row.paymentMode}}
             </ng-template>
