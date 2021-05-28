@@ -48,8 +48,8 @@
             <input  class="form-check-input check-btn "  id="scales" *ngIf="statusCheck == 'add'"  type="checkbox" name="active" [(ngModel)]="active">
             <label for="scales" id="active" *ngIf="statusCheck == 'add'"  class="form-check-label text-grey" id="active">Marked as Active</label>
 
-            <input class="form-check-input check-btn " *ngIf="statusCheck == 'edit'"  type="checkbox" name="active" [(ngModel)]="data.active"
-            #active="ngModel">
+            <input class="form-check-input check-btn " *ngIf="statusCheck == 'edit'"  type="checkbox" name="active" [(ngModel)]="active"
+           >
           <label for="active" *ngIf="statusCheck == 'edit'" class="form-check-label text-grey" id="active">Marked as Active</label>
           </div>
         </div>

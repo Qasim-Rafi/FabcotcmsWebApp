@@ -56,15 +56,14 @@ export class ActiveBillsComponent implements OnInit {
     };
  
   ngOnInit(): void {
+    
     this.fetch((data) => {
-      // this.billFilter = [...data];
-      
-      this.rows = data;
-      this.billFilter = [...data];
-
+      this.rows = data.activeBills;
+      this.billFilter = [...this.rows];
       this.listCount = this.rows.length;
     });
   }
+  
   search(event) {
     const val = event.target.value.toLowerCase();
 
@@ -76,6 +75,7 @@ export class ActiveBillsComponent implements OnInit {
     this.rows = temp;
   }
 
+
   fetch(cb) {
     
     this.http
@@ -85,7 +85,8 @@ export class ActiveBillsComponent implements OnInit {
      
     if(this.response.success==true)
     {
-    this.data =this.response.data;
+    this.data=this.response.data;
+    
 
     cb(this.data);
     }
@@ -98,6 +99,7 @@ export class ActiveBillsComponent implements OnInit {
       }
     });
   }
+
 
 onSelect({ selected }) {
   console.log('Select Event', selected, this.selected);

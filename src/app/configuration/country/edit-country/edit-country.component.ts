@@ -44,6 +44,7 @@ export class EditCountryComponent implements OnInit {
           this.response = res;
           if (this.response.success == true) {
             this.data = this.response.data;
+            this.active = this.data.active
           }
           else {
                      this.toastr.error(this.response.message, 'Message.');
@@ -63,7 +64,7 @@ export class EditCountryComponent implements OnInit {
     let varr = {
       "name": this.data.name,
       "details": this.data.details,
-      "active": this.data.active
+      "active": this.active
     }
 
     this.http.
