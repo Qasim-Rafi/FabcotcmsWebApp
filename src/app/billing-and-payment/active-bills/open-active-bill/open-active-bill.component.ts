@@ -237,8 +237,70 @@ print(){
           ]]
             }
             },
+            {
+              margin: [0 , 20 , 0 , 0 ],
+              table:{
+                headerRows : 1,
+                widths : ['20%' , '20%' ],
+                body:[
+                  ['Sale Invoice#' , 'Invoice Date'],
+                  
+                  ...this.rows['contractSaleInvoices'].map(row => (
+                    [row.saleInvoiceNo , row.saleInvoiceDate]
+                  ))
+                ]
+              }
+            },
+            {
+              layout:'noBorders',
+              table:{headerRows:1 ,  widths:['7%' , '93%' ],
+            body:[ [{text: 'Sub Total :'} , {text: this.rows['invoiceSubTotalAmount'] , style:'leftAlign'}
+          
+          ]]
+            }
+            },
+            {
+              layout:'noBorders',
+              table:{headerRows:1 ,  widths:['7%' , '93%' ],
+            body:[ [{text: 'TAX :'} , {text: this.rows['invoiceTaxAmount'] , style:'leftAlign'}
+          
+          ]]
+            }
+            },
             
-
+          //   {
+          //     margin: [0 , -10 , 0 , 0],
+          //     table:{
+          //       headerRows:1,
+          //       widths: [ '15%' , '30%' , '15%' , '10%' , '5%'  ],
+          //       body:[
+          //         [ {text:'Sale Invoice #'  }, 
+          //         {text:'Invoice Date'},
+          //          {text:'Invoice Amount'} 
+          //         ,{text:'Commission' } , {text:'Total Amount'}, 
+          //       ],
+          // // [ 'Value 1', 'Value 2', 'Value 3', 'Value 4' , '5' , '6' , '7' , '8' ]
+          // ...this.rows.map((row=>
+          //   [row.saleInvoiceNo, row.saleInvoiceDate]
+          //   ))
+        
+          //       ]
+          //     }
+          //   }
+            
+            // {
+            //   layout: 'noBorders',
+            //   table: {
+            //     headerRows: 1,
+            //     widths: [30, 90, 130, 50, 150],
+            //     body: [
+            //       ['Sale Invoice#', 'Invoice Date', 'Invoice Amount', 'Commission', 'Total Amount'],
+            //       ...this.rows.map(row => (
+            //         [row.saleInvoiceNo , row.saleInvoiceDate]
+            //       ))
+            //     ]
+            //   }
+            // }
             
           ],
           styles:{
