@@ -34,7 +34,7 @@
       <div class="form-group row">
         <label for="code" class="col-sm-3 col-form-label control-label text_Navy">Full Name </label>
         <div class="col-sm-8">
-          <input appAutofocus required maxlength="80" minlength="3" type="text" class="form-control"
+          <input appAutofocus maxlength="80" minlength="3" type="text" class="form-control"
             placeholder="User name" name="fullName" [(ngModel)]="data.fullName" #fullName="ngModel"
             [ngClass]="{'error': fullName.invalid && addAgentForm.submitted}">
         </div>

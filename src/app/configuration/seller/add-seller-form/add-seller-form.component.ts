@@ -34,7 +34,7 @@ export class AddSellerFormComponent implements OnInit {
   ngOnInit(): void {
     this.getCountry();
     this.getParentSellers();
-    // this.GetCertificationDropdown();
+    this.GetCertificationDropdown();
     this.GetCapabilitiesDropdown();
   }
 
@@ -73,7 +73,7 @@ export class AddSellerFormComponent implements OnInit {
     this.service.getCertification().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.certification = this.response.data;
+        this.certification = this.response.data.list;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -127,7 +127,7 @@ export class AddSellerFormComponent implements OnInit {
       "faxNumber": this.data.sellerFax,
       "ntnNumber": this.data.sellerNTN,
       "gstNumber": this.data.sellerGST,
-      "certificatedeIds": this.data.certificatedeIds,
+      "certificatedeIds": this.data.certificatedeIds.toString(),
       "capabilitiesIds": this.data.capabilitiesIds.toString(),
       "majorStrength": this.data.sellerStrenght,
       "leadTime": this.data.leadTime,

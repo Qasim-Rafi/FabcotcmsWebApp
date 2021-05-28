@@ -81,16 +81,7 @@ export class AddBuyerComponent implements OnInit {
 
   addBuyer(form:NgForm) {
 
-    if(form.status == "INVALID"){
-      (err: HttpErrorResponse) => {
-      const messages = this.service.extractErrorMessagesFromErrorResponse(err);
-      this.toastr.error(messages.toString(), 'Message.');
-    }
-  }
 
-else
-
-{
 
     let varr = {
       "buyerCode": this.data.buyerCode,
@@ -128,11 +119,7 @@ else
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
-          // if (err.status == 400) {
-          //   this.toastr.error(this.response.message, 'Message.');
-          // }
         });
   }
   }
 
-}
