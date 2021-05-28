@@ -1029,14 +1029,14 @@
         <div class="row">
             <div class="col-md-12 mt-3">
 
-                <button class="btn btn-outline-info btn-block btn-lg text-center  ">
+                <button class="btn btn-outline-info btn-block btn-lg text-center  "  (click)="printPreview()">
         
                     <i class="fas fa-print"></i>
-                    <span class="ml-2 text-small"> Enquiry Preview </span>
+                    <span class="ml-2 text-small"  > Enquiry Preview </span>
         
                 </button>
 
-                <button class="btn btn-outline-success btn-block btn-lg text-center px-2" (click)="printPreview()">
+                <button class="btn btn-outline-success btn-block btn-lg text-center px-2"  (click)  = "printPreviewWithCustomer()" >
         
                     <i class="fas fa-print"></i>
                     <span class="ml-2 text-small"> Enquiry Preview w/o Customer</span>
