@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
@@ -16,8 +17,7 @@ export class StatusComponent implements OnInit {
     private _NgbActiveModal: NgbActiveModal) { }
 
   response: any;
-  reason: string; 
-  data={};
+  data:any={};
   @Input() statusCheck;
   @Input() EnquiryId;
   @Input() ContractId;
@@ -35,12 +35,18 @@ export class StatusComponent implements OnInit {
     return this._NgbActiveModal;
   }
 
-  UpdateEnquiryStatus()
+  UpdateEnquiryStatus(form:NgForm)
   { 
+
+        if(form.status == "INVALID"){
+    }
+
+else
+{
     let varr = {
     
-      "reason":this.reason,
-      "enquiryId":this.ContractId,
+      "reason":this.data.reason,
+      "enquiryId":this.EnquiryId,
       "status":this.action
     }
     
@@ -52,6 +58,8 @@ export class StatusComponent implements OnInit {
         this.response = res;
         if (this.response.success == true){
           this.toastr.success(this.response.message, 'Message.');
+          this.activeModal.close(true);
+
        
         }
         else {
@@ -64,18 +72,28 @@ export class StatusComponent implements OnInit {
         }
       });
   }
+}
 
 
 
 
 
-  UpdateContractStatus()
+  UpdateContractStatus(form:NgForm)
 { 
+
+    if(form.status == "INVALID"){
+
+    }
+
+else
+
+{
+
   let varr = {
     
-    "reason":this.reason,
+    "reason":this.data.reason,
     "contractId":this.ContractId,
-    "status":this.action
+    "status":this.action,
   }
 
   this.http.
@@ -86,7 +104,7 @@ export class StatusComponent implements OnInit {
       this.response = res;
       if (this.response.success == true){
         this.toastr.success(this.response.message, 'Message.');
-     
+        this.activeModal.close(true);
       }
       else {
         this.toastr.error('Something went Worng', 'Message.');
@@ -99,6 +117,7 @@ export class StatusComponent implements OnInit {
     });
 }
 
+}
 }
 
 
