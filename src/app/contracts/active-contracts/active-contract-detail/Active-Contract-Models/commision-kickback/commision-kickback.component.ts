@@ -115,10 +115,10 @@ export class CommisionKickbackComponent implements OnInit {
     let varr = {
 
       "contractId": this.contractId,
-      "sellerSideCommission": this.commission.sellerSideCommission.toString(),
+      "sellerSideCommission": this.commission.sellerSideCommission,
       "sellerSideCommissionUOMId":this.commission.sellerSideCommissionUOMId,
       "sellerAdditionalInfo": this.commission.sellerAdditionalInfo,
-      "buyerSideCommission": this.commission.buyerSideCommission.toString(),
+      "buyerSideCommission": this.commission.buyerSideCommission,
       "buyerSideCommissionUOMId": this.commission.buyerSideCommissionUOMId,
       "buyerAdditionalInfo": this.commission.buyerAdditionalInfo,
       "agentId": this.commission.agentId,
