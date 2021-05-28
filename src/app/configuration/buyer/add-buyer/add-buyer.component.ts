@@ -17,7 +17,7 @@ export class AddBuyerComponent implements OnInit {
   data: any = {};
   country: any = [];
   buyer: any[];
-
+  active:boolean = true
   @ViewChild(NgForm) buyerForm;
   date: number;
 
@@ -95,7 +95,7 @@ export class AddBuyerComponent implements OnInit {
       "ntnNumber": this.data.ntnNumber,
       "gstNumber": this.data.gstNumber,
       "buyerDetails": this.data.buyerDetails,
-      "isParentBuyer": this.data.isParentBuyer,
+      "isParentBuyer": this.active,
       "parentBuyerId": this.data.parentBuyerId,
     }
 
