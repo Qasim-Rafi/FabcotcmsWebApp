@@ -414,6 +414,7 @@ export class EditActiveEnquiryComponent implements OnInit {
           this.response = res;
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
+            this.enquiryToggle = !this.enquiryToggle
             this.getEnquiryData(this.objEnquiry);
             // this.enquiryForm.reset();
           }
@@ -455,6 +456,7 @@ export class EditActiveEnquiryComponent implements OnInit {
 
           this.response = res;
           if (this.response.success == true) {
+            // this.currencyToggle = !this.currencyToggle
             this.toastr.success(this.response.message, 'Message.');
             this.getEnquiryData(this.objEnquiry);
             // this.enquiryForm.reset();
@@ -489,6 +491,7 @@ export class EditActiveEnquiryComponent implements OnInit {
           this.response = res;
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
+            this.vendorToggle = !this.vendorToggle;
             this.getEnquiryData(this.objEnquiry);
             // this.enquiryForm.reset();
           }
@@ -527,6 +530,7 @@ export class EditActiveEnquiryComponent implements OnInit {
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
             this.getEnquiryData(this.objEnquiry);
+            this.orderToggle = !this.orderToggle;
             // this.enquiryForm.reset();
           }
           else {

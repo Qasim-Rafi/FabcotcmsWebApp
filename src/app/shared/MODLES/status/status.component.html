@@ -37,10 +37,11 @@
 
           <div class="col-sm-8 pt-2">
         <div class="form-group row">
-          <label for="name" class="col-sm-3 col-form-label">Reason</label>
+          <label for="name" class="col-sm-3 col-form-label">Reason<span
+            class="required-denote">*</span></label>
           <div class="col-sm-9">
-            <textarea  type="text" class="form-control" rows="4" placeholder="Details..." 
-            [(ngModel)]="reason" name="reason"
+            <textarea  type="text" class="form-control" rows="4" placeholder="Define aproper Reason..."  required #reason="ngModel"
+            [(ngModel)]="data.reason" name="reason"  [ngClass]="{'error':reason.invalid && NotesForm.submitted  }" 
             ></textarea>
           </div>
         </div>
@@ -54,11 +55,11 @@
           (click)="activeModal.close()">
           Close
         </button>
-        <button class="btn button-save" type="submit" *ngIf="component == 'enquiry'"(click)=" UpdateEnquiryStatus()">
+        <button class="btn button-save" type="submit" *ngIf="component == 'enquiry'"(click)=" UpdateEnquiryStatus(NotesForm)">
          Save Action
         </button>
 
-        <button class="btn button-save" type="submit" *ngIf="component == 'contract'" (click)=" UpdateContractStatus()">
+        <button class="btn button-save" type="submit" *ngIf="component == 'contract'" (click)=" UpdateContractStatus(NotesForm)">
             Save Action
         </button>
 

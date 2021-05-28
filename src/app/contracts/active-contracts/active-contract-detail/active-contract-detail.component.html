@@ -792,7 +792,7 @@
                                     </div>
                                 </div>
 
-                                <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows1"
+                                <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows1" *ngIf="rows1.length != 0"
                                     [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
                                     [sorts]="[{prop: 'code', dir: 'asce'}]" [rowHeight]="'auto'" [limit]="6">
 
@@ -955,7 +955,7 @@
                                     </div>
                                 </div>
                                 <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows2" [sorts]="[{ prop: 'description,construction,compositionPercentage,loomTypeId
-                                    size,weight,itemQuantity,contractRate,contractCost,commission', dir: 'asce' }]"
+                                    size,weight,itemQuantity,contractRate,contractCost,commission', dir: 'asce' }]"  *ngIf="rows2.length != 0"
                                     [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'"
                                     [limit]="10">
 
@@ -1069,7 +1069,7 @@
                                     </div>
                                 </div>
 
-                                <ngx-datatable #myTable class="bootstrap" [columnMode]="'force'" [headerHeight]="50"
+                                <ngx-datatable #myTable class="bootstrap" [columnMode]="'force'" [headerHeight]="50" *ngIf="rows4.length != 0"
                                     [rows]="rows4" [footerHeight]="50" [sorts]="[{prop: 'shipmentNo,supplierDate,buyerDate,shipmentLine,shipmentMode,
                                     shipmentRemarks, ', dir: 'asce'}]" [rowHeight]="'auto'" [limit]="6">
 
@@ -1176,7 +1176,7 @@
                                     </div>
                                 </div>
 
-                                <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows5"
+                                <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows5" *ngIf="rows5.length != 0"
                                     [sorts]="[{ prop: 'id,tnaItem', dir: 'asce' }]" [columnMode]="'force'"
                                     [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
                                     <ngx-datatable-column prop="id" name="S. No." [width]="20">
@@ -1373,7 +1373,7 @@
                             </div>
 
 
-                            <ngx-datatable #myTable class="bootstrap" [columns]="columns"
+                            <ngx-datatable #myTable class="bootstrap" [columns]="columns" *ngIf="x.saleInvoiceItemList.length != 0"
                                 [rows]="x.saleInvoiceItemList" [sorts]="[{ prop: 'id,name', dir: 'asce' }]"
                                 [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'"
                                 [limit]="10">
@@ -1550,7 +1550,7 @@
                                     </div>
                                 </div>
 
-                                <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows3"
+                                <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows3" *ngIf="rows3.length != 0"
                                     [sorts]="[{ prop: 'createdByName,createdDateTime,description', dir: 'asce' }]"
                                     [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'"
                                     [limit]="10">

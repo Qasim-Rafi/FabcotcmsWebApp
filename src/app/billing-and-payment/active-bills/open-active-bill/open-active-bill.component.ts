@@ -70,7 +70,7 @@ export class OpenActiveBillComponent implements OnInit {
 
   ChangeBankForm(rows) {
     const modalRef = this.modalService.open(ChangeBankAccountComponent , { centered: true });
-    modalRef.componentInstance.bill_id = rows.contractBillId;
+    modalRef.componentInstance.bill_id = rows.id;
 
     modalRef.result.then((data) => {
       // on close
