@@ -76,16 +76,17 @@ constructor(
       }
     })
   }
-  Show(obj){
+  change(obj){
     let varr = {    
     }
-this.http.put(`${environment.apiUrl}/api/BillingPayments/ChangeBankAccount/` + this.bill_id + obj.id,varr)
+this.http.put(`${environment.apiUrl}/api/BillingPayments/ChangeBankAccount/` + this.bill_id + '/' +obj.id,varr)
   .subscribe(
     res => {
-
       this.response = res;
       if (this.response.success == true) {
-        this.toastr.success(GlobalConstants.updateMessage, 'Message.');
+        this.toastr.success(this.response.message, 'Message.');
+      this.activeModal.close();
+      
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -93,7 +94,7 @@ this.http.put(`${environment.apiUrl}/api/BillingPayments/ChangeBankAccount/` + t
 
     }, err => {
       if (err.status == 400) {
-        this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
+        this.toastr.error(this.response.message, 'Message.');
       }
     });
   }
