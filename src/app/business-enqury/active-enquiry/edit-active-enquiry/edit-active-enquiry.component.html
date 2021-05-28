@@ -126,11 +126,12 @@
                
                 <div  class="col-md-12 border-bottom pb-3" [ngClass]="{ noDisplay : enquiryToggle==false }">
                     <div class="form-group row">
-                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">Buyer Name</label>
+                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">Buyer Name<span
+                            class="required-denote">*</span></label>
                         <div class="col-md-6">
     
-                            <ng-select required [(ngModel)]="enquiryData.buyerId" placeholder="-- Select --" 
-                            #buyerId="ngModel" [ngClass]="{ error: buyerId.invalid }" name="buyerId">
+                            <ng-select required [(ngModel)]="enquiryData.buyerId" placeholder="-- Select --"
+                            #buyerId="ngModel" [ngClass]="{ error: buyerId.invalid && buyerForm.submitted }" name="buyerId">
                                 <ng-option *ngFor="let i of buyer" [value]="i.id">{{ i.buyerName }}
                                 </ng-option>
                             </ng-select>
@@ -224,9 +225,11 @@
                     </div>
                 
     
-                    <!-- <button class="btn btn-light float-right ml-1" (click)="enquiryToggle = !enquiryToggle"> Close</button> -->
-                    <button class="btn btn-primary float-right" [disabled]="buyerForm.invalid"
-                        (click)=" addEnquiryBuyerDetails() ; enquiryToggle = !enquiryToggle"> Save</button>
+                    <button class="btn btn-light float-right mx-2 "
+                        (click)=" enquiryToggle = !enquiryToggle"> Close</button>
+                    <button class="btn btn-primary float-right" type="submit"
+                        (click)=" addEnquiryBuyerDetails() "> Save</button>
+                        
                 </div>
             
             </div>
@@ -297,7 +300,7 @@
     
                             <div class="row">
                                 <div class="col-md-12 py-3" [ngClass]="{ noDisplay : currencyToggle==false }">
-
+                                <form #priceForm="ngForm" novalidate  >
                                     <div class="form-group row">
                                         <label for="inputEmail3"
                                             class="col-md-3 col-form-label control-label">Currency</label>
@@ -309,7 +312,6 @@
                                                 </ng-option>
                                             </ng-select>
     
-    
                                         </div>
                                     </div>
     
@@ -317,14 +319,13 @@
                                         <label for="inputEmail3" class="col-md-3 col-form-label control-label">Total Quantity</label>
                                         <div class="col-md-3">
                                             <div class="input-group">
-                                                <input class="form-control" type="number" min="0" required #totalQuantity="ngModel"
-                                                [ngClass]="{ error: totalQuantity.invalid }"
+                                                <input class="form-control" type="number" min="0"  #totalQuantity="ngModel"
                                                     [(ngModel)]="enquiryData.totalQuantity" name="totalQuantity" />
                                             </div>
                                         </div>
                                         <div class="col-md-3">
     
-                                            <ng-select [(ngModel)]="enquiryData.uomId" placeholder="-- Select --"
+                                            <ng-select [(ngModel)]="enquiryData.uomId" placeholder="-- Select --" 
                                                 name="uomId" #uomId="ngModel">
                                                 <ng-option *ngFor="let i of uom" [value]="i.id">{{ i.name }}
                                                 </ng-option>
@@ -465,7 +466,7 @@
 
                                     <button class="btn btn-light float-right btn-sm" (click)="currencyToggle = !currencyToggle">Close</button>
                                     
-    
+                                    </form>
                                 </div>
                             </div>
     
@@ -566,7 +567,7 @@
                                                 <h2>Vendor Quotes</h2>
                                             </div>
         
-                                                <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'"
+                                                <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'" *ngIf="rows.length != 0"
                                                 [headerHeight]="10" [footerHeight]="50"  [rowHeight]="'auto'" [limit]="6">  
                 
                                                 <ngx-datatable-column name="S.No." [width]="0">
@@ -727,14 +728,18 @@
                             </div>
 
     <!-- ------------------------------form---------------------- -->
+
+                         <form #venderForm="ngForm" novalidate> 
                             <div class="row">
                                 <div class="col-md-12 py-3" [ngClass]="{ noDisplay : vendorToggle==false }">
                             
                                     <div class="form-group row">
-                                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">Suplier / Seller</label>
+                                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">Suplier / Seller<span
+                                            class="required-denote">*</span></label>
                                         <div class="col-md-6">
                             
-                                            <ng-select [(ngModel)]="enquiryData.sellerId" placeholder="-- Select --" name="sellerId">
+                                            <ng-select [(ngModel)]="enquiryData.sellerId" placeholder="-- Select --" name="sellerId"
+                                            [ngClass]="{'error': sellerId.invalid }" #sellerId="ngModel" required->
                                                 <ng-option *ngFor="let i of vendorSeller" [value]="i.id">{{ i.sellerName }}
                                                 </ng-option>
                                             </ng-select>
@@ -754,11 +759,14 @@
                                         </div>
                                     </div>
                             
-                                    <button class="btn btn-primary float-right ml-1  btn-sm" (click)="addEnquiryVendorDetails(); vendorToggle = !vendorToggle">Save</button>
+                                    <button class="btn btn-primary float-right ml-1  btn-sm" (click)="addEnquiryVendorDetails()">Save</button>
                                     <button class="btn btn-light float-right btn-sm" (click)="vendorToggle = !vendorToggle">Close</button>
                                     
                                 </div>
                             </div>
+                        </form>
+
+
                         </div>
     
                         <!-- ---------------------------Order Tab -------------------------- -->
@@ -780,11 +788,13 @@
     
                                 
                             </div>
-    
+                            
+                            <form #orderForm="ngForm" novalidate>
                             <div class="row">
                                 <div class="col-md-12 py-3" [ngClass]="{ noDisplay : orderToggle==false }">
                                     <div class="form-group row">
-                                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">Confirmation On:</label>
+                                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">Confirmation On:<span
+                                            class="required-denote">*</span></label>
                                         <div class="col-md-6">
                                             <div class="input-group"> 
                                                 <input class="form-control " ngbDatepicker #validityDate="ngbDatepicker" [minDate]="{year: 2000, month: 1, day: 1}"
@@ -806,12 +816,13 @@
                                     </div>
 
                                     
-                                    <button class="btn btn-primary float-right ml-1 btn-sm" (click)="addEnquiryOrderDetails() ; orderToggle = !orderToggle">Save</button>
+                                    <button class="btn btn-primary float-right ml-1 btn-sm" (click)="addEnquiryOrderDetails()">Save</button>
                                     <button class="btn btn-light float-right btn-sm" (click)="orderToggle = !orderToggle">Close</button>
                                     
                                 </div>
+                            
                             </div>
-
+                        </form>
                         </div>
 
                         <!-- --------------------------- Note Tab -------------------------- -->
@@ -859,7 +870,7 @@
                             </div>
                         
 
-                                <ngx-datatable #myTable class="bootstrap mt-3" [columns]="columns" [rows]="rows1" [columnMode]="'force'"
+                                <ngx-datatable #myTable class="bootstrap mt-3" [columns]="columns" [rows]="rows1" [columnMode]="'force'" *ngIf="rows1.length != 0"
                                 [headerHeight]="10" [footerHeight]="50"  [rowHeight]="'auto'" [limit]="6">  
 
                                 <ngx-datatable-column name="User" [width]="5">
