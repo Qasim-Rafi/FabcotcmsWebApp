@@ -61,14 +61,25 @@ export class GenerateBillsComponent implements OnInit {
         });
         this.rows = temp;
       }
-      onSelect({ selected }) {
-        // console.log('Select Event', selected, this.selected);
+      onSelect({selected}) {
+        // console.log('Select Event', selected);
+        // this.selected.splice(0, selected.length);
+        // this.selected.push(...selected);
+        // console.log("selection" , this.selected)
         for(let i=0; i<selected.length; i++ )
         {
+        
             this.contractIds[i] = selected[i].id;
-            
+            this.selected = [...selected]
         }
+        return this.contractIds;        
       }
+      getIds(){
+        console.log("selected in" , this.selected)
+      }
+    //   singleSelectCheck (row:any) {
+    //     return this.selected.indexOf(row) === -1;
+    //  }
       // displayCheck(row) {
       //   console.log(row.id)
       //   return row.id;
@@ -76,11 +87,7 @@ export class GenerateBillsComponent implements OnInit {
       // onActivate(event) {
         // console.log('Activated Event', event );
           // if (event.type === 'click' ){
-          //   this.checkboxData.push({['id']:event.row.contractBillId , 
-                                    // ['buyerId']:event.row.buyerId ,
-                                    // ['sellerId']:event.row.sellerId , 
-                                    // ['taxAmount']:event.row.id
-    //                                });
+          //   this.checkboxData.push(event.row.contractBillId);
                                    
     //         console.log( "checkbox",this.checkboxData)
     //       }
@@ -96,6 +103,7 @@ export class GenerateBillsComponent implements OnInit {
     // }
 
   generateBill() {
+    this.getIds();
   if(this.contractIds.length === 0){
     this.toastr.error("PLease select atleast one contract to generate bill" , 'Message')
   }
