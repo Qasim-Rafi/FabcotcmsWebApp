@@ -35,16 +35,19 @@
   <div class="modal-body BG p-0">
     <form #NotesForm="ngForm" novalidate>
 
-          <div class="col-sm-8 pt-2">
-        <div class="form-group row">
-          <label for="name" class="col-sm-3 col-form-label">Reason<span
-            class="required-denote">*</span></label>
-          <div class="col-sm-9">
-            <textarea appAutofocus  type="text" class="form-control" rows="4" placeholder="Define aproper Reason..."  required #reason="ngModel"
-            [(ngModel)]="data.reason" name="reason"  [ngClass]="{'error':reason.invalid && NotesForm.submitted  }" 
-            ></textarea>
+      <div class="row justify-content-center">
+        <div class="col-md-10 pt-3 pb-3">
+
+            <div class="form-group row">
+              <label for="name" class="col-form-label">Reason<span class="required-denote">*</span></label>
+              
+                <textarea appAutofocus type="text" class="form-control" rows="4" placeholder="Define aproper Reason..." required
+                  #reason="ngModel" [(ngModel)]="data.reason" name="reason"
+                  [ngClass]="{'error':reason.invalid && NotesForm.submitted  }"></textarea>
+              
+            </div>
+
           </div>
-        </div>
         </div>
         
   

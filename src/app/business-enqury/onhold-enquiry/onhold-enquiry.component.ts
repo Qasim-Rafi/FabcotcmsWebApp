@@ -5,8 +5,6 @@ import { GlobalConstants } from 'src/app/Common/global-constants';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-import { EnquiryItemsComponent } from 'src/app/shared/MODLES/enquiry-items/enquiry-items.component';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import { ClipboardService } from 'ngx-clipboard';
@@ -14,81 +12,47 @@ import { ServiceService } from 'src/app/shared/service.service';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
-  selector: 'app-active-enquiry',
-  templateUrl: './active-enquiry.component.html',
-  styleUrls: ['./active-enquiry.component.css']
+  selector: 'app-onhold-enquiry',
+  templateUrl: './onhold-enquiry.component.html',
+  styleUrls: ['./onhold-enquiry.component.css']
 })
-export class ActiveEnquiryComponent implements OnInit {
+export class OnholdEnquiryComponent implements OnInit {
+  onholdUrl = '/api/Enquiries/GetAllEnquiry/OnHold'
   response: any;
+  copyData: any = [];
   rows: any = [];
   columns: any = [];
+  temp: any = [];
+  onHoldCount:any
   data: any = {};
   listCount: number;
-  myDate = Date.now();
-  copyData: any = [];
-  temp: any = [];
-  @Input() enquiryId;
-  onHoldCount:any
-  closedCount:any
-  confirmedCount:any
-
-
-  constructor(private http: HttpClient,
-    private toastr: ToastrService,
+  constructor(
     private service: ServiceService,
     private router: Router,
     private _clipboardService: ClipboardService,
-    private modalService: NgbModal,
-    // private service: ServiceService,
-  ) { }
-
-
-  navigateAddEnquiry() {
-    this.router.navigateByUrl('/enquiry/enquiries');
-  };
-
-
-  navigateEditEnquiry(obj) {
-    this.router.navigate(['/enquiry/edit-active-enquiries'], { queryParams: {id: obj.id} });
-  };
-
+    private toastr: ToastrService,
+    private http: HttpClient,
+  ) { 
+    
+  }
 
   ngOnInit(): void {
-
-    // this.editEnquiry(this.enquiryId);
     this.fetch((data) => {
       this.temp = [...data]; 
       this.rows = data;
     });
-
   }
-
-
-  updateFilter(event) {
-    const val = event.target.value.toLowerCase();
-    // filter our data
-    const temp = this.temp.filter(function (d) {
-      return ( d.autoEnquiryNumber.toLowerCase().indexOf(val) !== -1 || !val );
-    });
-    this.rows = temp;
-  }
-
-
-
   fetch(cb) {
 
     this.http
-      .get(`${environment.apiUrl}/api/Enquiries/GetAllEnquiry`)
+      .get(`${environment.apiUrl}/api/Enquiries/GetAllEnquiry/OnHold`)
       .subscribe(res => {
         this.response = res;
 
         if (this.response.success == true) {
           
-          this.data = this.response.data.enquiryList;
-          this.listCount = this.response.data.activeCount;
           this.onHoldCount = this.response.data.onHoldCount
-          this.closedCount = this.response.data.closedCount
-          this.confirmedCount = this.response.data.confirmedCount
+          this.data = this.response.data.enquiryList;
           this.temp = [this.data];
           cb(this.data);
         }
@@ -103,40 +67,17 @@ export class ActiveEnquiryComponent implements OnInit {
         //  this.spinner.hide();
       });
   }
-
-
-  copyRecord(value){
-
-    this.http
-      .put(`${environment.apiUrl}/api/Enquiries/CloneEnquiry/`+value.id,{})
-      .subscribe(res => {
-        this.response = res;
-        // this.listCount = this.response.data.length;
-
-        if (this.response.success == true) {
-          this.fetch((data) => {
-            this.rows = data;
-          });
-      
-     
-    
-        }
-        else {
-          this.toastr.error(this.response.message, 'Message.');
-        }
-        // this.spinner.hide();
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error(err.error.message, 'Message.');;
-        }
-        //  this.spinner.hide();
-      });
+  onholdenquiryFilter(event) {
+    const val = event.target.value.toLowerCase();
+    // filter our data
+    const temp = this.temp.filter(function (d) {
+      return ( 
+        d.autoEnquiryNumber.toLowerCase().indexOf(val) !== -1 || 
+        d.buyerName.toLowerCase().indexOf(val) !== -1 || 
+        !val );
+    });
+    this.rows = temp;
   }
-
-
-
-
-
   deleteEnquiry(obj) {
     Swal.fire({
       title: GlobalConstants.deleteTitle, //'Are you sure?',
@@ -163,8 +104,8 @@ export class ActiveEnquiryComponent implements OnInit {
                 });
 
               }
-              else {
-                this.toastr.error('Something went Worng', 'Message.');
+              else {          
+              this.toastr.error(this.response.message, 'Message.');
               }
 
             }, err => {
@@ -220,17 +161,19 @@ export class ActiveEnquiryComponent implements OnInit {
   
   
   }
-
+  navigateEditEnquiry(obj) {
+    this.router.navigate(['/enquiry/edit-active-enquiries'], { queryParams: {id: obj.id} });
+  };
   enquiryPdf() {
 
     let docDefinition = {
       pageSize: 'A4',
       info: {
-        title: 'Active Enquiry List'
+        title: 'OnHold Enquiry List'
       },
       content: [
         {
-          text: 'Active Enquiry List',
+          text: 'OnHold Enquiry List',
           style: 'heading',
 
         },
@@ -263,48 +206,48 @@ export class ActiveEnquiryComponent implements OnInit {
     };
 
 
-    pdfMake.createPdf(docDefinition).download('ActiveEnquiry.pdf');
+    pdfMake.createPdf(docDefinition).download('OnHoldEnquiry.pdf');
   }
 
 
   copyEnquiryList() {
-    // let count1 = this.rows.map(x => x.autoEnquiryNumber.length);
-    // let max1 = count1.reduce((a, b) => Math.max(a, b));
+    let count1 = this.rows.map(x => x.autoEnquiryNumber.length);
+    let max1 = count1.reduce((a, b) => Math.max(a, b));
 
-    // let count2 = this.rows.map(x => x.enquiryDate.length);
-    // let max2 = count2.reduce((a, b) => Math.max(a, b));
+    let count2 = this.rows.map(x => x.enquiryDate.length);
+    let max2 = count2.reduce((a, b) => Math.max(a, b));
 
-    // let count3 = this.rows.map(x => x.articleName.length);
-    // let max3 = count3.reduce((a, b) => Math.max(a, b));
+    let count3 = this.rows.map(x => x.articleName.length);
+    let max3 = count3.reduce((a, b) => Math.max(a, b));
 
-    // let count4 = this.rows.map(x => x.paymentTermName.length);
-    // let max4 = count4.reduce((a, b) => Math.max(a, b));
+    let count4 = this.rows.map(x => x.paymentTermName.length);
+    let max4 = count4.reduce((a, b) => Math.max(a, b));
     
-    // let count5 = this.rows.map(x => x.priceTermName.length);
-    // let max5 = count5.reduce((a, b) => Math.max(a, b));
+    let count5 = this.rows.map(x => x.priceTermName.length);
+    let max5 = count5.reduce((a, b) => Math.max(a, b));
     
-    // let count6 = this.rows.map(x => x.buyerName.length);
-    // let max6 = count6.reduce((a, b) => Math.max(a, b));
+    let count6 = this.rows.map(x => x.buyerName.length);
+    let max6 = count6.reduce((a, b) => Math.max(a, b));
 
-    // max1 = max1 + 10;
-    // max2 = max2 + 10;
-    // max3 = max3 + 10;
-    // max4 = max4 + 10;
-    // max5 = max5 + 10;
-    // max6 = max6 + 10;
+    max1 = max1 + 10;
+    max2 = max2 + 10;
+    max3 = max3 + 10;
+    max4 = max4 + 10;
+    max5 = max5 + 10;
+    max6 = max6 + 10;
 
 
-    this.copyData.push('Enquiry No.'.padEnd(10) + 'Enquiry On.'.padEnd(10) +
-      'Customer'.padEnd(10) + 'Article'.padEnd(10) + 'Payment Terms'.padEnd(10)+ 
-      'Price Terms'.padEnd(10) + 'Status \n');
+    this.copyData.push('Enquiry No.'.padEnd(max1) + 'Enquiry On.'.padEnd(max2) +
+      'Customer'.padEnd(max6) + 'Article'.padEnd(max3) + 'Payment Terms'.padEnd(max4)+ 
+      'Price Terms'.padEnd(max5) + 'Status \n');
 
     for (let i = 0; i < this.rows.length; i++) {
-      let tempData =  this.rows[i].autoEnquiryNumber.padEnd(10) 
-      + this.rows[i].enquiryDate.padEnd(10)
-      + this.rows[i].buyerName.padEnd(10)
-      + this.rows[i].articleName.padEnd(10)
-      + this.rows[i].paymentTermName.padEnd(10)
-      + this.rows[i].priceTermName.padEnd(10)
+      let tempData =  this.rows[i].autoEnquiryNumber.padEnd(max1) 
+      + this.rows[i].enquiryDate.padEnd(max2)
+      + this.rows[i].buyerName.padEnd(max6)
+      + this.rows[i].articleName.padEnd(max3)
+      + this.rows[i].paymentTermName.padEnd(max4)
+      + this.rows[i].priceTermName.padEnd(max5)
         + this.rows[i].active+ '\n';
       this.copyData.push(tempData);
     }
@@ -312,12 +255,12 @@ export class ActiveEnquiryComponent implements OnInit {
 
     Swal.fire({
       title: GlobalConstants.copySuccess,
-      footer: 'Copied' + '\n' + 'all' + '\n' + 'rows to clipboard',
+      footer: 'Copied' + '\n' + this.onHoldCount + '\n' + 'rows to clipboard',
       showConfirmButton: false,
       timer: 2000,
     })
   }
-  activeEnquiryExcelFile(){
+  onholdEnquiryExcelFile(){
     const filtered = this.rows.map(row => ({
       EnquiryNo: row.autoEnquiryNumber,
       EnquiryOn: row.enquiryDate,
@@ -328,10 +271,10 @@ export class ActiveEnquiryComponent implements OnInit {
       Status: row.active == true ? "Active" : "In-Active",
     }));
 
-    this.service.exportAsExcelFile(filtered, 'Active Enquiries');
+    this.service.exportAsExcelFile(filtered, 'OnHold Enquiries');
 
   }
-  activeEnquiryCsvFile(){
+  onholdEnquiryCsvFile(){
     const filtered = this.rows.map(row => ({
       EnquiryNo: row.autoEnquiryNumber,
       EnquiryOn: row.enquiryDate,
@@ -341,19 +284,19 @@ export class ActiveEnquiryComponent implements OnInit {
       PriceTerms: row.priceTermName,
       Status: row.active == true ? "Active" : "In-Active", }));
   
-    this.service.exportAsCsvFile(filtered, 'Active Enquiries');
+    this.service.exportAsCsvFile(filtered, 'OnHold Enquiries');
   
   }
-  printactiveEnquiryList() {
+  printonholdEnquiryList() {
 
     let docDefinition = {
       pageSize: 'A4',
       info: {
-        title: 'Active Enquiry List'
+        title: 'OnHold Enquiry List'
       },
       content: [
         {
-          text: 'Active Enquiry List',
+          text: 'OnHold Enquiry List',
           style: 'heading',
 
         },
@@ -387,7 +330,4 @@ export class ActiveEnquiryComponent implements OnInit {
     pdfMake.createPdf(docDefinition).print();
 
   }
-  
 }
-
-

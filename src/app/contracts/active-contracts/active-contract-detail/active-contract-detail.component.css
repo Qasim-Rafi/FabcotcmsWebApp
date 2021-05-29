@@ -2,6 +2,10 @@ h2 {
     color: #575d63;
     font-weight: 100;
   }
+
+  .btnsm-f {
+    font-size: 11px !important;
+  }
   
   .topbox-1{
     background-color: white;

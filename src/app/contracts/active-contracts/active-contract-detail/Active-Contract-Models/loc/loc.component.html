@@ -22,7 +22,7 @@
     <div class="col-md-12 pt-3 pb-2">
 
       <div class="form-group row">
-        <label for="name" class="col-sm-3 col-form-label">L/C No.</label> <span class="required-denote">*</span>
+        <label for="name" class="col-sm-3 col-form-label">L/C No.<span class="required-denote">*</span></label>
         <div class="col-sm-8">
           <input type="text" class="form-control" name="lcNumber" [(ngModel)]="data.lcNumber" required
             #lcNumber="ngModel" [ngClass]="{ 'error': lcNumber.invalid && LCForm.submitted }"
@@ -31,8 +31,7 @@
       </div>
 
       <div class="form-group row">
-        <label for="description" class="col-sm-3 col-form-label ">L/C Open On</label><span
-          class="required-denote">*</span>
+        <label for="description" class="col-sm-3 col-form-label ">L/C Open On<span class="required-denote">*</span></label>
         <div class="col-sm-8" (clickOutside)="enquiryDatePicker.close()">
 
           <input type="text" class="form-control  datetimepicker-input" (click)="enquiryDatePicker.toggle()" required
@@ -43,8 +42,7 @@
       </div>
 
       <div class="form-group row">
-        <label for="description" class="col-sm-3 col-form-label ">L/C Shipment On</label><span
-          class="required-denote">*</span>
+        <label for="description" class="col-sm-3 col-form-label ">L/C Shipment On<span class="required-denote">*</span></label>
         <div class="col-sm-8" (clickOutside)="enquiryDatePicker.close()">
 
 
@@ -59,7 +57,7 @@
       </div>
 
       <div class="form-group row">
-        <label for="description" class="col-sm-3 col-form-label ">L/C Expiry Date</label><span class="required-denote">*</span>
+        <label for="description" class="col-sm-3 col-form-label ">L/C Expiry Date<span class="required-denote">*</span></label>
         <div class="col-sm-8" (clickOutside)="validity2.close()">
 
           <input class="form-control text_Navy " ngbDatepicker #validity2="ngbDatepicker"

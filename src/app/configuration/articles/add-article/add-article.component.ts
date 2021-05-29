@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -16,6 +16,7 @@ export class AddArticleComponent implements OnInit {
   data:any={};
   response: any;
   active = true;
+  @ViewChild(NgForm) addAgentForm;
 
 
   constructor(private http:HttpClient,
@@ -65,6 +66,7 @@ export class AddArticleComponent implements OnInit {
         this.response = res;
         if (this.response.success == true){
           this.toastr.success(this.response.message, 'Message.');
+          this.addAgentForm.reset();
           this.activeModal.close(true);
         }
         else {
