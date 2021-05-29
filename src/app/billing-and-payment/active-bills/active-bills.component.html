@@ -112,11 +112,10 @@
           </div>
 
           <div class="col-md-6 mrg-tsm">
-            <button type="button" class="btn btn-light float-right"  onclick="location.reload(true)"><i class="fas fa-sync-alt"></i></button>
-            <button type="button" class="btn btn-primary float-right mr-1" (click)="dateFilterForm()">
+            <button type="button" class="btn btn-light btn-sm float-right"  onclick="location.reload(true)"><i class="fas fa-sync-alt"></i></button>
+            <button type="button" class="btn btn-primary btn-sm float-right mr-1" (click)="dateFilterForm()">
                 <i class="fa fa-filter"></i>
             </button>
-   
           </div>
 
          
@@ -137,7 +136,7 @@
               </div> -->
           
               <div class="col-auto">
-                <button type="button" class="btn btn-primary  btn-md float-right" (click)= "print()">
+                <button type="button" class="btn btn-primary btn-sm float-right" (click)= "print()">
                   <i class="fa fa-print"></i> Bulk Print
                 </button>
               </div>
@@ -151,16 +150,19 @@
         
             <div class="row justify-content-end">
 
-              <div class="col-md-4">
-                <div class="input-group col-md-offset-3">
-                  <input type="text" placeholder="Search..." class="input form-control w-50"
-                  (keyup)="search($event)"
-                  />
-                </div>
+              <div class="col-md-4 pr-0">
+
+                <div class="form-group row">
+                  <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
+                  <div class="col-sm-9">
+                    <input type="text" placeholder="Search..." class="input form-control form-control-sm"
+                  (keyup)="search($event)"/>
+                  </div>
+                </div> 
               </div>
         
               <div class="html5buttons mrg-tsm">
-                <div class="dt-buttons btn-group">
+                <div class="dt-buttons btn-group btn-group-sm">
                   <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0" aria-controls="DataTables_Table_0"
                    (click)="copyBillsList()" ngxClipboard><span>Copy</span>
                   </a>
