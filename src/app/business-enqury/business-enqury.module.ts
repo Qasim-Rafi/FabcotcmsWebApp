@@ -14,13 +14,14 @@ import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { ToastrModule } from 'ngx-toastr';
 import { EditActiveEnquiryComponent } from './active-enquiry/edit-active-enquiry/edit-active-enquiry.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { OnholdEnquiryComponent } from './onhold-enquiry/onhold-enquiry.component';
 
 
 @NgModule({
   declarations: [
     AddEnquiryComponent,
     ActiveEnquiryComponent,
-    SearchEnquiryComponent, EditActiveEnquiryComponent
+    SearchEnquiryComponent, EditActiveEnquiryComponent, OnholdEnquiryComponent
 
   ],
 
