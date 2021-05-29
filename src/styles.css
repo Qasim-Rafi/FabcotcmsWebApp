@@ -119,6 +119,10 @@ body {
 
 
 
+.ngx-datatable.bootstrap .datatable-footer .datatable-pager a {
+  color: #b9b9b9;
+}
+
 
 /* .ngx-datatable.bootstrap .datatable-footer {
   margin-top: -3px !important;
