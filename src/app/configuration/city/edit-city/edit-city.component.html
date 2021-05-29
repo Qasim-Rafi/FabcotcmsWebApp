@@ -58,11 +58,11 @@
         <div class="col-sm-8">
           <div class="form-check form-check-inline">
             <input  class="form-check-input check-btn "  id="scales" *ngIf="statusCheck == 'CityAdd'"  type="checkbox" name="active" [(ngModel)]="active">
-            <label for="scales" id="active" *ngIf="statusCheck == 'add'"  class="form-check-label text-grey" id="active">Marked as Active</label>
+            <label for="scales" id="active" *ngIf="statusCheck == 'CityAdd'"  class="form-check-label text-grey" id="active">Marked as Active</label>
 
             <input class="form-check-input check-btn " id="scales" *ngIf="statusCheck == 'CityEdit'"  type="checkbox" name="active" [(ngModel)]="data.active"
             #active="ngModel">
-          <label for="scales" id="active" *ngIf="statusCheck == 'edit'" class="form-check-label text-grey" id="active">Marked as Active</label>
+          <label for="scales" id="active" *ngIf="statusCheck == 'CityEdit'" class="form-check-label text-grey" id="active">Marked as Active</label>
           </div>
         </div>
       </div>

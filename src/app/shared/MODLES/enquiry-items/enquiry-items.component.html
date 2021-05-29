@@ -94,8 +94,9 @@
                             <div class="form-group col-4 modalBorder">
                                 <div class="row">
                                     <div class="col-lg-3 pr-0">
-                                        <input type="number" min="0" class="form-control" placeholder="%age"
-                                            name="compositionPercentage_{{i}}" [(ngModel)]=value.compositionPercentage />
+                                        <input required type="number" min="0" class="form-control" placeholder="%age"
+                                            name="compositionPercentage_{{i}}" #compositionPercentage="ngModel" [(ngModel)]=value.compositionPercentage  
+                                            [ngClass]="{ 'error':  compositionPercentage.invalid }" />
                                     </div>
                                     <div class="col-lg-5 mrg-tsm">
                                         <ng-select [(ngModel)]="value.compositionFebricTypeId" placeholder="Select Fabric" 

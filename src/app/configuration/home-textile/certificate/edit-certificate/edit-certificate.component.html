@@ -100,12 +100,12 @@
         <label for="active" class="col-sm-3 col-form-label text-grey"></label>
         <div class="col-sm-8">
           <div class="form-check form-check-inline">
-            <input  class="form-check-input check-btn "  id="scales" *ngIf="statusCheck == 'CertificateAdd'"  type="checkbox" name="active" [(ngModel)]="active">
-            <label for="scales" id="active" *ngIf="statusCheck == 'CertificateAdd'"  class="form-check-label text-grey" id="active">Marked as Active</label>
+            <input  class="form-check-input check-btn "  id="scales" *ngIf="statusCheck == 'CertificateAdd'" id="active"  type="checkbox" name="active" [(ngModel)]="active">
+            <label for="scales"  *ngIf="statusCheck == 'CertificateAdd'"  class="form-check-label text-grey" >Marked as Active</label>
 
-            <input class="form-check-input check-btn " *ngIf="statusCheck == 'CertificateEdit'"  type="checkbox" name="active" [(ngModel)]="data.active"
+            <input class="form-check-input check-btn " *ngIf="statusCheck == 'CertificateEdit'" id="active" type="checkbox" name="active" [(ngModel)]="data.active"
             #active="ngModel">
-          <label for="active" *ngIf="statusCheck == 'CertificateEdit'" class="form-check-label text-grey" id="active">Marked as Active</label>
+          <label for="active" *ngIf="statusCheck == 'CertificateEdit'" class="form-check-label text-grey" >Marked as Active</label>
           </div>
         </div>
       </div>
