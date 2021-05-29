@@ -79,6 +79,7 @@ export class AddEnquiryComponent implements OnInit {
   dateformater: Dateformater = new Dateformater();
   today:any;
   
+  
   constructor(private http: HttpClient,
     private toastr: ToastrService,
     private modalService: NgbModal,
@@ -101,16 +102,16 @@ export class AddEnquiryComponent implements OnInit {
     let latest_date =this.datepipe.transform(olddate, 'yyyy-MM-dd');
     this.enquiryDateField =this.dateformater.fromModel(latest_date);
     this. getAutoEnquiryNo();
-    this.GetBuyersDropdown();
-    this.GetArticlesDropdown();
-    this.GetPaymentDropdown();
-    this.GetPackingDropdown();
-    this.GetDesignDropdown();
-    this.GetProcessDropdown();
-    this.GetProcessTypeDropdown();
-    this.GetCertificationDropdown();
-    this.GetPriceTermDropdown();
-    this.GetCityDropdown();
+    this.GetBuyersDropdown("start");
+    this.GetArticlesDropdown("start");
+    this.GetPaymentDropdown("start");
+    this.GetPackingDropdown("start");
+    this.GetDesignDropdown("start");
+    this.GetProcessDropdown("start");
+    this.GetProcessTypeDropdown("start");
+    this.GetCertificationDropdown("start");
+    this.GetPriceTermDropdown("start");
+    this.GetCityDropdown("start");
     this.GetUOMDropdown();
   }
 
@@ -135,13 +136,20 @@ export class AddEnquiryComponent implements OnInit {
         });
   }
 
-  GetArticlesDropdown() {
+  GetArticlesDropdown(type:string) {
     this.service.getArticles().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
         
         this.article = this.response.data.list;
         this.newArticle = this.response.data.lastId
+
+        if(type == "other")
+        {
+          this.article.id = this.newArticle;
+          this.data.articleId = this.article.id
+        }
+
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -150,13 +158,21 @@ export class AddEnquiryComponent implements OnInit {
   }
 
 
-  GetBuyersDropdown() {
+  GetBuyersDropdown(type:string) {
     this.service.getBuyers().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
 
         this.buyer = this.response.data.list;
         this.newBuyer = this.response.data.lastId
+
+
+
+        if(type == "other")
+        {
+          this.buyer.id = this.newBuyer;
+          this.data.buyerId = this.buyer.id
+        }
        
       }
       else {
@@ -166,12 +182,22 @@ export class AddEnquiryComponent implements OnInit {
   }
 
 
-  GetPaymentDropdown() {
+  GetPaymentDropdown(type:string) {
     this.service.getPaymentTerm().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
         this.payment = this.response.data.list;
         this.newPayment = this.response.data.lastId;
+
+
+        if(type == "other")
+        {
+          this.payment.id = this.newPayment;
+          this.data.paymentTermId = this.payment.id
+        }
+
+
+
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -179,12 +205,21 @@ export class AddEnquiryComponent implements OnInit {
     })
   }
 
-  GetPackingDropdown() {
+  GetPackingDropdown(type:string) {
     this.service.getPackaging().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
         this.packaging = this.response.data.list;
         this.newPacking = this.response.data.lastId
+
+
+        
+        if(type == "other")
+        {
+          this.packaging.id = this.newPacking;
+          this.data.packagingId = this.packaging.id
+        }
+
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -192,12 +227,19 @@ export class AddEnquiryComponent implements OnInit {
     })
   }
 
-  GetDesignDropdown() {
+  GetDesignDropdown(type:string) {
     this.service.getDesignType().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
         this.design = this.response.data.list;
         this.newDesign = this.response.data.lastId
+
+
+        if(type == "other")
+        {
+          this.design.id = this.newDesign;
+          this.data.designTypeId = this.design.id
+        }
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -205,12 +247,18 @@ export class AddEnquiryComponent implements OnInit {
     })
   }
 
-  GetProcessDropdown() {
+  GetProcessDropdown(type:string) {
     this.service.getProcess().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
         this.process = this.response.data.list;
         this.newProcess = this.response.data.lastId
+
+        if(type == "other")
+        {
+          this.process.id = this.newProcess;
+          this.data.processId = this.process.id
+        }
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -218,12 +266,19 @@ export class AddEnquiryComponent implements OnInit {
     })
   }
 
-  GetProcessTypeDropdown() {
+  GetProcessTypeDropdown(type:string) {
     this.service.getProcessType().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
         this.ptype = this.response.data.list;
         this.newProcessType = this.response.data.lastId
+
+
+        if(type == "other")
+        {
+          this.ptype.id = this.newProcessType;
+          this.data.processTypeId = this.ptype.id+1
+        }
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -231,12 +286,20 @@ export class AddEnquiryComponent implements OnInit {
     })
   }
 
-  GetCertificationDropdown() {
+  GetCertificationDropdown(type:string) {
     this.service.getCertification().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
         this.certification = this.response.data.list;
         this.newCertificate = this.response.data.lastId
+
+
+
+        if(type == "other"){
+          this.certification.id = this.newCertificate;
+          this.data.certificateIds = this.certification.id
+     }
+
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -244,12 +307,19 @@ export class AddEnquiryComponent implements OnInit {
     })
   }
 
-  GetPriceTermDropdown() {
+  GetPriceTermDropdown(type:string) {
     this.service.getPriceTerm().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
         this.priceterm = this.response.data.list;
         this.newPrice = this.response.data.lastId
+
+
+        if(type == "other")
+        {
+          this.priceterm.id = this.newPrice;
+          this.data.priceTermId = this.priceterm.id
+        }
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -270,12 +340,18 @@ export class AddEnquiryComponent implements OnInit {
   }
 
 
-  GetCityDropdown() {
+  GetCityDropdown(type:string) {
     this.service.getCity().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
         this.city = this.response.data.list;
         this.newCity = this.response.data.lastId
+
+
+        if(type == "other"){
+             this.city.id = this.newCity;
+             this.data.destinationId = this.city.id
+        }
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -291,9 +367,8 @@ export class AddEnquiryComponent implements OnInit {
       // on close
       if (data == true) {
         //  this.date = this.myDate;
-        this.GetCertificationDropdown();
-        this.certification.id = this.newCertificate;
-        this.data.certificateIds = this.certification.id+1
+        this.GetCertificationDropdown("other");
+      
 
 
 
@@ -314,9 +389,8 @@ export class AddEnquiryComponent implements OnInit {
       // on close
       if (data == true) {
         //  this.date = this.cityDate;
-        this.GetCityDropdown();
-        this.city.id = this.newCity;
-        this.data.destinationId = this.city.id+1
+        this.GetCityDropdown("other");
+        
      
 
       }
@@ -332,9 +406,8 @@ export class AddEnquiryComponent implements OnInit {
       if (data == true) {
 
     
-        this.GetBuyersDropdown();
-        this.buyer.id = this.newBuyer;
-        this.data.buyerId = this.buyer.id+1
+        this.GetBuyersDropdown("other");
+       
 
       }
     }, (reason) => {
@@ -349,9 +422,8 @@ export class AddEnquiryComponent implements OnInit {
       // on close
       if (data == true) {
      
-        this.GetArticlesDropdown();
-        this.article.id = this.newArticle;
-        this.data.articleId = this.article.id+1
+        this.GetArticlesDropdown("other");
+       
 
       }
     }, (reason) => {
@@ -366,9 +438,8 @@ export class AddEnquiryComponent implements OnInit {
       // on close
       if (data == true) {
         //  this.date = this.myDate;
-        this.GetProcessDropdown();
-        this.process.id = this.newProcess;
-        this.data.processId = this.process.id+1
+        this.GetProcessDropdown("other");
+      
       }
       
     }, (reason) => {
@@ -384,9 +455,8 @@ export class AddEnquiryComponent implements OnInit {
       // on close
       if (data == true) {
         //  this.date = this.myDate;
-        this.GetPackingDropdown();
-        this.packaging.id = this.newPacking;
-        this.data.packagingId = this.packaging.id+1
+        this.GetPackingDropdown("other");
+    
 
 
 
@@ -402,9 +472,8 @@ export class AddEnquiryComponent implements OnInit {
       // on close
       if (data == true) {
         //  this.date = this.myDate;
-        this.GetDesignDropdown();
-        this.design.id = this.newDesign;
-        this.data.designTypeId = this.design.id+1
+        this.GetDesignDropdown("other");
+      
 
 
 
@@ -422,9 +491,8 @@ export class AddEnquiryComponent implements OnInit {
       // on close
       if (data == true) {
         //  this.date = this.myDate;
-        this.GetProcessTypeDropdown();
-        this.ptype.id = this.newProcessType;
-        this.data.processTypeId = this.ptype.id+1
+        this.GetProcessTypeDropdown("other");
+       
 
 
 
@@ -442,9 +510,8 @@ export class AddEnquiryComponent implements OnInit {
       // on close
       if (data == true) {
         //  this.date = this.myDate;
-        this.GetPaymentDropdown();
-        this.payment.id = this.newPayment;
-        this.data.paymentTermId = this.payment.id+1
+        this.GetPaymentDropdown("other");
+       
 
 
 
@@ -460,9 +527,8 @@ export class AddEnquiryComponent implements OnInit {
       // on close
       if (data == true) {
         //  this.date = this.myDate;
-        this.GetPriceTermDropdown();
-        this.priceterm.id = this.newPrice;
-        this.data.priceTermId = this.priceterm.id+1
+        this.GetPriceTermDropdown("other");
+    
 
 
 
