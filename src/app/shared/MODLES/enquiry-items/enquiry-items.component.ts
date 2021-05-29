@@ -67,7 +67,7 @@ export class EnquiryItemsComponent implements OnInit {
 
   }
   remove() {
-    this.data.splice(this.data.i, 1);
+    this.data.splice(-1, 1);
     this.counter--;
 
   }
