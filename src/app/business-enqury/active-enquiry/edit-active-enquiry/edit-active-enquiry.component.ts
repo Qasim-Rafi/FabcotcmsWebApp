@@ -422,11 +422,12 @@ export class EditActiveEnquiryComponent implements OnInit {
             this.toastr.error(this.response.message, 'Message.');
           }
 
-        }, err => {
-          if (err.status == 400) {
-            this.toastr.error(this.response.message, 'Message.');
-          }
+        },(err: HttpErrorResponse) => {
+          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+          this.toastr.error(messages.toString(), 'Message.');
+          console.log(messages);
         });
+   
   }
 
   addEnquiryPaymentDetails() {
@@ -499,10 +500,10 @@ export class EditActiveEnquiryComponent implements OnInit {
             this.toastr.error(this.response.message, 'Message.');
           }
 
-        }, err => {
-          if (err.status == 400) {
-            this.toastr.error(this.response.message, 'Message.');
-          }
+        },(err: HttpErrorResponse) => {
+          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+          this.toastr.error(messages.toString(), 'Message.');
+          console.log(messages);
         });
   }
 
@@ -537,10 +538,10 @@ export class EditActiveEnquiryComponent implements OnInit {
             this.toastr.error(this.response.message, 'Message.');
           }
 
-        }, err => {
-          if (err.status == 400) {
-            this.toastr.error(this.response.message, 'Message.');
-          }
+        },(err: HttpErrorResponse) => {
+          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+          this.toastr.error(messages.toString(), 'Message.');
+          console.log(messages);
         });
   }
 
@@ -573,10 +574,10 @@ export class EditActiveEnquiryComponent implements OnInit {
             this.toastr.error(this.response.message, 'Message.');
           }
 
-        }, err => {
-          if (err.status == 400) {
-            this.toastr.error(this.response.message, 'Message.');
-          }
+        },(err: HttpErrorResponse) => {
+          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+          this.toastr.error(messages.toString(), 'Message.');
+          console.log(messages);
         });
   }
 

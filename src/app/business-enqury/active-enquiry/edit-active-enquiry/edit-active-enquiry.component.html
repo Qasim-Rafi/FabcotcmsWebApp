@@ -1123,8 +1123,8 @@
                     <span class="ml-2 text-small "> Enquiry Archive </span>
         
                 </button>
-                <button class="btn btn-primary btn-block btn-lg text-center " (click)="GenerateContract()" *ngIf="enquiryData.status == 'Open'"
-                       >
+                <button class="btn btn-primary btn-block btn-lg text-center " (click)="GenerateContract()" *ngIf="enquiryData.status == 'Open' && enquiryData.showContractButton == true " 
+             >
                     <i class="fas fa-file-archive fa-md"></i>
                     <span class="ml-2 text-small "> Create Contract </span>
                 </button>
