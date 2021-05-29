@@ -123,6 +123,12 @@ body {
   color: #b9b9b9;
 }
 
+.ngx-datatable.bootstrap .datatable-body .datatable-body-row.active {
+  /* background-color: #1483ff !important; */
+  background-color: #cce5ff !important;
+  color: #000000;
+}
+ 
 
 /* .ngx-datatable.bootstrap .datatable-footer {
   margin-top: -3px !important;
