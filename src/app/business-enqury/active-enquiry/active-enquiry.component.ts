@@ -268,43 +268,43 @@ export class ActiveEnquiryComponent implements OnInit {
 
 
   copyEnquiryList() {
-    let count1 = this.rows.map(x => x.autoEnquiryNumber.length);
-    let max1 = count1.reduce((a, b) => Math.max(a, b));
+    // let count1 = this.rows.map(x => x.autoEnquiryNumber.length);
+    // let max1 = count1.reduce((a, b) => Math.max(a, b));
 
-    let count2 = this.rows.map(x => x.enquiryDate.length);
-    let max2 = count2.reduce((a, b) => Math.max(a, b));
+    // let count2 = this.rows.map(x => x.enquiryDate.length);
+    // let max2 = count2.reduce((a, b) => Math.max(a, b));
 
-    let count3 = this.rows.map(x => x.articleName.length);
-    let max3 = count3.reduce((a, b) => Math.max(a, b));
+    // let count3 = this.rows.map(x => x.articleName.length);
+    // let max3 = count3.reduce((a, b) => Math.max(a, b));
 
-    let count4 = this.rows.map(x => x.paymentTermName.length);
-    let max4 = count4.reduce((a, b) => Math.max(a, b));
+    // let count4 = this.rows.map(x => x.paymentTermName.length);
+    // let max4 = count4.reduce((a, b) => Math.max(a, b));
     
-    let count5 = this.rows.map(x => x.priceTermName.length);
-    let max5 = count5.reduce((a, b) => Math.max(a, b));
+    // let count5 = this.rows.map(x => x.priceTermName.length);
+    // let max5 = count5.reduce((a, b) => Math.max(a, b));
     
-    let count6 = this.rows.map(x => x.buyerName.length);
-    let max6 = count6.reduce((a, b) => Math.max(a, b));
+    // let count6 = this.rows.map(x => x.buyerName.length);
+    // let max6 = count6.reduce((a, b) => Math.max(a, b));
 
-    max1 = max1 + 10;
-    max2 = max2 + 10;
-    max3 = max3 + 10;
-    max4 = max4 + 10;
-    max5 = max5 + 10;
-    max6 = max6 + 10;
+    // max1 = max1 + 10;
+    // max2 = max2 + 10;
+    // max3 = max3 + 10;
+    // max4 = max4 + 10;
+    // max5 = max5 + 10;
+    // max6 = max6 + 10;
 
 
-    this.copyData.push('Enquiry No.'.padEnd(max1) + 'Enquiry On.'.padEnd(max2) +
-      'Customer'.padEnd(max6) + 'Article'.padEnd(max3) + 'Payment Terms'.padEnd(max4)+ 
-      'Price Terms'.padEnd(max5) + 'Status \n');
+    this.copyData.push('Enquiry No.'.padEnd(10) + 'Enquiry On.'.padEnd(10) +
+      'Customer'.padEnd(10) + 'Article'.padEnd(10) + 'Payment Terms'.padEnd(10)+ 
+      'Price Terms'.padEnd(10) + 'Status \n');
 
     for (let i = 0; i < this.rows.length; i++) {
-      let tempData =  this.rows[i].autoEnquiryNumber.padEnd(max1) 
-      + this.rows[i].enquiryDate.padEnd(max2)
-      + this.rows[i].buyerName.padEnd(max6)
-      + this.rows[i].articleName.padEnd(max3)
-      + this.rows[i].paymentTermName.padEnd(max4)
-      + this.rows[i].priceTermName.padEnd(max5)
+      let tempData =  this.rows[i].autoEnquiryNumber.padEnd(10) 
+      + this.rows[i].enquiryDate.padEnd(10)
+      + this.rows[i].buyerName.padEnd(10)
+      + this.rows[i].articleName.padEnd(10)
+      + this.rows[i].paymentTermName.padEnd(10)
+      + this.rows[i].priceTermName.padEnd(10)
         + this.rows[i].active+ '\n';
       this.copyData.push(tempData);
     }
@@ -312,7 +312,7 @@ export class ActiveEnquiryComponent implements OnInit {
 
     Swal.fire({
       title: GlobalConstants.copySuccess,
-      footer: 'Copied' + '\n' + this.listCount + '\n' + 'rows to clipboard',
+      footer: 'Copied' + '\n' + 'all' + '\n' + 'rows to clipboard',
       showConfirmButton: false,
       timer: 2000,
     })

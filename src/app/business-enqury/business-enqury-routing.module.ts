@@ -9,6 +9,7 @@ import { OnholdEnquiryComponent } from './onhold-enquiry/onhold-enquiry.componen
 import { SearchEnquiryComponent } from './search-enquiry/search-enquiry.component';
 
 const routes: Routes = [
+  // { path: 'onhold-enquiries', component: OnholdEnquiryComponent },
     { path:'enquiry', component:TemplateComponent,
     // canActivate:[AuthGuard],
   

@@ -55,6 +55,7 @@ import { ContractNoteComponent } from './contracts/active-contracts/active-contr
 import { AuthInterceptor } from './shared/auth-service/auth.interceptor';
 import { TnaLogHistoryComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/tna-log-history/tna-log-history.component';
 import { StatusComponent } from './shared/MODLES/status/status.component';
+import { OnholdContractsComponent } from './contracts/onhold-contracts/onhold-contracts.component';
 
 
 
@@ -93,6 +94,7 @@ const appRoutes: Routes = []
     ContractNoteComponent,
     TnaLogHistoryComponent,
     StatusComponent,
+    OnholdContractsComponent,
 
     // AddEnquiryComponent,
     // SearchEnquiryComponent,
