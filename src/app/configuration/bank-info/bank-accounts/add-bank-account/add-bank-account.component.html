@@ -73,8 +73,8 @@
       <label for="type" class="col-sm-3 col-form-label control-label text-grey"></label>
       <div class="col-sm-8">
         <div class="form-check form-check-inline">
-          <input class="form-check-input check-btn" type="checkbox" [(ngModel)]="data.printable" />
-          <label class="form-check-label text-grey">Marked as Printable</label>
+          <input class="form-check-input check-btn" id="active" type="checkbox" [(ngModel)]="data.printable" />
+          <label for="active" class="form-check-label text-grey">Marked as Printable</label>
         </div>
       </div>
     </div>
@@ -82,8 +82,8 @@
       <label for="type" class="col-sm-3 col-form-label control-label text-grey"></label>
       <div class="col-sm-8">
         <div class="form-check form-check-inline">
-          <input class="form-check-input check-btn" type="checkbox" [(ngModel)]="data.default" />
-          <label class="form-check-label text-grey">Set as Default</label>
+          <input class="form-check-input check-btn" id="active1" type="checkbox" [(ngModel)]="data.default" />
+          <label for="active1" class="form-check-label text-grey">Set as Default</label>
         </div>
       </div>
     </div>
