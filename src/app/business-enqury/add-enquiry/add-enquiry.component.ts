@@ -277,7 +277,7 @@ export class AddEnquiryComponent implements OnInit {
         if(type == "other")
         {
           this.ptype.id = this.newProcessType;
-          this.data.processTypeId = this.ptype.id+1
+          this.data.processTypeId = this.ptype.id
         }
       }
       else {
