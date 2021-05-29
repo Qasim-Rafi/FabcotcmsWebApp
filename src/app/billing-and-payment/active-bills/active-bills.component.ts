@@ -28,6 +28,8 @@ export class ActiveBillsComponent implements OnInit {
   copyData: any = [];
   listCount: number;
   rows: any = [];
+  dashboardAmnt: any = [];
+
   data: any = [];
   bulkData: any = [];
 
@@ -58,6 +60,7 @@ export class ActiveBillsComponent implements OnInit {
   ngOnInit(): void {
     
     this.fetch((data) => {
+      this.dashboardAmnt = data
       this.rows = data.activeBills;
       this.billFilter = [...this.rows];
       this.listCount = this.rows.length;
