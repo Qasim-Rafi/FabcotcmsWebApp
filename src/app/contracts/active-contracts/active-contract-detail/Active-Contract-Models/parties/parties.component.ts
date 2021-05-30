@@ -54,7 +54,8 @@ export class PartiesComponent implements OnInit {
           this.response = res;
           if (this.response.success == true) {
             this.data = this.response.data;
-            this.data.certificateIds = this.data.certificateIds != null ? parseInt(this.data.certificateIds) : this.data.certificateIds;
+            this.data.certificateIds = this.data.certificateIds != null && this.data.certificateIds != ""  ? parseInt(this.data.certificateIds) : this.data.certificateIds = null;
+            // this.data.certificateIds = this.data.certificateIds == "" ? this.data.certificateIds = null : this.data.certificateIds;
             this.data.poDate = this.dateformater.fromModel(this.data.poDate);
             this.data.contractDate = this.dateformater.fromModel(this.data.contractDate);
             

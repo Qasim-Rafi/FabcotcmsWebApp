@@ -148,7 +148,12 @@ export class EditActiveEnquiryComponent implements OnInit {
           if (this.response.success == true) {
             this.enquiryData = this.response.data;
              this.confirmOn = this.enquiryData.confirmationDate;
-             console.log("enquiry Data" , this.enquiryData)
+            if(this.enquiryData.totalQuantity == 0)
+            {
+              this.enquiryData.totalQuantity = null; 
+            }
+
+            //  console.log("enquiry Data" , this.enquiryData)
             this.enquiryData.confirmationDate = this.dateformater.fromModel(this.enquiryData.confirmationDate);
             if(this.enquiryData.totalQuantity == 0)
             {
@@ -459,6 +464,7 @@ export class EditActiveEnquiryComponent implements OnInit {
           if (this.response.success == true) {
             // this.currencyToggle = !this.currencyToggle
             this.toastr.success(this.response.message, 'Message.');
+            this.currencyToggle = !this.currencyToggle
             this.getEnquiryData(this.objEnquiry);
             // this.enquiryForm.reset();
           }
