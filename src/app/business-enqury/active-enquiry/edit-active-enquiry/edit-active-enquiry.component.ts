@@ -919,7 +919,7 @@ export class EditActiveEnquiryComponent implements OnInit {
                 body: [
                [
                   { style:'propertyName' ,text: 'Shipment' } , 
-              {  style:'propertyValue', text : this.enquiryData['shipmentDates']},
+              {  style:'propertyValue', text : this.enquiryData['shipmentdates']},
               {  style:'propertyName',text: 'Payment Terms' } , 
               {  style:'propertyValue', text : this.enquiryData['paymentTermName']},
                ]
@@ -1084,7 +1084,7 @@ export class EditActiveEnquiryComponent implements OnInit {
                 body: [
                [
                   { style:'propertyName' ,text: 'Shipment' } , 
-              {  style:'propertyValue', text : this.enquiryData['shipmentDates']},
+              {  style:'propertyValue', text : this.enquiryData['shipmentdates']},
               {  style:'propertyName',text: 'Payment Terms' } , 
               {  style:'propertyValue', text : this.enquiryData['paymentTermName']},
                ]
