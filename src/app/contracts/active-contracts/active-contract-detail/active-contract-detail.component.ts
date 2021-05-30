@@ -1032,7 +1032,12 @@ AddsaleInvoiceItem(check,value) {
     // on close
     if (data == true) {
       this.getSaleInvoice();
-    this.getContractData();
+    // this.getContractData();
+    this.getAllInvoiceItems((invoiceItem) => {
+      this.rows6 = invoiceItem;
+      this.invoiceItemFilter = [...invoiceItem];
+
+    });
 
 
     }
@@ -1051,7 +1056,12 @@ EditsaleInvoiceItem(check , obj ) {
     // on close
     if (data == true) {
       this.getSaleInvoice();
-    this.getContractData();
+    // this.getContractData();
+    this.getAllInvoiceItems((invoiceItem) => {
+      this.rows6 = invoiceItem;
+      this.invoiceItemFilter = [...invoiceItem];
+
+    });
 
 
     }
@@ -1083,6 +1093,11 @@ deleteInvoiceItem(id) {
             if (this.response.success == true) {
               this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
               this.getSaleInvoice();
+              this.getAllInvoiceItems((invoiceItem) => {
+                this.rows6 = invoiceItem;
+                this.invoiceItemFilter = [...invoiceItem];
+          
+              });
 
 
             }
