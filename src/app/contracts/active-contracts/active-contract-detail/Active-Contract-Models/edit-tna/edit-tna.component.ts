@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -80,17 +80,17 @@ export class EditTnaComponent implements OnInit {
 
           this.response = res;
           if (this.response.success == true) {
-            this.toastr.success(GlobalConstants.updateMessage, 'Message.');
+            this.toastr.success(this.response.message, 'Message.');
             this.activeModal.close(true);
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
           }
 
-        }, err => {
-          if (err.status == 400) {
-            this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
-          }
-        });
+        },(err: HttpErrorResponse) => {
+          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+          this.toastr.error(messages.toString(), 'Message.');
+          console.log(messages);
+                });
   }
 }
