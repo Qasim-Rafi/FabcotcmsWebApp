@@ -32,8 +32,8 @@
       </div>
 
       <div class="form-group row">
-        <label for="description" class="col-sm-3 col-form-label text-Navy">Supplier Date</label><span
-          class="required-denote">*</span>
+        <label for="description" class="col-sm-3 col-form-label text-Navy">Supplier Date<span
+          class="required-denote">*</span></label>
         <div class="col-sm-8" (clickOutside)="validity.close()">
           <input navigation="select" class="form-control text_Navy " id="supplierDate" name="supplierDate" required
             [(ngModel)]="data.supplierDate" #supplierDate="ngModel" ngbDatepicker #validity="ngbDatepicker"
@@ -43,8 +43,8 @@
       </div>
 
       <div class="form-group row">
-        <label for="description" class="col-sm-3 col-form-label ">Buyer Date</label><span
-          class="required-denote">*</span>
+        <label for="description" class="col-sm-3 col-form-label ">Buyer Date<span
+          class="required-denote">*</span></label>
         <div class="col-sm-8" (clickOutside)="validity2.close()">
 
           <input navigation="select" class="form-control" id="buyerDate" name="buyerDate" [(ngModel)]="data.buyerDate"

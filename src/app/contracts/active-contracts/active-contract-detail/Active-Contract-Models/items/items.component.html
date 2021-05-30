@@ -136,7 +136,7 @@
             <div class="col-md-3">
                
               <ng-select [(ngModel)]="data.contractCurrencyId" placeholder="Select Currency" name="contractCurrencyId">
-                <ng-option *ngFor="let i of currency" [value]="i.id">{{ i.currencyCode }}</ng-option>
+                <ng-option *ngFor="let i of currency" [value]="i.id">{{ i.code }}</ng-option>
             </ng-select>
 
         </div>
@@ -144,7 +144,7 @@
             <div class="col-md-3">
                
               <ng-select [(ngModel)]="data.contractUOMId" placeholder="Select UOM" name="contractUOMId">
-                <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}</ng-option>
+                <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.unit }}</ng-option>
             </ng-select>
 
             </div>

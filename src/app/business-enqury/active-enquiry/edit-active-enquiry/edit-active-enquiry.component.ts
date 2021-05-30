@@ -133,7 +133,12 @@ export class EditActiveEnquiryComponent implements OnInit {
     const val = event.target.value.toLowerCase();
 
     const temp = this.noteFilter.filter(function (d) {
-      return (d.description.toLowerCase().indexOf(val) !== -1 || !val);
+      return (
+      d.description.toLowerCase().indexOf(val) !== -1 ||
+      d.createdByName.toLowerCase().indexOf(val) !== -1 ||
+      d.createdDateTime.toLowerCase().indexOf(val) !== -1 ||
+      d.createdDateTime.toLowerCase().indexOf(val) !== -1 ||
+       !val);
     });
     this.rows1 = temp;
 
