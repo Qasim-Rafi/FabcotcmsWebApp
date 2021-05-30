@@ -23,13 +23,13 @@
       <div class="col-md-12 pt-3 pb-2">
 
         <div class="form-group row">
-            <label for="description" class="col-sm-3 col-form-label text_Navy">Item Description
+            <label class="col-sm-3 col-form-label text_Navy">Item Description
               <span class="required-denote">*</span>
             </label>
             <div class="col-sm-8">
-                <input required appAutofocus  type="text" class="form-control" id="description" name="description" [(ngModel)]="data.description" #description="ngModel"
-                [ngClass]="{ 'error': description.invalid && ItemForm.submitted }"
-                value="" placeholder="Description" />
+                <input #focus required type="text" class="form-control" name="description" [(ngModel)]="data.description" #description="ngModel"
+                [ngClass]="{ 'error': ItemForm.submitted && description.invalid  }"
+                 placeholder="Description" />
                
             </div>
           </div>
