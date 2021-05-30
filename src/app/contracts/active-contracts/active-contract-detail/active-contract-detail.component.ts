@@ -304,7 +304,7 @@ export class ActiveContractDetailComponent implements OnInit {
   deleteSaleInvoice(obj) {
     Swal.fire({
       title: GlobalConstants.deleteTitle, //'Are you sure?',
-      text: GlobalConstants.deleteMessage + ' ' + '"' + obj.saleInvoiceRemarks + '"',
+      text: GlobalConstants.deleteMessage + ' ' + 'Sale Invoice Number:'+'"' + obj.saleInvoiceNo + '"'+'?',
       icon: 'error',
       showCancelButton: true,
       confirmButtonColor: '#ed5565',

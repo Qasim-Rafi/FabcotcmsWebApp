@@ -1007,7 +1007,7 @@
                                     </ngx-datatable-column>
                                     <ngx-datatable-column name="Unit Price" prop="contractRate" [width]="80">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                            {{ row.contractRate }}
+                                            {{ row.contractRate }} {{row.contractCurrencyId}}/{{row.itemUOMId}}
                                         </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column name="Amount" prop="contractCost" [width]="80">
@@ -1192,7 +1192,7 @@
                                     <ngx-datatable-column prop="id" name="S. No." [width]="20">
 
 
-                                        <ng-template let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
+                                        <ng-template let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template >
                                             {{rowIndex + 1}}
                                         </ng-template>
                                     </ngx-datatable-column>
@@ -1201,22 +1201,22 @@
                                             {{ row.tnaItem }}
                                         </ng-template>
                                     </ngx-datatable-column>
-                                    <ngx-datatable-column prop="id" name="Start Date" [width]="20">
+                                    <ngx-datatable-column prop="id" name="Start Date" [width]="20" prop="startDate">
                                         <ng-template let-row="row" ngx-datatable-cell-template>
                                             {{ row.startDate }}
                                         </ng-template>
                                     </ngx-datatable-column>
-                                    <ngx-datatable-column prop="id" name="End Date" [width]="20">
+                                    <ngx-datatable-column prop="id" name="End Date" [width]="20" prop="endDate">
                                         <ng-template let-row="row" ngx-datatable-cell-template>
                                             {{ row.endDate }}
                                         </ng-template>
                                     </ngx-datatable-column>
-                                    <ngx-datatable-column prop="id" name="Quantity" [width]="20">
+                                    <ngx-datatable-column prop="id" name="Quantity" [width]="20" prop="quantity">
                                         <ng-template let-row="row" ngx-datatable-cell-template>
                                             {{ row.quantity }}
                                         </ng-template>
                                     </ngx-datatable-column>
-                                    <ngx-datatable-column prop="id" name="Details" [width]="20">
+                                    <ngx-datatable-column prop="id" name="Details" [width]="20" prop="details">
                                         <ng-template let-row="row" ngx-datatable-cell-template>
                                             {{ row.details }}
 

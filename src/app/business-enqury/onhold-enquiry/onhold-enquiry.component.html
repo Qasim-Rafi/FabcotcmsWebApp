@@ -35,37 +35,40 @@
  
   
         <div class="row">
-          <div class="col-md-12 mb-4">
+          <div class="col-md-12 mb-3">
             <div class="row justify-content-end">
-              <div class=" col-md-4">
-                <div class="input-group col-md-offset-3">
-                  <input type="text" placeholder="Search by Enquiry Number or Buyer Name.. "
-                  (keyup)="onholdenquiryFilter($event)" class="input form-control w-50" >
-                </div>
+
+              <div class="col-md-4 pr-0">
+
+                <div class="form-group row">
+                  <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
+                  <div class="col-sm-9">
+
+                    <input type="text" placeholder="Search by Enquiry Number or Buyer Name.. "
+                    (keyup)="onholdenquiryFilter($event)" class="input form-control form-control-sm">
+
+                  </div> 
+                </div> 
               </div>
+             
+
+                
+        
               <div class="html5buttons mrg-tsm">
-                <div class="dt-buttons btn-group ">
-                  <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0"
-                    aria-controls="DataTables_Table_0"
-                    (click)="copyEnquiryList()"
-                    ><span>Copy</span></a>
-                  <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
-                    aria-controls="DataTables_Table_0"
-                    (click)="onholdEnquiryCsvFile()"
-                    ><span>CSV</span></a>
+                <div class="dt-buttons btn-group btn-group-sm">
+                  <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0" aria-controls="DataTables_Table_0"
+                    (click)="copyEnquiryList()"><span>Copy</span></a>
+                  <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0" aria-controls="DataTables_Table_0"
+                    (click)="onholdEnquiryCsvFile()"><span>CSV</span></a>
                   <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
-                    aria-controls="DataTables_Table_0" (click)="onholdEnquiryExcelFile()" 
-                   ><span>Excel</span></a>
-                  <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0"
-                    aria-controls="DataTables_Table_0"
-                    (click)="enquiryPdf()"
-                    ><span>PDF</span></a>
-                  <a class="btn btn-default buttons-print bg-white" tabindex="0"
-                    aria-controls="DataTables_Table_0"
-                 (click)="printonholdEnquiryList()"
-                    ><span>Print</span></a>
+                    aria-controls="DataTables_Table_0" (click)="onholdEnquiryExcelFile()"><span>Excel</span></a>
+                  <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0" aria-controls="DataTables_Table_0"
+                    (click)="enquiryPdf()"><span>PDF</span></a>
+                  <a class="btn btn-default buttons-print bg-white" tabindex="0" aria-controls="DataTables_Table_0"
+                    (click)="printonholdEnquiryList()"><span>Print</span></a>
                 </div>
               </div>
+
             </div>
           </div>
         </div>
