@@ -589,7 +589,7 @@
                                                 
                                                 <ngx-datatable-column name="Price" [width]="5"  prop="rate">
                                                   <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                                    {{row.currencyName}} {{row.rate}}/{{row.uomName}}
+                                                    {{row.rate}} {{row.currencyName}} /{{row.uomName}}
                                                   </ng-template>
                                                 </ngx-datatable-column>
                                                
@@ -837,7 +837,7 @@
                             <div class="row pt-3">
                         
                                 <div class="col-md-8">
-                                    <div class="dropdown">
+                                    <!-- <div class="dropdown">
                                         Show &nbsp;
                                         <button class="btn btn-outline-secondary btn-sm dropdown-toggle btn-sm-eqry" type="button" id="dropdownMenuButton"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -849,7 +849,7 @@
                                             <a class="dropdown-item" >50</a>
                                             <a class="dropdown-item" >100</a>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                         
                                 <div class="col-md-4">
@@ -872,22 +872,24 @@
                                 <ngx-datatable #myTable class="bootstrap mt-3" [columns]="columns" [rows]="rows1" [columnMode]="'force'" *ngIf="rows1.length != 0"
                                 [headerHeight]="10" [footerHeight]="50"  [rowHeight]="'auto'" [limit]="6">  
 
-                                <ngx-datatable-column name="User" [width]="5">
+                                <ngx-datatable-column name="User" [width]="5" prop="createdByName">
                                   <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                                     {{row.createdByName}}
                         
                                   </ng-template>
                                 </ngx-datatable-column>
                               
-                                <ngx-datatable-column name="Time" [width]="5">
+                                <ngx-datatable-column name="Time" [width]="5" prop="createdDateTime">
                                     <ng-template let-row="row" ngx-datatable-cell-template>
                                       {{row.createdDateTime}}
                                     </ng-template>
                                   </ngx-datatable-column>
 
-                                <ngx-datatable-column name="Note Details" [width]="5" >
+                                <ngx-datatable-column name="Note Details" [width]="5" prop="title">
                                   <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                   {{row.title}} <br>
                                     {{row.description}}
+
                                   </ng-template>
                                 </ngx-datatable-column>
                         
