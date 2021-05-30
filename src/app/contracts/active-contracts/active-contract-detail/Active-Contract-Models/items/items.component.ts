@@ -43,7 +43,7 @@ export class ItemsComponent implements OnInit {
 
   ngOnInit(): void {
    
-    this.GetCurrency();
+    this.GetCurrencyDropdown();
     this.GetUOMDropdown();
     this.GetFabricDropdown();
     this.GetColorDropdown();
@@ -175,8 +175,8 @@ export class ItemsComponent implements OnInit {
     })
   }
 
-  GetCurrency() {
-    this.service.getCurrency().subscribe(res => {
+  GetCurrencyDropdown() {
+    this.service. getCurrencyType().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
         this.currency = this.response.data;

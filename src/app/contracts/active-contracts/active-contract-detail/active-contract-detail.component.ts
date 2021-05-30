@@ -304,7 +304,7 @@ export class ActiveContractDetailComponent implements OnInit {
   deleteSaleInvoice(obj) {
     Swal.fire({
       title: GlobalConstants.deleteTitle, //'Are you sure?',
-      text: GlobalConstants.deleteMessage + ' ' + '"' + obj.saleInvoiceRemarks + '"',
+      text: GlobalConstants.deleteMessage + ' ' + 'Sale Invoice Number:'+'"' + obj.saleInvoiceNo + '"'+'?',
       icon: 'error',
       showCancelButton: true,
       confirmButtonColor: '#ed5565',
@@ -1032,7 +1032,12 @@ AddsaleInvoiceItem(check,value) {
     // on close
     if (data == true) {
       this.getSaleInvoice();
-    this.getContractData();
+    // this.getContractData();
+    this.getAllInvoiceItems((invoiceItem) => {
+      this.rows6 = invoiceItem;
+      this.invoiceItemFilter = [...invoiceItem];
+
+    });
 
 
     }
@@ -1051,7 +1056,12 @@ EditsaleInvoiceItem(check , obj ) {
     // on close
     if (data == true) {
       this.getSaleInvoice();
-    this.getContractData();
+    // this.getContractData();
+    this.getAllInvoiceItems((invoiceItem) => {
+      this.rows6 = invoiceItem;
+      this.invoiceItemFilter = [...invoiceItem];
+
+    });
 
 
     }
@@ -1083,6 +1093,11 @@ deleteInvoiceItem(id) {
             if (this.response.success == true) {
               this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
               this.getSaleInvoice();
+              this.getAllInvoiceItems((invoiceItem) => {
+                this.rows6 = invoiceItem;
+                this.invoiceItemFilter = [...invoiceItem];
+          
+              });
 
 
             }
