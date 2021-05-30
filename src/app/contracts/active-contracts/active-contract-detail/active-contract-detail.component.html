@@ -976,7 +976,7 @@
                                     </ngx-datatable-column>
                                     <ngx-datatable-column name="Construcrion" prop="compositionPercentage" [width]="80">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                            {{ row.compositionPercentage}}% {{ row.compositionFebricTypeId}} {{
+                                            {{ row.compositionPercentage}}% {{ row.compositionFebricTypeName}} {{
                                             row.compositionAdditionalInfo}}
                                         </ng-template>
                                     </ngx-datatable-column>
@@ -1007,7 +1007,7 @@
                                     </ngx-datatable-column>
                                     <ngx-datatable-column name="Unit Price" prop="contractRate" [width]="80">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                            {{ row.contractRate }} {{row.contractCurrencyId}}/{{row.itemUOMId}}
+                                            {{ row.contractRate }} {{row.contractCurrencyCode}}/{{row.contractUOMName}}
                                         </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column name="Amount" prop="contractCost" [width]="80">
