@@ -135,7 +135,7 @@ export class SaleInvoiceItemComponent implements OnInit {
       "contractSaleInvoiceId": this.contractSaleInvoiceId ,
       "contractItemId": this.data.contractItemId,
       "quatity":this.data.quatity ,
-      "amount": this.data.amount,
+      // "amount": this.data.amount,
       "saleInvoiceItemRemarks":this.data.saleInvoiceItemRemarks ,
     }
 
