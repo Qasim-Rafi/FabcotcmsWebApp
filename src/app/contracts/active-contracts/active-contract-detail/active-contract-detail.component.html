@@ -265,13 +265,17 @@
                                
                                
 
-
+                                    <form #rem="ngForm" novalidate>
                                 <div class="col-md-12">
                                     <div [ngClass]="{ noDisplay : reminderToggle==false }">
                                         <input required class="form-control" ngbDatepicker #reminderDate="ngbDatepicker"
-                                            (click)="reminderDate.toggle()" placeholder="Reminder" [(ngModel)]="data.contractUpDate"   />
+                                            (click)="reminderDate.toggle()" placeholder="Reminder" [(ngModel)]="data.contractUpDate"  
+                                            [ngClass]="{'error': contractUpDate.invalid && rem.submitted }" #contractUpDate = "ngModel" 
+                                             />
                                     </div>
                                 </div>
+                            </form>
+
 
 
                                 <div class="col-md-12 pt-2" *ngFor="let i of reminderData">
@@ -308,7 +312,7 @@
                                         <button class=" btn btn-sm btn-danger p-1 btnsm-f ml-1"
                                             *ngIf="contractData.isApproved == false" (click)="approveContract()">Click
                                             to Approve</button>
-                                        <button class=" btn btn-sm btn-primary ml-1"
+                                        <button class="  btn btn-sm btn-primary p-1 btnsm-f ml-1"
                                             *ngIf="contractData.isApproved == true">Approved</button>
 
                                     </div>
