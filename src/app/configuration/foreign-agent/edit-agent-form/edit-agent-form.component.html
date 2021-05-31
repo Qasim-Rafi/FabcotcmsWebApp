@@ -61,10 +61,10 @@
       </div>
 
       <div class="form-group row">
-        <label for="city" class="col-sm-3 col-form-label">City<span class="required-denote">*</span></label>
+        <label for="city" class="col-sm-3 col-form-label">City</label>
         <div class="col-sm-8">
-          <ng-select [(ngModel)]="data.cityId" required placeholder="-- Select --" name="city" name="cityId"
-            #cityId="ngModel" [ngClass]="{error: cityId.invalid && addAgentForm.submitted}">
+          <ng-select [(ngModel)]="data.cityId"  placeholder="-- Select --" name="city" name="cityId"
+            #cityId="ngModel">
             <ng-option *ngFor="let i of city" [value]="i.id">{{ i.name }}
             </ng-option>
           </ng-select>
