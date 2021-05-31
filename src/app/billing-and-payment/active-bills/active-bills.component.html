@@ -200,7 +200,7 @@
           (select)="onSelect($event)"
           [selected]="selected"
           [selectionType]="SelectionType.checkbox"
-          [sorts]="[{ prop: 'id', dir: 'asce' }]"
+          [sorts]="[{ prop: 'id', dir: 'desc' }]"
           >
       
           <ngx-datatable-column prop="selected" name="Select" [width]="20"   [flexGrow]="0.03"

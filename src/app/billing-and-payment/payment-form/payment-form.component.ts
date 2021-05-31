@@ -25,6 +25,8 @@ export class PaymentFormComponent implements OnInit {
   queryParems:any={};
   paymentId:any={};
   data: any = {};
+  paymentAdddata: any = {};
+
   @ViewChild(NgForm) paymentForm;
   paymentdata: any = {};
   rows: any = {};
@@ -65,27 +67,31 @@ export class PaymentFormComponent implements OnInit {
     // this.depositeDateField =this.dateformater.fromModel(latest_date);
 
 
-    this.fetch((data) => {
-      this.rows = data;
-    });
-    this.getData(this.paymentId);
+    // this.fetch((data) => {
+    //   this.paymentAdddata = data;
+    // });
+    if(this.statusCheck.statusCheck == 'addPayment'){
+    this.fetch(this.paymentId);}
+
+    if(this.statusCheck.statusCheck == 'editPayment'){
+    this.getData(this.paymentId);}
 
     this.GetCurrencyDropdown()
     this.GetSaleInvoiceDropdown()
     this.GetPaymentModeDropdown()
     this.GetBankAccDropdown()
   }
-  fetch(cb) {
+  fetch(id) {
     
     this.http
-    .get(`${environment.apiUrl}/api/BillingPayments/GetContractBillById/` + this.paymentId)
+    .get(`${environment.apiUrl}/api/BillingPayments/GetContractBillById/` + id)
     .subscribe(res => {
       this.response = res;
      
     if(this.response.success==true)
     {
-    this.data =this.response.data;
-    cb(this.data);
+    this.paymentAdddata =this.response.data;
+    // cb(this.paymentAdddata);
     }
     else{
       this.toastr.error(this.response.message, 'Message.');
@@ -124,15 +130,15 @@ export class PaymentFormComponent implements OnInit {
 
 
    getData(id) {
-    this.http
-    .get(`${environment.apiUrl}/api/BillingPayments/GetBillPaymentById/` + id)
+    this.http.get(`${environment.apiUrl}/api/BillingPayments/GetBillPaymentById/` + id)
     .subscribe(res => {
       this.response = res;
           if (this.response.success == true) {
             this.paymentdata = this.response.data;
             this.paymentdata.paymentDate = this.dateformater.fromModel(this.paymentdata.paymentDate);
             this.paymentdata.depositeDate = this.dateformater.fromModel(this.paymentdata.depositeDate);
-        }
+        console.log("payment data" , this.paymentdata)
+          }
           else {
             this.toastr.error(this.response.message, 'Message.');
           }
@@ -159,6 +165,7 @@ export class PaymentFormComponent implements OnInit {
       "paymentDate": this.paymentdata.paymentDate,
       "paidAmount": this.paymentdata.paidAmount,
       "taxAmount": this.paymentdata.taxAmount,
+      "currencyId": this.data.currencyId,
       "deductionAmount": this.paymentdata.deductionAmount,
       "paymentMode": this.paymentdata.paymentMode,
       "paymentDescription":this.paymentdata.paymentDescription,
@@ -191,27 +198,27 @@ export class PaymentFormComponent implements OnInit {
 
 
   addPayment() {
-    this.data.paymentDate = this.dateformater.toModel(this.data.paymentDate);
-    this.data.depositeDate = this.dateformater.toModel(this.data.depositeDate);
+    this.paymentAdddata.paymentDate = this.dateformater.toModel(this.paymentAdddata.paymentDate);
+    this.paymentAdddata.depositeDate = this.dateformater.toModel(this.paymentAdddata.depositeDate);
       let varr = {
        
-        "contractId": this.data.contractId,
-        "contractBillId": this.paymentId,
-        "buyerId": this.data.billForBuyerId,
-        "selerId": this.data.billForSelerId,
-        "saleInvoiceId": this.data.saleInvoiceId,
-        "receiptNumber": this.data.receiptNumber,
-        "paymentDate": this.data.paymentDate,
-        "paidAmount": this.data.paidAmount,
-        "taxAmount": this.data.taxAmount,
-        "currencyId": this.data.currencyId,
-        "deductionAmount": this.data.deductionAmount,
-        "paymentMode": this.data.paymentMode,
-        "paymentDescription":this.data.paymentDescription,
-        "bankAccountId": this.data.bankAccountId,
-        "accountDescription": this.data.accountDescription,
-        "isDepositedInBank": this.data.isDepositedInBank,
-        "depositeDate": this.data.depositeDate
+        "contractId": this.paymentAdddata.contractId,
+        "contractBillId": this.paymentAdddata.contractBillId,
+        "buyerId": this.paymentAdddata.billForBuyerId,
+        "selerId": this.paymentAdddata.billForSelerId,
+        "saleInvoiceId": this.paymentAdddata.saleInvoiceId,
+        "receiptNumber": this.paymentAdddata.receiptNumber,
+        "paymentDate": this.paymentAdddata.paymentDate,
+        "paidAmount": this.paymentAdddata.paidAmount,
+        "taxAmount": this.paymentAdddata.taxAmount,
+        "currencyId": this.paymentAdddata.currencyId,
+        "deductionAmount": this.paymentAdddata.deductionAmount,
+        "paymentMode": this.paymentAdddata.paymentMode,
+        "paymentDescription":this.paymentAdddata.paymentDescription,
+        "bankAccountId": this.paymentAdddata.bankAccountId,
+        "accountDescription": this.paymentAdddata.accountDescription,
+        "isDepositedInBank": this.paymentAdddata.isDepositedInBank,
+        "depositeDate": this.paymentAdddata.depositeDate
       }
 
     this.http.
