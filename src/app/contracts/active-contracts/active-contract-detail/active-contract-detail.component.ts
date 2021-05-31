@@ -74,6 +74,7 @@ export class ActiveContractDetailComponent implements OnInit {
   invoiceData:any =[];
   invoiceItemFilter = [];
   invoiceItem = {};
+  reminderData = [];
 
   
  
@@ -99,6 +100,7 @@ export class ActiveContractDetailComponent implements OnInit {
    
 
     this.getContractData();
+    this.getAllReminder();
     this.getContractPartiesData();
     this.getContractProductData();
     this.getContractCostingData();
@@ -1443,7 +1445,7 @@ deleteShipmentTimeline(id) {
                   this.response = res;
                   if (this.response.success == true) {
                     this.toastr.success(this.response.message, 'Message.');
-                    this.getContractData();
+                    this.getAllReminder();
                   }
                   else {
                     this.toastr.error(this.response.message, 'Message.');
@@ -1483,5 +1485,67 @@ deleteShipmentTimeline(id) {
               });
           }
 
+
+          getAllReminder() {
+            this.http.get(`${environment.apiUrl}/api/Contracts/GetAllContractFollowUp/` + this.contractId)
+              .subscribe(
+                res => {
+                  this.response = res;
+                  if (this.response.success == true) {
+                    this.reminderData = this.response.data;
+                    
+          
+                  }
+                  else {
+                    this.toastr.error(this.response.message, 'Message.');
+                  }
+          
+                }, err => {
+                  if (err.status == 400) {
+                    this.toastr.error(this.response.message, 'Message.');
+                  }
+                });
+          }
+          
+          deleteReminder(objReminder) {
+            Swal.fire({
+              title: GlobalConstants.deleteTitle, //'Are you sure?',
+              text: GlobalConstants.deleteMessage + 'this Reminder' +  '"',
+              icon: 'error',
+              showCancelButton: true,
+              confirmButtonColor: '#ed5565',
+              cancelButtonColor: '#dae0e5',
+              cancelButtonText: 'No',
+              confirmButtonText: 'Yes',
+              reverseButtons: true, 
+              position: 'top',
+            }).then((result) => {
+              if (result.isConfirmed) {
+                this.http.
+                  delete(`${environment.apiUrl}/api/Contracts/DeleteContractFollowUp/`+ objReminder.id )
+                  .subscribe(
+                    res => {
+            
+                      this.response = res;
+                      if (this.response.success == true) {
+                        this.toastr.error(this.response.message, 'Message.');
+                    this.getAllReminder();
+                       
+                      }
+                      else {
+                        this.toastr.error(this.response.message, 'Message.');
+                      }
+            
+                    }, err => {
+                      if (err.status == 400) {
+                        this.toastr.error(this.response.message, 'Message.');
+                      }
+                    });
+        
+              }
+            })
+        
+          }
+    
 
 }

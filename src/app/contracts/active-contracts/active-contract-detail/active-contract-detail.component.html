@@ -271,6 +271,15 @@
                                             (click)="reminderDate.toggle()" placeholder="Reminder" [(ngModel)]="data.contractUpDate"   />
                                     </div>
                                 </div>
+
+                                <div class="col-md-3" *ngFor="let i of reminderData">
+                                    {{i.contractUpDate}}
+
+                                    <button class="btn btn-danger bnt-xs" (click)="deleteReminder(i)"><i class="fas fa-times"></i></button>
+                                </div>
+
+
+
                             </div>
                         </div>
 
