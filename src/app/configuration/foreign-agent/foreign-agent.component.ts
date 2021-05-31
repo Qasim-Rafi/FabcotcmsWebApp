@@ -158,12 +158,12 @@ export class ForeignAgentComponent implements OnInit {
 
       AgentCode: row.code,
       AgentName: row.name,
-      AgentType: row.agentTypeId,
+      AgentType: row.agentType,
       Address: row.address,
       ContactNum: row.cellNumber,
       Email: row.emailAddress,
       Status: row.active == true ? "Active" : "In-Active",
-      Side: row.agentSideId,
+      Side: row.agentSide,
       LastChangedOn: row.updatedDateTime + '|' + row.createdByName
 
     }));
@@ -179,12 +179,12 @@ export class ForeignAgentComponent implements OnInit {
 
     AgentCode: row.code,
     AgentName: row.name,
-    AgentType: row.agentTypeId,
+    AgentType: row.agentType,
     Address: row.address,
     ContactNum: row.cellNumber,
     Email: row.emailAddress,
     Status: row.active == true ? "Active" : "In-Active",
-    Side: row.agentSideId,
+    Side: row.agentSide,
     LastChangedOn: row.updatedDateTime + '|' + row.createdByName
 
   }));
@@ -218,9 +218,9 @@ export class ForeignAgentComponent implements OnInit {
               ['Agent Code', 'Agent Name', 'Agent Type', 'Address', 'Cell number', 'Email'
                 , 'Status', 'Side', 'Last Update On'],
               ...this.rows.map(row => (
-                [row.code, row.name, row.agentTypeId, row.address, row.cellNumber
+                [row.code, row.name, row.agentType, row.address, row.cellNumber
                   , row.emailAddress, row.active == true ? "Active" : "In-Active",
-                row.agentSideId,
+                row.agentSide,
                 row.updatedDateTime + '|' + row.createdByName
                 ]
               ))
@@ -268,9 +268,9 @@ export class ForeignAgentComponent implements OnInit {
               ['Agent Code', 'Agent Name', 'Agent Type', 'Address', 'Cell number', 'Email'
                 , 'Status', 'Side', 'Last Update On'],
               ...this.rows.map(row => (
-                [row.code, row.name, row.agentTypeId, row.address, row.cellNumber
+                [row.code, row.name, row.agentType, row.address, row.cellNumber
                   , row.emailAddress, row.active == true ? "Active" : "In-Active",
-                row.agentSideId,
+                row.agentSide,
                 row.updatedDateTime + '|' + row.createdByName
                 ]
               ))
@@ -303,7 +303,7 @@ export class ForeignAgentComponent implements OnInit {
         +''.padEnd(5)
       + this.rows[i].name
       +''.padEnd(5)
-      + this.rows[i].agentTypeId
+      + this.rows[i].agentType
       +''.padEnd(5)
       + this.rows[i].address
       +''.padEnd(5)
@@ -313,7 +313,7 @@ export class ForeignAgentComponent implements OnInit {
       +''.padEnd(5)
       + this.rows[i].active
       +''.padEnd(5)
-      + this.rows[i].agentSideId
+      + this.rows[i].agentSide
       +''.padEnd(5)
       + this.rows[i].updatedDateTime
       +''.padEnd(5)
