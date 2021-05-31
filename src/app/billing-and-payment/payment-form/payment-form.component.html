@@ -253,7 +253,7 @@
                                         <div class="col-md-3 mrg-sm1">
                                             <div class="input-group" *ngIf = "statusCheck.statusCheck == 'addPayment'">
                                                 <input type="text" class="form-control" placeholder="tax Amount"
-                                                name="taxAmount" [(ngModel)]="paymentAdddata.taxAmount" #taxAmount="ngModel">
+                                                name="taxamount" [(ngModel)]="paymentAdddata.taxamount" #taxamount="ngModel">
                                             </div>
                                             <div class="input-group" *ngIf = "statusCheck.statusCheck == 'editPayment'">
                                                 <input type="text" class="form-control" placeholder="tax Amount"
@@ -352,15 +352,18 @@
                             </div>
 
                             <div class="form-group row">
-                                <label class="col-md-3 col-form-label control-label" id="scales">Deposited in Bank</label>
+                                <label for="active" class="col-md-3 col-form-label control-label" >Deposited in Bank</label>
+                                <!-- <label for="active" class="form-check-label checkboxDanger1">Deposited in Bank</label> -->
                                 <div class="col-md-2">
                                     <div class="form-check form-check-label" *ngIf = "statusCheck.statusCheck == 'addPayment'">
-                                        <input for="scales" id="isDepositedInBank" class="form-check-input" type="checkbox" value=""
+                                        <input  id="active" class="form-check-input" type="checkbox" 
                                         name="isDepositedInBank" [(ngModel)]="paymentAdddata.isDepositedInBank" #isDepositedInBank="ngModel"
                                         >
+                                      
+                                  
                                     </div>
                                     <div class="form-check" *ngIf = "statusCheck.statusCheck == 'editPayment'">
-                                        <input for="scales" id="isDepositedInBank" class="form-check-input" type="checkbox" value=""
+                                        <input  id="active" class="form-check-input" type="checkbox" 
                                         name="isDepositedInBank" [(ngModel)]="paymentdata.isDepositedInBank" #isDepositedInBank="ngModel"
                                         >
                                     </div>
