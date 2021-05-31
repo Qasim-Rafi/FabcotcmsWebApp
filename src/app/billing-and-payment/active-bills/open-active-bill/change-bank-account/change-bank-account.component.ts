@@ -19,6 +19,8 @@ export class ChangeBankAccountComponent implements OnInit {
   data:any;
 search:any;
 bankFilter: any = [];
+searchBank: any = [];
+
 temp: any[];
 response:any;
 constructor(
@@ -28,34 +30,34 @@ constructor(
   private http: HttpClient,
   private service: ServiceService,
   private toastr: ToastrService,
-  public datepipe: DatePipe,
   private router: Router,
   private _NgbActiveModal: NgbActiveModal
 
 ) { }
 
   ngOnInit(): void   {
-    console.log(this.bill_id)
     this.GetBankAccDropdown()
-    this.service.getDocumentType().subscribe(res => {
-      this.response = res;
-      if (this.response.success == true) {
-        this.search = this.response.data;
-      }
-      else {
-        this.toastr.error(this.response.message, 'Message.');
-      }
-    })
+    // this.service.getDocumentType().subscribe(res => {
+    //   this.response = res;
+    //   if (this.response.success == true) {
+    //     this.search = this.response.data;
+    //   }
+    //   else {
+    //     this.toastr.error(this.response.message, 'Message.');
+    //   }
+    // })
   }
   updateFilter(event) {
     const val = event.target.value.toLowerCase();
 
     const temp = this.temp.filter(function (d) {
       return (
+        d.bankAddress.toLowerCase().indexOf(val) !== -1 ||
         d.accountName.toLowerCase().indexOf(val) !== -1 ||
-        d.bankName.toLowerCase().indexOf(val) !== -1 || !val);
+        d.bankName.toLowerCase().indexOf(val) !== -1 ||
+        !val);
     });
-    this.bankFilter = temp;
+    this.bankAcc = temp;
 
   }
 
