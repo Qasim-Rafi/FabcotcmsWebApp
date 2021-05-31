@@ -130,7 +130,7 @@
       <div class="form-group row">
         <label for="parentBuyerId" class="col-sm-3 col-form-label">Parent Buyer</label>
         <div class="col-sm-8">
-          <ng-select name="parentSellerId" [(ngModel)]="data.parentBuyerId" placeholder="-- Select --">
+          <ng-select name="parentBuyerId" [(ngModel)]="data.parentBuyerId" placeholder="-- Select --">
             <ng-option *ngFor="let i of buyer" [value]="i.id">
               {{ i.buyerName }}
             </ng-option>
