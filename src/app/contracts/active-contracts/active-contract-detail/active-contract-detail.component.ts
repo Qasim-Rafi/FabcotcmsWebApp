@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { GlobalConstants } from 'src/app/Common/global-constants';
@@ -37,6 +37,7 @@ import { TnaLogHistoryComponent } from './Active-Contract-Models/tna-log-history
 export class ActiveContractDetailComponent implements OnInit {
   dateformater: Dateformater = new Dateformater();
  
+  reminderToggle : boolean = false
   rows: any = [];
   rows1: any = [];
   rows2: any = [];
@@ -73,6 +74,7 @@ export class ActiveContractDetailComponent implements OnInit {
   invoiceData:any =[];
   invoiceItemFilter = [];
   invoiceItem = {};
+  reminderData = [];
 
   
  
@@ -83,6 +85,7 @@ export class ActiveContractDetailComponent implements OnInit {
   tnaId: any = {};
   
   constructor(
+    private router: Router,
     private modalService: NgbModal,
     private route: ActivatedRoute,
     private http: HttpClient,
@@ -97,6 +100,7 @@ export class ActiveContractDetailComponent implements OnInit {
    
 
     this.getContractData();
+    this.getAllReminder();
     this.getContractPartiesData();
     this.getContractProductData();
     this.getContractCostingData();
@@ -194,6 +198,13 @@ export class ActiveContractDetailComponent implements OnInit {
     });
     this.rows3 = temp;
   }
+
+
+
+  toggle(){
+    this.reminderToggle = !this.reminderToggle;
+
+}
 
 
   getAllItems(cb) {
@@ -334,7 +345,6 @@ export class ActiveContractDetailComponent implements OnInit {
                 this.toastr.error(this.response.message, 'Message.');
               }
             });
-  
       }
     })
   
@@ -1416,7 +1426,126 @@ deleteShipmentTimeline(id) {
       }
     
 
+      
 
 
+      AddReminder() {
+            this.data.contractUpDate = this.dateformater.toModel(this.data.contractUpDate);
+    
+            let varr = {
+              "contractId": this.contractId,
+              "contractUpDate": this.data.contractUpDate
+            }
+        
+            this.http.
+              post(`${environment.apiUrl}/api/Contracts/AddContractFollowUp`, varr)
+              .subscribe(
+                res => {
+        
+                  this.response = res;
+                  if (this.response.success == true) {
+                    this.toastr.success(this.response.message, 'Message.');
+                    this.getAllReminder();
+                  }
+                  else {
+                    this.toastr.error(this.response.message, 'Message.');
+                  }
+        
+                }, err => {
+                  if (err.status == 400) {
+                    this.toastr.error(this.response.message, 'Message.');
+                  }
+                });
+    
+          }
+
+
+          readyForBill()
+          {
+            let varr=  {}
+        
+            this.http.
+            put(`${environment.apiUrl}/api/Contracts/ContractReadyForBill/`+this.contractId,varr)
+            .subscribe(
+              res=> { 
+          
+                this.response = res;
+                if (this.response.success == true){
+                  this.toastr.success(this.response.message, 'Message.');
+                  this.router.navigate(['/billing-and-payment/active-bills']);
+                }
+                else {
+                  this.toastr.error(this.response.message, 'Message.');
+                    }
+        
+              }, (err: HttpErrorResponse) => {
+                const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+                this.toastr.error(messages.toString(), 'Message.');
+                console.log(messages);
+              });
+          }
+
+
+          getAllReminder() {
+            this.http.get(`${environment.apiUrl}/api/Contracts/GetAllContractFollowUp/` + this.contractId)
+              .subscribe(
+                res => {
+                  this.response = res;
+                  if (this.response.success == true) {
+                    this.reminderData = this.response.data;
+                    
+          
+                  }
+                  else {
+                    this.toastr.error(this.response.message, 'Message.');
+                  }
+          
+                }, err => {
+                  if (err.status == 400) {
+                    this.toastr.error(this.response.message, 'Message.');
+                  }
+                });
+          }
+          
+          deleteReminder(objReminder) {
+            Swal.fire({
+              title: GlobalConstants.deleteTitle, //'Are you sure?',
+              text: GlobalConstants.deleteMessage + 'this Reminder' +  '"',
+              icon: 'error',
+              showCancelButton: true,
+              confirmButtonColor: '#ed5565',
+              cancelButtonColor: '#dae0e5',
+              cancelButtonText: 'No',
+              confirmButtonText: 'Yes',
+              reverseButtons: true, 
+              position: 'top',
+            }).then((result) => {
+              if (result.isConfirmed) {
+                this.http.
+                  delete(`${environment.apiUrl}/api/Contracts/DeleteContractFollowUp/`+ objReminder.id )
+                  .subscribe(
+                    res => {
+            
+                      this.response = res;
+                      if (this.response.success == true) {
+                        this.toastr.error(this.response.message, 'Message.');
+                    this.getAllReminder();
+                       
+                      }
+                      else {
+                        this.toastr.error(this.response.message, 'Message.');
+                      }
+            
+                    }, err => {
+                      if (err.status == 400) {
+                        this.toastr.error(this.response.message, 'Message.');
+                      }
+                    });
+        
+              }
+            })
+        
+          }
+    
 
 }

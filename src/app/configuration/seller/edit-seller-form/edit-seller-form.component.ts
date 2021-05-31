@@ -116,7 +116,8 @@ export class EditSellerFormComponent implements OnInit {
           this.response = res;
           if (this.response.success == true) {
             this.data = this.response.data;
-
+            
+            this.data.certificatedeIds = this.data.certificatedeIds.split(',');
             this.data.machineIds = this.data.machineIds.split(',');
             this.data.capabilitiesIds = this.data.capabilitiesIds.split(',');
             this.data.certificatedeIds = this.data.certificatedeIds.split(',');

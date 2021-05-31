@@ -105,7 +105,7 @@ export class GenerateBillsComponent implements OnInit {
 
   generateBill() {
     // this.getIds();
-  if(this.contractIds.length === 0){
+  if(this.contractIds.length === 0  || this.selectedids.selected.length === 0  ){
     this.toastr.error("PLease select atleast one contract to generate bill" , 'Message')
   }
   else{
