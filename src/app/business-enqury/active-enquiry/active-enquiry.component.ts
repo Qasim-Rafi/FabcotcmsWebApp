@@ -302,9 +302,9 @@ export class ActiveEnquiryComponent implements OnInit {
       let tempData =  this.rows[i].autoEnquiryNumber.padEnd(10) 
       + this.rows[i].enquiryDate.padEnd(10)
       + this.rows[i].buyerName.padEnd(10)
-      + this.rows[i].articleName.padEnd(10)
-      + this.rows[i].paymentTermName.padEnd(10)
-      + this.rows[i].priceTermName.padEnd(10)
+      + this.rows[i].articleName
+      + this.rows[i].paymentTermName
+      + this.rows[i].priceTermName
         + this.rows[i].active+ '\n';
       this.copyData.push(tempData);
     }

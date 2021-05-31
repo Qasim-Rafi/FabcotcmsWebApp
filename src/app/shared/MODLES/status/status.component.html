@@ -41,7 +41,7 @@
             <div class="form-group row">
               <label for="name" class="col-form-label">Reason<span class="required-denote">*</span></label>
               
-                <textarea appAutofocus type="text" class="form-control" rows="4" placeholder="Define aproper Reason..." required
+                <textarea appAutofocus type="text" class="form-control" rows="4" placeholder="Give a proper Reason..." required
                   #reason="ngModel" [(ngModel)]="data.reason" name="reason"
                   [ngClass]="{'error':reason.invalid && NotesForm.submitted  }"></textarea>
               

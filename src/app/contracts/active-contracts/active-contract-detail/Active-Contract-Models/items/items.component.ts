@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -33,7 +33,8 @@ export class ItemsComponent implements OnInit {
 
   @ViewChild(NgForm) ItemForm;
   @Input() statusCheck;
-
+  @ViewChild("focus") myInputField: ElementRef;
+  
   constructor(
     private http: HttpClient,
     private toastr: ToastrService,
@@ -53,6 +54,9 @@ export class ItemsComponent implements OnInit {
       this.editItem();
     }
   }
+  ngAfterViewInit() {
+    this.myInputField.nativeElement.focus();
+    }
   get activeModal() {
     return this._NgbActiveModal;
   }
