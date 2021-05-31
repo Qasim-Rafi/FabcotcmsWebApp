@@ -8,9 +8,10 @@
     border-width: 1px 0;
   }
   .topbox-margin-top-text {
-    font-size: 20px;
+    font-size: 18px;
     padding-top: 5px;
-    color: black;
+    color: gray;
+    font-weight: 400;
   }
   
   .topbox-margin-mid-text {

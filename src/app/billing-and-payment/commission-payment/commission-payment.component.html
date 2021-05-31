@@ -35,15 +35,15 @@
           <div class="col-md-6 mrg-tsm">
                 <!-- refresh button -->
 
-            <button type="button" class="btn btn-light  btn-md float-right" >
+            <button type="button" class="btn btn-light btn-sm float-right">
                 <i class="fas fa-sync-alt"></i>
                 </button>
            <!-- Filter Button -->
-                <button type="button" class="btn btn-primary  btn-md float-right mr-1" (click)=" dateFilterForm()">
+                <button type="button" class="btn btn-primary btn-sm float-right mr-1" (click)=" dateFilterForm()">
                 <i class="fa fa-filter"></i>
             </button>
             <!-- add new commision button -->
-            <button type="button" class="btn btn-primary  btn-md float-right mr-1" (click)="addNewCommsion('new')">
+            <button type="button" class="btn btn-primary btn-sm float-right mr-1" (click)="addNewCommsion('new')">
                 <i class="fa fa-plus"></i> Add new Commission Payment
             </button>
           
@@ -54,17 +54,27 @@
      
       
         <div class="row" >
-          <div class="col-md-12 mb-4">
+          <div class="col-md-12 mb-3">
             <div class="row justify-content-end">
-              <div class="col-md-4">
-                <div class="input-group col-md-offset-3">
-                  <input type="text" placeholder="Search..." class="input form-control w-50" />
+
+              <div class="col-md-4 pr-0">
+
+                <div class="form-group row">
+                  <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
+                  <div class="col-sm-9">
+                    <input type="text" placeholder="Search..." class="input form-control form-control-sm"/>
+                  </div>
                 </div>
+
+                <!-- <div class="input-group col-md-offset-3">
+                  <input type="text" placeholder="Search..." class="input form-control w-50" />
+                </div> -->
+
               </div>
 <!--  -->
 
 <div class="html5buttons mrg-tsm">
-    <div class="dt-buttons btn-group">
+    <div class="dt-buttons btn-group btn-group-sm">
       <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0"
         aria-controls="DataTables_Table_0" ngxClipboard
         ><span>Copy</span>

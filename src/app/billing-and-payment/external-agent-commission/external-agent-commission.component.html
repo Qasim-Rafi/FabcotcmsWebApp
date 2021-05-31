@@ -33,19 +33,28 @@
             <span class="text-muted text2">Payments</span>
           </div>
           <div class="col-md-6 mrg-tsm">
-            <button type="button" class="btn btn-primary btn-md float-right" (click)="addNewCommsion2('new2')">
+            <button type="button" class="btn btn-primary btn-sm float-right" (click)="addNewCommsion2('new2')">
               <i class="fa fa-plus"></i> Add new Payment
             </button>
           </div>
         </div>
   
-        <div class="row" >
-          <div class="col-md-12 mb-4">
+        <div class="row" > 
+          <div class="col-md-12 mb-3">
             <div class="row justify-content-end">
               <div class="col-md-4">
-                <div class="input-group col-md-offset-3">
-                  <input type="text" placeholder="Search..." class="input form-control w-50" />
+
+                <div class="form-group row">
+                  <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
+                  <div class="col-sm-9">
+                    <input type="text" placeholder="Search..." class="input form-control form-control-sm"/>
+                  </div>
                 </div>
+
+                <!-- <div class="input-group col-md-offset-3">
+                  <input type="text" placeholder="Search..." class="input form-control w-50" />
+                </div> -->
+
               </div>
   
      
