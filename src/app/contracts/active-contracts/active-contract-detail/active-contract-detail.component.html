@@ -3,7 +3,10 @@
         <div class="col-sm-12 col-md-6 col-lg-8">
             <h2 class="row wrapper page-header font-weight-light"> Contract Details
                 <div class="ml-2 descr"> Show all the details of business contract</div>
-            </h2>
+                <span class="ml-3 font-weight-light">{{contractData.buyerName}} </span> 
+                <span class="text-muted">(Enq # {{contractData.autoEnquiryNumber}} ) </span> 
+                <span class="text-muted">(Con # {{contractData.autoContractNumber}} )</span> 
+            </h2>  
         </div>
 
         <div class="col-sm-12 col-md-6 col-lg-4">
@@ -29,9 +32,7 @@
                     <div class="topbox-margin-top-text border-bottom"> Completion Status
                         <span class="badge badge-primary float-right">Active</span>
                     </div>
-
-
-
+                    
                     <div class="box-body">
                         <div class="mid-text">35%</div>
                         <div class="progress mt-1">
@@ -235,8 +236,7 @@
                                 <div class="h2 ">
                                     <span><i class="fas fa-flag mr-3 text-secondary"></i></span>
                                     <span class=" ml-2 text_Navy"></span>
-                                    <span class="ml-3 font-weight-light"> {{contractData.buyerName}} <span
-                                            class="text-muted">(Enq # {{contractData.autoEnquiryNumber}})</span> </span>
+                                    
                                 </div>
                             </div>
 

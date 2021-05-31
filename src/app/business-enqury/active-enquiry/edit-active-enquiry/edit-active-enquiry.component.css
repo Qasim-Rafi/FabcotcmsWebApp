@@ -63,6 +63,10 @@ dt {
   font-weight: 500;
 }
 
+.nav-link.active .badge-primary {
+  color: #1ab394;
+  background-color: #ffffff !important;
+}
   /* ---------------------------------------------- */
 
   /* .lined .nav-link {
