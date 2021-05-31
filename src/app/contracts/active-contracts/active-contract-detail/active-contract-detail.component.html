@@ -131,51 +131,52 @@
                     <i class="fas fa-level-down-alt"></i>
                     Contract is currently On-Hold, Click to make it Active
                 </button>
-
             </div>
+
             <div class="col-md-8 " *ngIf="contractData.status =='Open'">
-                <button class="btn btn-danger border-rounded px-3 mr-2 ">
+                <button class="btn btn-danger btn-sm border-rounded px-3 mr-1 ">
                     <i class="far fa-trash-alt"></i>
                     Delete
                 </button>
-                <button class="btn btn-danger border-rounded px-3 mr-2"
+                <button class="btn btn-danger btn-sm border-rounded px-3 mr-1"
                     (click)="statusform('ContractCancel','Cancel','contract')">
                     <i class="fas fa-times"></i>
                     Cancle
                 </button>
-                <button class="btn btn-warning border-rounded px-3 mr-2 text-white"
+                <button class="btn btn-warning btn-sm border-rounded px-3 mr-1 text-white"
                     (click)="statusform('ContractOnHold','OnHold','contract')">
                     <i class="fas fa-level-down-alt"></i>
                     On-Hold
                 </button>
-                <button class="btn btn-info border-rounded px-3 mr-2">
+                <button class="btn btn-info btn-sm border-rounded px-3 mr-1">
                     <i class="far fa-clone"></i>
                     Revised
                 </button>
-                <button class="btn btn-outline-primary border-rounded px-3 mr-2"
+                <button class="btn btn-outline-primary btn-sm border-rounded px-3 mr-1"
                     (click)="statusform('ContractClosed','Closed','contract')">
                     <i class="fas fa-check"></i>
                     Closed
                 </button>
-                <button class="btn btn-info border-rounded px-3 mr-2" (click)=" readyForBill()">
+                <button class="btn btn-info btn-sm border-rounded px-3 mr-1" (click)=" readyForBill()">
                     <i class="fas fa-check"></i>
                     Ready For Bill
                 </button>
             </div>
+
             <div class="col-md-4 text-right ">
-                <button class="btn btn-outline-primary border-rounded px-3 mr-2">
+                <button class="btn btn-outline-primary border-rounded btn-sm px-3 mr-1">
                     <i class="fas fa-print"></i>
                     B
                 </button>
-                <button class="btn btn-outline-primary border-rounded px-3 mr-2">
+                <button class="btn btn-outline-primary border-rounded btn-sm px-3 mr-1">
                     <i class="fas fa-print"></i>
                     B2
                 </button>
-                <button class="btn btn-outline-info border-rounded px-3 mr-2">
+                <button class="btn btn-outline-info border-rounded btn-sm px-3 mr-1">
                     <i class="fas fa-print"></i>
                     S
                 </button>
-                <button class="btn btn-outline-info border-rounded px-3 mr-2">
+                <button class="btn btn-outline-info border-rounded btn-sm px-3 mr-1">
                     <i class="fas fa-print"></i>
                     S2
                 </button>
