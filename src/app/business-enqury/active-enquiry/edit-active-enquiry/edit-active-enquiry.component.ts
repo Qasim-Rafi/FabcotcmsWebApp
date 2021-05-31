@@ -137,7 +137,7 @@ export class EditActiveEnquiryComponent implements OnInit {
       d.description.toLowerCase().indexOf(val) !== -1 ||
       d.createdByName.toLowerCase().indexOf(val) !== -1 ||
       d.createdDateTime.toLowerCase().indexOf(val) !== -1 ||
-      d.createdDateTime.toLowerCase().indexOf(val) !== -1 ||
+      d.title.toLowerCase().indexOf(val) !== -1 ||
        !val);
     });
     this.rows1 = temp;
@@ -1171,19 +1171,19 @@ export class EditActiveEnquiryComponent implements OnInit {
 
 
       AddReminder() {
-        Swal.fire({
-          title: 'Reminder', //'Are you sure?',
-          text: 'Your Reminder has been set for the Enquiry no. '+ this.enquiryData.autoEnquiryNumber ,
-          icon: 'success',
-          showCancelButton: false,
-          confirmButtonColor: '#1ab394  ',
-          cancelButtonColor: '#dae0e5',
-          cancelButtonText: 'No',
-          confirmButtonText: 'OK',
-          reverseButtons: true,
-          position: 'top',
-        }).then((result) => {
-          if (result.isConfirmed) {
+        // Swal.fire({
+        //   title: 'Reminder', //'Are you sure?',
+        //   text: 'Your Reminder has been set for the Enquiry no. '+ this.enquiryData.autoEnquiryNumber ,
+        //   icon: 'success',
+        //   showCancelButton: false,
+        //   confirmButtonColor: '#1ab394  ',
+        //   cancelButtonColor: '#dae0e5',
+        //   cancelButtonText: 'No',
+        //   confirmButtonText: 'OK',
+        //   reverseButtons: true,
+        //   position: 'top',
+        // }).then((result) => {
+        //   if (result.isConfirmed) {
             this.enquiryData.followUpDate = this.dateformater.toModel(this.enquiryData.followUpDate);
     
             let varr = {
@@ -1214,9 +1214,10 @@ export class EditActiveEnquiryComponent implements OnInit {
                 });
     
           }
-        })
+        // }
+        // )
     
-      }
+      // }
 
 
       
