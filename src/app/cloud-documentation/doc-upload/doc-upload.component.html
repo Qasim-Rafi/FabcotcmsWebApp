@@ -165,11 +165,19 @@
                         </div>
                     </div>
     
+                    <div class="row">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6">
+
+                        
                     <div *ngIf="fileUpload.status==='progress'">
                         <div class="progress progressbar">
                             <div class="progress-bar" role="progressbar" [style.width.%]="fileUpload.message">
                                 {{fileUpload.message}}%</div>
                         </div>
+                    </div>
+
+                         </div>
                     </div>
     
     
@@ -177,11 +185,11 @@
                         <label class="col-md-3 col-form-label control-label"></label>
                         <div class="col-md-6">
                             <div class="btn-group mr-2">
-                                <button type="submit" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Upload File on Server">
+                                <button type="submit" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Upload File on Server">
                                     <i class="fas fa-cloud-upload-alt"></i> Upload Document
                                 </button>
                             </div>
-                            <button type="button" routerLink="/cloud/doclist" class="btn btn clrbtn">
+                            <button type="button" routerLink="/cloud/doclist" class="btn btn clrbtn btn-sm">
                                 <i class="fa fa-list"></i>&nbsp;Document List
                             </button>
     

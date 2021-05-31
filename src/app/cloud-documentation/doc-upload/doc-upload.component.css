@@ -11,8 +11,8 @@ color: grey;
 
 .progressbar{
   height: 32px;
-  margin-bottom:20px; 
-  width: 50%;
+  margin-bottom:10px; 
+  width: 100%;
   background-color: #1ab394;
   align-content: center;
 }
