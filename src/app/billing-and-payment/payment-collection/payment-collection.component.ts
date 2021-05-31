@@ -49,8 +49,10 @@ paymentFilter: any = {};
   search(event) {
     const val = event.target.value.toLowerCase();
     const temp = this.paymentFilter.filter(function (d) {
-      return (d.receiptNumber.toLowerCase().indexOf(val) !== -1 ||
-        d.billNumber.toLowerCase().indexOf(val) !== -1 || d.contractNumber.toLowerCase().indexOf(val) !== -1 || !val);
+      return (d.receiptNumber.toLowerCase().indexOf(val) !== -1 || 
+      d.billNumber.toLowerCase().indexOf(val) !== -1 ||
+      d.contractNumber.toLowerCase().indexOf(val) !== -1 ||  
+      !val);
     });
     this.rows = temp;
   }
