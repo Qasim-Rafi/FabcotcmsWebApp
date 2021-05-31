@@ -795,7 +795,7 @@
                                             class="required-denote">*</span></label>
                                         <div class="col-md-6">
                                             <div class="input-group"> 
-                                                <input class="form-control " ngbDatepicker #validityDate="ngbDatepicker" [minDate]="{year: 2000, month: 1, day: 1}"
+                                                <input class="form-control " ngbDatepicker #validityDate="ngbDatepicker" 
                                                     (click)="validityDate.toggle()" [(ngModel)]="enquiryData.confirmationDate" name="confirmationDate" #confirmationDate="ngModel"
                                                     [ngClass]="{ error: confirmationDate.invalid }"/>
                                             </div>

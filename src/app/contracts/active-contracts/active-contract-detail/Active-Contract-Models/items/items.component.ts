@@ -234,7 +234,7 @@ export class ItemsComponent implements OnInit {
 
         }, (err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
-          this.toastr.error(messages.toString(), 'Message.');
+          this.toastr.error(messages.toString()  , 'Message.');
 
         });
 

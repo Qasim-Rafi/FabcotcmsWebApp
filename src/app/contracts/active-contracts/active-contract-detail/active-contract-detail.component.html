@@ -127,19 +127,19 @@
 
         <div class="row py-3">
             <div class="col-md-8 " *ngIf="contractData.status =='OnHold'">
-                <button class="btn btn-warning border-rounded px-3 mr-2 text-white"
-                    (click)="statusOpen()">
+                <button class="btn btn-warning border-rounded px-3 mr-2 text-white" (click)="statusOpen()">
                     <i class="fas fa-level-down-alt"></i>
-                   Contract is currently On-Hold, Click to make it Active
+                    Contract is currently On-Hold, Click to make it Active
                 </button>
-               
+
             </div>
             <div class="col-md-8 " *ngIf="contractData.status =='Open'">
                 <button class="btn btn-danger border-rounded px-3 mr-2 ">
                     <i class="far fa-trash-alt"></i>
                     Delete
                 </button>
-                <button class="btn btn-danger border-rounded px-3 mr-2" (click)="statusform('ContractCancel','Cancel','contract')">
+                <button class="btn btn-danger border-rounded px-3 mr-2"
+                    (click)="statusform('ContractCancel','Cancel','contract')">
                     <i class="fas fa-times"></i>
                     Cancle
                 </button>
@@ -156,6 +156,10 @@
                     (click)="statusform('ContractClosed','Closed','contract')">
                     <i class="fas fa-check"></i>
                     Closed
+                </button>
+                <button class="btn btn-info border-rounded px-3 mr-2" (click)=" readyForBill()">
+                    <i class="fas fa-check"></i>
+                    Ready For Bill
                 </button>
             </div>
             <div class="col-md-4 text-right ">
@@ -237,10 +241,36 @@
 
                             <div class="col-md-3 text-right">
 
-                                <button class="btn btn-primary btn-sm">
+
+                                <button class="btn btn-primary btn-sm" [ngClass]="{ noDisplay : reminderToggle==true }"
+                                    (click)="reminderToggle = !reminderToggle">
                                     <i class="far fa-bell"></i> No Reminder Set</button>
-                                <button class="btn btn-outline-secondary btn-sm ml-1">
-                                    <i class="fas fa-sync-alt"></i></button>
+
+                                <button class="btn btn-outline-secondary btn-sm ml-1"
+                                    [ngClass]="{ noDisplay : reminderToggle==true }">
+                                    <i class="fas fa-sync-alt"></i>
+                                </button>
+
+
+                                <div [ngClass]="{ noDisplay : reminderToggle == false }">
+                                    <button class="btn btn-white float-right btn-xs"
+                                        (click)="toggle()">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+
+                                    <button class="btn btn-primary btn-xs" (click)=" AddReminder(); toggle()">  <i class="fas fa-check"></i>
+                                    </button>
+                                </div>
+                               
+                               
+
+
+                                <div class="col-md-12">
+                                    <div [ngClass]="{ noDisplay : reminderToggle==false }">
+                                        <input required class="form-control" ngbDatepicker #reminderDate="ngbDatepicker"
+                                            (click)="reminderDate.toggle()" placeholder="Reminder" [(ngModel)]="data.contractUpDate"   />
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -255,13 +285,18 @@
                                             *ngIf="contractData.active == true">Active</span>
                                         <span class="badge badge-secondary"
                                             *ngIf="contractData.active == false">Inactive</span>
-                                        <div  class="badge badge-info ml-1" *ngIf="contractData.status == 'Open'">OPEN</div>
-                                        <div  class="badge badge-warning ml-1" *ngIf="contractData.status == 'OnHold'">On-Hold</div>
+                                        <div class="badge badge-info ml-1" *ngIf="contractData.status == 'Open'">OPEN
+                                        </div>
+                                        <div class="badge badge-warning ml-1" *ngIf="contractData.status == 'OnHold'">
+                                            On-Hold</div>
                                         <!-- <button class="btn "><i class="fas fa-history "></i></button> -->
                                         <button class="btn btn-outline-secondary btn-xs ml-1"><i
                                                 class="fas fa-history "></i></button>
-                                        <button class=" btn btn-sm btn-danger p-1 btnsm-f ml-1" *ngIf="contractData.isApproved == false" (click)="approveContract()">Click to Approve</button>
-                                        <button class=" btn btn-sm btn-primary ml-1" *ngIf="contractData.isApproved == true">Approved</button> 
+                                        <button class=" btn btn-sm btn-danger p-1 btnsm-f ml-1"
+                                            *ngIf="contractData.isApproved == false" (click)="approveContract()">Click
+                                            to Approve</button>
+                                        <button class=" btn btn-sm btn-primary ml-1"
+                                            *ngIf="contractData.isApproved == true">Approved</button>
 
                                     </div>
                                 </div>
@@ -476,7 +511,8 @@
 
                                 <div class="row">
                                     <div class="col-md-12 mb-4">
-                                        <button class="btn btn-outline-primary btn-sm float-right" (click)="PartiesForm()">
+                                        <button class="btn btn-outline-primary btn-sm float-right"
+                                            (click)="PartiesForm()">
                                             Edit</button>
                                     </div>
                                 </div>
@@ -592,7 +628,8 @@
 
                                 <div class="row">
                                     <div class="col-md-12 mb-4">
-                                        <button class="btn btn-outline-primary btn-sm float-right" (click)="QuantityCosting()">
+                                        <button class="btn btn-outline-primary btn-sm float-right"
+                                            (click)="QuantityCosting()">
                                             Edit</button>
                                     </div>
                                 </div>
@@ -653,7 +690,8 @@
 
                                 <div class="row">
                                     <div class="col-md-12 mb-4">
-                                        <button class="btn btn-outline-primary btn-sm float-right" (click)="PaymentDelivery()">
+                                        <button class="btn btn-outline-primary btn-sm float-right"
+                                            (click)="PaymentDelivery()">
                                             Edit</button>
                                     </div>
                                 </div>
@@ -802,9 +840,10 @@
                                     </div>
                                 </div>
 
-                                <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows1" *ngIf="rows1.length != 0"
-                                    [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-                                    [sorts]="[{prop: 'code', dir: 'asce'}]" [rowHeight]="'auto'" [limit]="6">
+                                <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows1"
+                                    *ngIf="rows1.length != 0" [columnMode]="'force'" [headerHeight]="50"
+                                    [footerHeight]="50" [sorts]="[{prop: 'code', dir: 'asce'}]" [rowHeight]="'auto'"
+                                    [limit]="6">
 
 
                                     <ngx-datatable-column name="S. No." [width]="5" prop="">
@@ -965,9 +1004,9 @@
                                     </div>
                                 </div>
                                 <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows2" [sorts]="[{ prop: 'description,construction,compositionPercentage,loomTypeId
-                                    size,weight,itemQuantity,contractRate,contractCost,commission', dir: 'asce' }]"  *ngIf="rows2.length != 0"
-                                    [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'"
-                                    [limit]="10">
+                                    size,weight,itemQuantity,contractRate,contractCost,commission', dir: 'asce' }]"
+                                    *ngIf="rows2.length != 0" [columnMode]="'force'" [headerHeight]="50"
+                                    [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
 
                                     <ngx-datatable-column name="Item Detail" prop="description" [width]="80">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
@@ -1060,7 +1099,8 @@
                                         </h1>
                                     </div>
                                     <div class="col-sm-12 col-md-6 col-lg-4 text-right">
-                                        <button class="btn btn-outline-primary btn-sm" (click)="addShipmentTimeline('add')">
+                                        <button class="btn btn-outline-primary btn-sm"
+                                            (click)="addShipmentTimeline('add')">
                                             <i class="fas fa-plus"></i>
                                             Add Deliveries </button>
                                     </div>
@@ -1079,8 +1119,8 @@
                                     </div>
                                 </div>
 
-                                <ngx-datatable #myTable class="bootstrap" [columnMode]="'force'" [headerHeight]="50" *ngIf="rows4.length != 0"
-                                    [rows]="rows4" [footerHeight]="50" [sorts]="[{prop: 'shipmentNo,supplierDate,buyerDate,shipmentLine,shipmentMode,
+                                <ngx-datatable #myTable class="bootstrap" [columnMode]="'force'" [headerHeight]="50"
+                                    *ngIf="rows4.length != 0" [rows]="rows4" [footerHeight]="50" [sorts]="[{prop: 'shipmentNo,supplierDate,buyerDate,shipmentLine,shipmentMode,
                                     shipmentRemarks, ', dir: 'asce'}]" [rowHeight]="'auto'" [limit]="6">
 
 
@@ -1186,13 +1226,14 @@
                                     </div>
                                 </div>
 
-                                <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows5" *ngIf="rows5.length != 0"
-                                    [sorts]="[{ prop: 'id,tnaItem', dir: 'asce' }]" [columnMode]="'force'"
-                                    [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
+                                <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows5"
+                                    *ngIf="rows5.length != 0" [sorts]="[{ prop: 'id,tnaItem', dir: 'asce' }]"
+                                    [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'"
+                                    [limit]="10">
                                     <ngx-datatable-column prop="id" name="S. No." [width]="20">
 
 
-                                        <ng-template let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template >
+                                        <ng-template let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
                                             {{rowIndex + 1}}
                                         </ng-template>
                                     </ngx-datatable-column>
@@ -1261,7 +1302,8 @@
                                         </h1>
                                     </div>
                                     <div class="col-sm-12 col-md-6 col-lg-4 text-right">
-                                        <button class="btn btn-outline-primary btn-sm" (click)="addSaleInvoice('addInvoice')">
+                                        <button class="btn btn-outline-primary btn-sm"
+                                            (click)="addSaleInvoice('addInvoice')">
                                             <i class="fas fa-plus"></i>
                                             Add Sale Invoice </button>
                                     </div>
@@ -1280,9 +1322,12 @@
                                 </div>
 
                                 <div class="col-md-6 text-right">
-                                    <button class="btn btn-outline-primary btn-sm" (click)="editSaleInvoice('editInvoice',x)"> <i class="far fa-edit"></i> Edit Invoice
+                                    <button class="btn btn-outline-primary btn-sm"
+                                        (click)="editSaleInvoice('editInvoice',x)"> <i class="far fa-edit"></i> Edit
+                                        Invoice
                                     </button>
-                                    <button class="btn btn-outline-danger btn-sm ml-3 "  (click)="deleteSaleInvoice(x)"> <i class="far fa-trash-alt"></i>
+                                    <button class="btn btn-outline-danger btn-sm ml-3 " (click)="deleteSaleInvoice(x)">
+                                        <i class="far fa-trash-alt"></i>
                                         Delete</button>
                                 </div>
 
@@ -1383,10 +1428,10 @@
                             </div>
 
 
-                            <ngx-datatable #myTable class="bootstrap" [columns]="columns" *ngIf="x.saleInvoiceItemList.length != 0"
-                                [rows]="x.saleInvoiceItemList" [sorts]="[{ prop: 'id,name', dir: 'asce' }]"
-                                [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'"
-                                [limit]="10">
+                            <ngx-datatable #myTable class="bootstrap" [columns]="columns"
+                                *ngIf="x.saleInvoiceItemList.length != 0" [rows]="x.saleInvoiceItemList"
+                                [sorts]="[{ prop: 'id,name', dir: 'asce' }]" [columnMode]="'force'" [headerHeight]="50"
+                                [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
                                 <ngx-datatable-column prop="id" name="Invoice Item" [width]="20">
                                     <ng-template let-row="row" ngx-datatable-cell-template>
                                         {{ row.contractItemName }}
@@ -1415,7 +1460,8 @@
                                                 (click)="EditsaleInvoiceItem('edit',row)"><i
                                                     class="far fa-edit"></i></button>
                                             <button type="button" class="btn deleteIconBack" data-toggle="tooltip"
-                                                data-placement="top" title="" data-original-title="Delete" (click)="deleteInvoiceItem(row)"><i
+                                                data-placement="top" title="" data-original-title="Delete"
+                                                (click)="deleteInvoiceItem(row)"><i
                                                     class="far fa-trash-alt"></i></button>
                                         </div>
                                     </ng-template>
@@ -1560,7 +1606,8 @@
                                     </div>
                                 </div>
 
-                                <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows3" *ngIf="rows3.length != 0"
+                                <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows3"
+                                    *ngIf="rows3.length != 0"
                                     [sorts]="[{ prop: 'createdByName,createdDateTime,description', dir: 'asce' }]"
                                     [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'"
                                     [limit]="10">
@@ -1578,7 +1625,7 @@
                                     <ngx-datatable-column name="Note Details " prop="description" [width]="80">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                                             {{row.title}} <br>
-                                    {{row.description}}
+                                            {{row.description}}
                                         </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column name="Action" [width]="80">

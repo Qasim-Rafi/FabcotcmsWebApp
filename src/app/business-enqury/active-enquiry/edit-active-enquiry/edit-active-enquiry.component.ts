@@ -526,6 +526,16 @@ export class EditActiveEnquiryComponent implements OnInit {
   addEnquiryOrderDetails() {
 
     this.enquiryData.confirmationDate = this.dateformater.toModel(this.enquiryData.confirmationDate);
+    
+    if( this.enquiryData.confirmationDate == "undefined-undefined-undefined")
+    {
+      this.enquiryData.confirmationDate = ""
+    }
+    if( this.enquiryData.confirmationDate == "0-NaN-NaN" )
+    {
+      this.enquiryData.confirmationDate = ""
+    }
+     
     let varr = {
       "enquiryId": this.objEnquiry,
       "confirmationDate": this.enquiryData.confirmationDate,
