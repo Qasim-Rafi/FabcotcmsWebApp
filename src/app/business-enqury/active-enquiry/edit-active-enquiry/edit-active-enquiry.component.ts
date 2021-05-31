@@ -133,7 +133,12 @@ export class EditActiveEnquiryComponent implements OnInit {
     const val = event.target.value.toLowerCase();
 
     const temp = this.noteFilter.filter(function (d) {
-      return (d.description.toLowerCase().indexOf(val) !== -1 || !val);
+      return (
+      d.description.toLowerCase().indexOf(val) !== -1 ||
+      d.createdByName.toLowerCase().indexOf(val) !== -1 ||
+      d.createdDateTime.toLowerCase().indexOf(val) !== -1 ||
+      d.title.toLowerCase().indexOf(val) !== -1 ||
+       !val);
     });
     this.rows1 = temp;
 
@@ -148,7 +153,12 @@ export class EditActiveEnquiryComponent implements OnInit {
           if (this.response.success == true) {
             this.enquiryData = this.response.data;
              this.confirmOn = this.enquiryData.confirmationDate;
-             console.log("enquiry Data" , this.enquiryData)
+            if(this.enquiryData.totalQuantity == 0)
+            {
+              this.enquiryData.totalQuantity = null; 
+            }
+
+            //  console.log("enquiry Data" , this.enquiryData)
             this.enquiryData.confirmationDate = this.dateformater.fromModel(this.enquiryData.confirmationDate);
             if(this.enquiryData.totalQuantity == 0)
             {
@@ -459,6 +469,7 @@ export class EditActiveEnquiryComponent implements OnInit {
           if (this.response.success == true) {
             // this.currencyToggle = !this.currencyToggle
             this.toastr.success(this.response.message, 'Message.');
+            this.currencyToggle = !this.currencyToggle
             this.getEnquiryData(this.objEnquiry);
             // this.enquiryForm.reset();
           }
@@ -908,7 +919,7 @@ export class EditActiveEnquiryComponent implements OnInit {
                 body: [
                [
                   { style:'propertyName' ,text: 'Shipment' } , 
-              {  style:'propertyValue', text : this.enquiryData['shipmentDates']},
+              {  style:'propertyValue', text : this.enquiryData['shipmentdates']},
               {  style:'propertyName',text: 'Payment Terms' } , 
               {  style:'propertyValue', text : this.enquiryData['paymentTermName']},
                ]
@@ -1073,7 +1084,7 @@ export class EditActiveEnquiryComponent implements OnInit {
                 body: [
                [
                   { style:'propertyName' ,text: 'Shipment' } , 
-              {  style:'propertyValue', text : this.enquiryData['shipmentDates']},
+              {  style:'propertyValue', text : this.enquiryData['shipmentdates']},
               {  style:'propertyName',text: 'Payment Terms' } , 
               {  style:'propertyValue', text : this.enquiryData['paymentTermName']},
                ]
@@ -1160,19 +1171,19 @@ export class EditActiveEnquiryComponent implements OnInit {
 
 
       AddReminder() {
-        Swal.fire({
-          title: 'Reminder', //'Are you sure?',
-          text: 'Your Reminder has been set for the Enquiry no. '+ this.enquiryData.autoEnquiryNumber ,
-          icon: 'success',
-          showCancelButton: false,
-          confirmButtonColor: '#1ab394  ',
-          cancelButtonColor: '#dae0e5',
-          cancelButtonText: 'No',
-          confirmButtonText: 'OK',
-          reverseButtons: true,
-          position: 'top',
-        }).then((result) => {
-          if (result.isConfirmed) {
+        // Swal.fire({
+        //   title: 'Reminder', //'Are you sure?',
+        //   text: 'Your Reminder has been set for the Enquiry no. '+ this.enquiryData.autoEnquiryNumber ,
+        //   icon: 'success',
+        //   showCancelButton: false,
+        //   confirmButtonColor: '#1ab394  ',
+        //   cancelButtonColor: '#dae0e5',
+        //   cancelButtonText: 'No',
+        //   confirmButtonText: 'OK',
+        //   reverseButtons: true,
+        //   position: 'top',
+        // }).then((result) => {
+        //   if (result.isConfirmed) {
             this.enquiryData.followUpDate = this.dateformater.toModel(this.enquiryData.followUpDate);
     
             let varr = {
@@ -1203,9 +1214,10 @@ export class EditActiveEnquiryComponent implements OnInit {
                 });
     
           }
-        })
+        // }
+        // )
     
-      }
+      // }
 
 
       

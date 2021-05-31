@@ -99,6 +99,11 @@ export class PRODUCTPLANComponent implements OnInit {
 
 
     addTna() {
+      if(this.tnaIds.length === 0 ){
+        this.toastr.error("Select atleast one row to add" , 'Message')
+
+      }
+      else{
       let varr = {
         "contractId":this.contractId,
     "tnaIds": this.tnaIds
@@ -122,7 +127,9 @@ export class PRODUCTPLANComponent implements OnInit {
               this.toastr.error(this.response.message, 'Message.');
             }
           });
-    }
+    
+        }
+        }
 
 
 

@@ -16,9 +16,9 @@
    
         <div class="form-group row">
             <label for="name" class="col-sm-3 col-form-label text_Navy" >Start Date</label>
-            <div class="col-sm-8" (clickOutside)="startDate.close()">
-                <input navigation="select" class="form-control  " ngbDatepicker #startDate="ngbDatepicker"
-                (click)="startDate.toggle()" placeholder="Start Date" 
+            <div class="col-sm-8" (clickOutside)="validity  .close()">
+                <input navigation="select" class="form-control  " ngbDatepicker #validity ="ngbDatepicker"
+                (click)="validity .toggle()" placeholder="Start Date" 
                 name="startDate"  [(ngModel)]="data.startDate" #startDate="ngModel" />
             </div>
           </div>
@@ -27,17 +27,17 @@
 
         <div class="form-group row">
           <label for="endDate" class="col-sm-3 col-form-label text_Navy">End Date</label>
-          <div class="col-sm-8" (clickOutside)="endDate.close()">
+          <div class="col-sm-8" (clickOutside)="validity2.close()">
     
-            <input navigation="select" class="form-control  " ngbDatepicker #endDate="ngbDatepicker"
-              (click)="endDate.toggle()" placeholder="Action End Date" 
-              name="endDate"  name="startDate"  [(ngModel)]="data.endDate" #endDate="ngModel"  />
+            <input navigation="select" class="form-control  " ngbDatepicker #validity2="ngbDatepicker"
+              (click)="validity2.toggle()" placeholder="Action End Date" 
+              name="endDate"  name="endDate"  [(ngModel)]="data.endDate" #endDate="ngModel"  />
           </div>
         </div>
 <div class="form-group row">
   <label for="name" class="col-sm-3 col-form-label ">Quantity</label>
   <div class="col-sm-8">
-      <input type="number" class="form-control" placeholder="Action Quantity"
+      <input min="0" type="number" class="form-control" placeholder="Action Quantity"
       name="quantity"   [(ngModel)]="data.quantity" #quantity="ngModel"
       >  
       </div>
@@ -54,7 +54,7 @@
 
   </form>
 </div>
-
+ 
 
 
 <div class="modal-footer NotBG">

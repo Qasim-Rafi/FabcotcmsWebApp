@@ -24,8 +24,8 @@
         <label for="invoiceItem" class="col-sm-3 col-form-label text_Navy">Invoice Item</label>
         <div class="col-sm-7">
 
-          <ng-select name="invoiceItem" placeholder="-- Select --" name="invoiceItem " #invoiceItem="ngModel"
-            [(ngModel)]="data.invoiceItem">
+          <ng-select required name="contractItemId" placeholder="-- Select --" #contractItemId="ngModel" [ngClass]="{ 'error':  contractItemId.invalid && saleInvoiceItem.submitted}"
+            [(ngModel)]="data.contractItemId">
             <ng-option *ngFor="let i of itemData" [value]="i.id">{{ i.description }}
             </ng-option>
           </ng-select>
@@ -36,8 +36,8 @@
       <div class="form-group row">
         <label for="quantity" class="col-sm-3 col-form-label text-Navy">Quantity</label>
         <div class="col-sm-7">
-          <input type="number" placeholder="Quantity no." class="form-control" [(ngModel)]="data.quatity"
-            name="quatity">
+          <input required type="number" placeholder="Quantity no." class="form-control" [(ngModel)]="data.quatity" [ngClass]="{ 'error':  quatity.invalid && saleInvoiceItem.submitted}"
+            name="quatity" #quatity="ngModel">
 
         </div>
       </div>
@@ -46,7 +46,7 @@
         <label for="Amount" class="col-sm-3 col-form-label ">Amount</label>
         <div class="col-sm-7">
           <!-- <input type="text" class="form-control" placeholder="Amount" readonly> -->
-          <input type="number" placeholder="Amount" class="form-control" [(ngModel)]="data.amount" name="amount">
+          <input disabled type="number" placeholder="Amount" class="form-control" [(ngModel)]="data.amount" name="amount">
         </div>
       </div>
 

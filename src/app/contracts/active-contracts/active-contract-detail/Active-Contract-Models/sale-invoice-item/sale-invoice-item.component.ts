@@ -44,7 +44,7 @@ export class SaleInvoiceItemComponent implements OnInit {
    let varr = {
 
     "contractSaleInvoiceId": this.contractSaleInvoiceId ,
-    "invoiceItem": this.data.invoiceItem,
+    "contractItemId": this.data.contractItemId,
     "quatity":this.data.quatity ,
     "amount": this.data.amount,
     "saleInvoiceItemRemarks":this.data.saleInvoiceItemRemarks ,
@@ -133,9 +133,9 @@ export class SaleInvoiceItemComponent implements OnInit {
     let varr = {
       
       "contractSaleInvoiceId": this.contractSaleInvoiceId ,
-      "invoiceItem": this.data.invoiceItem,
+      "contractItemId": this.data.contractItemId,
       "quatity":this.data.quatity ,
-      "amount": this.data.amount,
+      // "amount": this.data.amount,
       "saleInvoiceItemRemarks":this.data.saleInvoiceItemRemarks ,
     }
 
