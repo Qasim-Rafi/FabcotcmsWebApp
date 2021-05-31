@@ -231,7 +231,7 @@
 
                         <div class="row my-3">
 
-                            <div class="col-md-9">
+                            <div class="col-md-8">
                                 <div class="h2 ">
                                     <span><i class="fas fa-flag mr-3 text-secondary"></i></span>
                                     <span class=" ml-2 text_Navy"></span>
@@ -240,7 +240,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-3 text-right">
+                            <div class="col-md-4 text-right">
 
 
                                 <button class="btn btn-primary btn-sm" [ngClass]="{ noDisplay : reminderToggle==true }"
@@ -273,10 +273,13 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-3" *ngFor="let i of reminderData">
-                                    {{i.contractUpDate}}
 
-                                    <button class="btn btn-danger bnt-xs" (click)="deleteReminder(i)"><i class="fas fa-times"></i></button>
+                                <div class="col-md-12 pt-2" *ngFor="let i of reminderData">
+                                    <div class="text_Navy h5 mb-0">{{i.contractUpDate}}
+                                        <button class="btn deleteIconBack " (click)="deleteReminder(i)"><i class="far fa-trash-alt"></i></button>
+                                    </div>
+
+                                    
                                 </div>
 
 

@@ -146,6 +146,26 @@ export class PartiesComponent implements OnInit {
   addContractParties() {
     this.data.poDate = this.dateformater.toModel(this.data.poDate);
     this.data.contractDate = this.dateformater.toModel(this.data.contractDate);
+
+    if( this.data.poDate == "undefined-undefined-undefined")
+    {
+      this.data.poDate = ""
+    }
+    if( this.data.poDate == "0-NaN-NaN" )
+    {
+      this.data.poDate = ""
+    }
+
+    if( this.data.contractDate == "undefined-undefined-undefined")
+    {
+      this.data.contractDate = ""
+    }
+    if( this.data.contractDate == "0-NaN-NaN" )
+    {
+      this.data.contractDate = ""
+    }
+
+
     let varr = {
 
       "contractId": this.contractId,
