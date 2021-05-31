@@ -125,15 +125,15 @@
         </div>
         <!-- /.row -->
 
-        <div class="row py-3">
+        <div class="row py-3 justify-content-end">
             <div class="col-md-8 " *ngIf="contractData.status =='OnHold'">
                 <button class="btn btn-warning border-rounded px-3 mr-2 text-white" (click)="statusOpen()">
                     <i class="fas fa-level-down-alt"></i>
                     Contract is currently On-Hold, Click to make it Active
                 </button>
             </div>
-
-            <div class="col-md-8 " *ngIf="contractData.status =='Open'">
+          
+            <div class="col-md-8 " *ngIf="contractData.status == 'Open' || contractData.status == 'BillAwaited' ">
                 <button class="btn btn-danger btn-sm border-rounded px-3 mr-1 ">
                     <i class="far fa-trash-alt"></i>
                     Delete
