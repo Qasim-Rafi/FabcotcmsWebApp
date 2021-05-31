@@ -298,6 +298,9 @@ export class AddEnquiryComponent implements OnInit {
         if(type == "other"){
           this.certification.id = this.newCertificate;
           this.data.certificateIds = this.certification.id
+          // this.data.certificateIds.toString();
+          this.data.certificateIds != null ? this.data.certificateIds.toString() : null
+
      }
 
       }
