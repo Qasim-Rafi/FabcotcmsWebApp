@@ -33,7 +33,7 @@
             <div class="row">
 
               <div class="col-md-4">
-                <div class="dropdown">
+                <!-- <div class="dropdown">
                   Show &nbsp;
                   <button class="btn btn-outline-secondary btn-sm dropdown-toggle btn-sm-eqry" type="button" id="dropdownMenuButton"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -45,24 +45,32 @@
                     <a class="dropdown-item" href="#">50</a>
                     <a class="dropdown-item" href="#">100</a>
                   </div>
-                </div>
-                <p class="mt-2">Showing 1 to 10 of 10 Entries</p>
+                </div> -->
+                <!-- <p class="mt-2">Showing 1 to 10 of 10 Entries</p> -->
               </div>
 
-              <div class="col-md-8">
+              <div class="col-md-8 mb-2">
 
                 <div class="row justify-content-end">
               
-                <div class="col-md-4">
-                  <div class="input-group col-md-offset-3">
-                    <input type="text" placeholder="Search..." class="input form-control w-50" 
-                    (keyup)="search($event)"
-                    />
+                <div class="col-md-4 pr-0">
+
+                  <div class="form-group row">
+                    <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
+                    <div class="col-sm-9">
+                      <input type="text" placeholder="Search..." class="input form-control form-control-sm" (keyup)="search($event)" />
+                    </div>
                   </div>
+
+                  <!-- <div class="input-group col-md-offset-3">
+                    <input type="text" placeholder="Search..." class="input form-control w-50" 
+                    (keyup)="search($event)"/>
+                  </div> -->
+
                 </div>
               
                 <div class="html5buttons mrg-tsm">
-                  <div class="dt-buttons btn-group">
+                  <div class="dt-buttons btn-group btn-group-sm">
                     <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0" aria-controls="DataTables_Table_0"
                     (click)="copyPaymentList()"  ngxClipboard><span>Copy</span>
                     </a>
@@ -103,52 +111,52 @@
       <div class="panel-body">
         <ngx-datatable class="bootstrap datatable-row-wrapper" [columns]="columns" [rows]="rows" [columnMode]="'flex'"
           [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="6"
-          [sorts]="[{ prop: 'id', dir: 'asce' }]"
+          [sorts]="[{ prop: 'id', dir: 'desc' }]"
           >
       
-          <ngx-datatable-column name="S:Seller/B:Buyer" [width]="80" prop="buyerName" [flexGrow]="0.03">
-            <ng-template let-row="row" ngx-datatable-cell-template>
+          <ngx-datatable-column name="S:Seller/B:Buyer"  prop="buyerName" [flexGrow]="0.03">
+            <ng-template let-row="row"  let-expanded="expanded"  ngx-datatable-cell-template>
               B:{{row.buyerName}}
               S:{{row.selerName}}
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Receipt" [width]="80" prop="receiptNumber" [flexGrow]="0.05">
+          <ngx-datatable-column name="Receipt" [width]="60" prop="receiptNumber" [flexGrow]="0.05">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
               {{row.receiptNumber}}
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Bill" [width]="80" prop="billNumber" [flexGrow]="0.06">
+          <ngx-datatable-column name="Bill" [width]="60" prop="billNumber" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
       {{row.billNumber}}
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Contract" [width]="80" prop="contractNumber" [flexGrow]="0.06">
+          <ngx-datatable-column name="Contract" [width]="60" prop="contractNumber" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
       {{row.contractNumber}}
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Sale Invoice" [width]="80" prop="saleInvoiceNo" [flexGrow]="0.06">
+          <ngx-datatable-column name="Sale Invoice" [width]="40" prop="saleInvoiceNo" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
       {{row.saleInvoiceNo}}
             </ng-template>
           </ngx-datatable-column>
       
-          <ngx-datatable-column name="Payment On" [width]="80" prop="paymentDate" [flexGrow]="0.06">
+          <ngx-datatable-column name="Payment On" [width]="50" prop="paymentDate" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
       {{row.paymentDate}}
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Net Amount" [width]="80" prop="netAmount" [flexGrow]="0.06">
+          <ngx-datatable-column name="Net Amount" [width]="50" prop="netAmount" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
       {{row.netAmount}}
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Payment Mode" [width]="80" prop="paymentMode" [flexGrow]="0.06">
+          <ngx-datatable-column name="Payment Mode" [width]="40" prop="paymentMode" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
       {{row.paymentMode}}
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Action" [width]="80" prop="action" [flexGrow]="0.06">
+          <ngx-datatable-column name="Action" [width]="40" prop="action" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
       
               <div class="ibox-tools text-center">

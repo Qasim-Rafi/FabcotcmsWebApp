@@ -81,9 +81,9 @@
           [columnMode]="'flex'" [headerHeight]="50" [footerHeight]="50" 
           [rowHeight]="'auto'" [limit]="6"
             (select)="onSelect($event)"
-            [selected]="selected"
+            
             [selectionType]="SelectionType.checkbox"
-            [sorts]="[{ prop: 'id', dir: 'asce' }]"
+            [sorts]="[{ prop: 'id', dir: 'desc' }]"
           >
           <ngx-datatable-column prop="selected" name="Select" [width]="20"   [flexGrow]="0.03"
           [width]="30"

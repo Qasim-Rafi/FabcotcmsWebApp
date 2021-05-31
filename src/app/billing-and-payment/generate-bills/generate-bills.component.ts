@@ -33,7 +33,7 @@ export class GenerateBillsComponent implements OnInit {
       billFilter: any = {};
 
       rows: any = [];
-      selected: any = [];
+      selectedids: any ={};
 
       checkboxData: any = [];
       SelectionType = SelectionType;
@@ -61,21 +61,22 @@ export class GenerateBillsComponent implements OnInit {
         });
         this.rows = temp;
       }
-      onSelect({selected}) {
+      onSelect(selecterow) {
+        this.selectedids =selecterow;
+ 
         // console.log('Select Event', selected);
         // this.selected.splice(0, selected.length);
         // this.selected.push(...selected);
         // console.log("selection" , this.selected)
-        for(let i=0; i<selected.length; i++ )
-        {
-        
-            this.contractIds[i] = selected[i].id;
-            this.selected = [...selected]
+        for(let i=0; i<this.selectedids.selected.length; i++ )
+        {      
+            this.contractIds[i] = this.selectedids.selected[i].id;
+            // this.selected = [...this.selected]
         }
-        return this.contractIds;        
+        // return this.contractIds;        
       }
       getIds(){
-        console.log("selected in" , this.selected)
+        console.log("selected in" , this.selectedids)
       }
     //   singleSelectCheck (row:any) {
     //     return this.selected.indexOf(row) === -1;
@@ -103,13 +104,14 @@ export class GenerateBillsComponent implements OnInit {
     // }
 
   generateBill() {
-    this.getIds();
-  if(this.contractIds.length === 0){
+    // this.getIds();
+  if(this.contractIds.length === 0  || this.selectedids.selected.length === 0  ){
     this.toastr.error("PLease select atleast one contract to generate bill" , 'Message')
   }
   else{
+    const item = [...new Set(this.contractIds)];
     let varr = {
-      "contractIds": this.contractIds,
+      "contractIds": item,
       // "billForBuyerId": this.data,
       // "billForSelerId": this.checkboxData.sellerId,
       // "taxAmount": this.checkboxData.taxAmount,

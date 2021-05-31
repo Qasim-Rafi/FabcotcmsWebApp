@@ -83,7 +83,7 @@
                                           (click)="paymentDate.toggle()" placeholder="Payment Date" *ngIf = "statusCheck.statusCheck == 'addPayment'"
                                           name="paymentDate"  [(ngModel)]="data.paymentDate" #paymentDate="ngModel" /> -->
                                           <input navigation="select" class="form-control  " id="paymentDate" name="paymentDate" 
-                                          [(ngModel)]="data.paymentDate" #paymentDate="ngModel" *ngIf = "statusCheck.statusCheck == 'addPayment'"  ngbDatepicker #validity="ngbDatepicker"
+                                          [(ngModel)]="paymentAdddata.paymentDate" #paymentDate="ngModel" *ngIf = "statusCheck.statusCheck == 'addPayment'"  ngbDatepicker #validity="ngbDatepicker"
                                          (click)="validity.toggle()"
                                           placeholder="Payment Date" />
 
@@ -108,7 +108,7 @@
                                             </span>
                                         </div>
                                         <input type="text" class="form-control date"   *ngIf = "statusCheck.statusCheck == 'addPayment'"
-                                          name="receiptNumber" [(ngModel)]="data.receiptNumber" #receiptNumber="ngModel">
+                                          name="receiptNumber" [(ngModel)]="paymentAdddata.receiptNumber" #receiptNumber="ngModel">
                                           <input type="text" class="form-control date"   *ngIf = "statusCheck.statusCheck == 'editPayment'"
                                           name="receiptNumber" [(ngModel)]="paymentdata.receiptNumber" #receiptNumber="ngModel">
                                     </div>
@@ -125,8 +125,8 @@
                                                 <i class="far fa-handshake"></i>
                                             </span>
                                         </div>
-                                        <input type="text" class="form-control date" readonly value="data.contractNumber" *ngIf = "statusCheck.statusCheck == 'addPayment'"
-                                        name="contractNumber" [(ngModel)]="data.contractNumber" #contractNumber="ngModel"
+                                        <input type="text" class="form-control date" readonly value="paymentAdddata.contractNumber" *ngIf = "statusCheck.statusCheck == 'addPayment'"
+                                        name="contractNumber" [(ngModel)]="paymentAdddata.contractNumber" #contractNumber="ngModel"
                                         >
                                         <input type="text" class="form-control date" readonly value="paymentdata.contractNumber" *ngIf = "statusCheck.statusCheck == 'editPayment'"
                                         name="contractNumber" [(ngModel)]="paymentdata.contractNumber" #contractNumber="ngModel"
@@ -148,8 +148,8 @@
                                                 <i class="fas fa-file-invoice-dollar"></i>
                                             </span>
                                         </div>
-                                        <input type="text" class="form-control" value="data.contractNumber" readonly *ngIf = "statusCheck.statusCheck == 'addPayment'"
-                                        name="billNumber" [(ngModel)]="data.billNumber" #billNumber="ngModel"
+                                        <input type="text" class="form-control" value="paymentAdddata.contractNumber" readonly *ngIf = "statusCheck.statusCheck == 'addPayment'"
+                                        name="billNumber" [(ngModel)]="paymentAdddata.billNumber" #billNumber="ngModel"
                                         >
                                         <input type="text" class="form-control" value="paymentdata.contractNumber" readonly *ngIf = "statusCheck.statusCheck == 'editPayment'"
                                         name="billNumber" [(ngModel)]="paymentdata.billNumber" #billNumber="ngModel"
@@ -168,7 +168,7 @@
                                             </span>
                                         </div>
                                         <input type="text" class="form-control" readonly  *ngIf = "statusCheck.statusCheck == 'addPayment'"
-                                        name="sellerName" [(ngModel)]="data.sellerName" #sellerName="ngModel"
+                                        name="sellerName" [(ngModel)]="paymentAdddata.sellerName" #sellerName="ngModel"
                                         >
                                         <input type="text" class="form-control" readonly  *ngIf = "statusCheck.statusCheck == 'editPayment'"
                                         name="sellerName" [(ngModel)]="paymentdata.sellerName" #sellerName="ngModel"
@@ -189,7 +189,7 @@
                                         </div>
                                         <div class="col-md-2"  *ngIf = "statusCheck.statusCheck == 'addPayment'">
                                             <ng-select placeholder="--Select--" 
-                                            name="saleInvoiceId" [(ngModel)]="data.saleInvoiceId" #saleInvoiceId="ngModel"
+                                            name="saleInvoiceId" [(ngModel)]="paymentAdddata.saleInvoiceId" #saleInvoiceId="ngModel"
                                         
                                             >
                                             <ng-option *ngFor="let i of saleInvoice" [value]="i.id">{{ i.saleInvoiceNo }}
@@ -217,7 +217,7 @@
                                 <div class="div col-md-6">
                                     <div class="row">
                                         <div class="col-md-3" *ngIf = "statusCheck.statusCheck == 'addPayment'">
-                                            <ng-select placeholder="--Select currency--"  [(ngModel)]="data.currencyId" name="currencyId">
+                                            <ng-select placeholder="--Select currency--"  [(ngModel)]="paymentAdddata.currencyId" name="currencyId">
                                                 <ng-option *ngFor="let i of currency" [value]="i.id">{{ i.code }}
                                                     <span *ngIf="i.name !=null" class="text-muted" style="font-size: 11px">( {{ i.name }} )</span>
                                                   </ng-option>
@@ -241,7 +241,7 @@
                                         <div class="col-md-3 mrg-sm1">
                                             <div class="input-group" *ngIf = "statusCheck.statusCheck == 'addPayment'">
                                                 <input type="text" class="form-control" placeholder="Paid Amount"
-                                                name="paidAmount" [(ngModel)]="data.paidAmount" #paidAmount="ngModel"
+                                                name="paidAmount" [(ngModel)]="paymentAdddata.paidAmount" #paidAmount="ngModel"
                                                 >
                                             </div>
                                             <div class="input-group" *ngIf = "statusCheck.statusCheck == 'editPayment'">
@@ -253,7 +253,7 @@
                                         <div class="col-md-3 mrg-sm1">
                                             <div class="input-group" *ngIf = "statusCheck.statusCheck == 'addPayment'">
                                                 <input type="text" class="form-control" placeholder="tax Amount"
-                                                name="taxAmount" [(ngModel)]="data.taxAmount" #taxAmount="ngModel">
+                                                name="taxAmount" [(ngModel)]="paymentAdddata.taxAmount" #taxAmount="ngModel">
                                             </div>
                                             <div class="input-group" *ngIf = "statusCheck.statusCheck == 'editPayment'">
                                                 <input type="text" class="form-control" placeholder="tax Amount"
@@ -263,7 +263,7 @@
                                         <div class="col-md-3 mrg-sm1">
                                             <div class="input-group" *ngIf = "statusCheck.statusCheck == 'addPayment'">
                                                 <input type="text" class="form-control" placeholder="Deduction"
-                                                name="deductionAmount" [(ngModel)]="data.deductionAmount" #deductionAmount="ngModel"
+                                                name="deductionAmount" [(ngModel)]="paymentAdddata.deductionAmount" #deductionAmount="ngModel"
                                                 >
                                             </div>
                                             <div class="input-group" *ngIf = "statusCheck.statusCheck == 'editPayment'">
@@ -280,7 +280,7 @@
                                 <label class="col-md-3 col-form-label control-label">
                                     Payment Mode</label>
                                 <div class="col-md-2" *ngIf = "statusCheck.statusCheck == 'addPayment'">
-                                    <ng-select name="paymentMode" placeholder="-- Select --" [(ngModel)]="data.paymentMode">
+                                    <ng-select name="paymentMode" placeholder="-- Select --" [(ngModel)]="paymentAdddata.paymentMode">
                                         <ng-option *ngFor="let i of paymentMode" [value]="i">
                                             {{i}}
                                         </ng-option>
@@ -296,7 +296,7 @@
                                 <div class="col-md-4 " *ngIf = "statusCheck.statusCheck == 'addPayment'">
                                     <input type="text" class="form-control"
                                         placeholder="Additional Info(Cheque No., PO/DD No. etc)"
-                                        name="paymentDescription" [(ngModel)]="data.paymentDescription" #paymentDescription="ngModel"
+                                        name="paymentDescription" [(ngModel)]="paymentAdddata.paymentDescription" #paymentDescription="ngModel"
                                         >
                                 </div>
 
@@ -320,7 +320,7 @@
                                     Bank Account</label>
                                 <div class="col-md-2"  *ngIf = "statusCheck.statusCheck == 'addPayment'">
                                     <ng-select placeholder="--Select--"
-                                    name="bankAccountId" [(ngModel)]="data.bankAccountId" #bankAccountId="ngModel"
+                                    name="bankAccountId" [(ngModel)]="paymentAdddata.bankAccountId" #bankAccountId="ngModel"
                                 
                                     >
                                     <ng-option *ngFor="let i of bankAcc" [value]="i.id">{{ i.accountName }}
@@ -340,7 +340,7 @@
                                 </div>
                                 <div class="col-md-4 "  *ngIf = "statusCheck.statusCheck == 'addPayment'">
                                     <input type="text" class="form-control" placeholder="Additional Info"
-                                    name="accountDescription" [(ngModel)]="data.accountDescription" #accountDescription="ngModel"
+                                    name="accountDescription" [(ngModel)]="paymentAdddata.accountDescription" #accountDescription="ngModel"
                                     >
                                 </div>
                                 <div class="col-md-4 " *ngIf = "statusCheck.statusCheck == 'editPayment'">
@@ -356,7 +356,7 @@
                                 <div class="col-md-2">
                                     <div class="form-check form-check-label" *ngIf = "statusCheck.statusCheck == 'addPayment'">
                                         <input for="scales" id="isDepositedInBank" class="form-check-input" type="checkbox" value=""
-                                        name="isDepositedInBank" [(ngModel)]="data.isDepositedInBank" #isDepositedInBank="ngModel"
+                                        name="isDepositedInBank" [(ngModel)]="paymentAdddata.isDepositedInBank" #isDepositedInBank="ngModel"
                                         >
                                     </div>
                                     <div class="form-check" *ngIf = "statusCheck.statusCheck == 'editPayment'">
@@ -381,7 +381,7 @@
                                         name="depositeDate" ngbDatepicker
                                       > -->
                                       <input navigation="select" class="form-control  " id="depositeDate" name="depositeDate" 
-                                      [(ngModel)]="data.depositeDate" #depositeDate="ngModel"   ngbDatepicker #validity1="ngbDatepicker"
+                                      [(ngModel)]="paymentAdddata.depositeDate" #depositeDate="ngModel"   ngbDatepicker #validity1="ngbDatepicker"
                                      (click)="validity1.toggle()"
                                       placeholder="Payment Date" />
                                 </div>
