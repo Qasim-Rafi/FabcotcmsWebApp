@@ -367,14 +367,14 @@ export class ActiveContractDetailComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
   
-        this.http.delete(`${environment.apiUrl}/api/TextileGarments/DeleteTnaAction/` + id.id)
+        this.http.delete(`${environment.apiUrl}/api/Contracts/DeleteContractTimeAction/` + id.id)
           .subscribe(
             res => {
               this.response = res;
               if (this.response.success == true) {
                 this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
-                this.getAllItems((itemsData) => {
-                  this.rows2 = itemsData;
+                this.getContractTnA((Tna) => {
+                  this.rows5 = Tna;
                   // this.listCount= this.rows.length;
                 });
   
