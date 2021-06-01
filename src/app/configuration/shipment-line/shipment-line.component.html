@@ -34,7 +34,7 @@
             <span class="text-muted text2">Shipment Line</span>
           </div>
           <div class="col-md-6 mrg-tsm">
-            <button type="button" class="btn btn-primary btn-md float-right"
+            <button type="button" class="btn btn-primary btn-sm float-right"
            (click) = "addShipmentForm('addShipment')"
             >
               <i class="fa fa-plus"></i> Add Shipment Line
@@ -43,17 +43,26 @@
         </div>
   
         <div class="row" >
-          <div class="col-md-12 mb-4">
+          <div class="col-md-12 mb-3">
             <div class="row justify-content-end">
-              <div class="col-md-4">
-                <div class="input-group col-md-offset-3">
-                  <input type="text" placeholder="Search by shipment Line" class="input form-control w-50"
-                     />
+              <div class="col-md-4 pr-0">
+
+                <div class="form-group row">
+                  <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
+                  <div class="col-sm-9">
+                    <input type="text" placeholder="Search by shipment Line" class="input form-control form-control-sm"/>
+                  </div>
                 </div>
+
+
+                <!-- <div class="input-group col-md-offset-3">
+                  <input type="text" placeholder="Search by shipment Line" class="input form-control w-50"/>
+                </div> -->
+
               </div>
   
               <div class="html5buttons mrg-tsm">
-                <div class="dt-buttons btn-group">
+                <div class="dt-buttons btn-group btn-group-sm">
                   <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0"
                     aria-controls="DataTables_Table_0" ngxClipboard
                     
@@ -87,22 +96,22 @@
           [columnMode]="'flex'" [headerHeight]="50" [footerHeight]="50" [sorts]="[{ prop: 'id', dir: 'asce' }]"
           [rowHeight]="'auto'" [limit]="6">
           
-          <ngx-datatable-column name="S. No." [width]="80" prop="id" [flexGrow]="0.03"   >
+          <ngx-datatable-column name="S. No." [width]="80" prop="id" [flexGrow]="0.03" prop=""  >
             <ng-template let-row="row" ngx-datatable-cell-template >
               
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Shipment Line" [width]="80" prop="name" [flexGrow]="0.05">
+          <ngx-datatable-column name="Shipment Line" [width]="80" prop="name" [flexGrow]="0.05" prop="">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Shipment Mode" [width]="80" prop="name" [flexGrow]="0.05">
+          <ngx-datatable-column name="Shipment Mode" [width]="80" prop="name" [flexGrow]="0.05" prop="">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Details" [width]="80" prop="name" [flexGrow]="0.05">
+          <ngx-datatable-column name="Details" [width]="80" prop="name" [flexGrow]="0.05" prop="details">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             
             </ng-template>
