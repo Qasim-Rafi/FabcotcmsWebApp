@@ -56,7 +56,9 @@ export class ActiveBillsComponent implements OnInit {
     navigateOpenBill(obj) {
       this.router.navigate(['/billing-and-payment/open-bill'], { queryParams: {id: obj.id} });
     };
- 
+    navigateEditContract(obj) {
+      this.router.navigate(['/contract/active-contract-details'], { queryParams: {id: obj.contractId} });
+    };
   ngOnInit(): void {
     
     this.fetch((data) => {
