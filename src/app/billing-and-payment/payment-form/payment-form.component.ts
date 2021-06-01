@@ -165,7 +165,7 @@ export class PaymentFormComponent implements OnInit {
       "paymentDate": this.paymentdata.paymentDate,
       "paidAmount": this.paymentdata.paidAmount,
       "taxAmount": this.paymentdata.taxAmount,
-      "currencyId": this.data.currencyId,
+      "currencyId": this.paymentdata.currencyId,
       "deductionAmount": this.paymentdata.deductionAmount,
       "paymentMode": this.paymentdata.paymentMode,
       "paymentDescription":this.paymentdata.paymentDescription,
