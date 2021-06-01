@@ -188,7 +188,6 @@ export class EnquiryItemsComponent implements OnInit {
 
   updateEnquiry(form:NgForm) {
 
-  
     this.http.
       put(`${environment.apiUrl}/api/Enquiries/UpdateEnquiryItem/` + this.EnquiryItemId, this.data)
       .subscribe(
@@ -206,7 +205,7 @@ export class EnquiryItemsComponent implements OnInit {
 
         },(err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
-          this.toastr.error(messages.toString(), 'Message.');
+          this.toastr.error(messages[0], 'Message.');
           console.log(messages);
         });
   }
