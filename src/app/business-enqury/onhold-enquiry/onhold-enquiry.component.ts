@@ -17,7 +17,6 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
   styleUrls: ['./onhold-enquiry.component.css']
 })
 export class OnholdEnquiryComponent implements OnInit {
-  onholdUrl = '/api/Enquiries/GetAllEnquiry/OnHold'
   response: any;
   copyData: any = [];
   rows: any = [];
