@@ -53,6 +53,10 @@ export class GenerateBillsComponent implements OnInit {
         } , this.url)
         
       }
+      navigateEditContract(obj) {
+        this.router.navigate(['/contract/active-contract-details'], { queryParams: {id: obj.id} });
+      };
+    
       search(event) {
         const val = event.target.value.toLowerCase();
         const temp = this.billFilter.filter(function (d) {
@@ -139,12 +143,12 @@ export class GenerateBillsComponent implements OnInit {
         });
       }
       }
-  SaleInvoiceForm() {
+  SaleInvoiceForm(row) {
     const modalRef = this.modalService.open(SaleInvoiceFormComponent , { centered: true });
+    modalRef.componentInstance.contractId = row.id;
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        this.date = this.myDate;
         // this.getBuyers();
 
       }
