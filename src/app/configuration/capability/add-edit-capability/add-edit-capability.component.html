@@ -17,8 +17,10 @@
 
 </div>
 
-<div class="modal-body BG pt-2r">
+<div class="modal-body BG p-0">
   <form #addAgentForm="ngForm" novalidate>
+
+    <div class="col-md-12 pt-3 pb-2">
 
 
     <div class="form-group row">
@@ -30,9 +32,8 @@
     </div>
 
 
+    </div>
 
-  </form>
-</div>
 <div class="modal-footer NotBG" *ngIf="FormName == 'capabilityForm'">
 
   <button [disabled]="addAgentForm.invalid" *ngIf="statusCheck == 'add' " class="btn button-save" type="submit"
@@ -44,4 +45,7 @@
     Update Capability
   </button>
 
+</div>
+
+</form>
 </div>

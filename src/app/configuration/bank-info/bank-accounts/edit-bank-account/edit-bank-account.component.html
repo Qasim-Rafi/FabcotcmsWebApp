@@ -9,8 +9,11 @@
 
 </div>
 
-<div class="modal-body BG pt-2r">
+<div class="modal-body BG p-0">
   <form #addAgentForm="ngForm" novalidate>
+
+    <div class="col-md-12 pt-3 pb-2">
+
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-3 col-form-label text_Navy">Bank<span class="required-denote">*</span></label>
       <div class="col-sm-8">
@@ -76,6 +79,7 @@
         </div>
       </div>
     </div>
+
     <div class="form-group row">
       <label for="type" class="col-sm-3 col-form-label control-label text-grey"></label>
       <div class="col-sm-8">
@@ -86,13 +90,16 @@
       </div>
     </div>
 
+  </div>
 
-  </form>
-</div>
-<div class="modal-footer">
+
+<div class="modal-footer NotBG">
   <button class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">Close</button>
 
   <button class="btn button-save" type="submit" (click)="UpdateBankAccount()">
     Update Account
   </button>
+</div>
+
+</form>
 </div>

@@ -36,9 +36,9 @@
             <button type="button" class="btn btn-tool" data-card-widget="maximize">
                 <i class="fas fa-expand"></i>
             </button>
-            <button type="button" class="btn btn-tool" data-card-widget="remove">
+            <!-- <button type="button" class="btn btn-tool" data-card-widget="remove">
                 <i class="fas fa-times"></i>
-            </button>
+            </button> -->
         </div>
     </div>
 
@@ -47,46 +47,44 @@
 
 
         <div class="row">
-            <div class="col-md-12 p-3">
+            <div class="col-md-12 pt-3 pb-2">
 
                 <form #settingsForm="ngForm" novalidate>
 
                     <div class="form-group row">
                         <label class="col-md-3 col-form-label control-label">System Email Address</label>
-                        <div class="col-md-6">
-                            <input required type="email" name="systemEmailAddress" cols="50" rows="2" class="form-control text-w-4"
-                            [(ngModel)]="data.systemEmailAddress" #systemEmailAddress="ngModel"
-
-                            
-                                placeholder="Email address of system..." />
+                        <div class="col-md-7">
+                            <input required type="email" name="systemEmailAddress" cols="50" rows="2"
+                                class="form-control text-w-4" [(ngModel)]="data.systemEmailAddress"
+                                #systemEmailAddress="ngModel" placeholder="Email address of system..." />
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="col-md-3 col-form-label control-label">Email From Name</label>
-                        <div class="col-md-6">
+                        <div class="col-md-7">
                             <input name="emailFromName" id="name" cols="50" rows="2" class="form-control text-w-4"
-                            [(ngModel)]="data.emailFromName" #emailFromName="ngModel"
-                                placeholder="FabCot" />
+                                [(ngModel)]="data.emailFromName" #emailFromName="ngModel" placeholder="FabCot" />
                         </div>
                     </div>
 
 
                     <div class="form-group row">
                         <label class="col-md-3 col-form-label control-label">Before L/C Reminder Days</label>
-                        <div class="col-md-6">
-                            <input type="number" name="beforeLCReminderDays" id="reminderdays" cols="50" rows="2" class="form-control text-w-4"
-                            [(ngModel)]="data.beforeLCReminderDays" #beforeLCReminderDays="ngModel"
-                                placeholder="0" />
+                        <div class="col-md-7">
+                            <input type="number" name="beforeLCReminderDays" id="reminderdays" cols="50" rows="2"
+                                class="form-control text-w-4" [(ngModel)]="data.beforeLCReminderDays"
+                                #beforeLCReminderDays="ngModel" placeholder="0" />
                         </div>
                     </div>
 
 
                     <div class="form-group row">
                         <label class="col-md-3 col-form-label control-label">System Notification Recipient</label>
-                        <div class="col-md-6">
-                            <textarea name="systemNotificationRecipient" id="recipient" cols="50" rows="2" class="form-control text-w-4"
-                            [(ngModel)]="data.systemNotificationRecipient" #systemNotificationRecipient="ngModel"
+                        <div class="col-md-7">
+                            <textarea name="systemNotificationRecipient" id="recipient" cols="50" rows="2"
+                                class="form-control text-w-4" [(ngModel)]="data.systemNotificationRecipient"
+                                #systemNotificationRecipient="ngModel"
                                 placeholder="Email IDs to whom system notification sent, saparated by:"></textarea>
                         </div>
                     </div>
@@ -94,9 +92,10 @@
 
                     <div class="form-group row">
                         <label class="col-md-3 col-form-label control-label">Contract Title Message</label>
-                        <div class="col-md-6">
-                            <textarea name="contractTitleMessage" id="titlemessage" cols="50" rows="4" class="form-control text-w-4"
-                            [(ngModel)]="data.contractTitleMessage" #contractTitleMessage="ngModel"
+                        <div class="col-md-7">
+                            <textarea name="contractTitleMessage" id="titlemessage" cols="50" rows="4"
+                                class="form-control text-w-4" [(ngModel)]="data.contractTitleMessage"
+                                #contractTitleMessage="ngModel"
                                 placeholder="Message title to appear in contrcat preview under attention"></textarea>
                         </div>
                     </div>
@@ -104,45 +103,46 @@
 
                     <div class="form-group row">
                         <label class="col-md-3 col-form-label control-label">Terms and Condition</label>
-                        <div class="col-md-6">
-                            <textarea name="termsAndCondition" id="termsandcondition" cols="50" rows="10" class="form-control text-w-4"
-                            [(ngModel)]="data.termsAndCondition" #termsAndCondition="ngModel"
+                        <div class="col-md-7">
+                            <textarea name="termsAndCondition" id="termsandcondition" cols="50" rows="10"
+                                class="form-control text-w-4" [(ngModel)]="data.termsAndCondition"
+                                #termsAndCondition="ngModel"
                                 placeholder="Terms and conditions to appear in contracts"></textarea>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="col-md-3 col-form-label control-label">Amount Decimal Points</label>
-                        <div class="col-md-6">
-                            <input name="amountDecimalPoints" id="amount" cols="50" rows="2" class="form-control text-w-4"
-                            [(ngModel)]="data.amountDecimalPoints" #amountDecimalPoints="ngModel"
-                                placeholder="2" />
+                        <div class="col-md-7">
+                            <input name="amountDecimalPoints" id="amount" cols="50" rows="2"
+                                class="form-control text-w-4" [(ngModel)]="data.amountDecimalPoints"
+                                #amountDecimalPoints="ngModel" placeholder="2" />
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="col-md-3 col-form-label control-label">Quantity Decimal Points</label>
-                        <div class="col-md-6">
-                            <input name="quantityDecimalPoints" id="quantity" cols="50" rows="2" class="form-control text-w-4"
-                            [(ngModel)]="data.quantityDecimalPoints" #quantityDecimalPoints="ngModel"
-                                placeholder="0" />
+                        <div class="col-md-7">
+                            <input name="quantityDecimalPoints" id="quantity" cols="50" rows="2"
+                                class="form-control text-w-4" [(ngModel)]="data.quantityDecimalPoints"
+                                #quantityDecimalPoints="ngModel" placeholder="0" />
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="col-md-3 col-form-label control-label">Deptt Email Address</label>
-                        <div class="col-md-6">
-                            <input type="email" name="deptEmailAddress" id="deptemail" cols="50" rows="2" class="form-control text-w-4"
-                            [(ngModel)]="data.deptEmailAddress" #deptEmailAddress="ngModel"
-                                placeholder="Department Email Address" />
+                        <div class="col-md-7">
+                            <input type="email" name="deptEmailAddress" id="deptemail" cols="50" rows="2"
+                                class="form-control text-w-4" [(ngModel)]="data.deptEmailAddress"
+                                #deptEmailAddress="ngModel" placeholder="Department Email Address" />
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="col-md-3 col-form-label control-label">Deptt Phone No.</label>
-                        <div class="col-md-6">
+                        <div class="col-md-7">
                             <input name="deptPhoneNo" id="deptphone" cols="50" rows="2" class="form-control text-w-4"
-                            [(ngModel)]="data.deptPhoneNo" #deptPhoneNo="ngModel"
+                                [(ngModel)]="data.deptPhoneNo" #deptPhoneNo="ngModel"
                                 placeholder="Department Phone number" />
                         </div>
                     </div>
@@ -151,15 +151,17 @@
                     <div class="form-group row">
                         <div class="col-md-3 col-form-label control-label"></div>
                         <div class="col-md-6">
-                            <button class="btn button-save" type="submit" (click)="addGeneralSettings()">Save Settings</button>
+                            <button class="btn button-save" type="submit" (click)="addGeneralSettings()">Save
+                                Settings</button>
 
                         </div>
                     </div>
 
 
-            </form>
+                </form>
 
             </div>
         </div>
+        
     </div>
 </div>

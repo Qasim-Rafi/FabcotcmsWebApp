@@ -187,7 +187,7 @@
                                             </span>
 
                                         </div>
-                                        <div class="col-md-2"  *ngIf = "statusCheck.statusCheck == 'addPayment'">
+                                        <div class="input-wdt"  *ngIf = "statusCheck.statusCheck == 'addPayment'">
                                             <ng-select placeholder="--Select--" 
                                             name="saleInvoiceId" [(ngModel)]="paymentAdddata.saleInvoiceId" #saleInvoiceId="ngModel"
                                         
@@ -426,13 +426,13 @@
                                         >
                                             <i class="fas fa-check"></i> Update
                                             Payment Info</button>
-                                    <button class="btn btn-secondary ml-2"  *ngIf="statusCheck.statusCheck == 'addPayment'"
+                                    <button class="btn btn-outline-secondary  ml-2"  *ngIf="statusCheck.statusCheck == 'addPayment'"
                                     
                                     routerLink="/billing-and-payment/active-bills">
                                         <i class="fas fa-times">
                                         </i> Close
                                     </button>
-                                    <button class="btn btn-secondary ml-2"  *ngIf="statusCheck.statusCheck == 'editPayment'"
+                                    <button class="btn btn-outline-secondary noHover ml-2"  *ngIf="statusCheck.statusCheck == 'editPayment'"
                                     
                                     routerLink="/billing-and-payment/payment-collection">
                                         <i class="fas fa-times">
