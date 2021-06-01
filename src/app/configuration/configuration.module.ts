@@ -81,6 +81,8 @@ import { NotificationSettingsComponent } from './notification-settings/notificat
 import { NotificationsComponent } from './notifications/notifications.component';
 import { CapabilityComponent } from './capability/capability.component';
 import { AddEditCapabilityComponent } from './capability/add-edit-capability/add-edit-capability.component';
+import { ShipmentLineComponent } from './shipment-line/shipment-line.component';
+import { AddEditShipmentLineComponent } from './shipment-line/add-edit-shipment-line/add-edit-shipment-line.component';
 
 @NgModule({
   declarations: [
@@ -151,6 +153,8 @@ import { AddEditCapabilityComponent } from './capability/add-edit-capability/add
     NotificationsComponent,
     CapabilityComponent,
     AddEditCapabilityComponent,
+    ShipmentLineComponent,
+    AddEditShipmentLineComponent,
 
 
   ],
