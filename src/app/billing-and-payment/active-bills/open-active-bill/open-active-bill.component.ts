@@ -253,21 +253,121 @@ print(){
             },
             {
               layout:'noBorders',
-              table:{headerRows:1 ,  widths:['7%' , '93%' ],
-            body:[ [{text: 'Sub Total :'} , {text: this.rows['invoiceSubTotalAmount'] , style:'leftAlign'}
+              table:{headerRows:1 ,  widths:['90%' , '20%' ],
+            body:[ [{text: 'Sub Total :' , style:'left'} ,
+             {text: this.rows['invoiceSubTotalAmount'] , style:'left2'}
           
           ]]
             }
             },
             {
               layout:'noBorders',
-              table:{headerRows:1 ,  widths:['7%' , '93%' ],
-            body:[ [{text: 'TAX :'} , {text: this.rows['invoiceTaxAmount'] , style:'leftAlign'}
+              table:{headerRows:1 ,  widths:['90%' , '20%' ],
+            body:[ [{text: 'TAX :' , style:'left3'} ,
+             {text: this.rows['invoiceTaxAmount'] , style:'left4'}
           
           ]]
             }
             },
-            
+            {
+              layout:'noBorders',
+              table:{headerRows:1 ,  widths:['90%' , '20%' ],
+            body:[ [{text: 'Total :' , style:'left3'} ,
+             {text: this.rows['invoiceTotalAmount'] , style:'left4'}
+          
+          ]]
+            }
+            },
+            {
+              layout:'noBorders',
+              table:{headerRows:1 ,  widths:['15%' , '100%' ],
+            body:[ [{text: 'Amount in Words :' , style:'up' } ,
+             {text: this.words , style:'up' }
+          
+          ]]
+            }
+            },
+            {
+              layout:'noBorders',
+              table:{headerRows:1 ,  widths:['15%' , '100%' ],
+            body:[ [{text: 'Title of Account: '  } ,
+             {text: this.rows['accountName'] }
+          
+          ]]
+            }
+            },
+            {
+              layout:'noBorders',
+              table:{headerRows:1 ,  widths:['15%' , '100%' ],
+            body:[ [{text: 'Address :  :' , } ,
+             {text: this.rows['bankAddress']  }
+          
+          ]]
+            }
+            },
+            {
+              layout:'noBorders',
+              table:{headerRows:1 ,  widths:['15%' , '100%' ],
+            body:[ [{text: ' Bank Name :' , } ,
+             {text: this.rows['bankName']  }
+          
+          ]]
+            }
+            },
+            {
+              layout:'noBorders',
+              table:{headerRows:1 ,  widths:['15%' , '100%' ],
+            body:[ [{text: 'Bank Account Number:' , } ,
+             {text: this.rows['accountNumber']  }
+          
+          ]]
+            }
+            },
+            {
+              layout:'noBorders',
+              table:{headerRows:1 ,  widths:['15%' , '100%' ],
+            body:[ [{text: 'IBAN Number:' , } ,
+             {text: this.rows['iban']  }
+          
+          ]]
+            }
+            },
+            {
+              layout:'noBorders',
+              table:{headerRows:1 ,  widths:['15%' , '100%' ],
+            body:[ [{text: 'Swift Code:' , } ,
+             {text: this.rows['swiftCode']  }
+          
+          ]]
+            }
+            },
+            {
+              layout:'noBorders',
+              table:{headerRows:1 ,  widths:['15%' , '100%' ],
+            body:[ [{text: 'Bank Branch:' , } ,
+             {text: this.rows['branchName']  }
+          
+          ]]
+            }
+            },
+            {
+              layout:'noBorders',
+              table:{headerRows:1 ,  widths:['15%' , '100%' ],
+            body:[ [{text: 'Account Type:' , } ,
+             {text: this.rows['type']  }
+          
+          ]]
+            }
+            },
+            {
+              layout:'noBorders',
+              table:{headerRows:1 ,  widths:['15%' , '100%' ],
+            body:[ [{text: 'Bank Address:' , } ,
+             {text: this.rows['bankAddress']  }
+          
+          ]]
+            }
+            }
           //   {
           //     margin: [0 , -10 , 0 , 0],
           //     table:{
@@ -313,7 +413,22 @@ print(){
             margin : 4
 
            },
-           leftAlign:{alignment: 'left'}
+
+           left:{ 
+             margin:[620,10,0,0]
+           },
+           left2:{
+             margin:[0,10,0,0]
+           },
+           left3:{
+            margin:[630,0,0,0]
+          },
+        down:{
+          margin:[0,15,0,0]
+        },
+        up:{
+          margin:[0 , -10,0,0]
+        }
           },
 
   };

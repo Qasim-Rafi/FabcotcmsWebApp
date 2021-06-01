@@ -19,6 +19,9 @@ font-size: 17px;
 font-weight: 600;
 color: #1ab394;
 }
+.clr{
+  color: rgb(98, 172, 241);
+}
 .bold{
     font-weight: 700;
     }
