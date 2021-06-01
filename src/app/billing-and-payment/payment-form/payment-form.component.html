@@ -199,6 +199,7 @@
                                         </div>
                                         <div class="input-wdt" *ngIf = "statusCheck.statusCheck == 'editPayment'">
                                             <ng-select placeholder="--Select--"  
+                                            [disabled]="true"
                                             name="saleInvoiceId" [(ngModel)]="paymentdata.saleInvoiceId" #saleInvoiceId="ngModel"
                                         
                                             >

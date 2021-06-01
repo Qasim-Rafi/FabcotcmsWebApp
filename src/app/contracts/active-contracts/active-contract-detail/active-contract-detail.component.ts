@@ -352,7 +352,45 @@ export class ActiveContractDetailComponent implements OnInit {
   
 
 
-
+  deleteTnA(id) {
+    Swal.fire({
+      title: GlobalConstants.deleteTitle, //'Are you sure?',
+      text: GlobalConstants.deleteMessage + ' ' + '"' + id.tnaItem + '"',
+      icon: 'error',
+      showCancelButton: true,
+      confirmButtonColor: '#ed5565',
+      cancelButtonColor: '#dae0e5',
+      cancelButtonText: 'No',
+      confirmButtonText: 'Yes',
+      reverseButtons: true,
+      position: 'top',
+    }).then((result) => {
+      if (result.isConfirmed) {
+  
+        this.http.delete(`${environment.apiUrl}/api/TextileGarments/DeleteTnaAction/` + id.id)
+          .subscribe(
+            res => {
+              this.response = res;
+              if (this.response.success == true) {
+                this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
+                this.getAllItems((itemsData) => {
+                  this.rows2 = itemsData;
+                  // this.listCount= this.rows.length;
+                });
+  
+              }
+              else {
+                this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
+              }
+  
+            }, err => {
+              if (err.status == 400) {
+                this.toastr.error(this.response.message, 'Message.');
+              }
+            });
+      }
+    })
+  }
 
 
 
@@ -1432,6 +1470,14 @@ deleteShipmentTimeline(id) {
       AddReminder() {
             this.data.contractUpDate = this.dateformater.toModel(this.data.contractUpDate);
     
+            if( this.data.contractUpDate == "undefined-undefined-undefined"){
+              this.data.contractUpDate = ""
+
+            }
+            if( this.data.contractUpDate == "0-NaN-NaN"){
+              this.data.contractUpDate = ""
+            }
+
             let varr = {
               "contractId": this.contractId,
               "contractUpDate": this.data.contractUpDate
@@ -1491,6 +1537,7 @@ deleteShipmentTimeline(id) {
               .subscribe(
                 res => {
                   this.response = res;
+
                   if (this.response.success == true) {
                     this.reminderData = this.response.data;
                     

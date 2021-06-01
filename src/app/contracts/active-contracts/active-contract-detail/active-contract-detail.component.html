@@ -125,15 +125,15 @@
         </div>
         <!-- /.row -->
 
-        <div class="row py-3">
+        <div class="row py-3 justify-content-end">
             <div class="col-md-8 " *ngIf="contractData.status =='OnHold'">
                 <button class="btn btn-warning border-rounded px-3 mr-2 text-white" (click)="statusOpen()">
                     <i class="fas fa-level-down-alt"></i>
                     Contract is currently On-Hold, Click to make it Active
                 </button>
             </div>
-
-            <div class="col-md-8 " *ngIf="contractData.status =='Open'">
+          
+            <div class="col-md-8 " *ngIf="contractData.status == 'Open' || contractData.status == 'BillAwaited' ">
                 <button class="btn btn-danger btn-sm border-rounded px-3 mr-1 ">
                     <i class="far fa-trash-alt"></i>
                     Delete
@@ -265,13 +265,17 @@
                                
                                
 
-
+                                    <form #rem="ngForm" novalidate>
                                 <div class="col-md-12">
                                     <div [ngClass]="{ noDisplay : reminderToggle==false }">
                                         <input required class="form-control" ngbDatepicker #reminderDate="ngbDatepicker"
-                                            (click)="reminderDate.toggle()" placeholder="Reminder" [(ngModel)]="data.contractUpDate"   />
+                                            (click)="reminderDate.toggle()" placeholder="Reminder" [(ngModel)]="data.contractUpDate"  
+                                            [ngClass]="{'error': contractUpDate.invalid && rem.submitted }" #contractUpDate = "ngModel" 
+                                             />
                                     </div>
                                 </div>
+                            </form>
+
 
 
                                 <div class="col-md-12 pt-2" *ngFor="let i of reminderData">
@@ -308,7 +312,7 @@
                                         <button class=" btn btn-sm btn-danger p-1 btnsm-f ml-1"
                                             *ngIf="contractData.isApproved == false" (click)="approveContract()">Click
                                             to Approve</button>
-                                        <button class=" btn btn-sm btn-primary ml-1"
+                                        <button class="  btn btn-sm btn-primary p-1 btnsm-f ml-1"
                                             *ngIf="contractData.isApproved == true">Approved</button>
 
                                     </div>
@@ -1283,8 +1287,10 @@
                                                 <button type="button" class="btn editIconBack" (click)="EditTna(row)"><i
                                                         class="far fa-edit"></i></button>
 
-                                                <button type="button" class="btn editIconBack"
-                                                    (click)="TnaHistory(row)"> <i class="fa fa-history"></i></button>
+                                                <button type="button" class="btn deleteIconBack"
+                                                    (click)="deleteTnA(row)"> 
+                                                    <i class="far fa-trash-alt"></i>
+                                                </button>
 
                                             </div>
                                         </ng-template>
