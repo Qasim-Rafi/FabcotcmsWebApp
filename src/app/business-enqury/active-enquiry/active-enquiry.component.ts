@@ -69,8 +69,9 @@ export class ActiveEnquiryComponent implements OnInit {
     // filter our data
     const temp = this.temp.filter(function (d) {
       return ( 
-        d.autoEnquiryNumber.toLowerCase().indexOf(val) !== -1 ||
+        d.buyerName != null && 
         d.buyerName.toLowerCase().indexOf(val) !== -1 ||
+        d.autoEnquiryNumber.toLowerCase().indexOf(val) !== -1 ||
         d.enquiryDate.toLowerCase().indexOf(val) !== -1 ||
          !val );
     });
