@@ -19,6 +19,7 @@ const routes: Routes = [
   { path: 'edit-active-enquiries', component: EditActiveEnquiryComponent },
   { path: 'search-enquiries', component: SearchEnquiryComponent },
   { path: 'onhold-enquiries', component: OnholdEnquiryComponent },
+
 ]
     }
 ]
