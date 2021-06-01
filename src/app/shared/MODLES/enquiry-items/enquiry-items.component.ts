@@ -1,5 +1,5 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
@@ -36,7 +36,7 @@ export class EnquiryItemsComponent implements OnInit {
   counter: number = 0
 
   @ViewChild("focus") myInputField: ElementRef;
-
+  @ViewChildren('focus') focus: QueryList<ElementRef>;
   constructor(
     private _NgbActiveModal: NgbActiveModal,
     private http: HttpClient,
@@ -55,9 +55,14 @@ export class EnquiryItemsComponent implements OnInit {
       this.editEnquiry(this.EnquiryItemId);
     }
   }
+  // ngAfterViewInit() {
+  //   this.myInputField.nativeElement.focus();
+  //   }
   ngAfterViewInit() {
-    this.myInputField.nativeElement.focus();
-    }
+    this.focus.changes.subscribe(() => {
+        this.focus.last.nativeElement.focus();       
+    });
+}
   get activeModal() {
     return this._NgbActiveModal;
   }

@@ -307,7 +307,7 @@ getAgentType(){
             const propertyErrors: Array<string> = errorResponse.error.errors[property ];
 
             // 7 - Push all errors in the array to the errors array
-            propertyErrors.forEach(error => errors.push(error));
+            propertyErrors.forEach(error => errors.push(error.split('|')));
           }
 
         }
