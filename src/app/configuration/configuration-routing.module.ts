@@ -28,7 +28,7 @@ import { PaymentTermComponent } from './product/payment-term/payment-term.compon
 import { PriceTermComponent } from './product/price-term/price-term.component';
 import { SellerComponent } from './seller/seller.component';
 import { SystemUsersComponent } from './system-users/system-users.component';
-
+import {ShipmentLineComponent} from './shipment-line/shipment-line.component'
 
 
 const routes: Routes = [
@@ -63,7 +63,7 @@ const routes: Routes = [
   { path: 'notification-settings', component: NotificationSettingsComponent},
   { path: 'notification', component: NotificationsComponent},
   { path: 'capability', component: CapabilityComponent},
-
+  {path: 'shipmentLine' , component: ShipmentLineComponent}
 ]
  }
 

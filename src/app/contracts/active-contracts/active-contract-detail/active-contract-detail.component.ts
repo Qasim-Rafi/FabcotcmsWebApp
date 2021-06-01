@@ -1470,6 +1470,14 @@ deleteShipmentTimeline(id) {
       AddReminder() {
             this.data.contractUpDate = this.dateformater.toModel(this.data.contractUpDate);
     
+            if( this.data.contractUpDate == "undefined-undefined-undefined"){
+              this.data.contractUpDate = ""
+
+            }
+            if( this.data.contractUpDate == "0-NaN-NaN"){
+              this.data.contractUpDate = ""
+            }
+
             let varr = {
               "contractId": this.contractId,
               "contractUpDate": this.data.contractUpDate
@@ -1529,6 +1537,7 @@ deleteShipmentTimeline(id) {
               .subscribe(
                 res => {
                   this.response = res;
+
                   if (this.response.success == true) {
                     this.reminderData = this.response.data;
                     
