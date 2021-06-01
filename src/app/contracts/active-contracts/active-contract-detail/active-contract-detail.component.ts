@@ -1518,7 +1518,7 @@ deleteShipmentTimeline(id) {
                 this.response = res;
                 if (this.response.success == true){
                   this.toastr.success(this.response.message, 'Message.');
-                  this.router.navigate(['/billing-and-payment/active-bills']);
+                  this.router.navigate(['/billing-and-payment/generate-bills']);
                 }
                 else {
                   this.toastr.error(this.response.message, 'Message.');
