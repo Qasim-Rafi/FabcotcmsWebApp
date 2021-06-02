@@ -49,7 +49,7 @@
                 </div>
                 <div class="col-md-8">
                     <span class="float-right">
-                        Flexi Office ,RAKEZ Business ZONE F-Z RAK , United Arab Emirates.
+                       {{rows.fabcotBranchDescription}}
                     </span>
                 </div>
             </div>
@@ -84,13 +84,13 @@
             </span>
             <br>
             <span class="text-font1">
-                Article:<span class="bold text-font1">{{rows.contractArticleName}}</span>
+                Article:<span class="bold text-font1 ">{{rows.contractArticleName}}</span>
             </span>
     
         </div>
       
 <!-- Simple Table -->
-<table style="width:100%">
+<table class="table md-2">
     <tr>
       <th>Sale Invoice #</th>
       <th>Invoice Date</th>
@@ -102,9 +102,9 @@
     <tr *ngFor = "let i of rows.contractSaleInvoices">
       <td>{{i.saleInvoiceNo}}</td>
       <td>{{i.saleInvoiceDate}}</td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>{{i.amount}}</td>
+      <td>{{i.commission}}</td>
+      <td>{{i.totalAmount}}</td>
 
     </tr>
   </table>

@@ -18,6 +18,7 @@ import { DateFilterComponent } from './date-filter/date-filter.component';
 import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { ChangeBankAccountComponent } from './active-bills/open-active-bill/change-bank-account/change-bank-account.component';
 import { SaleInvoiceFormComponent } from './generate-bills/sale-invoice-form/sale-invoice-form.component';
+import { BranchAddressComponent } from './generate-bills/branch-address/branch-address.component';
 @NgModule({
   declarations: [
     GenerateBillsComponent,
@@ -30,7 +31,8 @@ import { SaleInvoiceFormComponent } from './generate-bills/sale-invoice-form/sal
     PaymentFormComponent,
     DateFilterComponent,
     ChangeBankAccountComponent,
-    SaleInvoiceFormComponent],
+    SaleInvoiceFormComponent,
+    BranchAddressComponent],
   imports: [
     CommonModule,
     BillingAndPaymentRoutingModule,

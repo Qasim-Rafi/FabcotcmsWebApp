@@ -224,7 +224,7 @@ print(){
             {
               layout:'noBorders',
               table:{headerRows:1 ,  widths:['15%' , '90%' ],
-            body:[ [{text: 'Contract Date :'} , {text: this.rows['contractDate'] , style:'leftAlign'}
+            body:[ [{text: 'Contract Date :'} , {text: this.rows['contractDate'] , style:'down2'}
           
           ]]
             }
@@ -241,12 +241,12 @@ print(){
               margin: [0 , 20 , 0 , 0 ],
               table:{
                 headerRows : 1,
-                widths : ['20%' , '20%' ],
+                widths : ['20%' , '20%' , '20%' , '20%' , '20%'],
                 body:[
-                  ['Sale Invoice#' , 'Invoice Date'],
+                  ['Sale Invoice#' , 'Invoice Date' , 'Invoice Amount' , 'Commission' , 'Total Amount'],
                   
                   ...this.rows['contractSaleInvoices'].map(row => (
-                    [row.saleInvoiceNo , row.saleInvoiceDate]
+                    [row.saleInvoiceNo , row.saleInvoiceDate , row.amount , row.commission , row.totalAmount]
                   ))
                 ]
               }
@@ -353,82 +353,25 @@ print(){
             {
               layout:'noBorders',
               table:{headerRows:1 ,  widths:['15%' , '100%' ],
-            body:[ [{text: 'Account Type:' , } ,
-             {text: this.rows['type']  }
-          
+            body:[ [{text: 'Account Type:' , } , {text: this.rows['type']  }
           ]]
             }
             },
             {
-              layout:'noBorders',
-              table:{headerRows:1 ,  widths:['15%' , '100%' ],
-            body:[ [{text: 'Bank Address:' , } ,
-             {text: this.rows['bankAddress']  }
-          
+              layout:'noBorders', table:{headerRows:1 ,  widths:['15%' , '100%' ],
+            body:[ [{text: 'Bank Address:' , } ,{text: this.rows['bankAddress']  }
           ]]
             }
-            }
-          //   {
-          //     margin: [0 , -10 , 0 , 0],
-          //     table:{
-          //       headerRows:1,
-          //       widths: [ '15%' , '30%' , '15%' , '10%' , '5%'  ],
-          //       body:[
-          //         [ {text:'Sale Invoice #'  }, 
-          //         {text:'Invoice Date'},
-          //          {text:'Invoice Amount'} 
-          //         ,{text:'Commission' } , {text:'Total Amount'}, 
-          //       ],
-          // // [ 'Value 1', 'Value 2', 'Value 3', 'Value 4' , '5' , '6' , '7' , '8' ]
-          // ...this.rows.map((row=>
-          //   [row.saleInvoiceNo, row.saleInvoiceDate]
-          //   ))
-        
-          //       ]
-          //     }
-          //   }
-            
-            // {
-            //   layout: 'noBorders',
-            //   table: {
-            //     headerRows: 1,
-            //     widths: [30, 90, 130, 50, 150],
-            //     body: [
-            //       ['Sale Invoice#', 'Invoice Date', 'Invoice Amount', 'Commission', 'Total Amount'],
-            //       ...this.rows.map(row => (
-            //         [row.saleInvoiceNo , row.saleInvoiceDate]
-            //       ))
-            //     ]
-            //   }
-            // }
-            
-          ],
+            }],
           styles:{
-           heading:{
-            fillColor: '#f3f3f4',
-            fontSize: 20,
-            bold: true,
-            color: '#4d4b4b',
-            alignment: 'center',
-            margin : 4
-
-           },
-
-           left:{ 
-             margin:[620,10,0,0]
-           },
-           left2:{
-             margin:[0,10,0,0]
-           },
-           left3:{
-            margin:[630,0,0,0]
-          },
-        down:{
-          margin:[0,15,0,0]
-        },
-        up:{
-          margin:[0 , -10,0,0]
-        }
+           heading:{fillColor: '#f3f3f4',fontSize: 20,
+            bold: true,color: '#4d4b4b', alignment: 'center',margin : 4 },
+          left:{  margin:[620,10,0,0]},
+           left2:{ margin:[0,10,0,0]},
+           left3:{margin:[630,0,0,0]},
+        down:{margin:[0,15,0,0]},
+        up:{ margin:[0 , -10,0,0]},
+        down2:{margin:[0,3,0,0] }
           },
 
   };

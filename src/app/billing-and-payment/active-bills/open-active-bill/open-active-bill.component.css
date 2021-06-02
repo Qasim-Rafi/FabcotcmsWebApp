@@ -36,3 +36,8 @@ color: #1ab394;
         text-decoration-line: underline;
         text-decoration-style: solid;
       }
+.table{
+  width: 100%;
+  height: 70%;
+  text-align: center;
+}
