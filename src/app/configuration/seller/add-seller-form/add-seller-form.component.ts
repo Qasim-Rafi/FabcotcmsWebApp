@@ -128,7 +128,7 @@ export class AddSellerFormComponent implements OnInit {
       "ntnNumber": this.data.sellerNTN,
       "gstNumber": this.data.sellerGST,
       "certificatedeIds": this.data.certificatedeIds,
-      "capabilitiesIds": this.data.capabilitiesIds,
+      "capabilitiesIds": this.data.capabilitiesIds != null ?this.data.capabilitiesIds.toString() : null,
       "majorStrength": this.data.sellerStrenght,
       "leadTime": this.data.leadTime,
       "sellerDetails": this.data.sellerDetails,
