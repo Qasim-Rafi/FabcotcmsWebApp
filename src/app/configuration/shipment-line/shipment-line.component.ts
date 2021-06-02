@@ -122,7 +122,8 @@ constructor(private http: HttpClient,
                 this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
                 this.service.fetch((data) => {
                   this.rows = data;
-
+                  this.shipmentFilter = [...this.rows];
+                  this.shipmentCount = this.rows.length
                 }, this.shipmentUrl);
 
               }
