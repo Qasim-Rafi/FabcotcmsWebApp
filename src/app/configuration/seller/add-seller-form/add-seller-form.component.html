@@ -101,7 +101,7 @@
       <div class="form-group row">
         <label for="certificatedeIds" class="col-sm-3 col-form-label">Certificate(s)</label>
         <div class="col-sm-8">
-          <ng-select [multiple]="true" [(ngModel)]="data.certificatedeIds" placeholder="-- Select --" name="certificatedeIds"
+          <ng-select [multiple]="true" [(ngModel)]="data.certificateIds" placeholder="-- Select --" name="certificatedeIds"
             #certificatedeIds="ngModel">
             <ng-option *ngFor="let i of certification" [value]="i.id">{{ i.name }}
             </ng-option>

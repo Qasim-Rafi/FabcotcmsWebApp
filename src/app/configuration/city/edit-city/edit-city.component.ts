@@ -14,6 +14,7 @@ export class EditCityComponent implements OnInit {
   country: any = [];
   response: any;
   data: any = {};
+  obj: any = {};
   active = true;
   FormName: any;
   @Input() cityId;
@@ -91,13 +92,15 @@ export class EditCityComponent implements OnInit {
       post(`${environment.apiUrl}/api/Configs/AddCity`, varr)
       .subscribe(
         res => {
+          this.obj.parent = this.active;
+          this.obj.status = true;
 
           this.response = res;
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
 
             // this.buyerForm.reset();
-            this.activeModal.close(true);
+            this.activeModal.close(this.obj);
           }
           else {
             this.toastr.error(this.response.message, 'Message.');

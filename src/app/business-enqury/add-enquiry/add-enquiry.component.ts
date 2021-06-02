@@ -390,12 +390,12 @@ export class AddEnquiryComponent implements OnInit {
 
     modalRef.result.then((data) => {
       // on close
-      if (data == true) {
+      if (data.status == true && data.parent == true) {
         //  this.date = this.cityDate;
         this.GetCityDropdown("other");
         
      
-
+ 
       }
     }, (reason) => {
       // on dismiss
@@ -406,11 +406,11 @@ export class AddEnquiryComponent implements OnInit {
     const modalRef = this.modalService.open(AddBuyerComponent, { centered: true });
     modalRef.result.then((data) => {
       // on close
-      if (data == true) {
+      if (data.status == true && data.parent == true) {
 
     
         this.GetBuyersDropdown("other");
-       
+     
 
       }
     }, (reason) => {
@@ -423,7 +423,7 @@ export class AddEnquiryComponent implements OnInit {
     const modalRef = this.modalService.open(AddArticleComponent, { centered: true });
     modalRef.result.then((data) => {
       // on close
-      if (data == true) {
+      if (data.status == true && data.parent == true) {
      
         this.GetArticlesDropdown("other");
        
@@ -439,7 +439,7 @@ export class AddEnquiryComponent implements OnInit {
     const modalRef = this.modalService.open(AddProcessComponent, { centered: true });
     modalRef.result.then((data) => {
       // on close
-      if (data == true) {
+      if (data.status == true && data.parent == true) {
         //  this.date = this.myDate;
         this.GetProcessDropdown("other");
       
@@ -456,7 +456,7 @@ export class AddEnquiryComponent implements OnInit {
     const modalRef = this.modalService.open(AddPackingComponent, { centered: true });
     modalRef.result.then((data) => {
       // on close
-      if (data == true) {
+      if (data.status == true && data.parent == true) {
         //  this.date = this.myDate;
         this.GetPackingDropdown("other");
     
@@ -473,7 +473,7 @@ export class AddEnquiryComponent implements OnInit {
     const modalRef = this.modalService.open(AddDesignTypeComponent, { centered: true });
     modalRef.result.then((data) => {
       // on close
-      if (data == true) {
+      if (data.status == true && data.parent == true) {
         //  this.date = this.myDate;
         this.GetDesignDropdown("other");
       
@@ -492,7 +492,7 @@ export class AddEnquiryComponent implements OnInit {
     const modalRef = this.modalService.open(AddProcessTypeComponent, { centered: true });
     modalRef.result.then((data) => {
       // on close
-      if (data == true) {
+      if (data.status == true && data.parent == true) {
         //  this.date = this.myDate;
         this.GetProcessTypeDropdown("other");
        
@@ -511,7 +511,7 @@ export class AddEnquiryComponent implements OnInit {
     const modalRef = this.modalService.open(AddPaymentComponent, { centered: true });
     modalRef.result.then((data) => {
       // on close
-      if (data == true) {
+      if (data.status == true && data.parent == true) {
         //  this.date = this.myDate;
         this.GetPaymentDropdown("other");
        
@@ -528,7 +528,7 @@ export class AddEnquiryComponent implements OnInit {
     const modalRef = this.modalService.open(AddPriceComponent, { centered: true });
     modalRef.result.then((data) => {
       // on close
-      if (data == true) {
+      if (data.status == true && data.parent == true) {
         //  this.date = this.myDate;
         this.GetPriceTermDropdown("other");
     
