@@ -85,7 +85,7 @@ export class ActiveEnquiryComponent implements OnInit {
     this.http
       .get(`${environment.apiUrl}/api/Enquiries/GetAllEnquiry`)
       .subscribe(res => {
-        this.response = res;
+        this.response = res; 
 
         if (this.response.success == true) {
           
@@ -199,6 +199,14 @@ export class ActiveEnquiryComponent implements OnInit {
       "paymentTermName":obj.paymentTermName,
       "priceTermName":obj.priceTermName
     
+    }
+    if( obj.enquiryDate == "undefined-undefined-undefined")
+    {
+      obj.enquiryDate = ""
+    }
+    if( obj.enquiryDate == "0-NaN-NaN" )
+    {
+      obj.enquiryDate = ""
     }
      this.http.put(`${environment.apiUrl}/api/Enquiries/CloneEnquiry/`+obj.id , varr )
           .subscribe(
