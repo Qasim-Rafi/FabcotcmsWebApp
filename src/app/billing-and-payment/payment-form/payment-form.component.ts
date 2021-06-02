@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient  , HttpErrorResponse} from '@angular/common/http';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -151,9 +151,9 @@ export class PaymentFormComponent implements OnInit {
   }
 
 
-  UpdatePayment() {
-    this.paymentdata.paymentDate = this.dateformater.toModel(this.paymentdata.paymentDate);
-    this.paymentdata.depositeDate = this.dateformater.toModel(this.paymentdata.depositeDate);
+  UpdatePayment(form:NgForm) {
+    // this.paymentdata.paymentDate = this.dateformater.toModel(this.paymentdata.paymentDate);
+    // this.paymentdata.depositeDate = this.dateformater.toModel(this.paymentdata.depositeDate);
     let varr = {
       "contractId": this.paymentdata.contractId,
       "contractBillId": this.paymentdata.contractBillId,
@@ -162,7 +162,7 @@ export class PaymentFormComponent implements OnInit {
       "billNumber": this.paymentdata.billNumber,
       "saleInvoiceId": this.paymentdata.saleInvoiceId,
       "receiptNumber": this.paymentdata.receiptNumber,
-      "paymentDate": this.paymentdata.paymentDate,
+      "paymentDate":this.dateformater.toModel(this.paymentdata.paymentDate),
       "paidAmount": this.paymentdata.paidAmount,
       "taxAmount": this.paymentdata.taxAmount,
       "currencyId": this.paymentdata.currencyId,
@@ -172,7 +172,7 @@ export class PaymentFormComponent implements OnInit {
       "bankAccountId": this.paymentdata.bankAccountId,
       "accountDescription": this.paymentdata.accountDescription,
       "isDepositedInBank": this.paymentdata.isDepositedInBank,
-      "depositeDate": this.paymentdata.depositeDate
+      "depositeDate": this.dateformater.toModel(this.paymentdata.depositeDate),
     }
 
     this.http.
@@ -189,17 +189,17 @@ export class PaymentFormComponent implements OnInit {
             this.toastr.error(this.response.message, 'Message.');
           }
 
-        }, err => {
-          if (err.status == 400) {
-            this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
-          }
+        }, (err: HttpErrorResponse) => {
+          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+          this.toastr.error(messages.toString(), 'Message.');
+          console.log(messages);
         });
   }
 
 
-  addPayment() {
-    this.paymentAdddata.paymentDate = this.dateformater.toModel(this.paymentAdddata.paymentDate);
-    this.paymentAdddata.depositeDate = this.dateformater.toModel(this.paymentAdddata.depositeDate);
+  addPayment(form:NgForm) {
+    // this.paymentAdddata.paymentDate = this.dateformater.toModel(this.paymentAdddata.paymentDate);
+    // this.paymentAdddata.depositeDate = this.dateformater.toModel(this.paymentAdddata.depositeDate);
       let varr = {
        
         "contractId": this.paymentAdddata.contractId,
@@ -208,7 +208,7 @@ export class PaymentFormComponent implements OnInit {
         "selerId": this.paymentAdddata.billForSelerId,
         "saleInvoiceId": this.paymentAdddata.saleInvoiceId,
         "receiptNumber": this.paymentAdddata.receiptNumber,
-        "paymentDate": this.paymentAdddata.paymentDate,
+        "paymentDate": this.dateformater.toModel(this.paymentAdddata.paymentDate),
         "paidAmount": this.paymentAdddata.paidAmount,
         "taxAmount": this.paymentAdddata.taxamount,
         "currencyId": this.paymentAdddata.currencyId,
@@ -218,7 +218,7 @@ export class PaymentFormComponent implements OnInit {
         "bankAccountId": this.paymentAdddata.bankAccountId,
         "accountDescription": this.paymentAdddata.accountDescription,
         "isDepositedInBank": this.paymentAdddata.isDepositedInBank,
-        "depositeDate": this.paymentAdddata.depositeDate
+        "depositeDate":  this.dateformater.toModel(this.paymentAdddata.depositeDate),
       }
 
     this.http.
@@ -229,7 +229,7 @@ export class PaymentFormComponent implements OnInit {
           this.response = res;
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
-            this.paymentForm.reset();
+            // this.paymentForm.reset();
             this.router.navigate(['/billing-and-payment/payment-collection']);
 
           }
@@ -237,10 +237,10 @@ export class PaymentFormComponent implements OnInit {
             this.toastr.error(this.response.message, 'Message.');
           }
 
-        }, err => {
-          if (err.status == 400) {
-            this.toastr.error(this.response.message, 'Message.');
-          }
+        }, (err: HttpErrorResponse) => {
+          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+          this.toastr.error(messages.toString(), 'Message.');
+          console.log(messages);
         });
   }
   GetCurrencyDropdown() {
@@ -292,5 +292,18 @@ export class PaymentFormComponent implements OnInit {
         this.toastr.error(this.response.message, 'Message.');
       }
     })
+  }
+  onSubmit(buttonType): void {
+    if (buttonType === "addPayment"){
+  
+      this.addPayment(this.paymentForm); 
+    }
+  
+    if (buttonType === "editPayment"){
+  
+      this.UpdatePayment(this.paymentForm); 
+  
+    }
+  
   }
 }
