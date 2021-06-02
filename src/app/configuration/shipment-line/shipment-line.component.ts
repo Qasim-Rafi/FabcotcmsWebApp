@@ -17,11 +17,12 @@ import { AddEditShipmentLineComponent } from './add-edit-shipment-line/add-edit-
   styleUrls: ['./shipment-line.component.css']
 })
 export class ShipmentLineComponent implements OnInit {
-rows : [];
-columns : [];
-shipmentFilter : [];
+rows :any = [];
+columns :any=[];
+response: any;
+shipmentFilter :any = [];
 shipmentCount : any;
-shipmentUrl:any;
+shipmentUrl = '/api/Configs/GetAllShipmentLine'
 constructor(private http: HttpClient,
   private toastr: ToastrService,
   private modalService: NgbModal,
@@ -29,7 +30,32 @@ constructor(private http: HttpClient,
   private _clipboardService: ClipboardService) { }
 
   ngOnInit(): void {
+
+    this.service.fetch((data) => {
+      this.rows = data;
+      this.shipmentFilter = [...this.rows];
+      this.shipmentCount = this.rows.length
+    }, this.shipmentUrl);
   }
+
+
+
+
+  search(event) {
+    const val = event.target.value.toLowerCase();
+
+    const temp = this.shipmentFilter.filter(function (d) {
+      return (
+        // d.code.toLowerCase().indexOf(val) !== -1 ||
+        d.shipmentLineType.toLowerCase().indexOf(val) !== -1 ||
+        d.shipmentMode.toLowerCase().indexOf(val) !== -1 ||
+        // d.genericName.toLowerCase().indexOf(val) !== -1 || 
+        !val);
+    });
+    this.rows = temp;
+  }
+
+
 
   addShipmentForm(check) {
     const modalRef = this.modalService.open(AddEditShipmentLineComponent, { centered: true });
@@ -68,4 +94,55 @@ constructor(private http: HttpClient,
       // on dismiss
     });
   }
+
+
+
+
+  deleteShipment(id) {
+
+    Swal.fire({
+      title: GlobalConstants.deleteTitle, //'Are you sure?',
+      text: GlobalConstants.deleteMessage + ' ' + '"' + id.shipmentLineType + '"',
+      icon: 'error',
+      showCancelButton: true,
+      confirmButtonColor: '#ed5565',
+      cancelButtonColor: '#dae0e5',
+      cancelButtonText: 'No',
+      confirmButtonText: 'Yes',
+      reverseButtons: true,
+      position: 'top',
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        this.http.delete(`${environment.apiUrl}/api/Configs/DeleteShipmentLine/` + id.id)
+          .subscribe(
+            res => {
+              this.response = res;
+              if (this.response.success == true) {
+                this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
+                this.service.fetch((data) => {
+                  this.rows = data;
+
+                }, this.shipmentUrl);
+
+              }
+              else {
+                this.toastr.error(this.response.message, 'Message.');
+
+              }
+
+            }, err => {
+              if (err.status == 400) {
+                this.toastr.error(this.response.message, 'Message.');
+              }
+            });
+      }
+    })
+
+  }
+
+
+
+
+
 }

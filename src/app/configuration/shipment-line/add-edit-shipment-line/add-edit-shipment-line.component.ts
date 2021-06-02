@@ -27,9 +27,101 @@ export class AddEditShipmentLineComponent implements OnInit {
   ngOnInit(): void {
     this.statusCheck = this.statusCheck;
     this.FormName = this.FormName;
+
+    if(this.statusCheck == 'editShipment')
+    {
+      this.editShipment();
+    }
   
   }
   get activeModal() {
     return this._NgbActiveModal;
   }
+
+
+
+  addShipment() {
+    let varr = {
+      "shipmentLineType": this.data.shipmentLineType,
+      "shipmentMode": this.data.shipmentMode,
+      "details": this.data.details
+    }
+
+    this.http.
+      post(`${environment.apiUrl}/api/Configs/AddShipmentLine`, varr)
+      .subscribe(
+        res => {
+          
+          this.response = res;
+          if (this.response.success == true) {
+            this.toastr.success(this.response.message, 'Message.');
+            this.activeModal.close(true);
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+
+        },(err: HttpErrorResponse) => {
+          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+          this.toastr.error(messages.toString(), 'Message.');
+          console.log(messages);
+        });
+  }
+
+
+
+
+
+  editShipment()
+  {
+    this.http.get(`${environment.apiUrl}/api/Configs/GetShipmentLineById/`+this.Id )
+    .subscribe(
+      res=> { 
+        this.response = res;
+        if (this.response.success == true){
+          this.data =this.response.data; 
+        }
+        else {
+          this.toastr.success(this.response.message, 'Message.');
+            }
+
+      }, err => {
+        if (err.status == 400) {
+          this.toastr.success(this.response.message, 'Message.');
+        }
+      });
+  }
+
+
+  UpdateShipment()
+  {
+    let varr=  {
+      "shipmentLineType": this.data.shipmentLineType,
+      "shipmentMode": this.data.shipmentMode,
+      "details": this.data.details
+    }
+
+    this.http.
+    put(`${environment.apiUrl}/api/Configs/UpdateShipmentLine/`+this.Id,varr)
+    .subscribe(
+      res=> { 
+  
+        this.response = res;
+        if (this.response.success == true){
+          this.toastr.success(this.response.message, 'Message.');
+          this.activeModal.close(true);
+        }
+        else {
+          this.toastr.success(this.response.message, 'Message.');
+            }
+
+      }, (err: HttpErrorResponse) => {
+        const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+        this.toastr.error(messages.toString(), 'Message.');
+        console.log(messages);
+      });
+  }
+
+
+
 }
