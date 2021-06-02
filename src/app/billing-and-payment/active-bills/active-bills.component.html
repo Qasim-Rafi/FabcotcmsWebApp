@@ -219,12 +219,15 @@
           </ngx-datatable-column>
           <ngx-datatable-column name="Bill For" [width]="80" prop="sellerName" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-      {{row.sellerName}}
+      <!-- {{row.sellerName}} -->
+            <p *ngIf = "row.sellerName !=null">Seller </p>
+            <p *ngIf = "row.buyerName !=null">Buyer </p>
+
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Bill To" [width]="80" prop="buyerName" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-      {{row.buyerName}}
+      {{row.buyerName}} {{row.sellerName}}
             </ng-template>
           </ngx-datatable-column>
       
@@ -234,7 +237,7 @@
             </ng-template>
           </ngx-datatable-column>
       
-          <ngx-datatable-column name="Contract #" [width]="80" prop="autoContractNumber" [flexGrow]="0.06">
+          <ngx-datatable-column name="Contract #" [width]="80" prop="autoContractNumber" [flexGrow]="0.08">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
               <button  class="clr" (click)="navigateEditContract(row)">
               {{row.autoContractNumber}}
