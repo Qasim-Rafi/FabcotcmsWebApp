@@ -41,6 +41,8 @@ export class GenerateBillsComponent implements OnInit {
       date: number;
       myDate = Date.now();
       columns: any = [];
+      names: any = [];
+
       response: any;
       url = '/api/BillingPayments/GetAllContractForBillGeneration'
       
@@ -78,6 +80,7 @@ export class GenerateBillsComponent implements OnInit {
         for(let i=0; i<this.selectedids.selected.length; i++ )
         {      
             this.contractIds[i] = this.selectedids.selected[i].id;
+            
             // this.selected = [...this.selected]
         }
         // return this.contractIds;        

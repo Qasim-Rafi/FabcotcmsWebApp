@@ -71,7 +71,9 @@ export class PaymentFormComponent implements OnInit {
     //   this.paymentAdddata = data;
     // });
     if(this.statusCheck.statusCheck == 'addPayment'){
-    this.fetch(this.paymentId);}
+    this.fetch((data)=>
+    this.paymentAdddata = data
+    );}
 
     if(this.statusCheck.statusCheck == 'editPayment'){
     this.getData(this.paymentId);}
@@ -81,17 +83,17 @@ export class PaymentFormComponent implements OnInit {
     this.GetPaymentModeDropdown()
     this.GetBankAccDropdown()
   }
-  fetch(id) {
+  fetch(cb) {
     
     this.http
-    .get(`${environment.apiUrl}/api/BillingPayments/GetContractBillById/` + id)
+    .get(`${environment.apiUrl}/api/BillingPayments/GetContractBillById/` + this.paymentId)
     .subscribe(res => {
       this.response = res;
      
     if(this.response.success==true)
     {
     this.paymentAdddata =this.response.data;
-    // cb(this.paymentAdddata);
+    cb(this.paymentAdddata);
     }
     else{
       this.toastr.error(this.response.message, 'Message.');
