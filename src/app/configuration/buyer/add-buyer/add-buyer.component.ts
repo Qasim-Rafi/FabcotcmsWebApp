@@ -15,11 +15,13 @@ export class AddBuyerComponent implements OnInit {
   listCount: number;
   response: any;
   data: any = {};
+  obj : any ={};
   country: any = [];
   buyer: any[];
   active:boolean = true
   @ViewChild(NgForm) buyerForm;
   date: number;
+  ok:boolean ;
 
   constructor(private http: HttpClient,
     private service: ServiceService,
@@ -104,11 +106,15 @@ export class AddBuyerComponent implements OnInit {
       .subscribe(
         res => {
 
+          this.obj.parent = this.active;
+          this.obj.status = true;
+          
+          
           this.response = res;
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
             this.buyerForm.reset();
-            this.activeModal.close(true);
+            this.activeModal.close(this.obj);
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
