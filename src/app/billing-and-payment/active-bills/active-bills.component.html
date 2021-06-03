@@ -191,33 +191,24 @@
 
 <!--Start panel body -->      
       <div class="panel-body">
-
-       
-
-
-        <ngx-datatable class="bootstrap datatable-row-wrapper" [columns]="columns" [rows]="rows" [columnMode]="'flex'"
-          [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="6"
-          (select)="onSelect($event)"
-          [selected]="selected"
-          [selectionType]="SelectionType.checkbox"
-          [sorts]="[{ prop: 'id', dir: 'desc' }]"
-          >
+           
       
-          <ngx-datatable-column prop="selected" name="Select" [width]="20"   [flexGrow]="0.03"
-          [width]="30"
-          [headerCheckboxable]="true"
-          [checkboxable]="true"
-          >
-            <ng-template let-row="row" ngx-datatable-cell-template  >
-             <!-- <input type="checkbox"> -->
+        <ngx-datatable class="bootstrap datatable-row-wrapper" [columns]="columns" [rows]="rows" [columnMode]="'flex'"
+          [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="6" (select)="onSelect($event)"
+          [selected]="selected" [selectionType]="SelectionType.checkbox" [sorts]="[{ prop: 'id', dir: 'desc' }]">
+      
+          <ngx-datatable-column prop="selected" name="Select" [width]="20" [flexGrow]="0.03" [width]="30"
+            [headerCheckboxable]="true" [checkboxable]="true">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <!-- <input type="checkbox"> -->
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="S.No" [width]="80" prop="sno" [flexGrow]="0.05">
-            <ng-template let-row="row" let-rowIndex="rowIndex" let-expanded="expanded" ngx-datatable-cell-template >
-            {{rowIndex+1}}
+          <ngx-datatable-column name="S.No" [width]="80" prop="sno" [flexGrow]="0.04">
+            <ng-template let-row="row" let-rowIndex="rowIndex" let-expanded="expanded" ngx-datatable-cell-template>
+              {{rowIndex+1}}
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Bill For" [width]="80" prop="sellerName" [flexGrow]="0.06">
+          <ngx-datatable-column name="Bill For" [width]="80" prop="sellerName" [flexGrow]="0.05">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
       <!-- {{row.sellerName}} -->
             <p *ngIf = "row.sellerName !=null">Seller </p>
@@ -233,56 +224,55 @@
       
           <ngx-datatable-column name="Bill #" [width]="80" prop="billNumber" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-      {{row.billNumber}}
+              {{row.billNumber}}
             </ng-template>
           </ngx-datatable-column>
       
           <ngx-datatable-column name="Contract #" [width]="80" prop="autoContractNumber" [flexGrow]="0.08">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              <button  class="clr" (click)="navigateEditContract(row)">
-              {{row.autoContractNumber}}
-            </button>
+              <button class="clr" (click)="navigateEditContract(row)">
+                {{row.autoContractNumber}}
+              </button>
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Bill Date" [width]="80" prop="billDate" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{row.billDate}} 
+              {{row.billDate}}
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="No. Sale Inv" [width]="80" prop="numberOfSaleInvoices" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-         {{row.numberOfSaleInvoices}}
+              {{row.numberOfSaleInvoices}}
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Bill Amount" [width]="80" prop="billAmount" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-      {{row.billAmount}}
+              {{row.billAmount}}
             </ng-template>
           </ngx-datatable-column>
       
           <ngx-datatable-column name="Tax Amount" [width]="80" prop="taxAmount" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-         {{row.taxAmount}}
+              {{row.taxAmount}}
             </ng-template>
           </ngx-datatable-column>
       
           <ngx-datatable-column name="Due Date" [width]="80" prop="dueDate" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-       {{row.dueDate}}
+              {{row.dueDate}}
             </ng-template>
           </ngx-datatable-column>
       
-          <ngx-datatable-column name="Action" [width]="80" prop="action" [flexGrow]="0.08">
+          <ngx-datatable-column name="Action" [width]="80" prop="action" [flexGrow]="0.07">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-        
-                <div class="ibox-tools text-center">
-                    <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top" title=""
-                      data-original-title="Edit" (click) =  "navigateOpenBill(row)"><i
-                        class="far fa-edit"></i></button>
-                    <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top" title=""
-          (click) = "navigatePaymentForm('addPayment' , row)"><i class="fas fa-money-check-alt"></i></button>
-                  </div>
-
+      
+              <div class="ibox-tools text-center">
+                <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top" title=""
+                  data-original-title="Edit" (click)="navigateOpenBill(row)"><i class="far fa-edit"></i></button>
+                <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top" title=""
+                  (click)="navigatePaymentForm('addPayment' , row)"><i class="fas fa-money-check-alt"></i></button>
+              </div>
+      
             </ng-template>
           </ngx-datatable-column>
       

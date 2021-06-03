@@ -1,0 +1,129 @@
+<div class="content-header">
+
+    <div class="row">
+      <div class="col-sm-12 col-md-6 col-lg-8">
+        <h2 class="row wrapper page-header font-weight-light"> Dispatch Register
+          <div class="ml-2 descr"> List of all dispatches whose sale Invoices are Awaited</div>
+        </h2>
+      </div>
+  
+      <div class="col-sm-12 col-md-6 col-lg-4">
+        <ol class="breadcrumb flt-RnL">
+          <li class="breadcrumb-item"><a href="#">Dispatch Register</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Dispatches</li>
+        </ol>
+      </div>
+  
+    </div>
+  </div>
+
+  <div class="card ibox-content">
+    <div class=" panel blank-panel">
+      <div class="panel-heading">
+        <div class="row mb-3">
+          <div class="col-md-12 text-center">
+            <div class="btn-group" role="group">
+  
+              <button type="button" class="btn btn-sm btn-primary"  id="all"
+                data-toggle="tooltip" title="" data-original-title="All Contracts"> <i class="fa fa-truck fa-fw"></i>
+                All Dispatches &nbsp; <span class="badge badge-pill badge-primary">118</span> 
+              </button>
+  
+              <button type="button" class="btn btn-sm btn-white" id="open"
+                data-toggle="tooltip" title="Contract open &amp; in-process"> <i class="fa fa-truck"></i>
+                Pending Sale Invoices
+                &nbsp; <span class="badge badge-pill badge-primary">42</span> 
+              </button>
+              
+              <button type="button" class="btn btn-sm btn-white"  id="close"
+                data-toggle="tooltip" title="Contract working closed &amp; waiting for billing"> <i
+                  class="fa fa-check fa-fw"></i> Sale Invoices received &nbsp; <span
+                  class="badge badge-pill badge-primary">1</span>
+                </button>
+            </div>
+          </div>
+        </div>
+  
+        <div class="row mb-3">
+          <div class="col-md-8"></div>
+          <div class="col-md-4 mrg-tsm ">
+  
+            <div class="form-group row">
+              <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="inputSearch">
+              </div>
+            </div>
+  
+          </div>
+        </div>
+  
+  
+        <div class="panel-body">
+  
+          <ngx-datatable #myTable class="bootstrap"  [columnMode]="'force'"
+          [headerHeight]="50" [footerHeight]="50" [sorts]="[{ prop: 'autoContractNumber', dir: 'desc' }]" [rowHeight]="'auto'"
+          [limit]="6">
+            <ngx-datatable-column name="Action">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+  
+                <div class="ibox-tools text-center">
+  
+                  <button type="button" class="btn editIconBack">
+                    <i class="far fa-edit "></i>
+                  </button>
+  
+                  <button type="button" class="btn deleteIconBack" >
+                    <i class="far fa-trash-alt"></i>
+                  </button>
+  
+                </div>
+              </ng-template>
+            </ngx-datatable-column>
+  
+            <ngx-datatable-column>
+              <ng-template let-row="row" ngx-datatable-cell-template>
+  
+              </ng-template>
+            </ngx-datatable-column>
+  
+            <ngx-datatable-column name="Age" prop="contractAge">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                <span class="badge badge-primary">{{row.contractAge}}</span>
+               
+              </ng-template>
+            </ngx-datatable-column>
+  
+            <ngx-datatable-column name="Contract Details" prop="autoContractNumber">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              
+              </ng-template>
+            </ngx-datatable-column>
+  
+            <ngx-datatable-column name="Contract On" prop="contractOn">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              </ng-template>
+            </ngx-datatable-column>
+  
+            <ngx-datatable-column name="#PO" prop="poNumber">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              </ng-template>
+            </ngx-datatable-column>
+  
+            <ngx-datatable-column name="#SC" prop="scNumber">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              </ng-template>
+            </ngx-datatable-column>
+  
+            <ngx-datatable-column name="Article" prop="articleName">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+  
+              </ng-template>
+            </ngx-datatable-column>
+          </ngx-datatable>
+        </div>
+      </div>
+  
+  
+    </div>
+  </div>

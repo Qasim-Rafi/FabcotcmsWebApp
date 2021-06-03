@@ -8,6 +8,7 @@ import { ActiveContractsComponent } from './contracts/active-contracts/active-co
 import { ArchivedContractsComponent } from './contracts/archived-contracts/archived-contracts.component';
 import { AddNewContractsComponent } from './Yarn Local/contracts/add-new-contracts/add-new-contracts.component';
 import { YarnActiveContractsComponent } from './Yarn Local/contracts/yarn-active-contracts/yarn-active-contracts.component';
+import { DispatchedRegisterComponent } from './Yarn Local/contracts/dispatched-register/dispatched-register.component';
 
 const configurationModule = () => import('./configuration/configuration.module')
   .then(x => x.ConfigurationModule);
@@ -61,6 +62,11 @@ component:AddNewContractsComponent
   path:'yarn-local/active-contract',
 // loadChildren:'./contracts/contracts.module#ContractsModule'
 component:YarnActiveContractsComponent
+},
+{
+  path:'yarn-local/dispatched-register',
+// loadChildren:'./contracts/contracts.module#ContractsModule'
+component:DispatchedRegisterComponent
 },
    ]
  },

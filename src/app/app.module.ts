@@ -59,6 +59,9 @@ import { OnholdContractsComponent } from './contracts/onhold-contracts/onhold-co
 import { AddNewContractsComponent } from './Yarn Local/contracts/add-new-contracts/add-new-contracts.component';
 import { YarnActiveContractsComponent } from './Yarn Local/contracts/yarn-active-contracts/yarn-active-contracts.component';
 
+import { DispatchedRegisterComponent } from './Yarn Local/contracts/dispatched-register/dispatched-register.component';
+
+
 
 
 const appRoutes: Routes = []
@@ -98,7 +101,11 @@ const appRoutes: Routes = []
     StatusComponent,
     OnholdContractsComponent,
     AddNewContractsComponent,
+
     YarnActiveContractsComponent
+
+    DispatchedRegisterComponent
+
 
     // AddEnquiryComponent,
     // SearchEnquiryComponent,
