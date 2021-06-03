@@ -42,6 +42,11 @@ import { EditBankComponent } from './bank-info/bank/edit-bank/edit-bank.componen
 import { AddBankComponent } from './bank-info/bank/add-bank/add-bank.component';
 import { CityComponent } from './city/city.component';
 import { EditCityComponent } from './city/edit-city/edit-city.component';
+import { CountryComponent } from './country/country.component';
+import { EditCountryComponent } from './country/edit-country/edit-country.component';
+import { CurrencyComponent } from './currency/currency.component';
+import { EditCurrencyComponent } from './currency/edit-currency/edit-currency.component';
+import { AddCurrencyComponent } from './currency/add-currency/add-currency.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +57,7 @@ import { EditCityComponent } from './city/edit-city/edit-city.component';
      EditTypeComponent,AddTypeComponent,PackingComponent,EditPackingComponent,AddPackingComponent,PaymentTermComponent,
      EditPaymentComponent,AddPaymentComponent,PriceTermComponent,EditPriceComponent,AddPriceComponent,BankAccountsComponent,
      EditBankAccountComponent,AddBankAccountComponent,BankComponent,EditBankComponent,AddBankComponent, CityComponent,
-     EditCityComponent
+     EditCityComponent,CountryComponent,EditCountryComponent, CurrencyComponent, EditCurrencyComponent ,AddCurrencyComponent
   ],
   imports: [
     CommonModule,
