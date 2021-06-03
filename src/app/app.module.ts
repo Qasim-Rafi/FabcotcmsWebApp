@@ -58,6 +58,7 @@ import { StatusComponent } from './shared/MODLES/status/status.component';
 import { OnholdContractsComponent } from './contracts/onhold-contracts/onhold-contracts.component';
 
 import { ContractsModule } from './Yarn Local/contracts/contracts.module';
+import { YarnBillingAndPaymentModule } from './Yarn Local/yarn-billing-and-payment/yarn-billing-and-payment.module';
 
 
 
@@ -142,6 +143,7 @@ const appRoutes: Routes = []
     BusinessEnquryRoutingModule,
     BusinessEnquryModule,
     RouterModule,
+    YarnBillingAndPaymentModule,
     ColorPickerModule,
     RouterModule.forRoot(appRoutes),
     ToastrModule.forRoot({
