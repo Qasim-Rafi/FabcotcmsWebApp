@@ -16,13 +16,17 @@ import { YarnActiveContractsComponent } from './yarn-active-contracts/yarn-activ
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 import { DispatchedRegisterComponent } from './dispatched-register/dispatched-register.component';
+import { CompletedContractComponent } from './completed-contract/completed-contract.component';
+import { BuyerPaymentComponent } from './buyer-payment/buyer-payment.component';
+import { SaleInvoiceComponent } from './sale-invoice/sale-invoice.component';
+import { TaxChallanComponent } from './tax-challan/tax-challan.component';
 // import { YarnActiveContractsComponent } from './yarn-active-contracts/yarn-active-contracts.component';
 // import { DispatchedRegisterComponent } from './dispatched-register/dispatched-register.component';
 
 
 
 @NgModule({
-  declarations: [AddNewContractsComponent, BuyerComponent, SellerComponent, ArticleComponent,YarnActiveContractsComponent, DispatchedRegisterComponent],
+  declarations: [AddNewContractsComponent, BuyerComponent, SellerComponent, ArticleComponent,YarnActiveContractsComponent, DispatchedRegisterComponent, CompletedContractComponent, BuyerPaymentComponent, SaleInvoiceComponent, TaxChallanComponent],
   imports: [
     CommonModule,
     BrowserModule,
