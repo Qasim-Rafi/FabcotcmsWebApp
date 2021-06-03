@@ -56,10 +56,8 @@ import { AuthInterceptor } from './shared/auth-service/auth.interceptor';
 import { TnaLogHistoryComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/tna-log-history/tna-log-history.component';
 import { StatusComponent } from './shared/MODLES/status/status.component';
 import { OnholdContractsComponent } from './contracts/onhold-contracts/onhold-contracts.component';
-import { AddNewContractsComponent } from './Yarn Local/contracts/add-new-contracts/add-new-contracts.component';
-import { YarnActiveContractsComponent } from './Yarn Local/contracts/yarn-active-contracts/yarn-active-contracts.component';
 
-import { DispatchedRegisterComponent } from './Yarn Local/contracts/dispatched-register/dispatched-register.component';
+import { ContractsModule } from './Yarn Local/contracts/contracts.module';
 
 
 
@@ -100,11 +98,10 @@ const appRoutes: Routes = []
     TnaLogHistoryComponent,
     StatusComponent,
     OnholdContractsComponent,
-    AddNewContractsComponent,
+  
+   
 
-    YarnActiveContractsComponent
-
-    DispatchedRegisterComponent
+  
 
 
     // AddEnquiryComponent,
@@ -117,7 +114,7 @@ const appRoutes: Routes = []
     // ProcessTypeComponent,
     // ProcessenqmodalComponent,
     // AddcitymodalComponent,
-    // AddcertmodalComponent,
+    // AddcertmodalComponent, 
     // PaymentTermComponent,
     // PriceTermComponent,
     // ActiveEnquiryComponent
@@ -132,6 +129,7 @@ const appRoutes: Routes = []
     ConfigurationModule,
     BusinessEnquryModule,
     FormsModule,
+    ContractsModule,
     CloudDocumentationModule,
     NgSelectModule,
     ReactiveFormsModule,

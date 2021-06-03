@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./buyer.component.css']
 })
 export class BuyerComponent implements OnInit {
-
+  active: boolean
   response: any;
   data: any = {};
   buyer: any[];
