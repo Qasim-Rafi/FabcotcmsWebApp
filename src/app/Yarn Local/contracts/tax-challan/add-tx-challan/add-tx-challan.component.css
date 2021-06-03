@@ -1,0 +1,29 @@
+
+  /* TAB STYLING  */
+
+  
+  .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #ffffff;
+    background-color: #1ab394;
+    /* padding: 10px 25px;
+    font-size: 15px;
+    font-weight: 500; */
+}
+
+
+.nav-link.active .badge-primary {
+  color: #1ab394;
+  background-color: #ffffff !important;
+
+}
+
+.nav-pills .nav-link:not(.active):hover {
+  color: #6c757d !important;
+  background-color: #e8e8e8;
+}
+
+.nav a{
+  margin-left: 3px;
+  font-weight: 500;
+}
+/* -------------------------------------- */

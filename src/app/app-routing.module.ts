@@ -10,6 +10,7 @@ import { AddNewContractsComponent } from './Yarn Local/contracts/add-new-contrac
 import { YarnActiveContractsComponent } from './Yarn Local/contracts/yarn-active-contracts/yarn-active-contracts.component';
 import { DispatchedRegisterComponent } from './Yarn Local/contracts/dispatched-register/dispatched-register.component';
 
+
 const configurationModule = () => import('./configuration/configuration.module')
   .then(x => x.ConfigurationModule);
 const businessEnquryModule = () => import('./business-enqury/business-enqury.module')

@@ -20,10 +20,8 @@ import { LoginComponent } from './login/login.component';
 import { ActiveContractsComponent } from './contracts/active-contracts/active-contracts.component';
 import { ArchivedContractsComponent } from './contracts/archived-contracts/archived-contracts.component';
 import { BillingAndPaymentModule } from './billing-and-payment/billing-and-payment.module';
-
 import { ActiveContractDetailComponent } from './contracts/active-contracts/active-contract-detail/active-contract-detail.component';
 import { CloudDocumentationModule } from './cloud-documentation/cloud-documentation.module';
-
 import { AuthGuard } from './shared/auth-service/auth.guard';
 import { EnquiryNotesComponent } from './shared/MODLES/enquiry-notes/enquiry-notes.component';
 import { PartiesComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/parties/parties.component';
@@ -35,11 +33,9 @@ import { CommisionKickbackComponent } from './contracts/active-contracts/active-
 import { EmployeeCommissionComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/employee-commission/employee-commission.component';
 import { RemarksComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/remarks/remarks.component';
 import { QuantityCostingComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/quantity-costing/quantity-costing.component';
-
 import { TemplateComponent } from './template/template.component';
 import { ContractsRoutingModule } from './contracts/contracts-routing.module';
 import { CloudDocumentationRoutingModule } from './cloud-documentation/cloud-documentation.routing.module';
-
 import { LOCComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/loc/loc.component';
 import { PRODUCTPLANComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/product-plan/product-plan.component';
 import { SALEINVOICEComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/sale-invoice/sale-invoice.component';
@@ -56,7 +52,6 @@ import { AuthInterceptor } from './shared/auth-service/auth.interceptor';
 import { TnaLogHistoryComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/tna-log-history/tna-log-history.component';
 import { StatusComponent } from './shared/MODLES/status/status.component';
 import { OnholdContractsComponent } from './contracts/onhold-contracts/onhold-contracts.component';
-
 import { ContractsModule } from './Yarn Local/contracts/contracts.module';
 import { YarnBillingAndPaymentModule } from './Yarn Local/yarn-billing-and-payment/yarn-billing-and-payment.module';
 import { YarnConfigurationModule } from './Yarn Local/yarn-configuration/yarn-configuration.module';
@@ -64,7 +59,7 @@ import { YarnConfigurationModule } from './Yarn Local/yarn-configuration/yarn-co
 
 
 
-const appRoutes: Routes = []
+const appRoutes: Routes = [] 
 
 
 @NgModule({
