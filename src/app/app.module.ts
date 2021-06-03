@@ -59,6 +59,7 @@ import { OnholdContractsComponent } from './contracts/onhold-contracts/onhold-co
 
 import { ContractsModule } from './Yarn Local/contracts/contracts.module';
 import { YarnBillingAndPaymentModule } from './Yarn Local/yarn-billing-and-payment/yarn-billing-and-payment.module';
+import { YarnConfigurationModule } from './Yarn Local/yarn-configuration/yarn-configuration.module';
 
 
 
@@ -99,7 +100,6 @@ const appRoutes: Routes = []
     TnaLogHistoryComponent,
     StatusComponent,
     OnholdContractsComponent,
-  
    
 
   
@@ -143,6 +143,7 @@ const appRoutes: Routes = []
     BusinessEnquryRoutingModule,
     BusinessEnquryModule,
     RouterModule,
+    YarnConfigurationModule,
     YarnBillingAndPaymentModule,
     ColorPickerModule,
     RouterModule.forRoot(appRoutes),
