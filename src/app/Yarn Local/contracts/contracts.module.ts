@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { ContractsRoutingModule } from './contracts-routing.module';
 import { AddNewContractsComponent } from './add-new-contracts/add-new-contracts.component';
 import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
@@ -12,21 +11,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { YarnActiveContractsComponent } from './yarn-active-contracts/yarn-active-contracts.component';
-
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-
 import { DispatchedRegisterComponent } from './dispatched-register/dispatched-register.component';
 import { CompletedContractComponent } from './completed-contract/completed-contract.component';
-import { BuyerPaymentComponent } from './buyer-payment/buyer-payment.component';
+import { EditBuyerPaymentComponent } from './Modals/edit-buyer-payment/edit-buyer-payment.component';
 import { SaleInvoiceComponent } from './sale-invoice/sale-invoice.component';
 import { TaxChallanComponent } from './tax-challan/tax-challan.component';
-// import { YarnActiveContractsComponent } from './yarn-active-contracts/yarn-active-contracts.component';
-// import { DispatchedRegisterComponent } from './dispatched-register/dispatched-register.component';
+import { BuyerPaymentComponent } from './buyer-payment/buyer-payment.component';
 
 
 
 @NgModule({
-  declarations: [AddNewContractsComponent, BuyerComponent, SellerComponent, ArticleComponent,YarnActiveContractsComponent, DispatchedRegisterComponent, CompletedContractComponent, BuyerPaymentComponent, SaleInvoiceComponent, TaxChallanComponent],
+  declarations: [AddNewContractsComponent,BuyerPaymentComponent, BuyerComponent, SellerComponent, ArticleComponent,YarnActiveContractsComponent, DispatchedRegisterComponent, CompletedContractComponent, SaleInvoiceComponent, TaxChallanComponent, EditBuyerPaymentComponent],
   imports: [
     CommonModule,
     BrowserModule,
