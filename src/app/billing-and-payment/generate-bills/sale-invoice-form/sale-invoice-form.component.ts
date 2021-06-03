@@ -16,7 +16,7 @@ export class SaleInvoiceFormComponent implements OnInit {
   columns: any = [];
   rows: any = [];
   data: any = [];
-
+  saleInvoiedata: any = [];
   @Input() contractId;
 response:any;
 
@@ -46,14 +46,14 @@ this.rows = data
   fetch(cb) {
     
     this.http
-    .get(`${environment.apiUrl}/api/Contracts/GetAllContractSaleInvoice/` + this.contractId)
+    .get(`${environment.apiUrl}/api/BillingPayments/GetAllContractSaleInvoiceInBill/` + this.contractId)
     .subscribe(res => {
       this.response = res;
      
     if(this.response.success==true)
     {
-    this.data =this.response.data;
-    cb(this.data);
+    this.saleInvoiedata =this.response.data;
+    cb(this.saleInvoiedata);
     }
     else{
       this.toastr.error(this.response.message, 'Message.');

@@ -53,7 +53,8 @@ export class EditActiveEnquiryComponent implements OnInit {
   buyerDetails: any = [];
   vendorSeller: any = [];
   certificate: any = [];
-  confirmOn: string;
+  confirmOn:string;
+  showConfirmOn:string;
   noteFilter: any = [];
   noteList: any = {};
   totalComplete:any;
@@ -94,13 +95,6 @@ export class EditActiveEnquiryComponent implements OnInit {
       this.GetCertificateDropdown();
       this.GetVendorSellerDropdown();
       this.getEnquiryData(this.objEnquiry);
-     
-      // this.editEnquiryBuyerDetails(this.objEnquiry);
-      // this.editEnquiryPaymentDetails(this.objEnquiry);
-      // this.editEnquirySupplierDetails(this.objEnquiry);
-      // this.editEnquiryConfirmationDetails(this.objEnquiry);
-      // this.editEnquiryAdditionalInformation(this.objEnquiry);
-      // this.getAllEnquiryItems();
 
 
       this.fetch((NotesData) => {
@@ -110,10 +104,6 @@ export class EditActiveEnquiryComponent implements OnInit {
       });
 
   }
-
-
-
-
 
 
   itemSearch(event) {
@@ -152,14 +142,27 @@ export class EditActiveEnquiryComponent implements OnInit {
           this.response = res;
           if (this.response.success == true) {
             this.enquiryData = this.response.data;
-             this.confirmOn = this.enquiryData.confirmationDate;
+                this.showConfirmOn = this.enquiryData.confirmationDate;
+                
+            this.enquiryData.confirmationDate = this.dateformater.fromModel(this.enquiryData.confirmationDate);
+             
+             if( this.enquiryData.confirmationDate.year == 1 )
+                {
+                  this.confirmOn = "";
+                  this.showConfirmOn = "";
+                }
+                else{
+                  this.confirmOn = this.enquiryData.confirmationDate;
+                }
+            
+                
+    
             if(this.enquiryData.totalQuantity == 0)
             {
               this.enquiryData.totalQuantity = null; 
             }
 
             //  console.log("enquiry Data" , this.enquiryData)
-            this.enquiryData.confirmationDate = this.dateformater.fromModel(this.enquiryData.confirmationDate);
             if(this.enquiryData.totalQuantity == 0)
             {
               this.enquiryData.totalQuantity = "";
@@ -525,20 +528,20 @@ export class EditActiveEnquiryComponent implements OnInit {
 
   addEnquiryOrderDetails() {
 
-    this.enquiryData.confirmationDate = this.dateformater.toModel(this.enquiryData.confirmationDate);
+    this.confirmOn = this.dateformater.toModel(this.confirmOn);
     
-    if( this.enquiryData.confirmationDate == "undefined-undefined-undefined")
+    if( this.confirmOn == "undefined-undefined-undefined")
     {
-      this.enquiryData.confirmationDate = ""
+      this.confirmOn = ""
     }
-    if( this.enquiryData.confirmationDate == "0-NaN-NaN" )
+    if( this.confirmOn == "0-NaN-NaN" )
     {
-      this.enquiryData.confirmationDate = ""
+      this.confirmOn = ""
     }
      
     let varr = {
       "enquiryId": this.objEnquiry,
-      "confirmationDate": this.enquiryData.confirmationDate,
+      "confirmationDate": this.confirmOn,
       "confirmationDetails": this.enquiryData.confirmationDetails,
     
     }
@@ -696,6 +699,7 @@ export class EditActiveEnquiryComponent implements OnInit {
           this.noteFilter = [...NotesData];
           // this.listCount= this.rows.length;
         });
+        this.getEnquiryData(this.objEnquiry);
 
       }
     }, (reason) => {
@@ -718,6 +722,7 @@ export class EditActiveEnquiryComponent implements OnInit {
           this.noteFilter = [...NotesData];
           // this.listCount= this.rows.length;
         });
+        
 
       }
     }, (reason) => {
@@ -831,6 +836,7 @@ export class EditActiveEnquiryComponent implements OnInit {
                   this.noteFilter = [...NotesData];
                   // this.listCount= this.rows.length;
                 });
+                this.getEnquiryData(this.objEnquiry);
 
               }
               else {

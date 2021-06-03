@@ -11,6 +11,7 @@ import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { SaleInvoiceFormComponent } from './sale-invoice-form/sale-invoice-form.component';
 import { Router } from '@angular/router';
+import { BranchAddressComponent } from './branch-address/branch-address.component';
 @Component({
   selector: 'app-generate-bills',
   templateUrl: './generate-bills.component.html',
@@ -40,6 +41,8 @@ export class GenerateBillsComponent implements OnInit {
       date: number;
       myDate = Date.now();
       columns: any = [];
+      names: any = [];
+
       response: any;
       url = '/api/BillingPayments/GetAllContractForBillGeneration'
       
@@ -65,6 +68,8 @@ export class GenerateBillsComponent implements OnInit {
         });
         this.rows = temp;
       }
+      
+      
       onSelect(selecterow) {
         this.selectedids =selecterow;
  
@@ -75,6 +80,7 @@ export class GenerateBillsComponent implements OnInit {
         for(let i=0; i<this.selectedids.selected.length; i++ )
         {      
             this.contractIds[i] = this.selectedids.selected[i].id;
+            
             // this.selected = [...this.selected]
         }
         // return this.contractIds;        
@@ -106,41 +112,59 @@ export class GenerateBillsComponent implements OnInit {
           
       
     // }
-
+    // branchAddress() {
+    //   if(this.contractIds.length === 0  || this.selectedids.selected.length === 0  ){
+    
+    //   }
+    //   else{
+    //   const modalRef = this.modalService.open(BranchAddressComponent, { centered: true });
+    //   modalRef.result.then((data) => {
+    //     if (data == true) {
+    
+    //     }
+    //   }, (reason) => {
+    //   });
+    // }
+    // }
   generateBill() {
     // this.getIds();
   if(this.contractIds.length === 0  || this.selectedids.selected.length === 0  ){
     this.toastr.error("PLease select atleast one contract to generate bill" , 'Message')
   }
   else{
-    const item = [...new Set(this.contractIds)];
-    let varr = {
-      "contractIds": item,
-      // "billForBuyerId": this.data,
-      // "billForSelerId": this.checkboxData.sellerId,
-      // "taxAmount": this.checkboxData.taxAmount,
-      // "dueDate": "2021-05-27"
-    }
-    this.http.
-      post(`${environment.apiUrl}/api/BillingPayments/GenerateContractBill`, varr)
-      .subscribe(
-        res => {
-
-          this.response = res;
-          if (this.response.success == true) {
-            this.toastr.success(GlobalConstants.addMessage, 'Message.');
-            this.router.navigate(['/billing-and-payment/active-bills']);
-
-          }
-          else {
-            this.toastr.error(this.response.message, 'Message.');
-          }
-
-        }, err => {
-          if (err.status == 400) {
-            this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
-          }
-        });
+    const modalRef = this.modalService.open(BranchAddressComponent, { centered: true });
+    modalRef.result.then((p) => {
+      if (p != null) {
+        const item = [...new Set(this.contractIds)];
+        let varr = {
+          "contractIds": item,
+           "fabcotBranchName": p.branch.name,
+          
+        }
+        this.http.
+          post(`${environment.apiUrl}/api/BillingPayments/GenerateContractBill`, varr)
+          .subscribe(
+            res => {
+    
+              this.response = res;
+              if (this.response.success == true) {
+                this.toastr.success(GlobalConstants.addMessage, 'Message.');
+                this.router.navigate(['/billing-and-payment/active-bills']);
+    
+              }
+              else {
+                this.toastr.error(this.response.message, 'Message.');
+              }
+    
+            }, err => {
+              if (err.status == 400) {
+                this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
+              }
+            });
+      }
+    }, (reason) => {
+    });
+    
       }
       }
   SaleInvoiceForm(row) {

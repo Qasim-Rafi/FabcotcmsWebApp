@@ -774,7 +774,7 @@
                             <div [ngClass]="{ noDisplay : orderToggle==true }">
                                 <dl class="row">
                                     <dt class="col-sm-3">Order Confirm On:</dt>
-                                    <dd class="col-sm-9">{{confirmOn}}</dd>
+                                    <dd class="col-sm-9">{{showConfirmOn}}</dd>
                                 
                                     <dt class="col-sm-3"> Details:</dt>
                                     <dd class="col-sm-9">{{enquiryData.confirmationDetails}}
@@ -796,7 +796,7 @@
                                         <div class="col-md-6">
                                             <div class="input-group"> 
                                                 <input class="form-control " ngbDatepicker #validityDate="ngbDatepicker" 
-                                                    (click)="validityDate.toggle()" [(ngModel)]="enquiryData.confirmationDate" name="confirmationDate" #confirmationDate="ngModel"
+                                                    (click)="validityDate.toggle()" [(ngModel)]="confirmOn" name="confirmationDate" #confirmationDate="ngModel"
                                                     [ngClass]="{ error: confirmationDate.invalid }"/>
                                             </div>
                                         </div>

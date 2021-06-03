@@ -56,12 +56,15 @@ export class ActiveBillsComponent implements OnInit {
     navigateOpenBill(obj) {
       this.router.navigate(['/billing-and-payment/open-bill'], { queryParams: {id: obj.id} });
     };
- 
+    navigateEditContract(obj) {
+      this.router.navigate(['/contract/active-contract-details'], { queryParams: {id: obj.contractId} });
+    };
   ngOnInit(): void {
     
     this.fetch((data) => {
       this.dashboardAmnt = data
       this.rows = data.activeBills;
+   
       this.billFilter = [...this.rows];
       this.listCount = this.rows.length;
     });
@@ -89,7 +92,7 @@ export class ActiveBillsComponent implements OnInit {
     if(this.response.success==true)
     {
     this.data=this.response.data;
-    
+ 
 
     cb(this.data);
     }

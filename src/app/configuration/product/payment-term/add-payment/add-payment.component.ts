@@ -14,6 +14,7 @@ import { ServiceService } from 'src/app/shared/service.service';
 })
 export class AddPaymentComponent implements OnInit {
   data: any = {};
+  obj: any = {};
   response: any;
   active = true;
 
@@ -50,13 +51,14 @@ export class AddPaymentComponent implements OnInit {
       post(`${environment.apiUrl}/api/Products/AddPaymentTerm`, varr)
       .subscribe(
         res => {
-
+          this.obj.parent = this.active;
+          this.obj.status = true;
           this.response = res;
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
 
             // this.buyerForm.reset();
-            this.activeModal.close(true);
+            this.activeModal.close(this.obj);
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
