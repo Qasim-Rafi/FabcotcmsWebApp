@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { TemplateComponent } from './template/template.component';
 import { ActiveContractsComponent } from './contracts/active-contracts/active-contracts.component';
 import { ArchivedContractsComponent } from './contracts/archived-contracts/archived-contracts.component';
+import { AddNewContractsComponent } from './Yarn Local/contracts/add-new-contracts/add-new-contracts.component';
 
 const configurationModule = () => import('./configuration/configuration.module')
   .then(x => x.ConfigurationModule);
@@ -49,7 +50,12 @@ component:ArchivedContractsComponent
 {
   path:'enquiry',
 loadChildren:'./business-enqury/business-enqury.module#BusinessEnquryModule'
-}
+},
+{
+  path:'yarn-local/add-new-contract',
+// loadChildren:'./contracts/contracts.module#ContractsModule'
+component:AddNewContractsComponent
+},
    ]
  },
 
