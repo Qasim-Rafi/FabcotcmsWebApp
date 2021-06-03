@@ -1,0 +1,286 @@
+<div class="content-header">
+
+    <div class="row">
+      <div class="col-sm-12 col-md-6 col-lg-8">
+        <h2 class="row wrapper page-header font-weight-light">Active Bills
+          <div class="ml-2 descr">Contract Bills. Awating for payments . Default last 90 days record displayed</div>
+        </h2>
+      </div>
+  
+      <div class="col-sm-12 col-md-6 col-lg-4">
+        <ol class="breadcrumb flt-RnL">
+          <li class="breadcrumb-item"><a href="#">Billing & Payment</a></li>
+          <li class="breadcrumb-item active" aria-current="page">
+            Active Bills
+          </li>
+        </ol>
+      </div>
+    </div>
+
+
+
+    
+        
+    
+      
+
+  </div>
+
+<!--Start Info boxes -->
+<div class="row mb-4">
+
+  <div class="col-12 col-sm-6 col-md-3">
+    <div class="topbox">
+
+      <div class="topbox-margin-top-text">Active Bills
+        <div class=" float-right fontSize">
+          <!-- <span class="text_Navy fontSize"> </span>
+          <i class="fa fa-bolt text_Navy"></i> -->
+        </div>
+      </div>  
+     
+      <div class="topbox-margin-mid-text">{{dashboardAmnt.activeBillCount}} <span class="topbox-small-text">bills</span></div>
+ 
+    </div>
+  </div>
+ 
+  <div class="col-12 col-sm-6 col-md-3">
+    <div class="topbox">
+
+      <div class="topbox-margin-top-text"> Total Amount
+        <div class=" float-right fontSize">
+          <!-- <span class="text_Navy fontSize"> 0% </span>
+          <i class="fa fa-bolt text_Navy"></i> -->
+        </div>
+      </div>
+     
+      <div class="topbox-margin-mid-text">{{dashboardAmnt.totalAmount}} <span class="topbox-small-text">Rs./$</span></div>
+
+    </div>
+  </div>
+
+
+
+<div class="col-12 col-sm-6 col-md-3">
+    <div class="topbox">
+
+      <div class="topbox-margin-top-text"> Balance Amount
+        <div class=" float-right fontSize">
+          <!-- <span class="text_Navy fontSize"> 100 % </span>
+          <i class="fa fa-bolt text_Navy"></i> -->
+        </div>
+      </div>
+
+      <div class="topbox-margin-mid-text">{{dashboardAmnt.balanceAmount}}<span class="topbox-small-text">Rs./$</span></div>
+
+    </div>
+  </div>
+
+
+
+  <div class="col-12 col-sm-6 col-md-3">
+    <div class="topbox">
+
+      <div class="topbox-margin-top-text"> Tax Amount
+        <div class=" float-right fontSize">
+          <!-- <span class="text_Navy fontSize"> 0 % </span>
+          <i class="fa fa-bolt text_Navy"  ></i> -->
+        </div>
+      </div>
+
+      <div class="topbox-margin-mid-text">{{dashboardAmnt.taxAmount}}</div>
+
+    </div>
+  </div>
+
+</div>
+<!--End Info boxes -->
+
+
+  <div class="card ibox-content">
+    <div class="panel blank-panel">
+      
+      <div class="panel-heading">
+
+        <div class="row mb-3">
+
+          <div class= "col-md-6 ">
+              <span class="date-Label">Date From &nbsp;</span>
+             <span class="text_Navy  date"> 23-Jan-2021 &nbsp;</span>
+             <span class="date-Label">To &nbsp;</span>
+             <span class="text_Navy  date">20-July-2021 &nbsp;</span>
+          </div>
+
+          <div class="col-md-6 mrg-tsm">
+            <button type="button" class="btn btn-light btn-sm float-right"  onclick="location.reload(true)"><i class="fas fa-sync-alt"></i></button>
+            <!-- <button type="button" class="btn btn-primary btn-sm float-right mr-1" >
+                <i class="fa fa-filter"></i>
+            </button> -->
+          </div>
+
+         
+
+        </div>
+     
+        <div class="row mb-4 justify-content-center">
+
+          <form>
+            <div class="form-row">
+              <!-- <div class="col-auto">
+                <div class="form-check mt-2">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                  <label class="form-check-label" for="flexCheckDefault">
+                    Check to Select All Contracts
+                  </label>
+                </div>
+              </div> -->
+          
+              <div class="col-auto">
+                <button type="button" class="btn btn-primary btn-sm float-right" (click)= "print()">
+                  <i class="fa fa-print"></i> Bulk Print
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      
+  
+        <div class="row">
+          <div class="col-md-12 mb-3">
+        
+            <div class="row justify-content-end">
+
+              <div class="col-md-4 pr-0">
+
+                <div class="form-group row">
+                  <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
+                  <div class="col-sm-9">
+                    <input type="text" placeholder="Search..." class="input form-control form-control-sm"
+                  (keyup)="search($event)"/>
+                  </div>
+                </div> 
+              </div>
+        
+              <div class="html5buttons mrg-tsm">
+                <div class="dt-buttons btn-group btn-group-sm">
+                  <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0" aria-controls="DataTables_Table_0"
+                   (click)="copyBillsList()" ngxClipboard><span>Copy</span>
+                  </a>
+                  <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
+                  (click)="activeBillsCsvFile()" 
+                  aria-controls="DataTables_Table_0"><span>CSV</span></a>
+                  <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
+                  (click)="activeBillsExcelFile()"  
+                  aria-controls="DataTables_Table_0"><span>Excel</span></a>
+                  <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0"
+                  (click)="ActiveBillsListPdf()"  
+                  aria-controls="DataTables_Table_0"><span>PDF</span></a>
+                  <a class="btn btn-default buttons-print bg-white" tabindex="0"
+                  (click)="printActiveBillsList()"  
+                  aria-controls="DataTables_Table_0"><span>Print</span></a>
+                </div>
+              </div>
+        
+            </div>
+        
+          </div>
+        </div>
+
+      </div>
+
+
+<!--Start panel body -->      
+      <div class="panel-body">
+           
+      
+        <ngx-datatable class="bootstrap datatable-row-wrapper" [columns]="columns" [rows]="rows" [columnMode]="'flex'"
+          [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="6" (select)="onSelect($event)"
+          [selected]="selected" [selectionType]="SelectionType.checkbox" [sorts]="[{ prop: 'id', dir: 'desc' }]">
+      
+          <ngx-datatable-column prop="selected" name="Select" [width]="20" [flexGrow]="0.03" [width]="30"
+            [headerCheckboxable]="true" [checkboxable]="true">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <!-- <input type="checkbox"> -->
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="S.No" [width]="80" prop="sno" [flexGrow]="0.04">
+            <ng-template let-row="row" let-rowIndex="rowIndex" let-expanded="expanded" ngx-datatable-cell-template>
+              <!-- {{rowIndex+1}} -->
+              {{row.nmbr}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Bill For" [width]="80" prop="sellerName" [flexGrow]="0.05">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+      <!-- {{row.sellerName}} -->
+            <!-- <p *ngIf = "row.sellerName !=null">Seller </p>
+            <p *ngIf = "row.buyerName !=null">Buyer </p> -->
+
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Bill To" [width]="80" prop="buyerName" [flexGrow]="0.06">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+      <!-- {{row.buyerName}} {{row.sellerName}} -->
+            </ng-template>
+          </ngx-datatable-column>
+      
+          <ngx-datatable-column name="Bill #" [width]="80" prop="billNumber" [flexGrow]="0.06">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              <!-- {{row.billNumber}} -->
+            </ng-template>
+          </ngx-datatable-column>
+      
+          <ngx-datatable-column name="Contract #" [width]="80" prop="autoContractNumber" [flexGrow]="0.08">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              <button class="clr">
+                <!-- {{row.autoContractNumber}} -->
+              </button>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Bill Date" [width]="80" prop="billDate" [flexGrow]="0.06">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              <!-- {{row.billDate}} -->
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="No. Sale Inv" [width]="80" prop="numberOfSaleInvoices" [flexGrow]="0.06">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              <!-- {{row.numberOfSaleInvoices}} -->
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Bill Amount" [width]="80" prop="billAmount" [flexGrow]="0.06">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              <!-- {{row.billAmount}} -->
+            </ng-template>
+          </ngx-datatable-column>
+      
+          <ngx-datatable-column name="Tax Amount" [width]="80" prop="taxAmount" [flexGrow]="0.06">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              <!-- {{row.taxAmount}} -->
+            </ng-template>
+          </ngx-datatable-column>
+      
+          <ngx-datatable-column name="Due Date" [width]="80" prop="dueDate" [flexGrow]="0.06">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              <!-- {{row.dueDate}} -->
+            </ng-template>
+          </ngx-datatable-column>
+      
+          <ngx-datatable-column name="Action" [width]="80" prop="action" [flexGrow]="0.07">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+      
+              <div class="ibox-tools text-center">
+                <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top" title=""
+                  data-original-title="open" (click)="navigateOpenBill()"><i class="far fa-edit"></i></button>
+                <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top" title=""
+                  (click)="navigatePaymentForm('addPayment' , row)"><i class="fas fa-money-check-alt"></i></button>
+              </div>
+      
+            </ng-template>
+          </ngx-datatable-column>
+      
+        </ngx-datatable>
+      </div>
+
+
+
+    </div>
+    </div>
