@@ -1,1 +1,166 @@
-<p>sale-invoice works!</p>
+<div class="content-header">
+
+    <div class="row">
+      <div class="col-sm-12 col-md-6 col-lg-8">
+        <h2 class="row wrapper page-header font-weight-light"> Active Contract
+          <!-- <div class="ml-2 descr"> Manage Fabric / Yarn Articles with warp, weft, end, pick,weive & width info </div> -->
+        </h2>
+      </div>
+  
+      <div class="col-sm-12 col-md-6 col-lg-4">
+        <ol class="breadcrumb flt-RnL">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Active Contracts</li>
+        </ol>
+      </div>
+  
+    </div>
+  </div>
+  
+  
+  <div class="card ibox-content">
+    <div class=" panel blank-panel">
+      <div class="panel-heading">
+        <div class="row mb-3">
+          <div class="col-md-12 text-center">
+            <div class="btn-group" role="group">
+  
+              <button type="button" class="btn btn-sm btn-primary" (click)="activeContract();" id="all"
+                data-toggle="tooltip" title="" data-original-title="All Sale Invoices"> <i class="far fa-file-alt"></i>
+                All Sale Invoices &nbsp; <span class="badge badge-pill badge-primary">118</span> 
+              </button>
+  
+              <button type="button" class="btn btn-sm btn-white" (click)="openContract();" id="open"
+                data-toggle="tooltip" title="Payment Pending"><i class="far fa-money-bill-alt"></i> Pending Payments
+                &nbsp; <span class="badge badge-pill badge-primary">42</span> 
+              </button>
+              
+              <button type="button" class="btn btn-sm btn-white"  id="close"
+                data-toggle="tooltip" title="Pending Challans"> <i class="far fa-file-alt"></i> Pending Challans &nbsp; <span
+                  class="badge badge-pill badge-primary">1</span>
+                </button>
+   
+            </div>
+          </div>
+        </div>
+  
+
+            <div class="row mb-3">
+    
+              <div class= "col-md-6 ">
+                  <span class="date-Label">Date From &nbsp;</span>
+                 <span class="text_Navy  date"> 23-Jan-2021 &nbsp;</span>
+                 <span class="date-Label">To &nbsp;</span>
+                 <span class="text_Navy  date">20-July-2021 &nbsp;</span>
+              </div>
+              <div class="col-md-6 mrg-tsm">
+                <button type="button" class="btn color btn-sm float-right"  ><i class="fa fa-plus"></i></button>
+                <button type="button" class="btn btn-light btn-sm float-right mr-1">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+                <button type="button" class="btn btn-primary btn-sm float-right mr-1">
+                    <i class="fa fa-filter"></i>
+                </button>
+              </div>
+             
+    
+             
+    
+            </div>
+         
+           
+      
+            <div class="row">
+              <div class="col-md-12 mb-3">
+            
+                <div class="row justify-content-end">
+    
+                  <div class="col-md-4 pr-0">
+    
+                    <div class="form-group row">
+                      <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
+                      <div class="col-sm-9">
+                        <input type="text" placeholder="Search..." class="input form-control form-control-sm"
+                      />
+                      </div>
+                    </div> 
+                  </div>            
+                </div>
+            
+              </div>
+            </div>
+    
+          </div>
+  
+  
+        <div class="panel-body">
+  
+          <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'"
+          [headerHeight]="50" [footerHeight]="50" [sorts]="[{ prop: 'autoContractNumber', dir: 'desc' }]" [rowHeight]="'auto'"
+          [limit]="6">
+            <ngx-datatable-column name="Action">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+  
+                <div class="ibox-tools text-center">
+  
+                  <button type="button" class="btn editIconBack" >
+                    <i class="far fa-edit "></i>
+                  </button>
+  
+                  <button type="button" class="btn deleteIconBack" >
+                    <i class="far fa-trash-alt"></i>
+                  </button>
+  
+                </div>
+              </ng-template>
+            </ngx-datatable-column>
+  
+            <ngx-datatable-column name="Inv. ID">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+  
+              </ng-template>
+            </ngx-datatable-column>
+  
+            <ngx-datatable-column name="Inv. #" prop="contractAge">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                <span class="badge badge-primary"></span>
+               
+              </ng-template>
+            </ngx-datatable-column>
+  
+            <ngx-datatable-column name="Invoice Date" prop="autoContractNumber">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+               
+              </ng-template>
+            </ngx-datatable-column>
+  
+            <ngx-datatable-column name="Buyer" prop="contractOn">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                
+              </ng-template>
+            </ngx-datatable-column>
+  
+            <ngx-datatable-column name="Seller" prop="poNumber">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              
+              </ng-template>
+            </ngx-datatable-column>
+  
+            <ngx-datatable-column name="Contract" prop="scNumber">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+               
+              </ng-template>
+            </ngx-datatable-column>
+  
+            <ngx-datatable-column name="Article" prop="articleName">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                
+  
+              </ng-template>
+            </ngx-datatable-column>
+          </ngx-datatable>
+        </div>
+      </div>
+  
+  
+    </div>
