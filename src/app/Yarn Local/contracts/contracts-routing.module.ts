@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TemplateComponent } from 'src/app/template/template.component';
 import { AddNewContractsComponent } from './add-new-contracts/add-new-contracts.component';
+import { BuyerPaymentFormComponent } from './buyer-payment/buyer-payment-form/buyer-payment-form.component';
 import { BuyerPaymentComponent } from './buyer-payment/buyer-payment.component';
 import { CompletedContractComponent } from './completed-contract/completed-contract.component';
 import { DispatchedRegisterComponent } from './dispatched-register/dispatched-register.component';
 import { SaleInvoiceComponent } from './sale-invoice/sale-invoice.component';
+import { AddTxChallanComponent } from './tax-challan/add-tx-challan/add-tx-challan.component';
 import { TaxChallanComponent } from './tax-challan/tax-challan.component';
 import { YarnActiveContractsComponent } from './yarn-active-contracts/yarn-active-contracts.component';
 
@@ -23,6 +25,8 @@ const routes: Routes = [
     { path: 'buyer-payment' , component:BuyerPaymentComponent},
     { path: 'sale-invoice' , component:SaleInvoiceComponent},
     { path: 'tax' , component:TaxChallanComponent},
+    { path: 'buyer-payment-form' , component:BuyerPaymentFormComponent},
+    { path: 'add-tax' , component:AddTxChallanComponent},
 ]
   }
 ]
@@ -32,3 +36,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class ContractsRoutingModule { }
+ 

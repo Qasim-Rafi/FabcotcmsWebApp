@@ -1,0 +1,134 @@
+<div class="content-header">
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-8">
+      <h2 class="row wrapper page-header font-weight-light">
+        Country Location
+        <div class="ml-2 descr">
+          Business Country location and its management
+        </div>
+      </h2>
+    </div>
+
+    <div class="col-sm-12 col-md-6 col-lg-4">
+      <ol class="breadcrumb flt-RnL">
+        <li class="breadcrumb-item"><a href="#">Configuration</a></li>
+        <li class="breadcrumb-item active" aria-current="page">
+          Country Location
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class="card ibox-content">
+  <div class="panel blank-panel">
+
+    <div class="panel-heading">
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <button type="button" class="btn btn-primary descBtn ml-sm-none ml-md-2">
+            <i class="fas fa-map fa-fw mr-2"></i>{{ countryCount }}
+          </button>
+          <span class="text-muted text2">Countries</span>
+        </div>
+        <div class="col-md-6 mrg-tsm">
+          <button type="button" class="btn btn-primary btn-sm float-right"
+            (click)="addCountryForm('add' , 'countryForm')">
+            <i class="fa fa-plus"></i> Add Country
+          </button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12 mb-3">
+          <div class="row justify-content-end">
+            <div class="col-md-4 pr-0">
+
+              <div class="form-group row">
+                <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
+                <div class="col-sm-9">
+                  <input type="text" placeholder="Search by Country Name" class="input form-control form-control-sm"
+                  (keyup)="search($event)" />
+                </div>
+              </div>
+
+              <!-- <div class="input-group col-md-offset-3">
+                <input type="text" placeholder="Search by Country Name" class="input form-control w-50"
+                  (keyup)="search($event)" />
+              </div> -->
+
+            </div>
+
+
+            <div class="html5buttons mrg-tsm">
+              <div class="dt-buttons btn-group btn-group-sm">
+                <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0"
+                  aria-controls="DataTables_Table_0" ngxClipboard (click)="copyCountryList()"><span>Copy</span>
+                </a>
+                <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
+                  aria-controls="DataTables_Table_0" (click)="countryCsvFile()"><span>CSV</span></a>
+                <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
+                  aria-controls="DataTables_Table_0" (click)="countryExcelFile()"><span>Excel</span></a>
+                <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0"
+                  aria-controls="DataTables_Table_0" (click)="  countryPdf()"><span>PDF</span></a>
+                <a class="btn btn-default buttons-print bg-white" tabindex="0" aria-controls="DataTables_Table_0"
+                  (click)="printCountryList()"><span>Print</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="panel-body">
+        <ngx-datatable #myTable class="bootstrap datatable-row-wrapper" [columns]="columns" [rows]="rows"
+          [columnMode]="'flex'" [headerHeight]="50" [footerHeight]="50" [sorts]="[{ prop: 'id', dir: 'asce' }]"
+          [rowHeight]="'auto'" [limit]="6">
+
+          <ngx-datatable-column name="S. No." [width]="80" prop="id" [flexGrow]="0.03">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{ row.id }}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Country Name" [width]="80" prop="name" [flexGrow]="0.05">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              {{ row.name }}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Details" [width]="80" prop="details" [flexGrow]="0.06">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              {{ row.details }}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Status" prop="status" [width]="80" [flexGrow]="0.06">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              <span class="badge badge-primary" *ngIf="row.active==true">Active</span>
+              <span class="badge badge-secondary" *ngIf="row.active==false">Inactive</span>
+            </ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="Created On |Created By" [width]="80" prop="date" [flexGrow]="0.07">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              {{ row.createdDateTime }} | {{ row.createdByName }}
+            </ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="Action" [width]="80" prop="code" [flexGrow]="0.04">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+
+              <div class="ibox-tools text-center">
+                <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top" title=""
+                  data-original-title="Edit" (click)="editCountryForm(row , 'edit' , 'countryForm')"><i
+                    class="far fa-edit"></i></button>
+                <button type="button" class="btn deleteIconBack" data-toggle="tooltip" data-placement="top" title=""
+                  data-original-title="Delete" (click)="deleteCountry(row)"><i class="far fa-trash-alt"></i></button>
+              </div>
+
+            </ng-template>
+          </ngx-datatable-column>
+
+        </ngx-datatable>
+      </div>
+    </div>
+  </div>
+</div>

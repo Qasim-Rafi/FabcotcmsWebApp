@@ -1,0 +1,51 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()" >
+      <div aria-hidden="true">&times;</div>
+    </button>
+  
+    <h5 class="modal-title ">
+      <i class="fa fa-edit"></i>
+    Branch Address
+      <!-- <small>
+        <p class="mb-0">
+          Contract No. {{data.autoContractNumber}}
+        </p>
+      </small> -->
+    </h5>
+    <!-- <div class="font text-muted text-center">Contract No. {{data.autoContractNumber}}</div> -->
+  </div>
+  
+  
+  <div class="modal-body BG">
+    <form #branchForm="ngForm" novalidate>
+  
+      <div class="col-md-12 pt-3 ">
+  
+  
+        <div class="form-group row">
+          <label for="name" class="col-sm-3 col-form-label text_Navy">Branch Address</label>
+          <div class="col-sm-8">
+            <ng-select [(ngModel)]="data.branch" placeholder="-- Select --"
+             name="branch"
+            >
+            <ng-option *ngFor="let i of address" [value]="i">{{ i.name }}
+              </ng-option>
+
+            </ng-select>
+          </div>
+        </div>
+  
+      </div>
+  
+      <div class="modal-footer NotBG">
+        <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal"
+          (click)="activeModal.close()">
+          Close
+        </button>
+        <button class="btn button-save" type="submit" (click)="datatransfer()" >
+          Save
+        </button>
+      </div>
+  
+    </form>
+  </div>
