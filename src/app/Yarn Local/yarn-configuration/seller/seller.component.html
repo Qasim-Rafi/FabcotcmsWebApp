@@ -1,0 +1,264 @@
+<div class="content-header">
+
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-8">
+      <h2 class="row wrapper page-header font-weight-light"> Seller / Supplier
+        <div class="ml-2 text-muted descr"> Seller and their point of contact information goes here</div>
+      </h2>
+    </div>
+
+    <div class="col-sm-12 col-md-6 col-lg-4">
+      <ol class="breadcrumb flt-RnL">
+        <li class="breadcrumb-item"><a href="#">Configuration</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Sellers</li>
+      </ol>
+    </div>
+
+  </div>
+</div>
+
+<div class="card ibox-content m-b-sm mb-3">
+  <!--span class="text-muted small pull-right">Last modification: <i class="fa fa-clock-o"></i> 2:10 pm - 12.06.2014</span -->
+
+  <div class="row">
+    <div class="col-lg-3">
+      <!--
+      <div class="widget style1">
+      <div class="row">
+      <div class="col-xs-4 text-center">
+        <i class="fa fa-trophy fa-4x"></i>
+      </div>
+      <div class="col-xs-8 text-right">
+        <span> Today income </span>
+        <h2 class="font-bold">$ 4,232</h2>
+      </div>
+      </div>
+      </div>
+      -->
+    </div>
+
+    <div class="col-md-3">
+      <div class="widget style1 green-bg">
+        <div class="row">
+          <div class="col-md-4">
+            <i class="fa fa-industry fa-4x"></i>
+          </div>
+          <div class="col-md-8 text-right">
+            <div>Total Sellers</div>
+            <h3 class="font-bold">{{ sellerCount }}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3">
+      <div class="widget style1 blue-bg">
+        <div class="row">
+          <div class="col-md-4">
+            <i class="fa fa-users fa-4x"></i>
+          </div>
+          <div class="col-md-8 text-right">
+            <div>Total Contacts</div>
+            <h3 class="font-bold">{{TotalPOC}}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-3">
+      <!--
+      <div class="widget style1 navy-bg">
+      <div class="row">
+      <div class="col-xs-4">
+      <i class="fa fa-music fa-4x"></i>
+      </div>
+      <div class="col-xs-8 text-right">
+      <span> New albums </span>
+      <h2 class="font-bold">12</h2>
+      </div>
+      </div>
+      </div>
+      -->
+    </div>
+  </div>
+
+
+  <hr />
+  <!-- <div class="row">
+    <div class="col-md-12 autoAdjustSearch">
+      <div class="input-group col-md-offset-3">
+        <input placeholder="Search Supplier or their POCs" type="text" class="input form-control w-50"
+          (keyup)="updateFilter($event)" />
+        <span class="group-btn">
+          <button type="button" class="btn btn-primary autoAdjustBtn ml-1">
+            <i class="fa fa-search"></i> Search
+          </button>
+        </span>
+
+        <button type="button" class="btn btn-primary float-right" data-toggle="modal"
+          data-target="#exampleModalScrollable" (click)="addSellerform()">
+          <i class="fa fa-plus" aria-hidden="true"></i> Add New Seller
+        </button>
+      </div>
+    </div>
+  </div> -->
+
+
+  <div class="row">
+    <div class="col-md-12 autoAdjustSearch">
+      <div class="input-group col-md-offset-3">
+        <input placeholder="Search Supplier or their POCs" type="text" class="input form-control winput"
+          (keyup)="updateFilter($event)" />
+        <span class="group-btn">
+          <button type="button" class="btn btn-primary autoAdjustBtn ml-1">
+            <i class="fa fa-search"></i> Search
+          </button>
+        </span>
+
+        <button type="button" class="btn btn-primary float-right mrg-sm1" data-toggle="modal"
+          data-target="#exampleModalScrollable" (click)="addSellerform()">
+          <i class="fa fa-plus" aria-hidden="true"></i> Add New Seller
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+
+
+</div>
+
+<div class="faq-item shadow-sm" *ngFor="let obj of seller ; let x = index">
+  <div class="row">
+    <div class="col-md-1 col-sm-3 col-xs-3 forum-info" data-original-title="POCs">
+      <div class="poc-icon">
+        <a class="faq-question text-muted text-s-lg text-w-3" data-toggle="collapse" href="#seller-{{ x }}"
+          role="button" aria-expanded="false" aria-controls="collapseExample">
+          <span class="fa fa-users"></span>{{obj.sellerPOCList.length}}</a>
+      </div>
+    </div>
+    <div class="col-md-7">
+      <a class="faq-question">{{ obj.sellerCode }} - {{ obj.sellerName }}</a>
+
+      <div class="small mb-1">
+        Parent Buyer: {{ obj.parentSellerName }} ({{ obj.parentSellerCode }})
+      </div>
+      <div class="small">
+        Added by <strong>{{ obj.createdByName }}</strong>
+        <div class="m-l-lg" style="display: inline-block">
+          <i class="fa fa-clock-o fa-fw"> </i> {{ obj.createdDateTime }}
+        </div>
+        <div class="m-l-lg" style="display: inline-block">
+          Country: &nbsp; {{ obj.country }}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="ibox-tools">
+        <button type="button" class="btn editIconBack" (click)="addCertificateForm('SellerAdd', obj)">
+          <i class="fa fa-certificate"></i>
+        </button>
+        <button type="button" class="btn editIconBack" (click)="editSellerform(obj)">
+          <i class="far fa-edit"></i>
+        </button>
+        <button type="button" class="btn deleteIconBack" (click)="deleteSeller(obj)">
+          <i class="far fa-trash-alt"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="col-md-1 col-xs-3 forum-info" data-toggle="tooltip" data-placement="top" title=""
+      style="border-left: 1px solid #d0d0d0" data-original-title="Total Contracts">
+      <span class="views-number"> 0 </span>
+      <div>
+        <small>Total Contracts</small>
+      </div>
+    </div>
+    <div class="col-md-1 forum-info" data-toggle="tooltip" data-placement="top" title=""
+      data-original-title="Open Contracts">
+      <span class="views-number"> 0 </span>
+      <div>
+        <small>Open Contracts</small>
+      </div>
+    </div>
+  </div>
+  <!-- end of .row -->
+
+  <div class="collapse" id="seller-{{ x }}">
+    <div class="card-body mt-4 BG">
+      <div class="row">
+        <div class="col-sm-11">
+          <button type="button" class="btn btn-primary float-right" data-toggle="modal"
+            data-target="#exampleModalScrollable" (click)="addPocform(obj,'SellerAddPOC')">
+            <i class="fa fa-user" aria-hidden="true"></i> POC not found, <i class="fa fa-plus" aria-hidden="true"></i> Add
+            a new one?
+          </button>
+        </div>
+      </div>
+
+      <h2>Contacts</h2>
+
+      <div class="row text-center pt-3" *ngFor="let poc of obj.sellerPOCList">
+        <div class="col-md-2 border p-2 ">{{ poc.name }}</div>
+        <div class="col-md-2 border p-2">{{ poc.description }}</div>
+        <div class="col-md-2 border p-2">{{ poc.email }}</div>
+        <div class="col-md-2 border p-2">{{ poc.mobileNumber }}</div>
+        <div class="col-md-2 border p-2">
+          <div class="badge badge-primary" *ngIf="poc.active==true">Active</div>
+          <div class="badge badge-secondary" *ngIf="poc.active==false">Inactive</div>
+        </div>
+        <div class="col-md-2 border ">
+          <button type="button" class="btn editIconBack" (click)="editPocform(obj , 'SellerEditPOC', poc)">
+            <i class="far fa-edit"></i>
+          </button>
+          <button type="button" class="btn deleteIconBack" (click)="deleteSellerPOC(poc)">
+            <i class="far fa-trash-alt"></i>
+          </button>
+        </div>
+      </div>
+
+ 
+      <h2 class="pt-5">Certificate</h2>
+
+      <div class="row text-center pt-3" *ngFor="let j of obj.sellerCertificateList">
+        <div class="col-md-1 border text-left p-2"><i class="fas fa-bolt"></i></div>
+        <div class="col-md-2 border p-2 ">{{ j.sellerCertificateName }}</div>
+        <div class="col-md-3 border p-2 ">{{ j.description }}</div>
+        <div class="col-md-2 border p-2 ">{{j.validityDate}}</div>
+        <div class="col-md-4 border p-2 text-right">
+          <button type="button" class="btn editIconBack" (click)="editCertificateForm('SellerEdit', obj , j)">
+            <i class="far fa-edit"></i>
+          </button>
+          <button type="button" class="btn deleteIconBack" (click)="deleteSellerCertificate(j)">
+            <i class="far fa-trash-alt"></i>
+          </button>
+        </div>
+      </div>
+
+
+      <h2 class="pt-5">Machine Details</h2>
+      <div class="pt-3">
+
+      </div>
+
+      <h2 class="pt-5">Major Market & Strengths</h2>
+
+      <div class="col-md-12 pt-3">
+        {{obj.majorStrength}}
+      </div>
+
+      <h2 class="pt-5">Product Capabilties</h2>
+
+      <div class="pt-3">
+
+      </div>
+
+
+      <h2 class="pt-5">Lead time & MOQ</h2>
+
+      <div class="col-md-12 pt-3">
+        {{obj.leadTime}}
+      </div>
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>

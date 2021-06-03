@@ -1,0 +1,14 @@
+td {
+    width: 33.3%;
+    border: none;
+    float: left;
+    font-size: 20px;
+  }
+  
+  small,
+  .small {
+    font-size: 80% !important;
+    font-weight: 400;
+    padding: 12px 0 0 0;
+  }
+  

@@ -1,0 +1,213 @@
+<div class="content-header">
+
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-8">
+      <h2 class="row wrapper page-header font-weight-light"> Buyer / Customer
+        <div class="ml-2 text-muted descr">Buyer and their point of contact information goes here</div>
+      </h2>
+    </div>
+
+    <div class="col-sm-12 col-md-6 col-lg-4">
+      <ol class="breadcrumb flt-RnL">
+        <li class="breadcrumb-item"><a href="#">Configuration</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Buyers</li>
+      </ol>
+    </div>
+
+  </div>
+</div>
+
+
+
+<div class="card ibox-content m-b-sm mb-3">
+  <!--span class="text-muted small pull-right">Last modification: <i class="fa fa-clock-o"></i> 2:10 pm - 12.06.2014</span -->
+
+  <div class="row">
+    <div class="col-md-3">
+
+      <!-- <div class="widget style1" >
+      <div class="row">
+      <div class="col-sm-4 text-center">
+        <i class="fa fa-trophy fa-4x"></i>
+      </div>
+      <div class="col-sm-8 text-right">
+        <span> Today income </span>
+        <h2 class="font-bold">$ 4,232</h2>
+      </div>
+      </div>
+      </div> -->
+
+    </div>
+
+    <div class="col-md-3">
+      <div class="widget style1 yellow-bg">
+        <div class="row">
+          <div class="col-md-4">
+            <i class="fa fa-briefcase fa-4x"></i>
+          </div>
+          <div class="col-md-8 text-right">
+            <div> Total Buyers </div>
+            <h3 class="font-bold">{{listCount}}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="widget style1 lazur-bg">
+        <div class="row">
+          <div class="col-md-4">
+            <i class="fa fa-users fa-4x"></i>
+          </div>
+          <div class="col-md-8 text-right">
+            <div> Total Contacts </div>
+            <h3 class="font-bold">{{TotalPOC}}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+
+      <!-- <div class="widget style1 navy-bg">
+      <div class="row">
+      <div class="col-sm-4">
+      <i class="fa fa-music fa-4x"></i>
+      </div>
+      <div class="col-sm-8 text-right">
+      <span> New albums </span>
+      <h2 class="font-bold">12</h2>
+      </div>
+      </div>
+      </div> -->
+
+    </div>
+
+  </div>
+
+  <!--
+    <span class="pull-right" style="margin-top: 8px;"> teams</span><h2 class="no-margins pull-right" data-toggle="tooltip" data-placement="top" title="Total Teams"> </h2>
+    <h2>Company Internal Team</h2>
+        <p>
+            Company internal teams are comprises of employees who are ticket stakeholders.
+        </p>
+    -->
+  <hr>
+
+  <div class="row justify-content-end">
+    <div class="col-md-12">
+      <div class="input-group">
+
+        <input type="text" placeholder="Search Buyer or their POCs " class="input form-control winput"
+          (keyup)="updateFilter($event)">
+        <span class="group-btn">
+          <button type="button" class="btn btn-primary autoAdjustBtn ml-1"> <i class="fa fa-search"></i> Search</button>
+        </span>
+
+        <button type="button" class="btn btn-primary float-right mrg-sm1" data-toggle="modal"
+          data-target="#exampleModalScrollable" (click)="addBuyerForm()">
+          <i class="fa fa-plus" aria-hidden="true"></i> Add New Buyer</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--    List   -->
+
+<div class="faq-item shadow-sm" *ngFor="let i of buyer ; let x = index">
+  <div class="row">
+    <div class="col-md-1 col-sm-3 col-xs-3 forum-info" data-original-title="POCs">
+      <div class="poc-icon">
+        <a class="faq-question text-muted text-s-lg text-w-3" data-toggle="collapse" href="#buyer-{{ x }}" role="button"
+          aria-expanded="false" aria-controls="collapseExample">
+          <span class="fa fa-users"></span>{{i.buyerPOCList.length}}</a>
+      </div>
+    </div>
+
+    <div class="col-md-7">
+
+      <a class="faq-question ">{{i.buyerCode}} - {{i.buyerName}}</a>
+
+
+      <div class="small mb-1">Parent Buyer: {{i.parentBuyerName}} ({{i.parentBuyerCode}})</div>
+      <div class="small">Added by <strong>{{i.createdByName}}</strong>
+        <div class="m-l-lg" style="display: inline-block;">
+          <i class="far fa-clock"></i> {{i.createdDateTime}}
+        </div>
+
+        <div class="m-l-lg" style="display: inline-block;">Country: &nbsp; {{i.country}}</div>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <div class="ibox-tools">
+        <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top" title=""
+          data-original-title="Edit" (click)="editBuyer(i)">
+          <i class="far fa-edit "></i>
+        </button>
+        <button type="button" class="btn deleteIconBack" data-toggle="tooltip" data-placement="top" title=""
+          data-original-title="Delete" (click)="deleteBuyer(i)">
+          <i class="far fa-trash-alt"></i>
+        </button>
+      </div>
+    </div>
+
+
+    <div class="col-md-1 forum-info" data-toggle="tooltip" data-placement="top" title=""
+      style="border-left: 1px solid #d0d0d0" data-original-title="Total Contracts">
+      <span class="views-number">0</span>
+      <div><small>Total Contracts</small></div>
+    </div>
+
+    <div class="col-md-1 forum-info" data-toggle="tooltip" data-placement="top" title=""
+      data-original-title="Open Contracts">
+      <span class="views-number">
+        0
+      </span>
+      <div>
+        <small>Open Contracts</small>
+      </div>
+    </div>
+  </div> <!-- end of .row -->
+
+
+  <div class="collapse" id="buyer-{{ x }}">
+    <div class="card-body mt-4 BG">
+      <div class="row">
+        <div class="col-sm-11">
+          <button type="button" class="btn btn-primary float-right" data-toggle="modal"
+            data-target="#exampleModalScrollable" >
+            <i class="fa fa-user" aria-hidden="true"></i> POC not found, <i class="fa fa-plus" aria-hidden="true"></i> Add
+            a new one?
+          </button>
+        </div>
+      </div>
+
+      <!-- <h2>Contacts</h2> -->
+
+      <div class="row text-center pt-3" *ngFor="let poc of i.buyerPOCList">
+        <div class="col-md-2 border p-2 ">{{ poc.name }}</div>
+        <div class="col-md-2 border p-2">{{ poc.description }}</div>
+        <div class="col-md-2 border p-2">{{ poc.email }}</div>
+        <div class="col-md-2 border p-2">{{ poc.mobileNumber }}</div>
+        <div class="col-md-2 border p-2">
+          <div class="badge badge-primary" *ngIf="poc.active==true">Active</div>
+          <div class="badge badge-secondary" *ngIf="poc.active==false">Inactive</div>
+        </div>
+        <div class="col-md-2 border ">
+          <button type="button" class="btn editIconBack" >
+            <i class="far fa-edit"></i>
+          </button>
+          <button type="button" class="btn deleteIconBack" (click)="deleteSellerPOC(poc)">
+            <i class="far fa-trash-alt"></i>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+</div>
