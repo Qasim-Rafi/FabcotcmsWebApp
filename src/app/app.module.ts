@@ -57,6 +57,7 @@ import { TnaLogHistoryComponent } from './contracts/active-contracts/active-cont
 import { StatusComponent } from './shared/MODLES/status/status.component';
 import { OnholdContractsComponent } from './contracts/onhold-contracts/onhold-contracts.component';
 import { AddNewContractsComponent } from './Yarn Local/contracts/add-new-contracts/add-new-contracts.component';
+import { DispatchedRegisterComponent } from './Yarn Local/contracts/dispatched-register/dispatched-register.component';
 
 
 
@@ -96,7 +97,8 @@ const appRoutes: Routes = []
     TnaLogHistoryComponent,
     StatusComponent,
     OnholdContractsComponent,
-    AddNewContractsComponent
+    AddNewContractsComponent,
+    DispatchedRegisterComponent
 
     // AddEnquiryComponent,
     // SearchEnquiryComponent,

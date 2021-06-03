@@ -11,10 +11,14 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { YarnActiveContractsComponent } from './yarn-active-contracts/yarn-active-contracts.component';
+import { DispatchedRegisterComponent } from './dispatched-register/dispatched-register.component';
 
 
 @NgModule({
-  declarations: [AddNewContractsComponent, BuyerComponent, SellerComponent, ArticleComponent],
+  declarations: [AddNewContractsComponent, BuyerComponent, SellerComponent, ArticleComponent,
+     YarnActiveContractsComponent,
+    DispatchedRegisterComponent],
   imports: [
     CommonModule,
     BrowserModule,
