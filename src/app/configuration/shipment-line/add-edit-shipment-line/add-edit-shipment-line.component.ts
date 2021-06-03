@@ -15,6 +15,7 @@ export class AddEditShipmentLineComponent implements OnInit {
 
   response: any;
   data: any = {};
+  mode: any = []
   active = true;
   @Input() Id;
   @Input() statusCheck;
@@ -25,6 +26,7 @@ export class AddEditShipmentLineComponent implements OnInit {
     private _NgbActiveModal: NgbActiveModal) { }
 
   ngOnInit(): void {
+    this.GetShipmentModeDropdown();
     this.statusCheck = this.statusCheck;
     this.FormName = this.FormName;
 
@@ -39,6 +41,19 @@ export class AddEditShipmentLineComponent implements OnInit {
   }
 
 
+
+  GetShipmentModeDropdown() {
+    this.http.get(`${environment.apiUrl}/api/Lookups/ShipmentModes`).
+    subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.mode = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
 
   addShipment() {
     let varr = {

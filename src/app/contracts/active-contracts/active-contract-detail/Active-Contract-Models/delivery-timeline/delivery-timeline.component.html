@@ -35,7 +35,7 @@
         <label for="description" class="col-sm-3 col-form-label text-Navy">Supplier Date<span
           class="required-denote">*</span></label>
         <div class="col-sm-8" (clickOutside)="validity.close()">
-          <input navigation="select" class="form-control text_Navy " id="supplierDate" name="supplierDate" required
+          <input navigation="select" class="form-control " id="supplierDate" name="supplierDate" required
             [(ngModel)]="data.supplierDate" #supplierDate="ngModel" ngbDatepicker #validity="ngbDatepicker"
             [ngClass]="{ 'error': deliveryForm.submitted &&  supplierDate.invalid }" (click)="validity.toggle()"
             placeholder="Shipment date received from Supplier" />
@@ -57,8 +57,8 @@
       <div class="form-group row">
         <label for="description" class="col-sm-3 col-form-label text-Navy">Shipment Line</label>
         <div class="col-sm-8">
-          <ng-select placeholder="Select Shipment Line " class="text-center">
-            <ng-option>
+          <ng-select placeholder="Select Shipment Line " [(ngModel)]="data.shipmentLine"  name="shipmentLine" >
+            <ng-option  *ngFor="let i of line" [value]="i.id" > {{i.shipmentLineType}}
             </ng-option>
           </ng-select>
         </div>

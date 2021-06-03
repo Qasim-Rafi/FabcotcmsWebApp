@@ -20,6 +20,7 @@ export class DeliveryTimelineComponent implements OnInit {
   data: any = {};
   response: any;
   mode: any = [];
+  line: any = [];
   shipmentMode: any=[];
   queryParems: any = {};
   @Input() shipmentId;
@@ -36,7 +37,8 @@ export class DeliveryTimelineComponent implements OnInit {
 
   ngOnInit(): void {
     this.queryParems = this.route.snapshot.queryParams;
-    this.GetShipmentModeDropdown()
+    this.GetShipmentModeDropdown();
+    this.GetShipmentLineDropdown();
     this.statusCheck = this.statusCheck;
     if (this.statusCheck == 'edit') {
       this.editshipment();
@@ -68,6 +70,8 @@ export class DeliveryTimelineComponent implements OnInit {
           }
         });
   }
+
+
   GetShipmentModeDropdown() {
     this.http.get(`${environment.apiUrl}/api/Lookups/ShipmentModes`).
     subscribe(res => {
@@ -80,23 +84,34 @@ export class DeliveryTimelineComponent implements OnInit {
       }
     })
   }
+ 
+ 
+  GetShipmentLineDropdown() {
+    this.http.get(`${environment.apiUrl}/api/Lookups/ShipmentLine`).
+    subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.line = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
+ 
+ 
   addshipment(form:NgForm) {
-
-
-
-    
-
     this.data.supplierDate = this.dateformater.toModel(this.data.supplierDate);
     this.data.buyerDate = this.dateformater.toModel(this.data.buyerDate);
 
     let varr = {
       "contractId":this.contractId,
-  "shipmentNo": this.data.shipmentNo,
-  "supplierDate": this.data.supplierDate,
-  "buyerDate":this.data.buyerDate,
-  // "shipmentLine": this.data.shipmentLine,
-  "shipmentMode":this.data.shipmentMode,
-  "shipmentRemarks": this.data.shipmentRemarks
+      "shipmentNo": this.data.shipmentNo,
+      "supplierDate": this.data.supplierDate,
+      "buyerDate":this.data.buyerDate,
+      "shipmentLine": this.data.shipmentLine,
+      "shipmentMode":this.data.shipmentMode,
+      "shipmentRemarks": this.data.shipmentRemarks
     }
 
     this.http.

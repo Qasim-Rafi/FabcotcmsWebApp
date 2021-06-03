@@ -114,10 +114,10 @@
           [sorts]="[{ prop: 'id', dir: 'desc' }]"
           >
       
-          <ngx-datatable-column name="S:Seller/B:Buyer"  prop="buyerName" [flexGrow]="0.03">
-            <ng-template let-row="row"  let-expanded="expanded"  ngx-datatable-cell-template>
-              B:{{row.buyerName}}
-              S:{{row.selerName}}
+          <ngx-datatable-column name="S:Seller/B:Buyer"  prop="buyerName" [flexGrow]="0.07">
+            <ng-template let-row="row"  let-expanded="expanded"   ngx-datatable-cell-template>
+              <b *ngIf="row.buyerName !=null"> B:{{row.buyerName}}</b>            
+              <b *ngIf="row.sellerName !=null"> S:{{row.sellerName}}</b>            
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Receipt" [width]="60" prop="receiptNumber" [flexGrow]="0.05">

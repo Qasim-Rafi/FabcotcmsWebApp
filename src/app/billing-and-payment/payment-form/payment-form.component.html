@@ -177,23 +177,83 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row">
-                                <label class="col-md-3 col-form-label control-label">Supplier Name</label>
-                                <div class="col-md-6">
+                            <div class="form-group row"  
+                            *ngIf = "paymentAdddata.buyerName ==''">
+                                <label class="col-md-3 col-form-label control-label"
+                                 >Supplier Name</label>
+                                <div class="col-md-6" >
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">
                                                 <i class="fa fa-industry"></i>
                                             </span>
                                         </div>
-                                        <input type="text" class="form-control" readonly  *ngIf = "statusCheck.statusCheck == 'addPayment'"
+                                        <input type="text" class="form-control"
+                                       
+                                        readonly 
                                         name="sellerName" [(ngModel)]="paymentAdddata.sellerName" #sellerName="ngModel"
                                         >
-                                        <input type="text" class="form-control" readonly  *ngIf = "statusCheck.statusCheck == 'editPayment'"
+                                    </div>
+                                </div>
+            
+                            </div>
+                            <div class="form-group row"  *ngIf = "paymentAdddata.sellerName ==''">
+                                <label class="col-md-3 col-form-label control-label"
+                               >Buyer Name</label>
+                                <div class="col-md-6" >
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <i class="fa fa-industry"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control"    readonly 
+                                        name="buyerName" [(ngModel)]="paymentAdddata.buyerName" 
+                                        #buyerName="ngModel"
+                                        >
+                                    </div>
+                                </div>
+            
+                            </div>
+
+                            
+                            <div class="form-group row"  
+                            *ngIf = "paymentdata.buyerName ==null">
+                                <label class="col-md-3 col-form-label control-label"
+                                 >Supplier Name</label>
+                                <div class="col-md-6" >
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <i class="fa fa-industry"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control"
+                                       
+                                        readonly 
                                         name="sellerName" [(ngModel)]="paymentdata.sellerName" #sellerName="ngModel"
                                         >
                                     </div>
                                 </div>
+            
+                            </div>
+                            <div class="form-group row"  *ngIf = "paymentdata.sellerName ==null">
+                                <label class="col-md-3 col-form-label control-label"
+                               >Buyer Name</label>
+                                <div class="col-md-6" >
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <i class="fa fa-industry"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control"    readonly 
+                                        name="buyerName" [(ngModel)]="paymentdata.buyerName" 
+                                        #buyerName="ngModel"
+                                        >
+                                    </div>
+                                </div>
+            
                             </div>
 
                             <div class="form-group row">
