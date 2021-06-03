@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { YarnActiveContractsComponent } from './yarn-active-contracts/yarn-active-contracts.component';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { YarnActiveContractsComponent } from './yarn-active-contracts/yarn-activ
     ContractsRoutingModule,
     NgbDatepickerModule,
     NgSelectModule,
+    NgxDatatableModule
   ]
 })
 export class ContractsModule { }

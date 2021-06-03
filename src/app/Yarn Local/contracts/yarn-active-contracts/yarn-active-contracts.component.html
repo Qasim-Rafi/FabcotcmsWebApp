@@ -1,1 +1,714 @@
-<p>yarn-active-contracts works!</p>
+<div class="content-header">
+
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-8">
+      <h2 class="row wrapper page-header font-weight-light"> Active Contract
+        <!-- <div class="ml-2 descr"> Manage Fabric / Yarn Articles with warp, weft, end, pick,weive & width info </div> -->
+      </h2>
+    </div>
+
+    <div class="col-sm-12 col-md-6 col-lg-4">
+      <ol class="breadcrumb flt-RnL">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Active Contracts</li>
+      </ol>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="card ibox-content">
+  <div class=" panel blank-panel">
+    <div class="panel-heading">
+      <div class="row mb-3">
+        <div class="col-md-12 text-center">
+            <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist" class="nav nav-pills">
+
+        
+            <button type="button" class="btn btn-sm btn-primary" id="nav-all-tab" data-toggle="tab" href="#nav-all"
+            role="tab" aria-controls="nav-all" aria-selected="true" ><i class="fa fa-bullseye fa-fw"></i>
+            All &nbsp; <span class="badge badge-pill badge-primary">118</span> </button>
+
+            <button type="button" class="btn btn-sm btn-primary" id="nav-open-tab" data-toggle="tab" href="#nav-open"
+            role="tab" aria-controls="nav-open" aria-selected="true" > <i class="far fa-folder-open"></i> Open
+            &nbsp; <span class="badge badge-pill badge-primary">42</span>  </button>
+
+            <button type="button" class="btn btn-sm btn-primary" id="nav-close-tab" data-toggle="tab" href="#nav-close"
+            role="tab" aria-controls="nav-close" aria-selected="true" > <i
+            class="fa fa-check fa-fw"></i> Close &nbsp; <span
+            class="badge badge-pill badge-primary">1</span>  </button> 
+
+            <button type="button" class="btn btn-sm btn-primary" id="nav-billawaited-tab" data-toggle="tab" href="#nav-billawaited"
+            role="tab" aria-controls="nav-billawaited" aria-selected="true" >  <i class="far fa-clock"></i> Bill Awaited
+            &nbsp; <span class="badge badge-pill badge-primary">1</span>   </button>
+            
+           
+
+            <button type="button" class="btn btn-sm btn-primary" id="nav-billed-tab" data-toggle="tab" href="#nav-billed"
+            role="tab" aria-controls="nav-billed" aria-selected="true" ><i class="far fa-edit"></i>
+            Billed &nbsp; <span class="badge badge-pill badge-primary">74</span>  </button>
+
+            <button type="button" class="btn btn-sm btn-primary" id="nav-receivable-tab" data-toggle="tab" href="#nav-receivable"
+            role="tab" aria-controls="nav-receivable" aria-selected="true" > <i
+            class="far fa-money-bill-alt"></i>
+          Receivable &nbsp; <span class="badge badge-pill badge-primary">0</span>  </button>
+
+            <button type="button" class="btn btn-sm btn-primary" id="nav-received-tab" data-toggle="tab" href="#nav-received"
+            role="tab" aria-controls="nav-received" aria-selected="true" > <i class="fas fa-dollar-sign"></i>
+            Received &nbsp; <span class="badge badge-pill badge-primary">0</span>  </button>
+
+            <button type="button" class="btn btn-sm btn-primary" id="nav-onHold-tab" data-toggle="tab" href="#nav-onHold"
+            role="tab" aria-controls="nav-onHold" aria-selected="true" >  <i class="far fa-hand-paper"></i>
+              On-Hold &nbsp; <span class="badge badge-pill badge-primary">0</span>   </button>
+ 
+          </div>
+</nav>
+
+
+<!-- 
+<nav>
+   
+    <div class="btn-group" role="group" id="nav-tab" role="tablist" class="nav nav-pills">
+
+        <button type="button" class="btn btn-sm btn-primary" class="nav-item nav-link navlinkpdg active mb-1" id="nav-all-tab" data-toggle="tab" href="#nav-all"
+            role="tab" aria-controls="nav-all" aria-selected="true" ><i class="fa fa-bullseye fa-fw"></i>
+            All Contracts &nbsp; <span class="badge badge-pill badge-primary">118</span> </button>
+
+        <button class="btn btn-sm btn-primary"  class="nav-item nav-link navlinkpdg mb-1" id="nav-open-tab" data-toggle="tab" href="#nav-open"
+            role="tab" aria-controls="nav-open" aria-selected="false"><i class="far fa-folder-open"></i> Open Contracts
+            &nbsp; <span class="badge badge-pill badge-primary">42</span> </button>
+        
+        <button class="btn btn-sm btn-primary" class="nav-item nav-link navlinkpdg mb-1" id="nav-close-tab" data-toggle="tab" href="#nav-close"
+            role="tab" aria-controls="nav-close" aria-selected="false"><i
+            class="fa fa-check fa-fw"></i> Close &nbsp; <span
+            class="badge badge-pill badge-primary">1</span> </button>
+
+        <button class="btn btn-sm btn-primary" class="nav-item nav-link navlinkpdg mb-1" id="nav-billsawaited-tab" data-toggle="tab" href="#nav-billsawaited" role="tab"
+            aria-controls="nav-billsawaited" aria-selected="false"><i class="far fa-clock"></i> Bill Awaited
+            &nbsp; <span class="badge badge-pill badge-primary">1</span> </button>
+
+        <button class="btn btn-sm btn-primary" class="nav-item nav-link navlinkpdg mb-1" id="nav-billed-tab" data-toggle="tab" href="#nav-billed" role="tab"
+            aria-controls="nav-billed" aria-selected="false"><i class="far fa-edit"></i>
+            Billed &nbsp; <span class="badge badge-pill badge-primary">74</span> </button>
+
+        <button class="btn btn-sm btn-primary" class="nav-item nav-link navlinkpdg mb-1" id="nav-receivable-tab" data-toggle="tab" href="#nav-receivable"
+            role="tab" aria-controls="nav-receivable" aria-selected="false"><i
+            class="far fa-money-bill-alt"></i>
+          Receivable &nbsp; <span class="badge badge-pill badge-primary">0</span> </button>
+
+        <button class="btn btn-sm btn-primary" class="nav-item nav-link navlinkpdg mb-1" id="nav-received-tab" data-toggle="tab" href="#nav-received"
+            role="tab" aria-controls="nav-received" aria-selected="false"><i class="fas fa-dollar-sign"></i>
+            Received &nbsp; <span class="badge badge-pill badge-primary">0</span> </button>
+
+        <button class="btn btn-sm btn-primary" class="nav-item nav-link navlinkpdg mb-1" id="nav-onHold-tab" data-toggle="tab" href="#nav-onHold"
+            role="tab" aria-controls="nav-onHold" aria-selected="false"><i class="far fa-hand-paper"></i>
+            On-Hold &nbsp; <span class="badge badge-pill badge-primary">0</span> </button>
+    </div>
+</nav> -->
+
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-md-6 mrg-tsm">
+          <button type="button" class="btn btn-primary btn-md">
+            <i class="fa fa-filter fa-fw"></i> Advance Filter</button>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-8"></div>
+        <div class="col-md-4 mrg-tsm ">
+
+          <div class="form-group row">
+            <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="inputSearch">
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="tab-content pt-3" id="nav-tabContent">
+<!-- --------------------------- ALL CONTRACTS-------------------------->
+      <div class="tab-pane fade show active" id="nav-all" role="tabpanel" aria-labelledby="nav-all-tab">
+
+        <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'"
+        [headerHeight]="50" [footerHeight]="50" [sorts]="[{ prop: 'autoContractNumber', dir: 'desc' }]" [rowHeight]="'auto'"
+        [limit]="6">
+          <ngx-datatable-column name="Action">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+
+              <div class="ibox-tools text-center">
+
+                <button type="button" class="btn editIconBack" >
+                  <i class="far fa-edit "></i>
+                </button>
+
+                <button type="button" class="btn deleteIconBack" >
+                  <i class="far fa-trash-alt"></i>
+                </button>
+
+              </div>
+            </ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column>
+            <ng-template let-row="row" ngx-datatable-cell-template>
+
+            </ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="Age" prop="contractAge">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              <span class="badge badge-primary"></span>
+             
+            </ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="Contract Details" prop="autoContractNumber">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+         
+            </ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="Contract On" prop="contractOn">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+            
+            </ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="#PO" prop="poNumber">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              
+            </ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="#SC" prop="scNumber">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+           
+            </ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="Article" prop="articleName">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+           
+
+            </ng-template>
+          </ngx-datatable-column>
+        </ngx-datatable>
+      </div>
+      <!-- ---------------------ALL CONTRACTS------------------------->
+
+
+
+
+<!-- --------------------------- OPEN CONTRACTS-------------------------->
+<div class="tab-pane fade" id="nav-open" role="tabpanel" aria-labelledby="nav-open-tab">
+
+
+    <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'"
+    [headerHeight]="50" [footerHeight]="50" [sorts]="[{ prop: 'autoContractNumber', dir: 'desc' }]" [rowHeight]="'auto'"
+    [limit]="6">
+      <ngx-datatable-column name="Action1">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+
+          <div class="ibox-tools text-center">
+
+            <button type="button" class="btn editIconBack" >
+              <i class="far fa-edit "></i>
+            </button>
+
+            <button type="button" class="btn deleteIconBack" >
+              <i class="far fa-trash-alt"></i>
+            </button>
+
+          </div>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Age" prop="contractAge">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+          <span class="badge badge-primary"></span>
+         
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Contract Details" prop="autoContractNumber">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+     
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Contract On" prop="contractOn">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+        
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="#PO" prop="poNumber">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+          
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="#SC" prop="scNumber">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+       
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Article" prop="articleName">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+       
+
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </div>
+  <!-- ---------------------OPEN CONTRACTS------------------------->
+
+  <!-- --------------------------- CLOSED CONTRACTS-------------------------->
+<div class="tab-pane fade" id="nav-close" role="tabpanel" aria-labelledby="nav-close-tab">
+
+
+    <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'"
+    [headerHeight]="50" [footerHeight]="50" [sorts]="[{ prop: 'autoContractNumber', dir: 'desc' }]" [rowHeight]="'auto'"
+    [limit]="6">
+      <ngx-datatable-column name="Action2">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+
+          <div class="ibox-tools text-center">
+
+            <button type="button" class="btn editIconBack" >
+              <i class="far fa-edit "></i>
+            </button>
+
+            <button type="button" class="btn deleteIconBack" >
+              <i class="far fa-trash-alt"></i>
+            </button>
+
+          </div>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Age" prop="contractAge">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+          <span class="badge badge-primary"></span>
+         
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Contract Details" prop="autoContractNumber">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+     
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Contract On" prop="contractOn">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+        
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="#PO" prop="poNumber">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+          
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="#SC" prop="scNumber">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+       
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Article" prop="articleName">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+       
+
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </div>
+  <!-- ---------------------CLOSED CONTRACTS------------------------->
+
+  <!-- --------------------------- BILLS AWAITED CONTRACTS-------------------------->
+<div class="tab-pane fade" id="nav-billawaited" role="tabpanel" aria-labelledby="nav-billawaited-tab">
+
+
+    <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'"
+    [headerHeight]="50" [footerHeight]="50" [sorts]="[{ prop: 'autoContractNumber', dir: 'desc' }]" [rowHeight]="'auto'"
+    [limit]="6">
+      <ngx-datatable-column name="Action1">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+
+          <div class="ibox-tools text-center">
+
+            <button type="button" class="btn editIconBack" >
+              <i class="far fa-edit "></i>
+            </button>
+
+            <button type="button" class="btn deleteIconBack" >
+              <i class="far fa-trash-alt"></i>
+            </button>
+
+          </div>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Age" prop="contractAge">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+          <span class="badge badge-primary"></span>
+         
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Contract Details" prop="autoContractNumber">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+     
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Contract On" prop="contractOn">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+        
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="#PO" prop="poNumber">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+          
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="#SC" prop="scNumber">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+       
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Article" prop="articleName">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+       
+
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </div>
+  <!-- ---------------------BILLS AWAITED CONTRACTS------------------------->
+
+  <!-- --------------------------- BILLED CONTRACTS-------------------------->
+<div class="tab-pane fade" id="nav-billed" role="tabpanel" aria-labelledby="nav-billed-tab">
+
+
+    <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'"
+    [headerHeight]="50" [footerHeight]="50" [sorts]="[{ prop: 'autoContractNumber', dir: 'desc' }]" [rowHeight]="'auto'"
+    [limit]="6">
+      <ngx-datatable-column name="Action1">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+
+          <div class="ibox-tools text-center">
+
+            <button type="button" class="btn editIconBack" >
+              <i class="far fa-edit "></i>
+            </button>
+
+            <button type="button" class="btn deleteIconBack" >
+              <i class="far fa-trash-alt"></i>
+            </button>
+
+          </div>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Age" prop="contractAge">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+          <span class="badge badge-primary"></span>
+         
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Contract Details" prop="autoContractNumber">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+     
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Contract On" prop="contractOn">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+        
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="#PO" prop="poNumber">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+          
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="#SC" prop="scNumber">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+       
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Article" prop="articleName">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+       
+
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </div>
+  <!-- ---------------------BILLED CONTRACTS------------------------->
+
+<!-- --------------------------- receivable CONTRACTS-------------------------->
+<div class="tab-pane fade" id="nav-receivable" role="tabpanel" aria-labelledby="nav-receivable-tab">
+
+
+    <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'"
+    [headerHeight]="50" [footerHeight]="50" [sorts]="[{ prop: 'autoContractNumber', dir: 'desc' }]" [rowHeight]="'auto'"
+    [limit]="6">
+      <ngx-datatable-column name="Action4">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+
+          <div class="ibox-tools text-center">
+
+            <button type="button" class="btn editIconBack" >
+              <i class="far fa-edit "></i>
+            </button>
+
+            <button type="button" class="btn deleteIconBack" >
+              <i class="far fa-trash-alt"></i>
+            </button>
+
+          </div>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Age" prop="contractAge">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+          <span class="badge badge-primary"></span>
+         
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Contract Details" prop="autoContractNumber">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+     
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Contract On" prop="contractOn">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+        
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="#PO" prop="poNumber">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+          
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="#SC" prop="scNumber">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+       
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Article" prop="articleName">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+       
+
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </div>
+  <!-- ---------------------receivable CONTRACTS------------------------->
+
+  <!-- --------------------------- RECEIVED CONTRACTS-------------------------->
+<div class="tab-pane fade" id="nav-received" role="tabpanel" aria-labelledby="nav-received-tab">
+
+
+    <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'"
+    [headerHeight]="50" [footerHeight]="50" [sorts]="[{ prop: 'autoContractNumber', dir: 'desc' }]" [rowHeight]="'auto'"
+    [limit]="6">
+      <ngx-datatable-column name="Action1">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+
+          <div class="ibox-tools text-center">
+
+            <button type="button" class="btn editIconBack" >
+              <i class="far fa-edit "></i>
+            </button>
+
+            <button type="button" class="btn deleteIconBack" >
+              <i class="far fa-trash-alt"></i>
+            </button>
+
+          </div>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Age" prop="contractAge">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+          <span class="badge badge-primary"></span>
+         
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Contract Details" prop="autoContractNumber">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+     
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Contract On" prop="contractOn">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+        
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="#PO" prop="poNumber">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+          
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="#SC" prop="scNumber">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+       
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Article" prop="articleName">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+       
+
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </div>
+  <!-- ---------------------RECEIVED CONTRACTS------------------------->
+
+  <!-- --------------------------- ONHOLD CONTRACTS-------------------------->
+<div class="tab-pane fade" id="nav-onHold" role="tabpanel" aria-labelledby="nav-onHold-tab">
+
+
+    <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'"
+    [headerHeight]="50" [footerHeight]="50" [sorts]="[{ prop: 'autoContractNumber', dir: 'desc' }]" [rowHeight]="'auto'"
+    [limit]="6">
+      <ngx-datatable-column name="Action1">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+
+          <div class="ibox-tools text-center">
+
+            <button type="button" class="btn editIconBack" >
+              <i class="far fa-edit "></i>
+            </button>
+
+            <button type="button" class="btn deleteIconBack" >
+              <i class="far fa-trash-alt"></i>
+            </button>
+
+          </div>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Age" prop="contractAge">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+          <span class="badge badge-primary"></span>
+         
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Contract Details" prop="autoContractNumber">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+     
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Contract On" prop="contractOn">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+        
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="#PO" prop="poNumber">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+          
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="#SC" prop="scNumber">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+       
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Article" prop="articleName">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+       
+
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </div>
+  <!-- ---------------------ONHOLD CONTRACTS------------------------->
+
+</div>
+
+
+
+
+
+    </div>
+
+
+  </div>
+</div>
