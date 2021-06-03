@@ -76,11 +76,11 @@
 
                 <!----- left side content ----->
                 <div class="float-left">
-                    <span class="text-font1">
+                    <span class="text-font1" *ngIf = "rows.buyerName == ''">
                         Seller: <span class="bold text-font1">{{rows.sellerName}}</span>
                     </span>
-                    <br>
-                    <span class="text-font1">
+                
+                    <span class="text-font1" *ngIf = "rows.sellerName == ''">
                         Buyer: <span class="bold text-font1">{{rows.buyerName}}</span>
                     </span>
                     <br>
@@ -137,13 +137,14 @@
                 </span>
             </div>
             <!-- left side content -->
-            <div class="float-left">
-            <span class="text-font1" *ngIf = "rows.buyerName == ''">
-                Seller:<span class="bold text-font1">{{rows.sellerName}}</span>
+            <span class=" float-left text-font1">
+                Amount In Words:<span class="bold text-font1 underline">&nbsp;&nbsp; {{words}}</span>
             </span>
-           
-            <span class="text-font1" *ngIf = "rows.sellerName == ''">
-                Buyer:<span class="bold text-font1">{{rows.buyerName}}</span>
+            <br>
+            <span>Our Bank detail as under for FTT</span>
+            <br>
+            <span class=" float-left ">
+                Title of Account:<span >&nbsp;&nbsp;{{rows.accountName}}</span>
             </span>
             <br>
 
