@@ -47,6 +47,12 @@ import { EditCountryComponent } from './country/edit-country/edit-country.compon
 import { CurrencyComponent } from './currency/currency.component';
 import { EditCurrencyComponent } from './currency/edit-currency/edit-currency.component';
 import { AddCurrencyComponent } from './currency/add-currency/add-currency.component';
+import { WeaveComponent } from './product/weave/weave.component';
+import { PieceLengthComponent } from './product/piece-length/piece-length.component';
+import { ContainerComponent } from './product/container/container.component';
+import { AddWeaveComponent } from './product/weave/add-weave/add-weave.component';
+import { AddPieceLengthComponent } from './product/piece-length/add-piece-length/add-piece-length.component';
+import { AddContainerComponent } from './product/container/add-container/add-container.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +63,7 @@ import { AddCurrencyComponent } from './currency/add-currency/add-currency.compo
      EditTypeComponent,AddTypeComponent,PackingComponent,EditPackingComponent,AddPackingComponent,PaymentTermComponent,
      EditPaymentComponent,AddPaymentComponent,PriceTermComponent,EditPriceComponent,AddPriceComponent,BankAccountsComponent,
      EditBankAccountComponent,AddBankAccountComponent,BankComponent,EditBankComponent,AddBankComponent, CityComponent,
-     EditCityComponent,CountryComponent,EditCountryComponent, CurrencyComponent, EditCurrencyComponent ,AddCurrencyComponent
+     EditCityComponent,CountryComponent,EditCountryComponent, CurrencyComponent, EditCurrencyComponent ,AddCurrencyComponent, WeaveComponent, PieceLengthComponent, ContainerComponent, AddWeaveComponent, AddPieceLengthComponent, AddContainerComponent
   ],
   imports: [
     CommonModule,
