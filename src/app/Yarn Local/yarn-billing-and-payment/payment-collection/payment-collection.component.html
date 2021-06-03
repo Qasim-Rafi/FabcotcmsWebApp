@@ -116,44 +116,44 @@
       
           <ngx-datatable-column name="S:Seller/B:Buyer"  prop="buyerName" [flexGrow]="0.07">
             <ng-template let-row="row"  let-expanded="expanded"   ngx-datatable-cell-template>
-              <b *ngIf="row.buyerName !=null"> B:{{row.buyerName}}</b>            
-              <b *ngIf="row.sellerName !=null"> S:{{row.sellerName}}</b>            
+              <!-- <b *ngIf="row.buyerName !=null"> B:{{row.buyerName}}</b>            
+              <b *ngIf="row.sellerName !=null"> S:{{row.sellerName}}</b>             -->
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Receipt" [width]="60" prop="receiptNumber" [flexGrow]="0.05">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{row.receiptNumber}}
+              <!-- {{row.receiptNumber}} -->
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Bill" [width]="60" prop="billNumber" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-      {{row.billNumber}}
+      <!-- {{row.billNumber}} -->
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Contract" [width]="60" prop="contractNumber" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-      {{row.contractNumber}}
+      <!-- {{row.contractNumber}} -->
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Sale Invoice" [width]="40" prop="saleInvoiceNo" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-      {{row.saleInvoiceNo}}
+      <!-- {{row.saleInvoiceNo}} -->
             </ng-template>
           </ngx-datatable-column>
       
           <ngx-datatable-column name="Payment On" [width]="50" prop="paymentDate" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-      {{row.paymentDate}}
+      <!-- {{row.paymentDate}} -->
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Net Amount" [width]="50" prop="netAmount" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-      {{row.netAmount}}
+      <!-- {{row.netAmount}} -->
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Payment Mode" [width]="40" prop="paymentMode" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-      {{row.paymentMode}}
+      <!-- {{row.paymentMode}} -->
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Action" [width]="40" prop="action" [flexGrow]="0.06">
@@ -161,7 +161,7 @@
       
               <div class="ibox-tools text-center">
                 <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top" title=""
-                  data-original-title="Edit" (click)= "navigatePaymentForm('editPayment' , row)"><i
+                  data-original-title="Edit" (click)= "navigatePaymentForm('editPayment' )"><i
                     class="far fa-edit"></i></button>
                 <button type="button" class="btn deleteIconBack" data-toggle="tooltip"
                  data-placement="top" title=""><i class="fas fa-trash" (click) = "deletePayment(row)"></i></button>

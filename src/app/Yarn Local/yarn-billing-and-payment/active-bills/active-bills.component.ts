@@ -27,7 +27,7 @@ export class ActiveBillsComponent implements OnInit {
   
   copyData: any = [];
   listCount: number;
-  rows: any = [];
+  rows: any = [{nmbr: 1}];
   dashboardAmnt: any = [];
 
   data: any = [];
@@ -50,21 +50,24 @@ export class ActiveBillsComponent implements OnInit {
     ) { }
 
     navigatePaymentForm(statusCheck , obj ) {
-      this.router.navigate(['/billing-and-payment/payment-form'], { queryParams: { statusCheck: statusCheck 
+      this.router.navigate(['/yarn-billing-and-payment/payment-form'], { queryParams: { statusCheck: statusCheck 
          , id:obj.id , contractId:obj.contractId}  });
    };
-    navigateOpenBill(obj) {
-      this.router.navigate(['/billing-and-payment/open-bill'], { queryParams: {id: obj.id} });
+    // navigateOpenBill(obj) {
+    //   this.router.navigate(['/yarn-billing-and-payment/open-bill'], { queryParams: {id: obj.id} });
+    // };
+    navigateOpenBill() {
+      this.router.navigate(['/yarn-billing-and-payment/open-bill']);
     };
-    navigateEditContract(obj) {
-      this.router.navigate([''], { queryParams: {id: obj.contractId} });
-    };
+    // navigateEditContract(obj) {
+    //   this.router.navigate([''], { queryParams: {id: obj.contractId} });
+    // };
   ngOnInit(): void {
     
     this.fetch((data) => {
       this.dashboardAmnt = data
-      this.rows = data.activeBills;
-   
+      // this.rows = data.activeBills;
+  //  this.rows = [{name:1}]
       this.billFilter = [...this.rows];
       this.listCount = this.rows.length;
     });
