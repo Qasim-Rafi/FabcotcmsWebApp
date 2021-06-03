@@ -65,11 +65,11 @@
         </div>
             <!-- left side content -->
             <div class="float-left">
-            <span class="text-font1">
+            <span class="text-font1" *ngIf = "rows.buyerName == ''">
                 Seller:<span class="bold text-font1">{{rows.sellerName}}</span>
             </span>
-            <br>
-            <span class="text-font1">
+           
+            <span class="text-font1" *ngIf = "rows.sellerName == ''">
                 Buyer:<span class="bold text-font1">{{rows.buyerName}}</span>
             </span>
             <br>
