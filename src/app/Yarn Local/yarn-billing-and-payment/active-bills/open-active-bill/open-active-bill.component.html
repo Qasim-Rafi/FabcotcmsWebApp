@@ -1,0 +1,189 @@
+<div class="content-header">
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-8">
+            <h2 class="row wrapper page-header font-weight-light">
+                <b>Bill {{rows.billNumber}}</b>
+                <div class="ml-2 descr">
+                    Billing detail of Bill <b>{{rows.billNumber}}</b> against Contract <b>{{rows.contractNumber}}</b>
+                </div>
+            </h2>
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-lg-4">
+            <ol class="breadcrumb flt-RnL">
+                <li class="breadcrumb-item"><a href="#">Billing and Payment</a></li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    Active Bills
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    Bill
+                </li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card ibox-content">
+    <div class="panel blank-panel">
+        <div class="panel-heading">
+
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <span class="text-muted">Supplier Side Bill
+                    </span>
+                </div>
+                <div class="col-md-6 mrg-tsm">
+                    <button type="button" class="btn btn-primary btn-md float-right" (click)="print()">
+                        <i class="fa fa-print"></i> Print Bill
+                    </button>
+                </div>
+            </div>
+
+
+            <span class=" float-right text-font">
+                HOME TEXTILE
+            </span>
+
+
+            <div class="row mb-3">
+                <div class="col-md-8">
+                    <p class="font float-right clr"><strong>Fabcot International FZE ®</strong>
+                    </p>
+                </div>
+                <div class="col-md-8">
+                    <span class="float-right">
+                        {{rows.fabcotBranchDescription}}
+                    </span>
+                </div>
+            </div>
+
+
+            <div class="clearfix">
+
+                <!------- right side content ------->
+                <div class="float-right">
+                    <span class="text-font1">
+                        Bill No.: <span class="weight">{{rows.billNumber}}</span>
+                    </span>
+                    <br>
+                    <span class="text-font1">
+                        Bill Dt.: <span class="bold text-font1">{{rows.billDate}}</span>
+                    </span>
+                </div>
+
+                <!----- left side content ----->
+                <div class="float-left">
+                    <span class="text-font1" *ngIf = "rows.buyerName == ''">
+                        Seller: <span class="bold text-font1">{{rows.sellerName}}</span>
+                    </span>
+                
+                    <span class="text-font1" *ngIf = "rows.sellerName == ''">
+                        Buyer: <span class="bold text-font1">{{rows.buyerName}}</span>
+                    </span>
+                    <br>
+
+                    <span class="text-font1">
+                        Fabcot Contract No: <span class="bold text-font1"> {{rows.contractNumber}}</span>
+                    </span>
+                    <br>
+
+                    <span class="text-font1">
+                        Contract Date: <span class="bold text-font1">{{rows.contractDate}}</span>
+                    </span>
+                    <br>
+                    <span class="text-font1">
+                        Article: <span class="bold text-font1 ">{{rows.contractArticleName}}</span>
+                    </span>
+
+                </div>
+
+            </div>
+
+            <!-- Simple Table -->
+            <table class="table">
+                <tr>
+                    <th>Sale Invoice #</th>
+                    <th>Invoice Date</th>
+                    <th>Invoice Amount (USD)</th>
+                    <th>Commission</th>
+                    <th>Total Amount (USD)</th>
+
+                </tr>
+                <tr *ngFor="let i of rows.contractSaleInvoices">
+                    <td>{{i.saleInvoiceNo}}</td>
+                    <td>{{i.saleInvoiceDate}}</td>
+                    <td>{{i.amount}}</td>
+                    <td>{{i.commission}}</td>
+                    <td>{{i.totalAmount}}</td>
+
+                </tr>
+            </table>
+
+            <!-- right side content -->
+            <br>
+            <div class="float-right">
+                <span class=" bold text-font1">
+                    Sub Total: <span class="text-font1 underline">{{rows.invoiceSubTotalAmount}}</span>
+                </span>
+                <br>
+                <span class=" bold text-font1">
+                    TAX : <span class="text-font1 underline">{{rows.invoiceTaxAmount}}</span>
+                </span><br>
+                <span class=" bold text-font1">
+                    TOTAL : <span class="bold text-font1 underline">{{rows.invoiceTotalAmount}}</span>
+                </span>
+            </div>
+            <!-- left side content -->
+            <span class=" float-left text-font1">
+                Amount In Words:<span class="bold text-font1 underline">&nbsp;&nbsp; {{words}}</span>
+            </span>
+            <br>
+            <span>Our Bank detail as under for FTT</span>
+            <br>
+            <span class=" float-left ">
+                Title of Account:<span >&nbsp;&nbsp;{{rows.accountName}}</span>
+            </span>
+            <br>
+
+            <span class=" float-left ">
+                Address:<span> &nbsp;&nbsp;{{rows.bankAddress}} </span>
+            </span>
+            <br>
+
+            <span class=" float-left ">
+                Bank Name:<span> &nbsp;&nbsp;{{rows.bankName}}</span>
+            </span>
+            <br>
+            <span class=" float-left ">
+                Bank Account Number:<span> &nbsp;&nbsp;{{rows.accountNumber}}</span>
+            </span><br>
+            <span class=" float-left ">
+                IBAN Number:<span> &nbsp;&nbsp;{{rows.iban}}</span>
+            </span><br>
+            <span class=" float-left ">
+                Swift Code:<span>&nbsp;&nbsp;{{rows.swiftCode}}</span>
+            </span><br>
+            <span class=" float-left ">
+                Bank Branch:<span> &nbsp;&nbsp;{{rows.branchName}}</span>
+            </span><br>
+            <span class=" float-left ">
+                Account Type:<span> &nbsp;&nbsp;{{rows.type}}</span>
+            </span><br>
+            <span class=" float-left ">
+                Bank Address:<span>&nbsp;&nbsp;{{rows.bankAddress}}</span>
+            </span>
+            <br>
+            <!-- End button -->
+            <button (click)="ChangeBankForm(rows)" type="button" class="btn btn-light">Change Bank Account</button>
+            <br><br>
+            <span class=" float-left text-font1">
+                For<span class="bold text-font1">&nbsp;FABCOT INTERNATIONAL ®</span>
+            </span>
+            <br><br><br><br><br>
+
+        </div>
+    </div>
+</div>
