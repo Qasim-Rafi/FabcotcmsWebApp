@@ -14,6 +14,9 @@ import { BankAccountsComponent } from './bank-info/bank-accounts/bank-accounts.c
 import { CityComponent } from './city/city.component';
 import { CountryComponent } from './country/country.component';
 import { CurrencyComponent } from './currency/currency.component';
+import { WeaveComponent } from './product/weave/weave.component';
+import { PieceLengthComponent } from './product/piece-length/piece-length.component';
+import { ContainerComponent } from './product/container/container.component';
 
 
 const routes: Routes = [
@@ -35,6 +38,11 @@ const routes: Routes = [
     { path: 'yarn-city' ,  component: CityComponent},
     { path: 'yarn-country' ,  component: CountryComponent},
     { path: 'yarn-currency' ,  component: CurrencyComponent},
+    { path: 'yarn-weave' ,  component: WeaveComponent},
+    { path: 'yarn-piece-length' ,  component: PieceLengthComponent},
+    { path: 'yarn-container' ,  component: ContainerComponent},
+
+
 
 
 
