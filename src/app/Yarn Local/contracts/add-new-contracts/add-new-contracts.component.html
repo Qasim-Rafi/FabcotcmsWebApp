@@ -1,0 +1,358 @@
+<div class="content-header">
+
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-8">
+            <h2 class="row wrapper page-header font-weight-light"> New Enquiries
+                <div class="ml-2 descr"> Fill all the enquiry details on this page and create an enquiry in the system.
+                </div>
+            </h2>
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-lg-4">
+            <ol class="breadcrumb flt-RnL">
+                <li class="breadcrumb-item"><a href="#">Enquiry</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Add New Enquiry</li>
+            </ol>
+        </div>
+   
+    </div>
+</div>
+
+<div class="card ibox-content">
+
+
+    <div class="card-header pt-1 px-0">
+        <h4 class="card-title">Enquiry Form</h4>
+
+        <div class="card-tools">
+            <!-- <button type="button" class="btn btn-tool" data-card-widget="card-refresh" data-source="widgets.html" data-source-selector="#card-refresh-content" data-load-on-init="false">
+              <i class="fas fa-sync-alt"></i>
+            </button> -->
+
+            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                <i class="fas fa-expand"></i>
+            </button>
+            <!-- <button type="button" class="btn btn-tool" data-card-widget="remove">
+                <i class="fas fa-times"></i>
+            </button> -->
+        </div>
+    </div>
+
+
+ <div class="card-body p-0">
+
+    <div class="row">
+        <div class="col-md-12 p-3">
+
+
+            <div class="form-row">
+                <div class="form-group col-xl-1 col-md-2 col-lg-2">
+                    <label for="inputEmail4">Enquiry #</label>
+                    <div class="input-group">
+                        <span class="inputaddenquiryCity-group-addon">HT-</span>
+                    </div>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="inputPassword4">Auto</label>
+                    <!-- <input type="password" class="form-control" id="inputPassword4"> -->
+                    <input type="text" placeholder="Auto Enquiry no." class="form-control text-w-4"
+                          readonly="">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="inputPassword4">(Manual)</label>
+                    <!-- <input type="password" class="form-control" id="inputPassword4"> -->
+                    <input type="text" placeholder="Enquiry no." class="form-control text-w-4" id="enqry-no">
+                </div>
+                <div class="form-group col-md-3 offset-md-2 offset-lg-2">
+                    <label for="inputPassword4">Enquiry Date</label>
+                    <!-- <input type="text" class="form-control date" id="enqry-date" value="Fri 26-Mar-2021"> -->
+                    <div class="input-group date" >
+                        <input type="date" class="form-control  datetimepicker-input"
+                          placeholder="Date"  
+                          name="enquiryDate" ngbDatepicker 
+                        >
+                
+                          
+                        <div class="input-group-append" >
+                          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+
+
+         
+            <div class="row">
+            <div class="col-md-12">
+                <nav>
+                <div class="row">
+                    <div class="col-md-12">
+                     
+                            <div class="nav nav-pills " id="nav-tab" role="tablist">
+                            
+                                <a class="nav-item nav-link active " id="nav-Details-tab" data-toggle="tab" href="#nav-parties" role="tab"
+                                    aria-controls="nav-Details" aria-selected="true">Parties</a>
+                            
+                                <a class="nav-item nav-link " id="nav-product-tab" data-toggle="tab" href="#nav-product" role="tab"
+                                    aria-controls="nav-product" aria-selected="false">Product & Specification &nbsp;</a>
+                            
+                                <a class="nav-item nav-link " id="nav-costing-tab" data-toggle="tab" href="#nav-costing" role="tab"
+                                    aria-controls="nav-costing" aria-selected="false">Quantity & Costing &nbsp;</a>
+                            
+                                <a class="nav-item nav-link " id="nav-payment-tab" data-toggle="tab" href="#nav-payment" role="tab"
+                                    aria-controls="nav-payment" aria-selected="false">Payment & Delivery Term &nbsp;</a>
+
+                                <a class="nav-item nav-link " id="nav-commission-tab" data-toggle="tab" href="#nav-commission" role="tab"
+                                    aria-controls="nav-commission" aria-selected="false">Commission & Kickbacks &nbsp;</a>
+
+                                <!-- <a class="nav-item nav-link " id="nav-Documents-tab" data-toggle="tab" href="#nav-Documents"
+                                                                        role="tab" aria-controls="nav-Documents" aria-selected="false">Documents</a> -->
+
+                                <a class="nav-item nav-link " id="nav-remarks-tab" data-toggle="tab" href="#nav-remarks" role="tab"
+                                    aria-controls="nav-remarks" aria-selected="false">Remarks / Other Conditions &nbsp;</a>
+                            </div>
+                      
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+   
+        
+    <hr>
+
+            <div class="tab-content" id="nav-tabContent">
+
+                <div class="tab-pane fade show active" id="nav-parties" role="tabpanel" aria-labelledby="nav-parties-tab">
+                   
+                   <form #enquiryForm="ngForm" novalidate>
+                   
+
+
+
+                    <div class="form-group col-md-3">
+                        <label for="inputPassword4">Purchase Order #</label>
+                        <!-- <input type="password" class="form-control" id="inputPassword4"> -->
+                        <input type="text" placeholder="Purchase order no. optional" class="form-control text-w-4" id="enqry-no">
+                    </div>
+
+
+
+
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail3" class="col-form-label control-label">Buyer Name</label>
+        
+                        <div class="input-group">
+                            <ng-select name="buyerId" #buyerId="ngModel" class="input-w px-0" [(ngModel)]="data.buyerId"
+                                placeholder="-- Select --" [ngClass]="{ 'error': enquiryForm.submitted && buyerId.invalid }" required>
+                                <ng-option *ngFor="let i of buyer" [value]="i.id">{{ i.buyerName }}
+                                </ng-option>
+                            </ng-select>
+                           
+    
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-primary" type="button" id="button-addon2" >
+                                    <i class="fa fa-plus"></i></button>
+                              </div>
+        
+                        </div>
+        
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail3" class="col-form-label control-label">Seller Name</label>
+        
+                        <div class="input-group">
+                            <ng-select name="sellerId" #sellerId="ngModel" class="input-w px-0" [(ngModel)]="data.sellerId"
+                                placeholder="-- Select --" [ngClass]="{ 'error': enquiryForm.submitted && sellerId.invalid }" required>
+                                <ng-option *ngFor="let i of seller" [value]="i.id">{{ i.sellerName }}
+                                </ng-option>
+                            </ng-select>
+                           
+    
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-primary" type="button" id="button-addon2" >
+                                    <i class="fa fa-plus"></i></button>
+                              </div>
+        
+                        </div>
+        
+                    </div>
+
+                   </form>
+                </div>
+
+                <div class="tab-pane fade show " id="nav-product" role="tabpanel" aria-labelledby="nav-product-tab">
+                  <form #product="ngForm" novalidate>
+
+
+
+                    <div class="form-group col-md-3">
+                        <label for="inputPassword4">Construction</label>
+                        <!-- <input type="password" class="form-control" id="inputPassword4"> -->
+                        <input type="text" placeholder="Enter Specification here" class="form-control text-w-4" id="enqry-no">
+                    </div>
+
+
+
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail3" class="col-form-label control-label">Article:</label>
+        
+                        <div class="input-group">
+                            <ng-select name="articleId" #articleId="ngModel" class="input-w px-0" [(ngModel)]="data.articleId"
+                                placeholder="-- Select --" [ngClass]="{ 'error': product.submitted && sellerId.invalid }" required>
+                                <ng-option *ngFor="let i of article" [value]="i.id">{{ i.articleName }}
+                                </ng-option>
+                            </ng-select>
+                           
+    
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-primary" type="button" id="button-addon2" >
+                                    <i class="fa fa-plus"></i></button>
+                              </div>
+        
+                        </div>
+        
+                    </div>
+
+
+                  </form>
+                </div>
+         
+                <div class="tab-pane fade show " id="nav-costing" role="tabpanel" aria-labelledby="nav-costing-tab">
+                   <form #costing="ngForm" novalidate>
+
+                    <div class="form-group col-md-12">
+                        <label for="inputEmail3" class="col-form-label control-label">Quantity:</label>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="input-group">
+                                        <input type="number" min="0" placeholder="Comm%" #sellerSideCommission="ngModel" class="form-control"
+                                            [(ngModel)]="data.sellerSideCommission" name="sellerSideCommission" [ngClass]="{ 'error': costing.submitted && sellerSideCommission.invalid }" >
+                                        <div class="input-group-append">
+                                            <span class="input-group-text" id="basic-addon2">per</span>
+                                        </div>
+                                    </div>
+                                </div>
+                
+                                <div class="col-md-4 mrg-sm1">
+                
+                                    <ng-select name="sellerSideCommissionUOMId " #sellerSideCommissionUOMId="ngModel" [(ngModel)]="data.sellerSideCommissionUOMId"
+                                        placeholder="-- Select UOM --" [ngClass]="{ 'error': costing.submitted && sellerSideCommissionUOMId.invalid }"  >
+                                        <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
+                                        </ng-option>
+                                    </ng-select>
+                
+                                </div>
+                
+                                <div class="col-md-4 mrg-sm1">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" id="basic-addon2">+/-</span>
+                                    </div>
+                                    <input type="text" placeholder="tolerance value." class="form-control"
+                                        [(ngModel)]="data.sellerSideCommissionInfo" name="sellerSideCommissionInfo">
+                                     <div class="input-group-append">
+                                            <span class="input-group-text" id="basic-addon2">%</span>
+                                     </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+                        <div class="form-group col-md-12">
+                            <label for="inputEmail3" class="col-form-label control-label">Rate:</label>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="input-group">
+                                            <input type="number" min="0" placeholder="Rate" #sellerSideCommission="ngModel" class="form-control"
+                                                [(ngModel)]="data.sellerSideCommission" name="sellerSideCommission" [ngClass]="{ 'error': costing.submitted && sellerSideCommission.invalid }" >
+                                            <div class="input-group-append">
+                                                <span class="input-group-text" id="basic-addon2">per</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                    
+                                    <div class="col-md-4 mrg-sm1">
+                                        <ng-select name="sellerSideCommissionUOMId " #sellerSideCommissionUOMId="ngModel" [(ngModel)]="data.sellerSideCommissionUOMId"
+                                            placeholder="-- Select UOM --" [ngClass]="{ 'error': costing.submitted && sellerSideCommissionUOMId.invalid }"  >
+                                            <ng-option *ngFor="let i of currency" [value]="i.id">{{ i.name }}
+                                            </ng-option>
+                                        </ng-select>
+                                    </div>
+                    
+                                    <div class="col-md-4 mrg-sm1">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text" id="basic-addon2">+/-</span>
+                                        </div>
+                                        <input type="text" placeholder="tolerance value." class="form-control"
+                                            [(ngModel)]="data.sellerSideCommissionInfo" name="sellerSideCommissionInfo">
+                                         <div class="input-group-append">
+                                                <span class="input-group-text" id="basic-addon2">%</span>
+                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                   </form>
+                </div>
+         
+                <div class="tab-pane fade show " id="nav-payment" role="tabpanel" aria-labelledby="nav-payment-tab">
+                    Payment & Delivery Term
+                </div>
+
+                <div class="tab-pane fade show " id="nav-commission" role="tabpanel" aria-labelledby="nav-commission-tab">
+                    Commission & Kickbacks
+                </div>
+
+                <div class="tab-pane fade show " id="nav-remarks" role="tabpanel" aria-labelledby="nav-remarks-tab">
+                    Remarks / Other Conditions
+                </div>
+
+                </div>
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+    </div>
+
+ </div>
+
+
+
+
+
+
+
+
+</div>

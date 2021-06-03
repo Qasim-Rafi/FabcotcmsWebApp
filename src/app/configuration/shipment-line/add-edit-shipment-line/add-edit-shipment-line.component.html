@@ -32,12 +32,16 @@
         </div>
       </div>
 
+   
+
       <div class="form-group row">
-        <label for="code" class="col-sm-3 col-form-label control-label text_Navy">Shipment Mode<span
-          class="required-denote">*</span> </label>
+        <label for="description" class="col-sm-3 col-form-label text-Navy">Shipment Mode<span
+          class="required-denote">*</span></label>
         <div class="col-sm-8">
-          <input required type="text" class="form-control" placeholder="Shipment Mode" [(ngModel)]="data.shipmentMode" name="shipmentMode"
-          [ngClass]="{'error': shipmentMode.invalid && addAgentForm.submitted }" #shipmentMode="ngModel">
+          <ng-select [(ngModel)]="data.shipmentMode" placeholder="Select Shipment Mode" name="shipmentMode"
+            #shipmentMode="ngModel">
+            <ng-option *ngFor="let i of mode" [value]="i">{{ i }}</ng-option>
+          </ng-select>
         </div>
       </div>
 
