@@ -198,7 +198,8 @@ print(){
               layout:'noBorders',
               margin: [0 , 50 , 0 , 0],
               table:{headerRows:1 ,  widths:['5%' , '77%' , '7%' , '12%'],
-            body:[ [{text: 'Seller :'} , {text: this.rows['sellerName'] , style:'leftAlign'},
+            body:[ [
+              {text: 'Seller :'} , {text: this.rows['sellerName'] , style:'leftAlign'},
             {text:'Bill # :'} ,{text:this.rows['billNumber']}
           
           ]]

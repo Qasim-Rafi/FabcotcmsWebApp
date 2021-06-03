@@ -26,9 +26,6 @@ export class GenerateBillsComponent implements OnInit {
     private router: Router,
 
     ) { }
-
-
-
       contractIds: any = [];
       data: any = {};
       billFilter: any = {};
@@ -68,66 +65,16 @@ export class GenerateBillsComponent implements OnInit {
         });
         this.rows = temp;
       }
-      
-      
       onSelect(selecterow) {
         this.selectedids =selecterow;
- 
-        // console.log('Select Event', selected);
-        // this.selected.splice(0, selected.length);
-        // this.selected.push(...selected);
-        // console.log("selection" , this.selected)
+
         for(let i=0; i<this.selectedids.selected.length; i++ )
         {      
             this.contractIds[i] = this.selectedids.selected[i].id;
-            
-            // this.selected = [...this.selected]
         }
-        // return this.contractIds;        
       }
-      getIds(){
-        console.log("selected in" , this.selectedids)
-      }
-    //   singleSelectCheck (row:any) {
-    //     return this.selected.indexOf(row) === -1;
-    //  }
-      // displayCheck(row) {
-      //   console.log(row.id)
-      //   return row.id;
-      // }
-      // onActivate(event) {
-        // console.log('Activated Event', event );
-          // if (event.type === 'click' ){
-          //   this.checkboxData.push(event.row.contractBillId);
-                                   
-    //         console.log( "checkbox",this.checkboxData)
-    //       }
-          
-    //       for(let i=0; i<this.checkboxData.length; i++ )
-    //     {
-    //         this.contractIds[i] = this.checkboxData[i].id;
-            
-    //     }
-
-          
-      
-    // }
-    // branchAddress() {
-    //   if(this.contractIds.length === 0  || this.selectedids.selected.length === 0  ){
-    
-    //   }
-    //   else{
-    //   const modalRef = this.modalService.open(BranchAddressComponent, { centered: true });
-    //   modalRef.result.then((data) => {
-    //     if (data == true) {
-    
-    //     }
-    //   }, (reason) => {
-    //   });
-    // }
-    // }
+  
   generateBill() {
-    // this.getIds();
   if(this.contractIds.length === 0  || this.selectedids.selected.length === 0  ){
     this.toastr.error("PLease select atleast one contract to generate bill" , 'Message')
   }
@@ -139,7 +86,6 @@ export class GenerateBillsComponent implements OnInit {
         let varr = {
           "contractIds": item,
            "fabcotBranchName": p.branch.name,
-          
         }
         this.http.
           post(`${environment.apiUrl}/api/BillingPayments/GenerateContractBill`, varr)
@@ -164,7 +110,6 @@ export class GenerateBillsComponent implements OnInit {
       }
     }, (reason) => {
     });
-    
       }
       }
   SaleInvoiceForm(row) {
