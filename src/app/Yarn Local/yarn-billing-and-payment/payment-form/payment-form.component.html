@@ -1,0 +1,571 @@
+<div class="content-header">
+
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-8">
+            <h2 class="row wrapper page-header font-weight-light" *ngIf = "statusCheck.statusCheck == 'addPayment'"> New Sale Receipt 
+                <div class="ml-2 descr"> Add sales receipt / received payment into the system against contract bill
+                </div>
+            </h2>
+            <h2 class="row wrapper page-header font-weight-light" *ngIf = "statusCheck.statusCheck == 'editPayment'"> Update Sale Receipt
+                <div class="ml-2 descr"> Update sales receipt / received payment into the system against contract bill
+                </div>
+            </h2>
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-lg-4">
+            <ol class="breadcrumb flt-RnL">
+                <li class="breadcrumb-item"><a href="#">Payment Collection</a></li>
+               
+                <li class="breadcrumb-item active"  *ngIf = "statusCheck.statusCheck == 'addPayment'"
+                 aria-current="page">Add New Sale Receipt</li>
+                <li class="breadcrumb-item active"  *ngIf = "statusCheck.statusCheck == 'editPayment'" 
+                aria-current="page">Update Sale Receipt</li>
+           
+            </ol>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+<div class="card ibox-content">
+
+    <div class="card-header pt-1 px-0">
+        <h4 class="card-title">Sale Receipt / Payment form</h4>
+
+        <div class="card-tools">
+
+            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                <i class="fas fa-expand"></i>
+            </button>
+            <button type="button" class="btn btn-tool" data-card-widget="remove">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+    </div>
+
+
+
+    <div class="card-body p-0">
+
+
+        <div class="row">
+            <div class="col-md-12 p-3">
+
+                <form #paymentForm="ngForm" novalidate>
+
+                    <div class="form-row">
+                        <div class="col-md-12 pt-2r pb-3">
+
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label control-label">Payment Date
+
+                                    <span class="required-denote">*</span>
+                                </label>
+
+                                <div class="col-md-3">
+                                    <div class="input-group">
+
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <i class="fas fa-calendar-alt"></i>
+                                            </span>
+                                        </div>
+
+                       
+                                          <!-- <input navigation="select" class="form-control  " ngbDatepicker #paymentDate="ngbDatepicker"
+                                          (click)="paymentDate.toggle()" placeholder="Payment Date" *ngIf = "statusCheck.statusCheck == 'addPayment'"
+                                          name="paymentDate"  [(ngModel)]="data.paymentDate" #paymentDate="ngModel" /> -->
+                                          <input navigation="select" class="form-control  " id="paymentDate" name="paymentDate" 
+                                          [(ngModel)]="paymentAdddata.paymentDate" #paymentDate="ngModel" *ngIf = "statusCheck.statusCheck == 'addPayment'"  ngbDatepicker #validity="ngbDatepicker"
+                                         (click)="validity.toggle()"
+                                          placeholder="Payment Date" 
+                                          [ngClass]="{'error': paymentDate.invalid && paymentForm.submitted}"
+                                        required
+                                          />
+
+                                          <input navigation="select" class="form-control  " id="paymentDate" name="paymentDate" 
+                                          [(ngModel)]="paymentdata.paymentDate" #paymentDate="ngModel" *ngIf = "statusCheck.statusCheck == 'editPayment'"  ngbDatepicker #validity1="ngbDatepicker"
+                                         (click)="validity1.toggle()"
+                                          placeholder="Payment Date"
+                                          [ngClass]="{'error': paymentDate.invalid && paymentForm.submitted}"
+                                          required
+                                          />
+
+                                        
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label control-label">
+                                    Pay Receipt #
+                                    <span class="required-denote">*</span>
+                                
+                                </label>
+                                <div class="col-md-3">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <i class="fas fa-scroll"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control date" id="receiptNumber"  *ngIf = "statusCheck.statusCheck == 'addPayment'"
+                                          name="receiptNumber" [(ngModel)]="paymentAdddata.receiptNumber" #receiptNumber="ngModel"
+                                          [ngClass]="{'error': receiptNumber.invalid && paymentForm.submitted}"
+                                          required
+                                          >
+
+                                          <input type="text" class="form-control date" id="receiptNumber"  *ngIf = "statusCheck.statusCheck == 'editPayment'"
+                                          name="receiptNumber" [(ngModel)]="paymentdata.receiptNumber" #receiptNumber="ngModel"
+                                          [ngClass]="{'error': receiptNumber.invalid && paymentForm.submitted}"
+                                          required
+                                          >
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label control-label">
+                                    Contract No.</label>
+                                <div class="col-md-3">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <i class="far fa-handshake"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control date" readonly value="paymentAdddata.contractNumber" *ngIf = "statusCheck.statusCheck == 'addPayment'"
+                                        name="contractNumber" [(ngModel)]="paymentAdddata.contractNumber" #contractNumber="ngModel"
+                                        >
+                                        <input type="text" class="form-control date" readonly value="paymentdata.contractNumber" *ngIf = "statusCheck.statusCheck == 'editPayment'"
+                                        name="contractNumber" [(ngModel)]="paymentdata.contractNumber" #contractNumber="ngModel"
+                                        >
+                                    </div>
+                                </div>
+                                <!-- <div class="col-md-3">
+                                    <input type="text" class="form-control date" placeholder="Manual Contract No." readonly>
+                                </div> -->
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label control-label">
+                                    Bill #</label>
+                                <div class="col-md-3">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <i class="fas fa-file-invoice-dollar"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control" value="paymentAdddata.contractNumber" readonly *ngIf = "statusCheck.statusCheck == 'addPayment'"
+                                        name="billNumber" [(ngModel)]="paymentAdddata.billNumber" #billNumber="ngModel"
+                                        >
+                                        <input type="text" class="form-control" value="paymentdata.contractNumber" readonly *ngIf = "statusCheck.statusCheck == 'editPayment'"
+                                        name="billNumber" [(ngModel)]="paymentdata.billNumber" #billNumber="ngModel"
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row"  
+                            *ngIf = "paymentAdddata.buyerName ==''">
+                                <label class="col-md-3 col-form-label control-label"
+                                 >Supplier Name</label>
+                                <div class="col-md-6" >
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <i class="fa fa-industry"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control"
+                                       
+                                        readonly 
+                                        name="sellerName" [(ngModel)]="paymentAdddata.sellerName" #sellerName="ngModel"
+                                        >
+                                    </div>
+                                </div>
+            
+                            </div>
+                            <div class="form-group row"  *ngIf = "paymentAdddata.sellerName ==''">
+                                <label class="col-md-3 col-form-label control-label"
+                               >Buyer Name</label>
+                                <div class="col-md-6" >
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <i class="fa fa-industry"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control"    readonly 
+                                        name="buyerName" [(ngModel)]="paymentAdddata.buyerName" 
+                                        #buyerName="ngModel"
+                                        >
+                                    </div>
+                                </div>
+            
+                            </div>
+
+                            
+                            <div class="form-group row"  
+                            *ngIf = "paymentdata.buyerName ==null">
+                                <label class="col-md-3 col-form-label control-label"
+                                 >Supplier Name</label>
+                                <div class="col-md-6" >
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <i class="fa fa-industry"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control"
+                                       
+                                        readonly 
+                                        name="sellerName" [(ngModel)]="paymentdata.sellerName" #sellerName="ngModel"
+                                        >
+                                    </div>
+                                </div>
+            
+                            </div>
+                            <div class="form-group row"  *ngIf = "paymentdata.sellerName ==null">
+                                <label class="col-md-3 col-form-label control-label"
+                               >Buyer Name</label>
+                                <div class="col-md-6" >
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <i class="fa fa-industry"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control"    readonly 
+                                        name="buyerName" [(ngModel)]="paymentdata.buyerName" 
+                                        #buyerName="ngModel"
+                                        >
+                                    </div>
+                                </div>
+            
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label control-label">Sale Invoice No.
+                                    <span class="required-denote">*</span>
+
+                                </label>
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend ">
+                                            <span class="input-group-text">
+                                                <i class="fas fa-file-invoice"></i>
+                                            </span>
+
+                                        </div>
+                                        <div class="input-wdt"  *ngIf = "statusCheck.statusCheck == 'addPayment'">
+                                            <ng-select placeholder="--Select--"  id="saleInvoiceId"
+                                            name="saleInvoiceId" [(ngModel)]="paymentAdddata.saleInvoiceId" #saleInvoiceId="ngModel"
+                                            [ngClass]="{'error': saleInvoiceId.invalid && paymentForm.submitted}"
+                                        required
+                                            >
+                                            <ng-option *ngFor="let i of saleInvoice" [value]="i.id">{{ i.saleInvoiceNo }}
+                                              </ng-option>
+        
+                                            </ng-select>
+                                        </div>
+                                        <div class="input-wdt" *ngIf = "statusCheck.statusCheck == 'editPayment'">
+                                            <ng-select placeholder="--Select--"  
+                                            [disabled]="true"
+                                            name="saleInvoiceId" [(ngModel)]="paymentdata.saleInvoiceId" #saleInvoiceId="ngModel"
+                                            required                                    
+                                            >
+                                            <ng-option  *ngFor="let i of saleInvoice" [value]="i.id">{{ i.saleInvoiceNo }}
+                                              </ng-option>
+        
+                                            </ng-select>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label control-label">Amount
+
+                                    <span class="required-denote">*</span>
+
+                                </label>
+                                <div class="div col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-3" *ngIf = "statusCheck.statusCheck == 'addPayment'">
+                                            <ng-select placeholder="--Select currency--" id="currencyId"  [(ngModel)]="paymentAdddata.currencyId" name="currencyId"
+                                            #currencyId="ngModel"  [ngClass]="{'error': currencyId.invalid && paymentForm.submitted}"
+                                            required
+                                            >
+                                                <ng-option *ngFor="let i of currency" [value]="i.id">{{ i.code }}
+                                                    <span *ngIf="i.name !=null" class="text-muted" style="font-size: 11px">( {{ i.name }} )</span>
+                                                  </ng-option>
+                                            </ng-select>
+                                        </div>
+                                        <div class="col-md-3" *ngIf = "statusCheck.statusCheck == 'editPayment'">
+                                            <!-- <ng-select placeholder="--Select currency--"  [(ngModel)]="paymentdata.currencyId" name="currencyId">
+                                                <ng-option *ngFor="let i of currency" [value]="i.id">{{ i.code }}
+                                                    <span *ngIf="i.name !=null" class="text-muted" style="font-size: 11px">( {{ i.name }} )</span>
+                                                  </ng-option>
+                                            </ng-select> -->
+                                            <ng-select placeholder="--Select--"
+                                    name="currencyId" [(ngModel)]="paymentdata.currencyId"  id="currencyId"  #currencyId="ngModel"
+                                    [ngClass]="{'error': currencyId.invalid && paymentForm.submitted}"
+                               required     >
+                                    <ng-option *ngFor="let i of currency" [value]="i.id">{{ i.code }}
+                                      </ng-option>
+
+                                    </ng-select>
+                                        </div>
+                                        <div class="col-md-3 mrg-sm1">
+                                            <div class="input-group" *ngIf = "statusCheck.statusCheck == 'addPayment'">
+                                                <input type="text" class="form-control" placeholder="Paid Amount"
+                                                name="paidAmount" [(ngModel)]="paymentAdddata.paidAmount" #paidAmount="ngModel"
+                                                >
+                                            </div>
+                                            <div class="input-group" *ngIf = "statusCheck.statusCheck == 'editPayment'">
+                                                <input type="text" class="form-control" placeholder="Paid Amount"
+                                                name="paidAmount" [(ngModel)]="paymentdata.paidAmount" #paidAmount="ngModel"
+                                                >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 mrg-sm1">
+                                            <div class="input-group" *ngIf = "statusCheck.statusCheck == 'addPayment'">
+                                                <input type="text" class="form-control" placeholder="tax Amount"
+                                                name="taxamount" [(ngModel)]="paymentAdddata.taxamount" #taxamount="ngModel">
+                                            </div>
+                                            <div class="input-group" *ngIf = "statusCheck.statusCheck == 'editPayment'">
+                                                <input type="text" class="form-control" placeholder="tax Amount"
+                                                name="taxAmount" [(ngModel)]="paymentdata.taxAmount" #taxAmount="ngModel">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 mrg-sm1">
+                                            <div class="input-group" *ngIf = "statusCheck.statusCheck == 'addPayment'">
+                                                <input type="text" class="form-control" placeholder="Deduction"
+                                                name="deductionAmount" [(ngModel)]="paymentAdddata.deductionAmount" #deductionAmount="ngModel"
+                                                >
+                                            </div>
+                                            <div class="input-group" *ngIf = "statusCheck.statusCheck == 'editPayment'">
+                                                <input type="text" class="form-control" placeholder="Deduction"
+                                                name="deductionAmount" [(ngModel)]="paymentdata.deductionAmount" #deductionAmount="ngModel"
+                                                >
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label control-label">
+                                    Payment Mode 
+                                    <span class="required-denote">*</span>
+                                
+                                </label>
+                                <div class="col-md-2" *ngIf = "statusCheck.statusCheck == 'addPayment'">
+                                    <!-- <ng-select name="paymentMode" placeholder="-- Select --" id="paymentId" [(ngModel)]="paymentAdddata.paymentMode"
+                                    [ngClass]="{'error': paymentId.invalid && paymentForm.submitted}"
+                                    required >
+                                        <ng-option *ngFor="let i of paymentMode" [value]="i" >
+                                            {{i}}
+                                        </ng-option>
+                                    </ng-select> -->
+                                    <ng-select placeholder="--Select--"
+                                    name="paymentId" [(ngModel)]="paymentdata.currencyId"  id="paymentId"  #paymentId="ngModel"
+                                    [ngClass]="{'error': paymentId.invalid && paymentForm.submitted}"
+                               required     >
+                                    <ng-option *ngFor="let i of paymentMode" [value]="i">{{ i}}
+                                      </ng-option>
+
+                                    </ng-select>
+                                </div>
+                                <div class="col-md-2" *ngIf = "statusCheck.statusCheck == 'editPayment'">
+                                    <ng-select name="paymentMode" placeholder="-- Select --" id="paymentMode" [(ngModel)]="paymentdata.paymentMode"
+                                    [ngClass]="{'error': paymentMode.invalid && paymentForm.submitted}"
+                                    required
+                                    >
+                                        <ng-option *ngFor="let i of paymentMode" [value]="i">
+                                            {{i}}
+                                        </ng-option>
+                                    </ng-select>
+                                </div>
+                                <div class="col-md-4 " *ngIf = "statusCheck.statusCheck == 'addPayment'">
+                                    <input type="text" class="form-control"
+                                        placeholder="Additional Info(Cheque No., PO/DD No. etc)"
+                                        name="paymentDescription" [(ngModel)]="paymentAdddata.paymentDescription" #paymentDescription="ngModel"
+                                        >
+                                </div>
+
+                                <div class="col-md-4 " *ngIf = "statusCheck.statusCheck == 'editPayment'">
+                                    <input type="text" class="form-control"
+                                        placeholder="Additional Info(Cheque No., PO/DD No. etc)"
+                                        name="paymentDescription" [(ngModel)]="paymentdata.paymentDescription" #paymentDescription="ngModel"
+                                        >
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="form-row border-top">
+                        <div class="col-md-12 pt-2r pb-3">
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label control-label">
+                                    Bank Account
+                                    <span class="required-denote">*</span>
+                                
+                                </label>
+                                <div class="col-md-2"  *ngIf = "statusCheck.statusCheck == 'addPayment'">
+                                    <ng-select placeholder="--Select--"
+                                    name="bankAccountId" [(ngModel)]="paymentAdddata.bankAccountId" id="bankAccountId" #bankAccountId="ngModel"
+                                    [ngClass]="{'error': bankAccountId.invalid && paymentForm.submitted}"
+                                required
+                                    >
+                                    <ng-option *ngFor="let i of bankAcc" [value]="i.id">{{ i.accountName }}
+                                      </ng-option>
+
+                                    </ng-select>
+                                </div>
+                                <div class="col-md-2" *ngIf = "statusCheck.statusCheck == 'editPayment'" > 
+                                    <ng-select placeholder="--Select--" id="bankAccountId"
+                                    name="bankAccountId" [(ngModel)]="paymentdata.bankAccountId" #bankAccountId="ngModel"
+                                    [ngClass]="{'error': bankAccountId.invalid && paymentForm.submitted}"
+                                required
+                                    >
+                                    <ng-option *ngFor="let i of bankAcc" [value]="i.id">{{ i.accountName }}
+                                      </ng-option>
+
+                                    </ng-select>
+                                </div>
+                                <div class="col-md-4 "  *ngIf = "statusCheck.statusCheck == 'addPayment'">
+                                    <input type="text" class="form-control" placeholder="Additional Info"
+                                    name="accountDescription" [(ngModel)]="paymentAdddata.accountDescription" #accountDescription="ngModel"
+                                    >
+                                </div>
+                                <div class="col-md-4 " *ngIf = "statusCheck.statusCheck == 'editPayment'">
+                                    <input type="text" class="form-control" placeholder="Additional Info"
+                                    name="accountDescription" [(ngModel)]="paymentdata.accountDescription" #accountDescription="ngModel"
+                                    >
+                                </div>
+
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="active" class="col-md-3 col-form-label control-label" >Deposited in Bank
+
+                                </label>
+                                <!-- <label for="active" class="form-check-label checkboxDanger1">Deposited in Bank</label> -->
+                                <div class="col-md-2">
+                                    <div class="form-check form-check-label" *ngIf = "statusCheck.statusCheck == 'addPayment'">
+                                        <input  id="active" class="form-check-input" type="checkbox" 
+                                        name="isDepositedInBank" [(ngModel)]="paymentAdddata.isDepositedInBank" #isDepositedInBank="ngModel"
+                                        >
+                                      
+                                  
+                                    </div>
+                                    <div class="form-check" *ngIf = "statusCheck.statusCheck == 'editPayment'">
+                                        <input  id="active" class="form-check-input" type="checkbox" 
+                                        name="isDepositedInBank" [(ngModel)]="paymentdata.isDepositedInBank" #isDepositedInBank="ngModel"
+                                        >
+                                    </div>
+
+                                </div>
+                                <div class="col-md-1 ">
+                                    <label class=" col-form-label control-label">
+                                        Deposited Date
+                                        <span class="required-denote">*</span>
+                                    
+                                    </label>
+                                </div>
+                                <div class="col-md-3" *ngIf = "statusCheck.statusCheck == 'addPayment'">
+                                      <input navigation="select" class="form-control  " id="depositeDate"
+                                       name="depositeDate" 
+                                      [(ngModel)]="paymentAdddata.depositeDate" #depositeDate="ngModel"   ngbDatepicker #validity2="ngbDatepicker"
+                                     (click)="validity2.toggle()"
+                                      placeholder="Deposite Date" 
+                                    [ngClass]="{'error': depositeDate.invalid && paymentForm.submitted}"
+                                    required  
+                                      />
+                                </div>
+
+                                <div class="col-md-3" *ngIf = "statusCheck.statusCheck == 'editPayment'">
+                                    <input navigation="select" class="form-control  " id="depositeDate" name="depositeDate" 
+                                    [(ngModel)]="paymentdata.depositeDate" #depositeDate="ngModel"   ngbDatepicker #validity3="ngbDatepicker"
+                                   (click)="validity3.toggle()"
+                                    placeholder="Deposite Date" 
+                                    [ngClass]="{'error': depositeDate.invalid && paymentForm.submitted}"
+                                    required
+                                    />
+                                     
+                                </div>
+
+
+                            </div>
+
+                            <!-- <div class="form-group row">
+                                <label for="inputEmail3" class="col-md-3 col-form-label
+                             control-label">Additional Note:</label>
+                                <div class="col-md-6" *ngIf = "statusCheck.statusCheck == 'addPayment'">
+                                    <textarea class="form-control" rows="4" placeholder="Any Additional note here..."
+                                        name="remarks"></textarea>
+                                </div>
+                                <div class="col-md-6" *ngIf = "statusCheck.statusCheck == 'editPayment'">
+                                    <textarea class="form-control" rows="4" placeholder="Any Additional note here..."
+                                        name="remarks"></textarea>
+                                </div>
+                            </div> -->
+
+                            <div class="row">
+                                <div class="col-md-6 offset-md-3">
+                                    <button class="btn button-save" *ngIf="statusCheck.statusCheck == 'addPayment'"
+                                    (click)="onSubmit('addPayment')"
+                                    >
+                                        <i class="fas fa-check"></i> Save
+                                        Payment Info</button>
+                                        <button class="btn button-save" *ngIf="statusCheck.statusCheck == 'editPayment'"
+                                        (click)="onSubmit('editPayment')"
+                                        >
+                                            <i class="fas fa-check"></i> Update
+                                            Payment Info</button>
+                                    <button class="btn btn-outline-secondary  ml-2"  *ngIf="statusCheck.statusCheck == 'addPayment'"
+                                    
+                                    routerLink="/billing-and-payment/active-bills">
+                                        <i class="fas fa-times">
+                                        </i> Close
+                                    </button>
+                                    <button class="btn btn-outline-secondary noHover ml-2"  *ngIf="statusCheck.statusCheck == 'editPayment'"
+                                    
+                                    routerLink="/billing-and-payment/payment-collection">
+                                        <i class="fas fa-times">
+                                        </i> Close
+                                    </button>
+                                   
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+
+    </div>
+
+
+</div>

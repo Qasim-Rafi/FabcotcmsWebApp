@@ -18,7 +18,7 @@ import { DatatableComponent } from '@swimlane/ngx-datatable';
 })
 export class PaymentCollectionComponent implements OnInit {
 
-  rows: any = {};
+  rows: any = [{nmbr:1}];
   data: any = {};
   copyData: any = [];
 response: any = {};
@@ -34,15 +34,17 @@ paymentFilter: any = {};
     private toastr: ToastrService,
     private modalService: NgbModal
     ) { }
-  navigatePaymentForm(statusCheck  , obj) {
-    this.router.navigate(['/billing-and-payment/payment-form'], { queryParams: { statusCheck: statusCheck  , 
-      id:obj.id , contractId:obj.contractId }  });
+  navigatePaymentForm(statusCheck) {
+    this.router.navigate(['/yarn-billing-and-payment/payment-form'], { queryParams: { statusCheck: statusCheck  }  });
  };
+//  navigatePaymentForm(statusCheck ) {
+//   this.router.navigate(['/yarn-billing-and-payment/payment-form']);
+// };
   ngOnInit(): void {
     this.fetch((data) => {
       this.paymentFilter = [...data];
 
-      this.rows = data;
+      // this.rows = data;
       this.listCount = this.rows.length;
     });
 
