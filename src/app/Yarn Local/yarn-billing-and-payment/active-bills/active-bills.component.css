@@ -1,0 +1,39 @@
+  .topbox {
+    background-color: #ffffff;
+    color: inherit;
+    padding: 15px 20px 20px 20px;
+    border-color: #e7eaec;
+    border-image: none;
+    border-style: solid solid none;
+    border-width: 1px 0;
+  }
+  .topbox-margin-top-text {
+    font-size: 18px;
+    padding-top: 5px;
+    color: gray;
+    font-weight: 400;
+  }
+  
+  .topbox-margin-mid-text {
+    margin: 0 !important;  
+    font-size: 30px;
+    font-weight: 100;
+}
+.topbox-small-text {
+  font-size: 14px;
+  color: #777777;
+}
+.date-Label{
+    font-size: 16px!important;
+    font-weight: 200;
+}
+.date{
+    font-size: 30px;
+    font-weight: 200;
+}
+.fontSize{
+  font-size: 15px !important;
+}
+.clr{
+  background-color: white;
+}
