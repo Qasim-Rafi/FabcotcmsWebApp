@@ -12,6 +12,8 @@ import { PriceTermComponent } from './product/price-term/price-term.component';
 import { BankComponent } from './bank-info/bank/bank.component';
 import { BankAccountsComponent } from './bank-info/bank-accounts/bank-accounts.component';
 import { CityComponent } from './city/city.component';
+import { CountryComponent } from './country/country.component';
+import { CurrencyComponent } from './currency/currency.component';
 
 
 const routes: Routes = [
@@ -31,6 +33,9 @@ const routes: Routes = [
     { path: 'yarn-bank' ,  component: BankComponent},
     { path: 'yarn-bank-account' ,  component: BankAccountsComponent},
     { path: 'yarn-city' ,  component: CityComponent},
+    { path: 'yarn-country' ,  component: CountryComponent},
+    { path: 'yarn-currency' ,  component: CurrencyComponent},
+
 
 
 ]
