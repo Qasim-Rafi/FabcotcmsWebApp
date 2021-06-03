@@ -20,27 +20,27 @@ import { ContainerComponent } from './product/container/container.component';
 
 
 const routes: Routes = [
-  { path:'yarn-config', component:TemplateComponent,
+  { path:'yarn-local', component:TemplateComponent,
   // canActivate:[AuthGuard],
 
   children:[
 
-    { path: 'yarn-buyers' ,  component: BuyerComponent},
-    { path: 'yarn-seller' , component:SellerComponent},
-    { path: 'yarn-external-agents' ,  component: ForeignAgentComponent},
-    { path: 'yarn-article' ,  component: ArticlesComponent},
-    { path: 'yarn-fabric-type' ,  component: FabricTypeComponent},
-    { path: 'yarn-payment-term' ,  component: PaymentTermComponent},
-    { path: 'yarn-price-term' ,  component: PriceTermComponent},
-    { path: 'yarn-packing' ,  component: PackingComponent},
-    { path: 'yarn-bank' ,  component: BankComponent},
-    { path: 'yarn-bank-account' ,  component: BankAccountsComponent},
-    { path: 'yarn-city' ,  component: CityComponent},
-    { path: 'yarn-country' ,  component: CountryComponent},
-    { path: 'yarn-currency' ,  component: CurrencyComponent},
-    { path: 'yarn-weave' ,  component: WeaveComponent},
-    { path: 'yarn-piece-length' ,  component: PieceLengthComponent},
-    { path: 'yarn-container' ,  component: ContainerComponent},
+    { path: 'buyers' ,  component: BuyerComponent},
+    { path: 'seller' , component:SellerComponent},
+    { path: 'external-agents' ,  component: ForeignAgentComponent},
+    { path: 'article' ,  component: ArticlesComponent},
+    { path: 'fabric-type' ,  component: FabricTypeComponent},
+    { path: 'payment-term' ,  component: PaymentTermComponent},
+    { path: 'price-term' ,  component: PriceTermComponent},
+    { path: 'packing' ,  component: PackingComponent},
+    { path: 'bank' ,  component: BankComponent},
+    { path: 'bank-account' ,  component: BankAccountsComponent},
+    { path: 'city' ,  component: CityComponent},
+    { path: 'country' ,  component: CountryComponent},
+    { path: 'currency' ,  component: CurrencyComponent},
+    { path: 'weave' ,  component: WeaveComponent},
+    { path: 'piece-length' ,  component: PieceLengthComponent},
+    { path: 'container' ,  component: ContainerComponent},
 
 
 
