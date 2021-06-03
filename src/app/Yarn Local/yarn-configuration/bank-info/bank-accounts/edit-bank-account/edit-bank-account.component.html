@@ -1,0 +1,105 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <h5 class="modal-title">
+    <i class="far fa-edit"></i>
+    Edit Bank Account
+  </h5>
+
+</div>
+
+<div class="modal-body BG p-0">
+  <form #addAgentForm="ngForm" novalidate>
+
+    <div class="col-md-12 pt-3 pb-2">
+
+    <div class="form-group row">
+      <label for="inputEmail3" class="col-sm-3 col-form-label text_Navy">Bank<span class="required-denote">*</span></label>
+      <div class="col-sm-8">
+        <ng-select [(ngModel)]="data.bankId" #bankId="ngModel" name="bankId" [ngClass]="{ 'error': addAgentForm.submitted &&  bankId.invalid }" required placeholder="-- Select --" name="bank">
+          <ng-option *ngFor="let i of banks" [value]="i.id">{{ i.name }}
+          </ng-option>
+        </ng-select>
+      </div>
+    </div>
+
+    <div class="form-group row" >
+      <label for="accountName" class="col-sm-3 col-form-label control-label text_Navy">Account Name <span class="required-denote">*</span> </label>
+      <div class="col-sm-8">
+        <input appAutofocus required maxlength="100" id="accountName" type="text" class="form-control" placeholder="Account Name"
+          name="accountName" [(ngModel)]="data.accountName" #accountName="ngModel"
+          [ngClass]="{ 'error': addAgentForm.submitted &&  accountName.invalid }">
+      </div>
+    </div>
+
+    <div class="form-group row" >
+      <label for="accountNumber" class="col-sm-3 col-form-label control-label text-grey">Account No </label>
+      <div class="col-sm-8">
+        <input  maxlength="50" id="accountNumber" type="text" class="form-control" placeholder="Account Number"
+          name="accountNumber" [(ngModel)]="data.accountNumber" #accountNumber="ngModel"
+          [ngClass]="{'error': accountNumber.invalid && accountNumber.touched}">
+      </div>
+    </div>
+
+    <div class="form-group row" >
+      <label for="iban" class="col-sm-3 col-form-label control-label text-grey">IBAN </label>
+      <div class="col-sm-8">
+        <input required maxlength="34" pattern="[a-zA-Z0-9]{0,34}" id="iban" type="text" class="form-control"
+          placeholder="IBAN" name="iban" [(ngModel)]="data.iban" #iban="ngModel" [ngClass]="{'error': iban.invalid }">
+   
+      </div>
+    </div>
+
+    <div class="form-group row" >
+      <label for="swiftCode" class="col-sm-3 col-form-label control-label text-grey">Swift Code</label>
+      <div class="col-sm-8">
+        <input  pattern="[0-9]{8,11}" maxlength="11" id="swiftCode" type="text" class="form-control"
+          placeholder="Account Swift Code" name="swiftCode" [(ngModel)]="data.swiftCode" #swiftCode="ngModel"
+          [ngClass]="{'error': swiftCode.invalid }">
+     
+      </div>
+    </div>
+
+    <div class="form-group row" >
+      <label for="type" class="col-sm-3 col-form-label control-label text-grey">Type </label>
+      <div class="col-sm-8">
+        <input  id="type" type="text" class="form-control" placeholder="Account Type" name="type"
+          [(ngModel)]="data.type" #type="ngModel" [ngClass]="{'error': type.invalid }">
+
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="type" class="col-sm-3 col-form-label control-label text-grey"></label>
+      <div class="col-sm-8">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input check-btn" id="active" type="checkbox" [(ngModel)]="data.printable" />
+          <label for="active" class="form-check-label text-grey">Marked as Printable</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="type" class="col-sm-3 col-form-label control-label text-grey"></label>
+      <div class="col-sm-8">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input check-btn" id="active1" type="checkbox" [(ngModel)]="data.default" />
+          <label for="active1" class="form-check-label text-grey">Set as Default</label>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+<div class="modal-footer NotBG">
+  <button class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">Close</button>
+
+  <button class="btn button-save" type="submit" (click)="UpdateBankAccount()">
+    Update Account
+  </button>
+</div>
+
+</form>
+</div>

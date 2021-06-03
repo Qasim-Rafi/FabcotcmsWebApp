@@ -1,0 +1,192 @@
+input,
+textarea,
+option,
+select {
+  font-size: 11px;
+  color: grey;
+  border-radius: 0px;
+}
+label {
+  text-align: right;
+  font-size: 11px;
+  color: grey;
+}
+h2{
+  color: rgb(173, 169, 169);
+  font-weight: 100;
+}
+.check-btn {
+  margin-left: 100px;
+}
+
+.button-save {
+  background-color: #1ab394;
+  color: ivory;
+}
+
+.faq-item {
+  padding: 20px;
+  margin-bottom: 10px;
+  background: #fff;
+}
+
+.faq-question {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1ab394;
+  display: block;
+}
+
+a:not([href]):hover {
+  color: #228f79;
+  text-decoration: none;
+}
+
+span {
+  color: red;
+}
+
+.views-number {
+  font-size: 24px;
+  line-height: 18px;
+  font-weight: 400;
+  color: #535353;
+}
+
+.poc-icon .fa {
+  font-size: 30px;
+  margin-top: 8px;
+  color: #535353;
+}
+
+.text-s-lg {
+  font-size: 24px;
+}
+
+.poc-icon {
+  float: left;
+  width: 70px;
+  margin-right: 20px;
+  text-align: center;
+}
+
+.forum-info {
+  text-align: center;
+  overflow: hidden;
+}
+/* .small,
+small {
+  font-size: 80%;
+  color: gray;
+  font-weight: 400;
+} */
+
+.m-l-lg {
+  margin-left: 30px;
+}
+
+/* .ibox-tools {
+  display: block;
+  float: none;
+  margin-top: 0;
+  position: relative;
+  padding: 0;
+  text-align: right;
+} */
+/* .ibox-tools i{
+  color: #c4c4c4 !important;
+  font-size: 14px;
+} */
+
+.widget {
+  border-radius: 5px;
+  padding: 15px 20px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+.yellow-bg {
+  background-color: #f8ac59;
+  color: #ffffff;
+}
+.text-right {
+  text-align: right !important;
+}
+.fa-4x {
+  font-size: 4em;
+}
+
+.lazur-bg {
+  background-color: #23c6c8;
+  color: #ffffff;
+}
+.col-xs-8 {
+  width: 66.66666667%;
+}
+.input-group[class*="col-"] {
+  float: none;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.input-group {
+  position: relative;
+  display: table;
+  border-collapse: separate;
+}
+.input-group .form-control {
+  position: relative;
+  z-index: 2;
+  float: left;
+  /* width: 50%; */
+  margin-bottom: 0;
+}
+.input-group .form-control,
+.input-group-addon,
+.input-group-btn {
+  display: table-cell;
+}
+
+.form-control {
+  background-color: #ffffff;
+  background-image: none;
+  border: 1px solid #e5e6e7;
+  border-radius: 1px;
+  color: inherit;
+  display: block;
+  padding: 6px 12px;
+  width: 100%;
+  font-size: 14px;
+}
+
+@media (max-width: 575px) {
+  .autoAdjustSearch {
+    width: 75%;
+  }
+
+  .autoAdjustBtn {
+    position: absolute;
+  }
+}
+
+.table tbody tr td {
+  text-align: left;
+}
+
+td {
+  width: 33.3%;
+  border: none;
+  float: left;
+  font-size: 20px;
+
+}
+.modal-dialog {
+  max-width: 100% !important;
+}
+
+/* .descr {
+  font-size: 60% !important;
+  font-weight: 400 !important;
+  padding: 12px 0 0 0 !important;
+} */
+
+
