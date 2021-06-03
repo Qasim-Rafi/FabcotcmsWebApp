@@ -1,0 +1,28 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import { ContractsRoutingModule } from './contracts-routing.module';
+import { AddNewContractsComponent } from './add-new-contracts/add-new-contracts.component';
+import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
+import { BuyerComponent } from './Modals/buyer/buyer.component';
+import { SellerComponent } from './Modals/seller/seller.component';
+import { ArticleComponent } from './Modals/article/article.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+
+
+@NgModule({
+  declarations: [AddNewContractsComponent, BuyerComponent, SellerComponent, ArticleComponent],
+  imports: [
+    CommonModule,
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    ContractsRoutingModule,
+    NgbDatepickerModule,
+    NgSelectModule,
+  ]
+})
+export class ContractsModule { }
