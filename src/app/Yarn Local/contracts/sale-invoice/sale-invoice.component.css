@@ -1,0 +1,38 @@
+.btn.btn-white {
+    font-weight: 400;
+    color: #333;
+    background: #fff;
+    border-color: #e2e7eb;
+}
+
+.label-primary, .badge-primary {
+    background-color: #1ab394;
+    color: #FFFFFF !important;
+}
+.badge {
+    background-color: #d1dade;
+    color: #5e5e5e;
+    font-family: 'Open Sans';
+    font-size: 11px;
+    font-weight: 600;
+    padding-bottom: 4px;
+    padding-left: 6px;
+    padding-right: 6px;
+    text-shadow: none;
+}
+.btn-primary .badge {
+    color: #337ab7 !important;
+    background-color: #fff !important;
+}
+.date-Label{
+    font-size: 16px!important;
+    font-weight: 200;
+}
+.date{
+    font-size: 30px;
+    font-weight: 200;
+}
+.color{
+    background-color: #23c6c8;
+    color: white;
+  }
