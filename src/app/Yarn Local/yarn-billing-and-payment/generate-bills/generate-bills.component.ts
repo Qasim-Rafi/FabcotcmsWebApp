@@ -74,10 +74,10 @@ export class GenerateBillsComponent implements OnInit {
       }
   
   generateBill() {
-  if(this.contractIds.length === 0  || this.selectedids.selected.length === 0  ){
-    this.toastr.error("PLease select atleast one contract to generate bill" , 'Message')
-  }
-  else{
+  // if(this.contractIds.length === 0  || this.selectedids.selected.length === 0  ){
+  //   this.toastr.error("PLease select atleast one contract to generate bill" , 'Message')
+  // }
+  // else{
     const modalRef = this.modalService.open(BranchAddressComponent, { centered: true });
     modalRef.result.then((p) => {
       if (p != null) {
@@ -94,7 +94,7 @@ export class GenerateBillsComponent implements OnInit {
               this.response = res;
               if (this.response.success == true) {
                 this.toastr.success(this.response.message, 'Message.');
-                this.router.navigate(['/billing-and-payment/active-bills']);
+                this.router.navigate(['yarn-/billing-and-payment/active-bills']);
     
               }
               else {
@@ -109,7 +109,7 @@ export class GenerateBillsComponent implements OnInit {
       }
     }, (reason) => {
     });
-      }
+      // }  else
       }
   SaleInvoiceForm(row) {
     const modalRef = this.modalService.open(SaleInvoiceFormComponent , { centered: true });

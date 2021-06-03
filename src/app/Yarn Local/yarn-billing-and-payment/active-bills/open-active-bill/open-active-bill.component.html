@@ -76,11 +76,11 @@
 
                 <!----- left side content ----->
                 <div class="float-left">
-                    <span class="text-font1" *ngIf = "rows.buyerName == ''">
+                    <span class="text-font1" >
                         Seller: <span class="bold text-font1">{{rows.sellerName}}</span>
                     </span>
                 
-                    <span class="text-font1" *ngIf = "rows.sellerName == ''">
+                    <span class="text-font1" >
                         Buyer: <span class="bold text-font1">{{rows.buyerName}}</span>
                     </span>
                     <br>
@@ -89,7 +89,10 @@
                         Fabcot Contract No: <span class="bold text-font1"> {{rows.contractNumber}}</span>
                     </span>
                     <br>
-
+                    <span class="text-font1">
+                        Supplier Contract No: <span class="bold text-font1"> {{rows.contractNumber}}</span>
+                    </span>
+                    <br>
                     <span class="text-font1">
                         Contract Date: <span class="bold text-font1">{{rows.contractDate}}</span>
                     </span>
@@ -105,11 +108,18 @@
             <!-- Simple Table -->
             <table class="table">
                 <tr>
+                    <th>Description</th>
                     <th>Sale Invoice #</th>
-                    <th>Invoice Date</th>
-                    <th>Invoice Amount (USD)</th>
+                    <th>Sale Invoice Date</th>
+                    <th>Quantity</th>
+                    <th>Rate(PKR)</th>
+                    <th>SI Amount(PKR)</th>
                     <th>Commission</th>
-                    <th>Total Amount (USD)</th>
+                    <th>TAX</th>
+                    <th>Bill Amount(PKR)</th>
+
+
+
 
                 </tr>
                 <tr *ngFor="let i of rows.contractSaleInvoices">
