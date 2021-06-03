@@ -24,19 +24,21 @@
           <div class="col-md-12 text-center">
             <div class="btn-group" role="group">
   
-              <button type="button" class="btn btn-sm btn-primary"  id="all"
-                data-toggle="tooltip" title="" data-original-title="All Contracts"> <i class="fa fa-truck fa-fw"></i>
+              <button type="button" class="btn btn-sm btn-primary"  id="all" (click)="allDispatchces();"
+                data-toggle="tooltip" title="" data-original-title="All Dispatches"
+                
+                > <i class="fa fa-truck fa-fw"></i>
                 All Dispatches &nbsp; <span class="badge badge-pill badge-primary">118</span> 
               </button>
   
-              <button type="button" class="btn btn-sm btn-white" id="open"
-                data-toggle="tooltip" title="Contract open &amp; in-process"> <i class="fa fa-truck"></i>
+              <button type="button" class="btn btn-sm btn-white" (click)="pendingSaleInv();" id="open"
+                data-toggle="tooltip" title="Pending Sale Invoices &amp; in-process"> <i class="fa fa-truck"></i>
                 Pending Sale Invoices
                 &nbsp; <span class="badge badge-pill badge-primary">42</span> 
               </button>
               
-              <button type="button" class="btn btn-sm btn-white"  id="close"
-                data-toggle="tooltip" title="Contract working closed &amp; waiting for billing"> <i
+              <button type="button" class="btn btn-sm btn-white"  (click)="recSaleInv();" id="close"
+                data-toggle="tooltip" title="Sale Invoices received"> <i
                   class="fa fa-check fa-fw"></i> Sale Invoices received &nbsp; <span
                   class="badge badge-pill badge-primary">1</span>
                 </button>
@@ -73,7 +75,7 @@
                     <i class="far fa-edit "></i>
                   </button>
   
-                  <button type="button" class="btn deleteIconBack" >
+                  <button type="button" class="btn deleteIconBack"(click)="deleteContract(row)" >
                     <i class="far fa-trash-alt"></i>
                   </button>
   
@@ -87,35 +89,41 @@
               </ng-template>
             </ngx-datatable-column>
   
-            <ngx-datatable-column name="Age" prop="contractAge">
+            <ngx-datatable-column name="Buyer" prop="contractAge">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                <span class="badge badge-primary">{{row.contractAge}}</span>
+                <span class="badge badge-primary"></span>
                
               </ng-template>
             </ngx-datatable-column>
   
-            <ngx-datatable-column name="Contract Details" prop="autoContractNumber">
+            <ngx-datatable-column name="Seller" prop="autoContractNumber">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
               
               </ng-template>
             </ngx-datatable-column>
   
-            <ngx-datatable-column name="Contract On" prop="contractOn">
+            <ngx-datatable-column name="Contract " prop="contractOn">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
               </ng-template>
             </ngx-datatable-column>
   
-            <ngx-datatable-column name="#PO" prop="poNumber">
+            <ngx-datatable-column name="Article" prop="poNumber">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
               </ng-template>
             </ngx-datatable-column>
   
-            <ngx-datatable-column name="#SC" prop="scNumber">
+            <ngx-datatable-column name="Quantity" prop="scNumber">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
               </ng-template>
             </ngx-datatable-column>
   
-            <ngx-datatable-column name="Article" prop="articleName">
+            <ngx-datatable-column name="Rate" prop="articleName">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+  
+              </ng-template>
+            </ngx-datatable-column>
+            
+            <ngx-datatable-column name="Dispatch On" prop="articleName">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
   
               </ng-template>
