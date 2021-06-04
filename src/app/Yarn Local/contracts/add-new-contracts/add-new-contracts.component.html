@@ -128,8 +128,10 @@
             
                 <!---------- parties ---------->
                 <div class="tab-pane fade show active" id="nav-parties" role="tabpanel" aria-labelledby="nav-parties-tab">
-            
+                    
                     <form #enquiryForm="ngForm" novalidate>
+
+                        <div class="form-row">
             
                         <div class="form-group col-md-12">
                             <label for="inputPassword4">Purchase Order #</label>
@@ -175,7 +177,11 @@
                                 </div>
                             </div>
                         </div>
+
+                        </div>
+
                     </form>
+                    
                 </div>
             
             
@@ -183,31 +189,33 @@
                 <div class="tab-pane fade show " id="nav-product" role="tabpanel" aria-labelledby="nav-product-tab">
                     <form #product="ngForm" novalidate>
 
-                        <div class="form-group col-md-12">
-                            <label for="inputPassword4">Construction</label>
-                            <!-- <input type="password" class="form-control" id="inputPassword4"> -->
-                            <input type="text" placeholder="Enter Specification here" class="form-control text-w-4" id="enqry-no">
-                        </div>
-            
-                        <div class="form-group col-md-12">
-                            <label for="inputEmail3" class="col-form-label control-label">Article:</label>
-            
-                            <div class="input-group">
-                                <ng-select name="articleId" #articleId="ngModel" class="input-w1 px-0" [(ngModel)]="data.articleId"
-                                    placeholder="-- Select --" [ngClass]="{ 'error': product.submitted && sellerId.invalid }">
-                                    <ng-option *ngFor="let i of article" [value]="i.id">{{ i.articleName }}
-                                    </ng-option>
-                                </ng-select>
-            
-            
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-primary" type="button" id="button-addon2"
-                                        (click)="addArticleForm()">
-                                        <i class="fa fa-plus"></i></button>
-                                </div>
-            
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="inputPassword4">Construction</label>
+                                <!-- <input type="password" class="form-control" id="inputPassword4"> -->
+                                <input type="text" placeholder="Enter Specification here" class="form-control text-w-4" id="enqry-no">
                             </div>
-            
+                
+                            <div class="form-group col-md-12">
+                                <label for="inputEmail3" class="col-form-label control-label">Article:</label>
+                
+                                <div class="input-group">
+                                    <ng-select name="articleId" #articleId="ngModel" class="input-w1 px-0" [(ngModel)]="data.articleId"
+                                        placeholder="-- Select --" [ngClass]="{ 'error': product.submitted && sellerId.invalid }">
+                                        <ng-option *ngFor="let i of article" [value]="i.id">{{ i.articleName }}
+                                        </ng-option>
+                                    </ng-select>
+                
+                
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-primary" type="button" id="button-addon2"
+                                            (click)="addArticleForm()">
+                                            <i class="fa fa-plus"></i></button>
+                                    </div>
+                
+                                </div>
+                
+                            </div>
                         </div>
             
             
@@ -217,7 +225,10 @@
 
                 <!---------- Quantity ---------->
                 <div class="tab-pane fade show " id="nav-costing" role="tabpanel" aria-labelledby="nav-costing-tab">
+                    
                     <form #costing="ngForm" novalidate>
+
+                        <div class="form-row">
             
                         <div class="form-group col-md-12">
                             <label for="inputEmail3" class="col-form-label control-label">Quantity:</label>
@@ -290,6 +301,9 @@
                                 </div>
                             </div>
                         </div>
+
+                        </div>
+
                     </form>
                 </div>
             
@@ -297,440 +311,463 @@
                 <!---------- Payment & Delivery ---------->
             
                 <div class="tab-pane fade show " id="nav-payment" role="tabpanel" aria-labelledby="nav-payment-tab">
-                
-                    <div class="form-group col-md-12">
-                        <label for="inputPassword4">Seller Payment Terms:</label>
-                        <!-- <input type="password" class="form-control" id="inputPassword4"> -->
-                        <input type="text" placeholder="Enter Specification here" class="form-control text-w-4" id="enqry-no">
-                    </div>
-                
-                    <div class="form-group col-md-12">
-                        <label for="inputPassword4">Buyer Payment Terms:</label>
-                        <!-- <input type="password" class="form-control" id="inputPassword4"> -->
-                        <input type="text" placeholder="Enter Specification here" class="form-control text-w-4" id="enqry-no">
-                    </div>
-                
-                    <div class="form-group col-md-12">
-                        <label for="inputEmail3" class="col-form-label control-label">Packing:</label>
-                
-                        <div class="input-group">
-                            <ng-select name="articleId" #articleId="ngModel" class="input-w1 px-0" [(ngModel)]="data.articleId"
-                                placeholder="-- Select --" [ngClass]="{ 'error': product.submitted && sellerId.invalid }">
-                                <ng-option *ngFor="let i of article" [value]="i.id">{{ i.articleName }}
-                                </ng-option>
-                            </ng-select>
-                
-                
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-primary" type="button" id="button-addon2">
-                                    <i class="fa fa-plus"></i></button>
-                            </div>
-                
+
+                    <form #payment="ngForm" novalidate>
+
+                    <div class="form-row">
+                    
+                        <div class="form-group col-md-12">
+                            <label for="inputPassword4">Seller Payment Terms:</label>
+                            <!-- <input type="password" class="form-control" id="inputPassword4"> -->
+                            <input type="text" placeholder="Enter Specification here" class="form-control text-w-4" id="enqry-no">
                         </div>
-                
-                    </div>
-                
-                    <div class="form-group col-md-12">
-                
-                        <label for="inputEmail3" class="col-form-label control-label">Price / Delivery Terms:</label>
-                
-                        <div class="input-group">
-                            <ng-select name="articleId" #articleId="ngModel" class="input-w1 px-0" [(ngModel)]="data.articleId"
-                                placeholder="-- Select --" [ngClass]="{ 'error': product.submitted && sellerId.invalid }">
-                                <ng-option *ngFor="let i of article" [value]="i.id">{{ i.articleName }}
-                                </ng-option>
-                            </ng-select>
-                
-                
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-primary" type="button" id="button-addon2">
-                                    <i class="fa fa-plus"></i></button>
-                            </div>
+                    
+                        <div class="form-group col-md-12">
+                            <label for="inputPassword4">Buyer Payment Terms:</label>
+                            <!-- <input type="password" class="form-control" id="inputPassword4"> -->
+                            <input type="text" placeholder="Enter Specification here" class="form-control text-w-4" id="enqry-no">
                         </div>
-                    </div>
-                
-                
-                
-                    <!-- Supplier Delivery Date -->
-                
-                    <div class="col-md-12">
-                
-                        <label for="inputPassword4" class="col-form-label control-label">Supplier Delivery Date</label>
-                
-                        <div class="row">
-                
-                            <div class="form-group col-md-6">
-                                <!-- <label for="inputPassword4">Supplier Delivery Date</label> -->
-                                <!-- <input type="password" class="form-control" id="inputPassword4"> -->
-                                <input type="number" placeholder="Enter Specification here" class="form-control text-w-4" id="enqry-no">
-                            </div>
-                            <div class="col-md-3 mrg-sm1">
-                
-                                <ng-select name="sellerSideCommissionUOMId " #sellerSideCommissionUOMId="ngModel"
-                                    [(ngModel)]="data.sellerSideCommissionUOMId" placeholder="Month"
-                                    [ngClass]="{ 'error': sellerSideCommissionUOMId.invalid }">
-                                    <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
+                    
+                        <div class="form-group col-md-12">
+                            <label for="inputEmail3" class="col-form-label control-label">Packing:</label>
+                    
+                            <div class="input-group">
+                                <ng-select name="articleId" #articleId="ngModel" class="input-w1 px-0" [(ngModel)]="data.articleId"
+                                    placeholder="-- Select --" [ngClass]="{ 'error': product.submitted && sellerId.invalid }">
+                                    <ng-option *ngFor="let i of article" [value]="i.id">{{ i.articleName }}
                                     </ng-option>
                                 </ng-select>
-                
+                    
+                    
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-primary" type="button" id="button-addon2">
+                                        <i class="fa fa-plus"></i></button>
+                                </div>
+                    
                             </div>
-                            <div class="col-md-3 mrg-sm1">
-                
-                                <ng-select name="sellerSideCommissionUOMId " #sellerSideCommissionUOMId="ngModel"
-                                    [(ngModel)]="data.sellerSideCommissionUOMId" placeholder="Year"
-                                    [ngClass]="{ 'error': sellerSideCommissionUOMId.invalid }">
-                                    <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
+                    
+                        </div>
+                    
+                        <div class="form-group col-md-12">
+                    
+                            <label for="inputEmail3" class="col-form-label control-label">Price / Delivery Terms:</label>
+                    
+                            <div class="input-group">
+                                <ng-select name="articleId" #articleId="ngModel" class="input-w1 px-0" [(ngModel)]="data.articleId"
+                                    placeholder="-- Select --" [ngClass]="{ 'error': product.submitted && sellerId.invalid }">
+                                    <ng-option *ngFor="let i of article" [value]="i.id">{{ i.articleName }}
                                     </ng-option>
                                 </ng-select>
+                    
+                    
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-primary" type="button" id="button-addon2">
+                                        <i class="fa fa-plus"></i></button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                
-                
-                
-                    <div class="col-md-12">
-                
-                
-                        <div class="form-group row" *ngFor="let a of new; let i = index;">
-                
-                            <div class="form-group col-md-6">
-                                <!-- <label for="inputPassword4">Supplier Delivery Date</label> -->
-                                <input type="number" placeholder="Enter Specification here" class="form-control text-w-4" id="enqry-no">
+                    
+                    
+                    
+                        <!-- Supplier Delivery Date -->
+                    
+                        <div class="col-md-12">
+                    
+                            <label for="inputPassword4" class="col-form-label control-label">Supplier Delivery Date</label>
+                    
+                            <div class="row">
+                    
+                                <div class="form-group col-md-6">
+                                    <!-- <label for="inputPassword4">Supplier Delivery Date</label> -->
+                                    <!-- <input type="password" class="form-control" id="inputPassword4"> -->
+                                    <input type="number" placeholder="Enter Specification here" class="form-control text-w-4" id="enqry-no">
+                                </div>
+                                <div class="col-md-3 mrg-sm1">
+                    
+                                    <ng-select name="sellerSideCommissionUOMId " #sellerSideCommissionUOMId="ngModel"
+                                        [(ngModel)]="data.sellerSideCommissionUOMId" placeholder="Month"
+                                        [ngClass]="{ 'error': sellerSideCommissionUOMId.invalid }">
+                                        <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
+                                        </ng-option>
+                                    </ng-select>
+                    
+                                </div>
+                                <div class="col-md-3 mrg-sm1">
+                    
+                                    <ng-select name="sellerSideCommissionUOMId " #sellerSideCommissionUOMId="ngModel"
+                                        [(ngModel)]="data.sellerSideCommissionUOMId" placeholder="Year"
+                                        [ngClass]="{ 'error': sellerSideCommissionUOMId.invalid }">
+                                        <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
+                                        </ng-option>
+                                    </ng-select>
+                                </div>
                             </div>
-                            <div class="col-md-3 mrg-sm1">
-                
-                                <ng-select name="sellerSideCommissionUOMId {{i}} " #sellerSideCommissionUOMId="ngModel"
-                                    [(ngModel)]="a.sellerSideCommissionUOMId" placeholder="Month"
-                                    [ngClass]="{ 'error': sellerSideCommissionUOMId.invalid }">
-                                    <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
-                                    </ng-option>
-                                </ng-select>
-                
-                            </div>
-                            <div class="col-md-3 mrg-sm1">
-                
-                                <ng-select name="sellerSideCommissionUOMId {{i}} " #sellerSideCommissionUOMId="ngModel"
-                                    [(ngModel)]="a.sellerSideCommissionUOMId" placeholder="Year"
-                                    [ngClass]="{ 'error': sellerSideCommissionUOMId.invalid }">
-                                    <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
-                                    </ng-option>
-                                </ng-select>
-                            </div>
-                
-                            <div class="col-md-12"><button class="btn btn-outline-danger mt-2 float-right" type="submit"
-                                    (click)="remove(i)">
-                                    <i class="fas fa-minus fa-xs"></i></button>
-                            </div>
-                
                         </div>
-                
-                        <button class="btn btn-outline-primary btn-sm" (click)="addMore()"> Add Another Delivery Date</button>
-                
-                    </div>
-                
-                
-                    <br>
-                
-                
-                    <!-- Buyer Delivery Date -->
-                
-                    <div class="col-md-12">
-                        <label for="inputPassword4" class="col-form-label control-label">Buyer Delivery Date</label>
-                
-                        <div class="row">
-                            <div class="form-group col-md-6">
-                                <!-- <label for="inputPassword4">Buyer Delivery Date</label> -->
-                                <!-- <input type="password" class="form-control" id="inputPassword4"> -->
-                                <input type="number" placeholder="Enter Specification here" class="form-control text-w-4" id="enqry-no">
+                    
+                    
+                    
+                        <div class="col-md-12">
+                    
+                    
+                            <div class="form-group row" *ngFor="let a of new; let i = index;">
+                    
+                                <div class="form-group col-md-6">
+                                    <!-- <label for="inputPassword4">Supplier Delivery Date</label> -->
+                                    <input type="number" placeholder="Enter Specification here" class="form-control text-w-4" id="enqry-no">
+                                </div>
+                                <div class="col-md-3 mrg-sm1">
+                    
+                                    <ng-select name="sellerSideCommissionUOMId {{i}} " #sellerSideCommissionUOMId="ngModel"
+                                        [(ngModel)]="a.sellerSideCommissionUOMId" placeholder="Month"
+                                        [ngClass]="{ 'error': sellerSideCommissionUOMId.invalid }">
+                                        <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
+                                        </ng-option>
+                                    </ng-select>
+                    
+                                </div>
+                                <div class="col-md-3 mrg-sm1">
+                    
+                                    <ng-select name="sellerSideCommissionUOMId {{i}} " #sellerSideCommissionUOMId="ngModel"
+                                        [(ngModel)]="a.sellerSideCommissionUOMId" placeholder="Year"
+                                        [ngClass]="{ 'error': sellerSideCommissionUOMId.invalid }">
+                                        <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
+                                        </ng-option>
+                                    </ng-select>
+                                </div>
+                    
+                                <div class="col-md-12"><button class="btn btn-outline-danger mt-2 float-right" type="submit"
+                                        (click)="remove(i)">
+                                        <i class="fas fa-minus fa-xs"></i></button>
+                                </div>
+                    
                             </div>
-                            <div class="col-md-3 mrg-sm1">
-                                <ng-select name="sellerSideCommissionUOMId " #sellerSideCommissionUOMId="ngModel"
-                                    [(ngModel)]="data.sellerSideCommissionUOMId" placeholder="Month"
-                                    [ngClass]="{ 'error': sellerSideCommissionUOMId.invalid }">
-                                    <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
-                                    </ng-option>
-                                </ng-select>
-                            </div>
-                            <div class="col-md-3 mrg-sm1">
-                                <ng-select name="sellerSideCommissionUOMId " #sellerSideCommissionUOMId="ngModel"
-                                    [(ngModel)]="data.sellerSideCommissionUOMId" placeholder="Year"
-                                    [ngClass]="{ 'error': sellerSideCommissionUOMId.invalid }">
-                                    <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
-                                    </ng-option>
-                                </ng-select>
-                            </div>
-                
+                    
+                            <button class="btn btn-outline-primary btn-sm" (click)="addMore()"> Add Another Delivery Date</button>
+                    
                         </div>
-                
-                    </div>
-                
-                
-                
-                    <div class="col-md-12">
-                
-                        <div class="form-group row" *ngFor="let a of new2; let i = index;">
-                
-                            <div class="form-group col-md-6">
-                                <!-- <label for="inputPassword4">Buyer Delivery Date</label> -->
-                                <input type="number" placeholder="Enter Specification here" class="form-control text-w-4" id="enqry-no">
+                    
+                    
+                        <br>
+                    
+                    
+                        <!-- Buyer Delivery Date -->
+                    
+                        <div class="col-md-12">
+                            <label for="inputPassword4" class="col-form-label control-label">Buyer Delivery Date</label>
+                    
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <!-- <label for="inputPassword4">Buyer Delivery Date</label> -->
+                                    <!-- <input type="password" class="form-control" id="inputPassword4"> -->
+                                    <input type="number" placeholder="Enter Specification here" class="form-control text-w-4" id="enqry-no">
+                                </div>
+                                <div class="col-md-3 mrg-sm1">
+                                    <ng-select name="sellerSideCommissionUOMId " #sellerSideCommissionUOMId="ngModel"
+                                        [(ngModel)]="data.sellerSideCommissionUOMId" placeholder="Month"
+                                        [ngClass]="{ 'error': sellerSideCommissionUOMId.invalid }">
+                                        <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
+                                        </ng-option>
+                                    </ng-select>
+                                </div>
+                                <div class="col-md-3 mrg-sm1">
+                                    <ng-select name="sellerSideCommissionUOMId " #sellerSideCommissionUOMId="ngModel"
+                                        [(ngModel)]="data.sellerSideCommissionUOMId" placeholder="Year"
+                                        [ngClass]="{ 'error': sellerSideCommissionUOMId.invalid }">
+                                        <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
+                                        </ng-option>
+                                    </ng-select>
+                                </div>
+                    
                             </div>
-                            <div class="col-md-3 mrg-sm1">
-                
-                                <ng-select name="sellerSideCommissionUOMId {{i}} " #sellerSideCommissionUOMId="ngModel"
-                                    [(ngModel)]="a.sellerSideCommissionUOMId" placeholder="Month"
-                                    [ngClass]="{ 'error': sellerSideCommissionUOMId.invalid }">
-                                    <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
-                                    </ng-option>
-                                </ng-select>
-                
-                            </div>
-                            <div class="col-md-3 mrg-sm1">
-                
-                                <ng-select name="sellerSideCommissionUOMId {{i}} " #sellerSideCommissionUOMId="ngModel"
-                                    [(ngModel)]="a.sellerSideCommissionUOMId" placeholder="Year"
-                                    [ngClass]="{ 'error': sellerSideCommissionUOMId.invalid }">
-                                    <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
-                                    </ng-option>
-                                </ng-select>
-                            </div>
-                
-                            <div class="col-md-12"><button class="btn btn-outline-danger mt-2 float-right" type="submit"
-                                    (click)="remove2(i)">
-                                    <i class="fas fa-minus fa-xs"></i></button>
-                            </div>
-                
+                    
                         </div>
-                
-                        <button class="btn btn-outline-primary btn-sm" (click)="add()"> Add Another Delivery Date</button>
-                
+                    
+                    
+                    
+                        <div class="col-md-12">
+                    
+                            <div class="form-group row" *ngFor="let a of new2; let i = index;">
+                    
+                                <div class="form-group col-md-6">
+                                    <!-- <label for="inputPassword4">Buyer Delivery Date</label> -->
+                                    <input type="number" placeholder="Enter Specification here" class="form-control text-w-4" id="enqry-no">
+                                </div>
+                                <div class="col-md-3 mrg-sm1">
+                    
+                                    <ng-select name="sellerSideCommissionUOMId {{i}} " #sellerSideCommissionUOMId="ngModel"
+                                        [(ngModel)]="a.sellerSideCommissionUOMId" placeholder="Month"
+                                        [ngClass]="{ 'error': sellerSideCommissionUOMId.invalid }">
+                                        <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
+                                        </ng-option>
+                                    </ng-select>
+                    
+                                </div>
+                                <div class="col-md-3 mrg-sm1">
+                    
+                                    <ng-select name="sellerSideCommissionUOMId {{i}} " #sellerSideCommissionUOMId="ngModel"
+                                        [(ngModel)]="a.sellerSideCommissionUOMId" placeholder="Year"
+                                        [ngClass]="{ 'error': sellerSideCommissionUOMId.invalid }">
+                                        <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
+                                        </ng-option>
+                                    </ng-select>
+                                </div>
+                    
+                                <div class="col-md-12"><button class="btn btn-outline-danger mt-2 float-right" type="submit"
+                                        (click)="remove2(i)">
+                                        <i class="fas fa-minus fa-xs"></i></button>
+                                </div>
+                    
+                            </div>
+                    
+                            <button class="btn btn-outline-primary btn-sm" (click)="add()"> Add Another Delivery Date</button>
+                    
+                        </div>
+                    
                     </div>
+
+                    </form>
+
                 </div>
             
 
                 <!---------- commission ---------->
             
                 <div class="tab-pane fade show " id="nav-commission" role="tabpanel" aria-labelledby="nav-commission-tab">
-            
-            
-                    <div class="form-group col-md-12">
-                        <label for="code" class="col-form-label control-label">Kick Back:</label>
-
-                        <div class="row">
-
-                            <div class="col-md-4">
-                                <div class="input-group">
-                                    <input type="number" min="0" placeholder="Comm%" #buyerSideCommission="ngModel"
-                                        class="form-control" [(ngModel)]="data.buyerSideCommission" name="buyerSideCommission"
-                                        [ngClass]="{ 'error': enquiryForm.submitted && buyerSideCommission.invalid }">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text" id="basic-addon2">per</span>
-                                    </div>
-                                </div>
-                                <small id="passwordHelpBlock" class="form-text text-lightgrey">
-                                    Kickback in %age, If UOM not selected
-                                </small>
-                            </div>
-            
-                            <div class="col-md-4 mrg-sm1">
-                                <ng-select name="buyerSideCommissionUOMId " #buyerSideCommissionUOMId="ngModel"
-                                    [(ngModel)]="data.buyerSideCommissionUOMId" placeholder="-- Unit UOM --"
-                                    [ngClass]="{ 'error': enquiryForm.submitted && buyerSideCommissionUOMId.invalid }">
-                                    <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
-                                    </ng-option>
-                                </ng-select>
-                            </div>
-            
-                            <div class="col-md-4 mrg-sm1">
-                                <input type="text" placeholder="Kickback Beneficiary Name" class="form-control"
-                                    [(ngModel)]="data.buyerSideCommissionInfo" name="buyerSideCommissionInfo">
-                            </div>
-            
-                        </div>
-                    </div>
-            
-            
-                    <div class="form-group col-md-12">
-                        <label for="code" class="col-form-label control-label">FabCot Commission:</label>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="input-group">
-                                    <input type="number" min="0" placeholder="Comm%" #buyerSideCommission="ngModel"
-                                        class="form-control" [(ngModel)]="data.buyerSideCommission" name="buyerSideCommission"
-                                        [ngClass]="{ 'error': enquiryForm.submitted && buyerSideCommission.invalid }">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text" id="basic-addon2">per</span>
-                                    </div>
-                                </div>
-                                <small id="passwordHelpBlock" class="form-text text-lightgrey">
-                                    FabCot Commission in %age, If UOM not selected
-                                </small>
-                            </div>
-            
-                            <div class="col-md-4 mrg-sm1">
-                                <ng-select name="buyerSideCommissionUOMId " #buyerSideCommissionUOMId="ngModel"
-                                    [(ngModel)]="data.buyerSideCommissionUOMId" placeholder="-- Unit UOM --"
-                                    [ngClass]="{ 'error': enquiryForm.submitted && buyerSideCommissionUOMId.invalid }">
-                                    <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
-                                    </ng-option>
-                                </ng-select>
-                            </div>
-            
-                            <div class="col-md-4 mrg-sm1">
-                                <input type="text" placeholder="Additional Info" class="form-control"
-                                    [(ngModel)]="data.buyerSideCommissionInfo" name="buyerSideCommissionInfo">
-                            </div>
-                        </div>
-                    </div>
-            
-            
-                    <div class="form-group col-md-12">
-                        <label for="code" class="col-form-label control-label">Commission Buyer Side:</label>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="input-group">
-                                    <input type="number" min="0" placeholder="Comm%" #buyerSideCommission="ngModel"
-                                        class="form-control" [(ngModel)]="data.buyerSideCommission" name="buyerSideCommission"
-                                        [ngClass]="{ 'error': enquiryForm.submitted && buyerSideCommission.invalid }">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text" id="basic-addon2">per</span>
-                                    </div>
-                                </div>
-                                <small id="passwordHelpBlock" class="form-text text-lightgrey">
-                                    Kickback in %age, If UOM not selected
-                                </small>
-                            </div>
-            
-                            <div class="col-md-4 mrg-sm1">
-                                <ng-select name="buyerSideCommissionUOMId " #buyerSideCommissionUOMId="ngModel"
-                                    [(ngModel)]="data.buyerSideCommissionUOMId" placeholder="-- Unit UOM --"
-                                    [ngClass]="{ 'error': enquiryForm.submitted && buyerSideCommissionUOMId.invalid }">
-                                    <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
-                                    </ng-option>
-                                </ng-select>
-                            </div>
-            
-                            <div class="col-md-4 mrg-sm1">
-                                <input type="text" placeholder="Additional Info" class="form-control"
-                                    [(ngModel)]="data.buyerSideCommissionInfo" name="buyerSideCommissionInfo">
-                            </div>
-                        </div>
-                    </div>
-                       
-            
-                    <div class="form-group col-md-12">
-                        <label for="code" class="col-form-label control-label">Agent Commission:</label>
-                        <div class="row">
-            
-                            <div class="col-md-6 mrg-sm1">
-                                <ng-select name="buyerSideCommissionUOMId " #buyerSideCommissionUOMId="ngModel"
-                                    [(ngModel)]="data.buyerSideCommissionUOMId" placeholder="Select Agent"
-                                    [ngClass]="{ 'error': enquiryForm.submitted && buyerSideCommissionUOMId.invalid }">
-                                    <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
-                                    </ng-option>
-                                </ng-select>
-                            </div>
-            
-                            <div class="col-md-6 mrg-sm1">
-                                <input type="text" placeholder="Commission %" class="form-control"
-                                    [(ngModel)]="data.buyerSideCommissionInfo" name="buyerSideCommissionInfo">
-                            </div>
-            
-            
-            
-                        </div>
-                    </div>
-            
-
-                    <div class="col-md-12">
-                        <div class="form-group row" *ngFor="let a of new3; let i = index;">
-                    
-                            <div class="col-md-12">
-                    
-                                <label for="code" class="col-form-label control-label">Agent Commission:</label>
+                
+                    <form #commission="ngForm" novalidate>
+                
+                        <div class="form-row">
+                
+                
+                            <div class="form-group col-md-12">
+                                <label for="code" class="col-form-label control-label">Kick Back:</label>
+                
                                 <div class="row">
-                    
-                                    <div class="col-md-6 mrg-sm1">
-                                        <ng-select name="buyerSideCommissionUOMId {{i}} " #buyerSideCommissionUOMId="ngModel"
-                                            [(ngModel)]="a.buyerSideCommissionUOMId" placeholder="Select Agent"
+                
+                                    <div class="col-md-4">
+                                        <div class="input-group">
+                                            <input type="number" min="0" placeholder="Comm%" #buyerSideCommission="ngModel"
+                                                class="form-control" [(ngModel)]="data.buyerSideCommission" name="buyerSideCommission"
+                                                [ngClass]="{ 'error': enquiryForm.submitted && buyerSideCommission.invalid }">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text" id="basic-addon2">per</span>
+                                            </div>
+                                        </div>
+                                        <small id="passwordHelpBlock" class="form-text text-lightgrey">
+                                            Kickback in %age, If UOM not selected
+                                        </small>
+                                    </div>
+                
+                                    <div class="col-md-4 mrg-sm1">
+                                        <ng-select name="buyerSideCommissionUOMId " #buyerSideCommissionUOMId="ngModel"
+                                            [(ngModel)]="data.buyerSideCommissionUOMId" placeholder="-- Unit UOM --"
                                             [ngClass]="{ 'error': enquiryForm.submitted && buyerSideCommissionUOMId.invalid }">
                                             <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
                                             </ng-option>
                                         </ng-select>
                                     </div>
-                    
-                                    <div class="col-md-6 mrg-sm1">
-                                        <input type="text" placeholder="Commission %" class="form-control"
-                                            [(ngModel)]="a.buyerSideCommissionInfo" name="buyerSideCommissionInfo">
+                
+                                    <div class="col-md-4 mrg-sm1">
+                                        <input type="text" placeholder="Kickback Beneficiary Name" class="form-control"
+                                            [(ngModel)]="data.buyerSideCommissionInfo" name="buyerSideCommissionInfo">
                                     </div>
-                    
-                    
-                                    <div class="col-md-12"><button class="btn btn-outline-danger mt-2 float-right" type="submit"
-                                            (click)="remove3(i)">
-                                            <i class="fas fa-minus fa-xs"></i></button>
+                
+                                </div>
+                            </div>
+                
+                
+                            <div class="form-group col-md-12">
+                                <label for="code" class="col-form-label control-label">FabCot Commission:</label>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="input-group">
+                                            <input type="number" min="0" placeholder="Comm%" #buyerSideCommission="ngModel"
+                                                class="form-control" [(ngModel)]="data.buyerSideCommission" name="buyerSideCommission"
+                                                [ngClass]="{ 'error': enquiryForm.submitted && buyerSideCommission.invalid }">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text" id="basic-addon2">per</span>
+                                            </div>
+                                        </div>
+                                        <small id="passwordHelpBlock" class="form-text text-lightgrey">
+                                            FabCot Commission in %age, If UOM not selected
+                                        </small>
+                                    </div>
+                
+                                    <div class="col-md-4 mrg-sm1">
+                                        <ng-select name="buyerSideCommissionUOMId " #buyerSideCommissionUOMId="ngModel"
+                                            [(ngModel)]="data.buyerSideCommissionUOMId" placeholder="-- Unit UOM --"
+                                            [ngClass]="{ 'error': enquiryForm.submitted && buyerSideCommissionUOMId.invalid }">
+                                            <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
+                                            </ng-option>
+                                        </ng-select>
+                                    </div>
+                
+                                    <div class="col-md-4 mrg-sm1">
+                                        <input type="text" placeholder="Additional Info" class="form-control"
+                                            [(ngModel)]="data.buyerSideCommissionInfo" name="buyerSideCommissionInfo">
                                     </div>
                                 </div>
-
                             </div>
-                    
+                
+                
+                            <div class="form-group col-md-12">
+                                <label for="code" class="col-form-label control-label">Commission Buyer Side:</label>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="input-group">
+                                            <input type="number" min="0" placeholder="Comm%" #buyerSideCommission="ngModel"
+                                                class="form-control" [(ngModel)]="data.buyerSideCommission" name="buyerSideCommission"
+                                                [ngClass]="{ 'error': enquiryForm.submitted && buyerSideCommission.invalid }">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text" id="basic-addon2">per</span>
+                                            </div>
+                                        </div>
+                                        <small id="passwordHelpBlock" class="form-text text-lightgrey">
+                                            Kickback in %age, If UOM not selected
+                                        </small>
+                                    </div>
+                
+                                    <div class="col-md-4 mrg-sm1">
+                                        <ng-select name="buyerSideCommissionUOMId " #buyerSideCommissionUOMId="ngModel"
+                                            [(ngModel)]="data.buyerSideCommissionUOMId" placeholder="-- Unit UOM --"
+                                            [ngClass]="{ 'error': enquiryForm.submitted && buyerSideCommissionUOMId.invalid }">
+                                            <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
+                                            </ng-option>
+                                        </ng-select>
+                                    </div>
+                
+                                    <div class="col-md-4 mrg-sm1">
+                                        <input type="text" placeholder="Additional Info" class="form-control"
+                                            [(ngModel)]="data.buyerSideCommissionInfo" name="buyerSideCommissionInfo">
+                                    </div>
+                                </div>
+                            </div>
+                
+                
+                            <div class="form-group col-md-12">
+                                <label for="code" class="col-form-label control-label">Agent Commission:</label>
+                                <div class="row">
+                
+                                    <div class="col-md-6 mrg-sm1">
+                                        <ng-select name="buyerSideCommissionUOMId " #buyerSideCommissionUOMId="ngModel"
+                                            [(ngModel)]="data.buyerSideCommissionUOMId" placeholder="Select Agent"
+                                            [ngClass]="{ 'error': enquiryForm.submitted && buyerSideCommissionUOMId.invalid }">
+                                            <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
+                                            </ng-option>
+                                        </ng-select>
+                                    </div>
+                
+                                    <div class="col-md-6 mrg-sm1">
+                                        <input type="text" placeholder="Commission %" class="form-control"
+                                            [(ngModel)]="data.buyerSideCommissionInfo" name="buyerSideCommissionInfo">
+                                    </div>
+                
+                
+                
+                                </div>
+                            </div>
+                
+                
+                            <div class="col-md-12">
+                                <div class="form-group row" *ngFor="let a of new3; let i = index;">
+                
+                                    <div class="col-md-12">
+                
+                                        <label for="code" class="col-form-label control-label">Agent Commission:</label>
+                                        <div class="row">
+                
+                                            <div class="col-md-6 mrg-sm1">
+                                                <ng-select name="buyerSideCommissionUOMId {{i}} " #buyerSideCommissionUOMId="ngModel"
+                                                    [(ngModel)]="a.buyerSideCommissionUOMId" placeholder="Select Agent"
+                                                    [ngClass]="{ 'error': enquiryForm.submitted && buyerSideCommissionUOMId.invalid }">
+                                                    <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
+                                                    </ng-option>
+                                                </ng-select>
+                                            </div>
+                
+                                            <div class="col-md-6 mrg-sm1">
+                                                <input type="text" placeholder="Commission %" class="form-control"
+                                                    [(ngModel)]="a.buyerSideCommissionInfo" name="buyerSideCommissionInfo">
+                                            </div>
+                
+                
+                                            <div class="col-md-12"><button class="btn btn-outline-danger mt-2 float-right" type="submit"
+                                                    (click)="remove3(i)">
+                                                    <i class="fas fa-minus fa-xs"></i></button>
+                                            </div>
+                                        </div>
+                
+                                    </div>
+                
+                                </div>
+                            </div>
+                
+                            <div class="col-md-12">
+                                <button class="btn btn-outline-success" type="submit" (click)="add3()" *ngIf="counter3 != 3">
+                                    <i class="fas fa-plus"></i>
+                                    Add Agent
+                                </button>
+                            </div>
+                
                         </div>
-                    </div>
-            
-                    <div class="col-md-12">
-                        <button class="btn btn-outline-success" type="submit" (click)="add3()" *ngIf="counter3 != 3">
-                            <i class="fas fa-plus"></i>
-                            Add Agent
-                        </button>
-                    </div>
-            
-            
+                
+                    </form>
+                
                 </div>
             
 
                 <!---------- remarks ---------->
                 <div class="tab-pane fade show " id="nav-remarks" role="tabpanel" aria-labelledby="nav-remarks-tab">
-                    <div class="col-md-12">
 
-                        <div class="form-group row">
-                            <label for="inputEmail3" class="col-md-3 col-form-label control-label">Remarks:</label>
-                            <div class="col-md-6">
-                                <div class="input-group">
-                                    <textarea rows="3" class="form-control" [(ngModel)]="data.enquiryRemarks"
-                                        name="enquiryRemarks"></textarea>
+                    <form #remarks="ngForm" novalidate>
+                    
+                        <div class="form-row">
+                            <div class="col-md-12">
+                    
+                                <div class="form-group row">
+                                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Remarks:</label>
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            <textarea rows="3" class="form-control" [(ngModel)]="data.enquiryRemarks"
+                                                name="enquiryRemarks"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                    
+                                <div class="form-group row">
+                                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Remarks Buyer:</label>
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            <textarea rows="3" class="form-control" [(ngModel)]="data.enquiryRemarks"
+                                                name="enquiryRemarks"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                    
+                                <div class="form-group row">
+                                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Other
+                                        Conditions:</label>
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            <textarea rows="3" class="form-control" [(ngModel)]="data.enquiryOtherCondition"
+                                                name="enquiryOtherCondition"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                    
+                                <div class="form-group row">
+                                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Title:</label>
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            <textarea rows="3" class="form-control" [(ngModel)]="data.enquiryOtherCondition"
+                                                name="enquiryOtherCondition"></textarea>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-            
-                        <div class="form-group row">
-                            <label for="inputEmail3" class="col-md-3 col-form-label control-label">Remarks Buyer:</label>
-                            <div class="col-md-6">
-                                <div class="input-group">
-                                    <textarea rows="3" class="form-control" [(ngModel)]="data.enquiryRemarks"
-                                        name="enquiryRemarks"></textarea>
-                                </div>
-                            </div>
-                        </div>
-            
-                        <div class="form-group row">
-                            <label for="inputEmail3" class="col-md-3 col-form-label control-label">Other
-                                Conditions:</label>
-                            <div class="col-md-6">
-                                <div class="input-group">
-                                    <textarea rows="3" class="form-control" [(ngModel)]="data.enquiryOtherCondition"
-                                        name="enquiryOtherCondition"></textarea>
-                                </div>
-                            </div>
-                        </div>
-            
-                        <div class="form-group row">
-                            <label for="inputEmail3" class="col-md-3 col-form-label control-label">Title:</label>
-                            <div class="col-md-6">
-                                <div class="input-group">
-                                    <textarea rows="3" class="form-control" [(ngModel)]="data.enquiryOtherCondition"
-                                        name="enquiryOtherCondition"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
+                    </form>
             
             
             
