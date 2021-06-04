@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { GlobalConstants } from 'src/app/Common/global-constants';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
+import { AddNewInvComponent } from './add-new-inv/add-new-inv.component';
 
 @Component({
   selector: 'app-sale-invoice',
@@ -27,6 +28,7 @@ export class SaleInvoiceComponent implements OnInit {
   receivableCount: number;
   receivedCount: number;
   onHoldCount: number;
+  currencyFilter: any = [];
 
 
   constructor(
@@ -104,39 +106,57 @@ on_HandContract(){
 
 
 
+addinvoiceForm(check){
+  const modalRef = this.modalService.open(AddNewInvComponent, { centered: true });
+  modalRef.componentInstance.statusCheck = check;
 
+        modalRef.result.then((data) => {
+       // on close
+        if(data ==true){
+        //  this.date = this.myDate;
+         this.fetch((data) => {
+          this.rows = data;
+    this.currencyFilter = [...this.rows];
+      
+        });
+       
+      }
+     }, (reason) => {
+       // on dismiss
+     });
+}
 
-// fetch(cb) {
+fetch(cb) {
 
-//   this.http
-//     .get(`${environment.apiUrl}/api/Contracts/GetAllContract`)
-//     .subscribe(res => {
-//       this.response = res;
+  this.http
+    .get(`${environment.apiUrl}/api/Contracts/GetAllContract`)
+    .subscribe(res => {
+      this.response = res;
 
-//       if (this.response.success == true) {
-//         this.data = this.response.data.list;
-//         this.allCount = this.response.data.allCount;
-//         this.openCount = this.response.data.openCount;
-//         this.closedCount = this.response.data.closedCount;
-//         this.billAwaitedCount = this.response.data.billAwaitedCount;
-//         this.billedCount = this.response.data.billedCount;
-//         this.receivableCount = this.response.data.receivableCount;
-//         this.receivedCount = this.response.data.receivedCount;
-//         this.onHoldCount = this.response.data.onHoldCount;
-//         this.temp = [this.data]; 
-//         cb(this.data);
-//       }
-//       else {
-//         this.toastr.error(this.response.message, 'Message.');
-//       }
-//       // this.spinner.hide();
-//     }, err => {
-//       if (err.status == 400) {
-//         this.toastr.error(err.error.message, 'Message.');;
-//       }
-//       //  this.spinner.hide();
-//     });
-// }
+      if (this.response.success == true) {
+        this.data = this.response.data.list;
+        this.allCount = this.response.data.allCount;
+        this.openCount = this.response.data.openCount;
+        this.closedCount = this.response.data.closedCount;
+        this.billAwaitedCount = this.response.data.billAwaitedCount;
+        this.billedCount = this.response.data.billedCount;
+        this.receivableCount = this.response.data.receivableCount;
+        this.receivedCount = this.response.data.receivedCount;
+        this.onHoldCount = this.response.data.onHoldCount;
+        this.temp = [this.data]; 
+        cb(this.data);
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+      // this.spinner.hide();
+    }, err => {
+      if (err.status == 400) {
+        this.toastr.error(err.error.message, 'Message.');;
+      }
+      //  this.spinner.hide();
+    });
+}
 
 
 
