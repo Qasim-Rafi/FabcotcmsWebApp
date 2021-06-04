@@ -3,7 +3,8 @@
     <div class="row">
         <div class="col-sm-12 col-md-6 col-lg-8">
             <h2 class="row wrapper page-header font-weight-light"> New Contract
-                <div class="ml-2 descr"> Fill all the contract details on this page and create an contract in the system.
+                <div class="ml-2 descr"> Fill all the contract details on this page and create an contract in the
+                    system.
                 </div>
             </h2>
         </div>
@@ -14,7 +15,7 @@
                 <li class="breadcrumb-item active" aria-current="page">Add New Contract</li>
             </ol>
         </div>
-   
+
     </div>
 </div>
 
@@ -42,44 +43,42 @@
     </div>
 
 
- <div class="card-body p-0">
+    <div class="card-body p-0">
 
-    <div class="row">
-        <div class="col-md-12 p-3">
+        <div class="row">
+            <div class="col-md-12 p-3">
 
 
-            <div class="form-row">
-                <div class="form-group col-xl-1 col-md-2 col-lg-2">
-                    <label for="inputEmail4">Contract #</label>
-                    <div class="input-group">
-                        <span class="inputaddenquiryCity-group-addon">YL-</span>
+                <div class="form-row">
+                    <div class="form-group col-xl-1 col-md-2 col-lg-2">
+                        <label for="inputEmail4">Contract #</label>
+                        <div class="input-group">
+                            <span class="inputaddenquiryCity-group-addon">YL-</span>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="inputPassword4">Auto</label>
+                        <!-- <input type="password" class="form-control" id="inputPassword4"> -->
+                        <input type="text" placeholder="Auto Enquiry no." class="form-control text-w-4" readonly="">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="inputPassword4">(Manual)</label>
+                        <!-- <input type="password" class="form-control" id="inputPassword4"> -->
+                        <input type="text" placeholder="Enquiry no." class="form-control text-w-4" id="enqry-no">
+                    </div>
+                    <div class="form-group col-md-3 offset-md-2 offset-lg-2">
+                        <label for="inputPassword4">Contract Date</label>
+                        <!-- <input type="text" class="form-control date" id="enqry-date" value="Fri 26-Mar-2021"> -->
+                        <div class="input-group date" (clickOutside)="enquiryDatePicker.close()">
+                            <input type="text" class="form-control  datetimepicker-input"
+                                (click)="enquiryDatePicker.toggle()" placeholder="Date"
+                                #enquiryDatePicker="ngbDatepicker" name="enquiryDate" ngbDatepicker>
+                            <div class="input-group-append" (click)="enquiryDatePicker.toggle()">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="form-group col-md-2">
-                    <label for="inputPassword4">Auto</label>
-                    <!-- <input type="password" class="form-control" id="inputPassword4"> -->
-                    <input type="text" placeholder="Auto Enquiry no." class="form-control text-w-4"
-                          readonly="">
-                </div>
-                <div class="form-group col-md-3">
-                    <label for="inputPassword4">(Manual)</label>
-                    <!-- <input type="password" class="form-control" id="inputPassword4"> -->
-                    <input type="text" placeholder="Enquiry no." class="form-control text-w-4" id="enqry-no">
-                </div>
-                <div class="form-group col-md-3 offset-md-2 offset-lg-2">
-                    <label for="inputPassword4">Contract Date</label>
-                    <!-- <input type="text" class="form-control date" id="enqry-date" value="Fri 26-Mar-2021"> -->
-                    <div class="input-group date" (clickOutside)="enquiryDatePicker.close()">
-                        <input type="text" class="form-control  datetimepicker-input" (click)="enquiryDatePicker.toggle()"
-                          placeholder="Date" #enquiryDatePicker="ngbDatepicker"
-                          name="enquiryDate" ngbDatepicker 
-                        >
-                        <div class="input-group-append" (click)="enquiryDatePicker.toggle()">
-                          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                        </div>
-                      </div>
-                </div>
-            </div>
 
             <hr>
          
@@ -801,17 +800,18 @@
 
 
 
+
+                </div>
+
+            </div>
+
         </div>
 
+
+
+
+
+
+
+
     </div>
-
- </div>
-
-
-
-
-
-
-
-
-</div>

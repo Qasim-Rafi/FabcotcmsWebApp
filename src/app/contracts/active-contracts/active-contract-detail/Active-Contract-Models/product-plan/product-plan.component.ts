@@ -22,6 +22,8 @@ export class PRODUCTPLANComponent implements OnInit {
   selected = [];
   data:any ={};
   TnaFilter:any ={};
+  selectedids: any ={};
+  contractIds: any = [];
 
   response: any;
   // ColumnMode = ColumnMode;
@@ -67,39 +69,18 @@ export class PRODUCTPLANComponent implements OnInit {
       }
     })
   }
-  onSelect({ selected }) {
-    console.log('Select Event', selected);
-  }
-  // onSelect(row) {
-  //   console.log(row)
-  // }
-
-  onActivate(event) {
-    // console.log('Activate Event', event );
-    // console.log('Activated Event', event );
-    if (event.type === 'click' ){
-      this.checkboxData.push({['id']:event.row.id , 
-                              // ['buyerId']:event.row.buyerId ,
-                              // ['sellerId']:event.row.sellerId , 
-                              // ['taxAmount']:event.row.id
-                             });
-                             
-      console.log(this.checkboxData)
+  onSelect(selecterow) {
+    this.selectedids =selecterow;
+console.log(this.selectedids)
+    for(let i=0; i<this.selectedids.selected.length; i++ )
+    {      
+        this.tnaIds[i] = this.selectedids.selected[i].id;
     }
-    
-    for(let i=0; i<this.checkboxData.length; i++ )
-  {
-      this.tnaIds[i] = this.checkboxData[i].id;
-      
   }
-
-    
-
-}
 
 
     addTna() {
-      if(this.tnaIds.length === 0 ){
+      if(this.tnaIds.length === 0 || this.selectedids.selected.length === 0 ){
         this.toastr.error("Select atleast one row to add" , 'Message')
 
       }
