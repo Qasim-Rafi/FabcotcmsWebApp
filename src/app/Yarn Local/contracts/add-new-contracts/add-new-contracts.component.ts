@@ -20,10 +20,10 @@ export class AddNewContractsComponent implements OnInit {
   uomList: any= []
   currency: any= []
   newBuyer: number;
-counter3 :number =1
+  counter3 :number =1
   new:any=[]
   new2:any=[]
-  new3:any=[]
+  new3:any=[] 
 
 
   constructor(
@@ -35,6 +35,7 @@ counter3 :number =1
   ngOnInit(): void {
     this.GetBuyersDropdown("start");
     this.GetUOMDropdown();
+    this.GetArticleDropdown();
   }
 
 
@@ -92,6 +93,19 @@ counter3 :number =1
       this.response = res;
       if (this.response.success == true) {
         this.uomList = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
+
+
+  GetArticleDropdown() {
+    this.service.getArticles().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.article = this.response.data.list;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
