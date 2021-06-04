@@ -90,9 +90,15 @@
             <label for="saleInvoiceDate" class="col-sm-3 col-form-label">Tax %</label>
             <div class="col-sm-8" (clickOutside)="saleInvoiceDate.close()">
     
-              <input navigation="select" class="form-control  " ngbDatepicker #saleInvoiceDate="ngbDatepicker"
-                (click)="saleInvoiceDate.toggle()" placeholder="Invoice Tax %age" name="saleInvoiceDate"
-                [(ngModel)]="data.saleInvoiceDate" #saleInvoiceDate="ngModel" />
+                <div class="input-group">
+                    <div class="input-group-append">
+                    </div>
+                    <input type="text" placeholder="Invoice tax %age" class="form-control"
+                        [(ngModel)]="data.sellerSideCommissionInfo" name="sellerSideCommissionInfo">
+                    <div class="input-group-append">
+                        <span class="input-group-text" id="basic-addon2">%</span>
+                    </div>
+                </div>
             </div>
           </div>
 
