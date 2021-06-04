@@ -101,14 +101,14 @@ export class DeliveryTimelineComponent implements OnInit {
  
  
   addshipment(form:NgForm) {
-    this.data.supplierDate = this.dateformater.toModel(this.data.supplierDate);
-    this.data.buyerDate = this.dateformater.toModel(this.data.buyerDate);
+    // this.data.supplierDate = this.dateformater.toModel(this.data.supplierDate);
+    // this.data.buyerDate = this.dateformater.toModel(this.data.buyerDate);
 
     let varr = {
       "contractId":this.contractId,
       "shipmentNo": this.data.shipmentNo,
-      "supplierDate": this.data.supplierDate,
-      "buyerDate":this.data.buyerDate,
+      "supplierDate": this.dateformater.toModel(this.data.supplierDate),
+      "buyerDate":this.dateformater.toModel(this.data.buyerDate),
       "shipmentLine": this.data.shipmentLine,
       "shipmentMode":this.data.shipmentMode,
       "shipmentRemarks": this.data.shipmentRemarks
@@ -140,13 +140,13 @@ export class DeliveryTimelineComponent implements OnInit {
   Updateshipment(form:NgForm) {
 
       
-    this.data.supplierDate = this.dateformater.toModel(this.data.supplierDate);
-    this.data.buyerDate = this.dateformater.toModel(this.data.buyerDate);
+    // this.data.supplierDate = this.dateformater.toModel(this.data.supplierDate);
+    // this.data.buyerDate = this.dateformater.toModel(this.data.buyerDate);
     let varr = {
       "contractId":this.contractId,
       "shipmentNo": this.data.shipmentNo,
-      "supplierDate": this.data.supplierDate,
-      "buyerDate":this.data.buyerDate,
+      "supplierDate": this.dateformater.toModel(this.data.supplierDate),
+      "buyerDate":this.dateformater.toModel(this.data.buyerDate),
       // "shipmentLine": this.data.shipmentLine,
       "shipmentMode":this.data.shipmentMode,
       "shipmentRemarks": this.data.shipmentRemarks
