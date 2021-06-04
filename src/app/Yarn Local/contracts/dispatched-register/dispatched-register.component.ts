@@ -122,7 +122,7 @@ export class DispatchedRegisterComponent implements OnInit {
    
   editDispatch(rows) {
     const modalRef = this.modalService.open(EditDispatchComponent , { centered: true });
-    // modalRef.componentInstance.dispatchId = rows.id;
+    modalRef.componentInstance.dispatchId = rows.id;
 
     modalRef.result.then((data) => {
       // on close
