@@ -517,7 +517,7 @@
                                     <a class="faq-question ">{{obj.description}}</a>
                                     <div class="small mb-1"><span class="text_Navy">{{obj.colorName}}</span> {{ obj.compositionPercentage}}%
                                         {{obj.compositionFebricTypeName}}
-                                        | {{obj.construction}}
+                                        | {{obj.construction }}
                                         Size: {{obj.size}} </div>
                                     <div class="small">Added by <strong>{{obj.createdByName}} </strong>
                                         <div class="m-l-lg" style="display: inline-block;">
@@ -580,11 +580,6 @@
                                                     </ng-template>
                                                   </ngx-datatable-column>
                 
-                                                <ngx-datatable-column name="Certificate" [width]="5"  prop="certificates">
-                                                  <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                                    {{row.certificates}}
-                                                  </ng-template>
-                                                </ngx-datatable-column>
                                                 
                                                 <ngx-datatable-column name="Price" [width]="5"  prop="rate">
                                                   <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
