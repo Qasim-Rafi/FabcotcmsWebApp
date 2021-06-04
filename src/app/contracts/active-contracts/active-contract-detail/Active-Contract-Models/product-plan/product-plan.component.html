@@ -31,16 +31,22 @@
 
         <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="tnaList"
           [sorts]="[{ prop: 'id,name', dir: 'asce' }]" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-          [rowHeight]="'auto'" [limit]="10" [selected]="selected" [selectionType]="SelectionType.checkbox"
-          (select)="onSelect($event)" (activate)="onActivate($event)">
+          [rowHeight]="'auto'" [limit]="10" 
+          (select)="onSelect($event)"
+            
+          [selectionType]="SelectionType.checkbox">
           <ngx-datatable-column prop="id" name="S. No." [width]="20">
             <ng-template let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
               {{ rowIndex+1 }}
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column prop="selected" name="Select to Add" [width]="20">
-            <ng-template let-row="row" ngx-datatable-cell-template>
-              <input type="checkbox" name="active"  class="form-check-input check-btn "  id="active">
+          <ngx-datatable-column prop="selected" name="Select" [width]="20"   [flexGrow]="0.03"
+          [width]="30"
+          [headerCheckboxable]="true"
+          [checkboxable]="true"
+          >
+            <ng-template let-row="row" ngx-datatable-cell-template  >
+             <!-- <input type="checkbox"> -->
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column prop="name" name="Action Items" [width]="20">

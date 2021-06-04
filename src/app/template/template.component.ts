@@ -11,9 +11,23 @@ import * as AdminLte from 'admin-lte';
 export class TemplateComponent implements OnInit {
   title = 'Project';
   userName:string;
+  userRole: string;
+  SalesExecutive=true;
+  Manager: boolean;
   constructor( private router: Router,) { }
 
   ngOnInit(): void {
+    this.userRole=localStorage.getItem('role');
+    if(this.userRole == 'SalesExecutive'){
+        this.SalesExecutive = true;
+        this.Manager= false;
+       
+    }
+    else if(this.userRole == 'Manager'){
+      this.SalesExecutive = false;
+      this.Manager= true;
+ 
+    }
     this.userName=localStorage.getItem('loggedInUserName');
     $('li.dropdown.mega-dropdown a').on('click', function (event) {
       $(this).parent().toggleClass("open");
