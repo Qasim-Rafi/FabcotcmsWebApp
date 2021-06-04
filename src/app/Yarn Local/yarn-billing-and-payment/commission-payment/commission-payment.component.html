@@ -1,0 +1,168 @@
+<div class="content-header">
+    <div class="row">
+      <div class="col-sm-12 col-md-6 col-lg-8">
+        <h2 class="row wrapper page-header font-weight-light"> Commission Payment
+          <div class="ml-2 descr">By Default Last 6 Months Commission Payment records displayed</div>
+        </h2>
+      </div>
+  
+      <div class="col-sm-12 col-md-6 col-lg-4">
+        <ol class="breadcrumb flt-RnL">
+          <li class="breadcrumb-item"><a href="#">Payments</a></li>
+          <li class="breadcrumb-item active" aria-current="page">
+            Commission Payment
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <div class="card ibox-content">
+    <div class="panel blank-panel">
+      
+      <div class="panel-heading">
+        <div class="row mb-3">
+          <div class= "col-md-6 ">
+              <span class="date-Label">Date From &nbsp;</span>
+             <span class="text_Navy  date"> 23-Jan-2021 &nbsp;</span>
+             <span class="date-Label">To &nbsp;</span>
+             <span class="text_Navy  date">20-July-2021 &nbsp;</span>
+          </div>
+          <div class="col-md-6 mrg-tsm">
+                <!-- refresh button -->
+
+            <button type="button" class="btn btn-light btn-sm float-right">
+                <i class="fas fa-sync-alt"></i>
+                </button>
+           <!-- Filter Button -->
+                <button type="button" class="btn btn-primary btn-sm float-right mr-1">
+                <i class="fa fa-filter"></i>
+            </button>
+            <!-- add new commision button -->
+            <button type="button" class="btn btn-primary btn-sm float-right mr-1" (click)="addNewCommsion('add')">
+                <i class="fa fa-plus"></i> Add new Commission Payment
+            </button>
+          
+          </div>
+         
+
+        </div>
+     
+      
+        <div class="row" >
+          <div class="col-md-12 mb-3">
+            <div class="row justify-content-end">
+
+              <div class="col-md-4 pr-0">
+
+                <div class="form-group row">
+                  <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
+                  <div class="col-sm-9">
+                    <input type="text" placeholder="Search..." class="input form-control form-control-sm"/>
+                  </div>
+                </div>
+
+                <!-- <div class="input-group col-md-offset-3">
+                  <input type="text" placeholder="Search..." class="input form-control w-50" />
+                </div> -->
+
+              </div>
+<!--  -->
+
+        <div class="html5buttons mrg-tsm">
+            <div class="dt-buttons btn-group btn-group-sm">
+              <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0"
+                aria-controls="DataTables_Table_0" ngxClipboard
+                ><span>Copy</span>
+              </a>
+              <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
+                aria-controls="DataTables_Table_0"><span>xls</span></a>
+            
+            
+            </div>
+          </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-body">
+        
+        <ngx-datatable class="bootstrap datatable-row-wrapper" [columns]="columns" [rows]="rows" [columnMode]="'flex'"
+          [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="6" [sorts]="[{ prop: 'id', dir: 'desc' }]">
+      
+         
+          <ngx-datatable-column name="action" [width]="80" prop="sno" [flexGrow]="0.04">
+            <ng-template let-row="row" let-rowIndex="rowIndex" let-expanded="expanded" ngx-datatable-cell-template>
+              <div class="ibox-tools text-center">
+                <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top" title=""
+                  data-original-title="edit" (click)= "navigateEditForm(row)" ><i class="far fa-edit"></i></button>
+                <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top" title=""
+                  ><i class="fas fa-trash"></i></button>
+              </div>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="ComPay ID" [width]="80" prop="" [flexGrow]="0.05">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+      {{row.rowNmbr}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Buyer" [width]="80" prop="buyerName" [flexGrow]="0.06">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+            </ng-template>
+          </ngx-datatable-column>
+      
+          <ngx-datatable-column name="Seller" [width]="80" prop="billNumber" [flexGrow]="0.06">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+            </ng-template>
+          </ngx-datatable-column>
+      
+          <ngx-datatable-column name="Pay Date" [width]="80" prop="autoContractNumber" [flexGrow]="0.08">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+             
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Pay No" [width]="80" prop="billDate" [flexGrow]="0.06">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Amount" [width]="80" prop="numberOfSaleInvoices" [flexGrow]="0.06">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Pay Mode" [width]="80" prop="billAmount" [flexGrow]="0.06">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+            </ng-template>
+          </ngx-datatable-column>
+      
+          <ngx-datatable-column name="From Bank" [width]="80" prop="taxAmount" [flexGrow]="0.06">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+            </ng-template>
+          </ngx-datatable-column>
+      
+          <ngx-datatable-column name="To Bank" [width]="80" prop="dueDate" [flexGrow]="0.06">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+            </ng-template>
+          </ngx-datatable-column>
+      
+          <ngx-datatable-column name="Deposite On" [width]="80" prop="action" [flexGrow]="0.07">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+      
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Remarks" [width]="80" prop="action" [flexGrow]="0.07">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+      
+            </ng-template>
+          </ngx-datatable-column>
+        </ngx-datatable>
+      </div>
+    </div>
+    </div>
+
+

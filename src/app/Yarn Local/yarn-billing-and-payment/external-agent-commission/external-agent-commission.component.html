@@ -1,0 +1,132 @@
+
+<div class="content-header">
+    <div class="row">
+      <div class="col-sm-12 col-md-6 col-lg-8">
+        <h2 class="row wrapper page-header font-weight-light">
+            External Agent Commission Payment
+          <!-- <div class="ml-2 descr">
+        
+          </div> -->
+        </h2>
+      </div>
+  
+      <div class="col-sm-12 col-md-6 col-lg-4">
+        <ol class="breadcrumb flt-RnL">
+          <li class="breadcrumb-item"><a href="#">Payments</a></li>
+          <li class="breadcrumb-item active" aria-current="page">
+            External Agent Payment
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  
+  <div class="card ibox-content">
+    <div class="panel blank-panel">
+      
+      <div class="panel-heading">
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <button type="button" class="btn btn-primary descBtn ml-sm-none ml-md-2">
+              <i class="fas fa-map fa-fw mr-2"></i>
+            </button>
+            <span class="text-muted text2">Payments</span>
+          </div>
+          <div class="col-md-6 mrg-tsm">
+            <button type="button" class="btn btn-primary btn-sm float-right" (click)="addNewCommsion2('addNew')">
+              <i class="fa fa-plus"></i> Add new Payment
+            </button>
+          </div>
+        </div>
+  
+        <div class="row" > 
+          <div class="col-md-12 mb-3">
+            <div class="row justify-content-end">
+              <div class="col-md-4">
+
+                <div class="form-group row">
+                  <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
+                  <div class="col-sm-9">
+                    <input type="text" placeholder="Search..." class="input form-control form-control-sm"/>
+                  </div>
+                </div>
+
+                <!-- <div class="input-group col-md-offset-3">
+                  <input type="text" placeholder="Search..." class="input form-control w-50" />
+                </div> -->
+
+              </div>
+  
+     
+            </div>
+          </div>
+        </div>
+      </div>
+  <div >
+    <div class="panel-body">
+        <ngx-datatable
+      class="bootstrap datatable-row-wrapper" [columns]="columns" [rows]="rows"
+          [columnMode]="'flex'" [headerHeight]="50" [footerHeight]="50" 
+          [rowHeight]="'auto'" [limit]="6">
+          
+          <ngx-datatable-column name="Action" [width]="80" prop="action" [flexGrow]="0.03"   >
+            <ng-template let-row="row" ngx-datatable-cell-template >
+
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Payment ID" [width]="80" prop="id" [flexGrow]="0.05">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Agent" [width]="80" prop="agent" [flexGrow]="0.06">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+        
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Seller" [width]="80" prop="seller" [flexGrow]="0.06">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+        
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Pay Date" [width]="80" prop="date" [flexGrow]="0.06">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+        
+            </ng-template>
+          </ngx-datatable-column>
+  
+          <ngx-datatable-column name="Pay No" [width]="80" prop="pay" [flexGrow]="0.06">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+        
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Amount" [width]="80" prop="amount" [flexGrow]="0.06">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+        
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Pay Mode" [width]="80" prop="mode" [flexGrow]="0.06">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+        
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Received Date" [width]="80" prop="recDate" [flexGrow]="0.06">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+        
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Remarks" [width]="80" prop="remark" [flexGrow]="0.06">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+        
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Sale Inv. Nos." [width]="80" prop="remark" [flexGrow]="0.06">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+        
+            </ng-template>
+          </ngx-datatable-column>
+        </ngx-datatable>
+      </div>
+    </div>
+    </div>
+  <!-- </div> -->
