@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { GlobalConstants } from 'src/app/Common/global-constants';
 import { Dateformater } from 'src/app/shared/dateformater';
 import { ServiceService } from 'src/app/shared/service.service';
 import { environment } from 'src/environments/environment';
-import {FormsModule , ReactiveFormsModule}  from '@angular/forms'
+import {FormsModule , NgForm, ReactiveFormsModule}  from '@angular/forms'
 
 @Component({
   selector: 'app-edit-dispatch',
@@ -15,12 +15,11 @@ import {FormsModule , ReactiveFormsModule}  from '@angular/forms'
 })
 export class EditDispatchComponent implements OnInit {
   dateformater: Dateformater = new Dateformater();  
-
-  @Input() contractId;
-  @Input() invoiceId; 
-  @Input() statusCheck; 
   data:any ={};
+  @Input() dispatchId; 
+
   response: any;
+  @ViewChild(NgForm) dispatchForm;
  
   constructor(
     private _NgbActiveModal: NgbActiveModal,
@@ -31,29 +30,43 @@ export class EditDispatchComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.invoiceId = this.invoiceId;
-    if (this.statusCheck == 'editInvoice') {
-      this.editSaleInvoice();
-    }
+    this.getDispatch();
+
   }
 
   get activeModal() {
     return this._NgbActiveModal;
   }
 
-  
-  addSaleInvoice() {
-     this.data.saleInvoiceDate = this.dateformater.toModel(this.data.saleInvoiceDate);
-    let varr = {
+  getDispatch() {
+    this.http.get(`${environment.apiUrl}` + this.dispatchId)
+      .subscribe(
+        res => {
+          this.response = res;
+          if (this.response.success == true) {
+            this.data = this.response.data;
+            this.data.dispatchDate = this.dateformater.fromModel(this.data.dispatchDate);
+            
 
-      "contractId": this.contractId,
-      "saleInvoiceNo": this.data.saleInvoiceNo,
-      "saleInvoiceDate":this.data.saleInvoiceDate,
-      "saleInvoiceRemarks":this.data.saleInvoiceRemarks
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+        });
+  }
+  
+  updateDispatch(form:NgForm) {
+     this.data.dispatchDate = this.dateformater.toModel(this.data.dispatchDate);
+    let varr = {
     }
 
     this.http.
-      post(`${environment.apiUrl}/api/Contracts/AddContractSaleInvoice`, varr)
+      put(`${environment.apiUrl}`, varr)
       .subscribe(
         res => {
 
@@ -73,65 +86,7 @@ export class EditDispatchComponent implements OnInit {
           }
         });
   }
-
-
-
-  editSaleInvoice() {
-    this.http.get(`${environment.apiUrl}/api/Contracts/GetContractSaleInvoiceById/` + this.invoiceId)
-      .subscribe(
-        res => {
-          this.response = res;
-          if (this.response.success == true) {
-            this.data = this.response.data;
-            this.data.saleInvoiceDate = this.dateformater.fromModel(this.data.saleInvoiceDate);
-            
-
-          }
-          else {
-            this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
-          }
-
-        }, err => {
-          if (err.status == 400) {
-            this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
-          }
-        });
+  onSubmit(){
+  this.updateDispatch(this.dispatchForm)
   }
-  
-
-
-
-
-  
-  updateSaleInvoice() {
-    this.data.saleInvoiceDate = this.dateformater.toModel(this.data.saleInvoiceDate);
-   let varr = {
-    "contractId": this.contractId,
-    "saleInvoiceNo": this.data.saleInvoiceNo,
-    "saleInvoiceDate":this.data.saleInvoiceDate,
-    "saleInvoiceRemarks":this.data.saleInvoiceRemarks
-   }
-
-   this.http.
-     put(`${environment.apiUrl}/api/Contracts/UpdateContractSaleInvoice/` + this.invoiceId, varr)
-     .subscribe(
-       res => {
-
-         this.response = res;
-         if (this.response.success == true) {
-           this.toastr.success(GlobalConstants.updateMessage, 'Message.');
-           this.activeModal.close(true);
-         }
-         else {
-           this.toastr.error(this.response.message, 'Message.');
-         }
-
-       }, err => {
-         if (err.status == 400) {
-           this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
-         }
-       });
- }
-
-
 }
