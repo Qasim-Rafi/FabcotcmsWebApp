@@ -20,11 +20,12 @@ import { TaxChallanComponent } from './tax-challan/tax-challan.component';
 import { BuyerPaymentComponent } from './buyer-payment/buyer-payment.component';
 import { BuyerPaymentFormComponent } from './buyer-payment/buyer-payment-form/buyer-payment-form.component';
 import { AddTxChallanComponent } from './tax-challan/add-tx-challan/add-tx-challan.component';
+import { AddNewInvComponent } from './sale-invoice/add-new-inv/add-new-inv.component';
 
 
 
 @NgModule({
-  declarations: [AddNewContractsComponent,BuyerPaymentComponent, BuyerComponent, SellerComponent, ArticleComponent,YarnActiveContractsComponent, DispatchedRegisterComponent, CompletedContractComponent, SaleInvoiceComponent, TaxChallanComponent, EditBuyerPaymentComponent, BuyerPaymentFormComponent, AddTxChallanComponent],
+  declarations: [AddNewContractsComponent,BuyerPaymentComponent, BuyerComponent, SellerComponent, ArticleComponent,YarnActiveContractsComponent, DispatchedRegisterComponent, CompletedContractComponent, SaleInvoiceComponent, TaxChallanComponent, EditBuyerPaymentComponent, BuyerPaymentFormComponent, AddTxChallanComponent, AddNewInvComponent],
   imports: [
     CommonModule,
     BrowserModule,
