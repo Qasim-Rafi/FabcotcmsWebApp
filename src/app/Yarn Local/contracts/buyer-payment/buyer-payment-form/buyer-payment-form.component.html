@@ -82,40 +82,48 @@
 
                 <div class="tab-content" id="nav-tabContent">
 
-                    <div class="tab-pane fade show active" id="nav-parties" role="tabpanel"
-                        aria-labelledby="nav-parties-tab">
 
+                    <div class="tab-pane fade show active" id="nav-parties" role="tabpanel" aria-labelledby="nav-parties-tab">
                         <form #enquiryForm="ngForm" novalidate>
-
-                            <div class="form-group col-md-8">
-                                <label for="inputEmail3" class="col-form-label control-label">Buyer Name</label>
-
-                                <div class="input-group">
-                                    <ng-select name="buyerId" #buyerId="ngModel" class="input-w px-0"
-                                        [(ngModel)]="data.buyerId" placeholder="-- Select --"
-                                        [ngClass]="{ 'error': enquiryForm.submitted && buyerId.invalid }">
-                                        <ng-option *ngFor="let i of buyer" [value]="i.id">{{ i.buyerName }}
+                    
+                            <div class="form-row">
+                    
+                                <div class="form-group col-md-12">
+                                    <label for="inputEmail3" class="col-form-label control-label">Buyer Name</label>
+                    
+                    
+                                    <ng-select name="sellerSideCommissionUOMId " placeholder="-- Select Buyer --">
+                                        <ng-option>
                                         </ng-option>
                                     </ng-select>
-
+                    
+                    
+                                    <small id="passwordHelpBlock" class="form-text text-lightgrey">
+                                        Only Parent Buyer is available for selection
+                                    </small>
                                 </div>
-
-                            </div>
-
-                            <div class="form-group col-md-8">
-                                <label for="inputEmail3" class="col-form-label control-label">Seller Name</label>
-
-                                <div class="input-group">
-                                    <ng-select name="sellerId" #sellerId="ngModel" class="input-w px-0"
-                                        [(ngModel)]="data.sellerId" placeholder="-- Select --"
-                                        [ngClass]="{ 'error': enquiryForm.submitted && sellerId.invalid }">
-                                        <ng-option *ngFor="let i of seller" [value]="i.id">{{ i.sellerName }}
+                    
+                                <div class="form-group col-md-12">
+                                    <label for="inputEmail3" class="col-form-label control-label">Supplier Name</label>
+                    
+                                    <ng-select name="sellerSideCommissionUOMId " placeholder="-- Select Supplier --">
+                                        <ng-option>
                                         </ng-option>
                                     </ng-select>
+                    
+                                    <small id="passwordHelpBlock" class="form-text text-lightgrey">
+                                        Only Parent Supplier is available for selection
+                                    </small>
+                    
                                 </div>
+                    
                             </div>
+                    
                         </form>
                     </div>
+
+
+
 
 
                     <div class="tab-pane fade show " id="nav-payment" role="tabpanel" aria-labelledby="nav-payment-tab">
@@ -132,6 +140,7 @@
                             <div class="form-group row">
 
                                 <label for="inputEmail3" class="col-form-label col-sm-2 control-label ">Amount</label>
+
                                 <div class="row">
                                     <div class="col-md-2">
                                         <div class="input-group">
@@ -175,7 +184,12 @@
 
                             <div class="form-group row">
                                 <label for="name" class="col-sm-2 col-form-label  ">Additional Details</label>
-                                <input class="form-control col-sm-8" type="text" placeholder="Additional Info..." />
+                                <div class="col-sm-8">
+                                    <input class="form-control" type="text" placeholder="Additional details..." />
+                                    <small id="passwordHelpBlock" class="form-text text-lightgrey">
+                                        Only Parent Supplier is available for selection
+                                    </small>
+                                </div>
                             </div>
                             <div class="form-group row">
                                 <label for="name" class="col-sm-2 col-form-label  ">Deposite Date</label>
@@ -303,6 +317,11 @@
                     </div>
 
 
+
+
+
+
+
                     <div class="tab-pane fade show " id="nav-remarks" role="tabpanel" aria-labelledby="nav-remarks-tab">
                         <div class="col-md-12">
                             <div class="form-group row">
@@ -316,6 +335,10 @@
                             </div>
                         </div>
                     </div>
+
+
+
+
                 </div>
             </div>
         </div>

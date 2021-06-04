@@ -39,43 +39,45 @@ export class AddEnquiryComponent implements OnInit {
     newCertificate: any;
     newCity: any;
     newPrice: any;
-    enquiryDateField:any;
-    datePickerConfig: Partial<BsDatepickerConfig>;
-    listCount: number;
-    myDate = Date.now();
-    response: any;
-    data: any = {};
-    country: any = [];
-    buyer: any = [];
-    designId: null;
-    packageId: null;
-    article: any = [];
-    uomList: any = [];
-    type: any[];
-    package: any[];
-    city: any={};
-    certificateId: any[];
-    paymentId: any[];
-    term: any[];
-    priceId: any[];
-    myDates = new Date();
-    rows: any = [];
-    columns: any = [];
-    // country1: any = [];
-    // countryId: null; 
-    processtypeId: null;
-    @ViewChild(NgForm) enquiryForm;
-    date: number;
-    payment: any = [];
-    packaging: any = [];
-    design: any = [];
-    process: any = {};
-    ptype: any = {};
-    certification: any = {};
-    priceterm: any = {};
-    autoEnquiryNo: number;
-    dateformater: Dateformater = new Dateformater();
-    today:any;
+
+
+  enquiryDateField:any;
+  datePickerConfig: Partial<BsDatepickerConfig>;
+  listCount: number;
+  myDate = Date.now();
+  response: any;
+  data: any = {};
+  country: any = [];
+  buyer: any = [];
+  designId: null;
+  packageId: null;
+  article: any = [];
+  uomList: any = [];
+  type: any[];
+  package: any[];
+  city: any={};
+  certificateId: any[];
+  paymentId: any[];
+  term: any[];
+  priceId: any[];
+  myDates = new Date();
+  rows: any = [];
+  columns: any = [];
+  // country1: any = [];
+  // countryId: null; 
+  processtypeId: null;
+  @ViewChild(NgForm) enquiryForm;
+  date: number;
+  payment: any = [];
+  packaging: any = [];
+  design: any = [];
+  process: any = {};
+  ptype: any = {};
+  certification: any = {};
+  priceterm: any = {};
+  autoEnquiryNo: number;
+  dateformater: Dateformater = new Dateformater();
+  today:any;
   
   
   constructor(private http: HttpClient,
@@ -541,10 +543,10 @@ export class AddEnquiryComponent implements OnInit {
 
   addEnquiry(form:NgForm) {
 
-    this.enquiryDateField =this.dateformater.toModel(this.enquiryDateField);
+  
       let varr = {
   
-        "enquiryDate": this.enquiryDateField,
+        "enquiryDate": this.data.enquiryDate,
         "buyerId": this.data.buyerId,
         "articleId": this.data.articleId,
         "processId": this.data.processId,
