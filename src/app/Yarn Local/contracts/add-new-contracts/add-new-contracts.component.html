@@ -69,10 +69,12 @@
                 <div class="form-group col-md-3 offset-md-2 offset-lg-2">
                     <label for="inputPassword4">Contract Date</label>
                     <!-- <input type="text" class="form-control date" id="enqry-date" value="Fri 26-Mar-2021"> -->
-                    <div class="input-group date" >
-                        <input type="date" class="form-control  datetimepicker-input" placeholder="Date" name="enquiryDate" ngbDatepicker >
-
-                        <div class="input-group-append" >
+                    <div class="input-group date" (clickOutside)="enquiryDatePicker.close()">
+                        <input type="text" class="form-control  datetimepicker-input" (click)="enquiryDatePicker.toggle()"
+                          placeholder="Date" #enquiryDatePicker="ngbDatepicker"
+                          name="enquiryDate" ngbDatepicker 
+                        >
+                        <div class="input-group-append" (click)="enquiryDatePicker.toggle()">
                           <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                         </div>
                       </div>
