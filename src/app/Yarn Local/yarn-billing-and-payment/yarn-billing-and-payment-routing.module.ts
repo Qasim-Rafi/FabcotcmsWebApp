@@ -6,6 +6,10 @@ import {ActiveBillsComponent} from '../yarn-billing-and-payment/active-bills/act
 import {PaymentCollectionComponent} from '../yarn-billing-and-payment/payment-collection/payment-collection.component'
 import {OpenActiveBillComponent} from '../yarn-billing-and-payment/active-bills/open-active-bill/open-active-bill.component'
 import { PaymentFormComponent} from '../yarn-billing-and-payment/payment-form/payment-form.component' 
+import {CommissionPaymentComponent} from '../yarn-billing-and-payment/commission-payment/commission-payment.component'
+import {EditCommissionComponent} from '../yarn-billing-and-payment/edit-commission/edit-commission.component'
+import {ExternalAgentCommissionComponent} from '../yarn-billing-and-payment/external-agent-commission/external-agent-commission.component'
+import {NewCommissionPaymentComponent} from '../yarn-billing-and-payment/new-commission-payment/new-commission-payment.component'
 const routes: Routes = [
   { path:'yarn-billing-and-payment', component:TemplateComponent,
   // canActivate:[AuthGuard],
@@ -16,6 +20,11 @@ const routes: Routes = [
 {path:'payment-collection' , component:PaymentCollectionComponent},
 {path:'open-bill' , component:OpenActiveBillComponent},
 {path:'payment-form' , component:PaymentFormComponent},
+{path: 'commission-payment' , component:CommissionPaymentComponent},
+{path: 'edit-commission' , component:EditCommissionComponent},
+{path:'external-agent' , component:ExternalAgentCommissionComponent},
+{path:'new-commission' , component:NewCommissionPaymentComponent},
+
 
 
 

@@ -53,22 +53,38 @@ import { ContainerComponent } from './product/container/container.component';
 import { AddWeaveComponent } from './product/weave/add-weave/add-weave.component';
 import { AddPieceLengthComponent } from './product/piece-length/add-piece-length/add-piece-length.component';
 import { AddContainerComponent } from './product/container/add-container/add-container.component';
+import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 
 @NgModule({
   declarations: [
      BuyerComponent,
      EditBuyerComponent,
-     AddBuyerComponent,SellerComponent,AddSellerFormComponent,EditSellerFormComponent,SellerPocComponent,ForeignAgentComponent,
-     EditAgentFormComponent,AddAgentFormComponent,ArticlesComponent,EditArticleComponent,AddArticleComponent,FabricTypeComponent,
-     EditTypeComponent,AddTypeComponent,PackingComponent,EditPackingComponent,AddPackingComponent,PaymentTermComponent,
-     EditPaymentComponent,AddPaymentComponent,PriceTermComponent,EditPriceComponent,AddPriceComponent,BankAccountsComponent,
-     EditBankAccountComponent,AddBankAccountComponent,BankComponent,EditBankComponent,AddBankComponent, CityComponent,
-     EditCityComponent,CountryComponent,EditCountryComponent, CurrencyComponent, EditCurrencyComponent ,AddCurrencyComponent, WeaveComponent, PieceLengthComponent, ContainerComponent, AddWeaveComponent, AddPieceLengthComponent, AddContainerComponent
+     AddBuyerComponent,SellerComponent,AddSellerFormComponent,
+     EditSellerFormComponent,SellerPocComponent,ForeignAgentComponent,
+     EditAgentFormComponent,AddAgentFormComponent,ArticlesComponent,
+     EditArticleComponent,AddArticleComponent,FabricTypeComponent,
+     EditTypeComponent,AddTypeComponent,PackingComponent,EditPackingComponent,
+     AddPackingComponent,PaymentTermComponent,
+     EditPaymentComponent,AddPaymentComponent,PriceTermComponent,EditPriceComponent,
+     AddPriceComponent,BankAccountsComponent,
+     EditBankAccountComponent,AddBankAccountComponent,BankComponent,EditBankComponent,
+     AddBankComponent, CityComponent,
+     EditCityComponent,CountryComponent,EditCountryComponent, CurrencyComponent, 
+     EditCurrencyComponent ,AddCurrencyComponent, WeaveComponent, PieceLengthComponent, 
+     ContainerComponent, AddWeaveComponent, AddPieceLengthComponent, AddContainerComponent
   ],
   imports: [
     CommonModule,
-    YarnConfigurationRoutingModule,NgxDatatableModule,NgbDatepickerModule,NgbModule,HttpClientModule,FormsModule,ReactiveFormsModule,
-    ToastrModule,NgSelectModule,ClipboardModule, BsDatepickerModule.forRoot(),
+    YarnConfigurationRoutingModule,NgxDatatableModule,NgbDatepickerModule,NgbModule,
+    HttpClientModule,FormsModule,ReactiveFormsModule,NgSelectModule,ClipboardModule,
+     BsDatepickerModule.forRoot(),
+    ToastrModule.forRoot({
+      progressBar: true,
+      timeOut: 3000
+    }),
+    ConfirmationPopoverModule.forRoot({
+      // confirmButtonType: 'danger',     // set defaults here
+    }),
   
 
   ]

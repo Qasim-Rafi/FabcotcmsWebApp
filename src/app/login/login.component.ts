@@ -16,6 +16,8 @@ invalidLogin: boolean=false;
   isLoginError: boolean=false;
   data:any={};
   response:any;
+  
+ 
   constructor(
     private FormBuilder:FormBuilder,
     private router: Router,
@@ -25,10 +27,7 @@ invalidLogin: boolean=false;
 
   ngOnInit() {
     
-    // this.loginForm= this.FormBuilder.group({
-    //   username:['', Validators.compose([Validators.required])],
-    //   password:['',Validators.required]
-    // });
+  
   }
   login(){
     this.router.navigate(['/home']);

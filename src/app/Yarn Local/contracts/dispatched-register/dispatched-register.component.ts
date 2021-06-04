@@ -6,7 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { GlobalConstants } from 'src/app/Common/global-constants';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
-
+import {EditDispatchComponent} from '../dispatched-register/edit-dispatch/edit-dispatch.component'
 @Component({
   selector: 'app-dispatched-register',
   templateUrl: './dispatched-register.component.html',
@@ -15,7 +15,7 @@ import Swal from 'sweetalert2';
 export class DispatchedRegisterComponent implements OnInit {
   response: any;
   data: any = {};
-  rows: any = [];
+  rows: any = [{rownmbe:1}];
   columns: any = [];
   temp: any[];
   constructor(
@@ -120,5 +120,23 @@ export class DispatchedRegisterComponent implements OnInit {
   
   }
    
+  editDispatch(rows) {
+    const modalRef = this.modalService.open(EditDispatchComponent , { centered: true });
+    modalRef.componentInstance.dispatchId = rows.id;
 
+    modalRef.result.then((data) => {
+      // on close
+      // this.fetch((data) => {
+      //   this.rows = data;
+    
+      // });
+      
+      if (data == true) {
+     
+
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
 }

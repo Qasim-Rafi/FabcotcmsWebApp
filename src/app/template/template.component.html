@@ -98,7 +98,7 @@
   
         <!-- Sidebar Menu -->
         <div class="bar">
-          <nav class="mt-2">
+          <nav class="mt-2" *ngIf="SalesExecutive">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
               <!-- Add icons to the links using the .nav-icon class
                  with font-awesome or any other icon font library -->
@@ -108,7 +108,7 @@
                   <p>Home</p>
                 </a>
               </li>
-              <!-- <li class="nav-item">
+              <li class="nav-item">
                 <a class="nav-link">
                   <i class="fas fa-phone-volume nav-icon"></i>
                   <p>Business Enquiry</p>
@@ -132,23 +132,23 @@
                       <i class="far fa-circle nav-icon"></i>
                       <p>OnHold Enquiries</p>
                     </a>
-                  </li> -->
-                  <!-- <li class="nav-item">
+                  </li>
+                  <li class="nav-item">
                     <a routerLink="/enquiry/archived-enquiries" class="nav-link" routerLinkActive="active">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Archived Enquiries</p>
                     </a>
-                  </li> -->
-                  <!-- <li class="nav-item">
+                  </li>
+                  <li class="nav-item">
                     <a routerLink="/enquiry/search-enquiries" class="nav-link" routerLinkActive="active">
                       <i class="fas fa-search nav-icon"></i>
                       <p>Archived Enquiry</p>
                     </a>
-                  </li> -->
-                <!-- </ul>
-              </li> -->
+                  </li>
+                </ul>
+              </li>
   
-              <!-- <li class="nav-item">
+              <li class="nav-item">
                 <a class="nav-link">
                   <i class="fas fa-file-contract"></i>
                   <p>Contracts</p>
@@ -175,11 +175,311 @@
                   </li>
                 </ul>
               </li>
-               -->
+             
+              <li class="nav-item">
+                <a class="nav-link">
+                  <i class="far fa-money-bill-alt"></i>
+                  <p>Billing & Payment</p>
+                  <i class="right fas fa-angle-left"></i>
+                </a>
+              
+                <ul class="nav nav-treeview sublist">
+                  <li class="nav-item">
+                    <a routerLink="/billing-and-payment/generate-bills" class="nav-link" routerLinkActive="active">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Generate Bills</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a routerLink="/billing-and-payment/active-bills"  class="nav-link" routerLinkActive="active">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Active Bills</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a  class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Closed Bills</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a routerLink="/billing-and-payment/payment-collection" class="nav-link" routerLinkActive="active">
+                      <i class="far fa-money-bill-alt"></i>
+                      <p>Payment/Collection</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a routerLink="/billing-and-payment/commission-payment" class="nav-link" routerLinkActive="active">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Commission Payment</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a routerLink="/billing-and-payment/external-agent" class="nav-link" routerLinkActive="active">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p> External Agent Commission</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+  
+              <li class="nav-item">
+                <a routerLink="/home" class="nav-link">
+                  <i class="fas fa-brain"></i>
+                  <p>Productivity</p>
+                </a>
+              </li>
+  
+              <li class="nav-item">
+                <a routerLink="/home" class="nav-link">
+                  <i class="fas fa-chart-line"></i>
+                  <p>Reports</p>
+                </a>
+              </li>
+  
+              <li class="nav-item">
+                <a class="nav-link">
+                  <i class="fas fa-cloud"></i>
+                  <p>Cloud Documents</p>
+                  <i class="right fas fa-angle-left"></i>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a routerLink="/cloud/doclist" class="nav-link" routerLinkActive="active">
+                      <i class="fas fa-list nav-icon"></i>
+                      <p>Document List</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a routerLink="/cloud/docupload" class="nav-link" routerLinkActive="active">
+                      <i class="fas fa-cloud"></i>
+                      <p>Document Upload</p>
+                    </a>
+                  </li>
+                </ul>
+              </li> 
+              <li class="nav-item">
+                <a class="nav-link">
+                  <i class="fas fa-cogs"></i>
+                  <p>Configuration</p>
+                  <i class="right fas fa-angle-left"></i>
+                </a>
+                <ul class="nav nav-treeview sublist">
+                  <li class="nav-item">
+                    <a routerLink="/config/buyer" class="nav-link" routerLinkActive="active">
+                      <i class="fas fa-hands-helping"></i>
+                      <p>Buyers</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a routerLink="/config/seller" class="nav-link" routerLinkActive="active">
+                      <i class="fas fa-industry"></i>
+                      <p>Sellers</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a routerLink="/config/agent" class="nav-link" routerLinkActive="active">
+                      <i class="fas fa-user-tie"></i>
+                      <p>Foreign External Agents</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a routerLink="/config/article" class="nav-link" routerLinkActive="active">
+                      <i class="fas fa-anchor"></i>
+                      <p>Articles</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a routerLink="/config/product" class="nav-link" routerLinkActive="active">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Product</p>
+                      <i class="right fas fa-angle-left"></i>
+                    </a>
+                    <ul class="nav nav-treeview sublist">
+                      <li class="nav-item">
+                        <a routerLink="/config/fabric-type" class="nav-link" routerLinkActive="active">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Fabric Type</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a routerLink="/config/packing" class="nav-link" routerLinkActive="active">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Packing</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a routerLink="/config/price-term" class="nav-link" routerLinkActive="active">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Price Term</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a routerLink="/config/payment-term" class="nav-link" routerLinkActive="active">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Payment Term</p>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link">
+                      <i class="fas fa-tshirt"></i>
+                      <p>Textile/Garments</p>
+                      <p><i class="right fas fa-angle-left"></i></p>
+                    </a>
+                    <ul class="nav nav-treeview sublist">
+                      <li class="nav-item">
+                        <a routerLink="/config/process" class="nav-link" routerLinkActive="active">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Process</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a routerLink="/config/process-type" class="nav-link" routerLinkActive="active">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Process Type</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a routerLink="/config/design-type" class="nav-link" routerLinkActive="active">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Design Type</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a routerLink="/config/loom-type" class="nav-link" routerLinkActive="active">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Loom Type</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a routerLink="/config/certificate" class="nav-link" routerLinkActive="active">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Certificate</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a routerLink="/config/color" class="nav-link" routerLinkActive="active">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Color</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a routerLink="/config/time-action-items" class="nav-link" routerLinkActive="active">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Time & Action Items</p>
+                        </a>
+                      </li>
+                    </ul>
+  
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link">
+                      <i class="fas fa-calculator"></i>
+                      <p>Bank Info</p>
+                      <i class="right fas fa-angle-left"></i>
+                    </a>
+                    <ul class="nav nav-treeview sublist">
+                      <li class="nav-item">
+                        <a routerLink="/config/bank" class="nav-link" routerLinkActive="active">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Bank</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a routerLink="/config/bank-accounts" class="nav-link" routerLinkActive="active">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Bank Account</p>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="nav-item">
+                    <a routerLink="/config/city" class="nav-link" routerLinkActive="active">
+                      <i class="fas fa-map-marker-alt"></i>
+                      <p>City Location</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a routerLink="/config/country" class="nav-link" routerLinkActive="active">
+                      <i class="far fa-map"></i>
+                      <p>Country</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a routerLink="/config/system-users" class="nav-link" routerLinkActive="active">
+                      <i class="far fa-map"></i>
+                      <p>System Users</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a routerLink="/config/shipmentLine" class="nav-link" routerLinkActive="active">
+                      <i class="far fa-map"></i>
+                      <p>Shipment Line</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a routerLink="/config/capability" class="nav-link" routerLinkActive="active">
+                      <i class="far fa-map"></i>
+                      <p>Capability</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a routerLink="/config/organization" class="nav-link" routerLinkActive="active">
+                      <i class="fas fa-sitemap"></i>
+                      <p>Organization</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a routerLink="/config/general-settings" class="nav-link" routerLinkActive="active">
+                      <i class="fas fa-wrench"></i>
+                      <p>General Settings</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a routerLink="/config/notification-settings" class="nav-link" routerLinkActive="active">
+                      <i class="fas fa-bell"></i>
+                      <p>Notification Settings</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a routerLink="/config/currency" class="nav-link" routerLinkActive="active">
+                      <i class="fab fa-btc"></i>
+                      <p>Currency Rate</p>
+                    </a>
+                  </li>
+                </ul>
+              </li> 
+
+              <li class="nav-item">
+                <a routerLink="/cloud/doclist" class="nav-link">
+                  <i class="fas fa-question-circle"></i>
+                  <p>Help</p>
+                </a>
+              </li> 
+  
+            </ul>
+          </nav>
+
+
+
+<!--NAVIGATION BORDER-->
 
 
 
 
+          <nav class="mt-2" *ngIf="Manager">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+              <!-- Add icons to the links using the .nav-icon class
+                 with font-awesome or any other icon font library -->
+              <li class="nav-item">
+                <a routerLink="/home" class="nav-link" >
+                  <i class="fa fa-home"></i>
+                  <p>Home</p>
+                </a>
+              </li>
+             
               <li class="nav-item">
                 <a class="nav-link">
                   <i class="fas fa-file-contract"></i>
@@ -425,356 +725,6 @@
               </li>
 <!--YARN CONFIGURATION-->
 
-
-
-              <!-- <li class="nav-item">
-                <a class="nav-link">
-                  <i class="far fa-money-bill-alt"></i>
-                  <p>Billing & Payment</p>
-                  <i class="right fas fa-angle-left"></i>
-                </a>
-              
-                <ul class="nav nav-treeview sublist">
-                  <li class="nav-item">
-                    <a routerLink="/billing-and-payment/generate-bills" class="nav-link" routerLinkActive="active">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Generate Bills</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a routerLink="/billing-and-payment/active-bills"  class="nav-link" routerLinkActive="active">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Active Bills</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a  class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Closed Bills</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a routerLink="/billing-and-payment/payment-collection" class="nav-link" routerLinkActive="active">
-                      <i class="far fa-money-bill-alt"></i>
-                      <p>Payment/Collection</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a routerLink="/billing-and-payment/commission-payment" class="nav-link" routerLinkActive="active">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Commission Payment</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a routerLink="/billing-and-payment/external-agent" class="nav-link" routerLinkActive="active">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p> External Agent Commission</p>
-                    </a>
-                  </li>
-                </ul>
-              </li> -->
-  
-              <!-- <li class="nav-item">
-                <a routerLink="/home" class="nav-link">
-                  <i class="fas fa-brain"></i>
-                  <p>Productivity</p>
-                </a>
-              </li>
-  
-              <li class="nav-item">
-                <a routerLink="/home" class="nav-link">
-                  <i class="fas fa-chart-line"></i>
-                  <p>Reports</p>
-                </a>
-              </li>
-  
-              <li class="nav-item">
-                <a class="nav-link">
-                  <i class="fas fa-cloud"></i>
-                  <p>Cloud Documents</p>
-                  <i class="right fas fa-angle-left"></i>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a routerLink="/cloud/doclist" class="nav-link" routerLinkActive="active">
-                      <i class="fas fa-list nav-icon"></i>
-                      <p>Document List</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a routerLink="/cloud/docupload" class="nav-link" routerLinkActive="active">
-                      <i class="fas fa-cloud"></i>
-                      <p>Document Upload</p>
-                    </a>
-                  </li>
-                </ul>
-              </li> -->
-              <!-- <li class="nav-item">
-                <a class="nav-link">
-                  <i class="fas fa-cogs"></i>
-                  <p>Configuration</p>
-                  <i class="right fas fa-angle-left"></i>
-                </a>
-                <ul class="nav nav-treeview sublist">
-                  <li class="nav-item">
-                    <a routerLink="/config/buyer" class="nav-link" routerLinkActive="active">
-                      <i class="fas fa-hands-helping"></i>
-                      <p>Buyers</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a routerLink="/config/seller" class="nav-link" routerLinkActive="active">
-                      <i class="fas fa-industry"></i>
-                      <p>Sellers</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a routerLink="/config/agent" class="nav-link" routerLinkActive="active">
-                      <i class="fas fa-user-tie"></i>
-                      <p>Foreign External Agents</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a routerLink="/config/article" class="nav-link" routerLinkActive="active">
-                      <i class="fas fa-anchor"></i>
-                      <p>Articles</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a routerLink="/config/product" class="nav-link" routerLinkActive="active">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Product</p>
-                      <i class="right fas fa-angle-left"></i>
-                    </a>
-                    <ul class="nav nav-treeview sublist">
-                      <li class="nav-item">
-                        <a routerLink="/config/fabric-type" class="nav-link" routerLinkActive="active">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Fabric Type</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a routerLink="/config/packing" class="nav-link" routerLinkActive="active">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Packing</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a routerLink="/config/price-term" class="nav-link" routerLinkActive="active">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Price Term</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a routerLink="/config/payment-term" class="nav-link" routerLinkActive="active">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Payment Term</p>
-                        </a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link">
-                      <i class="fas fa-tshirt"></i>
-                      <p>Textile/Garments</p>
-                      <p><i class="right fas fa-angle-left"></i></p>
-                    </a>
-                    <ul class="nav nav-treeview sublist">
-                      <li class="nav-item">
-                        <a routerLink="/config/process" class="nav-link" routerLinkActive="active">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Process</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a routerLink="/config/process-type" class="nav-link" routerLinkActive="active">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Process Type</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a routerLink="/config/design-type" class="nav-link" routerLinkActive="active">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Design Type</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a routerLink="/config/loom-type" class="nav-link" routerLinkActive="active">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Loom Type</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a routerLink="/config/certificate" class="nav-link" routerLinkActive="active">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Certificate</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a routerLink="/config/color" class="nav-link" routerLinkActive="active">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Color</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a routerLink="/config/time-action-items" class="nav-link" routerLinkActive="active">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Time & Action Items</p>
-                        </a>
-                      </li>
-                    </ul>
-  
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link">
-                      <i class="fas fa-calculator"></i>
-                      <p>Bank Info</p>
-                      <i class="right fas fa-angle-left"></i>
-                    </a>
-                    <ul class="nav nav-treeview sublist">
-                      <li class="nav-item">
-                        <a routerLink="/config/bank" class="nav-link" routerLinkActive="active">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Bank</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a routerLink="/config/bank-accounts" class="nav-link" routerLinkActive="active">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Bank Account</p>
-                        </a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="nav-item">
-                    <a routerLink="/config/city" class="nav-link" routerLinkActive="active">
-                      <i class="fas fa-map-marker-alt"></i>
-                      <p>City Location</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a routerLink="/config/country" class="nav-link" routerLinkActive="active">
-                      <i class="far fa-map"></i>
-                      <p>Country</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a routerLink="/config/system-users" class="nav-link" routerLinkActive="active">
-                      <i class="far fa-map"></i>
-                      <p>System Users</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a routerLink="/config/shipmentLine" class="nav-link" routerLinkActive="active">
-                      <i class="far fa-map"></i>
-                      <p>Shipment Line</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a routerLink="/config/capability" class="nav-link" routerLinkActive="active">
-                      <i class="far fa-map"></i>
-                      <p>Capability</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a routerLink="/config/organization" class="nav-link" routerLinkActive="active">
-                      <i class="fas fa-sitemap"></i>
-                      <p>Organization</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a routerLink="/config/general-settings" class="nav-link" routerLinkActive="active">
-                      <i class="fas fa-wrench"></i>
-                      <p>General Settings</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a routerLink="/config/notification-settings" class="nav-link" routerLinkActive="active">
-                      <i class="fas fa-bell"></i>
-                      <p>Notification Settings</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a routerLink="/config/currency" class="nav-link" routerLinkActive="active">
-                      <i class="fab fa-btc"></i>
-                      <p>Currency Rate</p>
-                    </a>
-                  </li>
-                </ul>
-              </li> -->
-<!--   
-              <li class="nav-item">
-                <a routerLink="/cloud/doclist" class="nav-link">
-                  <i class="fas fa-question-circle"></i>
-                  <p>Help</p>
-                </a>
-              </li> -->
-  
-  
-  
-  
-  
-              <!--  <li class="nav-item">
-                  <a routerLink="home" class="nav-link">
-                  <i class="fa fa-home"></i>
-                    <p>Home</p>
-                  </a>
-                </li> -->
-  
-  
-              <!-- <li class="nav-item has-treeview">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-edit"></i>
-                <p>
-                  Forms
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="pages/forms/general.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>General Elements</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/forms/advanced.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Advanced Elements</p>
-                  </a>
-                </li>
-              </ul>
-            </li> -->
-  
-              <!-- <li class="nav-item has-treeview">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-table"></i>
-                <p>
-                  Tables
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="pages/tables/simple.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Simple Tables</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/tables/data.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>DataTables</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/tables/jsgrid.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>jsGrid</p>
-                  </a>
-                </li>
-              </ul>
-            </li> -->
             </ul>
           </nav>
           <!-- /.sidebar-menu -->

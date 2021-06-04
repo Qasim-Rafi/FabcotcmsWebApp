@@ -15,6 +15,10 @@ import {PaymentCollectionComponent} from '../yarn-billing-and-payment/payment-co
 import {OpenActiveBillComponent} from '../yarn-billing-and-payment/active-bills/open-active-bill/open-active-bill.component'
 import {ChangeBankAccountComponent} from '../yarn-billing-and-payment/active-bills/open-active-bill/change-bank-account/change-bank-account.component'
 import {PaymentFormComponent} from '../yarn-billing-and-payment/payment-form/payment-form.component'
+import {CommissionPaymentComponent} from '../yarn-billing-and-payment/commission-payment/commission-payment.component';
+import { EditCommissionComponent } from './edit-commission/edit-commission.component'
+import {ExternalAgentCommissionComponent} from '../yarn-billing-and-payment/external-agent-commission/external-agent-commission.component'
+import {NewCommissionPaymentComponent} from '../yarn-billing-and-payment/new-commission-payment/new-commission-payment.component'
 @NgModule({
   declarations: [
     BranchAddressComponent,
@@ -24,7 +28,11 @@ GenerateBillsComponent,
 PaymentCollectionComponent,
 OpenActiveBillComponent,
 ChangeBankAccountComponent,
-PaymentFormComponent
+PaymentFormComponent,
+CommissionPaymentComponent,
+EditCommissionComponent,
+ExternalAgentCommissionComponent,
+NewCommissionPaymentComponent
 
   ],
   imports: [
