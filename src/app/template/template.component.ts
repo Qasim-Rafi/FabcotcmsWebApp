@@ -13,7 +13,7 @@ export class TemplateComponent implements OnInit {
   userName:string;
   userRole: string;
   SalesExecutive=true;
-  Manager: boolean;
+  Manager:boolean;
   constructor( private router: Router,) { }
 
   ngOnInit(): void {

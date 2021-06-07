@@ -80,7 +80,7 @@
                     </div>
                 </div>
 
-            <hr>
+            <!-- <hr> -->
          
             <div class="row mb-4">
                 <div class="col-md-12">
@@ -88,7 +88,7 @@
                         <div class="row">
                             <div class="col-md-12">
             
-                                <div class="nav nav-pills " id="nav-tab" role="tablist">
+                                <!-- <div class="nav nav-pills " id="nav-tab" role="tablist">
             
                                     <a class="nav-item nav-link active " id="nav-Details-tab" data-toggle="tab" href="#nav-parties"
                                         role="tab" aria-controls="nav-Details" aria-selected="true">Parties</a>
@@ -108,13 +108,10 @@
                                         role="tab" aria-controls="nav-commission" aria-selected="false">Commission & Kickbacks
                                         &nbsp;</a>
             
-                                    <!-- <a class="nav-item nav-link " id="nav-Documents-tab" data-toggle="tab" href="#nav-Documents"
-                                                                                    role="tab" aria-controls="nav-Documents" aria-selected="false">Documents</a> -->
-            
                                     <a class="nav-item nav-link " id="nav-remarks-tab" data-toggle="tab" href="#nav-remarks"
                                         role="tab" aria-controls="nav-remarks" aria-selected="false">Remarks / Other Conditions
                                         &nbsp;</a>
-                                </div>
+                                </div> -->
             
                             </div>
                         </div>
@@ -125,13 +122,17 @@
         
     
 
-            <div class="tab-content" id="nav-tabContent">
+            <div >
             
                 <!---------- parties ---------->
-                <div class="tab-pane fade show active" id="nav-parties" role="tabpanel" aria-labelledby="nav-parties-tab">
+                <div>
                     
                     <form #enquiryForm="ngForm" novalidate>
-
+                        <div class="form-row">
+                            <div class="col-md-12 pt-2r pb-3">
+                        <div class="col-md-12">
+                            <span class="badge badge-primary">Parties</span> </div>
+                            <br>
                         <div class="form-row">
             
                         <div class="form-group col-md-12">
@@ -146,11 +147,11 @@
             
                             <div class="input-group">
 
-                                <ng-select name="buyerId" #buyerId="ngModel" class="input-w1 px-0" [(ngModel)]="data.buyerId"
-                                    placeholder="-- Select --" [ngClass]="{ 'error': enquiryForm.submitted && buyerId.invalid }">
-                                    <ng-option *ngFor="let i of buyer" [value]="i.id">{{ i.buyerName }}
-                                    </ng-option>
-                                </ng-select>
+                                <ng-select name="buyerId" #buyerId="ngModel" class="input-w px-0" [(ngModel)]="data.buyerId"
+                                placeholder="-- Select --" >
+                                <ng-option *ngFor="let i of buyer" [value]="i.id">{{ i.buyerName }}
+                                </ng-option>
+                            </ng-select>
                                            
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-primary" type="button" id="button-addon2"
@@ -163,14 +164,14 @@
                         </div>
             
                         <div class="form-group col-md-12">
-                            <label for="inputEmail3" class="col-form-label control-label">Seller Name</label>
+                            <label for="inputEmail3" class="col-form-label control-label">Supplier Name</label>
             
                             <div class="input-group">
-                                <ng-select name="sellerId" #sellerId="ngModel" class="input-w1 px-0" [(ngModel)]="data.sellerId"
-                                    placeholder="-- Select --" [ngClass]="{ 'error': enquiryForm.submitted && sellerId.invalid }">
-                                    <ng-option *ngFor="let i of seller" [value]="i.id">{{ i.sellerName }}
-                                    </ng-option>
-                                </ng-select>
+                                <ng-select name="sellerId" #sellerId="ngModel" class="input-w px-0" [(ngModel)]="data.sellerId"
+                                placeholder="-- Select --" >
+                                <ng-option *ngFor="let i of seller" [value]="i.id">{{ i.buyerName }}
+                                </ng-option>
+                            </ng-select>
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-primary" type="button" id="button-addon2"
                                         (click)="addBuyerForm()">
@@ -180,16 +181,19 @@
                         </div>
 
                         </div>
-
+</div>
+</div>
                     </form>
                     
                 </div>
             
-            
+            <hr>
                 <!---------- product ---------->
-                <div class="tab-pane fade show " id="nav-product" role="tabpanel" aria-labelledby="nav-product-tab">
+                <div >
                     <form #product="ngForm" novalidate>
-
+                        <div class="col-md-12">
+                            <span class="badge badge-primary">Product & Specification</span> </div>
+                            <br>
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="inputPassword4">Construction</label>
@@ -201,11 +205,12 @@
                                 <label for="inputEmail3" class="col-form-label control-label">Article:</label>
                 
                                 <div class="input-group">
-                                    <ng-select name="articleId" #articleId="ngModel" class="input-w1 px-0" [(ngModel)]="data.articleId"
-                                        placeholder="-- Select --" [ngClass]="{ 'error': product.submitted && sellerId.invalid }">
-                                        <ng-option *ngFor="let i of article" [value]="i.id">{{ i.articleName }}
-                                        </ng-option>
-                                    </ng-select>
+                                    <ng-select name="article" #articleId="ngModel" class="input-w px-0" [(ngModel)]="data.articleId"
+                                        [ngClass]="{ 'error': enquiryForm.submitted && articleId.invalid }" required
+                                            placeholder="-- Select --">
+                                            <ng-option *ngFor="let i of article" [value]="i.id">{{ i.name }}
+                                            </ng-option>
+                                        </ng-select>
                 
                 
                                     <div class="input-group-append">
@@ -223,12 +228,14 @@
                     </form>
                 </div>
             
-
+<hr>
                 <!---------- Quantity ---------->
-                <div class="tab-pane fade show " id="nav-costing" role="tabpanel" aria-labelledby="nav-costing-tab">
+                <div >
                     
                     <form #costing="ngForm" novalidate>
-
+                        <div class="col-md-12">
+                            <span class="badge badge-primary">Quantity & Costing</span> </div>
+                            <br>
                         <div class="form-row">
             
                         <div class="form-group col-md-12">
@@ -307,14 +314,16 @@
 
                     </form>
                 </div>
-            
+          <hr>  
 
                 <!---------- Payment & Delivery ---------->
             
-                <div class="tab-pane fade show " id="nav-payment" role="tabpanel" aria-labelledby="nav-payment-tab">
+                <div>
 
                     <form #payment="ngForm" novalidate>
-
+                        <div class="col-md-12">
+                            <span class="badge badge-primary">Payment & Delivery Terms</span> </div>
+                            <br>
                     <div class="form-row">
                     
                         <div class="form-group col-md-12">
@@ -333,9 +342,9 @@
                             <label for="inputEmail3" class="col-form-label control-label">Packing:</label>
                     
                             <div class="input-group">
-                                <ng-select name="articleId" #articleId="ngModel" class="input-w1 px-0" [(ngModel)]="data.articleId"
+                                <ng-select name="packingId" #packingId="ngModel" class="input-w1 px-0" [(ngModel)]="data.packingId"
                                     placeholder="-- Select --" [ngClass]="{ 'error': product.submitted && sellerId.invalid }">
-                                    <ng-option *ngFor="let i of article" [value]="i.id">{{ i.articleName }}
+                                    <ng-option *ngFor="let i of packing" [value]="i.id">{{ i.articleName }}
                                     </ng-option>
                                 </ng-select>
                     
@@ -529,14 +538,17 @@
                     </form>
 
                 </div>
+          <hr>  
             
 
                 <!---------- commission ---------->
             
-                <div class="tab-pane fade show " id="nav-commission" role="tabpanel" aria-labelledby="nav-commission-tab">
+                <div >
                 
                     <form #commission="ngForm" novalidate>
-                
+                        <div class="col-md-12">
+                            <span class="badge badge-primary">Commission & Kickbak</span> </div>
+                            <br>
                         <div class="form-row">
                 
                 
@@ -716,12 +728,15 @@
                 
                 </div>
             
+                <hr>  
 
                 <!---------- remarks ---------->
                 <div class="tab-pane fade show " id="nav-remarks" role="tabpanel" aria-labelledby="nav-remarks-tab">
 
                     <form #remarks="ngForm" novalidate>
-                    
+                        <div class="col-md-12">
+                            <span class="badge badge-primary">Remarks/ Other Conditions</span> </div>
+                            <br>
                         <div class="form-row">
                             <div class="col-md-12">
                     
@@ -773,7 +788,21 @@
             
             
                 </div>
-            
+          <hr>  
+          <div class="form-group row mt-5">
+            <label class="col-md-3 col-form-label control-label"></label>
+            <div class="col-md-6">
+                <div class="btn-group mr-2">
+                    <button type="submit" (click)="addContract()" class="btn btn clrbtn  btn-sm" data-toggle="tooltip" data-placement="top" title="Upload File on Server">
+                        <i class="far fa-hand-point-right"></i>&nbsp;Save & Goto Contract Page
+                    </button>
+                </div>
+                <button type="button"  class="btn btn-primary btn-sm">
+                    <i class="far fa-hand-point-up"></i>&nbsp;Save & Add New
+                </button>
+
+            </div>
+        </div>
             </div>
             
 
