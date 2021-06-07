@@ -73,6 +73,8 @@ export class PaymentFormComponent implements OnInit {
     if(this.statusCheck.statusCheck == 'addPayment'){
     this.fetch((data)=>
     this.paymentAdddata = data
+    
+    
     );}
 
     if(this.statusCheck.statusCheck == 'editPayment'){
