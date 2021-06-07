@@ -222,6 +222,8 @@ export class AddNewContractsComponent implements OnInit {
 
 
   addContract() {
+    // /api/Dashboard/GetNotifications?`+ 'EnquiryId ='+5+ +'&'+ 'departmentId ='+8 ,varr)
+
 
   
     // let varr = {

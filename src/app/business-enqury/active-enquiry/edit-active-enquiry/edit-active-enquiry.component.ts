@@ -1280,7 +1280,7 @@ export class EditActiveEnquiryComponent implements OnInit {
 
       GenerateContract() {
         let varr = {
-          "enquiryId": this.objEnquiry,
+          "enquiryId": parseInt(this.objEnquiry),
 
         }
     

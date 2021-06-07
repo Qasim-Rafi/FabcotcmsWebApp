@@ -58,7 +58,7 @@
           <div class="form-group row">
             <label for="construction" class="col-sm-3 col-form-label">Construcrion<span class="required-denote">*</span></label>
             <div class="col-sm-2">
-                <input id="compositionPercentage" min="0" required [ngClass]="{ 'error': compositionPercentage.invalid && ItemForm.submitted }" #compositionPercentage="ngModel"
+                <input type="number" id="compositionPercentage" min="0" required [ngClass]="{ 'error': compositionPercentage.invalid && ItemForm.submitted }" #compositionPercentage="ngModel"
                 name="compositionPercentage" [(ngModel)]="data.compositionPercentage" #compositionPercentage="ngModel" class="form-control" value="" placeholder="%age">
             </div>
             <div class="col-md-3">
