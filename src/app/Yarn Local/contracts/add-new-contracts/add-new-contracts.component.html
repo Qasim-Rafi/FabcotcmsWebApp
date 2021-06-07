@@ -169,12 +169,12 @@
                             <div class="input-group">
                                 <ng-select name="sellerId" #sellerId="ngModel" class="input-w px-0" [(ngModel)]="data.sellerId"
                                 placeholder="-- Select --" >
-                                <ng-option *ngFor="let i of seller" [value]="i.id">{{ i.buyerName }}
+                                <ng-option *ngFor="let i of seller" [value]="i.id">{{ i.sellerName }}
                                 </ng-option>
                             </ng-select>
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-primary" type="button" id="button-addon2"
-                                        (click)="addBuyerForm()">
+                                        (click)="addSellerForm()">
                                         <i class="fa fa-plus"></i></button>
                                 </div>
                             </div>
