@@ -246,8 +246,8 @@
 
                                 <div class="col-md-4">
                                     <div class="input-group">
-                                        <input type="number" min="0" placeholder="Comm%" #sellerSideCommission="ngModel"
-                                            class="form-control" [(ngModel)]="data.sellerSideCommission" name="sellerSideCommission"
+                                        <input type="number" min="0" placeholder="Comm%" #quantity="ngModel"
+                                            class="form-control" [(ngModel)]="data.quantity" name="quantity"
                                             >
                                         <div class="input-group-append">
                                             <span class="input-group-text" id="basic-addon2">per</span>
@@ -256,12 +256,10 @@
                                 </div>
             
                                 <div class="col-md-4 mrg-sm1">
-                                    <ng-select name="sellerSideCommissionUOMId " #sellerSideCommissionUOMId="ngModel"
-                                        [(ngModel)]="data.sellerSideCommissionUOMId" placeholder="-- Select UOM --"
-                                        >
-                                        <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
-                                        </ng-option>
-                                    </ng-select>            
+                                    <ng-select
+                                   [(ngModel)]="data.quantityUOMId" placeholder="Select UOM" name="quantityUOMId">
+                               <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}</ng-option>
+                                </ng-select>           
                                 </div>
             
                                 <div class="col-md-4 mrg-sm1">
@@ -270,7 +268,7 @@
                                             <span class="input-group-text" id="basic-addon2">+/-</span>
                                         </div>
                                         <input type="text" placeholder="tolerance value." class="form-control"
-                                            [(ngModel)]="data.sellerSideCommissionInfo" name="sellerSideCommissionInfo">
+                                            [(ngModel)]="data.toleranceValue" name="toleranceValue">
                                         <div class="input-group-append">
                                             <span class="input-group-text" id="basic-addon2">%</span>
                                         </div>
@@ -295,18 +293,15 @@
                                 </div>
             
                                 <div class="col-md-4 mrg-sm1">
-                                    <ng-select name="sellerSideCommissionUOMId " #sellerSideCommissionUOMId="ngModel"
-                                        [(ngModel)]="data.sellerSideCommissionUOMId" placeholder="-- Select Currency --"
-                                        >
-                                        <ng-option *ngFor="let i of currency" [value]="i.id">{{ i.name }}
-                                        </ng-option>
+                                    <ng-select [(ngModel)]="data.currencyId" placeholder="Select Currency" name="currencyId">
+                                        <ng-option *ngFor="let i of currency" [value]="i.id">{{ i.code }}</ng-option>
                                     </ng-select>
-                                </div>
-            
-                                <div class="col-md-4 mrg-sm1">
-            
-                                    <input type="text" placeholder="tolerance value." class="form-control"
-                                        [(ngModel)]="data.sellerSideCommissionInfo" name="sellerSideCommissionInfo">
+                                </div>per
+                                <div class="col-md-3 mrg-sm1">
+                                    <ng-select
+                                    [(ngModel)]="data.rateUOMId" placeholder="Select UOM" name="rateUOMId">
+                                <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}</ng-option>
+                                 </ng-select> 
             
                                 </div>
                             </div>
@@ -344,7 +339,7 @@
                             <label for="inputEmail3" class="col-form-label control-label">Packing:</label>
                     
                             <div class="input-group">
-                                <ng-select name="packingId" #packingId="ngModel" class="input-w1 px-0" [(ngModel)]="data.packingId"
+                                <ng-select name="packingIds" #packingIds="ngModel" class="input-w1 px-0" [(ngModel)]="data.packingIds"
 
                                     placeholder="-- Select --" >
                                     <ng-option *ngFor="let i of packing" [value]="i.id">{{ i.name }}
@@ -367,11 +362,11 @@
                             <label for="inputEmail3" class="col-form-label control-label">Price / Delivery Terms:</label>
                     
                             <div class="input-group">
-                                <ng-select name="articleId" #articleId="ngModel" class="input-w1 px-0" [(ngModel)]="data.articleId"
-                                    placeholder="-- Select --" >
-                                    <ng-option *ngFor="let i of article" [value]="i.id">{{ i.articleName }}
-                                    </ng-option>
-                                </ng-select>
+                                <ng-select name="priceTermId" #priceTermId="ngModel" class="input-w px-0" [(ngModel)]="data.priceTermId"
+                                                        placeholder="-- Select --">
+                                                        <ng-option *ngFor="let i of priceterm" [value]="i.id">{{ i.term }}
+                                                        </ng-option>
+                                                    </ng-select>
                     
                     
                                 <div class="input-group-append">
@@ -392,29 +387,18 @@
                             <div class="row">
                     
                                 <div class="form-group col-md-6">
-                                    <!-- <label for="inputPassword4">Supplier Delivery Date</label> -->
-                                    <!-- <input type="password" class="form-control" id="inputPassword4"> -->
-                                    <input type="number" placeholder="Enter Specification here" class="form-control text-w-4" id="enqry-no">
-                                </div>
-                                <div class="col-md-3 mrg-sm1">
                     
-                                    <ng-select name="sellerSideCommissionUOMId " #sellerSideCommissionUOMId="ngModel"
-                                        [(ngModel)]="data.sellerSideCommissionUOMId" placeholder="Month"
-                                        >
-                                        <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
-                                        </ng-option>
-                                    </ng-select>
+                                    <div class="input-group date" (clickOutside)="sellerDeliveryDatePicker.close()">
+                                        <input type="text" class="form-control  datetimepicker-input"
+                                            (click)="sellerDeliveryDatePicker.toggle()" placeholder="Date"
+                                            #sellerDeliveryDatePicker="ngbDatepicker" name="sellerDeliveryDate" ngbDatepicker>
+                                        <div class="input-group-append" (click)="sellerDeliveryDatePicker.toggle()">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
+                                    </div>
                     
                                 </div>
-                                <div class="col-md-3 mrg-sm1">
-                    
-                                    <ng-select name="sellerSideCommissionUOMId " #sellerSideCommissionUOMId="ngModel"
-                                        [(ngModel)]="data.sellerSideCommissionUOMId" placeholder="Year"
-                                        >
-                                        <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
-                                        </ng-option>
-                                    </ng-select>
-                                </div>
+                                
                             </div>
                         </div>
                     
@@ -426,28 +410,18 @@
                             <div class="form-group row" *ngFor="let a of new; let i = index;">
                     
                                 <div class="form-group col-md-6">
-                                    <!-- <label for="inputPassword4">Supplier Delivery Date</label> -->
-                                    <input type="number" placeholder="Enter Specification here" class="form-control text-w-4" id="enqry-no">
-                                </div>
-                                <div class="col-md-3 mrg-sm1">
                     
-                                    <ng-select name="sellerSideCommissionUOMId {{i}} " #sellerSideCommissionUOMId="ngModel"
-                                        [(ngModel)]="a.sellerSideCommissionUOMId" placeholder="Month"
-                                        >
-                                        <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
-                                        </ng-option>
-                                    </ng-select>
+                                    <div class="input-group date" (clickOutside)="sellerDeliveryDatePicker.close()">
+                                        <input type="text" class="form-control  datetimepicker-input"
+                                            (click)="sellerDeliveryDatePicker.toggle()" placeholder="Date"
+                                            #sellerDeliveryDatePicker="ngbDatepicker" name="sellerDeliveryDate" ngbDatepicker>
+                                        <div class="input-group-append" (click)="sellerDeliveryDatePicker.toggle()">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
+                                    </div>
                     
                                 </div>
-                                <div class="col-md-3 mrg-sm1">
-                    
-                                    <ng-select name="sellerSideCommissionUOMId {{i}} " #sellerSideCommissionUOMId="ngModel"
-                                        [(ngModel)]="a.sellerSideCommissionUOMId" placeholder="Year"
-                                        >
-                                        <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
-                                        </ng-option>
-                                    </ng-select>
-                                </div>
+                              
                     
                                 <div class="col-md-12"><button class="btn btn-outline-danger mt-2 float-right" type="submit"
                                         (click)="remove(i)">
@@ -469,29 +443,17 @@
                         <div class="col-md-12">
                             <label for="inputPassword4" class="col-form-label control-label">Buyer Delivery Date</label>
                     
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <!-- <label for="inputPassword4">Buyer Delivery Date</label> -->
-                                    <!-- <input type="password" class="form-control" id="inputPassword4"> -->
-                                    <input type="number" placeholder="Enter Specification here" class="form-control text-w-4" id="enqry-no">
-                                </div>
-                                <div class="col-md-3 mrg-sm1">
-                                    <ng-select name="sellerSideCommissionUOMId " #sellerSideCommissionUOMId="ngModel"
-                                        [(ngModel)]="data.sellerSideCommissionUOMId" placeholder="Month"
-                                        >
-                                        <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
-                                        </ng-option>
-                                    </ng-select>
-                                </div>
-                                <div class="col-md-3 mrg-sm1">
-                                    <ng-select name="sellerSideCommissionUOMId " #sellerSideCommissionUOMId="ngModel"
-                                        [(ngModel)]="data.sellerSideCommissionUOMId" placeholder="Year"
-                                        >
-                                        <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
-                                        </ng-option>
-                                    </ng-select>
-                                </div>
+                            <div class="form-group col-md-6">
                     
+                                <div class="input-group date" (clickOutside)="buyerDeliveryDatePicker.close()">
+                                    <input type="text" class="form-control  datetimepicker-input"
+                                        (click)="buyerDeliveryDatePicker.toggle()" placeholder="Date"
+                                        #buyerDeliveryDatePicker="ngbDatepicker" name="buyerDeliveryDate" ngbDatepicker>
+                                    <div class="input-group-append" (click)="buyerDeliveryDatePicker.toggle()">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                                </div>
+                
                             </div>
                     
                         </div>
@@ -503,27 +465,16 @@
                             <div class="form-group row" *ngFor="let a of new2; let i = index;">
                     
                                 <div class="form-group col-md-6">
-                                    <!-- <label for="inputPassword4">Buyer Delivery Date</label> -->
-                                    <input type="number" placeholder="Enter Specification here" class="form-control text-w-4" id="enqry-no">
-                                </div>
-                                <div class="col-md-3 mrg-sm1">
                     
-                                    <ng-select name="sellerSideCommissionUOMId {{i}} " #sellerSideCommissionUOMId="ngModel"
-                                        [(ngModel)]="a.sellerSideCommissionUOMId" placeholder="Month"
-                                        >
-                                        <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
-                                        </ng-option>
-                                    </ng-select>
+                                    <div class="input-group date" (clickOutside)="buyerDeliveryDatePicker.close()">
+                                        <input type="text" class="form-control  datetimepicker-input"
+                                            (click)="buyerDeliveryDatePicker.toggle()" placeholder="Date"
+                                            #buyerDeliveryDatePicker="ngbDatepicker" name="buyerDeliveryDate" ngbDatepicker>
+                                        <div class="input-group-append" (click)="buyerDeliveryDatePicker.toggle()">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
+                                    </div>
                     
-                                </div>
-                                <div class="col-md-3 mrg-sm1">
-                    
-                                    <ng-select name="sellerSideCommissionUOMId {{i}} " #sellerSideCommissionUOMId="ngModel"
-                                        [(ngModel)]="a.sellerSideCommissionUOMId" placeholder="Year"
-                                        >
-                                        <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
-                                        </ng-option>
-                                    </ng-select>
                                 </div>
                     
                                 <div class="col-md-12"><button class="btn btn-outline-danger mt-2 float-right" type="submit"
@@ -797,7 +748,7 @@
             <label class="col-md-3 col-form-label control-label"></label>
             <div class="col-md-6">
                 <div class="btn-group mr-2">
-                    <button type="submit" (click)="addContract()" class="btn btn clrbtn  btn-sm" data-toggle="tooltip" data-placement="top" title="Upload File on Server">
+                    <button type="button" (click)="addContract()" class="btn btn clrbtn btn-sm" >
                         <i class="far fa-hand-point-right"></i>&nbsp;Save & Goto Contract Page
                     </button>
                 </div>

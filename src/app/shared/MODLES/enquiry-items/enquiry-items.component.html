@@ -86,7 +86,7 @@
                         <div class="form-row">
                 
                             <div class="form-group col-3 modalBorder">
-                                <input autofocus #focus required type="text" class="form-control" placeholder="Description" name="description_{{i}}"
+                                <input #focus required type="text" class="form-control" placeholder="Description" name="description_{{i}}"
                                     #description="ngModel" [(ngModel)]=value.description
                                     [ngClass]="{ 'error':  description.invalid &&  EnquiryItemForm.submitted}"  />
                             </div>

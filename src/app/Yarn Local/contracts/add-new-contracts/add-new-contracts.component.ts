@@ -18,19 +18,20 @@ import { AddSellerFormComponent } from 'src/app/configuration/seller/add-seller-
 export class AddNewContractsComponent implements OnInit {
 
   response: any;
-  data: any = {}
-  buyer: any= []
-  seller: any= []
-  article: any= []
-  packing: any= []
-  uomList: any= []
-  currency: any= []
+  data: any = {};
+  buyer: any= [];
+  seller: any= [];
+  article: any= [];
+  packing: any= [];
+  priceterm: any= [];
+  uomList: any= [];
+  currency: any= [];
   newBuyer: number;
   newSeller: number;
-  counter3 :number =1
-  new:any=[]
-  new2:any=[]
-  new3:any=[] 
+  counter3 :number =1;
+  new:any=[];
+  new2:any=[];
+  new3:any=[];
   @ViewChild(NgForm) contractForm;
 
 
@@ -48,6 +49,8 @@ export class AddNewContractsComponent implements OnInit {
     this.GetUOMDropdown();
     this.GetArticleDropdown();
     this.GetCurrencyDropdown();
+    this.GetpackingDropdown();
+    this.GetPriceTermDropdown();
   }
 
 
@@ -136,6 +139,29 @@ export class AddNewContractsComponent implements OnInit {
     })
   }
 
+  GetPriceTermDropdown() {
+    this.service.getPriceTerm().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.priceterm = this.response.data.list;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  } 
+
+  GetpackingDropdown() {
+    this.service.getPackaging().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.packing = this.response.data.list;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
 
   GetArticleDropdown() {
     this.service.getArticles().subscribe(res => {
