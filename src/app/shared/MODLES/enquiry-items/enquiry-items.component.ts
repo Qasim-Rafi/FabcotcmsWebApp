@@ -36,7 +36,7 @@ export class EnquiryItemsComponent implements OnInit {
   counter: number = 0
 
   @ViewChild("focus") myInputField: ElementRef;
-  @ViewChildren('focus') focus: QueryList<ElementRef>;
+  // @ViewChildren('focus') focus: QueryList<ElementRef>;
   constructor(
     private _NgbActiveModal: NgbActiveModal,
     private http: HttpClient,
@@ -55,14 +55,15 @@ export class EnquiryItemsComponent implements OnInit {
       this.editEnquiry(this.EnquiryItemId);
     }
   }
-  // ngAfterViewInit() {
-  //   this.myInputField.nativeElement.focus();
-  //   }
   ngAfterViewInit() {
-    this.focus.changes.subscribe(() => {
-        this.focus.last.nativeElement.focus();       
-    });
-}
+    this.myInputField.nativeElement.focus();
+    
+    }
+//   ngAfterViewInit() {
+//     this.focus.changes.subscribe(() => {
+//         this.focus.last.nativeElement.focus();       
+//     });
+// }
   get activeModal() {
     return this._NgbActiveModal;
   }

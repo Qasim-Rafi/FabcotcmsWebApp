@@ -100,7 +100,7 @@ export class AddEnquiryComponent implements OnInit {
  
     let olddate=new Date();
     let latest_date =this.datepipe.transform(olddate, 'yyyy-MM-dd');
-    this.enquiryDateField =this.dateformater.fromModel(latest_date);
+    // this.enquiryDateField =this.dateformater.fromModel(latest_date);
     this. getAutoEnquiryNo();
     this.GetBuyersDropdown("start");
     this.GetArticlesDropdown("start");
@@ -546,7 +546,7 @@ export class AddEnquiryComponent implements OnInit {
   
       let varr = {
   
-        "enquiryDate": this.data.enquiryDate,
+        "enquiryDate": this.dateformater.toModel(this.data.enquiryDate),
         "buyerId": this.data.buyerId,
         "articleId": this.data.articleId,
         "processId": this.data.processId,
