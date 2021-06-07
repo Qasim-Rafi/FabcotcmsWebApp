@@ -130,6 +130,9 @@ export class ServiceService {
   getBuyers() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/Buyers`);
   }
+  getSellerLookup() {
+    return this.http.get(`${environment.apiUrl}/api/Lookups/Sellers`);
+  }
   getBuyersPOC() {
     return this.http.get(`${environment.apiUrl}/api/Buyers/GetAllPOC`);
   }
