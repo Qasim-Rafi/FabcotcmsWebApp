@@ -8,6 +8,7 @@ import { NgForm } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { AddSellerFormComponent } from 'src/app/configuration/seller/add-seller-form/add-seller-form.component';
 
 @Component({
   selector: 'app-add-new-contracts',
@@ -104,8 +105,8 @@ export class AddNewContractsComponent implements OnInit {
       this.response = res;
       if (this.response.success == true) {
 
-        this.seller = this.response.data.list;
-        this.newSeller = this.response.data.lastId
+        this.seller = this.response.data;
+        this.newSeller = this.response.data
 
 
 
@@ -202,7 +203,7 @@ export class AddNewContractsComponent implements OnInit {
 
   
   addSellerForm() {
-    const modalRef = this.modalService.open(ArticleComponent, { centered: true });
+    const modalRef = this.modalService.open(AddSellerFormComponent, { centered: true });
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
