@@ -45,6 +45,9 @@ export class ServiceService {
             localStorage.setItem('token', this.user.token);
             localStorage.setItem('role', this.user.role);
             localStorage.setItem('loggedInUserName', this.user.loggedInUserName);
+            // localStorage.setItem('loggedInDepartment', this.user.loggedInDepartment);
+            localStorage.setItem('loggedInDepartmentId', this.user.loggedInDepartmentId);
+            localStorage.setItem('loggedInDepartmentName', this.user.loggedInDepartmentName);
 
             //this.authenticateUser(this.userRole);
             //     setTimeout(()=>{                           

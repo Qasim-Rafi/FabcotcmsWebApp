@@ -421,7 +421,7 @@
                             
                             
                                 <div class="form-group col-md-12">
-                                    <label for="inputEmail3" class="col-form-label control-label">Suppiler Side Commission<span class="required-denote">*</span></label>
+                                    <label for="inputEmail3" class="col-form-label control-label">Suppiler Side Commission</label>
                             
                                     
                                         <div class="row">
@@ -429,7 +429,7 @@
                                             <div class="col-md-4">
                                                 <div class="input-group">
                                                     <input type="number" min="0" placeholder="Comm%" #sellerSideCommission="ngModel" class="form-control"
-                                                        [(ngModel)]="data.sellerSideCommission" name="sellerSideCommission" [ngClass]="{ 'error': enquiryForm.submitted && sellerSideCommission.invalid }" required >
+                                                        [(ngModel)]="data.sellerSideCommission" name="sellerSideCommission" >
                                                     <div class="input-group-append">
                                                         <span class="input-group-text" id="basic-addon2">per</span>
                                                     </div>
@@ -439,7 +439,7 @@
                                             <div class="col-md-4 mrg-sm1">
                             
                                                 <ng-select name="sellerSideCommissionUOMId " #sellerSideCommissionUOMId="ngModel" [(ngModel)]="data.sellerSideCommissionUOMId"
-                                                    placeholder="-- Select UOM --" [ngClass]="{ 'error': enquiryForm.submitted && sellerSideCommissionUOMId.invalid }" required >
+                                                    placeholder="-- Select UOM --" >
                                                     <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
                                                     </ng-option>
                                                 </ng-select>
@@ -461,7 +461,7 @@
                                 </div>
                             
                                 <div class="form-group col-md-12">
-                                    <label for="code" class="col-form-label control-label">Buyer Side Commission<span class="required-denote">*</span></label>
+                                    <label for="code" class="col-form-label control-label">Buyer Side Commission</label>
                             
                                     
                                         <div class="row">
@@ -469,8 +469,7 @@
                                             <div class="col-md-4">
                                                 <div class="input-group">
                                                     <input type="number" min="0" placeholder="Comm%" #buyerSideCommission="ngModel" class="form-control"
-                                                        [(ngModel)]="data.buyerSideCommission" name="buyerSideCommission"
-                                                        [ngClass]="{ 'error': enquiryForm.submitted && buyerSideCommission.invalid }" required>
+                                                        [(ngModel)]="data.buyerSideCommission" name="buyerSideCommission">
                                                     <div class="input-group-append">
                                                         <span class="input-group-text" id="basic-addon2">per</span>
                                                     </div>
@@ -480,7 +479,7 @@
                                             <div class="col-md-4 mrg-sm1">
                             
                                                 <ng-select name="buyerSideCommissionUOMId " #buyerSideCommissionUOMId="ngModel" [(ngModel)]="data.buyerSideCommissionUOMId"
-                                                    placeholder="-- Select UOM --" [ngClass]="{ 'error': enquiryForm.submitted && buyerSideCommissionUOMId.invalid }" required>
+                                                    placeholder="-- Select UOM --">
                                                     <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
                                                     </ng-option>
                                                 </ng-select>

@@ -46,7 +46,7 @@
                         class="required-denote">*</span></label>
 
                     <div class="col-md-3">
-                        <input  min="0" class="form-control" placeholder="Rate" name="rate"
+                        <input type="number" min="0" class="form-control" placeholder="Rate" name="rate"
                             [(ngModel)]="data.rate" #rate="ngModel"
                             [ngClass]="{ 'error': QuotationForm.submitted && rate.invalid }" required />
                     </div>

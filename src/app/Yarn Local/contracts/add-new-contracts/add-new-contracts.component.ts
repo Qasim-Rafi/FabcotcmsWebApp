@@ -222,35 +222,7 @@ export class AddNewContractsComponent implements OnInit {
 
 
   addContract() {
-
-  
-    // let varr = {
-
-    //   "enquiryDate": this.data.enquiryDate,
-    //   "buyerId": this.data.buyerId,
-    //   "articleId": this.data.articleId,
-    //   "processId": this.data.processId,
-    //   "processTypeId": this.data.processTypeId,
-    //   "designTypeId": this.data.designTypeId,
-    //   "packagingId": this.data.packagingId,
-    //   "paymentTermId": this.data.paymentTermId,
-    //   "paymentTermDays": this.data.paymentTermDays  == undefined ? 0 : this.data.paymentTermDays ,
-    //   "paymentTermInfo": this.data.paymentTermInfo,
-    //   "priceTermId": this.data.priceTermId,
-    //   "destinationId": this.data.destinationId,
-    //   "sellerSideCommission": this.data.sellerSideCommission.toString(),
-    //   "sellerSideCommissionUOMId": this.data.sellerSideCommissionUOMId,
-    //   "sellerSideCommissionInfo": this.data.sellerSideCommissionInfo,
-    //   "buyerSideCommission": this.data.buyerSideCommission.toString(),
-    //   "buyerSideCommissionUOMId": this.data.buyerSideCommissionUOMId,
-    //   "buyerSideCommissionInfo": this.data.buyerSideCommissionInfo,
-    //   "certificateIds": this.data.certificateIds != null ? this.data.certificateIds.toString() : null,
-    //   "remarks": this.data.remarks,
-    //   "additionalInfo": this.data.additionalInfo,
-    //   "departmentId": this.data.departmentId,
-
-    // }
-
+    // /api/Dashboard/GetNotifications?`+ 'EnquiryId ='+5+ +'&'+ 'departmentId ='+8 ,varr)
     this.http.
       post(`${environment.apiUrl}/api/YarnContracts/AddContract`, this.data)
       .subscribe(
