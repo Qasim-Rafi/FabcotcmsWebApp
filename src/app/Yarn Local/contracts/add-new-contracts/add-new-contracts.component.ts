@@ -1,9 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { ServiceService } from 'src/app/shared/service.service';
 import { ArticleComponent } from '../Modals/article/article.component';
 import { BuyerComponent } from '../Modals/buyer/buyer.component';
+import { NgForm } from '@angular/forms';
+import { environment } from 'src/environments/environment';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-new-contracts',
@@ -17,6 +21,7 @@ export class AddNewContractsComponent implements OnInit {
   buyer: any= []
   seller: any= []
   article: any= []
+  packing: any= []
   uomList: any= []
   currency: any= []
   newBuyer: number;
@@ -25,12 +30,15 @@ export class AddNewContractsComponent implements OnInit {
   new:any=[]
   new2:any=[]
   new3:any=[] 
+  @ViewChild(NgForm) contractForm;
 
 
   constructor(
     private service: ServiceService,
     private toastr: ToastrService,
     private modalService: NgbModal,
+    private router: Router,
+    private http: HttpClient,
   ) { }
 
   ngOnInit(): void {
@@ -92,7 +100,7 @@ export class AddNewContractsComponent implements OnInit {
 
 
   GetSellerDropdown(type:string) {
-    this.service.getSellers().subscribe(res => {
+    this.service.getSellerLookup().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
 
@@ -208,10 +216,63 @@ export class AddNewContractsComponent implements OnInit {
 
   }
 
+  navigate() {
+    this.router.navigateByUrl('/yarn-local/active-contract');
+  };
 
 
+  addContract() {
 
+  
+    // let varr = {
 
+    //   "enquiryDate": this.data.enquiryDate,
+    //   "buyerId": this.data.buyerId,
+    //   "articleId": this.data.articleId,
+    //   "processId": this.data.processId,
+    //   "processTypeId": this.data.processTypeId,
+    //   "designTypeId": this.data.designTypeId,
+    //   "packagingId": this.data.packagingId,
+    //   "paymentTermId": this.data.paymentTermId,
+    //   "paymentTermDays": this.data.paymentTermDays  == undefined ? 0 : this.data.paymentTermDays ,
+    //   "paymentTermInfo": this.data.paymentTermInfo,
+    //   "priceTermId": this.data.priceTermId,
+    //   "destinationId": this.data.destinationId,
+    //   "sellerSideCommission": this.data.sellerSideCommission.toString(),
+    //   "sellerSideCommissionUOMId": this.data.sellerSideCommissionUOMId,
+    //   "sellerSideCommissionInfo": this.data.sellerSideCommissionInfo,
+    //   "buyerSideCommission": this.data.buyerSideCommission.toString(),
+    //   "buyerSideCommissionUOMId": this.data.buyerSideCommissionUOMId,
+    //   "buyerSideCommissionInfo": this.data.buyerSideCommissionInfo,
+    //   "certificateIds": this.data.certificateIds != null ? this.data.certificateIds.toString() : null,
+    //   "remarks": this.data.remarks,
+    //   "additionalInfo": this.data.additionalInfo,
+    //   "departmentId": this.data.departmentId,
+
+    // }
+
+    this.http.
+      post(`${environment.apiUrl}/api/YarnContracts/AddContract`, this.data)
+      .subscribe(
+        res => {
+
+          this.response = res;
+          if (this.response.success == true) {
+            this.toastr.success(this.response.message, 'Message.');
+            this.contractForm.reset();
+             this.router.navigate(['/yarn-local/active-contract'], { queryParams: {id: this.response.data} });
+            // this.router.navigate(['/enquiry/active-enquiries']);
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+
+        },(err: HttpErrorResponse) => {
+          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+          this.toastr.error(messages.toString(), 'Message.');
+          console.log(messages);
+        });
+  }
 
 
 
