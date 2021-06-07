@@ -12,8 +12,8 @@ export class TemplateComponent implements OnInit {
   title = 'Project';
   userName:string;
   userRole: string;
-  SalesExecutive:boolean;
-  Manager=true;
+  SalesExecutive=true;
+  Manager:boolean;
   constructor( private router: Router,) { }
 
   ngOnInit(): void {
