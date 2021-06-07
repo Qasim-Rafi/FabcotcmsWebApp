@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AddSellerFormComponent } from 'src/app/configuration/seller/add-seller-form/add-seller-form.component';
+import { Dateformater } from 'src/app/shared/dateformater';
 
 @Component({
   selector: 'app-add-new-contracts',
@@ -33,6 +34,8 @@ export class AddNewContractsComponent implements OnInit {
   new2:any=[];
   new3:any=[];
   @ViewChild(NgForm) contractForm;
+  objEnquiry=0;
+  dateformater: Dateformater = new Dateformater();
 
 
   constructor(
@@ -249,39 +252,34 @@ export class AddNewContractsComponent implements OnInit {
 
 
   addContract() {
-    // /api/Dashboard/GetNotifications?`+ 'EnquiryId ='+5+ +'&'+ 'departmentId ='+8 ,varr)
-
-
-  
-    // let varr = {
-
-    //   "enquiryDate": this.data.enquiryDate,
-    //   "buyerId": this.data.buyerId,
-    //   "articleId": this.data.articleId,
-    //   "processId": this.data.processId,
-    //   "processTypeId": this.data.processTypeId,
-    //   "designTypeId": this.data.designTypeId,
-    //   "packagingId": this.data.packagingId,
-    //   "paymentTermId": this.data.paymentTermId,
-    //   "paymentTermDays": this.data.paymentTermDays  == undefined ? 0 : this.data.paymentTermDays ,
-    //   "paymentTermInfo": this.data.paymentTermInfo,
-    //   "priceTermId": this.data.priceTermId,
-    //   "destinationId": this.data.destinationId,
-    //   "sellerSideCommission": this.data.sellerSideCommission.toString(),
-    //   "sellerSideCommissionUOMId": this.data.sellerSideCommissionUOMId,
-    //   "sellerSideCommissionInfo": this.data.sellerSideCommissionInfo,
-    //   "buyerSideCommission": this.data.buyerSideCommission.toString(),
-    //   "buyerSideCommissionUOMId": this.data.buyerSideCommissionUOMId,
-    //   "buyerSideCommissionInfo": this.data.buyerSideCommissionInfo,
-    //   "certificateIds": this.data.certificateIds != null ? this.data.certificateIds.toString() : null,
-    //   "remarks": this.data.remarks,
-    //   "additionalInfo": this.data.additionalInfo,
-    //   "departmentId": this.data.departmentId,
-
-    // }
+    let departmentId=localStorage.getItem('loggedInDepartmentId')
+    let varr = {
+      // "enquiryDate": this.dateformater.toModel(this.data.enquiryDate),
+          "poNumber": this.data.poNumber,
+          "sellerId": this.data.sellerId,
+          "buyerId": this.data.buyerId,
+          "articleId": this.data.articleId,
+          "construction":this.data.construction,
+          "quantity": this.data.quantity,        
+          "quantityUOMId": this.data.quantityUOMId,        
+           "toleranceValue": this.data.toleranceValue,
+          "rate": this.data.rate,        
+           "currencyId": this.data.currencyId,
+          "rateUOMId": this.data.rateUOMId,        
+           "sellerPaymentTerm": this.data.sellerPaymentTerm,
+          "buyerPaymentTerm": this.data.buyerPaymentTerm,
+          "packingId": this.data.packingId,        
+          "priceTermId": this.data.priceTermId,        
+          "sellerDeliveryDate": this.data.sellerDeliveryDate,
+          "buyerDeliveryDate": this.data.buyerDeliveryDate,
+          "contractRemarks": this.data.contractRemarks,
+          "buyerRemarks": this.data.buyerRemarks,        
+          "otherConditionRemarks": this.data.otherConditionRemarks,
+          "title": this.data.title,
+    }
 
     this.http.
-      post(`${environment.apiUrl}/api/YarnContracts/AddContract`, this.data)
+      post(`${environment.apiUrl}/api/YarnContracts/AddContract?`+'enquiryId='+this.objEnquiry+'&'+'departmentId ='+departmentId, varr)
       .subscribe(
         res => {
 

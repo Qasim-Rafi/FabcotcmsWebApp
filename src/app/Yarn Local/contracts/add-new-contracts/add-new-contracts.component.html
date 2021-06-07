@@ -59,24 +59,25 @@
                     <div class="form-group col-md-2">
                         <label for="inputPassword4">Auto</label>
                         <!-- <input type="password" class="form-control" id="inputPassword4"> -->
-                        <input type="text" placeholder="Auto Enquiry no." class="form-control text-w-4" readonly="">
+                        <input type="text" placeholder="Auto Contract no." class="form-control text-w-4" readonly="">
                     </div>
                     <div class="form-group col-md-3">
                         <label for="inputPassword4">(Manual)</label>
                         <!-- <input type="password" class="form-control" id="inputPassword4"> -->
-                        <input type="text" placeholder="Enquiry no." class="form-control text-w-4" id="enqry-no">
+                        <input type="text" placeholder="Contract no." class="form-control text-w-4" id="enqry-no">
                     </div>
                     <div class="form-group col-md-3 offset-md-2 offset-lg-2">
                         <label for="inputPassword4">Contract Date</label>
-                        <!-- <input type="text" class="form-control date" id="enqry-date" value="Fri 26-Mar-2021"> -->
-                        <div class="input-group date" (clickOutside)="enquiryDatePicker.close()">
-                            <input type="text" class="form-control  datetimepicker-input"
-                                (click)="enquiryDatePicker.toggle()" placeholder="Date"
-                                #enquiryDatePicker="ngbDatepicker" name="enquiryDate" ngbDatepicker>
-                            <div class="input-group-append" (click)="enquiryDatePicker.toggle()">
-                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                        <div class="input-group date" (clickOutside)="validity.close()">
+                          
+                            <input navigation="select" placeholder="Contract Date" class="form-control " id="enquiryDate" name="enquiryDate" required
+                            [(ngModel)]="data.enquiryDate" #enquiryDate="ngModel" ngbDatepicker #validity="ngbDatepicker"
+                             (click)="validity.toggle()" />
+                              
+                            <div class="input-group-append" (click)="validity.toggle()">
+                              <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                             </div>
-                        </div>
+                          </div>
                     </div>
                 </div>
 
@@ -139,7 +140,7 @@
                             <label for="inputPassword4">Purchase Order #</label>
                             <!-- <input type="password" class="form-control" id="inputPassword4"> -->
                             <input type="text" placeholder="Purchase order no. optional" class="form-control text-w-4"
-                                id="enqry-no">
+                                id="poNumber" [(ngModel)]="data.poNumber" name="poNumber">
                         </div>
             
                         <div class="form-group col-md-12">
@@ -498,7 +499,7 @@
 
                 <!---------- commission ---------->
             
-                <div >
+                <!-- <div >
                 
                     <form #commission="ngForm" novalidate>
                         <div class="col-md-12">
@@ -683,8 +684,8 @@
                 
                 </div>
             
-                <hr>  
-
+                <hr>   -->
+<hr>
                 <!---------- remarks ---------->
                 <div class="tab-pane fade show " id="nav-remarks" role="tabpanel" aria-labelledby="nav-remarks-tab">
 
@@ -699,8 +700,8 @@
                                     <label for="inputEmail3" class="col-md-3 col-form-label control-label">Remarks:</label>
                                     <div class="col-md-6">
                                         <div class="input-group">
-                                            <textarea rows="3" class="form-control" [(ngModel)]="data.enquiryRemarks"
-                                                name="enquiryRemarks"></textarea>
+                                            <textarea rows="3" class="form-control" [(ngModel)]="data.contractRemarks"
+                                                name="contractRemarks"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -709,8 +710,8 @@
                                     <label for="inputEmail3" class="col-md-3 col-form-label control-label">Remarks Buyer:</label>
                                     <div class="col-md-6">
                                         <div class="input-group">
-                                            <textarea rows="3" class="form-control" [(ngModel)]="data.enquiryRemarks"
-                                                name="enquiryRemarks"></textarea>
+                                            <textarea rows="3" class="form-control" [(ngModel)]="data.buyerRemarks"
+                                                name="buyerRemarks"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -720,8 +721,8 @@
                                         Conditions:</label>
                                     <div class="col-md-6">
                                         <div class="input-group">
-                                            <textarea rows="3" class="form-control" [(ngModel)]="data.enquiryOtherCondition"
-                                                name="enquiryOtherCondition"></textarea>
+                                            <textarea rows="3" class="form-control" [(ngModel)]="data.otherConditionRemarks"
+                                                name="otherConditionRemarks"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -730,8 +731,8 @@
                                     <label for="inputEmail3" class="col-md-3 col-form-label control-label">Title:</label>
                                     <div class="col-md-6">
                                         <div class="input-group">
-                                            <textarea rows="3" class="form-control" [(ngModel)]="data.enquiryOtherCondition"
-                                                name="enquiryOtherCondition"></textarea>
+                                            <textarea rows="3" class="form-control" [(ngModel)]="data.title"
+                                                name="title"></textarea>
                                         </div>
                                     </div>
                                 </div>
