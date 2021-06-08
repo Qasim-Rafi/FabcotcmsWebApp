@@ -58,7 +58,9 @@
   width: 30%;
   float: right;
 }
-
+.input-w{
+	width: 89% !important;
+  }
 
 
 
