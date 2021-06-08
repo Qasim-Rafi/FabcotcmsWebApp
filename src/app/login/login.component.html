@@ -70,9 +70,9 @@
             </div>
           </div>
         </div> -->
-        <div class="input-group">
+        <div class="input-group mb-3">
 
-          <ng-select  
+          <ng-select  class="input-w px-0"
           [(ngModel)]="data.departmentId" placeholder="Select Department"  name="departmentId">
       <ng-option *ngFor="let i of departmentId" [value]="i.id">{{ i.name }}</ng-option>
        </ng-select> 
@@ -129,12 +129,14 @@
           </div> -->
 
       <!-- /.social-auth-links -->
+      <div class="form-group">
       <p class="mb-4 text-center"> Don't have account?
-        <a href="forgot-password.html">Create One </a>
       </p>
+
+        <div class="text_Navy" (click)="signUpForm()">Create One </div>
       <p class="mb-4 text-center">
         <a href="forgot-password.html">I forgot my password</a>
-      </p>
+      </p></div>
       <!-- <div class="card-footer">
   <p class="mb-0 text-center">
     FabCot International Enterprises® © 2021 All rights reserved
