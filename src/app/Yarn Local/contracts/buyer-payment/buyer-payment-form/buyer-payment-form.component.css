@@ -36,3 +36,13 @@
 .input-w1{
   width: 97% !important;
 }
+.column{
+  font-size: medium;
+
+}
+
+.badge {
+  padding: 5px 10px !important;
+  font-weight: 500 !important;
+  font-size: 100% !important;
+}
