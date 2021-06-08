@@ -30,6 +30,14 @@ import {ContractNoteComponent} from './yarn-active-contracts/active-contract-det
 import { ProductionStatusComponent } from './yarn-active-contracts/active-contract-details/active-contract-models/production-status/production-status.component';
 import { DocumentUploadPopUpComponent } from './yarn-active-contracts/active-contract-details/active-contract-models/document-upload-pop-up/document-upload-pop-up.component'
 import {  ReactiveFormsModule } from '@angular/forms';
+import {PartiesComponent} from './yarn-active-contracts/active-contract-details/active-contract-models/parties/parties.component';
+import { ProductAndSpecificationComponent } from './yarn-active-contracts/active-contract-details/active-contract-models/product-and-specification/product-and-specification.component';
+import { QuantityAndCostingComponent } from './yarn-active-contracts/active-contract-details/active-contract-models/quantity-and-costing/quantity-and-costing.component'
+import {PaymentDeliveryComponent} from './yarn-active-contracts/active-contract-details/active-contract-models/payment-delivery/payment-delivery.component';
+import { DeliveryTimeLineComponent } from './yarn-active-contracts/active-contract-details/active-contract-models/delivery-time-line/delivery-time-line.component'
+import {RemarksComponent} from './yarn-active-contracts/active-contract-details/active-contract-models/remarks/remarks.component'
+import {EmployeeCommissionComponent} from './yarn-active-contracts/active-contract-details/active-contract-models/employee-commission/employee-commission.component'
+import {CommisionKickbackComponent} from './yarn-active-contracts/active-contract-details/active-contract-models/commision-kickback/commision-kickback.component'
 @NgModule({
   declarations: [AddNewContractsComponent,
     EditDispatchComponent,
@@ -39,7 +47,16 @@ import {  ReactiveFormsModule } from '@angular/forms';
     SaleInvoicePopUpComponent,
     ContractNoteComponent,
     ProductionStatusComponent,
-    DocumentUploadPopUpComponent
+    DocumentUploadPopUpComponent,
+    PartiesComponent,
+    ProductAndSpecificationComponent,
+    QuantityAndCostingComponent,
+    PaymentDeliveryComponent,
+    DeliveryTimeLineComponent,
+ RemarksComponent,
+EmployeeCommissionComponent,
+CommisionKickbackComponent,
+
   ],
   imports: [
     CommonModule,

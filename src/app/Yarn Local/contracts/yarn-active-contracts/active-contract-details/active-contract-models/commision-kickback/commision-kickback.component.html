@@ -1,0 +1,183 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <div>
+    <h5 class="modal-title py-0">
+      <i class="fas fa-edit"></i>
+      Edit Contract
+    </h5>
+    <div class="font text-muted text-center">Contract No. {{data.autoContractNumber}}</div>
+  </div>
+</div>
+
+<div class="modal-body BG p-0">
+  <form #CityForm="ngForm" novalidate>
+
+    <div class="col-md-12 pt-3 pb-3">
+      <div class="form-group row">
+        <label for="sellercomm" class="col-sm-3 col-form-label ">Kickback</label>
+        <div class=" col-md-8">
+          <div class="row">
+            <div class="col fieldmrgbtm">
+              <input class="form-control" placeholder="Comm %"  type="text" 
+               />
+
+            </div>
+
+            <div class="col-md-1 text-center">per</div>
+
+            <div class="col">
+              <ng-select name="sellerSideCommissionUOMId" placeholder="Select UOM"
+                [(ngModel)]=" commission.sellerSideCommissionUOMId">
+                <ng-option *ngFor="let i of uom" [value]="i.id">
+                  {{i.name}}
+                </ng-option>
+              </ng-select>
+            </div>
+
+            <div class="col-md-12">
+              <small>Kickback in %age, if UOM not selected</small>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+<div class="form-group row">
+  <label for="sellercomm" class="col-sm-3 col-form-label text_Navy">Beneficiary</label>
+<div class="col-md-8">
+  <input class="form-control" placeholder="Kickback Beneficiary Name"  type="text" 
+  />
+</div>
+</div>
+      <div class="form-group row">
+        <label for="sellercomm" class="col-sm-3 col-form-label text_Navy">Fabcot Comm</label>
+        <div class=" col-md-8">
+          <div class="row">
+            <div class="col fieldmrgbtm">
+              <input class="form-control" placeholder="Comm %"  type="text" 
+               />
+
+            </div>
+
+            <div class="col-md-1 text-center">per</div>
+
+            <div class="col">
+              <ng-select name="sellerSideCommissionUOMId" placeholder="Select UOM"
+                [(ngModel)]=" commission.sellerSideCommissionUOMId">
+                <ng-option *ngFor="let i of uom" [value]="i.id">
+                  {{i.name}}
+                </ng-option>
+              </ng-select>
+            </div>
+
+            <div class="col-md-12">
+              <small>FabCot Commission in %age, if UOM not selected</small>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="addinfo" class="col-sm-3 col-form-label">Additional Info</label>
+
+        <div class="col-md-8 fieldmrgbtm">
+          <input class="form-control" id="addinfo" placeholder="Something about FabCot Commission"
+            name="sellerAdditionalInfo" [(ngModel)]=" commission.sellerAdditionalInfo" />
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="buyercomm" class="col-sm-3 col-form-label text_Navy">Comm Buyer side</label>
+        <div class=" col-md-8">
+          <div class="row">
+            <div class="col fieldmrgbtm">
+              <input class="form-control" placeholder="Comm %" name="buyerSideCommission" type="text" 
+                [(ngModel)]=" commission.buyerSideCommission" />
+            </div>
+
+            <div class="col-md-1">per</div>
+
+            <div class="col">
+              <ng-select name="sellerSideCommissionUOMId" placeholder="Select UOM"
+                [(ngModel)]=" commission.buyerSideCommissionUOMId">
+                <ng-option *ngFor="let i of uom" [value]="i.id">
+                  {{i.name}}
+                </ng-option>
+              </ng-select>
+            </div>
+
+            <div class="col-md-12">
+              <small>FabCot Commission in %age, if UOM not selected</small>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="buyerinfo" class="col-sm-3 col-form-label">Additional Info</label>
+
+        <div class="col-md-8 fieldmrgbtm">
+          <input class="form-control" id="buyerinfo" placeholder="Something about buyer side Commission"
+            name="buyerAdditionalInfo" [(ngModel)]=" commission.buyerAdditionalInfo" />
+        </div>
+      </div>
+
+      <div class="form-group row" *ngFor="let a of data; let i = index;">
+        <label for="agentcomm" class="col-sm-3 col-form-label">Agent Comm</label>
+        <div class=" col-md-8">
+          <div class="row">
+            <div class=" col-md-6">
+              <ng-select placeholder="Select an Agent" [(ngModel)]="a.agentId" name="agentId_{{i}}">
+                <ng-option *ngFor="let i of agents" [value]="i.id">
+                  {{i.name}}
+                </ng-option>
+              </ng-select>
+            </div>
+
+
+            <div class="col-md-6 fieldmrgbtm">
+              <input class="form-control" placeholder="Comm %" [(ngModel)]="a.agentCommission" type="number" min="0"
+                name="agent_{{i}}" />
+            </div>
+
+            <div class="col-md-12"><button class="btn btn-outline-danger mt-2 float-right" type="submit"
+                (click)="remove(i)">
+                <i class="fas fa-minus fa-xs"></i></button>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-7">
+          <button class="btn btn-outline-success" type="submit" (click)="addMore()">
+            <i class="fas fa-plus"></i>
+            Add Agent
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="modal-footer NotBG">
+      <!-- <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" (click)="activeModal.close()">Close</button> -->
+      <button class="btn btn-outline-dark" type="submit" (click)="activeModal.close()">
+        Close
+      </button>
+      <button class="btn btn-save" type="submit" (click)="addContractCommision()">
+        Save
+      </button>
+    </div>
+
+  </form>
+</div>
