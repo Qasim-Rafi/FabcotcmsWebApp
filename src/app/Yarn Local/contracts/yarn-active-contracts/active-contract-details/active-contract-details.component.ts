@@ -13,6 +13,15 @@ import { DeliveryTLComponent } from './active-contract-models/deliveryTL/deliver
 import { SaleInvoicePopUpComponent } from './active-contract-models/sale-invoice-pop-up/sale-invoice-pop-up.component';
 import {ContractNoteComponent} from './active-contract-models/contract-note/contract-note.component'
 import { ProductionStatusComponent } from './active-contract-models/production-status/production-status.component';
+import {PartiesComponent} from './active-contract-models/parties/parties.component'
+import {ProductAndSpecificationComponent} from './active-contract-models/product-and-specification/product-and-specification.component'
+import {QuantityAndCostingComponent} from './active-contract-models/quantity-and-costing/quantity-and-costing.component'
+import {PaymentDeliveryComponent} from './active-contract-models/payment-delivery/payment-delivery.component'
+import { DeliveryTimeLineComponent } from './active-contract-models/delivery-time-line/delivery-time-line.component';
+import { RemarksComponent } from './active-contract-models/remarks/remarks.component';
+import { EmployeeCommissionComponent } from './active-contract-models/employee-commission/employee-commission.component';
+import { CommisionKickbackComponent } from './active-contract-models/commision-kickback/commision-kickback.component';
+
 @Component({
   selector: 'app-active-contract-details',
   templateUrl: './active-contract-details.component.html',
@@ -758,9 +767,167 @@ deleteCommission(row) {
 
 }
 
+ editParties(row) {
+    const modalRef = this.modalService.open(PartiesComponent, { centered: true });
+    // modalRef.componentInstance.contractId = this.contractId;
+    // modalRef.componentInstance.statusCheck = status;
+    // modalRef.componentInstance.beneficiaryId = row.id;
+  
+  
+    modalRef.result.then((data) => {
+      // on close
+      if (data == true) {
+  
+        // this.getAllBenificery((empData) => {
+          // this.rows1 = empData;
+          // this.listCount= this.rows.length;
+        // });
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
 
-
-
+  editProductAndSpec(row) {
+    const modalRef = this.modalService.open(ProductAndSpecificationComponent, { centered: true });
+    // modalRef.componentInstance.contractId = this.contractId;
+    // modalRef.componentInstance.statusCheck = status;
+    // modalRef.componentInstance.beneficiaryId = row.id;
+  
+  
+    modalRef.result.then((data) => {
+      // on close
+      if (data == true) {
+  
+        // this.getAllBenificery((empData) => {
+          // this.rows1 = empData;
+          // this.listCount= this.rows.length;
+        // });
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
+  editQuantity(row) {
+    const modalRef = this.modalService.open(QuantityAndCostingComponent, { centered: true });
+    // modalRef.componentInstance.contractId = this.contractId;
+    // modalRef.componentInstance.statusCheck = status;
+    // modalRef.componentInstance.beneficiaryId = row.id;
+  
+  
+    modalRef.result.then((data) => {
+      // on close
+      if (data == true) {
+  
+        // this.getAllBenificery((empData) => {
+          // this.rows1 = empData;
+          // this.listCount= this.rows.length;
+        // });
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
+  editPaymentAndDelivery(row) {
+    const modalRef = this.modalService.open(PaymentDeliveryComponent, { centered: true });
+    // modalRef.componentInstance.contractId = this.contractId;
+    // modalRef.componentInstance.statusCheck = status;
+    // modalRef.componentInstance.beneficiaryId = row.id;
+  
+  
+    modalRef.result.then((data) => {
+      // on close
+      if (data == true) {
+  
+        // this.getAllBenificery((empData) => {
+          // this.rows1 = empData;
+          // this.listCount= this.rows.length;
+        // });
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
+  editDeliveryTimeLine() {
+    const modalRef = this.modalService.open(DeliveryTimeLineComponent, { centered: true });
+    // modalRef.componentInstance.contractId = this.contractId;
+    // modalRef.componentInstance.statusCheck = status;
+    // modalRef.componentInstance.beneficiaryId = row.id;
+  
+  
+    modalRef.result.then((data) => {
+      // on close
+      if (data == true) {
+  
+        // this.getAllBenificery((empData) => {
+          // this.rows1 = empData;
+          // this.listCount= this.rows.length;
+        // });
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
+  editRemarks(row) {
+    const modalRef = this.modalService.open(RemarksComponent, { centered: true });
+    // modalRef.componentInstance.contractId = this.contractId;
+    // modalRef.componentInstance.statusCheck = status;
+    // modalRef.componentInstance.beneficiaryId = row.id;
+  
+  
+    modalRef.result.then((data) => {
+      // on close
+      if (data == true) {
+  
+        // this.getAllBenificery((empData) => {
+          // this.rows1 = empData;
+          // this.listCount= this.rows.length;
+        // });
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
+  editEmployeeComm() {
+    const modalRef = this.modalService.open(EmployeeCommissionComponent, { centered: true });
+    // modalRef.componentInstance.contractId = this.contractId;
+    // modalRef.componentInstance.statusCheck = status;
+    // modalRef.componentInstance.beneficiaryId = row.id;
+  
+  
+    modalRef.result.then((data) => {
+      // on close
+      if (data == true) {
+  
+        // this.getAllBenificery((empData) => {
+          // this.rows1 = empData;
+          // this.listCount= this.rows.length;
+        // });
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
+  editKickbackComm() {
+    const modalRef = this.modalService.open(CommisionKickbackComponent, { centered: true });
+    // modalRef.componentInstance.contractId = this.contractId;
+    // modalRef.componentInstance.statusCheck = status;
+    // modalRef.componentInstance.beneficiaryId = row.id;
+  
+  
+    modalRef.result.then((data) => {
+      // on close
+      if (data == true) {
+  
+        // this.getAllBenificery((empData) => {
+          // this.rows1 = empData;
+          // this.listCount= this.rows.length;
+        // });
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
 // Remarks() {
 //   const modalRef = this.modalService.open(RemarksComponent, { centered: true });
 //   modalRef.componentInstance.contractId = this.contractId;

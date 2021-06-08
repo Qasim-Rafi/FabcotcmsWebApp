@@ -113,12 +113,12 @@
     <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" (click)="activeModal.close()">Close</button>
     <button *ngIf="statusCheck == 'Add'"class="btn button-save" type="submit"
       (click)="addDelivery(deliveryForm)">
-      Save Item
+      Save And Close
     </button>
   
     <button  *ngIf="statusCheck == 'Edit'" class="btn button-save" type="submit"
       (click)="UpdateDelivery()">
-      Update Item
+      Save And Next
     </button>
     
   </div>
