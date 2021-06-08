@@ -59,7 +59,16 @@
             </div>
           </div>
         </div>
-    
+        <div class="input-group mb-3">
+          <input type="password" #password="ngModel" name="password" [(ngModel)]="data.password"
+            class="form-control form-control-lg" placeholder="Password" required
+            [ngClass]="{error: password.invalid && password.touched}">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
         <div class="input-group mb-3">
 
           <ng-select  class="input-w px-0" 
@@ -74,16 +83,7 @@
       </div>
 
       </div>
-        <div class="input-group mb-3">
-          <input type="password" #password="ngModel" name="password" [(ngModel)]="data.password"
-            class="form-control form-control-lg" placeholder="Password" required
-            [ngClass]="{error: password.invalid && password.touched}">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
-        </div>
+        
         <div class="row">
           <div class="col-12">
 

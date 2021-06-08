@@ -253,33 +253,33 @@ export class AddNewContractsComponent implements OnInit {
 
   addContract() {
     let departmentId=parseInt(localStorage.getItem('loggedInDepartmentId'))
-    // let varr = {
-    //   // "enquiryDate": this.dateformater.toModel(this.data.enquiryDate),
-    //       "poNumber": this.data.poNumber,
-    //       "sellerId": this.data.sellerId,
-    //       "buyerId": this.data.buyerId,
-    //       "articleId": this.data.articleId,
-    //       "construction":this.data.construction,
-    //       "quantity": this.data.quantity,        
-    //       "quantityUOMId": this.data.quantityUOMId,        
-    //        "toleranceValue": this.data.toleranceValue,
-    //       "rate": this.data.rate,        
-    //        "currencyId": this.data.currencyId,
-    //       "rateUOMId": this.data.rateUOMId,        
-    //        "sellerPaymentTerm": this.data.sellerPaymentTerm,
-    //       "buyerPaymentTerm": this.data.buyerPaymentTerm,
-    //       "packingId": this.data.packingId,        
-    //       "priceTermId": this.data.priceTermId,        
-    //       "sellerDeliveryDate": this.data.sellerDeliveryDate,
-    //       "buyerDeliveryDate": this.data.buyerDeliveryDate,
-    //       "contractRemarks": this.data.contractRemarks,
-    //       "buyerRemarks": this.data.buyerRemarks,        
-    //       "otherConditionRemarks": this.data.otherConditionRemarks,
-    //       "title": this.data.title,
-    // }
+    let varr = {
+      // "enquiryDate": this.dateformater.toModel(this.data.enquiryDate),
+          "poNumber": this.data.poNumber,
+          "sellerId": this.data.sellerId,
+          "buyerId": this.data.buyerId,
+          "articleId": this.data.articleId,
+          "construction":this.data.construction,
+          "quantity": this.data.quantity,        
+          "quantityUOMId": this.data.quantityUOMId,        
+           "toleranceValue": this.data.toleranceValue,
+          "rate": this.data.rate,        
+           "currencyId": this.data.currencyId,
+          "rateUOMId": this.data.rateUOMId,        
+           "sellerPaymentTerm": this.data.sellerPaymentTerm,
+          "buyerPaymentTerm": this.data.buyerPaymentTerm,
+          "packingId": this.data.packingId,        
+          "priceTermId": this.data.priceTermId,        
+          "sellerDeliveryDate": this.data.sellerDeliveryDate,
+          "buyerDeliveryDate": this.data.buyerDeliveryDate,
+          "contractRemarks": this.data.contractRemarks,
+          "buyerRemarks": this.data.buyerRemarks,        
+          "otherConditionRemarks": this.data.otherConditionRemarks,
+          "title": this.data.title,
+    }
 
     this.http.
-      post(`${environment.apiUrl}/api/YarnContracts/AddContract?`+'enquiryId='+this.objEnquiry+'&'+'departmentId ='+departmentId, this.data)
+      post(`${environment.apiUrl}/api/Contracts/AddContract?`+'enquiryId='+this.objEnquiry+'&'+'departmentId ='+departmentId, varr)
       .subscribe(
         res => {
 
