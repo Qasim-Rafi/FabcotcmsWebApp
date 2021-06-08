@@ -1,0 +1,79 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <div >
+    <h5 class="modal-title">
+      <i class="fas fa-plus"></i>
+      Add New Beneficiary
+    </h5>
+  </div>
+  <!-- <div >
+    <h5 class="modal-title">
+      <i class="far fa-edit fa-fw"></i>
+      Edit Beneficiary
+    </h5>
+  </div> -->
+</div>
+
+<div class="modal-body BG p-0">
+  <form #CityForm="ngForm" novalidate>
+
+    <div class="col-md-12 pt-3 pb-2">
+
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label text_Navy">Agent</label>
+        <div class="col-sm-8">
+          <ng-select required placeholder="Select an Agent" name="userId" [(ngModel)]="data.userId"
+            (change)="GetCriteriaDropdown($event)" #userId="ngModel"
+            [ngClass]="{'error': userId.invalid && CityForm.submitted }">
+            <ng-option *ngFor="let i of user" [value]="i.id">
+              {{i.fullName}}
+            </ng-option>
+          </ng-select>
+
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label text_Navy">Criteria</label>
+        <div class="col-sm-8">
+          <ng-select required placeholder="Select Criteria" name="beneficiaryCriteriaId"
+            [(ngModel)]="data.beneficiaryCriteriaId" #beneficiaryCriteriaId="ngModel"
+            [ngClass]="{'error': beneficiaryCriteriaId.invalid && CityForm.submitted }">
+            <ng-option *ngFor="let i of criteria" [value]="i.id">
+              {{i.criteriaName}}
+            </ng-option>
+          </ng-select>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="details" class="col-sm-3 col-form-label">Detail</label>
+        <div class="col-sm-8">
+          <textarea [(ngModel)]="data.criteriaDetail" class="form-control" id="details" rows="5"
+            placeholder="Criteria Details" name="criteriaDetail"></textarea>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="modal-footer NotBG">
+      <!-- <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" (click)="activeModal.close()">Close</button> -->
+      <button class="btn btn-outline-dark" type="submit" (click)="activeModal.close()">
+        Close
+      </button>
+      <button class="btn btn-save" type="submit" 
+        (click)="addContractEmployeeCommission(CityForm)">
+        Save
+      </button>
+
+      <!-- <button class="btn btn-save" type="submit" *ngIf="statusCheck == 'editCommission'"
+        (click)=" updateContractEmployeeCommission(CityForm)">
+        Save
+      </button> -->
+
+    </div>
+
+  </form>
+</div>
