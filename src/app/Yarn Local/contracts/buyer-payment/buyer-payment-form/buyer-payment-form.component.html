@@ -189,8 +189,8 @@
                                 <label for="name" class="col-md-2 col-form-label">Payment Date</label>
                                 <div class="col-sm-8">
                                     <input navigation="select" class="form-control" ngbDatepicker #validityDate="ngbDatepicker"
-                                        (click)="validityDate.toggle()" placeholder="" [(ngModel)]="data.validityDate"
-                                        name="validityDate" />
+                                        (click)="validityDate.toggle()" placeholder="" [(ngModel)]="data.paymentDate"
+                                        name="paymentDate" />
                                 </div>
                             </div>
                     
@@ -203,16 +203,16 @@
                     
                                         <div class="col-md-3">
                                             <div class="input-group">
-                                                <input type="number" min="0" placeholder="Comm%" #sellerSideCommission="ngModel"
-                                                    class="form-control" [(ngModel)]="data.sellerSideCommission"
-                                                    name="sellerSideCommission">
+                                                <input type="number" min="0" placeholder="Comm%" #amount="ngModel"
+                                                    class="form-control" [(ngModel)]="data.amount"
+                                                    name="amount">
                                             </div>
                                         </div>
                     
                                         <div class="col-md-3 mrg-sm1">
                     
-                                            <ng-select name="sellerSideCommissionUOMId " #sellerSideCommissionUOMId="ngModel"
-                                                [(ngModel)]="data.sellerSideCommissionUOMId" placeholder="Select Currency">
+                                            <ng-select name="sellerSideCommissionUOMId " #currencyId="ngModel"
+                                                [(ngModel)]="data.currencyId" placeholder="Select Currency">
                                                 <ng-option *ngFor="let i of currency" [value]="i.id">{{ i.name }}
                                                 </ng-option>
                                             </ng-select>
@@ -227,9 +227,9 @@
                     
                                                 <div class="col-md-8 mrg-sm1">
                     
-                                                    <ng-select name="sellerSideCommissionUOMId " #sellerSideCommissionUOMId="ngModel"
-                                                        [(ngModel)]="data.sellerSideCommissionUOMId" placeholder="Select Currency">
-                                                        <ng-option *ngFor="let i of currency" [value]="i.id">{{ i.name }}
+                                                    <ng-select name="sellerSideCommissionUOMId " 
+                                                        [(ngModel)]="data.paymentMode" placeholder="Select Payment Mode">
+                                                        <ng-option *ngFor="let i of paymentMode" [value]="i">{{ i }}
                                                         </ng-option>
                                                     </ng-select>
                                                 </div>
@@ -245,7 +245,9 @@
                             <div class="form-group row">
                                 <label for="name" class="col-md-2 col-form-label">Additional Details</label>
                                 <div class="col-md-8">
-                                    <input class="form-control" type="text" placeholder="Additional details..." />
+                                    <input class="form-control" type="text" placeholder="Additional details..."
+                                    [(ngModel)]="data.additionalDetails"
+                                    />
                                     <small id="passwordHelpBlock" class="form-text text-lightgrey">
                                         Only Parent Supplier is available for selection
                                     </small>
@@ -255,15 +257,18 @@
                             <div class="form-group row">
                                 <label for="name" class="col-sm-2 col-form-label  ">Deposite Date</label>
                                 <div class="col-md-8">
-                                    <input navigation="select" class="form-control" ngbDatepicker #toggle="ngbDatepicker"
-                                        (click)="toggle.toggle()" placeholder="" [(ngModel)]="data.validityDate" name="validityDate" />
+                                    <input navigation="select" class="form-control" ngbDatepicker #validityDate1="ngbDatepicker"
+                                    (click)="validityDate1.toggle()" placeholder="" [(ngModel)]="data.depositeDate"
+                                    name="depositeDate" />
                                 </div>
                             </div>
                     
                             <div class="form-group row">
                                 <label for="number" class="col-sm-2 col-form-label  ">Tax Challan</label>
                                 <div class="col-md-8">
-                                    <input class="form-control" type="text" placeholder="Additional Info..." />
+                                    <input class="form-control" type="text" placeholder="Additional Info..."
+                                    [(ngModel)] = "data.taxChalan"
+                                    />
                                 </div>
                             </div>
                     
@@ -399,8 +404,8 @@
                                 <label for="inputEmail3" class="col-md-2 col-form-label control-label">Remarks:</label>
                                 <div class="col-md-8">
                                     <div class="input-group">
-                                        <textarea rows="3" class="form-control" [(ngModel)]="data.enquiryRemarks"
-                                            name="enquiryRemarks"></textarea>
+                                        <textarea rows="3" class="form-control" [(ngModel)]="data.remarks"
+                                            name="remarks"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -410,7 +415,7 @@
 
   <div class="row p-4">
     <div class="col-md-6 offset-md-3">
-        <button type="button"  class="btn button-save ">
+        <button type="button"  class="btn button-save " (click) = "addPayment()">
             <i class="fas fa-check"></i>&nbsp;Save 
         </button>
         <button class="btn btn-outline-secondary  ml-2" >
