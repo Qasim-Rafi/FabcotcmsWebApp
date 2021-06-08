@@ -59,32 +59,22 @@
             </div>
           </div>
         </div>
-        <!-- <div class="input-group mb-3" >
-          <ng-select  
-          [(ngModel)]="data.departmentId" placeholder="Select Department"  name="departmentId">
-      <ng-option *ngFor="let i of departmentId" [value]="i.id">{{ i.name }}</ng-option>
-       </ng-select> 
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
-        </div> -->
+    
         <div class="input-group mb-3">
 
-          <ng-select  class="input-w px-0"
+          <ng-select  class="input-w px-0" 
           [(ngModel)]="data.departmentId" placeholder="Select Department"  name="departmentId">
-      <ng-option *ngFor="let i of departmentId" [value]="i.id">{{ i.name }}</ng-option>
+      <ng-option *ngFor="let i of departmentId" class="form-control form-control-lg" [value]="i.id">{{ i.name }}</ng-option>
        </ng-select> 
                      
-          <div class="input-group-append">
-              <button class="btn btn-outline-primary" type="button" id="button-addon2"
-                  >
-                  <i class="fa fa-plus"></i></button>
-          </div>
+       <div class="input-group-append">
+        <div class="input-group-text">
+          <span class="fa fa-building"></span>
+        </div>
+      </div>
 
       </div>
-        <div class="input-group col-lg-12">
+        <div class="input-group mb-3">
           <input type="password" #password="ngModel" name="password" [(ngModel)]="data.password"
             class="form-control form-control-lg" placeholder="Password" required
             [ngClass]="{error: password.invalid && password.touched}">
@@ -119,32 +109,20 @@
         </div>
       </form>
 
-      <!-- <div class="social-auth-links text-center mt-2 mb-3">
-            <a href="#" class="btn btn-block btn-primary">
-              <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
-            </a>
-            <a href="#" class="btn btn-block btn-danger">
-              <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
-            </a>
-          </div> -->
-
-      <!-- /.social-auth-links -->
+   
       <div class="form-group">
-      <p class="mb-4 text-center"> Don't have account?
-      </p>
+      <div class="mb-4 text-center"> Don't have account?
+        <p class="color" (click)="signUpForm()">Create One Here! </p>
 
-        <div class="text_Navy" (click)="signUpForm()">Create One </div>
+      </div>
+
+
+
       <p class="mb-4 text-center">
         <a href="forgot-password.html">I forgot my password</a>
-      </p></div>
-      <!-- <div class="card-footer">
-  <p class="mb-0 text-center">
-    FabCot International Enterprises® © 2021 All rights reserved
-  </p>
-</div> -->
-      <!-- <p class="mb-0 text-center">
-            FabCot International Enterprises® © 2021 All rights reserved
-          </p> -->
+      </p>
+    </div>
+   
 
     </div>
 

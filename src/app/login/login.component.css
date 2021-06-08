@@ -62,7 +62,10 @@
 	width: 89% !important;
   }
 
-
+.color{
+	color: rgb(20, 100, 204);
+	cursor: pointer;
+}
 
 /* ........................... */
 

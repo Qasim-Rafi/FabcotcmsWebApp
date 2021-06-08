@@ -15,7 +15,7 @@
     <div class="col-md-12 pt-3 pb-2">
 
       <div class="form-group row" >
-        <label for="username" class="col-sm-3 col-form-label control-label text-grey">User Name </label>
+        <label for="username" class="col-sm-3 col-form-label control-label ">User Name </label>
 
         <div class="col-sm-8">
           <input appAutofocus required type="text" class="form-control" placeholder="Enter User Name" name="username"
@@ -42,9 +42,9 @@
 
       
       <div class="form-group row">
-        <label for="password" class="col-sm-3 col-form-label text-grey">Password</label>
+        <label for="password" class="col-sm-3 col-form-label">Password</label>
         <div class="col-sm-8">
-          <input  type="text" required maxlength="50" class="form-control" placeholder="Enter your password"
+          <input  type="password" required maxlength="50" class="form-control" placeholder="Enter your password"
             name="password" [(ngModel)]="data.password" #password="ngModel"
             [ngClass]="{'error': password.invalid && signUpForm.submitted }">
         </div>
