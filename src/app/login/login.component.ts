@@ -4,6 +4,8 @@ import { ServiceService } from '../shared/service.service';
 import {Router} from '@angular/router'
 import { HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { SignUpComponent } from './sign-up/sign-up.component';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,6 +17,7 @@ invalidLogin: boolean=false;
   message: any;
   isLoginError: boolean=false;
   data:any={};
+  departmentId:any=[];
   response:any;
   
  
@@ -22,15 +25,41 @@ invalidLogin: boolean=false;
     private FormBuilder:FormBuilder,
     private router: Router,
     private toastr: ToastrService,
-    private Service: ServiceService
+    private Service: ServiceService,
+    private modalService: NgbModal,
+
   ) { }
 
   ngOnInit() {
     
-  
+  this.GetDeparmentDropdown()
   }
   login(){
     this.router.navigate(['/home']);
+  }
+  signUpForm() {
+    const modalRef = this.modalService.open(SignUpComponent, { centered: true });
+    modalRef.result.then((data) => {
+      // on close
+      if (data == true) {
+
+  
+
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  } 
+  GetDeparmentDropdown() {
+    this.Service.getDepartment().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.departmentId = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
   }
 
   OnSubmit(form: NgForm){
