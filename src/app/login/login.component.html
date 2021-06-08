@@ -32,66 +32,94 @@
 
 
 
-    
 
- 
-    <div class="OuterClass">
-      <img class="OuterClassimg" src="assets/bg.jpg" width="70%" alt="Fabcot Logo">
-      <div class="card card-outline shadow">
-        <div class="card-header text-center">
-          <a href="../../index2.html" class="h1"><img src="assets/fabcot.png" width="200" alt="Fabcot Logo"></a>
-        </div>
 
-        <div class="card-body">
-          <h2 class="login-box-msg">Sign in to start your session</h2>
-          <div *ngIf="isLoginError" class="red-text center error-message">
-            <i class="material-icons">error</i> Incorrect username or password
-        </div>
-          <form class="mb-2" #loginForm="ngForm" (ngSubmit)="OnSubmit(loginForm)">
-            <div class="input-group mb-3">
-              <!-- <label for="username">UserName</label> -->
-              <input type="text" class="form-control form-control-lg" placeholder="UserName" #username="ngModel" name="username" [(ngModel)]="data.username" required
-              [ngClass]="{error: username.invalid && username.touched}">
-              <div class="input-group-append">
-                <div class="input-group-text">
-                  <span class="fas fa-user"></span>
-                </div>
-              </div>
+
+<div class="OuterClass">
+  <img class="OuterClassimg" src="assets/bg.jpg" width="70%" alt="Fabcot Logo">
+  <div class="card card-outline shadow">
+    <div class="card-header text-center">
+      <a href="../../index2.html" class="h1"><img src="assets/fabcot.png" width="200" alt="Fabcot Logo"></a>
+    </div>
+
+    <div class="card-body">
+      <h2 class="login-box-msg">Sign in to start your session</h2>
+      <div *ngIf="isLoginError" class="red-text center error-message">
+        <i class="material-icons">error</i> Incorrect username or password
+      </div>
+      <form class="mb-2" #loginForm="ngForm" (ngSubmit)="OnSubmit(loginForm)">
+        <div class="input-group mb-3">
+          <!-- <label for="username">UserName</label> -->
+          <input type="text" class="form-control form-control-lg" placeholder="UserName" #username="ngModel"
+            name="username" [(ngModel)]="data.username" required
+            [ngClass]="{error: username.invalid && username.touched}">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
             </div>
-            <div class="input-group mb-3"> 
-              <input type="password" #password="ngModel" name="password" [(ngModel)]="data.password" class="form-control form-control-lg" placeholder="Password" required
-              [ngClass]="{error: password.invalid && password.touched}">
-              <div class="input-group-append">
-                <div class="input-group-text">
-                  <span class="fas fa-lock"></span>
-                </div>
-              </div>
+          </div>
+        </div>
+        <!-- <div class="input-group mb-3" >
+          <ng-select  
+          [(ngModel)]="data.departmentId" placeholder="Select Department"  name="departmentId">
+      <ng-option *ngFor="let i of departmentId" [value]="i.id">{{ i.name }}</ng-option>
+       </ng-select> 
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
             </div>
-            <div class="row">
-              <div class="col-12">
+          </div>
+        </div> -->
+        <div class="input-group">
 
-                <!-- <div class="icheck-primary">
+          <ng-select  
+          [(ngModel)]="data.departmentId" placeholder="Select Department"  name="departmentId">
+      <ng-option *ngFor="let i of departmentId" [value]="i.id">{{ i.name }}</ng-option>
+       </ng-select> 
+                     
+          <div class="input-group-append">
+              <button class="btn btn-outline-primary" type="button" id="button-addon2"
+                  >
+                  <i class="fa fa-plus"></i></button>
+          </div>
+
+      </div>
+        <div class="input-group col-lg-12">
+          <input type="password" #password="ngModel" name="password" [(ngModel)]="data.password"
+            class="form-control form-control-lg" placeholder="Password" required
+            [ngClass]="{error: password.invalid && password.touched}">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+
+            <!-- <div class="icheck-primary">
                   <input type="checkbox" id="remember">
                   <label for="remember">
                     Remember Me
                   </label>
                 </div> -->
 
-                <div class="form-group form-check">
-                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                  <label class="form-check-label" for="exampleCheck1">Remember Me</label>
-                </div>
-
-              </div>
-              <!-- /.col -->
-              <div class="col-12">
-                <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary btn-block btn-lg rounded">Sign In</button>
-              </div>
-              <!-- /.col -->
+            <div class="form-group form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">Remember Me</label>
             </div>
-          </form>
 
-          <!-- <div class="social-auth-links text-center mt-2 mb-3">
+          </div>
+          <!-- /.col -->
+          <div class="col-12">
+            <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary btn-block btn-lg rounded">Sign
+              In</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+
+      <!-- <div class="social-auth-links text-center mt-2 mb-3">
             <a href="#" class="btn btn-block btn-primary">
               <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
             </a>
@@ -100,36 +128,31 @@
             </a>
           </div> -->
 
-          <!-- /.social-auth-links -->
-
-          <p class="mb-4 text-center">
-            <a href="forgot-password.html">I forgot my password</a>
-          </p>
-<!-- <div class="card-footer">
+      <!-- /.social-auth-links -->
+      <p class="mb-4 text-center"> Don't have account?
+        <a href="forgot-password.html">Create One </a>
+      </p>
+      <p class="mb-4 text-center">
+        <a href="forgot-password.html">I forgot my password</a>
+      </p>
+      <!-- <div class="card-footer">
   <p class="mb-0 text-center">
     FabCot International Enterprises® © 2021 All rights reserved
   </p>
 </div> -->
-          <!-- <p class="mb-0 text-center">
+      <!-- <p class="mb-0 text-center">
             FabCot International Enterprises® © 2021 All rights reserved
           </p> -->
 
-        </div>
-
-        <div class="card-footer">
-          <p class="mb-0 text-center">
-            FabCot International Enterprises® © 2021 All rights reserved
-          </p>
-        </div>
-
-
-      </div>
-
     </div>
-  
 
-    
+    <div class="card-footer">
+      <p class="mb-0 text-center">
+        FabCot International Enterprises® © 2021 All rights reserved
+      </p>
+    </div>
 
 
+  </div>
 
-
+</div>
