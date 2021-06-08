@@ -1,0 +1,127 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
+      <div aria-hidden="true">&times;</div>
+    </button>
+    <h5 class="modal-title">
+      <i class="fa fa-truck"></i>
+      Edit Dispatch
+    </h5>
+    <!-- <div class="font text-muted text-center">Contract ID No. 765</div> -->
+    <div class="font text-muted text-center">Buyer: Buyer Name </div>
+    <div class="font text-muted text-center">Seller: Seller Name</div>
+    <div class="font text-muted text-center">Article: Article Name</div>
+    <div class="font text-muted text-center">Quantity: Quantity Name</div>
+
+  </div>
+  
+  
+  <div class="modal-body BG p-0">
+    <form #dispatchForm="ngForm" novalidate>
+    
+      <div class="col-md-12 pt-3 pb-2">
+
+  
+  
+        <div class="form-group row">
+          <label for="dispatchDate" class="col-sm-3 col-form-label text_Navy">Inspection Date</label>
+          <div class="col-sm-8" (clickOutside)="inspectionDate.close()">
+  
+            <input navigation="select" class="form-control  " ngbDatepicker #inspectionDate="ngbDatepicker"
+              (click)="inspectionDate.toggle()" placeholder="Inspection or visit date" name="inspectionDate"
+              [(ngModel)]="data.inspectionDate" #inspectionDate="ngModel" />
+          </div>
+        </div>
+        <div class="form-group row">
+            <label for="startingDate" class="col-sm-3 col-form-label ">Starting Date</label>
+            <div class="col-sm-8" (clickOutside)="startingDate.close()">
+    
+              <input navigation="select" class="form-control  " ngbDatepicker #startingDate="ngbDatepicker"
+                (click)="startingDate.toggle()" placeholder="Production starting date" name="startingDate"
+                [(ngModel)]="data.startingDate" #startingDate="ngModel" />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="Looms" class="col-sm-3 col-form-label">Looms</label>
+            <div class="col-sm-3">
+                <input type="text"
+               
+                class="form-control" value="" placeholder="Looms Planned" />
+            </div>
+            <div class="col-md-5">
+               
+                <input type="text"
+               
+                class="form-control" value="" placeholder="Looms running" />
+
+            </div>
+      
+          </div>
+          <div class="form-group row">
+            <label for="Looms" class="col-sm-3 col-form-label ">Production</label>
+            <div class="col-sm-3">
+                <input type="text"
+               
+                class="form-control" value="" placeholder="Per Loom Production" />
+            </div>
+            <div class="col-md-5">
+               
+                <input type="text"
+               
+                class="form-control" value="" placeholder="Per day Production" readonly />
+
+            </div>
+      
+          </div>
+          <div class="form-group row">
+            <label for="Looms" class="col-sm-3 col-form-label ">Stock Position</label>
+            <div class="col-sm-3">
+                <input type="text"
+               
+                class="form-control" value="" placeholder="Per Stock" />
+            </div>
+            <div class="col-md-5">
+               
+                <input type="text"
+               
+                class="form-control" value="" placeholder="Loose Stock" readonly />
+
+            </div>
+      
+      </div>
+
+            <div class="form-group row">
+                <label for="Looms" class="col-sm-3 col-form-label ">Total Stock</label>
+                <div class="col-sm-8">
+                    <input type="text"
+                   
+                    class="form-control" value="" placeholder="Total Stock" readonly />
+                </div>
+              
+          </div>
+        
+          <div class="form-group row">
+            <label for="completionDate" class="col-sm-3 col-form-label ">Completion Date</label>
+            <div class="col-sm-8" (clickOutside)="completionDate.close()">
+    
+              <input navigation="select" class="form-control  " ngbDatepicker #completionDate="ngbDatepicker"
+                (click)="completionDate.toggle()" placeholder="Production Expected completion date" name="completionDate"
+                [(ngModel)]="data.completionDate" #completionDate="ngModel" />
+            </div>
+          </div>
+      
+        
+  </div>
+      <div class="modal-footer NotBG">
+        <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal"
+          (click)="activeModal.close()">
+          Close
+        </button>
+        <button class="btn button-save" type="submit" (click)="onSubmit()" >
+         Save
+        </button>
+    
+      </div>
+  
+  
+    </form>
+  </div>
