@@ -26,7 +26,8 @@ listCount: number;
 paymentFilter: any = {};
 
   columns: any = {};
-  url = ''
+  url = '/api/BillingPayments/GetAllBillPayment'
+
   constructor(    private service: ServiceService,
     private http: HttpClient,
     private _clipboardService: ClipboardService,
@@ -34,8 +35,10 @@ paymentFilter: any = {};
     private toastr: ToastrService,
     private modalService: NgbModal
     ) { }
-  navigatePaymentForm(statusCheck) {
-    this.router.navigate(['/yarn-billing-and-payment/payment-form'], { queryParams: { statusCheck: statusCheck  }  });
+  navigatePaymentForm(statusCheck , obj) {
+    this.router.navigate(['/yarn-billing-and-payment/payment-form'], { queryParams: { statusCheck: statusCheck ,
+      id:obj.id , contractId:obj.contractId 
+    }  });
  };
 //  navigatePaymentForm(statusCheck ) {
 //   this.router.navigate(['/yarn-billing-and-payment/payment-form']);
@@ -62,7 +65,7 @@ paymentFilter: any = {};
   fetch(cb) {
     
     this.http
-    .get(`${environment.apiUrl}`)
+    .get(`${environment.apiUrl}/api/BillingPayments/GetAllBillPayment`)
     .subscribe(res => {
       this.response = res;
      
@@ -98,7 +101,7 @@ paymentFilter: any = {};
     }).then((result) => {
       if (result.isConfirmed) {
   
-        this.http.delete(`${environment.apiUrl}` + row.id )
+        this.http.delete(`${environment.apiUrl}/api/BillingPayments/DeleteBillPayment/` + row.id )
           .subscribe(
             res => {
               this.response = res;
