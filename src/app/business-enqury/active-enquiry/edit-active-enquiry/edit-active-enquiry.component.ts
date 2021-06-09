@@ -242,7 +242,7 @@ export class EditActiveEnquiryComponent implements OnInit {
     this.service.getBuyers().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.buyer = this.response.data.list;
+        this.buyer = this.response.data;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -257,7 +257,7 @@ export class EditActiveEnquiryComponent implements OnInit {
     this.service.getArticles().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.article = this.response.data.list;
+        this.article = this.response.data;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -271,7 +271,7 @@ export class EditActiveEnquiryComponent implements OnInit {
     this.service.getProcess().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.process = this.response.data.list;
+        this.process = this.response.data;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -283,7 +283,7 @@ export class EditActiveEnquiryComponent implements OnInit {
     this.service.getProcessType().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.ptype = this.response.data.list;
+        this.ptype = this.response.data;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -296,7 +296,7 @@ export class EditActiveEnquiryComponent implements OnInit {
     this.service.getDesignType().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.design = this.response.data.list;
+        this.design = this.response.data;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -308,7 +308,7 @@ export class EditActiveEnquiryComponent implements OnInit {
     this.service. getPackaging().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.packing = this.response.data.list;
+        this.packing = this.response.data;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -345,7 +345,7 @@ export class EditActiveEnquiryComponent implements OnInit {
     this.service. getPaymentTerm().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.payment = this.response.data.list;
+        this.payment = this.response.data;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -357,7 +357,7 @@ export class EditActiveEnquiryComponent implements OnInit {
     this.service. getPriceTerm().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.price = this.response.data.list;
+        this.price = this.response.data;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -369,7 +369,7 @@ export class EditActiveEnquiryComponent implements OnInit {
     this.service. getCity().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.city = this.response.data.list;
+        this.city = this.response.data;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -394,7 +394,7 @@ export class EditActiveEnquiryComponent implements OnInit {
     this.service. getCertification().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.certificate = this.response.data.list;
+        this.certificate = this.response.data;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
