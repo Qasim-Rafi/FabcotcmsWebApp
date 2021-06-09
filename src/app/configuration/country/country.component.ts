@@ -69,6 +69,7 @@ export class CountryComponent implements OnInit {
       icon: 'error',
       showCancelButton: true,
       confirmButtonColor: '#ed5565',
+      
       cancelButtonColor: '#dae0e5',
       cancelButtonText: 'No',
       confirmButtonText: 'Yes',
