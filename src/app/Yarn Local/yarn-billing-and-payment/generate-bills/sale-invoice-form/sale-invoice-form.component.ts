@@ -37,8 +37,7 @@ response:any;
   ngOnInit(): void {
 this.fetch((data=>
   {
-this.rows = data
-  }
+this.rows = data}
   ))
     
   }
@@ -46,7 +45,7 @@ this.rows = data
   fetch(cb) {
     
     this.http
-    .get(`${environment.apiUrl}` + this.contractId)
+    .get(`${environment.apiUrl}/api/BillingPayments/GetAllContractSaleInvoiceInBill/` + this.contractId)
     .subscribe(res => {
       this.response = res;
      

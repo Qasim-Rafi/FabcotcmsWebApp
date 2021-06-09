@@ -185,7 +185,7 @@ export class PaymentFormComponent implements OnInit {
           this.response = res;
           if (this.response.success == true) {
             this.toastr.success(GlobalConstants.updateMessage, 'Message.');
-            this.router.navigate(['/billing-and-payment/payment-collection']);
+            this.router.navigate(['/yarn-billing-and-payment/payment-collection']);
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
@@ -232,7 +232,7 @@ export class PaymentFormComponent implements OnInit {
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
             // this.paymentForm.reset();
-            this.router.navigate(['/billing-and-payment/payment-collection']);
+            this.router.navigate(['/yarn-billing-and-payment/payment-collection']);
 
           }
           else {
