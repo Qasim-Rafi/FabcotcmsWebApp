@@ -176,9 +176,9 @@
                                     </div>
                                 </div>
                             </div>
-
+                         <div *ngIf = "statusCheck.statusCheck == 'addPayment'">
                             <div class="form-group row"  
-                            *ngIf = "paymentAdddata.buyerName ==''">
+                            *ngIf = "paymentAdddata.billForBuyerId == null">
                                 <label class="col-md-3 col-form-label control-label"
                                  >Supplier Name</label>
                                 <div class="col-md-6" >
@@ -197,7 +197,9 @@
                                 </div>
             
                             </div>
-                            <div class="form-group row"  *ngIf = "paymentAdddata.sellerName ==''">
+                        </div>
+                            <div *ngIf = "statusCheck.statusCheck == 'addPayment'">
+                            <div class="form-group row"  *ngIf = "paymentAdddata.billForSelerId == null">
                                 <label class="col-md-3 col-form-label control-label"
                                >Buyer Name</label>
                                 <div class="col-md-6" >
@@ -215,10 +217,11 @@
                                 </div>
             
                             </div>
+                        </div>
 
-                            
+                            <div *ngIf = "statusCheck.statusCheck == 'editPayment'">
                             <div class="form-group row"  
-                            *ngIf = "paymentdata.buyerName ==null">
+                            *ngIf = "paymentdata.buyerId ==null">
                                 <label class="col-md-3 col-form-label control-label"
                                  >Supplier Name</label>
                                 <div class="col-md-6" >
@@ -237,6 +240,8 @@
                                 </div>
             
                             </div>
+                        </div>
+                        <div *ngIf = "statusCheck.statusCheck == 'editPayment'">
                             <div class="form-group row"  *ngIf = "paymentdata.sellerName ==null">
                                 <label class="col-md-3 col-form-label control-label"
                                >Buyer Name</label>
@@ -255,7 +260,7 @@
                                 </div>
             
                             </div>
-
+                        </div>
                             <div class="form-group row">
                                 <label class="col-md-3 col-form-label control-label">Sale Invoice No.
                                     <span class="required-denote">*</span>

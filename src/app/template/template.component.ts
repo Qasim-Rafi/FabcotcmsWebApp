@@ -11,21 +11,21 @@ import * as AdminLte from 'admin-lte';
 export class TemplateComponent implements OnInit {
   title = 'Project';
   userName:string;
-  userRole: string;
-  SalesExecutive=true;
-  Manager: boolean;
+  loggedInDepartmentId: string;
+  isYarnLocal:boolean;
+  isHomeTextileandGarments:boolean;
   constructor( private router: Router,) { }
 
   ngOnInit(): void {
-    this.userRole=localStorage.getItem('role');
-    if(this.userRole == 'SalesExecutive'){
-        this.SalesExecutive = true;
-        this.Manager= false;
+    this.loggedInDepartmentId=localStorage.getItem('loggedInDepartmentId');
+    if(this.loggedInDepartmentId == '3'){
+        this.isYarnLocal = true;
+        this.isHomeTextileandGarments= false;
        
     }
-    else if(this.userRole == 'Manager'){
-      this.SalesExecutive = false;
-      this.Manager= true;
+    else if(this.loggedInDepartmentId == '6'){
+      this.isYarnLocal = false;
+      this.isHomeTextileandGarments= true;
  
     }
     this.userName=localStorage.getItem('loggedInUserName');

@@ -1,0 +1,91 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <h5 class="modal-title">
+    <i class="fa fa-key"></i>
+   Sign Up
+  </h5>
+
+</div>
+
+<div class="modal-body BG p-0">
+  <form #signUpForm="ngForm" novalidate (ngSubmit)="addUser()">
+
+    <div class="col-md-12 pt-3 pb-2">
+
+      <div class="form-group row" >
+        <label for="username" class="col-sm-3 col-form-label control-label ">User Name </label>
+
+        <div class="col-sm-8">
+          <input appAutofocus required type="text" class="form-control" placeholder="Enter User Name" name="username"
+            maxlength="50" [(ngModel)]="data.username" #username="ngModel"
+            [ngClass]="{'error': username.invalid && signUpForm.submitted }" />
+
+        </div>
+      </div>
+
+      <div class="form-group row" [class.has-error]="email.invalid ">
+        <label for="email" class="col-sm-3 col-form-label control-label">Email ID</label>
+
+        <div class="col-sm-8">
+          <input required  pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" type="text" maxlength="100" class="form-control" placeholder="Enter mail"
+            name="email" [(ngModel)]="data.email" #email="ngModel"
+            [ngClass]="{'error': email.invalid && signUpForm.submitted }">
+            <div *ngIf="email.touched" >
+                <!-- <div class="form-control-feedback" *ngIf="email.errors?.required">Email is missing!</div> -->
+                <div class="form-control-feedback" *ngIf="email.errors?.pattern">Email Must be correct!</div>
+              </div>
+        </div>
+      </div>
+
+
+      
+      <div class="form-group row">
+        <label for="password" class="col-sm-3 col-form-label">Password</label>
+        <div class="col-sm-8">
+          <input  type="password" required maxlength="50" class="form-control" placeholder="Enter your password"
+            name="password" [(ngModel)]="data.password" #password="ngModel"
+            [ngClass]="{'error': password.invalid && signUpForm.submitted }">
+        </div>
+      </div>
+
+
+      <div class="form-group row" >
+        <label for="departmentId" class="col-sm-3 col-form-label control-label">Department</label>
+
+        <div class="col-sm-8">
+            <ng-select  [ngClass]="{'error': departmentId.invalid && signUpForm.submitted }" required
+            [(ngModel)]="data.departmentId" placeholder="Select Department"  name="departmentId">
+        <ng-option  *ngFor="let i of departmentId" [value]="i.id" 
+        >{{ i.name }}</ng-option>
+         </ng-select> 
+
+        </div>
+      </div>
+      <div class="form-group row" >
+        <label for="userTypeId" class="col-sm-3 col-form-label control-label">User Type</label>
+
+        <div class="col-sm-8">
+            <ng-select  [ngClass]="{'error': userTypeId.invalid && signUpForm.submitted }" required
+            [(ngModel)]="data.userTypeId" placeholder="Select UserType"  name="userTypeId">
+        <ng-option  *ngFor="let i of userType" [value]="i.id"
+        >{{ i.name }}</ng-option>
+         </ng-select> 
+
+        </div>
+      </div>
+
+   
+
+    </div>
+
+
+    <div class="modal-footer NotBG">
+      
+      <button class="btn button-save" type="submit">
+        Sign Up
+      </button>
+    </div>
+  </form>
+</div>

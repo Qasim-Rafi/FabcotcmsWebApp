@@ -59,11 +59,13 @@ export class DispatchedRegisterComponent implements OnInit {
   fetch(cb) {
 
     this.http
-      .get(`${environment.apiUrl}`)
+      .get(`${environment.apiUrl}/api/YarnContracts/GetAllDispatchRegister`)
       .subscribe(res => {
         this.response = res;
   
         if (this.response.success == true) {
+          this.data = this.response.data
+          cb(this.data)
      
         }
         else {
@@ -92,13 +94,12 @@ export class DispatchedRegisterComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
   
-        this.http.delete(`${environment.apiUrl}` + obj.id)
+        this.http.delete(`${environment.apiUrl}/api/YarnContracts/DeleteDispatchRegister/` + obj.id)
           .subscribe(
             res => {
               this.response = res;
               if (this.response.success == true) {
                 this.toastr.error(this.response.message, 'Message.');
-                // this.getAllEnquiryItems();
                 this.fetch((data) => {
                   this.rows = data;
                 });

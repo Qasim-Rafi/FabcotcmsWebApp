@@ -100,7 +100,7 @@ export class AddEnquiryComponent implements OnInit {
  
     let olddate=new Date();
     let latest_date =this.datepipe.transform(olddate, 'yyyy-MM-dd');
-    this.enquiryDateField =this.dateformater.fromModel(latest_date);
+    // this.enquiryDateField =this.dateformater.fromModel(latest_date);
     this. getAutoEnquiryNo();
     this.GetBuyersDropdown("start");
     this.GetArticlesDropdown("start");
@@ -558,10 +558,10 @@ export class AddEnquiryComponent implements OnInit {
         "paymentTermInfo": this.data.paymentTermInfo,
         "priceTermId": this.data.priceTermId,
         "destinationId": this.data.destinationId,
-        "sellerSideCommission": this.data.sellerSideCommission.toString(),
+        "sellerSideCommission": this.data.sellerSideCommission,
         "sellerSideCommissionUOMId": this.data.sellerSideCommissionUOMId,
         "sellerSideCommissionInfo": this.data.sellerSideCommissionInfo,
-        "buyerSideCommission": this.data.buyerSideCommission.toString(),
+        "buyerSideCommission": this.data.buyerSideCommission,
         "buyerSideCommissionUOMId": this.data.buyerSideCommissionUOMId,
         "buyerSideCommissionInfo": this.data.buyerSideCommissionInfo,
         "certificateIds": this.data.certificateIds != null ? this.data.certificateIds.toString() : null,

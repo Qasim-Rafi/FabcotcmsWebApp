@@ -1,0 +1,18 @@
+.text1{
+    font-size: 14px;
+    font-weight: bold;
+color: grey;
+}
+
+.clrbtn{
+    background-color: #23c6c8;
+    color: white;
+}
+
+.progressbar{
+height: 32px;
+margin-bottom:10px; 
+width: 100%;
+background-color: #1ab394;
+align-content: center;
+}

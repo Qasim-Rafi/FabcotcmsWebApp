@@ -75,14 +75,16 @@
                         <div class="form-group col-md-3 offset-md-2 offset-lg-2">
                             <label for="inputPassword4">Enquiry Date</label>
                             <!-- <input type="text" class="form-control date" id="enqry-date" value="Fri 26-Mar-2021"> -->
-                            <div class="input-group date" (clickOutside)="enquiryDatePicker.close()">
-                                <input type="text" class="form-control  datetimepicker-input" (click)="enquiryDatePicker.toggle()"
+                            <div class="input-group date" (clickOutside)="validity.close()">
+                                <!-- <input type="text" class="form-control  datetimepicker-input" (click)="enquiryDatePicker.toggle()"
                                   placeholder="Date" #enquiryDatePicker="ngbDatepicker" #enquiryDate="ngModel" [(ngModel)]="enquiryDateField"
                                   name="enquiryDate" ngbDatepicker required
-                                >
-                        
+                                > -->
+                                <input navigation="select" class="form-control " id="enquiryDate" name="enquiryDate" required
+                                [(ngModel)]="data.enquiryDate" #enquiryDate="ngModel" ngbDatepicker #validity="ngbDatepicker"
+                                 (click)="validity.toggle()" />
                                   
-                                <div class="input-group-append" (click)="enquiryDatePicker.toggle()">
+                                <div class="input-group-append" (click)="validity.toggle()">
                                   <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                 </div>
                               </div>
@@ -372,7 +374,7 @@
                                 </div>
                             
                                 <div class="form-group col-md-12">
-                                    <label for="inputEmail3" class="col-form-label control-label">Price terms<span class="required-denote">*</span></label>
+                                    <label for="inputEmail3" class="col-form-label control-label">Shipment terms<span class="required-denote">*</span></label>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="input-group">
@@ -421,7 +423,7 @@
                             
                             
                                 <div class="form-group col-md-12">
-                                    <label for="inputEmail3" class="col-form-label control-label">Suppiler Side Commission<span class="required-denote">*</span></label>
+                                    <label for="inputEmail3" class="col-form-label control-label">Suppiler Side Commission</label>
                             
                                     
                                         <div class="row">
@@ -429,7 +431,7 @@
                                             <div class="col-md-4">
                                                 <div class="input-group">
                                                     <input type="number" min="0" placeholder="Comm%" #sellerSideCommission="ngModel" class="form-control"
-                                                        [(ngModel)]="data.sellerSideCommission" name="sellerSideCommission" [ngClass]="{ 'error': enquiryForm.submitted && sellerSideCommission.invalid }" required >
+                                                        [(ngModel)]="data.sellerSideCommission" name="sellerSideCommission" >
                                                     <div class="input-group-append">
                                                         <span class="input-group-text" id="basic-addon2">per</span>
                                                     </div>
@@ -439,7 +441,7 @@
                                             <div class="col-md-4 mrg-sm1">
                             
                                                 <ng-select name="sellerSideCommissionUOMId " #sellerSideCommissionUOMId="ngModel" [(ngModel)]="data.sellerSideCommissionUOMId"
-                                                    placeholder="-- Select UOM --" [ngClass]="{ 'error': enquiryForm.submitted && sellerSideCommissionUOMId.invalid }" required >
+                                                    placeholder="-- Select UOM --" >
                                                     <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
                                                     </ng-option>
                                                 </ng-select>
@@ -461,7 +463,7 @@
                                 </div>
                             
                                 <div class="form-group col-md-12">
-                                    <label for="code" class="col-form-label control-label">Buyer Side Commission<span class="required-denote">*</span></label>
+                                    <label for="code" class="col-form-label control-label">Buyer Side Commission</label>
                             
                                     
                                         <div class="row">
@@ -469,8 +471,7 @@
                                             <div class="col-md-4">
                                                 <div class="input-group">
                                                     <input type="number" min="0" placeholder="Comm%" #buyerSideCommission="ngModel" class="form-control"
-                                                        [(ngModel)]="data.buyerSideCommission" name="buyerSideCommission"
-                                                        [ngClass]="{ 'error': enquiryForm.submitted && buyerSideCommission.invalid }" required>
+                                                        [(ngModel)]="data.buyerSideCommission" name="buyerSideCommission">
                                                     <div class="input-group-append">
                                                         <span class="input-group-text" id="basic-addon2">per</span>
                                                     </div>
@@ -480,7 +481,7 @@
                                             <div class="col-md-4 mrg-sm1">
                             
                                                 <ng-select name="buyerSideCommissionUOMId " #buyerSideCommissionUOMId="ngModel" [(ngModel)]="data.buyerSideCommissionUOMId"
-                                                    placeholder="-- Select UOM --" [ngClass]="{ 'error': enquiryForm.submitted && buyerSideCommissionUOMId.invalid }" required>
+                                                    placeholder="-- Select UOM --">
                                                     <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
                                                     </ng-option>
                                                 </ng-select>

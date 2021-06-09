@@ -139,7 +139,7 @@ export class DeliveryTimelineComponent implements OnInit {
   }
   Updateshipment(form:NgForm) {
 
-      
+
     // this.data.supplierDate = this.dateformater.toModel(this.data.supplierDate);
     // this.data.buyerDate = this.dateformater.toModel(this.data.buyerDate);
     let varr = {

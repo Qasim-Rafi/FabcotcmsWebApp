@@ -1,9 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { ServiceService } from 'src/app/shared/service.service';
 import { ArticleComponent } from '../Modals/article/article.component';
 import { BuyerComponent } from '../Modals/buyer/buyer.component';
+import { NgForm } from '@angular/forms';
+import { environment } from 'src/environments/environment';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { AddSellerFormComponent } from 'src/app/configuration/seller/add-seller-form/add-seller-form.component';
+import { Dateformater } from 'src/app/shared/dateformater';
 
 @Component({
   selector: 'app-add-new-contracts',
@@ -13,24 +19,31 @@ import { BuyerComponent } from '../Modals/buyer/buyer.component';
 export class AddNewContractsComponent implements OnInit {
 
   response: any;
-  data: any = {}
-  buyer: any= []
-  seller: any= []
-  article: any= []
-  uomList: any= []
-  currency: any= []
+  data: any = {};
+  buyer: any= [];
+  seller: any= [];
+  article: any= [];
+  packing: any= [];
+  priceterm: any= [];
+  uomList: any= [];
+  currency: any= [];
   newBuyer: number;
   newSeller: number;
-  counter3 :number =1
-  new:any=[]
-  new2:any=[]
-  new3:any=[] 
+  counter3 :number =1;
+  new:any=[];
+  new2:any=[];
+  new3:any=[];
+  @ViewChild(NgForm) contractForm;
+  objEnquiry=0;
+  dateformater: Dateformater = new Dateformater();
 
 
   constructor(
     private service: ServiceService,
     private toastr: ToastrService,
     private modalService: NgbModal,
+    private router: Router,
+    private http: HttpClient,
   ) { }
 
   ngOnInit(): void {
@@ -39,6 +52,8 @@ export class AddNewContractsComponent implements OnInit {
     this.GetUOMDropdown();
     this.GetArticleDropdown();
     this.GetCurrencyDropdown();
+    this.GetpackingDropdown();
+    this.GetPriceTermDropdown();
   }
 
 
@@ -92,12 +107,12 @@ export class AddNewContractsComponent implements OnInit {
 
 
   GetSellerDropdown(type:string) {
-    this.service.getSellers().subscribe(res => {
+    this.service.getSellerLookup().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
 
-        this.seller = this.response.data.list;
-        this.newSeller = this.response.data.lastId
+        this.seller = this.response.data;
+        this.newSeller = this.response.data
 
 
 
@@ -127,6 +142,29 @@ export class AddNewContractsComponent implements OnInit {
     })
   }
 
+  GetPriceTermDropdown() {
+    this.service.getPriceTerm().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.priceterm = this.response.data.list;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  } 
+
+  GetpackingDropdown() {
+    this.service.getPackaging().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.packing = this.response.data.list;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
 
   GetArticleDropdown() {
     this.service.getArticles().subscribe(res => {
@@ -194,7 +232,7 @@ export class AddNewContractsComponent implements OnInit {
 
   
   addSellerForm() {
-    const modalRef = this.modalService.open(ArticleComponent, { centered: true });
+    const modalRef = this.modalService.open(AddSellerFormComponent, { centered: true });
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
@@ -208,10 +246,60 @@ export class AddNewContractsComponent implements OnInit {
 
   }
 
+  navigate() {
+    this.router.navigateByUrl('/yarn-local/active-contract');
+  };
 
 
+  addContract() {
+    let departmentId=parseInt(localStorage.getItem('loggedInDepartmentId'))
+    let varr = {
+      // "enquiryDate": this.dateformater.toModel(this.data.enquiryDate),
+          "poNumber": this.data.poNumber,
+          "sellerId": this.data.sellerId,
+          "buyerId": this.data.buyerId,
+          "articleId": this.data.articleId,
+          "construction":this.data.construction,
+          "quantity": this.data.quantity,        
+          "quantityUOMId": this.data.quantityUOMId,        
+           "toleranceValue": this.data.toleranceValue,
+          "rate": this.data.rate,        
+           "currencyId": this.data.currencyId,
+          "rateUOMId": this.data.rateUOMId,        
+           "sellerPaymentTerm": this.data.sellerPaymentTerm,
+          "buyerPaymentTerm": this.data.buyerPaymentTerm,
+          "packingId": this.data.packingId,        
+          "priceTermId": this.data.priceTermId,        
+          "sellerDeliveryDate": this.data.sellerDeliveryDate,
+          "buyerDeliveryDate": this.data.buyerDeliveryDate,
+          "contractRemarks": this.data.contractRemarks,
+          "buyerRemarks": this.data.buyerRemarks,        
+          "otherConditionRemarks": this.data.otherConditionRemarks,
+          "title": this.data.title,
+    }
 
+    this.http.
+      post(`${environment.apiUrl}/api/Contracts/AddContract?`+'enquiryId='+this.objEnquiry+'&'+'departmentId ='+departmentId, varr)
+      .subscribe(
+        res => {
 
+          this.response = res;
+          if (this.response.success == true) {
+            this.toastr.success(this.response.message, 'Message.');
+            this.contractForm.reset();
+             this.router.navigate(['/yarn-local/active-contract'], { queryParams: {id: this.response.data} });
+            // this.router.navigate(['/enquiry/active-enquiries']);
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+
+        },(err: HttpErrorResponse) => {
+          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+          this.toastr.error(messages.toString(), 'Message.');
+          console.log(messages);
+        });
+  }
 
 
 

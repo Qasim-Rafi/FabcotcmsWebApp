@@ -1,0 +1,134 @@
+<div class="modal-header" >
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <div *ngIf="statusCheck == 'Add'">
+    <h5 class="modal-title">
+      <i class="fas fa-plus"></i>
+      Add Delivery Schedule
+    </h5>
+  </div>
+  <div *ngIf="statusCheck == 'Edit'">
+    <h5 class="modal-title">
+      <i class="far fa-edit fa-fw"></i>
+      Edit Delivery Schedule
+    </h5>
+  </div>
+</div>
+
+  
+  <div class="modal-body BG p-2">
+    <form #deliveryForm="ngForm" novalidate>
+
+      <div class="col-md-12 pt-3 pb-2">
+
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label text_Navy">Supplier Date
+              <!-- <span class="required-denote">*</span> -->
+            </label>
+            <div class="col-sm-8">
+              <input navigation="select" class="form-control  "
+              [(ngModel)]="data.supplierDate" #supplierDate="ngModel"  ngbDatepicker #validity="ngbDatepicker"
+             (click)="validity.toggle()"
+              placeholder="Supplier Date" 
+            name="supplierDate"
+              />
+               
+            </div>
+            <!-- <div class="col-sm-3">
+              <ng-select placeholder="Month">
+                <ng-option>
+
+                </ng-option>
+              </ng-select>
+            </div>
+            <div class="col-sm-3">
+              <ng-select placeholder="Year">
+                <ng-option>
+
+                </ng-option>
+              </ng-select>
+            </div> -->
+          </div>
+
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label text_Navy">Buyer Date
+              <!-- <span class="required-denote">*</span> -->
+            </label>
+            <div class="col-sm-8">
+              <input navigation="select" class="form-control  "
+              [(ngModel)]="data.buyerDate" #buyerDate="ngModel"  ngbDatepicker #validity2="ngbDatepicker"
+             (click)="validity2.toggle()"
+              placeholder="Buyer Date" 
+         name="buyerDate"
+              />
+               
+            </div>
+            <!-- <div class="col-sm-3">
+              <ng-select placeholder="Month">
+                <ng-option>
+
+                </ng-option>
+              </ng-select>
+            </div>
+            <div class="col-sm-3">
+              <ng-select placeholder="Year">
+                <ng-option>
+
+                </ng-option>
+              </ng-select>
+            </div> -->
+          </div>
+          <div class="form-group row">
+            <label for="itemQuantity" class="col-sm-3 col-form-label text_Navy"> Quantity
+    
+            </label>
+            <div class="col-sm-3">
+                <input type="number" min="0" 
+                class="form-control" value="" placeholder="Quantity"
+                [(ngModel)] = "data.quantity"  name="quantity" #quantity = "ngModel"/>
+            </div>
+            <div class="col-md-5">
+               
+              <ng-select  [(ngModel)] = "data.quantityUomId"  #quantityUomId = "ngModel" 
+               placeholder="Unit" name="quantityUomId">
+                <ng-option *ngFor = "let i of uomList" [value] = "i.id">{{i.name}}</ng-option>
+            </ng-select>
+
+            </div>
+      
+          </div>
+
+
+     
+         
+  
+              
+
+        
+
+      
+  
+
+       
+
+  </div>
+  
+  
+
+  <div class="modal-footer NotBG" >
+    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" (click)="activeModal.close()">Close</button>
+    <button class="btn button-save"   *ngIf="statusCheck == 'Add'" type="submit"
+      (click)="onSubmit('Add')">
+      Save And Close
+    </button>
+  
+    <button  *ngIf="statusCheck == 'Edit'" class="btn button-save" type="submit"
+      (click)="onSubmit('Edit')">
+      Save And Next
+    </button>
+    
+  </div>
+
+  </form>
+  </div>

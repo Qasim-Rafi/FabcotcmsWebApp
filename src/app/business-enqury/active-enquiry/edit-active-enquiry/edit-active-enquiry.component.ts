@@ -145,6 +145,7 @@ export class EditActiveEnquiryComponent implements OnInit {
                 this.showConfirmOn = this.enquiryData.confirmationDate;
                 
             this.enquiryData.confirmationDate = this.dateformater.fromModel(this.enquiryData.confirmationDate);
+            // this.enquiryData.enquiryDate = this.dateformater.fromModel(this.enquiryData.enquiryDate);
              
              if( this.enquiryData.confirmationDate.year == 1 )
                 {
@@ -1279,13 +1280,13 @@ export class EditActiveEnquiryComponent implements OnInit {
 
 
       GenerateContract() {
+        let departmentId=localStorage.getItem('loggedInDepartmentId')
         let varr = {
-          "enquiryId": this.objEnquiry,
+          // "enquiryId": this.objEnquiry,
 
         }
-    
         this.http.
-          post(`${environment.apiUrl}/api/Contracts/AddContract`, varr)
+          post(`${environment.apiUrl}/api/Contracts/AddContract?`+'enquiryId='+this.objEnquiry+'&'+'departmentId ='+departmentId, varr)
           .subscribe(
             res => {
     
