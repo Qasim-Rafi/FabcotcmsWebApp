@@ -1137,16 +1137,17 @@
                                 </div>
 
                                 <ngx-datatable #myTable class="bootstrap" [columnMode]="'force'" [headerHeight]="50"
-                                    *ngIf="rows4.length != 0" [rows]="rows4" [footerHeight]="50" [sorts]="[{prop: 'shipmentNo,supplierDate,buyerDate,shipmentLine,shipmentMode,
+                                    *ngIf="rows4.length != 0" [rows]="rows4" [footerHeight]="50"  [sorts]="[{prop: 'shipmentNo,supplierDate,buyerDate,shipmentLine,shipmentMode,
                                     shipmentRemarks, ', dir: 'asce'}]" [rowHeight]="'auto'" [limit]="6">
 
 
 
-                                    <ngx-datatable-column name="S.No.">
-                                        <ng-template let-row="row" ngx-datatable-cell-template>
-                                            {{ row.id }}
+                                    <ngx-datatable-column name="S. No." >
+                                        <ng-template let-rowIndex="rowIndex" let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                          {{rowIndex + 1}}
+                              
                                         </ng-template>
-                                    </ngx-datatable-column>
+                                      </ngx-datatable-column>
 
                                     <ngx-datatable-column name="Shipment Number" prop="shipmentNo">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>

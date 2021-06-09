@@ -59,11 +59,12 @@
   text-align: center;
 }
 .input-w{
-  width: 93% !important;
+  width: 95% !important;
 }
-.input-w1{
+/* .input-w1{
   width: 97% !important;
-}
+} */
+ 
 .ng-select.ng-select-single .ng-select-container {
   height: 38px !important;
 }
@@ -72,32 +73,37 @@
   .input-w{
     width: 92% !important;
   }
-  .input-w1{
+  /* .input-w1{
     width: 96% !important;
-  }
+  } */
 }
 
 @media only screen and (max-width: 1366px), (max-width: 1440px) {
   .input-w{
-    width: 91% !important;
+    width: 93% !important;
   }
-  .input-w1{
+  /* .input-w1{
     width: 96% !important;
-  }
+  } */
 }
 
 @media only screen and (max-width: 1280px) {
-  .input-w1{
-    width: 95% !important;
-  }
-}
-@media only screen and (max-width: 1024px) {
   .input-w{
-    width: 86% !important;
+    width: 92% !important;
   }
-  .input-w1{
+
+  /* .input-w1{
+    width: 95% !important;
+  } */
+}
+
+@media only screen and (max-width: 1024px) {
+  .input-w {
+    width: 89% !important;
+  }
+  /* .input-w1{
     width: 94% !important;
-  }
+  } */
 }
 @media only screen and (max-width: 768px) {
 
@@ -116,16 +122,16 @@
   .input-w{
     width: 93% !important;
   }
-  .input-w1{
+  /* .input-w1{
     width: 93% !important;
-  }
+  } */
 }
 
 @media only screen and (max-width: 667px) {
   .input-w{
     width: 92% !important;
   }
-  .input-w1{
+  /* .input-w1{
     width: 92% !important;
-  }
+  } */
 }
