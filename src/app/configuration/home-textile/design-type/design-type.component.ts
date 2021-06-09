@@ -106,15 +106,18 @@ export class DesignTypeComponent implements OnInit {
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        this.service.fetch((data) => {
-          this.rows = data;
-      this.designFilter = [...this.rows];
-
-          this.designCount = this.rows.length;
-        }, this.designUrl);
+      
 
 
       }
+
+      this.service.fetch((data) => {
+        this.rows = data;
+    this.designFilter = [...this.rows];
+
+        this.designCount = this.rows.length;
+      }, this.designUrl);
+
     }, (reason) => {
       // on dismiss
     });
@@ -128,12 +131,14 @@ export class DesignTypeComponent implements OnInit {
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        this.service.fetch((data) => {
-          this.rows = data;
-
-        }, this.designUrl);
-
+       
       }
+
+      this.service.fetch((data) => {
+        this.rows = data;
+
+      }, this.designUrl);
+
     }, (reason) => {
       // on dismiss
     });

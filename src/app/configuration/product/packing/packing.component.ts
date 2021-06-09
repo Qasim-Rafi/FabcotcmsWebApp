@@ -109,15 +109,17 @@ export class PackingComponent implements OnInit {
       // on close
       if (data == true) {
         //  this.date = this.myDate;
-        this.service.fetch((data) => {
-          this.rows = data;
-          this.packingFilter = [...this.rows];
-
-          this.packingCount = this.rows.length;
-        }, this.packingUrl);
-
+       
 
       }
+
+      this.service.fetch((data) => {
+        this.rows = data;
+        this.packingFilter = [...this.rows];
+        this.packingCount = this.rows.length;
+      }, this.packingUrl);
+
+
     }, (reason) => {
       // on dismiss
     });
@@ -132,11 +134,14 @@ export class PackingComponent implements OnInit {
       // on close
       if (data == true) {
 
-        this.service.fetch((data) => {
-          this.rows = data;
-        }, this.packingUrl);
+     
 
       }
+
+      this.service.fetch((data) => {
+        this.rows = data;
+      }, this.packingUrl);
+
     }, (reason) => {
       // on dismiss
     });

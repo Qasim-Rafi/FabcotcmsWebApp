@@ -124,11 +124,12 @@ export class BuyerComponent implements OnInit {
     const modalRef = this.modalService.open(AddBuyerComponent, { centered: true });
     modalRef.result.then((data) => {
       // on close
-      if (data == true) {
-        this.date = this.myDate;
-        this.getBuyers();
+      if (data.status == true) {
+        // this.date = this.myDate;
+        
 
       }
+      this.getBuyers();
     }, (reason) => {
       // on dismiss
     });
@@ -142,10 +143,10 @@ export class BuyerComponent implements OnInit {
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        this.date = this.myDate;
-        this.getBuyers();
-
+        // this.date = this.myDate;
+       
       }
+      this.getBuyers();
     }, (reason) => {
       // on dismiss
     });

@@ -107,15 +107,18 @@ export class ProcessComponent implements OnInit {
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        this.service.fetch((data) => {
-          this.rows = data;
-      this.processFilter = [...this.rows];
-
-          this.processCount = this.rows.length;
-        }, this.processUrl);
+  
 
 
       }
+
+      this.service.fetch((data) => {
+        this.rows = data;
+    this.processFilter = [...this.rows];
+
+        this.processCount = this.rows.length;
+      }, this.processUrl);
+
     }, (reason) => {
       // on dismiss
     });
@@ -129,11 +132,14 @@ export class ProcessComponent implements OnInit {
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        this.service.fetch((data) => {
-          this.rows = data;
-        }, this.processUrl);
+       
 
       }
+
+      this.service.fetch((data) => {
+        this.rows = data;
+      }, this.processUrl);
+
     }, (reason) => {
       // on dismiss
     });

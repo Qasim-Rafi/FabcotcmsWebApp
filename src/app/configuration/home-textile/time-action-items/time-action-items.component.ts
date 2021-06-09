@@ -106,15 +106,18 @@ export class TimeActionItemsComponent implements OnInit {
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        this.service.fetch((data) => {
-          this.rows = data;
-      this.TnaFilter = [...this.rows];
-
-          this.TnaCount = this.rows.length;
-        } , this.TnaUrl);
+      
 
 
       }
+
+      this.service.fetch((data) => {
+        this.rows = data;
+    this.TnaFilter = [...this.rows];
+
+        this.TnaCount = this.rows.length;
+      } , this.TnaUrl);
+
     }, (reason) => {
       // on dismiss
     });
@@ -128,11 +131,14 @@ export class TimeActionItemsComponent implements OnInit {
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        this.service.fetch((data) => {
-          this.rows = data;
-        } , this.TnaUrl);
+       
 
       }
+
+      this.service.fetch((data) => {
+        this.rows = data;
+      } , this.TnaUrl);
+
     }, (reason) => {
       // on dismiss
     });

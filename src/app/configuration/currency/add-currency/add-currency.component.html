@@ -16,10 +16,10 @@
 
     <div class="form-group row">
       <label for="validFrom" class="col-sm-3 col-form-label control-label text_Navy">Form Validity<span class="required-denote">*</span> </label>
-      <div class="col-sm-8">
+      <div class="col-sm-8" (click)="validFrom.close()">
         <!-- <input required id="validFrom" type="date" class="form-control" placeholder="Date" name="validFrom"
           [(ngModel)]="data.validFrom" #validFrom="ngModel" [ngClass]="{'error': validFrom.invalid && addAgentForm.submitted}"> -->
-          <input navigation="select" class="form-control  " ngbDatepicker #validFrom="ngbDatepicker"
+          <input navigation="select" required class="form-control  " ngbDatepicker #validFrom="ngbDatepicker"
           (click)="validFrom.toggle()" placeholder=" Date" 
           name="validFrom"  [(ngModel)]="data.validFrom" #validFrom="ngModel" />
      

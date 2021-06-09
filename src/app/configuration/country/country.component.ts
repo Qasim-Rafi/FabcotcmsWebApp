@@ -109,13 +109,14 @@ export class CountryComponent implements OnInit {
     modalRef.result.then((data) => {
 
       if (data == true) {
-        this.service.fetch((data) => {
-          this.rows = data;
-      this.countryFilter = [...this.rows];
-
-          this.countryCount = this.rows.length;
-        }, this.CountryUrl);
+      
       }
+
+      this.service.fetch((data) => {
+        this.rows = data;
+    this.countryFilter = [...this.rows];
+        this.countryCount = this.rows.length;
+      }, this.CountryUrl);
     }, (reason) => {
     });
   }
@@ -132,11 +133,13 @@ export class CountryComponent implements OnInit {
       // on close
       if (data == true) {
         //  this.date = this.myDate;
-        this.service.fetch((data) => {
-          this.rows = data;
-        }, this.CountryUrl);
+       
 
       }
+      this.service.fetch((data) => {
+        this.rows = data;
+        this.countryFilter = [...this.rows];
+      }, this.CountryUrl);
     }, (reason) => {
       // on dismiss
     });

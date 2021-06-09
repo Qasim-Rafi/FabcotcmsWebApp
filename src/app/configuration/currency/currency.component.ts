@@ -143,13 +143,13 @@ export class CurrencyComponent implements OnInit {
          // on close
           if(data ==true){
           //  this.date = this.myDate;
-           this.fetch((data) => {
-            this.rows = data;
-      this.currencyFilter = [...this.rows];
-        
-          });
-         
+       
         }
+        this.fetch((data) => {
+          this.rows = data;
+    this.currencyFilter = [...this.rows];
+      
+        });
        }, (reason) => {
          // on dismiss
        });
@@ -162,13 +162,14 @@ export class CurrencyComponent implements OnInit {
           modalRef.result.then((data) => {
          // on close
           if(data ==true){
-          //  this.date = this.myDate;
-           this.fetch((data) => {
-            this.rows = data;
-            
-          });
+        
            
          }
+         this.fetch((data) => {
+          this.rows = data;
+    this.currencyFilter = [...this.rows];
+      
+        });
        }, (reason) => {
          // on dismiss
        });

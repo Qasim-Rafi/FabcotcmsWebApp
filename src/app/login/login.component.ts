@@ -6,6 +6,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import {Subject} from 'rxjs';
+import { SpinnerService } from '../shared/spinner.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -19,7 +21,7 @@ invalidLogin: boolean=false;
   data:any={};
   departmentId:any=[];
   response:any;
-  
+  isLoading: Subject<boolean> = this.loader.isLoading
  
   constructor(
     private FormBuilder:FormBuilder,
@@ -27,6 +29,9 @@ invalidLogin: boolean=false;
     private toastr: ToastrService,
     private Service: ServiceService,
     private modalService: NgbModal,
+    private loader: SpinnerService
+
+
 
   ) { }
 

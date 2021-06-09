@@ -190,6 +190,9 @@ getAgentType(){
   getCity() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/Destinations`)
   }
+  getDestination() {
+    return this.http.get(`${environment.apiUrl}/api/Lookups/Destinations`)
+  }
   getMode() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/ShipmentModes`)
   }
