@@ -86,6 +86,8 @@ invalidLogin: boolean=false;
    },
    (err : HttpErrorResponse)=>{
      this.isLoginError = true;
+     this.spinner.hide();
+
    });
  }
 
