@@ -18,6 +18,7 @@ export class ProductionStatusComponent implements OnInit {
   dateformater: Dateformater = new Dateformater();  
   data:any ={};
   @Input() dispatchId; 
+  @Input() contractId; 
 
   response: any;
   @ViewChild(NgForm) dispatchForm;
@@ -61,12 +62,24 @@ export class ProductionStatusComponent implements OnInit {
   // }
   
   addProd(form:NgForm) {
-     this.data.dispatchDate = this.dateformater.toModel(this.data.dispatchDate);
+    //  this.data.dispatchDate = this.dateformater.toModel(this.data.dispatchDate);
     let varr = {
+      
+  "contractId": this.contractId,
+  "inspectionDate": this.dateformater.toModel(this.data.inspectionDate),
+  "startingDate": this.dateformater.toModel(this.data.startingDate),
+  "loomPlanned": this.data.loomPlanned,
+  "loomRunning": this.data.loomRunning,
+  "perLoomProduction": this.data.perLoomProduction,
+  "perDayProduction": this.data.perDayProduction,
+  "packStock": this.data.packStock,
+  "looseStock": this.data.looseStock,
+  "totalStock": this.data.totalStock,
+  "completionDate": this.dateformater.toModel(this.data.completionDate)
     }
 
     this.http.
-      put(`${environment.apiUrl}`, varr)
+      put(`${environment.apiUrl}/api/YarnContracts/AddContractProductionStatus`, varr)
       .subscribe(
         res => {
 

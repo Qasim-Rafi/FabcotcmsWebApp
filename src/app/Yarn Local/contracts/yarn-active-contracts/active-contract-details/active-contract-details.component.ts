@@ -68,8 +68,8 @@ export class ActiveContractDetailsComponent implements OnInit {
   invoiceItemFilter = [];
   invoiceItem = {};
   reminderData = [];
-
-  
+  deliveryTimeLineData = [];
+  prodPlanData = [];
  
   shipmentUrl='/api/Contracts/GetAllContractShipmentSchedule/{contractId}';
   // tna data
@@ -482,7 +482,48 @@ getContractPartiesData() {
 }
 
 
+getDeliveryTimeLine() {
+  this.http.get(`${environment.apiUrl}​/api​/YarnContracts​/GetAllContractDeliverySchedule` )
+    .subscribe(
+      res => {
+        this.response = res;
+        if (this.response.success == true) {
+          this.deliveryTimeLineData = this.response.data;
+          
 
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+
+      }, err => {
+        if (err.status == 400) {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+      });
+}
+
+
+getProdPlan() {
+  this.http.get(`${environment.apiUrl}​/api/YarnContracts/GetAllContractProductionStatus`)
+    .subscribe(
+      res => {
+        this.response = res;
+        if (this.response.success == true) {
+          this.prodPlanData = this.response.data;
+          
+
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+
+      }, err => {
+        if (err.status == 400) {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+      });
+}
 
 
 // ProductANDSpecificationForm() {
@@ -1522,7 +1563,7 @@ editNote( row ,check) {
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
-  
+  this.getDeliveryTimeLine();
     }
     this.getContractData();
 
@@ -1539,9 +1580,10 @@ addProd() {
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
+      this.getProdPlan();
   
     }
-    this.getContractData();
+    // this.getContractData();
 
   }, (reason) => {
     // on dismiss
