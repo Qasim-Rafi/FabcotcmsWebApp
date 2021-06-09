@@ -44,7 +44,7 @@ export class OpenActiveBillComponent implements OnInit {
   fetch(cb) {
     
     this.http
-    .get(`${environment.apiUrl}` + this.bill_id)
+    .get(`${environment.apiUrl}/api/BillingPayments/GetContractBillById/` + this.bill_id)
     .subscribe(res => {
       this.response = res;
      

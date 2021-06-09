@@ -33,7 +33,7 @@ export class BranchAddressComponent implements OnInit {
 
   }
   GetBranchDropdown() {
-    this.http.get(`${environment.apiUrl}`).
+    this.http.get(`${environment.apiUrl}/api/Lookups/FabcotBranches`).
     subscribe(res => {
       this.response = res;
       if (this.response.success == true) {

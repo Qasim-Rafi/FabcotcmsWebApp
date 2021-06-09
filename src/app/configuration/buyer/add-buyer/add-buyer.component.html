@@ -52,7 +52,7 @@
           <ng-select [(ngModel)]="data.countryId" required placeholder="-- Select --" name="countryId"
             #countryId="ngModel" [ngClass]="{ error: buyerForm.submitted && countryId.invalid }">
             <ng-option *ngFor="let i of country" [value]="i.id">{{ i.name }}
-              <span *ngIf="i.details !=null" class="text-muted" style="font-size: 11px">({{ i.details }})</span>
+              <span *ngIf="i.details !=null" class="text-muted" style="font-size: 11px">{{ i.details }}</span>
             </ng-option>
           </ng-select>
         </div>
