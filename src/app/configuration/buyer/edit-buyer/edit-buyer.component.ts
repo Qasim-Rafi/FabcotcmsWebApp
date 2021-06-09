@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
 import { ServiceService } from 'src/app/shared/service.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-edit-buyer',
@@ -25,6 +26,7 @@ export class EditBuyerComponent implements OnInit {
 
   constructor(private http: HttpClient,
     private service: ServiceService,
+    private spinner: NgxSpinnerService,
     private toastr: ToastrService,
     private _NgbActiveModal: NgbActiveModal,) { }
 
@@ -80,6 +82,7 @@ export class EditBuyerComponent implements OnInit {
 
 
   editBuyer(id) {
+    this.spinner.show();
     this.http.get(`${environment.apiUrl}/api/Buyers/GetBuyer/` + id)
       .subscribe(
         res => {
@@ -87,16 +90,18 @@ export class EditBuyerComponent implements OnInit {
           if (this.response.success == true) {
             this.data = this.response.data;
             this.active = this.data.isParentBuyer
-
+            this.spinner.hide();
 
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+          this.spinner.hide();
           }
 
         }, err => {
           if (err.status == 400) {
             this.toastr.error(this.response.message, 'Message.');
+          this.spinner.hide();
           }
         });
   }
@@ -120,7 +125,7 @@ export class EditBuyerComponent implements OnInit {
       "isParentBuyer": this.active,
       "parentBuyerId": this.data.parentBuyerId,
     }
-
+this.spinner.show();
     this.http.
       put(`${environment.apiUrl}/api/Buyers/UpdateBuyer/` + this.buyerId, varr)
       .subscribe(
@@ -130,10 +135,11 @@ export class EditBuyerComponent implements OnInit {
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
             this.activeModal.close(true);
-
+this.spinner.hide();
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+          this.spinner.hide();
           }
 
         },(err: HttpErrorResponse) => {
@@ -141,6 +147,7 @@ export class EditBuyerComponent implements OnInit {
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
                 });
+                this.spinner.hide();
   }
 }
 // }

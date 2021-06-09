@@ -10,6 +10,7 @@ import { ServiceService } from 'src/app/shared/service.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { GlobalConstants } from 'src/app/Common/global-constants';
 import { SellerPocComponent } from '../seller/seller-poc/seller-poc.component';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 
@@ -37,7 +38,8 @@ export class BuyerComponent implements OnInit {
   constructor(private http: HttpClient,
     private toastr: ToastrService,
     private modalService: NgbModal,
-    private service: ServiceService
+    private spinner: NgxSpinnerService,
+    private service: ServiceService,
   ) { }
 
 
@@ -170,7 +172,7 @@ export class BuyerComponent implements OnInit {
       position: 'top',
     }).then((result) => {
       if (result.isConfirmed) {
-
+this.spinner.show();
         this.http.delete(`${environment.apiUrl}/api/Buyers/DeleteBuyer/` + id.id)
           .subscribe(
             res => {
@@ -178,14 +180,17 @@ export class BuyerComponent implements OnInit {
               if (this.response.success == true) {
                 this.toastr.error(this.response.message, 'Message.');
                 this.getBuyers();
+                this.spinner.hide();
               }
               else {
                 this.toastr.error(this.response.message, 'Message.');
+              this.spinner.hide();
               }
 
             }, err => {
               if (err.status == 400) {
                 this.toastr.error(this.response.message, 'Message.');
+              this.spinner.hide();
               }
             });
 
