@@ -119,8 +119,9 @@ this.spinner.show();
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
-        });
         this.spinner.hide();
+
+        });
   }
 // }
 
@@ -179,8 +180,9 @@ this.spinner.show();
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
-        });
         this.spinner.hide();
+
+        });
   
 }
 
