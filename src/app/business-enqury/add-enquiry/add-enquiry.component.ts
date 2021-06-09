@@ -141,13 +141,12 @@ export class AddEnquiryComponent implements OnInit {
       this.response = res;
       if (this.response.success == true) {
         
-        this.article = this.response.data.list;
-        this.newArticle = this.response.data.lastId
+        this.article = this.response.data
 
         if(type == "other")
         {
-          this.article.id = this.newArticle;
-          this.data.articleId = this.article.id
+         
+          this.data.articleId = this.newArticle;
         }
 
       }
@@ -163,15 +162,13 @@ export class AddEnquiryComponent implements OnInit {
       this.response = res;
       if (this.response.success == true) {
 
-        this.buyer = this.response.data.list;
-        this.newBuyer = this.response.data.lastId
-
+        this.buyer = this.response.data;
 
 
         if(type == "other")
         {
-          this.buyer.id = this.newBuyer;
-          this.data.buyerId = this.buyer.id
+          // this.buyer.id = this.newBuyer;
+          this.data.buyerId = this.newBuyer;
         }
        
       }
@@ -186,14 +183,13 @@ export class AddEnquiryComponent implements OnInit {
     this.service.getPaymentTerm().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.payment = this.response.data.list;
-        this.newPayment = this.response.data.lastId;
+        this.payment = this.response.data
 
 
         if(type == "other")
         {
-          this.payment.id = this.newPayment;
-          this.data.paymentTermId = this.payment.id
+          
+          this.data.paymentTermId = this.newPayment;
         }
 
 
@@ -209,15 +205,15 @@ export class AddEnquiryComponent implements OnInit {
     this.service.getPackaging().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.packaging = this.response.data.list;
-        this.newPacking = this.response.data.lastId
+
+        this.packaging = this.response.data
 
 
         
         if(type == "other")
         {
-          this.packaging.id = this.newPacking;
-          this.data.packagingId = this.packaging.id
+          
+          this.data.packagingId = this.newPacking;
         }
 
       }
@@ -231,14 +227,14 @@ export class AddEnquiryComponent implements OnInit {
     this.service.getDesignType().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.design = this.response.data.list;
-        this.newDesign = this.response.data.lastId
+        
+        this.design = this.response.data
 
 
         if(type == "other")
         {
-          this.design.id = this.newDesign;
-          this.data.designTypeId = this.design.id
+          
+          this.data.designTypeId = this.newDesign
         }
       }
       else {
@@ -251,13 +247,13 @@ export class AddEnquiryComponent implements OnInit {
     this.service.getProcess().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.process = this.response.data.list;
-        this.newProcess = this.response.data.lastId
+
+        this.process = this.response.data
 
         if(type == "other")
         {
-          this.process.id = this.newProcess;
-          this.data.processId = this.process.id
+          
+          this.data.processId = this.newProcess
         }
       }
       else {
@@ -270,14 +266,14 @@ export class AddEnquiryComponent implements OnInit {
     this.service.getProcessType().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.ptype = this.response.data.list;
-        this.newProcessType = this.response.data.lastId
+
+        this.ptype = this.response.data
 
 
         if(type == "other")
         {
-          this.ptype.id = this.newProcessType;
-          this.data.processTypeId = this.ptype.id
+          
+          this.data.processTypeId =  this.newProcessType;
         }
       }
       else {
@@ -290,15 +286,14 @@ export class AddEnquiryComponent implements OnInit {
     this.service.getCertification().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.certification = this.response.data.list;
-        this.newCertificate = this.response.data.lastId
+        this.certification = this.response.data
 
 
 
         if(type == "other"){
-          this.certification.id = this.newCertificate;
-          this.data.certificateIds = this.certification.id
-          // this.data.certificateIds.toString();
+          
+          this.data.certificateIds = this.newCertificate;
+         
           this.data.certificateIds != null ? this.data.certificateIds.toString() : null
 
      }
@@ -314,14 +309,13 @@ export class AddEnquiryComponent implements OnInit {
     this.service.getPriceTerm().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.priceterm = this.response.data.list;
-        this.newPrice = this.response.data.lastId
+        this.priceterm = this.response.data
 
 
         if(type == "other")
         {
-          this.priceterm.id = this.newPrice;
-          this.data.priceTermId = this.priceterm.id
+          
+          this.data.priceTermId =  this.newPrice;
         }
       }
       else {
@@ -344,16 +338,15 @@ export class AddEnquiryComponent implements OnInit {
 
 
   GetCityDropdown(type:string) {
-    this.service.getCity().subscribe(res => {
+    this.service.getDestination().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.city = this.response.data.list;
-        this.newCity = this.response.data.lastId
-
+        
+        this.city = this.response.data
 
         if(type == "other"){
-             this.city.id = this.newCity;
-             this.data.destinationId = this.city.id
+             
+             this.data.destinationId = this.newCity;
         }
       }
       else {
@@ -369,12 +362,9 @@ export class AddEnquiryComponent implements OnInit {
 
       // on close
       if (data == true) {
-        //  this.date = this.myDate;
+       
         this.GetCertificationDropdown("other");
       
-
-
-
       }
     }, (reason) => {
       // on dismiss
@@ -390,8 +380,9 @@ export class AddEnquiryComponent implements OnInit {
 
     modalRef.result.then((data) => {
       // on close
-      if (data.status == true && data.parent == true) {
-        //  this.date = this.cityDate;
+      if (data.parent == true) {
+        
+        this.newCity = data.id
         this.GetCityDropdown("other");
         
      
@@ -406,9 +397,9 @@ export class AddEnquiryComponent implements OnInit {
     const modalRef = this.modalService.open(AddBuyerComponent, { centered: true });
     modalRef.result.then((data) => {
       // on close
-      if (data.status == true && data.parent == true) {
+      if (data.parent == true) {
 
-    
+        this.newBuyer = data.id
         this.GetBuyersDropdown("other");
      
 
@@ -423,8 +414,9 @@ export class AddEnquiryComponent implements OnInit {
     const modalRef = this.modalService.open(AddArticleComponent, { centered: true });
     modalRef.result.then((data) => {
       // on close
-      if (data.status == true && data.parent == true) {
-     
+      if (data.parent == true) {
+        
+        this.newArticle = data.id
         this.GetArticlesDropdown("other");
        
 
@@ -439,8 +431,9 @@ export class AddEnquiryComponent implements OnInit {
     const modalRef = this.modalService.open(AddProcessComponent, { centered: true });
     modalRef.result.then((data) => {
       // on close
-      if (data.status == true && data.parent == true) {
-        //  this.date = this.myDate;
+      if ( data.parent == true) {
+        
+        this.newProcess = data.id
         this.GetProcessDropdown("other");
       
       }
@@ -456,8 +449,9 @@ export class AddEnquiryComponent implements OnInit {
     const modalRef = this.modalService.open(AddPackingComponent, { centered: true });
     modalRef.result.then((data) => {
       // on close
-      if (data.status == true && data.parent == true) {
-        //  this.date = this.myDate;
+      if ( data.parent == true) {
+        
+        this.newPacking = data.id
         this.GetPackingDropdown("other");
     
 
@@ -473,8 +467,9 @@ export class AddEnquiryComponent implements OnInit {
     const modalRef = this.modalService.open(AddDesignTypeComponent, { centered: true });
     modalRef.result.then((data) => {
       // on close
-      if (data.status == true && data.parent == true) {
-        //  this.date = this.myDate;
+      if (data.parent == true) {
+        
+        this.newDesign = data.id
         this.GetDesignDropdown("other");
       
 
@@ -492,13 +487,12 @@ export class AddEnquiryComponent implements OnInit {
     const modalRef = this.modalService.open(AddProcessTypeComponent, { centered: true });
     modalRef.result.then((data) => {
       // on close
-      if (data.status == true && data.parent == true) {
-        //  this.date = this.myDate;
+      if (data.parent == true) {
+        
+        this.newProcessType = data.id
+
         this.GetProcessTypeDropdown("other");
        
-
-
-
       }
     }, (reason) => {
       // on dismiss
@@ -511,8 +505,10 @@ export class AddEnquiryComponent implements OnInit {
     const modalRef = this.modalService.open(AddPaymentComponent, { centered: true });
     modalRef.result.then((data) => {
       // on close
-      if (data.status == true && data.parent == true) {
-        //  this.date = this.myDate;
+      if (data.parent == true) {
+        
+        this.newPayment = data.id
+        
         this.GetPaymentDropdown("other");
        
 
@@ -528,8 +524,10 @@ export class AddEnquiryComponent implements OnInit {
     const modalRef = this.modalService.open(AddPriceComponent, { centered: true });
     modalRef.result.then((data) => {
       // on close
-      if (data.status == true && data.parent == true) {
-        //  this.date = this.myDate;
+      if (data.parent == true) {
+        
+        this.newPrice = data.id
+
         this.GetPriceTermDropdown("other");
     
 
