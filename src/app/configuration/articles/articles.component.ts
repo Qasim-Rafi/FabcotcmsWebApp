@@ -11,6 +11,7 @@ import { ServiceService } from 'src/app/shared/service.service';
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import { ClipboardService } from 'ngx-clipboard';
+import { NgxSpinnerService } from 'ngx-spinner';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -34,6 +35,7 @@ export class ArticlesComponent implements OnInit {
     private toastr: ToastrService,
     private _clipboardService: ClipboardService,
     private service: ServiceService,
+    private spinner: NgxSpinnerService,
     private modalService: NgbModal,) { }
 
   ngOnInit(): void {
@@ -81,7 +83,7 @@ export class ArticlesComponent implements OnInit {
       position: 'top',
     }).then((result) => {
       if (result.isConfirmed) {
-
+this.spinner.show();
         this.http.delete(`${environment.apiUrl}/api/Configs/DeleteArticle/` + id.id)
           .subscribe(
             res => {
@@ -90,18 +92,19 @@ export class ArticlesComponent implements OnInit {
                 this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
                 this.service.fetch((data) => {
                   this.rows = data;
-
+this.spinner.hide();
                 }, this.articleUrl);
 
               }
               else {
                 this.toastr.error(this.response.message, 'Message.');
-
+this.spinner.hide();
               }
 
             }, err => {
               if (err.status == 400) {
                 this.toastr.error(this.response.message, 'Message.');
+              this.spinner.hide();
               }
             });
       }

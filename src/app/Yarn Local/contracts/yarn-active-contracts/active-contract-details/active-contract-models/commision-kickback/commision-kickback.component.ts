@@ -76,7 +76,7 @@ export class CommisionKickbackComponent implements OnInit {
 
 
   getContractCommisionData(){
-    this.http.get(`${environment.apiUrl}` + this.contractId)
+    this.http.get(`${environment.apiUrl}/api/Contracts/GetContractCommissionById/` + this.contractId)
     .subscribe(
       res => {
         this.response = res;
@@ -116,8 +116,8 @@ export class CommisionKickbackComponent implements OnInit {
 
       "contractId": this.contractId,
       "sellerSideCommission": this.commission.sellerSideCommission,
-      "sellerSideCommissionUOMId":this.commission.sellerSideCommissionUOMId,
-      "sellerAdditionalInfo": this.commission.sellerAdditionalInfo,
+      // "sellerSideCommissionUOMId":this.commission.sellerSideCommissionUOMId,
+      // "sellerAdditionalInfo": this.commission.sellerAdditionalInfo,
       "buyerSideCommission": this.commission.buyerSideCommission,
       "buyerSideCommissionUOMId": this.commission.buyerSideCommissionUOMId,
       "buyerAdditionalInfo": this.commission.buyerAdditionalInfo,
@@ -126,7 +126,7 @@ export class CommisionKickbackComponent implements OnInit {
     }
 
     this.http.
-      post(`${environment.apiUrl}`, varr)
+      post(`${environment.apiUrl}/api/Contracts/AddContractCommission`, varr)
       .subscribe(
         res => {
 

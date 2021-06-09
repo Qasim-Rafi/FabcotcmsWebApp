@@ -27,15 +27,16 @@
                 </label>
                 <div class="col-sm-2">
                     <input type="number" min="0"
-                    id="itemQuantity" 
-                  name="itemQuantity" 
-                    class="form-control" value="" placeholder="Quantity" />
+                 
+                    class="form-control" value="" placeholder="Quantity"
+                      name="quantity"  #quantity = "ngModel" [(ngModel)] = "data.quantity" />
                 </div>
                 <div class="col-md-2">
                    
-                  <ng-select
-                   placeholder="Unit" name="unit">
-                    <ng-option ></ng-option>
+                    <ng-select [(ngModel)]="data.uomId" placeholder="-- Select --" 
+                    name="uomId" #uomId="ngModel">
+                    <ng-option *ngFor="let i of uom" [value]="i.id">{{ i.name }}
+                    </ng-option>
                 </ng-select>
     
                 </div>
@@ -46,6 +47,7 @@
                                 <span class="input-group-text" id="basic-addon2">+/-</span>
                             </div>
                             <input type="text" placeholder="tolerance value." class="form-control"
+                            name="tolerance"  #tolerance = "ngModel" [(ngModel)] = "data.tolerance"
                             >
                             <div class="input-group-append">
                                 <span class="input-group-text" id="basic-addon2">%</span>
@@ -61,9 +63,8 @@
                 </label>
                 <div class="col-sm-2">
                     <input type="number" min="0"
-                    id="itemQuantity" 
-                  name="itemQuantity" 
-                    class="form-control" value="" placeholder="" />
+                    name="rate"  #rate = "ngModel" [(ngModel)] = "data.rate"
+                    class="form-control" placeholder="" />
                 </div>
                 <div class="col-md-2">
                    
@@ -84,10 +85,8 @@
               <div class="form-group row">
                 <label for="itemQuantity" class="col-sm-3 col-form-label "> Total Cost </label>
                 <div class="col-sm-4">
-                    <input type="number" min="0"
-                    id="itemQuantity" 
-                  name="itemQuantity" 
-                    class="form-control" value="" placeholder="" />
+                    <input type="number" 
+                  class="form-control" value="" placeholder="" name="total"  #total = "ngModel" [(ngModel)] = "data.total" />
                 </div>
               </div>
             </div>

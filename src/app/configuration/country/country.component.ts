@@ -11,6 +11,7 @@ import { ClipboardService } from 'ngx-clipboard';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
+import { NgxSpinnerService } from 'ngx-spinner';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 @Component({
   selector: 'app-country',
@@ -34,6 +35,7 @@ export class CountryComponent implements OnInit {
   constructor(private http: HttpClient,
     private toastr: ToastrService,
     private modalService: NgbModal,
+    private spinner: NgxSpinnerService,
     private service: ServiceService,
     private _clipboardService: ClipboardService) { }
 
@@ -74,7 +76,7 @@ export class CountryComponent implements OnInit {
       position: 'top',
     }).then((result) => {
       if (result.isConfirmed) {
-
+this.spinner.show();
         this.http.delete(`${environment.apiUrl}/api/Configs/DeleteCountry/` + id.id)
           .subscribe(
             res => {
@@ -84,10 +86,11 @@ export class CountryComponent implements OnInit {
                 this.service.fetch((data) => {
                   this.rows = data;
                 }, this.CountryUrl);
-
+this.spinner.hide();
               }
               else {
                 this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
+              this.spinner.hide();
               }
 
             }, err => {
@@ -95,6 +98,7 @@ export class CountryComponent implements OnInit {
                 this.toastr.error(this.response.message, 'Message.');
               }
             });
+            this.spinner.hide();
       }
     })
 

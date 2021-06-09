@@ -48,7 +48,7 @@ export class GenerateBillsComponent implements OnInit {
       ngOnInit(): void {
         this.service.fetch((data)=>{
       this.billFilter = [...data];
-
+      
             this.rows = data;
         } , this.url)
         

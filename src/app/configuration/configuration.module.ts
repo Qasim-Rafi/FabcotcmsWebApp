@@ -83,6 +83,7 @@ import { CapabilityComponent } from './capability/capability.component';
 import { AddEditCapabilityComponent } from './capability/add-edit-capability/add-edit-capability.component';
 import { ShipmentLineComponent } from './shipment-line/shipment-line.component';
 import { AddEditShipmentLineComponent } from './shipment-line/add-edit-shipment-line/add-edit-shipment-line.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -173,7 +174,7 @@ import { AddEditShipmentLineComponent } from './shipment-line/add-edit-shipment-
     FormsModule,
     NgbModule,
     NgSelectModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule,NgxSpinnerModule,
     HttpClientModule,
     // BrowserAnimationsModule,
     ToastrModule.forRoot({

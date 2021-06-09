@@ -10,6 +10,7 @@ import { DatatableComponent, id } from '@swimlane/ngx-datatable';
 import { ServiceService } from 'src/app/shared/service.service';
 import pdfMake from "pdfmake/build/pdfmake";
 import { ClipboardService } from 'ngx-clipboard';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-city',
@@ -32,6 +33,7 @@ export class CityComponent implements OnInit {
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
+    private spinner: NgxSpinnerService,
     private service: ServiceService,
     private _clipboardService: ClipboardService,
     private modalService: NgbModal) { }
@@ -72,7 +74,7 @@ export class CityComponent implements OnInit {
       position: 'top',
     }).then((result) => {
       if (result.isConfirmed) {
-
+this.spinner.show();
         this.http.delete(`${environment.apiUrl}/api/Configs/DeleteCity/` + id.id)
           .subscribe(
             res => {
@@ -82,15 +84,17 @@ export class CityComponent implements OnInit {
                 this.service.fetch((data) => {
                   this.rows = data;
                 }, this.cityUrl);
-
+this.spinner.hide();
               }
               else {
                 this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
+              this.spinner.hide();
               }
 
             }, err => {
               if (err.status == 400) {
                 this.toastr.error(this.response.message, 'Message.');
+             this.spinner.hide();
               }
             });
       }

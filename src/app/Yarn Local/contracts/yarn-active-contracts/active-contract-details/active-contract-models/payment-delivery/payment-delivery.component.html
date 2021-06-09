@@ -36,7 +36,7 @@
       <div class="form-group row">
         <label for="description" class="col-sm-3 col-form-label text-Navy">Payment Terms</label>
         <div class="col-sm-4">
-          <ng-select required name="paymentTermId" placeholder="-- Select --" [(ngModel)]="data.paymentTermId"
+          <ng-select required name="paymentTermId" placeholder="Payment Terms" [(ngModel)]="data.paymentTermId"
             #paymentTermId="ngModel" [ngClass]="{'error': paymentTermId.invalid && partiesForm.submitted }">
             <ng-option *ngFor="let i of payment" [value]="i.id">
               {{i.term}}
@@ -63,7 +63,7 @@
       <div class="form-group row">
         <label for="description" class="col-sm-3 col-form-label text-Navy">Payment Terms (Buyer Side)</label>
         <div class="col-sm-4">
-          <ng-select required name="paymentTermId" placeholder="-- Select --" [(ngModel)]="data.paymentTermId"
+          <ng-select required name="paymentTermId" placeholder="Payment Terms" [(ngModel)]="data.paymentTermId"
             #paymentTermId="ngModel" [ngClass]="{'error': paymentTermId.invalid && partiesForm.submitted }">
             <ng-option *ngFor="let i of payment" [value]="i.id">
               {{i.term}}

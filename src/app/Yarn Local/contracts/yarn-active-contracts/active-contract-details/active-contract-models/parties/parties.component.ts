@@ -48,7 +48,7 @@ export class PartiesComponent implements OnInit {
 
 
   getContractPartiesData() {
-    this.http.get(`${environment.apiUrl}` + this.contractId)
+    this.http.get(`${environment.apiUrl}/api/Contracts/GetContractPartiesById/` + this.contractId)
       .subscribe(
         res => {
           this.response = res;
@@ -77,7 +77,7 @@ export class PartiesComponent implements OnInit {
     this.service.getBuyers().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.buyer = this.response.data.list;
+        this.buyer = this.response.data;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -169,6 +169,7 @@ export class PartiesComponent implements OnInit {
     let varr = {
 
       "contractId": this.contractId,
+      "contractType":this.data.contractType,
       "poNumber": this.data.poNumber,
       "poDate": this.data.poDate,
       "contractNo": this.data.contractNo,
@@ -178,11 +179,11 @@ export class PartiesComponent implements OnInit {
       "sellerId": this.data.sellerId,
       "sellerPOCId": this.data.sellerPOCId,
       "sellerContract":this.data.sellerContract,
-      "certificateIds": this.data.certificateIds != null ? this.data.certificateIds.toString() : null,
+      // "certificateIds": this.data.certificateIds != null ? this.data.certificateIds.toString() : null,
     }
 
     this.http.
-      post(`${environment.apiUrl}`, varr)
+      post(`${environment.apiUrl}/api/Contracts/AddContractParties`, varr)
       .subscribe(
         res => {
 

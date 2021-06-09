@@ -31,12 +31,8 @@ export class RemarksComponent implements OnInit {
     return this._NgbActiveModal;
   }
 
-
-
-
-
   getContractRemarkData() {
-    this.http.get(`${environment.apiUrl}` + this.contractId)
+    this.http.get(`${environment.apiUrl}/api/Contracts/GetContractRemarkById/` + this.contractId)
       .subscribe(
         res => {
           this.response = res;
@@ -68,7 +64,7 @@ export class RemarksComponent implements OnInit {
     }
 
     this.http.
-      post(`${environment.apiUrl}`, varr)
+      post(`${environment.apiUrl}/api/Contracts/AddContractRemark`, varr)
       .subscribe(
         res => {
 
@@ -89,16 +85,5 @@ export class RemarksComponent implements OnInit {
           console.log(messages);
         });
   }
-
-
-
-
-
-
-
-
-
-
-
 
 }

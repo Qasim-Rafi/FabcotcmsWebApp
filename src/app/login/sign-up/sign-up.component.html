@@ -11,6 +11,7 @@
 
 <div class="modal-body BG p-0">
   <form #signUpForm="ngForm" novalidate (ngSubmit)="addUser()">
+    <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "line-spin-fade" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
 
     <div class="col-md-12 pt-3 pb-2">
 
