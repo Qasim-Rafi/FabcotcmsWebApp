@@ -21,6 +21,8 @@ export class OpenActiveBillComponent implements OnInit {
   data: any = {};
   rows: any = {};
   date: number;
+  totalAmount: string;
+
   myDate = Date.now();
   words : string;
   words2 : string = "word";
@@ -53,8 +55,10 @@ export class OpenActiveBillComponent implements OnInit {
     if(this.response.success==true)
     {
     this.data =this.response.data;
+this.totalAmount = this.data.contractSaleInvoices[0].totalAmount;
     const toWords = new ToWords();
     this.words = toWords.convert(this.data.invoiceTotalAmount);
+
 
     cb(this.data);
     // this.spinner.hide();

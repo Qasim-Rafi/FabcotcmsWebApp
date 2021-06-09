@@ -18,7 +18,7 @@ import { EditCertificateComponent } from 'src/app/configuration/home-textile/cer
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { Dateformater } from 'src/app/shared/dateformater';
 import { Router } from '@angular/router';
-
+import { NgxSpinnerService} from 'ngx-spinner'
 
 import * as moment from 'moment';
 import { DatePipe } from '@angular/common';
@@ -84,6 +84,7 @@ export class AddEnquiryComponent implements OnInit {
     private toastr: ToastrService,
     private modalService: NgbModal,
     private service: ServiceService,
+    private spinner: NgxSpinnerService,
     private router: Router,
     public datepipe: DatePipe
  
@@ -568,7 +569,7 @@ export class AddEnquiryComponent implements OnInit {
         "departmentId": this.data.departmentId,
   
       }
-  
+  this.spinner.show();
       this.http.
         post(`${environment.apiUrl}/api/Enquiries/AddEnquiry`, varr)
         .subscribe(
@@ -580,15 +581,21 @@ export class AddEnquiryComponent implements OnInit {
               this.enquiryForm.reset();
                this.router.navigate(['/enquiry/edit-active-enquiries'], { queryParams: {id: this.response.data} });
               // this.router.navigate(['/enquiry/active-enquiries']);
+  this.spinner.hide();
+            
             }
             else {
               this.toastr.error(this.response.message, 'Message.');
+  this.spinner.hide();
+           
             }
   
           },(err: HttpErrorResponse) => {
             const messages = this.service.extractErrorMessagesFromErrorResponse(err);
             this.toastr.error(messages.toString(), 'Message.');
             console.log(messages);
+  this.spinner.hide();
+         
           });
     }
     
