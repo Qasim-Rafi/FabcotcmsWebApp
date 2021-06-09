@@ -36,6 +36,9 @@
 
 
 <div class="OuterClass">
+  <div *ngIf="isLoading| async">
+    <ngx-spinner></ngx-spinner>
+  </div>
   <img class="OuterClassimg" src="assets/bg.jpg" width="70%" alt="Fabcot Logo">
   <div class="card card-outline shadow">
     <div class="card-header text-center">

@@ -56,6 +56,7 @@ import { ContractsModule } from './Yarn Local/contracts/contracts.module';
 import { YarnBillingAndPaymentModule } from './Yarn Local/yarn-billing-and-payment/yarn-billing-and-payment.module';
 import { YarnConfigurationModule } from './Yarn Local/yarn-configuration/yarn-configuration.module';
 import { SignUpComponent } from './login/sign-up/sign-up.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 
 
@@ -142,7 +143,7 @@ const appRoutes: Routes = []
     RouterModule,
     YarnConfigurationModule,
     YarnBillingAndPaymentModule,
-    ColorPickerModule,
+    ColorPickerModule,NgxSpinnerModule,
     RouterModule.forRoot(appRoutes),
     ToastrModule.forRoot({
       progressBar: true,
