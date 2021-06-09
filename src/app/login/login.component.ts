@@ -8,6 +8,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import {Subject} from 'rxjs';
 import { SpinnerService } from '../shared/spinner.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -29,8 +30,8 @@ invalidLogin: boolean=false;
     private toastr: ToastrService,
     private Service: ServiceService,
     private modalService: NgbModal,
-    private loader: SpinnerService
-
+    private loader: SpinnerService,
+    private spinner: NgxSpinnerService,
 
 
   ) { }
@@ -68,16 +69,19 @@ invalidLogin: boolean=false;
   }
 
   OnSubmit(form: NgForm){
+    this.spinner.show();
     this.Service.userAuthentication(this.data).subscribe((data : any)=>{
       this.response= data;
       if (this.response.success == true) {
         this.router.navigate(['/home']);
         this.router.navigate(['/enquiry']);
         this.reload();
+        this.spinner.hide();
     
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
+        this.spinner.hide();
       }
    },
    (err : HttpErrorResponse)=>{
