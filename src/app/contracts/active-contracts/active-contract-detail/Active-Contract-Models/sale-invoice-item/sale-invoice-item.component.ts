@@ -39,7 +39,7 @@ recievedrate:any;
   
   }
   rate(event) {
-    this.http.get(`${environment.apiUrl}/api/Contracts/GetContractItemRate/`+ this.invoiceItemId )
+    this.http.get(`${environment.apiUrl}/api/Contracts/GetContractItemRate/`+ event )
       .subscribe(
         res => {
           this.response = res;
