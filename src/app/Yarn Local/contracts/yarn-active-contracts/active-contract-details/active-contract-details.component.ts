@@ -819,10 +819,10 @@ deleteCommission(row) {
       // on close
       if (data == true) {
   
-        // this.getAllBenificery((empData) => {
-          // this.rows1 = empData;
-          // this.listCount= this.rows.length;
-        // });
+        this.getContractPartiesData();
+      this.getContractData();
+
+    
       }
     }, (reason) => {
       // on dismiss
@@ -831,19 +831,13 @@ deleteCommission(row) {
 
   editProductAndSpec(row) {
     const modalRef = this.modalService.open(ProductAndSpecificationComponent, { centered: true });
-    // modalRef.componentInstance.contractId = this.contractId;
-    // modalRef.componentInstance.statusCheck = status;
-    // modalRef.componentInstance.beneficiaryId = row.id;
-  
-  
+    modalRef.componentInstance.contractId = this.contractId;
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
   
-        // this.getAllBenificery((empData) => {
-          // this.rows1 = empData;
-          // this.listCount= this.rows.length;
-        // });
+        this.getContractProductData();
+        this.getContractData();
       }
     }, (reason) => {
       // on dismiss
@@ -851,19 +845,14 @@ deleteCommission(row) {
   }
   editQuantity(row) {
     const modalRef = this.modalService.open(QuantityAndCostingComponent, { centered: true });
-    // modalRef.componentInstance.contractId = this.contractId;
-    // modalRef.componentInstance.statusCheck = status;
-    // modalRef.componentInstance.beneficiaryId = row.id;
-  
-  
+    modalRef.componentInstance.contractId = this.contractId;
+
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
   
-        // this.getAllBenificery((empData) => {
-          // this.rows1 = empData;
-          // this.listCount= this.rows.length;
-        // });
+        this.getContractCostingData();
+        this.getContractData();
       }
     }, (reason) => {
       // on dismiss
@@ -891,19 +880,13 @@ deleteCommission(row) {
   }
   editDeliveryTimeLine() {
     const modalRef = this.modalService.open(DeliveryTimeLineComponent, { centered: true });
-    // modalRef.componentInstance.contractId = this.contractId;
-    // modalRef.componentInstance.statusCheck = status;
-    // modalRef.componentInstance.beneficiaryId = row.id;
-  
-  
+    modalRef.componentInstance.contractId = this.contractId;
+
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-  
-        // this.getAllBenificery((empData) => {
-          // this.rows1 = empData;
-          // this.listCount= this.rows.length;
-        // });
+        this.getContractPaymentData();
+        this.getContractData();
       }
     }, (reason) => {
       // on dismiss
