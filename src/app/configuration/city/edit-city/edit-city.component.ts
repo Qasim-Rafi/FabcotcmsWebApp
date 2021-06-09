@@ -92,10 +92,11 @@ export class EditCityComponent implements OnInit {
       post(`${environment.apiUrl}/api/Configs/AddCity`, varr)
       .subscribe(
         res => {
-          this.obj.parent = this.active;
-          this.obj.status = true;
+        
 
           this.response = res;
+          this.obj.parent = this.active;
+          this.obj.id = this.response.data;
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
 

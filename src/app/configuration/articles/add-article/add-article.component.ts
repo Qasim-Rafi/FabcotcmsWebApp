@@ -14,6 +14,7 @@ import { ServiceService } from 'src/app/shared/service.service';
 export class AddArticleComponent implements OnInit {
   @Input() new;
   data:any={};
+  obj:any={};
   response: any;
   active = true;
   @ViewChild(NgForm) addAgentForm;
@@ -64,10 +65,13 @@ export class AddArticleComponent implements OnInit {
       res=> { 
   
         this.response = res;
+        this.obj.parent = this.active;
+        this.obj.id = this.response.data;
+
         if (this.response.success == true){
           this.toastr.success(this.response.message, 'Message.');
           this.addAgentForm.reset();
-          this.activeModal.close(true);
+          this.activeModal.close(this.obj);
         }
         else {
           this.toastr.error(this.response.message, 'Message.');

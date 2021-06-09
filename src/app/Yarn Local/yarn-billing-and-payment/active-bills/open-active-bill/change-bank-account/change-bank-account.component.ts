@@ -66,7 +66,7 @@ constructor(
   }
 
   GetBankAccDropdown() {
-    this.http.get(`${environment.apiUrl}`).
+    this.http.get(`${environment.apiUrl}/api/Lookups/BankAccounts`).
     subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
@@ -81,7 +81,7 @@ constructor(
   change(obj){
     let varr = {    
     }
-this.http.put(`${environment.apiUrl}` + this.bill_id + '/' +obj.id,varr)
+this.http.put(`${environment.apiUrl}/api/BillingPayments/ChangeBankAccount/` + this.bill_id + '/' +obj.id,varr)
   .subscribe(
     res => {
       this.response = res;

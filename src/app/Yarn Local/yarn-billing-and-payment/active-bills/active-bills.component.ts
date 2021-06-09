@@ -39,8 +39,8 @@ export class ActiveBillsComponent implements OnInit {
   ids : string;
   billFilter: any = {};
 
+  url = '/api/BillingPayments/GetAllContractBill'
 
-  url = ''
   constructor(    private service: ServiceService,
     private http: HttpClient,
     private _clipboardService: ClipboardService,
@@ -56,18 +56,17 @@ export class ActiveBillsComponent implements OnInit {
     // navigateOpenBill(obj) {
     //   this.router.navigate(['/yarn-billing-and-payment/open-bill'], { queryParams: {id: obj.id} });
     // };
-    navigateOpenBill() {
-      this.router.navigate(['/yarn-billing-and-payment/open-bill']);
+    navigateOpenBill(obj) {
+      this.router.navigate(['/yarn-billing-and-payment/open-bill'] , { queryParams: {id: obj.id} });
     };
-    // navigateEditContract(obj) {
-    //   this.router.navigate([''], { queryParams: {id: obj.contractId} });
-    // };
+    navigateEditContract(obj) {
+      this.router.navigate(['/yarn-local/yarn-active-contract-details'], { queryParams: {id: obj.contractId} });
+    };
   ngOnInit(): void {
     
     this.fetch((data) => {
       this.dashboardAmnt = data
-      // this.rows = data.activeBills;
-  //  this.rows = [{name:1}]
+      this.rows = data.activeBills;
       this.billFilter = [...this.rows];
       this.listCount = this.rows.length;
     });
@@ -88,7 +87,7 @@ export class ActiveBillsComponent implements OnInit {
   fetch(cb) {
     
     this.http
-    .get(`${environment.apiUrl}`)
+    .get(`${environment.apiUrl}/api/BillingPayments/GetAllContractBill`)
     .subscribe(res => {
       this.response = res;
      
