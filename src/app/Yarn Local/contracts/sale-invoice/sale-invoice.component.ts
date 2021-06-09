@@ -17,6 +17,8 @@ export class SaleInvoiceComponent implements OnInit {
 
   response: any;
   data: any = {};
+  saleInvoice: any = {};
+
   rows: any = [];
   columns: any = [];
   temp: any[];
@@ -57,16 +59,6 @@ export class SaleInvoiceComponent implements OnInit {
     });
     this.rows = temp;
   }
-
-
-
-
-
-
-
-
-
-
 
   navigateEditContract(obj) {
     this.router.navigate(['/contract/active-contract-details'], { queryParams: {id: obj.id} });
@@ -127,35 +119,28 @@ addinvoiceForm(check){
 }
 
 fetch(cb) {
-
+    
   this.http
-    .get(`${environment.apiUrl}/api/Contracts/GetAllContract`)
-    .subscribe(res => {
-      this.response = res;
+  .get(`${environment.apiUrl}/api/YarnContracts/GetAllBuyerToSellerPayment` )
+  .subscribe(res => {
+    this.response = res;
+   
+  if(this.response.success==true)
+  {
+  this.saleInvoice =this.response.data;
 
-      if (this.response.success == true) {
-        this.data = this.response.data.list;
-        this.allCount = this.response.data.allCount;
-        this.openCount = this.response.data.openCount;
-        this.closedCount = this.response.data.closedCount;
-        this.billAwaitedCount = this.response.data.billAwaitedCount;
-        this.billedCount = this.response.data.billedCount;
-        this.receivableCount = this.response.data.receivableCount;
-        this.receivedCount = this.response.data.receivedCount;
-        this.onHoldCount = this.response.data.onHoldCount;
-        this.temp = [this.data]; 
-        cb(this.data);
-      }
-      else {
-        this.toastr.error(this.response.message, 'Message.');
-      }
-      // this.spinner.hide();
-    }, err => {
-      if (err.status == 400) {
-        this.toastr.error(err.error.message, 'Message.');;
-      }
-      //  this.spinner.hide();
-    });
+  cb(this.saleInvoice);
+  }
+  else{
+    this.toastr.error(this.response.message, 'Message.');
+  }
+    // this.spinner.hide();
+  }, err => {
+    if ( err.status == 400) {
+this.toastr.error(err.error.message, 'Message.');
+    }
+  //  this.spinner.hide();
+  });
 }
 
 

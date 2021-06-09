@@ -784,14 +784,14 @@
 
                                 <div class="panel-body">
    
-                                    <ngx-datatable #myTable class="bootstrap"  [columnMode]="'force'" [rows]="rows" 
+                                    <ngx-datatable #myTable class="bootstrap"  [columnMode]="'force'" [rows]="deliveryTimeLineData" 
                                     [headerHeight]="50" [footerHeight]="50" [sorts]="[{ prop: 'autoContractNumber', dir: 'desc' }]" [rowHeight]="'auto'"
                                     [limit]="6">
                                
                             
                                       <ngx-datatable-column name="S.No." prop="contractAge">
                                         <ng-template let-row="row" ngx-datatable-cell-template>
-                            
+                                {{row.id}}
                                         </ng-template>
                                       </ngx-datatable-column>
                                       <ngx-datatable-column name="L/C#" prop="contractAge">
@@ -1446,8 +1446,8 @@
                                     </div> -->
                                 </div>
 
-                                <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows5"
-                                    *ngIf="rows5.length != 0" [sorts]="[{ prop: 'id,tnaItem', dir: 'asce' }]"
+                                <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="getProdPlan"
+                                    *ngIf="getProdPlan.length != 0" [sorts]="[{ prop: 'id,tnaItem', dir: 'asce' }]"
                                     [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'"
                                     [limit]="10">
                                     <ngx-datatable-column prop="id" name="S. No." [width]="20">

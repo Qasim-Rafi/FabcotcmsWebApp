@@ -5,31 +5,23 @@ import { environment } from 'src/environments/environment';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
 import { ServiceService } from 'src/app/shared/service.service';
+import { Dateformater } from 'src/app/shared/dateformater';
+
 @Component({
   selector: 'app-deliveryTL',
   templateUrl: './deliveryTL.component.html',
   styleUrls: ['./deliveryTL.component.css']
 })
 export class DeliveryTLComponent implements OnInit {
+  dateformater: Dateformater = new Dateformater();
+
   data: any = {};
   response: any;
-  item: any[];
-  values=[];
-  contractCurrencyId:any[];
-  itemUOMId: any=[];
-  itemUOMId1: any=[];
-  loomTypeId:any[];
-  colorId:any[];
-  FormName: any;
-  uomList: any = [];
-  fabric: any = [];
-  uomList1: any = [];
-  color: any = [];
-  loomType: any = [];
-  currency: any[];
+uomList : any = {};
+
   // @Input() itemId;
   // @Input() enquiryId;
-  // @Input() contractId;
+  @Input() contractId;
 
   @ViewChild(NgForm) deliveryForm;
   @Input() statusCheck;
@@ -43,7 +35,7 @@ export class DeliveryTLComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-   
+   this.GetUOMDropdown();
     this.statusCheck = this.statusCheck;
     if (this.statusCheck == 'Edit') {
       this.getById();
@@ -57,7 +49,7 @@ export class DeliveryTLComponent implements OnInit {
   }
  
   getById() {
-    this.http.get(`${environment.apiUrl}` )
+    this.http.get(`${environment.apiUrl}/api​/YarnContracts​/GetContractDeliveryScheduleById​/`+ this.contractId )
       .subscribe(
         res => {
           this.response = res;
@@ -78,16 +70,20 @@ export class DeliveryTLComponent implements OnInit {
 
 
 
-  UpdateDelivery() {
+  UpdateDelivery(Form:NgForm) {
 
-
+  
 
     let varr = {
-
+      "contractId": this.contractId,
+      "supplierDate": this.dateformater.toModel(this.data.supplierDate),
+      "buyerDate": this.dateformater.toModel(this.data.buyerDate),
+      "quantity": this.data.quantity,
+      "quantityUOMId": this.data.quantityUomId,
     }
 
     this.http.
-      put(`${environment.apiUrl}` ,varr)
+      put(`${environment.apiUrl}/api/YarnContracts/UpdateContractDeliverySchedule/`+ this.contractId ,varr)
       .subscribe(
         res => {
 
@@ -107,25 +103,38 @@ export class DeliveryTLComponent implements OnInit {
         });
   }
 
-
+  GetUOMDropdown() {
+    this.service.getUOM().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.uomList = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
 
   addDelivery(form:NgForm) {
 
-
-
     let varr = {
+      "contractId": this.contractId,
+  "supplierDate": this.dateformater.toModel(this.data.supplierDate),
+  "buyerDate": this.dateformater.toModel(this.data.buyerDate),
+  "quantity": this.data.quantity,
+  "quantityUOMId": this.data.quantityUomId,
 
     }
 
     this.http.
-      post(`${environment.apiUrl}`, varr)
+      post(`${environment.apiUrl}/api/YarnContracts/AddContractDeliverySchedule`+this.contractId, varr)
       .subscribe(
         res => {
 
           this.response = res;
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
-
+                  
             this.deliveryForm.reset();
             this.activeModal.close(true);
           }
@@ -139,6 +148,19 @@ export class DeliveryTLComponent implements OnInit {
 
         });
 
+  }
+  onSubmit(buttonType): void {
+    if (buttonType === "Add"){
+  
+      this.addDelivery(this.deliveryForm); 
+    }
+  
+    if (buttonType === "Edit"){
+  
+      this.UpdateDelivery(this.deliveryForm); 
+  
+    }
+  
   }
 }
 
