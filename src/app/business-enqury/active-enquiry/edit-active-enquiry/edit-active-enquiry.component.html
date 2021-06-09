@@ -336,22 +336,25 @@
     
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-md-3 col-form-label control-label">Payment Terms</label>
+
                                         <div class="col-md-2">
-                                            <div class="input-group">
+                                            
                                                 <ng-select [(ngModel)]="enquiryData.paymentTermId"
                                                     placeholder="-- Select --" name="paymentTermId"
                                                     #paymentTermId="ngModel">
                                                     <ng-option *ngFor="let i of payment" [value]="i.id">{{ i.term }}
                                                     </ng-option>
                                                 </ng-select>
-                                            </div>
+                                            
                                         </div>
+
                                         <div class="col-md-2">
                                             <div class="input-group">
                                                 <input class="form-control" type="number" min="0"
                                                     [(ngModel)]="enquiryData.paymentTermDays" name="paymentTermDays" />
                                             </div>
                                         </div>
+
                                         <div class="col-md-2">
                                             <input class="form-control" type="text" placeholder="Additional Information"
                                                 [(ngModel)]="enquiryData.paymentTermInfo" name="paymentTermInfo" />

@@ -1,101 +1,98 @@
 <!-- Modal -->
 
 <div class="modal-header">
-    <button type="button" class="close text-white" aria-label="Close" (click)="activeModal.dismiss()">
-        <span style="color: black" aria-hidden="true">&times;</span>
-    </button>
-    <h5 class="modal-title">
-        <i class="fas fa-file-signature"></i>
-        Document Search
-    </h5>
+  <button type="button" class="close text-white" aria-label="Close" (click)="activeModal.dismiss()">
+    <span style="color: black" aria-hidden="true">&times;</span>
+  </button>
+  <h5 class="modal-title">
+    <i class="fas fa-file-signature"></i>
+    Document Search
+  </h5>
 </div>
+
 <div class="modal-body BG pt-2r">
-    <form #buyerEditForm="ngForm" class="justify">
+  <form #buyerEditForm="ngForm" class="justify">
+
+    <div class="row justify-content-center">
+      <div class="col-md-10 pt-3 pb-3">
 
         <div class="form-group row">
-      
-            <div class="col-sm-8">
-              <div class="row">
-                <div class="col-sm-6">
-                    <label  >Department</label>
-              <ng-select  placeholder="All Departments" name="countryId">
-                <ng-option *ngFor="let i of search" [value]="i.id">{{ i.name }}
-                </ng-option>
-              </ng-select>
-                </div>
-                <div class="col-sm-6">
-                    <label>Document</label>
-                    <ng-select  placeholder="All Departments" name="countryId">
-                      <ng-option *ngFor="let i of search" [value]="i.id">{{ i.name }}
-                      </ng-option>
-                    </ng-select>
-                </div>
-              </div>
-            </div>
-          </div>
 
-          <div class="form-group row">
-      
-            <div class="col-sm-8">
-              <div class="row">
-                <div class="col-sm-6">
-                    <label >File Date (Start)</label>
-                    <input type="password" placeholder="Sun 14-Mar-2021" class="form-control" >
-                </div>
-                <div class="col-sm-6">
-                    <label  >File Date (End)</label>
-                    <input type="password" placeholder="Tue 13-Apr-2021" class="form-control" >
-                </div>
-              </div>
-            </div>
+          <div class="col-sm-6">
+            <label>Department</label>
+            <ng-select placeholder="All Departments" name="countryId">
+              <ng-option *ngFor="let i of search" [value]="i.id">{{ i.name }}
+              </ng-option>
+            </ng-select>
+          </div>
+          <div class="col-sm-6">
+            <label>Document</label>
+            <ng-select placeholder="All Departments" name="countryId">
+              <ng-option *ngFor="let i of search" [value]="i.id">{{ i.name }}
+              </ng-option>
+            </ng-select>
           </div>
 
 
-          <div class="form-group row">
-      
-            <div class="col-sm-8">
-              <div class="row">
-                <div class="col-sm-6">
-                    <label  >Uploading Date (Start)</label>
-                    <input type="password" class="form-control" >
-                </div>
-                <div class="col-sm-6">
-                    <label  >Uploading Date (End)</label>
-                    <input type="password"  class="form-control" >
-                </div>
-              </div>
-            </div>
+        </div>
+
+        <div class="form-group row">
+
+          <div class="col-sm-6">
+            <label>File Date (Start)</label>
+            <input type="password" placeholder="Sun 14-Mar-2021" class="form-control">
+          </div>
+          <div class="col-sm-6">
+            <label>File Date (End)</label>
+            <input type="password" placeholder="Tue 13-Apr-2021" class="form-control">
           </div>
 
-          <div class="form-group row">
-      
-            <div class="col-sm-8">
-              <div class="row">
-                <div class="col-sm-6">
-                    <label >File Name</label>
-                    <input type="password" class="form-control" >
-                </div>
-                <div class="col-sm-6">
-                    <label >Notes/Remarks</label>
-                    <input type="password"  class="form-control" >
-                </div>
-              </div>
-            </div>
+        </div>
+
+        <div class="form-group row">
+
+          <div class="col-sm-6">
+            <label>Uploading Date (Start)</label>
+            <input type="password" class="form-control">
+          </div>
+          <div class="col-sm-6">
+            <label>Uploading Date (End)</label>
+            <input type="password" class="form-control">
           </div>
 
+        </div>
 
-          <div class="form-group col-md-4">
-            <label >Contract Number</label>
-            <input type="password" class="form-control" >
+        <div class="form-group row">
+
+          <div class="col-sm-6">
+            <label>File Name</label>
+            <input type="password" class="form-control">
+          </div>
+          <div class="col-sm-6">
+            <label>Notes/Remarks</label>
+            <input type="password" class="form-control">
           </div>
 
+        </div>
 
-    </form>
+        <div class="form-group row">
+          <div class="col-md-6">
+            <label>Contract Number</label>
+            <input type="password" class="form-control">
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+  </form>
 </div>
-<div class="modal-footer NotBG">
-    <button class="btn button-save" type="submit">
-        <i class="fas fa-search"></i>
 
-        Search Document
-    </button>
+<div class="modal-footer NotBG">
+  <button class="btn btn-sm button-save" type="submit">
+    <i class="fas fa-search"></i>
+
+    Search Document
+  </button>
 </div>
