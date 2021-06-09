@@ -107,15 +107,18 @@ deleteProcess(id) {
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        this.service.fetch((data) => {
-          this.rows = data;
-      this.processTypeFilter = [...this.rows];
-
-          this.processTypeCount = this.rows.length;
-        }, this.processTypeUrl);
+     
 
 
       }
+
+      this.service.fetch((data) => {
+        this.rows = data;
+    this.processTypeFilter = [...this.rows];
+
+        this.processTypeCount = this.rows.length;
+      }, this.processTypeUrl);
+
     }, (reason) => {
       // on dismiss
     });
@@ -130,11 +133,14 @@ deleteProcess(id) {
       // on close
       if (data == true) {
         //  this.date = this.myDate;
-        this.service.fetch((data) => {
-          this.rows = data;
-        }, this.processTypeUrl);
+       
 
       }
+
+      this.service.fetch((data) => {
+        this.rows = data;
+      }, this.processTypeUrl);
+
     }, (reason) => {
       // on dismiss
     });

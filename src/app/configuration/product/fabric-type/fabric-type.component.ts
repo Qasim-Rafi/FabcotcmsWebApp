@@ -109,15 +109,18 @@ export class FabricTypeComponent implements OnInit {
       // on close
       if (data == true) {
         //  this.date = this.myDate;
-        this.service.fetch((data) => {
-          this.rows = data;
-      this.fabricFilter = [...this.rows];
-
-          this.fabricTypeCount = this.rows.length;
-        }, this.fabricTypeUrl);
+       
 
 
       }
+
+      this.service.fetch((data) => {
+        this.rows = data;
+    this.fabricFilter = [...this.rows];
+
+        this.fabricTypeCount = this.rows.length;
+      }, this.fabricTypeUrl);
+
     }, (reason) => {
       // on dismiss
     });
@@ -131,11 +134,14 @@ export class FabricTypeComponent implements OnInit {
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        this.service.fetch((data) => {
-          this.rows = data;
-        }, this.fabricTypeUrl);
+       
 
       }
+
+      this.service.fetch((data) => {
+        this.rows = data;
+      }, this.fabricTypeUrl);
+
     }, (reason) => {
       // on dismiss
     });

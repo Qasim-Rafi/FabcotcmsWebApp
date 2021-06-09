@@ -106,14 +106,16 @@ export class CityComponent implements OnInit {
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        this.service.fetch((data) => {
-          this.rows = data;
-      this.cityFilter = [...this.rows];       
-          this.CityCount = this.rows.length;
-        }, this.cityUrl);
-
+     
 
       }
+
+      this.service.fetch((data) => {
+        this.rows = data;
+    this.cityFilter = [...this.rows];       
+        this.CityCount = this.rows.length;
+      }, this.cityUrl);
+
     }, (reason) => {
       // on dismiss
     });
@@ -130,10 +132,13 @@ export class CityComponent implements OnInit {
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        this.service.fetch((data) => {
-          this.rows = data;
-        }, this.cityUrl);
+       
       }
+
+      this.service.fetch((data) => {
+        this.rows = data;
+      }, this.cityUrl);
+
     }, (reason) => {
       // on dismiss
     });

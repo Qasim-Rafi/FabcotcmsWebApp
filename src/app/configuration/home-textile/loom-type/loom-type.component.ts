@@ -106,15 +106,18 @@ export class LoomTypeComponent implements OnInit {
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        this.service.fetch((data) => {
-          this.rows = data;
-      this.loomFilter = [...this.rows];
-
-          this.loomCount = this.rows.length;
-        }, this.loomUrl);
+      
 
 
       }
+
+      this.service.fetch((data) => {
+        this.rows = data;
+    this.loomFilter = [...this.rows];
+
+        this.loomCount = this.rows.length;
+      }, this.loomUrl);
+
     }, (reason) => {
       // on dismiss
     });
@@ -128,11 +131,14 @@ export class LoomTypeComponent implements OnInit {
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        this.service.fetch((data) => {
-          this.rows = data;
-        }, this.loomUrl);
+      
 
       }
+
+      this.service.fetch((data) => {
+        this.rows = data;
+      }, this.loomUrl);
+
     }, (reason) => {
       // on dismiss
     });

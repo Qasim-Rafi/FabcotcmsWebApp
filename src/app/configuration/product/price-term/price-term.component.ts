@@ -106,14 +106,17 @@ export class PriceTermComponent implements OnInit {
       // on close
       if (data == true) {
 
-        this.service.fetch((data) => {
-          this.rows = data;
-      this.priceTermFilter = [...this.rows];
-
-        }, this.PriceTermUrl);
-
+       
 
       }
+
+      this.service.fetch((data) => {
+        this.rows = data;
+    this.priceTermFilter = [...this.rows];
+
+      }, this.PriceTermUrl);
+
+
     }, (reason) => {
       // on dismiss
     });
@@ -127,11 +130,14 @@ export class PriceTermComponent implements OnInit {
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        this.service.fetch((data) => {
-          this.rows = data;
-        }, this.PriceTermUrl);
+       
 
       }
+
+      this.service.fetch((data) => {
+        this.rows = data;
+      }, this.PriceTermUrl);
+
     }, (reason) => {
       // on dismiss
     });

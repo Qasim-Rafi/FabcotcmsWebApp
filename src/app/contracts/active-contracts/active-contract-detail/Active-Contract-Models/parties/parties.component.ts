@@ -77,7 +77,7 @@ export class PartiesComponent implements OnInit {
     this.service.getBuyers().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.buyer = this.response.data.list;
+        this.buyer = this.response.data;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -131,7 +131,7 @@ export class PartiesComponent implements OnInit {
     this.service. getCertification().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.certificate = this.response.data.list;
+        this.certificate = this.response.data;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');

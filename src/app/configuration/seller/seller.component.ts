@@ -329,8 +329,8 @@ export class SellerComponent implements OnInit {
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        this.getSellers();
-      }
+       
+      } this.getSellers();
     }, (reason) => {
       // on dismiss
     });
@@ -344,9 +344,9 @@ export class SellerComponent implements OnInit {
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        this.getSellers();
+        
 
-      }
+      }this.getSellers();
     }, (reason) => {
       // on dismiss
     });
@@ -411,8 +411,9 @@ export class SellerComponent implements OnInit {
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        this.getSellers();
+        
       }
+      this.getSellers();
     }, (reason) => {
       // on dismiss
     });
@@ -426,8 +427,9 @@ export class SellerComponent implements OnInit {
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        this.getSellers();
+        
       }
+      this.getSellers();
     }, (reason) => {
       // on dismiss
     });
@@ -467,9 +469,10 @@ export class SellerComponent implements OnInit {
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        this.getSellers();
-        this.getAllCertificates();
+        
       }
+      this.getSellers();
+        this.getAllCertificates();
     }, (reason) => {
       // on dismiss
     });
@@ -486,10 +489,11 @@ export class SellerComponent implements OnInit {
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        this.getSellers();
-
-        this.getAllCertificates();
+      
       }
+      this.getSellers();
+
+      this.getAllCertificates();
     }, (reason) => {
       // on dismiss
     });

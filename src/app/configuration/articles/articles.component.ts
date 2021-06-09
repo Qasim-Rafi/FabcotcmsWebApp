@@ -116,15 +116,16 @@ export class ArticlesComponent implements OnInit {
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        this.service.fetch((data) => {
-          this.rows = data;
-      this.articleFilter = [...this.rows];
-
-          this.articleCount = this.rows.length;
-        }, this.articleUrl);
-
-
+     
       }
+
+      this.service.fetch((data) => {
+        this.rows = data;
+    this.articleFilter = [...this.rows];
+
+        this.articleCount = this.rows.length;
+      }, this.articleUrl);
+
     }, (reason) => {
       // on dismiss
     });
@@ -138,12 +139,14 @@ export class ArticlesComponent implements OnInit {
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        this.service.fetch((data) => {
-          this.rows = data;
-
-        }, this.articleUrl);
-
+        
       }
+
+      this.service.fetch((data) => {
+        this.rows = data;
+
+      }, this.articleUrl);
+
     }, (reason) => {
       // on dismiss
     });

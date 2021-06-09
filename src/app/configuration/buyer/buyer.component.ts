@@ -126,9 +126,10 @@ export class BuyerComponent implements OnInit {
       // on close
       if (data.status == true) {
         // this.date = this.myDate;
-        this.getBuyers();
+        
 
       }
+      this.getBuyers();
     }, (reason) => {
       // on dismiss
     });
@@ -143,9 +144,9 @@ export class BuyerComponent implements OnInit {
       // on close
       if (data == true) {
         // this.date = this.myDate;
-        this.getBuyers();
-
+       
       }
+      this.getBuyers();
     }, (reason) => {
       // on dismiss
     });
