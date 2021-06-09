@@ -372,8 +372,8 @@
                                         <div class="col-md-4">
                         
                                             <div class="row">
-                                                <div class="col-md-2 pt-2"><strong> per </strong></div>
-                                                <div class="col-md-10 mrg-sm1">
+                                                <div class="col-md-3 col-sm-4 pt-2"><strong> per </strong></div>
+                                                <div class="col-md-9 col-sm-8 mrg-sm1">
                                                     <ng-select [(ngModel)]="data.rateUOMId" placeholder="Select UOM" name="rateUOMId">
                                                         <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
                                                         </ng-option>
@@ -470,124 +470,95 @@
 
                                 <!-- Supplier Delivery Date -->
 
-                                <div class="col-md-12">
-
-                                    <label for="inputPassword4" class="col-form-label control-label">Supplier Delivery
+                                <div class="form-group row">
+                                
+                                    <label for="inputPassword4" class=" col-md-3 col-form-label control-label">Supplier Delivery
                                         Date</label>
-
-                                    <div class="row">
-
-                                        <div class="form-group col-md-6">
-
-                                            <div class="input-group date"
-                                                (clickOutside)="sellerDeliveryDatePicker.close()">
-                                                <input type="text" class="form-control  datetimepicker-input"
-                                                    (click)="sellerDeliveryDatePicker.toggle()" placeholder="Date"
-                                                    #sellerDeliveryDatePicker="ngbDatepicker" name="sellerDeliveryDate"
-                                                    ngbDatepicker>
-                                                <div class="input-group-append"
-                                                    (click)="sellerDeliveryDatePicker.toggle()">
-                                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-
-
-
-                                <div class="col-md-12">
-
-
-                                    <div class="form-group row" *ngFor="let a of new; let i = index;">
-
-                                        <div class="form-group col-md-6">
-
-                                            <div class="input-group date"
-                                                (clickOutside)="sellerDeliveryDatePicker.close()">
-                                                <input type="text" class="form-control  datetimepicker-input"
-                                                    (click)="sellerDeliveryDatePicker.toggle()" placeholder="Date"
-                                                    #sellerDeliveryDatePicker="ngbDatepicker" name="sellerDeliveryDate"
-                                                    ngbDatepicker>
-                                                <div class="input-group-append"
-                                                    (click)="sellerDeliveryDatePicker.toggle()">
-                                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                                    <button class="btn btn-outline-danger float-right"
-                                                type="submit" (click)="remove(i)">
-                                                <i class="fas fa-minus fa-xs"></i></button>
-                                                </div>
+                                
+                                    <div class="col-md-7">
+                                
+                                        <div class="input-group date" (clickOutside)="sellerDeliveryDatePicker.close()">
+                                            <input type="text" class="form-control  datetimepicker-input" (click)="sellerDeliveryDatePicker.toggle()"
+                                                placeholder="Date" #sellerDeliveryDatePicker="ngbDatepicker" name="sellerDeliveryDate" ngbDatepicker>
+                                            <div class="input-group-append" (click)="sellerDeliveryDatePicker.toggle()">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                             </div>
                                         </div>
-
-
-                                        
-
+                                
                                     </div>
-
-                                    <button class="btn btn-outline-primary btn-sm" (click)="addMore()"> Add Another
-                                        Delivery Date</button>
-
+                                
                                 </div>
-
-
+                                
+                                <div class="form-group row" *ngFor="let a of new; let i = index;">
+                                    <div class="col-md-3"></div>
+                                
+                                    <div class="col-md-7">
+                                
+                                        <div class="input-group date" (clickOutside)="sellerDeliveryDatePicker.close()">
+                                            <input type="text" class="form-control  datetimepicker-input" (click)="sellerDeliveryDatePicker.toggle()"
+                                                placeholder="Date" #sellerDeliveryDatePicker="ngbDatepicker" name="sellerDeliveryDate" ngbDatepicker>
+                                            <div class="input-group-append" (click)="sellerDeliveryDatePicker.toggle()">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                <button class="btn btn-outline-danger float-right" type="submit" (click)="remove(i)">
+                                                    <i class="fas fa-minus fa-xs"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-3"></div>
+                                    <div class="col-md-7">
+                                        <button class="btn btn-outline-primary btn-sm" (click)="addMore()"> Add Another
+                                            Delivery Date</button>
+                                    </div>
+                                </div>
+                                
+                                
                                 <br>
 
 
-                                <div class="col-md-12">
-
-                                    <label for="inputPassword4" class="col-form-label control-label">Buyer Delivery
-                                        Date</label>
-
-                                    <div class="row">
-
-                                        <div class="form-group col-md-6">
-
-                                            <div class="input-group date"
-                                                (clickOutside)="buyerDeliveryDatePicker.close()">
-                                                <input type="text" class="form-control  datetimepicker-input"
-                                                    (click)="buyerDeliveryDatePicker.toggle()" placeholder="Date"
-                                                    #buyerDeliveryDatePicker="ngbDatepicker" name="buyerDeliveryDate"
-                                                    ngbDatepicker>
-                                                <div class="input-group-append"
-                                                    (click)="buyerDeliveryDatePicker.toggle()">
-                                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                                </div>
+                                <div class="form-group row">
+                                
+                                    <label for="inputPassword4" class="col-md-3 col-form-label control-label">Buyer Delivery Date</label>
+                                
+                                    <div class="col-md-7">
+                                
+                                        <div class="input-group date" (clickOutside)="buyerDeliveryDatePicker.close()">
+                                            <input type="text" class="form-control  datetimepicker-input" (click)="buyerDeliveryDatePicker.toggle()"
+                                                placeholder="Date" #buyerDeliveryDatePicker="ngbDatepicker" name="buyerDeliveryDate" ngbDatepicker>
+                                            <div class="input-group-append" (click)="buyerDeliveryDatePicker.toggle()">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                             </div>
-
                                         </div>
-
+                                
+                                    </div>
+                                
+                                
+                                </div>                               
+                                
+                                <div class="form-group row" *ngFor="let a of new2; let i = index;">
+                                
+                                    <div class="col-md-3"></div>
+                                    <div class="col-md-7">
+                                        <div class="input-group date" (clickOutside)="buyerDeliveryDatePicker.close()">
+                                            <input type="text" class="form-control  datetimepicker-input" (click)="buyerDeliveryDatePicker.toggle()"
+                                                placeholder="Date" #buyerDeliveryDatePicker="ngbDatepicker" name="buyerDeliveryDate" ngbDatepicker>
+                                            <div class="input-group-append" (click)="buyerDeliveryDatePicker.toggle()">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                <button class="btn btn-outline-danger " type="submit" (click)="remove2(i)">
+                                                    <i class="fas fa-minus fa-xs"></i></button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-
-
-                                <div class="col-md-12">
-
-                                    <div class="form-group row" *ngFor="let a of new2; let i = index;">
-
-                                        <div class="form-group col-md-6">
-
-                                            <div class="input-group date"
-                                                (clickOutside)="buyerDeliveryDatePicker.close()">
-                                                <input type="text" class="form-control  datetimepicker-input"
-                                                    (click)="buyerDeliveryDatePicker.toggle()" placeholder="Date"
-                                                    #buyerDeliveryDatePicker="ngbDatepicker" name="buyerDeliveryDate"
-                                                    ngbDatepicker>
-                                                <div class="input-group-append"
-                                                    (click)="buyerDeliveryDatePicker.toggle()">
-                                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                                    <button class="btn btn-outline-danger "
-                                                type="submit" (click)="remove2(i)">
-                                                <i class="fas fa-minus fa-xs"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
+                                                                
+                                <div class="row">
+                                    <div class="col-md-3"></div>
+                                    <div class="col-md-7">
+                                        <button class="btn btn-outline-primary btn-sm" (click)="add()"> Add Another Delivery
+                                            Date</button>
                                     </div>
-
-                                    <button class="btn btn-outline-primary btn-sm" (click)="add()"> Add Another Delivery
-                                        Date</button>
-
                                 </div>
 
                             
@@ -787,66 +758,60 @@
             
                 <hr>   -->
                     <!-- <hr> -->
+                    
                     <!---------- remarks ---------->
-                    <div class="tab-pane fade show " id="nav-remarks" role="tabpanel" aria-labelledby="nav-remarks-tab">
+                    
 
                         <form #remarks="ngForm" novalidate>
-                            <div class="col-md-12">
+                            <div class="pt-2">
                                 <span class="badge badge-primary">Remarks/ Other Conditions</span>
                             </div>
                         
                             <br>
                         
-                            <div class="form-row">
-                                <div class="col-md-12">
-                        
-                                    <div class="form-group row">
-                                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">Remarks:</label>
-                                        <div class="col-md-7">
-                                            <div class="input-group">
-                                                <textarea rows="3" class="form-control" [(ngModel)]="data.contractRemarks"
-                                                    name="contractRemarks"></textarea>
-                                            </div>
-                                        </div>
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-md-3 col-form-label control-label">Remarks:</label>
+                                <div class="col-md-7">
+                                    <div class="input-group">
+                                        <textarea rows="3" class="form-control" [(ngModel)]="data.contractRemarks"
+                                            name="contractRemarks"></textarea>
                                     </div>
+                                </div>
+                            </div>
                         
-                                    <div class="form-group row">
-                                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">Remarks Buyer:</label>
-                                        <div class="col-md-7">
-                                            <div class="input-group">
-                                                <textarea rows="3" class="form-control" [(ngModel)]="data.buyerRemarks"
-                                                    name="buyerRemarks"></textarea>
-                                            </div>
-                                        </div>
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-md-3 col-form-label control-label">Remarks Buyer:</label>
+                                <div class="col-md-7">
+                                    <div class="input-group">
+                                        <textarea rows="3" class="form-control" [(ngModel)]="data.buyerRemarks" name="buyerRemarks"></textarea>
                                     </div>
+                                </div>
+                            </div>
                         
-                                    <div class="form-group row">
-                                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">Other Conditions:</label>
-                                        <div class="col-md-7">
-                                            <div class="input-group">
-                                                <textarea rows="3" class="form-control" [(ngModel)]="data.otherConditionRemarks"
-                                                    name="otherConditionRemarks"></textarea>
-                                            </div>
-                                        </div>
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-md-3 col-form-label control-label">Other Conditions:</label>
+                                <div class="col-md-7">
+                                    <div class="input-group">
+                                        <textarea rows="3" class="form-control" [(ngModel)]="data.otherConditionRemarks"
+                                            name="otherConditionRemarks"></textarea>
                                     </div>
+                                </div>
+                            </div>
                         
-                                    <div class="form-group row">
-                                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">Title:</label>
-                                        <div class="col-md-7">
-                                            <div class="input-group">
-                                                <textarea rows="3" class="form-control" [(ngModel)]="data.title" name="title"></textarea>
-                                            </div>
-                                        </div>
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-md-3 col-form-label control-label">Title:</label>
+                                <div class="col-md-7">
+                                    <div class="input-group">
+                                        <textarea rows="3" class="form-control" [(ngModel)]="data.title" name="title"></textarea>
                                     </div>
-                        
                                 </div>
                             </div>
                         
                         </form>
 
-                    </div>
-
+                        <br>
                     <hr>
+
 
                     <!---------- Footer Button ---------->
 
