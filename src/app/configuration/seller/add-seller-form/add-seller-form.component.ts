@@ -19,6 +19,7 @@ export class AddSellerFormComponent implements OnInit {
   countryId: null;
   certification:any=[];
   capabilities:any=[];
+  active: boolean = true;
   @ViewChild(NgForm) sellerForm;
   // @ViewChild('sellerName') private elementRef: ElementRef;
 
@@ -132,9 +133,9 @@ export class AddSellerFormComponent implements OnInit {
       "majorStrength": this.data.sellerStrenght,
       "leadTime": this.data.leadTime,
       "sellerDetails": this.data.sellerDetails,
-      "isParentSeller": this.data.isParentSeller,
+      "isParentSeller": this.active,
       "parentSellerId": this.data.parentSellerId,
-      "active": true
+      // "active": true
     }
 
     this.http.
