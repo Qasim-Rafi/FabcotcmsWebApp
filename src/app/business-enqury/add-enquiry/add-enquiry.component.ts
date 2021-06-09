@@ -100,7 +100,7 @@ export class AddEnquiryComponent implements OnInit {
  
     let olddate=new Date();
     let latest_date =this.datepipe.transform(olddate, 'yyyy-MM-dd');
-    // this.enquiryDateField =this.dateformater.fromModel(latest_date);
+    this.enquiryDateField =this.dateformater.fromModel(latest_date);
     this. getAutoEnquiryNo();
     this.GetBuyersDropdown("start");
     this.GetArticlesDropdown("start");
