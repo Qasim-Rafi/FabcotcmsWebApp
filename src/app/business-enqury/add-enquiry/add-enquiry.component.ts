@@ -543,10 +543,10 @@ export class AddEnquiryComponent implements OnInit {
 
   addEnquiry(form:NgForm) {
 
-  
+    this.enquiryDateField =this.dateformater.toModel(this.enquiryDateField);
       let varr = {
   
-        "enquiryDate": this.data.enquiryDate,
+        "enquiryDate": this.enquiryDateField,
         "buyerId": this.data.buyerId,
         "articleId": this.data.articleId,
         "processId": this.data.processId,
