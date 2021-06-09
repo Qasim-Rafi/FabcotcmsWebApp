@@ -17,7 +17,7 @@
   
   
   <div class="modal-body BG p-0">
-    <form #partiesForm="ngForm" novalidate>
+    <form #prodSpecForm="ngForm" novalidate>
   
       <div class="col-md-12 pt-3 pb-2">
         <!-- <div class="form-group row"> -->
@@ -36,13 +36,15 @@
   
   
       <div class="form-group row">
-        <label for="sellerPOCId" class="col-sm-3 col-form-label text_Navy ">Article</label>
+        <label for="articleId" class="col-sm-3 col-form-label text_Navy ">Article</label>
         <div class="col-sm-8">
-          <ng-select name="" placeholder="-- Select --" >
-            <ng-option  >
-              
-            </ng-option>
-          </ng-select>
+          <ng-select [(ngModel)]="data.articleId" placeholder="-- Select --"
+          name="articleId"
+         >
+         <ng-option *ngFor="let i of article" [value]="i.id">{{ i.name }}
+           </ng-option>
+
+         </ng-select>
         </div>
       </div>
   
@@ -56,7 +58,7 @@
     <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
       Close
     </button>
-    <button class="btn button-save" type="submit">
+    <button class="btn button-save" type="submit" (click) = "onSubmit()">
       Save
     </button>
   </div>
