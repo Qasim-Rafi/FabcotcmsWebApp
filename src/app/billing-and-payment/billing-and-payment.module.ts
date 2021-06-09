@@ -19,6 +19,9 @@ import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { ChangeBankAccountComponent } from './active-bills/open-active-bill/change-bank-account/change-bank-account.component';
 import { SaleInvoiceFormComponent } from './generate-bills/sale-invoice-form/sale-invoice-form.component';
 import { BranchAddressComponent } from './generate-bills/branch-address/branch-address.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+
+
 @NgModule({
   declarations: [
     GenerateBillsComponent,
@@ -42,7 +45,8 @@ import { BranchAddressComponent } from './generate-bills/branch-address/branch-a
     NgSelectModule,
     ReactiveFormsModule,
     NgxDatatableModule,
-    NgbDatepickerModule
+    NgbDatepickerModule,
+    NgxSpinnerModule
   ]
 })
 export class BillingAndPaymentModule { }

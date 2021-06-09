@@ -7,7 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { GlobalConstants } from 'src/app/Common/global-constants';
 import { ServiceService } from 'src/app/shared/service.service';
 import { environment } from 'src/environments/environment';
-
+import {NgxSpinnerService} from 'ngx-spinner'
 @Component({
   selector: 'app-change-bank-account',
   templateUrl: './change-bank-account.component.html',
@@ -30,6 +30,7 @@ constructor(
   private http: HttpClient,
   private service: ServiceService,
   private toastr: ToastrService,
+  private spinner: NgxSpinnerService,
   private router: Router,
   private _NgbActiveModal: NgbActiveModal
 
@@ -81,6 +82,7 @@ constructor(
   change(obj){
     let varr = {    
     }
+    this.spinner.show();
 this.http.put(`${environment.apiUrl}/api/BillingPayments/ChangeBankAccount/` + this.bill_id + '/' +obj.id,varr)
   .subscribe(
     res => {
@@ -88,16 +90,23 @@ this.http.put(`${environment.apiUrl}/api/BillingPayments/ChangeBankAccount/` + t
       if (this.response.success == true) {
         this.toastr.success(this.response.message, 'Message.');
       this.activeModal.close();
+    this.spinner.hide();
       
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
+        this.activeModal.close();
+    this.spinner.hide();
+     
       }
 
     }, (err: HttpErrorResponse) => {
       const messages = this.service.extractErrorMessagesFromErrorResponse(err);
       this.toastr.error(messages.toString(), 'Message.');
       console.log(messages);
+      this.activeModal.close();
+    this.spinner.hide();
+     
     });
   }
 }

@@ -122,153 +122,216 @@
                 </div> -->
 
 
-
-
                 <div>
 
                     <!---------- parties ---------->
-                    <div>
+                    
 
-                        <form #enquiryForm="ngForm" novalidate>
+                        <!-- <form #enquiryForm="ngForm" novalidate>
                             <div class="form-row">
                                 <div class="col-md-12 pt-2r pb-3">
                                     <div class="col-md-12">
                                         <span class="badge badge-primary">Parties</span>
                                     </div>
                                     <br>
-                                    <div class="form-row">
 
+                                    <div class="form-row">
+                        
                                         <div class="form-group col-md-12">
                                             <label for="inputPassword4">Purchase Order #</label>
-                                            <!-- <input type="password" class="form-control" id="inputPassword4"> -->
-                                            <input type="text" placeholder="Purchase order no. optional"
-                                                class="form-control text-w-4" id="poNumber" [(ngModel)]="data.poNumber"
-                                                name="poNumber">
+                                            <input type="text" placeholder="Purchase order no. optional" class="form-control text-w-4"
+                                                id="poNumber" [(ngModel)]="data.poNumber" name="poNumber">
                                         </div>
-
+                        
                                         <div class="form-group col-md-12">
                                             <label for="inputEmail3" class="col-form-label control-label">Buyer
                                                 Name</label>
-
+                        
                                             <div class="input-group">
-
-                                                <ng-select name="buyerId" #buyerId="ngModel" class="input-w px-0"
-                                                    [(ngModel)]="data.buyerId" placeholder="-- Select --">
+                        
+                                                <ng-select name="buyerId" #buyerId="ngModel" class="input-w px-0" [(ngModel)]="data.buyerId"
+                                                    placeholder="-- Select --">
                                                     <ng-option *ngFor="let i of buyer" [value]="i.id">{{ i.buyerName }}
                                                     </ng-option>
                                                 </ng-select>
-
+                        
                                                 <div class="input-group-append">
-                                                    <button class="btn btn-outline-primary" type="button"
-                                                        id="button-addon2" (click)="addBuyerForm()">
+                                                    <button class="btn btn-outline-primary" type="button" id="button-addon2"
+                                                        (click)="addBuyerForm()">
                                                         <i class="fa fa-plus"></i></button>
                                                 </div>
-
+                        
                                             </div>
-
+                        
                                         </div>
-
+                        
                                         <div class="form-group col-md-12">
                                             <label for="inputEmail3" class="col-form-label control-label">Supplier
                                                 Name</label>
-
+                        
                                             <div class="input-group">
-                                                <ng-select name="sellerId" #sellerId="ngModel" class="input-w px-0"
-                                                    [(ngModel)]="data.sellerId" placeholder="-- Select --">
+                                                <ng-select name="sellerId" #sellerId="ngModel" class="input-w px-0" [(ngModel)]="data.sellerId"
+                                                    placeholder="-- Select --">
                                                     <ng-option *ngFor="let i of seller" [value]="i.id">{{ i.sellerName
                                                         }}
                                                     </ng-option>
                                                 </ng-select>
                                                 <div class="input-group-append">
-                                                    <button class="btn btn-outline-primary" type="button"
-                                                        id="button-addon2" (click)="addSellerForm()">
+                                                    <button class="btn btn-outline-primary" type="button" id="button-addon2"
+                                                        (click)="addSellerForm()">
                                                         <i class="fa fa-plus"></i></button>
                                                 </div>
                                             </div>
                                         </div>
-
+                        
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                        </form> -->
 
-                    </div>
 
-                    <hr>
-                    <!---------- product ---------->
-                    <div>
-                        <form #product="ngForm" novalidate>
-                            <div class="col-md-12">
-                                <span class="badge badge-primary">Product & Specification</span>
+                        <form #enquiryForm="ngForm" novalidate>
+                        
+                            <div>
+                                <span class="badge badge-primary">Parties</span>
                             </div>
+                        
                             <br>
-                            <div class="form-row">
-                                <div class="form-group col-md-12">
-                                    <label for="inputPassword4">Construction</label>
-                                    <!-- <input type="password" class="form-control" id="inputPassword4"> -->
-                                    <input type="text" placeholder="Enter Specification here"
-                                        class="form-control text-w-4" id="enqry-no">
-                                </div>
-
-                                <div class="form-group col-md-12">
-                                    <label for="inputEmail3" class="col-form-label control-label">Article:</label>
-
+                        
+                            <div class="form-group row">
+                                <label for="inputPassword4" class="col-md-3 col-form-label control-label">Purchase Order #</label>
+                                <div class="col-md-7">
                                     <div class="input-group">
-                                        <ng-select name="article" #articleId="ngModel" class="input-w px-0"
-                                            [(ngModel)]="data.articleId" placeholder="-- Select --">
-                                            <ng-option *ngFor="let i of article" [value]="i.id">{{ i.name }}
+                                        <input type="text" placeholder="Purchase order no. optional" class="form-control text-w-4" id="poNumber"
+                                            [(ngModel)]="data.poNumber" name="poNumber">
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-md-3 col-form-label control-label">Buyer Name</label>
+                                <div class="col-md-7">
+                                    <div class="input-group">
+                                        <ng-select name="buyerId" #buyerId="ngModel" class="input-w px-0" [(ngModel)]="data.buyerId"
+                                            placeholder="-- Select --">
+                                            <ng-option *ngFor="let i of buyer" [value]="i.id">{{ i.buyerName }}
                                             </ng-option>
                                         </ng-select>
-
-
+                            
                                         <div class="input-group-append">
-                                            <button class="btn btn-outline-primary" type="button" id="button-addon2"
-                                                (click)="addArticleForm()">
+                                            <button class="btn btn-outline-primary" type="button" id="button-addon2" (click)="addBuyerForm()">
                                                 <i class="fa fa-plus"></i></button>
                                         </div>
-
+                            
                                     </div>
-
                                 </div>
                             </div>
+                        
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-md-3 col-form-label control-label">Supplier Name</label>
+                                <div class="col-md-7">
+                                    <div class="input-group">
+                                        <ng-select name="sellerId" #sellerId="ngModel" class="input-w px-0" [(ngModel)]="data.sellerId"
+                                            placeholder="-- Select --">
+                                            <ng-option *ngFor="let i of seller" [value]="i.id">{{ i.sellerName
+                                                }}
+                                            </ng-option>
+                                        </ng-select>
+                            
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-primary" type="button" id="button-addon2" (click)="addSellerForm()">
+                                                <i class="fa fa-plus"></i></button>
+                                        </div>
+                            
+                                    </div>
+                                </div>
+                            </div>
+                        
+
+                        
+                        </form>
+                    
+                    <br>
+                    <hr>
+                    <!---------- product ---------->
+                    
+                        <form #product="ngForm" novalidate>
+                            <div class="pt-2">
+                                <span class="badge badge-primary">Product & Specification</span>
+                            </div>
+
+                            <br>
+
+                                <div class="form-group row">
+                                    <label for="inputPassword4" class="col-md-3 col-form-label control-label">Construction</label>
+                                    <div class="col-md-7">
+                                        <div class="input-group">
+                                            <input type="text" placeholder="Enter Specification here" class="form-control text-w-4" id="enqry-no">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Article:</label>
+                                
+                                    <div class="col-md-7">
+                                        <div class="input-group">
+                                            <ng-select name="article" #articleId="ngModel" class="input-w px-0" [(ngModel)]="data.articleId"
+                                                placeholder="-- Select --">
+                                                <ng-option *ngFor="let i of article" [value]="i.id">{{ i.name }}
+                                                </ng-option>
+                                            </ng-select>
+                                
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-primary" type="button" id="button-addon2" (click)="addArticleForm()">
+                                                    <i class="fa fa-plus"></i></button>
+                                            </div>
+                                
+                                        </div>
+                                    </div>
+                                
+                                </div>
+                            
 
 
                         </form>
-                    </div>
+                    
 
+                    <br>
                     <hr>
                     <!---------- Quantity ---------->
-                    <div>
+                    
 
                         <form #costing="ngForm" novalidate>
-                            <div class="col-md-12">
+                            <div class="pt-2">
                                 <span class="badge badge-primary">Quantity & Costing</span>
                             </div>
                             <br>
-                            <div class="form-row">
-
-                                <div class="form-group col-md-12">
-                                    <label for="inputEmail3" class="col-form-label control-label">Quantity:</label>
+                        
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-md-3 col-form-label control-label">Quantity:</label>
+                        
+                                <div class="col-md-7">
                                     <div class="row">
-
+                        
                                         <div class="col-md-4">
                                             <div class="input-group">
-                                                <input type="number" min="0" placeholder="Comm%" #quantity="ngModel"
-                                                    class="form-control" [(ngModel)]="data.quantity" name="quantity">
+                                                <input type="number" min="0" placeholder="Comm%" #quantity="ngModel" class="form-control"
+                                                    [(ngModel)]="data.quantity" name="quantity">
                                                 <div class="input-group-append">
                                                     <span class="input-group-text" id="basic-addon2">per</span>
                                                 </div>
                                             </div>
                                         </div>
-
+                        
                                         <div class="col-md-4 mrg-sm1">
-                                            <ng-select [(ngModel)]="data.quantityUOMId" placeholder="Select UOM"
-                                                name="quantityUOMId">
+                                            <ng-select [(ngModel)]="data.quantityUOMId" placeholder="Select UOM" name="quantityUOMId">
                                                 <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
                                                 </ng-option>
                                             </ng-select>
                                         </div>
-
+                        
                                         <div class="col-md-4 mrg-sm1">
                                             <div class="input-group">
                                                 <div class="input-group-append">
@@ -281,110 +344,124 @@
                                                 </div>
                                             </div>
                                         </div>
-
+                        
                                     </div>
                                 </div>
-
-                                <div class="form-group col-md-12">
-                                    <label for="inputEmail3" class="col-form-label control-label">Rate:</label>
+                            </div>
+                        
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-md-3 col-form-label control-label">Rate:</label>
+                                <div class="col-md-7">
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="input-group">
-                                                <input type="number" min="0" placeholder="Rate"
-                                                    #sellerSideCommission="ngModel" class="form-control"
-                                                    [(ngModel)]="data.sellerSideCommission" name="sellerSideCommission">
+                                                <input type="number" min="0" placeholder="Rate" #sellerSideCommission="ngModel"
+                                                    class="form-control" [(ngModel)]="data.sellerSideCommission" name="sellerSideCommission">
                                                 <div class="input-group-append">
                                                     <span class="input-group-text" id="basic-addon2">per</span>
                                                 </div>
                                             </div>
                                         </div>
-
+                        
                                         <div class="col-md-4 mrg-sm1">
-                                            <ng-select [(ngModel)]="data.currencyId" placeholder="Select Currency"
-                                                name="currencyId">
+                                            <ng-select [(ngModel)]="data.currencyId" placeholder="Select Currency" name="currencyId">
                                                 <ng-option *ngFor="let i of currency" [value]="i.id">{{ i.code }}
                                                 </ng-option>
                                             </ng-select>
-                                        </div>per
-                                        <div class="col-md-3 mrg-sm1">
-                                            <ng-select [(ngModel)]="data.rateUOMId" placeholder="Select UOM"
-                                                name="rateUOMId">
-                                                <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
-                                                </ng-option>
-                                            </ng-select>
-
+                                        </div>
+                                        <div class="col-md-4">
+                        
+                                            <div class="row">
+                                                <div class="col-md-3 col-sm-4 pt-2"><strong> per </strong></div>
+                                                <div class="col-md-9 col-sm-8 mrg-sm1">
+                                                    <ng-select [(ngModel)]="data.rateUOMId" placeholder="Select UOM" name="rateUOMId">
+                                                        <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
+                                                        </ng-option>
+                                                    </ng-select>
+                        
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
-
+                        
                         </form>
-                    </div>
+                    
+                        <br>
                     <hr>
 
                     <!---------- Payment & Delivery ---------->
-
-                    <div>
+                   
 
                         <form #payment="ngForm" novalidate>
-                            <div class="col-md-12">
+                            <div class="pt-2">
                                 <span class="badge badge-primary">Payment & Delivery Terms</span>
                             </div>
                             <br>
-                            <div class="form-row">
 
-                                <div class="form-group col-md-12">
-                                    <label for="inputPassword4">Seller Payment Terms:</label>
-                                    <!-- <input type="password" class="form-control" id="inputPassword4"> -->
-                                    <input type="text" placeholder="Enter Specification here"
-                                        class="form-control text-w-4" id="enqry-no">
-                                </div>
+                            
 
-                                <div class="form-group col-md-12">
-                                    <label for="inputPassword4">Buyer Payment Terms:</label>
-                                    <!-- <input type="password" class="form-control" id="inputPassword4"> -->
-                                    <input type="text" placeholder="Enter Specification here"
-                                        class="form-control text-w-4" id="enqry-no">
-                                </div>
-
-                                <div class="form-group col-md-12">
-                                    <label for="inputEmail3" class="col-form-label control-label">Packing:</label>
-
-                                    <div class="input-group">
-                                        <ng-select name="packingIds" #packingIds="ngModel" class="input-w1 px-0"
-                                            [(ngModel)]="data.packingIds" placeholder="-- Select --">
-                                            <ng-option *ngFor="let i of packing" [value]="i.id">{{ i.name }}
-
-                                            </ng-option>
-                                        </ng-select>
-
-
-                                        <div class="input-group-append">
-                                            <button class="btn btn-outline-primary" type="button" id="button-addon2">
-                                                <i class="fa fa-plus"></i></button>
+                                <div class="form-group row">
+                                    <label for="inputPassword4" class="col-md-3 col-form-label control-label">Seller Payment Terms:</label>
+                                    <div class="col-md-7">
+                                        <div class="input-group">
+                                            <input type="text" placeholder="Enter Specification here" class="form-control text-w-4" id="enqry-no">
                                         </div>
-
                                     </div>
-
                                 </div>
 
-                                <div class="form-group col-md-12">
+                                <div class="form-group row">
+                                    <label for="inputPassword4" class="col-md-3 col-form-label control-label">Buyer Payment Terms:</label>
+                                    <div class="col-md-7">
+                                        <div class="input-group">
+                                            <input type="text" placeholder="Enter Specification here" class="form-control text-w-4" id="enqry-no">
+                                        </div>
+                                    </div>
+                                </div>
 
-                                    <label for="inputEmail3" class="col-form-label control-label">Price / Delivery
+                                <div class="form-group row">
+                                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Packing:</label>
+                                
+                                    <div class="col-md-7">
+                                        <div class="input-group">
+                                            <ng-select name="packingIds" #packingIds="ngModel" class="input-w px-0" [(ngModel)]="data.packingIds"
+                                                placeholder="-- Select --">
+                                                <ng-option *ngFor="let i of packing" [value]="i.id">{{ i.name }}
+                                
+                                                </ng-option>
+                                            </ng-select>
+                                
+                                
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-primary" type="button" id="button-addon2">
+                                                    <i class="fa fa-plus"></i></button>
+                                            </div>
+                                
+                                        </div>
+                                    </div>
+                                
+                                </div>
+
+
+                                <div class="form-group row">
+                                
+                                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Price / Delivery
                                         Terms:</label>
-
-                                    <div class="input-group">
-                                        <ng-select name="priceTermId" #priceTermId="ngModel" class="input-w px-0"
-                                            [(ngModel)]="data.priceTermId" placeholder="-- Select --">
-                                            <ng-option *ngFor="let i of priceterm" [value]="i.id">{{ i.term }}
-                                            </ng-option>
-                                        </ng-select>
-
-
-                                        <div class="input-group-append">
-                                            <button class="btn btn-outline-primary" type="button" id="button-addon2">
-                                                <i class="fa fa-plus"></i></button>
+                                
+                                    <div class="col-md-7">
+                                        <div class="input-group">
+                                            <ng-select name="priceTermId" #priceTermId="ngModel" class="input-w px-0" [(ngModel)]="data.priceTermId"
+                                                placeholder="-- Select --">
+                                                <ng-option *ngFor="let i of priceterm" [value]="i.id">{{ i.term }}
+                                                </ng-option>
+                                            </ng-select>
+                                
+                                
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-primary" type="button" id="button-addon2">
+                                                    <i class="fa fa-plus"></i></button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -393,131 +470,102 @@
 
                                 <!-- Supplier Delivery Date -->
 
-                                <div class="col-md-12">
-
-                                    <label for="inputPassword4" class="col-form-label control-label">Supplier Delivery
+                                <div class="form-group row">
+                                
+                                    <label for="inputPassword4" class=" col-md-3 col-form-label control-label">Supplier Delivery
                                         Date</label>
-
-                                    <div class="row">
-
-                                        <div class="form-group col-md-6">
-
-                                            <div class="input-group date"
-                                                (clickOutside)="sellerDeliveryDatePicker.close()">
-                                                <input type="text" class="form-control  datetimepicker-input"
-                                                    (click)="sellerDeliveryDatePicker.toggle()" placeholder="Date"
-                                                    #sellerDeliveryDatePicker="ngbDatepicker" name="sellerDeliveryDate"
-                                                    ngbDatepicker>
-                                                <div class="input-group-append"
-                                                    (click)="sellerDeliveryDatePicker.toggle()">
-                                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-
-
-
-                                <div class="col-md-12">
-
-
-                                    <div class="form-group row" *ngFor="let a of new; let i = index;">
-
-                                        <div class="form-group col-md-6">
-
-                                            <div class="input-group date"
-                                                (clickOutside)="sellerDeliveryDatePicker.close()">
-                                                <input type="text" class="form-control  datetimepicker-input"
-                                                    (click)="sellerDeliveryDatePicker.toggle()" placeholder="Date"
-                                                    #sellerDeliveryDatePicker="ngbDatepicker" name="sellerDeliveryDate"
-                                                    ngbDatepicker>
-                                                <div class="input-group-append"
-                                                    (click)="sellerDeliveryDatePicker.toggle()">
-                                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                                    <button class="btn btn-outline-danger float-right"
-                                                type="submit" (click)="remove(i)">
-                                                <i class="fas fa-minus fa-xs"></i></button>
-                                                </div>
+                                
+                                    <div class="col-md-7">
+                                
+                                        <div class="input-group date" (clickOutside)="sellerDeliveryDatePicker.close()">
+                                            <input type="text" class="form-control  datetimepicker-input" (click)="sellerDeliveryDatePicker.toggle()"
+                                                placeholder="Date" #sellerDeliveryDatePicker="ngbDatepicker" name="sellerDeliveryDate" ngbDatepicker>
+                                            <div class="input-group-append" (click)="sellerDeliveryDatePicker.toggle()">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                             </div>
                                         </div>
-
-
-                                        
-
+                                
                                     </div>
-
-                                    <button class="btn btn-outline-primary btn-sm" (click)="addMore()"> Add Another
-                                        Delivery Date</button>
-
+                                
                                 </div>
-
-
+                                
+                                <div class="form-group row" *ngFor="let a of new; let i = index;">
+                                    <div class="col-md-3"></div>
+                                
+                                    <div class="col-md-7">
+                                
+                                        <div class="input-group date" (clickOutside)="sellerDeliveryDatePicker.close()">
+                                            <input type="text" class="form-control  datetimepicker-input" (click)="sellerDeliveryDatePicker.toggle()"
+                                                placeholder="Date" #sellerDeliveryDatePicker="ngbDatepicker" name="sellerDeliveryDate" ngbDatepicker>
+                                            <div class="input-group-append" (click)="sellerDeliveryDatePicker.toggle()">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                <button class="btn btn-outline-danger float-right" type="submit" (click)="remove(i)">
+                                                    <i class="fas fa-minus fa-xs"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-3"></div>
+                                    <div class="col-md-7">
+                                        <button class="btn btn-outline-primary btn-sm" (click)="addMore()"> Add Another
+                                            Delivery Date</button>
+                                    </div>
+                                </div>
+                                
+                                
                                 <br>
 
 
-                                <div class="col-md-12">
-
-                                    <label for="inputPassword4" class="col-form-label control-label">Buyer Delivery
-                                        Date</label>
-
-                                    <div class="row">
-
-                                        <div class="form-group col-md-6">
-
-                                            <div class="input-group date"
-                                                (clickOutside)="buyerDeliveryDatePicker.close()">
-                                                <input type="text" class="form-control  datetimepicker-input"
-                                                    (click)="buyerDeliveryDatePicker.toggle()" placeholder="Date"
-                                                    #buyerDeliveryDatePicker="ngbDatepicker" name="buyerDeliveryDate"
-                                                    ngbDatepicker>
-                                                <div class="input-group-append"
-                                                    (click)="buyerDeliveryDatePicker.toggle()">
-                                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                                </div>
+                                <div class="form-group row">
+                                
+                                    <label for="inputPassword4" class="col-md-3 col-form-label control-label">Buyer Delivery Date</label>
+                                
+                                    <div class="col-md-7">
+                                
+                                        <div class="input-group date" (clickOutside)="buyerDeliveryDatePicker.close()">
+                                            <input type="text" class="form-control  datetimepicker-input" (click)="buyerDeliveryDatePicker.toggle()"
+                                                placeholder="Date" #buyerDeliveryDatePicker="ngbDatepicker" name="buyerDeliveryDate" ngbDatepicker>
+                                            <div class="input-group-append" (click)="buyerDeliveryDatePicker.toggle()">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                             </div>
-
                                         </div>
-
+                                
                                     </div>
-                                </div>
-
-
-                                <div class="col-md-12">
-
-                                    <div class="form-group row" *ngFor="let a of new2; let i = index;">
-
-                                        <div class="form-group col-md-6">
-
-                                            <div class="input-group date"
-                                                (clickOutside)="buyerDeliveryDatePicker.close()">
-                                                <input type="text" class="form-control  datetimepicker-input"
-                                                    (click)="buyerDeliveryDatePicker.toggle()" placeholder="Date"
-                                                    #buyerDeliveryDatePicker="ngbDatepicker" name="buyerDeliveryDate"
-                                                    ngbDatepicker>
-                                                <div class="input-group-append"
-                                                    (click)="buyerDeliveryDatePicker.toggle()">
-                                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                                    <button class="btn btn-outline-danger "
-                                                type="submit" (click)="remove2(i)">
-                                                <i class="fas fa-minus fa-xs"></i></button>
-                                                </div>
+                                
+                                
+                                </div>                               
+                                
+                                <div class="form-group row" *ngFor="let a of new2; let i = index;">
+                                
+                                    <div class="col-md-3"></div>
+                                    <div class="col-md-7">
+                                        <div class="input-group date" (clickOutside)="buyerDeliveryDatePicker.close()">
+                                            <input type="text" class="form-control  datetimepicker-input" (click)="buyerDeliveryDatePicker.toggle()"
+                                                placeholder="Date" #buyerDeliveryDatePicker="ngbDatepicker" name="buyerDeliveryDate" ngbDatepicker>
+                                            <div class="input-group-append" (click)="buyerDeliveryDatePicker.toggle()">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                <button class="btn btn-outline-danger " type="submit" (click)="remove2(i)">
+                                                    <i class="fas fa-minus fa-xs"></i></button>
                                             </div>
                                         </div>
                                     </div>
-
-                                    <button class="btn btn-outline-primary btn-sm" (click)="add()"> Add Another Delivery
-                                        Date</button>
-
+                                </div>
+                                                                
+                                <div class="row">
+                                    <div class="col-md-3"></div>
+                                    <div class="col-md-7">
+                                        <button class="btn btn-outline-primary btn-sm" (click)="add()"> Add Another Delivery
+                                            Date</button>
+                                    </div>
                                 </div>
 
-                            </div>
+                            
 
                         </form>
 
-                    </div>
+                    <br>
                     <hr>
 
 
@@ -709,75 +757,66 @@
                     <hr>
             
                 <hr>   -->
-                    <hr>
+                    <!-- <hr> -->
+                    
                     <!---------- remarks ---------->
-                    <div class="tab-pane fade show " id="nav-remarks" role="tabpanel" aria-labelledby="nav-remarks-tab">
+                    
 
                         <form #remarks="ngForm" novalidate>
-                            <div class="col-md-12">
+                            <div class="pt-2">
                                 <span class="badge badge-primary">Remarks/ Other Conditions</span>
                             </div>
+                        
                             <br>
-                            <div class="form-row">
-                                <div class="col-md-12">
-
-                                    <div class="form-group row">
-                                        <label for="inputEmail3"
-                                            class="col-md-3 col-form-label control-label">Remarks:</label>
-                                        <div class="col-md-6">
-                                            <div class="input-group">
-                                                <textarea rows="3" class="form-control"
-                                                    [(ngModel)]="data.contractRemarks"
-                                                    name="contractRemarks"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">Remarks
-                                            Buyer:</label>
-                                        <div class="col-md-6">
-                                            <div class="input-group">
-                                                <textarea rows="3" class="form-control" [(ngModel)]="data.buyerRemarks"
-                                                    name="buyerRemarks"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">Other
-                                            Conditions:</label>
-                                        <div class="col-md-6">
-                                            <div class="input-group">
-                                                <textarea rows="3" class="form-control"
-                                                    [(ngModel)]="data.otherConditionRemarks"
-                                                    name="otherConditionRemarks"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label for="inputEmail3"
-                                            class="col-md-3 col-form-label control-label">Title:</label>
-                                        <div class="col-md-6">
-                                            <div class="input-group">
-                                                <textarea rows="3" class="form-control" [(ngModel)]="data.title"
-                                                    name="title"></textarea>
-                                            </div>
-                                        </div>
+                        
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-md-3 col-form-label control-label">Remarks:</label>
+                                <div class="col-md-7">
+                                    <div class="input-group">
+                                        <textarea rows="3" class="form-control" [(ngModel)]="data.contractRemarks"
+                                            name="contractRemarks"></textarea>
                                     </div>
                                 </div>
                             </div>
-
+                        
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-md-3 col-form-label control-label">Remarks Buyer:</label>
+                                <div class="col-md-7">
+                                    <div class="input-group">
+                                        <textarea rows="3" class="form-control" [(ngModel)]="data.buyerRemarks" name="buyerRemarks"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-md-3 col-form-label control-label">Other Conditions:</label>
+                                <div class="col-md-7">
+                                    <div class="input-group">
+                                        <textarea rows="3" class="form-control" [(ngModel)]="data.otherConditionRemarks"
+                                            name="otherConditionRemarks"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-md-3 col-form-label control-label">Title:</label>
+                                <div class="col-md-7">
+                                    <div class="input-group">
+                                        <textarea rows="3" class="form-control" [(ngModel)]="data.title" name="title"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        
                         </form>
 
-
-
-                    </div>
+                        <br>
                     <hr>
+
+
+                    <!---------- Footer Button ---------->
+
                     <div class="form-group row mt-5">
-                        <label class="col-md-3 col-form-label control-label"></label>
-                        <div class="col-md-6">
+                        <div class="col-md-12 text-center">
                             <div class="btn-group mr-2">
                                 <button type="button" (click)="addContract()" class="btn btn clrbtn btn-sm">
                                     <i class="far fa-hand-point-right"></i>&nbsp;Save & Goto Contract Page
@@ -786,9 +825,10 @@
                             <button type="button" class="btn btn-primary btn-sm">
                                 <i class="far fa-hand-point-up"></i>&nbsp;Save & Add New
                             </button>
-
+                    
                         </div>
                     </div>
+
                 </div>
 
 
