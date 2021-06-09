@@ -23,6 +23,7 @@ export class EditSellerFormComponent implements OnInit {
   sellerCertificate: any = []
   certification: any = [];
   capabilities:any=[];
+  active: boolean; 
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
@@ -75,6 +76,7 @@ export class EditSellerFormComponent implements OnInit {
           this.response = res;
           if (this.response.success == true) {
             this.seller = this.response.data;
+            this.active = this.response.data.isParentSeller;
 
           }
           else {
@@ -116,7 +118,7 @@ export class EditSellerFormComponent implements OnInit {
           this.response = res;
           if (this.response.success == true) {
             this.data = this.response.data;
-
+            this.active = this.data.isParentSeller
             this.data.machineIds = this.data.machineIds.split(',');
             this.data.capabilitiesIds = this.data.capabilitiesIds.split(',');
           }
@@ -149,7 +151,7 @@ export class EditSellerFormComponent implements OnInit {
       "majorStrength": this.data.majorStrength,
       "leadTime": this.data.leadTime,
       "sellerDetails": this.data.sellerDetails,
-      "isParentSeller": true,
+      "isParentSeller": this.active,
       "parentSellerId": this.data.parentSellerId,
     }
 
