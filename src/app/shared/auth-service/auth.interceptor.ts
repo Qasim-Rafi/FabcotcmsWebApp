@@ -5,28 +5,24 @@ import { tap } from "rxjs/operators";
 import { Router } from "@angular/router";
 // import { UserService } from '@app/shared/user.service';
 import { ToastrService } from 'ngx-toastr';
-import { SpinnerService } from "../spinner.service";
 import { finalize } from "rxjs/operators";
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
     response:any;
     constructor(private router: Router,
-        private toastr: ToastrService,
-        private loader:SpinnerService) {
+        private toastr: ToastrService,) {
 
     }
 
     intercept(req: HttpRequest<any>, next: HttpHandler) {
 
         if (localStorage.getItem('token') != null) {
-            this.loader.show();
             const clonedReq = req.clone({
                 headers: req.headers.set('Authorization', 'Bearer ' + localStorage.getItem('token'))
             });
             return next.handle(clonedReq).pipe(
                 tap(
                     succ => {
-                        this.loader.hide()    
 
 
                      },
