@@ -30,11 +30,12 @@ export class ItemsComponent implements OnInit {
   @Input() itemId;
   @Input() enquiryId;
   @Input() contractId;
-
+  recievedrate:any;
+  quantity:any;
+  timeout: any = null;
   @ViewChild(NgForm) ItemForm;
   @Input() statusCheck;
   @ViewChild("focus") myInputField: ElementRef;
-  
   constructor(
     private http: HttpClient,
     private toastr: ToastrService,
@@ -60,7 +61,28 @@ export class ItemsComponent implements OnInit {
   get activeModal() {
     return this._NgbActiveModal;
   }
- 
+  itemquantity(event){
+    clearTimeout(this.timeout);
+    
+    
+      if (event.keyCode != 13) {
+    this.quantity=event.target.value;
+      }
+   
+   }
+
+  rate(event){
+    clearTimeout(this.timeout);
+    
+    
+      if (event.keyCode != 13) {
+    let rate=event.target.value;
+ let calculatedcost= rate*this.quantity;
+ this.data.contractCost=calculatedcost;
+
+      }
+    
+   }
   editItem() {
     this.http.get(`${environment.apiUrl}/api/Contracts/GetContractItemById/` + this.itemId)
       .subscribe(

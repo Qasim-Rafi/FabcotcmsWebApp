@@ -20,7 +20,7 @@ export class SaleInvoiceItemComponent implements OnInit {
   response: any;
   itemData:any=[];
   dateformater: Dateformater = new Dateformater();
-
+recievedrate:any;
   constructor(
     private http: HttpClient,
     private toastr: ToastrService,
@@ -38,7 +38,32 @@ export class SaleInvoiceItemComponent implements OnInit {
     }
   
   }
+  rate(event) {
+    this.http.get(`${environment.apiUrl}/api/Contracts/GetContractItemRate/`+ this.invoiceItemId )
+      .subscribe(
+        res => {
+          this.response = res;
+          if (this.response.success == true) {
+            this.recievedrate = this.response.data;
+            
+  
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+  
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+        });
+  }
+  keyup(event){
 
+    let number=event.target.value;
+ let calculatedamount= number*this.recievedrate;
+ this.data.amount=calculatedamount;
+   }
   addSaleInvoiceItem() {
    
    let varr = {

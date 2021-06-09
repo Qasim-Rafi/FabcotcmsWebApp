@@ -96,9 +96,10 @@ this.spinner.hide();
             }, err => {
               if (err.status == 400) {
                 this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
+              
               }
             });
-            this.spinner.hide();
       }
     })
 
