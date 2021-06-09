@@ -59,7 +59,7 @@
   text-align: center;
 }
 .input-w{
-  width: 93% !important;
+  width: 95% !important;
 }
 .input-w1{
   width: 97% !important;
@@ -79,7 +79,7 @@
 
 @media only screen and (max-width: 1366px), (max-width: 1440px) {
   .input-w{
-    width: 91% !important;
+    width: 93% !important;
   }
   .input-w1{
     width: 96% !important;
