@@ -52,7 +52,7 @@
       </label>
       <div class="col-8">
         <input pattern="[a-zA-Z0-9]{0,34}" id="iban" type="text" class="form-control" placeholder="IBAN" name="iban"
-          [(ngModel)]="data.iban" #iban="ngModel" maxlength="34" />
+          [(ngModel)]="data.iban" #iban="ngModel" maxlength="34" [ngClass]="{ 'error': iban.invalid && addAgentForm.submitted  }" />
       </div>
     </div>
 

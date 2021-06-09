@@ -46,7 +46,7 @@ export class EditCurrencyComponent implements OnInit {
 
         }
         else {
-          this.toastr.error('Something went Worng', 'Message.');
+          this.toastr.error(this.response.message, 'Message.');
             }
 
       }, (err: HttpErrorResponse) => {
@@ -62,14 +62,9 @@ export class EditCurrencyComponent implements OnInit {
 
   UpdateCurrency(form:NgForm)
   {
-    this.data.validFrom = this.dateformater.toModel(this.data.validFrom);
-    if (form.status == "INVALID") {
-
-      this.toastr.error("Invalid Form", 'Message.');
-    }
-    else{
+    
     let varr=  {
-      "validFrom": this.data.validFrom,
+      "validFrom": this.dateformater.toModel(this.data.validFrom),
       "currencyCode":  this.data.currencyCode,
       "rate": this.data.rate,
       "details": this.data.details
@@ -82,11 +77,12 @@ export class EditCurrencyComponent implements OnInit {
   
         this.response = res;
         if (this.response.success == true){
+    this.data.validFrom = this.dateformater.fromModel(this.data.validFrom);
           this.toastr.success(this.response.message, 'Message.');
           this.activeModal.close(true);
         }
         else {
-          this.toastr.error('Something went Worng', 'Message.');
+          this.toastr.error(this.response.message, 'Message.');
             }
 
       }, (err: HttpErrorResponse) => {
@@ -97,6 +93,6 @@ export class EditCurrencyComponent implements OnInit {
         //   this.toastr.error(this.response.message, 'Message.');
         // }
       });
-  }
+  
 }
 }
