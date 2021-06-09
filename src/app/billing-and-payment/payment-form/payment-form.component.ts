@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 import { DatePipe } from '@angular/common';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-
+import {NgxSpinnerService} from 'ngx-spinner'
 @Component({
   selector: 'app-payment-form',
   templateUrl: './payment-form.component.html',
@@ -49,6 +49,7 @@ export class PaymentFormComponent implements OnInit {
     private service: ServiceService,
     private toastr: ToastrService,
     public datepipe: DatePipe,
+    public spinner: NgxSpinnerService,
     private router: Router,
 
   ) { }
@@ -134,6 +135,7 @@ export class PaymentFormComponent implements OnInit {
 
 
    getData(id) {
+     this.spinner.show();
     this.http.get(`${environment.apiUrl}/api/BillingPayments/GetBillPaymentById/` + id)
     .subscribe(res => {
       this.response = res;
@@ -141,15 +143,17 @@ export class PaymentFormComponent implements OnInit {
             this.paymentdata = this.response.data;
             this.paymentdata.paymentDate = this.dateformater.fromModel(this.paymentdata.paymentDate);
             this.paymentdata.depositeDate = this.dateformater.fromModel(this.paymentdata.depositeDate);
-        console.log("payment data" , this.paymentdata)
+        this.spinner.hide();
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+         this.spinner.hide();
           }
  
         }, err => {
           if (err.status == 400) {
             this.toastr.error(this.response.message, 'Message.');
+          this.spinner.hide();
           }
         });
   }
@@ -178,7 +182,7 @@ export class PaymentFormComponent implements OnInit {
       "isDepositedInBank": this.paymentdata.isDepositedInBank,
       "depositeDate": this.dateformater.toModel(this.paymentdata.depositeDate),
     }
-
+this.spinner.show();
     this.http.
       put(`${environment.apiUrl}/api/BillingPayments/UpdateBillPayment/` + this.paymentId, varr)
       .subscribe(
@@ -188,15 +192,20 @@ export class PaymentFormComponent implements OnInit {
           if (this.response.success == true) {
             this.toastr.success(GlobalConstants.updateMessage, 'Message.');
             this.router.navigate(['/billing-and-payment/payment-collection']);
+        this.spinner.hide();
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+        this.spinner.hide();
+         
           }
 
         }, (err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
+          this.spinner.hide();
+       
         });
   }
 
@@ -224,7 +233,7 @@ export class PaymentFormComponent implements OnInit {
         "isDepositedInBank": this.paymentAdddata.isDepositedInBank,
         "depositeDate":  this.dateformater.toModel(this.paymentAdddata.depositeDate),
       }
-
+this.spinner.show();
     this.http.
       post(`${environment.apiUrl}/api/BillingPayments/AddBillPayment/`, varr)
       .subscribe(
@@ -234,17 +243,23 @@ export class PaymentFormComponent implements OnInit {
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
             // this.paymentForm.reset();
+this.spinner.hide();
+            
             this.router.navigate(['/billing-and-payment/payment-collection']);
 
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+this.spinner.hide();
+          
           }
 
         }, (err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
+this.spinner.hide();
+        
         });
   }
   GetCurrencyDropdown() {
