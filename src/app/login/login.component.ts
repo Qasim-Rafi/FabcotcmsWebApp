@@ -7,8 +7,6 @@ import { ToastrService } from 'ngx-toastr';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SignUpComponent } from './sign-up/sign-up.component';
 
-import {Subject} from 'rxjs';
-import { SpinnerService } from '../shared/spinner.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
@@ -32,7 +30,6 @@ invalidLogin: boolean=false;
     private Service: ServiceService,
     private modalService: NgbModal,
 
-    private loader: SpinnerService,
     private spinner: NgxSpinnerService,
 
 
