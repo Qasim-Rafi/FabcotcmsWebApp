@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { GlobalConstants } from 'src/app/Common/global-constants'
 import { ServiceService } from 'src/app/shared/service.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-add-edit-capability',
@@ -20,6 +21,7 @@ export class AddEditCapabilityComponent implements OnInit {
   @Input() FormName;
   constructor(private http: HttpClient,
     private toastr: ToastrService,
+    private spinner: NgxSpinnerService,
     private service: ServiceService,
     private _NgbActiveModal: NgbActiveModal) { }
 
@@ -49,6 +51,7 @@ export class AddEditCapabilityComponent implements OnInit {
         });
   }
   UpdateCapability() {
+    this.spinner.show();
     let varr = {
       "name": this.data.name,
     
@@ -63,18 +66,22 @@ export class AddEditCapabilityComponent implements OnInit {
           if (this.response.success == true) {
             this.toastr.error(this.response.message, 'Message.');
             this.activeModal.close(true);
+            this.spinner.hide();
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
           }
 
         }, (err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
+          this.spinner.hide();
         });
   }
   addCapability() {
+    this.spinner.show();
     let varr = {
       "name": this.data.name,
     }
@@ -89,14 +96,17 @@ export class AddEditCapabilityComponent implements OnInit {
   
   
             this.activeModal.close(true);
+            this.spinner.hide();
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
           }
   
         }, err => {
           if (err.status == 400) {
             this.toastr.error(err.error.message, 'Message.');
+            this.spinner.hide();
           }
         });
   }

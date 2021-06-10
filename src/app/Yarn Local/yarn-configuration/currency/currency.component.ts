@@ -8,6 +8,7 @@ import { AddCurrencyComponent } from './add-currency/add-currency.component';
 import Swal from 'sweetalert2/dist/sweetalert2.js'; 
 import { GlobalConstants } from 'src/app/Common/global-constants';
 import { ClipboardService } from 'ngx-clipboard';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-currency',
@@ -27,6 +28,7 @@ export class CurrencyComponent implements OnInit {
 
   constructor(private http:HttpClient,
     private _clipboardService: ClipboardService,
+    private spinner: NgxSpinnerService,
     private toastr: ToastrService,
     private modalService: NgbModal,) { }
 
@@ -93,7 +95,7 @@ export class CurrencyComponent implements OnInit {
       position: 'top',
     }).then((result) => {
       if (result.isConfirmed) {
-    
+    this.spinner.show();
         this.http.delete(`${environment.apiUrl}/api/Configs/DeleteCurrencyRate/`+id.id )
         .subscribe(
           res=> { 
@@ -102,16 +104,19 @@ export class CurrencyComponent implements OnInit {
              this.toastr.error(this.response.message, 'Message.');
              this.fetch((data) => {
               this.rows = data;
+              this.spinner.hide();
             });
               
             }
             else {
-              this.toastr.error('Something went Worng', 'Message.');
-                }
+              this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();   
+            }
      
           }, err => {
             if (err.status == 400) {
               this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
             }
           });
     

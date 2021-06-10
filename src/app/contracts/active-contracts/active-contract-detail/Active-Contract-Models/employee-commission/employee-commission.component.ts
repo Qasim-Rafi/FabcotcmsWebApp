@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { resetFakeAsyncZone } from '@angular/core/testing';
 import { NgForm } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { ServiceService } from 'src/app/shared/service.service';
 import { environment } from 'src/environments/environment';
@@ -27,6 +28,7 @@ export class EmployeeCommissionComponent implements OnInit {
       private http: HttpClient,
     private service: ServiceService,
     private toastr: ToastrService,
+    private spinner: NgxSpinnerService,
     ) { }
 
   ngOnInit(): void {
@@ -121,6 +123,7 @@ export class EmployeeCommissionComponent implements OnInit {
 
   addContractEmployeeCommission(form:NgForm) {
    
+ this.spinner.show();
     let varr = {
       "contractId": this.contractId,
       "userId": this.data.userId,
@@ -138,15 +141,18 @@ export class EmployeeCommissionComponent implements OnInit {
             this.toastr.success(this.response.message, 'Message.');
             // this.getEnquiryData(this.objEnquiry);
             this.activeModal.close(true);
+            this.spinner.hide();
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
           }
 
         },(err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
+          this.spinner.hide();
         });
   
 }
@@ -158,6 +164,7 @@ export class EmployeeCommissionComponent implements OnInit {
 
   updateContractEmployeeCommission(form:NgForm) {
   
+ this.spinner.show();
     let varr = {
       "contractId": this.contractId,
       "userId": this.data.userId,
@@ -175,16 +182,19 @@ export class EmployeeCommissionComponent implements OnInit {
             this.toastr.success(this.response.message, 'Message.');
       
             this.activeModal.close(true);
+            this.spinner.hide();
          
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
           }
 
         },(err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
+          this.spinner.hide();
         });
   
 }

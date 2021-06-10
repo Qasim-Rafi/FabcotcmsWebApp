@@ -54,6 +54,7 @@ import { AddWeaveComponent } from './product/weave/add-weave/add-weave.component
 import { AddPieceLengthComponent } from './product/piece-length/add-piece-length/add-piece-length.component';
 import { AddContainerComponent } from './product/container/add-container/add-container.component';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,7 @@ import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
   imports: [
     CommonModule,
     YarnConfigurationRoutingModule,NgxDatatableModule,NgbDatepickerModule,NgbModule,
-    HttpClientModule,FormsModule,ReactiveFormsModule,NgSelectModule,ClipboardModule,
+    HttpClientModule,FormsModule,NgxSpinnerModule,ReactiveFormsModule,NgSelectModule,ClipboardModule,
      BsDatepickerModule.forRoot(),
     ToastrModule.forRoot({
       progressBar: true,

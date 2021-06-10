@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ServiceService } from 'src/app/shared/service.service';
 import { environment } from 'src/environments/environment';
 import { Dateformater } from 'src/app/shared/dateformater';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-tna-log-history',
@@ -28,6 +29,7 @@ export class TnaLogHistoryComponent implements OnInit {
     private route: ActivatedRoute,
     private modalService: NgbModal,
     private http: HttpClient,
+    private spinner: NgxSpinnerService,
     private service: ServiceService,
     private toastr: ToastrService,
 

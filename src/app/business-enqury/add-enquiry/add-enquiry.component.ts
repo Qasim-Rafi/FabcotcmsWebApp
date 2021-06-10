@@ -18,10 +18,11 @@ import { EditCertificateComponent } from 'src/app/configuration/home-textile/cer
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { Dateformater } from 'src/app/shared/dateformater';
 import { Router } from '@angular/router';
-import { NgxSpinnerService} from 'ngx-spinner'
+
 
 import * as moment from 'moment';
 import { DatePipe } from '@angular/common';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-add-enquiry',
   templateUrl: './add-enquiry.component.html',
@@ -86,8 +87,9 @@ export class AddEnquiryComponent implements OnInit {
     private service: ServiceService,
     private spinner: NgxSpinnerService,
     private router: Router,
-    public datepipe: DatePipe
+    public datepipe: DatePipe,
  
+
 
   ) {
     // this.today = this.datePipe.transform(this.myDates, 'dd-MM-yyyy');
@@ -541,7 +543,7 @@ export class AddEnquiryComponent implements OnInit {
   }
 
   addEnquiry(form:NgForm) {
-
+    this.spinner.show();
     this.enquiryDateField =this.dateformater.toModel(this.enquiryDateField);
       let varr = {
   

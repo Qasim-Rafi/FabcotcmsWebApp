@@ -4,6 +4,8 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ServiceService } from 'src/app/shared/service.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-add-bank-account',
@@ -18,7 +20,8 @@ export class AddBankAccountComponent implements OnInit {
   constructor(private http: HttpClient,
     private toastr: ToastrService,
     private _NgbActiveModal: NgbActiveModal,
-    private service: ServiceService
+    private spinner: NgxSpinnerService,
+    private service: ServiceService,
     ) { }
 
   ngOnInit(): void {
@@ -67,7 +70,7 @@ export class AddBankAccountComponent implements OnInit {
       "active": this.data.active,
 
     }
-
+this.spinner.show();
     this.http.
       post(`${environment.apiUrl}/api/Configs/AddBankAccount`, varr)
       .subscribe(
@@ -77,15 +80,20 @@ export class AddBankAccountComponent implements OnInit {
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
             this.activeModal.close(true);
+            this.spinner.hide();
           }
           else {
              this.toastr.success(this.response.message, 'Message.');
-          }
+             this.spinner.hide();
+          
+            }
 
         }, (err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
+          this.spinner.hide();
+
           // if (err.status == 400) {
           //   this.toastr.error(this.response.message, 'Message.');
           // }

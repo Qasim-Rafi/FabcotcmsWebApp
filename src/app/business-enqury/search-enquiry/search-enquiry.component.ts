@@ -106,6 +106,7 @@ this.spinner.show();
                 this.spinner.hide();
                 });
 
+                this.spinner.hide();
               }
               else {          
               this.toastr.error(this.response.message, 'Message.');
@@ -132,6 +133,7 @@ this.spinner.show();
   }
   cloneEnquiry(obj){
 
+    this.spinner.show();
     let varr = {
   
       "enquiryId": obj.id,

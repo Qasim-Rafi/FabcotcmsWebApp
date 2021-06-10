@@ -5,19 +5,21 @@ import { environment } from 'src/environments/environment';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
 import { ServiceService } from 'src/app/shared/service.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-add-color',
   templateUrl: './add-color.component.html',
   styleUrls: ['./add-color.component.css']
 })
 export class AddColorComponent implements OnInit {
-  data:any={};
+  data: any = {};
   response: any;
   active = true;
 
-  constructor(private http:HttpClient,
+  constructor(private http: HttpClient,
     private service: ServiceService,
     private toastr: ToastrService,
+    private spinner: NgxSpinnerService,
     private _NgbActiveModal: NgbActiveModal) { }
 
   ngOnInit(): void {
@@ -27,44 +29,48 @@ export class AddColorComponent implements OnInit {
     return this._NgbActiveModal;
   }
 
-  
-  addColor(form:NgForm )
-  {
+
+  addColor(form: NgForm) {
     // if (form.status == "INVALID") {
 
     //   this.toastr.error("Invalid Form", 'Message.');
     // }
     // else{
-    let varr=  {
+    this.spinner.show();
+    let varr = {
       "name": this.data.name,
       "description": this.data.description,
       "active": this.active,
     }
 
     this.http.
-    post(`${environment.apiUrl}/api/TextileGarments/AddColor`,varr)
-    .subscribe(
-      res=> { 
-  
-        this.response = res;
-        if (this.response.success == true){
-          this.toastr.success(this.response.message, 'Message.');
-      
-          // this.buyerForm.reset();
-          this.activeModal.close(true);
-        }
-        else {
-          this.toastr.error(this.response.message, 'Message.');
-            }
+      post(`${environment.apiUrl}/api/TextileGarments/AddColor`, varr)
+      .subscribe(
+        res => {
 
-      }, (err: HttpErrorResponse) => {
-        const messages = this.service.extractErrorMessagesFromErrorResponse(err);
-        this.toastr.error(messages.toString(), 'Message.');
-        console.log(messages);
-        if (err.status == 400) {
-          this.toastr.error(this.response.message, 'Message.');
-        }
-      });
+          this.response = res;
+          if (this.response.success == true) {
+            this.toastr.success(this.response.message, 'Message.');
+
+            // this.buyerForm.reset();
+            this.activeModal.close(true);
+            this.spinner.hide();
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
+          }
+
+        }, (err: HttpErrorResponse) => {
+          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+          this.toastr.error(messages.toString(), 'Message.');
+          console.log(messages);
+          this.spinner.hide();
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
+          }
+        });
   }
 
 }

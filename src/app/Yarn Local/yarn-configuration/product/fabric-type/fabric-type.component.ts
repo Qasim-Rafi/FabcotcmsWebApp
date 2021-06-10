@@ -11,6 +11,7 @@ import { GlobalConstants } from 'src/app/Common/global-constants';
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import { ClipboardService } from 'ngx-clipboard';
+import { NgxSpinnerService } from 'ngx-spinner';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -34,6 +35,7 @@ export class FabricTypeComponent implements OnInit {
   constructor(private http: HttpClient,
     private toastr: ToastrService,
     private _clipboardService: ClipboardService,
+    private spinner: NgxSpinnerService,
     private service: ServiceService,
     private modalService: NgbModal,) { }
 
@@ -72,7 +74,7 @@ export class FabricTypeComponent implements OnInit {
       position: 'top',
     }).then((result) => {
       if (result.isConfirmed) {
-
+this.spinner.show();
         this.http.delete(`${environment.apiUrl}/api/Products/DeleteFabricType/` + row.id)
           .subscribe(
             res => {
@@ -83,15 +85,17 @@ export class FabricTypeComponent implements OnInit {
                   this.rows = data;
                   this.fabricTypeCount = this.rows.length;
                 }, this.fabricTypeUrl);
-
+this.spinner.hide();
               }
               else {
                 this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
+             this.spinner.hide();
               }
 
             }, err => {
               if (err.status == 400) {
                 this.toastr.error(this.response.message, 'Message.');
+              this.spinner.hide();
               }
             });
 

@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
 import { ServiceService } from 'src/app/shared/service.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-add-seller-form',
@@ -29,6 +30,7 @@ export class AddSellerFormComponent implements OnInit {
     private service: ServiceService,
     private http: HttpClient,
     private toastr: ToastrService,
+    private spinner: NgxSpinnerService,
     private _NgbActiveModal: NgbActiveModal
   ) { }
 
@@ -119,6 +121,7 @@ export class AddSellerFormComponent implements OnInit {
 
 
   addSeller() {
+    this.spinner.show();
     let varr = {
       "sellerName": this.data.sellerName,
       "billingAddress": this.data.sellerBillAddress,
@@ -147,15 +150,18 @@ export class AddSellerFormComponent implements OnInit {
             this.toastr.success(this.response.message, 'Message.');
             this.sellerForm.reset();
             this.activeModal.close(true);
+            this.spinner.hide();
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
           }
 
         },(err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
+          this.spinner.hide();
          
         });
   }

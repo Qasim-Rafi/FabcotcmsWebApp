@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { GlobalConstants } from 'src/app/Common/global-constants';
 import { environment } from 'src/environments/environment';
@@ -36,6 +37,7 @@ export class QuotationComponent implements OnInit {
     private http: HttpClient,
     private toastr: ToastrService,
     private service: ServiceService,
+    private spinner: NgxSpinnerService,
 
   ) { }
 
@@ -112,7 +114,7 @@ export class QuotationComponent implements OnInit {
     // }
 
     // else{
-
+      this.spinner.show();
     let varr =
     {
       "enquiryItemId": this.EnquiryItemId,
@@ -133,15 +135,18 @@ export class QuotationComponent implements OnInit {
             this.toastr.success(this.response.message, 'Message.');
             // this.buyerForm.reset();
             this.activeModal.close(true);
+            this.spinner.hide();
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
           }
 
         }, (err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
+          this.spinner.hide();
         });
 
       }
@@ -174,6 +179,7 @@ export class QuotationComponent implements OnInit {
 
 
   UpdateQuotation() {
+    this.spinner.show();
     let varr = {
       "enquiryItemId": this.data.enquiryItemId,
       "sellerId": this.data.sellerId,
@@ -193,15 +199,18 @@ export class QuotationComponent implements OnInit {
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
             this.activeModal.close(true);
+            this.spinner.hide();
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
           }
 
         }, (err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
+          this.spinner.hide();
         });
   }
 
