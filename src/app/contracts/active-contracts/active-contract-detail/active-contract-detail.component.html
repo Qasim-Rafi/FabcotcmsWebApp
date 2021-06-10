@@ -1169,7 +1169,7 @@
 
                                     <ngx-datatable-column name="Ship Line" prop="shipmentLine">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                            {{row.shipmentLine}}
+                                            {{row.shipmentLineType}}
                                         </ng-template>
                                     </ngx-datatable-column>
 
@@ -1452,7 +1452,7 @@
                                 [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
                                 <ngx-datatable-column prop="id" name="Invoice Item" [width]="20">
                                     <ng-template let-row="row" ngx-datatable-cell-template>
-                                        {{ row.contractItemName }}
+                                        {{ row.contractItemName }}, {{ row.colorName }} - {{ row.size }}
                                     </ng-template>
                                 </ngx-datatable-column>
                                 <ngx-datatable-column prop="id" name="Quantity" [width]="20">
