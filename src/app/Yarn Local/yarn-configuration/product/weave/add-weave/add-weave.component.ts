@@ -16,7 +16,7 @@ export class AddWeaveComponent implements OnInit {
   response: any;
   data: any = {};
   active = true;
-  @Input() countryId;
+  @Input() weaveId;
   @Input() statusCheck;
   @Input() FormName;
   @ViewChild(NgForm) addAgentForm;
@@ -30,15 +30,15 @@ export class AddWeaveComponent implements OnInit {
     this.statusCheck = this.statusCheck;
     this.FormName = this.FormName;
     if (this.statusCheck == 'edit') {
-      this.editCountry();
+      this.editWeave();
     }
   }
  
   get activeModal() {
     return this._NgbActiveModal;
   }
-  editCountry() {
-    this.http.get(`${environment.apiUrl}/api/Configs/GetCountryById/` + this.countryId)
+  editWeave() {
+    this.http.get(`${environment.apiUrl}/api/YarnConfig/GetWeaveById/` + this.weaveId)
       .subscribe(
         res => {
           this.response = res;
@@ -59,16 +59,16 @@ export class AddWeaveComponent implements OnInit {
         });
   }
 
-  UpdateCountry(form:NgForm) {
+  UpdateWeave(form:NgForm) {
 
     let varr = {
-      "name": this.data.name,
-      "details": this.data.details,
+      "weaveName": this.data.weaveName,
+      "description": this.data.description,
       "active": this.active
     }
 
     this.http.
-      put(`${environment.apiUrl}/api/Configs/UpdateCountry/` + this.countryId, varr)
+      put(`${environment.apiUrl}/api/YarnConfig/UpdateWeave/` + this.weaveId, varr)
       .subscribe(
         res => {
 
@@ -92,18 +92,18 @@ export class AddWeaveComponent implements OnInit {
 
   // -------------------------------------ADD COUNTRY FROM ---------------------------
 
-  addCountry(form:NgForm) {
+  addWeave(form:NgForm) {
 
   
 
     let varr = {
-      "name": this.data.name,
-      "details": this.data.details,
+      "weaveName": this.data.weaveName,
+      "description": this.data.description,
       "active": this.active
     }
 
     this.http.
-      post(`${environment.apiUrl}/api/Configs/AddCountry`, varr)
+      post(`${environment.apiUrl}/api/YarnConfig/AddWeave`, varr)
       .subscribe(
         res => {
 
@@ -126,14 +126,14 @@ export class AddWeaveComponent implements OnInit {
 
 
 onSubmit(buttonType): void {
-  if (buttonType === "addCountry"){
+  if (buttonType === "addWeave"){
 
-    this.addCountry(this.addAgentForm); 
+    this.addWeave(this.addAgentForm); 
   }
 
-  if (buttonType === "UpdateCountry"){
+  if (buttonType === "UpdateWeave"){
 
-    this.UpdateCountry(this.addAgentForm); 
+    this.UpdateWeave(this.addAgentForm); 
 
   }
 

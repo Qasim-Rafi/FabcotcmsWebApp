@@ -39,7 +39,7 @@ export class AddPieceLengthComponent implements OnInit {
     return this._NgbActiveModal;
   }
   editCountry() {
-    this.http.get(`${environment.apiUrl}/api/Configs/GetCountryById/` + this.countryId)
+    this.http.get(`${environment.apiUrl}/api/YarnConfig/GetPieceLengthById/` + this.countryId)
       .subscribe(
         res => {
           this.response = res;
@@ -63,13 +63,13 @@ export class AddPieceLengthComponent implements OnInit {
   UpdateCountry(form:NgForm) {
 
     let varr = {
-      "name": this.data.name,
-      "details": this.data.details,
+      "pieceLengthName": this.data.pieceLengthName,
+      "description": this.data.description,
       "active": this.active
     }
 
     this.http.
-      put(`${environment.apiUrl}/api/Configs/UpdateCountry/` + this.countryId, varr)
+      put(`${environment.apiUrl}/api/YarnConfig/UpdatePieceLength/` + this.countryId, varr)
       .subscribe(
         res => {
 
@@ -98,13 +98,13 @@ export class AddPieceLengthComponent implements OnInit {
   
 
     let varr = {
-      "name": this.data.name,
-      "details": this.data.details,
+      "pieceLengthName": this.data.pieceLengthName,
+      "description": this.data.description,
       "active": this.active
     }
 
     this.http.
-      post(`${environment.apiUrl}/api/Configs/AddCountry`, varr)
+      post(`${environment.apiUrl}/api/YarnConfig/AddPieceLength`, varr)
       .subscribe(
         res => {
 
