@@ -14,6 +14,7 @@ import Swal from 'sweetalert2';
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import { StatusComponent } from 'src/app/shared/MODLES/status/status.component';
+import {NgxSpinnerService} from 'ngx-spinner'
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 @Component({
   selector: 'app-edit-active-enquiry',
@@ -70,6 +71,7 @@ export class EditActiveEnquiryComponent implements OnInit {
     private http: HttpClient,
     private service: ServiceService,
     private toastr: ToastrService,
+    private spinner:NgxSpinnerService,
     private router: Router,
 
   ) { }
@@ -419,7 +421,7 @@ export class EditActiveEnquiryComponent implements OnInit {
       "packagingId": this.enquiryData.packagingId,
       "shipmentdates": this.enquiryData.shipmentdates
     }
-
+this.spinner.show();
     this.http.
       post(`${environment.apiUrl}/api/Enquiries/AddEnquiryBuyerDetail`, varr)
       .subscribe(
@@ -431,15 +433,21 @@ export class EditActiveEnquiryComponent implements OnInit {
             this.enquiryToggle = !this.enquiryToggle
             this.getEnquiryData(this.objEnquiry);
             // this.enquiryForm.reset();
+    this.spinner.hide();
+
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+    this.spinner.hide();
+
           }
 
         },(err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
+    this.spinner.hide();
+
         });
    
   }
@@ -463,6 +471,7 @@ export class EditActiveEnquiryComponent implements OnInit {
       "buyerSideCommissionUOMId": this.enquiryData.buyerSideCommissionUOMId,
       "buyerSideCommissionInfo": this.enquiryData.buyerSideCommissionInfo,
     }
+    this.spinner.show();
 
     this.http.
       post(`${environment.apiUrl}/api/Enquiries/AddEnquiryPaymentDetail`, varr)
@@ -476,15 +485,21 @@ export class EditActiveEnquiryComponent implements OnInit {
             this.currencyToggle = !this.currencyToggle
             this.getEnquiryData(this.objEnquiry);
             // this.enquiryForm.reset();
+    this.spinner.hide();
+
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+    this.spinner.hide();
+
           }
 
         },(err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
+    this.spinner.hide();
+
         });
   }
 
@@ -498,6 +513,7 @@ export class EditActiveEnquiryComponent implements OnInit {
       "costingDetail":this.enquiryData.costingDetail,
     
     }
+    this.spinner.show();
 
     this.http.
       post(`${environment.apiUrl}/api/Enquiries/AddEnquirySupplierDetail`, varr)
@@ -510,15 +526,21 @@ export class EditActiveEnquiryComponent implements OnInit {
             this.vendorToggle = !this.vendorToggle;
             this.getEnquiryData(this.objEnquiry);
             // this.enquiryForm.reset();
+    this.spinner.hide();
+
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+    this.spinner.hide();
+
           }
 
         },(err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
+    this.spinner.hide();
+
         });
   }
 
@@ -546,6 +568,7 @@ export class EditActiveEnquiryComponent implements OnInit {
       "confirmationDetails": this.enquiryData.confirmationDetails,
     
     }
+    this.spinner.show();
 
     this.http.
       post(`${environment.apiUrl}/api/Enquiries/AddEnquiryConfirmationDetail`, varr)
@@ -558,15 +581,21 @@ export class EditActiveEnquiryComponent implements OnInit {
             this.getEnquiryData(this.objEnquiry);
             this.orderToggle = !this.orderToggle;
             // this.enquiryForm.reset();
+    this.spinner.hide();
+
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+    this.spinner.hide();
+
           }
 
         },(err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
+    this.spinner.hide();
+
         });
   }
 
@@ -583,6 +612,7 @@ export class EditActiveEnquiryComponent implements OnInit {
       "certificateIds": this.enquiryData.certificateIds != null ? this.enquiryData.certificateIds.toString() : null,
     
     }
+    this.spinner.show();
 
     this.http.
       post(`${environment.apiUrl}/api/Enquiries/AddEnquiryAdditionalInfomation`, varr)
@@ -594,15 +624,21 @@ export class EditActiveEnquiryComponent implements OnInit {
             this.toastr.success(this.response.message, 'Message.');
             this.getEnquiryData(this.objEnquiry);
             // this.enquiryForm.reset();
+    this.spinner.hide();
+
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+    this.spinner.hide();
+
           }
 
         },(err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
+    this.spinner.hide();
+
         });
   }
 
@@ -745,6 +781,7 @@ export class EditActiveEnquiryComponent implements OnInit {
       position: 'top',
     }).then((result) => {
       if (result.isConfirmed) {
+        this.spinner.show();
 
         this.http.delete(`${environment.apiUrl}/api/Enquiries/DeleteEnquiryItem/` + obj.id)
           .subscribe(
@@ -754,15 +791,20 @@ export class EditActiveEnquiryComponent implements OnInit {
                 this.toastr.error(this.response.message, 'Message.');
                 // this.getAllEnquiryItems();
                 this.getEnquiryData(this.objEnquiry);
+                this.spinner.hide();
 
               }
               else {
                 this.toastr.error(this.response.message, 'Message.');
+    this.spinner.hide();
+
               }
 
             }, err => {
               if (err.status == 400) {
                 this.toastr.error(this.response.message, 'Message.');
+    this.spinner.hide();
+
               }
             });
 
@@ -787,6 +829,7 @@ export class EditActiveEnquiryComponent implements OnInit {
       position: 'top',
     }).then((result) => {
       if (result.isConfirmed) {
+        this.spinner.hide();
 
         this.http.delete(`${environment.apiUrl}/api/Enquiries/DeleteVendorQuotation/` + obj.id)
           .subscribe(
@@ -796,15 +839,21 @@ export class EditActiveEnquiryComponent implements OnInit {
                 this.toastr.error(this.response.message, 'Message.');
                 // this.getAllEnquiryItems();
                 this.getEnquiryData(this.objEnquiry);
+    this.spinner.hide();
+
 
               }
               else {
                 this.toastr.error(this.response.message, 'Message.');
+    this.spinner.hide();
+
               }
 
             }, err => {
               if (err.status == 400) {
                 this.toastr.error(this.response.message, 'Message.');
+    this.spinner.hide();
+
               }
             });
           }
@@ -826,6 +875,8 @@ export class EditActiveEnquiryComponent implements OnInit {
       position: 'top',
     }).then((result) => {
       if (result.isConfirmed) {
+    this.spinner.show();
+
         this.http.delete(`${environment.apiUrl}/api/Enquiries/DeleteEnquiryNote/` + obj.id)
           .subscribe(
             res => {
@@ -838,15 +889,20 @@ export class EditActiveEnquiryComponent implements OnInit {
                   // this.listCount= this.rows.length;
                 });
                 this.getEnquiryData(this.objEnquiry);
+                this.spinner.hide();
 
               }
               else {
                 this.toastr.error(this.response.message, 'Message.');
+    this.spinner.hide();
+
               }
 
             }, err => {
               if (err.status == 400) {
                 this.toastr.error(this.response.message, 'Message.');
+    this.spinner.hide();
+
               }
             });
           }
@@ -1209,6 +1265,7 @@ export class EditActiveEnquiryComponent implements OnInit {
               "followUpDate":this.enquiryData.followUpDate,
             
             }
+    this.spinner.show();
         
             this.http.
               post(`${environment.apiUrl}/api/Enquiries/AddEnquiryFollowUp`, varr)
@@ -1219,14 +1276,20 @@ export class EditActiveEnquiryComponent implements OnInit {
                   if (this.response.success == true) {
                     this.toastr.success(this.response.message, 'Message.');
                     this.getEnquiryData(this.objEnquiry);
+    this.spinner.hide();
+
                   }
                   else {
                     this.toastr.error(this.response.message, 'Message.');
+    this.spinner.hide();
+
                   }
         
                 }, err => {
                   if (err.status == 400) {
                     this.toastr.error(this.response.message, 'Message.');
+    this.spinner.hide();
+
                   }
                 });
     
@@ -1253,6 +1316,8 @@ export class EditActiveEnquiryComponent implements OnInit {
           position: 'top',
         }).then((result) => {
           if (result.isConfirmed) {
+    this.spinner.show();
+
             this.http.
               delete(`${environment.apiUrl}/api/Enquiries/DeleteEnquiryFollowUp/`+ objReminder.id )
               .subscribe(
@@ -1262,14 +1327,20 @@ export class EditActiveEnquiryComponent implements OnInit {
                   if (this.response.success == true) {
                     this.toastr.error(this.response.message, 'Message.');
                     this.getEnquiryData(this.objEnquiry);
+    this.spinner.hide();
+
                   }
                   else {
                     this.toastr.error(this.response.message, 'Message.');
+    this.spinner.hide();
+
                   }
         
                 }, err => {
                   if (err.status == 400) {
                     this.toastr.error(this.response.message, 'Message.');
+    this.spinner.hide();
+
                   }
                 });
     
@@ -1285,6 +1356,8 @@ export class EditActiveEnquiryComponent implements OnInit {
           // "enquiryId": this.objEnquiry,
 
         }
+    this.spinner.show();
+
         this.http.
           post(`${environment.apiUrl}/api/Contracts/AddContract?`+'enquiryId='+this.objEnquiry+'&'+'departmentId ='+departmentId, varr)
           .subscribe(
@@ -1296,15 +1369,20 @@ export class EditActiveEnquiryComponent implements OnInit {
                 // this.router.navigate(['/contract/active-contract']);
                this.router.navigate(['/contract/active-contract-details'], { queryParams: {id: this.response.data} });
                 
+               this.spinner.hide();
     
               }
               else {
                 this.toastr.error(this.response.message, 'Message.');
+    this.spinner.hide();
+
               }
     
             }, err => {
               if (err.status == 400) {
                 this.toastr.error(this.response.message, 'Message.');
+    this.spinner.hide();
+
               }
             });
       }
@@ -1343,6 +1421,7 @@ export class EditActiveEnquiryComponent implements OnInit {
           "enquiryId": this.objEnquiry,
           "status": "Open"
         }
+    this.spinner.show();
         
         this.http.
         put(`${environment.apiUrl}/api/Enquiries/UpdateEnquiryStatus`, varr)
@@ -1353,16 +1432,21 @@ export class EditActiveEnquiryComponent implements OnInit {
             if (this.response.success == true){
               this.toastr.success(this.response.message, 'Message.');
             this.getEnquiryData(this.objEnquiry);
+            this.spinner.hide();
 
            
             }
             else {
               this.toastr.error('Something went Worng', 'Message.');
-                }
+    this.spinner.hide();
+               
+            }
     
           }, err => {
             if (err.status == 400) {
               this.toastr.error('Something went Worng', 'Message.');
+    this.spinner.hide();
+
             }
           });
       }
