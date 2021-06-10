@@ -25,7 +25,6 @@ export class EditCurrencyComponent implements OnInit {
     private service: ServiceService,
     private spinner: NgxSpinnerService,
     private toastr: ToastrService,
-    private spinner: NgxSpinnerService,
     private _NgbActiveModal: NgbActiveModal ) { }
 
   ngOnInit(): void {
