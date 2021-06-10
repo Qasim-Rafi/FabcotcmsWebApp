@@ -11,6 +11,7 @@ import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import { ClipboardService } from 'ngx-clipboard';
 import { ServiceService } from 'src/app/shared/service.service';
+import {NgxSpinnerService} from 'ngx-spinner'
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -38,6 +39,7 @@ export class ActiveEnquiryComponent implements OnInit {
     private service: ServiceService,
     private router: Router,
     private _clipboardService: ClipboardService,
+    private spinner: NgxSpinnerService,
     private modalService: NgbModal,
     // private service: ServiceService,
   ) { }
@@ -111,7 +113,7 @@ export class ActiveEnquiryComponent implements OnInit {
 
 
   copyRecord(value){
-
+this.spinner.show();
     this.http
       .put(`${environment.apiUrl}/api/Enquiries/CloneEnquiry/`+value.id,{})
       .subscribe(res => {
@@ -122,19 +124,22 @@ export class ActiveEnquiryComponent implements OnInit {
           this.fetch((data) => {
             this.rows = data;
           });
-      
+this.spinner.hide();
+       
      
     
         }
         else {
           this.toastr.error(this.response.message, 'Message.');
+this.spinner.hide();
+       
         }
         // this.spinner.hide();
       }, err => {
         if (err.status == 400) {
           this.toastr.error(err.error.message, 'Message.');;
         }
-        //  this.spinner.hide();
+         this.spinner.hide();
       });
   }
 
@@ -156,6 +161,7 @@ export class ActiveEnquiryComponent implements OnInit {
       position: 'top',
     }).then((result) => {
       if (result.isConfirmed) {
+        this.spinner.show();
 
         this.http.delete(`${environment.apiUrl}/api/Enquiries/DeleteEnquiry/` + obj.id)
           .subscribe(
@@ -166,15 +172,20 @@ export class ActiveEnquiryComponent implements OnInit {
                 this.fetch((data) => {
                   this.rows = data;
                 });
+                this.spinner.hide();
 
               }
               else {
                 this.toastr.error('Something went Worng', 'Message.');
+this.spinner.hide();
+
               }
 
             }, err => {
               if (err.status == 400) {
                 this.toastr.error(this.response.message, 'Message.');
+this.spinner.hide();
+
               }
             });
 
@@ -208,6 +219,8 @@ export class ActiveEnquiryComponent implements OnInit {
     {
       obj.enquiryDate = ""
     }
+this.spinner.show();
+    
      this.http.put(`${environment.apiUrl}/api/Enquiries/CloneEnquiry/`+obj.id , varr )
           .subscribe(
             res => {
@@ -220,15 +233,22 @@ export class ActiveEnquiryComponent implements OnInit {
               this.fetch((data) => {
                 this.rows = data;
                  });
+this.spinner.hide();
+
                }
               else {
                 this.toastr.error(this.response.message, 'Message.');
+this.spinner.hide();
+
               }
     
             }, err => {
               if (err.status == 400) {
                 this.toastr.error(this.response.message, 'Message.');
+
               }
+this.spinner.hide();
+
             });
   
   
