@@ -16,9 +16,10 @@ export class TaxChallanComponent implements OnInit {
   seller: any=[];
   currency: any=[];
   data:any = {}
-  
+  count: number;
   columns: any
   response: any
+  taxFilter: any = {};
 
   rows = []
   constructor(
@@ -31,7 +32,10 @@ export class TaxChallanComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetch((data) => {
+      this.taxFilter = [...data];
+
       this.rows = data;
+      this.count = this.rows.length;
     });
 
   }
@@ -67,11 +71,19 @@ this.toastr.error(err.error.message, 'Message.');
   });
 }
 
-
+search(event) {
+  const val = event.target.value.toLowerCase();
+  const temp = this.taxFilter.filter(function (d) {
+    return (d.buyerNme.toLowerCase().indexOf(val) !== -1 || 
+    d.sellerName.toLowerCase().indexOf(val) !== -1 || 
+    !val);
+  });
+  this.rows = temp;
+}
 deleteChalan(row) {
   Swal.fire({
     title: GlobalConstants.deleteTitle, //'Are you sure?',
-    text: GlobalConstants.deleteMessage + 'Payment Receipt# ' + '"'  + '"',
+    text: GlobalConstants.deleteMessage ,
     icon: 'error',
     showCancelButton: true,
     confirmButtonColor: '#ed5565',
@@ -83,7 +95,7 @@ deleteChalan(row) {
   }).then((result) => {
     if (result.isConfirmed) {
 
-      this.http.delete(`${environment.apiUrl}​/api​/YarnContracts​/DeleteTaxChallan​/` + row.id )
+      this.http.delete(`${environment.apiUrl}/api/YarnContracts/DeleteTaxChallan/` + row.id )
         .subscribe(
           res => {
             this.response = res;

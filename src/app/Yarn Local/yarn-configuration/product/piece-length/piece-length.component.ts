@@ -28,7 +28,7 @@ export class PieceLengthComponent implements OnInit {
   copyData: any = [];
   currentDate = Date.now();
   countryFilter: any = [];
-  CountryUrl = '/api/Configs/GetAllCountry'
+  CountryUrl = '/api/YarnConfig/GetAllPieceLength'
 
   @ViewChild('myTable', { static: false }) table: DatatableComponent;
 
@@ -76,7 +76,7 @@ export class PieceLengthComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
 
-        this.http.delete(`${environment.apiUrl}/api/Configs/DeleteCountry/` + id.id)
+        this.http.delete(`${environment.apiUrl}/api/YarnConfig/DeletePieceLength/` + id.id)
           .subscribe(
             res => {
               this.response = res;
