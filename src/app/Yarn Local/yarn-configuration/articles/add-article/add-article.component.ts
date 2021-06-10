@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
 import { ServiceService } from 'src/app/shared/service.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-add-article',
@@ -22,6 +23,7 @@ export class AddArticleComponent implements OnInit {
 
   constructor(private http:HttpClient,
     private service: ServiceService,
+    private spinner: NgxSpinnerService,
     private toastr: ToastrService,
     private _NgbActiveModal: NgbActiveModal) { }
 
@@ -58,7 +60,7 @@ export class AddArticleComponent implements OnInit {
       "description": this.data.description,
       "active": this.active,
     }
-
+this.spinner.show();
     this.http.
     post(`${environment.apiUrl}/api/Configs/AddArticle`,varr)
     .subscribe(
@@ -71,15 +73,18 @@ export class AddArticleComponent implements OnInit {
           this.toastr.success(this.response.message, 'Message.');
           this.addAgentForm.reset();
           this.activeModal.close(this.obj);
+          this.spinner.hide();
         }
         else {
           this.toastr.error(this.response.message, 'Message.');
-            }
+        this.spinner.hide();   
+        }
 
       },(err: HttpErrorResponse) => {
         const messages = this.service.extractErrorMessagesFromErrorResponse(err);
         this.toastr.error(messages.toString(), 'Message.');
         console.log(messages);
+        this.spinner.hide();
         // if (err.status == 400) {
         //   this.toastr.error(this.response.message, 'Message.');
         // }

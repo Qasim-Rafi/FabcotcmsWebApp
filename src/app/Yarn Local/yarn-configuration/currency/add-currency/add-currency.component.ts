@@ -7,6 +7,7 @@ import { NgForm } from '@angular/forms';
 import { ServiceService } from 'src/app/shared/service.service';
 import { Dateformater } from 'src/app/shared/dateformater';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-add-currency',
@@ -19,6 +20,7 @@ export class AddCurrencyComponent implements OnInit {
   response: any;
   constructor(private http:HttpClient,
     private service: ServiceService,
+    private spinner: NgxSpinnerService,
     private toastr: ToastrService,
     private _NgbActiveModal: NgbActiveModal ) { }
 
@@ -45,7 +47,7 @@ export class AddCurrencyComponent implements OnInit {
       "rate": this.data.rate,
       "details": this.data.details
     }
-
+this.spinner.show();
     this.http.
     post(`${environment.apiUrl}/api/Configs/AddCurrencyRate`,varr)
     .subscribe(
@@ -57,18 +59,18 @@ export class AddCurrencyComponent implements OnInit {
       
           // this.buyerForm.reset();
           this.activeModal.close(true);
+          this.spinner.hide();
         }
         else {
           this.toastr.error('Something went Worng', 'Message.');
-            }
+        this.spinner.hide();    
+        }
 
       }, (err: HttpErrorResponse) => {
         const messages = this.service.extractErrorMessagesFromErrorResponse(err);
         this.toastr.error(messages.toString(), 'Message.');
         console.log(messages);
-        if (err.status == 400) {
-          this.toastr.error(this.response.message, 'Message.');
-        }
+        this.spinner.hide();
       });
   }
 // }

@@ -11,6 +11,7 @@ import { ServiceService } from 'src/app/shared/service.service';
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import { ClipboardService } from 'ngx-clipboard';
+import { NgxSpinnerService } from 'ngx-spinner';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -34,6 +35,7 @@ export class BankComponent implements OnInit {
   constructor(private http: HttpClient,
     private toastr: ToastrService,
     private _clipboardService: ClipboardService,
+    private spinner: NgxSpinnerService,
     private service:ServiceService,
     private modalService: NgbModal,) { }
 
@@ -74,7 +76,7 @@ export class BankComponent implements OnInit {
       position: 'top',
     }).then((result) => {
       if (result.isConfirmed) {
-
+this.spinner.show();
         this.http.delete(`${environment.apiUrl}/api/Configs/DeleteBank/` + id.id)
           .subscribe(
             res => {
@@ -85,15 +87,17 @@ export class BankComponent implements OnInit {
                   this.rows = data;
                   this.bankCount = this.rows.length;
                 } , this.bankUrl);
-
+this.spinner.hide();
               }
               else {
                 this.toastr.error('Something went Worng', 'Message.');
+              this.spinner.hide();
               }
 
             }, err => {
               if (err.status == 400) {
                 this.toastr.error(this.response.message, 'Message.');
+             this.spinner.hide();
               }
             });
 

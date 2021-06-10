@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
 import { ServiceService } from 'src/app/shared/service.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-add-bank',
@@ -18,6 +19,7 @@ export class AddBankComponent implements OnInit {
 
   constructor(private http:HttpClient,
     private service: ServiceService,
+    private spinner: NgxSpinnerService,
     private toastr: ToastrService,
     private _NgbActiveModal: NgbActiveModal) { }
 
@@ -48,7 +50,7 @@ export class AddBankComponent implements OnInit {
       "details":this.data.details,
      
     }
-
+this.spinner.show();
     this.http.
     post(`${environment.apiUrl}/api/Configs/AddBank`,varr)
     .subscribe(
@@ -60,9 +62,11 @@ export class AddBankComponent implements OnInit {
       
           // this.buyerForm.reset();
           this.activeModal.close(true);
+          this.spinner.hide();
         }
         else {
           this.toastr.success(this.response.message, 'Message.');
+          this.spinner.hide();
 
             }
 
@@ -70,6 +74,7 @@ export class AddBankComponent implements OnInit {
         const messages = this.service.extractErrorMessagesFromErrorResponse(err);
         this.toastr.error(messages.toString(), 'Message.');
         console.log(messages);
+        this.spinner.hide();
         // if (err.status == 400) {
         //   this.toastr.error(this.response.message, 'Message.');
         // }

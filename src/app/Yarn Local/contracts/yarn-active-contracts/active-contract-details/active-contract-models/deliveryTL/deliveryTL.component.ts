@@ -47,9 +47,8 @@ uomList : any = {};
   get activeModal() {
     return this._NgbActiveModal;
   }
- 
   getById() {
-    this.http.get(`${environment.apiUrl}/api​/YarnContracts​/GetContractDeliveryScheduleById​/`+ this.contractId )
+    this.http.get(`${environment.apiUrl}/api/YarnContracts/GetContractDeliveryScheduleId/`+ this.contractId )
       .subscribe(
         res => {
           this.response = res;
