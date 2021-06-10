@@ -42,7 +42,7 @@ export class DispatchRegisterComponent implements OnInit {
   }
 
   getDispatch() {
-    this.http.get(`${environment.apiUrl}` + this.dispatchId)
+    this.http.get(`${environment.apiUrl}/api/YarnContracts/GetDispatchRegisterById/` + this.dispatchId)
       .subscribe(
         res => {
           this.response = res;
@@ -62,16 +62,24 @@ export class DispatchRegisterComponent implements OnInit {
           }
         });
   }
+
+
+
+
   addDispatch(form:NgForm) {
-
-
 
     let varr = {
 
+      // "contractId":this.contractId, 
+      "number": this.data.number,
+      "date": this.data.date,
+      "quantity": this.data.quantity,
+      "uomId": this.data.uomId,
+      "remarks": this.data.remarks,
     }
 
     this.http.
-      post(`${environment.apiUrl}`, varr)
+      post(`${environment.apiUrl}/api/YarnContracts/AddDispatchRegister`, varr)
       .subscribe(
         res => {
 
@@ -93,13 +101,24 @@ export class DispatchRegisterComponent implements OnInit {
         });
 
   }
+
+
+
+
+
   updateDispatch() {
      this.data.dispatchDate = this.dateformater.toModel(this.data.dispatchDate);
     let varr = {
+      // "contractId":this.contractId, 
+      "number": this.data.number,
+      "date": this.data.date,
+      "quantity": this.data.quantity,
+      "uomId": this.data.uomId,
+      "remarks": this.data.remarks,
     }
 
     this.http.
-      put(`${environment.apiUrl}`, varr)
+      put(`${environment.apiUrl}/api/YarnContracts/UpdateDispatchRegister/` +this.dispatchId, varr)
       .subscribe(
         res => {
 

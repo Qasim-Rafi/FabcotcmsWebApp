@@ -88,7 +88,7 @@
 
                 <ngx-datatable-column name="Parent Buyer" [width]="80" prop="genericName">
                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                        {{row.genericName}}
+                        {{row.buyerName}}
                     </ng-template>
                 </ngx-datatable-column>
 
@@ -96,7 +96,7 @@
 
                 <ngx-datatable-column name="Parent Seller" [width]="80" prop="genericName">
                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                        {{row.genericName}}
+                        {{row.sellerName}}
                     </ng-template>
                 </ngx-datatable-column>
 
@@ -104,16 +104,16 @@
 
                 <ngx-datatable-column name="Payment Date" [width]="80" prop="genericName">
                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                        {{row.genericName}}
+                        {{row.paymentDate}}
                     </ng-template>
                 </ngx-datatable-column>
 
 
 
 
-                <ngx-datatable-column name="Amount" [width]="80" prop="genericName">
+                <ngx-datatable-column name="Amount" [width]="80" prop="amount">
                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                        {{row.genericName}}
+                        {{row.amount}}
                     </ng-template>
                 </ngx-datatable-column>
 
@@ -121,7 +121,7 @@
 
                 <ngx-datatable-column name="Pay Mode" [width]="80" prop="genericName">
                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                        {{row.genericName}}
+                        {{row.paymentMode}}
                     </ng-template>
                 </ngx-datatable-column>
 

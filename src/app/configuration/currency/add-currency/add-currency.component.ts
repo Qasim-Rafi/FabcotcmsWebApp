@@ -19,7 +19,6 @@ export class AddCurrencyComponent implements OnInit {
   response: any;
   constructor(private http: HttpClient,
     private service: ServiceService,
-
     private spinner: NgxSpinnerService,
     private toastr: ToastrService,
     private _NgbActiveModal: NgbActiveModal) { }
@@ -47,7 +46,7 @@ export class AddCurrencyComponent implements OnInit {
       "rate": this.data.rate,
       "details": this.data.details
     }
-
+this.spinner.show();
     this.http.
       post(`${environment.apiUrl}/api/Configs/AddCurrencyRate`, varr)
       .subscribe(

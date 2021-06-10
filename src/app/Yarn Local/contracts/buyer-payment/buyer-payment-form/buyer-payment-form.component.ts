@@ -4,7 +4,7 @@ import { ServiceService } from 'src/app/shared/service.service';
 import { environment } from 'src/environments/environment';
 import { HttpClient  , HttpErrorResponse} from '@angular/common/http';
 import { Dateformater } from 'src/app/shared/dateformater';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-buyer-payment-form',
   templateUrl: './buyer-payment-form.component.html',
@@ -28,6 +28,7 @@ export class BuyerPaymentFormComponent implements OnInit {
 
   constructor(
     private service: ServiceService,
+    private router: Router,
     private toastr: ToastrService,
     private http: HttpClient,
   ) { }
@@ -38,8 +39,12 @@ export class BuyerPaymentFormComponent implements OnInit {
     this.GetCurrencyDropdown();
     this.GetPaymentModeDropdown();
   }
+ 
 
 
+  navigateBuyerPaymentForm() {
+    this.router.navigate(['/yarn-local/buyer-payment']);
+ };
 
   GetBuyersDropdown() {
     this.service.getBuyers().subscribe(res => {
@@ -58,7 +63,7 @@ export class BuyerPaymentFormComponent implements OnInit {
 
 
   GetSellerDropdown() {
-    this.service.getBuyers().subscribe(res => {
+    this.service.getSellerLookup().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
 

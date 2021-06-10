@@ -118,7 +118,7 @@
                     <td>{{i.saleInvoiceNo}}</td>
                     <td>{{i.saleInvoiceDate}}</td>
                     <td>{{i.amount}}</td>
-                    <td>{{i.commission}}</td>
+                    <td>{{i.commission}}% </td>
                     <td>{{i.totalAmount}}</td>
 
                 </tr>
@@ -128,7 +128,7 @@
             <br>
             <div class="float-right">
                 <span class=" bold text-font1">
-                    Sub Total: <span class="text-font1 underline">{{rows.invoiceSubTotalAmount}}</span>
+                    Sub Total: <span class="text-font1 underline">{{totalAmount}}</span>
                 </span>
                 <br>
                 <span class=" bold text-font1">

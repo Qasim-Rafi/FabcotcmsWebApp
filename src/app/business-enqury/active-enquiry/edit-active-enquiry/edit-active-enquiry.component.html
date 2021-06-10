@@ -306,7 +306,7 @@
                                     <div class="form-group row">
                                         <label for="inputEmail3"
                                             class="col-md-3 col-form-label control-label">Currency</label>
-                                        <div class="col-md-6">
+                                        <div class="col-md-8 col-xl-6">
     
                                             <ng-select [(ngModel)]="enquiryData.currencyId" placeholder="-- Select --"
                                                 name="currencyId" #currencyId="ngModel">
@@ -338,32 +338,40 @@
     
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-md-3 col-form-label control-label">Payment Terms</label>
-                                        <div class="col-md-2">
-                                            <div class="input-group">
-                                                <ng-select [(ngModel)]="enquiryData.paymentTermId"
-                                                    placeholder="-- Select --" name="paymentTermId"
-                                                    #paymentTermId="ngModel">
-                                                    <ng-option *ngFor="let i of payment" [value]="i.id">{{ i.term }}
-                                                    </ng-option>
-                                                </ng-select>
+                                    
+                                        <div class="col-md-8 col-xl-6">
+                                            <div class="row">
+                                    
+                                                <div class="col-md-4">
+                                    
+                                                    <ng-select [(ngModel)]="enquiryData.paymentTermId" placeholder="-- Select --" name="paymentTermId"
+                                                        #paymentTermId="ngModel">
+                                                        <ng-option *ngFor="let i of payment" [value]="i.id">{{ i.term }}
+                                                        </ng-option>
+                                                    </ng-select>
+                                    
+                                                </div>
+                                    
+                                                <div class="col-md-4">
+                                                    <div class="input-group">
+                                                        <input class="form-control" type="number" min="0" [(ngModel)]="enquiryData.paymentTermDays"
+                                                            name="paymentTermDays" />
+                                                    </div>
+                                                </div>
+                                    
+                                                <div class="col-md-4">
+                                                    <input class="form-control" type="text" placeholder="Additional Information"
+                                                        [(ngModel)]="enquiryData.paymentTermInfo" name="paymentTermInfo" />
+                                                </div>
+
                                             </div>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <div class="input-group">
-                                                <input class="form-control" type="number" min="0"
-                                                    [(ngModel)]="enquiryData.paymentTermDays" name="paymentTermDays" />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input class="form-control" type="text" placeholder="Additional Information"
-                                                [(ngModel)]="enquiryData.paymentTermInfo" name="paymentTermInfo" />
                                         </div>
                                     </div>
     
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-md-3 col-form-label control-label">Price terms</label>
     
-                                        <div class="col-md-3">
+                                        <div class="col-md-4 col-xl-3">
     
                                             <ng-select [(ngModel)]="enquiryData.priceTermId" placeholder="-- Select --"
                                                 name="priceTermId" #priceTermId="ngModel">
@@ -373,7 +381,7 @@
     
                                         </div>
     
-                                        <div class="col-md-3">
+                                        <div class="col-md-4 col-xl-3">
     
                                             <ng-select [(ngModel)]="enquiryData.destinationId" placeholder="-- Select --"
                                                 name="destinationId" #destinationId="ngModel">
@@ -388,7 +396,7 @@
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-md-3 col-form-label control-label">Suppiler Commission</label>
     
-                                        <div class="col-md-6">
+                                        <div class="col-md-8 col-xl-6">
                                             <div class="row">
     
                                                 <div class="col-md-4">
@@ -427,7 +435,7 @@
                                     <div class="form-group row">
                                         <label for="code" class="col-md-3 col-form-label control-label">Buyer Commission</label>
     
-                                        <div class="col-md-6">
+                                        <div class="col-md-8 col-xl-6">
                                             <div class="row">
     
                                                 <div class="col-md-4">
@@ -515,7 +523,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-6">
+                                <div class="col-md-5 col-xl-6">
                                     <a class="faq-question ">{{obj.description}}</a>
                                     <div class="small mb-1"><span class="text_Navy">{{obj.colorName}}</span> {{ obj.compositionPercentage|number:'1.3'}}%
                                         {{obj.compositionFebricTypeName}}
@@ -528,7 +536,7 @@
                                     </div>
                                 </div>
             
-                                <div class="col-md-3">
+                                <div class="col-md-4 col-xl-3">
                                     <div class="ibox-tools">
                                         <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top"
                                             title="" data-original-title="Edit" (click)=" addQuotationform('addQuotation', obj ) ">

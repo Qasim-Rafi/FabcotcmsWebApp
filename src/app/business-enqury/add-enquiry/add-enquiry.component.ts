@@ -85,10 +85,11 @@ export class AddEnquiryComponent implements OnInit {
     private toastr: ToastrService,
     private modalService: NgbModal,
     private service: ServiceService,
+    private spinner: NgxSpinnerService,
     private router: Router,
     public datepipe: DatePipe,
  
-private spinner: NgxSpinnerService,
+
 
   ) {
     // this.today = this.datePipe.transform(this.myDates, 'dd-MM-yyyy');
@@ -570,7 +571,7 @@ private spinner: NgxSpinnerService,
         "departmentId": this.data.departmentId,
   
       }
-  
+  this.spinner.show();
       this.http.
         post(`${environment.apiUrl}/api/Enquiries/AddEnquiry`, varr)
         .subscribe(
@@ -582,18 +583,21 @@ private spinner: NgxSpinnerService,
               this.enquiryForm.reset();
                this.router.navigate(['/enquiry/edit-active-enquiries'], { queryParams: {id: this.response.data} });
               // this.router.navigate(['/enquiry/active-enquiries']);
-              this.spinner.hide();
+  this.spinner.hide();
+            
             }
             else {
               this.toastr.error(this.response.message, 'Message.');
-              this.spinner.hide();
+  this.spinner.hide();
+           
             }
   
           },(err: HttpErrorResponse) => {
             const messages = this.service.extractErrorMessagesFromErrorResponse(err);
             this.toastr.error(messages.toString(), 'Message.');
             console.log(messages);
-            this.spinner.hide();
+  this.spinner.hide();
+         
           });
     }
     

@@ -29,13 +29,13 @@
         <div class="row mb-3">
           <div class="col-md-6">
             <button type="button" class="btn btn-primary descBtn ml-sm-none ml-md-2">
-              <i class="fas fa-map fa-fw mr-2"></i>{{ countryCount }}
+              <i class="fas fa-map fa-fw mr-2"></i>{{ weaveCount }}
             </button>
             <span class="text-muted text2">Weaves</span>
           </div>
           <div class="col-md-6 mrg-tsm">
             <button type="button" class="btn btn-primary btn-sm float-right"
-              (click)="addCountryForm('add' , 'countryForm')">
+              (click)="addWeaveForm('add' , 'weaveForm')">
               <i class="fa fa-plus"></i> Add Weave
             </button>
           </div>
@@ -65,16 +65,16 @@
               <div class="html5buttons mrg-tsm">
                 <div class="dt-buttons btn-group btn-group-sm">
                   <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0"
-                    aria-controls="DataTables_Table_0" ngxClipboard (click)="copyCountryList()"><span>Copy</span>
+                    aria-controls="DataTables_Table_0" ngxClipboard (click)="copyWeaveList()"><span>Copy</span>
                   </a>
                   <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
-                    aria-controls="DataTables_Table_0" (click)="countryCsvFile()"><span>CSV</span></a>
+                    aria-controls="DataTables_Table_0" (click)="weaveCsvFile()"><span>CSV</span></a>
                   <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
-                    aria-controls="DataTables_Table_0" (click)="countryExcelFile()"><span>Excel</span></a>
+                    aria-controls="DataTables_Table_0" (click)="weaveExcelFile()"><span>Excel</span></a>
                   <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0"
-                    aria-controls="DataTables_Table_0" (click)="  countryPdf()"><span>PDF</span></a>
+                    aria-controls="DataTables_Table_0" (click)=" weavePdf()"><span>PDF</span></a>
                   <a class="btn btn-default buttons-print bg-white" tabindex="0" aria-controls="DataTables_Table_0"
-                    (click)="printCountryList()"><span>Print</span></a>
+                    (click)="printWeaveList()"><span>Print</span></a>
                 </div>
               </div>
             </div>
@@ -88,18 +88,18 @@
             [rowHeight]="'auto'" [limit]="6">
   
             <ngx-datatable-column name="S. No." [width]="80" prop="id" [flexGrow]="0.03">
-              <ng-template let-row="row" ngx-datatable-cell-template>
-                {{ row.id }}
+              <ng-template let-row="row"  let-rowIndex="rowIndex" ngx-datatable-cell-template>
+                {{ rowIndex+1 }}
               </ng-template>
             </ngx-datatable-column>
             <ngx-datatable-column name="Weave Name" [width]="80" prop="name" [flexGrow]="0.05">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                {{ row.name }}
+                {{ row.weaveName }}
               </ng-template>
             </ngx-datatable-column>
             <ngx-datatable-column name="Details" [width]="80" prop="details" [flexGrow]="0.06">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                {{ row.details }}
+                {{ row.description }}
               </ng-template>
             </ngx-datatable-column>
             <ngx-datatable-column name="Status" prop="status" [width]="80" [flexGrow]="0.06">
@@ -120,10 +120,10 @@
   
                 <div class="ibox-tools text-center">
                   <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top" title=""
-                    data-original-title="Edit" (click)="editCountryForm(row , 'edit' , 'countryForm')"><i
+                    data-original-title="Edit" (click)="editWeaveForm(row , 'edit' , 'weaveForm')"><i
                       class="far fa-edit"></i></button>
                   <button type="button" class="btn deleteIconBack" data-toggle="tooltip" data-placement="top" title=""
-                    data-original-title="Delete" (click)="deleteCountry(row)"><i class="far fa-trash-alt"></i></button>
+                    data-original-title="Delete" (click)="deleteWeave(row)"><i class="far fa-trash-alt"></i></button>
                 </div>
   
               </ng-template>

@@ -87,7 +87,7 @@ export class AddNewContractsComponent implements OnInit {
       this.response = res;
       if (this.response.success == true) {
 
-        this.buyer = this.response.data.list;
+        this.buyer = this.response.data;
         this.newBuyer = this.response.data.lastId
 
 
@@ -146,7 +146,7 @@ export class AddNewContractsComponent implements OnInit {
     this.service.getPriceTerm().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.priceterm = this.response.data.list;
+        this.priceterm = this.response.data;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -158,7 +158,7 @@ export class AddNewContractsComponent implements OnInit {
     this.service.getPackaging().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.packing = this.response.data.list;
+        this.packing = this.response.data;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -170,7 +170,7 @@ export class AddNewContractsComponent implements OnInit {
     this.service.getArticles().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.article = this.response.data.list;
+        this.article = this.response.data;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -275,11 +275,11 @@ export class AddNewContractsComponent implements OnInit {
           "contractRemarks": this.data.contractRemarks,
           "buyerRemarks": this.data.buyerRemarks,        
           "otherConditionRemarks": this.data.otherConditionRemarks,
-          "title": this.data.title,
+          "title": this.data.title, 
     }
 
     this.http.
-      post(`${environment.apiUrl}/api/Contracts/AddContract?`+'enquiryId='+this.objEnquiry+'&'+'departmentId ='+departmentId, varr)
+      post(`${environment.apiUrl}/api/Contracts/AddContract?`+'enquiryId='+this.objEnquiry+'&'+'departmentId='+departmentId, varr)
       .subscribe(
         res => {
 

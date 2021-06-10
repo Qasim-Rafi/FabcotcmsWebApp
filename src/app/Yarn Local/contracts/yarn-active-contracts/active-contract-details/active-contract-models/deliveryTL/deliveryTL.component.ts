@@ -119,10 +119,10 @@ uomList : any = {};
 
     let varr = {
       "contractId": this.contractId,
-  "supplierDate": this.dateformater.toModel(this.data.supplierDate),
-  "buyerDate": this.dateformater.toModel(this.data.buyerDate),
-  "quantity": this.data.quantity,
-  "quantityUOMId": this.data.quantityUomId,
+      "supplierDate": this.dateformater.toModel(this.data.supplierDate),
+      "buyerDate": this.dateformater.toModel(this.data.buyerDate),
+      "quantity": this.data.quantity,
+      "quantityUOMId": this.data.quantityUomId,
 
     }
 

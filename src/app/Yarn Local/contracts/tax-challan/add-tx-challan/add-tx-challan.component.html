@@ -97,8 +97,9 @@
                 
                                 <div class="col-md-8">
                 
-                                <ng-select name="sellerSideCommissionUOMId " placeholder="-- Select Buyer --">
-                                    <ng-option>
+                                    <ng-select name="buyerId" #buyerId="ngModel" class="input-w px-0" [(ngModel)]="data.buyerId"
+                                    placeholder="-- Select --">
+                                    <ng-option *ngFor="let i of buyer" [value]="i.id">{{ i.buyerName }}
                                     </ng-option>
                                 </ng-select>
                 
@@ -116,10 +117,11 @@
 
                                 <div class="col-md-8">
                                 
-                                    <ng-select name="sellerSideCommissionUOMId " placeholder="-- Select Supplier --">
-                                        <ng-option>
-                                        </ng-option>
-                                    </ng-select>
+                                    <ng-select name="sellerId" #sellerId="ngModel" class="input-w px-0" [(ngModel)]="data.sellerId"
+                                    placeholder="-- Select --">
+                                    <ng-option *ngFor="let i of seller" [value]="i.id">{{ i.sellerName }}
+                                    </ng-option>
+                                </ng-select>
                                 
                                     <small id="passwordHelpBlock" class="form-text text-lightgrey">
                                         Only Parent Supplier is available for selection
@@ -192,7 +194,7 @@
                     
                                                 <div class="col-md-8 mrg-sm1">
                     
-                                                    <input type="number" min="0" placeholder="Comm%" #cprNumber="ngModel"
+                                                    <input type="text"  placeholder="Comm%" #cprNumber="ngModel"
                                                     class="form-control" [(ngModel)]="data.cprNumber"
                                                     name="cprNumber">
                                                 </div>

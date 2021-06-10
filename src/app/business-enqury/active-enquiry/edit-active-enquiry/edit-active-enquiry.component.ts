@@ -14,7 +14,7 @@ import Swal from 'sweetalert2';
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import { StatusComponent } from 'src/app/shared/MODLES/status/status.component';
-import { NgxSpinnerService } from 'ngx-spinner';
+import {NgxSpinnerService} from 'ngx-spinner'
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 @Component({
   selector: 'app-edit-active-enquiry',
@@ -71,8 +71,9 @@ export class EditActiveEnquiryComponent implements OnInit {
     private http: HttpClient,
     private service: ServiceService,
     private toastr: ToastrService,
+    private spinner:NgxSpinnerService,
     private router: Router,
-    private spinner: NgxSpinnerService,
+
 
   ) { }
 
@@ -417,7 +418,7 @@ export class EditActiveEnquiryComponent implements OnInit {
       "packagingId": this.enquiryData.packagingId,
       "shipmentdates": this.enquiryData.shipmentdates
     }
-
+this.spinner.show();
     this.http.
       post(`${environment.apiUrl}/api/Enquiries/AddEnquiryBuyerDetail`, varr)
       .subscribe(
@@ -429,18 +430,21 @@ export class EditActiveEnquiryComponent implements OnInit {
             this.enquiryToggle = !this.enquiryToggle
             this.getEnquiryData(this.objEnquiry);
             // this.enquiryForm.reset();
-            this.spinner.hide();
+    this.spinner.hide();
+
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
-            this.spinner.hide();
+    this.spinner.hide();
+
           }
 
         }, (err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
-          this.spinner.hide();
+    this.spinner.hide();
+
         });
 
   }
@@ -465,6 +469,7 @@ export class EditActiveEnquiryComponent implements OnInit {
       "buyerSideCommissionUOMId": this.enquiryData.buyerSideCommissionUOMId,
       "buyerSideCommissionInfo": this.enquiryData.buyerSideCommissionInfo,
     }
+    this.spinner.show();
 
     this.http.
       post(`${environment.apiUrl}/api/Enquiries/AddEnquiryPaymentDetail`, varr)
@@ -478,18 +483,21 @@ export class EditActiveEnquiryComponent implements OnInit {
             this.currencyToggle = !this.currencyToggle
             this.getEnquiryData(this.objEnquiry);
             // this.enquiryForm.reset();
-            this.spinner.hide();
+    this.spinner.hide();
+
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
-            this.spinner.hide();
+    this.spinner.hide();
+
           }
 
         }, (err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
-          this.spinner.hide();
+    this.spinner.hide();
+
         });
   }
 
@@ -504,6 +512,7 @@ export class EditActiveEnquiryComponent implements OnInit {
       "costingDetail": this.enquiryData.costingDetail,
 
     }
+    this.spinner.show();
 
     this.http.
       post(`${environment.apiUrl}/api/Enquiries/AddEnquirySupplierDetail`, varr)
@@ -516,18 +525,21 @@ export class EditActiveEnquiryComponent implements OnInit {
             this.vendorToggle = !this.vendorToggle;
             this.getEnquiryData(this.objEnquiry);
             // this.enquiryForm.reset();
-            this.spinner.hide();
+    this.spinner.hide();
+
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
-            this.spinner.hide();
+    this.spinner.hide();
+
           }
 
         }, (err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
-          this.spinner.hide();
+    this.spinner.hide();
+
         });
   }
 
@@ -553,6 +565,7 @@ export class EditActiveEnquiryComponent implements OnInit {
       "confirmationDetails": this.enquiryData.confirmationDetails,
 
     }
+    this.spinner.show();
 
     this.http.
       post(`${environment.apiUrl}/api/Enquiries/AddEnquiryConfirmationDetail`, varr)
@@ -565,18 +578,21 @@ export class EditActiveEnquiryComponent implements OnInit {
             this.getEnquiryData(this.objEnquiry);
             this.orderToggle = !this.orderToggle;
             // this.enquiryForm.reset();
-            this.spinner.hide();
+    this.spinner.hide();
+
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
-            this.spinner.hide();
+    this.spinner.hide();
+
           }
 
         }, (err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
-          this.spinner.hide();
+    this.spinner.hide();
+
         });
   }
 
@@ -594,6 +610,7 @@ export class EditActiveEnquiryComponent implements OnInit {
       "certificateIds": this.enquiryData.certificateIds != null ? this.enquiryData.certificateIds.toString() : null,
 
     }
+    this.spinner.show();
 
     this.http.
       post(`${environment.apiUrl}/api/Enquiries/AddEnquiryAdditionalInfomation`, varr)
@@ -605,18 +622,21 @@ export class EditActiveEnquiryComponent implements OnInit {
             this.toastr.success(this.response.message, 'Message.');
             this.getEnquiryData(this.objEnquiry);
             // this.enquiryForm.reset();
-            this.spinner.hide();
+    this.spinner.hide();
+
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
-            this.spinner.hide();
+    this.spinner.hide();
+
           }
 
         }, (err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
-          this.spinner.hide();
+    this.spinner.hide();
+
         });
   }
 
@@ -759,6 +779,7 @@ export class EditActiveEnquiryComponent implements OnInit {
       position: 'top',
     }).then((result) => {
       if (result.isConfirmed) {
+        this.spinner.show();
 
         this.http.delete(`${environment.apiUrl}/api/Enquiries/DeleteEnquiryItem/` + obj.id)
           .subscribe(
@@ -768,15 +789,20 @@ export class EditActiveEnquiryComponent implements OnInit {
                 this.toastr.error(this.response.message, 'Message.');
                 // this.getAllEnquiryItems();
                 this.getEnquiryData(this.objEnquiry);
+                this.spinner.hide();
 
               }
               else {
                 this.toastr.error(this.response.message, 'Message.');
+    this.spinner.hide();
+
               }
 
             }, err => {
               if (err.status == 400) {
                 this.toastr.error(this.response.message, 'Message.');
+    this.spinner.hide();
+
               }
             });
 
@@ -801,6 +827,7 @@ export class EditActiveEnquiryComponent implements OnInit {
       position: 'top',
     }).then((result) => {
       if (result.isConfirmed) {
+        this.spinner.hide();
 
         this.http.delete(`${environment.apiUrl}/api/Enquiries/DeleteVendorQuotation/` + obj.id)
           .subscribe(
@@ -810,15 +837,21 @@ export class EditActiveEnquiryComponent implements OnInit {
                 this.toastr.error(this.response.message, 'Message.');
                 // this.getAllEnquiryItems();
                 this.getEnquiryData(this.objEnquiry);
+    this.spinner.hide();
+
 
               }
               else {
                 this.toastr.error(this.response.message, 'Message.');
+    this.spinner.hide();
+
               }
 
             }, err => {
               if (err.status == 400) {
                 this.toastr.error(this.response.message, 'Message.');
+    this.spinner.hide();
+
               }
             });
       }
@@ -840,6 +873,8 @@ export class EditActiveEnquiryComponent implements OnInit {
       position: 'top',
     }).then((result) => {
       if (result.isConfirmed) {
+    this.spinner.show();
+
         this.http.delete(`${environment.apiUrl}/api/Enquiries/DeleteEnquiryNote/` + obj.id)
           .subscribe(
             res => {
@@ -852,15 +887,20 @@ export class EditActiveEnquiryComponent implements OnInit {
                   // this.listCount= this.rows.length;
                 });
                 this.getEnquiryData(this.objEnquiry);
+                this.spinner.hide();
 
               }
               else {
                 this.toastr.error(this.response.message, 'Message.');
+    this.spinner.hide();
+
               }
 
             }, err => {
               if (err.status == 400) {
                 this.toastr.error(this.response.message, 'Message.');
+    this.spinner.hide();
+
               }
             });
       }
@@ -1038,127 +1078,127 @@ export class EditActiveEnquiryComponent implements OnInit {
     let docDefinition = {
       pageSize: 'A4',
       pageOrientation: 'landscape',
-      pageMargins: [10, 40, 10, 0],
+      pageMargins: [ 10, 40, 10, 0 ],
       info: {
         title: 'Enquiry Preview'
       },
       content: [
-        {
-
+             {
+         
           table: {
             headerRows: 1,
             widths: ['100%'],
             body: [
-              [{
-                style: 'heading',
-                text: 'FABCOT ENQUIRY SHEET'
-              }],
-            ]
-
-          }
-
-        },
-
-        {
-          style: 'commonTable',
-          table: {
-            headerRows: 1,
-            widths: ['25%', '25%', '25%', '25%'],
-            body: [
-              [
-                { style: 'propertyName', text: 'Date' },
-                { style: 'propertyValue', text: this.enquiryData['enquiryDate'] },
-                { style: 'propertyName', text: 'Enquiry#' },
-                { style: 'propertyValue', text: this.enquiryData['autoEnquiryNumber'] },
+            [{
+              style: 'heading',
+              text: 'FABCOT ENQUIRY SHEET'
+            }],
               ]
-            ]
+           
           }
+
         },
 
         {
           style: 'commonTable',
           table: {
             headerRows: 1,
-            widths: ['13%', '20%', '13%', '20%', '13%', '21%'],
+            widths: ['25%' , '25%' , '25%' , '25%' ],
             body: [
-              [
-                { style: 'propertyName', text: 'Article' },
-                { style: 'propertyValue', text: this.enquiryData['articleName'] },
-                { style: 'propertyName', text: 'Process' },
-                { style: 'propertyValue', text: this.enquiryData['processName'] },
-                { style: 'propertyName', text: 'Process Type' },
-                { style: 'propertyValue', text: this.enquiryData['processTypeName'] },
-              ]
-            ]
-          }
+           [
+              { style:'propertyName' ,text: 'Date' } , 
+          {  style:'propertyValue', text : this.enquiryData['enquiryDate']},
+          {  style:'propertyName',text: 'Enquiry#' } , 
+          {  style:'propertyValue', text : this.enquiryData['autoEnquiryNumber']},
+           ]
+          ]
+            }
+        },
+
+        {
+          style: 'commonTable',
+          table: {
+            headerRows: 1,
+            widths: ['13%' , '20%' , '13%' , '20%' , '13%', '21%'],
+            body: [
+           [
+              { style:'propertyName' ,text: 'Article' } , 
+          {  style:'propertyValue', text : this.enquiryData['articleName']},
+          {  style:'propertyName',text: 'Process' } , 
+          {  style:'propertyValue', text : this.enquiryData['processName']},
+          {  style:'propertyName',text: 'Process Type' } , 
+          {  style:'propertyValue', text : this.enquiryData['processTypeName']},
+           ]
+          ]
+            }
         },
         {
           style: 'commonTable',
           table: {
             headerRows: 1,
-            widths: ['20%', '30%', '20%', '30%'],
+            widths: ['20%' , '30%' , '20%' , '30%' ],
             body: [
-              [
-                { style: 'propertyName', text: 'Design Type' },
-                { style: 'propertyValue', text: this.enquiryData['designTypeName'] },
-                { style: 'propertyName', text: 'Packaging' },
-                { style: 'propertyValue', text: this.enquiryData['packagingName'] },
-              ]
-            ]
-          }
+           [
+              { style:'propertyName' ,text: 'Design Type' } , 
+          {  style:'propertyValue', text : this.enquiryData['designTypeName']},
+          {  style:'propertyName',text: 'Packaging' } , 
+          {  style:'propertyValue', text : this.enquiryData['packagingName']},
+           ]
+          ]
+            }
         },
         {
           style: 'commonTable',
           table: {
             headerRows: 1,
-            widths: ['20%', '30%', '20%', '30%'],
+            widths: ['20%' , '30%' , '20%' , '30%' ],
             body: [
-              [
-                { style: 'propertyName', text: 'Shipment' },
-                { style: 'propertyValue', text: this.enquiryData['shipmentdates'] },
-                { style: 'propertyName', text: 'Payment Terms' },
-                { style: 'propertyValue', text: this.enquiryData['paymentTermName'] },
-              ]
-            ]
-          }
+           [
+              { style:'propertyName' ,text: 'Shipment' } , 
+          {  style:'propertyValue', text : this.enquiryData['shipmentdates']},
+          {  style:'propertyName',text: 'Payment Terms' } , 
+          {  style:'propertyValue', text : this.enquiryData['paymentTermName']},
+           ]
+          ]
+            }
         },
         {
           style: 'commonTable',
           table: {
             headerRows: 1,
-            widths: ['20%', '15%', '20%', '45%'],
+            widths: ['20%' , '15%' , '20%' , '45%' ],
             body: [
-
-              { style: 'propertyName', text: 'Shipment' },
-              { style: 'propertyValue', text: this.enquiryData['paymentTermDays'] },
-              { style: 'propertyName', text: 'Payment Terms' },
-              { style: 'propertyValue', text: this.enquiryData['paymentTermName'] },
-
-            ]
-          }
+           
+              { style:'propertyName' ,text: 'Shipment' } , 
+          {  style:'propertyValue', text : this.enquiryData['paymentTermDays']},
+          {  style:'propertyName',text: 'Payment Terms' } , 
+          {  style:'propertyValue', text : this.enquiryData['paymentTermName']},
+           
+          ]
+            }
         },
-
+        
         {
-          margin: [0, -10, 0, 0],
-          table: {
-            headerRows: 1,
-            widths: ['15%', '30%', '15%', '10%', '5%', '5%', '10%', '10%'],
-            body: [
-              [{ text: 'Description', style: 'tableheader', }, { text: 'Composition & Construction', style: 'tableheader' },
-              { text: 'Color', style: 'tableheader' }, { text: 'Quantity', style: 'tableheader' }
-                , { text: 'Gsm', style: 'tableheader' }, { text: 'Size', style: 'tableheader' },
-              { text: 'Loom Type', style: 'tableheader' }, { text: 'Seller', style: 'tableheader' }
-              ],
-              // [ 'Value 1', 'Value 2', 'Value 3', 'Value 4' , '5' , '6' , '7' , '8' ]
-              ...this.enquiryData['enquiryItemList'].map((row =>
-                [row.description, row.construction, row.colorName,
-                row.itemQuantity, row.weight, row.size, row.loomTypeName, row.createdByName]
-              ))
-
+          margin: [0 , -10 , 0 , 0],
+          table:{
+            headerRows:1,
+            widths: [ '15%' , '30%' , '15%' , '10%' , '5%' , '5%' , '10%' , '10%' ],
+            body:[
+              [ {text:'Description' , style: 'tableheader' , }, {text:'Composition & Construction' , style: 'tableheader'},
+               {text:'Color' , style: 'tableheader'}, {text:'Quantity' , style: 'tableheader'} 
+              ,{text:'Gsm' , style: 'tableheader'} , {text:'Size' , style: 'tableheader'}, 
+              {text:'Loom Type' , style: 'tableheader'}, {text:'Seller', style: 'tableheader'}
+            ],
+      // [ 'Value 1', 'Value 2', 'Value 3', 'Value 4' , '5' , '6' , '7' , '8' ]
+      ...this.enquiryData['enquiryItemList'].map((row=>
+        [row.description, row.construction, row.colorName,
+          row.itemQuantity, row.weight , row.size , row.loomTypeName , row.createdByName]
+        ))
+    
             ]
           }
         }
-
+        
       ],
       styles: {
         heading: {
@@ -1167,21 +1207,21 @@ export class EditActiveEnquiryComponent implements OnInit {
           bold: true,
           color: '#4d4b4b',
           alignment: 'center',
-          margin: 4
+          margin : 4
+         },
+        commonTable:{
+          margin: [0 , 25 , 0 , 0]     
         },
-        commonTable: {
-          margin: [0, 25, 0, 0]
-        },
-        propertyName: {
+        propertyName:{
           alignment: 'center',
-          bold: true,
-          fontSize: 10,
-          margin: 2
+           bold:true,
+           fontSize: 10,
+           margin:2
         },
-        propertyValue: {
-          alignment: 'center',
+        propertyValue:{
+          alignment: 'center',  
           fontSize: 10,
-          margin: 2
+          margin:2
 
         },
         tableheader: {
@@ -1190,9 +1230,9 @@ export class EditActiveEnquiryComponent implements OnInit {
           bold: true,
           color: '#4d4b4b',
           alignment: 'center',
-          margin: 8
-
-        }
+          margin:8
+        
+         }
       }
     };
     pdfMake.createPdf(docDefinition).print();
@@ -1215,47 +1255,50 @@ export class EditActiveEnquiryComponent implements OnInit {
     //   position: 'top',
     // }).then((result) => {
     //   if (result.isConfirmed) {
-    this.spinner.show();
-    this.enquiryData.followUpDate = this.dateformater.toModel(this.enquiryData.followUpDate);
+        this.enquiryData.followUpDate = this.dateformater.toModel(this.enquiryData.followUpDate);
 
-    let varr = {
+        let varr = {
 
-      "enquiryId": this.objEnquiry,
-      "followUpDate": this.enquiryData.followUpDate,
+          "enquiryId": this.objEnquiry,
+          "followUpDate":this.enquiryData.followUpDate,
+        
+        }
+this.spinner.show();
+    
+        this.http.
+          post(`${environment.apiUrl}/api/Enquiries/AddEnquiryFollowUp`, varr)
+          .subscribe(
+            res => {
+    
+              this.response = res;
+              if (this.response.success == true) {
+                this.toastr.success(this.response.message, 'Message.');
+                this.getEnquiryData(this.objEnquiry);
+this.spinner.hide();
 
-    }
+              }
+              else {
+                this.toastr.error(this.response.message, 'Message.');
+this.spinner.hide();
 
-    this.http.
-      post(`${environment.apiUrl}/api/Enquiries/AddEnquiryFollowUp`, varr)
-      .subscribe(
-        res => {
+              }
+    
+            }, err => {
+              if (err.status == 400) {
+                this.toastr.error(this.response.message, 'Message.');
+this.spinner.hide();
 
-          this.response = res;
-          if (this.response.success == true) {
-            this.toastr.success(this.response.message, 'Message.');
-            this.getEnquiryData(this.objEnquiry);
-            this.spinner.hide();
-          }
-          else {
-            this.toastr.error(this.response.message, 'Message.');
-            this.spinner.hide();
-          }
+              }
+            });
 
-        }, err => {
-          if (err.status == 400) {
-            this.toastr.error(this.response.message, 'Message.');
-            this.spinner.hide();
-          }
-        });
+      }
+    // }
+    // )
 
-  }
   // }
-  // )
-
-  // }
 
 
-
+  
 
   deleteReminder(objReminder) {
     Swal.fire({
@@ -1271,23 +1314,31 @@ export class EditActiveEnquiryComponent implements OnInit {
       position: 'top',
     }).then((result) => {
       if (result.isConfirmed) {
+this.spinner.show();
+
         this.http.
-          delete(`${environment.apiUrl}/api/Enquiries/DeleteEnquiryFollowUp/` + objReminder.id)
+          delete(`${environment.apiUrl}/api/Enquiries/DeleteEnquiryFollowUp/`+ objReminder.id )
           .subscribe(
             res => {
-
+    
               this.response = res;
               if (this.response.success == true) {
                 this.toastr.error(this.response.message, 'Message.');
                 this.getEnquiryData(this.objEnquiry);
+this.spinner.hide();
+
               }
               else {
                 this.toastr.error(this.response.message, 'Message.');
-              }
+this.spinner.hide();
 
+              }
+    
             }, err => {
               if (err.status == 400) {
                 this.toastr.error(this.response.message, 'Message.');
+this.spinner.hide();
+
               }
             });
 
@@ -1298,14 +1349,15 @@ export class EditActiveEnquiryComponent implements OnInit {
 
 
   GenerateContract() {
-    this.spinner.show();
-    let departmentId = localStorage.getItem('loggedInDepartmentId')
+    let departmentId=localStorage.getItem('loggedInDepartmentId')
     let varr = {
       // "enquiryId": this.objEnquiry,
 
     }
+this.spinner.show();
+
     this.http.
-      post(`${environment.apiUrl}/api/Contracts/AddContract?` + 'enquiryId=' + this.objEnquiry + '&' + 'departmentId =' + departmentId, varr)
+      post(`${environment.apiUrl}/api/Contracts/AddContract?`+'enquiryId='+this.objEnquiry+'&'+'departmentId ='+departmentId, varr)
       .subscribe(
         res => {
 
@@ -1313,19 +1365,22 @@ export class EditActiveEnquiryComponent implements OnInit {
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
             // this.router.navigate(['/contract/active-contract']);
-            this.router.navigate(['/contract/active-contract-details'], { queryParams: { id: this.response.data } });
+           this.router.navigate(['/contract/active-contract-details'], { queryParams: {id: this.response.data} });
+            
+           this.spinner.hide();
 
-            this.spinner.hide();
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
-            this.spinner.hide();
+this.spinner.hide();
+
           }
 
         }, err => {
           if (err.status == 400) {
             this.toastr.error(this.response.message, 'Message.');
-            this.spinner.hide();
+this.spinner.hide();
+
           }
         });
   }
@@ -1334,7 +1389,7 @@ export class EditActiveEnquiryComponent implements OnInit {
 
 
 
-  statusform(status, action, component) {
+  statusform(status,action,component) {
     const modalRef = this.modalService.open(StatusComponent, { centered: true });
     // modalRef.componentInstance.parentBuyerId = popup.id;
     modalRef.componentInstance.EnquiryId = this.objEnquiry;
@@ -1356,38 +1411,42 @@ export class EditActiveEnquiryComponent implements OnInit {
 
 
 
-  statusOpen() {
-    this.spinner.show();
+  statusOpen()
+  { 
     let varr = {
-
-      "reason": "Open",
+    
+      "reason":"Open",
       "enquiryId": this.objEnquiry,
       "status": "Open"
     }
-
+this.spinner.show();
+    
     this.http.
-      put(`${environment.apiUrl}/api/Enquiries/UpdateEnquiryStatus`, varr)
-      .subscribe(
-        res => {
+    put(`${environment.apiUrl}/api/Enquiries/UpdateEnquiryStatus`, varr)
+    .subscribe(
+      res=> { 
+  
+        this.response = res;
+        if (this.response.success == true){
+          this.toastr.success(this.response.message, 'Message.');
+        this.getEnquiryData(this.objEnquiry);
+        this.spinner.hide();
 
-          this.response = res;
-          if (this.response.success == true) {
-            this.toastr.success(this.response.message, 'Message.');
-            this.getEnquiryData(this.objEnquiry);
+       
+        }
+        else {
+          this.toastr.error('Something went Worng', 'Message.');
+this.spinner.hide();
+           
+        }
 
-            this.spinner.hide();
-          }
-          else {
-            this.toastr.error('Something went Worng', 'Message.');
-            this.spinner.hide();
-          }
+      }, err => {
+        if (err.status == 400) {
+          this.toastr.error('Something went Worng', 'Message.');
+this.spinner.hide();
 
-        }, err => {
-          if (err.status == 400) {
-            this.toastr.error('Something went Worng', 'Message.');
-            this.spinner.hide();
-          }
-        });
+        }
+      });
   }
 
 

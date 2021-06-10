@@ -30,9 +30,9 @@ export class OnholdEnquiryComponent implements OnInit {
     private service: ServiceService,
     private router: Router,
     private _clipboardService: ClipboardService,
+    private spinner : NgxSpinnerService,
     private toastr: ToastrService,
     private http: HttpClient,
-    private spinner: NgxSpinnerService,
   ) { 
     
   }
@@ -93,6 +93,7 @@ export class OnholdEnquiryComponent implements OnInit {
       position: 'top',
     }).then((result) => {
       if (result.isConfirmed) {
+        this.spinner.show();
 
         this.spinner.show();
         this.http.delete(`${environment.apiUrl}/api/Enquiries/DeleteEnquiry/` + obj.id)
@@ -103,21 +104,23 @@ export class OnholdEnquiryComponent implements OnInit {
                 this.toastr.error(this.response.message, 'Message.');
                 this.fetch((data) => {
                   this.rows = data;
+      this.spinner.hide();
+
                 });
 
                 this.spinner.hide();
               }
               else {          
               this.toastr.error(this.response.message, 'Message.');
-              
- this.spinner.hide();
-              }
+      this.spinner.hide();
+             
+            }
 
             }, err => {
               if (err.status == 400) {
                 this.toastr.error(this.response.message, 'Message.');
-                
- this.spinner.hide();
+      this.spinner.hide();
+             
               }
             });
 
@@ -144,6 +147,7 @@ export class OnholdEnquiryComponent implements OnInit {
       "priceTermName":obj.priceTermName
     
     }
+    this.spinner.show();
      this.http.put(`${environment.apiUrl}/api/Enquiries/CloneEnquiry/`+obj.id , varr )
           .subscribe(
             res => {
@@ -155,21 +159,20 @@ export class OnholdEnquiryComponent implements OnInit {
               this.toastr.success(this.response.message, 'Message.');
               this.fetch((data) => {
                 this.rows = data;
-                 });
-                 
- this.spinner.hide();
+              this.spinner.hide(); 
+              });
                }
               else {
                 this.toastr.error(this.response.message, 'Message.');
-                
- this.spinner.hide();
+                this.spinner.hide(); 
+             
               }
     
             }, err => {
               if (err.status == 400) {
                 this.toastr.error(this.response.message, 'Message.');
-                
- this.spinner.hide();
+                this.spinner.hide(); 
+             
               }
             });
   
