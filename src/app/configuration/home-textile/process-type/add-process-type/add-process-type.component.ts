@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
 import { ServiceService } from 'src/app/shared/service.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-add-process-type',
@@ -20,6 +21,7 @@ export class AddProcessTypeComponent implements OnInit {
   constructor(private http:HttpClient,
     private service: ServiceService,
     private toastr: ToastrService,
+    private spinner: NgxSpinnerService,
     private _NgbActiveModal: NgbActiveModal) { }
 
   ngOnInit(): void {
@@ -37,6 +39,7 @@ export class AddProcessTypeComponent implements OnInit {
     //   this.toastr.error("Invalid Form", 'Message.');
     // }
     // else{
+      this.spinner.show();
     let varr=  {
       "type": this.data.type,
       "description": this.data.description,
@@ -56,17 +59,21 @@ export class AddProcessTypeComponent implements OnInit {
       
           // this.buyerForm.reset();
           this.activeModal.close(this.obj);
+          this.spinner.hide();
         }
         else {
           this.toastr.error(this.response.message, 'Message.');
+          this.spinner.hide();
             }
 
       }, (err: HttpErrorResponse) => {
         const messages = this.service.extractErrorMessagesFromErrorResponse(err);
         this.toastr.error(messages.toString(), 'Message.');
         console.log(messages);
+        this.spinner.hide();
         if (err.status == 400) {
           this.toastr.error(this.response.message, 'Message.');
+          this.spinner.hide();
         }
       });
   }

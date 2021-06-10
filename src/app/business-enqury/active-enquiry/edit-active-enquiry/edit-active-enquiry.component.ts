@@ -54,12 +54,12 @@ export class EditActiveEnquiryComponent implements OnInit {
   buyerDetails: any = [];
   vendorSeller: any = [];
   certificate: any = [];
-  confirmOn:string;
-  showConfirmOn:string;
+  confirmOn: string;
+  showConfirmOn: string;
   noteFilter: any = [];
   noteList: any = {};
-  totalComplete:any;
-  userName: any ; 
+  totalComplete: any;
+  userName: any;
   // entries: any = [];
 
 
@@ -74,36 +74,37 @@ export class EditActiveEnquiryComponent implements OnInit {
     private spinner:NgxSpinnerService,
     private router: Router,
 
+
   ) { }
 
   ngOnInit(): void {
-    
-
-      this.userName=localStorage.getItem('loggedInUserName');
-      this.queryParems = this.route.snapshot.queryParams;
-      this.objEnquiry = this.queryParems.id;
-      // this.enquiryId = this.objEnquiry;
-      this.GetArticlesDropdown();
-      this.GetBuyersDropdown();
-      this.GetProcessDropdown();
-      this.GetProcessTypeDropdown();
-      this.GetDesignDropdown();
-      this.GetPackingDropdown();
-      this.GetUOMDropdown();
-      this.GetCurrencyDropdown();
-      this.GetPaymentDropdown();
-      this.GetPriceDropdown();
-      this.GetCityDropdown();
-      this.GetCertificateDropdown();
-      this.GetVendorSellerDropdown();
-      this.getEnquiryData(this.objEnquiry);
 
 
-      this.fetch((NotesData) => {
-        this.rows1 = NotesData;
-        this.noteFilter = [...NotesData];
-        // this.listCount= this.rows.length;
-      });
+    this.userName = localStorage.getItem('loggedInUserName');
+    this.queryParems = this.route.snapshot.queryParams;
+    this.objEnquiry = this.queryParems.id;
+    // this.enquiryId = this.objEnquiry;
+    this.GetArticlesDropdown();
+    this.GetBuyersDropdown();
+    this.GetProcessDropdown();
+    this.GetProcessTypeDropdown();
+    this.GetDesignDropdown();
+    this.GetPackingDropdown();
+    this.GetUOMDropdown();
+    this.GetCurrencyDropdown();
+    this.GetPaymentDropdown();
+    this.GetPriceDropdown();
+    this.GetCityDropdown();
+    this.GetCertificateDropdown();
+    this.GetVendorSellerDropdown();
+    this.getEnquiryData(this.objEnquiry);
+
+
+    this.fetch((NotesData) => {
+      this.rows1 = NotesData;
+      this.noteFilter = [...NotesData];
+      // this.listCount= this.rows.length;
+    });
 
   }
 
@@ -126,11 +127,11 @@ export class EditActiveEnquiryComponent implements OnInit {
 
     const temp = this.noteFilter.filter(function (d) {
       return (
-      d.description.toLowerCase().indexOf(val) !== -1 ||
-      d.createdByName.toLowerCase().indexOf(val) !== -1 ||
-      d.createdDateTime.toLowerCase().indexOf(val) !== -1 ||
-      d.title.toLowerCase().indexOf(val) !== -1 ||
-       !val);
+        d.description.toLowerCase().indexOf(val) !== -1 ||
+        d.createdByName.toLowerCase().indexOf(val) !== -1 ||
+        d.createdDateTime.toLowerCase().indexOf(val) !== -1 ||
+        d.title.toLowerCase().indexOf(val) !== -1 ||
+        !val);
     });
     this.rows1 = temp;
 
@@ -144,39 +145,36 @@ export class EditActiveEnquiryComponent implements OnInit {
           this.response = res;
           if (this.response.success == true) {
             this.enquiryData = this.response.data;
-                this.showConfirmOn = this.enquiryData.confirmationDate;
-                
+            this.showConfirmOn = this.enquiryData.confirmationDate;
+
             this.enquiryData.confirmationDate = this.dateformater.fromModel(this.enquiryData.confirmationDate);
             // this.enquiryData.enquiryDate = this.dateformater.fromModel(this.enquiryData.enquiryDate);
-             
-             if( this.enquiryData.confirmationDate.year == 1 )
-                {
-                  this.confirmOn = "";
-                  this.showConfirmOn = "";
-                }
-                else{
-                  this.confirmOn = this.enquiryData.confirmationDate;
-                }
-            
-                
-    
-            if(this.enquiryData.totalQuantity == 0)
-            {
-              this.enquiryData.totalQuantity = null; 
+
+            if (this.enquiryData.confirmationDate.year == 1) {
+              this.confirmOn = "";
+              this.showConfirmOn = "";
+            }
+            else {
+              this.confirmOn = this.enquiryData.confirmationDate;
+            }
+
+
+
+            if (this.enquiryData.totalQuantity == 0) {
+              this.enquiryData.totalQuantity = null;
             }
 
             //  console.log("enquiry Data" , this.enquiryData)
-            if(this.enquiryData.totalQuantity == 0)
-            {
+            if (this.enquiryData.totalQuantity == 0) {
               this.enquiryData.totalQuantity = "";
             }
             this.temp = [...this.enquiryData.enquiryItemList];
-         
+
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
           }
- 
+
         }, err => {
           if (err.status == 400) {
             this.toastr.error(this.response.message, 'Message.');
@@ -184,55 +182,53 @@ export class EditActiveEnquiryComponent implements OnInit {
         });
   }
 
-  
+
   fetch(cb) {
-    
+
     this.http
-    .get(`${environment.apiUrl}/api/Enquiries/GetAllEnquiryNote/` + this.objEnquiry)
-    .subscribe(res => {
-      this.response = res;
-     
-    if(this.response.success==true)
-    {
-    this.noteList =this.response.data;
-    this.noteFilter = [this.noteList]; 
-    cb(this.noteList);
-    }
-    else{
-      this.toastr.error(this.response.message, 'Message.');
-    }
-      // this.spinner.hide();
-    }, err => {
-      if ( err.status == 400) {
- this.toastr.error(err.error.message, 'Message.');
-      }
-    //  this.spinner.hide();
-    });
+      .get(`${environment.apiUrl}/api/Enquiries/GetAllEnquiryNote/` + this.objEnquiry)
+      .subscribe(res => {
+        this.response = res;
+
+        if (this.response.success == true) {
+          this.noteList = this.response.data;
+          this.noteFilter = [this.noteList];
+          cb(this.noteList);
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+        // this.spinner.hide();
+      }, err => {
+        if (err.status == 400) {
+          this.toastr.error(err.error.message, 'Message.');
+        }
+        //  this.spinner.hide();
+      });
   }
 
 
-  fetch2( obj) {
-    
+  fetch2(obj) {
+
     this.http
-    .get(`${environment.apiUrl}/api/Enquiries/GetAllVendorQuotation/` + obj.id)
-    .subscribe(res => {
-      this.response = res;
-     
-    if(this.response.success==true)
-    {
-    this.data =this.response.data;
-    this.rows = this.data
-    }
-    else{
-      this.toastr.error(this.response.message, 'Message.');
-    }
-      // this.spinner.hide();
-    }, err => {
-      if ( err.status == 400) {
- this.toastr.error(err.error.message, 'Message.');
-      }
-    //  this.spinner.hide();
-    });
+      .get(`${environment.apiUrl}/api/Enquiries/GetAllVendorQuotation/` + obj.id)
+      .subscribe(res => {
+        this.response = res;
+
+        if (this.response.success == true) {
+          this.data = this.response.data;
+          this.rows = this.data
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+        // this.spinner.hide();
+      }, err => {
+        if (err.status == 400) {
+          this.toastr.error(err.error.message, 'Message.');
+        }
+        //  this.spinner.hide();
+      });
   }
 
 
@@ -307,7 +303,7 @@ export class EditActiveEnquiryComponent implements OnInit {
   }
 
   GetPackingDropdown() {
-    this.service. getPackaging().subscribe(res => {
+    this.service.getPackaging().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
         this.packing = this.response.data;
@@ -319,7 +315,7 @@ export class EditActiveEnquiryComponent implements OnInit {
   }
 
   GetUOMDropdown() {
-    this.service. getUOM().subscribe(res => {
+    this.service.getUOM().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
         this.uom = this.response.data;
@@ -331,7 +327,7 @@ export class EditActiveEnquiryComponent implements OnInit {
   }
 
   GetCurrencyDropdown() {
-    this.service. getCurrencyType().subscribe(res => {
+    this.service.getCurrencyType().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
         this.currency = this.response.data;
@@ -344,7 +340,7 @@ export class EditActiveEnquiryComponent implements OnInit {
 
 
   GetPaymentDropdown() {
-    this.service. getPaymentTerm().subscribe(res => {
+    this.service.getPaymentTerm().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
         this.payment = this.response.data;
@@ -356,7 +352,7 @@ export class EditActiveEnquiryComponent implements OnInit {
   }
 
   GetPriceDropdown() {
-    this.service. getPriceTerm().subscribe(res => {
+    this.service.getPriceTerm().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
         this.price = this.response.data;
@@ -368,7 +364,7 @@ export class EditActiveEnquiryComponent implements OnInit {
   }
 
   GetCityDropdown() {
-    this.service. getCity().subscribe(res => {
+    this.service.getCity().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
         this.city = this.response.data;
@@ -380,11 +376,11 @@ export class EditActiveEnquiryComponent implements OnInit {
   }
 
   GetVendorSellerDropdown() {
-    this.service. getVendorSeller(this.objEnquiry).subscribe(res => {
+    this.service.getVendorSeller(this.objEnquiry).subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
         this.vendorSeller = this.response.data;
-        
+
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -393,7 +389,7 @@ export class EditActiveEnquiryComponent implements OnInit {
   }
 
   GetCertificateDropdown() {
-    this.service. getCertification().subscribe(res => {
+    this.service.getCertification().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
         this.certificate = this.response.data;
@@ -409,6 +405,7 @@ export class EditActiveEnquiryComponent implements OnInit {
 
 
   addEnquiryBuyerDetails() {
+    this.spinner.show();
     // this.data.enquiryDate = this.dateformater.toModel(this.data.enquiryDate);
     let varr = {
 
@@ -442,29 +439,30 @@ this.spinner.show();
 
           }
 
-        },(err: HttpErrorResponse) => {
+        }, (err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
     this.spinner.hide();
 
         });
-   
+
   }
 
   addEnquiryPaymentDetails() {
+    this.spinner.show();
     let varr = {
 
       "enquiryId": this.objEnquiry,
       "currencyId": this.enquiryData.currencyId,
-      "totalQuantity":this.enquiryData.totalQuantity,
+      "totalQuantity": this.enquiryData.totalQuantity,
       "uomId": this.enquiryData.uomId,
       "paymentTermId": this.enquiryData.paymentTermId,
       "paymentTermDays": this.enquiryData.paymentTermDays,
       "paymentTermInfo": this.enquiryData.paymentTermInfo,
       "priceTermId": this.enquiryData.priceTermId,
-      "destinationId":this.enquiryData.destinationId,
-      "sellerSideCommission":this.enquiryData.sellerSideCommission,
+      "destinationId": this.enquiryData.destinationId,
+      "sellerSideCommission": this.enquiryData.sellerSideCommission,
       "sellerSideCommissionUOMId": this.enquiryData.sellerSideCommissionUOMId,
       "sellerSideCommissionInfo": this.enquiryData.sellerSideCommissionInfo,
       "buyerSideCommission": this.enquiryData.buyerSideCommission,
@@ -494,7 +492,7 @@ this.spinner.show();
 
           }
 
-        },(err: HttpErrorResponse) => {
+        }, (err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
@@ -506,12 +504,13 @@ this.spinner.show();
 
 
   addEnquiryVendorDetails() {
+    this.spinner.show();
     let varr = {
 
       "enquiryId": this.objEnquiry,
       "sellerId": this.enquiryData.sellerId,
-      "costingDetail":this.enquiryData.costingDetail,
-    
+      "costingDetail": this.enquiryData.costingDetail,
+
     }
     this.spinner.show();
 
@@ -535,7 +534,7 @@ this.spinner.show();
 
           }
 
-        },(err: HttpErrorResponse) => {
+        }, (err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
@@ -550,23 +549,21 @@ this.spinner.show();
 
 
   addEnquiryOrderDetails() {
-
+    this.spinner.show();
     this.confirmOn = this.dateformater.toModel(this.confirmOn);
-    
-    if( this.confirmOn == "undefined-undefined-undefined")
-    {
+
+    if (this.confirmOn == "undefined-undefined-undefined") {
       this.confirmOn = ""
     }
-    if( this.confirmOn == "0-NaN-NaN" )
-    {
+    if (this.confirmOn == "0-NaN-NaN") {
       this.confirmOn = ""
     }
-     
+
     let varr = {
       "enquiryId": this.objEnquiry,
       "confirmationDate": this.confirmOn,
       "confirmationDetails": this.enquiryData.confirmationDetails,
-    
+
     }
     this.spinner.show();
 
@@ -590,7 +587,7 @@ this.spinner.show();
 
           }
 
-        },(err: HttpErrorResponse) => {
+        }, (err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
@@ -604,13 +601,14 @@ this.spinner.show();
 
 
   addEnquiryRemarks() {
+    this.spinner.show();
     let varr = {
 
       "enquiryId": this.objEnquiry,
-      "enquiryRemarks":this.enquiryData.enquiryRemarks,
+      "enquiryRemarks": this.enquiryData.enquiryRemarks,
       "enquiryOtherCondition": this.enquiryData.enquiryOtherCondition,
       "certificateIds": this.enquiryData.certificateIds != null ? this.enquiryData.certificateIds.toString() : null,
-    
+
     }
     this.spinner.show();
 
@@ -633,7 +631,7 @@ this.spinner.show();
 
           }
 
-        },(err: HttpErrorResponse) => {
+        }, (err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
@@ -645,7 +643,7 @@ this.spinner.show();
 
 
 
-  addQuotationform(check, obj ) {
+  addQuotationform(check, obj) {
     const modalRef = this.modalService.open(QuotationComponent, { centered: true });
     // modalRef.componentInstance.parentBuyerId = popup.id;
     modalRef.componentInstance.statusCheck = check;
@@ -665,12 +663,12 @@ this.spinner.show();
   }
 
 
-  editQuotationform(check, objQuotation , objEnquiry) {
+  editQuotationform(check, objQuotation, objEnquiry) {
     const modalRef = this.modalService.open(QuotationComponent, { centered: true });
     modalRef.componentInstance.quotationId = objQuotation.id;
     modalRef.componentInstance.statusCheck = check;
     modalRef.componentInstance.EnquiryItemName = objEnquiry.description;
-    
+
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
@@ -722,8 +720,8 @@ this.spinner.show();
 
 
 
-  
-  addNoteform(check,enquiryObj ) {
+
+  addNoteform(check, enquiryObj) {
     const modalRef = this.modalService.open(EnquiryNotesComponent, { centered: true });
     // modalRef.componentInstance.parentBuyerId = popup.id;
     modalRef.componentInstance.EnquiryId = enquiryObj;
@@ -745,7 +743,7 @@ this.spinner.show();
   }
 
 
-  editNoteform(check, noteObj ,enquiryObj ) {
+  editNoteform(check, noteObj, enquiryObj) {
     const modalRef = this.modalService.open(EnquiryNotesComponent, { centered: true });
     // modalRef.componentInstance.parentBuyerId = popup.id;
     modalRef.componentInstance.NoteId = noteObj.id;
@@ -759,7 +757,7 @@ this.spinner.show();
           this.noteFilter = [...NotesData];
           // this.listCount= this.rows.length;
         });
-        
+
 
       }
     }, (reason) => {
@@ -856,9 +854,9 @@ this.spinner.show();
 
               }
             });
-          }
-        })
       }
+    })
+  }
 
 
   deleteNote(obj) {
@@ -905,568 +903,552 @@ this.spinner.show();
 
               }
             });
-          }
-        })
       }
-  
-      printPreviewWithCustomer() {
-        let docDefinition = {
-          pageSize: 'A4',
-          pageOrientation: 'landscape',
-          pageMargins: [ 10, 40, 10, 0 ],
-          info: {
-            title: 'Enquiry Preview'
-          },
-          content: [
-                 {
-             
-              table: {
-                headerRows: 1,
-                widths: ['100%'],
-                body: [
-                [{
-                  style: 'heading',
-                  text: 'FABCOT ENQUIRY SHEET'
-                }],
-                  ]
-               
-              }
+    })
+  }
 
-            },
+  printPreviewWithCustomer() {
+    let docDefinition = {
+      pageSize: 'A4',
+      pageOrientation: 'landscape',
+      pageMargins: [10, 40, 10, 0],
+      info: {
+        title: 'Enquiry Preview'
+      },
+      content: [
+        {
 
-            {
-              style: 'commonTable',
-              table: {
-                headerRows: 1,
-                widths: ['13%' , '20%' , '13%' , '20%' , '13%', '21%'],
-                body: [
-               [
-                  { style:'propertyName' ,text: 'Date' } , 
-              {  style:'propertyValue', text : this.enquiryData['enquiryDate']},
-              {  style:'propertyName',text: 'Enquiry#' } , 
-              {  style:'propertyValue', text : this.enquiryData['autoEnquiryNumber']},
-              {  style:'propertyName',text: 'Customer' } , 
-              {  style:'propertyValue', text : this.enquiryData['buyerName']},
-               ]
-              ]
-                }
-            },
+          table: {
+            headerRows: 1,
+            widths: ['100%'],
+            body: [
+              [{
+                style: 'heading',
+                text: 'FABCOT ENQUIRY SHEET'
+              }],
+            ]
 
-            {
-              style: 'commonTable',
-              table: {
-                headerRows: 1,
-                widths: ['13%' , '20%' , '13%' , '20%' , '13%', '21%'],
-                body: [
-               [
-                  { style:'propertyName' ,text: 'Article' } , 
-              {  style:'propertyValue', text : this.enquiryData['articleName']},
-              {  style:'propertyName',text: 'Process' } , 
-              {  style:'propertyValue', text : this.enquiryData['processName']},
-              {  style:'propertyName',text: 'Process Type' } , 
-              {  style:'propertyValue', text : this.enquiryData['processTypeName']},
-               ]
-              ]
-                }
-            },
-            {
-              style: 'commonTable',
-              table: {
-                headerRows: 1,
-                widths: ['20%' , '30%' , '20%' , '30%' ],
-                body: [
-               [
-                  { style:'propertyName' ,text: 'Design Type' } , 
-              {  style:'propertyValue', text : this.enquiryData['designTypeName']},
-              {  style:'propertyName',text: 'Packaging' } , 
-              {  style:'propertyValue', text : this.enquiryData['packagingName']},
-               ]
-              ]
-                }
-            },
-            {
-              style: 'commonTable',
-              table: {
-                headerRows: 1,
-                widths: ['20%' , '30%' , '20%' , '30%' ],
-                body: [
-               [
-                  { style:'propertyName' ,text: 'Shipment' } , 
-              {  style:'propertyValue', text : this.enquiryData['shipmentdates']},
-              {  style:'propertyName',text: 'Payment Terms' } , 
-              {  style:'propertyValue', text : this.enquiryData['paymentTermName']},
-               ]
-              ]
-                }
-            },
-            {
-              style: 'commonTable',
-              table: {
-                headerRows: 1,
-                widths: ['20%' , '15%' , '20%' , '45%' ],
-                body: [
-               
-                  { style:'propertyName' ,text: 'Shipment' } , 
-              {  style:'propertyValue', text : this.enquiryData['paymentTermDays']},
-              {  style:'propertyName',text: 'Payment Terms' } , 
-              {  style:'propertyValue', text : this.enquiryData['paymentTermName']},
-               
-              ]
-                }
-            },
-            
-            {
-              margin: [0 , -10 , 0 , 0],
-              table:{
-                headerRows:1,
-                widths: [ '15%' , '30%' , '15%' , '10%' , '5%' , '5%' , '10%' , '10%' ],
-                body:[
-                  [ {text:'Description' , style: 'tableheader' , }, {text:'Composition & Construction' , style: 'tableheader'},
-                   {text:'Color' , style: 'tableheader'}, {text:'Quantity' , style: 'tableheader'} 
-                  ,{text:'Gsm' , style: 'tableheader'} , {text:'Size' , style: 'tableheader'}, 
-                  {text:'Loom Type' , style: 'tableheader'}, {text:'Seller', style: 'tableheader'}
-                ],
-          // [ 'Value 1', 'Value 2', 'Value 3', 'Value 4' , '5' , '6' , '7' , '8' ]
-          ...this.enquiryData['enquiryItemList'].map((row=>
-            [row.description, row.construction, row.colorName,
-              row.itemQuantity, row.weight , row.size , row.loomTypeName , row.createdByName]
-            ))
-        
-                ]
-              }
-            }
-            
-          ],
-          styles: {
-            heading: {
-              fillColor: '#f3f3f4',
-              fontSize: 20,
-              bold: true,
-              color: '#4d4b4b',
-              alignment: 'center',
-              margin : 4
-             },
-            commonTable:{
-              margin: [0 , 25 , 0 , 0]     
-            },
-            propertyName:{
-              alignment: 'center',
-               bold:true,
-               fontSize: 10,
-               margin:2
-            },
-            propertyValue:{
-              alignment: 'center',  
-              fontSize: 10,
-              margin:2
-
-            },
-            tableheader: {
-              fillColor: '#f3f3f4',
-              fontSize: 10,
-              bold: true,
-              color: '#4d4b4b',
-              alignment: 'center',
-              margin:8
-            
-             }
           }
-        };
-        pdfMake.createPdf(docDefinition).print();
-    
-      }
-    
-      printPreview() {
-        let docDefinition = {
-          pageSize: 'A4',
-          pageOrientation: 'landscape',
-          pageMargins: [ 10, 40, 10, 0 ],
-          info: {
-            title: 'Enquiry Preview'
-          },
-          content: [
-                 {
-             
-              table: {
-                headerRows: 1,
-                widths: ['100%'],
-                body: [
-                [{
-                  style: 'heading',
-                  text: 'FABCOT ENQUIRY SHEET'
-                }],
-                  ]
-               
-              }
 
-            },
+        },
 
-            {
-              style: 'commonTable',
-              table: {
-                headerRows: 1,
-                widths: ['25%' , '25%' , '25%' , '25%' ],
-                body: [
-               [
-                  { style:'propertyName' ,text: 'Date' } , 
-              {  style:'propertyValue', text : this.enquiryData['enquiryDate']},
-              {  style:'propertyName',text: 'Enquiry#' } , 
-              {  style:'propertyValue', text : this.enquiryData['autoEnquiryNumber']},
-               ]
+        {
+          style: 'commonTable',
+          table: {
+            headerRows: 1,
+            widths: ['13%', '20%', '13%', '20%', '13%', '21%'],
+            body: [
+              [
+                { style: 'propertyName', text: 'Date' },
+                { style: 'propertyValue', text: this.enquiryData['enquiryDate'] },
+                { style: 'propertyName', text: 'Enquiry#' },
+                { style: 'propertyValue', text: this.enquiryData['autoEnquiryNumber'] },
+                { style: 'propertyName', text: 'Customer' },
+                { style: 'propertyValue', text: this.enquiryData['buyerName'] },
               ]
-                }
-            },
-
-            {
-              style: 'commonTable',
-              table: {
-                headerRows: 1,
-                widths: ['13%' , '20%' , '13%' , '20%' , '13%', '21%'],
-                body: [
-               [
-                  { style:'propertyName' ,text: 'Article' } , 
-              {  style:'propertyValue', text : this.enquiryData['articleName']},
-              {  style:'propertyName',text: 'Process' } , 
-              {  style:'propertyValue', text : this.enquiryData['processName']},
-              {  style:'propertyName',text: 'Process Type' } , 
-              {  style:'propertyValue', text : this.enquiryData['processTypeName']},
-               ]
-              ]
-                }
-            },
-            {
-              style: 'commonTable',
-              table: {
-                headerRows: 1,
-                widths: ['20%' , '30%' , '20%' , '30%' ],
-                body: [
-               [
-                  { style:'propertyName' ,text: 'Design Type' } , 
-              {  style:'propertyValue', text : this.enquiryData['designTypeName']},
-              {  style:'propertyName',text: 'Packaging' } , 
-              {  style:'propertyValue', text : this.enquiryData['packagingName']},
-               ]
-              ]
-                }
-            },
-            {
-              style: 'commonTable',
-              table: {
-                headerRows: 1,
-                widths: ['20%' , '30%' , '20%' , '30%' ],
-                body: [
-               [
-                  { style:'propertyName' ,text: 'Shipment' } , 
-              {  style:'propertyValue', text : this.enquiryData['shipmentdates']},
-              {  style:'propertyName',text: 'Payment Terms' } , 
-              {  style:'propertyValue', text : this.enquiryData['paymentTermName']},
-               ]
-              ]
-                }
-            },
-            {
-              style: 'commonTable',
-              table: {
-                headerRows: 1,
-                widths: ['20%' , '15%' , '20%' , '45%' ],
-                body: [
-               
-                  { style:'propertyName' ,text: 'Shipment' } , 
-              {  style:'propertyValue', text : this.enquiryData['paymentTermDays']},
-              {  style:'propertyName',text: 'Payment Terms' } , 
-              {  style:'propertyValue', text : this.enquiryData['paymentTermName']},
-               
-              ]
-                }
-            },
-            
-            {
-              margin: [0 , -10 , 0 , 0],
-              table:{
-                headerRows:1,
-                widths: [ '15%' , '30%' , '15%' , '10%' , '5%' , '5%' , '10%' , '10%' ],
-                body:[
-                  [ {text:'Description' , style: 'tableheader' , }, {text:'Composition & Construction' , style: 'tableheader'},
-                   {text:'Color' , style: 'tableheader'}, {text:'Quantity' , style: 'tableheader'} 
-                  ,{text:'Gsm' , style: 'tableheader'} , {text:'Size' , style: 'tableheader'}, 
-                  {text:'Loom Type' , style: 'tableheader'}, {text:'Seller', style: 'tableheader'}
-                ],
-          // [ 'Value 1', 'Value 2', 'Value 3', 'Value 4' , '5' , '6' , '7' , '8' ]
-          ...this.enquiryData['enquiryItemList'].map((row=>
-            [row.description, row.construction, row.colorName,
-              row.itemQuantity, row.weight , row.size , row.loomTypeName , row.createdByName]
-            ))
-        
-                ]
-              }
-            }
-            
-          ],
-          styles: {
-            heading: {
-              fillColor: '#f3f3f4',
-              fontSize: 20,
-              bold: true,
-              color: '#4d4b4b',
-              alignment: 'center',
-              margin : 4
-             },
-            commonTable:{
-              margin: [0 , 25 , 0 , 0]     
-            },
-            propertyName:{
-              alignment: 'center',
-               bold:true,
-               fontSize: 10,
-               margin:2
-            },
-            propertyValue:{
-              alignment: 'center',  
-              fontSize: 10,
-              margin:2
-
-            },
-            tableheader: {
-              fillColor: '#f3f3f4',
-              fontSize: 10,
-              bold: true,
-              color: '#4d4b4b',
-              alignment: 'center',
-              margin:8
-            
-             }
+            ]
           }
-        };
-        pdfMake.createPdf(docDefinition).print();
-    
-      }
-   
+        },
 
-
-      AddReminder() {
-        // Swal.fire({
-        //   title: 'Reminder', //'Are you sure?',
-        //   text: 'Your Reminder has been set for the Enquiry no. '+ this.enquiryData.autoEnquiryNumber ,
-        //   icon: 'success',
-        //   showCancelButton: false,
-        //   confirmButtonColor: '#1ab394  ',
-        //   cancelButtonColor: '#dae0e5',
-        //   cancelButtonText: 'No',
-        //   confirmButtonText: 'OK',
-        //   reverseButtons: true,
-        //   position: 'top',
-        // }).then((result) => {
-        //   if (result.isConfirmed) {
-            this.enquiryData.followUpDate = this.dateformater.toModel(this.enquiryData.followUpDate);
-    
-            let varr = {
-
-              "enquiryId": this.objEnquiry,
-              "followUpDate":this.enquiryData.followUpDate,
-            
-            }
-    this.spinner.show();
-        
-            this.http.
-              post(`${environment.apiUrl}/api/Enquiries/AddEnquiryFollowUp`, varr)
-              .subscribe(
-                res => {
-        
-                  this.response = res;
-                  if (this.response.success == true) {
-                    this.toastr.success(this.response.message, 'Message.');
-                    this.getEnquiryData(this.objEnquiry);
-    this.spinner.hide();
-
-                  }
-                  else {
-                    this.toastr.error(this.response.message, 'Message.');
-    this.spinner.hide();
-
-                  }
-        
-                }, err => {
-                  if (err.status == 400) {
-                    this.toastr.error(this.response.message, 'Message.');
-    this.spinner.hide();
-
-                  }
-                });
-    
+        {
+          style: 'commonTable',
+          table: {
+            headerRows: 1,
+            widths: ['13%', '20%', '13%', '20%', '13%', '21%'],
+            body: [
+              [
+                { style: 'propertyName', text: 'Article' },
+                { style: 'propertyValue', text: this.enquiryData['articleName'] },
+                { style: 'propertyName', text: 'Process' },
+                { style: 'propertyValue', text: this.enquiryData['processName'] },
+                { style: 'propertyName', text: 'Process Type' },
+                { style: 'propertyValue', text: this.enquiryData['processTypeName'] },
+              ]
+            ]
           }
-        // }
-        // )
-    
-      // }
-
-
-      
-
-      deleteReminder(objReminder) {
-        Swal.fire({
-          title: GlobalConstants.deleteTitle, //'Are you sure?',
-          text: GlobalConstants.deleteMessage + 'reminder of' + '"' + objReminder.followUpDate + '"',
-          icon: 'error',
-          showCancelButton: true,
-          confirmButtonColor: '#ed5565',
-          cancelButtonColor: '#dae0e5',
-          cancelButtonText: 'No',
-          confirmButtonText: 'Yes',
-          reverseButtons: true,
-          position: 'top',
-        }).then((result) => {
-          if (result.isConfirmed) {
-    this.spinner.show();
-
-            this.http.
-              delete(`${environment.apiUrl}/api/Enquiries/DeleteEnquiryFollowUp/`+ objReminder.id )
-              .subscribe(
-                res => {
-        
-                  this.response = res;
-                  if (this.response.success == true) {
-                    this.toastr.error(this.response.message, 'Message.');
-                    this.getEnquiryData(this.objEnquiry);
-    this.spinner.hide();
-
-                  }
-                  else {
-                    this.toastr.error(this.response.message, 'Message.');
-    this.spinner.hide();
-
-                  }
-        
-                }, err => {
-                  if (err.status == 400) {
-                    this.toastr.error(this.response.message, 'Message.');
-    this.spinner.hide();
-
-                  }
-                });
-    
+        },
+        {
+          style: 'commonTable',
+          table: {
+            headerRows: 1,
+            widths: ['20%', '30%', '20%', '30%'],
+            body: [
+              [
+                { style: 'propertyName', text: 'Design Type' },
+                { style: 'propertyValue', text: this.enquiryData['designTypeName'] },
+                { style: 'propertyName', text: 'Packaging' },
+                { style: 'propertyValue', text: this.enquiryData['packagingName'] },
+              ]
+            ]
           }
-        })
-    
-      }
+        },
+        {
+          style: 'commonTable',
+          table: {
+            headerRows: 1,
+            widths: ['20%', '30%', '20%', '30%'],
+            body: [
+              [
+                { style: 'propertyName', text: 'Shipment' },
+                { style: 'propertyValue', text: this.enquiryData['shipmentdates'] },
+                { style: 'propertyName', text: 'Payment Terms' },
+                { style: 'propertyValue', text: this.enquiryData['paymentTermName'] },
+              ]
+            ]
+          }
+        },
+        {
+          style: 'commonTable',
+          table: {
+            headerRows: 1,
+            widths: ['20%', '15%', '20%', '45%'],
+            body: [
 
+              { style: 'propertyName', text: 'Shipment' },
+              { style: 'propertyValue', text: this.enquiryData['paymentTermDays'] },
+              { style: 'propertyName', text: 'Payment Terms' },
+              { style: 'propertyValue', text: this.enquiryData['paymentTermName'] },
 
-      GenerateContract() {
-        let departmentId=localStorage.getItem('loggedInDepartmentId')
-        let varr = {
-          // "enquiryId": this.objEnquiry,
+            ]
+          }
+        },
+
+        {
+          margin: [0, -10, 0, 0],
+          table: {
+            headerRows: 1,
+            widths: ['15%', '30%', '15%', '10%', '5%', '5%', '10%', '10%'],
+            body: [
+              [{ text: 'Description', style: 'tableheader', }, { text: 'Composition & Construction', style: 'tableheader' },
+              { text: 'Color', style: 'tableheader' }, { text: 'Quantity', style: 'tableheader' }
+                , { text: 'Gsm', style: 'tableheader' }, { text: 'Size', style: 'tableheader' },
+              { text: 'Loom Type', style: 'tableheader' }, { text: 'Seller', style: 'tableheader' }
+              ],
+              // [ 'Value 1', 'Value 2', 'Value 3', 'Value 4' , '5' , '6' , '7' , '8' ]
+              ...this.enquiryData['enquiryItemList'].map((row =>
+                [row.description, row.construction, row.colorName,
+                row.itemQuantity, row.weight, row.size, row.loomTypeName, row.createdByName]
+              ))
+
+            ]
+          }
+        }
+
+      ],
+      styles: {
+        heading: {
+          fillColor: '#f3f3f4',
+          fontSize: 20,
+          bold: true,
+          color: '#4d4b4b',
+          alignment: 'center',
+          margin: 4
+        },
+        commonTable: {
+          margin: [0, 25, 0, 0]
+        },
+        propertyName: {
+          alignment: 'center',
+          bold: true,
+          fontSize: 10,
+          margin: 2
+        },
+        propertyValue: {
+          alignment: 'center',
+          fontSize: 10,
+          margin: 2
+
+        },
+        tableheader: {
+          fillColor: '#f3f3f4',
+          fontSize: 10,
+          bold: true,
+          color: '#4d4b4b',
+          alignment: 'center',
+          margin: 8
 
         }
-    this.spinner.show();
+      }
+    };
+    pdfMake.createPdf(docDefinition).print();
 
+  }
+
+  printPreview() {
+    let docDefinition = {
+      pageSize: 'A4',
+      pageOrientation: 'landscape',
+      pageMargins: [ 10, 40, 10, 0 ],
+      info: {
+        title: 'Enquiry Preview'
+      },
+      content: [
+             {
+         
+          table: {
+            headerRows: 1,
+            widths: ['100%'],
+            body: [
+            [{
+              style: 'heading',
+              text: 'FABCOT ENQUIRY SHEET'
+            }],
+              ]
+           
+          }
+
+        },
+
+        {
+          style: 'commonTable',
+          table: {
+            headerRows: 1,
+            widths: ['25%' , '25%' , '25%' , '25%' ],
+            body: [
+           [
+              { style:'propertyName' ,text: 'Date' } , 
+          {  style:'propertyValue', text : this.enquiryData['enquiryDate']},
+          {  style:'propertyName',text: 'Enquiry#' } , 
+          {  style:'propertyValue', text : this.enquiryData['autoEnquiryNumber']},
+           ]
+          ]
+            }
+        },
+
+        {
+          style: 'commonTable',
+          table: {
+            headerRows: 1,
+            widths: ['13%' , '20%' , '13%' , '20%' , '13%', '21%'],
+            body: [
+           [
+              { style:'propertyName' ,text: 'Article' } , 
+          {  style:'propertyValue', text : this.enquiryData['articleName']},
+          {  style:'propertyName',text: 'Process' } , 
+          {  style:'propertyValue', text : this.enquiryData['processName']},
+          {  style:'propertyName',text: 'Process Type' } , 
+          {  style:'propertyValue', text : this.enquiryData['processTypeName']},
+           ]
+          ]
+            }
+        },
+        {
+          style: 'commonTable',
+          table: {
+            headerRows: 1,
+            widths: ['20%' , '30%' , '20%' , '30%' ],
+            body: [
+           [
+              { style:'propertyName' ,text: 'Design Type' } , 
+          {  style:'propertyValue', text : this.enquiryData['designTypeName']},
+          {  style:'propertyName',text: 'Packaging' } , 
+          {  style:'propertyValue', text : this.enquiryData['packagingName']},
+           ]
+          ]
+            }
+        },
+        {
+          style: 'commonTable',
+          table: {
+            headerRows: 1,
+            widths: ['20%' , '30%' , '20%' , '30%' ],
+            body: [
+           [
+              { style:'propertyName' ,text: 'Shipment' } , 
+          {  style:'propertyValue', text : this.enquiryData['shipmentdates']},
+          {  style:'propertyName',text: 'Payment Terms' } , 
+          {  style:'propertyValue', text : this.enquiryData['paymentTermName']},
+           ]
+          ]
+            }
+        },
+        {
+          style: 'commonTable',
+          table: {
+            headerRows: 1,
+            widths: ['20%' , '15%' , '20%' , '45%' ],
+            body: [
+           
+              { style:'propertyName' ,text: 'Shipment' } , 
+          {  style:'propertyValue', text : this.enquiryData['paymentTermDays']},
+          {  style:'propertyName',text: 'Payment Terms' } , 
+          {  style:'propertyValue', text : this.enquiryData['paymentTermName']},
+           
+          ]
+            }
+        },
+        
+        {
+          margin: [0 , -10 , 0 , 0],
+          table:{
+            headerRows:1,
+            widths: [ '15%' , '30%' , '15%' , '10%' , '5%' , '5%' , '10%' , '10%' ],
+            body:[
+              [ {text:'Description' , style: 'tableheader' , }, {text:'Composition & Construction' , style: 'tableheader'},
+               {text:'Color' , style: 'tableheader'}, {text:'Quantity' , style: 'tableheader'} 
+              ,{text:'Gsm' , style: 'tableheader'} , {text:'Size' , style: 'tableheader'}, 
+              {text:'Loom Type' , style: 'tableheader'}, {text:'Seller', style: 'tableheader'}
+            ],
+      // [ 'Value 1', 'Value 2', 'Value 3', 'Value 4' , '5' , '6' , '7' , '8' ]
+      ...this.enquiryData['enquiryItemList'].map((row=>
+        [row.description, row.construction, row.colorName,
+          row.itemQuantity, row.weight , row.size , row.loomTypeName , row.createdByName]
+        ))
+    
+            ]
+          }
+        }
+        
+      ],
+      styles: {
+        heading: {
+          fillColor: '#f3f3f4',
+          fontSize: 20,
+          bold: true,
+          color: '#4d4b4b',
+          alignment: 'center',
+          margin : 4
+         },
+        commonTable:{
+          margin: [0 , 25 , 0 , 0]     
+        },
+        propertyName:{
+          alignment: 'center',
+           bold:true,
+           fontSize: 10,
+           margin:2
+        },
+        propertyValue:{
+          alignment: 'center',  
+          fontSize: 10,
+          margin:2
+
+        },
+        tableheader: {
+          fillColor: '#f3f3f4',
+          fontSize: 10,
+          bold: true,
+          color: '#4d4b4b',
+          alignment: 'center',
+          margin:8
+        
+         }
+      }
+    };
+    pdfMake.createPdf(docDefinition).print();
+
+  }
+
+
+
+  AddReminder() {
+    // Swal.fire({
+    //   title: 'Reminder', //'Are you sure?',
+    //   text: 'Your Reminder has been set for the Enquiry no. '+ this.enquiryData.autoEnquiryNumber ,
+    //   icon: 'success',
+    //   showCancelButton: false,
+    //   confirmButtonColor: '#1ab394  ',
+    //   cancelButtonColor: '#dae0e5',
+    //   cancelButtonText: 'No',
+    //   confirmButtonText: 'OK',
+    //   reverseButtons: true,
+    //   position: 'top',
+    // }).then((result) => {
+    //   if (result.isConfirmed) {
+        this.enquiryData.followUpDate = this.dateformater.toModel(this.enquiryData.followUpDate);
+
+        let varr = {
+
+          "enquiryId": this.objEnquiry,
+          "followUpDate":this.enquiryData.followUpDate,
+        
+        }
+this.spinner.show();
+    
         this.http.
-          post(`${environment.apiUrl}/api/Contracts/AddContract?`+'enquiryId='+this.objEnquiry+'&'+'departmentId ='+departmentId, varr)
+          post(`${environment.apiUrl}/api/Enquiries/AddEnquiryFollowUp`, varr)
           .subscribe(
             res => {
     
               this.response = res;
               if (this.response.success == true) {
                 this.toastr.success(this.response.message, 'Message.');
-                // this.router.navigate(['/contract/active-contract']);
-               this.router.navigate(['/contract/active-contract-details'], { queryParams: {id: this.response.data} });
-                
-               this.spinner.hide();
-    
+                this.getEnquiryData(this.objEnquiry);
+this.spinner.hide();
+
               }
               else {
                 this.toastr.error(this.response.message, 'Message.');
-    this.spinner.hide();
+this.spinner.hide();
 
               }
     
             }, err => {
               if (err.status == 400) {
                 this.toastr.error(this.response.message, 'Message.');
-    this.spinner.hide();
+this.spinner.hide();
 
               }
             });
+
       }
+    // }
+    // )
+
+  // }
 
 
+  
 
+  deleteReminder(objReminder) {
+    Swal.fire({
+      title: GlobalConstants.deleteTitle, //'Are you sure?',
+      text: GlobalConstants.deleteMessage + 'reminder of' + '"' + objReminder.followUpDate + '"',
+      icon: 'error',
+      showCancelButton: true,
+      confirmButtonColor: '#ed5565',
+      cancelButtonColor: '#dae0e5',
+      cancelButtonText: 'No',
+      confirmButtonText: 'Yes',
+      reverseButtons: true,
+      position: 'top',
+    }).then((result) => {
+      if (result.isConfirmed) {
+this.spinner.show();
 
-
-      statusform(status,action,component) {
-        const modalRef = this.modalService.open(StatusComponent, { centered: true });
-        // modalRef.componentInstance.parentBuyerId = popup.id;
-        modalRef.componentInstance.EnquiryId = this.objEnquiry;
-        modalRef.componentInstance.statusCheck = status;
-        modalRef.componentInstance.action = action;
-        modalRef.componentInstance.component = component;
-        modalRef.result.then((data) => {
-          // on close
-          if (data == true) {
-            this.getEnquiryData(this.objEnquiry);
-    
-          }
-        }, (reason) => {
-          // on dismiss
-        });
-      }
-    
-    
-
-
-
-      statusOpen()
-      { 
-        let varr = {
-        
-          "reason":"Open",
-          "enquiryId": this.objEnquiry,
-          "status": "Open"
-        }
-    this.spinner.show();
-        
         this.http.
-        put(`${environment.apiUrl}/api/Enquiries/UpdateEnquiryStatus`, varr)
-        .subscribe(
-          res=> { 
-      
-            this.response = res;
-            if (this.response.success == true){
-              this.toastr.success(this.response.message, 'Message.');
-            this.getEnquiryData(this.objEnquiry);
-            this.spinner.hide();
+          delete(`${environment.apiUrl}/api/Enquiries/DeleteEnquiryFollowUp/`+ objReminder.id )
+          .subscribe(
+            res => {
+    
+              this.response = res;
+              if (this.response.success == true) {
+                this.toastr.error(this.response.message, 'Message.');
+                this.getEnquiryData(this.objEnquiry);
+this.spinner.hide();
 
+              }
+              else {
+                this.toastr.error(this.response.message, 'Message.');
+this.spinner.hide();
+
+              }
+    
+            }, err => {
+              if (err.status == 400) {
+                this.toastr.error(this.response.message, 'Message.');
+this.spinner.hide();
+
+              }
+            });
+
+      }
+    })
+
+  }
+
+
+  GenerateContract() {
+    let departmentId=localStorage.getItem('loggedInDepartmentId')
+    let varr = {
+      // "enquiryId": this.objEnquiry,
+
+    }
+this.spinner.show();
+
+    this.http.
+      post(`${environment.apiUrl}/api/Contracts/AddContract?`+'enquiryId='+this.objEnquiry+'&'+'departmentId ='+departmentId, varr)
+      .subscribe(
+        res => {
+
+          this.response = res;
+          if (this.response.success == true) {
+            this.toastr.success(this.response.message, 'Message.');
+            // this.router.navigate(['/contract/active-contract']);
+           this.router.navigate(['/contract/active-contract-details'], { queryParams: {id: this.response.data} });
+            
+           this.spinner.hide();
+
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+this.spinner.hide();
+
+          }
+
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+this.spinner.hide();
+
+          }
+        });
+  }
+
+
+
+
+
+  statusform(status,action,component) {
+    const modalRef = this.modalService.open(StatusComponent, { centered: true });
+    // modalRef.componentInstance.parentBuyerId = popup.id;
+    modalRef.componentInstance.EnquiryId = this.objEnquiry;
+    modalRef.componentInstance.statusCheck = status;
+    modalRef.componentInstance.action = action;
+    modalRef.componentInstance.component = component;
+    modalRef.result.then((data) => {
+      // on close
+      if (data == true) {
+        this.getEnquiryData(this.objEnquiry);
+
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
+
+
+
+
+
+  statusOpen()
+  { 
+    let varr = {
+    
+      "reason":"Open",
+      "enquiryId": this.objEnquiry,
+      "status": "Open"
+    }
+this.spinner.show();
+    
+    this.http.
+    put(`${environment.apiUrl}/api/Enquiries/UpdateEnquiryStatus`, varr)
+    .subscribe(
+      res=> { 
+  
+        this.response = res;
+        if (this.response.success == true){
+          this.toastr.success(this.response.message, 'Message.');
+        this.getEnquiryData(this.objEnquiry);
+        this.spinner.hide();
+
+       
+        }
+        else {
+          this.toastr.error('Something went Worng', 'Message.');
+this.spinner.hide();
            
-            }
-            else {
-              this.toastr.error('Something went Worng', 'Message.');
-    this.spinner.hide();
-               
-            }
-    
-          }, err => {
-            if (err.status == 400) {
-              this.toastr.error('Something went Worng', 'Message.');
-    this.spinner.hide();
+        }
 
-            }
-          });
-      }
-    
-    
+      }, err => {
+        if (err.status == 400) {
+          this.toastr.error('Something went Worng', 'Message.');
+this.spinner.hide();
+
+        }
+      });
+  }
 
 
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-      }
-
-    

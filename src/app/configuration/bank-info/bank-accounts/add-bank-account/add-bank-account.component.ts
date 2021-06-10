@@ -4,6 +4,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ServiceService } from 'src/app/shared/service.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-add-bank-account',
@@ -17,9 +18,10 @@ export class AddBankAccountComponent implements OnInit {
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
+    private spinner: NgxSpinnerService,
     private _NgbActiveModal: NgbActiveModal,
     private service: ServiceService
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.getBanks();
@@ -40,7 +42,7 @@ export class AddBankAccountComponent implements OnInit {
             this.banks = this.response.data;
           }
           else {
-             this.toastr.success(this.response.message, 'Message.');
+            this.toastr.success(this.response.message, 'Message.');
           }
 
         }, err => {
@@ -55,6 +57,7 @@ export class AddBankAccountComponent implements OnInit {
 
 
   addBankAccount() {
+    this.spinner.show();
     let varr = {
       "bankId": this.data.bankId,
       "accountName": this.data.accountName,
@@ -77,15 +80,18 @@ export class AddBankAccountComponent implements OnInit {
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
             this.activeModal.close(true);
+            this.spinner.hide();
           }
           else {
-             this.toastr.success(this.response.message, 'Message.');
+            this.toastr.success(this.response.message, 'Message.');
+            this.spinner.hide();
           }
 
         }, (err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
+          this.spinner.hide();
           // if (err.status == 400) {
           //   this.toastr.error(this.response.message, 'Message.');
           // }

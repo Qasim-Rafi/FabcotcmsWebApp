@@ -1,6 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Dateformater } from 'src/app/shared/dateformater';
 import { ServiceService } from 'src/app/shared/service.service';
@@ -30,6 +31,7 @@ export class PartiesComponent implements OnInit {
     private http: HttpClient,
     private service: ServiceService,
     private toastr: ToastrService,
+    private spinner: NgxSpinnerService,
   ) { }
 
   ngOnInit(): void {
@@ -144,6 +146,7 @@ export class PartiesComponent implements OnInit {
 
 
   addContractParties() {
+    this.spinner.show();
     this.data.poDate = this.dateformater.toModel(this.data.poDate);
     this.data.contractDate = this.dateformater.toModel(this.data.contractDate);
 
@@ -192,15 +195,18 @@ export class PartiesComponent implements OnInit {
             // this.getEnquiryData(this.objEnquiry);
             this.activeModal.close(true);
             this.getContractPartiesData();
+            this.spinner.hide();
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
           }
 
         },(err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
+          this.spinner.hide();
         });
   }
 

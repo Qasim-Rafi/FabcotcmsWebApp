@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
 import { ServiceService } from 'src/app/shared/service.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-edit-time-action',
@@ -20,7 +21,7 @@ export class EditTimeActionComponent implements OnInit {
 
   constructor(private http:HttpClient,
     private service: ServiceService,
-    private toastr: ToastrService,
+    private toastr: ToastrService,private spinner: NgxSpinnerService,
     private _NgbActiveModal: NgbActiveModal){ }
 
     ngOnInit(): void {
@@ -56,7 +57,7 @@ export class EditTimeActionComponent implements OnInit {
   
     UpdateAction(form:NgForm)
     {
-
+      this.spinner.show();
       let varr = {
         "name": this.data.name,
         "description": this.data.description,
@@ -72,16 +73,18 @@ export class EditTimeActionComponent implements OnInit {
           if (this.response.success == true){
             this.toastr.success(this.response.message, 'Message.');
             this.activeModal.close(true);
+            this.spinner.hide();
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
               }
   
         }, (err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
-          
+          this.spinner.hide();
         });
     }
   
