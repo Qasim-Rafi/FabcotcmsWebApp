@@ -11,6 +11,7 @@ import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import { GlobalConstants } from 'src/app/Common/global-constants';
 import { AddPieceLengthComponent } from './add-piece-length/add-piece-length.component';
+import { NgxSpinnerService } from 'ngx-spinner';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -35,6 +36,7 @@ export class PieceLengthComponent implements OnInit {
   constructor(private http: HttpClient,
     private toastr: ToastrService,
     private modalService: NgbModal,
+    private spinner: NgxSpinnerService,
     private service: ServiceService,
     private _clipboardService: ClipboardService) { }
 
@@ -75,7 +77,7 @@ export class PieceLengthComponent implements OnInit {
       position: 'top',
     }).then((result) => {
       if (result.isConfirmed) {
-
+this.spinner.show();
         this.http.delete(`${environment.apiUrl}/api/YarnConfig/DeletePieceLength/` + id.id)
           .subscribe(
             res => {
@@ -85,15 +87,17 @@ export class PieceLengthComponent implements OnInit {
                 this.service.fetch((data) => {
                   this.rows = data;
                 }, this.CountryUrl);
-
+this.spinner.hide();
               }
               else {
                 this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
+              this.spinner.hide();
               }
 
             }, err => {
               if (err.status == 400) {
                 this.toastr.error(this.response.message, 'Message.');
+             this.spinner.hide();
               }
             });
       }
