@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Dateformater } from 'src/app/shared/dateformater';
 import { ServiceService } from 'src/app/shared/service.service';
@@ -26,6 +27,7 @@ recievedrate:any;
     private toastr: ToastrService,
     private route: ActivatedRoute,
     private _NgbActiveModal: NgbActiveModal,
+    private spinner: NgxSpinnerService,
     private service: ServiceService) { }
 
 
@@ -66,6 +68,7 @@ recievedrate:any;
    }
   addSaleInvoiceItem() {
    
+ this.spinner.show();
    let varr = {
 
     "contractSaleInvoiceId": this.contractSaleInvoiceId ,
@@ -85,14 +88,17 @@ recievedrate:any;
            this.toastr.success(this.response.message, 'Message.');
            this.activeModal.close(true);
         
+ this.spinner.hide();
          }
          else {
            this.toastr.error(this.response.message, 'Message.');
+           this.spinner.hide();
          }
 
        }, err => {
          if (err.status == 400) {
            this.toastr.error(this.response.message, 'Message.');
+           this.spinner.hide();
          }
        });
  }
@@ -155,6 +161,7 @@ recievedrate:any;
 
   updateInvoiceItem() {
   
+ this.spinner.show();
     let varr = {
       
       "contractSaleInvoiceId": this.contractSaleInvoiceId ,
@@ -172,15 +179,18 @@ recievedrate:any;
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
             this.activeModal.close(true);
+            this.spinner.hide();
 
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
           }
 
         }, err => {
           if (err.status == 400) {
             this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
           }
         });
   }

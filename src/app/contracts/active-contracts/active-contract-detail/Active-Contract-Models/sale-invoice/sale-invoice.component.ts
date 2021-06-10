@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { GlobalConstants } from 'src/app/Common/global-constants';
 import { Dateformater } from 'src/app/shared/dateformater';
@@ -26,6 +27,7 @@ export class SALEINVOICEComponent implements OnInit {
     private http: HttpClient,
     private service: ServiceService,
     private toastr: ToastrService,
+    private spinner: NgxSpinnerService,
   ) { }
 
 
@@ -42,6 +44,7 @@ export class SALEINVOICEComponent implements OnInit {
 
   
   addSaleInvoice() {
+    this.spinner.show();
      this.data.saleInvoiceDate = this.dateformater.toModel(this.data.saleInvoiceDate);
     let varr = {
 
@@ -61,14 +64,17 @@ export class SALEINVOICEComponent implements OnInit {
             this.toastr.success(this.response.message, 'Message.');
             this.activeModal.close(true);
          
+ this.spinner.hide();
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
           }
 
         }, err => {
           if (err.status == 400) {
             this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
           }
         });
   }
@@ -103,6 +109,7 @@ export class SALEINVOICEComponent implements OnInit {
 
   
   updateSaleInvoice() {
+    this.spinner.show();
     this.data.saleInvoiceDate = this.dateformater.toModel(this.data.saleInvoiceDate);
    let varr = {
     "contractId": this.contractId,
@@ -120,14 +127,17 @@ export class SALEINVOICEComponent implements OnInit {
          if (this.response.success == true) {
            this.toastr.success(GlobalConstants.updateMessage, 'Message.');
            this.activeModal.close(true);
+           this.spinner.hide();
          }
          else {
            this.toastr.error(this.response.message, 'Message.');
+           this.spinner.hide();
          }
 
        }, err => {
          if (err.status == 400) {
            this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
+           this.spinner.hide();
          }
        });
  }

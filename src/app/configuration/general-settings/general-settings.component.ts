@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm,ReactiveFormsModule } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { ServiceService } from 'src/app/shared/service.service';
 import { environment } from 'src/environments/environment';
@@ -23,6 +24,7 @@ export class GeneralSettingsComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private toastr: ToastrService,
+    private spinner: NgxSpinnerService,
     private service: ServiceService,
 
     // private _NgbActiveModal: NgbActiveModal
@@ -41,6 +43,7 @@ export class GeneralSettingsComponent implements OnInit {
   //   return this._NgbActiveModal;
   // }
   addGeneralSettings() {
+    this.spinner.show();
     let SomeId =localStorage.getItem('GeneralSettingsID')
     if (SomeId != null) {
       let varr = {
@@ -64,14 +67,17 @@ export class GeneralSettingsComponent implements OnInit {
               this.id = this.response.data;
               this.toastr.success(this.response.message, 'Message.');
               this.getbyid(this.id);
+              this.spinner.hide();
             }
             else {
               this.toastr.error(this.response.message, 'Message.');
+              this.spinner.hide();
             }
 
           }, err => {
             if (err.status == 400) {
               this.toastr.error(this.response.message, 'Message.');
+              this.spinner.hide();
             }
           });
 
@@ -102,17 +108,19 @@ export class GeneralSettingsComponent implements OnInit {
               this.toastr.success(this.response.message, 'Message.');
               localStorage.setItem('GeneralSettingsID', this.id);
               this.getbyid(this.id);
-
+              this.spinner.hide();
               // this.notifForm.reset();
               // this.activeModal.close(true);
             }
             else {
               this.toastr.error(this.response.message, 'Message.');
+              this.spinner.hide();
             }
 
           }, err => {
             if (err.status == 400) {
               this.toastr.error(err.error.message, 'Message.');
+              this.spinner.hide();
             }
           });
     }

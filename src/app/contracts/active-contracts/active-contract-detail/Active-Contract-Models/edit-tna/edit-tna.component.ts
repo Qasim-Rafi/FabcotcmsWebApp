@@ -7,6 +7,7 @@ import { ServiceService } from 'src/app/shared/service.service';
 import { environment } from 'src/environments/environment';
 import { Dateformater } from 'src/app/shared/dateformater';
 import { GlobalConstants } from 'src/app/Common/global-constants';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
@@ -30,6 +31,7 @@ export class EditTnaComponent implements OnInit {
     private http: HttpClient,
     private service: ServiceService,
     private toastr: ToastrService,
+    private spinner: NgxSpinnerService,
 
   ) { }
 
@@ -64,6 +66,7 @@ export class EditTnaComponent implements OnInit {
   }
   
   UpdateTna() {
+    this.spinner.show();
     this.data.startDate = this.dateformater.toModel(this.data.startDate);
     this.data.endDate = this.dateformater.toModel(this.data.endDate);
     let varr = {
@@ -82,15 +85,18 @@ export class EditTnaComponent implements OnInit {
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
             this.activeModal.close(true);
+            this.spinner.hide();
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
           }
 
         },(err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
+          this.spinner.hide();
                 });
   }
 }

@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { GlobalConstants } from 'src/app/Common/global-constants'
 import { ServiceService } from 'src/app/shared/service.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-add-edit-shipment-line',
@@ -23,6 +24,7 @@ export class AddEditShipmentLineComponent implements OnInit {
   constructor(private http: HttpClient,
     private toastr: ToastrService,
     private service: ServiceService,
+    private spinner: NgxSpinnerService,
     private _NgbActiveModal: NgbActiveModal) { }
 
   ngOnInit(): void {
@@ -56,6 +58,7 @@ export class AddEditShipmentLineComponent implements OnInit {
   }
 
   addShipment() {
+    this.spinner.show();
     let varr = {
       "shipmentLineType": this.data.shipmentLineType,
       "shipmentMode": this.data.shipmentMode,
@@ -71,15 +74,18 @@ export class AddEditShipmentLineComponent implements OnInit {
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
             this.activeModal.close(true);
+            this.spinner.hide();
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
           }
 
         },(err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
+          this.spinner.hide();
         });
   }
 
@@ -88,28 +94,35 @@ export class AddEditShipmentLineComponent implements OnInit {
 
 
   editShipment()
+  
   {
+    this.spinner.show();
     this.http.get(`${environment.apiUrl}/api/Configs/GetShipmentLineById/`+this.Id )
     .subscribe(
       res=> { 
         this.response = res;
         if (this.response.success == true){
           this.data =this.response.data; 
+          this.spinner.hide();
         }
         else {
           this.toastr.success(this.response.message, 'Message.');
+          this.spinner.hide();
             }
 
       }, err => {
         if (err.status == 400) {
           this.toastr.success(this.response.message, 'Message.');
+          this.spinner.hide();
         }
       });
   }
 
 
   UpdateShipment()
+  
   {
+    this.spinner.show();
     let varr=  {
       "shipmentLineType": this.data.shipmentLineType,
       "shipmentMode": this.data.shipmentMode,
@@ -125,15 +138,18 @@ export class AddEditShipmentLineComponent implements OnInit {
         if (this.response.success == true){
           this.toastr.success(this.response.message, 'Message.');
           this.activeModal.close(true);
+          this.spinner.hide();
         }
         else {
           this.toastr.success(this.response.message, 'Message.');
+          this.spinner.hide();
             }
 
       }, (err: HttpErrorResponse) => {
         const messages = this.service.extractErrorMessagesFromErrorResponse(err);
         this.toastr.error(messages.toString(), 'Message.');
         console.log(messages);
+        this.spinner.hide();
       });
   }
 

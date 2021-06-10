@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
 // import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
@@ -18,6 +19,7 @@ export class NotificationSettingsComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private toastr: ToastrService,
+    private spinner: NgxSpinnerService,
     // private _NgbActiveModal: NgbActiveModal
   ) { }
   ngOnInit(): void {
@@ -26,7 +28,8 @@ export class NotificationSettingsComponent implements OnInit {
       this.getbyid(this.localId);
   }
 }
-addNotification(){
+addNotification(){ 
+  this.spinner.show();
   let SomeId =localStorage.getItem('NotificationSettingsID')
     if (SomeId != null) {
     let varr = {
@@ -48,14 +51,17 @@ addNotification(){
             this.id = this.response.data;
             this.toastr.success(this.response.message, 'Message.');
             this.getbyid(this.id);
+            this.spinner.hide();
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
           }
 
         }, err => {
           if (err.status == 400) {
             this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
           }
         });
 
@@ -84,17 +90,20 @@ addNotification(){
             this.toastr.success(this.response.message, 'Message.');
             localStorage.setItem('NotificationSettingsID', this.id);
             this.getbyid(this.id);
+            this.spinner.hide();
 
             // this.notifForm.reset();
             // this.activeModal.close(true);
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
           }
 
         }, err => {
           if (err.status == 400) {
             this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
           }
         });
   }

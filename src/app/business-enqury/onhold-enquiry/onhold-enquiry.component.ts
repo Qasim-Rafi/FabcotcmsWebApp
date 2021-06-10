@@ -9,7 +9,7 @@ import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import { ClipboardService } from 'ngx-clipboard';
 import { ServiceService } from 'src/app/shared/service.service';
-import {NgxSpinnerService} from 'ngx-spinner'
+import { NgxSpinnerService } from 'ngx-spinner';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -95,6 +95,7 @@ export class OnholdEnquiryComponent implements OnInit {
       if (result.isConfirmed) {
         this.spinner.show();
 
+        this.spinner.show();
         this.http.delete(`${environment.apiUrl}/api/Enquiries/DeleteEnquiry/` + obj.id)
           .subscribe(
             res => {
@@ -107,6 +108,7 @@ export class OnholdEnquiryComponent implements OnInit {
 
                 });
 
+                this.spinner.hide();
               }
               else {          
               this.toastr.error(this.response.message, 'Message.');
@@ -133,6 +135,7 @@ export class OnholdEnquiryComponent implements OnInit {
   }
   cloneEnquiry(obj){
 
+    this.spinner.show();
     let varr = {
   
       "enquiryId": obj.id,

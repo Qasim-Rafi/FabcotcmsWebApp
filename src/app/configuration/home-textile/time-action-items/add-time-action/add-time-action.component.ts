@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
 import { ServiceService } from 'src/app/shared/service.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-add-time-action',
@@ -19,7 +20,7 @@ export class AddTimeActionComponent implements OnInit {
 
   constructor(private http: HttpClient,
     private service: ServiceService,
-    private toastr: ToastrService,
+    private toastr: ToastrService,private spinner: NgxSpinnerService,
     private _NgbActiveModal: NgbActiveModal) { }
 
   ngOnInit(): void {
@@ -30,7 +31,7 @@ export class AddTimeActionComponent implements OnInit {
 
 
   addAction(form:NgForm) {
-
+    this.spinner.show();
     let varr = {
       "name": this.data.name,
       "description": this.data.description,
@@ -48,15 +49,18 @@ export class AddTimeActionComponent implements OnInit {
 
             // this.buyerForm.reset();
             this.activeModal.close(true);
+            this.spinner.hide();
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
           }
 
         }, (err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
+          this.spinner.hide();
           
         });
   }

@@ -6,6 +6,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { GlobalConstants } from 'src/app/Common/global-constants'
 import { ServiceService } from 'src/app/shared/service.service';
 import { NgForm } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-add-edit-system-user',
@@ -26,6 +27,7 @@ export class AddEditSystemUserComponent implements OnInit {
   constructor(private http: HttpClient,
     private toastr: ToastrService,
     private service: ServiceService,
+    private spinner: NgxSpinnerService,
     private _NgbActiveModal: NgbActiveModal) { }
 
   ngOnInit(): void {
@@ -59,7 +61,7 @@ export class AddEditSystemUserComponent implements OnInit {
 
   UpdateSystemUse(form:NgForm) {
 
-  
+    this.spinner.show();
     let varr = {
       "username": this.data.username,
       "fullName": this.data.fullName,
@@ -77,15 +79,19 @@ export class AddEditSystemUserComponent implements OnInit {
           if (this.response.success == true) {
             this.toastr.success(GlobalConstants.updateMessage, 'Message.');
             this.activeModal.close(true);
+            this.spinner.hide();
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
+
           }
 
         },(err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
+          this.spinner.hide();
    
         });
   }
@@ -93,6 +99,7 @@ export class AddEditSystemUserComponent implements OnInit {
 // -------------------------------------ADD User FROM ---------------------------
 
 addSystemUser(form:NgForm) {
+  this.spinner.show();
 
   let varr = {
     "username": this.data.username,
@@ -112,6 +119,7 @@ addSystemUser(form:NgForm) {
         if (this.response.success == true) {
           this.toastr.success(this.response.message, 'Message.');
           this.activeModal.close(true);
+            this.spinner.hide();
         }
         else {
           this.toastr.error(this.response.message, 'Message.');
@@ -121,6 +129,8 @@ addSystemUser(form:NgForm) {
         const messages = this.service.extractErrorMessagesFromErrorResponse(err);
         this.toastr.error(messages.toString(), 'Message.');
         console.log(messages);
+        this.spinner.hide();
+
       });
 }
 
