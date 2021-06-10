@@ -79,7 +79,7 @@ export class ProductionStatusComponent implements OnInit {
     }
 
     this.http.
-      put(`${environment.apiUrl}/api/YarnContracts/AddContractProductionStatus`, varr)
+      post(`${environment.apiUrl}/api/YarnContracts/AddContractProductionStatus`, varr)
       .subscribe(
         res => {
 
