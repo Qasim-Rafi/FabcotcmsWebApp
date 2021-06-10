@@ -20,15 +20,14 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 })
 export class WeaveComponent implements OnInit {
 
-  countryCount: number;
+  weaveCount: number;
   response: any;
   rows: any = [];
   columns: any = [];
   data: any = {};
   copyData: any = [];
-  currentDate = Date.now();
-  countryFilter: any = [];
-  CountryUrl = '/api/Configs/GetAllCountry'
+  weaveFilter: any = [];
+  weaveUrl = '/api/YarnConfig/GetAllWeave'
 
   @ViewChild('myTable', { static: false }) table: DatatableComponent;
 
@@ -41,10 +40,10 @@ export class WeaveComponent implements OnInit {
   ngOnInit(): void {
     this.service.fetch((data) => {
       this.rows = data;
-      this.countryFilter = [...this.rows];
+      this.weaveFilter = [...this.rows];
 
-      this.countryCount = this.rows.length;
-    }, this.CountryUrl);
+      this.weaveCount = this.rows.length;
+    }, this.weaveUrl);
 
   }
 
@@ -52,19 +51,19 @@ export class WeaveComponent implements OnInit {
   // ------------------- Search function ----------------------------------//
   search(event) {
     const val = event.target.value.toLowerCase();
-    const temp = this.countryFilter.filter(function (d) {
+    const temp = this.weaveFilter.filter(function (d) {
       return (d.name.toLowerCase().indexOf(val) !== -1 || !val);
     });
     this.rows = temp;
   }
 
-  //  --------------------- Delete Country ---------------------------//
+  //  --------------------- Delete weave ---------------------------//
 
-  deleteCountry(id) {
+  deleteWeave(id) {
 
     Swal.fire({
       title: GlobalConstants.deleteTitle, //'Are you sure?',
-      text: GlobalConstants.deleteMessage + ' ' + '"' + id.name + '"',
+      text: GlobalConstants.deleteMessage + ' ' + '"' + id.weaveName + '"',
       icon: 'error',
       showCancelButton: true,
       confirmButtonColor: '#ed5565',
@@ -76,7 +75,7 @@ export class WeaveComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
 
-        this.http.delete(`${environment.apiUrl}/api/Configs/DeleteCountry/` + id.id)
+        this.http.delete(`${environment.apiUrl}/api/YarnConfig/DeleteWeave/` + id.id)
           .subscribe(
             res => {
               this.response = res;
@@ -84,7 +83,7 @@ export class WeaveComponent implements OnInit {
                 this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
                 this.service.fetch((data) => {
                   this.rows = data;
-                }, this.CountryUrl);
+                }, this.weaveUrl);
 
               }
               else {
@@ -103,7 +102,7 @@ export class WeaveComponent implements OnInit {
 
   //  ----------------------- Add country Form -----------------------//
 
-  addCountryForm(check, name) {
+  addWeaveForm(check, name) {
     const modalRef = this.modalService.open(AddWeaveComponent, { centered: true });
     modalRef.componentInstance.statusCheck = check;
     modalRef.componentInstance.FormName = name;
@@ -112,10 +111,10 @@ export class WeaveComponent implements OnInit {
       if (data == true) {
         this.service.fetch((data) => {
           this.rows = data;
-      this.countryFilter = [...this.rows];
+      this.weaveFilter = [...this.rows];
 
-          this.countryCount = this.rows.length;
-        }, this.CountryUrl);
+          this.weaveCount = this.rows.length;
+        }, this.weaveUrl);
       }
     }, (reason) => {
     });
@@ -124,9 +123,9 @@ export class WeaveComponent implements OnInit {
   // ---------------------- Edit Country Form ----------------------//
 
 
-  editCountryForm(row, check, name) {
+  editWeaveForm(row, check, name) {
     const modalRef = this.modalService.open(AddWeaveComponent, { centered: true });
-    modalRef.componentInstance.countryId = row.id;
+    modalRef.componentInstance.weaveId = row.id;
     modalRef.componentInstance.statusCheck = check;
     modalRef.componentInstance.FormName = name;
     modalRef.result.then((data) => {
@@ -135,7 +134,7 @@ export class WeaveComponent implements OnInit {
         //  this.date = this.myDate;
         this.service.fetch((data) => {
           this.rows = data;
-        }, this.CountryUrl);
+        }, this.weaveUrl);
 
       }
     }, (reason) => {
@@ -147,46 +146,46 @@ export class WeaveComponent implements OnInit {
   // --------------------------Export as Excel file----------------------------------//
 
 
-  countryExcelFile(){
+  weaveExcelFile(){
     const filtered = this.rows.map(row => ({
       Sno: row.id,
-      CountryName: row.name,
-      Details: row.details,
+      WeaveName: row.weaveName,
+      Details: row.description,
       Status: row.active == true ? "Active" : "In-Active",
       CreatedOn: row.createdDateTime + ' | ' + row.createdByName
     }));
 
-    this.service.exportAsExcelFile(filtered, 'Countries');
+    this.service.exportAsExcelFile(filtered, 'Weaves');
 
   }
 
 // -------------------------------- Export as CSV file --------------------------------//
 
-countryCsvFile(){
+weaveCsvFile(){
   const filtered = this.rows.map(row => ({
     Sno: row.id,
-    CountryName: row.name,
-    Details: row.details,
+    WeaveName: row.weaveName,
+    Details: row.description,
     Status: row.active == true ? "Active" : "In-Active",
     CreatedOn: row.createdDateTime + ' | ' + row.createdByName
   }));
 
-  this.service.exportAsCsvFile(filtered, 'Countries');
+  this.service.exportAsCsvFile(filtered, 'Weaves');
 
 }
 
   // -------------------------------Export as Pdf  ------------------------------------//
 
-  countryPdf() {
+  weavePdf() {
 
     let docDefinition = {
       pageSize: 'A4',
       info: {
-        title: 'Country List'
+        title: 'Weave List'
       },
       content: [
         {
-          text: 'Country List',
+          text: 'Weave List',
           style: 'heading',
 
         },
@@ -197,9 +196,9 @@ countryCsvFile(){
             headerRows: 1,
             widths: [30, 90, 130, 50, 150],
             body: [
-              ['S.no.', 'Country', 'Details', 'Status', 'Created On| Created By'],
+              ['S.no.', 'Weave Name', 'Details', 'Status', 'Created On| Created By'],
               ...this.rows.map(row => (
-                [row.id, row.name, row.details,
+                [row.id, row.weaveName, row.description,
                 row.active == true ? "Active" : "In-Active", row.createdDateTime + '|' + row.createdByName]
               ))
             ]
@@ -217,21 +216,21 @@ countryCsvFile(){
     };
 
 
-    pdfMake.createPdf(docDefinition).download('CountryList.pdf');
+    pdfMake.createPdf(docDefinition).download('WeaveList.pdf');
   }
 
   //-------------------------------------- Print country List ------------------------- ///
 
-  printCountryList() {
+  printWeaveList() {
 
     let docDefinition = {
       pageSize: 'A4',
       info: {
-        title: 'Country List'
+        title: 'Weave List'
       },
       content: [
         {
-          text: 'Country List',
+          text: 'Weave List',
           style: 'heading',
 
         },
@@ -242,9 +241,9 @@ countryCsvFile(){
             headerRows: 1,
             widths: [30, 90, 130, 50, 150],
             body: [
-              ['S.no.', 'Country', 'Details', 'Status', 'Created On| Created By'],
+              ['S.no.', 'Weave Name', 'Details', 'Status', 'Created On| Created By'],
               ...this.rows.map(row => (
-                [row.id, row.name, row.details,
+                [row.id, row.weaveName, row.description,
                 row.active == true ? "Active" : "In-Active", row.createdDateTime + '|' + row.createdByName]
               ))
             ]
@@ -268,10 +267,10 @@ countryCsvFile(){
 
   //------------------------------------ Copy Country list --------------------///
 
-  copyCountryList() {
-    let count1 = this.rows.map(x => x.name.length);
+  copyWeaveList() {
+    let count1 = this.rows.map(x => x.weaveName.length);
     let max1 = count1.reduce((a, b) => Math.max(a, b));
-    let count3 = this.rows.map(x => x.details.length);
+    let count3 = this.rows.map(x => x.description.length);
     let max3 = count3.reduce((a, b) => Math.max(a, b));
     let count4 = this.rows.map(x => x.active == true ? "Active".length : "In-Active".length);
     let max4 = count4.reduce((a, b) => Math.max(a, b));
@@ -281,12 +280,12 @@ countryCsvFile(){
 
     // ................................................ headings replace yours............................
 
-    this.copyData.push('S No.' + 'Country Name'.padEnd(max1) + 'Details'.padEnd(max3) + 'Status'.padEnd(max4) + 'Changed On' + '| Changed By \n');
+    this.copyData.push('S No.' + 'Weave Name'.padEnd(max1) + 'Details'.padEnd(max3) + 'Status'.padEnd(max4) + 'Changed On' + '| Changed By \n');
     // ................................................ headings............................
 
     // ................................................ coloum data...........replace your coloum names.................
     for (let i = 0; i < this.rows.length; i++) {
-      let tempData = this.rows[i].id + this.rows[i].name.padEnd(max1) + this.rows[i].details.padEnd(max3)
+      let tempData = this.rows[i].id + this.rows[i].weaveName.padEnd(max1) + this.rows[i].description.padEnd(max3)
         + this.rows[i].active
         + this.rows[i].createdDateTime + this.rows[i].createdByName + '\n';
       this.copyData.push(tempData);
@@ -296,7 +295,7 @@ countryCsvFile(){
 
     Swal.fire({
       title: GlobalConstants.copySuccess,
-      footer: 'Copied' + '\n' + this.countryCount + '\n' + 'rows to clipboard',
+      footer: 'Copied' + '\n' + this.weaveCount + '\n' + 'rows to clipboard',
       showConfirmButton: false,
       timer: 2000,
     })

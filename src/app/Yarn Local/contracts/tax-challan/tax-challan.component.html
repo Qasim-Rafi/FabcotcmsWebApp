@@ -23,7 +23,7 @@
             <div class="row mb-3">
                 <div class="col-md-6 ">
                     <button type="button" class="btn btn-primary descBtn ml-sm-none ml-md-2 ">
-                        <i class="fas fa-map fa-fw mr-2"></i>0</button>
+                        <i class="fas fa-map fa-fw mr-2"></i>{{count}}</button>
                     <span class="text-muted text2">Challans</span>
                 </div>
                 <div class="col-md-6 mrg-tsm">
@@ -40,7 +40,7 @@
                                 <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
                                 <div class="col-sm-9">
                                     <input type="text" placeholder="Search.... "
-                                        class="input form-control form-control-sm">
+                                        class="input form-control form-control-sm" (keyup)="search($event)">
                                 </div>
                             </div>
                         </div>
@@ -80,7 +80,7 @@
 
                 <ngx-datatable-column name="Parent Buyer" [width]="80" prop="genericName">
                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                        {{row.genericName}}
+                        {{row.buyerNme}}
                     </ng-template>
                 </ngx-datatable-column>
 
@@ -88,7 +88,7 @@
 
                 <ngx-datatable-column name="Parent Seller" [width]="80" prop="genericName">
                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                        {{row.genericName}}
+                        {{row.sellerName}}
                     </ng-template>
                 </ngx-datatable-column>
 
@@ -96,7 +96,7 @@
 
                 <ngx-datatable-column name="TaxChallan Date" [width]="80" prop="genericName">
                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                        {{row.genericName}}
+                        {{row.challanDate}}
                     </ng-template>
                 </ngx-datatable-column>
 
@@ -104,7 +104,7 @@
 
                 <ngx-datatable-column name="Amount" [width]="80" prop="genericName">
                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                        {{row.genericName}}
+                        {{row.amount}}
                     </ng-template>
                 </ngx-datatable-column>
 
@@ -112,7 +112,7 @@
 
                 <ngx-datatable-column name="CPR" [width]="80" prop="genericName">
                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                        {{row.genericName}}
+                        {{row.cprNumber}}
                     </ng-template>
                 </ngx-datatable-column>
 
@@ -120,7 +120,7 @@
 
                 <ngx-datatable-column name="Remarks #" [width]="80" prop="genericName">
                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                        {{row.genericName}}
+                        {{row.remarks}}
                     </ng-template>
                 </ngx-datatable-column>
             </ngx-datatable>
