@@ -79,6 +79,10 @@ export class DispatchedRegisterComponent implements OnInit {
         //  this.spinner.hide();
       });
   }
+
+
+
+  
   deleteContract(obj) {
     Swal.fire({
       title: GlobalConstants.deleteTitle, //'Are you sure?',

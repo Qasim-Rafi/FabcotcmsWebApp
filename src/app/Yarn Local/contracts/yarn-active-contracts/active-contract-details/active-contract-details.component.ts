@@ -1675,6 +1675,10 @@ addProd() {
 //     // on dismiss
 //   });
 // }
+
+
+
+
 deleteDispatch(id) {
   Swal.fire({
     title: GlobalConstants.deleteTitle, //'Are you sure?',
@@ -1690,7 +1694,7 @@ deleteDispatch(id) {
   }).then((result) => {
     if (result.isConfirmed) {
 
-      this.http.delete(`${environment.apiUrl}` + id.id)
+      this.http.delete(`${environment.apiUrl}/api/YarnContracts/DeleteDispatchRegister/` + id.id)
         .subscribe(
           res => {
             this.response = res;
@@ -1698,7 +1702,7 @@ deleteDispatch(id) {
               this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
               this.getAllShipmentDates((shipmentData) => {
                 this.rows4 = shipmentData;
-                // this.listCount= this.rows.length;
+           
               });
 
             }
