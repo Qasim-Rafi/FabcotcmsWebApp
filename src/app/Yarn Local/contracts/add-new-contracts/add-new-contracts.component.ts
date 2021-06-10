@@ -279,7 +279,7 @@ export class AddNewContractsComponent implements OnInit {
     }
 
     this.http.
-      post(`${environment.apiUrl}/api/Contracts/AddContract?`+'enquiryId='+this.objEnquiry+'&'+'departmentId ='+departmentId, varr)
+      post(`${environment.apiUrl}/api/Contracts/AddContract?`+'enquiryId='+this.objEnquiry+'&'+'departmentId='+departmentId, varr)
       .subscribe(
         res => {
 

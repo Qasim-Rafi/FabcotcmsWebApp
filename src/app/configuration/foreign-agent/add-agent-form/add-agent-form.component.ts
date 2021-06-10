@@ -43,25 +43,19 @@ export class AddAgentFormComponent implements OnInit {
   }
 
 
+
   getCity() {
-    this.http.get(`${environment.apiUrl}/api/Configs/GetAllCity`)
-      .subscribe(
-        res => {
-          this.response = res;
-          if (this.response.success == true) {
-            this.city = this.response.data;
-          }
-          else {
-                    this.toastr.error(this.response.message, 'Message.');
+    this.service.getDestination().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        
+        this.city = this.response.data
 
-          }
-
-        }, err => {
-          if (err.status == 400) {
-                    this.toastr.error(this.response.message, 'Message.');
-
-          }
-        });
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
   }
 
 
