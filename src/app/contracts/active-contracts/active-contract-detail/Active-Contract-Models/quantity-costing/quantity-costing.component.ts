@@ -1,6 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { ServiceService } from 'src/app/shared/service.service';
 import { environment } from 'src/environments/environment';
@@ -23,6 +24,7 @@ export class QuantityCostingComponent implements OnInit {
   constructor( private _NgbActiveModal: NgbActiveModal,
     private http: HttpClient,
     private service: ServiceService,
+    private spinner: NgxSpinnerService,
     private toastr: ToastrService,) { }
 
   ngOnInit(): void {
@@ -76,6 +78,7 @@ export class QuantityCostingComponent implements OnInit {
 
 
   addContractCosting() {
+    this.spinner.show();
     let varr = {
 
       "contractId": this.contractId,
@@ -95,16 +98,19 @@ export class QuantityCostingComponent implements OnInit {
             // this.getEnquiryData(this.objEnquiry);
             this.activeModal.close(true);
             this.getContractCostingData();
+            this.spinner.hide();
 
         }
           else {
             this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
           }
 
         },(err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
+          this.spinner.hide();
         });
   }
 

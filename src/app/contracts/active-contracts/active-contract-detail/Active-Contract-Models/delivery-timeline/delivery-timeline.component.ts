@@ -3,6 +3,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Dateformater } from 'src/app/shared/dateformater';
 import { ServiceService } from 'src/app/shared/service.service';
@@ -33,6 +34,7 @@ export class DeliveryTimelineComponent implements OnInit {
     private toastr: ToastrService,
     private route: ActivatedRoute,
     private _NgbActiveModal: NgbActiveModal,
+    private spinner: NgxSpinnerService,
     private service: ServiceService) { }
 
   ngOnInit(): void {
@@ -104,6 +106,7 @@ export class DeliveryTimelineComponent implements OnInit {
     // this.data.supplierDate = this.dateformater.toModel(this.data.supplierDate);
     // this.data.buyerDate = this.dateformater.toModel(this.data.buyerDate);
 
+    this.spinner.show();
     let varr = {
       "contractId":this.contractId,
       "shipmentNo": this.data.shipmentNo,
@@ -125,20 +128,24 @@ export class DeliveryTimelineComponent implements OnInit {
 
             this.deliveryForm.reset();
             this.activeModal.close(true);
+            this.spinner.hide();
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
           }
 
         },(err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
+          this.spinner.hide();
           
         });
   }
   Updateshipment(form:NgForm) {
 
+    this.spinner.show();
 
     // this.data.supplierDate = this.dateformater.toModel(this.data.supplierDate);
     // this.data.buyerDate = this.dateformater.toModel(this.data.buyerDate);
@@ -164,14 +171,17 @@ export class DeliveryTimelineComponent implements OnInit {
             this.data.buyerDate = this.dateformater.fromModel(this.data.buyerDate);
             this.toastr.success(this.response.message, 'Message.');
             this.activeModal.close(true);
+            this.spinner.hide();
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
           }
 
         }, (err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
+          this.spinner.hide();
 
         });
   }

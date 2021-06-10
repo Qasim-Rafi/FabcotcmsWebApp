@@ -9,6 +9,7 @@ import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import { ClipboardService } from 'ngx-clipboard';
 import { ServiceService } from 'src/app/shared/service.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -31,6 +32,7 @@ export class OnholdEnquiryComponent implements OnInit {
     private _clipboardService: ClipboardService,
     private toastr: ToastrService,
     private http: HttpClient,
+    private spinner: NgxSpinnerService,
   ) { 
     
   }
@@ -92,6 +94,7 @@ export class OnholdEnquiryComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
 
+        this.spinner.show();
         this.http.delete(`${environment.apiUrl}/api/Enquiries/DeleteEnquiry/` + obj.id)
           .subscribe(
             res => {
@@ -102,14 +105,19 @@ export class OnholdEnquiryComponent implements OnInit {
                   this.rows = data;
                 });
 
+                this.spinner.hide();
               }
               else {          
               this.toastr.error(this.response.message, 'Message.');
+              
+ this.spinner.hide();
               }
 
             }, err => {
               if (err.status == 400) {
                 this.toastr.error(this.response.message, 'Message.');
+                
+ this.spinner.hide();
               }
             });
 
@@ -124,6 +132,7 @@ export class OnholdEnquiryComponent implements OnInit {
   }
   cloneEnquiry(obj){
 
+    this.spinner.show();
     let varr = {
   
       "enquiryId": obj.id,
@@ -147,14 +156,20 @@ export class OnholdEnquiryComponent implements OnInit {
               this.fetch((data) => {
                 this.rows = data;
                  });
+                 
+ this.spinner.hide();
                }
               else {
                 this.toastr.error(this.response.message, 'Message.');
+                
+ this.spinner.hide();
               }
     
             }, err => {
               if (err.status == 400) {
                 this.toastr.error(this.response.message, 'Message.');
+                
+ this.spinner.hide();
               }
             });
   

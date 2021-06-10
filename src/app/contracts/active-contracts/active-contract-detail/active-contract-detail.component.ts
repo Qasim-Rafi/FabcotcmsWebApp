@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { GlobalConstants } from 'src/app/Common/global-constants';
 import { Dateformater } from 'src/app/shared/dateformater';
@@ -91,6 +92,7 @@ export class ActiveContractDetailComponent implements OnInit {
     private http: HttpClient,
     private service: ServiceService,
     private toastr: ToastrService,
+    private spinner: NgxSpinnerService,
   ) { }
 
   ngOnInit(): void {
@@ -327,6 +329,7 @@ export class ActiveContractDetailComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
   
+ this.spinner.show();
         this.http.delete(`${environment.apiUrl}/api/Contracts/DeleteContractSaleInvoice/` + obj.id )
           .subscribe(
             res => {
@@ -335,14 +338,17 @@ export class ActiveContractDetailComponent implements OnInit {
                 this.toastr.error(this.response.message, 'Message.');
                 this.getSaleInvoice();
   
+ this.spinner.hide();
               }
               else {
                 this.toastr.error(this.response.message, 'Message.');
+                this.spinner.hide();
               }
   
             }, err => {
               if (err.status == 400) {
                 this.toastr.error(this.response.message, 'Message.');
+                this.spinner.hide();
               }
             });
       }
@@ -367,6 +373,7 @@ export class ActiveContractDetailComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
   
+ this.spinner.show();
         this.http.delete(`${environment.apiUrl}/api/Contracts/DeleteContractTimeAction/` + id.id)
           .subscribe(
             res => {
@@ -378,14 +385,17 @@ export class ActiveContractDetailComponent implements OnInit {
                   // this.listCount= this.rows.length;
                 });
   
+ this.spinner.hide();
               }
               else {
                 this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
+                this.spinner.hide();
               }
   
             }, err => {
               if (err.status == 400) {
                 this.toastr.error(this.response.message, 'Message.');
+                this.spinner.hide();
               }
             });
       }
@@ -397,6 +407,7 @@ export class ActiveContractDetailComponent implements OnInit {
 
   approveContract()
   {
+    this.spinner.show();
     let varr=  {    }
 
     this.http.
@@ -409,15 +420,18 @@ export class ActiveContractDetailComponent implements OnInit {
           this.toastr.success(this.response.message, 'Message.');
           this.getContractData()
         
+ this.spinner.hide();
         }
         else {
           this.toastr.error(this.response.message, 'Message.');
+          this.spinner.hide();
             }
 
       }, (err: HttpErrorResponse) => {
         const messages = this.service.extractErrorMessagesFromErrorResponse(err);
         this.toastr.error(messages.toString(), 'Message.');
         console.log(messages);
+        this.spinner.hide();
       });
   }
 
@@ -743,6 +757,7 @@ deleteCommission(row) {
   }).then((result) => {
     if (result.isConfirmed) {
 
+      this.spinner.show();
       this.http.delete(`${environment.apiUrl}/api/Contracts/DeleteContractBeneficiary/` + row.id )
         .subscribe(
           res => {
@@ -756,14 +771,17 @@ deleteCommission(row) {
                 // this.listCount= this.rows.length;
               });
 
+              this.spinner.hide();
             }
             else {
               this.toastr.error(this.response.message, 'Message.');
+              this.spinner.hide();
             }
 
           }, err => {
             if (err.status == 400) {
               this.toastr.error(this.response.message, 'Message.');
+              this.spinner.hide();
             }
           });
 
@@ -1206,6 +1224,7 @@ deleteContractNote(id) {
   }).then((result) => {
     if (result.isConfirmed) {
 
+      this.spinner.show();
       this.http.delete(`${environment.apiUrl}/api/Contracts/DeleteContractNote/` + id.id)
         .subscribe(
           res => {
@@ -1218,14 +1237,17 @@ deleteContractNote(id) {
                 // this.listCount= this.rows.length;
               });
 
+              this.spinner.hide();
             }
             else {
               this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
+              this.spinner.hide();
             }
 
           }, err => {
             if (err.status == 400) {
               this.toastr.error(this.response.message, 'Message.');
+              this.spinner.hide();
             }
           });
     }
@@ -1268,6 +1290,7 @@ deleteItem(id) {
   }).then((result) => {
     if (result.isConfirmed) {
 
+      this.spinner.show();
       this.http.delete(`${environment.apiUrl}/api/Contracts/DeleteContractItem/` + id.id)
         .subscribe(
           res => {
@@ -1279,14 +1302,17 @@ deleteItem(id) {
                 // this.listCount= this.rows.length;
               });
 
+              this.spinner.hide();
             }
             else {
               this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
+              this.spinner.hide();
             }
 
           }, err => {
             if (err.status == 400) {
               this.toastr.error(this.response.message, 'Message.');
+              this.spinner.hide();
             }
           });
     }
@@ -1381,6 +1407,7 @@ deleteShipmentTimeline(id) {
   }).then((result) => {
     if (result.isConfirmed) {
 
+      this.spinner.show();
       this.http.delete(`${environment.apiUrl}/api/Contracts/DeleteContractShipmentSchedule/` + id.id)
         .subscribe(
           res => {
@@ -1392,14 +1419,17 @@ deleteShipmentTimeline(id) {
                 // this.listCount= this.rows.length;
               });
 
+              this.spinner.hide();
             }
             else {
               this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
+              this.spinner.hide();
             }
 
           }, err => {
             if (err.status == 400) {
               this.toastr.error(this.response.message, 'Message.');
+              this.spinner.hide();
             }
           });
     }
@@ -1432,6 +1462,7 @@ deleteShipmentTimeline(id) {
     
       statusOpen()
       { 
+        this.spinner.show();
         let varr = {
         
           "reason":"Open",
@@ -1449,16 +1480,19 @@ deleteShipmentTimeline(id) {
               this.toastr.success(this.response.message, 'Message.');
               this.getContractData();
 
+              this.spinner.hide();
 
            
             }
             else {
               this.toastr.error('Something went Worng', 'Message.');
+              this.spinner.hide();
                 }
     
           }, err => {
             if (err.status == 400) {
               this.toastr.error('Something went Worng', 'Message.');
+              this.spinner.hide();
             }
           });
       }
@@ -1468,6 +1502,7 @@ deleteShipmentTimeline(id) {
 
 
       AddReminder() {
+        this.spinner.show();
             this.data.contractUpDate = this.dateformater.toModel(this.data.contractUpDate);
     
             if( this.data.contractUpDate == "undefined-undefined-undefined"){
@@ -1492,14 +1527,17 @@ deleteShipmentTimeline(id) {
                   if (this.response.success == true) {
                     this.toastr.success(this.response.message, 'Message.');
                     this.getAllReminder();
+                    this.spinner.hide();
                   }
                   else {
                     this.toastr.error(this.response.message, 'Message.');
+                    this.spinner.hide();
                   }
         
                 }, err => {
                   if (err.status == 400) {
                     this.toastr.error(this.response.message, 'Message.');
+                    this.spinner.hide();
                   }
                 });
     
@@ -1508,6 +1546,7 @@ deleteShipmentTimeline(id) {
 
           readyForBill()
           {
+            this.spinner.show();
             let varr=  {}
         
             this.http.
@@ -1519,15 +1558,18 @@ deleteShipmentTimeline(id) {
                 if (this.response.success == true){
                   this.toastr.success(this.response.message, 'Message.');
                   this.router.navigate(['/billing-and-payment/generate-bills']);
+                  this.spinner.hide();
                 }
                 else {
                   this.toastr.error(this.response.message, 'Message.');
+                  this.spinner.hide();
                     }
         
               }, (err: HttpErrorResponse) => {
                 const messages = this.service.extractErrorMessagesFromErrorResponse(err);
                 this.toastr.error(messages.toString(), 'Message.');
                 console.log(messages);
+                this.spinner.hide();
               });
           }
 
@@ -1568,6 +1610,7 @@ deleteShipmentTimeline(id) {
               position: 'top',
             }).then((result) => {
               if (result.isConfirmed) {
+                this.spinner.show();
                 this.http.
                   delete(`${environment.apiUrl}/api/Contracts/DeleteContractFollowUp/`+ objReminder.id )
                   .subscribe(
@@ -1578,14 +1621,17 @@ deleteShipmentTimeline(id) {
                         this.toastr.error(this.response.message, 'Message.');
                     this.getAllReminder();
                        
+ this.spinner.hide();
                       }
                       else {
                         this.toastr.error(this.response.message, 'Message.');
+                        this.spinner.hide();
                       }
             
                     }, err => {
                       if (err.status == 400) {
                         this.toastr.error(this.response.message, 'Message.');
+                        this.spinner.hide();
                       }
                     });
         

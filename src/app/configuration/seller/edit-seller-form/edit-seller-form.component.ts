@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ServiceService } from 'src/app/shared/service.service';
 import { NgForm } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-edit-seller-form',
@@ -28,6 +29,7 @@ export class EditSellerFormComponent implements OnInit {
   constructor(private http: HttpClient,
     private toastr: ToastrService,
     private service: ServiceService,
+    private spinner: NgxSpinnerService,
     private _NgbActiveModal: NgbActiveModal,) { }
 
 
@@ -136,6 +138,7 @@ export class EditSellerFormComponent implements OnInit {
 
 
   updateSeller() {
+    this.spinner.show();
     let varr = {
       "sellerCode": this.data.sellerCode,
       "sellerName": this.data.sellerName,
@@ -163,16 +166,19 @@ export class EditSellerFormComponent implements OnInit {
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
             this.activeModal.close(true);
+            this.spinner.hide();
 
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
           }
 
         },(err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
+          this.spinner.hide();
         });
   }
 

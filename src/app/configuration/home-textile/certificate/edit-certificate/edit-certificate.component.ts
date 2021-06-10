@@ -7,6 +7,7 @@ import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker'
 import { Dateformater } from 'src/app/shared/dateformater';
 import { NgForm } from '@angular/forms';
 import { ServiceService } from 'src/app/shared/service.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 
@@ -37,6 +38,7 @@ export class EditCertificateComponent implements OnInit {
     private http: HttpClient,
     private service: ServiceService,
     private toastr: ToastrService,
+    private spinner: NgxSpinnerService,
     private _NgbActiveModal: NgbActiveModal,
 
 
@@ -86,6 +88,7 @@ export class EditCertificateComponent implements OnInit {
     //   this.toastr.error("Invalid Form", 'Message.');
     // }
     // else{
+      this.spinner.show();
     this.data.validityDate = this.dateformater.toModel(this.data.validityDate);
     let varr = {
       "certificateId": this.data.certificateId,
@@ -108,17 +111,21 @@ export class EditCertificateComponent implements OnInit {
 
             // this.buyerForm.reset();
             this.activeModal.close(true);
+            this.spinner.hide();
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
           }
 
         }, (err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
+          this.spinner.hide();
           if (err.status == 400) {
             this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
           }
         });
   }
@@ -155,6 +162,7 @@ export class EditCertificateComponent implements OnInit {
     //   this.toastr.error("Invalid Form", 'Message.');
     // }
     // else{
+      this.spinner.show();
     this.data.validityDate = this.dateformater.toModel(this.data.validityDate);
     let varr = {
       "certificateId": this.data.certificateId,
@@ -173,17 +181,21 @@ export class EditCertificateComponent implements OnInit {
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
             this.activeModal.close(true);
+            this.spinner.hide();
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
           }
 
         }, (err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
+          this.spinner.hide();
           if (err.status == 400) {
             this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
           }
         });
   }

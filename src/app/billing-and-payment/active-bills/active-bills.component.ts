@@ -12,6 +12,7 @@ import Swal from 'sweetalert2';
 import { ClipboardService } from 'ngx-clipboard';
 import pdfMake from "pdfmake/build/pdfmake";
 import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-active-bills',
@@ -46,7 +47,8 @@ export class ActiveBillsComponent implements OnInit {
     private _clipboardService: ClipboardService,
     private router: Router,
     private toastr: ToastrService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private spinner: NgxSpinnerService,
     ) { }
 
     navigatePaymentForm(statusCheck , obj ) {

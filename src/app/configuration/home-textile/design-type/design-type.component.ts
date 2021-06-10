@@ -11,6 +11,7 @@ import { ServiceService } from 'src/app/shared/service.service';
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import { ClipboardService } from 'ngx-clipboard';
+import { NgxSpinnerService } from 'ngx-spinner';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -34,6 +35,7 @@ export class DesignTypeComponent implements OnInit {
     private _clipboardService: ClipboardService,
     private toastr: ToastrService,
     private service: ServiceService,
+    private spinner: NgxSpinnerService,
     private modalService: NgbModal) { }
 
   ngOnInit(): void {
