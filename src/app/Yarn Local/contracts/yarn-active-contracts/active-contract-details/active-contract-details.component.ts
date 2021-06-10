@@ -88,8 +88,9 @@ export class ActiveContractDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     // this.userName=localStorage.getItem('loggedInUserName');
-    // this.queryParems = this.route.snapshot.queryParams;
-    // this.contractId = this.queryParems.id;
+    
+    this.queryParems = this.route.snapshot.queryParams;
+    this.contractId = this.queryParems.id;
    
 
     this.getContractData();
@@ -104,11 +105,11 @@ export class ActiveContractDetailsComponent implements OnInit {
     this.getSaleInvoice();
     
 
-    this.getContractTnA((Tna)=>{
-      this.rows5 = Tna;
-      this.TnaFilter = [...Tna];
+    // this.getContractTnA((Tna)=>{
+    //   this.rows5 = Tna;
+    //   this.TnaFilter = [...Tna];
 
-    });
+    // });
 
     this.getAllBenificery((empData) => {
       this.rows1 = empData;
@@ -116,11 +117,11 @@ export class ActiveContractDetailsComponent implements OnInit {
     });
 
 
-    this.getAllItems((itemsData) => {
-      this.rows2 = itemsData;
-      this.ItemFilter = [...itemsData];
-      // this.listCount= this.rows.length;
-    });
+    // this.getAllItems((itemsData) => {
+    //   this.rows2 = itemsData;
+    //   this.ItemFilter = [...itemsData];
+    //   // this.listCount= this.rows.length;
+    // });
 
     this.getAllNotes((NotesData) => {
       this.rows3 = NotesData;
@@ -202,30 +203,30 @@ export class ActiveContractDetailsComponent implements OnInit {
 }
 
 
-  getAllItems(cb) {
+  // getAllItems(cb) {
 
-    this.http
-      .get(`${environment.apiUrl}/api/Contracts/GetAllContractItem/`+ this.contractId)
-      .subscribe(res => {
-        this.response = res;
+  //   this.http
+  //     .get(`${environment.apiUrl}/api/Contracts/GetAllContractItem/`+ this.contractId)
+  //     .subscribe(res => {
+  //       this.response = res;
         
 
-        if (this.response.success == true) {
-          this.items = this.response.data
-          this.ItemFilter = [this.items]; 
-          cb(this.items);
-        }
-        else {
-          this.toastr.error(this.response.message, 'Message.');
-        }
-        // this.spinner.hide();
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error(err.error.message, 'Message.');;
-        }
-        //  this.spinner.hide();
-      });
-  }
+  //       if (this.response.success == true) {
+  //         this.items = this.response.data
+  //         this.ItemFilter = [this.items]; 
+  //         cb(this.items);
+  //       }
+  //       else {
+  //         this.toastr.error(this.response.message, 'Message.');
+  //       }
+  //       // this.spinner.hide();
+  //     }, err => {
+  //       if (err.status == 400) {
+  //         this.toastr.error(err.error.message, 'Message.');;
+  //       }
+       
+  //     });
+  // }
 
 
 
@@ -347,45 +348,45 @@ export class ActiveContractDetailsComponent implements OnInit {
   
 
 
-  deleteTnA(id) {
-    Swal.fire({
-      title: GlobalConstants.deleteTitle, //'Are you sure?',
-      text: GlobalConstants.deleteMessage + ' ' + '"' + id.tnaItem + '"',
-      icon: 'error',
-      showCancelButton: true,
-      confirmButtonColor: '#ed5565',
-      cancelButtonColor: '#dae0e5',
-      cancelButtonText: 'No',
-      confirmButtonText: 'Yes',
-      reverseButtons: true,
-      position: 'top',
-    }).then((result) => {
-      if (result.isConfirmed) {
+  // deleteTnA(id) {
+  //   Swal.fire({
+  //     title: GlobalConstants.deleteTitle, //'Are you sure?',
+  //     text: GlobalConstants.deleteMessage + ' ' + '"' + id.tnaItem + '"',
+  //     icon: 'error',
+  //     showCancelButton: true,
+  //     confirmButtonColor: '#ed5565',
+  //     cancelButtonColor: '#dae0e5',
+  //     cancelButtonText: 'No',
+  //     confirmButtonText: 'Yes',
+  //     reverseButtons: true,
+  //     position: 'top',
+  //   }).then((result) => {
+  //     if (result.isConfirmed) {
   
-        this.http.delete(`${environment.apiUrl}/api/Contracts/DeleteContractTimeAction/` + id.id)
-          .subscribe(
-            res => {
-              this.response = res;
-              if (this.response.success == true) {
-                this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
-                this.getContractTnA((Tna) => {
-                  this.rows5 = Tna;
-                  // this.listCount= this.rows.length;
-                });
+  //       this.http.delete(`${environment.apiUrl}/api/Contracts/DeleteContractTimeAction/` + id.id)
+  //         .subscribe(
+  //           res => {
+  //             this.response = res;
+  //             if (this.response.success == true) {
+  //               this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
+  //               this.getContractTnA((Tna) => {
+  //                 this.rows5 = Tna;
+  //                 // this.listCount= this.rows.length;
+  //               });
   
-              }
-              else {
-                this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
-              }
+  //             }
+  //             else {
+  //               this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
+  //             }
   
-            }, err => {
-              if (err.status == 400) {
-                this.toastr.error(this.response.message, 'Message.');
-              }
-            });
-      }
-    })
-  }
+  //           }, err => {
+  //             if (err.status == 400) {
+  //               this.toastr.error(this.response.message, 'Message.');
+  //             }
+  //           });
+  //     }
+  //   })
+  // }
 
 
 
@@ -1156,25 +1157,25 @@ addSaleInvoice() {
 //     // on dismiss
 //   });
 // }
-getContractTnA(cb) {
-  this.http.get(`${environment.apiUrl}/api/Contracts/GetAllContractTimeAction/` + this.contractId)
-    .subscribe(
-      res => {
-        this.response = res;
-        if (this.response.success == true) {
-          this.TnaData = this.response.data;
-          cb(this.TnaData)
-        }
-        else {
-          this.toastr.error(this.response.message, 'Message.');
-        }
+// getContractTnA(cb) {
+//   this.http.get(`${environment.apiUrl}/api/Contracts/GetAllContractTimeAction/` + this.contractId)
+//     .subscribe(
+//       res => {
+//         this.response = res;
+//         if (this.response.success == true) {
+//           this.TnaData = this.response.data;
+//           cb(this.TnaData)
+//         }
+//         else {
+//           this.toastr.error(this.response.message, 'Message.');
+//         }
 
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error(this.response.message, 'Message.');
-        }
-      });
-}
+//       }, err => {
+//         if (err.status == 400) {
+//           this.toastr.error(this.response.message, 'Message.');
+//         }
+//       });
+// }
 
 // EditTna(row) {
 //   const modalRef = this.modalService.open(EditTnaComponent, { centered: true });
@@ -1354,11 +1355,11 @@ addDeliveryTL(check) {
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
-      this.getAllItems((itemsData) => {
-        this.rows2 = itemsData;
-        // this.listCount= this.rows.length;
-      });
-      this.getContractData();
+      // this.getAllItems((itemsData) => {
+      //   this.rows2 = itemsData;
+      //   // this.listCount= this.rows.length;
+      // });
+      // this.getContractData();
   
 
 
@@ -1450,10 +1451,10 @@ deleteDeliveries(id) {
             this.response = res;
             if (this.response.success == true) {
               this.toastr.error(this.response.message, 'Message.');
-              this.getAllItems((itemsData) => {
-                this.rows2 = itemsData;
-                // this.listCount= this.rows.length;
-              });
+              // this.getAllItems((itemsData) => {
+              //   this.rows2 = itemsData;
+              //   // this.listCount= this.rows.length;
+              // });
 
             }
             else {
@@ -1477,10 +1478,10 @@ editDeliveries(row, check) {
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
-      this.getAllItems((itemsData) => {
-        this.rows2 = itemsData;
-        // this.listCount= this.rows.length;
-      });
+      // this.getAllItems((itemsData) => {
+      //   this.rows2 = itemsData;
+      //   // this.listCount= this.rows.length;
+      // });
   
     }
     this.getContractData();
@@ -1492,7 +1493,7 @@ editDeliveries(row, check) {
 addDispatch( check) {
   const modalRef = this.modalService.open(DispatchRegisterComponent, { centered: true });
   modalRef.componentInstance.statusCheck = check;
-  // modalRef.componentInstance.contractId = this.contractId ;
+  modalRef.componentInstance.contractId = this.contractId ;
 
   modalRef.result.then((data) => {
     // on close
@@ -1509,6 +1510,8 @@ editDispatch( row ,check) {
   const modalRef = this.modalService.open(DispatchRegisterComponent, { centered: true });
   modalRef.componentInstance.statusCheck = check;
   modalRef.componentInstance.dispatchId = row.id ;
+  modalRef.componentInstance.contractId = this.contractId ;
+
 
   modalRef.result.then((data) => {
     // on close
