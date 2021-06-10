@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
 import { ServiceService } from 'src/app/shared/service.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-add-agent-form',
@@ -24,6 +25,7 @@ export class AddAgentFormComponent implements OnInit {
 
   constructor(private http:HttpClient,
     private service: ServiceService,
+    private spinner: NgxSpinnerService,
     private toastr: ToastrService,
     private _NgbActiveModal: NgbActiveModal ) { }
 
@@ -44,22 +46,24 @@ export class AddAgentFormComponent implements OnInit {
 
 
   getCity() {
+    this.spinner.show();
     this.http.get(`${environment.apiUrl}/api/Configs/GetAllCity`)
       .subscribe(
         res => {
           this.response = res;
           if (this.response.success == true) {
             this.city = this.response.data;
+            this.spinner.hide();
           }
           else {
                     this.toastr.error(this.response.message, 'Message.');
-
+this.spinner.hide();
           }
 
         }, err => {
           if (err.status == 400) {
                     this.toastr.error(this.response.message, 'Message.');
-
+this.spinner.hide();
           }
         });
   }
@@ -113,6 +117,7 @@ export class AddAgentFormComponent implements OnInit {
 
   addAgent()
   {
+    this.spinner.show();
     this.http.
     post(`${environment.apiUrl}/api/Configs/AddExternalAgent`,this.data)
     .subscribe(
@@ -124,18 +129,18 @@ export class AddAgentFormComponent implements OnInit {
       
           // this.buyerForm.reset();
           this.activeModal.close(true);
+          this.spinner.hide();
         }
         else {
           this.toastr.error(this.response.message, 'Message.');
+          this.spinner.hide();
             }
 
       }, (err: HttpErrorResponse) => {
         const messages = this.service.extractErrorMessagesFromErrorResponse(err);
         this.toastr.error(messages.toString(), 'Message.');
         console.log(messages);
-        // if (err.status == 400) {
-        //   this.toastr.error(this.response.message, 'Message.');
-        // }
+        this.spinner.hide();
       });
   }
   }
