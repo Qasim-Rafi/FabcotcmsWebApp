@@ -256,7 +256,7 @@ print(){
                   ['Sale Invoice#' , 'Invoice Date' , 'Invoice Amount' , 'Commission' , 'Total Amount'],
                   
                   ...this.rows['contractSaleInvoices'].map(row => (
-                    [row.saleInvoiceNo , row.saleInvoiceDate , row.amount , row.commission , row.totalAmount]
+                    [row.saleInvoiceNo , row.saleInvoiceDate , row.amount , row.commission+ '%'  , row.totalAmount]
                   ))
                 ]
               }

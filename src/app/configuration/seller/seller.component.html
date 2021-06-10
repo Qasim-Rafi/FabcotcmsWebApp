@@ -129,6 +129,7 @@
 
 <div class="faq-item shadow-sm" *ngFor="let obj of seller ; let x = index">
   <div class="row">
+
     <div class="col-md-1 col-sm-3 col-xs-3 forum-info" data-original-title="POCs">
       <div class="poc-icon">
         <a class="faq-question text-muted text-s-lg text-w-3" data-toggle="collapse" href="#seller-{{ x }}"
@@ -136,7 +137,8 @@
           <span class="fa fa-users"></span>{{obj.sellerPOCList.length}}</a>
       </div>
     </div>
-    <div class="col-md-7">
+
+    <div class="col-md-6 col-xl-7">
       <a class="faq-question">{{ obj.sellerCode }} - {{ obj.sellerName }}</a>
 
       <div class="small mb-1">
@@ -152,7 +154,8 @@
         </div>
       </div>
     </div>
-    <div class="col-md-2">
+
+    <div class="col-md-3 col-xl-2">
       <div class="ibox-tools">
         <button type="button" class="btn editIconBack" (click)="addCertificateForm('SellerAdd', obj)">
           <i class="fa fa-certificate"></i>
@@ -173,6 +176,7 @@
         <small>Total Contracts</small>
       </div>
     </div>
+
     <div class="col-md-1 forum-info" data-toggle="tooltip" data-placement="top" title=""
       data-original-title="Open Contracts">
       <span class="views-number"> 0 </span>
@@ -180,6 +184,7 @@
         <small>Open Contracts</small>
       </div>
     </div>
+
   </div>
   <!-- end of .row -->
 

@@ -109,7 +109,7 @@ export class DeliveryTimelineComponent implements OnInit {
       "shipmentNo": this.data.shipmentNo,
       "supplierDate": this.dateformater.toModel(this.data.supplierDate),
       "buyerDate":this.dateformater.toModel(this.data.buyerDate),
-      "shipmentLine": this.data.shipmentLine,
+      "shipmentLineId": this.data.shipmentLine,
       "shipmentMode":this.data.shipmentMode,
       "shipmentRemarks": this.data.shipmentRemarks
     }
@@ -147,7 +147,7 @@ export class DeliveryTimelineComponent implements OnInit {
       "shipmentNo": this.data.shipmentNo,
       "supplierDate": this.dateformater.toModel(this.data.supplierDate),
       "buyerDate":this.dateformater.toModel(this.data.buyerDate),
-      // "shipmentLine": this.data.shipmentLine,
+      "shipmentLineId": this.data.shipmentLine,
       "shipmentMode":this.data.shipmentMode,
       "shipmentRemarks": this.data.shipmentRemarks
     }

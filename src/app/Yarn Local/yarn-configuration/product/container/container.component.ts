@@ -27,8 +27,8 @@ export class ContainerComponent implements OnInit {
   data: any = {};
   copyData: any = [];
   currentDate = Date.now();
-  countryFilter: any = [];
-  CountryUrl = '/api/Configs/GetAllCountry'
+  containerFilter: any = [];
+  ContainerUrl = '/api/YarnConfig/GetAllContainer'
 
   @ViewChild('myTable', { static: false }) table: DatatableComponent;
 
@@ -41,10 +41,10 @@ export class ContainerComponent implements OnInit {
   ngOnInit(): void {
     this.service.fetch((data) => {
       this.rows = data;
-      this.countryFilter = [...this.rows];
+      this.containerFilter = [...this.rows];
 
       this.countryCount = this.rows.length;
-    }, this.CountryUrl);
+    }, this.ContainerUrl);
 
   }
 
@@ -52,7 +52,7 @@ export class ContainerComponent implements OnInit {
   // ------------------- Search function ----------------------------------//
   search(event) {
     const val = event.target.value.toLowerCase();
-    const temp = this.countryFilter.filter(function (d) {
+    const temp = this.containerFilter.filter(function (d) {
       return (d.name.toLowerCase().indexOf(val) !== -1 || !val);
     });
     this.rows = temp;
@@ -60,7 +60,7 @@ export class ContainerComponent implements OnInit {
 
   //  --------------------- Delete Country ---------------------------//
 
-  deleteCountry(id) {
+  deleteContainer(id) {
 
     Swal.fire({
       title: GlobalConstants.deleteTitle, //'Are you sure?',
@@ -76,7 +76,7 @@ export class ContainerComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
 
-        this.http.delete(`${environment.apiUrl}/api/Configs/DeleteCountry/` + id.id)
+        this.http.delete(`${environment.apiUrl}/api/YarnConfig/DeleteContainer/` + id.id)
           .subscribe(
             res => {
               this.response = res;
@@ -84,7 +84,7 @@ export class ContainerComponent implements OnInit {
                 this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
                 this.service.fetch((data) => {
                   this.rows = data;
-                }, this.CountryUrl);
+                }, this.ContainerUrl);
 
               }
               else {
@@ -112,11 +112,11 @@ export class ContainerComponent implements OnInit {
       if (data == true) {
         this.service.fetch((data) => {
           this.rows = data;
-      this.countryFilter = [...this.rows];
-
-          this.countryCount = this.rows.length;
-        }, this.CountryUrl);
+          this.containerFilter = [...this.rows];
+        }, this.ContainerUrl);
+     
       }
+     
     }, (reason) => {
     });
   }
@@ -126,7 +126,7 @@ export class ContainerComponent implements OnInit {
 
   editCountryForm(row, check, name) {
     const modalRef = this.modalService.open(AddContainerComponent, { centered: true });
-    modalRef.componentInstance.countryId = row.id;
+    modalRef.componentInstance.containerId = row.id;
     modalRef.componentInstance.statusCheck = check;
     modalRef.componentInstance.FormName = name;
     modalRef.result.then((data) => {
@@ -135,9 +135,10 @@ export class ContainerComponent implements OnInit {
         //  this.date = this.myDate;
         this.service.fetch((data) => {
           this.rows = data;
-        }, this.CountryUrl);
+        }, this.ContainerUrl);
 
       }
+      
     }, (reason) => {
       // on dismiss
     });
