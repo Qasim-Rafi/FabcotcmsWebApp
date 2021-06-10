@@ -112,7 +112,7 @@ on_HandContract(){
 fetch(cb) {
 
   this.http
-    .get(`${environment.apiUrl}/api/YarnContracts/GetAllContract`)
+    .get(`${environment.apiUrl}/api/Contracts/GetAllContract`)
     .subscribe(res => {
       this.response = res;
 
