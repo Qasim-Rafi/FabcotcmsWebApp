@@ -1324,10 +1324,6 @@ addShipmentTimeline(check) {
     if (data == true) {
       this.getAllShipmentDates((shipmentData) => {
         this.rows4 = shipmentData;
-       
-      });
-      this.getAllShipmentDates((shipmentData) => {
-        this.rows4 = shipmentData;
         this.shipmentFilter = [...shipmentData];
   
       });

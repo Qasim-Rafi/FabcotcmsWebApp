@@ -26,7 +26,7 @@
 
           <ng-select required name="contractItemId" placeholder="-- Select --" #contractItemId="ngModel" [ngClass]="{ 'error':  contractItemId.invalid && saleInvoiceItem.submitted}"
             [(ngModel)]="data.contractItemId">
-            <ng-option *ngFor="let i of itemData" [value]="i.id">{{ i.description }}
+            <ng-option *ngFor="let i of itemData" [value]="i.id">{{ i.description }}, {{ i.colorName }} - {{ i.size }}
             </ng-option>
           </ng-select>
 

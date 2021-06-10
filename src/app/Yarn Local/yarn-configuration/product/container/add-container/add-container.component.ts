@@ -17,7 +17,7 @@ export class AddContainerComponent implements OnInit {
   response: any;
   data: any = {};
   active = true;
-  @Input() countryId;
+  @Input() containerId;
   @Input() statusCheck;
   @Input() FormName;
   @ViewChild(NgForm) addAgentForm;
@@ -31,15 +31,15 @@ export class AddContainerComponent implements OnInit {
     this.statusCheck = this.statusCheck;
     this.FormName = this.FormName;
     if (this.statusCheck == 'edit') {
-      this.editCountry();
+      this.editContainer();
     }
   }
  
   get activeModal() {
     return this._NgbActiveModal;
   }
-  editCountry() {
-    this.http.get(`${environment.apiUrl}/api/Configs/GetCountryById/` + this.countryId)
+  editContainer() {
+    this.http.get(`${environment.apiUrl}/api/YarnConfig/GetContainerById/` + this.containerId)
       .subscribe(
         res => {
           this.response = res;
@@ -60,16 +60,17 @@ export class AddContainerComponent implements OnInit {
         });
   }
 
-  UpdateCountry(form:NgForm) {
+  UpdateContainer(form:NgForm) {
 
     let varr = {
-      "name": this.data.name,
-      "details": this.data.details,
+      "containerName": this.data.containerName,
+      "description": this.data.description,
+      // "departmentId": 6 ,
       "active": this.active
     }
 
     this.http.
-      put(`${environment.apiUrl}/api/Configs/UpdateCountry/` + this.countryId, varr)
+      put(`${environment.apiUrl}/api/YarnConfig/UpdateContainer/` + this.containerId, varr)
       .subscribe(
         res => {
 
@@ -93,18 +94,19 @@ export class AddContainerComponent implements OnInit {
 
   // -------------------------------------ADD COUNTRY FROM ---------------------------
 
-  addCountry(form:NgForm) {
+  addContainer(form:NgForm) {
 
   
 
     let varr = {
-      "name": this.data.name,
-      "details": this.data.details,
+      "containerName": this.data.containerName,
+      "description":this.data.description,
+      // "departmentId": 6 ,
       "active": this.active
     }
 
     this.http.
-      post(`${environment.apiUrl}/api/Configs/AddCountry`, varr)
+      post(`${environment.apiUrl}/api/YarnConfig/AddContainer`, varr)
       .subscribe(
         res => {
 
@@ -127,14 +129,14 @@ export class AddContainerComponent implements OnInit {
 
 
 onSubmit(buttonType): void {
-  if (buttonType === "addCountry"){
+  if (buttonType === "addContainer"){
 
-    this.addCountry(this.addAgentForm); 
+    this.addContainer(this.addAgentForm); 
   }
 
-  if (buttonType === "UpdateCountry"){
+  if (buttonType === "UpdateContainer"){
 
-    this.UpdateCountry(this.addAgentForm); 
+    this.UpdateContainer(this.addAgentForm); 
 
   }
 
