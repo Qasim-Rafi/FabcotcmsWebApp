@@ -31,6 +31,7 @@ export class EditBuyerPaymentComponent implements OnInit {
 
   ngOnInit(): void {
     this.GetCurrencyDropdown();
+    this.getData();
   }
 
   get activeModal() {
@@ -102,16 +103,16 @@ export class EditBuyerPaymentComponent implements OnInit {
       
    
       }
-
+      // /api​/YarnContracts​/UpdateBuyerToSellerPayment​/
     this.http.
-      put(`${environment.apiUrl}/api​/YarnContracts​/UpdateBuyerToSellerPayment​/`+ this.paymentId, varr)
+      put(`${environment.apiUrl}/api/YarnContracts/UpdateBuyerToSellerPayment/`+ this.paymentId, varr)
       .subscribe(
         res => {
 
           this.response = res;
           if (this.response.success == true) {
-            this.data = this.response.data;
             this.toastr.success(this.response.message, 'Message.');
+            this.activeModal.close(true);
 
           }
           else {

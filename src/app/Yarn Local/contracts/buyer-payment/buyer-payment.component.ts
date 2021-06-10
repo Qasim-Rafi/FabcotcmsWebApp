@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ClipboardService } from 'ngx-clipboard';
@@ -9,6 +9,7 @@ import { ServiceService } from 'src/app/shared/service.service';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 import { EditBuyerPaymentComponent } from '../Modals/edit-buyer-payment/edit-buyer-payment.component';
+import { DatatableComponent, id } from '@swimlane/ngx-datatable';
 
 
 
@@ -23,6 +24,9 @@ export class BuyerPaymentComponent implements OnInit {
   rows: any = [];
   columns: any = [];
   buyerData: any = {};
+  @ViewChild('myTable') table: DatatableComponent;
+  buyerpaymentFilter: any = {};
+  buyerpaymentcount: number;
 
 
   constructor(private http: HttpClient,
@@ -32,9 +36,11 @@ export class BuyerPaymentComponent implements OnInit {
     private modalService: NgbModal,) { }
 
   ngOnInit(): void {
-    this.fetch((data)=>
-    {
-      this.rows = data
+    this.fetch((data) => {
+      this.buyerpaymentFilter = [...data];
+
+      this.rows = data;
+      this.buyerpaymentcount = this.rows.length;
     });
   }
  
@@ -88,7 +94,7 @@ export class BuyerPaymentComponent implements OnInit {
   deleteBuyer(row) {
     Swal.fire({
       title: GlobalConstants.deleteTitle, //'Are you sure?',
-      text: GlobalConstants.deleteMessage + 'Payment Receipt# ' + '"'  + '"',
+      text: GlobalConstants.deleteMessage + 'this Payment Receipt ' ,
       icon: 'error',
       showCancelButton: true,
       confirmButtonColor: '#ed5565',
@@ -99,8 +105,8 @@ export class BuyerPaymentComponent implements OnInit {
       position: 'top',
     }).then((result) => {
       if (result.isConfirmed) {
-  
-        this.http.delete(`${environment.apiUrl}​​/api​/YarnContracts​/DeleteBuyerToSellerPayment​/` + row.id )
+        // /api​/YarnContracts​/DeleteBuyerToSellerPayment​/
+        this.http.delete(`${environment.apiUrl}/api/YarnContracts/DeleteBuyerToSellerPayment/` + row.id )
           .subscribe(
             res => {
               this.response = res;
