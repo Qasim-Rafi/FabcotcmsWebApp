@@ -63,9 +63,11 @@
       <div class="form-group row">
         <label for="city" class="col-sm-3 col-form-label">City</label>
         <div class="col-sm-8">
-          <ng-select [(ngModel)]="data.cityId"  placeholder="-- Select --" name="city" name="cityId"
-            #cityId="ngModel">
-            <ng-option *ngFor="let i of city" [value]="i.id">{{ i.name }}
+          <ng-select [(ngModel)]="data.cityId" placeholder="-- Select --" name="cityId" #cityId="ngModel"
+           >
+            <ng-option *ngFor="let i of city" [value]="i.id">
+              {{i.name}}
+              <span *ngIf="i.country !=null" class="text-muted" style="font-size: 11px">{{ i.country }}</span>
             </ng-option>
           </ng-select>
         </div>
