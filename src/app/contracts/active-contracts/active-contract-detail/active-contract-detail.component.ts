@@ -75,7 +75,7 @@ export class ActiveContractDetailComponent implements OnInit {
   invoiceItemFilter = [];
   invoiceItem = {};
   reminderData = [];
-
+quantitynmbr : number;
   
  
   shipmentUrl='/api/Contracts/GetAllContractShipmentSchedule/{contractId}';
@@ -556,7 +556,7 @@ getContractCostingData() {
         this.response = res;
         if (this.response.success == true) {
           this.contractCostingData = this.response.data;
-          
+          this.quantitynmbr = this.response.data.quantity;
         }
         else {
           this.toastr.error(this.response.message, 'Message.');

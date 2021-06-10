@@ -69,6 +69,7 @@ export class CountryComponent implements OnInit {
       icon: 'error',
       showCancelButton: true,
       confirmButtonColor: '#ed5565',
+      
       cancelButtonColor: '#dae0e5',
       cancelButtonText: 'No',
       confirmButtonText: 'Yes',
@@ -96,9 +97,10 @@ this.spinner.hide();
             }, err => {
               if (err.status == 400) {
                 this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
+
               }
             });
-            this.spinner.hide();
       }
     })
 

@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 import { ChangeBankAccountComponent } from './change-bank-account/change-bank-account.component';
 import pdfMake from "pdfmake/build/pdfmake";
 import { ToWords } from 'to-words';
+import {NgxSpinnerService} from 'ngx-spinner'
 @Component({
   selector: 'app-open-active-bill',
   templateUrl: './open-active-bill.component.html',
@@ -20,6 +21,8 @@ export class OpenActiveBillComponent implements OnInit {
   data: any = {};
   rows: any = {};
   date: number;
+  totalAmount: string;
+
   myDate = Date.now();
   words : string;
   words2 : string = "word";
@@ -28,6 +31,7 @@ export class OpenActiveBillComponent implements OnInit {
     private modalService: NgbModal,
     private http: HttpClient,
     private service: ServiceService,
+    public spinner: NgxSpinnerService,
     private toastr: ToastrService,
     ) { }
 
@@ -42,7 +46,7 @@ export class OpenActiveBillComponent implements OnInit {
   }
   
   fetch(cb) {
-    
+    // this.spinner.show();
     this.http
     .get(`${environment.apiUrl}/api/BillingPayments/GetContractBillById/` + this.bill_id)
     .subscribe(res => {
@@ -51,19 +55,24 @@ export class OpenActiveBillComponent implements OnInit {
     if(this.response.success==true)
     {
     this.data =this.response.data;
+this.totalAmount = this.data.contractSaleInvoices[0].totalAmount;
     const toWords = new ToWords();
     this.words = toWords.convert(this.data.invoiceTotalAmount);
 
+
     cb(this.data);
+    // this.spinner.hide();
     }
     else{
       this.toastr.error(this.response.message, 'Message.');
+  //  this.spinner.hide();
     }
       // this.spinner.hide();
     }, err => {
       if ( err.status == 400) {
  this.toastr.error(err.error.message, 'Message.');
-      }
+// this.spinner.hide();      
+}
     //  this.spinner.hide();
     });
   }

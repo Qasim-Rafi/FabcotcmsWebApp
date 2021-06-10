@@ -15,7 +15,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { EditActiveEnquiryComponent } from './active-enquiry/edit-active-enquiry/edit-active-enquiry.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { OnholdEnquiryComponent } from './onhold-enquiry/onhold-enquiry.component';
-
+import {NgxSpinnerModule} from 'ngx-spinner'
 
 @NgModule({
   declarations: [
@@ -39,6 +39,7 @@ import { OnholdEnquiryComponent } from './onhold-enquiry/onhold-enquiry.componen
     HttpClientModule,
     NgbDatepickerModule,
     NgbTimepickerModule,
+    NgxSpinnerModule,
     // BrowserAnimationsModule,
     ToastrModule.forRoot({
       progressBar: true,
