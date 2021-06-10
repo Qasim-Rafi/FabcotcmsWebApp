@@ -135,49 +135,49 @@
             </div>
           
             <div class="col-md-8 " *ngIf="contractData.status == 'Open' || contractData.status == 'BillAwaited' ">
-                <button class="btn btn-danger btn-sm border-rounded px-3 mr-1 ">
+                <button class="btn btn-danger btn-sm border-rounded px-3 mr-1 mrg-md">
                     <i class="far fa-trash-alt"></i>
                     Delete
                 </button>
-                <button class="btn btn-danger btn-sm border-rounded px-3 mr-1"
+                <button class="btn btn-danger btn-sm border-rounded px-3 mr-1 mrg-md"
                     (click)="statusform('ContractCancel','Cancel','contract')">
                     <i class="fas fa-times"></i>
                     Cancle
                 </button>
-                <button class="btn btn-warning btn-sm border-rounded px-3 mr-1 text-white"
+                <button class="btn btn-warning btn-sm border-rounded px-3 mr-1 text-white mrg-md"
                     (click)="statusform('ContractOnHold','OnHold','contract')">
                     <i class="fas fa-level-down-alt"></i>
                     On-Hold
                 </button>
-                <button class="btn btn-info btn-sm border-rounded px-3 mr-1">
+                <button class="btn btn-info btn-sm border-rounded px-3 mr-1 mrg-md">
                     <i class="far fa-clone"></i>
                     Revised
                 </button>
-                <button class="btn btn-outline-primary btn-sm border-rounded px-3 mr-1"
+                <button class="btn btn-outline-primary btn-sm border-rounded px-3 mr-1 mrg-md"
                     (click)="statusform('ContractClosed','Closed','contract')">
                     <i class="fas fa-check"></i>
                     Closed
                 </button>
-                <button class="btn btn-info btn-sm border-rounded px-3 mr-1" (click)=" readyForBill()">
+                <button class="btn btn-info btn-sm border-rounded px-3 mr-1 mrg-md" (click)=" readyForBill()">
                     <i class="fas fa-check"></i>
                     Ready For Bill
                 </button>
             </div>
 
             <div class="col-md-4 text-right ">
-                <button class="btn btn-outline-primary border-rounded btn-sm px-3 mr-1">
+                <button class="btn btn-outline-primary border-rounded btn-sm px-3 mr-1 mrg-md">
                     <i class="fas fa-print"></i>
                     B
                 </button>
-                <button class="btn btn-outline-primary border-rounded btn-sm px-3 mr-1">
+                <button class="btn btn-outline-primary border-rounded btn-sm px-3 mr-1 mrg-md">
                     <i class="fas fa-print"></i>
                     B2
                 </button>
-                <button class="btn btn-outline-info border-rounded btn-sm px-3 mr-1">
+                <button class="btn btn-outline-info border-rounded btn-sm px-3 mr-1 mrg-md">
                     <i class="fas fa-print"></i>
                     S
                 </button>
-                <button class="btn btn-outline-info border-rounded btn-sm px-3 mr-1">
+                <button class="btn btn-outline-info border-rounded btn-sm px-3 mr-1 mrg-md">
                     <i class="fas fa-print"></i>
                     S2
                 </button>
@@ -298,21 +298,25 @@
                                     <div class="col-md-4 text-right">Status & Stage:</div>
                                     <div class="col-md-8">
 
-                                        <span class="badge badge-primary"
+                                        <span class="badge badge-primary mrg-md"
                                             *ngIf="contractData.active == true">Active</span>
-                                        <span class="badge badge-secondary"
+
+                                        <span class="badge badge-secondary mrg-md"
                                             *ngIf="contractData.active == false">Inactive</span>
-                                        <div class="badge badge-info ml-1" *ngIf="contractData.status == 'Open'">OPEN
+
+                                        <div class="badge badge-info ml-1 mrg-md" *ngIf="contractData.status == 'Open'">OPEN
                                         </div>
-                                        <div class="badge badge-warning ml-1" *ngIf="contractData.status == 'OnHold'">
+
+                                        <div class="badge badge-warning ml-1 mrg-md" *ngIf="contractData.status == 'OnHold'">
                                             On-Hold</div>
+
                                         <!-- <button class="btn "><i class="fas fa-history "></i></button> -->
-                                        <button class="btn btn-outline-secondary btn-xs ml-1"><i
+                                        <button class="btn btn-outline-secondary btn-xs ml-1 mrg-md"><i
                                                 class="fas fa-history "></i></button>
-                                        <button class=" btn btn-sm btn-danger p-1 btnsm-f ml-1"
+                                        <button class=" btn btn-sm btn-danger p-1 btnsm-f ml-1 mrg-md"
                                             *ngIf="contractData.isApproved == false" (click)="approveContract()">Click
                                             to Approve</button>
-                                        <button class="  btn btn-sm btn-primary p-1 btnsm-f ml-1"
+                                        <button class="  btn btn-sm btn-primary p-1 btnsm-f ml-1 mrg-md"
                                             *ngIf="contractData.isApproved == true">Approved</button>
 
                                     </div>
@@ -681,7 +685,7 @@
                                         </dl>
 
                                         <dl class="row">
-                                            <dt class="col-sm-6">Price / Delivery terms:
+                                            <dt class="col-sm-6">Delivery terms:
                                             </dt>
                                             <dd class="col-sm-6">{{contractPaymentData.priceTermName}}
                                                 {{contractPaymentData.destinationName}}</dd>
@@ -1004,7 +1008,7 @@
                                 </div>
                                 <div class="row justify-content-end">
 
-                                    <div class="col-md-4">
+                                    <div class="col-md-5 col-xl-4">
                                         <!-- <div class="input-group col-md-offset-3 float-right">
                                                         <label>Search:</label>
                                                         <input type="text" placeholder="" class="input form-control w-50" />
@@ -1124,7 +1128,7 @@
                                 </div>
                                 <div class="row justify-content-end">
 
-                                    <div class="col-md-4">
+                                    <div class="col-md-5 col-xl-4">
                                         <div class="form-group row">
                                             <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
                                             <div class="col-sm-9">
@@ -1233,7 +1237,7 @@
 
                                 <div class="row justify-content-end">
 
-                                    <div class="col-md-4">
+                                    <div class="col-md-5 col-xl-4">
                                         <div class="form-group row">
                                             <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
                                             <div class="col-sm-9">
@@ -1612,7 +1616,7 @@
                                 </div>
                                 <div class="row justify-content-end">
 
-                                    <div class="col-md-4">
+                                    <div class="col-md-5 col-xl-4">
                                         <div class="form-group row">
                                             <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
                                             <div class="col-sm-9">

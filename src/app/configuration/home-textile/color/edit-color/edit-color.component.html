@@ -18,7 +18,7 @@
         <label for="name" class="col-sm-3 col-form-label control-label text_Navy">Color<span
             class="required-denote">*</span> </label>
         <div class="col-sm-8">
-          <input appAutofocus maxlength="20" required id="name" type="text" class="form-control" placeholder="Color"
+          <input appAutofocus maxlength="150" required id="name" type="text" class="form-control" placeholder="Color"
             name="name" [(ngModel)]="data.name" #name="ngModel"
             [ngClass]="{'error': name.invalid && addAgentForm.submitted}">
           <small>Add color name</small>
