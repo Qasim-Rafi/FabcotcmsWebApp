@@ -1,3 +1,5 @@
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "line-spin-fade" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+
 <div class="content-header">
 
     <div class="row">
@@ -65,9 +67,11 @@
                                     Supplier Name:
                                 </label>
                                 <div class="col-md-6">
-                                    <ng-select name="supplier" placeholder="--- Select Suppiler ---">
-                                        <ng-option>new-Supplier</ng-option>
-                                    </ng-select>
+                                    <ng-select name="sellerId" #sellerId="ngModel" class="input-w px-0" [(ngModel)]="commData.sellerId"
+                                    placeholder="-- Select --">
+                                    <ng-option *ngFor="let i of seller" [value]="i.id">{{ i.sellerName }}
+                                    </ng-option>
+                                </ng-select>
                                 
                                 
                                     <div class="col-md-6">
@@ -78,13 +82,15 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-md-3 col-form-label control-label">
+                                <label class="col-md-3 col-form-label control-label" for="isBuyerCommission">
                                     Is Buyer Commission
                                 </label>
 
                                 <div class="col-md-6">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <input id = "isBuyerCommission" class="form-check-input" type="checkbox" value="" 
+                                        name="isBuyerCommission" #isBuyerCommission = "ngModel" [(ngModel)] = "commData.isBuyerCommission"
+                                        >
                                         <small id="passwordHelpBlock" class="form-text text-lightgrey">
                                             Checked if commission payment is from Buyer
                                         </small>
@@ -106,8 +112,11 @@
                                     External Agent:
                                 </label>
                                 <div class="col-md-6">
-                                    <ng-select name="externalAgent" placeholder="--- Select External Agent ---">
-                                    </ng-select>
+                                    <ng-select name="agentId" #agentId="ngModel" class="input-w px-0" [(ngModel)]="extCommData.agentId"
+                                    placeholder="-- Select --">
+                                    <ng-option *ngFor="let i of agent" [value]="i.id">{{ i.name }}
+                                    </ng-option>
+                                </ng-select>
                                 
                                 
                                     <div class="col-md-6">
@@ -122,8 +131,11 @@
                                    Supplier Name:
                                 </label>
                                 <div class="col-md-6">
-                                    <ng-select name="supplier" placeholder="--- Select Supplier ---">
-                                    </ng-select>
+                                    <ng-select name="sellerId" #sellerId="ngModel" class="input-w px-0" [(ngModel)]="extCommData.sellerId"
+                                    placeholder="-- Select --">
+                                    <ng-option *ngFor="let i of seller" [value]="i.id">{{ i.sellerName }}
+                                    </ng-option>
+                                </ng-select>
                                 
                                 
                                     <div class="col-md-6">
@@ -161,7 +173,9 @@
                                 <div class="col-md-5">
                                     <div class="input-group">
                                         <input navigation="select" class="form-control  " ngbDatepicker #validityDate="ngbDatepicker"
-                                            (click)="validityDate.toggle()" name="validityDate" />
+                                            (click)="validityDate.toggle()" name="paymentDate" placeholder="Payment Date"
+                                            #paymentDate = "ngModel" [(ngModel)] ="commData.paymentDate"
+                                            />
                                     </div>
                                 </div>
                     
@@ -170,7 +184,9 @@
                                         <label for="inputEmail3" class="col-form-label control-label col-md-4">Pay No.</label>
                     
                                         <div class="col-md-8">
-                                            <input type="text" placeholder="Payment Number" class="form-control text-w-60">
+                                            <input type="text" placeholder="Payment Number" class="form-control text-w-60"
+                                            name = "payNo" #payNo = "ngModel" [(ngModel)] = "commData.payNo"
+                                            >
                                         </div>
                                     </div>
                                 </div>
@@ -191,7 +207,10 @@
                                 <div class="col-md-5">
                                     <div class="input-group">
                                         <input navigation="select" class="form-control  " ngbDatepicker #validityDate="ngbDatepicker"
-                                            (click)="validityDate.toggle()" name="validityDate" />
+                                            (click)="validityDate.toggle()" name="validityDate"
+                                            name="paymentDate" placeholder="Payment Date"
+                                            #paymentDate = "ngModel" [(ngModel)] ="extCommData.paymentDate"
+                                            />
                                     </div>
                                 </div>
                     
@@ -200,7 +219,9 @@
                                         <label for="inputEmail3" class="col-form-label control-label col-md-4">Pay No.</label>
                     
                                         <div class="col-md-8">
-                                            <input type="text" placeholder="Payment Number" class="form-control text-w-60">
+                                            <input type="text" placeholder="Payment Number" class="form-control text-w-60"
+                                            name = "payNo" #payNo ="ngModel" [(ngModel)] = "extCommData.payNo" 
+                                            >
                                         </div>
                                     </div>
                                 </div>
@@ -219,12 +240,18 @@
                             
                         <div class="col-md-3">
                             <div class="input-group">
-                                <input type="text" class="form-control text-w-40" value="0">
+                                <input type="text" class="form-control text-w-40" name="amount"
+                                 #amount = "ngModel" [(ngModel)] = "commData.amount" placeholder="Amount"> 
                             </div>
                         </div>
 
                         <div class="col-md-2 mrg-sm1">
-                            <ng-select name="supplier" placeholder="">
+                            <ng-select placeholder="--Select currency--" id="currencyId"  [(ngModel)]="commData.currencyId" name="currencyId"
+                            #currencyId="ngModel" 
+                            >
+                                <ng-option *ngFor="let i of currency" [value]="i.id">{{ i.code }}
+                                    <span *ngIf="i.name !=null" class="text-muted" style="font-size: 11px">( {{ i.name }} )</span>
+                                  </ng-option>
                             </ng-select>
                         </div>
 
@@ -232,7 +259,11 @@
                             <div class="input-group">
                                 <label for="inputEmail3" class="col-form-label control-label col-md-4">Pay Mode</label>
                                 <div class="col-md-8">
-                                    <ng-select name="supplier" placeholder=" Payment Mode">
+                                    <ng-select name="paymentMode" placeholder="-- Select --" id="paymentId" [(ngModel)]="commData.paymentMode"  >
+                                        <ng-option *ngFor="let i of paymentMode" [value]="i"
+                                        >
+                                            {{i}}
+                                        </ng-option>
                                     </ng-select>
                                 </div>
                             </div>
@@ -252,12 +283,18 @@
                             
                         <div class="col-md-3">
                             <div class="input-group">
-                                <input type="text" class="form-control text-w-40" value="0">
+                                <input type="text" class="form-control text-w-40"
+                                 name="amount" #amount = "ngModel" [(ngModel)] = "extCommData.amount" placeholder="Amount">
                             </div>
                         </div>
 
                         <div class="col-md-2 mrg-sm1">
-                            <ng-select name="supplier" placeholder="">
+                            <ng-select placeholder="--Select currency--" id="currencyId"  [(ngModel)]="extCommData.currencyId" name="currencyId"
+                            #currencyId="ngModel" 
+                            >
+                                <ng-option *ngFor="let i of currency" [value]="i.id">{{ i.code }}
+                                    <span *ngIf="i.name !=null" class="text-muted" style="font-size: 11px">( {{ i.name }} )</span>
+                                  </ng-option>
                             </ng-select>
                         </div>
 
@@ -265,7 +302,11 @@
                             <div class="input-group">
                                 <label for="inputEmail3" class="col-form-label control-label col-md-4">Pay Mode</label>
                                 <div class="col-md-8">
-                                    <ng-select name="supplier" placeholder=" Payment Mode">
+                                    <ng-select name="paymentMode" placeholder="-- Select Pay Mode--" id="paymentId" [(ngModel)]="extCommData.paymentMode"  >
+                                        <ng-option *ngFor="let i of paymentMode" [value]="i"
+                                        >
+                                            {{i}}
+                                        </ng-option>
                                     </ng-select>
                                 </div>
                             </div>
@@ -280,7 +321,9 @@
                         <label for="inputEmail3" class="col-md-3 col-form-label control-label">
                             Additional Details</label>
                         <div class="col-md-6">
-                            <input type="text" class="form-control text-w-40" placeholder="Additional Details">
+                            <input type="text" class="form-control text-w-40" placeholder="Additional Details"
+                            #additionalDetail = "ngModel" name="additionalDetail" [(ngModel)] = "commData.additionalDetail"
+                            >
                             <small id="passwordHelpBlock" class="form-text text-lightgrey">
                                 Cheque DO , IT etc Number
                             </small>
@@ -293,7 +336,9 @@
     <label for="inputEmail3" class="col-md-3 col-form-label control-label">
         Additional Details</label>
     <div class="col-md-6">
-        <input type="text" class="form-control text-w-40" placeholder="Additional Details">
+        <input type="text" class="form-control text-w-40" placeholder="Additional Details"
+        #additionalDetail = "ngModel" name="additionalDetail" [(ngModel)] = "extCommData.additionalDetail"
+        >
         <small id="passwordHelpBlock" class="form-text text-lightgrey">
             Cheque DO , IT etc Number
         </small>
@@ -313,10 +358,11 @@
 
             <div class="col-md-5">
                 <div class="input-group">
-                    <input navigation="select" class="form-control  "
-                    placeholder="Fabcot Received Date"
-                    ngbDatepicker #validityDate="ngbDatepicker"
-                        (click)="validityDate.toggle()" name="validityDate" />
+                    <input navigation="select" class="form-control  " ngbDatepicker #validityDate3="ngbDatepicker"
+                    (click)="validityDate3.toggle()" 
+                    name="recieveDate" placeholder="Receive Date"
+                    #recieveDate = "ngModel" [(ngModel)] ="extCommData.recieveDate"
+                    />
                 </div>
             </div>
         </div>
@@ -329,20 +375,26 @@
                         <label for="inputEmail3" class="col-md-3 col-form-label control-label">
                             Bank Account</label>
                             <div class="col-md-3 mrg-sm1">
-                                <ng-select name="supplier" placeholder=" From Bank">
-                                    <ng-option>
-                                        Bank
-                                    </ng-option>
-                                </ng-select>
+                                <ng-select placeholder="From Bank Account"
+                                    name="fromBankAccountId" [(ngModel)]="commData.fromBankAccountId" 
+                                    id="fromBankAccountId" #fromBankAccountId="ngModel"
+                                  
+                                    >
+                                    <ng-option *ngFor="let i of bankAcc" [value]="i.id">{{ i.accountName }}
+                                      </ng-option>
+
+                                    </ng-select>
                             </div>
     
                             <div class="col-md-4 mrg-sm1">
                                 <div class="input-group">
                                     <div class="col-md-9">
-                                        <ng-select name="supplier" placeholder=" To Bank">
-                                            <ng-option>
-                                               Bank
-                                            </ng-option>
+                                        <ng-select placeholder="--Select--"
+                                        name="toBankAccountId" [(ngModel)]="commData.toBankAccountId" id="toBankAccountId"
+                                         #toBankAccountId="ngModel" placeholder="to Bank Account">
+                                        <ng-option *ngFor="let i of bankAcc" [value]="i.id">{{ i.accountName }}
+                                          </ng-option>
+    
                                         </ng-select>
                                     </div>
                                 </div>
@@ -351,13 +403,15 @@
 
                 <!-- deposited in bank -->
                 <div class="form-group row" *ngIf = "statusCheck.statusCheck == 'add'">
-                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Deposited in Bank</label>
+                    <label for="depositInBank" class="col-md-3 col-form-label control-label">Deposited in Bank</label>
                 
                     <div class="col-md-6">
                         <div class="row">
                             <div class="col-md-1">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <input class="form-check-input" type="checkbox" value="" id="depositInBank"
+                                    name="depositInBank" #depositInBank = "ngModel" [(ngModel)]="commData.depositInBank"
+                                    >
                                 </div>
                             </div>
                 
@@ -369,7 +423,9 @@
                                         <input navigation="select" class="form-control  "
                                         placeholder="Date at which instruement deposited in Bank"
                                         ngbDatepicker #validityDate1="ngbDatepicker"
-                                            (click)="validityDate1.toggle()" name="validityDate1" />
+                                            (click)="validityDate1.toggle()" name="depositDate"
+                                            #depositDate = "ngModel"  [(ngModel)] = "commData.depositDate"
+                                            />
                                     </div>
                                 </div>
                             </div>
@@ -499,17 +555,19 @@
 
 
                                 <!-- table -->
-                                <div class="form-group row">
+                                <div class="form-group row" *ngIf="statusCheck.statusCheck =='add'" >
                                     <label for="inputEmail3" class="col-md-3 col-form-label control-label">Remarks:</label>
                                     <div class="col-md-6">
                                         <textarea class="form-control" rows="4" placeholder="Any Remarks Here..."
-                                         name="remarks"></textarea>
+                                         name="remarks" #paymentRemarks = "ngModel" name="paymentRemarks" [(ngModel)] = "commData.paymentRemarks"></textarea>
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-md-6 offset-md-3">
-                                        <button class="btn button-save" *ngIf="statusCheck.statusCheck =='add'" > 
+                                        <button class="btn button-save" *ngIf="statusCheck.statusCheck =='add'"
+                                        (click) = "addCommissionPayment()"
+                                        > 
                                             <i class="fas fa-check"></i> Save &
                                             Next</button>
                                         <button class="btn btn-secondary ml-4" *ngIf="statusCheck.statusCheck =='new2'">
@@ -642,13 +700,15 @@
                                     <label for="inputEmail3" class="col-md-3 col-form-label control-label">Remarks:</label>
                                     <div class="col-md-6">
                                         <textarea class="form-control" rows="4" placeholder="Any Remarks Here..."
-                                         name="remarks"></textarea>
+                                         name="paymentRemarks" #paymentRemarks = "ngModel" [(ngModel)] = "extCommData.paymentRemarks"></textarea>
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-md-6 offset-md-3">
-                                        <button class="btn button-save"  > 
+                                        <button class="btn button-save" 
+                                        (click) = "addExtCommissionPayment()"
+                                        > 
                                             <i class="fas fa-check"></i> Save &
                                             Next</button>
                                    

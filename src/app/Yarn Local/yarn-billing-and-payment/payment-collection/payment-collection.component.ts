@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 import pdfMake from "pdfmake/build/pdfmake";
 import { DatatableComponent } from '@swimlane/ngx-datatable';
-
+import {NgxSpinnerService} from 'ngx-spinner'
 @Component({
   selector: 'app-payment-collection',
   templateUrl: './payment-collection.component.html',
@@ -33,7 +33,8 @@ paymentFilter: any = {};
     private _clipboardService: ClipboardService,
     private router: Router,
     private toastr: ToastrService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private spinner: NgxSpinnerService
     ) { }
   navigatePaymentForm(statusCheck , obj) {
     this.router.navigate(['/yarn-billing-and-payment/payment-form'], { queryParams: { statusCheck: statusCheck ,
@@ -100,7 +101,7 @@ paymentFilter: any = {};
       position: 'top',
     }).then((result) => {
       if (result.isConfirmed) {
-  
+     this.spinner.show();
         this.http.delete(`${environment.apiUrl}/api/BillingPayments/DeleteBillPayment/` + row.id )
           .subscribe(
             res => {
@@ -109,16 +110,22 @@ paymentFilter: any = {};
                 this.toastr.error(this.response.message, 'Message.');
                 this.fetch((data) => {
                   this.rows = data;
+     this.spinner.hide();
+
                 });
   
               }
               else {
                 this.toastr.error(this.response.message, 'Message.');
+     this.spinner.hide();
+            
               }
   
             }, err => {
               if (err.status == 400) {
                 this.toastr.error(this.response.message, 'Message.');
+     this.spinner.hide();
+              
               }
             });
   

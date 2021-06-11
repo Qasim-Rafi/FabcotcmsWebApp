@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 import { ChangeBankAccountComponent } from './change-bank-account/change-bank-account.component';
 import pdfMake from "pdfmake/build/pdfmake";
 import { ToWords } from 'to-words';
+import {NgxSpinnerModule, NgxSpinnerService} from 'ngx-spinner'
 @Component({
   selector: 'app-open-active-bill',
   templateUrl: './open-active-bill.component.html',
@@ -29,6 +30,7 @@ export class OpenActiveBillComponent implements OnInit {
     private http: HttpClient,
     private service: ServiceService,
     private toastr: ToastrService,
+    private spinner:NgxSpinnerService
     ) { }
 
   ngOnInit(): void {
