@@ -16,7 +16,7 @@ import {EditDispatchComponent} from '../dispatched-register/edit-dispatch/edit-d
 export class DispatchedRegisterComponent implements OnInit {
   response: any;
   data: any = {};
-  rows: any = [{rownmbe:1}];
+  rows: any = [];
   columns: any = [];
   temp: any[];
   constructor(
@@ -59,7 +59,6 @@ export class DispatchedRegisterComponent implements OnInit {
   }
 
   fetch(cb) {
-this.spinner.show();
     this.http
       .get(`${environment.apiUrl}/api/YarnContracts/GetAllDispatchRegister`)
       .subscribe(res => {
@@ -68,7 +67,6 @@ this.spinner.show();
         if (this.response.success == true) {
           this.data = this.response.data
           cb(this.data)
-     this.spinner.hide();
         }
         else {
           this.toastr.error(this.response.message, 'Message.');
@@ -78,7 +76,6 @@ this.spinner.show();
       }, err => {
         if (err.status == 400) {
           this.toastr.error(err.error.message, 'Message.');;
-        this.spinner.hide();
         }
         //  this.spinner.hide();
       });
