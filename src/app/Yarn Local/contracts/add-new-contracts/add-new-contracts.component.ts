@@ -12,6 +12,7 @@ import { AddSellerFormComponent } from 'src/app/configuration/seller/add-seller-
 import { Dateformater } from 'src/app/shared/dateformater';
 import { NgxSpinnerService } from 'ngx-spinner';
 
+
 @Component({
   selector: 'app-add-new-contracts',
   templateUrl: './add-new-contracts.component.html',
@@ -198,7 +199,7 @@ export class AddNewContractsComponent implements OnInit {
 
 
   addBuyerForm() {
-    const modalRef = this.modalService.open(BuyerComponent, { centered: true });
+    const modalRef = this.modalService.open(AddBuyerComponent, { centered: true });
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
