@@ -91,13 +91,12 @@
             <ngx-datatable-column name="Buyer" prop="contractAge">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 <span class="badge badge-primary"></span>
-               {{row.rownmbr}}
               </ng-template>
             </ngx-datatable-column>
   
             <ngx-datatable-column name="Seller" prop="autoContractNumber">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              
+              {{row.sellerName}}
               </ng-template>
             </ngx-datatable-column>
   
@@ -111,8 +110,9 @@
               </ng-template>
             </ngx-datatable-column>
   
-            <ngx-datatable-column name="Quantity" prop="scNumber">
+            <ngx-datatable-column name="Quantity" prop="quantity">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+             {{row.quantity}}
               </ng-template>
             </ngx-datatable-column>
   
@@ -124,7 +124,7 @@
             
             <ngx-datatable-column name="Dispatch On" prop="articleName">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-  
+                 {{row.date}}
               </ng-template>
             </ngx-datatable-column>
           </ngx-datatable>

@@ -8,12 +8,14 @@ import { NgForm } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { AddSellerFormComponent } from 'src/app/configuration/seller/add-seller-form/add-seller-form.component';
+import { AddSellerFormComponent } from '../../yarn-configuration/seller/add-seller-form/add-seller-form.component';
 import { Dateformater } from 'src/app/shared/dateformater';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 import { AddBuyerComponent } from '../../yarn-configuration/buyer/add-buyer/add-buyer.component';
 import { AddArticleComponent } from '../../yarn-configuration/articles/add-article/add-article.component';
+import { AddPackingComponent } from '../../yarn-configuration/product/packing/add-packing/add-packing.component';
+import { AddPriceComponent } from '../../yarn-configuration/product/price-term/add-price/add-price.component';
 
 
 @Component({
@@ -33,11 +35,14 @@ export class AddNewContractsComponent implements OnInit {
   uomList: any= [];
   currency: any= [];
   newBuyer: any;
+  newArticle: any;
+  newPacking:any;
   newSeller: number;
   counter3 :number =1;
   new:any=[];
   new2:any=[];
   new3:any=[];
+  newPrice:any;
   @ViewChild(NgForm) contractForm;
   objEnquiry=0;
   dateformater: Dateformater = new Dateformater();
@@ -56,10 +61,10 @@ export class AddNewContractsComponent implements OnInit {
     this.GetBuyersDropdown("start");
     this.GetSellerDropdown("start");
     this.GetUOMDropdown();
-    this.GetArticleDropdown();
+    this.GetArticleDropdown("start");
     this.GetCurrencyDropdown();
-    this.GetpackingDropdown();
-    this.GetPriceTermDropdown();
+    this.GetpackingDropdown("start");
+    this.GetPriceTermDropdown("start");
   }
 
 
@@ -118,14 +123,14 @@ export class AddNewContractsComponent implements OnInit {
       if (this.response.success == true) {
 
         this.seller = this.response.data;
-        this.newSeller = this.response.data
+        // this.newSeller = this.response.data
 
 
 
         if(type == "other")
         {
-          this.seller.id = this.newSeller;
-          this.data.sellerId = this.seller.id
+          // this.seller.id = this.newSeller;
+          this.data.sellerId = this.newSeller
         }
        
       }
@@ -148,11 +153,16 @@ export class AddNewContractsComponent implements OnInit {
     })
   }
 
-  GetPriceTermDropdown() {
+  GetPriceTermDropdown(type:string) {
     this.service.getPriceTerm().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
         this.priceterm = this.response.data;
+        if(type == "other")
+        {
+          // this.seller.id = this.newSeller;
+          this.data.priceTermId = this.newPrice
+        }
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -160,11 +170,17 @@ export class AddNewContractsComponent implements OnInit {
     })
   } 
 
-  GetpackingDropdown() {
+  GetpackingDropdown(type:string) {
     this.service.getPackaging().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
         this.packing = this.response.data;
+        if(type == "other")
+        {
+          // this.seller.id = this.newSeller;
+          this.data.packingIds = this.newPacking
+        }
+        
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -172,11 +188,16 @@ export class AddNewContractsComponent implements OnInit {
     })
   }
 
-  GetArticleDropdown() {
+  GetArticleDropdown(type:string) {
     this.service.getArticles().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
         this.article = this.response.data;
+        if(type == "other")
+        {
+          // this.seller.id = this.newSeller;
+          this.data.articleId = this.newArticle
+        }
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -224,9 +245,11 @@ export class AddNewContractsComponent implements OnInit {
     const modalRef = this.modalService.open(AddArticleComponent, { centered: true });
     modalRef.result.then((data) => {
       // on close
-      if (data == true) {
+      if (data.parent == true) {
+
+        this.newArticle = data.id
+        this.GetArticleDropdown("other");
      
-       
 
       }
     }, (reason) => {
@@ -243,9 +266,11 @@ export class AddNewContractsComponent implements OnInit {
     const modalRef = this.modalService.open(AddSellerFormComponent, { centered: true });
     modalRef.result.then((data) => {
       // on close
-      if (data == true) {
+      if (data.parent == true) {
+
+        this.newSeller = data.id
+        this.GetSellerDropdown("other");
      
-       
 
       }
     }, (reason) => {
@@ -253,7 +278,41 @@ export class AddNewContractsComponent implements OnInit {
     });
 
   }
+  addYarnPackingForm() {
+    const modalRef = this.modalService.open(AddPackingComponent, { centered: true });
+    modalRef.result.then((data) => {
+      // on close
+      if ( data.parent == true) {
+        
+        this.newPacking = data.id
+        this.GetpackingDropdown("other");
+    
 
+
+
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
+  addYarnPriceForm() {
+    const modalRef = this.modalService.open(AddPriceComponent, { centered: true });
+    modalRef.result.then((data) => {
+      // on close
+      if (data.parent == true) {
+        
+        this.newPrice = data.id
+
+        this.GetPriceTermDropdown("other");
+    
+
+
+
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
   navigate() {
     this.router.navigateByUrl('/FabCot/active-contract');
   };

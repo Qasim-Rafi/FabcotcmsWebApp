@@ -56,7 +56,7 @@ this.spinner.show();
         this.response = res;
         if (this.response.success == true){
           this.toastr.success(this.response.message, 'Message.');
-      
+          this.obj.id = this.response.data;
           // this.buyerForm.reset();
           this.activeModal.close(this.obj);
           this.spinner.hide();

@@ -71,10 +71,10 @@ export class ProductionStatusComponent implements OnInit {
   "loomPlanned": this.data.loomPlanned,
   "loomRunning": this.data.loomRunning,
   "perLoomProduction": this.data.perLoomProduction,
-  "perDayProduction": this.data.perDayProduction,
+  // "perDayProduction": this.data.perDayProduction,
   "packStock": this.data.packStock,
   "looseStock": this.data.looseStock,
-  "totalStock": this.data.totalStock,
+  // "totalStock": this.data.totalStock,
   "completionDate": this.dateformater.toModel(this.data.completionDate)
     }
 

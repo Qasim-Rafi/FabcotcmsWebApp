@@ -112,10 +112,12 @@ this.spinner.show();
           this.obj.status = true;
           
           
+          
           this.response = res;
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
             this.buyerForm.reset();
+            this.obj.id = this.response.data;
             this.activeModal.close(this.obj);
             this.spinner.hide();
           }
