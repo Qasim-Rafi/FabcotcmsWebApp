@@ -20,6 +20,7 @@ export class AddSellerFormComponent implements OnInit {
   countryId: null;
   certification:any=[];
   capabilities:any=[];
+  obj:any ={};
   @ViewChild(NgForm) sellerForm;
   // @ViewChild('sellerName') private elementRef: ElementRef;
 
@@ -143,10 +144,13 @@ this.spinner.show();
       post(`${environment.apiUrl}/api/Sellers/AddSeller`, varr)
       .subscribe(
         res => {
+          this.obj.parent = this.data.isParentSeller;
+          this.obj.status = true;
           this.response = res;
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
             this.sellerForm.reset();
+            this.obj.id = this.response.data;
             this.activeModal.close(true);
             this.spinner.hide();
           }
