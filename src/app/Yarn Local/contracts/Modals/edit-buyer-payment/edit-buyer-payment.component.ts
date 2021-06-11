@@ -32,6 +32,7 @@ export class EditBuyerPaymentComponent implements OnInit {
   ngOnInit(): void {
     this.GetCurrencyDropdown();
     this.getData();
+    this.GetPaymentDropdown();
   }
 
   get activeModal() {

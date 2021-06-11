@@ -79,7 +79,7 @@ uomList : any = {};
       "supplierDate": this.dateformater.toModel(this.data.supplierDate),
       "buyerDate": this.dateformater.toModel(this.data.buyerDate),
       "quantity": this.data.quantity,
-      "quantityUOMId": this.data.quantityUomId,
+      "quantityUOMId": this.data.quantityUOMId,
     }
 
     this.http.
