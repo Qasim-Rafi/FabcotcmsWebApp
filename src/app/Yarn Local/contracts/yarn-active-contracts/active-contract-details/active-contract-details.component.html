@@ -1464,8 +1464,8 @@
                                     </div>
                                     <div class="col-sm-12 col-md-6 col-lg-4 text-right">
                                         <button class="btn btn-outline-primary btn-sm"
-                                          (click) = "addNote('Add')"
-                                        >
+                                        (click)="ContractNotes('Add')">
+                                        
                                             <i class="fas fa-plus"></i>
                                             Add New Note </button>
                                     </div>
@@ -1493,18 +1493,18 @@
 
                                     <ngx-datatable-column name="User" prop="createdByName" [width]="80">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                            <!-- {{ row.createdByName }} -->
+                                            {{ row.createdByName }}
                                         </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column name="Time" prop="createdDateTime" [width]="80">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                            <!-- {{ row.createdDateTime }} -->
+                                            {{ row.createdDateTime }}
                                         </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column name="Note Details " prop="description" [width]="80">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                            <!-- {{row.title}} <br> -->
-                                            <!-- {{row.description}} -->
+                                            {{row.title}} <br>
+                                            {{row.description}}
                                         </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column name="Action" [width]="80">
@@ -1517,7 +1517,7 @@
                                                             class="far fa-edit"></i></button>
 
                                                     <button type="button" class="btn deleteIconBack"
-                                                        data-toggle="tooltip" data-placement="top" title=""
+                                                         title=""
                                                         data-original-title="Delete"
                                                         (click)="deleteContractNote(row)"
                                                         >

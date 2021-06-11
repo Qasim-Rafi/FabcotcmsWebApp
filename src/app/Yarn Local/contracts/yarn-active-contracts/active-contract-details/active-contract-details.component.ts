@@ -11,7 +11,6 @@ import Swal from 'sweetalert2';
 import { DispatchRegisterComponent } from './active-contract-models/dispatch-register/dispatch-register.component';
 import { DeliveryTLComponent } from './active-contract-models/deliveryTL/deliveryTL.component';
 import { SaleInvoicePopUpComponent } from './active-contract-models/sale-invoice-pop-up/sale-invoice-pop-up.component';
-import {ContractNoteComponent} from './active-contract-models/contract-note/contract-note.component'
 import { ProductionStatusComponent } from './active-contract-models/production-status/production-status.component';
 import {PartiesComponent} from './active-contract-models/parties/parties.component'
 import {ProductAndSpecificationComponent} from './active-contract-models/product-and-specification/product-and-specification.component'
@@ -22,6 +21,7 @@ import { RemarksComponent } from './active-contract-models/remarks/remarks.compo
 import { EmployeeCommissionComponent } from './active-contract-models/employee-commission/employee-commission.component';
 import { CommisionKickbackComponent } from './active-contract-models/commision-kickback/commision-kickback.component';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ContractNoteComponent } from './active-contract-models/contract-note/contract-note.component';
 
 @Component({
   selector: 'app-active-contract-details',
@@ -982,9 +982,9 @@ deleteContractNote(id) {
     position: 'top',
   }).then((result) => {
     if (result.isConfirmed) {
-      this.spinner.show();
 
-      this.http.delete(`${environment.apiUrl}` + id.id)
+      this.spinner.show();
+      this.http.delete(`${environment.apiUrl}/api/Contracts/DeleteContractNote/` + id.id)
         .subscribe(
           res => {
             this.response = res;
@@ -993,21 +993,21 @@ deleteContractNote(id) {
               this.getAllNotes((NotesData) => {
                 this.rows3 = NotesData;
                 this.noteFilter = [...NotesData];
-  this.spinner.hide();
-  // this.listCount= this.rows.length;
+                // this.listCount= this.rows.length;
               });
 
+              this.spinner.hide();
             }
             else {
               this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
-  this.spinner.hide();
-}
+              this.spinner.hide();
+            }
 
           }, err => {
             if (err.status == 400) {
               this.toastr.error(this.response.message, 'Message.');
-  this.spinner.hide();
-}
+              this.spinner.hide();
+            }
           });
     }
   })
@@ -1111,34 +1111,44 @@ editDispatch( row ,check) {
   });
 }
 
-addNote( check) {
+ContractNotes(check) {
   const modalRef = this.modalService.open(ContractNoteComponent, { centered: true });
   modalRef.componentInstance.statusCheck = check;
-  // modalRef.componentInstance.contractId = this.contractId ;
-
+  // modalRef.componentInstance.FormName = name;
+  modalRef.componentInstance.contractId = this.contractId;
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
-  
-    }
+      this.getAllNotes((NotesData) => {
+        this.rows3 = NotesData;
+        this.noteFilter = [...NotesData];
+        // this.listCount= this.rows.length;
+      });
     this.getContractData();
 
+    }
   }, (reason) => {
     // on dismiss
   });
 }
-editNote( row ,check) {
+editNote(row, check) {
   const modalRef = this.modalService.open(ContractNoteComponent, { centered: true });
+  modalRef.componentInstance.NoteId = row.id; //just for edit.. to access the needed row
   modalRef.componentInstance.statusCheck = check;
-  modalRef.componentInstance.noteId = row.id ;
+  // modalRef.componentInstance.FormName = name;
+  modalRef.componentInstance.contractId =this.contractId;
 
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
-  this.getDeliveryTimeLine();
-    }
+      this.getAllNotes((NotesData) => {
+        this.rows3 = NotesData;
+        this.noteFilter = [...NotesData];
+        // this.listCount= this.rows.length;
+      });
     this.getContractData();
 
+    }
   }, (reason) => {
     // on dismiss
   });
