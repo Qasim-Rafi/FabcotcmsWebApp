@@ -24,7 +24,7 @@ export class BuyerPaymentComponent implements OnInit {
   response: any;
   rows: any = [];
   columns: any = [];
-  buyerData: any = {};
+  data: any = {};
   @ViewChild('myTable') table: DatatableComponent;
   buyerpaymentFilter: any = {};
   buyerpaymentcount: number;
@@ -59,7 +59,7 @@ export class BuyerPaymentComponent implements OnInit {
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-       this.buyerData = data;
+       this.data = data;
 
       }
     }, (reason) => {
@@ -76,9 +76,9 @@ export class BuyerPaymentComponent implements OnInit {
      
     if(this.response.success==true)
     {
-    this.buyerData =this.response.data;
+    this.data =this.response.data;
 
-    cb(this.buyerData);
+    cb(this.data);
     this.spinner.hide();
     }
     else{

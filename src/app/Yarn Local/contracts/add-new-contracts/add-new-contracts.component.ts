@@ -32,7 +32,7 @@ export class AddNewContractsComponent implements OnInit {
   priceterm: any= [];
   uomList: any= [];
   currency: any= [];
-  newBuyer: number;
+  newBuyer: any;
   newSeller: number;
   counter3 :number =1;
   new:any=[];
@@ -94,14 +94,14 @@ export class AddNewContractsComponent implements OnInit {
       if (this.response.success == true) {
 
         this.buyer = this.response.data;
-        this.newBuyer = this.response.data.lastId
+        // this.newBuyer = this.response.data.lastId
 
 
 
         if(type == "other")
         {
-          this.buyer.id = this.newBuyer;
-          this.data.buyerId = this.buyer.id
+          // this.buyer.id = this.newBuyer;
+          this.data.buyerId = this.newBuyer;
         }
        
       }
@@ -205,9 +205,11 @@ export class AddNewContractsComponent implements OnInit {
     const modalRef = this.modalService.open(AddBuyerComponent, { centered: true });
     modalRef.result.then((data) => {
       // on close
-      if (data == true) {
+      if (data.parent == true) {
 
-  
+        this.newBuyer = data.id
+        this.GetBuyersDropdown("other");
+     
 
       }
     }, (reason) => {
