@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { GlobalConstants } from 'src/app/Common/global-constants';
 import { Dateformater } from 'src/app/shared/dateformater';
@@ -24,6 +25,7 @@ export class AddNewInvComponent implements OnInit {
  
   constructor(
     private _NgbActiveModal: NgbActiveModal,
+    private spinner: NgxSpinnerService,
     private http: HttpClient,
     private service: ServiceService,
     private toastr: ToastrService,
@@ -51,7 +53,7 @@ export class AddNewInvComponent implements OnInit {
       "saleInvoiceDate":this.data.saleInvoiceDate,
       "saleInvoiceRemarks":this.data.saleInvoiceRemarks
     }
-
+this.spinner.show();
     this.http.
       post(`${environment.apiUrl}/api/Contracts/AddContractSaleInvoice`, varr)
       .subscribe(
@@ -61,15 +63,17 @@ export class AddNewInvComponent implements OnInit {
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
             this.activeModal.close(true);
-         
+         this.spinner.hide();
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+         this.spinner.hide();
           }
 
         }, err => {
           if (err.status == 400) {
             this.toastr.error(this.response.message, 'Message.');
+          this.spinner.hide();
           }
         });
   }
@@ -77,6 +81,7 @@ export class AddNewInvComponent implements OnInit {
 
 
   editSaleInvoice() {
+    this.spinner.show();
     this.http.get(`${environment.apiUrl}/api/Contracts/GetContractSaleInvoiceById/` + this.invoiceId)
       .subscribe(
         res => {
@@ -84,16 +89,18 @@ export class AddNewInvComponent implements OnInit {
           if (this.response.success == true) {
             this.data = this.response.data;
             this.data.saleInvoiceDate = this.dateformater.fromModel(this.data.saleInvoiceDate);
-            
+            this.spinner.hide();
 
           }
           else {
             this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
+            this.spinner.hide();
           }
 
         }, err => {
           if (err.status == 400) {
             this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
+            this.spinner.hide();
           }
         });
   }
@@ -111,7 +118,7 @@ export class AddNewInvComponent implements OnInit {
     "saleInvoiceDate":this.data.saleInvoiceDate,
     "saleInvoiceRemarks":this.data.saleInvoiceRemarks
    }
-
+this.spinner.show();
    this.http.
      put(`${environment.apiUrl}/api/Contracts/UpdateContractSaleInvoice/` + this.invoiceId, varr)
      .subscribe(
@@ -121,15 +128,18 @@ export class AddNewInvComponent implements OnInit {
          if (this.response.success == true) {
            this.toastr.success(GlobalConstants.updateMessage, 'Message.');
            this.activeModal.close(true);
-         }
+           this.spinner.hide();
+          }
          else {
            this.toastr.error(this.response.message, 'Message.');
-         }
+           this.spinner.hide();
+          }
 
        }, err => {
          if (err.status == 400) {
            this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
-         }
+           this.spinner.hide();
+          }
        });
  }
 

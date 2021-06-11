@@ -21,6 +21,7 @@ import { DeliveryTimeLineComponent } from './active-contract-models/delivery-tim
 import { RemarksComponent } from './active-contract-models/remarks/remarks.component';
 import { EmployeeCommissionComponent } from './active-contract-models/employee-commission/employee-commission.component';
 import { CommisionKickbackComponent } from './active-contract-models/commision-kickback/commision-kickback.component';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-active-contract-details',
@@ -69,8 +70,10 @@ export class ActiveContractDetailsComponent implements OnInit {
   invoiceItem = {};
   reminderData = [];
   deliveryTimeLineData = [];
+  deliveryCount: number;
   prodPlanData = [];
- 
+  deliveryFilter: any = [];
+  deliveryUrl = '/api/YarnContracts/GetAllContractDeliverySchedule'
   shipmentUrl='/api/Contracts/GetAllContractShipmentSchedule/{contractId}';
   // tna data
   rows5: any = [];
@@ -80,6 +83,7 @@ export class ActiveContractDetailsComponent implements OnInit {
     private router: Router,
     private modalService: NgbModal,
     private route: ActivatedRoute,
+    private spinner: NgxSpinnerService,
     private http: HttpClient,
     private service: ServiceService,
     private toastr: ToastrService,
@@ -88,8 +92,9 @@ export class ActiveContractDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     // this.userName=localStorage.getItem('loggedInUserName');
-    // this.queryParems = this.route.snapshot.queryParams;
-    // this.contractId = this.queryParems.id;
+    
+    this.queryParems = this.route.snapshot.queryParams;
+    this.contractId = this.queryParems.id;
    
 
     this.getContractData();
@@ -102,23 +107,15 @@ export class ActiveContractDetailsComponent implements OnInit {
     this.getContractRemarkData();
     this.getContractCommisionData();
     this.getSaleInvoice();
-    
+    this.service.fetch((data) => {
+      this.rows = data;
+      this.deliveryFilter = [...this.rows];
 
-    this.getContractTnA((Tna)=>{
-      this.rows5 = Tna;
-      this.TnaFilter = [...Tna];
-
-    });
+      this.deliveryCount = this.rows.length;
+    }, this.deliveryUrl);
 
     this.getAllBenificery((empData) => {
       this.rows1 = empData;
-      // this.listCount= this.rows.length;
-    });
-
-
-    this.getAllItems((itemsData) => {
-      this.rows2 = itemsData;
-      this.ItemFilter = [...itemsData];
       // this.listCount= this.rows.length;
     });
 
@@ -140,7 +137,7 @@ export class ActiveContractDetailsComponent implements OnInit {
 
   }
   navigateUploadDoc() {
-    this.router.navigate(['/yarn-local/doc-upload']);
+    this.router.navigate(['/FabCot/doc-upload']);
   };
   searchTna(event) {
     const val = event.target.value.toLowerCase();
@@ -150,13 +147,13 @@ export class ActiveContractDetailsComponent implements OnInit {
     this.rows5 = temp;
   }
   
-  searchItems(event) {
+  searchdelivery(event) {
     const val = event.target.value.toLowerCase();
-    const temp = this.ItemFilter.filter(function (d) {
+    const temp = this.deliveryFilter.filter(function (d) {
       return (
-      d.description.toLowerCase().indexOf(val) !== -1 || 
-      // d.construction.toLowerCase().indexOf(val) !== -1 ||
-      // d.compositionPercentage.toLowerCase().indexOf(val) !== -1 ||
+      // d.supplierDate.toLowerCase().indexOf(val) !== -1 || 
+      // d.buyerDate.toLowerCase().indexOf(val) !== -1 ||
+      d.quantity.toLowerCase().indexOf(val) !== -1 ||
       // d.loomTypeId.toLowerCase().indexOf(val) !== -1 ||
       // d.size.toLowerCase().indexOf(val) !== -1 ||
       // d.weight.toLowerCase().indexOf(val) !== -1 || 
@@ -166,7 +163,7 @@ export class ActiveContractDetailsComponent implements OnInit {
       // d.commission.toLowerCase().indexOf(val) !== -1 ||
       !val);
     });
-    this.rows2 = temp;
+    this.rows = temp;
   }
    searchShipmentDates(event) {
     const val = event.target.value.toLowerCase();
@@ -202,30 +199,30 @@ export class ActiveContractDetailsComponent implements OnInit {
 }
 
 
-  getAllItems(cb) {
+  // getAllItems(cb) {
 
-    this.http
-      .get(`${environment.apiUrl}/api/Contracts/GetAllContractItem/`+ this.contractId)
-      .subscribe(res => {
-        this.response = res;
+  //   this.http
+  //     .get(`${environment.apiUrl}/api/Contracts/GetAllContractItem/`+ this.contractId)
+  //     .subscribe(res => {
+  //       this.response = res;
         
 
-        if (this.response.success == true) {
-          this.items = this.response.data
-          this.ItemFilter = [this.items]; 
-          cb(this.items);
-        }
-        else {
-          this.toastr.error(this.response.message, 'Message.');
-        }
-        // this.spinner.hide();
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error(err.error.message, 'Message.');;
-        }
-        //  this.spinner.hide();
-      });
-  }
+  //       if (this.response.success == true) {
+  //         this.items = this.response.data
+  //         this.ItemFilter = [this.items]; 
+  //         cb(this.items);
+  //       }
+  //       else {
+  //         this.toastr.error(this.response.message, 'Message.');
+  //       }
+  //       // this.spinner.hide();
+  //     }, err => {
+  //       if (err.status == 400) {
+  //         this.toastr.error(err.error.message, 'Message.');;
+  //       }
+       
+  //     });
+  // }
 
 
 
@@ -321,7 +318,7 @@ export class ActiveContractDetailsComponent implements OnInit {
       position: 'top',
     }).then((result) => {
       if (result.isConfirmed) {
-  
+  this.spinner.show();
         this.http.delete(`${environment.apiUrl}/api/Contracts/DeleteContractSaleInvoice/` + obj.id )
           .subscribe(
             res => {
@@ -329,63 +326,24 @@ export class ActiveContractDetailsComponent implements OnInit {
               if (this.response.success == true) {
                 this.toastr.error(this.response.message, 'Message.');
                 this.getSaleInvoice();
-  
+  this.spinner.hide();
               }
               else {
                 this.toastr.error(this.response.message, 'Message.');
-              }
+  this.spinner.hide();
+}
   
             }, err => {
               if (err.status == 400) {
                 this.toastr.error(this.response.message, 'Message.');
-              }
+  this.spinner.hide();
+}
             });
       }
     })
   
   }
   
-
-
-  deleteTnA(id) {
-    Swal.fire({
-      title: GlobalConstants.deleteTitle, //'Are you sure?',
-      text: GlobalConstants.deleteMessage + ' ' + '"' + id.tnaItem + '"',
-      icon: 'error',
-      showCancelButton: true,
-      confirmButtonColor: '#ed5565',
-      cancelButtonColor: '#dae0e5',
-      cancelButtonText: 'No',
-      confirmButtonText: 'Yes',
-      reverseButtons: true,
-      position: 'top',
-    }).then((result) => {
-      if (result.isConfirmed) {
-  
-        this.http.delete(`${environment.apiUrl}/api/Contracts/DeleteContractTimeAction/` + id.id)
-          .subscribe(
-            res => {
-              this.response = res;
-              if (this.response.success == true) {
-                this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
-                this.getContractTnA((Tna) => {
-                  this.rows5 = Tna;
-                  // this.listCount= this.rows.length;
-                });
-  
-              }
-              else {
-                this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
-              }
-  
-            }, err => {
-              if (err.status == 400) {
-                this.toastr.error(this.response.message, 'Message.');
-              }
-            });
-      }
-    })
-  }
 
 
 
@@ -393,6 +351,7 @@ export class ActiveContractDetailsComponent implements OnInit {
   approveContract()
   {
     let varr=  {    }
+    this.spinner.show();
 
     this.http.
     put(`${environment.apiUrl}/api/Contracts/ApproveContract/`+this.contractId,varr)
@@ -403,16 +362,20 @@ export class ActiveContractDetailsComponent implements OnInit {
         if (this.response.success == true){
           this.toastr.success(this.response.message, 'Message.');
           this.getContractData()
+  this.spinner.hide();
         
         }
         else {
           this.toastr.error(this.response.message, 'Message.');
-            }
+  this.spinner.hide();
+}
 
       }, (err: HttpErrorResponse) => {
         const messages = this.service.extractErrorMessagesFromErrorResponse(err);
         this.toastr.error(messages.toString(), 'Message.');
         console.log(messages);
+  this.spinner.hide();
+
       });
   }
 
@@ -439,23 +402,7 @@ export class ActiveContractDetailsComponent implements OnInit {
           }
         });
   }
-  
-  
-  
-// PartiesForm() {
-//   const modalRef = this.modalService.open(PartiesComponent, { centered: true });
-//   modalRef.componentInstance.contractId = this.contractId;
-//   modalRef.result.then((data) => {
-  
-//     // on close
-//     if (data == true) {
-//       this.getContractPartiesData();
-//       this.getContractData();
-//     }
-//   }, (reason) => {
-//     // on dismiss
-//   });
-// }
+
 
 
 
@@ -526,24 +473,6 @@ getProdPlan() {
 }
 
 
-// ProductANDSpecificationForm() {
-//   const modalRef = this.modalService.open(ProductAndSpecificationComponent, { centered: true });
-//   modalRef.componentInstance.contractId = this.contractId;
-
-//   modalRef.result.then((data) => {
-//     // on close
-//     if (data == true) {
-//     this.getContractProductData();
-//     this.getContractData();
-
-
-//     }
-//   }, (reason) => {
-//     // on dismiss
-//   });
-// }
-
-
 
 
 getContractProductData() {
@@ -567,24 +496,6 @@ getContractProductData() {
 }
 
 
-// QuantityCosting() {
-//   const modalRef = this.modalService.open(QuantityCostingComponent, { centered: true });
-//   modalRef.componentInstance.contractId = this.contractId;
-
-//   modalRef.result.then((data) => {
-//     // on close
-//     if (data == true) {
-//       this.getContractCostingData();
-//       this.getContractData();
-      
-//     }
-//   }, (reason) => {
-//     // on dismiss
-//   });
-// }
-
-
-
 getContractCostingData() {
   this.http.get(`${environment.apiUrl}/api/Contracts/GetContractCostingById/` + this.contractId)
     .subscribe(
@@ -606,22 +517,7 @@ getContractCostingData() {
 }
 
 
-// PaymentDelivery() {
-//   const modalRef = this.modalService.open(PaymentDeliveryComponent, { centered: true });
-//   modalRef.componentInstance.contractId = this.contractId;
 
-//   modalRef.result.then((data) => {
-//     // on close
-//     if (data == true) {
-//       this.getContractPaymentData();
-//       this.getContractData();
-
-
-//     }
-//   }, (reason) => {
-//     // on dismiss
-//   });
-// }
 
 
 
@@ -646,24 +542,6 @@ getContractPaymentData() {
       });
 }
 
-
-
-// CommissionKickback() {
-//   const modalRef = this.modalService.open(CommisionKickbackComponent, { centered: true });
-//   modalRef.componentInstance.contractId = this.contractId;
-
-//   modalRef.result.then((data) => {
-//     // on close
-//     if (data == true) {
-//       this.getContractCommisionData();
-//       this.getContractData();
-
-
-//     }
-//   }, (reason) => {
-//     // on dismiss
-//   });
-// }
 
 
 
@@ -696,47 +574,6 @@ getContractCommisionData(){
 
 
 
-// EmployeeCommission(status) {
-//   const modalRef = this.modalService.open(EmployeeCommissionComponent, { centered: true });
-//   modalRef.componentInstance.contractId = this.contractId;
-//   modalRef.componentInstance.statusCheck = status;
-
-//   modalRef.result.then((data) => {
-//     // on close
-//     if (data == true) {
-//       this.getAllBenificery((empData) => {
-//         this.rows1 = empData;
-//         // this.listCount= this.rows.length;
-//       });
-//       this.getContractData();
-
-
-//     }
-//   }, (reason) => {
-//     // on dismiss
-//   });
-// }
-
-// editEmployeeCommission(status , row) {
-//   const modalRef = this.modalService.open(EmployeeCommissionComponent, { centered: true });
-//   modalRef.componentInstance.contractId = this.contractId;
-//   modalRef.componentInstance.statusCheck = status;
-//   modalRef.componentInstance.beneficiaryId = row.id;
-
-
-//   modalRef.result.then((data) => {
-//     // on close
-//     if (data == true) {
-
-//       this.getAllBenificery((empData) => {
-//         this.rows1 = empData;
-//         // this.listCount= this.rows.length;
-//       });
-//     }
-//   }, (reason) => {
-//     // on dismiss
-//   });
-// }
 
 getAllBenificery(cb) {
     
@@ -778,7 +615,7 @@ deleteCommission(row) {
     position: 'top',
   }).then((result) => {
     if (result.isConfirmed) {
-
+this.spinner.show();
       this.http.delete(`${environment.apiUrl}/api/Contracts/DeleteContractBeneficiary/` + row.id )
         .subscribe(
           res => {
@@ -790,17 +627,21 @@ deleteCommission(row) {
               this.getAllBenificery((empData) => {
                 this.rows1 = empData;
                 // this.listCount= this.rows.length;
+  this.spinner.hide();
+
               });
 
             }
             else {
               this.toastr.error(this.response.message, 'Message.');
-            }
+  this.spinner.hide();
+}
 
           }, err => {
             if (err.status == 400) {
               this.toastr.error(this.response.message, 'Message.');
-            }
+  this.spinner.hide();
+}
           });
 
     }
@@ -952,22 +793,7 @@ deleteCommission(row) {
       // on dismiss
     });
   }
-// Remarks() {
-//   const modalRef = this.modalService.open(RemarksComponent, { centered: true });
-//   modalRef.componentInstance.contractId = this.contractId;
 
-//   modalRef.result.then((data) => {
-//     // on close
-//     if (data == true) {
-//       this.getContractRemarkData();
-//       this.getContractData();
-
-
-//     }
-//   }, (reason) => {
-//     // on dismiss
-//   });
-// }
 
 
 
@@ -993,24 +819,6 @@ getContractRemarkData() {
       });
 }
 
-
-//Forms in Different Tabs
-
-
-// LOCform() {
-//   const modalRef = this.modalService.open(LOCComponent, { centered: true });
-//   modalRef.componentInstance.contractId = this.contractId;
-
-//   modalRef.result.then((data) => {
-//     // on close
-//     if (data == true) {
-//       this.getContractLOC();
-
-//     }
-//   }, (reason) => {
-//     // on dismiss
-//   });
-// }
 
 
 
@@ -1041,26 +849,6 @@ getContractLOC() {
 }
 
 
-// ProductionPlanform() {
-  
-//   const modalRef = this.modalService.open(PRODUCTPLANComponent, { centered: true });
-//   modalRef.componentInstance.contractId = this.contractId;
-
-//   modalRef.result.then((data) => {
-//     // on close
-//     if (data == true) {
-//       this.getContractTnA((Tna)=>{
-//         this.rows5 = Tna;
-//       });
-    
-//       this.getContractData();
-//     }
-
-//   }, (reason) => {
-//     // on dismiss
-//   });
-// }
-
 
 addSaleInvoice() {
   const modalRef = this.modalService.open(SaleInvoicePopUpComponent, { centered: true });
@@ -1077,147 +865,7 @@ addSaleInvoice() {
     // on dismiss
   });
 }
-
-
-
-// editSaleInvoice(status, obj) {
-//   const modalRef = this.modalService.open(SALEINVOICEComponent, { centered: true });
-//   modalRef.componentInstance.contractId = this.contractId;
-//   modalRef.componentInstance.statusCheck = status;
-//   modalRef.componentInstance.invoiceId = obj.id;
-//   modalRef.result.then((data) => {
-//     // on close
-//     if (data == true) {
-//       this.getSaleInvoice();
-//     this.getContractData();
-
-//     }
-//   }, (reason) => {
-//     // on dismiss
-//   });
-// }
-
-
-
-
-
-
-
-// Note() {
-//   const modalRef = this.modalService.open(EnquiryNotesComponent, { centered: true });
-//   modalRef.componentInstance.contractId = this.contractId;
-//   modalRef.result.then((data) => {
-//     // on close
-//     if (data == true) {
-//       this.getAllNotes((NotesData) => {
-//         this.rows3 = NotesData;
-//         this.noteFilter = [...NotesData];
-//         // this.listCount= this.rows.length;
-//       });
-//     this.getContractData();
-
-
-//     }
-//   }, (reason) => {
-//     // on dismiss
-//   });
-// }
-
-// ContractNotes(check, name) {
-//   const modalRef = this.modalService.open(ContractNoteComponent, { centered: true });
-//   modalRef.componentInstance.statusCheck = check;
-//   modalRef.componentInstance.FormName = name;
-//   modalRef.componentInstance.contractId = this.contractId;
-//   modalRef.result.then((data) => {
-//     // on close
-//     if (data == true) {
-//       this.getAllNotes((NotesData) => {
-//         this.rows3 = NotesData;
-//         this.noteFilter = [...NotesData];
-//         // this.listCount= this.rows.length;
-//       });
-//     this.getContractData();
-
-//     }
-//   }, (reason) => {
-//     // on dismiss
-//   });
-// }
-// Items() {
-//   const modalRef = this.modalService.open(ItemsComponent, { centered: true });
-//   modalRef.componentInstance.contractId = this.contractId;
-
-//   modalRef.result.then((data) => {
-//     // on close
-//     if (data == true) {
-
-//     }
-//   }, (reason) => {
-//     // on dismiss
-//   });
-// }
-getContractTnA(cb) {
-  this.http.get(`${environment.apiUrl}/api/Contracts/GetAllContractTimeAction/` + this.contractId)
-    .subscribe(
-      res => {
-        this.response = res;
-        if (this.response.success == true) {
-          this.TnaData = this.response.data;
-          cb(this.TnaData)
-        }
-        else {
-          this.toastr.error(this.response.message, 'Message.');
-        }
-
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error(this.response.message, 'Message.');
-        }
-      });
-}
-
-// EditTna(row) {
-//   const modalRef = this.modalService.open(EditTnaComponent, { centered: true });
-//   modalRef.componentInstance.contractId = this.contractId;
-//   // modalRef.componentInstance.id = row.id;
-//   modalRef.componentInstance.Id = row.id;
-//   modalRef.componentInstance.tnaId = row.tnaId;
-
-
-//   modalRef.result.then((data) => {
-//     // on close
-//     if (data == true) {
-//       this.getContractTnA((Tna)=>{
-//         this.rows5 = Tna;
-//         this.TnaFilter = [...Tna];
-  
-//       });
-
-
-//     }
-//   }, (reason) => {
-//     // on dismiss
-//   });
-// }
-// TnaHistory(row) {
-//   const modalRef = this.modalService.open(TnaLogHistoryComponent, { centered: true });
-//   modalRef.componentInstance.id = row.id;
-
-//   modalRef.result.then((data) => {
-//     // on close
-//     if (data == true) {
-//       this.getContractTnA((Tna)=>{
-//         this.rows5 = Tna;
-//         this.TnaFilter = [...Tna];
-  
-//       });
-
-
-//     }
-//   }, (reason) => {
-//     // on dismiss
-//   });
-// }
+ 
 
 getAllInvoiceItems(cb) {
 
@@ -1247,53 +895,6 @@ getAllInvoiceItems(cb) {
 
 
 
-// AddsaleInvoiceItem(check,value) {
-//   const modalRef = this.modalService.open(SaleInvoiceItemComponent, { centered: true });
-//   modalRef.componentInstance.contractId = this.contractId;
-//   modalRef.componentInstance.contractSaleInvoiceId = value.id;
-//   modalRef.componentInstance.statusCheck = check;
-//   modalRef.result.then((data) => {
-//     // on close
-//     if (data == true) {
-//       this.getSaleInvoice();
-//     // this.getContractData();
-//     this.getAllInvoiceItems((invoiceItem) => {
-//       this.rows6 = invoiceItem;
-//       this.invoiceItemFilter = [...invoiceItem];
-
-//     });
-
-
-//     }
-//   }, (reason) => {
-//     // on dismiss
-//   });
-// }
-// EditsaleInvoiceItem(check , obj ) {
-//   const modalRef = this.modalService.open(SaleInvoiceItemComponent, { centered: true });
-//   modalRef.componentInstance.contractId = this.contractId;
-//   modalRef.componentInstance.statusCheck = check;
-//   modalRef.componentInstance.contractSaleInvoiceId = obj.contractSaleInvoiceId;
-//   modalRef.componentInstance.invoiceItemId = obj.id;
-
-//   modalRef.result.then((data) => {
-//     // on close
-//     if (data == true) {
-//       this.getSaleInvoice();
-//     // this.getContractData();
-//     this.getAllInvoiceItems((invoiceItem) => {
-//       this.rows6 = invoiceItem;
-//       this.invoiceItemFilter = [...invoiceItem];
-
-//     });
-
-
-//     }
-//   }, (reason) => {
-//     // on dismiss
-//   });
-// }
-
 
 deleteInvoiceItem(id) {
   Swal.fire({
@@ -1309,6 +910,7 @@ deleteInvoiceItem(id) {
     position: 'top',
   }).then((result) => {
     if (result.isConfirmed) {
+      this.spinner.show();
 
       this.http.delete(`${environment.apiUrl}/api/Contracts/DeleteSaleInvoiceItem/` + id.id)
         .subscribe(
@@ -1320,6 +922,7 @@ deleteInvoiceItem(id) {
               this.getAllInvoiceItems((invoiceItem) => {
                 this.rows6 = invoiceItem;
                 this.invoiceItemFilter = [...invoiceItem];
+  this.spinner.hide();
           
               });
 
@@ -1327,12 +930,14 @@ deleteInvoiceItem(id) {
             }
             else {
               this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
-            }
+  this.spinner.hide();
+}
 
           }, err => {
             if (err.status == 400) {
               this.toastr.error(this.response.message, 'Message.');
-            }
+  this.spinner.hide();
+}
           });
     }
   })
@@ -1349,19 +954,15 @@ addDeliveryTL(check) {
   const modalRef = this.modalService.open(DeliveryTLComponent, { centered: true });
   modalRef.componentInstance.statusCheck = check;
 
-  // modalRef.componentInstance.contractId = this.contractId ;
+  modalRef.componentInstance.contractId = this.contractId ;
 
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
-      this.getAllItems((itemsData) => {
-        this.rows2 = itemsData;
-        // this.listCount= this.rows.length;
-      });
+      
       this.getContractData();
-  
 
-
+      
     }
   }, (reason) => {
     // on dismiss
@@ -1381,6 +982,7 @@ deleteContractNote(id) {
     position: 'top',
   }).then((result) => {
     if (result.isConfirmed) {
+      this.spinner.show();
 
       this.http.delete(`${environment.apiUrl}` + id.id)
         .subscribe(
@@ -1391,48 +993,30 @@ deleteContractNote(id) {
               this.getAllNotes((NotesData) => {
                 this.rows3 = NotesData;
                 this.noteFilter = [...NotesData];
-                // this.listCount= this.rows.length;
+  this.spinner.hide();
+  // this.listCount= this.rows.length;
               });
 
             }
             else {
               this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
-            }
+  this.spinner.hide();
+}
 
           }, err => {
             if (err.status == 400) {
               this.toastr.error(this.response.message, 'Message.');
-            }
+  this.spinner.hide();
+}
           });
     }
   })
 }
-// editContractNote(row, check, name) {
-//   const modalRef = this.modalService.open(ContractNoteComponent, { centered: true });
-//   modalRef.componentInstance.NoteId = row.id; //just for edit.. to access the needed row
-//   modalRef.componentInstance.statusCheck = check;
-//   modalRef.componentInstance.FormName = name;
-//   modalRef.componentInstance.contractId =this.contractId;
 
-//   modalRef.result.then((data) => {
-//     // on close
-//     if (data == true) {
-//       this.getAllNotes((NotesData) => {
-//         this.rows3 = NotesData;
-//         this.noteFilter = [...NotesData];
-//         // this.listCount= this.rows.length;
-//       });
-//     this.getContractData();
-
-//     }
-//   }, (reason) => {
-//     // on dismiss
-//   });
-// }
 deleteDeliveries(id) {
   Swal.fire({
     title: GlobalConstants.deleteTitle, //'Are you sure?',
-    text: GlobalConstants.deleteMessage + ' ' + '"' + id.description + '"',
+    text: GlobalConstants.deleteMessage + ' Delivery Number' +''+'"' + id.id + '"',
     icon: 'error',
     showCancelButton: true,
     confirmButtonColor: '#ed5565',
@@ -1443,47 +1027,50 @@ deleteDeliveries(id) {
     position: 'top',
   }).then((result) => {
     if (result.isConfirmed) {
+      this.spinner.show();
 
-      this.http.delete(`${environment.apiUrl}` + id.id)
-        .subscribe(
-          res => {
-            this.response = res;
-            if (this.response.success == true) {
-              this.toastr.error(this.response.message, 'Message.');
-              this.getAllItems((itemsData) => {
-                this.rows2 = itemsData;
-                // this.listCount= this.rows.length;
-              });
+      this.http.delete(`${environment.apiUrl}/api/YarnContracts/DeleteContractDeliverySchedule/` + id.id )
+      .subscribe(
+        res => {
+          this.response = res;
+          if (this.response.success == true) {
+            this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
+            this.service.fetch((data) => {
+              this.rows = data;
+            }, this.deliveryUrl);
+  this.spinner.hide();
 
-            }
-            else {
-              this.toastr.error(this.response.message, 'Message.');
-            }
-
-          }, err => {
-            if (err.status == 400) {
-              this.toastr.error(this.response.message, 'Message.');
-            }
-          });
-    }
-  })
+          }
+          else {
+            this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
+  this.spinner.hide();
 }
+
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+  this.spinner.hide();
+}
+        });
+  }
+})
+  
+  }
 editDeliveries(row, check) {
   const modalRef = this.modalService.open(DeliveryTLComponent, { centered: true });
-  modalRef.componentInstance.itemId = row.id; //just for edit.. to access the needed row
+  modalRef.componentInstance.deliveryId = row.id; //just for edit.. to access the needed row
   modalRef.componentInstance.statusCheck = check;
-  // modalRef.componentInstance.contractId = this.contractId ;
+  modalRef.componentInstance.contractId = this.contractId ;
 
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
-      this.getAllItems((itemsData) => {
-        this.rows2 = itemsData;
-        // this.listCount= this.rows.length;
-      });
-  
+     
     }
-    this.getContractData();
+
+    this.service.fetch((data) => {
+      this.rows = data;
+    }, this.deliveryUrl);
 
   }, (reason) => {
     // on dismiss
@@ -1492,7 +1079,7 @@ editDeliveries(row, check) {
 addDispatch( check) {
   const modalRef = this.modalService.open(DispatchRegisterComponent, { centered: true });
   modalRef.componentInstance.statusCheck = check;
-  // modalRef.componentInstance.contractId = this.contractId ;
+  modalRef.componentInstance.contractId = this.contractId ;
 
   modalRef.result.then((data) => {
     // on close
@@ -1509,6 +1096,8 @@ editDispatch( row ,check) {
   const modalRef = this.modalService.open(DispatchRegisterComponent, { centered: true });
   modalRef.componentInstance.statusCheck = check;
   modalRef.componentInstance.dispatchId = row.id ;
+  modalRef.componentInstance.contractId = this.contractId ;
+
 
   modalRef.result.then((data) => {
     // on close
@@ -1573,109 +1162,6 @@ addProd() {
   });
 }
 
-// editProd( row ,check) {
-//   const modalRef = this.modalService.open(ProductionStatusComponent, { centered: true });
-//   modalRef.componentInstance.statusCheck = check;
-//   modalRef.componentInstance.noteId = row.id ;
-
-//   modalRef.result.then((data) => {
-//     // on close
-//     if (data == true) {
-  
-//     }
-//     this.getContractData();
-
-//   }, (reason) => {
-//     // on dismiss
-//   });
-// }
-// editSaleInvoice(row, check) {
-//   const modalRef = this.modalService.open(DeliveryTLComponent, { centered: true });
-//   modalRef.componentInstance.invoiceId = row.id; //just for edit.. to access the needed row
-//   modalRef.componentInstance.statusCheck = check;
-//   // modalRef.componentInstance.contractId = this.contractId ;
-
-//   modalRef.result.then((data) => {
-//     // on close
-//     if (data == true) {
-   
-  
-//     }
-//     this.getContractData();
-
-//   }, (reason) => {
-//     // on dismiss
-//   });
-// }
-// addSaleInvoice() {
-//   const modalRef = this.modalService.open(SaleInvoicePopUpComponent, { centered: true });
-//   // modalRef.componentInstance.statusCheck = check;
-//   // modalRef.componentInstance.contractId = this.contractId ;
-
-//   modalRef.result.then((data) => {
-//     // on close
-//     if (data == true) {
-  
-//     }
-//     this.getContractData();
-
-//   }, (reason) => {
-//     // on dismiss
-//   });
-// }
-// addShipmentTimeline(check) {
-//   const modalRef = this.modalService.open(DeliveryTimelineComponent, { centered: true });
-//   modalRef.componentInstance.statusCheck = check;
-//   modalRef.componentInstance.contractId = this.contractId ;
-
-//   modalRef.result.then((data) => {
-//     // on close
-//     if (data == true) {
-//       this.getAllShipmentDates((shipmentData) => {
-//         this.rows4 = shipmentData;
-       
-//       });
-//       this.getAllShipmentDates((shipmentData) => {
-//         this.rows4 = shipmentData;
-//         this.shipmentFilter = [...shipmentData];
-  
-//       });
-//     this.getContractData();
-
-  
-
-
-//     }
-//   }, (reason) => {
-//     // on dismiss
-//   });
-// }
-// EditShipmentTimeline(check , row) {
-//   const modalRef = this.modalService.open(DeliveryTimelineComponent, { centered: true });
-//   modalRef.componentInstance.shipmentId = row.id; //just for edit.. to access the needed row
-//   modalRef.componentInstance.statusCheck = check;
-//   modalRef.componentInstance.contractId =this.contractId;
-
-//   modalRef.result.then((data) => {
-//     // on close
-//     if (data == true) {
-//       this.getAllShipmentDates((shipmentData) => {
-//         this.rows4 = shipmentData;
-//         // this.listCount= this.rows.length;
-//       });
-//       this.getAllShipmentDates((shipmentData) => {
-//         this.rows4 = shipmentData;
-//         this.shipmentFilter = [...shipmentData];
-  
-//       });
-//     this.getContractData();
-
-//     }
-//   }, (reason) => {
-//     // on dismiss
-//   });
-// }
-
 
 
 
@@ -1693,6 +1179,7 @@ deleteDispatch(id) {
     position: 'top',
   }).then((result) => {
     if (result.isConfirmed) {
+      this.spinner.show();
 
       this.http.delete(`${environment.apiUrl}/api/YarnContracts/DeleteDispatchRegister/` + id.id)
         .subscribe(
@@ -1702,18 +1189,22 @@ deleteDispatch(id) {
               this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
               this.getAllShipmentDates((shipmentData) => {
                 this.rows4 = shipmentData;
+  this.spinner.hide();
            
               });
 
             }
             else {
               this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
+  this.spinner.hide();
+           
             }
 
           }, err => {
             if (err.status == 400) {
               this.toastr.error(this.response.message, 'Message.');
-            }
+  this.spinner.hide();
+}
           });
     }
   })
@@ -1723,24 +1214,7 @@ deleteDispatch(id) {
 
 
 
-//  statusform(status,action,component) {
-//         const modalRef = this.modalService.open(StatusComponent, { centered: true });
-//         // modalRef.componentInstance.parentBuyerId = popup.id;
-//         modalRef.componentInstance.ContractId = this.contractId;
-//         modalRef.componentInstance.statusCheck = status;
-//         modalRef.componentInstance.action = action;
-//         modalRef.componentInstance.component = component;
-//         modalRef.result.then((data) => {
-//           // on close
-//           if (data == true) {
-          
-//             this.getContractData();
-    
-//           }
-//         }, (reason) => {
-//           // on dismiss
-//         });
-//       }
+
     
     
       statusOpen()
@@ -1751,6 +1225,7 @@ deleteDispatch(id) {
           "contractId": this.contractId,
           "status": "Open"
         }
+  this.spinner.show();
         
         this.http.
         put(`${environment.apiUrl}/api/Contracts/UpdateContractStatus`, varr)
@@ -1761,17 +1236,22 @@ deleteDispatch(id) {
             if (this.response.success == true){
               this.toastr.success(this.response.message, 'Message.');
               this.getContractData();
+              this.spinner.hide();
 
 
            
             }
             else {
               this.toastr.error('Something went Worng', 'Message.');
-                }
+  this.spinner.hide();
+              
+            }
     
           }, err => {
             if (err.status == 400) {
               this.toastr.error('Something went Worng', 'Message.');
+  this.spinner.hide();
+           
             }
           });
       }
@@ -1795,6 +1275,7 @@ deleteDispatch(id) {
               "contractId": this.contractId,
               "contractUpDate": this.data.contractUpDate
             }
+  this.spinner.show();
         
             this.http.
               post(`${environment.apiUrl}/api/Contracts/AddContractFollowUp`, varr)
@@ -1805,14 +1286,20 @@ deleteDispatch(id) {
                   if (this.response.success == true) {
                     this.toastr.success(this.response.message, 'Message.');
                     this.getAllReminder();
+  this.spinner.hide();
+
                   }
                   else {
                     this.toastr.error(this.response.message, 'Message.');
-                  }
+                  
+  this.spinner.hide();
+}
         
                 }, err => {
                   if (err.status == 400) {
                     this.toastr.error(this.response.message, 'Message.');
+  this.spinner.hide();
+                  
                   }
                 });
     
@@ -1822,6 +1309,7 @@ deleteDispatch(id) {
           readyForBill()
           {
             let varr=  {}
+  this.spinner.show();
         
             this.http.
             put(`${environment.apiUrl}/api/Contracts/ContractReadyForBill/`+this.contractId,varr)
@@ -1831,16 +1319,20 @@ deleteDispatch(id) {
                 this.response = res;
                 if (this.response.success == true){
                   this.toastr.success(this.response.message, 'Message.');
-                  this.router.navigate(['/billing-and-payment/generate-bills']);
-                }
+                  this.router.navigate(['/FabCot/generate-bills']);
+  this.spinner.hide();
+}
                 else {
                   this.toastr.error(this.response.message, 'Message.');
-                    }
+  this.spinner.hide();
+}
         
               }, (err: HttpErrorResponse) => {
                 const messages = this.service.extractErrorMessagesFromErrorResponse(err);
                 this.toastr.error(messages.toString(), 'Message.');
                 console.log(messages);
+  this.spinner.hide();
+
               });
           }
 
@@ -1881,6 +1373,8 @@ deleteDispatch(id) {
               position: 'top',
             }).then((result) => {
               if (result.isConfirmed) {
+  this.spinner.show();
+
                 this.http.
                   delete(`${environment.apiUrl}/api/Contracts/DeleteContractFollowUp/`+ objReminder.id )
                   .subscribe(
@@ -1890,16 +1384,19 @@ deleteDispatch(id) {
                       if (this.response.success == true) {
                         this.toastr.error(this.response.message, 'Message.');
                     this.getAllReminder();
+  this.spinner.hide();
                        
                       }
                       else {
                         this.toastr.error(this.response.message, 'Message.');
-                      }
+  this.spinner.hide();
+}
             
                     }, err => {
                       if (err.status == 400) {
                         this.toastr.error(this.response.message, 'Message.');
-                      }
+  this.spinner.hide();
+}
                     });
         
               }

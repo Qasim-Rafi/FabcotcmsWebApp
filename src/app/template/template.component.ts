@@ -14,9 +14,11 @@ export class TemplateComponent implements OnInit {
   loggedInDepartmentId: string;
   isYarnLocal:boolean;
   isHomeTextileandGarments:boolean;
+  userrole:string;
   constructor( private router: Router,) { }
 
   ngOnInit(): void {
+    this.userrole=localStorage.getItem('role');
     this.loggedInDepartmentId=localStorage.getItem('loggedInDepartmentId');
     if(this.loggedInDepartmentId == '3'){
         this.isYarnLocal = true;

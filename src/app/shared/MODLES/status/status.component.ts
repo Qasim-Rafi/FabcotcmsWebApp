@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
 
@@ -12,10 +13,6 @@ import { environment } from 'src/environments/environment';
 })
 export class StatusComponent implements OnInit {
 
-  constructor(private http: HttpClient,
-    private toastr: ToastrService,
-    private _NgbActiveModal: NgbActiveModal) { }
-
   response: any;
   data:any={};
   @Input() statusCheck;
@@ -23,6 +20,11 @@ export class StatusComponent implements OnInit {
   @Input() ContractId;
   @Input() action;
   @Input() component;
+  constructor(private http: HttpClient,
+    private toastr: ToastrService,private spinner: NgxSpinnerService,
+    private _NgbActiveModal: NgbActiveModal) { }
+
+  
   // @Input() objEnquiry;
 
   ngOnInit(): void {
@@ -37,7 +39,7 @@ export class StatusComponent implements OnInit {
 
   UpdateEnquiryStatus(form:NgForm)
   { 
-
+    this.spinner.show();
         if(form.status == "INVALID"){
     }
 
@@ -59,16 +61,18 @@ else
         if (this.response.success == true){
           this.toastr.success(this.response.message, 'Message.');
           this.activeModal.close(true);
-
+          this.spinner.hide();
        
         }
         else {
           this.toastr.error('Something went Worng', 'Message.');
+          this.spinner.hide();
             }
 
       }, err => {
         if (err.status == 400) {
           this.toastr.error('Something went Worng', 'Message.');
+          this.spinner.hide();
         }
       });
   }
@@ -80,7 +84,7 @@ else
 
   UpdateContractStatus(form:NgForm)
 { 
-
+  this.spinner.show();
     if(form.status == "INVALID"){
 
     }
@@ -105,14 +109,17 @@ else
       if (this.response.success == true){
         this.toastr.success(this.response.message, 'Message.');
         this.activeModal.close(true);
+        this.spinner.hide();
       }
       else {
         this.toastr.error('Something went Worng', 'Message.');
+        this.spinner.hide();
           }
 
     }, err => {
       if (err.status == 400) {
         this.toastr.error('Something went Worng', 'Message.');
+        this.spinner.hide();
       }
     });
 }

@@ -3,6 +3,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { id } from '@swimlane/ngx-datatable';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { ServiceService } from 'src/app/shared/service.service';
 import { environment } from 'src/environments/environment';
@@ -29,6 +30,7 @@ export class SellerPocComponent implements OnInit {
 
   constructor(private http: HttpClient,
     private service: ServiceService,
+    private spinner: NgxSpinnerService,
     private toastr: ToastrService,
     private _NgbActiveModal: NgbActiveModal) { }
 
@@ -103,7 +105,7 @@ export class SellerPocComponent implements OnInit {
       "sellerId": this.parentSellerId.toString(),
       "includeInContractPreview": this.data.includeInContractPreview,
     }
-
+this.spinner.show();
     this.http.
       post(`${environment.apiUrl}/api/Sellers/AddPOC`, varr)
       .subscribe(
@@ -115,15 +117,18 @@ export class SellerPocComponent implements OnInit {
 
             // this.buyerForm.reset();
             this.activeModal.close(true);
+            this.spinner.hide();
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+          this.spinner.hide();
           }
 
         },(err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
+          this.spinner.hide();
         });
   }
 
@@ -132,22 +137,25 @@ export class SellerPocComponent implements OnInit {
   // ------------------Edit Seller Poc---------------------------------//
 
   editSellerPOC() {
+    this.spinner.show();
     this.http.get(`${environment.apiUrl}/api/Sellers/GetPOCById/` + this.sellerPOCid)
       .subscribe(
         res => {
           this.response = res;
           if (this.response.success == true) {
             this.data = this.response.data;
-
+this.spinner.hide();
 
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+          this.spinner.hide();
           }
 
         }, err => {
           if (err.status == 400) {
             this.toastr.error(this.response.message, 'Message.');
+         this.spinner.hide();
           }
         });
   }
@@ -168,7 +176,7 @@ export class SellerPocComponent implements OnInit {
       "includeInContractPreview": this.data.includeInContractPreview,
 
     }
-
+this.spinner.show();
     this.http.
       put(`${environment.apiUrl}/api/Sellers/UpdatePOC/` + this.sellerPOCid, varr)
       .subscribe(
@@ -178,15 +186,18 @@ export class SellerPocComponent implements OnInit {
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
             this.activeModal.close(true);
+            this.spinner.hide();
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
           }
 
         },(err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
+          this.spinner.hide();
         });
 
 }
@@ -232,7 +243,7 @@ export class SellerPocComponent implements OnInit {
       "buyerId": this.parentBuyerId.toString(),
       "includeInContractPreview": this.data.includeInContractPreview,
     }
-
+this.spinner.show();
     this.http.
       post(`${environment.apiUrl}/api/Buyers/AddPOC`, varr)
       .subscribe(
@@ -244,15 +255,18 @@ export class SellerPocComponent implements OnInit {
 
             // this.buyerForm.reset();
             this.activeModal.close(true);
+            this.spinner.hide();
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
           }
 
         },(err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
+          this.spinner.hide();
         });
   
 }
@@ -261,6 +275,7 @@ export class SellerPocComponent implements OnInit {
   // ------------------Edit Buyer Poc---------------------------------//
 
   editBuyerPOC() {
+    this.spinner.show();
     this.http.get(`${environment.apiUrl}/api/Buyers/GetPOCById/` + this.buyerPOCid)
       .subscribe(
         res => {
@@ -268,28 +283,25 @@ export class SellerPocComponent implements OnInit {
           if (this.response.success == true) {
             this.data = this.response.data;
 
-
+this.spinner.hide();
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+         this.spinner.hide();
           }
 
-        }, err => {
-          if (err.status == 400) {
-            this.toastr.error(this.response.message, 'Message.');
-          }
+        },(err: HttpErrorResponse) => {
+          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+          this.toastr.error(messages.toString(), 'Message.');
+          console.log(messages);
+      this.spinner.hide();
         });
   }
 
 
 
   UpdateBuyerPOC(form:NgForm) {
-    if (form.status == "INVALID") {
-
-      this.toastr.error("Invalid Form", 'Message.');
-    }
-
-    else{
+   
     let varr = {
 
       "name": this.data.name,
@@ -302,7 +314,7 @@ export class SellerPocComponent implements OnInit {
       "includeInContractPreview": this.data.includeInContractPreview,
 
     }
-
+this.spinner.show();
     this.http.
       put(`${environment.apiUrl}/api/Buyers/UpdatePOC/` + this.buyerPOCid, varr)
       .subscribe(
@@ -312,17 +324,20 @@ export class SellerPocComponent implements OnInit {
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
             this.activeModal.close(true);
+            this.spinner.hide();
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
           }
 
         }, err => {
           if (err.status == 400) {
             this.toastr.error(this.response.message, 'Message.');
+          this.spinner.hide();
           }
         });
-  }
+  
 }
 
 

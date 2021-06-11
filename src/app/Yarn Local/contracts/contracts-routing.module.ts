@@ -14,12 +14,12 @@ import { YarnActiveContractsComponent } from './yarn-active-contracts/yarn-activ
 import {ActiveContractDetailsComponent} from './yarn-active-contracts/active-contract-details/active-contract-details.component'
 import {DocumentUploadPopUpComponent} from './yarn-active-contracts/active-contract-details/active-contract-models/document-upload-pop-up/document-upload-pop-up.component'
 const routes: Routes = [
-  { path:'yarn-local', component:TemplateComponent,
+  { path:'FabCot', component:TemplateComponent,
   // canActivate:[AuthGuard],
 
   children:[
 
-    { path: 'add-new-contract' ,  component: AddNewContractsComponent},
+    { path: 'add-new-yarn-contract' ,  component: AddNewContractsComponent},
     { path: 'active-contract' ,  component: YarnActiveContractsComponent},
     { path: 'completed-contract' ,  component: CompletedContractComponent},
     { path: 'dispatched-register' , component:DispatchedRegisterComponent},

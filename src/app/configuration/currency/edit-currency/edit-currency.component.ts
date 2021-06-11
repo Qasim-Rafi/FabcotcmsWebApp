@@ -64,7 +64,7 @@ this.spinner.hide();
 
   UpdateCurrency(form:NgForm)
   {
-    
+    this.spinner.show();
     let varr=  {
       "validFrom": this.dateformater.toModel(this.data.validFrom),
       "currencyCode":  this.data.currencyCode,

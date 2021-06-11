@@ -17,8 +17,10 @@ export class DispatchRegisterComponent implements OnInit {
 
   dateformater: Dateformater = new Dateformater();  
   data:any ={};
+  uomList = []
   @Input() dispatchId; 
   @Input() statusCheck; 
+  @Input() contractId; 
   response: any;
   @ViewChild(NgForm) dispatchForm;
  
@@ -32,14 +34,31 @@ export class DispatchRegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.statusCheck = this.statusCheck
-    if(this.statusCheck == 'Edit'){
-    this.getDispatch();}
+    if(this.statusCheck == 'Edit')
+    {
+    this.getDispatch();
+  }
+
+  this. GetUOMDropdown();
 
   }
 
   get activeModal() {
     return this._NgbActiveModal;
   }
+
+  GetUOMDropdown() {
+    this.service.getUOM().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.uomList = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
+
 
   getDispatch() {
     this.http.get(`${environment.apiUrl}/api/YarnContracts/GetDispatchRegisterById/` + this.dispatchId)
@@ -70,7 +89,7 @@ export class DispatchRegisterComponent implements OnInit {
 
     let varr = {
 
-      // "contractId":this.contractId, 
+      "contractId":this.contractId, 
       "number": this.data.number,
       "date": this.data.date,
       "quantity": this.data.quantity,
@@ -109,7 +128,7 @@ export class DispatchRegisterComponent implements OnInit {
   updateDispatch() {
      this.data.dispatchDate = this.dateformater.toModel(this.data.dispatchDate);
     let varr = {
-      // "contractId":this.contractId, 
+      "contractId":this.contractId, 
       "number": this.data.number,
       "date": this.data.date,
       "quantity": this.data.quantity,

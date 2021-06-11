@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { GlobalConstants } from 'src/app/Common/global-constants';
 import { environment } from 'src/environments/environment';
@@ -20,6 +21,7 @@ export class DispatchedRegisterComponent implements OnInit {
   temp: any[];
   constructor(
     private router: Router,
+    private spinner: NgxSpinnerService,
     private http: HttpClient,
     private toastr: ToastrService,
     private modalService: NgbModal,
@@ -57,7 +59,7 @@ export class DispatchedRegisterComponent implements OnInit {
   }
 
   fetch(cb) {
-
+this.spinner.show();
     this.http
       .get(`${environment.apiUrl}/api/YarnContracts/GetAllDispatchRegister`)
       .subscribe(res => {
@@ -66,15 +68,17 @@ export class DispatchedRegisterComponent implements OnInit {
         if (this.response.success == true) {
           this.data = this.response.data
           cb(this.data)
-     
+     this.spinner.hide();
         }
         else {
           this.toastr.error(this.response.message, 'Message.');
+       this.spinner.hide();
         }
         // this.spinner.hide();
       }, err => {
         if (err.status == 400) {
           this.toastr.error(err.error.message, 'Message.');;
+        this.spinner.hide();
         }
         //  this.spinner.hide();
       });
@@ -97,7 +101,7 @@ export class DispatchedRegisterComponent implements OnInit {
       position: 'top',
     }).then((result) => {
       if (result.isConfirmed) {
-  
+  this.spinner.show();
         this.http.delete(`${environment.apiUrl}/api/YarnContracts/DeleteDispatchRegister/` + obj.id)
           .subscribe(
             res => {
@@ -106,17 +110,20 @@ export class DispatchedRegisterComponent implements OnInit {
                 this.toastr.error(this.response.message, 'Message.');
                 this.fetch((data) => {
                   this.rows = data;
+                  this.spinner.hide();
                 });
                 
   
               }
               else {
                 this.toastr.error(this.response.message, 'Message.');
+             this.spinner.hide();
               }
   
             }, err => {
               if (err.status == 400) {
                 this.toastr.error(this.response.message, 'Message.');
+              this.spinner.hide();
               }
             });
   

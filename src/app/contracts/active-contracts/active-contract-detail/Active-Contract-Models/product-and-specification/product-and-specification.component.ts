@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { ServiceService } from 'src/app/shared/service.service';
 import { environment } from 'src/environments/environment';
@@ -27,6 +28,7 @@ export class ProductAndSpecificationComponent implements OnInit {
     private http: HttpClient,
     private service: ServiceService,
     private toastr: ToastrService,
+    private spinner: NgxSpinnerService,
   ) { }
 
   ngOnInit(): void {
@@ -119,6 +121,7 @@ export class ProductAndSpecificationComponent implements OnInit {
 
   addContractProduct(form:NgForm) {
 
+    this.spinner.show();
     let varr = {
 
       "contractId": this.contractId,
@@ -139,6 +142,7 @@ export class ProductAndSpecificationComponent implements OnInit {
             // this.getEnquiryData(this.objEnquiry);
             this.activeModal.close(true);
             this.getContractProductData();
+            this.spinner.hide();
             
           }
           else {
@@ -149,6 +153,7 @@ export class ProductAndSpecificationComponent implements OnInit {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
+          this.spinner.hide();
         });
   
 }

@@ -1,3 +1,5 @@
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "line-spin-fade"
+ [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
 <div class="modal-header" *ngIf="FormName == 'ItemForm'">
   <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
     <span aria-hidden="true">&times;</span>
@@ -40,7 +42,7 @@
             </label>
             <div class="col-sm-3">
                 <input type="number" min="0" required (keyup)="itemquantity($event)"
-                id="itemQuantity" [ngClass]="{ 'error': itemQuantity.invalid && ItemForm.submitted }" #itemQuantity="ngModel"
+                id="itemQuantity" [ngClass]="{ 'error': itemQuantity.invalid && ItemForm.submitted }"
               name="itemQuantity" [(ngModel)]="data.itemQuantity" #itemQuantity="ngModel"
                 class="form-control" value="" placeholder="Quantity" />
             </div>

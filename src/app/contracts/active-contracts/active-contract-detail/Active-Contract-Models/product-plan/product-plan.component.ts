@@ -7,6 +7,7 @@ import { ServiceService } from 'src/app/shared/service.service';
 import { ToastrService } from 'ngx-toastr';
 import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
 import { createBuilderStatusReporter } from 'typescript';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-product-plan',
   templateUrl: './product-plan.component.html',
@@ -35,6 +36,7 @@ export class PRODUCTPLANComponent implements OnInit {
     private http: HttpClient,
     private service: ServiceService,
     private toastr: ToastrService,
+    private spinner: NgxSpinnerService,
 
   ) { }
 
@@ -80,6 +82,7 @@ console.log(this.selectedids)
 
 
     addTna() {
+      this.spinner.show();
       if(this.tnaIds.length === 0 || this.selectedids.selected.length === 0 ){
         this.toastr.error("Select atleast one row to add" , 'Message')
 
@@ -98,14 +101,17 @@ console.log(this.selectedids)
               this.toastr.success(this.response.message, 'Message.');
 
               this.activeModal.close(true);
+              this.spinner.hide();
             }
             else {
               this.toastr.error(this.response.message, 'Message.');
+              this.spinner.hide();
             }
   
           }, err => {
             if (err.status == 400) {
               this.toastr.error(this.response.message, 'Message.');
+              this.spinner.hide();
             }
           });
     

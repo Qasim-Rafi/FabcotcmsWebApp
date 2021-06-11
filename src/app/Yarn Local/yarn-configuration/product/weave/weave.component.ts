@@ -11,6 +11,7 @@ import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import { GlobalConstants } from 'src/app/Common/global-constants';
 import { AddWeaveComponent } from './add-weave/add-weave.component';
+import { NgxSpinnerService } from 'ngx-spinner';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -33,6 +34,7 @@ export class WeaveComponent implements OnInit {
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
+    private spinner: NgxSpinnerService,
     private modalService: NgbModal,
     private service: ServiceService,
     private _clipboardService: ClipboardService) { }
@@ -74,7 +76,7 @@ export class WeaveComponent implements OnInit {
       position: 'top',
     }).then((result) => {
       if (result.isConfirmed) {
-
+this.spinner.show();
         this.http.delete(`${environment.apiUrl}/api/YarnConfig/DeleteWeave/` + id.id)
           .subscribe(
             res => {
@@ -84,15 +86,17 @@ export class WeaveComponent implements OnInit {
                 this.service.fetch((data) => {
                   this.rows = data;
                 }, this.weaveUrl);
-
+this.spinner.hide();
               }
               else {
                 this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
+              this.spinner.hide();
               }
 
             }, err => {
               if (err.status == 400) {
                 this.toastr.error(this.response.message, 'Message.');
+             this.spinner.hide();
               }
             });
       }

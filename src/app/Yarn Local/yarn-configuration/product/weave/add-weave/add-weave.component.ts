@@ -6,6 +6,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { GlobalConstants } from 'src/app/Common/global-constants'
 import { NgForm } from '@angular/forms';
 import { ServiceService } from 'src/app/shared/service.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-add-weave',
   templateUrl: './add-weave.component.html',
@@ -23,6 +24,7 @@ export class AddWeaveComponent implements OnInit {
 
   constructor(private http: HttpClient,
     private service: ServiceService,
+    private spinner: NgxSpinnerService,
     private toastr: ToastrService,
     private _NgbActiveModal: NgbActiveModal) { }
 
@@ -38,23 +40,25 @@ export class AddWeaveComponent implements OnInit {
     return this._NgbActiveModal;
   }
   editWeave() {
+    this.spinner.show();
     this.http.get(`${environment.apiUrl}/api/YarnConfig/GetWeaveById/` + this.weaveId)
       .subscribe(
         res => {
           this.response = res;
           if (this.response.success == true) {
             this.data = this.response.data;
-            this.active = this.data.active
+            this.active = this.data.active;
+            this.spinner.hide();
           }
           else {
                      this.toastr.error(this.response.message, 'Message.');
-
+this.spinner.hide();
           }
 
         }, err => {
           if (err.status == 400) {
                      this.toastr.error(this.response.message, 'Message.');
-
+this.spinner.hide();
           }
         });
   }
@@ -66,7 +70,7 @@ export class AddWeaveComponent implements OnInit {
       "description": this.data.description,
       "active": this.active
     }
-
+this.spinner.show();
     this.http.
       put(`${environment.apiUrl}/api/YarnConfig/UpdateWeave/` + this.weaveId, varr)
       .subscribe(
@@ -77,15 +81,18 @@ export class AddWeaveComponent implements OnInit {
                    this.toastr.success(this.response.message, 'Message.');
 
             this.activeModal.close(true);
+            this.spinner.hide();
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
           }
 
         }, (err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
+          this.spinner.hide();
         });
   
 }
@@ -101,7 +108,7 @@ export class AddWeaveComponent implements OnInit {
       "description": this.data.description,
       "active": this.active
     }
-
+this.spinner.show();
     this.http.
       post(`${environment.apiUrl}/api/YarnConfig/AddWeave`, varr)
       .subscribe(
@@ -111,15 +118,18 @@ export class AddWeaveComponent implements OnInit {
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
             this.activeModal.close(true);
+            this.spinner.hide();
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
           }
 
         }, (err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
+          this.spinner.hide();
         });
 
 }

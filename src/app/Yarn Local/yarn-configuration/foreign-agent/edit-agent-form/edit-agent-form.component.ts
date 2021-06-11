@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
 import { ServiceService } from 'src/app/shared/service.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-edit-agent-form',
@@ -13,45 +14,52 @@ import { ServiceService } from 'src/app/shared/service.service';
 })
 export class EditAgentFormComponent implements OnInit {
   @Input() userId;
-  data:any={};
+  data: any = {};
   response: any;
   Side: any = [];
-  Type:any=[];
+  Type: any = [];
   city: any = [];
   banks: any = [];
 
-  constructor(private http:HttpClient,
+  constructor(private http: HttpClient,
     private service: ServiceService,
+    private spinner: NgxSpinnerService,
     private toastr: ToastrService,
-              private _NgbActiveModal: NgbActiveModal) { }
+    private _NgbActiveModal: NgbActiveModal) { }
 
   ngOnInit(): void {
-    this. getBanks();
-    this.getCity(); 
+    this.getBanks();
+    this.getCity();
     this.GetAgentSide();
     this.GetAgentType();
-    this.editAgent( );
-  } 
+    this.editAgent();
+  }
 
   get activeModal() {
     return this._NgbActiveModal;
   }
 
   getCity() {
+    this.spinner.show();
     this.http.get(`${environment.apiUrl}/api/Configs/GetAllCity`)
       .subscribe(
         res => {
           this.response = res;
           if (this.response.success == true) {
             this.city = this.response.data;
+            this.spinner.hide();
           }
           else {
-            this.toastr.error('Something went Worng', 'Message.');
+            this.toastr.error(this.response.message, 'Message.');
+
+            this.spinner.hide();
           }
 
         }, err => {
           if (err.status == 400) {
-            this.toastr.error('Something went Worng', 'Message.');
+            this.toastr.error(this.response.message, 'Message.');
+
+            this.spinner.hide();
           }
         });
   }
@@ -72,7 +80,7 @@ export class EditAgentFormComponent implements OnInit {
     this.service.getAgentType().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.Type= this.response.data;
+        this.Type = this.response.data;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -89,61 +97,69 @@ export class EditAgentFormComponent implements OnInit {
             this.banks = this.response.data;
           }
           else {
-            this.toastr.error('Something went Worng', 'Message.');
+            this.toastr.error(this.response.message, 'Message.');
+
           }
 
         }, err => {
           if (err.status == 400) {
-            this.toastr.error('Something went Worng', 'Message.');
+            this.toastr.error(this.response.message, 'Message.');
+
           }
         });
   }
 
 
-  editAgent()
-  {
-    this.http.get(`${environment.apiUrl}/api/Configs/GetExternalAgentById/`+this.userId )
-    .subscribe(
-      res=> { 
-        this.response = res;
-        if (this.response.success == true){
-          this.data =this.response.data; 
-        }
-        else {
-          this.toastr.error('Something went Worng', 'Message.');
-            }
+  editAgent() {
+    this.spinner.show();
+    this.http.get(`${environment.apiUrl}/api/Configs/GetExternalAgentById/` + this.userId)
+      .subscribe(
+        res => {
+          this.response = res;
+          if (this.response.success == true) {
+            this.data = this.response.data;
+            this.spinner.hide();
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
 
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error(this.response.message, 'Message.');
-        }
-      });
+            this.spinner.hide();
+          }
+
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
+          }
+        });
   }
 
 
-  UpdateAgent()
-  {
+  UpdateAgent() {
 
-
+    this.spinner.show();
     this.http.
-    put(`${environment.apiUrl}/api/Configs/UpdateExternalAgent/`+this.userId,this.data)
-    .subscribe(
-      res=> { 
-  
-        this.response = res;
-        if (this.response.success == true){
-          this.toastr.success(this.response.message, 'Message.');
-          this.activeModal.close(true);
-        }
-        else {
-          this.toastr.error(this.response.message, 'Message.');
-            }
+      put(`${environment.apiUrl}/api/Configs/UpdateExternalAgent/` + this.userId, this.data)
+      .subscribe(
+        res => {
 
-      }, (err: HttpErrorResponse) => {
-        const messages = this.service.extractErrorMessagesFromErrorResponse(err);
-        this.toastr.error(messages.toString(), 'Message.');
-        console.log(messages);
-      });
-      }
+          this.response = res;
+          if (this.response.success == true) {
+            this.toastr.success(this.response.message, 'Message.');
+            this.activeModal.close(true);
+            this.spinner.hide();
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
+          }
+
+        }, (err: HttpErrorResponse) => {
+          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+          this.toastr.error(messages.toString(), 'Message.');
+          console.log(messages);
+          this.spinner.hide();
+        });
+  }
 }
 // }

@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 import { ClipboardService } from 'ngx-clipboard';
 import pdfMake from "pdfmake/build/pdfmake";
 import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
-
+import {NgxSpinnerService} from 'ngx-spinner'
 @Component({
   selector: 'app-active-bills',
   templateUrl: './active-bills.component.html',
@@ -46,7 +46,8 @@ export class ActiveBillsComponent implements OnInit {
     private _clipboardService: ClipboardService,
     private router: Router,
     private toastr: ToastrService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private spinner: NgxSpinnerService
     ) { }
 
     navigatePaymentForm(statusCheck , obj ) {
@@ -85,7 +86,7 @@ export class ActiveBillsComponent implements OnInit {
 
 
   fetch(cb) {
-    
+    this.spinner.show();
     this.http
     .get(`${environment.apiUrl}/api/BillingPayments/GetAllContractBill`)
     .subscribe(res => {
@@ -97,13 +98,20 @@ export class ActiveBillsComponent implements OnInit {
  
 
     cb(this.data);
+    this.spinner.hide();
+
     }
     else{
       this.toastr.error(this.response.message, 'Message.');
+      this.spinner.hide();
+    
     }
+
     }, err => {
       if ( err.status == 400) {
   this.toastr.error(err.error.message, 'Message.');
+  this.spinner.hide();
+
       }
     });
   }

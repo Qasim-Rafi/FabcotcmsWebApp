@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { ServiceService } from 'src/app/shared/service.service';
-import { ArticleComponent } from '../Modals/article/article.component';
+// import { ArticleComponent } from '../Modals/article/article.component';
 import { BuyerComponent } from '../Modals/buyer/buyer.component';
 import { NgForm } from '@angular/forms';
 import { environment } from 'src/environments/environment';
@@ -10,6 +10,11 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AddSellerFormComponent } from 'src/app/configuration/seller/add-seller-form/add-seller-form.component';
 import { Dateformater } from 'src/app/shared/dateformater';
+import { NgxSpinnerService } from 'ngx-spinner';
+
+import { AddBuyerComponent } from '../../yarn-configuration/buyer/add-buyer/add-buyer.component';
+import { AddArticleComponent } from '../../yarn-configuration/articles/add-article/add-article.component';
+
 
 @Component({
   selector: 'app-add-new-contracts',
@@ -42,6 +47,7 @@ export class AddNewContractsComponent implements OnInit {
     private service: ServiceService,
     private toastr: ToastrService,
     private modalService: NgbModal,
+    private spinner: NgxSpinnerService,
     private router: Router,
     private http: HttpClient,
   ) { }
@@ -196,7 +202,7 @@ export class AddNewContractsComponent implements OnInit {
 
 
   addBuyerForm() {
-    const modalRef = this.modalService.open(BuyerComponent, { centered: true });
+    const modalRef = this.modalService.open(AddBuyerComponent, { centered: true });
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
@@ -213,7 +219,7 @@ export class AddNewContractsComponent implements OnInit {
 
 
   addArticleForm() {
-    const modalRef = this.modalService.open(ArticleComponent, { centered: true });
+    const modalRef = this.modalService.open(AddArticleComponent, { centered: true });
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
@@ -247,7 +253,7 @@ export class AddNewContractsComponent implements OnInit {
   }
 
   navigate() {
-    this.router.navigateByUrl('/yarn-local/active-contract');
+    this.router.navigateByUrl('/FabCot/active-contract');
   };
 
 
@@ -277,7 +283,7 @@ export class AddNewContractsComponent implements OnInit {
           "otherConditionRemarks": this.data.otherConditionRemarks,
           "title": this.data.title, 
     }
-
+this.spinner.show();
     this.http.
       post(`${environment.apiUrl}/api/Contracts/AddContract?`+'enquiryId='+this.objEnquiry+'&'+'departmentId='+departmentId, varr)
       .subscribe(
@@ -287,17 +293,20 @@ export class AddNewContractsComponent implements OnInit {
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
             this.contractForm.reset();
-             this.router.navigate(['/yarn-local/active-contract'], { queryParams: {id: this.response.data} });
+             this.router.navigate(['/FabCot/active-contract'], { queryParams: {id: this.response.data} });
             // this.router.navigate(['/enquiry/active-enquiries']);
+          this.spinner.hide();
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+          this.spinner.hide();
           }
 
         },(err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
+          this.spinner.hide();
         });
   }
 

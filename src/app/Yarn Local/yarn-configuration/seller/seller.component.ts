@@ -9,6 +9,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { GlobalConstants } from 'src/app/Common/global-constants';
 import { SellerPocComponent } from './seller-poc/seller-poc.component';
 import { EditCertificateComponent } from 'src/app/configuration/home-textile/certificate/edit-certificate/edit-certificate.component';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-seller',
   templateUrl: './seller.component.html',
@@ -33,6 +34,7 @@ export class SellerComponent implements OnInit {
 
 
   constructor(private http: HttpClient,
+    private spinner: NgxSpinnerService,
     private toastr: ToastrService,
     private modalService: NgbModal,
   ) { }
@@ -147,7 +149,7 @@ export class SellerComponent implements OnInit {
       position: 'top',
     }).then((result) => {
       if (result.isConfirmed) {
-
+this.spinner.show();
         this.http.delete(`${environment.apiUrl}/api/Sellers/DeleteCertificate/` + obj.sellerCertificateId)
           .subscribe(
             res => {
@@ -155,15 +157,17 @@ export class SellerComponent implements OnInit {
               if (this.response.success == true) {
                 this.toastr.error(this.response.message, 'Message.');
                 this.getSellers();
+                this.spinner.hide();
               }
               else {
                 this.toastr.error(this.response.message, 'Message.');
+             this.spinner.hide();
               }
 
             }, err => {
               if (err.status == 400) {
                 this.toastr.error(this.response.message, 'Message.');
-
+this.spinner.hide();
               }
             });
 
@@ -288,7 +292,7 @@ export class SellerComponent implements OnInit {
       position: 'top',
     }).then((result) => {
       if (result.isConfirmed) {
-
+this.spinner.show();
         this.http.delete(`${environment.apiUrl}/api/Sellers/DeleteSeller/` + obj.id)
           .subscribe(
             res => {
@@ -296,15 +300,17 @@ export class SellerComponent implements OnInit {
               if (this.response.success == true) {
                 this.toastr.error(this.response.message, 'Message.');
                 this.getSellers();
+                this.spinner.hide();
               }
               else {
                 this.toastr.error(this.response.message, 'Message.');
+              this.spinner.hide();
               }
 
             }, err => {
               if (err.status == 400) {
                 this.toastr.error(this.response.message, 'Message.');
-
+this.spinner.hide();
               }
             });
 
@@ -370,7 +376,7 @@ export class SellerComponent implements OnInit {
       position: 'top',
     }).then((result) => {
       if (result.isConfirmed) {
-
+this.spinner.show();
         this.http.delete(`${environment.apiUrl}/api/Sellers/DeletePOC/` + id.selllerPOCId)
           .subscribe(
             res => {
@@ -378,15 +384,17 @@ export class SellerComponent implements OnInit {
               if (this.response.success == true) {
                 this.toastr.error(this.response.message, 'Message.');
                 this.getSellers();
+                this.spinner.hide();
               }
               else {
                 this.toastr.error(this.response.message, 'Message.');
+                this.spinner.hide();
               }
 
             }, err => {
               if (err.status == 400) {
                 this.toastr.error(this.response.message, 'Message.');
-
+this.spinner.hide();
               }
             });
 

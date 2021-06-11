@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Dateformater } from 'src/app/shared/dateformater';
 import { ServiceService } from 'src/app/shared/service.service';
@@ -24,6 +25,7 @@ export class LOCComponent implements OnInit {
     private http: HttpClient,
     private service: ServiceService,
     private toastr: ToastrService,
+    private spinner: NgxSpinnerService,
   ) { }
 
   ngOnInit(): void {
@@ -65,6 +67,7 @@ export class LOCComponent implements OnInit {
 
   addContractLOC(form:NgForm) {
     
+ this.spinner.show();
     this.data.lcExpiryDate = this.dateformater.toModel(this.data.lcExpiryDate);
     this.data.lcShipmentOn = this.dateformater.toModel(this.data.lcShipmentOn);
     this.data.lcOpenOn = this.dateformater.toModel(this.data.lcOpenOn);
@@ -93,15 +96,18 @@ export class LOCComponent implements OnInit {
             this.activeModal.close(true);
             this.getContractLOC();
 
+            this.spinner.hide();
         }
           else {
             this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
           }
 
         },(err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
+          this.spinner.hide();
         });
   }
 }

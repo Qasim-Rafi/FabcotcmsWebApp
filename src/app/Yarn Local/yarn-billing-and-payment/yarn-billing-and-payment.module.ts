@@ -19,6 +19,7 @@ import {CommissionPaymentComponent} from '../yarn-billing-and-payment/commission
 import { EditCommissionComponent } from './edit-commission/edit-commission.component'
 import {ExternalAgentCommissionComponent} from '../yarn-billing-and-payment/external-agent-commission/external-agent-commission.component'
 import {NewCommissionPaymentComponent} from '../yarn-billing-and-payment/new-commission-payment/new-commission-payment.component'
+import {NgxSpinnerModule} from 'ngx-spinner'
 @NgModule({
   declarations: [
     BranchAddressComponent,
@@ -40,6 +41,7 @@ NewCommissionPaymentComponent
     YarnBillingAndPaymentRoutingModule,
     HttpClientModule,
     FormsModule,
+    NgxSpinnerModule,
     NgSelectModule,
     ReactiveFormsModule,
     NgxDatatableModule,

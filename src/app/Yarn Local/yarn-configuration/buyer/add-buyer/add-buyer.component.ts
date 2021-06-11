@@ -6,6 +6,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
 import { ServiceService } from 'src/app/shared/service.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-add-buyer',
   templateUrl: './add-buyer.component.html',
@@ -25,6 +26,7 @@ export class AddBuyerComponent implements OnInit {
 
   constructor(private http: HttpClient,
     private service: ServiceService,
+    private spinner: NgxSpinnerService,
     private toastr: ToastrService,
     private _NgbActiveModal: NgbActiveModal) { }
 
@@ -100,7 +102,7 @@ export class AddBuyerComponent implements OnInit {
       "isParentBuyer": this.active,
       "parentBuyerId": this.data.parentBuyerId,
     }
-
+this.spinner.show();
     this.http.
       post(`${environment.apiUrl}/api/Buyers/AddBuyer`, varr)
       .subscribe(
@@ -115,15 +117,18 @@ export class AddBuyerComponent implements OnInit {
             this.toastr.success(this.response.message, 'Message.');
             this.buyerForm.reset();
             this.activeModal.close(this.obj);
+            this.spinner.hide();
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
           }
 
         },(err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
+          this.spinner.hide();
         });
   }
   }
