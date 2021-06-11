@@ -982,9 +982,9 @@ deleteContractNote(id) {
     position: 'top',
   }).then((result) => {
     if (result.isConfirmed) {
-      this.spinner.show();
 
-      this.http.delete(`${environment.apiUrl}` + id.id)
+      this.spinner.show();
+      this.http.delete(`${environment.apiUrl}/api/Contracts/DeleteContractNote/` + id.id)
         .subscribe(
           res => {
             this.response = res;
@@ -993,21 +993,21 @@ deleteContractNote(id) {
               this.getAllNotes((NotesData) => {
                 this.rows3 = NotesData;
                 this.noteFilter = [...NotesData];
-  this.spinner.hide();
-  // this.listCount= this.rows.length;
+                // this.listCount= this.rows.length;
               });
 
+              this.spinner.hide();
             }
             else {
               this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
-  this.spinner.hide();
-}
+              this.spinner.hide();
+            }
 
           }, err => {
             if (err.status == 400) {
               this.toastr.error(this.response.message, 'Message.');
-  this.spinner.hide();
-}
+              this.spinner.hide();
+            }
           });
     }
   })
