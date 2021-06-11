@@ -69,8 +69,10 @@ export class ActiveContractDetailsComponent implements OnInit {
   invoiceItem = {};
   reminderData = [];
   deliveryTimeLineData = [];
+  deliveryCount: number;
   prodPlanData = [];
- 
+  deliveryFilter: any = [];
+  deliveryUrl = '/api/YarnContracts/GetAllContractDeliverySchedule'
   shipmentUrl='/api/Contracts/GetAllContractShipmentSchedule/{contractId}';
   // tna data
   rows5: any = [];
@@ -103,25 +105,17 @@ export class ActiveContractDetailsComponent implements OnInit {
     this.getContractRemarkData();
     this.getContractCommisionData();
     this.getSaleInvoice();
-    
+    this.service.fetch((data) => {
+      this.rows = data;
+      this.deliveryFilter = [...this.rows];
 
-    // this.getContractTnA((Tna)=>{
-    //   this.rows5 = Tna;
-    //   this.TnaFilter = [...Tna];
-
-    // });
+      this.deliveryCount = this.rows.length;
+    }, this.deliveryUrl);
 
     this.getAllBenificery((empData) => {
       this.rows1 = empData;
       // this.listCount= this.rows.length;
     });
-
-
-    // this.getAllItems((itemsData) => {
-    //   this.rows2 = itemsData;
-    //   this.ItemFilter = [...itemsData];
-    //   // this.listCount= this.rows.length;
-    // });
 
     this.getAllNotes((NotesData) => {
       this.rows3 = NotesData;
@@ -151,13 +145,13 @@ export class ActiveContractDetailsComponent implements OnInit {
     this.rows5 = temp;
   }
   
-  searchItems(event) {
+  searchdelivery(event) {
     const val = event.target.value.toLowerCase();
-    const temp = this.ItemFilter.filter(function (d) {
+    const temp = this.deliveryFilter.filter(function (d) {
       return (
-      d.description.toLowerCase().indexOf(val) !== -1 || 
-      // d.construction.toLowerCase().indexOf(val) !== -1 ||
-      // d.compositionPercentage.toLowerCase().indexOf(val) !== -1 ||
+      // d.supplierDate.toLowerCase().indexOf(val) !== -1 || 
+      // d.buyerDate.toLowerCase().indexOf(val) !== -1 ||
+      d.quantity.toLowerCase().indexOf(val) !== -1 ||
       // d.loomTypeId.toLowerCase().indexOf(val) !== -1 ||
       // d.size.toLowerCase().indexOf(val) !== -1 ||
       // d.weight.toLowerCase().indexOf(val) !== -1 || 
@@ -167,7 +161,7 @@ export class ActiveContractDetailsComponent implements OnInit {
       // d.commission.toLowerCase().indexOf(val) !== -1 ||
       !val);
     });
-    this.rows2 = temp;
+    this.rows = temp;
   }
    searchShipmentDates(event) {
     const val = event.target.value.toLowerCase();
@@ -348,47 +342,6 @@ export class ActiveContractDetailsComponent implements OnInit {
   
 
 
-  // deleteTnA(id) {
-  //   Swal.fire({
-  //     title: GlobalConstants.deleteTitle, //'Are you sure?',
-  //     text: GlobalConstants.deleteMessage + ' ' + '"' + id.tnaItem + '"',
-  //     icon: 'error',
-  //     showCancelButton: true,
-  //     confirmButtonColor: '#ed5565',
-  //     cancelButtonColor: '#dae0e5',
-  //     cancelButtonText: 'No',
-  //     confirmButtonText: 'Yes',
-  //     reverseButtons: true,
-  //     position: 'top',
-  //   }).then((result) => {
-  //     if (result.isConfirmed) {
-  
-  //       this.http.delete(`${environment.apiUrl}/api/Contracts/DeleteContractTimeAction/` + id.id)
-  //         .subscribe(
-  //           res => {
-  //             this.response = res;
-  //             if (this.response.success == true) {
-  //               this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
-  //               this.getContractTnA((Tna) => {
-  //                 this.rows5 = Tna;
-  //                 // this.listCount= this.rows.length;
-  //               });
-  
-  //             }
-  //             else {
-  //               this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
-  //             }
-  
-  //           }, err => {
-  //             if (err.status == 400) {
-  //               this.toastr.error(this.response.message, 'Message.');
-  //             }
-  //           });
-  //     }
-  //   })
-  // }
-
-
 
 
   approveContract()
@@ -440,23 +393,7 @@ export class ActiveContractDetailsComponent implements OnInit {
           }
         });
   }
-  
-  
-  
-// PartiesForm() {
-//   const modalRef = this.modalService.open(PartiesComponent, { centered: true });
-//   modalRef.componentInstance.contractId = this.contractId;
-//   modalRef.result.then((data) => {
-  
-//     // on close
-//     if (data == true) {
-//       this.getContractPartiesData();
-//       this.getContractData();
-//     }
-//   }, (reason) => {
-//     // on dismiss
-//   });
-// }
+
 
 
 
@@ -527,24 +464,6 @@ getProdPlan() {
 }
 
 
-// ProductANDSpecificationForm() {
-//   const modalRef = this.modalService.open(ProductAndSpecificationComponent, { centered: true });
-//   modalRef.componentInstance.contractId = this.contractId;
-
-//   modalRef.result.then((data) => {
-//     // on close
-//     if (data == true) {
-//     this.getContractProductData();
-//     this.getContractData();
-
-
-//     }
-//   }, (reason) => {
-//     // on dismiss
-//   });
-// }
-
-
 
 
 getContractProductData() {
@@ -568,24 +487,6 @@ getContractProductData() {
 }
 
 
-// QuantityCosting() {
-//   const modalRef = this.modalService.open(QuantityCostingComponent, { centered: true });
-//   modalRef.componentInstance.contractId = this.contractId;
-
-//   modalRef.result.then((data) => {
-//     // on close
-//     if (data == true) {
-//       this.getContractCostingData();
-//       this.getContractData();
-      
-//     }
-//   }, (reason) => {
-//     // on dismiss
-//   });
-// }
-
-
-
 getContractCostingData() {
   this.http.get(`${environment.apiUrl}/api/Contracts/GetContractCostingById/` + this.contractId)
     .subscribe(
@@ -607,22 +508,7 @@ getContractCostingData() {
 }
 
 
-// PaymentDelivery() {
-//   const modalRef = this.modalService.open(PaymentDeliveryComponent, { centered: true });
-//   modalRef.componentInstance.contractId = this.contractId;
 
-//   modalRef.result.then((data) => {
-//     // on close
-//     if (data == true) {
-//       this.getContractPaymentData();
-//       this.getContractData();
-
-
-//     }
-//   }, (reason) => {
-//     // on dismiss
-//   });
-// }
 
 
 
@@ -647,24 +533,6 @@ getContractPaymentData() {
       });
 }
 
-
-
-// CommissionKickback() {
-//   const modalRef = this.modalService.open(CommisionKickbackComponent, { centered: true });
-//   modalRef.componentInstance.contractId = this.contractId;
-
-//   modalRef.result.then((data) => {
-//     // on close
-//     if (data == true) {
-//       this.getContractCommisionData();
-//       this.getContractData();
-
-
-//     }
-//   }, (reason) => {
-//     // on dismiss
-//   });
-// }
 
 
 
@@ -697,47 +565,6 @@ getContractCommisionData(){
 
 
 
-// EmployeeCommission(status) {
-//   const modalRef = this.modalService.open(EmployeeCommissionComponent, { centered: true });
-//   modalRef.componentInstance.contractId = this.contractId;
-//   modalRef.componentInstance.statusCheck = status;
-
-//   modalRef.result.then((data) => {
-//     // on close
-//     if (data == true) {
-//       this.getAllBenificery((empData) => {
-//         this.rows1 = empData;
-//         // this.listCount= this.rows.length;
-//       });
-//       this.getContractData();
-
-
-//     }
-//   }, (reason) => {
-//     // on dismiss
-//   });
-// }
-
-// editEmployeeCommission(status , row) {
-//   const modalRef = this.modalService.open(EmployeeCommissionComponent, { centered: true });
-//   modalRef.componentInstance.contractId = this.contractId;
-//   modalRef.componentInstance.statusCheck = status;
-//   modalRef.componentInstance.beneficiaryId = row.id;
-
-
-//   modalRef.result.then((data) => {
-//     // on close
-//     if (data == true) {
-
-//       this.getAllBenificery((empData) => {
-//         this.rows1 = empData;
-//         // this.listCount= this.rows.length;
-//       });
-//     }
-//   }, (reason) => {
-//     // on dismiss
-//   });
-// }
 
 getAllBenificery(cb) {
     
@@ -953,22 +780,7 @@ deleteCommission(row) {
       // on dismiss
     });
   }
-// Remarks() {
-//   const modalRef = this.modalService.open(RemarksComponent, { centered: true });
-//   modalRef.componentInstance.contractId = this.contractId;
 
-//   modalRef.result.then((data) => {
-//     // on close
-//     if (data == true) {
-//       this.getContractRemarkData();
-//       this.getContractData();
-
-
-//     }
-//   }, (reason) => {
-//     // on dismiss
-//   });
-// }
 
 
 
@@ -994,24 +806,6 @@ getContractRemarkData() {
       });
 }
 
-
-//Forms in Different Tabs
-
-
-// LOCform() {
-//   const modalRef = this.modalService.open(LOCComponent, { centered: true });
-//   modalRef.componentInstance.contractId = this.contractId;
-
-//   modalRef.result.then((data) => {
-//     // on close
-//     if (data == true) {
-//       this.getContractLOC();
-
-//     }
-//   }, (reason) => {
-//     // on dismiss
-//   });
-// }
 
 
 
@@ -1042,26 +836,6 @@ getContractLOC() {
 }
 
 
-// ProductionPlanform() {
-  
-//   const modalRef = this.modalService.open(PRODUCTPLANComponent, { centered: true });
-//   modalRef.componentInstance.contractId = this.contractId;
-
-//   modalRef.result.then((data) => {
-//     // on close
-//     if (data == true) {
-//       this.getContractTnA((Tna)=>{
-//         this.rows5 = Tna;
-//       });
-    
-//       this.getContractData();
-//     }
-
-//   }, (reason) => {
-//     // on dismiss
-//   });
-// }
-
 
 addSaleInvoice() {
   const modalRef = this.modalService.open(SaleInvoicePopUpComponent, { centered: true });
@@ -1078,147 +852,7 @@ addSaleInvoice() {
     // on dismiss
   });
 }
-
-
-
-// editSaleInvoice(status, obj) {
-//   const modalRef = this.modalService.open(SALEINVOICEComponent, { centered: true });
-//   modalRef.componentInstance.contractId = this.contractId;
-//   modalRef.componentInstance.statusCheck = status;
-//   modalRef.componentInstance.invoiceId = obj.id;
-//   modalRef.result.then((data) => {
-//     // on close
-//     if (data == true) {
-//       this.getSaleInvoice();
-//     this.getContractData();
-
-//     }
-//   }, (reason) => {
-//     // on dismiss
-//   });
-// }
-
-
-
-
-
-
-
-// Note() {
-//   const modalRef = this.modalService.open(EnquiryNotesComponent, { centered: true });
-//   modalRef.componentInstance.contractId = this.contractId;
-//   modalRef.result.then((data) => {
-//     // on close
-//     if (data == true) {
-//       this.getAllNotes((NotesData) => {
-//         this.rows3 = NotesData;
-//         this.noteFilter = [...NotesData];
-//         // this.listCount= this.rows.length;
-//       });
-//     this.getContractData();
-
-
-//     }
-//   }, (reason) => {
-//     // on dismiss
-//   });
-// }
-
-// ContractNotes(check, name) {
-//   const modalRef = this.modalService.open(ContractNoteComponent, { centered: true });
-//   modalRef.componentInstance.statusCheck = check;
-//   modalRef.componentInstance.FormName = name;
-//   modalRef.componentInstance.contractId = this.contractId;
-//   modalRef.result.then((data) => {
-//     // on close
-//     if (data == true) {
-//       this.getAllNotes((NotesData) => {
-//         this.rows3 = NotesData;
-//         this.noteFilter = [...NotesData];
-//         // this.listCount= this.rows.length;
-//       });
-//     this.getContractData();
-
-//     }
-//   }, (reason) => {
-//     // on dismiss
-//   });
-// }
-// Items() {
-//   const modalRef = this.modalService.open(ItemsComponent, { centered: true });
-//   modalRef.componentInstance.contractId = this.contractId;
-
-//   modalRef.result.then((data) => {
-//     // on close
-//     if (data == true) {
-
-//     }
-//   }, (reason) => {
-//     // on dismiss
-//   });
-// }
-// getContractTnA(cb) {
-//   this.http.get(`${environment.apiUrl}/api/Contracts/GetAllContractTimeAction/` + this.contractId)
-//     .subscribe(
-//       res => {
-//         this.response = res;
-//         if (this.response.success == true) {
-//           this.TnaData = this.response.data;
-//           cb(this.TnaData)
-//         }
-//         else {
-//           this.toastr.error(this.response.message, 'Message.');
-//         }
-
-//       }, err => {
-//         if (err.status == 400) {
-//           this.toastr.error(this.response.message, 'Message.');
-//         }
-//       });
-// }
-
-// EditTna(row) {
-//   const modalRef = this.modalService.open(EditTnaComponent, { centered: true });
-//   modalRef.componentInstance.contractId = this.contractId;
-//   // modalRef.componentInstance.id = row.id;
-//   modalRef.componentInstance.Id = row.id;
-//   modalRef.componentInstance.tnaId = row.tnaId;
-
-
-//   modalRef.result.then((data) => {
-//     // on close
-//     if (data == true) {
-//       this.getContractTnA((Tna)=>{
-//         this.rows5 = Tna;
-//         this.TnaFilter = [...Tna];
-  
-//       });
-
-
-//     }
-//   }, (reason) => {
-//     // on dismiss
-//   });
-// }
-// TnaHistory(row) {
-//   const modalRef = this.modalService.open(TnaLogHistoryComponent, { centered: true });
-//   modalRef.componentInstance.id = row.id;
-
-//   modalRef.result.then((data) => {
-//     // on close
-//     if (data == true) {
-//       this.getContractTnA((Tna)=>{
-//         this.rows5 = Tna;
-//         this.TnaFilter = [...Tna];
-  
-//       });
-
-
-//     }
-//   }, (reason) => {
-//     // on dismiss
-//   });
-// }
+ 
 
 getAllInvoiceItems(cb) {
 
@@ -1247,53 +881,6 @@ getAllInvoiceItems(cb) {
 
 
 
-
-// AddsaleInvoiceItem(check,value) {
-//   const modalRef = this.modalService.open(SaleInvoiceItemComponent, { centered: true });
-//   modalRef.componentInstance.contractId = this.contractId;
-//   modalRef.componentInstance.contractSaleInvoiceId = value.id;
-//   modalRef.componentInstance.statusCheck = check;
-//   modalRef.result.then((data) => {
-//     // on close
-//     if (data == true) {
-//       this.getSaleInvoice();
-//     // this.getContractData();
-//     this.getAllInvoiceItems((invoiceItem) => {
-//       this.rows6 = invoiceItem;
-//       this.invoiceItemFilter = [...invoiceItem];
-
-//     });
-
-
-//     }
-//   }, (reason) => {
-//     // on dismiss
-//   });
-// }
-// EditsaleInvoiceItem(check , obj ) {
-//   const modalRef = this.modalService.open(SaleInvoiceItemComponent, { centered: true });
-//   modalRef.componentInstance.contractId = this.contractId;
-//   modalRef.componentInstance.statusCheck = check;
-//   modalRef.componentInstance.contractSaleInvoiceId = obj.contractSaleInvoiceId;
-//   modalRef.componentInstance.invoiceItemId = obj.id;
-
-//   modalRef.result.then((data) => {
-//     // on close
-//     if (data == true) {
-//       this.getSaleInvoice();
-//     // this.getContractData();
-//     this.getAllInvoiceItems((invoiceItem) => {
-//       this.rows6 = invoiceItem;
-//       this.invoiceItemFilter = [...invoiceItem];
-
-//     });
-
-
-//     }
-//   }, (reason) => {
-//     // on dismiss
-//   });
-// }
 
 
 deleteInvoiceItem(id) {
@@ -1350,19 +937,15 @@ addDeliveryTL(check) {
   const modalRef = this.modalService.open(DeliveryTLComponent, { centered: true });
   modalRef.componentInstance.statusCheck = check;
 
-  // modalRef.componentInstance.contractId = this.contractId ;
+  modalRef.componentInstance.contractId = this.contractId ;
 
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
-      // this.getAllItems((itemsData) => {
-      //   this.rows2 = itemsData;
-      //   // this.listCount= this.rows.length;
-      // });
-      // this.getContractData();
-  
+      
+      this.getContractData();
 
-
+      
     }
   }, (reason) => {
     // on dismiss
@@ -1408,32 +991,11 @@ deleteContractNote(id) {
     }
   })
 }
-// editContractNote(row, check, name) {
-//   const modalRef = this.modalService.open(ContractNoteComponent, { centered: true });
-//   modalRef.componentInstance.NoteId = row.id; //just for edit.. to access the needed row
-//   modalRef.componentInstance.statusCheck = check;
-//   modalRef.componentInstance.FormName = name;
-//   modalRef.componentInstance.contractId =this.contractId;
 
-//   modalRef.result.then((data) => {
-//     // on close
-//     if (data == true) {
-//       this.getAllNotes((NotesData) => {
-//         this.rows3 = NotesData;
-//         this.noteFilter = [...NotesData];
-//         // this.listCount= this.rows.length;
-//       });
-//     this.getContractData();
-
-//     }
-//   }, (reason) => {
-//     // on dismiss
-//   });
-// }
 deleteDeliveries(id) {
   Swal.fire({
     title: GlobalConstants.deleteTitle, //'Are you sure?',
-    text: GlobalConstants.deleteMessage + ' ' + '"' + id.description + '"',
+    text: GlobalConstants.deleteMessage + ' Delivery Number' +''+'"' + id.id + '"',
     icon: 'error',
     showCancelButton: true,
     confirmButtonColor: '#ed5565',
@@ -1445,46 +1007,44 @@ deleteDeliveries(id) {
   }).then((result) => {
     if (result.isConfirmed) {
 
-      this.http.delete(`${environment.apiUrl}` + id.id)
-        .subscribe(
-          res => {
-            this.response = res;
-            if (this.response.success == true) {
-              this.toastr.error(this.response.message, 'Message.');
-              // this.getAllItems((itemsData) => {
-              //   this.rows2 = itemsData;
-              //   // this.listCount= this.rows.length;
-              // });
+      this.http.delete(`${environment.apiUrl}/api/YarnContracts/DeleteContractDeliverySchedule/` + id.id )
+      .subscribe(
+        res => {
+          this.response = res;
+          if (this.response.success == true) {
+            this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
+            this.service.fetch((data) => {
+              this.rows = data;
+            }, this.deliveryUrl);
+          }
+          else {
+            this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
+          }
 
-            }
-            else {
-              this.toastr.error(this.response.message, 'Message.');
-            }
-
-          }, err => {
-            if (err.status == 400) {
-              this.toastr.error(this.response.message, 'Message.');
-            }
-          });
-    }
-  })
-}
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+        });
+  }
+})
+  
+  }
 editDeliveries(row, check) {
   const modalRef = this.modalService.open(DeliveryTLComponent, { centered: true });
-  modalRef.componentInstance.itemId = row.id; //just for edit.. to access the needed row
+  modalRef.componentInstance.deliveryId = row.id; //just for edit.. to access the needed row
   modalRef.componentInstance.statusCheck = check;
-  // modalRef.componentInstance.contractId = this.contractId ;
+  modalRef.componentInstance.contractId = this.contractId ;
 
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
-      // this.getAllItems((itemsData) => {
-      //   this.rows2 = itemsData;
-      //   // this.listCount= this.rows.length;
-      // });
-  
+     
     }
-    this.getContractData();
+
+    this.service.fetch((data) => {
+      this.rows = data;
+    }, this.deliveryUrl);
 
   }, (reason) => {
     // on dismiss
@@ -1576,109 +1136,6 @@ addProd() {
   });
 }
 
-// editProd( row ,check) {
-//   const modalRef = this.modalService.open(ProductionStatusComponent, { centered: true });
-//   modalRef.componentInstance.statusCheck = check;
-//   modalRef.componentInstance.noteId = row.id ;
-
-//   modalRef.result.then((data) => {
-//     // on close
-//     if (data == true) {
-  
-//     }
-//     this.getContractData();
-
-//   }, (reason) => {
-//     // on dismiss
-//   });
-// }
-// editSaleInvoice(row, check) {
-//   const modalRef = this.modalService.open(DeliveryTLComponent, { centered: true });
-//   modalRef.componentInstance.invoiceId = row.id; //just for edit.. to access the needed row
-//   modalRef.componentInstance.statusCheck = check;
-//   // modalRef.componentInstance.contractId = this.contractId ;
-
-//   modalRef.result.then((data) => {
-//     // on close
-//     if (data == true) {
-   
-  
-//     }
-//     this.getContractData();
-
-//   }, (reason) => {
-//     // on dismiss
-//   });
-// }
-// addSaleInvoice() {
-//   const modalRef = this.modalService.open(SaleInvoicePopUpComponent, { centered: true });
-//   // modalRef.componentInstance.statusCheck = check;
-//   // modalRef.componentInstance.contractId = this.contractId ;
-
-//   modalRef.result.then((data) => {
-//     // on close
-//     if (data == true) {
-  
-//     }
-//     this.getContractData();
-
-//   }, (reason) => {
-//     // on dismiss
-//   });
-// }
-// addShipmentTimeline(check) {
-//   const modalRef = this.modalService.open(DeliveryTimelineComponent, { centered: true });
-//   modalRef.componentInstance.statusCheck = check;
-//   modalRef.componentInstance.contractId = this.contractId ;
-
-//   modalRef.result.then((data) => {
-//     // on close
-//     if (data == true) {
-//       this.getAllShipmentDates((shipmentData) => {
-//         this.rows4 = shipmentData;
-       
-//       });
-//       this.getAllShipmentDates((shipmentData) => {
-//         this.rows4 = shipmentData;
-//         this.shipmentFilter = [...shipmentData];
-  
-//       });
-//     this.getContractData();
-
-  
-
-
-//     }
-//   }, (reason) => {
-//     // on dismiss
-//   });
-// }
-// EditShipmentTimeline(check , row) {
-//   const modalRef = this.modalService.open(DeliveryTimelineComponent, { centered: true });
-//   modalRef.componentInstance.shipmentId = row.id; //just for edit.. to access the needed row
-//   modalRef.componentInstance.statusCheck = check;
-//   modalRef.componentInstance.contractId =this.contractId;
-
-//   modalRef.result.then((data) => {
-//     // on close
-//     if (data == true) {
-//       this.getAllShipmentDates((shipmentData) => {
-//         this.rows4 = shipmentData;
-//         // this.listCount= this.rows.length;
-//       });
-//       this.getAllShipmentDates((shipmentData) => {
-//         this.rows4 = shipmentData;
-//         this.shipmentFilter = [...shipmentData];
-  
-//       });
-//     this.getContractData();
-
-//     }
-//   }, (reason) => {
-//     // on dismiss
-//   });
-// }
-
 
 
 
@@ -1726,24 +1183,7 @@ deleteDispatch(id) {
 
 
 
-//  statusform(status,action,component) {
-//         const modalRef = this.modalService.open(StatusComponent, { centered: true });
-//         // modalRef.componentInstance.parentBuyerId = popup.id;
-//         modalRef.componentInstance.ContractId = this.contractId;
-//         modalRef.componentInstance.statusCheck = status;
-//         modalRef.componentInstance.action = action;
-//         modalRef.componentInstance.component = component;
-//         modalRef.result.then((data) => {
-//           // on close
-//           if (data == true) {
-          
-//             this.getContractData();
-    
-//           }
-//         }, (reason) => {
-//           // on dismiss
-//         });
-//       }
+
     
     
       statusOpen()

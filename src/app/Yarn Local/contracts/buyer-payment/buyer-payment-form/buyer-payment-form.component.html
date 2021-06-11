@@ -182,7 +182,7 @@
                     
                                         <div class="col-md-3 mrg-sm1">
                     
-                                            <ng-select name="sellerSideCommissionUOMId " #currencyId="ngModel"
+                                            <ng-select name="currencyId " #currencyId="ngModel"
                                                 [(ngModel)]="data.currencyId" placeholder="Select Currency">
                                                 <ng-option *ngFor="let i of currency" [value]="i.id">{{ i.name }}
                                                 </ng-option>
@@ -198,7 +198,7 @@
                     
                                                 <div class="col-md-8 mrg-sm1">
                     
-                                                    <ng-select name="sellerSideCommissionUOMId " 
+                                                    <ng-select name="paymentMode " 
                                                         [(ngModel)]="data.paymentMode" placeholder="Select Payment Mode">
                                                         <ng-option *ngFor="let i of paymentMode" [value]="i">{{ i }}
                                                         </ng-option>
@@ -237,7 +237,7 @@
                             <div class="form-group row">
                                 <label for="number" class="col-sm-2 col-form-label  ">Tax Challan</label>
                                 <div class="col-md-8">
-                                    <input class="form-control" type="number" placeholder="Additional Info..."
+                                    <input class="form-control" type="number" placeholder="Tax Challan Number"
                                     [(ngModel)] = "data.taxChalan"
                                     />
                                 </div>

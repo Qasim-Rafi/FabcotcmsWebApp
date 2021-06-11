@@ -22,6 +22,7 @@ uomList : any = {};
   // @Input() itemId;
   // @Input() enquiryId;
   @Input() contractId;
+  @Input() deliveryId;
 
   @ViewChild(NgForm) deliveryForm;
   @Input() statusCheck;
@@ -48,7 +49,7 @@ uomList : any = {};
     return this._NgbActiveModal;
   }
   getById() {
-    this.http.get(`${environment.apiUrl}/api/YarnContracts/GetContractDeliveryScheduleId/`+ this.contractId )
+    this.http.get(`${environment.apiUrl}/api/YarnContracts/GetContractDeliveryScheduleById/`+ this.deliveryId )
       .subscribe(
         res => {
           this.response = res;
@@ -82,7 +83,7 @@ uomList : any = {};
     }
 
     this.http.
-      put(`${environment.apiUrl}/api/YarnContracts/UpdateContractDeliverySchedule/`+ this.contractId ,varr)
+      put(`${environment.apiUrl}/api/YarnContracts/UpdateContractDeliverySchedule/`+ this.deliveryId ,varr)
       .subscribe(
         res => {
 
@@ -126,7 +127,7 @@ uomList : any = {};
     }
 
     this.http.
-      post(`${environment.apiUrl}/api/YarnContracts/AddContractDeliverySchedule`+this.contractId, varr)
+      post(`${environment.apiUrl}/api/YarnContracts/AddContractDeliverySchedule`, varr)
       .subscribe(
         res => {
 
