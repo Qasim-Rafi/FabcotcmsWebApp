@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { ServiceService } from 'src/app/shared/service.service';
-import { ArticleComponent } from '../Modals/article/article.component';
+// import { ArticleComponent } from '../Modals/article/article.component';
 import { BuyerComponent } from '../Modals/buyer/buyer.component';
 import { NgForm } from '@angular/forms';
 import { environment } from 'src/environments/environment';
@@ -13,6 +13,7 @@ import { Dateformater } from 'src/app/shared/dateformater';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 import { AddBuyerComponent } from '../../yarn-configuration/buyer/add-buyer/add-buyer.component';
+import { AddArticleComponent } from '../../yarn-configuration/articles/add-article/add-article.component';
 
 
 @Component({
@@ -218,7 +219,7 @@ export class AddNewContractsComponent implements OnInit {
 
 
   addArticleForm() {
-    const modalRef = this.modalService.open(ArticleComponent, { centered: true });
+    const modalRef = this.modalService.open(AddArticleComponent, { centered: true });
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
