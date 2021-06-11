@@ -173,13 +173,12 @@
     </div>
   </div> <!-- end of .row -->
 
-
   <div class="collapse" id="buyer-{{ x }}">
     <div class="card-body mt-4 BG">
       <div class="row">
         <div class="col-sm-11">
           <button type="button" class="btn btn-primary float-right" data-toggle="modal"
-            data-target="#exampleModalScrollable" >
+            data-target="#exampleModalScrollable" (click)="addPocform(i,'BuyerAddPOC' )">
             <i class="fa fa-user" aria-hidden="true"></i> POC not found, <i class="fa fa-plus" aria-hidden="true"></i> Add
             a new one?
           </button>
@@ -198,7 +197,7 @@
           <div class="badge badge-secondary" *ngIf="poc.active==false">Inactive</div>
         </div>
         <div class="col-md-2 border ">
-          <button type="button" class="btn editIconBack" >
+          <button type="button" class="btn editIconBack" (click)="editPocform( i , 'BuyerEditPOC' , poc)">
             <i class="far fa-edit"></i>
           </button>
           <button type="button" class="btn deleteIconBack" (click)="deleteSellerPOC(poc)">

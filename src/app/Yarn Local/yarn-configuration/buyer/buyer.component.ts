@@ -10,6 +10,7 @@ import { ServiceService } from 'src/app/shared/service.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { GlobalConstants } from 'src/app/Common/global-constants';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { SellerPocComponent } from '../seller/seller-poc/seller-poc.component';
 // import { SellerPocComponent } from 'src/app/configuration/seller/seller-poc/seller-poc.component';
 
 
@@ -95,7 +96,7 @@ export class BuyerComponent implements OnInit {
   // --------------------------------Get Buyer-------------------//
 
   getBuyers() {
-    this.spinner.show();
+    // this.spinner.show();
     this.http.get(`${environment.apiUrl}/api/Buyers/GetBuyers`)
       .subscribe(
         res => {
@@ -107,19 +108,19 @@ export class BuyerComponent implements OnInit {
             this.temp = [...this.buyer];
             this.listCount = this.response.data.length;
             this.getTotalPOCs();
-    this.spinner.hide();
+    // this.spinner.hide();
 
             }
           else {
             this.toastr.error(this.response.message, 'Message.');
-    this.spinner.hide();
+    // this.spinner.hide();
           
           }
 
         }, err => {
           if (err.status == 400) {
             this.toastr.error(this.response.message, 'Message.');
-    this.spinner.hide();
+    // this.spinner.hide();
           }
         });
   }
@@ -142,6 +143,7 @@ export class BuyerComponent implements OnInit {
     });
   }
 
+  
   // --------------------------------Edit Buyer Form-------------------//
 
   editBuyer(popup) {
@@ -206,40 +208,41 @@ export class BuyerComponent implements OnInit {
 
 
 
+
   // --------------------------------Add Buyer POC Form-------------------//
 
-  // addPocform(popup, check) {
-  //   const modalRef = this.modalService.open(SellerPocComponent, { centered: true });
-  //   modalRef.componentInstance.parentBuyerId = popup.id;
-  //   modalRef.componentInstance.statusCheck = check;
-  //   modalRef.result.then((data) => {
-  //     // on close
-  //     if (data == true) {
-  //       this.getBuyers();
-  //     }
-  //   }, (reason) => {
-  //     // on dismiss
-  //   });
-  // }
+  addPocform(popup, check) {
+    const modalRef = this.modalService.open(SellerPocComponent, { centered: true });
+    modalRef.componentInstance.parentBuyerId = popup.id;
+    modalRef.componentInstance.statusCheck = check;
+    modalRef.result.then((data) => {
+      // on close
+      if (data == true) {
+        this.getBuyers();
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
 
 
   // --------------------------------Edit Buyer POC Form-------------------//
 
-  // editPocform(popup, check, pocId) {
-  //   const modalRef = this.modalService.open(SellerPocComponent, { centered: true });
-  //   modalRef.componentInstance.parentBuyerId = popup.id;
-  //   modalRef.componentInstance.statusCheck = check;
-  //   modalRef.componentInstance.buyerPOCid = pocId.buyerPOCId;
-  //   modalRef.result.then((data) => {
-  //     // on close
-  //     if (data == true) {
-  //       this.getBuyers();
+  editPocform(popup, check, pocId) {
+    const modalRef = this.modalService.open(SellerPocComponent, { centered: true });
+    modalRef.componentInstance.parentBuyerId = popup.id;
+    modalRef.componentInstance.statusCheck = check;
+    modalRef.componentInstance.buyerPOCid = pocId.buyerPOCId;
+    modalRef.result.then((data) => {
+      // on close
+      if (data == true) {
+        this.getBuyers();
 
-  //     }
-  //   }, (reason) => {
-  //     // on dismiss
-  //   });
-  // }
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
 
 
 
