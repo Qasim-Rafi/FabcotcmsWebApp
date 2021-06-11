@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { ServiceService } from 'src/app/shared/service.service';
-import { ArticleComponent } from '../Modals/article/article.component';
+// import { ArticleComponent } from '../Modals/article/article.component';
 import { BuyerComponent } from '../Modals/buyer/buyer.component';
 import { NgForm } from '@angular/forms';
 import { environment } from 'src/environments/environment';
@@ -11,6 +11,10 @@ import { Router } from '@angular/router';
 import { AddSellerFormComponent } from 'src/app/configuration/seller/add-seller-form/add-seller-form.component';
 import { Dateformater } from 'src/app/shared/dateformater';
 import { NgxSpinnerService } from 'ngx-spinner';
+
+import { AddBuyerComponent } from '../../yarn-configuration/buyer/add-buyer/add-buyer.component';
+import { AddArticleComponent } from '../../yarn-configuration/articles/add-article/add-article.component';
+
 
 @Component({
   selector: 'app-add-new-contracts',
@@ -28,7 +32,7 @@ export class AddNewContractsComponent implements OnInit {
   priceterm: any= [];
   uomList: any= [];
   currency: any= [];
-  newBuyer: number;
+  newBuyer: any;
   newSeller: number;
   counter3 :number =1;
   new:any=[];
@@ -90,14 +94,14 @@ export class AddNewContractsComponent implements OnInit {
       if (this.response.success == true) {
 
         this.buyer = this.response.data;
-        this.newBuyer = this.response.data.lastId
+        // this.newBuyer = this.response.data.lastId
 
 
 
         if(type == "other")
         {
-          this.buyer.id = this.newBuyer;
-          this.data.buyerId = this.buyer.id
+          // this.buyer.id = this.newBuyer;
+          this.data.buyerId = this.newBuyer;
         }
        
       }
@@ -198,12 +202,14 @@ export class AddNewContractsComponent implements OnInit {
 
 
   addBuyerForm() {
-    const modalRef = this.modalService.open(BuyerComponent, { centered: true });
+    const modalRef = this.modalService.open(AddBuyerComponent, { centered: true });
     modalRef.result.then((data) => {
       // on close
-      if (data == true) {
+      if (data.parent == true) {
 
-  
+        this.newBuyer = data.id
+        this.GetBuyersDropdown("other");
+     
 
       }
     }, (reason) => {
@@ -215,7 +221,7 @@ export class AddNewContractsComponent implements OnInit {
 
 
   addArticleForm() {
-    const modalRef = this.modalService.open(ArticleComponent, { centered: true });
+    const modalRef = this.modalService.open(AddArticleComponent, { centered: true });
     modalRef.result.then((data) => {
       // on close
       if (data == true) {

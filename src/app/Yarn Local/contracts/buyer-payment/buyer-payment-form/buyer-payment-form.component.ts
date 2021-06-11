@@ -135,7 +135,7 @@ this.spinner.show();
 
           this.response = res;
           if (this.response.success == true) {
-            this.data = this.response.data;
+            // this.data = this.response.data;
             this.toastr.success(this.response.message, 'Message.');
 this.spinner.hide();
           }
