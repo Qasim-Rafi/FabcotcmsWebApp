@@ -1135,9 +1135,11 @@ addDispatch( check) {
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
+      this.getContractData();
+      this.getDispatches();
   
     }
-    this.getContractData();
+    // this.getContractData();
 
   }, (reason) => {
     // on dismiss
