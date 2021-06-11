@@ -8,6 +8,7 @@ import { GlobalConstants } from 'src/app/Common/global-constants';
 import { ServiceService } from 'src/app/shared/service.service';
 import { environment } from 'src/environments/environment';
 import { FormsModule }   from '@angular/forms';
+import {NgxSpinnerService} from 'ngx-spinner'
 @Component({
   selector: 'app-change-bank-account',
   templateUrl: './change-bank-account.component.html',
@@ -31,7 +32,8 @@ constructor(
   private service: ServiceService,
   private toastr: ToastrService,
   private router: Router,
-  private _NgbActiveModal: NgbActiveModal
+  private _NgbActiveModal: NgbActiveModal,
+  private spinner: NgxSpinnerService
 
 ) { }
 
@@ -81,6 +83,8 @@ constructor(
   change(obj){
     let varr = {    
     }
+    this.spinner.show();
+
 this.http.put(`${environment.apiUrl}/api/BillingPayments/ChangeBankAccount/` + this.bill_id + '/' +obj.id,varr)
   .subscribe(
     res => {
@@ -88,15 +92,20 @@ this.http.put(`${environment.apiUrl}/api/BillingPayments/ChangeBankAccount/` + t
       if (this.response.success == true) {
         this.toastr.success(this.response.message, 'Message.');
       this.activeModal.close();
+    this.spinner.hide();
       
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
+    this.spinner.hide();
+      
       }
 
     }, err => {
       if (err.status == 400) {
         this.toastr.error(this.response.message, 'Message.');
+    this.spinner.hide();
+       
       }
     });
   }

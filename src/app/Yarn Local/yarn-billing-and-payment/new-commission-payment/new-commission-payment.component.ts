@@ -8,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ServiceService } from 'src/app/shared/service.service';
 import { Dateformater } from 'src/app/shared/dateformater';
 import { environment } from 'src/environments/environment';
-
+import {NgxSpinnerService, Spinner} from 'ngx-spinner'
 // import { ToastrService } from 'ngx-toastr';
 // import { HttpClient } from '@angular/common/http';
 // import { environment } from 'src/environments/environment';
@@ -23,10 +23,19 @@ export class NewCommissionPaymentComponent implements OnInit {
   response: any;
 
   paymentAdddata: any = {};
+commData : any = [];
+extCommData : any = [];
 
   statusCheck:any={};
   rows: any = [];
   columns: any = [];
+  seller: any = [];
+  paymentMode : any = []
+  currency : any = []
+  bankAcc : any = []
+  agent : any = []
+
+
   constructor(
 
     private route: ActivatedRoute,
@@ -36,40 +45,110 @@ export class NewCommissionPaymentComponent implements OnInit {
     private toastr: ToastrService,
     public datepipe: DatePipe,
     private router: Router,
+    private spinner:NgxSpinnerService
 
   ) { }
 
   ngOnInit(): void {
     this.statusCheck = this.route.snapshot.queryParams;
-    // this.objEnquiry = this.queryParems;
-    console.log(this.statusCheck)
+    this.GetBankAccDropdown();
+     this.GetCurrencyDropdown();
+     this.GetPaymentModeDropdown();
+     this.GetSellerDropdown();
+     this.GetAgentDropdown();
   }
-  addPayment(form:NgForm) {
-    // this.paymentAdddata.paymentDate = this.dateformater.toModel(this.paymentAdddata.paymentDate);
-    // this.paymentAdddata.depositeDate = this.dateformater.toModel(this.paymentAdddata.depositeDate);
-      let varr = {
-       
-        // "contractId": this.paymentAdddata.contractId,
-        // "contractBillId": this.paymentAdddata.contractBillId,
-        // "buyerId": this.paymentAdddata.billForBuyerId,
-        // "selerId": this.paymentAdddata.billForSelerId,
-        // "saleInvoiceId": this.paymentAdddata.saleInvoiceId,
-        // "receiptNumber": this.paymentAdddata.receiptNumber,
-        // "paymentDate": this.dateformater.toModel(this.paymentAdddata.paymentDate),
-        // "paidAmount": this.paymentAdddata.paidAmount,
-        // "taxAmount": this.paymentAdddata.taxamount,
-        // "currencyId": this.paymentAdddata.currencyId,
-        // "deductionAmount": this.paymentAdddata.deductionAmount,
-        // "paymentMode": this.paymentAdddata.paymentMode,
-        // "paymentDescription":this.paymentAdddata.paymentDescription,
-        // "bankAccountId": this.paymentAdddata.bankAccountId,
-        // "accountDescription": this.paymentAdddata.accountDescription,
-        // "isDepositedInBank": this.paymentAdddata.isDepositedInBank,
-        // "depositeDate":  this.dateformater.toModel(this.paymentAdddata.depositeDate),
-      }
+  GetSellerDropdown() {
+    this.service.getSellerLookup().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
 
+        this.seller = this.response.data;
+        // this.newSeller = this.response.data
+
+
+
+        // if(type == "other")
+        // {
+        //   this.seller.id = this.newSeller;
+        //   this.data.sellerId = this.seller.id
+        // }
+       
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
+  GetPaymentModeDropdown() {
+    this.http.get(`${environment.apiUrl}/api/Lookups/PaymentModes`).
+    subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.paymentMode = this.response.data;
+    
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
+  GetCurrencyDropdown() {
+    this.http.get(`${environment.apiUrl}/api/Lookups/CurrencyTypes`).
+    subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.currency = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
+  GetBankAccDropdown() {
+    this.http.get(`${environment.apiUrl}/api/Lookups/BankAccounts`).
+    subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.bankAcc = this.response.data;
+  
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
+  GetAgentDropdown() {
+    this.http.get(`${environment.apiUrl}/api/Lookups/ExternalAgents`).
+    subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.agent = this.response.data;
+  
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
+  addCommissionPayment() {
+      let varr = {
+        "sellerId": this.commData.sellerId,
+        "isBuyerCommission": this.commData.isBuyerCommission,
+        "paymentDate": this.dateformater.toModel(this.commData.paymentDate),
+        "payNo": this.commData.payNo,
+        "amount":this.commData.amount,
+        "currencyId": this.commData.currencyId,
+        "paymentMode": this.commData.paymentMode,
+        "additionalDetail":this.commData.additionalDetail,
+        "fromBankAccountId": this.commData.fromBankAccountId,
+        "toBankAccountId": this.commData.toBankAccountId,
+        "depositInBank":this.commData.depositInBank,
+        "depositDate": this.dateformater.toModel(this.commData.depositDate),
+        "paymentRemarks":this.commData.paymentRemarks,
+      }
+this.spinner.show();
     this.http.
-      post(`${environment.apiUrl}`, varr)
+      post(`${environment.apiUrl}/api/BillingPayments/AddBillingCommissionPayment`, varr)
       .subscribe(
         res => {
 
@@ -77,17 +156,64 @@ export class NewCommissionPaymentComponent implements OnInit {
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
             // this.paymentForm.reset();
-            this.router.navigate(['']);
-
+            this.router.navigate(['yarn-billing-and-payment/commission-payment']);
+this.spinner.hide();
+      
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+this.spinner.hide();
+
           }
 
         }, (err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
+this.spinner.hide();
+
         });
   }
+  addExtCommissionPayment() {
+    let varr = {
+      "agentId": this.extCommData.agentId,
+  "sellerId": this.extCommData.sellerId,
+  "paymentDate": this.dateformater.toModel(this.extCommData.paymentDate),
+  "payNo": this.extCommData.payNo,
+  "amount": this.extCommData.amount,
+  "currencyId" : this.extCommData.currencyId,
+  "paymentMode": this.extCommData.paymentMode,
+  "additionalDetail": this.extCommData.additionalDetail,
+  "recieveDate": this.dateformater.toModel(this.extCommData.recieveDate),
+  "paymentRemarks": this.extCommData.paymentRemarks,
+    }
+    this.spinner.show();
+
+  this.http.
+    post(`${environment.apiUrl}/api/BillingPayments/AddBillingExternalAgentCommission`, varr)
+    .subscribe(
+      res => {
+
+        this.response = res;
+        if (this.response.success == true) {
+          this.toastr.success(this.response.message, 'Message.');
+          // this.paymentForm.reset();
+          this.router.navigate(['yarn-billing-and-payment/external-agent']);
+          this.spinner.hide();
+
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+this.spinner.hide();
+       
+        }
+
+      }, (err: HttpErrorResponse) => {
+        const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+        this.toastr.error(messages.toString(), 'Message.');
+        console.log(messages);
+this.spinner.hide();
+    
+      });
+}
 }

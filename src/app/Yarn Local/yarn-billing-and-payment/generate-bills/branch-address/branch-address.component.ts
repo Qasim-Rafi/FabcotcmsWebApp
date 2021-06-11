@@ -4,7 +4,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { ServiceService } from 'src/app/shared/service.service';
 import { environment } from 'src/environments/environment';
-
+import {NgxSpinnerService} from 'ngx-spinner'
 
 @Component({
   selector: 'app-branch-address',
@@ -19,7 +19,9 @@ export class BranchAddressComponent implements OnInit {
   constructor( private _NgbActiveModal: NgbActiveModal,
     private http: HttpClient,
     private service: ServiceService,
-    private toastr: ToastrService,) { }
+    private toastr: ToastrService,
+    private spinner: NgxSpinnerService
+    ) { }
 
   ngOnInit(): void {
     this.GetBranchDropdown()
