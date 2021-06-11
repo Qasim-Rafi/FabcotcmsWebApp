@@ -112,13 +112,14 @@ this.spinner.hide();
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        this.service.fetch((data) => {
-          this.rows = data;
-      this.paymentTermFilter = [...this.rows];
-
-          this.paymentTermCount = this.rows.length;
-        }, this.paymentTermUrl);
+  
       }
+      this.service.fetch((data) => {
+        this.rows = data;
+    this.paymentTermFilter = [...this.rows];
+
+        this.paymentTermCount = this.rows.length;
+      }, this.paymentTermUrl);
     }, (reason) => {
       // on dismiss
     });
@@ -132,11 +133,12 @@ this.spinner.hide();
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        this.service.fetch((data) => {
-          this.rows = data;
-        }, this.paymentTermUrl);
+     
 
       }
+      this.service.fetch((data) => {
+        this.rows = data;
+      }, this.paymentTermUrl);
     }, (reason) => {
       // on dismiss
     });

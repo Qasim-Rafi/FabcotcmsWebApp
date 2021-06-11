@@ -21,6 +21,8 @@ import { RemarksComponent } from './active-contract-models/remarks/remarks.compo
 import { EmployeeCommissionComponent } from './active-contract-models/employee-commission/employee-commission.component';
 import { CommisionKickbackComponent } from './active-contract-models/commision-kickback/commision-kickback.component';
 import { NgxSpinnerService } from 'ngx-spinner';
+
+import { createBuilderStatusReporter } from 'typescript';
 import { ContractNoteComponent } from './active-contract-models/contract-note/contract-note.component';
 
 @Component({
@@ -33,6 +35,8 @@ export class ActiveContractDetailsComponent implements OnInit {
  
   reminderToggle : boolean = false
   rows: any = [];
+  rows7: any = [];
+
   rows1: any = [];
   rows2: any = [{numbr:1}];
   rows3: any = [{numbr:1}];
@@ -72,9 +76,13 @@ export class ActiveContractDetailsComponent implements OnInit {
   deliveryTimeLineData = [];
   deliveryCount: number;
   prodPlanData = [];
+  dispatchData = [];
+  contractKickbackData = [];
+  
   deliveryFilter: any = [];
   deliveryUrl = '/api/YarnContracts/GetAllContractDeliverySchedule'
   shipmentUrl='/api/Contracts/GetAllContractShipmentSchedule/{contractId}';
+  dispatchUrl = '/api/YarnContracts/GetAllDispatchRegister'
   // tna data
   rows5: any = [];
   id: any = {};
@@ -107,12 +115,19 @@ export class ActiveContractDetailsComponent implements OnInit {
     this.getContractRemarkData();
     this.getContractCommisionData();
     this.getSaleInvoice();
+    this.getContractKickBack();
+    this.getDispatches();
+  
     this.service.fetch((data) => {
       this.rows = data;
       this.deliveryFilter = [...this.rows];
 
       this.deliveryCount = this.rows.length;
     }, this.deliveryUrl);
+
+    // this.service.fetch((data) => {
+    //   this.rows7 = data;
+    // }, this.dispatchUrl);
 
     this.getAllBenificery((empData) => {
       this.rows1 = empData;
@@ -404,9 +419,6 @@ export class ActiveContractDetailsComponent implements OnInit {
   }
 
 
-
-
-
 getContractPartiesData() {
   this.http.get(`${environment.apiUrl}/api/Contracts/GetContractPartiesById/` + this.contractId)
     .subscribe(
@@ -449,7 +461,25 @@ getDeliveryTimeLine() {
         }
       });
 }
+getDispatches() {
+  this.http.get(`${environment.apiUrl}/api/YarnContracts/GetAllDispatchRegister/`+ this.contractId)
+    .subscribe(
+      res => {
+        this.response = res;
+        if (this.response.success == true) {
+          this.dispatchData = this.response.data;
+          // cb(this.dispatchData);
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+        }
 
+      }, err => {
+        if (err.status == 400) {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+      });
+}
 
 getProdPlan() {
   this.http.get(`${environment.apiUrl}​/api/YarnContracts/GetAllContractProductionStatus`)
@@ -566,7 +596,7 @@ getContractCommisionData(){
         this.toastr.error(this.response.message, 'Message.');
       }
     });
-  
+
 }
 
 
@@ -651,7 +681,7 @@ this.spinner.show();
 
  editParties(row) {
     const modalRef = this.modalService.open(PartiesComponent, { centered: true });
-    // modalRef.componentInstance.contractId = this.contractId;
+    modalRef.componentInstance.contractId = this.contractId;
     // modalRef.componentInstance.statusCheck = status;
     // modalRef.componentInstance.beneficiaryId = row.id;
   
@@ -701,7 +731,7 @@ this.spinner.show();
   }
   editPaymentAndDelivery(row) {
     const modalRef = this.modalService.open(PaymentDeliveryComponent, { centered: true });
-    // modalRef.componentInstance.contractId = this.contractId;
+    modalRef.componentInstance.contractId = this.contractId;
     // modalRef.componentInstance.statusCheck = status;
     // modalRef.componentInstance.beneficiaryId = row.id;
   
@@ -714,6 +744,8 @@ this.spinner.show();
           // this.rows1 = empData;
           // this.listCount= this.rows.length;
         // });
+        this.getContractData();
+        this.getContractPaymentData();
       }
     }, (reason) => {
       // on dismiss
@@ -775,7 +807,7 @@ this.spinner.show();
   }
   editKickbackComm() {
     const modalRef = this.modalService.open(CommisionKickbackComponent, { centered: true });
-    // modalRef.componentInstance.contractId = this.contractId;
+    modalRef.componentInstance.contractId = this.contractId;
     // modalRef.componentInstance.statusCheck = status;
     // modalRef.componentInstance.beneficiaryId = row.id;
   
@@ -784,10 +816,8 @@ this.spinner.show();
       // on close
       if (data == true) {
   
-        // this.getAllBenificery((empData) => {
-          // this.rows1 = empData;
-          // this.listCount= this.rows.length;
-        // });
+      this.getContractData();
+      
       }
     }, (reason) => {
       // on dismiss
@@ -795,7 +825,26 @@ this.spinner.show();
   }
 
 
-
+  getContractKickBack() {
+    this.http.get(`${environment.apiUrl}/api​/Contracts​/GetContractCommissionKickBackById​/` + this.contractId)
+      .subscribe(
+        res => {
+          this.response = res;
+          if (this.response.success == true) {
+            this.contractKickbackData = this.response.data;
+            
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+  
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+        });
+  }
+  
 
 
 
@@ -961,7 +1010,9 @@ addDeliveryTL(check) {
     if (data == true) {
       
       this.getContractData();
-
+     this.service.fetch((data=>{
+       this.rows = data;
+     }) , this.deliveryUrl)
       
     }
   }, (reason) => {
@@ -1084,9 +1135,11 @@ addDispatch( check) {
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
+      this.getContractData();
+      this.getDispatches();
   
     }
-    this.getContractData();
+    // this.getContractData();
 
   }, (reason) => {
     // on dismiss
@@ -1178,7 +1231,7 @@ addProd() {
 deleteDispatch(id) {
   Swal.fire({
     title: GlobalConstants.deleteTitle, //'Are you sure?',
-    text: GlobalConstants.deleteMessage + ' ' + '"' + id.dispatchNo + '"',
+    text: GlobalConstants.deleteMessage,
     icon: 'error',
     showCancelButton: true,
     confirmButtonColor: '#ed5565',
@@ -1197,12 +1250,8 @@ deleteDispatch(id) {
             this.response = res;
             if (this.response.success == true) {
               this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
-              this.getAllShipmentDates((shipmentData) => {
-                this.rows4 = shipmentData;
-  this.spinner.hide();
-           
-              });
-
+              this.getDispatches();
+              this.spinner.hide();
             }
             else {
               this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');

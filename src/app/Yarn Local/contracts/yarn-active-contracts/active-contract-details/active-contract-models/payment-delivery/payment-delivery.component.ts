@@ -107,7 +107,7 @@ export class PaymentDeliveryComponent implements OnInit {
   }
 
   getContractPaymentData() {
-    this.http.get(`${environment.apiUrl}` + this.contractId)
+    this.http.get(`${environment.apiUrl}/api/Contracts/GetContractPaymentDeliveryById/` + this.contractId)
       .subscribe(
         res => {
           this.response = res;
@@ -145,7 +145,7 @@ export class PaymentDeliveryComponent implements OnInit {
     }
 
     this.http.
-      post(`${environment.apiUrl}`, varr)
+      post(`${environment.apiUrl}/api/Contracts/AddContractPaymentDelivery`, varr)
       .subscribe(
         res => {
 

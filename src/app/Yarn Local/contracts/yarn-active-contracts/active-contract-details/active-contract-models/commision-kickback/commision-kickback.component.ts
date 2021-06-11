@@ -13,12 +13,10 @@ import { environment } from 'src/environments/environment';
 export class CommisionKickbackComponent implements OnInit {
   @Input() contractId;
   // data:any =[];
-  data : any = [
-    // { id: 0}
-  ];
+  data : any = [];
   commission:any={};
   agents:any={};
-  uom:any={};
+  uomList:any={};
   response: any;
   
   constructor(
@@ -31,7 +29,7 @@ export class CommisionKickbackComponent implements OnInit {
 
   ngOnInit(): void {
     this.GetUOMDropdown();
-    this.GetAgentDropdown();
+    // this.GetAgentDropdown();
     this.getContractCommisionData();
 
 
@@ -40,25 +38,41 @@ export class CommisionKickbackComponent implements OnInit {
     return this._NgbActiveModal;
   }
 
-  addMore() {
-    this.data.push({id: this.data.length});
-  }
-  remove(i: number) {
-    this.data.splice(i, 1);
-  }
+  // addMore() {
+  //   this.data.push({id: this.data.length});
+  // }
+  // remove(i: number) {
+  //   this.data.splice(i, 1);
+  // }
 
+  // GetUOMDropdown() {
+  //   this.service.getUOM().subscribe(res => {
+  //     this.response = res;
+  //     if (this.response.success == true) {
+  //       this.uomList = this.response.data;
+  //     }
+  //     else {
+  //       this.toastr.error(this.response.message, 'Message.');
+  //     }
+  //   })
+  // }
 
   GetUOMDropdown() {
-    this.service.getUOM().subscribe(res => {
+    this.http.get(`${environment.apiUrl}/api/Lookups/UOMs`).
+    subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.uom = this.response.data;
+        this.uomList = this.response.data;
+    
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
       }
     })
   }
+
+
+
 
   GetAgentDropdown() {
     this.service.getAgents().subscribe(res => {
@@ -76,12 +90,12 @@ export class CommisionKickbackComponent implements OnInit {
 
 
   getContractCommisionData(){
-    this.http.get(`${environment.apiUrl}/api/Contracts/GetContractCommissionById/` + this.contractId)
+    this.http.get(`${environment.apiUrl}/api/Contracts/GetContractCommissionKickBackById/` + this.contractId)
     .subscribe(
       res => {
         this.response = res;
         if (this.response.success == true) {
-          this.commission = this.response.data;
+          this.data = this.response.data;
           // this.commission.agenetName= parseInt(this.commission.agenetName);
           
         }
@@ -115,18 +129,21 @@ export class CommisionKickbackComponent implements OnInit {
     let varr = {
 
       "contractId": this.contractId,
-      "sellerSideCommission": this.commission.sellerSideCommission,
-      // "sellerSideCommissionUOMId":this.commission.sellerSideCommissionUOMId,
-      // "sellerAdditionalInfo": this.commission.sellerAdditionalInfo,
-      "buyerSideCommission": this.commission.buyerSideCommission,
-      "buyerSideCommissionUOMId": this.commission.buyerSideCommissionUOMId,
-      "buyerAdditionalInfo": this.commission.buyerAdditionalInfo,
-      "agentId": this.commission.agentId,
-      "agentCommissions": this.data,
+      "kickbackPercentage": this.data.kickbackPercentage,
+      "kickbackUOMId": this.data.kickbackUOMId,
+      "beneficiary": this.data.beneficiary,
+      "fabCotCommision": this.data.fabCotCommision,
+      "fabCotCommisionUOMId": this.data.fabCotCommisionUOMId,
+      "fabcotSideCommAdditionalInfo": this.data.fabcotSideCommAdditionalInfo,
+      "buyersideCommision": this.data.buyersideCommision,
+      "buyersideCommisionUOMId": this.data.buyersideCommisionUOMId,
+      "buyerSideCommAdditionalInfo": this.data.buyerSideCommAdditionalInfo,
+      "agentId": this.data.agentId,
+      "agentCommision": this.data.agentCommision
     }
 
     this.http.
-      post(`${environment.apiUrl}/api/Contracts/AddContractCommission`, varr)
+      post(`${environment.apiUrl}/api/Contracts/AddContractCommissionKickBack`, varr)
       .subscribe(
         res => {
 
