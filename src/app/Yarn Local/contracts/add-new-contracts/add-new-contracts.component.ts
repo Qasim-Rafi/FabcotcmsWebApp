@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 import { AddSellerFormComponent } from 'src/app/configuration/seller/add-seller-form/add-seller-form.component';
 import { Dateformater } from 'src/app/shared/dateformater';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { AddBuyerComponent } from 'src/app/configuration/buyer/add-buyer/add-buyer.component';
+
 
 @Component({
   selector: 'app-add-new-contracts',
