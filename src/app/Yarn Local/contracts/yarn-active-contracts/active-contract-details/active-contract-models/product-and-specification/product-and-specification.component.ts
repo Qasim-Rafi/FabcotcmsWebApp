@@ -48,7 +48,7 @@ export class ProductAndSpecificationComponent implements OnInit {
   }
   
   getContractProductData() {
-    this.http.get(`${environment.apiUrl}` + this.contractId)
+    this.http.get(`${environment.apiUrl}/api/Contracts/GetContractProductSpecificationById/` + this.contractId)
       .subscribe(
         res => {
           this.response = res;
@@ -76,7 +76,7 @@ export class ProductAndSpecificationComponent implements OnInit {
     }
 
     this.http.
-      post(`${environment.apiUrl}`, varr)
+      post(`${environment.apiUrl}/api/Contracts/AddContractProductSpecification`, varr)
       .subscribe(
         res => {
 
