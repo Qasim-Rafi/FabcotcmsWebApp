@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 import { DatePipe } from '@angular/common';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-
+import {NgxSpinnerService} from 'ngx-spinner'
 @Component({
   selector: 'app-payment-form',
   templateUrl: './payment-form.component.html',
@@ -50,6 +50,7 @@ export class PaymentFormComponent implements OnInit {
     private toastr: ToastrService,
     public datepipe: DatePipe,
     private router: Router,
+    private spinner : NgxSpinnerService
 
   ) { }
 
@@ -176,7 +177,7 @@ export class PaymentFormComponent implements OnInit {
       "isDepositedInBank": this.paymentdata.isDepositedInBank,
       "depositeDate": this.dateformater.toModel(this.paymentdata.depositeDate),
     }
-
+  this.spinner.show();
     this.http.
       put(`${environment.apiUrl}/api/BillingPayments/UpdateBillPayment/` + this.paymentId, varr)
       .subscribe(
@@ -186,15 +187,22 @@ export class PaymentFormComponent implements OnInit {
           if (this.response.success == true) {
             this.toastr.success(GlobalConstants.updateMessage, 'Message.');
             this.router.navigate(['/yarn-billing-and-payment/payment-collection']);
+  this.spinner.hide();
+          
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+  this.spinner.hide();
+          
           }
+
 
         }, (err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
+  this.spinner.hide();
+
         });
   }
 
@@ -222,6 +230,7 @@ export class PaymentFormComponent implements OnInit {
         "isDepositedInBank": this.paymentAdddata.isDepositedInBank,
         "depositeDate":  this.dateformater.toModel(this.paymentAdddata.depositeDate),
       }
+      this.spinner.show();
 
     this.http.
       post(`${environment.apiUrl}/api/BillingPayments/AddBillPayment/`, varr)
@@ -233,16 +242,21 @@ export class PaymentFormComponent implements OnInit {
             this.toastr.success(this.response.message, 'Message.');
             // this.paymentForm.reset();
             this.router.navigate(['/yarn-billing-and-payment/payment-collection']);
+            this.spinner.hide();
 
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+  this.spinner.hide();
+        
           }
 
         }, (err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
+  this.spinner.hide();
+
         });
   }
   GetCurrencyDropdown() {

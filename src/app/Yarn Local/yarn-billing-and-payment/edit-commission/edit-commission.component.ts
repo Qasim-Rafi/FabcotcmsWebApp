@@ -7,7 +7,8 @@ import { ToastrService } from 'ngx-toastr';
 import { ServiceService } from 'src/app/shared/service.service';
 import { environment } from 'src/environments/environment';
 import { Dateformater } from 'src/app/shared/dateformater';
-
+import {NgxSpinnerService} from 'ngx-spinner'
+import { from } from 'rxjs';
 @Component({
   selector: 'app-edit-commission',
   templateUrl: './edit-commission.component.html',
@@ -29,17 +30,19 @@ export class EditCommissionComponent implements OnInit {
     private service: ServiceService,
     private toastr: ToastrService,
     private router: Router,
-    private _NgbActiveModal: NgbActiveModal
+    private _NgbActiveModal: NgbActiveModal,
+    private spinner : NgxSpinnerService
   
   ) { }
 
   ngOnInit(): void {
+    this.getCommission()
   }
   get activeModal() {
     return this._NgbActiveModal;
   }
   getCommission() {
-    this.http.get(`${environment.apiUrl}` + this.Editid )
+    this.http.get(`${environment.apiUrl}/api/BillingPayments/GetBillingCommissionPaymentById/` + this.Editid )
       .subscribe(
         res => {
           this.response = res;
@@ -52,11 +55,10 @@ export class EditCommissionComponent implements OnInit {
 
           }
 
-        }, err => {
-          if (err.status == 400) {
-                     this.toastr.error(this.response.message, 'Message.');
-
-          }
+        }, (err: HttpErrorResponse) => {
+          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+          this.toastr.error(messages.toString(), 'Message.');
+          console.log(messages);
         });
   }
   
@@ -64,28 +66,34 @@ export class EditCommissionComponent implements OnInit {
 
     let varr = {
       "paymentDate": this.dateformater.toModel(this.data.paymentDate),
-      "remarks": this.data.details,
+      "paymentRemarks": this.data.paymentRemarks,
     }
-
-    this.http.
-      put(`${environment.apiUrl}` + this.Editid, varr)
+ this.spinner.show();
+    this.http.put(`${environment.apiUrl}/api/BillingPayments/UpdateBillingCommissionPayment/` + this.Editid, varr)
       .subscribe(
         res => {
 
           this.response = res;
           if (this.response.success == true) {
-                   this.toastr.success(this.response.message, 'Message.');
+        this.toastr.success(this.response.message, 'Message.');
 
             this.activeModal.close(true);
+ this.spinner.hide();
+
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+
+ this.spinner.hide();
+
           }
 
         }, (err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
+ this.spinner.hide();
+
         });
   
 }

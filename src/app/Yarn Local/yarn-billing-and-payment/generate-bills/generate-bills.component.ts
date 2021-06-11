@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { BranchAddressComponent } from '../generate-bills/branch-address/branch-address.component';
 import { SaleInvoiceFormComponent } from '../generate-bills/sale-invoice-form/sale-invoice-form.component';
-
+import {NgxSpinnerService} from 'ngx-spinner'
 @Component({
   selector: 'app-generate-bills',
   templateUrl: './generate-bills.component.html',
@@ -23,6 +23,7 @@ export class GenerateBillsComponent implements OnInit {
     private toastr: ToastrService,
     private modalService: NgbModal,
     private router: Router,
+    private spinner : NgxSpinnerService
 
     ) { }
       contractIds: any = [];
@@ -88,6 +89,7 @@ export class GenerateBillsComponent implements OnInit {
           "contractIds": item,
            "fabcotBranchName": p.branch.name,
         }
+        this.spinner.show();
         this.http.
           post(`${environment.apiUrl}`, varr)
           .subscribe(
@@ -97,15 +99,20 @@ export class GenerateBillsComponent implements OnInit {
               if (this.response.success == true) {
                 this.toastr.success(this.response.message, 'Message.');
                 this.router.navigate(['yarn-billing-and-payment/active-bills']);
+                this.spinner.hide();
     
               }
               else {
                 this.toastr.error(this.response.message, 'Message.');
+                this.spinner.hide();
+              
               }
     
             }, err => {
               if (err.status == 400) {
                 this.toastr.error(this.response.message.exceptionMessage, 'Message.');
+                this.spinner.hide();
+              
               }
             });
       }
