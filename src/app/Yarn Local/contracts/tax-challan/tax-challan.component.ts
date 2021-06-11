@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { GlobalConstants } from 'src/app/Common/global-constants';
 import { environment } from 'src/environments/environment';
@@ -24,6 +25,7 @@ export class TaxChallanComponent implements OnInit {
   rows = []
   constructor(
     private router: Router,
+    private spinner: NgxSpinnerService,
     private http: HttpClient,
     private toastr: ToastrService,
     private modalService: NgbModal,
@@ -41,13 +43,13 @@ export class TaxChallanComponent implements OnInit {
   }
 
   navigateForm() {
-    this.router.navigate(['/yarn-local/add-tax']);
+    this.router.navigate(['/FabCot/add-tax']);
  };
 
 
 
  fetch(cb) {
-    
+    this.spinner.show();
   this.http
   .get(`${environment.apiUrl}/api/YarnContracts/GetAllTaxChallan` )
   .subscribe(res => {
@@ -58,16 +60,17 @@ export class TaxChallanComponent implements OnInit {
   this.data =this.response.data;
 
   cb(this.data);
+  this.spinner.hide();
   }
   else{
     this.toastr.error(this.response.message, 'Message.');
   }
-    // this.spinner.hide();
+    this.spinner.hide();
   }, err => {
     if ( err.status == 400) {
 this.toastr.error(err.error.message, 'Message.');
-    }
-  //  this.spinner.hide();
+   this.spinner.hide();
+  }
   });
 }
 
@@ -94,7 +97,7 @@ deleteChalan(row) {
     position: 'top',
   }).then((result) => {
     if (result.isConfirmed) {
-
+this.spinner.show();
       this.http.delete(`${environment.apiUrl}/api/YarnContracts/DeleteTaxChallan/` + row.id )
         .subscribe(
           res => {
@@ -103,16 +106,22 @@ deleteChalan(row) {
               this.toastr.error(this.response.message, 'Message.');
               this.fetch((data) => {
                 this.rows = data;
+   this.spinner.hide();
+
               });
 
             }
             else {
               this.toastr.error(this.response.message, 'Message.');
+   this.spinner.hide();
+           
             }
 
           }, err => {
             if (err.status == 400) {
               this.toastr.error(this.response.message, 'Message.');
+   this.spinner.hide();
+            
             }
           });
 

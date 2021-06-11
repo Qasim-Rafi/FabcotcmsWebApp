@@ -6,6 +6,7 @@ import { HttpClient  , HttpErrorResponse} from '@angular/common/http';
 import { Dateformater } from 'src/app/shared/dateformater';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-add-tx-challan',
@@ -28,6 +29,7 @@ export class AddTxChallanComponent implements OnInit {
   constructor(
     private service: ServiceService,
     private toastr: ToastrService,
+    private spinner: NgxSpinnerService,
     private http: HttpClient,
     private router: Router,
 
@@ -113,8 +115,8 @@ export class AddTxChallanComponent implements OnInit {
       
    
       }
-
-    this.http.post(`${environment.apiUrl}/api/YarnContracts/AddTaxChallan`, varr)
+this.spinner.show();    
+this.http.post(`${environment.apiUrl}/api/YarnContracts/AddTaxChallan`, varr)
 .subscribe(
         res => {
 
@@ -122,19 +124,21 @@ export class AddTxChallanComponent implements OnInit {
           if (this.response.success == true) {
             // this.data = this.response.data;
             this.enquiryForm.reset();
-            this.router.navigate(['/yarn-local/tax']);
+            this.router.navigate(['/FabCot/tax']);
 
             this.toastr.success(this.response.message, 'Message.');
-            
+            this.spinner.hide();
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+          this.spinner.hide();
           }
 
         }, (err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
+          this.spinner.hide();
         });
   }
 

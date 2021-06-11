@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ServiceService } from 'src/app/shared/service.service';
 import { environment } from 'src/environments/environment';
 import { Dateformater } from 'src/app/shared/dateformater';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-edit-buyer-payment',
@@ -24,6 +25,7 @@ export class EditBuyerPaymentComponent implements OnInit {
 
 
   constructor(private http: HttpClient,
+    private spinner: NgxSpinnerService,
     private toastr: ToastrService,
     private _NgbActiveModal: NgbActiveModal,
     private service: ServiceService,
@@ -67,6 +69,7 @@ export class EditBuyerPaymentComponent implements OnInit {
     })
   }
   getData() {
+    this.spinner.show();
     this.http.get(`${environment.apiUrl}/api/YarnContracts/GetBuyerToSellerPaymentById/` + this.paymentId)
     .subscribe(res => {
       this.response = res;
@@ -74,14 +77,17 @@ export class EditBuyerPaymentComponent implements OnInit {
             this.data = this.response.data;
             this.data.paymentDate = this.dateformater.fromModel(this.data.paymentDate);
             this.data.depositeDate = this.dateformater.fromModel(this.data.depositeDate);
+          this.spinner.hide();
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+         this.spinner.hide();
           }
  
         }, err => {
           if (err.status == 400) {
             this.toastr.error(this.response.message, 'Message.');
+          this.spinner.hide();
           }
         });
   }
@@ -104,6 +110,7 @@ export class EditBuyerPaymentComponent implements OnInit {
       
    
       }
+      this.spinner.show();
       // /api​/YarnContracts​/UpdateBuyerToSellerPayment​/
     this.http.
       put(`${environment.apiUrl}/api/YarnContracts/UpdateBuyerToSellerPayment/`+ this.paymentId, varr)
@@ -114,16 +121,18 @@ export class EditBuyerPaymentComponent implements OnInit {
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
             this.activeModal.close(true);
-
+this.spinner.hide();
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+          this.spinner.hide();
           }
 
         }, (err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
+          this.spinner.hide();
         });
   }
 

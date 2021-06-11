@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { GlobalConstants } from 'src/app/Common/global-constants';
 import { environment } from 'src/environments/environment';
@@ -35,6 +36,7 @@ export class SaleInvoiceComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private spinner: NgxSpinnerService,
     private http: HttpClient,
     private toastr: ToastrService,
     private modalService: NgbModal,
@@ -61,7 +63,7 @@ export class SaleInvoiceComponent implements OnInit {
   }
 
   navigateEditContract(obj) {
-    this.router.navigate(['/contract/active-contract-details'], { queryParams: {id: obj.id} });
+    this.router.navigate(['/FabCot/active-contract-details'], { queryParams: {id: obj.id} });
   };
 
 
@@ -119,7 +121,7 @@ addinvoiceForm(check){
 }
 
 fetch(cb) {
-    
+    this.spinner.show();
   this.http
   .get(`${environment.apiUrl}/api/YarnContracts/GetAllBuyerToSellerPayment` )
   .subscribe(res => {
@@ -130,16 +132,17 @@ fetch(cb) {
   this.saleInvoice =this.response.data;
 
   cb(this.saleInvoice);
-  }
+ this.spinner.hide(); }
   else{
     this.toastr.error(this.response.message, 'Message.');
+  this.spinner.hide();
   }
     // this.spinner.hide();
   }, err => {
     if ( err.status == 400) {
 this.toastr.error(err.error.message, 'Message.');
     }
-  //  this.spinner.hide();
+   this.spinner.hide();
   });
 }
 

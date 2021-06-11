@@ -70,7 +70,7 @@ export class YarnActiveContractsComponent implements OnInit {
 
 
   navigateEditContract(obj) {
-    this.router.navigate(['/yarn-local/active-contract-details'], { queryParams: {id: obj.id} });
+    this.router.navigate(['/FabCot/active-contract-details'], { queryParams: {id: obj.id} });
   };
   
 
