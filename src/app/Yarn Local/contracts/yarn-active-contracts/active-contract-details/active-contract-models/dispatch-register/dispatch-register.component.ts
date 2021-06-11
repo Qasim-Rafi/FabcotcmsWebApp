@@ -91,7 +91,7 @@ export class DispatchRegisterComponent implements OnInit {
 
       "contractId":this.contractId, 
       "number": this.data.number,
-      "date": this.data.date,
+      "date": this.dateformater.toModel(this.data.date),
       "quantity": this.data.quantity,
       "uomId": this.data.uomId,
       "remarks": this.data.remarks,
@@ -126,11 +126,11 @@ export class DispatchRegisterComponent implements OnInit {
 
 
   updateDispatch() {
-     this.data.dispatchDate = this.dateformater.toModel(this.data.dispatchDate);
+    //  this.data.dispatchDate = this.dateformater.toModel(this.data.dispatchDate);
     let varr = {
       "contractId":this.contractId, 
       "number": this.data.number,
-      "date": this.data.date,
+      "date": this.dateformater.toModel(this.data.dispatchDate),
       "quantity": this.data.quantity,
       "uomId": this.data.uomId,
       "remarks": this.data.remarks,

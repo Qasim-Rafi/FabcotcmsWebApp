@@ -200,7 +200,7 @@
 
                             <a class="nav-dispatches nav-link " id="nav-dispatches-tab" data-toggle="tab" href="#nav-dispatches"
                                 role="tab" aria-controls="nav-dispatches" aria-selected="false">Dispatches &nbsp;<span
-                                    class="badge badge-pill badge-primary">{{rows4.length}}</span></a>
+                                    class="badge badge-pill badge-primary">{{dispatchData.length}}</span></a>
 
                             <a class="nav-prodPlan nav-link " id="nav-prodPlan-tab" data-toggle="tab" href="#nav-prodPlan"
                                 role="tab" aria-controls="nav-prodPlan" aria-selected="false">Prod Plan  &nbsp;<span
@@ -460,11 +460,7 @@
                                             </dt>
                                             <dd class="col-sm-6">{{contractPartiesData.sellerContract}}</dd>
                                         </dl>
-                                        <dl class="row">
-                                            <dt class="col-sm-6">Supplier Certification:
-                                            </dt>
-                                            <dd class="col-sm-6">{{contractPartiesData.certificateNames}}</dd>
-                                        </dl>
+                                   
                                     </div>
 
                                     <div class="col-md-6">
@@ -1188,38 +1184,36 @@
                                 </div>
 
                                 <ngx-datatable #myTable class="bootstrap" [columnMode]="'force'" [headerHeight]="50"
-                                     [rows]="rows4" [footerHeight]="50" [sorts]="[{prop: 'shipmentNo,supplierDate,buyerDate,shipmentLine,shipmentMode,
-                                    shipmentRemarks, ', dir: 'asce'}]" [rowHeight]="'auto'" [limit]="6">
+                                     [rows]="dispatchData" [footerHeight]="50" [sorts]="[{ prop: 'id', dir: 'asce' }]" [rowHeight]="'auto'" [limit]="6">
 
 
 
                                     <ngx-datatable-column name="S.No.">
-                                        <ng-template let-row="row" ngx-datatable-cell-template>
-                                           
+                                        <ng-template let-row="row" let-rowIndex = "rowIndex" ngx-datatable-cell-template>
+                                           {{rowIndex+1}}
                                         </ng-template>
                                     </ngx-datatable-column>
 
-                                    <ngx-datatable-column name="Dispatch No." prop="shipmentNo">
+                                    <ngx-datatable-column name="Dispatch No." prop="id">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                            {{row.numbr}}
                                         </ng-template>
                                     </ngx-datatable-column>
 
-                                    <ngx-datatable-column name="Dispatche Date" prop="supplierDate">
+                                    <ngx-datatable-column name="Dispatch Date" prop="date">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                         
+                                         {{row.date}}
                                         </ng-template>
                                     </ngx-datatable-column>
 
-                                    <ngx-datatable-column name="Quantity" prop="buyerDate">
+                                    <ngx-datatable-column name="Quantity" prop="quantity">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                          
+                                     {{row.quantity}}
                                         </ng-template>
                                     </ngx-datatable-column>
 
-                                    <ngx-datatable-column name="Detail" prop="shipmentLine">
+                                    <ngx-datatable-column name="Detail" prop="remarks">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                    
+                                      {{row.remarks}}
                                         </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column name="Action">

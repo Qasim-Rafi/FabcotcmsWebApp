@@ -63,18 +63,18 @@
       <div class="form-group row">
         <label for="description" class="col-sm-3 col-form-label text-Navy">Payment Terms (Buyer Side)</label>
         <div class="col-sm-4">
-          <ng-select required name="paymentTermId" placeholder="Payment Terms" [(ngModel)]="data.paymentTermId"
+          <!-- <ng-select required name="paymentTermId" placeholder="Payment Terms" [(ngModel)]="data.paymentTermId"
             #paymentTermId="ngModel" [ngClass]="{'error': paymentTermId.invalid && partiesForm.submitted }">
             <ng-option *ngFor="let i of payment" [value]="i.id">
               {{i.term}}
             </ng-option>
-          </ng-select>
+          </ng-select> -->
         </div>
         <div class="col-md-4 mrg-sm1">
           <div class="input-group">
-            <input required type="number" min="0" class="form-control" placeholder="days" name="paymentTermDays"
+            <!-- <input required type="number" min="0" class="form-control" placeholder="days" name="paymentTermDays"
               [(ngModel)]="data.paymentTermDays" #paymentTermDays="ngModel"
-              [ngClass]="{'error': paymentTermDays.invalid && partiesForm.submitted }">
+              [ngClass]="{'error': paymentTermDays.invalid && partiesForm.submitted }"> -->
           </div>
         </div>
 
@@ -83,8 +83,8 @@
       <div class="form-group row">
         <label for="description" class="col-sm-3 col-form-label text-Navy"></label>
         <div class="col-sm-8">
-          <input type="text" class="form-control" placeholder="Payment term Additional Info" name="paymentTermInfo"
-            [(ngModel)]="data.paymentTermInfo">
+          <input type="text" class="form-control" placeholder="Payment term Additional Info" name="buyerSidePaymentTermInfo"
+            [(ngModel)]="data.buyerSidePaymentTermInfo" #buyerSidePaymentTermInfo = "ngModel">
         </div>
       </div>
 
