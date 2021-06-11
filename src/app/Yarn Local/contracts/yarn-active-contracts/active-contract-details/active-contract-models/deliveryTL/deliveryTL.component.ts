@@ -58,6 +58,8 @@ uomList : any = {};
           if (this.response.success == true) {
 
             this.data = this.response.data;
+            this.data.buyerDate = this.dateformater.fromModel(this.data.buyerDate);
+            this.data.supplierDate = this.dateformater.fromModel(this.data.supplierDate);
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
