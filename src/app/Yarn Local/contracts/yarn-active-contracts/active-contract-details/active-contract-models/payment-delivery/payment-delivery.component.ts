@@ -145,7 +145,7 @@ export class PaymentDeliveryComponent implements OnInit {
     }
 
     this.http.
-      post(`${environment.apiUrl}`, varr)
+      post(`${environment.apiUrl}/api/Contracts/AddContractPaymentDelivery`, varr)
       .subscribe(
         res => {
 

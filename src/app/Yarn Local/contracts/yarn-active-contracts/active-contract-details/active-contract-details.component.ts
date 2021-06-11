@@ -77,7 +77,8 @@ export class ActiveContractDetailsComponent implements OnInit {
   deliveryCount: number;
   prodPlanData = [];
   dispatchData = [];
-
+  contractKickbackData = [];
+  
   deliveryFilter: any = [];
   deliveryUrl = '/api/YarnContracts/GetAllContractDeliverySchedule'
   shipmentUrl='/api/Contracts/GetAllContractShipmentSchedule/{contractId}';
@@ -114,7 +115,9 @@ export class ActiveContractDetailsComponent implements OnInit {
     this.getContractRemarkData();
     this.getContractCommisionData();
     this.getSaleInvoice();
+    this.getContractKickBack();
     this.getDispatches();
+  
     this.service.fetch((data) => {
       this.rows = data;
       this.deliveryFilter = [...this.rows];
@@ -593,7 +596,7 @@ getContractCommisionData(){
         this.toastr.error(this.response.message, 'Message.');
       }
     });
-  
+
 }
 
 
@@ -804,7 +807,7 @@ this.spinner.show();
   }
   editKickbackComm() {
     const modalRef = this.modalService.open(CommisionKickbackComponent, { centered: true });
-    // modalRef.componentInstance.contractId = this.contractId;
+    modalRef.componentInstance.contractId = this.contractId;
     // modalRef.componentInstance.statusCheck = status;
     // modalRef.componentInstance.beneficiaryId = row.id;
   
@@ -813,10 +816,8 @@ this.spinner.show();
       // on close
       if (data == true) {
   
-        // this.getAllBenificery((empData) => {
-          // this.rows1 = empData;
-          // this.listCount= this.rows.length;
-        // });
+      this.getContractData();
+      
       }
     }, (reason) => {
       // on dismiss
@@ -824,7 +825,26 @@ this.spinner.show();
   }
 
 
-
+  getContractKickBack() {
+    this.http.get(`${environment.apiUrl}/api​/Contracts​/GetContractCommissionKickBackById​/` + this.contractId)
+      .subscribe(
+        res => {
+          this.response = res;
+          if (this.response.success == true) {
+            this.contractKickbackData = this.response.data;
+            
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+  
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+        });
+  }
+  
 
 
 
@@ -990,7 +1010,9 @@ addDeliveryTL(check) {
     if (data == true) {
       
       this.getContractData();
-
+     this.service.fetch((data=>{
+       this.rows = data;
+     }) , this.deliveryUrl)
       
     }
   }, (reason) => {
