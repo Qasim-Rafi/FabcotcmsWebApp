@@ -12,6 +12,8 @@ import { AddSellerFormComponent } from 'src/app/configuration/seller/add-seller-
 import { Dateformater } from 'src/app/shared/dateformater';
 import { NgxSpinnerService } from 'ngx-spinner';
 
+import { AddBuyerComponent } from '../../yarn-configuration/buyer/add-buyer/add-buyer.component';
+
 
 @Component({
   selector: 'app-add-new-contracts',
