@@ -38,6 +38,8 @@ import { DeliveryTimeLineComponent } from './yarn-active-contracts/active-contra
 import {RemarksComponent} from './yarn-active-contracts/active-contract-details/active-contract-models/remarks/remarks.component'
 import {EmployeeCommissionComponent} from './yarn-active-contracts/active-contract-details/active-contract-models/employee-commission/employee-commission.component'
 import {CommisionKickbackComponent} from './yarn-active-contracts/active-contract-details/active-contract-models/commision-kickback/commision-kickback.component'
+import { NgxSpinnerModule } from 'ngx-spinner';
+
 @NgModule({
   declarations: [AddNewContractsComponent,
     EditDispatchComponent,
@@ -62,6 +64,7 @@ CommisionKickbackComponent,
     CommonModule,
     BrowserModule,
     FormsModule,
+    NgxSpinnerModule,
     HttpClientModule,
     ContractsRoutingModule,
     NgbDatepickerModule,

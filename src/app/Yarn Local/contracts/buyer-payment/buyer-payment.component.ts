@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 import { EditBuyerPaymentComponent } from '../Modals/edit-buyer-payment/edit-buyer-payment.component';
 import { DatatableComponent, id } from '@swimlane/ngx-datatable';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 
@@ -31,6 +32,7 @@ export class BuyerPaymentComponent implements OnInit {
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
+    private spinner: NgxSpinnerService,
     private router: Router,
     private service: ServiceService,
     private modalService: NgbModal,) { }
@@ -46,7 +48,7 @@ export class BuyerPaymentComponent implements OnInit {
  
 
   navigateBuyerPaymentForm() {
-    this.router.navigate(['/yarn-local/buyer-payment-form']);
+    this.router.navigate(['/FabCot/buyer-payment-form']);
  };
 
 
@@ -66,7 +68,7 @@ export class BuyerPaymentComponent implements OnInit {
   }
 
   fetch(cb) {
-    
+    this.spinner.show();
     this.http
     .get(`${environment.apiUrl}/api/YarnContracts/GetAllBuyerToSellerPayment` )
     .subscribe(res => {
@@ -77,15 +79,18 @@ export class BuyerPaymentComponent implements OnInit {
     this.buyerData =this.response.data;
 
     cb(this.buyerData);
+    this.spinner.hide();
     }
     else{
       this.toastr.error(this.response.message, 'Message.');
+    this.spinner.hide();
     }
       // this.spinner.hide();
     }, err => {
       if ( err.status == 400) {
  this.toastr.error(err.error.message, 'Message.');
-      }
+this.spinner.hide();      
+}
     //  this.spinner.hide();
     });
   }
@@ -105,6 +110,7 @@ export class BuyerPaymentComponent implements OnInit {
       position: 'top',
     }).then((result) => {
       if (result.isConfirmed) {
+        this.spinner.show();
         // /api​/YarnContracts​/DeleteBuyerToSellerPayment​/
         this.http.delete(`${environment.apiUrl}/api/YarnContracts/DeleteBuyerToSellerPayment/` + row.id )
           .subscribe(
@@ -115,15 +121,17 @@ export class BuyerPaymentComponent implements OnInit {
                 this.fetch((data) => {
                   this.rows = data;
                 });
-  
+  this.spinner.hide();
               }
               else {
                 this.toastr.error(this.response.message, 'Message.');
+              this.spinner.hide();
               }
   
             }, err => {
               if (err.status == 400) {
                 this.toastr.error(this.response.message, 'Message.');
+              this.spinner.hide();
               }
             });
   

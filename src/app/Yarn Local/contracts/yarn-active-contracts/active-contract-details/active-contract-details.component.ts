@@ -21,6 +21,7 @@ import { DeliveryTimeLineComponent } from './active-contract-models/delivery-tim
 import { RemarksComponent } from './active-contract-models/remarks/remarks.component';
 import { EmployeeCommissionComponent } from './active-contract-models/employee-commission/employee-commission.component';
 import { CommisionKickbackComponent } from './active-contract-models/commision-kickback/commision-kickback.component';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-active-contract-details',
@@ -82,6 +83,7 @@ export class ActiveContractDetailsComponent implements OnInit {
     private router: Router,
     private modalService: NgbModal,
     private route: ActivatedRoute,
+    private spinner: NgxSpinnerService,
     private http: HttpClient,
     private service: ServiceService,
     private toastr: ToastrService,
@@ -135,7 +137,7 @@ export class ActiveContractDetailsComponent implements OnInit {
 
   }
   navigateUploadDoc() {
-    this.router.navigate(['/yarn-local/doc-upload']);
+    this.router.navigate(['/FabCot/doc-upload']);
   };
   searchTna(event) {
     const val = event.target.value.toLowerCase();
@@ -316,7 +318,7 @@ export class ActiveContractDetailsComponent implements OnInit {
       position: 'top',
     }).then((result) => {
       if (result.isConfirmed) {
-  
+  this.spinner.show();
         this.http.delete(`${environment.apiUrl}/api/Contracts/DeleteContractSaleInvoice/` + obj.id )
           .subscribe(
             res => {
@@ -324,16 +326,18 @@ export class ActiveContractDetailsComponent implements OnInit {
               if (this.response.success == true) {
                 this.toastr.error(this.response.message, 'Message.');
                 this.getSaleInvoice();
-  
+  this.spinner.hide();
               }
               else {
                 this.toastr.error(this.response.message, 'Message.');
-              }
+  this.spinner.hide();
+}
   
             }, err => {
               if (err.status == 400) {
                 this.toastr.error(this.response.message, 'Message.');
-              }
+  this.spinner.hide();
+}
             });
       }
     })
@@ -347,6 +351,7 @@ export class ActiveContractDetailsComponent implements OnInit {
   approveContract()
   {
     let varr=  {    }
+    this.spinner.show();
 
     this.http.
     put(`${environment.apiUrl}/api/Contracts/ApproveContract/`+this.contractId,varr)
@@ -357,16 +362,20 @@ export class ActiveContractDetailsComponent implements OnInit {
         if (this.response.success == true){
           this.toastr.success(this.response.message, 'Message.');
           this.getContractData()
+  this.spinner.hide();
         
         }
         else {
           this.toastr.error(this.response.message, 'Message.');
-            }
+  this.spinner.hide();
+}
 
       }, (err: HttpErrorResponse) => {
         const messages = this.service.extractErrorMessagesFromErrorResponse(err);
         this.toastr.error(messages.toString(), 'Message.');
         console.log(messages);
+  this.spinner.hide();
+
       });
   }
 
@@ -606,7 +615,7 @@ deleteCommission(row) {
     position: 'top',
   }).then((result) => {
     if (result.isConfirmed) {
-
+this.spinner.show();
       this.http.delete(`${environment.apiUrl}/api/Contracts/DeleteContractBeneficiary/` + row.id )
         .subscribe(
           res => {
@@ -618,17 +627,21 @@ deleteCommission(row) {
               this.getAllBenificery((empData) => {
                 this.rows1 = empData;
                 // this.listCount= this.rows.length;
+  this.spinner.hide();
+
               });
 
             }
             else {
               this.toastr.error(this.response.message, 'Message.');
-            }
+  this.spinner.hide();
+}
 
           }, err => {
             if (err.status == 400) {
               this.toastr.error(this.response.message, 'Message.');
-            }
+  this.spinner.hide();
+}
           });
 
     }
@@ -897,6 +910,7 @@ deleteInvoiceItem(id) {
     position: 'top',
   }).then((result) => {
     if (result.isConfirmed) {
+      this.spinner.show();
 
       this.http.delete(`${environment.apiUrl}/api/Contracts/DeleteSaleInvoiceItem/` + id.id)
         .subscribe(
@@ -908,6 +922,7 @@ deleteInvoiceItem(id) {
               this.getAllInvoiceItems((invoiceItem) => {
                 this.rows6 = invoiceItem;
                 this.invoiceItemFilter = [...invoiceItem];
+  this.spinner.hide();
           
               });
 
@@ -915,12 +930,14 @@ deleteInvoiceItem(id) {
             }
             else {
               this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
-            }
+  this.spinner.hide();
+}
 
           }, err => {
             if (err.status == 400) {
               this.toastr.error(this.response.message, 'Message.');
-            }
+  this.spinner.hide();
+}
           });
     }
   })
@@ -965,6 +982,7 @@ deleteContractNote(id) {
     position: 'top',
   }).then((result) => {
     if (result.isConfirmed) {
+      this.spinner.show();
 
       this.http.delete(`${environment.apiUrl}` + id.id)
         .subscribe(
@@ -975,18 +993,21 @@ deleteContractNote(id) {
               this.getAllNotes((NotesData) => {
                 this.rows3 = NotesData;
                 this.noteFilter = [...NotesData];
-                // this.listCount= this.rows.length;
+  this.spinner.hide();
+  // this.listCount= this.rows.length;
               });
 
             }
             else {
               this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
-            }
+  this.spinner.hide();
+}
 
           }, err => {
             if (err.status == 400) {
               this.toastr.error(this.response.message, 'Message.');
-            }
+  this.spinner.hide();
+}
           });
     }
   })
@@ -1006,6 +1027,7 @@ deleteDeliveries(id) {
     position: 'top',
   }).then((result) => {
     if (result.isConfirmed) {
+      this.spinner.show();
 
       this.http.delete(`${environment.apiUrl}/api/YarnContracts/DeleteContractDeliverySchedule/` + id.id )
       .subscribe(
@@ -1016,15 +1038,19 @@ deleteDeliveries(id) {
             this.service.fetch((data) => {
               this.rows = data;
             }, this.deliveryUrl);
+  this.spinner.hide();
+
           }
           else {
             this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
-          }
+  this.spinner.hide();
+}
 
         }, err => {
           if (err.status == 400) {
             this.toastr.error(this.response.message, 'Message.');
-          }
+  this.spinner.hide();
+}
         });
   }
 })
@@ -1153,6 +1179,7 @@ deleteDispatch(id) {
     position: 'top',
   }).then((result) => {
     if (result.isConfirmed) {
+      this.spinner.show();
 
       this.http.delete(`${environment.apiUrl}/api/YarnContracts/DeleteDispatchRegister/` + id.id)
         .subscribe(
@@ -1162,18 +1189,22 @@ deleteDispatch(id) {
               this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
               this.getAllShipmentDates((shipmentData) => {
                 this.rows4 = shipmentData;
+  this.spinner.hide();
            
               });
 
             }
             else {
               this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
+  this.spinner.hide();
+           
             }
 
           }, err => {
             if (err.status == 400) {
               this.toastr.error(this.response.message, 'Message.');
-            }
+  this.spinner.hide();
+}
           });
     }
   })
@@ -1194,6 +1225,7 @@ deleteDispatch(id) {
           "contractId": this.contractId,
           "status": "Open"
         }
+  this.spinner.show();
         
         this.http.
         put(`${environment.apiUrl}/api/Contracts/UpdateContractStatus`, varr)
@@ -1204,17 +1236,22 @@ deleteDispatch(id) {
             if (this.response.success == true){
               this.toastr.success(this.response.message, 'Message.');
               this.getContractData();
+              this.spinner.hide();
 
 
            
             }
             else {
               this.toastr.error('Something went Worng', 'Message.');
-                }
+  this.spinner.hide();
+              
+            }
     
           }, err => {
             if (err.status == 400) {
               this.toastr.error('Something went Worng', 'Message.');
+  this.spinner.hide();
+           
             }
           });
       }
@@ -1238,6 +1275,7 @@ deleteDispatch(id) {
               "contractId": this.contractId,
               "contractUpDate": this.data.contractUpDate
             }
+  this.spinner.show();
         
             this.http.
               post(`${environment.apiUrl}/api/Contracts/AddContractFollowUp`, varr)
@@ -1248,14 +1286,20 @@ deleteDispatch(id) {
                   if (this.response.success == true) {
                     this.toastr.success(this.response.message, 'Message.');
                     this.getAllReminder();
+  this.spinner.hide();
+
                   }
                   else {
                     this.toastr.error(this.response.message, 'Message.');
-                  }
+                  
+  this.spinner.hide();
+}
         
                 }, err => {
                   if (err.status == 400) {
                     this.toastr.error(this.response.message, 'Message.');
+  this.spinner.hide();
+                  
                   }
                 });
     
@@ -1265,6 +1309,7 @@ deleteDispatch(id) {
           readyForBill()
           {
             let varr=  {}
+  this.spinner.show();
         
             this.http.
             put(`${environment.apiUrl}/api/Contracts/ContractReadyForBill/`+this.contractId,varr)
@@ -1274,16 +1319,20 @@ deleteDispatch(id) {
                 this.response = res;
                 if (this.response.success == true){
                   this.toastr.success(this.response.message, 'Message.');
-                  this.router.navigate(['/billing-and-payment/generate-bills']);
-                }
+                  this.router.navigate(['/FabCot/generate-bills']);
+  this.spinner.hide();
+}
                 else {
                   this.toastr.error(this.response.message, 'Message.');
-                    }
+  this.spinner.hide();
+}
         
               }, (err: HttpErrorResponse) => {
                 const messages = this.service.extractErrorMessagesFromErrorResponse(err);
                 this.toastr.error(messages.toString(), 'Message.');
                 console.log(messages);
+  this.spinner.hide();
+
               });
           }
 
@@ -1324,6 +1373,8 @@ deleteDispatch(id) {
               position: 'top',
             }).then((result) => {
               if (result.isConfirmed) {
+  this.spinner.show();
+
                 this.http.
                   delete(`${environment.apiUrl}/api/Contracts/DeleteContractFollowUp/`+ objReminder.id )
                   .subscribe(
@@ -1333,16 +1384,19 @@ deleteDispatch(id) {
                       if (this.response.success == true) {
                         this.toastr.error(this.response.message, 'Message.');
                     this.getAllReminder();
+  this.spinner.hide();
                        
                       }
                       else {
                         this.toastr.error(this.response.message, 'Message.');
-                      }
+  this.spinner.hide();
+}
             
                     }, err => {
                       if (err.status == 400) {
                         this.toastr.error(this.response.message, 'Message.');
-                      }
+  this.spinner.hide();
+}
                     });
         
               }

@@ -10,6 +10,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AddSellerFormComponent } from 'src/app/configuration/seller/add-seller-form/add-seller-form.component';
 import { Dateformater } from 'src/app/shared/dateformater';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-add-new-contracts',
@@ -42,6 +43,7 @@ export class AddNewContractsComponent implements OnInit {
     private service: ServiceService,
     private toastr: ToastrService,
     private modalService: NgbModal,
+    private spinner: NgxSpinnerService,
     private router: Router,
     private http: HttpClient,
   ) { }
@@ -247,7 +249,7 @@ export class AddNewContractsComponent implements OnInit {
   }
 
   navigate() {
-    this.router.navigateByUrl('/yarn-local/active-contract');
+    this.router.navigateByUrl('/FabCot/active-contract');
   };
 
 
@@ -277,7 +279,7 @@ export class AddNewContractsComponent implements OnInit {
           "otherConditionRemarks": this.data.otherConditionRemarks,
           "title": this.data.title, 
     }
-
+this.spinner.show();
     this.http.
       post(`${environment.apiUrl}/api/Contracts/AddContract?`+'enquiryId='+this.objEnquiry+'&'+'departmentId='+departmentId, varr)
       .subscribe(
@@ -287,17 +289,20 @@ export class AddNewContractsComponent implements OnInit {
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
             this.contractForm.reset();
-             this.router.navigate(['/yarn-local/active-contract'], { queryParams: {id: this.response.data} });
+             this.router.navigate(['/FabCot/active-contract'], { queryParams: {id: this.response.data} });
             // this.router.navigate(['/enquiry/active-enquiries']);
+          this.spinner.hide();
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+          this.spinner.hide();
           }
 
         },(err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
+          this.spinner.hide();
         });
   }
 

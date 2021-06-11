@@ -7,6 +7,7 @@ import { Dateformater } from 'src/app/shared/dateformater';
 import { ServiceService } from 'src/app/shared/service.service';
 import { environment } from 'src/environments/environment';
 import {FormsModule , NgForm, ReactiveFormsModule}  from '@angular/forms'
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-edit-dispatch',
@@ -23,6 +24,7 @@ export class EditDispatchComponent implements OnInit {
  
   constructor(
     private _NgbActiveModal: NgbActiveModal,
+    private spinner: NgxSpinnerService,
     private http: HttpClient,
     private service: ServiceService,
     private toastr: ToastrService,
@@ -39,6 +41,7 @@ export class EditDispatchComponent implements OnInit {
   }
 
   getDispatch() {
+    this.spinner.show();
     this.http.get(`${environment.apiUrl}` + this.dispatchId)
       .subscribe(
         res => {
@@ -47,15 +50,17 @@ export class EditDispatchComponent implements OnInit {
             this.data = this.response.data;
             this.data.dispatchDate = this.dateformater.fromModel(this.data.dispatchDate);
             
-
+this.spinner.hide();
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+          this.spinner.hide();
           }
 
         }, err => {
           if (err.status == 400) {
             this.toastr.error(this.response.message, 'Message.');
+         this.spinner.hide();
           }
         });
   }
@@ -64,7 +69,7 @@ export class EditDispatchComponent implements OnInit {
      this.data.dispatchDate = this.dateformater.toModel(this.data.dispatchDate);
     let varr = {
     }
-
+this.spinner.show();
     this.http.
       put(`${environment.apiUrl}`, varr)
       .subscribe(
@@ -74,15 +79,17 @@ export class EditDispatchComponent implements OnInit {
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
             this.activeModal.close(true);
-         
+         this.spinner.hide();
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+          this.spinner.hide();
           }
 
         }, err => {
           if (err.status == 400) {
             this.toastr.error(this.response.message, 'Message.');
+          this.spinner.hide();
           }
         });
   }

@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient  , HttpErrorResponse} from '@angular/common/http';
 import { Dateformater } from 'src/app/shared/dateformater';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-buyer-payment-form',
   templateUrl: './buyer-payment-form.component.html',
@@ -28,6 +29,7 @@ export class BuyerPaymentFormComponent implements OnInit {
 
   constructor(
     private service: ServiceService,
+    private spinner: NgxSpinnerService,
     private router: Router,
     private toastr: ToastrService,
     private http: HttpClient,
@@ -43,7 +45,7 @@ export class BuyerPaymentFormComponent implements OnInit {
 
 
   navigateBuyerPaymentForm() {
-    this.router.navigate(['/yarn-local/buyer-payment']);
+    this.router.navigate(['/FabCot/buyer-payment']);
  };
 
   GetBuyersDropdown() {
@@ -125,7 +127,7 @@ export class BuyerPaymentFormComponent implements OnInit {
       
    
       }
-
+this.spinner.show();
     this.http.
       post(`${environment.apiUrl}/api/YarnContracts/AddBuyerToSellerPayment`, varr)
       .subscribe(
@@ -135,16 +137,18 @@ export class BuyerPaymentFormComponent implements OnInit {
           if (this.response.success == true) {
             this.data = this.response.data;
             this.toastr.success(this.response.message, 'Message.');
-
+this.spinner.hide();
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+          this.spinner.hide();
           }
 
         }, (err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
+          this.spinner.hide();
         });
   }
 
