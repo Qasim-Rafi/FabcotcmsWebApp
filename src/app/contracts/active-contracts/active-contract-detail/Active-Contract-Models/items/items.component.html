@@ -42,7 +42,7 @@
             </label>
             <div class="col-sm-3">
                 <input type="number" min="0" required (keyup)="itemquantity($event)"
-                id="itemQuantity" [ngClass]="{ 'error': itemQuantity.invalid && ItemForm.submitted }" #itemQuantity="ngModel"
+                id="itemQuantity" [ngClass]="{ 'error': itemQuantity.invalid && ItemForm.submitted }"
               name="itemQuantity" [(ngModel)]="data.itemQuantity" #itemQuantity="ngModel"
                 class="form-control" value="" placeholder="Quantity" />
             </div>
