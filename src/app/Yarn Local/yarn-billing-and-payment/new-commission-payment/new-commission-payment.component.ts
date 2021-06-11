@@ -34,7 +34,8 @@ extCommData : any = [];
   currency : any = []
   bankAcc : any = []
   agent : any = []
-
+  buyer: any = [];
+  
 
   constructor(
 
@@ -56,6 +57,19 @@ extCommData : any = [];
      this.GetPaymentModeDropdown();
      this.GetSellerDropdown();
      this.GetAgentDropdown();
+     this.GetBuyersDropdown();
+  }
+  
+  GetBuyersDropdown() {
+    this.service.getBuyers().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.buyer = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
   }
   GetSellerDropdown() {
     this.service.getSellerLookup().subscribe(res => {
@@ -63,16 +77,6 @@ extCommData : any = [];
       if (this.response.success == true) {
 
         this.seller = this.response.data;
-        // this.newSeller = this.response.data
-
-
-
-        // if(type == "other")
-        // {
-        //   this.seller.id = this.newSeller;
-        //   this.data.sellerId = this.seller.id
-        // }
-       
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -132,6 +136,7 @@ extCommData : any = [];
   }
   addCommissionPayment() {
       let varr = {
+        "buyerId": this.commData.buyerId,
         "sellerId": this.commData.sellerId,
         "isBuyerCommission": this.commData.isBuyerCommission,
         "paymentDate": this.dateformater.toModel(this.commData.paymentDate),
@@ -145,6 +150,7 @@ extCommData : any = [];
         "depositInBank":this.commData.depositInBank,
         "depositDate": this.dateformater.toModel(this.commData.depositDate),
         "paymentRemarks":this.commData.paymentRemarks,
+        "active": true
       }
 this.spinner.show();
     this.http.
@@ -186,6 +192,7 @@ this.spinner.hide();
   "additionalDetail": this.extCommData.additionalDetail,
   "recieveDate": this.dateformater.toModel(this.extCommData.recieveDate),
   "paymentRemarks": this.extCommData.paymentRemarks,
+  "active": true
     }
     this.spinner.show();
 
