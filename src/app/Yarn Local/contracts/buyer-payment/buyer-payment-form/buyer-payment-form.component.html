@@ -1,4 +1,6 @@
-<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "line-spin-fade" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="line-spin-fade" [fullScreen]="true">
+    <p style="color: white"> Loading... </p>
+</ngx-spinner>
 <div class="content-header">
 
     <div class="row">
@@ -47,224 +49,185 @@
 
         <div class="row">
             <div class="col-md-12 p-3">
-                <!-- <div class="row">
-                    <div class="col-md-12">
-                        <nav>
-                            <div class="row">
-                                <div class="col-md-12"> -->
 
-                                    <!-- <div class="nav nav-pills " id="nav-tab" role="tablist">
 
-                                        <a class="nav-item nav-link active " id="nav-Details-tab" data-toggle="tab"
-                                            href="#nav-parties" role="tab" aria-controls="nav-Details"
-                                            aria-selected="true">Parties</a>
 
-                                        <a class="nav-item nav-link " id="nav-payment-tab" data-toggle="tab"
-                                            href="#nav-payment" role="tab" aria-controls="nav-payment"
-                                            aria-selected="false">Payment Detials &nbsp;</a>
 
-                                        <a class="nav-item nav-link " id="nav-sale-tab" data-toggle="tab"
-                                            href="#nav-sale" role="tab" aria-controls="nav-sale"
-                                            aria-selected="false">Sale Invoices &nbsp;</a>
 
-                                        <a class="nav-item nav-link " id="nav-remarks-tab" data-toggle="tab"
-                                            href="#nav-remarks" role="tab" aria-controls="nav-remarks"
-                                            aria-selected="false">Remarks / Other Conditions &nbsp;</a>
-                                    </div> -->
-<!-- 
-                                </div>
+
+                <form #enquiryForm="ngForm" novalidate>
+
+
+                    <div class="pt-4 pb-4">
+
+                        <div class="mb-3">
+                            <span class="badge badge-primary"> Parties</span>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label for="inputEmail3" class=" col-md-3 col-form-label control-label">Buyer Name</label>
+
+                            <div class="col-md-7">
+
+                                <ng-select name="buyerId" #buyerId="ngModel" [(ngModel)]="data.buyerId"
+                                    placeholder="-- Select --">
+                                    <ng-option *ngFor="let i of buyer" [value]="i.id">{{ i.buyerName }}
+                                    </ng-option>
+                                </ng-select>
+
+
+                                <small id="passwordHelpBlock" class="form-text text-lightgrey">
+                                    Only Parent Buyer is available for selection
+                                </small>
                             </div>
-                        </nav>
-                    </div>
-                </div> -->
+                        </div>
 
 
-            
+                        <div class="form-group row">
+                            <label for="inputEmail3" class=" col-md-3 col-form-label control-label">Supplier
+                                Name</label>
 
-                <!-- <div class="tab-content" id="nav-tabContent"> -->
+                            <div class="col-md-7">
 
-                    <div class="form-row ">
-                        <div class="col-md-12 pt-2r pb-3">
-                            
-                            <div class="col-md-12">
-                                <span class="badge badge-primary"> Parties</span>
+                                <ng-select name="sellerId" #sellerId="ngModel" class="" [(ngModel)]="data.sellerId"
+                                    placeholder="-- Select --">
+                                    <ng-option *ngFor="let i of seller" [value]="i.id">{{ i.sellerName }}
+                                    </ng-option>
+                                </ng-select>
+
+                                <small id="passwordHelpBlock" class="form-text text-lightgrey">
+                                    Only Parent Supplier is available for selection
+                                </small>
+
                             </div>
 
                         </div>
+
                     </div>
-                    <!-- <div class="tab-pane fade show active" id="nav-parties" role="tabpanel" aria-labelledby="nav-parties-tab"> -->
-                        <form #enquiryForm="ngForm" novalidate>
-                    
-                         
-                    
-                                <div class="form-group row">
-                                    <label for="inputEmail3" class=" col-md-2 col-form-label control-label">Buyer Name</label>
-                    
-                                    <div class="col-md-8">
-                    
-                                        <ng-select name="buyerId" #buyerId="ngModel" class="input-w px-0" [(ngModel)]="data.buyerId"
-                                        placeholder="-- Select --">
-                                        <ng-option *ngFor="let i of buyer" [value]="i.id">{{ i.buyerName }}
-                                        </ng-option>
-                                    </ng-select>
-                    
-                    
-                                    <small id="passwordHelpBlock" class="form-text text-lightgrey">
-                                        Only Parent Buyer is available for selection
-                                    </small>
-                                    </div>
-                                </div>
 
 
-                    
-                                <div class="form-group row">
-                                    <label for="inputEmail3" class=" col-md-2 col-form-label control-label">Supplier Name</label>
-
-                                    <div class="col-md-8">
-                                    
-                                        <ng-select name="sellerId" #sellerId="ngModel" class="input-w px-0" [(ngModel)]="data.sellerId"
-                                        placeholder="-- Select --">
-                                        <ng-option *ngFor="let i of seller" [value]="i.id">{{ i.sellerName }}
-                                        </ng-option>
-                                    </ng-select>
-                                    
-                                        <small id="passwordHelpBlock" class="form-text text-lightgrey">
-                                            Only Parent Supplier is available for selection
-                                        </small>
-                                    
-                                    </div>
-                    
-                                </div>
-                    
-                            
-                    
-                        </form>
-                    <!-- </div> -->
+                </form>
 
 
+                <!-------------- -------------->
 
-                    <!-- tab 2 -->
-                  
-                    <div class="form-row border-top">
-                        <div class="col-md-12 pt-2r pb-3">
-                            
-                            <div class="col-md-12">
-                                <span class="badge badge-primary"> Payment Details</span>
-                            </div>
 
+                <div class="form-row border-top">
+                    <div class="col-md-12 pt-4 pb-4">
+
+                        <div class="mb-3">
+                            <span class="badge badge-primary"> Payment Details</span>
                         </div>
-                    </div>
-                    
-                        <div class="col-md-12">
-                    
-                            <div class="form-group row">
-                                <label for="name" class="col-md-2 col-form-label">Payment Date</label>
-                                <div class="col-sm-8">
-                                    <input navigation="select" class="form-control" ngbDatepicker #validityDate="ngbDatepicker"
-                                        (click)="validityDate.toggle()" placeholder="" [(ngModel)]="data.paymentDate"
-                                        name="paymentDate" />
-                                </div>
+
+
+
+                        <div class="form-group row">
+                            <label for="name" class="col-md-3 col-form-label">Payment Date</label>
+                            <div class="col-md-7">
+                                <input navigation="select" class="form-control" ngbDatepicker
+                                    #validityDate="ngbDatepicker" (click)="validityDate.toggle()" placeholder=""
+                                    [(ngModel)]="data.paymentDate" name="paymentDate" />
                             </div>
-                    
-                            <div class="form-group row">
-                    
-                                <label for="inputEmail3" class="col-form-label col-sm-2 control-label ">Amount</label>
-                    
-                                <div class="col-md-8">
-                                    <div class="row">
-                    
-                                        <div class="col-md-3">
-                                            <div class="input-group">
-                                                <input type="number" min="0" placeholder="Comm%" #amount="ngModel"
-                                                    class="form-control" [(ngModel)]="data.amount"
-                                                    name="amount">
+                        </div>
+
+                        <div class="form-group row">
+
+                            <label for="inputEmail3" class="col-form-label col-sm-3 control-label ">Amount</label>
+
+                            <div class="col-md-7">
+                                <div class="row">
+
+                                    <div class="col-md-3">
+                                        <div class="input-group">
+                                            <input type="number" min="0" placeholder="Comm%" #amount="ngModel"
+                                                class="form-control" [(ngModel)]="data.amount" name="amount">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3 mrg-sm1 mrg-tp">
+
+                                        <ng-select name="currencyId " #currencyId="ngModel"
+                                            [(ngModel)]="data.currencyId" placeholder="Select Currency">
+                                            <ng-option *ngFor="let i of currency" [value]="i.id">{{ i.name }}
+                                            </ng-option>
+                                        </ng-select>
+
+                                    </div>
+
+                                    <div class="col-md-6 mrg-sm1">
+                                        <div class="row">
+                                            <label for="inputEmail3"
+                                                class="col-form-label col-sm-4 control-label ">Payment
+                                                Mode</label>
+
+
+                                            <div class="col-md-8 mrg-sm1">
+
+                                                <ng-select name="paymentMode " [(ngModel)]="data.paymentMode"
+                                                    placeholder="Select Payment Mode">
+                                                    <ng-option *ngFor="let i of paymentMode" [value]="i">{{ i }}
+                                                    </ng-option>
+                                                </ng-select>
                                             </div>
-                                        </div>
-                    
-                                        <div class="col-md-3 mrg-sm1">
-                    
-                                            <ng-select name="currencyId " #currencyId="ngModel"
-                                                [(ngModel)]="data.currencyId" placeholder="Select Currency">
-                                                <ng-option *ngFor="let i of currency" [value]="i.id">{{ i.name }}
-                                                </ng-option>
-                                            </ng-select>
-                    
-                                        </div>
-                    
-                                        <div class="col-md-6 mrg-sm1">
-                                            <div class="row">
-                                                <label for="inputEmail3" class="col-form-label col-sm-4 control-label ">Payment
-                                                    Mode</label>
-                    
-                    
-                                                <div class="col-md-8 mrg-sm1">
-                    
-                                                    <ng-select name="paymentMode " 
-                                                        [(ngModel)]="data.paymentMode" placeholder="Select Payment Mode">
-                                                        <ng-option *ngFor="let i of paymentMode" [value]="i">{{ i }}
-                                                        </ng-option>
-                                                    </ng-select>
-                                                </div>
-                    
-                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
-                    
                             </div>
-                    
-                    
-                            <div class="form-group row">
-                                <label for="name" class="col-md-2 col-form-label">Additional Details</label>
-                                <div class="col-md-8">
-                                    <input class="form-control" type="text" name="additionalDetails" placeholder="Additional details..."
-                                    [(ngModel)]="data.additionalDetails"
-                                    />
-                                    <small id="passwordHelpBlock" class="form-text text-lightgrey">
-                                        Only Parent Supplier is available for selection
-                                    </small>
-                                </div>
+
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="name" class="col-md-3 col-form-label">Additional Details</label>
+                            <div class="col-md-7">
+                                <input class="form-control" type="text" name="additionalDetails"
+                                    placeholder="Additional details..." [(ngModel)]="data.additionalDetails" />
+                                <small id="passwordHelpBlock" class="form-text text-lightgrey">
+                                    Only Parent Supplier is available for selection
+                                </small>
                             </div>
-                    
-                            <div class="form-group row">
-                                <label for="name" class="col-sm-2 col-form-label  ">Deposite Date</label>
-                                <div class="col-md-8">
-                                    <input navigation="select" class="form-control" ngbDatepicker #validityDate1="ngbDatepicker"
-                                    (click)="validityDate1.toggle()" placeholder="" [(ngModel)]="data.depositeDate"
-                                    name="depositeDate" />
-                                </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="name" class="col-sm-3 col-form-label  ">Deposite Date</label>
+                            <div class="col-md-7">
+                                <input navigation="select" class="form-control" ngbDatepicker
+                                    #validityDate1="ngbDatepicker" (click)="validityDate1.toggle()" placeholder=""
+                                    [(ngModel)]="data.depositeDate" name="depositeDate" />
                             </div>
-                    
-                            <div class="form-group row">
-                                <label for="number" class="col-sm-2 col-form-label  ">Tax Challan</label>
-                                <div class="col-md-8">
-                                    <input class="form-control" type="number" placeholder="Tax Challan Number"
-                                    [(ngModel)] = "data.taxChalan"
-                                    />
-                                </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="number" class="col-sm-3 col-form-label  ">Tax Challan</label>
+                            <div class="col-md-7">
+                                <input class="form-control" type="number" placeholder="Tax Challan Number"
+                                    [(ngModel)]="data.taxChalan" />
                             </div>
-                    
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <!-------------- -------------->
+
+
+                <div class="row border-top">
+                    <div class="col-md-12 pt-4 pb-4">
+
+                        <div class="mb-3">
+                            <span class="badge badge-primary">Sale Invoices</span>
                         </div>
 
 
-
-<!-- sale Invoice -->
-<div class="form-row border-top">
-    <div class="col-md-12 pt-2r pb-3">
-        
-        <div class="col-md-12">
-            <span class="badge badge-primary">Sale Invoices</span>
-        </div>
-
-    </div>
-</div>
                         <div class="panel-body">
 
                             <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows"
                                 [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
                                 [sorts]="[{prop: 'code', dir: 'asce'}]" [rowHeight]="'auto'" [limit]="6">
 
-                               
+
 
                                 <ngx-datatable-column name="S. No." [width]="80" prop="name">
                                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
@@ -346,43 +309,60 @@
 
                         </div>
 
+                    </div>
+                </div>
 
-                        <div class="form-row border-top">
-                            <div class="col-md-12 pt-2r pb-3">
-                                
-                                <div class="col-md-12">
-                                    <span class="badge badge-primary">Remarks</span>
+
+
+                <!-------------- -------------->
+
+                <div class="row border-top">
+                    <div class="col-md-12 pt-4 pb-4">
+
+                        <div class="mb-3">
+                            <span class="badge badge-primary">Remarks</span>
+                        </div>
+
+
+
+
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-md-3 col-form-label control-label">Remarks:</label>
+                            <div class="col-md-7">
+                                <div class="input-group">
+                                    <textarea rows="3" class="form-control" [(ngModel)]="data.remarks"
+                                        name="remarks"></textarea>
                                 </div>
-                        
                             </div>
                         </div>
-                        <div class="col-md-12">
 
-                            <div class="form-group row">
-                                <label for="inputEmail3" class="col-md-2 col-form-label control-label">Remarks:</label>
-                                <div class="col-md-8">
-                                    <div class="input-group">
-                                        <textarea rows="3" class="form-control" [(ngModel)]="data.remarks"
-                                            name="remarks"></textarea>
-                                    </div>
-                                </div>
-                            </div>
 
-                        </div>
- 
+                    </div>
+                </div>
 
-  <div class="row p-4">
-    <div class="col-md-6 offset-md-3">
-        <button type="button"  class="btn button-save " (click) = "addPayment()" (click)="navigateBuyerPaymentForm()">
-            <i class="fas fa-check"></i>&nbsp;Save 
-        </button>
-        <button class="btn btn-outline-secondary  ml-2" (click)="navigateBuyerPaymentForm()" >
-            <i class="fas fa-times">
-            </i> Close
-        </button>
-        </div>
-        </div>
-                <!-- </div> -->
+
+
+
+
+
+
+
+                <div class="row p-4">
+                    <div class="col-md-12 text-center">
+                        <button type="button" class="btn button-save " (click)="addPayment()"
+                            (click)="navigateBuyerPaymentForm()">
+                            <i class="fas fa-check"></i>&nbsp;Save
+                        </button>
+                        <button class="btn btn-outline-secondary  ml-2" (click)="navigateBuyerPaymentForm()">
+                            <i class="fas fa-times">
+                            </i> Close
+                        </button>
+                    </div>
+                </div>
+
+
+
+
             </div>
         </div>
     </div>
