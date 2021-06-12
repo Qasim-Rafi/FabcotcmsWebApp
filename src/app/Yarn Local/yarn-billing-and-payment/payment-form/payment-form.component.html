@@ -470,7 +470,7 @@
 
                                 </label>
                                 <!-- <label for="active" class="form-check-label checkboxDanger1">Deposited in Bank</label> -->
-                                <div class="col-md-2">
+                                <div class="col-md-1">
                                     <div class="form-check form-check-label" *ngIf = "statusCheck.statusCheck == 'addPayment'">
                                         <input  id="active" class="form-check-input" type="checkbox" 
                                         name="isDepositedInBank" [(ngModel)]="paymentAdddata.isDepositedInBank" #isDepositedInBank="ngModel"
@@ -485,7 +485,7 @@
                                     </div>
 
                                 </div>
-                                <div class="col-md-1 ">
+                                <div class="col-md-2 text-right">
                                     <label class=" col-form-label control-label">
                                         Deposited Date
                                         <span class="required-denote">*</span>
@@ -531,7 +531,7 @@
                             </div> -->
 
                             <div class="row">
-                                <div class="col-md-6 offset-md-3">
+                                <div class="col-md-12 text-center mt-4">
                                     <button class="btn button-save" *ngIf="statusCheck.statusCheck == 'addPayment'"
                                     (click)="onSubmit('addPayment')"
                                     >
