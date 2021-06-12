@@ -26,14 +26,14 @@
           <div class="col-sm-8 pt-2">
   
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="Public" id="Public" #contractType = "ngModel"
+              <input class="form-check-input" type="radio" value="Seller" name="contractType" #contractType = "ngModel"
               [(ngModel)] = "data.contractType"
               >
-              <label class="form-check-label" for="Public">Seller Contract</label>
+              <label class="form-check-label" for="contractType">Seller Contract</label>
             </div>
   
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="Private" id="Private" value="False" #contractType = "ngModel"
+              <input class="form-check-input" type="radio" name="contractType"  value="Buyer" #contractType = "ngModel"
               [(ngModel)] = "data.contractType"
               >
               <label class="form-check-label" for="Private">Buyer Contract</label>

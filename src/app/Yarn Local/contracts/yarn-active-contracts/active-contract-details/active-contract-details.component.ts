@@ -66,6 +66,9 @@ export class ActiveContractDetailsComponent implements OnInit {
   ItemFilter: any = [];
   shipmentFilter: any = [];
   noteFilter: any = [];
+  deliveryFilter: any = [];
+  dispatchFilter: any = [];
+
   TnaData: any = {};
   TnaFilter: any = {};
   shipmentData: any = {};
@@ -79,7 +82,7 @@ export class ActiveContractDetailsComponent implements OnInit {
   dispatchData = [];
   contractKickbackData = [];
   
-  deliveryFilter: any = [];
+  // deliveryFilter: any = [];
   deliveryUrl = '/api/YarnContracts/GetAllContractDeliverySchedule'
   shipmentUrl='/api/Contracts/GetAllContractShipmentSchedule/{contractId}';
   dispatchUrl = '/api/YarnContracts/GetAllDispatchRegister'
@@ -468,6 +471,7 @@ getDispatches() {
         this.response = res;
         if (this.response.success == true) {
           this.dispatchData = this.response.data;
+          // this.dispatchFilter = [...this.dispatchData]
           // cb(this.dispatchData);
         }
         else {
@@ -601,7 +605,14 @@ getContractCommisionData(){
 
 
 
-
+searchDispatch(event) {
+  const val = event.target.value.toLowerCase();
+  const temp = this.dispatchFilter.filter(function (d) {
+    return (d.number.toLowerCase().indexOf(val) !== -1 ||   
+    !val);
+  });
+  this.rows = temp;
+}
 
 
 
@@ -767,7 +778,7 @@ this.spinner.show();
   }
   editRemarks(row) {
     const modalRef = this.modalService.open(RemarksComponent, { centered: true });
-    // modalRef.componentInstance.contractId = this.contractId;
+    modalRef.componentInstance.contractId = this.contractId;
     // modalRef.componentInstance.statusCheck = status;
     // modalRef.componentInstance.beneficiaryId = row.id;
   
@@ -785,10 +796,10 @@ this.spinner.show();
       // on dismiss
     });
   }
-  editEmployeeComm() {
+  AddEmployeeComm(status) {
     const modalRef = this.modalService.open(EmployeeCommissionComponent, { centered: true });
     modalRef.componentInstance.contractId = this.contractId;
-    // modalRef.componentInstance.statusCheck = status;
+    modalRef.componentInstance.statusCheck = status;
     // modalRef.componentInstance.beneficiaryId = row.id;
   
   
@@ -796,10 +807,30 @@ this.spinner.show();
       // on close
       if (data == true) {
   
-        // this.getAllBenificery((empData) => {
-          // this.rows1 = empData;
+        this.getAllBenificery((empData) => {
+          this.rows1 = empData;
           // this.listCount= this.rows.length;
-        // });
+        });
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
+  editEmployeeComm(status , row) {
+    const modalRef = this.modalService.open(EmployeeCommissionComponent, { centered: true });
+    modalRef.componentInstance.contractId = this.contractId;
+    modalRef.componentInstance.statusCheck = status;
+    modalRef.componentInstance.beneficiaryId = row.id;
+  
+  
+    modalRef.result.then((data) => {
+      // on close
+      if (data == true) {
+  
+        this.getAllBenificery((empData) => {
+          this.rows1 = empData;
+          // this.listCount= this.rows.length;
+        });
       }
     }, (reason) => {
       // on dismiss
@@ -1116,12 +1147,12 @@ editDeliveries(row, check) {
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
-     
+      this.service.fetch((data) => {
+        this.rows = data;
+      }, this.deliveryUrl);
     }
 
-    this.service.fetch((data) => {
-      this.rows = data;
-    }, this.deliveryUrl);
+ 
 
   }, (reason) => {
     // on dismiss
@@ -1158,6 +1189,8 @@ editDispatch( row ,check) {
   
     }
     this.getContractData();
+    this.getDispatches();
+
 
   }, (reason) => {
     // on dismiss

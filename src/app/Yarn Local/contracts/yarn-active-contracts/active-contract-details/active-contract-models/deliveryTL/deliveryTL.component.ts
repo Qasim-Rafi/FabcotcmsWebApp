@@ -110,7 +110,8 @@ this.spinner.hide();
   }
 
   GetUOMDropdown() {
-    this.service.getUOM().subscribe(res => {
+    this.http.get(`${environment.apiUrl}/api/Lookups/UOMs`).
+    subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
         this.uomList = this.response.data;
@@ -128,7 +129,7 @@ this.spinner.hide();
       "supplierDate": this.dateformater.toModel(this.data.supplierDate),
       "buyerDate": this.dateformater.toModel(this.data.buyerDate),
       "quantity": this.data.quantity,
-      "quantityUOMId": this.data.quantityUomId,
+      "quantityUOMId": this.data.quantityUOMId,
 
     }
 this.spinner.show();
