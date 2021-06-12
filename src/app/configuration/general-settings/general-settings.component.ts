@@ -31,7 +31,7 @@ export class GeneralSettingsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.localId = localStorage.getItem('GeneralSettingsID')
+    this.localId = localStorage.getItem('loggedInDepartmentId')
     if(this.localId != null){
       this.getbyid(this.localId);
 
@@ -44,8 +44,7 @@ export class GeneralSettingsComponent implements OnInit {
   // }
   addGeneralSettings() {
     this.spinner.show();
-    let SomeId =localStorage.getItem('GeneralSettingsID')
-    if (SomeId != null) {
+    if (this.localId != null) {
       let varr = {
         "systemEmailAddress": this.data.systemEmailAddress,
         "emailFromName": this.data.emailFromName,
@@ -106,8 +105,8 @@ export class GeneralSettingsComponent implements OnInit {
             if (this.response.success == true) {
               this.id = this.response.data;
               this.toastr.success(this.response.message, 'Message.');
-              localStorage.setItem('GeneralSettingsID', this.id);
-              this.getbyid(this.id);
+              // localStorage.setItem('GeneralSettingsID', this.id);
+              this.getbyid(this.localId);
               this.spinner.hide();
               // this.notifForm.reset();
               // this.activeModal.close(true);
@@ -132,7 +131,7 @@ export class GeneralSettingsComponent implements OnInit {
 
   getbyid(id) {
 
-    this.http.get(`${environment.apiUrl}/api/Configs/GetGeneralSettingById/` + id)
+    this.http.get(`${environment.apiUrl}/api/Configs/GetGeneralSettingById/` + 0)
       .subscribe(
         res => {
           this.response = res;
