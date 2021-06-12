@@ -196,7 +196,7 @@
 
                             <a class="nav-delivery nav-link " id="nav-delivery-tab" data-toggle="tab" href="#nav-delivery"
                                 role="tab" aria-controls="nav-delivery" aria-selected="false">Delivery TL &nbsp;<span
-                                    class="badge badge-pill badge-primary">{{rows.length}}</span></a>
+                                    class="badge badge-pill badge-primary"></span></a>
 
                             <a class="nav-dispatches nav-link " id="nav-dispatches-tab" data-toggle="tab" href="#nav-dispatches"
                                 role="tab" aria-controls="nav-dispatches" aria-selected="false">Dispatches &nbsp;<span
@@ -677,7 +677,7 @@
                                         <dl class="row">
                                             <dt class="col-sm-6">Buyer Payment terms:
                                             </dt>
-                                            <dd class="col-sm-6">{{contractPaymentData.buyerPaymentTerm}}
+                                            <dd class="col-sm-6">{{contractPaymentData.buyerPaymentTermName}}
                                               </dd>
                                             <dd class="col-sm-6"></dd>
                                         </dl>
@@ -736,7 +736,7 @@
 
                                 <div class="panel-body">
    
-                                    <ngx-datatable #myTable class="bootstrap"  [columnMode]="'force'" [rows]="rows" 
+                                    <ngx-datatable #myTable class="bootstrap"  [columnMode]="'force'" [rows]="deliveryData" 
                                     [headerHeight]="50" [footerHeight]="50" [sorts]="[{ prop: 'autoContractNumber', dir: 'desc' }]" [rowHeight]="'auto'"
                                     [limit]="6">
                                
@@ -1090,8 +1090,8 @@
 
                                     </div>
                                 </div>
-                                <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [sorts]="[{ prop: '', dir: 'asce' }]"
-                                    *ngIf="rows2.length != 0" [columnMode]="'force'" [headerHeight]="50"
+                                <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="deliveryData" [sorts]="[{ prop: '', dir: 'asce' }]"
+                                   [columnMode]="'force'" [headerHeight]="50"
                                     [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
 
                                     
