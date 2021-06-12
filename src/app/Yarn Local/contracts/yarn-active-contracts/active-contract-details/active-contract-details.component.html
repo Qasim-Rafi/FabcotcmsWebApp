@@ -207,7 +207,7 @@
                                     class="badge badge-pill badge-primary">{{rows5.length}}</span></a>
                             <a class="nav-item nav-link " id="nav-Sale-tab" data-toggle="tab" href="#nav-Sale"
                                 role="tab" aria-controls="nav-Sale" aria-selected="false">Sale Invoice &nbsp;<span
-                                    class="badge badge-pill badge-primary">{{invoiceData.length}}</span></a>
+                                    class="badge badge-pill badge-primary">{{saleInvoice.length}}</span></a>
                             <a class="nav-item nav-link " id="nav-Documents-tab" data-toggle="tab" href="#nav-Documents"
                                         role="tab" aria-controls="nav-Documents" aria-selected="false">Documents</a>
                             <a class="nav-item nav-link " id="nav-Notes-tab" data-toggle="tab" href="#nav-Notes"
@@ -1338,6 +1338,9 @@
 
                 <!---------- Sale Invoices Tab ---------->
 
+
+                <!---------- Sale Invoices Tab ---------->
+
                 <div class="tab-pane fade show " id="nav-Sale" role="tabpanel" aria-labelledby="nav-Sale-tab">
                     <div class="col-md-12">
 
@@ -1353,7 +1356,7 @@
                                     </div>
                                     <div class="col-sm-12 col-md-6 col-lg-4 text-right">
                                         <button class="btn btn-outline-primary btn-sm"
-                                          (click) = "addSaleInvoice()" >
+                                            (click)="addinvoiceForm('addInvoice')">
                                             <i class="fas fa-plus"></i>
                                             Add Sale Invoice </button>
                                     </div>
@@ -1363,12 +1366,138 @@
 
 
 
+                        <div class="card-body  BG" *ngFor="let x of saleInvoice; let i = index;">
+
+                            <div class="row pb-5">
+                                <div class="col-md-6 ">
+                                    <button class="btn btn-info btn-sm">
+                                        Sale Invoice #1 - 76543</button>
+                                </div>
+
+                                <div class="col-md-6 text-right">
+                                    <button class="btn btn-outline-primary btn-sm"
+                                        > <i class="fas fa-sticky-note"></i> Credit Note
+                                    </button>
+                                    <button class="btn btn-outline-danger btn-sm ml-3 ">
+                                        <i class="fas fa-sticky-note"></i>
+                                        Debit Note</button>
+                                </div>
+
+                            </div>
+
+                            <!-- <div class="row">
+                                <div class="col-md-12 mb-3">
+                                    <button class="btn btn-outline-primary" (click)="editSaleInvoice('editInvoice',x)"> <i class="far fa-edit"></i>
+                                        Edit Invoice
+                                    </button>
+                                    <button class="btn btn-outline-danger ml-3 " (click)="deleteSaleInvoice(x)"> <i class="far fa-trash-alt"></i>
+                                        Delete</button>
+                            
+                                </div>
+                            </div> -->
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Sale Invoice Status:
+
+                                        </dt>
+                                        <dd class="col-sm-6"></dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Sale Invoice No.:
+
+                                        </dt>
+                                        <dd class="col-sm-6">{{x.saleInvoiceNo}}</dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Quantity:</dt>
+                                        <dd class="col-sm-6">{{x.quantity}}</dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Invoice Amount:</dt>
+                                        <dd class="col-sm-6">{{x.amount}}</dd>
+                                    </dl>
+
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Last Updated by:
+
+
+                                        </dt>
+                                        <dd class="col-sm-6">{{x.updatedByName}}</dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Buyer Payment:</dt>
+                                        <dd class="col-sm-6">{{x.quantity}}</dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Remarks:</dt>
+                                        <dd class="col-sm-6">{{x.saleInvoiceRemarks}}</dd>
+                                    </dl>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Sale Invoice ID:
+
+
+                                        </dt>
+                                        <dd class="col-sm-6">{{x.id}}</dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Invoice Date:
+
+                                        </dt>
+                                        <dd class="col-sm-6">{{x.saleInvoiceDate}}</dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Unit Rate:
+                                        </dt>
+                                        <dd class="col-sm-6">{{x.unit}}</dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Tax Amount:</dt>
+                                        <dd class="col-sm-6">{{x.taxPercentage}}</dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Last Updated on:
+
+
+                                        </dt>
+                                        <dd class="col-sm-6">{{x.updatedDateTime}}</dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Tax Challan Info:</dt>
+                                        <dd class="col-sm-6">{{x.quantity}}</dd>
+                                    </dl>
+                                </div>
+
+                            </div>
+
+                            <div class="row pb-5">
+                                <div class="col-md-6 ">
+                                    
+                                </div>
+
+                                <div class="col-md-6 text-right">
+                                    <button class="btn btn-outline-primary btn-sm"
+                                        > <i class="fas fa-edit"></i> Edit
+                                    </button>
+                                   
+                                </div>
+
+                            </div>
+
+
+                            
+
 
                         </div>
 
 
 
                     </div>
+                </div>
                 <!-- </div> -->
      <!---------- Notes/Activity Tab ---------->
 
