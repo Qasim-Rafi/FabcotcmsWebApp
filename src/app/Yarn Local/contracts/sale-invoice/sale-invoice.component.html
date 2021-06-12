@@ -26,12 +26,12 @@
           <div class="col-md-12 text-center">
             <div class="btn-group" role="group">
   
-              <button type="button" class="btn btn-sm btn-primary" (click)="activeContract();" id="all"
+              <button type="button" class="btn btn-sm btn-primary"  id="all"
                 data-toggle="tooltip" title="" data-original-title="All Sale Invoices"> <i class="far fa-file-alt"></i>
                 All Sale Invoices &nbsp; <span class="badge badge-pill badge-primary">118</span> 
               </button>
   
-              <button type="button" class="btn btn-sm btn-white" (click)="openContract();" id="open"
+              <button type="button" class="btn btn-sm btn-white"  id="open"
                 data-toggle="tooltip" title="Payment Pending"><i class="far fa-money-bill-alt"></i> Pending Payments
                 &nbsp; <span class="badge badge-pill badge-primary">42</span> 
               </button>
@@ -154,6 +154,42 @@
             </ngx-datatable-column>
   
             <ngx-datatable-column name="Article" prop="articleName">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                
+  
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Quantity" prop="articleName">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                
+  
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Rate" prop="articleName">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                
+  
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Invoice Amount" prop="articleName">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                
+  
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Tax %age" prop="articleName">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                
+  
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Tax Amount" prop="articleName">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                
+  
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Payment ID" prop="articleName">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 
   

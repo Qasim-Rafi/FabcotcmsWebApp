@@ -65,9 +65,10 @@
             </div>
             <div class="col-md-5">
                
-              <ng-select
-              [(ngModel)]="data.itemUOMId" placeholder="Select..." name="itemUOMId">
-                <ng-option></ng-option>
+                  
+              <ng-select  [(ngModel)] = "data.unit"   #unit="ngModel"
+               placeholder="Unit" name="unit">
+                <ng-option *ngFor = "let i of uomList" [value] = "i.id">{{i.name}}</ng-option>
             </ng-select>
 
             </div>
