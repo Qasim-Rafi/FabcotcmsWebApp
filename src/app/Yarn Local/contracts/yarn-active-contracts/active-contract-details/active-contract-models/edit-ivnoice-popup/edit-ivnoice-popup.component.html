@@ -1,0 +1,51 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <div aria-hidden="true">&times;</div>
+    </button>
+  
+    <h5 class="modal-title" >
+      <i class="fa fa-note"></i>
+      Edit Buyer Payment & Tax Challan
+    </h5>
+  <small></small>
+  </div>
+  
+  
+  <div class="modal-body BG p-0">
+    <form #InvoiceForm="ngForm" novalidate>
+  
+      <div class="col-md-12 pt-3 pb-2">
+
+          <div class="form-group row">
+            <label for="inputEmail3" class="col-md-3 col-form-label control-label text_Navy">Payemnt ID</label>
+            <div class="col-md-8">
+                <div class="input-group">                    
+                    <input class="form-control text-w-4" placeholder="Payment ID">
+                </div>
+                <small class="text-muted">0 value will remove sale invoice linking with Payment ID</small>                 
+
+            </div>
+        </div>
+       
+        <div class="form-group row">
+            <label for="inputEmail3" class="col-md-3 col-form-label control-label text_Navy">Payemnt Details</label>
+            <div class="col-md-8">
+                <div class="input-group">                    
+                    <textarea class="form-control text-w-4" rows="4" placeholder="Payment ID"></textarea>
+                </div>
+            </div>
+        </div>
+      <div class="modal-footer NotBG">
+        <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal"
+          >
+          Close
+        </button>
+    
+        <button class="btn button-save" type="submit" >
+         Update
+        </button>
+      </div>
+  
+  </div>
+    </form>
+  </div>

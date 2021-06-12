@@ -25,6 +25,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { createBuilderStatusReporter } from 'typescript';
 import { ContractNoteComponent } from './active-contract-models/contract-note/contract-note.component';
 import { AddNewInvComponent } from '../../sale-invoice/add-new-inv/add-new-inv.component';
+import { EditIvnoicePopupComponent } from './active-contract-models/edit-ivnoice-popup/edit-ivnoice-popup.component';
 
 @Component({
   selector: 'app-active-contract-details',
@@ -226,7 +227,7 @@ export class ActiveContractDetailsComponent implements OnInit {
 
   getDeliveries() {
 
-    this.http.get(`${environment.apiUrl}/api/YarnContracts/GetContractDeliveryScheduleById/`+ this.contractId)
+    this.http.get(`${environment.apiUrl}/api/YarnContracts/GetAllContractDeliverySchedule/`+ this.contractId)
       .subscribe(res => {
         this.response = res;
         
@@ -1449,4 +1450,39 @@ deleteDispatch(id) {
             })
         
           }
+
+
+
+          editpopup(row) {
+            const modalRef = this.modalService.open(EditIvnoicePopupComponent , { centered: true });
+            modalRef.componentInstance.bill_id = row.billPaymentId;
+        
+            modalRef.result.then((p) => {
+              // on close
+              // this.fetch((data) => {
+              //   this.rows = data;
+            
+              // });
+              
+              if (p !=null)
+               {
+                 p.branch.name
+                // this.date = this.myDate;
+                // this.getBuyers();
+        
+              }
+            }, (reason) => {
+              // on dismiss
+            });
+          }
+
+
+
+
+
+
+
+
+
+
 }

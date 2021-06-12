@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -22,10 +22,14 @@ export class AddNewInvComponent implements OnInit {
   @Input() invoiceId; 
   @Input() statusCheck; 
   rows: any = {};
+  timeout: any = null;
   data:any ={};
   response: any;
 uomList : any = {};
- 
+rate:any;
+quantitya:any;
+calculatedcost:any;
+// response: any;
   constructor(
     private _NgbActiveModal: NgbActiveModal,
     private spinner: NgxSpinnerService,
@@ -54,7 +58,36 @@ uomList : any = {};
       }
     })
   }
+  getquantity(event){
+    clearTimeout(this.timeout);
+    
+    this.rate=parseInt(localStorage.getItem('rate'))
+      if (event.keyCode != 13) {
+    this.quantitya=event.target.value;
+ this.calculatedcost= this.quantitya*this.rate;
+ this.data.amount=this.calculatedcost;
+//  if(this.data.unit){
+  // this.data.amount=calculatedcost*10;
+ 
+    //  }
+      }
+    
+   }
 
+   getunit(event:any){
+    // clearTimeout(this.timeout);
+   
+      if (event.keyCode != 13) {
+
+if(event==8){
+ 
+  this.data.amount=this.calculatedcost*10;
+}else if(event==7){
+  this.data.amount=this.calculatedcost;
+}
+      }
+    
+   }
   get activeModal() {
     return this._NgbActiveModal;
   }
@@ -63,14 +96,16 @@ uomList : any = {};
     const modalRef = this.modalService.open(SearchComponent , { centered: true });
     modalRef.componentInstance.bill_id = rows.billPaymentId;
 
-    modalRef.result.then((data) => {
+    modalRef.result.then((p) => {
       // on close
-      this.fetch((data) => {
-        this.rows = data;
+      // this.fetch((data) => {
+      //   this.rows = data;
     
-      });
+      // });
       
-      if (data == true) {
+      if (p !=null)
+       {
+         p.branch.name
         // this.date = this.myDate;
         // this.getBuyers();
 
@@ -125,18 +160,18 @@ uomList : any = {};
     //  this.data.saleInvoiceDate = this.dateformater.toModel(this.data.saleInvoiceDate);
     let varr = {
 
-      "contractId": this.contractId,
+      "contractId": parseInt(this.contractId),
       "saleInvoiceNo": this.data.saleInvoiceNo,
       "saleInvoiceDate":this.dateformater.toModel(this.data.saleInvoiceDate),
       "saleInvoiceRemarks":this.data.saleInvoiceRemarks,
       "amount": this.data.amount,
       "quantity": this.data.quantity,
-      "unit": this.data.unit,
+      "unit": this.data.unit.toString(),
       "taxPercentage": this.data.taxPercentage,
     }
 this.spinner.show();
     this.http.
-      post(`${environment.apiUrl}/api/Contracts/AddContractSaleInvoice`, varr)
+      post(`${environment.apiUrl}/api/YarnContracts/AddContractSaleInvoice`, varr)
       .subscribe(
         res => {
 
@@ -144,6 +179,7 @@ this.spinner.show();
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
             this.activeModal.close(true);
+          localStorage.setItem('quantity',this.data.quantity);
          this.spinner.hide();
           }
           else {
@@ -151,11 +187,11 @@ this.spinner.show();
          this.spinner.hide();
           }
 
-        }, err => {
-          if (err.status == 400) {
-            this.toastr.error(this.response.message, 'Message.');
+        }, (err: HttpErrorResponse) => {
+          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+          this.toastr.error(messages.toString(),'Message.');
           this.spinner.hide();
-          }
+          
         });
   }
 
