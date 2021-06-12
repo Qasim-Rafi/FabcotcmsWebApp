@@ -68,7 +68,7 @@ export class BuyerPaymentComponent implements OnInit {
   }
 
   fetch(cb) {
-    this.spinner.show();
+    // this.spinner.show();
     this.http
     .get(`${environment.apiUrl}/api/YarnContracts/GetAllBuyerToSellerPayment` )
     .subscribe(res => {
@@ -79,17 +79,17 @@ export class BuyerPaymentComponent implements OnInit {
     this.data =this.response.data;
 
     cb(this.data);
-    this.spinner.hide();
+    // this.spinner.hide();
     }
     else{
       this.toastr.error(this.response.message, 'Message.');
-    this.spinner.hide();
+    // this.spinner.hide();
     }
       // this.spinner.hide();
     }, err => {
       if ( err.status == 400) {
  this.toastr.error(err.error.message, 'Message.');
-this.spinner.hide();      
+// this.spinner.hide();      
 }
     //  this.spinner.hide();
     });

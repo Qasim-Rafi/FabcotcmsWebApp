@@ -196,8 +196,10 @@ getAgentType(){
   getMode() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/ShipmentModes`)
   }
+  
+// ​/api​/Lookups​/UOMs
   getUOM() {
-    return this.http.get(`${environment.apiUrl}/api/Enquiries/GetAllUOM`)
+    return this.http.get(`${environment.apiUrl}/api/Lookups/UOMs`)
   }
   getLoom() {
     return this.http.get(`${environment.apiUrl}/api/TextileGarments/GetAllLoomType`)

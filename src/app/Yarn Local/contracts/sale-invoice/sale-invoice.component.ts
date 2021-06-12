@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
@@ -19,7 +19,7 @@ export class SaleInvoiceComponent implements OnInit {
   response: any;
   data: any = {};
   saleInvoice: any = {};
-
+  @Input() contractId;
   rows: any = [];
   columns: any = [];
   temp: any[];
@@ -32,19 +32,29 @@ export class SaleInvoiceComponent implements OnInit {
   receivedCount: number;
   onHoldCount: number;
   currencyFilter: any = [];
-
-
+  saleinvoiceFilter: any = {};
+  saleinvoicecount: number;
+  queryParems: any = {};
+  // contractId: any = {};
   constructor(
     private router: Router,
     private spinner: NgxSpinnerService,
+    private route: ActivatedRoute,
     private http: HttpClient,
     private toastr: ToastrService,
     private modalService: NgbModal,
  
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void  {
+    this.queryParems = this.route.snapshot.queryParams;
+    this.contractId = this.queryParems.id;
+    this.fetch((data) => {
+      this.saleinvoiceFilter = [...data];
 
+      this.rows = data;
+      this.saleinvoicecount = this.rows.length;
+    });
   }
 
 
@@ -67,38 +77,6 @@ export class SaleInvoiceComponent implements OnInit {
   };
 
 
-activeContract(){
-  console.log("Active Contracts");
-  // document.getElementById('all').style. = 'background-color: red; color: white;';
-}
-
-openContract(){
-  console.log("open Contracts");
-  // document.getElementById('open').style.cssText = 'background-color: red; color: white;';
-}
-
-
-bill_awaitedContract(){
-  console.log("bill_awaited Contracts")
-}
-
-billedContract(){
-  console.log("billed Contracts")
-}
-
-receivableContract(){
-  console.log("receivable Contracts")
-}
-
-receivedContract(){
-  console.log("received Contracts")
-}
-
-on_HandContract(){
-  console.log("on_Hand Contracts")
-}
-
-
 
 addinvoiceForm(check){
   const modalRef = this.modalService.open(AddNewInvComponent, { centered: true });
@@ -110,7 +88,7 @@ addinvoiceForm(check){
         //  this.date = this.myDate;
          this.fetch((data) => {
           this.rows = data;
-    this.currencyFilter = [...this.rows];
+    this.saleinvoiceFilter = [...this.rows];
       
         });
        
@@ -123,7 +101,7 @@ addinvoiceForm(check){
 fetch(cb) {
     this.spinner.show();
   this.http
-  .get(`${environment.apiUrl}/api/YarnContracts/GetAllBuyerToSellerPayment` )
+  .get(`${environment.apiUrl}/api/Contracts/GetAllContractSaleInvoice/`+this.contractId )
   .subscribe(res => {
     this.response = res;
    
