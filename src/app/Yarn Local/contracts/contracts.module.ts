@@ -39,6 +39,7 @@ import {RemarksComponent} from './yarn-active-contracts/active-contract-details/
 import {EmployeeCommissionComponent} from './yarn-active-contracts/active-contract-details/active-contract-models/employee-commission/employee-commission.component'
 import {CommisionKickbackComponent} from './yarn-active-contracts/active-contract-details/active-contract-models/commision-kickback/commision-kickback.component'
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { SearchComponent } from './sale-invoice/search/search.component';
 
 @NgModule({
   declarations: [AddNewContractsComponent,
@@ -58,6 +59,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
  RemarksComponent,
 EmployeeCommissionComponent,
 CommisionKickbackComponent,
+SearchComponent,
 
   ],
   imports: [
