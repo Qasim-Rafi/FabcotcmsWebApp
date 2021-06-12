@@ -787,7 +787,7 @@ this.spinner.show();
   }
   editEmployeeComm() {
     const modalRef = this.modalService.open(EmployeeCommissionComponent, { centered: true });
-    // modalRef.componentInstance.contractId = this.contractId;
+    modalRef.componentInstance.contractId = this.contractId;
     // modalRef.componentInstance.statusCheck = status;
     // modalRef.componentInstance.beneficiaryId = row.id;
   
@@ -826,7 +826,7 @@ this.spinner.show();
 
 
   getContractKickBack() {
-    this.http.get(`${environment.apiUrl}/api​/Contracts​/GetContractCommissionKickBackById​/` + this.contractId)
+    this.http.get(`${environment.apiUrl}` + this.contractId)
       .subscribe(
         res => {
           this.response = res;
