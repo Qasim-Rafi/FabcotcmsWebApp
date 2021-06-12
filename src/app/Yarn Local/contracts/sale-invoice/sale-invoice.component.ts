@@ -81,6 +81,7 @@ export class SaleInvoiceComponent implements OnInit {
 addinvoiceForm(check){
   const modalRef = this.modalService.open(AddNewInvComponent, { centered: true });
   modalRef.componentInstance.statusCheck = check;
+  modalRef.componentInstance.contractId = this.contractId ;
 
         modalRef.result.then((data) => {
        // on close
@@ -124,52 +125,64 @@ this.toastr.error(err.error.message, 'Message.');
   });
 }
 
+editinvoice(row) {
+  const modalRef = this.modalService.open(AddNewInvComponent, { centered: true });
+  modalRef.componentInstance.invoiceId = row.id;
+  modalRef.result.then((data) => {
+    // on close
+    if (data == true) {
+     this.data = data;
+
+    }
+  }, (reason) => {
+    // on dismiss
+  });
+}
 
 
 
+deleteinvoice(row) {
+  Swal.fire({
+    title: GlobalConstants.deleteTitle, //'Are you sure?',
+    text: GlobalConstants.deleteMessage + ' ' + '"' + row.autoContractNumber + '"',
+    icon: 'error',
+    showCancelButton: true,
+    confirmButtonColor: '#ed5565',
+    cancelButtonColor: '#dae0e5',
+    cancelButtonText: 'No',
+    confirmButtonText: 'Yes',
+    reverseButtons: true,
+    position: 'top',
+  }).then((result) => {
+    if (result.isConfirmed) {
 
-// deleteContract(obj) {
-//   Swal.fire({
-//     title: GlobalConstants.deleteTitle, //'Are you sure?',
-//     text: GlobalConstants.deleteMessage + ' ' + '"' + obj.autoContractNumber + '"',
-//     icon: 'error',
-//     showCancelButton: true,
-//     confirmButtonColor: '#ed5565',
-//     cancelButtonColor: '#dae0e5',
-//     cancelButtonText: 'No',
-//     confirmButtonText: 'Yes',
-//     reverseButtons: true,
-//     position: 'top',
-//   }).then((result) => {
-//     if (result.isConfirmed) {
-
-//       this.http.delete(`${environment.apiUrl}/api/Contracts/DeleteContract/` + obj.id)
-//         .subscribe(
-//           res => {
-//             this.response = res;
-//             if (this.response.success == true) {
-//               this.toastr.error(this.response.message, 'Message.');
-//               // this.getAllEnquiryItems();
-//               this.fetch((data) => {
-//                 this.rows = data;
-//               });
+      this.http.delete(`${environment.apiUrl}/api/YarnContracts/DeleteContractSaleInvoice/` + row.id)
+        .subscribe(
+          res => {
+            this.response = res;
+            if (this.response.success == true) {
+              this.toastr.error(this.response.message, 'Message.');
+              // this.getAllEnquiryItems();
+              this.fetch((data) => {
+                this.rows = data;
+              });
               
 
-//             }
-//             else {
-//               this.toastr.error(this.response.message, 'Message.');
-//             }
+            }
+            else {
+              this.toastr.error(this.response.message, 'Message.');
+            }
 
-//           }, err => {
-//             if (err.status == 400) {
-//               this.toastr.error(this.response.message, 'Message.');
-//             }
-//           });
+          }, err => {
+            if (err.status == 400) {
+              this.toastr.error(this.response.message, 'Message.');
+            }
+          });
 
-//     }
-//   })
+    }
+  })
 
-// }
+}
 
 
 }

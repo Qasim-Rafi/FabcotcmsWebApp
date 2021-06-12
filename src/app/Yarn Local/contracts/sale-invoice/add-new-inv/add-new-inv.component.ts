@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { GlobalConstants } from 'src/app/Common/global-constants';
 import { Dateformater } from 'src/app/shared/dateformater';
 import { ServiceService } from 'src/app/shared/service.service';
 import { environment } from 'src/environments/environment';
+import { SearchComponent } from '../search/search.component';
 
 @Component({
   selector: 'app-add-new-inv',
@@ -20,6 +21,7 @@ export class AddNewInvComponent implements OnInit {
   @Input() contractId;
   @Input() invoiceId; 
   @Input() statusCheck; 
+  rows: any = {};
   data:any ={};
   response: any;
 uomList : any = {};
@@ -27,6 +29,7 @@ uomList : any = {};
   constructor(
     private _NgbActiveModal: NgbActiveModal,
     private spinner: NgxSpinnerService,
+    private modalService: NgbModal,
     private http: HttpClient,
     private service: ServiceService,
     private toastr: ToastrService,
@@ -35,7 +38,7 @@ uomList : any = {};
 
   ngOnInit(): void {
     this.GetUOMDropdown();
-    this.invoiceId = this.invoiceId;
+    
     if (this.statusCheck == 'editInvoice') {
       this.editSaleInvoice();
     }
@@ -56,9 +59,70 @@ uomList : any = {};
     return this._NgbActiveModal;
   }
 
-  
+  ChangeBankForm(rows) {
+    const modalRef = this.modalService.open(SearchComponent , { centered: true });
+    modalRef.componentInstance.bill_id = rows.billPaymentId;
+
+    modalRef.result.then((data) => {
+      // on close
+      this.fetch((data) => {
+        this.rows = data;
+    
+      });
+      
+      if (data == true) {
+        // this.date = this.myDate;
+        // this.getBuyers();
+
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
+
+
+
+  fetch(cb) {
+    // this.spinner.show();
+    this.http
+    .get(`${environment.apiUrl}/api/BillingPayments/GetContractBillById/` + this.invoiceId)
+    .subscribe(res => {
+      this.response = res;
+     
+    if(this.response.success==true)
+    {
+    this.data =this.response.data;
+// this.totalAmount = this.data.contractSaleInvoices[0].totalAmount;
+//     const toWords = new ToWords();
+//     this.words = toWords.convert(this.data.invoiceTotalAmount);
+
+
+    cb(this.data);
+    // this.spinner.hide();
+    }
+    else{
+      this.toastr.error(this.response.message, 'Message.');
+  //  this.spinner.hide();
+    }
+      // this.spinner.hide();
+    }, err => {
+      if ( err.status == 400) {
+ this.toastr.error(err.error.message, 'Message.');
+// this.spinner.hide();      
+}
+    //  this.spinner.hide();
+    });
+  }
+
+
+
+
+
+
+
+
   addSaleInvoice() {
-     this.data.saleInvoiceDate = this.dateformater.toModel(this.data.saleInvoiceDate);
+    //  this.data.saleInvoiceDate = this.dateformater.toModel(this.data.saleInvoiceDate);
     let varr = {
 
       "contractId": this.contractId,
