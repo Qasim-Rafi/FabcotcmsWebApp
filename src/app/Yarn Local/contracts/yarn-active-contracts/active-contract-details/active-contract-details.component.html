@@ -532,7 +532,8 @@
                                         <dl class="row">
                                             <dt class="col-sm-6">Construction:
                                             </dt>
-                                            <dd class="col-sm-6"></dd>
+                                            <dd class="col-sm-6">{{contractProductData.construction}}</dd>
+
                                         </dl>
                                         <dl class="row">
                                             <dt class="col-sm-6">Article:
@@ -676,8 +677,8 @@
                                         <dl class="row">
                                             <dt class="col-sm-6">Buyer Payment terms:
                                             </dt>
-                                            <dd class="col-sm-6">{{contractPaymentData.priceTermName}}
-                                                {{contractPaymentData.destinationName}}</dd>
+                                            <dd class="col-sm-6">{{contractPaymentData.buyerPaymentTerm}}
+                                              </dd>
                                             <dd class="col-sm-6"></dd>
                                         </dl>
                                     </div>
@@ -691,8 +692,8 @@
                                         </dl>
                                         <dl class="row">
                                             <dt class="col-sm-6">
-                                                Delivery terms:</dt>
-                                            <dd class="col-sm-6">{{contractPaymentData.paymentMode}}</dd>
+                                                Price/Delivery terms:</dt>
+                                            <dd class="col-sm-6">{{contractPaymentData.priceTermName}}</dd>
                                         </dl>
 
                                     </div>
@@ -904,7 +905,7 @@
                                 <div class="row">
                                     <div class="col-md-12 mb-4">
                                         <button class="btn btn-outline-primary btn-sm float-right"
-                                        (click) = "editEmployeeComm()"   > <i class="fas fa-plus"></i></button>
+                                        (click) = "AddEmployeeComm('Add')"   > <i class="fas fa-plus"></i></button>
                                     </div>
                                 </div>
 
@@ -944,7 +945,7 @@
                                             <div class="ibox-tools text-center">
 
                                                 <button type="button" class="btn editIconBack"
-                                                    >
+                                             (click) = "editEmployeeComm('editCommission' , row)" >
                                                     <i class="far fa-edit "></i>
                                                 </button>
 
@@ -1008,12 +1009,12 @@
                                             <dd class="col-sm-6">{{contractRemarksData.otherConditionRemarks}}</dd>
 
                                         </dl>
-                                        <dl class="row">
+                                        <!-- <dl class="row">
                                             <dt class="col-sm-6">Other Condition:
                                             </dt>
                                             <dd class="col-sm-6"></dd>
 
-                                        </dl>
+                                        </dl> -->
                                         <dl class="row">
                                             <dt class="col-sm-6">Preview Title:
                                             </dt>
@@ -1095,8 +1096,8 @@
 
                                     
                                     <ngx-datatable-column name="S.No." prop="lc" [width]="80">
-                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                      {{row.id}}
+                                        <ng-template let-row="row" let-rowIndex = "rowIndex" let-expanded="expanded" ngx-datatable-cell-template>
+                                      {{rowIndex+1}}
                                         </ng-template>
                                     </ngx-datatable-column>  <ngx-datatable-column name="L/C#" prop="lc" [width]="80">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
@@ -1180,7 +1181,7 @@
                                             <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control" id="inputSearch"
-                                                    (keyup)="searchShipmentDates($event)"
+                                                    (keyup)="searchDispatch($event)"
                                                     placeholder="Search ..">
                                             </div>
                                         </div>
@@ -1200,6 +1201,7 @@
 
                                     <ngx-datatable-column name="Dispatch No." prop="id">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                      {{row.number}}
                                         </ng-template>
                                     </ngx-datatable-column>
 

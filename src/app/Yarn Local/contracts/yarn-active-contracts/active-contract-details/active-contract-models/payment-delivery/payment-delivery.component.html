@@ -63,8 +63,8 @@
       <div class="form-group row">
         <label for="description" class="col-sm-3 col-form-label text-Navy">Payment Terms (Buyer Side)</label>
         <div class="col-sm-4">
-          <ng-select required name="paymentTermId" placeholder="Payment Terms" [(ngModel)]="data.paymentTermId"
-            #paymentTermId="ngModel" [ngClass]="{'error': paymentTermId.invalid && partiesForm.submitted }">
+          <ng-select required name="paymentTermId2" placeholder="Payment Terms" [(ngModel)]="data.paymentTermId2"
+            #paymentTermId2="ngModel" [ngClass]="{'error': paymentTermId2.invalid && partiesForm.submitted }">
             <ng-option *ngFor="let i of payment" [value]="i.id">
               {{i.term}}
             </ng-option>

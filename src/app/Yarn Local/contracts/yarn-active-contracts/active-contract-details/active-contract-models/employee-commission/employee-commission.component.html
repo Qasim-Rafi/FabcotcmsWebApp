@@ -63,15 +63,15 @@
       <button class="btn btn-outline-dark" type="submit" (click)="activeModal.close()">
         Close
       </button>
-      <button class="btn btn-save" type="submit" 
+      <button class="btn btn-save" type="submit" *ngIf="statusCheck == 'Add'"
         (click)="addContractEmployeeCommission(CityForm)">
         Save
       </button>
 
-      <!-- <button class="btn btn-save" type="submit" *ngIf="statusCheck == 'editCommission'"
+      <button class="btn btn-save" type="submit" *ngIf="statusCheck == 'editCommission'"
         (click)=" updateContractEmployeeCommission(CityForm)">
         Save
-      </button> -->
+      </button>
 
     </div>
 

@@ -179,7 +179,6 @@ export class PartiesComponent implements OnInit {
       "sellerId": this.data.sellerId,
       "sellerPOCId": this.data.sellerPOCId,
       "sellerContract":this.data.sellerContract,
-      // "certificateIds": this.data.certificateIds != null ? this.data.certificateIds.toString() : null,
     }
 
     this.http.

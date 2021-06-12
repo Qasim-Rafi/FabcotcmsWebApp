@@ -12,7 +12,7 @@
         </p>
       </small> -->
     </h5>
-    <div class="font text-muted text-center">Contract No. </div>
+    <div class="font text-muted text-center">Contract No.{{data.autoContractNumber}} </div>
   </div>
   
   
@@ -27,8 +27,9 @@
         <label for="name" class="col-sm-3 col-form-label"><strong>Cons.info</strong></label>
         <!-- <label for="name" class="col-sm-3 col-form-label">Puchase Order</label> -->
         <div class="col-sm-8">
-          <input type="text" class="form-control"
-            placeholder="" />
+          <input type="text" class="form-control" name="construction" #construction  = "ngModel"
+          [(ngModel)] = "data.construction"
+            placeholder="Construction Information" />
   
         </div>
       </div>

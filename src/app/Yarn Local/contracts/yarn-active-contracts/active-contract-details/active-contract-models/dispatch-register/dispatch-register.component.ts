@@ -46,7 +46,7 @@ export class DispatchRegisterComponent implements OnInit {
   get activeModal() {
     return this._NgbActiveModal;
   }
-
+ 
   GetUOMDropdown() {
     this.service.getUOM().subscribe(res => {
       this.response = res;
@@ -67,7 +67,7 @@ export class DispatchRegisterComponent implements OnInit {
           this.response = res;
           if (this.response.success == true) {
             this.data = this.response.data;
-            this.data.dispatchDate = this.dateformater.fromModel(this.data.dispatchDate);
+            this.data.date = this.dateformater.fromModel(this.data.date);
             
 
           }
@@ -130,7 +130,7 @@ export class DispatchRegisterComponent implements OnInit {
     let varr = {
       "contractId":this.contractId, 
       "number": this.data.number,
-      "date": this.dateformater.toModel(this.data.dispatchDate),
+      "date": this.dateformater.toModel(this.data.date),
       "quantity": this.data.quantity,
       "uomId": this.data.uomId,
       "remarks": this.data.remarks,
