@@ -40,6 +40,7 @@ import {EmployeeCommissionComponent} from './yarn-active-contracts/active-contra
 import {CommisionKickbackComponent} from './yarn-active-contracts/active-contract-details/active-contract-models/commision-kickback/commision-kickback.component'
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { SearchComponent } from './sale-invoice/search/search.component';
+import { EditIvnoicePopupComponent } from './yarn-active-contracts/active-contract-details/active-contract-models/edit-ivnoice-popup/edit-ivnoice-popup.component';
 
 @NgModule({
   declarations: [AddNewContractsComponent,
@@ -60,6 +61,7 @@ import { SearchComponent } from './sale-invoice/search/search.component';
 EmployeeCommissionComponent,
 CommisionKickbackComponent,
 SearchComponent,
+EditIvnoicePopupComponent,
 
   ],
   imports: [

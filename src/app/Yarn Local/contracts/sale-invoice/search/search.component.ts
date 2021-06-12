@@ -81,6 +81,10 @@ export class SearchComponent implements OnInit {
        }
      })
    }
+   transfer(){
+     this.data.branch;
+     this.activeModal.close();
+   }
    change(obj){
      let varr = {    
      }
