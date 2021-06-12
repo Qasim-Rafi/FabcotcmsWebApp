@@ -16,6 +16,7 @@ import { AddBuyerComponent } from '../../yarn-configuration/buyer/add-buyer/add-
 import { AddArticleComponent } from '../../yarn-configuration/articles/add-article/add-article.component';
 import { AddPackingComponent } from '../../yarn-configuration/product/packing/add-packing/add-packing.component';
 import { AddPriceComponent } from '../../yarn-configuration/product/price-term/add-price/add-price.component';
+import { DatePipe } from '@angular/common';
 
 
 @Component({
@@ -55,9 +56,13 @@ export class AddNewContractsComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private router: Router,
     private http: HttpClient,
+    public datepipe: DatePipe,
   ) { }
 
   ngOnInit(): void {
+    let olddate=new Date();
+    let latest_date =this.datepipe.transform(olddate, 'yyyy-MM-dd');
+    this.data.enquiryDate =this.dateformater.fromModel(latest_date);
     this.GetBuyersDropdown("start");
     this.GetSellerDropdown("start");
     this.GetUOMDropdown();
