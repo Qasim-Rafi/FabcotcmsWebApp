@@ -33,9 +33,11 @@
                 </div>
                 <div class="col-md-2">
                    
-                    <ng-select [(ngModel)]="data.quantityUOMId" placeholder="-- Select --" 
+                    <ng-select [(ngModel)]="data.quantityUOMId" placeholder="-- Select --"   
                     name="quantityUOMId" #quantityUOMId="ngModel">
-                    <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
+                    <ng-option *ngFor="let i of uomList"
+                
+                    [value]="i.id">{{ i.name }}
                     </ng-option>
                 </ng-select>
     

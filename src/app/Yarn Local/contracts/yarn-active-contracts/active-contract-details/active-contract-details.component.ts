@@ -550,12 +550,6 @@ getContractCostingData() {
       });
 }
 
-
-
-
-
-
-
 getContractPaymentData() {
   this.http.get(`${environment.apiUrl}/api/Contracts/GetContractPaymentDeliveryById/` + this.contractId)
     .subscribe(
