@@ -18,7 +18,7 @@ export class QuantityAndCostingComponent implements OnInit {
   data:any ={};
   response: any;
   currency: any={};
-  uom: any={};
+  uomList: any={};
 
 
   constructor(
@@ -29,6 +29,9 @@ export class QuantityAndCostingComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.GetUOMDropdown();
+    this.GetCurrencyDropdown();
+    this.getContractCostingData();
   }
   get activeModal() {
     return this._NgbActiveModal;
@@ -46,16 +49,18 @@ export class QuantityAndCostingComponent implements OnInit {
     })
   }
   GetUOMDropdown() {
-    this.service. getUOM().subscribe(res => {
+    this.http.get(`${environment.apiUrl}/api/Lookups/UOMs`).
+    subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.uom = this.response.data;
+        this.uomList = this.response.data;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
       }
     })
   }
+
   getContractCostingData() {
     this.http.get(`${environment.apiUrl}/api/Contracts/GetContractCostingById/` + this.contractId)
       .subscribe(
@@ -77,9 +82,15 @@ export class QuantityAndCostingComponent implements OnInit {
   }
   addContractCosting() {
     let varr = {
-
-      "contractId": this.contractId,
+      "contractId": this.data.contractId,
       "currencyId": this.data.currencyId,
+      "quantity": this.data.quantity,
+      "contractCost": this.data.contractCost,
+      "quantityToleranceValue": this.data.quantityToleranceValue,
+      "rate": this.data.rate,
+      "rateUOMId": this.data.rateUOMId,
+      "rateCurrencyId": this.data.rateCurrencyId,
+      "quantityUOMId": this.data.quantityUOMId
       
     }
 
