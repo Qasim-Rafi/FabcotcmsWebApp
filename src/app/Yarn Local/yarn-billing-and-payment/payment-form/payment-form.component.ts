@@ -32,7 +32,7 @@ export class PaymentFormComponent implements OnInit {
   rows: any = {};
   currency: any = {};
   saleInvoice: any = {};
-  paymentMode: any = {};
+  paymentMode: any = [];
   bankAcc: any = {};
   paymentDateField:any;
   depositeDateField:any;

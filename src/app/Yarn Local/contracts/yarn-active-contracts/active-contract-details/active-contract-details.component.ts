@@ -83,6 +83,8 @@ export class ActiveContractDetailsComponent implements OnInit {
   deliveryCount: number;
   prodPlanData = [];
   dispatchData = [];
+  deliveryData = [];
+
   contractKickbackData = [];
   saleinvoicecount: number;
 
@@ -124,12 +126,13 @@ export class ActiveContractDetailsComponent implements OnInit {
     this.getContractKickBack();
     this.getDispatches();
   
-    this.service.fetch((data) => {
-      this.rows = data;
-      this.deliveryFilter = [...this.rows];
+    // this.service.fetch((data) => {
+    //   this.rows = data;
+    //   this.deliveryFilter = [...this.rows];
 
-      this.deliveryCount = this.rows.length;
-    }, this.deliveryUrl);
+    //   this.deliveryCount = this.rows.length;
+    // }, this.deliveryUrl);
+    this.getDeliveries();
     this.fetch((data) => {
       this.saleinvoiceFilter = [...data];
 
@@ -221,30 +224,27 @@ export class ActiveContractDetailsComponent implements OnInit {
 }
 
 
-  // getAllItems(cb) {
+  getDeliveries() {
 
-  //   this.http
-  //     .get(`${environment.apiUrl}/api/Contracts/GetAllContractItem/`+ this.contractId)
-  //     .subscribe(res => {
-  //       this.response = res;
+    this.http.get(`${environment.apiUrl}/api/YarnContracts/GetContractDeliveryScheduleById/`+ this.contractId)
+      .subscribe(res => {
+        this.response = res;
         
 
-  //       if (this.response.success == true) {
-  //         this.items = this.response.data
-  //         this.ItemFilter = [this.items]; 
-  //         cb(this.items);
-  //       }
-  //       else {
-  //         this.toastr.error(this.response.message, 'Message.');
-  //       }
-  //       // this.spinner.hide();
-  //     }, err => {
-  //       if (err.status == 400) {
-  //         this.toastr.error(err.error.message, 'Message.');;
-  //       }
+        if (this.response.success == true) {
+          this.deliveryData = this.response.data
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+        // this.spinner.hide();
+      }, err => {
+        if (err.status == 400) {
+          this.toastr.error(err.error.message, 'Message.');;
+        }
        
-  //     });
-  // }
+      });
+  }
 
 
 
@@ -597,12 +597,6 @@ getContractCostingData() {
         }
       });
 }
-
-
-
-
-
-
 
 getContractPaymentData() {
   this.http.get(`${environment.apiUrl}/api/Contracts/GetContractPaymentDeliveryById/` + this.contractId)

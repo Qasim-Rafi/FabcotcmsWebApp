@@ -20,7 +20,6 @@ export class QuantityAndCostingComponent implements OnInit {
   currency: any={};
   uomList: any={};
 
-
   constructor(
     private _NgbActiveModal: NgbActiveModal,
     private http: HttpClient,
