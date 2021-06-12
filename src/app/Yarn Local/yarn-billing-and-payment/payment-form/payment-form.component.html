@@ -179,83 +179,93 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row"  
-                            *ngIf = "paymentAdddata.buyerName ==''">
-                                <label class="col-md-3 col-form-label control-label"
-                                 >Supplier Name</label>
-                                <div class="col-md-6" >
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1">
-                                                <i class="fa fa-industry"></i>
-                                            </span>
+                            <div *ngIf = "statusCheck.statusCheck == 'addPayment'">
+                                <div class="form-group row"  
+                                *ngIf = "paymentAdddata.billForBuyerId == null">
+                                    <label class="col-md-3 col-form-label control-label"
+                                     >Supplier Name</label>
+                                    <div class="col-md-6" >
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon1">
+                                                    <i class="fa fa-industry"></i>
+                                                </span>
+                                            </div>
+                                            <input type="text" class="form-control"
+                                           
+                                            readonly 
+                                            name="sellerName" [(ngModel)]="paymentAdddata.sellerName" #sellerName="ngModel"
+                                            >
                                         </div>
-                                        <input type="text" class="form-control"
-                                       
-                                        readonly 
-                                        name="sellerName" [(ngModel)]="paymentAdddata.sellerName" #sellerName="ngModel"
-                                        >
                                     </div>
+                
                                 </div>
-            
                             </div>
-                            <div class="form-group row"  *ngIf = "paymentAdddata.sellerName ==''">
-                                <label class="col-md-3 col-form-label control-label"
-                               >Buyer Name</label>
-                                <div class="col-md-6" >
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1">
-                                                <i class="fa fa-industry"></i>
-                                            </span>
+                            <div *ngIf = "statusCheck.statusCheck == 'addPayment'">
+                                <div class="form-group row"  *ngIf = "paymentAdddata.billForSelerId == null">
+                                    <label class="col-md-3 col-form-label control-label"
+                                   >Buyer Name</label>
+                                    <div class="col-md-6" >
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon1">
+                                                    <i class="fa fa-industry"></i>
+                                                </span>
+                                            </div>
+                                            <input type="text" class="form-control"    readonly 
+                                            name="buyerName" [(ngModel)]="paymentAdddata.buyerName" 
+                                            #buyerName="ngModel"
+                                            >
                                         </div>
-                                        <input type="text" class="form-control"    readonly 
-                                        name="buyerName" [(ngModel)]="paymentAdddata.buyerName" 
-                                        #buyerName="ngModel"
-                                        >
                                     </div>
+                
                                 </div>
-            
                             </div>
+    
 
                             
-                            <div class="form-group row"  
-                            *ngIf = "paymentdata.buyerName ==null">
-                                <label class="col-md-3 col-form-label control-label"
-                                 >Supplier Name</label>
-                                <div class="col-md-6" >
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1">
-                                                <i class="fa fa-industry"></i>
-                                            </span>
+                      
+                            <div *ngIf = "statusCheck.statusCheck == 'editPayment'">
+                                <div class="form-group row"  
+                                *ngIf = "paymentdata.buyerId ==null">
+                                    <label class="col-md-3 col-form-label control-label"
+                                     >Supplier Name</label>
+                                    <div class="col-md-6" >
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon1">
+                                                    <i class="fa fa-industry"></i>
+                                                </span>
+                                            </div>
+                                            <input type="text" class="form-control"
+                                           
+                                            readonly 
+                                            name="sellerName" [(ngModel)]="paymentdata.sellerName" #sellerName="ngModel"
+                                            >
                                         </div>
-                                        <input type="text" class="form-control"
-                                       
-                                        readonly 
-                                        name="sellerName" [(ngModel)]="paymentdata.sellerName" #sellerName="ngModel"
-                                        >
                                     </div>
+                
                                 </div>
-            
                             </div>
-                            <div class="form-group row"  *ngIf = "paymentdata.sellerName ==null">
-                                <label class="col-md-3 col-form-label control-label"
-                               >Buyer Name</label>
-                                <div class="col-md-6" >
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1">
-                                                <i class="fa fa-industry"></i>
-                                            </span>
+                            <div *ngIf = "statusCheck.statusCheck == 'editPayment'">
+                                <div class="form-group row"  *ngIf = "paymentdata.sellerName ==null">
+                                    <label class="col-md-3 col-form-label control-label"
+                                   >Buyer Name</label>
+                                    <div class="col-md-6" >
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon1">
+                                                    <i class="fa fa-industry"></i>
+                                                </span>
+                                            </div>
+                                            <input type="text" class="form-control"    readonly 
+                                            name="buyerName" [(ngModel)]="paymentdata.buyerName" 
+                                            #buyerName="ngModel"
+                                            >
                                         </div>
-                                        <input type="text" class="form-control"    readonly 
-                                        name="buyerName" [(ngModel)]="paymentdata.buyerName" 
-                                        #buyerName="ngModel"
-                                        >
                                     </div>
+                
                                 </div>
-            
                             </div>
 
                             <div class="form-group row">
@@ -383,13 +393,13 @@
                                             {{i}}
                                         </ng-option>
                                     </ng-select> -->
-                                    <ng-select placeholder="--Select--"
-                                    name="paymentId" [(ngModel)]="paymentdata.currencyId"  id="paymentId"  #paymentId="ngModel"
-                                    [ngClass]="{'error': paymentId.invalid && paymentForm.submitted}"
-                               required     >
-                                    <ng-option *ngFor="let i of paymentMode" [value]="i">{{ i}}
-                                      </ng-option>
-
+                                    <ng-select name="paymentMode" placeholder="-- Select --" id="paymentMode" [(ngModel)]="paymentAdddata.paymentMode"
+                                    [ngClass]="{'error': paymentMode.invalid && paymentForm.submitted}"
+                                    required
+                                    >
+                                        <ng-option *ngFor="let i of paymentMode" [value]="i">
+                                            {{i}}
+                                        </ng-option>
                                     </ng-select>
                                 </div>
                                 <div class="col-md-2" *ngIf = "statusCheck.statusCheck == 'editPayment'">

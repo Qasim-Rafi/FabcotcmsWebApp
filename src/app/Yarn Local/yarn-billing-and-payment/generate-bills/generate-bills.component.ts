@@ -55,7 +55,7 @@ export class GenerateBillsComponent implements OnInit {
         
       }
       navigateEditContract(obj) {
-        this.router.navigate(['/yarn-local/yarn-active-contract-details'], { queryParams: {id: obj.id} });
+        this.router.navigate(['/FabCot/active-contract-details'], { queryParams: {id: obj.id} });
 
       };
     
@@ -86,12 +86,12 @@ export class GenerateBillsComponent implements OnInit {
       if (p != null) {
         const item = [...new Set(this.contractIds)];
         let varr = {
-          "contractIds": item,
+          "contractIds": this.contractIds,
            "fabcotBranchName": p.branch.name,
         }
         this.spinner.show();
         this.http.
-          post(`${environment.apiUrl}`, varr)
+          post(`${environment.apiUrl}/api/BillingPayments/GenerateContractBill`, varr)
           .subscribe(
             res => {
     

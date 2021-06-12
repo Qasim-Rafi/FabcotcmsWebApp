@@ -97,6 +97,7 @@ export class ExternalAgentCommissionComponent implements OnInit {
                 this.toastr.error(this.response.message, 'Message.');
                 this.fetch((data=>{
                   this.rows = data;
+                  this.count = this.rows.length;
   this.spinner.hide();
 
                 }))

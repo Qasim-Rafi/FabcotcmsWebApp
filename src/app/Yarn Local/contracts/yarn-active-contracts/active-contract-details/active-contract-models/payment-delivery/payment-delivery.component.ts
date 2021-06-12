@@ -138,7 +138,7 @@ export class PaymentDeliveryComponent implements OnInit {
       "paymentTermDays": this.data.paymentTermDays,
       "paymentTermInfo": this.data.paymentTermInfo,
       "buyerPaymentTerm": this.data.paymentTermId2,
-      "buyerSidePaymentTermInfo": this.data.buyerSidePaymentTermInfo,
+      "buyerPaymentTermId": this.data.buyerPaymentTermId,
       "packingId": this.data.packingId,
       "priceTermId": this.data.priceTermId,
       // "destinationId": this.data.destinationId,

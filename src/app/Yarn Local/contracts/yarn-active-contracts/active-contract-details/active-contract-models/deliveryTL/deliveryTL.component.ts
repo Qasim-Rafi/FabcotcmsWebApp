@@ -130,6 +130,7 @@ this.spinner.hide();
       "buyerDate": this.dateformater.toModel(this.data.buyerDate),
       "quantity": this.data.quantity,
       "quantityUOMId": this.data.quantityUOMId,
+      "active": true
 
     }
 this.spinner.show();
@@ -142,7 +143,7 @@ this.spinner.show();
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
                   
-            this.deliveryForm.reset();
+            // this.deliveryForm.reset();
             this.activeModal.close(true);
             this.spinner.hide();
           }
