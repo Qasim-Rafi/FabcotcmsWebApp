@@ -30,6 +30,7 @@ export class ProductAndSpecificationComponent implements OnInit {
 
   ngOnInit(): void {
     this.GetArticleDropdown();
+    this.getContractProductData();
 
   }
   get activeModal() {
@@ -71,6 +72,7 @@ export class ProductAndSpecificationComponent implements OnInit {
     let varr = {
 
       "contractId": this.contractId,
+      "construction": this.data.construction,
       "articleId": this.data.articleId,
    
     }
