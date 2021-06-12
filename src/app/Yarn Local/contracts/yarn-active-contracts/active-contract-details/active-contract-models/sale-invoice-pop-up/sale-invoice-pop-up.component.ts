@@ -73,7 +73,7 @@ uomList : any = {};
     }
 this.spinner.show();
     this.http.
-      post(`${environment.apiUrl}/api/Contracts/AddContractSaleInvoice`, varr)
+      post(`${environment.apiUrl}/api/YarnContracts/AddContractSaleInvoice`, varr)
       .subscribe(
         res => {
 
@@ -100,7 +100,7 @@ this.spinner.show();
 
   editSaleInvoice() {
     // this.spinner.show();
-    this.http.get(`${environment.apiUrl}/api/Contracts/GetContractSaleInvoiceById/` + this.invoiceId)
+    this.http.get(`${environment.apiUrl}/api/YarnContracts/GetContractSaleInvoiceById/` + this.invoiceId)
       .subscribe(
         res => {
           this.response = res;
@@ -141,7 +141,7 @@ this.spinner.show();
     }
  this.spinner.show();
     this.http.
-      put(`${environment.apiUrl}/api/Contracts/UpdateContractSaleInvoice/` + this.invoiceId, varr)
+      put(`${environment.apiUrl}/api/YarnContracts/UpdateContractSaleInvoice/` + this.invoiceId, varr)
       .subscribe(
         res => {
  

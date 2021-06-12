@@ -207,7 +207,7 @@
                                     class="badge badge-pill badge-primary">{{rows5.length}}</span></a>
                             <a class="nav-item nav-link " id="nav-Sale-tab" data-toggle="tab" href="#nav-Sale"
                                 role="tab" aria-controls="nav-Sale" aria-selected="false">Sale Invoice &nbsp;<span
-                                    class="badge badge-pill badge-primary">{{invoiceData.length}}</span></a>
+                                    class="badge badge-pill badge-primary">{{saleInvoice.length}}</span></a>
                             <a class="nav-item nav-link " id="nav-Documents-tab" data-toggle="tab" href="#nav-Documents"
                                         role="tab" aria-controls="nav-Documents" aria-selected="false">Documents</a>
                             <a class="nav-item nav-link " id="nav-Notes-tab" data-toggle="tab" href="#nav-Notes"
@@ -1366,7 +1366,7 @@
 
 
 
-                        <div class="card-body  BG" *ngFor="let x of invoiceData; let i = index;">
+                        <div class="card-body  BG" *ngFor="let x of saleInvoice; let i = index;">
 
                             <div class="row pb-5">
                                 <div class="col-md-6 ">
@@ -1376,12 +1376,11 @@
 
                                 <div class="col-md-6 text-right">
                                     <button class="btn btn-outline-primary btn-sm"
-                                        > <i class="far fa-edit"></i> Edit
-                                        Invoice
+                                        > <i class="fas fa-sticky-note"></i> Credit Note
                                     </button>
                                     <button class="btn btn-outline-danger btn-sm ml-3 ">
-                                        <i class="far fa-trash-alt"></i>
-                                        Delete</button>
+                                        <i class="fas fa-sticky-note"></i>
+                                        Debit Note</button>
                                 </div>
 
                             </div>
@@ -1415,6 +1414,10 @@
                                         <dt class="col-sm-6">Quantity:</dt>
                                         <dd class="col-sm-6">{{x.quantity}}</dd>
                                     </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Invoice Amount:</dt>
+                                        <dd class="col-sm-6">{{x.amount}}</dd>
+                                    </dl>
 
                                     <dl class="row">
                                         <dt class="col-sm-6">Last Updated by:
@@ -1423,12 +1426,12 @@
                                         </dt>
                                         <dd class="col-sm-6">{{x.updatedByName}}</dd>
                                     </dl>
-
                                     <dl class="row">
-                                        <dt class="col-sm-6">Remarks:
-
-
-                                        </dt>
+                                        <dt class="col-sm-6">Buyer Payment:</dt>
+                                        <dd class="col-sm-6">{{x.quantity}}</dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Remarks:</dt>
                                         <dd class="col-sm-6">{{x.saleInvoiceRemarks}}</dd>
                                     </dl>
                                 </div>
@@ -1448,11 +1451,14 @@
                                         <dd class="col-sm-6">{{x.saleInvoiceDate}}</dd>
                                     </dl>
                                     <dl class="row">
-                                        <dt class="col-sm-6">Invoice Amount:
+                                        <dt class="col-sm-6">Unit Rate:
                                         </dt>
-                                        <dd class="col-sm-6">{{x.amount}}</dd>
+                                        <dd class="col-sm-6">{{x.unit}}</dd>
                                     </dl>
-
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Tax Amount:</dt>
+                                        <dd class="col-sm-6">{{x.taxPercentage}}</dd>
+                                    </dl>
                                     <dl class="row">
                                         <dt class="col-sm-6">Last Updated on:
 
@@ -1460,11 +1466,27 @@
                                         </dt>
                                         <dd class="col-sm-6">{{x.updatedDateTime}}</dd>
                                     </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Tax Challan Info:</dt>
+                                        <dd class="col-sm-6">{{x.quantity}}</dd>
+                                    </dl>
                                 </div>
 
                             </div>
 
+                            <div class="row pb-5">
+                                <div class="col-md-6 ">
+                                    
+                                </div>
 
+                                <div class="col-md-6 text-right">
+                                    <button class="btn btn-outline-primary btn-sm"
+                                        > <i class="fas fa-edit"></i> Edit
+                                    </button>
+                                   
+                                </div>
+
+                            </div>
 
 
                             

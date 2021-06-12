@@ -326,7 +326,7 @@ export class ActiveContractDetailsComponent implements OnInit {
   fetch(cb) {
       this.spinner.show();
     this.http
-    .get(`${environment.apiUrl}/api/Contracts/GetAllContractSaleInvoice/`+this.contractId )
+    .get(`${environment.apiUrl}/api/YarnContracts/GetAllContractSaleInvoice/`+this.contractId )
     .subscribe(res => {
       this.response = res;
      
