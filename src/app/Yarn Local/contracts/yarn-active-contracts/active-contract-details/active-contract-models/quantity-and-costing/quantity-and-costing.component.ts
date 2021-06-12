@@ -68,7 +68,6 @@ export class QuantityAndCostingComponent implements OnInit {
           this.response = res;
           if (this.response.success == true) {
             this.data = this.response.data;
-            
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
@@ -105,6 +104,7 @@ export class QuantityAndCostingComponent implements OnInit {
             // this.getEnquiryData(this.objEnquiry);
             this.activeModal.close(true);
             this.getContractCostingData();
+            localStorage.setItem('rate',this.data.quantity);
 
         }
           else {

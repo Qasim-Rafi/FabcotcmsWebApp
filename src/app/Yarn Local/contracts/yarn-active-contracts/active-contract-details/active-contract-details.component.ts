@@ -584,6 +584,7 @@ getContractCostingData() {
         this.response = res;
         if (this.response.success == true) {
           this.contractCostingData = this.response.data;
+          localStorage.setItem('rate',this.response.data.quantity);
           
         }
         else {

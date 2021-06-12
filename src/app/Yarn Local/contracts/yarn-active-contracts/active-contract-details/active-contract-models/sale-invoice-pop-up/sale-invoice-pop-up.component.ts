@@ -17,11 +17,14 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class SaleInvoicePopUpComponent implements OnInit {
 
   dateformater: Dateformater = new Dateformater();  
-
+  timeout: any = null;
   @Input() contractId;
   @Input() invoiceId; 
   @Input() statusCheck; 
   data:any ={};
+  rate:any;
+  quantitya:any;
+  calculatedcost:any;
   response: any;
 uomList : any = {};
 @ViewChild(NgForm) InvoiceForm;
@@ -47,11 +50,41 @@ uomList : any = {};
     return this._NgbActiveModal;
   }
 
+  getquantity(event){
+    clearTimeout(this.timeout);
+    
+    this.rate=parseInt(localStorage.getItem('rate'))
+      if (event.keyCode != 13) {
+    this.quantitya=event.target.value;
+ this.calculatedcost= this.quantitya*this.rate;
+ this.data.amount=this.calculatedcost;
+//  if(this.data.unit){
+  // this.data.amount=calculatedcost*10;
+ 
+    //  }
+      }
+    
+   }
+
+   getunit(event:any){
+    // clearTimeout(this.timeout);
+   
+      if (event.keyCode != 13) {
+
+if(event==8){
+ 
+  this.data.amount=this.calculatedcost*10;
+}else if(event==7){
+  this.data.amount=this.calculatedcost;
+}
+      }
+    
+   }
   GetUOMDropdown() {
     this.service.getUOM().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.uomList = this.response.data;
+        this.uomList = this.response.data;   
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -81,6 +114,7 @@ this.spinner.show();
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
             this.activeModal.close(true);
+          localStorage.setItem('quantity',this.data.quantity);
          this.spinner.hide();
           }
           else {
