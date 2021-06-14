@@ -6,6 +6,7 @@ import { HttpClient  , HttpErrorResponse} from '@angular/common/http';
 import { Dateformater } from 'src/app/shared/dateformater';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { SelectionType } from '@swimlane/ngx-datatable';
 @Component({
   selector: 'app-buyer-payment-form',
   templateUrl: './buyer-payment-form.component.html',
@@ -13,9 +14,12 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class BuyerPaymentFormComponent implements OnInit {
   dateformater: Dateformater = new Dateformater();
-  
+  result:any
+  selected = [];
+  SelectionType = SelectionType;
   data: any ={};
-  rows: any = [];
+  rows = [];
+  row =[];
   columns: any = [];
   response: any;
   buyer: any= [];
@@ -24,9 +28,12 @@ export class BuyerPaymentFormComponent implements OnInit {
   uomList: any= [];
   currency: any= [];
   paymentMode: any= [];
-
+  buyerNameId:any;
+  sellerNameId:any;
   newBuyer: number;
-
+  amountGivenToCalculate:any;
+  calculatedTax:any;
+  buyerPaymentUrl = '/api/Configs/GetAllArticle'
   constructor(
     private service: ServiceService,
     private spinner: NgxSpinnerService,
@@ -151,6 +158,74 @@ this.spinner.hide();
           this.spinner.hide();
         });
   }
+  buyerNameChange(event){
+    this.buyerNameId=event;
+  }
+  sellerNameChange(event){
+    this.sellerNameId=event;
 
 
+
+    this.http.get(`${environment.apiUrl}/api/Contracts/GetContractByBuyerSellerId/`+this.buyerNameId +'/'+ this.sellerNameId).
+    subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.rows = this.response.data;
+    
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+         
+  }
+  amountCall(event){
+     this.amountGivenToCalculate=event.target.value;
+     this.data.taxChalan = 0;
+     
+  }
+  taxCalculated(event){
+    event.target.value;
+    this.calculatedTax  = this.amountGivenToCalculate * (event.target.value / 100);
+  }
+  onSelect(event,row) {
+    let newrow =this.rows.filter(r=>r.saleInvoiceId ==row.saleInvoiceId)
+     this.selected = newrow;  
+ 
+    if(event.currentTarget.checked == true){
+      if(row !=null){
+       
+        if( this.result != null){
+          this.result=this.result - row.saleInvoiceAmount;
+          if(this.result <0){
+            this.toastr.error("Partial  Value", 'Message.');
+          }
+        }
+        else{
+          this.result =this.amountGivenToCalculate -  this.selected[0].saleInvoiceAmount;
+        }
+        this.result =this.result;
+        this.selected[0].paidAmount= this.selected[0].saleInvoiceAmount;
+           this.selected.push(...this.selected);
+          this.rows = [...this.rows]
+      }
+      else{
+        this.result =null;
+      }
+    }
+    else if(event.currentTarget.checked == false){
+      if( this.result != null){
+        let newrow =this.rows.filter(r=>r.saleInvoiceId ==row.saleInvoiceId)
+        this.selected = newrow;  
+        this.selected[0].paidAmount= 0;
+        this.result=this.result + row.saleInvoiceAmount;
+
+        this.selected.push(...this.selected);
+          this.rows = [...this.rows]
+      }
+    }
+   
+  
+  }
+ 
 }

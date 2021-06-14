@@ -61,6 +61,8 @@ selectedAttributes:any;
   ) { }
 
   ngOnInit(): void {
+    this.data.quantityUOMId =8
+    this.data.rateUOMId =7
     let olddate=new Date();
     let latest_date =this.datepipe.transform(olddate, 'yyyy-MM-dd');
     this.data.enquiryDate =this.dateformater.fromModel(latest_date);
@@ -330,6 +332,7 @@ selectedAttributes:any;
     let departmentId=parseInt(localStorage.getItem('loggedInDepartmentId'))
     let varr = {
       // "enquiryDate": this.dateformater.toModel(this.data.enquiryDate),
+          "contractNo": this.data.contractNo,
           "poNumber": this.data.poNumber,
           "sellerId": this.data.sellerId,
           "buyerId": this.data.buyerId,

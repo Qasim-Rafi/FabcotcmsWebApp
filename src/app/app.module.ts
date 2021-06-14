@@ -57,6 +57,7 @@ import { YarnBillingAndPaymentModule } from './Yarn Local/yarn-billing-and-payme
 import { YarnConfigurationModule } from './Yarn Local/yarn-configuration/yarn-configuration.module';
 import { SignUpComponent } from './login/sign-up/sign-up.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -123,6 +124,7 @@ const appRoutes: Routes = []
 
   imports: [
     NgbModule,
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     ConfigurationModule,

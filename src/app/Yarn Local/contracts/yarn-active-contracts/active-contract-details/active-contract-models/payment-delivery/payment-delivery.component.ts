@@ -133,7 +133,7 @@ export class PaymentDeliveryComponent implements OnInit {
     let varr = {
 
       "contractId": this.contractId,
-      // "paymentMode": this.data.paymentMode,
+       "buyerSidePaymentTermInfo": this.data.buyerSidePaymentTermInfo,
       "paymentTermId": this.data.paymentTermId,
       "paymentTermDays": this.data.paymentTermDays,
       "paymentTermInfo": this.data.paymentTermInfo,

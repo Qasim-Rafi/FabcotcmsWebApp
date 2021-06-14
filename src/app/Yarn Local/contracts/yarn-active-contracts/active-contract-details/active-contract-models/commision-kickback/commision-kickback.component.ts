@@ -12,10 +12,10 @@ import { environment } from 'src/environments/environment';
 })
 export class CommisionKickbackComponent implements OnInit {
   @Input() contractId;
-  data : any = [];
+  data : any = {};
   commission:any={};
-  agents:any={};
-  uomList:any={};
+  agents:any=[];
+  uomList:any=[];
   response: any;
   
   constructor(
