@@ -27,16 +27,16 @@
   
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="radio" value="Seller" aria-selected="true" name="contractType" #contractType = "ngModel"
-              [(ngModel)] = "data.contractType"
+              [(ngModel)] = "data.contractType" id="seller" 
               >
-              <label class="form-check-label" for="contractType">Seller Contract</label>
+              <label class="form-check-label" for="seller">Seller Contract</label>
             </div>
   
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="contractType"  value="Buyer" #contractType = "ngModel"
+              <input class="form-check-input" id="buyer" type="radio" name="contractType"  value="Buyer" #contractType = "ngModel"
               [(ngModel)] = "data.contractType"
               >
-              <label class="form-check-label" for="Private">Buyer Contract</label>
+              <label class="form-check-label" for="buyer">Buyer Contract</label>
             </div>
   
           </div>

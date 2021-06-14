@@ -372,7 +372,7 @@ selectedAttributes:any;
 
   addContract() {
     let departmentId=parseInt(localStorage.getItem('loggedInDepartmentId'))
-    if(this.data2 != null)
+    if(this.data2.agentId != null)
     {
     this.commission.push({['agentId']: this.data2.agentId , ["agentCommission"]: this.data2.agentCommission}) 
 
@@ -402,7 +402,7 @@ selectedAttributes:any;
           "buyerPaymentTerm": this.data.buyerPaymentTerm,
           "packingId": this.data.packingId,        
           "priceautoContractNoTermId": this.data.priceTermId,        
-          "sellerDeliveryDate": this.dateformater.toModel(this.data.buyerDeliveryDate),
+          "sellerDeliveryDate": this.dateformater.toModel(this.data.sellerDeliveryDate),
           "buyerDeliveryDate": this.dateformater.toModel(this.data.buyerDeliveryDate),
           "contractRemarks": this.data.contractRemarks,
           "buyerRemarks": this.data.buyerRemarks,        
