@@ -90,7 +90,7 @@ selectedAttributes:any;
   }
   add3() {
     this.new3.push({id: this.new3.length});
-    this.counter3++
+    // this.counter3++
   }
   remove(i: number) {
     this.new.splice(i, 1);
@@ -389,6 +389,15 @@ selectedAttributes:any;
           "buyerRemarks": this.data.buyerRemarks,        
           "otherConditionRemarks": this.data.otherConditionRemarks,
           "title": this.data.title, 
+          "kickbackPercentage": this.data.kickbackPercentage,
+          "kickbackUOMId":this.data.kickbackUOMId ,
+          "beneficiary":this.data.beneficiary ,
+          "fabCotCommision":this.data.fabCotCommision ,
+          "fabCotCommisionUOMId":this.data.fabCotCommisionUOMId ,
+          "fabcotSideCommAdditionalInfo":this.data.fabcotSideCommAdditionalInfo ,
+          "buyersideCommision":this.data.buyersideCommision ,
+          "buyersideCommisionUOMId":this.data.buyersideCommisionUOMId ,
+          "buyerSideCommAdditionalInfo":this.data.buyerSideCommAdditionalInfo ,
     }
 this.spinner.show();
     this.http.

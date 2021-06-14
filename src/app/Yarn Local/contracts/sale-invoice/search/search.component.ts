@@ -69,7 +69,7 @@ export class SearchComponent implements OnInit {
    }
  
    GetBankAccDropdown() {
-     this.http.get(`${environment.apiUrl}/api/Lookups/BankAccounts`).
+     this.http.get(`${environment.apiUrl}/api/Lookups/GetContractsAgainstNubmer`).
      subscribe(res => {
        this.response = res;
        if (this.response.success == true) {
