@@ -431,7 +431,7 @@
                                 
                                     <div class="col-md-7">
                                         <div class="input-group">
-                                            <ng-select name="packingIds" #packingIds="ngModel" class="input-w px-0" [(ngModel)]="data.packingIds"
+                                            <ng-select name="packingId" #packingId="ngModel" class="input-w px-0" [(ngModel)]="data.packingId"
                                                 placeholder="-- Select --">
                                                 <ng-option *ngFor="let i of packing" [value]="i.id">{{ i.name }}
                                 
@@ -483,10 +483,17 @@
                                 
                                     <div class="col-md-7">
                                 
-                                        <div class="input-group date" (clickOutside)="sellerDeliveryDatePicker.close()">
-                                            <input type="text" class="form-control  datetimepicker-input" (click)="sellerDeliveryDatePicker.toggle()"
-                                                placeholder="Date" #sellerDeliveryDatePicker="ngbDatepicker" name="sellerDeliveryDate" ngbDatepicker>
-                                            <div class="input-group-append" (click)="sellerDeliveryDatePicker.toggle()">
+                                        <div class="input-group date" (clickOutside)="validity1.close()">
+                                            <!-- <input type="text" class="form-control  datetimepicker-input" (click)="sellerDeliveryDatePicker.toggle()"
+                                                placeholder="Date" #sellerDeliveryDatePicker="ngbDatepicker"
+                                                #sellerDeliveryDate = "ngModel"
+                                                name="sellerDeliveryDate" ngbDatepicker [(ngModel)] = "data.sellerDeliveryDate"> -->
+                                                <input navigation="select" class="form-control  "  name="sellerDeliveryDate" 
+                                                [(ngModel)]="data.sellerDeliveryDate" #sellerDeliveryDate="ngModel"  ngbDatepicker #validity1="ngbDatepicker"
+                                               (click)="validity1.toggle()"
+                                                placeholder="Supplier Date" 
+                                                />
+                                            <div class="input-group-append" (click)="validity1.toggle()">
                                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                             </div>
                                         </div>
@@ -530,10 +537,13 @@
                                 
                                     <div class="col-md-7">
                                 
-                                        <div class="input-group date" (clickOutside)="buyerDeliveryDatePicker.close()">
-                                            <input type="text" class="form-control  datetimepicker-input" (click)="buyerDeliveryDatePicker.toggle()"
-                                                placeholder="Date" #buyerDeliveryDatePicker="ngbDatepicker" name="buyerDeliveryDate" ngbDatepicker>
-                                            <div class="input-group-append" (click)="buyerDeliveryDatePicker.toggle()">
+                                        <div class="input-group date" (clickOutside)="validity2.close()">
+                                            <input navigation="select" class="form-control  "  name="buyerDeliveryDate" 
+                                            [(ngModel)]="data.buyerDeliveryDate" #buyerDeliveryDate="ngModel"  ngbDatepicker #validity2="ngbDatepicker"
+                                           (click)="validity2.toggle()"
+                                            placeholder="Buyer Date" 
+                                            />
+                                            <div class="input-group-append" (click)="validity2.toggle()">
                                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                             </div>
                                         </div>
