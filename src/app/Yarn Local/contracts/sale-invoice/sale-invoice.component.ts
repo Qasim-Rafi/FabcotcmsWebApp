@@ -102,7 +102,7 @@ addinvoiceForm(check){
 fetch(cb) {
     this.spinner.show();
   this.http
-  .get(`${environment.apiUrl}/api/Contracts/GetAllContractSaleInvoice/`+this.contractId )
+  .get(`${environment.apiUrl}/api/Contracts/GetAllContractSaleInvoice/`+26 )
   .subscribe(res => {
     this.response = res;
    
