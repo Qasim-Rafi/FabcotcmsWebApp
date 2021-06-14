@@ -832,6 +832,8 @@ this.spinner.show();
       // on close
       if (data == true) {
   
+        this.getContractRemarkData();
+        
         // this.getAllBenificery((empData) => {
           // this.rows1 = empData;
           // this.listCount= this.rows.length;
