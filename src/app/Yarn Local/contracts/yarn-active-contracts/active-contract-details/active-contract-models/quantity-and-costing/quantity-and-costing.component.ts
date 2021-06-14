@@ -28,6 +28,8 @@ export class QuantityAndCostingComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
+
     this.GetUOMDropdown();
     this.GetCurrencyDropdown();
     this.getContractCostingData();
@@ -67,6 +69,8 @@ export class QuantityAndCostingComponent implements OnInit {
           this.response = res;
           if (this.response.success == true) {
             this.data = this.response.data;
+           
+            
           }
           else {
             this.toastr.error(this.response.message, 'Message.');

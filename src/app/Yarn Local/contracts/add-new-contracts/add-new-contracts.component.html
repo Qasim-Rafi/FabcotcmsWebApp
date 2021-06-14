@@ -593,8 +593,8 @@
                 
                                     <div class="col-md-4">
                                         <div class="input-group">
-                                            <input type="number" min="0" placeholder="Comm%" #buyerSideCommission="ngModel"
-                                                class="form-control" [(ngModel)]="data.buyerSideCommission" name="buyerSideCommission"
+                                            <input type="number" min="0" placeholder="Comm%" #kickbackPercentage="ngModel"
+                                                class="form-control" [(ngModel)]="data.kickbackPercentage" name="kickbackPercentage"
                                                 >
                                             <div class="input-group-append">
                                                 <span class="input-group-text" id="basic-addon2">per</span>
@@ -606,8 +606,8 @@
                                     </div>
                 
                                     <div class="col-md-4 mrg-sm1">
-                                        <ng-select name="buyerSideCommissionUOMId " #buyerSideCommissionUOMId="ngModel"
-                                            [(ngModel)]="data.buyerSideCommissionUOMId" placeholder="-- Unit UOM --"
+                                        <ng-select name="kickbackUOMId " #kickbackUOMId="ngModel"
+                                            [(ngModel)]="data.kickbackUOMId" placeholder="-- Unit UOM --"
                                             >
                                             <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
                                             </ng-option>
@@ -616,7 +616,7 @@
                 
                                     <div class="col-md-4 mrg-sm1">
                                         <input type="text" placeholder="Kickback Beneficiary Name" class="form-control"
-                                            [(ngModel)]="data.buyerSideCommissionInfo" name="buyerSideCommissionInfo">
+                                            [(ngModel)]="data.beneficiary" name="beneficiary" #beneficiary = "ngModel">
                                     </div>
                 
                                 </div>
@@ -628,8 +628,8 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="input-group">
-                                            <input type="number" min="0" placeholder="Comm%" #buyerSideCommission="ngModel"
-                                                class="form-control" [(ngModel)]="data.buyerSideCommission" name="buyerSideCommission"
+                                            <input type="number" min="0" placeholder="Comm%" #fabCotCommision="ngModel"
+                                                class="form-control" [(ngModel)]="data.fabCotCommision" name="fabCotCommision"
                                                 >
                                             <div class="input-group-append">
                                                 <span class="input-group-text" id="basic-addon2">per</span>
@@ -641,8 +641,8 @@
                                     </div>
                 
                                     <div class="col-md-4 mrg-sm1">
-                                        <ng-select name="buyerSideCommissionUOMId " #buyerSideCommissionUOMId="ngModel"
-                                            [(ngModel)]="data.buyerSideCommissionUOMId" placeholder="-- Unit UOM --"
+                                        <ng-select name="fabCotCommisionUOMId " #fabCotCommisionUOMId="ngModel"
+                                            [(ngModel)]="data.fabCotCommisionUOMId" placeholder="-- Unit UOM --"
                                             >
                                             <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
                                             </ng-option>
@@ -651,7 +651,7 @@
                 
                                     <div class="col-md-4 mrg-sm1">
                                         <input type="text" placeholder="Additional Info" class="form-control"
-                                            [(ngModel)]="data.buyerSideCommissionInfo" name="buyerSideCommissionInfo">
+                                            [(ngModel)]="data.abcotSideCommAdditionalInfo" name="abcotSideCommAdditionalInfo" #abcotSideCommAdditionalInfo="ngModel">
                                     </div>
                                 </div>
                             </div>
@@ -662,8 +662,8 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="input-group">
-                                            <input type="number" min="0" placeholder="Comm%" #buyerSideCommission="ngModel"
-                                                class="form-control" [(ngModel)]="data.buyerSideCommission" name="buyerSideCommission"
+                                            <input type="number" min="0" placeholder="Comm%" #buyersideCommision="ngModel"
+                                                class="form-control" [(ngModel)]="data.buyersideCommision" name="buyersideCommision"
                                                 >
                                             <div class="input-group-append">
                                                 <span class="input-group-text" id="basic-addon2">per</span>
@@ -675,8 +675,8 @@
                                     </div>
                 
                                     <div class="col-md-4 mrg-sm1">
-                                        <ng-select name="buyerSideCommissionUOMId " #buyerSideCommissionUOMId="ngModel"
-                                            [(ngModel)]="data.buyerSideCommissionUOMId" placeholder="-- Unit UOM --"
+                                        <ng-select name="buyersideCommisionUOMId " #buyersideCommisionUOMId="ngModel"
+                                            [(ngModel)]="data.buyersideCommisionUOMId" placeholder="-- Unit UOM --"
                                             >
                                             <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
                                             </ng-option>
@@ -685,13 +685,15 @@
                 
                                     <div class="col-md-4 mrg-sm1">
                                         <input type="text" placeholder="Additional Info" class="form-control"
-                                            [(ngModel)]="data.buyerSideCommissionInfo" name="buyerSideCommissionInfo">
+                                            [(ngModel)]="data.buyerSideCommAdditionalInfo" name="buyerSideCommAdditionalInfo"
+                                            #buyerSideCommAdditionalInfo = "ngModel"
+                                            >
                                     </div>
                                 </div>
                             </div>
                 
                 
-                            <div class="form-group col-md-12">
+                            <!-- <div class="form-group col-md-12">
                                 <label for="code" class="col-form-label control-label">Agent Commission:</label>
                                 <div class="row">
                 
@@ -713,8 +715,8 @@
                 
                                 </div>
                             </div>
-                
-                
+                 -->
+<!--                 
                             <div class="col-md-12">
                                 <div class="form-group row" *ngFor="let a of data; let i = index;">
                 
@@ -724,7 +726,7 @@
                                         <div class="row">
                 
                                             <div class="col-md-6 mrg-sm1">
-                                                <ng-select placeholder="Select an Agent" [(ngModel)]="a.agentId" #agentId = "ngModel" name="agentId_{{i}}">
+                                                <ng-select placeholder="Select an Agent" [(ngModel)]="a.agentId" #agentId = "ngModel" name="agentId">
                                                     <ng-option *ngFor="let i of agents" [value]="i.id">
                                                       {{i.name}}
                                                     </ng-option>
@@ -733,7 +735,7 @@
                 
                                             <div class="col-md-6 mrg-sm1">
                                                 <input class="form-control" placeholder="Comm %" [(ngModel)]="a.agentCommission" #agentCommission = "ngModel" type="number" min="0"
-                                                            name="agent_{{i}}" />
+                                                            name="agentCommission_{{i}}" />
                                             </div>
                 
                 
@@ -746,23 +748,21 @@
                                     </div>
                 
                                 </div>
-                            </div>
+                            </div> -->
                 
-                            <div class="col-md-12">
-                                <button class="btn btn-outline-primary btn-sm" type="submit" (click)="add3()" *ngIf="counter3 != 3">
+                            <!-- <div class="col-md-12">
+                                <button class="btn btn-outline-primary btn-sm" type="submit" (click)="add3()">
                                     <i class="fas fa-plus"></i>
                                     Add Agent
                                 </button>
-                            </div>
+                            </div> -->
                 
                         </div>
                 
                     </form>
                 
                     <hr>
-            
-                <hr>   
-                 <hr> 
+          
                     
                     <!---------- remarks ---------->
                     
