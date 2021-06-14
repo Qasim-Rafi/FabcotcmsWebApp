@@ -80,8 +80,13 @@ uomList : any = {};
 
     let varr = {
       "contractId": this.contractId,
-      "supplierDate": this.dateformater.toModel(this.data.supplierDate),
-      "buyerDate": this.dateformater.toModel(this.data.buyerDate),
+      "supplierDateDay": this.data.supplierDateDay,
+      "supplierDateMonth": this.data.supplierDateMonth,
+      "supplierDateYear": this.data.supplierDateYear,
+      "buyerDateDay": this.data.buyerDateDay,
+      "buyerDateMonth": this.data.buyerDateMonth,
+      "buyerDateYear": this.data.buyerDateYear,
+      
       "quantity": this.data.quantity,
       "quantityUOMId": this.data.quantityUOMId,
     }
@@ -126,8 +131,12 @@ this.spinner.hide();
 
     let varr = {
       "contractId": this.contractId,
-      "supplierDate": this.dateformater.toModel(this.data.supplierDate),
-      "buyerDate": this.dateformater.toModel(this.data.buyerDate),
+      "supplierDateDay": this.data.supplierDateDay,
+      "supplierDateMonth": this.data.supplierDateMonth,
+      "supplierDateYear": this.data.supplierDateYear,
+      "buyerDateDay": this.data.buyerDateDay,
+      "buyerDateMonth": this.data.buyerDateMonth,
+      "buyerDateYear": this.data.buyerDateYear,
       "quantity": this.data.quantity,
       "quantityUOMId": this.data.quantityUOMId,
       "active": true

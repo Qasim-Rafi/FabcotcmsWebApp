@@ -237,8 +237,9 @@
 
                             <div class="col-md-8">
                                 <div class="h2 ">
-                                    <span><i class="fas fa-flag mr-3 text-secondary"></i></span>
-                                    <div class="text-right">({{contractData.autoContractNumber}} )</div>
+                                    <span><i class="fas fa-flag mr-3 text-secondary"></i>
+                                         <div class="text-right">({{contractData.autoContractNumber}} )</div></span>
+                                    
                                     <span class=" ml-2 text_Navy"></span>
                                     
                                 </div>
@@ -759,13 +760,14 @@
                                       <ngx-datatable-column name="Supplier Date" prop="contractAge">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                                           <span class="badge badge-primary"></span>
-                                         {{row.supplierDate}}
+                                         {{row.supplierDateDay}}-{{row.supplierDateMonth}}-{{row.supplierDateYear}}
                                         </ng-template>
                                       </ngx-datatable-column>
                             
                                       <ngx-datatable-column name="Buyer Date" prop="autoContractNumber">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                        {{row.buyerDate}}
+                                            {{row.buyerDateDay}}-{{row.buyerDateMonth}}-{{row.buyerDateYear}}
+
                                         </ng-template>
                                       </ngx-datatable-column>
                             

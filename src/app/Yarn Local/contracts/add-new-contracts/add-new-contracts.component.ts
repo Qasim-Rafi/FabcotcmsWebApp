@@ -73,6 +73,7 @@ selectedAttributes:any;
     this.GetCurrencyDropdown();
     this.GetpackingDropdown("start");
     this.GetPriceTermDropdown("start");
+    this.getAutoEnquiryNo();
     this.selected = this.uomList[0].name;
   
   }
@@ -229,7 +230,25 @@ selectedAttributes:any;
   }
 
 
+  getAutoEnquiryNo() {
+    this.http.get(`${environment.apiUrl}/api/Enquiries/GetNextEnquiryNumber`)
+      .subscribe(
+        res => {
 
+          this.response = res;
+          if (this.response.success == true) {
+            this.data.autoContractNo = this.response.data;
+          }
+          else {
+            this.toastr.error('Something went Worng', 'Message.');
+          }
+
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error('Something went Worng', 'Message.');
+          }
+        });
+  }
 
 
   addBuyerForm() {
@@ -332,6 +351,7 @@ selectedAttributes:any;
     let departmentId=parseInt(localStorage.getItem('loggedInDepartmentId'))
     let varr = {
       // "enquiryDate": this.dateformater.toModel(this.data.enquiryDate),
+          "autoContractNo": this.data.autoContractNo,
           "contractNo": this.data.contractNo,
           "poNumber": this.data.poNumber,
           "sellerId": this.data.sellerId,
@@ -347,7 +367,7 @@ selectedAttributes:any;
           "sellerPaymentTerm": this.data.sellerPaymentTerm,
           "buyerPaymentTerm": this.data.buyerPaymentTerm,
           "packingId": this.data.packingId,        
-          "priceTermId": this.data.priceTermId,        
+          "priceautoContractNoTermId": this.data.priceTermId,        
           "sellerDeliveryDate": this.data.sellerDeliveryDate,
           "buyerDeliveryDate": this.data.buyerDeliveryDate,
           "contractRemarks": this.data.contractRemarks,
