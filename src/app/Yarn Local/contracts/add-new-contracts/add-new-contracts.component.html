@@ -651,7 +651,7 @@
                 
                                     <div class="col-md-4 mrg-sm1">
                                         <input type="text" placeholder="Additional Info" class="form-control"
-                                            [(ngModel)]="data.abcotSideCommAdditionalInfo" name="abcotSideCommAdditionalInfo" #abcotSideCommAdditionalInfo="ngModel">
+                                            [(ngModel)]="data.fabcotSideCommAdditionalInfo" name="fabcotSideCommAdditionalInfo" #fabcotSideCommAdditionalInfo="ngModel">
                                     </div>
                                 </div>
                             </div>
@@ -698,17 +698,16 @@
                                 <div class="row">
                 
                                     <div class="col-md-6 mrg-sm1">
-                                        <ng-select name="buyerSideCommissionUOMId " #buyerSideCommissionUOMId="ngModel"
-                                            [(ngModel)]="data.buyerSideCommissionUOMId" placeholder="Select Agent"
-                                            >
-                                            <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
+                                        <ng-select placeholder="Select an Agent" [(ngModel)]="data2.agentId" #agentId = "ngModel" name="agentId">
+                                            <ng-option *ngFor="let i of agents" [value]="i.id">
+                                              {{i.name}}
                                             </ng-option>
-                                        </ng-select>
+                                          </ng-select>
                                     </div>
                 
                                     <div class="col-md-6 mrg-sm1">
-                                        <input type="text" placeholder="Commission %" class="form-control"
-                                            [(ngModel)]="data.buyerSideCommissionInfo" name="buyerSideCommissionInfo">
+                                        <input class="form-control" placeholder="Commission %" [(ngModel)]="data2.agentCommission" #agentCommission = "ngModel" min="0"
+                                        name="agentCommission" />
                                     </div>
                 
                 
@@ -717,7 +716,7 @@
                             </div>
               
                             <div class="col-md-12">
-                                <div class="form-group row" *ngFor="let a of data; let i = index;">
+                                <div class="form-group row" *ngFor="let a of data1; let i = index;">
                 
                                     <div class="col-md-12">
                 
@@ -725,7 +724,7 @@
                                         <div class="row">
                 
                                             <div class="col-md-6 mrg-sm1">
-                                                <ng-select placeholder="Select an Agent" [(ngModel)]="a.agentId" #agentId = "ngModel" name="agentId">
+                                                <ng-select placeholder="Select an Agent" [(ngModel)]="a.agentId" #agentId = "ngModel" name="agentId_{{i}}">
                                                     <ng-option *ngFor="let i of agents" [value]="i.id">
                                                       {{i.name}}
                                                     </ng-option>
@@ -733,13 +732,13 @@
                                             </div>
                 
                                             <div class="col-md-6 mrg-sm1">
-                                                <input class="form-control" placeholder="Comm %" [(ngModel)]="a.agentCommission" #agentCommission = "ngModel" type="number" min="0"
+                                                <input class="form-control" placeholder="Commission %" [(ngModel)]="a.agentCommission" #agentCommission = "ngModel" min="0"
                                                             name="agentCommission_{{i}}" />
                                             </div>
                 
                 
                                             <div class="col-md-12"><button class="btn btn-outline-danger mt-2 float-right" type="submit"
-                                                    (click)="remove3(i)">
+                                                    (click)="removefield(i)">
                                                     <i class="fas fa-minus fa-xs"></i></button>
                                             </div>
                                         </div>
@@ -750,7 +749,7 @@
                             </div>
                 
                             <div class="col-md-12">
-                                <button class="btn btn-outline-primary btn-sm" type="submit" (click)="add3()">
+                                <button class="btn btn-outline-primary btn-sm" type="submit" (click)="addfield()">
                                     <i class="fas fa-plus"></i>
                                     Add Agent
                                 </button>
