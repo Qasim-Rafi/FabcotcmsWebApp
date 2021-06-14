@@ -1,19 +1,19 @@
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "line-spin-fade" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
       <div aria-hidden="true">&times;</div>
     </button>
   
-    <h5 class="modal-title">
+    <h5 class="modal-title" *ngIf="statusCheck == 'addInvoice'">
       <i class="fa fa-plus"></i>
       Add New Sale Invoice
     </h5>
-<!--   
+  
     <h5 class="modal-title" *ngIf="statusCheck == 'editInvoice'">
       <i class="fa fa-plus"></i>
       Edit Sale Invoice
-    </h5> -->
+    </h5>
   </div>
-  
   
   <div class="modal-body BG p-0">
     <form #InvoiceForm="ngForm" novalidate>
@@ -36,23 +36,24 @@
   
             <input navigation="select" class="form-control  " ngbDatepicker #saleInvoiceDate="ngbDatepicker"
               (click)="saleInvoiceDate.toggle()" placeholder="Sale Invoice date" name="saleInvoiceDate"
-              [(ngModel)]="data.saleInvoiceDate" #saleInvoiceDate="ngModel" />
+              [(ngModel)]="data.saleInvoiceDate" />
           </div>
         </div>
 
           <div class="form-group row">
-            <label for="itemQuantity" class="col-sm-3 col-form-label text_Navy">Quantity</label>
+            <label for="quantity" class="col-sm-3 col-form-label text_Navy">Quantity</label>
             <div class="col-sm-3">
-                <input type="number" min="0" required
-                id="itemQuantity" #itemQuantity="ngModel"
-              name="itemQuantity" [(ngModel)]="data.itemQuantity" #itemQuantity="ngModel"
+                <input  min="0"
+                #quantity="ngModel" (keyup)="getquantity($event)"
+              name="quantity" [(ngModel)]="data.quantity"
                 class="form-control" value="" placeholder="Quantity" />
             </div>
             <div class="col-md-5">
                
-              <ng-select
-              [(ngModel)]="data.itemUOMId" placeholder="Select..." name="itemUOMId">
-                <ng-option></ng-option>
+                  
+              <ng-select  (change)="getunit($event)" [(ngModel)] = "data.unit"   #unit="ngModel"
+               placeholder="Unit" name="unit">
+                <ng-option *ngFor = "let i of uomList"  [value] = "i.id">{{i.name}}</ng-option>
             </ng-select>
 
             </div>
@@ -63,22 +64,22 @@
 
 
           <div class="form-group row">
-            <label for="saleInvoiceDate" class="col-sm-3 col-form-label text_Navy">Amount</label>
+            <label for="amount" class="col-sm-3 col-form-label text_Navy">Amount</label>
             <div class="col-sm-8">
     
-                <input type="text" class="form-control" placeholder="Invoice Amount" name="saleInvoiceNo"
-                [(ngModel)]="data.saleInvoiceNo" #saleInvoiceNo="ngModel" />
+                <input disabled type="text" class="form-control" placeholder="Invoice Amount" name="amount"
+                [(ngModel)]="data.amount" #amount="ngModel" />
             </div>
           </div>
 
           <div class="form-group row">
-            <label for="saleInvoiceDate" class="col-sm-3 col-form-label">Tax %</label>
+            <label for="taxPercentage" class="col-sm-3 col-form-label">Tax %</label>
             <div class="col-sm-8">
                 <div class="input-group">
                     <div class="input-group-append">
                     </div>
                     <input type="text" placeholder="Invoice tax %age" class="form-control"
-                        [(ngModel)]="data.sellerSideCommissionInfo" name="sellerSideCommissionInfo">
+                        [(ngModel)]="data.taxPercentage" name="taxPercentage" #taxPercentage="ngModel">
                     <div class="input-group-append">
                         <span class="input-group-text" id="basic-addon2">%</span>
                     </div>
@@ -89,7 +90,7 @@
         <div class="form-group row">
           <label for="saleInvoiceRemarks" class="col-sm-3 col-form-label ">Remarks</label>
           <div class="col-sm-8">
-            <textarea name="remarks" rows="3" class="form-control" placeholder="Sale invoice additional details here..."
+            <textarea name="saleInvoiceRemarks" rows="3" class="form-control" placeholder="Sale invoice additional details here..."
               name="saleInvoiceRemarks" [(ngModel)]="data.saleInvoiceRemarks" #saleInvoiceRemarks="ngModel"></textarea>
           </div>
         </div>
@@ -101,14 +102,13 @@
           (click)="activeModal.close()">
           Close
         </button>
-        <button class="btn button-save" type="submit" (click)="addSaleInvoice()" >
+        <button class="btn button-save" type="submit" (click)="onSubmit('addInvoice')" *ngIf="statusCheck == 'addInvoice'">
           Save Sale Invoice
         </button>
-        <!-- <button class="btn button-save" type="submit" (click)="updateSaleInvoice()" *ngIf="statusCheck == 'editInvoice'">
-          Save Sale Invoice
-        </button> -->
+        <button class="btn button-save" type="submit" (click)="onSubmit('editInvoice')" *ngIf="statusCheck == 'editInvoice'">
+          Update Sale Invoice
+        </button>
       </div>
-  
   
     </form>
   </div>

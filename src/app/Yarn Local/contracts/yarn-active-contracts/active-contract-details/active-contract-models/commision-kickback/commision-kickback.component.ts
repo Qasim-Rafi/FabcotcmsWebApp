@@ -12,11 +12,10 @@ import { environment } from 'src/environments/environment';
 })
 export class CommisionKickbackComponent implements OnInit {
   @Input() contractId;
-  // data:any =[];
-  data : any = [];
+  data : any = {};
   commission:any={};
-  agents:any={};
-  uomList:any={};
+  agents:any=[];
+  uomList:any=[];
   response: any;
   
   constructor(
@@ -29,7 +28,7 @@ export class CommisionKickbackComponent implements OnInit {
 
   ngOnInit(): void {
     this.GetUOMDropdown();
-    // this.GetAgentDropdown();
+    this.GetAgentDropdown();
     this.getContractCommisionData();
 
 
@@ -38,12 +37,12 @@ export class CommisionKickbackComponent implements OnInit {
     return this._NgbActiveModal;
   }
 
-  // addMore() {
-  //   this.data.push({id: this.data.length});
-  // }
-  // remove(i: number) {
-  //   this.data.splice(i, 1);
-  // }
+  addMore() {
+    this.data.push({id: this.data.length});
+  }
+  remove(i: number) {
+    this.data.splice(i, 1);
+  }
 
   // GetUOMDropdown() {
   //   this.service.getUOM().subscribe(res => {
@@ -63,13 +62,13 @@ export class CommisionKickbackComponent implements OnInit {
       this.response = res;
       if (this.response.success == true) {
         this.uomList = this.response.data;
-    
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
       }
     })
   }
+
 
 
 
@@ -116,15 +115,15 @@ export class CommisionKickbackComponent implements OnInit {
   addContractCommision() {
 
 
-    // for(let i=0; i<this.data.length;i++ )
-    // {
-    //   this.data[i] = Object.assign(this.data[i], {
+    for(let i=0; i<this.data.length;i++ )
+    {
+      this.data[i] = Object.assign(this.data[i], {
 
-    //     "agentId": this.commission.agentId,
-    //     "agentCommission": this.commission.agentCommission,
+        "agentId": this.commission.agentId,
+        "agentCommission": this.commission.agentCommission,
     
-    //   })
-    // }
+      })
+    }
 
     let varr = {
 

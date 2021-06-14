@@ -70,7 +70,7 @@
 
                             <div class="col-md-7">
 
-                                <ng-select name="buyerId" #buyerId="ngModel" [(ngModel)]="data.buyerId"
+                                <ng-select name="buyerId" #buyerId="ngModel" [(ngModel)]="data.buyerId" (change)="buyerNameChange($event)"
                                     placeholder="-- Select --">
                                     <ng-option *ngFor="let i of buyer" [value]="i.id">{{ i.buyerName }}
                                     </ng-option>
@@ -89,8 +89,8 @@
                                 Name</label>
 
                             <div class="col-md-7">
-
-                                <ng-select name="sellerId" #sellerId="ngModel" class="" [(ngModel)]="data.sellerId"
+ 
+                                <ng-select name="sellerId" #sellerId="ngModel" class="" [(ngModel)]="data.sellerId" (change)="sellerNameChange($event)"
                                     placeholder="-- Select --">
                                     <ng-option *ngFor="let i of seller" [value]="i.id">{{ i.sellerName }}
                                     </ng-option>
@@ -140,7 +140,7 @@
 
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <input type="number" min="0" placeholder="Comm%" #amount="ngModel"
+                                            <input type="number" min="0" placeholder="Comm%" #amount="ngModel" (keyup)="amountCall($event)"
                                                 class="form-control" [(ngModel)]="data.amount" name="amount">
                                         </div>
                                     </div>
@@ -200,10 +200,11 @@
 
                         <div class="form-group row">
                             <label for="number" class="col-sm-3 col-form-label  ">Tax Challan</label>
-                            <div class="col-md-7">
-                                <input class="form-control" type="number" placeholder="Tax Challan Number"
+                            <div class="col-md-3">
+                                <input class="form-control" type="number" placeholder="Tax Challan Number" (keyup)="taxCalculated($event)"
                                     [(ngModel)]="data.taxChalan" />
                             </div>
+                            <label for="number" class="col-sm-1 col-form-label  ">{{calculatedTax}}</label>
                         </div>
 
                     </div>
@@ -222,45 +223,63 @@
 
 
                         <div class="panel-body">
-
+                                  {{result}}
                             <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows"
                                 [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+                                [selectionType]="SelectionType.checkbox"
+                                [selected]="selected"
+                                [selectAllRowsOnPage]="false"
+                              
                                 [sorts]="[{prop: 'code', dir: 'asce'}]" [rowHeight]="'auto'" [limit]="6">
 
 
 
-                                <ngx-datatable-column name="S. No." [width]="80" prop="name">
+                                <ngx-datatable-column name="S. No#" [width]="80" prop="name">
                                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                        {{row.name}}
+                                        {{row.saleInvoiceId}}
                                     </ng-template>
                                 </ngx-datatable-column>
-
-                                <ngx-datatable-column name="Inv#" [width]="80" prop="genericName">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                        {{row.genericName}}
-                                    </ng-template>
-                                </ngx-datatable-column>
-
-
-
-                                <ngx-datatable-column name="Date" [width]="80" prop="genericName">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                        {{row.genericName}}
-                                    </ng-template>
-                                </ngx-datatable-column>
-
-
 
                                 <ngx-datatable-column name="Invoice Amount" [width]="80" prop="genericName">
                                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                        {{row.genericName}}
+                                        {{row.saleInvoiceAmount}}
                                     </ng-template>
                                 </ngx-datatable-column>
 
+                                <ngx-datatable-column
+                                [width]="50"
+                                [sortable]="false"
+                                [canAutoResize]="false"
+                                [draggable]="false"
+                                [resizeable]="false"
+                                
+                                [checkboxable]="false"
+
+                                
+                              > 
+                              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                <input type="checkbox" (click)="onSelect($event,row)" >
+                            </ng-template>
+                            </ngx-datatable-column>
+
+                            <ngx-datatable-column name="Invoice Amount" [width]="80" prop="paidAmount">
+                                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                    {{row.paidAmount}}
+                                </ng-template>
+                            </ngx-datatable-column> 
+                                 <ngx-datatable-column name="texChallan" [width]="80" prop="texChallan">
+                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                        {{row.texChallan}}
+                                    </ng-template>
+                                </ngx-datatable-column> 
+
+
+                             
 
 
 
-                                <ngx-datatable-column name="Received" [width]="80" prop="genericName">
+
+                           <!--  <ngx-datatable-column name="Received" [width]="80" prop="genericName">
                                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                                         {{row.genericName}}
                                     </ng-template>
@@ -272,8 +291,8 @@
                                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                                         {{row.genericName}}
                                     </ng-template>
-                                </ngx-datatable-column>
-
+                                </ngx-datatable-column> -->
+<!-- 
                                 <ngx-datatable-column name="Action" [width]="40">
                                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
 
@@ -288,13 +307,13 @@
                                             </button>
 
                                         </div>
-
+                                
                                     </ng-template>
-                                </ngx-datatable-column>
+                                </ngx-datatable-column> -->
 
-                                <ngx-datatable-column name="Paid Amount" [width]="80" prop="genericName">
+                                <!-- <ngx-datatable-column name="Paid Amount" [width]="80" prop="genericName">
                                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                        {{row.genericName}}
+                                        {{row.company}}
                                     </ng-template>
                                 </ngx-datatable-column>
 
@@ -303,7 +322,7 @@
                                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                                         {{row.genericName}}
                                     </ng-template>
-                                </ngx-datatable-column>
+                                </ngx-datatable-column> -->
 
                             </ngx-datatable>
 

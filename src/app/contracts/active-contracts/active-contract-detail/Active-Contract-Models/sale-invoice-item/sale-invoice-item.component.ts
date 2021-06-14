@@ -40,6 +40,7 @@ recievedrate:any;
     }
   
   }
+  
   rate(event) {
     this.http.get(`${environment.apiUrl}/api/Contracts/GetContractItemRate/`+ event )
       .subscribe(
@@ -60,6 +61,7 @@ recievedrate:any;
           }
         });
   }
+
   keyup(event){
 
     let number=event.target.value;

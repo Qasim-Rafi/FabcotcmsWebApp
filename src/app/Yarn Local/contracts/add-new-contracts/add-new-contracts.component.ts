@@ -43,12 +43,15 @@ export class AddNewContractsComponent implements OnInit {
   new:any=[];
   new2:any=[];
   new3:any=[];
+  agents:any={};
+
   newPrice:any;
   @ViewChild(NgForm) contractForm;
   objEnquiry=0;
   dateformater: Dateformater = new Dateformater();
-
-
+selected:any;
+sensorTypes:any;
+selectedAttributes:any;
   constructor(
     private service: ServiceService,
     private toastr: ToastrService,
@@ -60,6 +63,8 @@ export class AddNewContractsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.data.quantityUOMId =8
+    this.data.rateUOMId =7
     let olddate=new Date();
     let latest_date =this.datepipe.transform(olddate, 'yyyy-MM-dd');
     this.data.enquiryDate =this.dateformater.fromModel(latest_date);
@@ -70,6 +75,10 @@ export class AddNewContractsComponent implements OnInit {
     this.GetCurrencyDropdown();
     this.GetpackingDropdown("start");
     this.GetPriceTermDropdown("start");
+    this.GetAgentDropdown();
+    this.getAutoEnquiryNo();
+    this.selected = this.uomList[0].name;
+  
   }
 
 
@@ -91,11 +100,23 @@ export class AddNewContractsComponent implements OnInit {
   }
   remove3(i: number) {
     this.new3.splice(i, 1);
-    this.counter3-- ;
+    // this.counter3-- ;
   }
+  // addMore() {
+  //   this.data.push({id: this.data.length});
+  // }
 
-
-
+  GetAgentDropdown() {
+    this.service.getAgents().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.agents = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
 
   
   GetBuyersDropdown(type:string) {
@@ -224,7 +245,25 @@ export class AddNewContractsComponent implements OnInit {
   }
 
 
+  getAutoEnquiryNo() {
+    this.http.get(`${environment.apiUrl}/api/Enquiries/GetNextEnquiryNumber`)
+      .subscribe(
+        res => {
 
+          this.response = res;
+          if (this.response.success == true) {
+            this.data.autoContractNo = this.response.data;
+          }
+          else {
+            this.toastr.error('Something went Worng', 'Message.');
+          }
+
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error('Something went Worng', 'Message.');
+          }
+        });
+  }
 
 
   addBuyerForm() {
@@ -327,6 +366,8 @@ export class AddNewContractsComponent implements OnInit {
     let departmentId=parseInt(localStorage.getItem('loggedInDepartmentId'))
     let varr = {
       // "enquiryDate": this.dateformater.toModel(this.data.enquiryDate),
+          "autoContractNo": this.data.autoContractNo,
+          "contractNo": this.data.contractNo,
           "poNumber": this.data.poNumber,
           "sellerId": this.data.sellerId,
           "buyerId": this.data.buyerId,
@@ -341,7 +382,7 @@ export class AddNewContractsComponent implements OnInit {
           "sellerPaymentTerm": this.data.sellerPaymentTerm,
           "buyerPaymentTerm": this.data.buyerPaymentTerm,
           "packingId": this.data.packingId,        
-          "priceTermId": this.data.priceTermId,        
+          "priceautoContractNoTermId": this.data.priceTermId,        
           "sellerDeliveryDate": this.data.sellerDeliveryDate,
           "buyerDeliveryDate": this.data.buyerDeliveryDate,
           "contractRemarks": this.data.contractRemarks,

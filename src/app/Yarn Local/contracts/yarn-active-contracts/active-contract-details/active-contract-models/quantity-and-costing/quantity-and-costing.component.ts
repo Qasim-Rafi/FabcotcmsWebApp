@@ -18,8 +18,7 @@ export class QuantityAndCostingComponent implements OnInit {
   data:any ={};
   response: any;
   currency: any={};
-  uom: any={};
-
+  uomList: any={};
 
   constructor(
     private _NgbActiveModal: NgbActiveModal,
@@ -29,6 +28,9 @@ export class QuantityAndCostingComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.GetUOMDropdown();
+    this.GetCurrencyDropdown();
+    this.getContractCostingData();
   }
   get activeModal() {
     return this._NgbActiveModal;
@@ -46,16 +48,18 @@ export class QuantityAndCostingComponent implements OnInit {
     })
   }
   GetUOMDropdown() {
-    this.service. getUOM().subscribe(res => {
+    this.http.get(`${environment.apiUrl}/api/Lookups/UOMs`).
+    subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.uom = this.response.data;
+        this.uomList = this.response.data;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
       }
     })
   }
+
   getContractCostingData() {
     this.http.get(`${environment.apiUrl}/api/Contracts/GetContractCostingById/` + this.contractId)
       .subscribe(
@@ -63,7 +67,6 @@ export class QuantityAndCostingComponent implements OnInit {
           this.response = res;
           if (this.response.success == true) {
             this.data = this.response.data;
-            
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
@@ -77,9 +80,17 @@ export class QuantityAndCostingComponent implements OnInit {
   }
   addContractCosting() {
     let varr = {
+      "contractId": this.data.contractId,
+      "quantity": this.data.quantity,
+      "quantityUOMId": this.data.quantityUOMId,
 
-      "contractId": this.contractId,
-      "currencyId": this.data.currencyId,
+      "quantityToleranceValue": this.data.quantityToleranceValue,
+      "rate": this.data.rate,
+      "rateCurrencyId": this.data.rateCurrencyId,
+
+      "rateUOMId": this.data.rateUOMId,
+      "contractCost": this.data.contractCost,
+
       
     }
 
@@ -94,6 +105,7 @@ export class QuantityAndCostingComponent implements OnInit {
             // this.getEnquiryData(this.objEnquiry);
             this.activeModal.close(true);
             this.getContractCostingData();
+            localStorage.setItem('rate',this.data.quantity);
 
         }
           else {

@@ -24,6 +24,9 @@ import { NgxSpinnerService } from 'ngx-spinner';
 
 import { createBuilderStatusReporter } from 'typescript';
 import { ContractNoteComponent } from './active-contract-models/contract-note/contract-note.component';
+import { AddNewInvComponent } from '../../sale-invoice/add-new-inv/add-new-inv.component';
+import { EditIvnoicePopupComponent } from './active-contract-models/edit-ivnoice-popup/edit-ivnoice-popup.component';
+import { StatusComponent } from 'src/app/shared/MODLES/status/status.component';
 
 @Component({
   selector: 'app-active-contract-details',
@@ -59,6 +62,8 @@ export class ActiveContractDetailsComponent implements OnInit {
   contractCommissionData: any = {};
   contractRemarksData: any = {};
   saleInvoiceData: any = {};
+  saleinvoiceFilter: any = {};
+  saleInvoice: any = {};
   response: any;
   ItemCount: number;
   contractCount: number;
@@ -80,9 +85,11 @@ export class ActiveContractDetailsComponent implements OnInit {
   deliveryCount: number;
   prodPlanData = [];
   dispatchData = [];
+  deliveryData = [];
+
   contractKickbackData = [];
-  
-  // deliveryFilter: any = [];
+  saleinvoicecount: number;
+
   deliveryUrl = '/api/YarnContracts/GetAllContractDeliverySchedule'
   shipmentUrl='/api/Contracts/GetAllContractShipmentSchedule/{contractId}';
   dispatchUrl = '/api/YarnContracts/GetAllDispatchRegister'
@@ -117,17 +124,23 @@ export class ActiveContractDetailsComponent implements OnInit {
     this.getContractLOC();
     this.getContractRemarkData();
     this.getContractCommisionData();
-    this.getSaleInvoice();
-    this.getContractKickBack();
+    // this.getSaleInvoice();
+    // this.getContractKickBack();
     this.getDispatches();
   
-    this.service.fetch((data) => {
+    // this.service.fetch((data) => {
+    //   this.rows = data;
+    //   this.deliveryFilter = [...this.rows];
+
+    //   this.deliveryCount = this.rows.length;
+    // }, this.deliveryUrl);
+    this.getDeliveries();
+    this.fetch((data) => {
+      this.saleinvoiceFilter = [...data];
+
       this.rows = data;
-      this.deliveryFilter = [...this.rows];
-
-      this.deliveryCount = this.rows.length;
-    }, this.deliveryUrl);
-
+      this.saleinvoicecount = this.rows.length;
+    });
     // this.service.fetch((data) => {
     //   this.rows7 = data;
     // }, this.dispatchUrl);
@@ -147,11 +160,7 @@ export class ActiveContractDetailsComponent implements OnInit {
       this.shipmentFilter = [...shipmentData];
 
     });
-    this.getAllInvoiceItems((invoiceItem) => {
-      this.rows6 = invoiceItem;
-      this.invoiceItemFilter = [...invoiceItem];
-
-    });
+  
 
   }
   navigateUploadDoc() {
@@ -217,30 +226,27 @@ export class ActiveContractDetailsComponent implements OnInit {
 }
 
 
-  // getAllItems(cb) {
+  getDeliveries() {
 
-  //   this.http
-  //     .get(`${environment.apiUrl}/api/Contracts/GetAllContractItem/`+ this.contractId)
-  //     .subscribe(res => {
-  //       this.response = res;
+    this.http.get(`${environment.apiUrl}/api/YarnContracts/GetAllContractDeliverySchedule/`+ this.contractId)
+      .subscribe(res => {
+        this.response = res;
         
 
-  //       if (this.response.success == true) {
-  //         this.items = this.response.data
-  //         this.ItemFilter = [this.items]; 
-  //         cb(this.items);
-  //       }
-  //       else {
-  //         this.toastr.error(this.response.message, 'Message.');
-  //       }
-  //       // this.spinner.hide();
-  //     }, err => {
-  //       if (err.status == 400) {
-  //         this.toastr.error(err.error.message, 'Message.');;
-  //       }
+        if (this.response.success == true) {
+          this.deliveryData = this.response.data
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+        // this.spinner.hide();
+      }, err => {
+        if (err.status == 400) {
+          this.toastr.error(err.error.message, 'Message.');;
+        }
        
-  //     });
-  // }
+      });
+  }
 
 
 
@@ -298,34 +304,73 @@ export class ActiveContractDetailsComponent implements OnInit {
 
 
 
-  getSaleInvoice() {
-    this.http.get(`${environment.apiUrl}/api/Contracts/GetAllContractSaleInvoice/`+ this.contractId )
-      .subscribe(
-        res => {
-          this.response = res;
-          if (this.response.success == true) {
-            this.invoiceData = this.response.data;
-            
+  addinvoiceForm(check){
+    const modalRef = this.modalService.open(SaleInvoicePopUpComponent, { centered: true });
+    modalRef.componentInstance.statusCheck = check;
+    modalRef.componentInstance.contractId = this.contractId ;
   
-          }
-          else {
-            this.toastr.error(this.response.message, 'Message.');
-          }
-  
-        }, err => {
-          if (err.status == 400) {
-            this.toastr.error(this.response.message, 'Message.');
-          }
-        });
+          modalRef.result.then((data) => {
+         // on close
+          if(data ==true){
+          //  this.date = this.myDate;
+           this.fetch((data) => {
+            this.rows = data;
+      this.saleinvoiceFilter = [...this.rows];
+        
+          });
+         
+        }
+       }, (reason) => {
+         // on dismiss
+       });
   }
-
-
-
-
-  deleteSaleInvoice(obj) {
+  
+  fetch(cb) {
+      this.spinner.show();
+    this.http
+    .get(`${environment.apiUrl}/api/YarnContracts/GetAllContractSaleInvoice/`+this.contractId )
+    .subscribe(res => {
+      this.response = res;
+     
+    if(this.response.success==true)
+    {
+    this.saleInvoice =this.response.data;
+  
+    cb(this.saleInvoice);
+   this.spinner.hide(); }
+    else{
+      this.toastr.error(this.response.message, 'Message.');
+    this.spinner.hide();
+    }
+      // this.spinner.hide();
+    }, err => {
+      if ( err.status == 400) {
+  this.toastr.error(err.error.message, 'Message.');
+      }
+     this.spinner.hide();
+    });
+  }
+  
+  editinvoice(row) {
+    const modalRef = this.modalService.open(AddNewInvComponent, { centered: true });
+    modalRef.componentInstance.invoiceId = row.id;
+    modalRef.result.then((data) => {
+      // on close
+      if (data == true) {
+       this.data = data;
+  
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
+  
+  
+  
+  deleteinvoice(row) {
     Swal.fire({
       title: GlobalConstants.deleteTitle, //'Are you sure?',
-      text: GlobalConstants.deleteMessage + ' ' + 'Sale Invoice Number:'+'"' + obj.saleInvoiceNo + '"'+'?',
+      text: GlobalConstants.deleteMessage + ' ' + '"' + row.autoContractNumber + '"',
       icon: 'error',
       showCancelButton: true,
       confirmButtonColor: '#ed5565',
@@ -336,31 +381,35 @@ export class ActiveContractDetailsComponent implements OnInit {
       position: 'top',
     }).then((result) => {
       if (result.isConfirmed) {
-  this.spinner.show();
-        this.http.delete(`${environment.apiUrl}/api/Contracts/DeleteContractSaleInvoice/` + obj.id )
+  
+        this.http.delete(`${environment.apiUrl}/api/YarnContracts/DeleteContractSaleInvoice/` + row.id)
           .subscribe(
             res => {
               this.response = res;
               if (this.response.success == true) {
                 this.toastr.error(this.response.message, 'Message.');
-                this.getSaleInvoice();
-  this.spinner.hide();
+                // this.getAllEnquiryItems();
+                this.fetch((data) => {
+                  this.rows = data;
+                });
+                
+  
               }
               else {
                 this.toastr.error(this.response.message, 'Message.');
-  this.spinner.hide();
-}
+              }
   
             }, err => {
               if (err.status == 400) {
                 this.toastr.error(this.response.message, 'Message.');
-  this.spinner.hide();
-}
+              }
             });
+  
       }
     })
   
   }
+  
   
 
 
@@ -537,6 +586,7 @@ getContractCostingData() {
         this.response = res;
         if (this.response.success == true) {
           this.contractCostingData = this.response.data;
+          localStorage.setItem('rate',this.response.data.quantity);
           
         }
         else {
@@ -549,12 +599,6 @@ getContractCostingData() {
         }
       });
 }
-
-
-
-
-
-
 
 getContractPaymentData() {
   this.http.get(`${environment.apiUrl}/api/Contracts/GetContractPaymentDeliveryById/` + this.contractId)
@@ -587,6 +631,7 @@ getContractCommisionData(){
     res => {
       this.response = res;
       if (this.response.success == true) {
+        // this.response.data ==null? '':this.response.data;
         this.contractCommissionData = this.response.data;
         // this.contractCommissionData.agenetName= parseInt(this.contractCommissionData.agenetName);
         
@@ -848,33 +893,32 @@ this.spinner.show();
       if (data == true) {
   
       this.getContractData();
-      
-      }
+this.getContractCommisionData();      }
     }, (reason) => {
       // on dismiss
     });
   }
 
 
-  getContractKickBack() {
-    this.http.get(`${environment.apiUrl}` + this.contractId)
-      .subscribe(
-        res => {
-          this.response = res;
-          if (this.response.success == true) {
-            this.contractKickbackData = this.response.data;
+  // getContractKickBack() {
+  //   this.http.get(`${environment.apiUrl}/api/Contracts/GetContractCommissionKickBackById/` + this.contractId)
+  //     .subscribe(
+  //       res => {
+  //         this.response = res;
+  //         if (this.response.success == true) {
+  //           this.contractKickbackData = this.response.data;
             
-          }
-          else {
-            this.toastr.error(this.response.message, 'Message.');
-          }
+  //         }
+  //         else {
+  //           this.toastr.error(this.response.message, 'Message.');
+  //         }
   
-        }, err => {
-          if (err.status == 400) {
-            this.toastr.error(this.response.message, 'Message.');
-          }
-        });
-  }
+  //       }, err => {
+  //         if (err.status == 400) {
+  //           this.toastr.error(this.response.message, 'Message.');
+  //         }
+  //       });
+  // }
   
 
 
@@ -930,98 +974,10 @@ getContractLOC() {
 
 
 
-addSaleInvoice() {
-  const modalRef = this.modalService.open(SaleInvoicePopUpComponent, { centered: true });
-  //modalRef.componentInstance.contractId = this.contractId;
-  //modalRef.componentInstance.statusCheck = status;
-  modalRef.result.then((data) => {
-    // on close
-    if (data == true) {
-   
-
-
-    }
-  }, (reason) => {
-    // on dismiss
-  });
-}
- 
-
-getAllInvoiceItems(cb) {
-
-  this.http
-    .get(`${environment.apiUrl}/api/Contracts/GetAllSaleInvoiceItem/`+ this.contractId)
-    .subscribe(res => {
-      this.response = res;
-      
-
-      if (this.response.success == true) {
-        this.invoiceItem = this.response.data
-        this.invoiceItemFilter = [this.invoiceItem]; 
-        cb(this.invoiceItem);
-      }
-      else {
-        this.toastr.error(this.response.message, 'Message.');
-      }
-      // this.spinner.hide();
-    }, err => {
-      if (err.status == 400) {
-        this.toastr.error(err.error.message, 'Message.');;
-      }
-      //  this.spinner.hide();
-    });
-}
 
 
 
 
-
-deleteInvoiceItem(id) {
-  Swal.fire({
-    title: GlobalConstants.deleteTitle, //'Are you sure?',
-    text: GlobalConstants.deleteMessage + ' ' + '"' + id.invoiceItem + '"',
-    icon: 'error',
-    showCancelButton: true,
-    confirmButtonColor: '#ed5565',
-    cancelButtonColor: '#dae0e5',
-    cancelButtonText: 'No',
-    confirmButtonText: 'Yes',
-    reverseButtons: true,
-    position: 'top',
-  }).then((result) => {
-    if (result.isConfirmed) {
-      this.spinner.show();
-
-      this.http.delete(`${environment.apiUrl}/api/Contracts/DeleteSaleInvoiceItem/` + id.id)
-        .subscribe(
-          res => {
-            this.response = res;
-            if (this.response.success == true) {
-              this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
-              this.getSaleInvoice();
-              this.getAllInvoiceItems((invoiceItem) => {
-                this.rows6 = invoiceItem;
-                this.invoiceItemFilter = [...invoiceItem];
-  this.spinner.hide();
-          
-              });
-
-
-            }
-            else {
-              this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
-  this.spinner.hide();
-}
-
-          }, err => {
-            if (err.status == 400) {
-              this.toastr.error(this.response.message, 'Message.');
-  this.spinner.hide();
-}
-          });
-    }
-  })
-}
 
 
 
@@ -1348,24 +1304,41 @@ deleteDispatch(id) {
           });
       }
     
-
+      statusform(status,action,component) {
+        const modalRef = this.modalService.open(StatusComponent, { centered: true });
+        // modalRef.componentInstance.parentBuyerId = popup.id;
+        modalRef.componentInstance.ContractId = this.contractId;
+        modalRef.componentInstance.statusCheck = status;
+        modalRef.componentInstance.action = action;
+        modalRef.componentInstance.component = component;
+        modalRef.result.then((data) => {
+          // on close
+          if (data == true) {
+          
+            this.getContractData();
+    
+          }
+        }, (reason) => {
+          // on dismiss
+        });
+      }
       
 
 
       AddReminder() {
-            this.data.contractUpDate = this.dateformater.toModel(this.data.contractUpDate);
+            // this.data.contractUpDate = this.dateformater.toModel(this.data.contractUpDate);
     
-            if( this.data.contractUpDate == "undefined-undefined-undefined"){
-              this.data.contractUpDate = ""
+            // if( this.data.contractUpDate == "undefined-undefined-undefined"){
+            //   this.data.contractUpDate = ""
 
-            }
-            if( this.data.contractUpDate == "0-NaN-NaN"){
-              this.data.contractUpDate = ""
-            }
+            // }
+            // if( this.data.contractUpDate == "0-NaN-NaN"){
+            //   this.data.contractUpDate = ""
+            // }
 
             let varr = {
               "contractId": this.contractId,
-              "contractUpDate": this.data.contractUpDate
+              "contractUpDate": this.dateformater.toModel(this.data.contractUpDate)
             }
   this.spinner.show();
         
@@ -1495,4 +1468,39 @@ deleteDispatch(id) {
             })
         
           }
+
+
+
+          editpopup(row) {
+            const modalRef = this.modalService.open(EditIvnoicePopupComponent , { centered: true });
+            modalRef.componentInstance.bill_id = row.billPaymentId;
+        
+            modalRef.result.then((p) => {
+              // on close
+              // this.fetch((data) => {
+              //   this.rows = data;
+            
+              // });
+              
+              if (p !=null)
+               {
+                 p.branch.name
+                // this.date = this.myDate;
+                // this.getBuyers();
+        
+              }
+            }, (reason) => {
+              // on dismiss
+            });
+          }
+
+
+
+
+
+
+
+
+
+
 }

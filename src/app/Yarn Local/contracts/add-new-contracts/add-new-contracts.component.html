@@ -60,12 +60,14 @@
                     <div class="form-group col-md-2">
                         <label for="inputPassword4">Auto</label>
                         <!-- <input type="password" class="form-control" id="inputPassword4"> -->
-                        <input type="text" placeholder="Auto Contract no." class="form-control text-w-4" readonly="">
+                        <input type="text" placeholder="Auto Contract no."
+                        [(ngModel)]="data.autoContractNo"  name="autoContractNo" #autoContractNo="ngModel"  class="form-control text-w-4" readonly>
                     </div>
                     <div class="form-group col-md-3">
                         <label for="inputPassword4">(Manual)</label>
                         <!-- <input type="password" class="form-control" id="inputPassword4"> -->
-                        <input type="text" placeholder="Contract no." class="form-control text-w-4" id="enqry-no">
+                        <input type="text" placeholder="Contract no." class="form-control text-w-4"  #contractNo="ngModel" 
+                        [(ngModel)]="data.contractNo"  name="contractNo" >
                     </div>
                     <div class="form-group col-md-3 offset-md-2 offset-lg-2">
                         <label for="inputPassword4">Contract Date</label>
@@ -328,7 +330,7 @@
                                         </div>
                         
                                         <div class="col-md-4 mrg-sm1">
-                                            <ng-select [(ngModel)]="data.quantityUOMId" placeholder="Select UOM" name="quantityUOMId">
+                                            <ng-select [(ngModel)]="data.quantityUOMId"    placeholder="Select UOM" name="quantityUOMId">
                                                 <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
                                                 </ng-option>
                                             </ng-select>
@@ -575,7 +577,7 @@
 
                     <!---------- commission ---------->
 
-                    <!-- <div >
+                     <div >
                 
                     <form #commission="ngForm" novalidate>
                         <div class="col-md-12">
@@ -714,7 +716,7 @@
                 
                 
                             <div class="col-md-12">
-                                <div class="form-group row" *ngFor="let a of new3; let i = index;">
+                                <div class="form-group row" *ngFor="let a of data; let i = index;">
                 
                                     <div class="col-md-12">
                 
@@ -722,17 +724,16 @@
                                         <div class="row">
                 
                                             <div class="col-md-6 mrg-sm1">
-                                                <ng-select name="buyerSideCommissionUOMId {{i}} " #buyerSideCommissionUOMId="ngModel"
-                                                    [(ngModel)]="a.buyerSideCommissionUOMId" placeholder="Select Agent"
-                                                    >
-                                                    <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
+                                                <ng-select placeholder="Select an Agent" [(ngModel)]="a.agentId" #agentId = "ngModel" name="agentId_{{i}}">
+                                                    <ng-option *ngFor="let i of agents" [value]="i.id">
+                                                      {{i.name}}
                                                     </ng-option>
-                                                </ng-select>
+                                                  </ng-select>
                                             </div>
                 
                                             <div class="col-md-6 mrg-sm1">
-                                                <input type="text" placeholder="Commission %" class="form-control"
-                                                    [(ngModel)]="a.buyerSideCommissionInfo" name="buyerSideCommissionInfo">
+                                                <input class="form-control" placeholder="Comm %" [(ngModel)]="a.agentCommission" #agentCommission = "ngModel" type="number" min="0"
+                                                            name="agent_{{i}}" />
                                             </div>
                 
                 
@@ -760,8 +761,8 @@
                 
                     <hr>
             
-                <hr>   -->
-                    <!-- <hr> -->
+                <hr>   
+                 <hr> 
                     
                     <!---------- remarks ---------->
                     

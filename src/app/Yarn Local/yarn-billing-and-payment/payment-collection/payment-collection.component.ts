@@ -18,7 +18,7 @@ import {NgxSpinnerService} from 'ngx-spinner'
 })
 export class PaymentCollectionComponent implements OnInit {
 
-  rows: any = [{nmbr:1}];
+  rows: any = [];
   data: any = {};
   copyData: any = [];
 response: any = {};
@@ -48,7 +48,7 @@ paymentFilter: any = {};
     this.fetch((data) => {
       this.paymentFilter = [...data];
 
-      // this.rows = data;
+      this.rows = data;
       this.listCount = this.rows.length;
     });
 

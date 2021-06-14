@@ -21,39 +21,93 @@
   <div class="modal-body BG p-2">
     <form #deliveryForm="ngForm" novalidate>
 
-      <div class="col-md-12 pt-3 pb-2">
+      <div class="col-md-12 pt-3 pb-2" *ngIf="this.statusCheck !='Edit'">
 
         <div class="form-group row">
-            <label class="col-sm-3 col-form-label text_Navy">Supplier Date
-              <!-- <span class="required-denote">*</span> -->
-            </label>
-            <div class="col-sm-8" (clickOutside)="validity.close()">
-              <input navigation="select" class="form-control  "
-              [(ngModel)]="data.supplierDate" #supplierDate="ngModel"  ngbDatepicker #validity="ngbDatepicker"
-             (click)="validity.toggle()"
-              placeholder="Supplier Date" 
-            name="supplierDate"
-              />
-               
-            </div>
+          <label class="col-sm-3 col-form-label text_Navy">Supplier Date
+            <!-- <span class="required-denote">*</span> -->
+          </label>
+          <div class="col-sm-4">
+            <input  class="form-control"  
+             name="supplierDateDay" placeholder="Day" [(ngModel)]="data.supplierDateDay" #supplierDateDay="ngModel"  />
+             
           </div>
 
-          <div class="form-group row">
-            <label class="col-sm-3 col-form-label text_Navy">Buyer Date
-              <!-- <span class="required-denote">*</span> -->
-            </label>
-            <div class="col-sm-8" (clickOutside)="validity2.close()">
-              <input navigation="select" class="form-control  "
-              [(ngModel)]="data.buyerDate" #buyerDate="ngModel" 
-               ngbDatepicker #validity2="ngbDatepicker"
-             (click)="validity2.toggle()"
-              placeholder="Buyer Date" 
-         name="buyerDate"
-              />
-               
-            </div>
-         
+          <div class="col-sm-2">
+            <ng-select placeholder="Month" name="supplierDateMonth" [(ngModel)]="data.supplierDateMonth" #supplierDateMonth="ngModel">
+              <ng-option value="Jan"> Jan</ng-option>
+              <ng-option value="Feb"> Feb</ng-option>
+              <ng-option value="Mar"> Mar</ng-option>
+              <ng-option value="Apr"> Apr</ng-option>
+              <ng-option value="May"> May</ng-option>
+              <ng-option value="Jun"> Jun</ng-option>
+              <ng-option value="Jul"> Jul</ng-option>
+              <ng-option value="Aug"> Aug</ng-option>
+              <ng-option value="Sep"> Sep</ng-option>
+              <ng-option value="Oct"> Oct</ng-option>
+              <ng-option value="Nov"> Nov</ng-option>
+              <ng-option value="Dec"> Dec</ng-option>
+            </ng-select>
           </div>
+          <div class="col-sm-2">
+            <ng-select placeholder="Year" name="supplierDateYear" [(ngModel)]="data.supplierDateYear" #supplierDateYear="ngModel">
+              <ng-option value="2016"> 2016</ng-option>
+              <ng-option value="2017"> 2017</ng-option>
+              <ng-option value="2018"> 2018</ng-option>
+              <ng-option value="2019"> 2019</ng-option>
+              <ng-option value="2020"> 2020</ng-option>
+              <ng-option value="2021"> 2021</ng-option>
+              <ng-option value="2022"> 2022</ng-option>
+              <ng-option value="2023"> 2023</ng-option>
+              <ng-option value="2024"> 2024</ng-option>
+              <ng-option value="2025"> 2025</ng-option>
+            </ng-select>
+          </div>
+          </div>
+       
+
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label text_Navy">Supplier Date
+            <!-- <span class="required-denote">*</span> -->
+          </label>
+          <div class="col-sm-4">
+            <input  class="form-control"  
+            name="buyerDateDay" placeholder="Day" [(ngModel)]="data.buyerDateDay" #buyerDateDay="ngModel"  />
+             
+          </div>
+          <div class="col-sm-2">
+            <ng-select placeholder="Month" name="buyerDateMonth" [(ngModel)]="data.buyerDateMonth" #buyerDateMonth="ngModel">
+              <ng-option value="Jan"> Jan</ng-option>
+              <ng-option value="Feb"> Feb</ng-option>
+              <ng-option value="Mar"> Mar</ng-option>
+              <ng-option value="Apr"> Apr</ng-option>
+              <ng-option value="May"> May</ng-option>
+              <ng-option value="Jun"> Jun</ng-option>
+              <ng-option value="Jul"> Jul</ng-option>
+              <ng-option value="Aug"> Aug</ng-option>
+              <ng-option value="Sep"> Sep</ng-option>
+              <ng-option value="Oct"> Oct</ng-option>
+              <ng-option value="Nov"> Nov</ng-option>
+              <ng-option value="Dec"> Dec</ng-option>
+            </ng-select>
+          </div>
+          <div class="col-sm-2">
+            <ng-select placeholder="Year" name="buyerDateYear" [(ngModel)]="data.buyerDateYear" #buyerDateYear="ngModel">
+              <ng-option value="2016"> 2016</ng-option>
+              <ng-option value="2017"> 2017</ng-option>
+              <ng-option value="2018"> 2018</ng-option>
+              <ng-option value="2019"> 2019</ng-option>
+              <ng-option value="2020"> 2020</ng-option>
+              <ng-option value="2021"> 2021</ng-option>
+              <ng-option value="2022"> 2022</ng-option>
+              <ng-option value="2023"> 2023</ng-option>
+              <ng-option value="2024"> 2024</ng-option>
+              <ng-option value="2025"> 2025</ng-option>
+            </ng-select>
+          </div>
+        </div>
+
+  
           <div class="form-group row">
             <label for="itemQuantity" class="col-sm-3 col-form-label text_Navy"> Quantity
     
@@ -74,21 +128,86 @@
       
           </div>
 
-
-     
-         
-  
-              
-
-        
-
-      
-  
-
-       
-
   </div>
+
+  <div class="col-md-12 pt-3 pb-2" *ngIf="this.statusCheck =='Edit'">
+
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label text_Navy">Supplier Date
+        <!-- <span class="required-denote">*</span> -->
+      </label>
+      <div class="col-sm-8">
+        <input  class="form-control"  
+         name="supplierDateMonth" placeholder="Day" [(ngModel)]="data.supplierDateMonth" #supplierDateMonth="ngModel"  />
+         
+      </div>
+   
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label text_Navy">Buyer Date
+        <!-- <span class="required-denote">*</span> -->
+      </label>
+      <div class="col-sm-8">
+        <input  class="form-control"  
+        name="buyerDateMonth" placeholder="Day" [(ngModel)]="data.buyerDateMonth" #buyerDateMonth="ngModel"  />
+         
+      </div>
   
+    </div>
+
+      <!-- <div class="form-group row">
+        <label class="col-sm-3 col-form-label text_Navy">Buyer Date
+           <span class="required-denote">*</span>
+        </label>
+        <div class="col-sm-4" (clickOutside)="validity2.close()">
+          <input navigation="select" class="form-control  "
+          [(ngModel)]="data.buyerDate" #buyerDate="ngModel" 
+           ngbDatepicker #validity2="ngbDatepicker"
+         (click)="validity2.toggle()"
+          placeholder="Buyer Date" 
+     name="buyerDate"
+          />
+           
+        </div>
+     
+      </div> -->
+      <div class="form-group row">
+        <label for="itemQuantity" class="col-sm-3 col-form-label text_Navy"> Quantity
+
+        </label>
+        <div class="col-sm-3">
+            <input type="number" min="0" 
+            class="form-control" value="" placeholder="Quantity"
+            [(ngModel)] = "data.quantity" value=""  name="quantity" #quantity = "ngModel"/>
+        </div>
+        <div class="col-md-5">
+           
+          <ng-select  [(ngModel)] = "data.quantityUOMId"   #quantityUOMId="ngModel"
+           placeholder="Unit" name="quantityUOMId">
+            <ng-option *ngFor = "let i of uomList" [value] = "i.id">{{i.name}}</ng-option>
+        </ng-select>
+
+        </div>
+  
+      </div>
+
+
+ 
+     
+
+          
+
+    
+
+  
+
+
+   
+
+</div>
+  
+
   
 
   <div class="modal-footer NotBG" >
