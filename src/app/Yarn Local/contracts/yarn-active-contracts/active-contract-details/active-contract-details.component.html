@@ -140,12 +140,14 @@
                     Delete
                 </button>
                 <button class="btn btn-danger btn-sm border-rounded px-3 mr-1"
-                 >
+                (click)="statusform('ContractCancel','Cancel','contract')"
+                >
                     <i class="fas fa-times"></i>
                     Cancle
                 </button>
                 <button class="btn btn-warning btn-sm border-rounded px-3 mr-1 text-white"
-                    >
+                (click)="statusform('ContractOnHold','OnHold','contract')"  
+                >
                     <i class="fas fa-level-down-alt"></i>
                     On-Hold
                 </button>
@@ -154,6 +156,7 @@
                     Revised
                 </button>
                 <button class="btn btn-outline-primary btn-sm border-rounded px-3 mr-1"
+                (click)="statusform('ContractClosed','Closed','contract')"
                 >
                     <i class="fas fa-check"></i>
                     Closed

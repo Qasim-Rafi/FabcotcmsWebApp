@@ -26,6 +26,7 @@ import { createBuilderStatusReporter } from 'typescript';
 import { ContractNoteComponent } from './active-contract-models/contract-note/contract-note.component';
 import { AddNewInvComponent } from '../../sale-invoice/add-new-inv/add-new-inv.component';
 import { EditIvnoicePopupComponent } from './active-contract-models/edit-ivnoice-popup/edit-ivnoice-popup.component';
+import { StatusComponent } from 'src/app/shared/MODLES/status/status.component';
 
 @Component({
   selector: 'app-active-contract-details',
@@ -1303,7 +1304,24 @@ deleteDispatch(id) {
           });
       }
     
-
+      statusform(status,action,component) {
+        const modalRef = this.modalService.open(StatusComponent, { centered: true });
+        // modalRef.componentInstance.parentBuyerId = popup.id;
+        modalRef.componentInstance.ContractId = this.contractId;
+        modalRef.componentInstance.statusCheck = status;
+        modalRef.componentInstance.action = action;
+        modalRef.componentInstance.component = component;
+        modalRef.result.then((data) => {
+          // on close
+          if (data == true) {
+          
+            this.getContractData();
+    
+          }
+        }, (reason) => {
+          // on dismiss
+        });
+      }
       
 
 
