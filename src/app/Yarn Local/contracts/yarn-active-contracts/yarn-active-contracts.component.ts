@@ -73,7 +73,9 @@ export class YarnActiveContractsComponent implements OnInit {
     this.router.navigate(['/FabCot/active-contract-details'], { queryParams: {id: obj.id} });
   };
   
-
+  navigateAddContract() {
+    this.router.navigate(['/FabCot/add-new-yarn-contract']);
+  };
 activeContract(){
   console.log("Active Contracts");
   // document.getElementById('all').style. = 'background-color: red; color: white;';

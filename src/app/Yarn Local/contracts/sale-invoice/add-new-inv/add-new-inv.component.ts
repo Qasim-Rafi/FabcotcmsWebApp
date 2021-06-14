@@ -160,7 +160,7 @@ if(event==8){
     //  this.data.saleInvoiceDate = this.dateformater.toModel(this.data.saleInvoiceDate);
     let varr = {
 
-      "contractId": parseInt(this.contractId),
+      "contractId": 1012,
       "saleInvoiceNo": this.data.saleInvoiceNo,
       "saleInvoiceDate":this.dateformater.toModel(this.data.saleInvoiceDate),
       "saleInvoiceRemarks":this.data.saleInvoiceRemarks,

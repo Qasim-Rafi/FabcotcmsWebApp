@@ -626,7 +626,7 @@ getContractPaymentData() {
 
 
 getContractCommisionData(){
-  this.http.get(`${environment.apiUrl}/api/Contracts/GetContractCommissionById/` + this.contractId)
+  this.http.get(`${environment.apiUrl}/api/Contracts/GetContractCommissionKickBackById/` + this.contractId)
   .subscribe(
     res => {
       this.response = res;
@@ -833,7 +833,7 @@ this.spinner.show();
       if (data == true) {
   
         this.getContractRemarkData();
-        
+
         // this.getAllBenificery((empData) => {
           // this.rows1 = empData;
           // this.listCount= this.rows.length;
@@ -999,9 +999,10 @@ addDeliveryTL(check) {
     if (data == true) {
       
       this.getContractData();
-     this.service.fetch((data=>{
-       this.rows = data;
-     }) , this.deliveryUrl)
+    //  this.service.fetch((data=>{
+    //    this.rows = data;
+    //  }) , this.deliveryUrl)
+    this.getDeliveries();
       
     }
   }, (reason) => {
@@ -1105,9 +1106,11 @@ editDeliveries(row, check) {
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
-      this.service.fetch((data) => {
-        this.rows = data;
-      }, this.deliveryUrl);
+      // this.service.fetch((data) => {
+      //   this.rows = data;
+      // }, this.deliveryUrl);
+      this.getContractData();
+      this.getDeliveries();
     }
 
  
@@ -1386,7 +1389,7 @@ deleteDispatch(id) {
                 this.response = res;
                 if (this.response.success == true){
                   this.toastr.success(this.response.message, 'Message.');
-                  this.router.navigate(['/FabCot/generate-bills']);
+                  this.router.navigate(['/yarn-billing-and-payment/generate-bills']);
   this.spinner.hide();
 }
                 else {
