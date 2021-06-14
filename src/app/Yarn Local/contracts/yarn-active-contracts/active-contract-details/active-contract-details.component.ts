@@ -631,6 +631,7 @@ getContractCommisionData(){
     res => {
       this.response = res;
       if (this.response.success == true) {
+        // this.response.data ==null? '':this.response.data;
         this.contractCommissionData = this.response.data;
         // this.contractCommissionData.agenetName= parseInt(this.contractCommissionData.agenetName);
         
@@ -892,33 +893,32 @@ this.spinner.show();
       if (data == true) {
   
       this.getContractData();
-      this.getContractKickBack();
-      }
+this.getContractCommisionData();      }
     }, (reason) => {
       // on dismiss
     });
   }
 
 
-  getContractKickBack() {
-    this.http.get(`${environment.apiUrl}/api/Contracts/GetContractCommissionKickBackById/` + this.contractId)
-      .subscribe(
-        res => {
-          this.response = res;
-          if (this.response.success == true) {
-            this.contractKickbackData = this.response.data;
+  // getContractKickBack() {
+  //   this.http.get(`${environment.apiUrl}/api/Contracts/GetContractCommissionKickBackById/` + this.contractId)
+  //     .subscribe(
+  //       res => {
+  //         this.response = res;
+  //         if (this.response.success == true) {
+  //           this.contractKickbackData = this.response.data;
             
-          }
-          else {
-            this.toastr.error(this.response.message, 'Message.');
-          }
+  //         }
+  //         else {
+  //           this.toastr.error(this.response.message, 'Message.');
+  //         }
   
-        }, err => {
-          if (err.status == 400) {
-            this.toastr.error(this.response.message, 'Message.');
-          }
-        });
-  }
+  //       }, err => {
+  //         if (err.status == 400) {
+  //           this.toastr.error(this.response.message, 'Message.');
+  //         }
+  //       });
+  // }
   
 
 
