@@ -81,14 +81,16 @@ export class QuantityAndCostingComponent implements OnInit {
   addContractCosting() {
     let varr = {
       "contractId": this.data.contractId,
-      "currencyId": this.data.currencyId,
       "quantity": this.data.quantity,
-      "contractCost": this.data.contractCost,
+      "quantityUOMId": this.data.quantityUOMId,
+
       "quantityToleranceValue": this.data.quantityToleranceValue,
       "rate": this.data.rate,
-      "rateUOMId": this.data.rateUOMId,
       "rateCurrencyId": this.data.rateCurrencyId,
-      "quantityUOMId": this.data.quantityUOMId
+
+      "rateUOMId": this.data.rateUOMId,
+      "contractCost": this.data.contractCost,
+
       
     }
 

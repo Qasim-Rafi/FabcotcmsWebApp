@@ -124,7 +124,7 @@ export class ActiveContractDetailsComponent implements OnInit {
     this.getContractRemarkData();
     this.getContractCommisionData();
     // this.getSaleInvoice();
-    this.getContractKickBack();
+    // this.getContractKickBack();
     this.getDispatches();
   
     // this.service.fetch((data) => {
@@ -891,7 +891,7 @@ this.spinner.show();
       if (data == true) {
   
       this.getContractData();
-      
+      this.getContractKickBack();
       }
     }, (reason) => {
       // on dismiss
@@ -900,7 +900,7 @@ this.spinner.show();
 
 
   getContractKickBack() {
-    this.http.get(`${environment.apiUrl}` + this.contractId)
+    this.http.get(`${environment.apiUrl}/api/Contracts/GetContractCommissionKickBackById/` + this.contractId)
       .subscribe(
         res => {
           this.response = res;
@@ -1308,19 +1308,19 @@ deleteDispatch(id) {
 
 
       AddReminder() {
-            this.data.contractUpDate = this.dateformater.toModel(this.data.contractUpDate);
+            // this.data.contractUpDate = this.dateformater.toModel(this.data.contractUpDate);
     
-            if( this.data.contractUpDate == "undefined-undefined-undefined"){
-              this.data.contractUpDate = ""
+            // if( this.data.contractUpDate == "undefined-undefined-undefined"){
+            //   this.data.contractUpDate = ""
 
-            }
-            if( this.data.contractUpDate == "0-NaN-NaN"){
-              this.data.contractUpDate = ""
-            }
+            // }
+            // if( this.data.contractUpDate == "0-NaN-NaN"){
+            //   this.data.contractUpDate = ""
+            // }
 
             let varr = {
               "contractId": this.contractId,
-              "contractUpDate": this.data.contractUpDate
+              "contractUpDate": this.dateformater.toModel(this.data.contractUpDate)
             }
   this.spinner.show();
         

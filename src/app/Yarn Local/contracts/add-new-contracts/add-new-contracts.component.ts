@@ -47,8 +47,9 @@ export class AddNewContractsComponent implements OnInit {
   @ViewChild(NgForm) contractForm;
   objEnquiry=0;
   dateformater: Dateformater = new Dateformater();
-
-
+selected:any;
+sensorTypes:any;
+selectedAttributes:any;
   constructor(
     private service: ServiceService,
     private toastr: ToastrService,
@@ -70,6 +71,8 @@ export class AddNewContractsComponent implements OnInit {
     this.GetCurrencyDropdown();
     this.GetpackingDropdown("start");
     this.GetPriceTermDropdown("start");
+    this.selected = this.uomList[0].name;
+  
   }
 
 
@@ -96,7 +99,7 @@ export class AddNewContractsComponent implements OnInit {
 
 
 
-
+ 
   
   GetBuyersDropdown(type:string) {
     this.service.getBuyers().subscribe(res => {
