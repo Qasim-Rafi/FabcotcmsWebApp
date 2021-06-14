@@ -1,3 +1,9 @@
+.lineh {
+  line-height: 18px !important; 
+}
+.fontTwl {
+  font-size: 12px;
+}
 
 .forum-info {
   text-align: center;
@@ -204,3 +210,15 @@ dt {
     padding: 0.5rem 8px !important;
   }
 }
+
+
+@media only screen and (max-width: 767px) {
+
+  dt {
+    text-align: left;
+  }
+  
+}
+
+
+

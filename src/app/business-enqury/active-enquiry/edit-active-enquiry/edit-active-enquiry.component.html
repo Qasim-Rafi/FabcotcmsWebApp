@@ -25,7 +25,7 @@
 
 <div class="row">
 
-    <div class="col-md-9">
+    <div class="col-xl-10">
     
         <div class="card ibox-content text-muted">
     
@@ -40,7 +40,7 @@
     
                         <span class="text-muted text2">{{enquiryData.buyerName}}</span>
     
-                        <button type="button" class="btn btn-outline-primary btn-sm float-right"
+                        <button type="button" class="btn btn-outline-primary btn-sm float-right mt-1"
                             (click)="enquiryToggle = ! enquiryToggle ; getEnquiryData(objEnquiry); ">
                             <i class="fa fa-plus"></i> Edit Enquiry</button>
                     </div>
@@ -934,15 +934,15 @@
 
 
     <!-- --------------------------------------------------- -->
-    <div class="col-md-3">
+    <div class="col-xl-2">
     
 
       
 
 
-        <div class="ibox-content p-3">
+        <div class="ibox-content p-2">
         
-            <div class="row mb-2">
+            <!-- <div class="row mb-2">
 
                 <div class="col-md-6">
                     <span> Next Follow-Up </span>
@@ -965,7 +965,34 @@
                     
                 </div>
 
+            </div> -->
+
+            <div class="row mb-2">
+
+                <div class="col-md-12 clearfix">
+                    <span class="float-left font-weight-bold fontTwl"> Next Follow-Up </span>
+
+                    <span>
+                    
+                        <div [ngClass]="{ noDisplay : reminderToggle==true }">
+                            <button class="btn btn-outline-secondary float-right btn-xs "><i class="fas fa-sync"></i> </button>
+                            <button class="btn btn-primary float-right btn-xs mx-1" (click)="reminderToggle = !reminderToggle ">
+                                <i class="fas fa-edit "></i> </button>
+                        </div>
+                    
+                        <div [ngClass]="{ noDisplay : reminderToggle==false }">
+                            <button class="btn btn-white float-right btn-xs" (click)="reminderToggle = !reminderToggle "><i
+                                    class="fas fa-times"></i> </button>
+                            <button class="btn btn-primary float-right btn-xs" (click)="reminderToggle = !reminderToggle; AddReminder() ">
+                                <i class="fas fa-check"></i> </button>
+                        </div>
+                    
+                    </span>
+                    
+                </div>
+
             </div>
+
 
             <div class="row">
                 <div class="col-md-12">
@@ -976,13 +1003,13 @@
                 </div>
 
 
-                <div class="col-md-12">
+                <div class="col-md-12 text-right">
                     <div *ngFor="let reminder of enquiryData.enquiryFollowUpList ">
-                        <div class=" text_Navy h4 mb-0">
+                        <div class=" text_Navy h6 mb-0">
             
                             {{reminder.followUpDateToDisplay}}
             
-                            <button type="button" class="btn deleteIconBack" data-toggle="tooltip" data-placement="top" title=""
+                            <button type="button" class="btn btn-xs deleteIconBack" data-toggle="tooltip" data-placement="top" title=""
                                 data-original-title="Delete" (click)="deleteReminder(reminder)">
                                 <i class="far fa-trash-alt"></i>
                             </button>
@@ -1040,7 +1067,7 @@
 
         <!---------- Time Spent ---------->
 
-        <div class="mt-3 bg-white p-3">
+        <div class="mt-2 bg-white p-2">
             Enquiry Work Completed
             <div class="mid-text">{{totalComplete}}</div>
             <div class="progress mt-1">
@@ -1051,14 +1078,14 @@
 
         </div>
 
-        <!-- <div class="bg-primary mt-3 rounded-lg">
+        <div class="bg-primary mt-2 rounded-lg">
                 
-            <div class="row p-3">
-                <div class="col-md-4 ">
-                    <i class="far fa-clock fa-2x"></i> 
+            <div class="row px-3 py-2">
+                <div class="col-4 pt-1">
+                    <i class="far fa-clock fa-3x"></i> 
                 </div>
 
-                <div class="col-md-8 text-right">
+                <div class="col-8 text-right">
                     <span>Time Spent</span>
                     <div class="h2">
                         0 
@@ -1071,15 +1098,15 @@
             </div>
   
 
-        </div> -->
+        </div>
 
 
-        <div class="bg-primary mt-3 rounded-lg">
+        <!-- <div class="bg-primary mt-2 rounded-lg">
             <div class="col-md-12 p-2 text-center">
             
                 <i class="far fa-clock fa-2x mr-2"></i>
 
-                <span>Time Spent</span>
+                <span>Time Spent</span><br>
                 <div class="h2 d-inline">
                     0
                     <span class="text-small">Hr</span>
@@ -1089,43 +1116,116 @@
             
             
             </div>
-        </div>
+        </div> -->
         
 
         <div class="row">
-            <div class="col-md-12 mt-3">
+            <div class="col-md-12 mt-2">
 
-                <button class="btn btn-outline-info btn-block btn-lg text-center  "  (click)="printPreview()">
+                <button class="btn btn-outline-info btn-block btn-lg "  (click)="printPreview()">
+                    <div class="row">
+                        <div class="col-3"><i class="fas fa-print"></i></div>
+                        <div class="col-9 text-left lineh"><span class="text-small"> Enquiry Preview </span></div>
+                    </div>
+                </button>
+
+
+                <button class="btn btn-outline-success btn-block btn-lg"  (click)  = "printPreviewWithCustomer()" >
+                    <div class="row">
+                        <div class="col-3"><i class="fas fa-print"></i></div>
+                        <div class="col-9 text-left lineh"><span class="text-small"> Preview w/o Customer</span></div>
+                    </div>
+                </button>
+
+
+                <button class="btn btn-warning btn-block btn-lg" (click)=" statusform('EnquiryOnHold','OnHold','enquiry')" *ngIf="enquiryData.status == 'Open'">
+                    <div class="row">
+                        <div class="col-3"><i class="fas fa-level-down-alt fa-md"></i></div>
+                        <div class="col-9 text-left lineh p-1"><span class="text-small"> On-hold </span></div>
+                    </div>
+                </button>
+
+
+                <button class="btn btn-danger btn-block btn-lg" (click)=" statusform('EnquiryCancle','Cancel','enquiry')" *ngIf="enquiryData.status == 'Open'">
+                    <div class="row">
+                        <div class="col-3"><i class="far fa-trash-alt fa-md"></i></div>
+                        <div class="col-9 text-left lineh p-1"><span class="text-small"> Cancel </span></div>
+                    </div>
+                </button>
+
+
+                <button class="btn btn-info btn-block btn-lg" (click)=" statusform('EnquiryArchived', 'Archive','enquiry')"
+                    *ngIf="enquiryData.status == 'Open'">
+                    <div class="row">
+                        <div class="col-3"><i class="fas fa-file-archive fa-md"></i></div>
+                        <div class="col-9 text-left lineh p-1"><span class="text-small "> Archive </span></div>
+                    </div>
+                </button>
+
+
+                <button class="btn btn-primary btn-block btn-lg" (click)="GenerateContract()" *ngIf="enquiryData.status == 'Open' && enquiryData.showContractButton == true " >
+                    <div class="row">
+                        <div class="col-3"><i class="fas fa-file-archive fa-md"></i></div>
+                        <div class="col-9 text-left lineh p-1"><span class="text-small"> Create Contract </span></div>
+                    </div>
+                </button>
+
+
+                <button class="btn btn-primary btn-block btn-lg" *ngIf="enquiryData.status == 'OnHold'" (click)=" statusOpen()">
+                    <div class="row">
+                        <div class="col-3"><i class="fas fa-file-archive fa-md"></i></div>
+                        <div class="col-9 text-left lineh p-1"><span class="text-small "> Enquiry Active </span></div>
+                    </div>
+                </button>
+
+
+            </div>
+        </div>
+
+
+        <!-- <div class="row">
+            <div class="col-md-12 mt-2">
+
+                <button class="btn btn-outline-info btn-block btn-lg "  (click)="printPreview()">
         
-                    <i class="fas fa-print"></i>
-                    <span class="ml-2 text-small"  > Enquiry Preview </span>
+                    <div class="row">
+                        <div class="col-md-3"><i class="fas fa-print"></i></div>
+                        <div class="col-md-9 text-left lineh"><span class="text-small"  > Enquiry Preview </span></div>
+                    </div>
         
                 </button>
 
-                <button class="btn btn-outline-success btn-block btn-lg text-center px-2"  (click)  = "printPreviewWithCustomer()" >
+
+                <button class="btn btn-outline-info btn-block btn-lg " (click)="printPreview()">
+                    <i class="fas fa-print"></i>
+                    <span class="ml-2 text-small"> Enquiry Preview </span>
+                </button>
+
+
+                <button class="btn btn-outline-success btn-block btn-lg text-center px-2 lineh"  (click)  = "printPreviewWithCustomer()" >
         
                     <i class="fas fa-print"></i>
-                    <span class="ml-2 text-small"> Enquiry Preview w/o Customer</span>
+                    <span class="ml-2 text-small"> Preview w/o Customer</span>
         
                 </button>
 
                 <button class="btn btn-warning btn-block btn-lg text-center  " (click)=" statusform('EnquiryOnHold','OnHold','enquiry')" *ngIf="enquiryData.status == 'Open'">
         
                     <i class="fas fa-level-down-alt fa-md"></i>
-                    <span class="ml-2 text-small"> Enquiry On-hold </span>
+                    <span class="ml-2 text-small"> On-hold </span>
         
                 </button>
 
                 <button class="btn btn-danger btn-block btn-lg text-center " (click)=" statusform('EnquiryCancle','Cancel','enquiry')" *ngIf="enquiryData.status == 'Open'">
         
                     <i class="far fa-trash-alt fa-md"></i>
-                    <span class="ml-2 text-small"> Enquiry Cancel </span>
+                    <span class="ml-2 text-small"> Cancel </span>
         
                 </button>
                 <button class="btn btn-info btn-block btn-lg text-center " (click)=" statusform('EnquiryArchived', 'Archive','enquiry')"  *ngIf="enquiryData.status == 'Open'" >
         
                     <i class="fas fa-file-archive fa-md"></i>
-                    <span class="ml-2 text-small "> Enquiry Archive </span>
+                    <span class="ml-2 text-small "> Archive </span>
         
                 </button>
                 <button class="btn btn-primary btn-block btn-lg text-center " (click)="GenerateContract()" *ngIf="enquiryData.status == 'Open' && enquiryData.showContractButton == true " 
@@ -1140,7 +1240,8 @@
                     <span class="ml-2 text-small "> Enquiry Active </span>
                 </button>
             </div>
-        </div>
+        </div> -->
+
 
     </div>
 

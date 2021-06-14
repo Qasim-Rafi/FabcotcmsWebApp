@@ -28,7 +28,8 @@ body {
 }
 
 .ngx-datatable.bootstrap {
-  font-size: 14px !important;
+  /* font-size: 14px !important; */
+  font-size: 13px !important;
   font-weight: 300 !important;
 }
 
@@ -501,6 +502,7 @@ select {
 .font{
   font-size: 16px;
 }
+
 
 
 
