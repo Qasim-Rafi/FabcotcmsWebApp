@@ -847,21 +847,21 @@
                                         <dl class="row">
                                             <dt class="col-sm-6">Kickback:
                                             </dt>
-                                            <dd class="col-sm-6">
-                                               </dd>
+                                            <dd class="col-sm-6">{{contractCommissionData.kickbackPercentage}}% /
+                                                {{contractCommissionData.kickbackUOMName}}</dd>
                                         </dl>
-                                        <!-- <dl class="row">
+                                        <dl class="row">
                                             <dt class="col-sm-6">Fabcot Commission:
                                             </dt>
-                                            <dd class="col-sm-6">{{contractCommissionData.sellerSideCommission}}% /
-                                                {{contractCommissionData.sellerSideCommissionUOMName}}</dd>
+                                            <dd class="col-sm-6">{{contractCommissionData.fabCotCommision}}% /
+                                                {{contractCommissionData.fabCotCommisionUOMName}}</dd>
                                         </dl>
                                         <dl class="row">
                                             <dt class="col-sm-6">Buyer side Commission:
                                             </dt>
-                                            <dd class="col-sm-6">{{contractCommissionData.buyerSideCommission}}% /
-                                                {{contractCommissionData.buyerSideCommissionUOMName}}</dd>
-                                        </dl> -->
+                                            <dd class="col-sm-6">{{contractCommissionData.buyersideCommision}}% /
+                                                {{contractCommissionData.buyersideCommisionUOMName}}</dd>
+                                        </dl>
                                         <!-- <dl class="row">
                                             <dt class="col-sm-6">Foreign Agent Comm:
                                             </dt>
@@ -1113,13 +1113,13 @@
                                     </ngx-datatable-column>
                                     <ngx-datatable-column name="Supplier Date" prop="supplierDate" [width]="80">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                            {{row.supplierDate}}
+                                            {{row.supplierDateDay}}-{{row.supplierDateMonth}}-{{row.supplierDateYear}}
 
                                         </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column name="Buyer Date" prop="buyerDate" [width]="80">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                            {{row.buyerDate}}
+                                            {{row.buyerDateDay}}-{{row.buyerDateMonth}}-{{row.buyerDateYear}}
 
                                         </ng-template>
                                     </ngx-datatable-column>

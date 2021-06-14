@@ -39,25 +39,16 @@ export class SearchComponent implements OnInit {
  ) { }
  
    ngOnInit(): void   {
-     this.GetBankAccDropdown()
-     // this.service.getDocumentType().subscribe(res => {
-     //   this.response = res;
-     //   if (this.response.success == true) {
-     //     this.search = this.response.data;
-     //   }
-     //   else {
-     //     this.toastr.error(this.response.message, 'Message.');
-     //   }
-     // })
+     this.ContractsDropdown()
    }
    updateFilter(event) {
      const val = event.target.value.toLowerCase();
  
      const temp = this.temp.filter(function (d) {
        return (
-         d.bankAddress.toLowerCase().indexOf(val) !== -1 ||
-         d.accountName.toLowerCase().indexOf(val) !== -1 ||
-         d.bankName.toLowerCase().indexOf(val) !== -1 ||
+         d.autoContractNumber.toLowerCase().indexOf(val) !== -1 ||
+         d.sellerName.toLowerCase().indexOf(val) !== -1 ||
+         d.buyerName.toLowerCase().indexOf(val) !== -1 ||
          !val);
      });
      this.bankAcc = temp;
@@ -68,8 +59,10 @@ export class SearchComponent implements OnInit {
      return this._NgbActiveModal;
    }
  
-   GetBankAccDropdown() {
-     this.http.get(`${environment.apiUrl}/api/Lookups/BankAccounts`).
+
+   ContractsDropdown() {
+     this.http.get(`${environment.apiUrl}/api/Lookups/Contracts`).
+
      subscribe(res => {
        this.response = res;
        if (this.response.success == true) {

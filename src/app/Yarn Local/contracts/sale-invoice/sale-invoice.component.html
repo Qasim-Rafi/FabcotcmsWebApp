@@ -118,32 +118,32 @@
   
             <ngx-datatable-column name="Inv. ID">
               <ng-template let-row="row" ngx-datatable-cell-template>
-          
+                {{rows.id}}
               </ng-template>
             </ngx-datatable-column>
   
             <ngx-datatable-column name="Inv. #" prop="contractAge">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 <span class="badge badge-primary"></span>
-               
+                {{rows.saleInvoiceNo}}
               </ng-template>
             </ngx-datatable-column>
   
             <ngx-datatable-column name="Invoice Date" prop="autoContractNumber">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-               
+                {{rows.autoContractNo}}
               </ng-template>
             </ngx-datatable-column>
-  
+            {{rows.buyerName}}
             <ngx-datatable-column name="Buyer" prop="contractOn">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                
+                {{rows.buyerName}}
               </ng-template>
             </ngx-datatable-column>
   
             <ngx-datatable-column name="Seller" prop="poNumber">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              
+                {{rows.sellerName}}
               </ng-template>
             </ngx-datatable-column>
   
@@ -162,37 +162,37 @@
             <ngx-datatable-column name="Quantity" prop="articleName">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 
-  
+                {{rows.quantity}}
               </ng-template>
             </ngx-datatable-column>
             <ngx-datatable-column name="Rate" prop="articleName">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 
-  
+                {{rows.unit}}
               </ng-template>
             </ngx-datatable-column>
             <ngx-datatable-column name="Invoice Amount" prop="articleName">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                
+                {{rows.amount}}
   
               </ng-template>
             </ngx-datatable-column>
             <ngx-datatable-column name="Tax %age" prop="articleName">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 
-  
+                {{rows.taxPercentage}}
               </ng-template>
             </ngx-datatable-column>
             <ngx-datatable-column name="Tax Amount" prop="articleName">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                
+                {{rows.taxPercentage}}
   
               </ng-template>
             </ngx-datatable-column>
             <ngx-datatable-column name="Payment ID" prop="articleName">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 
-  
+                {{rows.taxPercentage}}
               </ng-template>
             </ngx-datatable-column>
           </ngx-datatable>

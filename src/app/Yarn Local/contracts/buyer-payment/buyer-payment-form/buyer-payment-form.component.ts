@@ -33,6 +33,7 @@ export class BuyerPaymentFormComponent implements OnInit {
   newBuyer: number;
   amountGivenToCalculate:any;
   calculatedTax:any;
+  isAmountDisabled:boolean =false;
   buyerPaymentUrl = '/api/Configs/GetAllArticle'
   constructor(
     private service: ServiceService,
@@ -180,9 +181,17 @@ this.spinner.hide();
          
   }
   amountCall(event){
-     this.amountGivenToCalculate=event.target.value;
-     this.data.taxChalan = 0;
+
+      
+        this.amountGivenToCalculate=event.target.value;
+        this.data.taxChalan = 0;
+       
+   
      
+     
+  }
+  onBlurMethod(){
+    this.isAmountDisabled =true;
   }
   taxCalculated(event){
     event.target.value;
