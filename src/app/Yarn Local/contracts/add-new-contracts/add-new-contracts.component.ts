@@ -43,6 +43,8 @@ export class AddNewContractsComponent implements OnInit {
   new:any=[];
   new2:any=[];
   new3:any=[];
+  agents:any={};
+
   newPrice:any;
   @ViewChild(NgForm) contractForm;
   objEnquiry=0;
@@ -73,6 +75,7 @@ selectedAttributes:any;
     this.GetCurrencyDropdown();
     this.GetpackingDropdown("start");
     this.GetPriceTermDropdown("start");
+    this.GetAgentDropdown();
     this.getAutoEnquiryNo();
     this.selected = this.uomList[0].name;
   
@@ -97,12 +100,24 @@ selectedAttributes:any;
   }
   remove3(i: number) {
     this.new3.splice(i, 1);
-    this.counter3-- ;
+    // this.counter3-- ;
+  }
+  // addMore() {
+  //   this.data.push({id: this.data.length});
+  // }
+
+  GetAgentDropdown() {
+    this.service.getAgents().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.agents = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
   }
 
-
-
- 
   
   GetBuyersDropdown(type:string) {
     this.service.getBuyers().subscribe(res => {
