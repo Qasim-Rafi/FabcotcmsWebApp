@@ -140,7 +140,7 @@
 
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <input type="number" min="0" placeholder="Comm%" #amount="ngModel" (keyup)="amountCall($event)"
+                                            <input type="number" min="0" [readonly]="isAmountDisabled" placeholder="Comm%" #amount="ngModel" (focus)="onBlurMethod()" (keyup)="amountCall($event)"
                                                 class="form-control" [(ngModel)]="data.amount" name="amount">
                                         </div>
                                     </div>
