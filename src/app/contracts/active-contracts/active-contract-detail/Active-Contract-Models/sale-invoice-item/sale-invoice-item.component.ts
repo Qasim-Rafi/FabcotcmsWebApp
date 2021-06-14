@@ -48,7 +48,8 @@ recievedrate:any;
           this.response = res;
           if (this.response.success == true) {
             this.recievedrate = this.response.data;
-            
+            this.data.quatity =null;
+            this.data.amount =null;
   
           }
           else {
