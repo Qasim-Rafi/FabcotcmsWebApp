@@ -124,8 +124,8 @@ export class CommisionKickbackComponent implements OnInit {
       "buyerSideCommission": this.commission.buyerSideCommission,
       "buyerSideCommissionUOMId": this.commission.buyerSideCommissionUOMId,
       "buyerAdditionalInfo": this.commission.buyerAdditionalInfo,
-      "agentId": this.commission.agentId,
-      "agentCommissions": this.data,
+      // "agentId": this.commission.agentId,
+      // "agentCommissions": this.data,
     }
 
     this.http.
