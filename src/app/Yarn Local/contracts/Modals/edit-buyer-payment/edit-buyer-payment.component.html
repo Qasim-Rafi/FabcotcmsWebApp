@@ -151,7 +151,7 @@
                   <div class="col-sm-3">
                     <ng-select name="paymentMode " #paymentMode="ngModel"
                     [(ngModel)]="data.paymentMode" placeholder="Select Payment Mode">
-                    <ng-option *ngFor="let i of payment" [value]="i.id">{{ i }}
+                    <ng-option *ngFor="let i of payment" [value]="i">{{ i }}
                     </ng-option>
                 </ng-select>
                   </div>

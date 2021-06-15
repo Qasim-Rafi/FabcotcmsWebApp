@@ -34,6 +34,7 @@ export class BuyerPaymentFormComponent implements OnInit {
   amountGivenToCalculate:any;
   calculatedTax:any;
   isAmountDisabled:boolean =false;
+  saleInvoiceIds =[];
   buyerPaymentUrl = '/api/Configs/GetAllArticle'
   constructor(
     private service: ServiceService,
@@ -131,7 +132,8 @@ export class BuyerPaymentFormComponent implements OnInit {
         "additionalDetails": this.data.additionalDetails,
         "depositDate": this.dateformater.toModel(this.data.depositeDate),
         "taxChalan": this.data.taxChalan,
-        "remarks": this.data.remarks
+        "remarks": this.data.remarks,
+        "saleInvoiceIds": this.saleInvoiceIds
       
    
       }
@@ -184,14 +186,25 @@ this.spinner.hide();
 
       
         this.amountGivenToCalculate=event.target.value;
+        this.amountGivenToCalculate = this.amountGivenToCalculate +'.000';
         this.data.taxChalan = 0;
        
    
      
      
   }
-  onBlurMethod(){
-    this.isAmountDisabled =true;
+  onBlurMethod(event){
+    if(event != undefined){
+      setTimeout(()=>{                           
+        this.isAmountDisabled =true;
+   }, 3000);
+      
+
+    }
+    else{
+    this.isAmountDisabled =false;
+
+    }
   }
   taxCalculated(event){
     event.target.value;
@@ -202,19 +215,41 @@ this.spinner.hide();
      this.selected = newrow;  
  
     if(event.currentTarget.checked == true){
+      this.saleInvoiceIds.push(row.saleInvoiceId);
       if(row !=null){
        
         if( this.result != null){
-          this.result=this.result - row.saleInvoiceAmount;
-          if(this.result <0){
+          if(this.result <  this.selected[0].saleInvoiceAmount){
+          
+            this.selected[0].paidAmount =this.result;
+            this.result= this.result -this.selected[0].saleInvoiceAmount;
+          }
+        
+          if(this.result <0 ){
             this.toastr.error("Partial  Value", 'Message.');
+           
           }
         }
         else{
-          this.result =this.amountGivenToCalculate -  this.selected[0].saleInvoiceAmount;
+          if(parseInt(this.amountGivenToCalculate) >  parseInt(this.selected[0].saleInvoiceAmount)){
+            this.selected[0].paidAmount=this.selected[0].saleInvoiceAmount
+            this.result= this.amountGivenToCalculate-this.selected[0].paidAmount
+            this.result =this.result;
+          }
+          else if(parseInt(this.amountGivenToCalculate) <  parseInt(this.selected[0].saleInvoiceAmount)){
+            this.selected[0].paidAmount =this.amountGivenToCalculate;
+            this.result =this.amountGivenToCalculate -this.amountGivenToCalculate;
+            this.toastr.error("Partial  Value", 'Message.');
+             this.result =this.result.replace('.000','');
+          }
+          else{
+            this.result =this.amountGivenToCalculate -  this.selected[0].saleInvoiceAmount;
+            this.selected[0].paidAmount= this.selected[0].saleInvoiceAmount;
+
+          }
         }
-        this.result =this.result;
-        this.selected[0].paidAmount= this.selected[0].saleInvoiceAmount;
+        this.result =this.result +'.000';
+        // this.selected[0].paidAmount= this.selected[0].saleInvoiceAmount;
            this.selected.push(...this.selected);
           this.rows = [...this.rows]
       }
@@ -223,11 +258,18 @@ this.spinner.hide();
       }
     }
     else if(event.currentTarget.checked == false){
+
+      this.saleInvoiceIds.forEach((element,index)=>{
+        if(element==row.saleInvoiceId) this.saleInvoiceIds.splice(index,1);
+     });
       if( this.result != null){
         let newrow =this.rows.filter(r=>r.saleInvoiceId ==row.saleInvoiceId)
-        this.selected = newrow;  
+        this.selected = newrow; 
+        this.result=0
+        this.result=row.paidAmount 
         this.selected[0].paidAmount= 0;
-        this.result=this.result + row.saleInvoiceAmount;
+        
+        // parseInt(this.result) + parseInt(row.paidAmount);
 
         this.selected.push(...this.selected);
           this.rows = [...this.rows]

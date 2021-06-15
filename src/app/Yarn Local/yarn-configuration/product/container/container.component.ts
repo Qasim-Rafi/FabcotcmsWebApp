@@ -55,7 +55,7 @@ export class ContainerComponent implements OnInit {
   search(event) {
     const val = event.target.value.toLowerCase();
     const temp = this.containerFilter.filter(function (d) {
-      return (d.name.toLowerCase().indexOf(val) !== -1 || !val);
+      return (d.containerName.toLowerCase().indexOf(val) !== -1 || !val);
     });
     this.rows = temp;
   }
@@ -187,11 +187,11 @@ countryCsvFile(){
     let docDefinition = {
       pageSize: 'A4',
       info: {
-        title: 'Country List'
+        title: 'Container List'
       },
       content: [
         {
-          text: 'Country List',
+          text: 'Container List',
           style: 'heading',
 
         },
@@ -202,9 +202,9 @@ countryCsvFile(){
             headerRows: 1,
             widths: [30, 90, 130, 50, 150],
             body: [
-              ['S.no.', 'Country', 'Details', 'Status', 'Created On| Created By'],
+              ['S.no.', 'Container Size', 'Details', 'Status', 'Created On| Created By'],
               ...this.rows.map(row => (
-                [row.id, row.name, row.details,
+                [row.id, row.containerName, row.description,
                 row.active == true ? "Active" : "In-Active", row.createdDateTime + '|' + row.createdByName]
               ))
             ]
@@ -222,7 +222,7 @@ countryCsvFile(){
     };
 
 
-    pdfMake.createPdf(docDefinition).download('CountryList.pdf');
+    pdfMake.createPdf(docDefinition).download('Container.pdf');
   }
 
   //-------------------------------------- Print country List ------------------------- ///
@@ -232,11 +232,11 @@ countryCsvFile(){
     let docDefinition = {
       pageSize: 'A4',
       info: {
-        title: 'Country List'
+        title: 'Container List'
       },
       content: [
         {
-          text: 'Country List',
+          text: 'Container List',
           style: 'heading',
 
         },
@@ -247,9 +247,9 @@ countryCsvFile(){
             headerRows: 1,
             widths: [30, 90, 130, 50, 150],
             body: [
-              ['S.no.', 'Country', 'Details', 'Status', 'Created On| Created By'],
+              ['S.no.', 'Container', 'Details', 'Status', 'Created On| Created By'],
               ...this.rows.map(row => (
-                [row.id, row.name, row.details,
+                [row.id, row.containerName, row.description,
                 row.active == true ? "Active" : "In-Active", row.createdDateTime + '|' + row.createdByName]
               ))
             ]
@@ -274,9 +274,9 @@ countryCsvFile(){
   //------------------------------------ Copy Country list --------------------///
 
   copyCountryList() {
-    let count1 = this.rows.map(x => x.name.length);
+    let count1 = this.rows.map(x => x.containerName.length);
     let max1 = count1.reduce((a, b) => Math.max(a, b));
-    let count3 = this.rows.map(x => x.details.length);
+    let count3 = this.rows.map(x => x.description.length);
     let max3 = count3.reduce((a, b) => Math.max(a, b));
     let count4 = this.rows.map(x => x.active == true ? "Active".length : "In-Active".length);
     let max4 = count4.reduce((a, b) => Math.max(a, b));
@@ -286,12 +286,12 @@ countryCsvFile(){
 
     // ................................................ headings replace yours............................
 
-    this.copyData.push('S No.' + 'Country Name'.padEnd(max1) + 'Details'.padEnd(max3) + 'Status'.padEnd(max4) + 'Changed On' + '| Changed By \n');
+    this.copyData.push('S No.' + 'Container Name'.padEnd(max1) + 'Details'.padEnd(max3) + 'Status'.padEnd(max4) + 'Changed On' + '| Changed By \n');
     // ................................................ headings............................
 
     // ................................................ coloum data...........replace your coloum names.................
     for (let i = 0; i < this.rows.length; i++) {
-      let tempData = this.rows[i].id + this.rows[i].name.padEnd(max1) + this.rows[i].details.padEnd(max3)
+      let tempData = this.rows[i].id + this.rows[i].containerName.padEnd(max1) + this.rows[i].description.padEnd(max3)
         + this.rows[i].active
         + this.rows[i].createdDateTime + this.rows[i].createdByName + '\n';
       this.copyData.push(tempData);

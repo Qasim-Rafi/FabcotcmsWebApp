@@ -53,7 +53,7 @@
             <div class="form-group row">
               <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="inputSearch">
+                <input type="text" class="form-control" id="inputSearch" (keyup) = "search($event)">
               </div>
             </div>
            </div>
@@ -70,7 +70,7 @@
   
                 <div class="ibox-tools text-center">
   
-                  <button type="button" class="btn editIconBack" (click) = "editDispatch(row)">
+                  <button type="button" class="btn editIconBack" (click) = "editDispatch(row, 'Edit2')">
                     <i class="far fa-edit "></i>
                   </button>
   
@@ -84,13 +84,12 @@
   
             <ngx-datatable-column>
               <ng-template let-row="row" ngx-datatable-cell-template>
-  
               </ng-template>
             </ngx-datatable-column>
   
             <ngx-datatable-column name="Buyer" prop="contractAge">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                <span class="badge badge-primary"></span>
+                      {{row.buyerName}} 
               </ng-template>
             </ngx-datatable-column>
   
@@ -102,11 +101,15 @@
   
             <ngx-datatable-column name="Contract " prop="contractOn">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+            
+             <button  class="clr"  (click)="navigateEditContract(row)">
+              {{row.contractNo}}</button>
               </ng-template>
             </ngx-datatable-column>
   
             <ngx-datatable-column name="Article" prop="poNumber">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              {{row.articleName}}
               </ng-template>
             </ngx-datatable-column>
   
@@ -118,13 +121,13 @@
   
             <ngx-datatable-column name="Rate" prop="articleName">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-  
+     {{row.rate}}
               </ng-template>
             </ngx-datatable-column>
             
             <ngx-datatable-column name="Dispatch On" prop="articleName">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                 {{row.date}}
+                 {{row.dispatchOn}}
               </ng-template>
             </ngx-datatable-column>
           </ngx-datatable>

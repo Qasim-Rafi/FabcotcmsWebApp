@@ -45,7 +45,7 @@ export class EditBankAccountComponent implements OnInit {
             this.banks = this.response.data;
           }
           else {
-             this.toastr.success(this.response.message, 'Message.');
+             this.toastr.error(this.response.message, 'Message.');
           }
 
         }, err => {
@@ -69,13 +69,13 @@ export class EditBankAccountComponent implements OnInit {
             this.spinner.hide();
           }
           else {
-             this.toastr.success(this.response.message, 'Message.');
+             this.toastr.error(this.response.message, 'Message.');
              this.spinner.hide();
             }
 
         }, err => {
           if (err.status == 400) {
-             this.toastr.success(this.response.message, 'Message.');
+             this.toastr.error(this.response.message, 'Message.');
              this.spinner.hide();
             }
         });
@@ -107,7 +107,7 @@ this.spinner.show();
             this.spinner.hide();
           }
           else {
-             this.toastr.success(this.response.message, 'Message.');
+             this.toastr.error(this.response.message, 'Message.');
              this.spinner.hide();
             }
 

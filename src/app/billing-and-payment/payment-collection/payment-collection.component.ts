@@ -195,6 +195,7 @@ paymentFilter: any = {};
 
     let docDefinition = {
       pageSize: 'A3',
+      pageOrientation: 'landscape',
       info: {
         title: 'Payment List'
       },
