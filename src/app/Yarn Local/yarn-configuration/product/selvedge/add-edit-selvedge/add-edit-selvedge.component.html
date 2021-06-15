@@ -1,0 +1,73 @@
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "line-spin-fade" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+<div class="modal-header" *ngIf="FormName == 'countryForm'">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <div *ngIf="statusCheck == 'add'">
+    <h5 class="modal-title">
+      <i class="fa fa-plus fa-fw"></i>
+      Add New Pick Insertion
+    </h5>
+  </div>
+  <div *ngIf="statusCheck == 'edit'">
+    <h5 class="modal-title">
+      <i class="far fa-edit fa-fw"></i>
+      Edit Pick Insertion
+    </h5>
+  </div>
+
+</div>
+
+<div class="modal-body BG p-0">
+  <form #addAgentForm="ngForm" novalidate>
+
+    <div class="col-md-12 pt-3 pb-2">
+
+      <div class="form-group row" [class.has-error]="selvedgeName.invalid && selvedgeName.touched">
+        <label for="code" class="col-sm-3 col-form-label control-label text_Navy">Pick Insertion Name<span
+            class="required-denote">*</span> </label>
+        <div class="col-sm-8">
+          <input appAutofocus required maxlength="80" minlength="3" id="code" type="text" class="form-control"
+            placeholder="Pick Insertion Name" name="selvedgeName" [(ngModel)]="data.selvedgeName" #selvedgeName="ngModel"
+            [ngClass]="{'error': selvedgeName.invalid && addAgentForm.submitted}">
+            <small>Add Pick Insertion Name</small>
+        </div>
+      </div>
+
+
+      <div class="form-group row">
+        <label for="description" class="col-sm-3 col-form-label text-grey">Description</label>
+        <div class="col-sm-8">
+          <textarea maxlength="300" class="form-control" id="description" rows="3" placeholder="Brief description here ..."
+            name="description" [(ngModel)]="data.description" #description="ngModel"></textarea>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="active" class="col-sm-3 col-form-label text-grey"></label>
+        <div class="col-sm-8">
+          <div class="form-check form-check-inline">
+            <input  class="form-check-input check-btn "  id="active" *ngIf="statusCheck == 'add'" id="active"  type="checkbox" name="active" [(ngModel)]="active">
+            <label for="active" *ngIf="statusCheck == 'add'"  class="form-check-label text-grey">Marked as Active</label>
+
+            <input class="form-check-input check-btn " *ngIf="statusCheck == 'edit'" id="active"  type="checkbox" name="active" [(ngModel)]="active"
+           >
+          <label for="active" *ngIf="statusCheck == 'edit'" class="form-check-label text-grey" >Marked as Active</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer NotBG" *ngIf="FormName == 'countryForm'">
+
+      <button *ngIf="statusCheck == 'add' " class="btn button-save" type="submit" (click)="onSubmit('addPickInsertion')">
+        Add Pick Insertion
+      </button>
+      <button *ngIf="statusCheck == 'edit'" class="btn button-save" type="submit" (click)="onSubmit('UpdatePickInsertion')">
+        Update Pick Insertion
+      </button>
+
+    </div>
+
+  </form>
+</div>

@@ -87,110 +87,11 @@
 
             <hr>
          
-            <!-- <div class="row mb-4">
-                <div class="col-md-12">
-                    <nav>
-                        <div class="row">
-                            <div class="col-md-12">
-            
-                                <div class="nav nav-pills " id="nav-tab" role="tablist">
-            
-                                    <a class="nav-item nav-link active " id="nav-Details-tab" data-toggle="tab" href="#nav-parties"
-                                        role="tab" aria-controls="nav-Details" aria-selected="true">Parties</a>
-            
-                                    <a class="nav-item nav-link " id="nav-product-tab" data-toggle="tab" href="#nav-product"
-                                        role="tab" aria-controls="nav-product" aria-selected="false">Product & Specification
-                                        &nbsp;</a>
-            
-                                    <a class="nav-item nav-link " id="nav-costing-tab" data-toggle="tab" href="#nav-costing"
-                                        role="tab" aria-controls="nav-costing" aria-selected="false">Quantity & Costing &nbsp;</a>
-            
-                                    <a class="nav-item nav-link " id="nav-payment-tab" data-toggle="tab" href="#nav-payment"
-                                        role="tab" aria-controls="nav-payment" aria-selected="false">Payment & Delivery Term
-                                        &nbsp;</a>
-            
-                                    <a class="nav-item nav-link " id="nav-commission-tab" data-toggle="tab" href="#nav-commission"
-                                        role="tab" aria-controls="nav-commission" aria-selected="false">Commission & Kickbacks
-                                        &nbsp;</a>
-            
-                                    <a class="nav-item nav-link " id="nav-remarks-tab" data-toggle="tab" href="#nav-remarks"
-                                        role="tab" aria-controls="nav-remarks" aria-selected="false">Remarks / Other Conditions
-                                        &nbsp;</a>
-                                </div> -->
-<!-- 
-                                </div>
-                            </div>
-                        </nav>
-                    </div>
-                </div> -->
-
+      
 
                 <div>
 
-                    <!---------- parties ---------->
-                    
-
-                        <!-- <form #enquiryForm="ngForm" novalidate>
-                            <div class="form-row">
-                                <div class="col-md-12 pt-2r pb-3">
-                                    <div class="col-md-12">
-                                        <span class="badge badge-primary">Parties</span>
-                                    </div>
-                                    <br>
-
-                                    <div class="form-row">
-                        
-                                        <div class="form-group col-md-12">
-                                            <label for="inputPassword4">Purchase Order #</label>
-                                            <input type="text" placeholder="Purchase order no. optional" class="form-control text-w-4"
-                                                id="poNumber" [(ngModel)]="data.poNumber" name="poNumber">
-                                        </div>
-                        
-                                        <div class="form-group col-md-12">
-                                            <label for="inputEmail3" class="col-form-label control-label">Buyer
-                                                Name</label>
-                        
-                                            <div class="input-group">
-                        
-                                                <ng-select name="buyerId" #buyerId="ngModel" class="input-w px-0" [(ngModel)]="data.buyerId"
-                                                    placeholder="-- Select --">
-                                                    <ng-option *ngFor="let i of buyer" [value]="i.id">{{ i.buyerName }}
-                                                    </ng-option>
-                                                </ng-select>
-                        
-                                                <div class="input-group-append">
-                                                    <button class="btn btn-outline-primary" type="button" id="button-addon2"
-                                                        (click)="addBuyerForm()">
-                                                        <i class="fa fa-plus"></i></button>
-                                                </div>
-                        
-                                            </div>
-                        
-                                        </div>
-                        
-                                        <div class="form-group col-md-12">
-                                            <label for="inputEmail3" class="col-form-label control-label">Supplier
-                                                Name</label>
-                        
-                                            <div class="input-group">
-                                                <ng-select name="sellerId" #sellerId="ngModel" class="input-w px-0" [(ngModel)]="data.sellerId"
-                                                    placeholder="-- Select --">
-                                                    <ng-option *ngFor="let i of seller" [value]="i.id">{{ i.sellerName
-                                                        }}
-                                                    </ng-option>
-                                                </ng-select>
-                                                <div class="input-group-append">
-                                                    <button class="btn btn-outline-primary" type="button" id="button-addon2"
-                                                        (click)="addSellerForm()">
-                                                        <i class="fa fa-plus"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                        
-                                    </div>
-                                </div>
-                            </div>
-                        </form> -->
+                
 
 
                         <form #enquiryForm="ngForm" novalidate>
@@ -230,7 +131,21 @@
                                     </div>
                                 </div>
                             </div>
-                        
+                            <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+                                <label for="inputEmail3" class="col-md-3 col-form-label control-label">Buyer POC</label>
+                                <div class="col-md-7">
+                                    <div class="input-group">
+                                        <ng-select name="buyerId" #buyerId="ngModel" class="input-w px-0" [(ngModel)]="data.buyerId"
+                                            placeholder="-- Select --">
+                                            <ng-option *ngFor="let i of buyerPOC" [value]="i.id">{{ i.name }}
+                                            </ng-option>
+                                        </ng-select>
+                            
+                                      
+                            
+                                    </div>
+                                </div>
+                            </div>
                             <div class="form-group row">
                                 <label for="inputEmail3" class="col-md-3 col-form-label control-label">Supplier Name</label>
                                 <div class="col-md-7">
@@ -250,7 +165,20 @@
                                     </div>
                                 </div>
                             </div>
-                        
+                            <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+                                <label for="inputEmail3" class="col-md-3 col-form-label control-label">Supplier POC</label>
+                                <div class="col-md-7">
+                                    <div class="input-group">
+                                        <ng-select name="buyerId" #buyerId="ngModel" class="input-w px-0" [(ngModel)]="data.buyerId"
+                                            placeholder="-- Select --">
+                                            <ng-option *ngFor="let i of sellerPOC" [value]="i.id">{{ i.name }}
+                                            </ng-option>
+                                        </ng-select>
+                            
+                            
+                                    </div>
+                                </div>
+                            </div>
 
                         
                         </form>
@@ -266,7 +194,7 @@
 
                             <br>
 
-                                <div class="form-group row">
+                                <div class="form-group row" *ngIf="loggedInDepartmentName=='Yarn Local'">
                                     <label for="construction" class="col-md-3 col-form-label control-label">Construction</label>
                                     <div class="col-md-7">
                                         <div class="input-group">
@@ -275,7 +203,50 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+                                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Construction:</label>
 
+                                <div class="col-md-9" >
+                                    <div class="row">
+                        
+                                        <div class="col-md-2">
+                                            <div class="input-group">
+                                                <input type="text" placeholder="%"
+                                                name="construction" #construction="ngModel"  class="form-control text-w-4" [(ngModel)]="data.construction">   
+                                                
+                                            </div>
+                                        </div>
+                        
+                                        <div class="col-md-3">
+                                            <!-- <div class="col-md-7"> -->
+                                                <div class="input-group">
+                                                    <ng-select name="sellerId" #sellerId="ngModel" class="input-w px-0" [(ngModel)]="data.sellerId"
+                                                        placeholder="-- Select --">
+                                                        <ng-option *ngFor="let i of fabricType" [value]="i.id">{{ i.type}}
+                                                        </ng-option>
+                                                    </ng-select>
+                                        
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-outline-primary" type="button" id="button-addon2" (click)="addFabricTypeForm()">
+                                                            <i class="fa fa-plus"></i></button>
+                                                    </div>
+                                        
+                                                </div>
+                                            <!-- </div> -->
+                                        </div>
+                        
+                                        <div class="col-md-3">
+                                            <div class="input-group">
+                                                
+                                                <input type="text" placeholder="Construction additional Info" class="form-control"
+                                                    [(ngModel)]="data.toleranceValue" name="toleranceValue">
+                                                
+                                            </div>
+                                        </div>
+                        
+                                    </div>
+                                </div>
+                                </div>
                                 <div class="form-group row">
                                     <label for="inputEmail3" class="col-md-3 col-form-label control-label">Article:</label>
                                 
@@ -297,8 +268,150 @@
                                 
                                 </div>
                             
-
-
+                                <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+                                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Additional Specs:</label>
+                            
+                                    <div class="col-md-7">
+                                        <div class="row">
+                            
+                                            <div class="col-md-2">
+                                                <div class="input-group">
+                                                    <input type="text" placeholder="GSM" class="form-control"
+                                                    [(ngModel)]="data.toleranceValue" name="toleranceValue">
+                                                </div>
+                                            </div>                            
+                                            <div class="col-md-4 mrg-sm1">
+                                                <div class="input-group">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text" id="basic-addon2">+/-</span>
+                                                    </div>
+                                                    <input type="text" placeholder="Tol/Grams" class="form-control"
+                                                        [(ngModel)]="data.toleranceValue" name="toleranceValue">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text" id="basic-addon2">%</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 mrg-sm1">
+                                                <div class="input-group">
+                                                    <ng-select name="article" #articleId="ngModel" class="input-w px-0" [(ngModel)]="data.articleId"
+                                                        placeholder="Weave">
+                                                        <ng-option *ngFor="let i of article" [value]="i.id">{{ i.name }}
+                                                        </ng-option>
+                                                    </ng-select>
+                                        
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-outline-primary" type="button" id="button-addon2" (click)="addWeaveForm('add','weaveForm')">
+                                                            <i class="fa fa-plus"></i></button>
+                                                    </div>
+                                        
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 mrg-sm1">
+                                                <div class="input-group">
+                                                    <ng-select name="article" #articleId="ngModel" class="input-w px-0" [(ngModel)]="data.articleId"
+                                                        placeholder="Selvedge">
+                                                        <ng-option *ngFor="let i of article" [value]="i.id">{{ i.name }}
+                                                        </ng-option>
+                                                    </ng-select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+                                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Piece Length:</label>
+                                
+                                    <div class="col-md-7">
+                                        <div class="input-group">
+                                            <ng-select name="article" #articleId="ngModel" class="input-w px-0" [(ngModel)]="data.articleId"
+                                                placeholder="Select Piece Length">
+                                                <ng-option *ngFor="let i of article" [value]="i.id">{{ i.name }}
+                                                </ng-option>
+                                            </ng-select>
+                                
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-primary" type="button" id="button-addon2" (click)="addpiecelengthForm('add','countryForm')">
+                                                    <i class="fa fa-plus"></i></button>
+                                            </div>
+                                
+                                        </div>
+                                    </div>
+                                
+                                </div>
+                                <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+                                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Pick Insertion:</label>
+                                
+                                    <div class="col-md-7">
+                                        <div class="input-group">
+                                            <ng-select name="article" #articleId="ngModel" class="input-w px-0" [(ngModel)]="data.articleId"
+                                                placeholder="Select Pick Insertion">
+                                                <ng-option *ngFor="let i of article" [value]="i.id">{{ i.name }}
+                                                </ng-option>
+                                            </ng-select>
+                                
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-primary" type="button" id="button-addon2" (click)="addpickinsertionForm()">
+                                                    <i class="fa fa-plus"></i></button>
+                                            </div>
+                                
+                                        </div>
+                                    </div>
+                                
+                                </div>
+                                <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+                                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Width:</label>
+                                    <div class="col-md-4 mrg-sm1">
+                                        <div class="input-group">
+                                            <input type="text" placeholder="Tol/Grams" class="form-control"
+                                                [(ngModel)]="data.toleranceValue" name="toleranceValue">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text" id="basic-addon2">inch</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                                </div>
+                                <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+                                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Blending Ratio Warp:</label>
+                                
+                                    <div class="col-md-7">
+                                        <div class="input-group">
+                                            <ng-select name="article" #articleId="ngModel" class="input-w px-0" [(ngModel)]="data.articleId"
+                                                placeholder="Select Warp">
+                                                <ng-option *ngFor="let i of article" [value]="i.id">{{ i.name }}
+                                                </ng-option>
+                                            </ng-select>
+                                
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-primary" type="button" id="button-addon2" (click)="addwarpForm()">
+                                                    <i class="fa fa-plus"></i></button>
+                                            </div>
+                                
+                                        </div>
+                                    </div>
+                                
+                                </div>
+                                <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+                                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Blending Ratio Weft:</label>
+                                
+                                    <div class="col-md-7">
+                                        <div class="input-group">
+                                            <ng-select name="article" #articleId="ngModel" class="input-w px-0" [(ngModel)]="data.articleId"
+                                                placeholder="Select Weft">
+                                                <ng-option *ngFor="let i of article" [value]="i.id">{{ i.name }}
+                                                </ng-option>
+                                            </ng-select>
+                                
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-primary" type="button" id="button-addon2" (click)="addweftForm()">
+                                                    <i class="fa fa-plus"></i></button>
+                                            </div>
+                                
+                                        </div>
+                                    </div>
+                                
+                                </div>
                         </form>
                     
 
@@ -389,16 +502,42 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+                                <label for="rate" class="col-md-3 col-form-label control-label">GST:</label>
+                            <div class="col-md-3 mrg-sm1">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" placeholder="GST%" class="form-control"
+                                            [(ngModel)]="data.toleranceValue" name="toleranceValue">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text" id="basic-addon2">%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <label for="rate" class="col-md-1 col-form-label control-label">W.I.Tax:</label>
+                            <div class="col-md-3 mrg-sm1">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" placeholder="W.I.Tax%" class="form-control"
+                                            [(ngModel)]="data.toleranceValue" name="toleranceValue">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text" id="basic-addon2">%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
                         
                         </form>
                     
                         <br>
                     <hr>
 
-                    <!---------- Payment & Delivery ---------->
+                    <!---------- Payment & Delivery for Local Yarn---------->
                    
 
-                        <form #payment="ngForm" novalidate>
+                        <form #payment="ngForm" novalidate *ngIf="loggedInDepartmentName=='Yarn Local'">
                             <div class="pt-2">
                                 <span class="badge badge-primary">Payment & Delivery Terms</span>
                             </div>
@@ -581,10 +720,332 @@
 
                         </form>
 
+
+
+                    <!---------- Payment & Delivery for Fabric Local Department ---------->
+                   
+
+                    <form #payment="ngForm" novalidate *ngIf="loggedInDepartmentName=='Fabric Local'">
+                        <div class="pt-2">
+                            <span class="badge badge-primary">Payment & Delivery Terms</span>
+                        </div>
+                        <br>
+
+                        
+
+                            <div class="form-group row">
+                                <label for="inputPassword4" class="col-md-3 col-form-label control-label">Payment Mode</label>
+                                <div class="col-md-7">
+                                    <div class="input-group">
+                                        <div class="col-md-4 mrg-sm1">
+                                        <ng-select [(ngModel)]="data.quantityUOMId"    placeholder="Select UOM" name="quantityUOMId">
+                                            <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
+                                            </ng-option>
+                                        </ng-select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                           
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-md-3 col-form-label control-label">Seller Payment Terms:</label>
+
+                            <div class="col-md-9" >
+                                <div class="row">
+                    
+                                    
+                    
+                                    <div class="col-md-3">
+                                        <!-- <div class="col-md-7"> -->
+                                            <div class="input-group">
+                                                <ng-select name="sellerId" #sellerId="ngModel" class="input-w px-0" [(ngModel)]="data.sellerId"
+                                                    placeholder="Payment Terms">
+                                                    <ng-option *ngFor="let i of seller" [value]="i.id">{{ i.sellerName}}
+                                                    </ng-option>
+                                                </ng-select>
+                                    
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-outline-primary" type="button" id="button-addon2" (click)="addsellerpayemntForm()">
+                                                        <i class="fa fa-plus"></i></button>
+                                                </div>
+                                    
+                                            </div>
+                                        <!-- </div> -->
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="input-group">
+                                            <input type="text" placeholder="Days"
+                                            name="construction" #construction="ngModel"  class="form-control text-w-4" [(ngModel)]="data.construction">   
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="input-group">
+                                            
+                                            <input type="text" placeholder="Payment Term additional Info" class="form-control"
+                                                [(ngModel)]="data.toleranceValue" name="toleranceValue">
+                                            
+                                        </div>
+                                    </div>
+                    
+                                </div>
+                            </div>
+                            </div>
+
+                           
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-md-3 col-form-label control-label">Buyer Payment Terms:</label>
+
+                            <div class="col-md-9" >
+                                <div class="row">
+                    
+                                    
+                    
+                                    <div class="col-md-3">
+                                        <!-- <div class="col-md-7"> -->
+                                            <div class="input-group">
+                                                <ng-select name="sellerId" #sellerId="ngModel" class="input-w px-0" [(ngModel)]="data.sellerId"
+                                                    placeholder="Payment Terms">
+                                                    <ng-option *ngFor="let i of seller" [value]="i.id">{{ i.sellerName}}
+                                                    </ng-option>
+                                                </ng-select>
+                                    
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-outline-primary" type="button" id="button-addon2" (click)="addsellerpayemntForm()">
+                                                        <i class="fa fa-plus"></i></button>
+                                                </div>
+                                    
+                                            </div>
+                                        <!-- </div> -->
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="input-group">
+                                            <input type="text" placeholder="Days"
+                                            name="construction" #construction="ngModel"  class="form-control text-w-4" [(ngModel)]="data.construction">   
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="input-group">
+                                            
+                                            <input type="text" placeholder="Buyer Payment Term additional Info" class="form-control"
+                                                [(ngModel)]="data.toleranceValue" name="toleranceValue">
+                                            
+                                        </div>
+                                    </div>
+                    
+                                </div>
+                            </div>
+                            </div>
+
+
+                            <div class="form-group row">
+                            
+                                <label for="inputEmail3" class="col-md-3 col-form-label control-label">Packing:</label>
+                            
+                                <div class="col-md-7">
+                                    <div class="input-group">
+                                        <ng-select name="priceTermId" #priceTermId="ngModel" class="input-w px-0" [(ngModel)]="data.priceTermId"
+                                            placeholder="Packing Information">
+                                            <ng-option *ngFor="let i of priceterm" [value]="i.id">{{ i.term }}
+                                            </ng-option>
+                                        </ng-select>
+                            
+                            
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-primary" type="button" id="button-addon2" (click)="addYarnPriceForm()">
+                                                <i class="fa fa-plus"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-md-3 col-form-label control-label">Container:</label>
+
+                            <div class="col-md-9" >
+                                <div class="row">
+                    
+                                    <div class="col-md-2">
+                                        <div class="input-group">
+                                            <input type="text" placeholder="COUNT"
+                                            name="construction" #construction="ngModel"  class="form-control text-w-4" [(ngModel)]="data.construction">   
+                                            
+                                        </div>
+                                    </div>
+                    
+                                    <div class="col-md-3">
+                                            <div class="input-group">
+                                                <ng-select name="sellerId" #sellerId="ngModel" class="input-w px-0" [(ngModel)]="data.sellerId"
+                                                    placeholder="Select Container Size">
+                                                    <ng-option *ngFor="let i of seller" [value]="i.id">{{ i.sellerName}}
+                                                    </ng-option>
+                                                </ng-select>
+                                    
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-outline-primary" type="button" id="button-addon2" (click)="addContainerForm('add','countryForm')">
+                                                        <i class="fa fa-plus"></i></button>
+                                                </div>
+                                    
+                                            </div>
+                                    </div>
+                    
+                    
+                                </div>
+                            </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-md-3 col-form-label control-label">Price / Delivery terms:</label>
+
+                            <div class="col-md-9" >
+                                <div class="row">
+                    
+                                    <div class="col-md-3">
+                                        <div class="input-group">
+                                            <ng-select name="sellerId" #sellerId="ngModel" class="input-w px-0" [(ngModel)]="data.sellerId"
+                                                placeholder="Select Price Term">
+                                                <ng-option *ngFor="let i of seller" [value]="i.id">{{ i.sellerName}}
+                                                </ng-option>
+                                            </ng-select>
+                                
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-primary" type="button" id="button-addon2" (click)="addYarnPriceForm()">
+                                                    <i class="fa fa-plus"></i></button>
+                                            </div>
+                                
+                                        </div>
+                                </div>
+                    
+                                    <div class="col-md-3">
+                                            <div class="input-group">
+                                                <ng-select name="sellerId" #sellerId="ngModel" class="input-w px-0" [(ngModel)]="data.sellerId"
+                                                    placeholder="Destination">
+                                                    <ng-option *ngFor="let i of seller" [value]="i.id">{{ i.sellerName}}
+                                                    </ng-option>
+                                                </ng-select>
+                                    
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-outline-primary" type="button" id="button-addon2" (click)="addcityForm('CityAdd','cityForm')">
+                                                        <i class="fa fa-plus"></i></button>
+                                                </div>
+                                    
+                                            </div>
+                                    </div>
+                    
+                    
+                                </div>
+                            </div>
+                            </div>
+
+
+                            <!-- Supplier Delivery Date -->
+
+                            <div class="form-group row">
+                            
+                                <label for="inputPassword4" class=" col-md-3 col-form-label control-label">Supplier Delivery
+                                    Date</label>
+                            
+                                <div class="col-md-7">
+                            
+                                    <div class="input-group date" (clickOutside)="validity1.close()">
+                                        <!-- <input type="text" class="form-control  datetimepicker-input" (click)="sellerDeliveryDatePicker.toggle()"
+                                            placeholder="Date" #sellerDeliveryDatePicker="ngbDatepicker"
+                                            #sellerDeliveryDate = "ngModel"
+                                            name="sellerDeliveryDate" ngbDatepicker [(ngModel)] = "data.sellerDeliveryDate"> -->
+                                            <input navigation="select" class="form-control  "  name="sellerDeliveryDate" 
+                                            [(ngModel)]="data.sellerDeliveryDate" #sellerDeliveryDate="ngModel"  ngbDatepicker #validity1="ngbDatepicker"
+                                           (click)="validity1.toggle()"
+                                            placeholder="Supplier Date" 
+                                            />
+                                        <div class="input-group-append" (click)="validity1.toggle()">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
+                                    </div>
+                            
+                                </div>
+                            
+                            </div>
+                            
+                            <div class="form-group row" *ngFor="let a of new; let i = index;">
+                                <div class="col-md-3"></div>
+                            
+                                <div class="col-md-7">
+                            
+                                    <div class="input-group date" (clickOutside)="sellerDeliveryDatePicker.close()">
+                                        <input type="text" class="form-control  datetimepicker-input" (click)="sellerDeliveryDatePicker.toggle()"
+                                            placeholder="Date" #sellerDeliveryDatePicker="ngbDatepicker" name="sellerDeliveryDate" ngbDatepicker>
+                                        <div class="input-group-append" (click)="sellerDeliveryDatePicker.toggle()">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            <button class="btn btn-outline-danger float-right" type="submit" (click)="remove(i)">
+                                                <i class="fas fa-minus fa-xs"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-3"></div>
+                                <div class="col-md-7">
+                                    <button class="btn btn-outline-primary btn-sm" (click)="addMore()"> Add Another
+                                        Delivery Date</button>
+                                </div>
+                            </div>
+                            
+                            
+                            <br>
+
+
+                            <div class="form-group row">
+                            
+                                <label for="inputPassword4" class="col-md-3 col-form-label control-label">Buyer Delivery Date</label>
+                            
+                                <div class="col-md-7">
+                            
+                                    <div class="input-group date" (clickOutside)="validity2.close()">
+                                        <input navigation="select" class="form-control  "  name="buyerDeliveryDate" 
+                                        [(ngModel)]="data.buyerDeliveryDate" #buyerDeliveryDate="ngModel"  ngbDatepicker #validity2="ngbDatepicker"
+                                       (click)="validity2.toggle()"
+                                        placeholder="Buyer Date" 
+                                        />
+                                        <div class="input-group-append" (click)="validity2.toggle()">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
+                                    </div>
+                            
+                                </div>
+                            
+                            
+                            </div>                               
+                            
+                            <div class="form-group row" *ngFor="let a of new2; let i = index;">
+                            
+                                <div class="col-md-3"></div>
+                                <div class="col-md-7">
+                                    <div class="input-group date" (clickOutside)="buyerDeliveryDatePicker.close()">
+                                        <input type="text" class="form-control  datetimepicker-input" (click)="buyerDeliveryDatePicker.toggle()"
+                                            placeholder="Date" #buyerDeliveryDatePicker="ngbDatepicker" name="buyerDeliveryDate" ngbDatepicker>
+                                        <div class="input-group-append" (click)="buyerDeliveryDatePicker.toggle()">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            <button class="btn btn-outline-danger " type="submit" (click)="remove2(i)">
+                                                <i class="fas fa-minus fa-xs"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                                            
+                            <div class="row">
+                                <div class="col-md-3"></div>
+                                <div class="col-md-7">
+                                    <button class="btn btn-outline-primary btn-sm" (click)="add()"> Add Another Delivery
+                                        Date</button>
+                                </div>
+                            </div>
+
+                        
+
+                    </form>
                     <br>
                     <hr>
-
-
                     <!---------- commission ---------->
 
                      <div >
@@ -703,7 +1164,7 @@
                             </div>
                 
                 
-                            <div class="form-group col-md-12">
+                            <div class="form-group col-md-12" *ngIf="loggedInDepartmentName=='Yarn Local'">
                                 <label for="code" class="col-form-label control-label">Agent Commission:</label>
                                 <div class="row">
                 
@@ -725,7 +1186,7 @@
                                 </div>
                             </div>
               
-                            <div class="col-md-12">
+                            <div class="col-md-12" *ngIf="loggedInDepartmentName=='Yarn Local'">
                                 <div class="form-group row" *ngFor="let a of data1; let i = index;">
                 
                                     <div class="col-md-12">
@@ -758,7 +1219,7 @@
                                 </div>
                             </div>
                 
-                            <div class="col-md-12">
+                            <div class="col-md-12" *ngIf="loggedInDepartmentName=='Yarn Local'">
                                 <button class="btn btn-outline-primary btn-sm" type="submit" (click)="addfield()">
                                     <i class="fas fa-plus"></i>
                                     Add Agent

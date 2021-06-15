@@ -732,6 +732,288 @@
             </ul>
           </nav>
           <!-- /.sidebar-menu -->
+          <!--Fabric Local-->
+          <nav class="mt-2" *ngIf="isFabricLocal">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+              <!-- Add icons to the links using the .nav-icon class
+                 with font-awesome or any other icon font library -->
+              <li class="nav-item">
+                <a routerLink="/home" class="nav-link" >
+                  <i class="fa fa-home"></i>
+                  <p>Home</p>
+                </a>
+              </li>
+             
+              <li class="nav-item">
+                <a class="nav-link">
+                  <i class="fas fa-file-contract"></i>
+                  <p>Contracts</p>
+                  <i class="right fas fa-angle-left"></i>
+                </a>
+                <ul class="nav nav-treeview sublist">
+                  <li class="nav-item">
+                    <a routerLink="/FabCot/add-new-yarn-contract" class="nav-link" routerLinkActive="active">
+                      <i class="fas fa-plus nav-icon"></i>
+                      <p>Add New Contracts</p>
+                    </a>
+                  </li>
+                   <li class="nav-item">
+                    <a routerLink="/FabCot/active-contract" class="nav-link" routerLinkActive="active">
+                      <i class="fas fa-radiation"></i>
+                      <p>Active Contracts</p>
+                    </a>
+                  </li>
+                   <li class="nav-item">
+                    <a routerLink="/FabCot/completed-contract" class="nav-link" routerLinkActive="active">
+                      <i class="far fa-list-alt"></i>
+                      <p>Completed Contracts</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a routerLink="/FabCot/dispatched-register" class="nav-link" routerLinkActive="active">
+                      <i class="fas fa-truck nav-icon"></i>
+                      <p>Dispatched Register</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a routerLink="/FabCot/buyer-payment" class="nav-link" routerLinkActive="active">
+                      <i class="far fa-money-bill-alt"></i>
+                      <p>Buyer Payments</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a routerLink="/FabCot/sale-invoice" class="nav-link" routerLinkActive="active">
+                      <i class="fas fa-file-invoice-dollar"></i>
+                      <p>Sale Invoices</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a routerLink="/FabCot/tax" class="nav-link" routerLinkActive="active">
+                      <i class="fas fa-tags"></i>
+                      <p>Tax Challan</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+
+              <!-- Fabric billing -->
+            <li class="nav-item">
+                <a class="nav-link">
+                  <i class="far fa-money-bill-alt"></i>
+                  <p>Billing & Payment</p>
+                  <i class="right fas fa-angle-left"></i>
+                </a>
+              
+                <ul class="nav nav-treeview sublist">
+                  <li class="nav-item">
+                    <a routerLink="/yarn-billing-and-payment/generate-bills" class="nav-link" routerLinkActive="active">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Generate Bills</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a routerLink="/yarn-billing-and-payment/active-bills"  class="nav-link" routerLinkActive="active">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Active Bills</p>
+                    </a>
+                  </li>
+                  <!-- <li class="nav-item">
+                    <a  class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Closed Bills</p>
+                    </a>
+                  </li> -->
+                  <li class="nav-item">
+                    <a routerLink="/yarn-billing-and-payment/payment-collection" class="nav-link" routerLinkActive="active">
+                      <i class="far fa-money-bill-alt"></i>
+                      <p>Payment/Collection</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a routerLink="/yarn-billing-and-payment/commission-payment" class="nav-link" routerLinkActive="active">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Commission Payment</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a routerLink="/yarn-billing-and-payment/external-agent" class="nav-link" routerLinkActive="active">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p> External Agent Commission</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+<!--Fabric CONFIGURATION-->
+
+               <li class="nav-item">
+                <a class="nav-link">
+                  <i class="fas fa-cogs"></i>
+                  <p>Configuration</p>
+                  <i class="right fas fa-angle-left"></i>
+                </a>
+                <ul class="nav nav-treeview sublist">
+                  <li class="nav-item">
+                    <a routerLink="/yarn-local/buyers" class="nav-link" routerLinkActive="active">
+                      <i class="fas fa-hands-helping"></i>
+                      <p>Buyers</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a routerLink="/yarn-local/seller" class="nav-link" routerLinkActive="active">
+                      <i class="fas fa-industry"></i>
+                      <p>Sellers</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a routerLink="/yarn-local/external-agents" class="nav-link" routerLinkActive="active">
+                      <i class="fas fa-user-tie"></i>
+                      <p>Foreign External Agents</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a routerLink="/yarn-local/article" class="nav-link" routerLinkActive="active">
+                      <i class="fas fa-anchor"></i>
+                      <p>Articles</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a  class="nav-link" routerLinkActive="active">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Product</p>
+                      <i class="right fas fa-angle-left"></i>
+                    </a>
+                    <ul class="nav nav-treeview sublist">
+                      <li class="nav-item">
+                        <a routerLink="/yarn-local/fabric-type" class="nav-link" routerLinkActive="active">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Fabric Type</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a routerLink="/yarn-local/weave" class="nav-link" routerLinkActive="active">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Weave</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a routerLink="/yarn-local/piece-length"  class="nav-link" routerLinkActive="active">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Piece Length</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a routerLink="/yarn-local/packing" class="nav-link" routerLinkActive="active">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Packing</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a routerLink="/yarn-local/container" class="nav-link" routerLinkActive="active">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Container</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a routerLink="/yarn-local/price-term" class="nav-link" routerLinkActive="active">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Price Term</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a routerLink="/yarn-local/selvedge" class="nav-link" routerLinkActive="active">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Selvedge</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a routerLink="/yarn-local/Weft" class="nav-link" routerLinkActive="active">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Blending Ratio Wreft</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a routerLink="/yarn-local/Warp" class="nav-link" routerLinkActive="active">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Blending Ratio Warp</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a routerLink="/yarn-local/pick-insertion" class="nav-link" routerLinkActive="active">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Pick Insertion</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a routerLink="/yarn-local/payment-term" class="nav-link" routerLinkActive="active">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Payment Term</p>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+          
+                  <li class="nav-item">
+                    <a class="nav-link">
+                      <i class="fas fa-calculator"></i>
+                      <p>Bank Info</p>
+                      <i class="right fas fa-angle-left"></i>
+                    </a>
+                    <ul class="nav nav-treeview sublist">
+                      <li class="nav-item">
+                        <a routerLink="/yarn-local/bank" class="nav-link" routerLinkActive="active">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Bank</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a routerLink="/yarn-local/bank-account" class="nav-link" routerLinkActive="active">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Bank Account</p>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="nav-item">
+                    <a routerLink="/yarn-local/city" class="nav-link" routerLinkActive="active">
+                      <i class="fas fa-map-marker-alt"></i>
+                      <p>City Location</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a routerLink="/yarn-local/country" class="nav-link" routerLinkActive="active">
+                      <i class="far fa-map"></i>
+                      <p>Country</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a  class="nav-link" routerLinkActive="active">
+                      <i class="fas fa-sitemap"></i>
+                      <p>Organization</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a  routerLink="/config/general-settings" class="nav-link" routerLinkActive="active">
+                      <i class="fas fa-wrench"></i>
+                      <p>General Settings</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a  routerLink="/config/notification-settings" class="nav-link" routerLinkActive="active">
+                      <i class="fas fa-bell"></i>
+                      <p>Notification Settings</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a routerLink="/yarn-local/currency" class="nav-link" routerLinkActive="active">
+                      <i class="fab fa-btc"></i>
+                      <p>Currency Rate</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+
+            </ul>
+          </nav>
         </div>
         <!-- /.sidebar -->
       </div>

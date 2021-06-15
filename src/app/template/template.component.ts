@@ -14,6 +14,7 @@ export class TemplateComponent implements OnInit {
   loggedInDepartmentId: string;
   isYarnLocal:boolean;
   isHomeTextileandGarments:boolean;
+  isFabricLocal:boolean;
   userrole:string;
   constructor( private router: Router,) { }
 
@@ -23,12 +24,17 @@ export class TemplateComponent implements OnInit {
     if(this.loggedInDepartmentId == '3'){
         this.isYarnLocal = true;
         this.isHomeTextileandGarments= false;
-       
+       this.isFabricLocal=false;
     }
     else if(this.loggedInDepartmentId == '6'){
       this.isYarnLocal = false;
       this.isHomeTextileandGarments= true;
- 
+ this.isFabricLocal=false;
+    } 
+    else if(this.loggedInDepartmentId == '5'){
+      this.isYarnLocal = false;
+      this.isHomeTextileandGarments= false;
+ this.isFabricLocal=true;
     }
     this.userName=localStorage.getItem('loggedInUserName');
     $('li.dropdown.mega-dropdown a').on('click', function (event) {

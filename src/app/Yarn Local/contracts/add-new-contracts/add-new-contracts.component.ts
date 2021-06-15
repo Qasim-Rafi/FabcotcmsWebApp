@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { ServiceService } from 'src/app/shared/service.service';
@@ -17,6 +17,17 @@ import { AddArticleComponent } from '../../yarn-configuration/articles/add-artic
 import { AddPackingComponent } from '../../yarn-configuration/product/packing/add-packing/add-packing.component';
 import { AddPriceComponent } from '../../yarn-configuration/product/price-term/add-price/add-price.component';
 import { DatePipe } from '@angular/common';
+import { AddTypeComponent } from 'src/app/configuration/product/fabric-type/add-type/add-type.component';
+import { AddWeaveComponent } from '../../yarn-configuration/product/weave/add-weave/add-weave.component';
+import { PickInsertionComponent } from '../../yarn-configuration/product/pick-insertion/pick-insertion.component';
+import { AddEditWarpComponent } from '../../yarn-configuration/product/warp/add-edit-warp/add-edit-warp.component';
+import { AddEditSelvedgeComponent } from '../../yarn-configuration/product/selvedge/add-edit-selvedge/add-edit-selvedge.component';
+import { AddEditPickInsertionComponent } from '../../yarn-configuration/product/pick-insertion/add-edit-pick-insertion/add-edit-pick-insertion.component';
+import { AddEditWeftComponent } from '../../yarn-configuration/product/weft/add-edit-weft/add-edit-weft.component';
+import { AddPieceLengthComponent } from '../../yarn-configuration/product/piece-length/add-piece-length/add-piece-length.component';
+import { AddPaymentComponent } from 'src/app/configuration/product/payment-term/add-payment/add-payment.component';
+import { AddContainerComponent } from '../../yarn-configuration/product/container/add-container/add-container.component';
+import { EditCityComponent } from 'src/app/configuration/city/edit-city/edit-city.component';
 
 
 @Component({
@@ -33,19 +44,24 @@ export class AddNewContractsComponent implements OnInit {
   article: any= [];
   packing: any= [];
   priceterm: any= [];
+  fabricType: any= [];
   uomList: any= [];
   currency: any= [];
   newBuyer: any;
+  newFabric: any;
   newArticle: any;
   newPacking:any;
   newSeller: number;
   counter3 :number =1;
+  sellerPOC:any=[];
+  buyerPOC:any=[];
   new:any=[];
   new2:any=[];
   new3:any=[];
   data1:any=[];
   data2:any=[];
-
+  // @Input() loggedInDepartmentName;
+  // @Input() isFabricLocal;
   agents:any={};
 commission: any = [];
   newPrice:any;
@@ -53,7 +69,9 @@ commission: any = [];
   objEnquiry=0;
   dateformater: Dateformater = new Dateformater();
 selected:any;
-sensorTypes:any;
+  loggedInDepartmentName: string;
+  // FabricLocal:boolean;
+  sensorTypes:any;
 selectedAttributes:any;
   constructor(
     private service: ServiceService,
@@ -66,6 +84,7 @@ selectedAttributes:any;
   ) { }
 
   ngOnInit(): void {
+    this.loggedInDepartmentName=localStorage.getItem('loggedInDepartmentName');
     this.data.quantityUOMId =8
     this.data.rateUOMId =7
     let olddate=new Date();
@@ -73,6 +92,8 @@ selectedAttributes:any;
     this.data.enquiryDate =this.dateformater.fromModel(latest_date);
     this.GetBuyersDropdown("start");
     this.GetSellerDropdown("start");
+    this.getSellersPOC();
+    this.getBuyerPOC();
     this.GetUOMDropdown();
     this.GetArticleDropdown("start");
     this.GetCurrencyDropdown();
@@ -185,8 +206,29 @@ selectedAttributes:any;
         this.toastr.error(this.response.message, 'Message.');
       }
     })
+  } 
+  getBuyerPOC() {
+    this.service.getBuyersPOC().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.buyerPOC = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
   }
-
+  getSellersPOC() {
+    this.service.getBuyersPOC().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.sellerPOC = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
   GetPriceTermDropdown(type:string) {
     this.service.getPriceTerm().subscribe(res => {
       this.response = res;
@@ -365,6 +407,223 @@ selectedAttributes:any;
       // on dismiss
     });
   }
+  getFabricType(type:string) {
+    this.service.getFabricType().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.fabricType = this.response.data;
+        if(type == "other")
+        {
+          // this.seller.id = this.newSeller;
+          this.data.fabricTypeId = this.newFabric
+        }
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  } 
+  addFabricTypeForm() {
+    const modalRef = this.modalService.open(AddTypeComponent, { centered: true });
+    modalRef.result.then((data) => {
+      // on close
+      if (data.parent == true) {
+        
+        this.newPrice = data.id
+
+        this.getFabricType("other");
+    
+
+
+
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
+  addWeaveForm(check,form) {
+    const modalRef = this.modalService.open(AddWeaveComponent, { centered: true });
+    modalRef.componentInstance.statusCheck = check;
+    modalRef.componentInstance.FormName = form;
+
+    modalRef.result.then((data) => {
+      // on close
+      if (data.parent == true) {
+        
+        this.newPrice = data.id
+
+        this.getFabricType("other");
+    
+
+
+
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
+
+  addpiecelengthForm(check,form) {
+    const modalRef = this.modalService.open(AddPieceLengthComponent, { centered: true });
+    modalRef.componentInstance.statusCheck = check;
+    modalRef.componentInstance.FormName = form;
+    modalRef.result.then((data) => {
+      // on close
+      if (data.parent == true) {
+        
+        this.newPrice = data.id
+
+        this.getFabricType("other");
+    
+
+
+
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  } 
+  addwarpForm() {
+    const modalRef = this.modalService.open(AddEditWarpComponent, { centered: true });
+    modalRef.result.then((data) => {
+      // on close
+      if (data.parent == true) {
+        
+        this.newPrice = data.id
+
+        this.getFabricType("other");
+    
+
+
+
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  } 
+  addweftForm() {
+    const modalRef = this.modalService.open(AddEditWeftComponent, { centered: true });
+    modalRef.result.then((data) => {
+      // on close
+      if (data.parent == true) {
+        
+        this.newPrice = data.id
+
+        this.getFabricType("other");
+    
+
+
+
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  } 
+  addpickinsertionForm() {
+    const modalRef = this.modalService.open(AddEditPickInsertionComponent, { centered: true });
+    modalRef.result.then((data) => {
+      // on close
+      if (data.parent == true) {
+        
+        this.newPrice = data.id
+
+        this.getFabricType("other");
+    
+
+
+
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
+  addselvedgeForm() {
+    const modalRef = this.modalService.open(AddEditSelvedgeComponent, { centered: true });
+    modalRef.result.then((data) => {
+      // on close
+      if (data.parent == true) {
+        
+        this.newPrice = data.id
+
+        this.getFabricType("other");
+    
+
+
+
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
+
+
+  addsellerpayemntForm() {
+    const modalRef = this.modalService.open(AddPaymentComponent, { centered: true });
+    modalRef.result.then((data) => {
+      // on close
+      if (data.parent == true) {
+        
+        this.newPrice = data.id
+
+        this.getFabricType("other");
+    
+
+
+
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
+
+
+  addContainerForm(check,form) {
+    const modalRef = this.modalService.open(AddContainerComponent, { centered: true });
+    modalRef.componentInstance.statusCheck = check;
+    modalRef.componentInstance.FormName = form;
+    modalRef.result.then((data) => {
+      // on close
+      if (data.parent == true) {
+        
+        this.newPrice = data.id
+
+        this.getFabricType("other");
+    
+
+
+
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
+
+  addcityForm(check,form) {
+    const modalRef = this.modalService.open(EditCityComponent, { centered: true });
+    modalRef.componentInstance.statusCheck = check;
+    modalRef.componentInstance.FormName = form;
+    modalRef.result.then((data) => {
+      // on close
+      if (data.parent == true) {
+        
+        this.newPrice = data.id
+
+        this.getFabricType("other");
+    
+
+
+
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  } 
+
+
+
+
+
+
   navigate() {
     this.router.navigateByUrl('/FabCot/active-contract');
   };
@@ -372,6 +631,8 @@ selectedAttributes:any;
 
   addContract() {
     let departmentId=parseInt(localStorage.getItem('loggedInDepartmentId'))
+    // statusCheck = check;
+
     if(this.data2.agentId != null)
     {
     this.commission.push({['agentId']: this.data2.agentId , ["agentCommission"]: this.data2.agentCommission}) 
@@ -445,6 +706,7 @@ this.spinner.show();
           this.spinner.hide();
         });
   }
+
 
 
 
