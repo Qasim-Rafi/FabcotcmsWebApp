@@ -41,7 +41,6 @@ export class EditDispatchComponent implements OnInit {
   }
 
   getDispatch() {
-    this.spinner.show();
     this.http.get(`${environment.apiUrl}` + this.dispatchId)
       .subscribe(
         res => {
