@@ -105,7 +105,7 @@ if(event==8){
       
       if (p !=null)
        {
-         p.branch.name
+         p.buyerName
         // this.date = this.myDate;
         // this.getBuyers();
 
