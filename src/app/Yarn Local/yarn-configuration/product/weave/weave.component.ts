@@ -54,7 +54,7 @@ export class WeaveComponent implements OnInit {
   search(event) {
     const val = event.target.value.toLowerCase();
     const temp = this.weaveFilter.filter(function (d) {
-      return (d.name.toLowerCase().indexOf(val) !== -1 || !val);
+      return (d.weaveName.toLowerCase().indexOf(val) !== -1 || !val);
     });
     this.rows = temp;
   }

@@ -207,7 +207,8 @@ paymentFilter: any = {};
   printActiveBillsList() {
 
     let docDefinition = {
-      pageSize: 'A3',
+      pageSize: 'A4',
+      pageOrientation: 'landscape',
       info: {
         title: 'Payment List'
       },
