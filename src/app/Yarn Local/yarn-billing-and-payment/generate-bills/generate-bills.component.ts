@@ -56,7 +56,6 @@ export class GenerateBillsComponent implements OnInit {
       }
       navigateEditContract(obj) {
         this.router.navigate(['/FabCot/active-contract-details'], { queryParams: {id: obj.id} });
-
       };
     
       search(event) {
