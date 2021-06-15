@@ -125,8 +125,13 @@
 
                 </tr>
                 <tr *ngFor="let i of rows.contractSaleInvoices">
+                    <td>{{i.description}}</td>
+                   
                     <td>{{i.saleInvoiceNo}}</td>
                     <td>{{i.saleInvoiceDate}}</td>
+                    <td>{{i.quantity}}{{i.unit}}</td>
+                    <td>{{i.rate}}</td>
+
                     <td>{{i.amount}}</td>
                     <td>{{i.commission}}</td>
                     <td>{{i.totalAmount}}</td>

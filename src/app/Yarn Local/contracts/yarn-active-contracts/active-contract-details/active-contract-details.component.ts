@@ -539,7 +539,7 @@ getDispatches() {
 }
 
 getProdPlan() {
-  this.http.get(`${environment.apiUrl}​/api/YarnContracts/GetAllContractProductionStatus`)
+  this.http.get(`${environment.apiUrl}/api/YarnContracts/GetAllContractProductionStatus`)
     .subscribe(
       res => {
         this.response = res;

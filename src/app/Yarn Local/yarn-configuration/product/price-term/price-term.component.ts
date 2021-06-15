@@ -110,14 +110,15 @@ this.spinner.hide();
       // on close
       if (data == true) {
 
-        this.service.fetch((data) => {
-          this.rows = data;
-      this.priceTermFilter = [...this.rows];
-
-        }, this.PriceTermUrl);
+        
 
 
       }
+      this.service.fetch((data) => {
+        this.rows = data;
+    this.priceTermFilter = [...this.rows];
+
+      }, this.PriceTermUrl);
     }, (reason) => {
       // on dismiss
     });
@@ -131,11 +132,12 @@ this.spinner.hide();
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        this.service.fetch((data) => {
-          this.rows = data;
-        }, this.PriceTermUrl);
+      
 
       }
+      this.service.fetch((data) => {
+        this.rows = data;
+      }, this.PriceTermUrl);
     }, (reason) => {
       // on dismiss
     });
