@@ -22,7 +22,7 @@ export class SearchComponent implements OnInit {
  search:any;
  bankFilter: any = [];
  searchBank: any = [];
- 
+ buyerName : any;
  temp: any[];
  response:any;
  constructor(
@@ -60,7 +60,9 @@ export class SearchComponent implements OnInit {
    }
  
    ContractsDropdown() {
-     this.http.get(`${environment.apiUrl}/api/Lookups/Contracts`).
+
+     this.http.get(`${environment.apiUrl}/api/YarnContracts/GetAllSaleInvoiceForMenu`).
+
      subscribe(res => {
        this.response = res;
        if (this.response.success == true) {
@@ -72,39 +74,46 @@ export class SearchComponent implements OnInit {
        }
      })
    }
-   transfer(){
-     this.data.branch;
-     this.activeModal.close();
+   transfer(obj){
+     this.buyerName = obj.buyerName
    }
-   change(obj){
-     let varr = {    
-     }
-     this.spinner.show();
- this.http.put(`${environment.apiUrl}/api/BillingPayments/ChangeBankAccount/` + this.bill_id + '/' +obj.id,varr)
-   .subscribe(
-     res => {
-       this.response = res;
-       if (this.response.success == true) {
-         this.toastr.success(this.response.message, 'Message.');
-       this.activeModal.close();
-     this.spinner.hide();
+Save(){
+  if(this.buyerName != null){
+    this.activeModal.close(this.buyerName);
+  }
+  else{
+    this.toastr.error("select atleast one contract")
+  }
+}
+//    change(obj){
+//      let varr = {    
+//      }
+//      this.spinner.show();
+//  this.http.put(`${environment.apiUrl}/api/BillingPayments/ChangeBankAccount/` + this.bill_id + '/' +obj.id,varr)
+//    .subscribe(
+//      res => {
+//        this.response = res;
+//        if (this.response.success == true) {
+//          this.toastr.success(this.response.message, 'Message.');
+//        this.activeModal.close();
+//      this.spinner.hide();
        
-       }
-       else {
-         this.toastr.error(this.response.message, 'Message.');
-         this.activeModal.close();
-     this.spinner.hide();
+//        }
+//        else {
+//          this.toastr.error(this.response.message, 'Message.');
+//          this.activeModal.close();
+//      this.spinner.hide();
       
-       }
+//        }
  
-     }, (err: HttpErrorResponse) => {
-       const messages = this.service.extractErrorMessagesFromErrorResponse(err);
-       this.toastr.error(messages.toString(), 'Message.');
-       console.log(messages);
-       this.activeModal.close();
-     this.spinner.hide();
+//      }, (err: HttpErrorResponse) => {
+//        const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+//        this.toastr.error(messages.toString(), 'Message.');
+//        console.log(messages);
+//        this.activeModal.close();
+//      this.spinner.hide();
       
-     });
-   }
+//      });
+//    }
  }
  

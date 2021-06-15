@@ -275,7 +275,7 @@ onSelect({ selected }) {
   }
 
   activeBillsExcelFile(){
-    const filtered = this.rows.activeBills.map(row => ({
+    const filtered = this.rows.map(row => ({
       SNo: row.contractId,
       BillFor: row.sellerName,
       BillTo: row.buyerName,
@@ -292,7 +292,7 @@ onSelect({ selected }) {
 
   }
   activeBillsCsvFile(){
-    const filtered = this.rows.activeBills.map(row => ({
+    const filtered = this.rows.map(row => ({
       SNo: row.contractId,
       BillFor: row.sellerName,
       BillTo: row.buyerName,
@@ -328,7 +328,7 @@ onSelect({ selected }) {
             widths: [40, 50, 50, 40, 70 , 60,80,70,70,60],
             body: [
               ['S No.', 'Bill For', 'Bill To', 'Bill#', 'Contract No' ,'Bill Date' , 'No. of Sale Inv','Bill Amount','Tax Amount','Due Date'],
-              ...this.rows.activeBills.map(row => (
+              ...this.rows.map(row => (
                 [row.contractId, row.sellerName, row.buyerName,row.billNumber ,
                   row.contractId , row.billDate,row.numberOfSaleInvoices,row.billAmount, row.taxAmount,row.dueDate]
               ))
@@ -370,7 +370,7 @@ onSelect({ selected }) {
             widths: [40, 50, 50, 40, 70 , 60,80,70,70,60],
             body: [
               ['S No.', 'Bill For', 'Bill To', 'Bill#', 'Contract No' ,'Bill Date' , 'No. of Sale Inv','Bill Amount','Tax Amount','Due Date'],
-              ...this.rows.activeBills.map(row => (
+              ...this.rows.map(row => (
                 [row.contractId, row.sellerName, row.buyerName,row.billNumber ,
                   row.contractId , row.billDate,row.numberOfSaleInvoices,row.billAmount, row.taxAmount,row.dueDate]
               ))

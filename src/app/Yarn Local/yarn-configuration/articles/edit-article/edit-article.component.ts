@@ -46,7 +46,7 @@ export class EditArticleComponent implements OnInit {
           this.spinner.hide();
         }
         else {
-          this.toastr.success(this.response.message, 'Message.');
+          this.toastr.error(this.response.message, 'Message.');
         this.spinner.hide();   
         }
 
@@ -85,7 +85,7 @@ this.spinner.show()
           this.spinner.hide();
         }
         else {
-          this.toastr.success(this.response.message, 'Message.');
+          this.toastr.error(this.response.message, 'Message.');
           this.spinner.hide();
             
         }

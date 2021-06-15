@@ -48,6 +48,11 @@ export class DispatchRegisterComponent implements OnInit {
     {
     this.getDispatch();
   }
+  if(this.statusCheck == 'Edit2')
+  {
+  this.getDispatch();
+}
+
 
   this.GetUOMDropdown();
    this.GetDispatchDropdown();
@@ -156,6 +161,8 @@ export class DispatchRegisterComponent implements OnInit {
       "date": this.dateformater.toModel(this.data.date),
       "quantity": this.data.quantity,
       "uomId": this.data.uomId,
+      "salesTax": this.data.salesTax,
+    "saleInvoiceNo": this.data.saleInvoiceNo,
       "remarks": this.data.remarks,
     }
 

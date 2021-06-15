@@ -27,7 +27,7 @@
       </div>
 
       <div class="faq-item shadow-sm" *ngFor="let i of bankAcc">
-        <div class="row" (click)="change(i)">
+        <div class="row"  (click) = "transfer(i)" >
 
 
           <div class="col-md-7, color" >
@@ -58,7 +58,7 @@
         (click)="activeModal.close()">
         Close
       </button>
-      <button class="btn button-save" type="submit" (click) = "transfer()">
+      <button class="btn button-save" type="submit" (click)= "Save()">
 Save
       </button>
     </div>

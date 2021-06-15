@@ -140,7 +140,7 @@
 
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <input type="number" min="0" [readonly]="isAmountDisabled" placeholder="Comm%" #amount="ngModel" (focus)="onBlurMethod()" (keyup)="amountCall($event)"
+                                            <input type="number" min="0" [readonly]="isAmountDisabled" placeholder="Comm%" #amount="ngModel" (change)="onBlurMethod(data.amount)" (keyup)="amountCall($event)"
                                                 class="form-control" [(ngModel)]="data.amount" name="amount">
                                         </div>
                                     </div>
@@ -226,9 +226,7 @@
                                   {{result}}
                             <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows"
                                 [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-                                [selectionType]="SelectionType.checkbox"
-                                [selected]="selected"
-                                [selectAllRowsOnPage]="false"
+                             
                               
                                 [sorts]="[{prop: 'code', dir: 'asce'}]" [rowHeight]="'auto'" [limit]="6">
 
@@ -247,18 +245,12 @@
                                 </ngx-datatable-column>
 
                                 <ngx-datatable-column
-                                [width]="50"
-                                [sortable]="false"
-                                [canAutoResize]="false"
-                                [draggable]="false"
-                                [resizeable]="false"
-                                
-                                [checkboxable]="false"
+                               
 
                                 
                               > 
                               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                <input type="checkbox" (click)="onSelect($event,row)" >
+                                <input type="checkbox"  class="checkbox-lg" (change)="onSelect($event,row)" >
                             </ng-template>
                             </ngx-datatable-column>
 
