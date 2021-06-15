@@ -10,9 +10,9 @@
       <i class="fa fa-truck"></i>
       Edit Dispatch
     </h5>
-    <div class="font text-muted text-center">Contract ID No. 765</div>
-    <div class="font text-muted text-center">Buyer: Buyer Name </div>
-    <div class="font text-muted text-center">Seller: Seller Name</div>
+    <div class="font text-muted text-center"><b> Contract No. </b> {{contractNmbr}}</div>
+    <div class="font text-muted text-center"><b>Buyer : </b>{{ buyerName}} </div>
+    <div class="font text-muted text-center"><b>Seller : </b> {{sellerName}} </div>
   </div>
   
   
@@ -23,16 +23,16 @@
            
                 <div class="col-md-3 font-weight-bold">
                  <p >Dispatch Count: </p>
-                 <p>1</p>
+                 <p>{{count.dispatchCount}}</p>
                 </div>
                 <div  class="col-md-3  font-weight-bold">
                   <p>Dispatch Qty:</p>
-                 <p>1</p>
+                 <p>{{count.dispatchQuantity}}</p>
 
                  </div>
                  <div class="col-md-3  font-weight-bold">
                   <p>Sale Invoice Qty:</p>
-                 <p>1</p>
+                 <p>{{count.saleInvoiceQty}}</p>
 
                  </div>
                 </div>

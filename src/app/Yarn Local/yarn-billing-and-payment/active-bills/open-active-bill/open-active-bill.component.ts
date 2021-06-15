@@ -185,7 +185,9 @@ export class OpenActiveBillComponent implements OnInit {
 
 print(){
   let docDefinition = {
-    pageSize: 'A3',
+    pageSize: 'A4',
+    pageMargins: [ 30, 40, 40, 20 ],
+    pageOrientation: 'landscape',
       
           info: {
             title: 'Bill generated'

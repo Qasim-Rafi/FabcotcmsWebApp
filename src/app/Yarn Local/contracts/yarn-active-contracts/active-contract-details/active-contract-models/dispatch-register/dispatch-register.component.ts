@@ -18,10 +18,16 @@ export class DispatchRegisterComponent implements OnInit {
   dateformater: Dateformater = new Dateformater();  
   data:any ={};
   uomList = []
+  count : any = []
+
   @Input() dispatchId; 
   @Input() statusCheck; 
   @Input() contractId; 
   response: any;
+  @Input() buyerName;
+  @Input() sellerName;
+  @Input() contractNmbr;
+
   @ViewChild(NgForm) dispatchForm;
  
   constructor(
@@ -34,17 +40,34 @@ export class DispatchRegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.statusCheck = this.statusCheck
+    this.buyerName = this.buyerName
+    this.sellerName = this.sellerName
+    this.contractNmbr = this.contractNmbr
+
     if(this.statusCheck == 'Edit')
     {
     this.getDispatch();
   }
 
-  this. GetUOMDropdown();
-
+  this.GetUOMDropdown();
+   this.GetDispatchDropdown();
   }
 
   get activeModal() {
     return this._NgbActiveModal;
+  }
+
+  GetDispatchDropdown() {
+    this.http.get(`${environment.apiUrl}/api/YarnContracts/DispatchPopUpFields/`+this.contractId).
+    subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.count = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
   }
  
   GetUOMDropdown() {
