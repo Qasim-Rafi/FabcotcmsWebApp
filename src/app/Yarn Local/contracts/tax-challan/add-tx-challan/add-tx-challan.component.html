@@ -95,7 +95,7 @@
                         
                                     <div class="col-md-7">
                         
-                                        <ng-select name="buyerId" #buyerId="ngModel" class="input-w px-0" [(ngModel)]="data.buyerId"
+                                        <ng-select name="buyerId" #buyerId="ngModel" class="input-w px-0" [(ngModel)]="data.buyerId" (change)="buyerNameChange($event)"
                                             placeholder="-- Select --">
                                             <ng-option *ngFor="let i of buyer" [value]="i.id">{{ i.buyerName }}
                                             </ng-option>
@@ -115,7 +115,7 @@
                         
                                     <div class="col-md-7">
                         
-                                        <ng-select name="sellerId" #sellerId="ngModel" class="input-w px-0" [(ngModel)]="data.sellerId"
+                                        <ng-select name="sellerId" #sellerId="ngModel" class="input-w px-0" [(ngModel)]="data.sellerId" (change)="sellerNameChange($event)"
                                             placeholder="-- Select --">
                                             <ng-option *ngFor="let i of seller" [value]="i.id">{{ i.sellerName }}
                                             </ng-option>
@@ -164,7 +164,8 @@
                     
                                         <div class="col-md-3">
                                             <div class="input-group">
-                                                <input type="number" min="0" placeholder="Comm%" class="form-control"
+                                                <input type="number" min="0" placeholder="Amount" class="form-control" [readonly]="isAmountDisabled"
+                                                (change)="onBlurMethod(data.amount)" (keyup)="amountCall($event)"
                                                     [(ngModel)]="data.amount">
                                             </div>
                                         </div>
@@ -187,7 +188,7 @@
                     
                                                 <div class="col-md-8 mrg-sm1">
                     
-                                                    <input type="text" placeholder="Comm%" #cprNumber="ngModel" class="form-control"
+                                                    <input type="text" placeholder="CPR Number" #cprNumber="ngModel" class="form-control"
                                                         [(ngModel)]="data.cprNumber" name="cprNumber">
                                                 </div>
                     
@@ -261,42 +262,42 @@
                         
                         
                         
-                                        <ngx-datatable-column name="Tax Amount" [width]="80" prop="genericName">
+                                        <ngx-datatable-column name="Tax Amount" [width]="80" prop="taxChallan">
                                             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                                {{row.genericName}}
+                                                {{row.taxChallan}}
                                             </ng-template>
                                         </ngx-datatable-column>
                         
                         
                         
-                                        <ngx-datatable-column name="Received" [width]="80" prop="genericName">
+                                        <ngx-datatable-column name="Received" [width]="80" prop="receivedAmount">
                                             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                                {{row.genericName}}
+                                                {{row.receivedAmount}}
                                             </ng-template>
                                         </ngx-datatable-column>
                         
                         
                         
                         
-                                        <ngx-datatable-column name="Balance" [width]="80" prop="genericName">
+                                        <ngx-datatable-column name="Balance" [width]="80" prop="balanceAmount">
                                             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                                {{row.genericName}}
+                                                {{row.balanceAmount}}
                                             </ng-template>
                                         </ngx-datatable-column>
                         
                         
                         
-                                        <ngx-datatable-column name="Action" [width]="80" prop="genericName">
+                                        <ngx-datatable-column name="Action" [width]="80">
                                             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                                {{row.genericName}}
+                                                <input type="checkbox"  class="checkbox-lg" (change)="onSelect($event,row)" >
                                             </ng-template>
                                         </ngx-datatable-column>
                         
                         
                         
-                                        <ngx-datatable-column name="Paid Tax" [width]="80" prop="genericName">
+                                        <ngx-datatable-column name="Paid Tax" [width]="80" prop="paidAmount">
                                             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                                {{row.genericName}}
+                                                {{row.paidAmount}}
                                             </ng-template>
                                         </ngx-datatable-column>
                                     </ngx-datatable>

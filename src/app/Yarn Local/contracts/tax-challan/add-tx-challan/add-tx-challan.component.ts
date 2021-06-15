@@ -15,16 +15,23 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class AddTxChallanComponent implements OnInit {
   dateformater: Dateformater = new Dateformater();
-
+  result:any
+  selected = [];
+  amountGivenToCalculate:any;
+  saleInvoiceIds =[];
+  calculatedTax:any;
+  isAmountDisabled:boolean =false;
   buyer: any=[];
   seller: any=[];
   currency: any=[];
   data:any = {}
   columns: any
-  response: any
+  response: any;
+  buyerNameId:any;
+  sellerNameId:any;
   @ViewChild(NgForm) enquiryForm;
 
-  rows = []
+  rows = [];
 
   constructor(
     private service: ServiceService,
@@ -142,8 +149,115 @@ this.http.post(`${environment.apiUrl}/api/YarnContracts/AddTaxChallan`, varr)
         });
   }
 
+  amountCall(event){
+    
+    this.amountGivenToCalculate=event.target.value;
+    this.amountGivenToCalculate = this.amountGivenToCalculate +'.000';
+    this.data.taxChalan = 0;
+  
+}
+onBlurMethod(event){
+if(event != undefined){
+  setTimeout(()=>{                           
+    this.isAmountDisabled =true;
+}, 3000);
+  
+
+}
+else{
+this.isAmountDisabled =false;
+
+}
+}
+  buyerNameChange(event){
+    this.buyerNameId=event;
+  }
+  sellerNameChange(event){
+    this.sellerNameId=event;
 
 
+
+    this.http.get(`${environment.apiUrl}/api/Contracts/GetContractByBuyerSellerId/`+this.buyerNameId +'/'+ this.sellerNameId).
+    subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.rows = this.response.data;
+    
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+         
+  }
+  onSelect(event,row) {
+    let newrow =this.rows.filter(r=>r.saleInvoiceId ==row.saleInvoiceId)
+     this.selected = newrow;  
+ 
+    if(event.currentTarget.checked == true){
+      this.saleInvoiceIds.push(row.saleInvoiceId);
+      if(row !=null){
+       
+        if( this.result != null){
+          if(this.result <  this.selected[0].saleInvoiceAmount){
+          
+            this.selected[0].paidAmount =this.result;
+            this.result= this.result -this.selected[0].saleInvoiceAmount;
+          }
+        
+          if(this.result <0 ){
+            this.toastr.error("Partial  Value", 'Message.');
+           
+          }
+        }
+        else{
+          if(parseInt(this.amountGivenToCalculate) >  parseInt(this.selected[0].saleInvoiceAmount)){
+            this.selected[0].paidAmount=this.selected[0].saleInvoiceAmount
+            this.result= this.amountGivenToCalculate-this.selected[0].paidAmount
+            this.result =this.result;
+          }
+          else if(parseInt(this.amountGivenToCalculate) <  parseInt(this.selected[0].saleInvoiceAmount)){
+            this.selected[0].paidAmount =this.amountGivenToCalculate;
+            this.result =this.amountGivenToCalculate -this.amountGivenToCalculate;
+            this.toastr.error("Partial  Value", 'Message.');
+             this.result =this.result.replace('.000','');
+          }
+          else{
+            this.result =this.amountGivenToCalculate -  this.selected[0].saleInvoiceAmount;
+            this.selected[0].paidAmount= this.selected[0].saleInvoiceAmount;
+
+          }
+        }
+        this.result =this.result +'.000';
+        // this.selected[0].paidAmount= this.selected[0].saleInvoiceAmount;
+           this.selected.push(...this.selected);
+          this.rows = [...this.rows]
+      }
+      else{
+        this.result =null;
+      }
+    }
+    else if(event.currentTarget.checked == false){
+
+      this.saleInvoiceIds.forEach((element,index)=>{
+        if(element==row.saleInvoiceId) this.saleInvoiceIds.splice(index,1);
+     });
+      if( this.result != null){
+        let newrow =this.rows.filter(r=>r.saleInvoiceId ==row.saleInvoiceId)
+        this.selected = newrow; 
+        this.result=0
+        this.result=row.paidAmount 
+        this.selected[0].paidAmount= 0;
+        
+        // parseInt(this.result) + parseInt(row.paidAmount);
+
+        this.selected.push(...this.selected);
+          this.rows = [...this.rows]
+      }
+    }
+   
+  
+  }
 
 
 }

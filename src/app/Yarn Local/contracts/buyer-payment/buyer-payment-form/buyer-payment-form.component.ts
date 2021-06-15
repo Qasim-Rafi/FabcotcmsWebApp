@@ -217,11 +217,17 @@ this.spinner.hide();
     if(event.currentTarget.checked == true){
       this.saleInvoiceIds.push(row.saleInvoiceId);
       if(row !=null){
-       
+       if(this.selected[0].receivedAmount != '0.000'){
+        this.result=parseInt(this.selected[0].receivedAmount) +  parseInt(this.amountGivenToCalculate);
+        this.selected[0].receivedAmount =this.result +'.000'; 
+       }
+
+else{
+
         if( this.result != null){
           if(this.result <  this.selected[0].saleInvoiceAmount){
           
-            this.selected[0].paidAmount =this.result;
+            this.selected[0].receivedAmount =this.result;
             this.result= this.result -this.selected[0].saleInvoiceAmount;
           }
         
@@ -232,24 +238,25 @@ this.spinner.hide();
         }
         else{
           if(parseInt(this.amountGivenToCalculate) >  parseInt(this.selected[0].saleInvoiceAmount)){
-            this.selected[0].paidAmount=this.selected[0].saleInvoiceAmount
-            this.result= this.amountGivenToCalculate-this.selected[0].paidAmount
+            this.selected[0].receivedAmount=this.selected[0].saleInvoiceAmount
+            this.result= this.amountGivenToCalculate-this.selected[0].receivedAmount
             this.result =this.result;
           }
           else if(parseInt(this.amountGivenToCalculate) <  parseInt(this.selected[0].saleInvoiceAmount)){
-            this.selected[0].paidAmount =this.amountGivenToCalculate;
+            this.selected[0].receivedAmount =this.amountGivenToCalculate;
             this.result =this.amountGivenToCalculate -this.amountGivenToCalculate;
             this.toastr.error("Partial  Value", 'Message.');
              this.result =this.result.replace('.000','');
           }
           else{
             this.result =this.amountGivenToCalculate -  this.selected[0].saleInvoiceAmount;
-            this.selected[0].paidAmount= this.selected[0].saleInvoiceAmount;
+            this.selected[0].receivedAmount= this.selected[0].saleInvoiceAmount;
 
           }
         }
+      }
         this.result =this.result +'.000';
-        // this.selected[0].paidAmount= this.selected[0].saleInvoiceAmount;
+        // this.selected[0].receivedAmount= this.selected[0].saleInvoiceAmount;
            this.selected.push(...this.selected);
           this.rows = [...this.rows]
       }
@@ -266,10 +273,10 @@ this.spinner.hide();
         let newrow =this.rows.filter(r=>r.saleInvoiceId ==row.saleInvoiceId)
         this.selected = newrow; 
         this.result=0
-        this.result=row.paidAmount 
-        this.selected[0].paidAmount= 0;
+        this.result=row.receivedAmount 
+        this.selected[0].receivedAmount= 0;
         
-        // parseInt(this.result) + parseInt(row.paidAmount);
+        // parseInt(this.result) + parseInt(row.receivedAmount);
 
         this.selected.push(...this.selected);
           this.rows = [...this.rows]

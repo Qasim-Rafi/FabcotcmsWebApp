@@ -184,7 +184,7 @@
                                 <input class="form-control" type="text" name="additionalDetails"
                                     placeholder="Additional details..." [(ngModel)]="data.additionalDetails" />
                                 <small id="passwordHelpBlock" class="form-text text-lightgrey">
-                                    Only Parent Supplier is available for selection
+                                    Cheque, DD, TT etc. number
                                 </small>
                             </div>
                         </div>
@@ -254,9 +254,9 @@
                             </ng-template>
                             </ngx-datatable-column>
 
-                            <ngx-datatable-column name="Invoice Amount" [width]="80" prop="paidAmount">
+                            <ngx-datatable-column name="Received Amount" [width]="80" prop="receivedAmount">
                                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                    {{row.paidAmount}}
+                                    {{row.receivedAmount}}
                                 </ng-template>
                             </ngx-datatable-column> 
                                  <ngx-datatable-column name="texChallan" [width]="80" prop="texChallan">
