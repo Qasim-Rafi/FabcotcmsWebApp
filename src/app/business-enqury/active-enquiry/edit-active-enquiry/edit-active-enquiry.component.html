@@ -303,6 +303,7 @@
                                 <form #priceForm="ngForm" novalidate  >
                             <div class="row">
                                 <div class="col-md-12 py-3" [ngClass]="{ noDisplay : currencyToggle==false }">
+
                                     <div class="form-group row">
                                         <label for="inputEmail3"
                                             class="col-md-3 col-form-label control-label">Currency</label>
@@ -352,14 +353,14 @@
                                     
                                                 </div>
                                     
-                                                <div class="col-md-4">
+                                                <div class="col-md-4 mrg-tsm">
                                                     <div class="input-group">
                                                         <input class="form-control" type="number" min="0" [(ngModel)]="enquiryData.paymentTermDays"
                                                             name="paymentTermDays" />
                                                     </div>
                                                 </div>
                                     
-                                                <div class="col-md-4">
+                                                <div class="col-md-4 mrg-tsm">
                                                     <input class="form-control" type="text" placeholder="Additional Information"
                                                         [(ngModel)]="enquiryData.paymentTermInfo" name="paymentTermInfo" />
                                                 </div>
@@ -381,7 +382,7 @@
     
                                         </div>
     
-                                        <div class="col-md-4 col-xl-3">
+                                        <div class="col-md-4 col-xl-3 mrg-tsm">
     
                                             <ng-select [(ngModel)]="enquiryData.destinationId" placeholder="-- Select --"
                                                 name="destinationId" #destinationId="ngModel">
@@ -411,7 +412,7 @@
                                                     </div>
                                                 </div>
     
-                                                <div class="col-md-4 mrg-sm1">
+                                                <div class="col-md-4 mrg-tsm">
                                                     <ng-select [(ngModel)]="enquiryData.sellerSideCommissionUOMId"
                                                         placeholder="-- Select --" name="sellerSideCommissionUOMId"
                                                         #sellerSideCommissionUOMId="ngModel">
@@ -420,7 +421,7 @@
                                                     </ng-select>
                                                 </div>
     
-                                                <div class="col-md-4 mrg-sm1">
+                                                <div class="col-md-4 mrg-tsm">
                                                     <input type="text" placeholder="Additional Info." class="form-control"
                                                         [(ngModel)]="enquiryData.sellerSideCommissionInfo"
                                                         name="sellerSideCommissionInfo">
@@ -432,6 +433,7 @@
                                         </div>
                                     </div>
     
+
                                     <div class="form-group row">
                                         <label for="code" class="col-md-3 col-form-label control-label">Buyer Commission</label>
     
@@ -449,7 +451,7 @@
                                                     </div>
                                                 </div>
     
-                                                <div class="col-md-4 mrg-sm1">
+                                                <div class="col-md-4 mrg-tsm">
                                                     <ng-select [(ngModel)]="enquiryData.buyerSideCommissionUOMId"
                                                         placeholder="-- Select --" name="buyerSideCommissionUOMId"
                                                         #buyerSideCommissionUOMId="ngModel">
@@ -458,7 +460,7 @@
                                                     </ng-select>
                                                 </div>
     
-                                                <div class="col-md-4 mrg-sm1">
+                                                <div class="col-md-4 mrg-tsm">
                                                     <input type="text" placeholder="Additional Info." class="form-control"
                                                         name="buyerSideCommissionInfo"
                                                         [(ngModel)]="enquiryData.buyerSideCommissionInfo">
@@ -497,7 +499,7 @@
                                     </form>
                                 </div>
 
-                                <div class="col-md-6">
+                                <div class="col-md-6 mrg-tsm">
 
                                 <button type="button" class="btn btn-primary btn-sm float-right"
                                     (click)="addEnquiryItemform('AddEnquiryItem', objEnquiry)">
@@ -515,7 +517,7 @@
                                     <div class="row border-bottom py-3">
 
                                     
-                                <div class="col-md-1 col-sm-3 col-xs-3 forum-info" data-original-title="POCs">
+                                <div class="col-1 col-md-1 forum-info" data-original-title="POCs">
                                     <div class="poc-icon">
                                         <a (click)="fetch2(obj)" class="faq-question text-muted text-s-lg text-w-3" data-toggle="collapse" role="button"
                                             href="#enquiryItemList-{{ x }}" aria-expanded="false" aria-controls="collapseExample">
@@ -523,7 +525,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-5 col-xl-6">
+                                <div class="col-5 col-md-5 col-xl-6">
                                     <a class="faq-question ">{{obj.description}}</a>
                                     <div class="small mb-1"><span class="text_Navy">{{obj.colorName}}</span> {{ obj.compositionPercentage|number:'1.3'}}%
                                         {{obj.compositionFebricTypeName}}
@@ -536,7 +538,7 @@
                                     </div>
                                 </div>
             
-                                <div class="col-md-4 col-xl-3">
+                                <div class="col-4 col-md-4 col-xl-3">
                                     <div class="ibox-tools">
                                         <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top"
                                             title="" data-original-title="Edit" (click)=" addQuotationform('addQuotation', obj ) ">
@@ -556,7 +558,7 @@
                                 </div>
             
             
-                                <div class="col-md-2 forum-info" data-toggle="tooltip" data-placement="top" title=""
+                                <div class="col-2 col-md-2 forum-info" data-toggle="tooltip" data-placement="top" title=""
                                     style="border-left: 1px solid #d0d0d0" data-original-title="Total Contracts">
                                     <span class="views-number">{{obj.itemQuantity}}</span>
                                     <div><small>{{obj.itemUOMName}}</small></div>
