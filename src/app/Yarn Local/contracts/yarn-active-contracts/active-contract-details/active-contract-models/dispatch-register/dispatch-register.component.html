@@ -6,7 +6,7 @@
         <i class="fa fa-truck"></i>
         Add New Dispatch
       </h5>
-    <h5 class="modal-title" *ngIf = "statusCheck == 'Edit'">
+    <h5 class="modal-title" *ngIf = "statusCheck == 'Edit' || statusCheck == 'Edit2'">
       <i class="fa fa-truck"></i>
       Edit Dispatch
     </h5>
@@ -78,7 +78,30 @@
             </div>
       
           </div>
-        
+          <div class="form-group row" *ngIf = "statusCheck == 'Edit2'">
+            <label for="saleInvoiceDate" class="col-sm-3 col-form-label">Sales Tax %</label>
+            <div class="col-sm-8">
+                <div class="input-group">
+                    <div class="input-group-append">
+                    </div>
+                    <input type="text" placeholder="Sales Tax in percentage" class="form-control"
+                        [(ngModel)]="data.salesTax" name="salesTax" #salesTax="ngModel">
+                    <div class="input-group-append">
+                        <span class="input-group-text" id="basic-addon2">%</span>
+                    </div>
+                </div>
+            </div>
+          </div>
+
+          
+          <div class="form-group row" *ngIf = "statusCheck == 'Edit2'">
+            <label for="saleInvoiceNo" class="col-sm-3 col-form-label ">Sale Inv. No.</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" placeholder="Sale Invoice number" name="saleInvoiceNo"
+                [(ngModel)]="data.saleInvoiceNo" #saleInvoiceNo="ngModel" />
+            </div>
+          </div>
+      
         <div class="form-group row">
           <label for="saleInvoiceRemarks" class="col-sm-3 col-form-label ">Remarks</label>
           <div class="col-sm-8">

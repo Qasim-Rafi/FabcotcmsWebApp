@@ -70,7 +70,7 @@
   
                 <div class="ibox-tools text-center">
   
-                  <button type="button" class="btn editIconBack" (click) = "editDispatch(row, 'Edit')">
+                  <button type="button" class="btn editIconBack" (click) = "editDispatch(row, 'Edit2')">
                     <i class="far fa-edit "></i>
                   </button>
   
@@ -101,7 +101,9 @@
   
             <ngx-datatable-column name="Contract " prop="contractOn">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-             {{row.contractNo}}
+            
+             <button  class="clr"  (click)="navigateEditContract(row)">
+              {{row.contractNo}}</button>
               </ng-template>
             </ngx-datatable-column>
   
