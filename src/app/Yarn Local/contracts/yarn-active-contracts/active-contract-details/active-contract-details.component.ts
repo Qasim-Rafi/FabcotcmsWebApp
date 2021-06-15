@@ -181,19 +181,10 @@ export class ActiveContractDetailsComponent implements OnInit {
     const val = event.target.value.toLowerCase();
     const temp = this.deliveryFilter.filter(function (d) {
       return (
-      // d.supplierDate.toLowerCase().indexOf(val) !== -1 || 
-      // d.buyerDate.toLowerCase().indexOf(val) !== -1 ||
       d.quantity.toLowerCase().indexOf(val) !== -1 ||
-      // d.loomTypeId.toLowerCase().indexOf(val) !== -1 ||
-      // d.size.toLowerCase().indexOf(val) !== -1 ||
-      // d.weight.toLowerCase().indexOf(val) !== -1 || 
-      // d.itemQuantity.toLowerCase().indexOf(val) !== -1 ||
-      // d.contractRate.toLowerCase().indexOf(val) !== -1 ||
-      // d.contractCost.toLowerCase().indexOf(val) !== -1 ||
-      // d.commission.toLowerCase().indexOf(val) !== -1 ||
       !val);
     });
-    this.rows = temp;
+    this.deliveryData = temp;
   }
    searchShipmentDates(event) {
     const val = event.target.value.toLowerCase();
@@ -238,6 +229,7 @@ export class ActiveContractDetailsComponent implements OnInit {
 
         if (this.response.success == true) {
           this.deliveryData = this.response.data
+          this.deliveryFilter = [...this.deliveryData]
         }
         else {
           this.toastr.error(this.response.message, 'Message.');
@@ -526,6 +518,8 @@ getDispatches() {
           this.dispatchData = this.response.data;
           // this.dispatchFilter = [...this.dispatchData]
           // cb(this.dispatchData);
+      this.dispatchFilter = [...this.dispatchData];
+
         }
         else {
           this.toastr.error(this.response.message, 'Message.');
@@ -660,7 +654,7 @@ searchDispatch(event) {
     return (d.number.toLowerCase().indexOf(val) !== -1 ||   
     !val);
   });
-  this.rows = temp;
+  this.dispatchData = temp;
 }
 
 
