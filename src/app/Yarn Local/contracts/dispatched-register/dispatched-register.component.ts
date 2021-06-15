@@ -36,6 +36,9 @@ export class DispatchedRegisterComponent implements OnInit {
       this.rows = data;
     });
   }
+  navigateEditContract(obj) {
+    this.router.navigate(['/FabCot/active-contract-details'], { queryParams: {id: obj.contractId} });
+  };
   search(event) {
     const val = event.target.value.toLowerCase();
     const temp = this.paymentFilter.filter(function (d) {

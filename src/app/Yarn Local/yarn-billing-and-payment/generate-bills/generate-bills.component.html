@@ -103,9 +103,9 @@
           <ngx-datatable-column name="Countract No." [width]="80" prop="autoContractNumber" [flexGrow]="0.05">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
               <button  class="clr"  (click)="navigateEditContract(row)">
-              {{row.autoContractNumber}}
+              {{row.autoContractNumber}}</button>
              <!-- <button (click)="SaleInvoiceForm()"><i class="far fa-newspaper"></i></button>  -->
-            </button>
+            
              <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top" title=""
                   data-original-title="Sale Invoices" (click)="SaleInvoiceForm(row)"><i
                     class="far fa-newspaper"></i></button>
