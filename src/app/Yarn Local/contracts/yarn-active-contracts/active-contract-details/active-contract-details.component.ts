@@ -97,6 +97,9 @@ export class ActiveContractDetailsComponent implements OnInit {
   rows5: any = [];
   id: any = {};
   tnaId: any = {};
+  contractNmbr : string
+  buyerName: string
+  sellerName:string
   constructor(
     private router: Router,
     private modalService: NgbModal,
@@ -456,8 +459,9 @@ export class ActiveContractDetailsComponent implements OnInit {
           this.response = res;
           if (this.response.success == true) {
             this.contractData = this.response.data;
-            
-  
+            this.buyerName = this.contractData.buyerName
+             this.contractNmbr = this.contractData.autoContractNumber
+             this.sellerName = this.contractData.sellerName
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
@@ -1121,6 +1125,12 @@ addDispatch( check) {
   const modalRef = this.modalService.open(DispatchRegisterComponent, { centered: true });
   modalRef.componentInstance.statusCheck = check;
   modalRef.componentInstance.contractId = this.contractId ;
+  modalRef.componentInstance.buyerName = this.buyerName ;
+  modalRef.componentInstance.sellerName = this.sellerName ;
+  modalRef.componentInstance.contractNmbr = this.contractNmbr ;
+
+
+
 
   modalRef.result.then((data) => {
     // on close
