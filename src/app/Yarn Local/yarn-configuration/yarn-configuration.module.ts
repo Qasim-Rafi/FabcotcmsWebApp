@@ -55,6 +55,14 @@ import { AddPieceLengthComponent } from './product/piece-length/add-piece-length
 import { AddContainerComponent } from './product/container/add-container/add-container.component';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { SelvedgeComponent } from './product/selvedge/selvedge.component';
+import { WeftComponent } from './product/weft/weft.component';
+import { WarpComponent } from './product/warp/warp.component';
+import { PickInsertionComponent } from './product/pick-insertion/pick-insertion.component';
+import { AddEditWarpComponent } from './product/warp/add-edit-warp/add-edit-warp.component';
+import { AddEditSelvedgeComponent } from './product/selvedge/add-edit-selvedge/add-edit-selvedge.component';
+import { AddEditWeftComponent } from './product/weft/add-edit-weft/add-edit-weft.component';
+import { AddEditPickInsertionComponent } from './product/pick-insertion/add-edit-pick-insertion/add-edit-pick-insertion.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +80,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
      AddBankComponent, CityComponent,
      EditCityComponent,CountryComponent,EditCountryComponent, CurrencyComponent, 
      EditCurrencyComponent ,AddCurrencyComponent, WeaveComponent, PieceLengthComponent, 
-     ContainerComponent, AddWeaveComponent, AddPieceLengthComponent, AddContainerComponent
+     ContainerComponent, AddWeaveComponent, AddPieceLengthComponent, AddContainerComponent, SelvedgeComponent, WeftComponent, WarpComponent, PickInsertionComponent, AddEditWarpComponent, AddEditSelvedgeComponent, AddEditWeftComponent, AddEditPickInsertionComponent
   ],
   imports: [
     CommonModule,

@@ -17,6 +17,10 @@ import { CurrencyComponent } from './currency/currency.component';
 import { WeaveComponent } from './product/weave/weave.component';
 import { PieceLengthComponent } from './product/piece-length/piece-length.component';
 import { ContainerComponent } from './product/container/container.component';
+import { WeftComponent } from './product/weft/weft.component';
+import { WarpComponent } from './product/warp/warp.component';
+import { SelvedgeComponent } from './product/selvedge/selvedge.component';
+import { PickInsertionComponent } from './product/pick-insertion/pick-insertion.component';
 
 
 const routes: Routes = [
@@ -41,11 +45,10 @@ const routes: Routes = [
     { path: 'weave' ,  component: WeaveComponent},
     { path: 'piece-length' ,  component: PieceLengthComponent},
     { path: 'container' ,  component: ContainerComponent},
-
-
-
-
-
+    { path: 'selvedge' ,  component: SelvedgeComponent},
+    { path: 'pick-insertion' ,  component: PickInsertionComponent},
+    { path: 'Weft' ,  component: WarpComponent},
+    { path: 'Warp' ,  component: WeftComponent},
 ]
   }
 ]

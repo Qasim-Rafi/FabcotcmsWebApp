@@ -59,8 +59,8 @@ export class SearchComponent implements OnInit {
      return this._NgbActiveModal;
    }
  
-
    ContractsDropdown() {
+
      this.http.get(`${environment.apiUrl}/api/YarnContracts/GetAllSaleInvoiceForMenu`).
 
      subscribe(res => {
