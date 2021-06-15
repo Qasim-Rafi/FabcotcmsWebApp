@@ -43,8 +43,11 @@ export class AddNewContractsComponent implements OnInit {
   new:any=[];
   new2:any=[];
   new3:any=[];
-  agents:any={};
+  data1:any=[];
+  data2:any=[];
 
+  agents:any={};
+commission: any = [];
   newPrice:any;
   @ViewChild(NgForm) contractForm;
   objEnquiry=0;
@@ -81,7 +84,12 @@ selectedAttributes:any;
   
   }
 
-
+  addfield() {
+    this.data1.push({id: this.data1.length});
+  }
+  removefield(i: number) {
+    this.data1.splice(i, 1);
+  }
   addMore() {
     this.new.push({id: this.new.length});
   }
@@ -364,6 +372,17 @@ selectedAttributes:any;
 
   addContract() {
     let departmentId=parseInt(localStorage.getItem('loggedInDepartmentId'))
+    if(this.data2.agentId != null)
+    {
+    this.commission.push({['agentId']: this.data2.agentId , ["agentCommission"]: this.data2.agentCommission}) 
+
+    }
+    for(let i=0; i<this.data1.length;i++ )
+    {
+      
+      this.commission.push({['agentId']: this.data1[i].agentId , ["agentCommission"]: this.data1[i].agentCommission}) 
+    }
+
     let varr = {
       // "enquiryDate": this.dateformater.toModel(this.data.enquiryDate),
           "autoContractNo": this.data.autoContractNo,
@@ -383,8 +402,8 @@ selectedAttributes:any;
           "buyerPaymentTerm": this.data.buyerPaymentTerm,
           "packingId": this.data.packingId,        
           "priceautoContractNoTermId": this.data.priceTermId,        
-          "sellerDeliveryDate": this.data.sellerDeliveryDate,
-          "buyerDeliveryDate": this.data.buyerDeliveryDate,
+          "sellerDeliveryDate": this.dateformater.toModel(this.data.sellerDeliveryDate),
+          "buyerDeliveryDate": this.dateformater.toModel(this.data.buyerDeliveryDate),
           "contractRemarks": this.data.contractRemarks,
           "buyerRemarks": this.data.buyerRemarks,        
           "otherConditionRemarks": this.data.otherConditionRemarks,
@@ -398,6 +417,7 @@ selectedAttributes:any;
           "buyersideCommision":this.data.buyersideCommision ,
           "buyersideCommisionUOMId":this.data.buyersideCommisionUOMId ,
           "buyerSideCommAdditionalInfo":this.data.buyerSideCommAdditionalInfo ,
+          "agentCommission": this.commission
     }
 this.spinner.show();
     this.http.

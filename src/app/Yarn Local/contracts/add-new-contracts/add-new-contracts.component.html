@@ -431,7 +431,7 @@
                                 
                                     <div class="col-md-7">
                                         <div class="input-group">
-                                            <ng-select name="packingIds" #packingIds="ngModel" class="input-w px-0" [(ngModel)]="data.packingIds"
+                                            <ng-select name="packingId" #packingId="ngModel" class="input-w px-0" [(ngModel)]="data.packingId"
                                                 placeholder="-- Select --">
                                                 <ng-option *ngFor="let i of packing" [value]="i.id">{{ i.name }}
                                 
@@ -483,10 +483,17 @@
                                 
                                     <div class="col-md-7">
                                 
-                                        <div class="input-group date" (clickOutside)="sellerDeliveryDatePicker.close()">
-                                            <input type="text" class="form-control  datetimepicker-input" (click)="sellerDeliveryDatePicker.toggle()"
-                                                placeholder="Date" #sellerDeliveryDatePicker="ngbDatepicker" name="sellerDeliveryDate" ngbDatepicker>
-                                            <div class="input-group-append" (click)="sellerDeliveryDatePicker.toggle()">
+                                        <div class="input-group date" (clickOutside)="validity1.close()">
+                                            <!-- <input type="text" class="form-control  datetimepicker-input" (click)="sellerDeliveryDatePicker.toggle()"
+                                                placeholder="Date" #sellerDeliveryDatePicker="ngbDatepicker"
+                                                #sellerDeliveryDate = "ngModel"
+                                                name="sellerDeliveryDate" ngbDatepicker [(ngModel)] = "data.sellerDeliveryDate"> -->
+                                                <input navigation="select" class="form-control  "  name="sellerDeliveryDate" 
+                                                [(ngModel)]="data.sellerDeliveryDate" #sellerDeliveryDate="ngModel"  ngbDatepicker #validity1="ngbDatepicker"
+                                               (click)="validity1.toggle()"
+                                                placeholder="Supplier Date" 
+                                                />
+                                            <div class="input-group-append" (click)="validity1.toggle()">
                                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                             </div>
                                         </div>
@@ -530,10 +537,13 @@
                                 
                                     <div class="col-md-7">
                                 
-                                        <div class="input-group date" (clickOutside)="buyerDeliveryDatePicker.close()">
-                                            <input type="text" class="form-control  datetimepicker-input" (click)="buyerDeliveryDatePicker.toggle()"
-                                                placeholder="Date" #buyerDeliveryDatePicker="ngbDatepicker" name="buyerDeliveryDate" ngbDatepicker>
-                                            <div class="input-group-append" (click)="buyerDeliveryDatePicker.toggle()">
+                                        <div class="input-group date" (clickOutside)="validity2.close()">
+                                            <input navigation="select" class="form-control  "  name="buyerDeliveryDate" 
+                                            [(ngModel)]="data.buyerDeliveryDate" #buyerDeliveryDate="ngModel"  ngbDatepicker #validity2="ngbDatepicker"
+                                           (click)="validity2.toggle()"
+                                            placeholder="Buyer Date" 
+                                            />
+                                            <div class="input-group-append" (click)="validity2.toggle()">
                                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                             </div>
                                         </div>
@@ -651,7 +661,7 @@
                 
                                     <div class="col-md-4 mrg-sm1">
                                         <input type="text" placeholder="Additional Info" class="form-control"
-                                            [(ngModel)]="data.abcotSideCommAdditionalInfo" name="abcotSideCommAdditionalInfo" #abcotSideCommAdditionalInfo="ngModel">
+                                            [(ngModel)]="data.fabcotSideCommAdditionalInfo" name="fabcotSideCommAdditionalInfo" #fabcotSideCommAdditionalInfo="ngModel">
                                     </div>
                                 </div>
                             </div>
@@ -693,32 +703,30 @@
                             </div>
                 
                 
-                            <!-- <div class="form-group col-md-12">
+                            <div class="form-group col-md-12">
                                 <label for="code" class="col-form-label control-label">Agent Commission:</label>
                                 <div class="row">
                 
                                     <div class="col-md-6 mrg-sm1">
-                                        <ng-select name="buyerSideCommissionUOMId " #buyerSideCommissionUOMId="ngModel"
-                                            [(ngModel)]="data.buyerSideCommissionUOMId" placeholder="Select Agent"
-                                            >
-                                            <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
+                                        <ng-select placeholder="Select an Agent" [(ngModel)]="data2.agentId" #agentId = "ngModel" name="agentId">
+                                            <ng-option *ngFor="let i of agents" [value]="i.id">
+                                              {{i.name}}
                                             </ng-option>
-                                        </ng-select>
+                                          </ng-select>
                                     </div>
                 
                                     <div class="col-md-6 mrg-sm1">
-                                        <input type="text" placeholder="Commission %" class="form-control"
-                                            [(ngModel)]="data.buyerSideCommissionInfo" name="buyerSideCommissionInfo">
+                                        <input class="form-control" placeholder="Commission %" [(ngModel)]="data2.agentCommission" #agentCommission = "ngModel" min="0"
+                                        name="agentCommission" />
                                     </div>
                 
                 
                 
                                 </div>
                             </div>
-                 -->
-<!--                 
+              
                             <div class="col-md-12">
-                                <div class="form-group row" *ngFor="let a of data; let i = index;">
+                                <div class="form-group row" *ngFor="let a of data1; let i = index;">
                 
                                     <div class="col-md-12">
                 
@@ -726,7 +734,7 @@
                                         <div class="row">
                 
                                             <div class="col-md-6 mrg-sm1">
-                                                <ng-select placeholder="Select an Agent" [(ngModel)]="a.agentId" #agentId = "ngModel" name="agentId">
+                                                <ng-select placeholder="Select an Agent" [(ngModel)]="a.agentId" #agentId = "ngModel" name="agentId_{{i}}">
                                                     <ng-option *ngFor="let i of agents" [value]="i.id">
                                                       {{i.name}}
                                                     </ng-option>
@@ -734,13 +742,13 @@
                                             </div>
                 
                                             <div class="col-md-6 mrg-sm1">
-                                                <input class="form-control" placeholder="Comm %" [(ngModel)]="a.agentCommission" #agentCommission = "ngModel" type="number" min="0"
+                                                <input class="form-control" placeholder="Commission %" [(ngModel)]="a.agentCommission" #agentCommission = "ngModel" min="0"
                                                             name="agentCommission_{{i}}" />
                                             </div>
                 
                 
                                             <div class="col-md-12"><button class="btn btn-outline-danger mt-2 float-right" type="submit"
-                                                    (click)="remove3(i)">
+                                                    (click)="removefield(i)">
                                                     <i class="fas fa-minus fa-xs"></i></button>
                                             </div>
                                         </div>
@@ -748,14 +756,14 @@
                                     </div>
                 
                                 </div>
-                            </div> -->
+                            </div>
                 
-                            <!-- <div class="col-md-12">
-                                <button class="btn btn-outline-primary btn-sm" type="submit" (click)="add3()">
+                            <div class="col-md-12">
+                                <button class="btn btn-outline-primary btn-sm" type="submit" (click)="addfield()">
                                     <i class="fas fa-plus"></i>
                                     Add Agent
                                 </button>
-                            </div> -->
+                            </div>
                 
                         </div>
                 

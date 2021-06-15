@@ -13,10 +13,11 @@ import { environment } from 'src/environments/environment';
 export class CommisionKickbackComponent implements OnInit {
   @Input() contractId;
   data : any = {};
-  commission:any={};
+  commission:any=[];
   agents:any=[];
   uomList:any=[];
   response: any;
+  data1:any=[];
   
   constructor(
     private _NgbActiveModal: NgbActiveModal,
@@ -43,7 +44,12 @@ export class CommisionKickbackComponent implements OnInit {
   remove(i: number) {
     this.data.splice(i, 1);
   }
-
+  addfield() {
+    this.data1.push({id: this.data1.length});
+  }
+  removefield(i: number) {
+    this.data1.splice(i, 1);
+  }
   // GetUOMDropdown() {
   //   this.service.getUOM().subscribe(res => {
   //     this.response = res;
@@ -115,14 +121,14 @@ export class CommisionKickbackComponent implements OnInit {
   addContractCommision() {
 
 
-    for(let i=0; i<this.data.length;i++ )
+    for(let i=0; i<this.data1.length;i++ )
     {
-      this.data[i] = Object.assign(this.data[i], {
-
-        "agentId": this.commission.agentId,
-        "agentCommission": this.commission.agentCommission,
+      // this.commission[i] = Object.assign(this.data1[i], {
+        
+      
     
-      })
+      // })
+      this.commission.push({['agentId']: this.data1[i].agentId , ["agentCommission"]: this.data1[i].agentCommission}) 
     }
 
     let varr = {
@@ -137,8 +143,7 @@ export class CommisionKickbackComponent implements OnInit {
       "buyersideCommision": this.data.buyersideCommision,
       "buyersideCommisionUOMId": this.data.buyersideCommisionUOMId,
       "buyerSideCommAdditionalInfo": this.data.buyerSideCommAdditionalInfo,
-      "agentId": this.data.agentId,
-      "agentCommision": this.data.agentCommision
+      "agentCommissions": this.commission
     }
 
     this.http.
