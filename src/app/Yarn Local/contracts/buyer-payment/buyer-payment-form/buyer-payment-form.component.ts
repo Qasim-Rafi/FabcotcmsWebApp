@@ -190,8 +190,15 @@ this.spinner.hide();
      
      
   }
-  onBlurMethod(){
-    this.isAmountDisabled =true;
+  onBlurMethod(event){
+    if(event != undefined){
+      this.isAmountDisabled =true;
+
+    }
+    else{
+    this.isAmountDisabled =false;
+
+    }
   }
   taxCalculated(event){
     event.target.value;
