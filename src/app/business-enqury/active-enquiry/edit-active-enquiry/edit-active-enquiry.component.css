@@ -211,6 +211,13 @@ dt {
   }
 }
 
+@media only screen and (max-width: 768px) {
+
+  .navlinkpdg{
+    padding: 0.5rem 6px !important;
+  }
+  
+}
 
 @media only screen and (max-width: 767px) {
 
