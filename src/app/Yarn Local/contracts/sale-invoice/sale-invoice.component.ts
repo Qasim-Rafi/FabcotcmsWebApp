@@ -100,34 +100,37 @@ addinvoiceForm(check){
 }
 
 fetch(cb) {
-    this.spinner.show();
+    // this.spinner.show();
   this.http
-  .get(`${environment.apiUrl}/api/Contracts/GetAllContractSaleInvoice/`+26 )
+  .get(`${environment.apiUrl}/api/YarnContracts/GetAllSaleInvoiceForMenu` )
   .subscribe(res => {
     this.response = res;
    
   if(this.response.success==true)
   {
-  this.saleInvoice =this.response.data;
+  this.data =this.response.data;
 
-  cb(this.saleInvoice);
- this.spinner.hide(); }
+  cb(this.data);
+//  this.spinner.hide();
+ }
   else{
     this.toastr.error(this.response.message, 'Message.');
-  this.spinner.hide();
+  // this.spinner.hide();
   }
     // this.spinner.hide();
   }, err => {
     if ( err.status == 400) {
 this.toastr.error(err.error.message, 'Message.');
     }
-   this.spinner.hide();
+  //  this.spinner.hide();
   });
 }
 
-editinvoice(row) {
+editinvoice(check ,row) {
   const modalRef = this.modalService.open(AddNewInvComponent, { centered: true });
-  modalRef.componentInstance.invoiceId = row.id;
+  modalRef.componentInstance.invoiceId = row.saleInvoiceId;
+  modalRef.componentInstance.statusCheck = check;
+
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
@@ -156,7 +159,7 @@ deleteinvoice(row) {
   }).then((result) => {
     if (result.isConfirmed) {
 
-      this.http.delete(`${environment.apiUrl}/api/YarnContracts/DeleteContractSaleInvoice/` + row.id)
+      this.http.delete(`${environment.apiUrl}/api/YarnContracts/DeleteContractSaleInvoice/` + row.saleInvoiceId)
         .subscribe(
           res => {
             this.response = res;

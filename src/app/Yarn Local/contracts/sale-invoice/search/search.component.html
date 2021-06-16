@@ -18,16 +18,18 @@
     <div class="col-md-12 pt-3 pb-2">
 
       <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search Bank Account..." (keyup)="updateFilter($event)">
+        <input type="text" class="form-control" placeholder="Search Bank Account..." name="contractNo" 
+        #contractNo = "ngModel" [(ngModel)] = "data.contractNo"
+        >
         <div class="input-group-append">
-          <button class="btn btn-primary" type="button">
+          <button class="btn btn-primary" type="button"  (click)="ContractsDropdown()" >
             <i class="fa fa-search"></i>
           </button>
         </div>
       </div>
 
-      <div class="faq-item shadow-sm" *ngFor="let i of bankAcc">
-        <div class="row"  (click) = "transfer(i)" >
+      <div class="faq-item shadow-sm" >
+        <div class="row"   >
 
 
           <div class="col-md-7, color" >
@@ -36,19 +38,17 @@
 
 
             <div class="small mb-1"></div>
-            <h5>{{i.buyerName}}</h5>
-            <span><i class="fas fa-chart-area"></i>&nbsp;{{i.articleName}} &nbsp;&nbsp;<i
-                class="fas fa-map-marker-alt"></i>&nbsp;Dubai, UAE</span><br>
-            <p><b><i class="fas fa-globe-africa"></i>&nbsp;{{i.sellerName}}</b></p>
+            <h5 *ngIf = "bankAcc.contractNumber == null">{{autoContractNumbr}}</h5>
+            <span *ngIf = "bankAcc.contractNumber == null"><i class="fas fa-chart-area"></i>&nbsp;{{buyerName}} &nbsp;&nbsp;</span><br>
+            <p><b *ngIf = "bankAcc.contractNumber == null"><i class="fas fa-globe-africa"></i>&nbsp;{{sellerName}}</b></p>
+            <h5 *ngIf = "bankAcc.contractNumber != null">{{bankAcc.contractNumber}}</h5>
+            <span *ngIf = "bankAcc.contractNumber != null"><i class="fas fa-chart-area"></i>&nbsp;{{bankAcc.buyerName}} &nbsp;&nbsp;</span><br>
+            <p><b *ngIf = "bankAcc.contractNumber != null"><i class="fas fa-globe-africa"></i>&nbsp;{{bankAcc.sellerName}}</b></p>
 
           </div>
 
 
-        </div> <!-- end of .row -->
-
-
-
-
+        </div>
       </div>
 
     </div>
@@ -58,7 +58,7 @@
         (click)="activeModal.close()">
         Close
       </button>
-      <button class="btn button-save" type="submit" (click)= "Save()">
+      <button class="btn button-save" type="submit" (click) = "Save()" >
 Save
       </button>
     </div>
