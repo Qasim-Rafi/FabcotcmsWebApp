@@ -61,30 +61,52 @@
 .input-w{
   width: 95% !important;
 }
-/* .input-w1{
+.input-w1{
   width: 97% !important;
-} */
- 
+}
+.input-w2{
+  width: 86% !important;
+}
+.input-w3{
+  width: 81% !important;
+}
+
 .ng-select.ng-select-single .ng-select-container {
   height: 38px !important;
 }
 
+
+
 @media only screen and (max-width: 1600px) {
   .input-w{
-    width: 92% !important;
+    width: 94% !important;
   }
-  /* .input-w1{
+  .input-w1{
     width: 96% !important;
-  } */
+  } 
+  .input-w2{
+    width: 82% !important;
+  }
+  .input-w3{
+    width: 76% !important;
+  }
+
 }
 
 @media only screen and (max-width: 1366px), (max-width: 1440px) {
   .input-w{
     width: 93% !important;
   }
-  /* .input-w1{
+   .input-w1{
     width: 96% !important;
-  } */
+  }
+
+  .input-w2{
+    width: 78% !important;
+  }
+  .input-w3{
+    width: 70% !important;
+  }
 }
 
 @media only screen and (max-width: 1280px) {
@@ -92,18 +114,32 @@
     width: 92% !important;
   }
 
-  /* .input-w1{
+  .input-w1{
     width: 95% !important;
-  } */
+  } 
+
+  .input-w2{
+    width: 75% !important;
+  }
+  .input-w3{
+    width: 66% !important;
+  }
+
 }
 
 @media only screen and (max-width: 1024px) {
   .input-w {
     width: 89% !important;
   }
-  /* .input-w1{
+  .input-w1{
     width: 94% !important;
-  } */
+  } 
+  .input-w2{
+    width: 65% !important;
+  }
+  .input-w3{
+    width: 52% !important;
+  }
 }
 @media only screen and (max-width: 768px) {
 
@@ -122,16 +158,61 @@
   .input-w{
     width: 93% !important;
   }
-  /* .input-w1{
+  .input-w1{
     width: 93% !important;
-  } */
+  } 
+  .input-w2{
+    width: 93% !important;
+  }
+  .input-w3{
+    width: 93% !important;
+  }
 }
 
 @media only screen and (max-width: 667px) {
   .input-w{
     width: 92% !important;
   }
-  /* .input-w1{
+  .input-w1{
     width: 92% !important;
-  } */
+  }
+  .input-w2{
+    width: 92% !important;
+  }
+  .input-w3{
+    width: 92% !important;
+  }
+}
+
+@media only screen and (max-width: 414px) {
+  .input-w{
+    width: 85% !important;
+  }
+  .input-w1{
+    width: 85% !important;
+  }
+  .input-w2{
+    width: 85% !important;
+  }
+  .input-w3{
+    width: 85% !important;
+  }
+  .mrg-top {
+    margin: 10px 0 0 0;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .input-w{
+    width: 83% !important;
+  }
+  .input-w1{
+    width: 83% !important;
+  }
+  .input-w2{
+    width: 83% !important;
+  }
+  .input-w3{
+    width: 83% !important;
+  }
 }
