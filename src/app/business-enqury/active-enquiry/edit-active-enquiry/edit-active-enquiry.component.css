@@ -2,7 +2,7 @@
   line-height: 18px !important; 
 }
 .fontTwl {
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .forum-info {
@@ -203,14 +203,6 @@ dt {
 .dataTables_length {
   float: left;
 }
-.h6 {
-  font-size: 0.875rem;
-}
-.btn-xs {
-  padding: 0.125rem 0.125rem;
-}
-
-
 
 
 
@@ -219,6 +211,20 @@ dt {
   .navlinkpdg{
     padding: 0.5rem 8px !important;
   }
+
+  .fontTwl {
+    font-size: 11px;
+  }
+
+  .btn-xs {
+    padding: 0.125rem 0.125rem;
+  }
+
+  .h6 {
+    font-size: 0.875rem;
+  }
+  
+
 }
 
 @media only screen and (max-width: 768px) {
