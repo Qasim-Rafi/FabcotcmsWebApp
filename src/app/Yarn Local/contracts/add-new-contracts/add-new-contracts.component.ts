@@ -62,8 +62,8 @@ export class AddNewContractsComponent implements OnInit {
   new3: any = [];
   data1: any = [];
   data2: any = [];
-  // @Input() loggedInDepartmentName;
-  // @Input() isFabricLocal;
+
+ condition:string="17% GST";
   weave: any = [];
   agents: any = {};
   commission: any = [];
@@ -88,6 +88,7 @@ export class AddNewContractsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loggedInDepartmentName = localStorage.getItem('loggedInDepartmentName');
+    this.data.currencyId = 1,
     this.data.quantityUOMId = 8
     this.data.rateUOMId = 7
     let olddate = new Date();
@@ -714,7 +715,7 @@ export class AddNewContractsComponent implements OnInit {
       "buyerDeliveryDate": this.dateformater.toModel(this.data.buyerDeliveryDate),
       "contractRemarks": this.data.contractRemarks,
       "buyerRemarks": this.data.buyerRemarks,
-      "otherConditionRemarks": this.data.otherConditionRemarks,
+      "otherConditionRemarks": this.data.otherConditionRemarks == null ?  this.condition : this.data.otherConditionRemarks ,
       "title": this.data.title,
       "kickbackPercentage": this.data.kickbackPercentage,
       "kickbackUOMId": this.data.kickbackUOMId,
