@@ -204,11 +204,17 @@ getAgentType(){
   getLoom() {
     return this.http.get(`${environment.apiUrl}/api/TextileGarments/GetAllLoomType`)
   }
+  getWeave() {
+    return this.http.get(`${environment.apiUrl}/api/Lookups/Weaves`)
+  }
   getColor() {
     return this.http.get(`${environment.apiUrl}/api/TextileGarments/GetAllColor`)
+  } 
+  getSelvedge() {
+    return this.http.get(`${environment.apiUrl}/api/Lookups/Selvedges`)
   }
   getFabricType() {
-    return this.http.get(`${environment.apiUrl}/api/Products/GetAllFabricType`)
+    return this.http.get(`${environment.apiUrl}/api/Lookups/FabricTypes`)
   }
   getEnquiryItem() {
     return this.http.get(`${environment.apiUrl}/api/Enquiries/GetAllEnquiryItem`);
