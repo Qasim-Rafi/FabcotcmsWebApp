@@ -23,9 +23,11 @@ export class SaleInvoicePopUpComponent implements OnInit {
   @Input() statusCheck; 
   data:any ={};
   rate:any;
+  condition:string="17"
   quantitya:any;
   calculatedcost:any;
   response: any;
+  loggedInDepartmentName:string;
 uomList : any = {};
 @ViewChild(NgForm) InvoiceForm;
  
@@ -39,6 +41,8 @@ uomList : any = {};
 
 
   ngOnInit(): void {
+    this.loggedInDepartmentName = localStorage.getItem('loggedInDepartmentName');
+
     this.GetUOMDropdown();
     if (this.statusCheck == 'editInvoice') {
       this.editSaleInvoice();
@@ -102,7 +106,8 @@ if(event==8){
       "amount": this.data.amount,
       "quantity": this.data.quantity,
       "unit": this.data.unit.toString(),
-      "taxPercentage": this.data.taxPercentage,
+      "taxPercentage": this.data.taxPercentage == null ?  this.condition :this.data.taxPercentage,
+      // this.data.otherConditionRemarks == null ?  this.condition : this.data.otherConditionRemarks 
     }
 this.spinner.show();
     this.http.
