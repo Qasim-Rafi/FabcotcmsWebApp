@@ -9,7 +9,7 @@
       Add New Sale Invoice
     </h5>
   
-    <h5 class="modal-title" *ngIf="statusCheck == 'editInvoice'">
+    <h5 class="modal-title" *ngIf="statusCheck == 'edit'">
       <i class="fa fa-plus"></i>
       Edit Sale Invoice
     </h5>
@@ -24,7 +24,7 @@
           <div class="form-group row">
             <label for="inputEmail3" class="col-md-3 col-form-label control-label text_Navy">Contract No.</label>
             <div class="col-md-8">
-                <div class="input-group">                    
+                <!-- <div class="input-group">                    
                     <input class="form-control text-w-4" placeholder="ENTER AND SEARCH CONTRACT NUMBER">
 
                     <button (click)="ChangeBankForm(rows)" type="button" class="btn btn-light btn-outline clrbtn" >
@@ -33,6 +33,25 @@
                     <button type="button" class="btn btn-outline-dark">
                         <i class="fas fa-sync-alt"></i>
                     </button>                    
+                </div> -->
+                <div class="input-group">
+                  <input type="text" *ngIf = "autocontractId ==null &&  statusCheck == 'addInvoice'"  class="form-control" placeholder="Search Contract..." name = "contractNo"
+                  #contractNo = "ngModel" [(ngModel)] = "data.contractNo" (keyup)= "contractNumber()"
+                  >
+                  <input type="text" *ngIf = "statusCheck == 'edit' && autocontractId ==null "  class="form-control" placeholder="Search Contract..." name = "autoContractNumber"
+                  #autoContractNumber = "ngModel" [(ngModel)] = "data.autoContractNumber" (keyup)= "contractNumber()"
+                  >
+                  <!-- <input type="text" *ngIf = "statusCheck == 'edit' && autocontractId !=null "  class="form-control" placeholder="Search Contract..." name = "autoContractNumber"
+                  #autoContractNumber = "ngModel" [(ngModel)] = "data.autoContractNumber" (keyup)= "contractNumber()"
+                  > -->
+                  <input *ngIf = "autocontractId !=null" type="text" class="form-control" placeholder="Search Contract..."
+                  name = "contractNum"   [value] = "contractNum"
+                  >
+                  <div class="input-group-append">
+                    <button class="btn btn-primary" type="button" (click)= "ContractsDropdown()">
+                      <i class="fa fa-search"></i>
+                    </button>
+                  </div>
                 </div>
             </div>
         </div>
@@ -117,10 +136,10 @@
           (click)="activeModal.close()">
           Close
         </button>
-        <button class="btn button-save" type="submit" (click)="addSaleInvoice()" *ngIf="statusCheck == 'addInvoice'">
+        <button class="btn button-save" type="submit"   (click)="addSaleInvoice()"  *ngIf="statusCheck == 'addInvoice'">
           Save Sale Invoice
         </button>
-        <button class="btn button-save" type="submit" (click)="updateSaleInvoice()" *ngIf="statusCheck == 'editInvoice'">
+        <button class="btn button-save" type="submit" (click)="updateSaleInvoice()" *ngIf="statusCheck == 'edit'">
           Save Sale Invoice
         </button>
       </div>

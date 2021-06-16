@@ -22,13 +22,22 @@ export class AddNewInvComponent implements OnInit {
   @Input() invoiceId; 
   @Input() statusCheck; 
   rows: any = {};
+  contract: any = [];
+
   timeout: any = null;
   data:any ={};
+  data2:any ={};
+
   response: any;
 uomList : any = {};
 rate:any;
 quantitya:any;
 calculatedcost:any;
+buyerName : any;
+contractNum : any;
+autocontractId : any;
+acontractId : any;
+
 // response: any;
   constructor(
     private _NgbActiveModal: NgbActiveModal,
@@ -43,7 +52,7 @@ calculatedcost:any;
   ngOnInit(): void {
     this.GetUOMDropdown();
     
-    if (this.statusCheck == 'editInvoice') {
+    if (this.statusCheck == 'edit') {
       this.editSaleInvoice();
     }
   }
@@ -91,47 +100,68 @@ if(event==8){
   get activeModal() {
     return this._NgbActiveModal;
   }
+  ContractsDropdown() {
+    //  let number=parseInt(this.data.contractNmbr);
+this.http.get(`${environment.apiUrl}/api/Lookups/GetContractsAgainstNumber?contractNo=`+ this.data.contractNo)
+.subscribe(res => {
+ this.response = res;
+ if (this.response.success == true) {
+  this.contract = this.response.data;
+  this.acontractId = this.response.data[0].contractId;
+  const modalRef = this.modalService.open(SearchComponent , { centered: true });
+  modalRef.componentInstance.autoContractNumbr = this.response.data[0].autoContractNumber ;
+  modalRef.componentInstance.sellerName = this.response.data[0].sellerName;
+  modalRef.componentInstance.buyerName = this.response.data[0].buyerName;
 
-  ChangeBankForm(rows) {
-    const modalRef = this.modalService.open(SearchComponent , { centered: true });
-    modalRef.componentInstance.bill_id = rows.billPaymentId;
-
-    modalRef.result.then((p) => {
-      // on close
-      // this.fetch((data) => {
-      //   this.rows = data;
+  modalRef.result.then((p) => {
+    if (p !=null)
+     {
+      this.autocontractId =  p[0].contractId
+     this.contractNum =  p[0].autoContractNumber
     
-      // });
-      
-      if (p !=null)
-       {
-         p.buyerName
-        // this.date = this.myDate;
-        // this.getBuyers();
 
-      }
-    }, (reason) => {
-      // on dismiss
-    });
+    
+    }
+  }, (reason) => {
+  
+  });
+ 
+ }
+ else {
+   this.toastr.error(this.response.message, 'Message.');
+ }
+})
+}
+contractNumber(){
+  this.http.get(`${environment.apiUrl}/api/Lookups/GetContractsAgainstNumber?contractNo=`+ this.data.contractNo)
+.subscribe(res => {
+ this.response = res;
+ if (this.response.success == true) {
+  this.contract = this.response.data;
+  this.acontractId = this.response.data[0].contractId;
+ }
+  else {
+    this.toastr.error(this.response.message, 'Message.');
   }
+ })
+}
+  // ChangeBankForm(rows) {
+   
+  
+  // }
 
 
 
   fetch(cb) {
     // this.spinner.show();
     this.http
-    .get(`${environment.apiUrl}/api/BillingPayments/GetContractBillById/` + this.invoiceId)
+    .get(`${environment.apiUrl}/api/YarnContracts/GetContractSaleInvoiceById/` + this.invoiceId)
     .subscribe(res => {
       this.response = res;
      
     if(this.response.success==true)
     {
     this.data =this.response.data;
-// this.totalAmount = this.data.contractSaleInvoices[0].totalAmount;
-//     const toWords = new ToWords();
-//     this.words = toWords.convert(this.data.invoiceTotalAmount);
-
-
     cb(this.data);
     // this.spinner.hide();
     }
@@ -160,7 +190,8 @@ if(event==8){
     //  this.data.saleInvoiceDate = this.dateformater.toModel(this.data.saleInvoiceDate);
     let varr = {
 
-      "contractId": 1012,
+      "contractId": this.autocontractId == null ? this.acontractId : this.autocontractId,
+      // "certificateIds": this.data.certificateIds != null ? this.data.certificateIds.toString() : null,
       "saleInvoiceNo": this.data.saleInvoiceNo,
       "saleInvoiceDate":this.dateformater.toModel(this.data.saleInvoiceDate),
       "saleInvoiceRemarks":this.data.saleInvoiceRemarks,

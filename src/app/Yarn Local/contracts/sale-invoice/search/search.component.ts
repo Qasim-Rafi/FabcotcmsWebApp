@@ -16,15 +16,18 @@ import {NgxSpinnerService} from 'ngx-spinner'
 })
 export class SearchComponent implements OnInit {
 
-  @Input() bill_id;
-  bankAcc : any = {}
-   data:any;
+  @Input() buyerName;
+  @Input() sellerName;
+  @Input() autoContractNumbr;
+
+  bankAcc : any = []
+   data:any = [];
  search:any;
  bankFilter: any = [];
  searchBank: any = [];
- buyerName : any;
  temp: any[];
  response:any;
+ contractNumber: any;
  constructor(
  
    private route: ActivatedRoute,
@@ -39,8 +42,11 @@ export class SearchComponent implements OnInit {
  ) { }
  
    ngOnInit(): void   {
-     this.ContractsDropdown()
+     this.autoContractNumbr = this.autoContractNumbr;
+     this.buyerName = this.buyerName;
+     this.sellerName = this.sellerName;
    }
+  
    updateFilter(event) {
      const val = event.target.value.toLowerCase();
  
@@ -60,29 +66,28 @@ export class SearchComponent implements OnInit {
    }
  
    ContractsDropdown() {
-     this.http.get(`${environment.apiUrl}/api/YarnContracts/GetAllSaleInvoiceForMenu`).
+         //  let number=parseInt(this.data.contractNmbr);
+         this.http.get(`${environment.apiUrl}/api/Lookups/GetContractsAgainstNumber?contractNo=`+ this.data.contractNo).
+    subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.bankAcc = this.response.data;
+        this.bankAcc.contractNumber =  this.response.data[0].autoContractNumber
+        this.bankAcc.buyerName =  this.response.data[0].buyerName
+        this.bankAcc.sellerName =  this.response.data[0].sellerName
 
-     subscribe(res => {
-       this.response = res;
-       if (this.response.success == true) {
-         this.bankAcc = this.response.data;
-         this.temp = [...this.bankAcc];
-       }
-       else {
-         this.toastr.error(this.response.message, 'Message.');
-       }
-     })
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
    }
-   transfer(obj){
-     this.buyerName = obj.buyerName
+
+   Save(){
+     this.activeModal.close(this.bankAcc)
    }
-Save(){
-  if(this.buyerName != null){
-    this.activeModal.close(this.buyerName);
-  }
-  else{
-    this.toastr.error("select atleast one contract")
-  }
+
+
 }
 //    change(obj){
 //      let varr = {    
@@ -114,5 +119,5 @@ Save(){
       
 //      });
 //    }
- }
+ 
  
