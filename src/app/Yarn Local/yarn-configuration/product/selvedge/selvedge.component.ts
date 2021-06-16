@@ -21,15 +21,15 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 })
 export class SelvedgeComponent implements OnInit {
 
-  PickInsertionCount: number;
+  selvedgeCount: number;
   response: any;
   rows: any = [];
   columns: any = [];
   data: any = {};
   copyData: any = [];
   currentDate = Date.now();
-  PickInsertionFilter: any = [];
-  PickInsertionUrl = '/api/FLConfigs/GetAllSelvedge'
+  selvedgeFilter: any = [];
+  selvedgeUrl = '/api/FLConfigs/GetAllSelvedge'
 
   @ViewChild('myTable', { static: false }) table: DatatableComponent;
 
@@ -43,10 +43,10 @@ export class SelvedgeComponent implements OnInit {
   ngOnInit(): void {
     this.service.fetch((data) => {
       this.rows = data;
-      this.PickInsertionFilter = [...this.rows];
+      this.selvedgeFilter = [...this.rows];
 
-      this.PickInsertionCount = this.rows.length;
-    }, this.PickInsertionUrl);
+      this.selvedgeCount = this.rows.length;
+    }, this.selvedgeUrl);
 
   }
 
@@ -54,7 +54,7 @@ export class SelvedgeComponent implements OnInit {
   // ------------------- Search function ----------------------------------//
   search(event) {
     const val = event.target.value.toLowerCase();
-    const temp = this.PickInsertionFilter.filter(function (d) {
+    const temp = this.selvedgeFilter.filter(function (d) {
       return (d.pickInsetionName.toLowerCase().indexOf(val) !== -1 || !val);
     });
     this.rows = temp;
@@ -62,11 +62,11 @@ export class SelvedgeComponent implements OnInit {
 
   //  --------------------- Delete Pick Insertion ---------------------------//
 
-  deletePickInsertion(id) {
+  deleteselvedge(id) {
 
     Swal.fire({
       title: GlobalConstants.deleteTitle, //'Are you sure?',
-      text: GlobalConstants.deleteMessage + ' ' + '"' + id.pickInsetionName + '"',
+      text: GlobalConstants.deleteMessage + ' ' + '"' + id.selvedgeName + '"',
       icon: 'error',
       showCancelButton: true,
       confirmButtonColor: '#ed5565',
@@ -86,7 +86,7 @@ this.spinner.show();
                 this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
                 this.service.fetch((data) => {
                   this.rows = data;
-                }, this.PickInsertionUrl);
+                }, this.selvedgeUrl);
 this.spinner.hide();
               }
               else {
@@ -107,7 +107,7 @@ this.spinner.hide();
 
   //  ----------------------- Add Pick Insertion Form -----------------------//
 
-  addPickInsertionForm(check, name) {
+  addselvedgeForm(check, name) {
     const modalRef = this.modalService.open(AddEditSelvedgeComponent, { centered: true });
     modalRef.componentInstance.statusCheck = check;
     modalRef.componentInstance.FormName = name;
@@ -116,10 +116,10 @@ this.spinner.hide();
       if (data == true) {
         this.service.fetch((data) => {
           this.rows = data;
-      this.PickInsertionFilter = [...this.rows];
+      this.selvedgeFilter = [...this.rows];
 
-          this.PickInsertionCount = this.rows.length;
-        }, this.PickInsertionUrl);
+          this.selvedgeCount = this.rows.length;
+        }, this.selvedgeUrl);
       }
     }, (reason) => {
     });
@@ -128,7 +128,7 @@ this.spinner.hide();
   // ---------------------- Edit Pick Insertion Form ----------------------//
 
 
-  editPickInsertionForm(row, check, name) {
+  editselvedgeForm(row, check, name) {
     const modalRef = this.modalService.open(AddEditSelvedgeComponent, { centered: true });
     modalRef.componentInstance.selvedgeId = row.id;
     modalRef.componentInstance.statusCheck = check;
@@ -139,7 +139,7 @@ this.spinner.hide();
         //  this.date = this.myDate;
         this.service.fetch((data) => {
           this.rows = data;
-        }, this.PickInsertionUrl);
+        }, this.selvedgeUrl);
 
       }
     }, (reason) => {
@@ -151,10 +151,10 @@ this.spinner.hide();
   // --------------------------Export as Excel file----------------------------------//
 
 
-  PickInsertionExcelFile(){
+  selvedgeExcelFile(){
     const filtered = this.rows.map(row => ({
       Sno: row.id,
-      PickInsertionName: row.name,
+      selvedgeName: row.name,
       description: row.description,
       Status: row.active == true ? "Active" : "In-Active",
       CreatedOn: row.createdDateTime + ' | ' + row.createdByName
@@ -166,10 +166,10 @@ this.spinner.hide();
 
 // -------------------------------- Export as CSV file --------------------------------//
 
-PickInsertionCsvFile(){
+selvedgeCsvFile(){
   const filtered = this.rows.map(row => ({
     Sno: row.id,
-    PickInsertionName: row.name,
+    selvedgeName: row.name,
     Details: row.details,
     Status: row.active == true ? "Active" : "In-Active",
     CreatedOn: row.createdDateTime + ' | ' + row.createdByName
@@ -181,16 +181,16 @@ PickInsertionCsvFile(){
 
   // -------------------------------Export as Pdf  ------------------------------------//
 
-  PickInsertionPdf() {
+  selvedgePdf() {
 
     let docDefinition = {
       pageSize: 'A4',
       info: {
-        title: 'Pick Insertion List'
+        title: 'selvedge List'
       },
       content: [
         {
-          text: 'Pick Insertion List',
+          text: 'selvedge List',
           style: 'heading',
 
         },
@@ -201,9 +201,9 @@ PickInsertionCsvFile(){
             headerRows: 1,
             widths: [30, 90, 130, 50, 150],
             body: [
-              ['S.no.', 'Pick Insertion', 'Details', 'Status', 'Created On| Created By'],
+              ['S.no.', 'selvedge', 'Details', 'Status', 'Created On| Created By'],
               ...this.rows.map(row => (
-                [row.id, row.pickInsetionName, row.description,
+                [row.id, row.selvedgeName, row.description,
                 row.active == true ? "Active" : "In-Active", row.createdDateTime + '|' + row.createdByName]
               ))
             ]
@@ -221,21 +221,21 @@ PickInsertionCsvFile(){
     };
 
 
-    pdfMake.createPdf(docDefinition).download('PickInsertionList.pdf');
+    pdfMake.createPdf(docDefinition).download('selvedgeList.pdf');
   }
 
   //-------------------------------------- Print Pick Insertion List ------------------------- ///
 
-  printPickInsertionList() {
+  printselvedgeList() {
 
     let docDefinition = {
       pageSize: 'A4',
       info: {
-        title: 'Pick Insertion List'
+        title: 'selvedge List'
       },
       content: [
         {
-          text: 'Pick Insertion List',
+          text: 'selvedge List',
           style: 'heading',
 
         },
@@ -246,9 +246,9 @@ PickInsertionCsvFile(){
             headerRows: 1,
             widths: [30, 90, 130, 50, 150],
             body: [
-              ['S.no.', 'Pick Insertion', 'Details', 'Status', 'Created On| Created By'],
+              ['S.no.', 'selvedge', 'Details', 'Status', 'Created On| Created By'],
               ...this.rows.map(row => (
-                [row.id, row.pickInsetionName, row.description,
+                [row.id, row.selvedgeName, row.description,
                 row.active == true ? "Active" : "In-Active", row.createdDateTime + '|' + row.createdByName]
               ))
             ]
@@ -272,8 +272,8 @@ PickInsertionCsvFile(){
 
   //------------------------------------ Copy Pick Insertion list --------------------///
 
-  copyPickInsertionList() {
-    let count1 = this.rows.map(x => x.pickInsetionName.length);
+  copyselvedgeList() {
+    let count1 = this.rows.map(x => x.selvedgeName.length);
     let max1 = count1.reduce((a, b) => Math.max(a, b));
     let count3 = this.rows.map(x => x.details.length);
     let max3 = count3.reduce((a, b) => Math.max(a, b));
@@ -290,7 +290,7 @@ PickInsertionCsvFile(){
 
     // ................................................ coloum data...........replace your coloum names.................
     for (let i = 0; i < this.rows.length; i++) {
-      let tempData = this.rows[i].id + this.rows[i].pickInsetionName.padEnd(max1) + this.rows[i].details.padEnd(max3)
+      let tempData = this.rows[i].id + this.rows[i].selvedgeName.padEnd(max1) + this.rows[i].details.padEnd(max3)
         + this.rows[i].active
         + this.rows[i].createdDateTime + this.rows[i].createdByName + '\n';
       this.copyData.push(tempData);
@@ -300,7 +300,7 @@ PickInsertionCsvFile(){
 
     Swal.fire({
       title: GlobalConstants.copySuccess,
-      footer: 'Copied' + '\n' + this.PickInsertionCount + '\n' + 'rows to clipboard',
+      footer: 'Copied' + '\n' + this.selvedgeCount + '\n' + 'rows to clipboard',
       showConfirmButton: false,
       timer: 2000,
     })
