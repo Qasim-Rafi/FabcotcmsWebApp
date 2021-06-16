@@ -84,7 +84,7 @@
                 <div class="input-group">
                     <div class="input-group-append">
                     </div>
-                    <input type="text" placeholder="Sales Tax in percentage" class="form-control"
+                    <input type="number" placeholder="Sales Tax in percentage" class="form-control"
                         [(ngModel)]="data.salesTax" name="salesTax" #salesTax="ngModel">
                     <div class="input-group-append">
                         <span class="input-group-text" id="basic-addon2">%</span>
@@ -120,7 +120,12 @@
         </button>
       
         <button  *ngIf="statusCheck == 'Edit'" class="btn button-save" type="submit"
-          (click)="updateDispatch()">
+          (click)="updateDispatch(dispatchForm)">
+          Update Item
+        </button>
+           
+        <button  *ngIf="statusCheck == 'Edit2'" class="btn button-save" type="submit"
+          (click)="updateDispatch(dispatchForm)">
           Update Item
         </button>
         
