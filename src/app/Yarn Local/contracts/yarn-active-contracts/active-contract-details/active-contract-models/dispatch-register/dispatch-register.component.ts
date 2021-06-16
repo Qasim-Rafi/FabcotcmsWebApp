@@ -153,7 +153,7 @@ export class DispatchRegisterComponent implements OnInit {
 
 
 
-  updateDispatch() {
+  updateDispatch(form:NgForm) {
     //  this.data.dispatchDate = this.dateformater.toModel(this.data.dispatchDate);
     let varr = {
       "contractId":this.contractId, 

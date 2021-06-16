@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 // import {EditDispatchComponent} from '../dispatched-register/edit-dispatch/edit-dispatch.component'
 import {DispatchRegisterComponent} from '../yarn-active-contracts/active-contract-details/active-contract-models/dispatch-register/dispatch-register.component'
+import { EditDispatchComponent } from './edit-dispatch/edit-dispatch.component';
 @Component({
   selector: 'app-dispatched-register',
   templateUrl: './dispatched-register.component.html',
@@ -116,7 +117,7 @@ export class DispatchedRegisterComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
   this.spinner.show();
-        this.http.delete(`${environment.apiUrl}/api/YarnContracts/DeleteDispatchRegister/` + obj.id)
+        this.http.delete(`${environment.apiUrl}/api/YarnContracts/DeleteDispatchRegister/` + obj.dispatchId)
           .subscribe(
             res => {
               this.response = res;
