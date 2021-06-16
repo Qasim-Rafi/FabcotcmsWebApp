@@ -2,7 +2,7 @@
   line-height: 18px !important; 
 }
 .fontTwl {
-  font-size: 12px;
+  font-size: 11px;
 }
 
 .forum-info {
@@ -203,6 +203,16 @@ dt {
 .dataTables_length {
   float: left;
 }
+.h6 {
+  font-size: 0.875rem;
+}
+.btn-xs {
+  padding: 0.125rem 0.125rem;
+}
+
+
+
+
 
 
 @media only screen and (max-width: 1280px) {
