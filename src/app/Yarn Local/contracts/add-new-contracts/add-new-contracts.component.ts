@@ -38,40 +38,44 @@ export class AddNewContractsComponent implements OnInit {
 
   response: any;
   data: any = {};
-  buyer: any= [];
-  seller: any= [];
-  article: any= [];
-  packing: any= [];
-  priceterm: any= [];
-  fabricType: any= [];
-  uomList: any= [];
-  currency: any= [];
+  buyer: any = [];
+  seller: any = [];
+  article: any = [];
+  packing: any = [];
+  priceterm: any = [];
+  fabricType: any = [];
+  uomList: any = [];
+  currency: any = [];
   newBuyer: any;
   newFabric: any;
+  newselvedge: any;
+  newweave: any;
   newArticle: any;
-  newPacking:any;
+  newPacking: any;
   newSeller: number;
-  counter3 :number =1;
-  sellerPOC:any=[];
-  buyerPOC:any=[];
-  new:any=[];
-  new2:any=[];
-  new3:any=[];
-  data1:any=[];
-  data2:any=[];
+  counter3: number = 1;
+  selvedge: any = [];
+  sellerPOC: any = [];
+  buyerPOC: any = [];
+  new: any = [];
+  new2: any = [];
+  new3: any = [];
+  data1: any = [];
+  data2: any = [];
   // @Input() loggedInDepartmentName;
   // @Input() isFabricLocal;
-  agents:any={};
-commission: any = [];
-  newPrice:any;
+  weave: any = [];
+  agents: any = {};
+  commission: any = [];
+  newPrice: any;
   @ViewChild(NgForm) contractForm;
-  objEnquiry=0;
+  objEnquiry = 0;
   dateformater: Dateformater = new Dateformater();
-selected:any;
+  selected: any;
   loggedInDepartmentName: string;
   // FabricLocal:boolean;
-  sensorTypes:any;
-selectedAttributes:any;
+  sensorTypes: any;
+  selectedAttributes: any;
   constructor(
     private service: ServiceService,
     private toastr: ToastrService,
@@ -83,41 +87,44 @@ selectedAttributes:any;
   ) { }
 
   ngOnInit(): void {
-    this.loggedInDepartmentName=localStorage.getItem('loggedInDepartmentName');
-    this.data.quantityUOMId =8
-    this.data.rateUOMId =7
-    let olddate=new Date();
-    let latest_date =this.datepipe.transform(olddate, 'yyyy-MM-dd');
-    this.data.enquiryDate =this.dateformater.fromModel(latest_date);
+    this.loggedInDepartmentName = localStorage.getItem('loggedInDepartmentName');
+    this.data.quantityUOMId = 8
+    this.data.rateUOMId = 7
+    let olddate = new Date();
+    let latest_date = this.datepipe.transform(olddate, 'yyyy-MM-dd');
+    this.data.enquiryDate = this.dateformater.fromModel(latest_date);
     this.GetBuyersDropdown("start");
     this.GetSellerDropdown("start");
     this.getSellersPOC();
+    this.GetweavesDropdown("start");
     this.getBuyerPOC();
     this.GetUOMDropdown();
+    this.GetSelvedgeDropdown("start");
     this.GetArticleDropdown("start");
     this.GetCurrencyDropdown();
     this.GetpackingDropdown("start");
     this.GetPriceTermDropdown("start");
+    this.getFabricType("start");
     this.GetAgentDropdown();
     this.getAutoEnquiryNo();
     this.selected = this.uomList[0].name;
-  
+
   }
 
   addfield() {
-    this.data1.push({id: this.data1.length});
+    this.data1.push({ id: this.data1.length });
   }
   removefield(i: number) {
     this.data1.splice(i, 1);
   }
   addMore() {
-    this.new.push({id: this.new.length});
+    this.new.push({ id: this.new.length });
   }
   add() {
-    this.new2.push({id: this.new2.length});
+    this.new2.push({ id: this.new2.length });
   }
   add3() {
-    this.new3.push({id: this.new3.length});
+    this.new3.push({ id: this.new3.length });
     // this.counter3++
   }
   remove(i: number) {
@@ -145,9 +152,29 @@ selectedAttributes:any;
       }
     })
   }
+  GetweavesDropdown(type: string) {
+    this.service.getWeave().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
 
-  
-  GetBuyersDropdown(type:string) {
+        this.weave = this.response.data;
+        // this.newBuyer = this.response.data.lastId
+
+
+
+        if (type == "other") {
+          // this.buyer.id = this.newBuyer;
+          this.data.weaveId = this.newweave;
+        }
+
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
+
+  GetBuyersDropdown(type: string) {
     this.service.getBuyers().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
@@ -157,12 +184,11 @@ selectedAttributes:any;
 
 
 
-        if(type == "other")
-        {
+        if (type == "other") {
           // this.buyer.id = this.newBuyer;
           this.data.buyerId = this.newBuyer;
         }
-       
+
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -171,7 +197,7 @@ selectedAttributes:any;
   }
 
 
-  GetSellerDropdown(type:string) {
+  GetSellerDropdown(type: string) {
     this.service.getSellerLookup().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
@@ -181,12 +207,11 @@ selectedAttributes:any;
 
 
 
-        if(type == "other")
-        {
+        if (type == "other") {
           // this.seller.id = this.newSeller;
           this.data.sellerId = this.newSeller
         }
-       
+
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -205,7 +230,7 @@ selectedAttributes:any;
         this.toastr.error(this.response.message, 'Message.');
       }
     })
-  } 
+  }
   getBuyerPOC() {
     this.service.getBuyersPOC().subscribe(res => {
       this.response = res;
@@ -228,13 +253,12 @@ selectedAttributes:any;
       }
     })
   }
-  GetPriceTermDropdown(type:string) {
+  GetPriceTermDropdown(type: string) {
     this.service.getPriceTerm().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
         this.priceterm = this.response.data;
-        if(type == "other")
-        {
+        if (type == "other") {
           // this.seller.id = this.newSeller;
           this.data.priceTermId = this.newPrice
         }
@@ -243,19 +267,18 @@ selectedAttributes:any;
         this.toastr.error(this.response.message, 'Message.');
       }
     })
-  } 
+  }
 
-  GetpackingDropdown(type:string) {
+  GetpackingDropdown(type: string) {
     this.service.getPackaging().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
         this.packing = this.response.data;
-        if(type == "other")
-        {
+        if (type == "other") {
           // this.seller.id = this.newSeller;
           this.data.packingIds = this.newPacking
         }
-        
+
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -263,13 +286,12 @@ selectedAttributes:any;
     })
   }
 
-  GetArticleDropdown(type:string) {
+  GetArticleDropdown(type: string) {
     this.service.getArticles().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
         this.article = this.response.data;
-        if(type == "other")
-        {
+        if (type == "other") {
           // this.seller.id = this.newSeller;
           this.data.articleId = this.newArticle
         }
@@ -323,13 +345,13 @@ selectedAttributes:any;
 
         this.newBuyer = data.id
         this.GetBuyersDropdown("other");
-     
+
 
       }
     }, (reason) => {
       // on dismiss
     });
-  } 
+  }
 
 
 
@@ -342,7 +364,7 @@ selectedAttributes:any;
 
         this.newArticle = data.id
         this.GetArticleDropdown("other");
-     
+
 
       }
     }, (reason) => {
@@ -354,7 +376,7 @@ selectedAttributes:any;
 
 
 
-  
+
   addSellerForm() {
     const modalRef = this.modalService.open(AddSellerFormComponent, { centered: true });
     modalRef.result.then((data) => {
@@ -363,7 +385,7 @@ selectedAttributes:any;
 
         this.newSeller = data.id
         this.GetSellerDropdown("other");
-     
+
 
       }
     }, (reason) => {
@@ -375,11 +397,11 @@ selectedAttributes:any;
     const modalRef = this.modalService.open(AddPackingComponent, { centered: true });
     modalRef.result.then((data) => {
       // on close
-      if ( data.parent == true) {
-        
+      if (data.parent == true) {
+
         this.newPacking = data.id
         this.GetpackingDropdown("other");
-    
+
 
 
 
@@ -393,11 +415,11 @@ selectedAttributes:any;
     modalRef.result.then((data) => {
       // on close
       if (data.parent == true) {
-        
+
         this.newPrice = data.id
 
         this.GetPriceTermDropdown("other");
-    
+
 
 
 
@@ -406,13 +428,12 @@ selectedAttributes:any;
       // on dismiss
     });
   }
-  getFabricType(type:string) {
+  getFabricType(type: string) {
     this.service.getFabricType().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
         this.fabricType = this.response.data;
-        if(type == "other")
-        {
+        if (type == "other") {
           // this.seller.id = this.newSeller;
           this.data.fabricTypeId = this.newFabric
         }
@@ -421,17 +442,17 @@ selectedAttributes:any;
         this.toastr.error(this.response.message, 'Message.');
       }
     })
-  } 
+  }
   addFabricTypeForm() {
     const modalRef = this.modalService.open(AddTypeComponent, { centered: true });
     modalRef.result.then((data) => {
       // on close
       if (data.parent == true) {
-        
+
         this.newPrice = data.id
 
         this.getFabricType("other");
-    
+
 
 
 
@@ -440,7 +461,7 @@ selectedAttributes:any;
       // on dismiss
     });
   }
-  addWeaveForm(check,form) {
+  addWeaveForm(check, form) {
     const modalRef = this.modalService.open(AddWeaveComponent, { centered: true });
     modalRef.componentInstance.statusCheck = check;
     modalRef.componentInstance.FormName = form;
@@ -448,11 +469,12 @@ selectedAttributes:any;
     modalRef.result.then((data) => {
       // on close
       if (data.parent == true) {
-        
-        this.newPrice = data.id
 
-        this.getFabricType("other");
-    
+        this.newweave = data.id
+
+        this.GetweavesDropdown("start");
+
+
 
 
 
@@ -462,18 +484,18 @@ selectedAttributes:any;
     });
   }
 
-  addpiecelengthForm(check,form) {
+  addpiecelengthForm(check, form) {
     const modalRef = this.modalService.open(AddPieceLengthComponent, { centered: true });
     modalRef.componentInstance.statusCheck = check;
     modalRef.componentInstance.FormName = form;
     modalRef.result.then((data) => {
       // on close
       if (data.parent == true) {
-        
+
         this.newPrice = data.id
 
         this.getFabricType("other");
-    
+
 
 
 
@@ -481,19 +503,19 @@ selectedAttributes:any;
     }, (reason) => {
       // on dismiss
     });
-  } 
-  addwarpForm(check,form) {
+  }
+  addwarpForm(check, form) {
     const modalRef = this.modalService.open(AddEditWarpComponent, { centered: true });
     modalRef.componentInstance.statusCheck = check;
     modalRef.componentInstance.FormName = form;
     modalRef.result.then((data) => {
       // on close
       if (data.parent == true) {
-        
+
         this.newPrice = data.id
 
         this.getFabricType("other");
-    
+
 
 
 
@@ -501,19 +523,19 @@ selectedAttributes:any;
     }, (reason) => {
       // on dismiss
     });
-  } 
-  addweftForm(check,form) {
+  }
+  addweftForm(check, form) {
     const modalRef = this.modalService.open(AddEditWeftComponent, { centered: true });
     modalRef.componentInstance.statusCheck = check;
     modalRef.componentInstance.FormName = form;
     modalRef.result.then((data) => {
       // on close
       if (data.parent == true) {
-        
+
         this.newPrice = data.id
 
         this.getFabricType("other");
-    
+
 
 
 
@@ -521,19 +543,19 @@ selectedAttributes:any;
     }, (reason) => {
       // on dismiss
     });
-  } 
-  addpickinsertionForm(check,form) {
+  }
+  addpickinsertionForm(check, form) {
     const modalRef = this.modalService.open(AddEditPickInsertionComponent, { centered: true });
     modalRef.componentInstance.statusCheck = check;
     modalRef.componentInstance.FormName = form;
     modalRef.result.then((data) => {
       // on close
       if (data.parent == true) {
-        
+
         this.newPrice = data.id
 
         this.getFabricType("other");
-    
+
 
 
 
@@ -542,18 +564,18 @@ selectedAttributes:any;
       // on dismiss
     });
   }
-  addselvedgeForm(check,form) {
+  addselvedgeForm(check, form) {
     const modalRef = this.modalService.open(AddEditSelvedgeComponent, { centered: true });
     modalRef.componentInstance.statusCheck = check;
     modalRef.componentInstance.FormName = form;
     modalRef.result.then((data) => {
       // on close
       if (data.parent == true) {
-        
-        this.newPrice = data.id
 
-        this.getFabricType("other");
-    
+        this.newselvedge = data.id
+
+        this.GetSelvedgeDropdown("other");
+
 
 
 
@@ -563,17 +585,37 @@ selectedAttributes:any;
     });
   }
 
+  GetSelvedgeDropdown(type: string) {
+    this.service.getSelvedge().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
 
+        this.selvedge = this.response.data;
+        // this.newSeller = this.response.data
+
+
+
+        if (type == "other") {
+          // this.seller.id = this.newSeller;
+          this.data.selvedgeId = this.newselvedge
+        }
+
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
   addsellerpayemntForm() {
     const modalRef = this.modalService.open(AddPaymentComponent, { centered: true });
     modalRef.result.then((data) => {
       // on close
       if (data.parent == true) {
-        
+
         this.newPrice = data.id
 
         this.getFabricType("other");
-    
+
 
 
 
@@ -584,18 +626,18 @@ selectedAttributes:any;
   }
 
 
-  addContainerForm(check,form) {
+  addContainerForm(check, form) {
     const modalRef = this.modalService.open(AddContainerComponent, { centered: true });
     modalRef.componentInstance.statusCheck = check;
     modalRef.componentInstance.FormName = form;
     modalRef.result.then((data) => {
       // on close
       if (data.parent == true) {
-        
+
         this.newPrice = data.id
 
         this.getFabricType("other");
-    
+
 
 
 
@@ -605,18 +647,18 @@ selectedAttributes:any;
     });
   }
 
-  addcityForm(check,form) {
+  addcityForm(check, form) {
     const modalRef = this.modalService.open(EditCityComponent, { centered: true });
     modalRef.componentInstance.statusCheck = check;
     modalRef.componentInstance.FormName = form;
     modalRef.result.then((data) => {
       // on close
       if (data.parent == true) {
-        
+
         this.newPrice = data.id
 
         this.getFabricType("other");
-    
+
 
 
 
@@ -624,7 +666,7 @@ selectedAttributes:any;
     }, (reason) => {
       // on dismiss
     });
-  } 
+  }
 
 
 
@@ -637,59 +679,84 @@ selectedAttributes:any;
 
 
   addContract() {
-    let departmentId=parseInt(localStorage.getItem('loggedInDepartmentId'))
+    let departmentId = parseInt(localStorage.getItem('loggedInDepartmentId'))
     // statusCheck = check;
 
-    if(this.data2.agentId != null)
-    {
-    this.commission.push({['agentId']: this.data2.agentId , ["agentCommission"]: this.data2.agentCommission}) 
+    if (this.data2.agentId != null) {
+      this.commission.push({ ['agentId']: this.data2.agentId, ["agentCommission"]: this.data2.agentCommission })
 
     }
-    for(let i=0; i<this.data1.length;i++ )
-    {
-      
-      this.commission.push({['agentId']: this.data1[i].agentId , ["agentCommission"]: this.data1[i].agentCommission}) 
+    for (let i = 0; i < this.data1.length; i++) {
+
+      this.commission.push({ ['agentId']: this.data1[i].agentId, ["agentCommission"]: this.data1[i].agentCommission })
     }
 
     let varr = {
       // "enquiryDate": this.dateformater.toModel(this.data.enquiryDate),
-          "autoContractNo": this.data.autoContractNo,
-          "contractNo": this.data.contractNo,
-          "poNumber": this.data.poNumber,
-          "sellerId": this.data.sellerId,
-          "buyerId": this.data.buyerId,
-          "articleId": this.data.articleId,
-          "construction":this.data.construction,
-          "quantity": this.data.quantity,        
-          "quantityUOMId": this.data.quantityUOMId,        
-          "toleranceValue": this.data.toleranceValue,
-          "rate": this.data.rate,        
-          "currencyId": this.data.currencyId,
-          "rateUOMId": this.data.rateUOMId,        
-          "sellerPaymentTerm": this.data.sellerPaymentTerm,
-          "buyerPaymentTerm": this.data.buyerPaymentTerm,
-          "packingId": this.data.packingId,        
-          "priceautoContractNoTermId": this.data.priceTermId,        
-          "sellerDeliveryDate": this.dateformater.toModel(this.data.sellerDeliveryDate),
-          "buyerDeliveryDate": this.dateformater.toModel(this.data.buyerDeliveryDate),
-          "contractRemarks": this.data.contractRemarks,
-          "buyerRemarks": this.data.buyerRemarks,        
-          "otherConditionRemarks": this.data.otherConditionRemarks,
-          "title": this.data.title, 
-          "kickbackPercentage": this.data.kickbackPercentage,
-          "kickbackUOMId":this.data.kickbackUOMId ,
-          "beneficiary":this.data.beneficiary ,
-          "fabCotCommision":this.data.fabCotCommision ,
-          "fabCotCommisionUOMId":this.data.fabCotCommisionUOMId ,
-          "fabcotSideCommAdditionalInfo":this.data.fabcotSideCommAdditionalInfo ,
-          "buyersideCommision":this.data.buyersideCommision ,
-          "buyersideCommisionUOMId":this.data.buyersideCommisionUOMId ,
-          "buyerSideCommAdditionalInfo":this.data.buyerSideCommAdditionalInfo ,
-          "agentCommission": this.commission
+      "autoContractNo": this.data.autoContractNo,
+      "contractNo": this.data.contractNo,
+      "poNumber": this.data.poNumber,
+      "sellerId": this.data.sellerId,
+      "buyerId": this.data.buyerId,
+      "articleId": this.data.articleId,
+      "construction": this.data.construction,
+      "quantity": this.data.quantity,
+      "quantityUOMId": this.data.quantityUOMId,
+      "toleranceValue": this.data.toleranceValue,
+      "rate": this.data.rate,
+      "currencyId": this.data.currencyId,
+      "rateUOMId": this.data.rateUOMId,
+      "sellerPaymentTerm": this.data.sellerPaymentTerm,
+      "buyerPaymentTerm": this.data.buyerPaymentTerm,
+      "packingId": this.data.packingId,
+      "priceautoContractNoTermId": this.data.priceTermId,
+      "sellerDeliveryDate": this.dateformater.toModel(this.data.sellerDeliveryDate),
+      "buyerDeliveryDate": this.dateformater.toModel(this.data.buyerDeliveryDate),
+      "contractRemarks": this.data.contractRemarks,
+      "buyerRemarks": this.data.buyerRemarks,
+      "otherConditionRemarks": this.data.otherConditionRemarks,
+      "title": this.data.title,
+      "kickbackPercentage": this.data.kickbackPercentage,
+      "kickbackUOMId": this.data.kickbackUOMId,
+      "beneficiary": this.data.beneficiary,
+      "fabCotCommision": this.data.fabCotCommision,
+      "fabCotCommisionUOMId": this.data.fabCotCommisionUOMId,
+      "fabcotSideCommAdditionalInfo": this.data.fabcotSideCommAdditionalInfo,
+      "buyersideCommision": this.data.buyersideCommision,
+      "buyersideCommisionUOMId": this.data.buyersideCommisionUOMId,
+      "buyerSideCommAdditionalInfo": this.data.buyerSideCommAdditionalInfo,
+      "agentCommission": this.commission,
+      "fabricTypeId": this.data.fabricTypeId,
+      "contractNumber": this.data.contractNumber,
+      "contractDate": this.data.contractDate,
+      "buyerPOCId": this.data.buyerPOCId,
+      "sellerPOCId": this.data.sellerPOCId,
+      "constructionAdditionalInfo":this.data.constructionAdditionalInfo,
+      "gsm": this.data.gsm,
+      "tolerance": this.data.tolerance,
+      "weaveId": this.data.weaveId,
+      "selvedgeId":this.data.selvedgeId,
+      "pieceLengthId":this.data.pieceLengthId,
+      "pickInsertionId":this.data.pickInsertionId,
+      "widthInInch": this.data.widthInInch,
+      "blendingRatioWarpId":this.data.blendingRatioWarpId,
+      "blendingRatioWeftId": this.data.blendingRatioWeftId,
+      "gst":this.data.gst,
+      "wiTax": this.data.wiTax,
+      "priceTermId": this.data.priceTermId,
+      "sellerPaymentTermId": this.data.sellerPaymentTermId,
+      "buyerPaymentTermId": this.data.buyerPaymentTermId,
+      "paymentMode": this.data.paymentMode,
+      "sellerPaymentTermDays":this.data.sellerPaymentTermDays,
+      "buyerPaymentTermDays":this.data.buyerPaymentTermDays,
+      "destinationId":this.data.destinationId,
+      "containerId": this.data.containerId,
+      "count": this.data.count,
+
     }
-this.spinner.show();
+    this.spinner.show();
     this.http.
-      post(`${environment.apiUrl}/api/Contracts/AddContract?`+'enquiryId='+this.objEnquiry+'&'+'departmentId='+departmentId, varr)
+      post(`${environment.apiUrl}/api/Contracts/AddContract?` + 'enquiryId=' + this.objEnquiry + '&' + 'departmentId=' + departmentId, varr)
       .subscribe(
         res => {
 
@@ -697,16 +764,16 @@ this.spinner.show();
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
             this.contractForm.reset();
-             this.router.navigate(['/FabCot/active-contract'], { queryParams: {id: this.response.data} });
+            this.router.navigate(['/FabCot/active-contract'], { queryParams: { id: this.response.data } });
             // this.router.navigate(['/enquiry/active-enquiries']);
-          this.spinner.hide();
+            this.spinner.hide();
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
-          this.spinner.hide();
+            this.spinner.hide();
           }
 
-        },(err: HttpErrorResponse) => {
+        }, (err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
