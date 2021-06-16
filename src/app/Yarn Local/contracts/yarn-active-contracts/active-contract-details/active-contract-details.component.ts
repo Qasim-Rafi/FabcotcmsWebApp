@@ -98,6 +98,7 @@ export class ActiveContractDetailsComponent implements OnInit {
   id: any = {};
   tnaId: any = {};
   contractNmbr : string
+  loggedInDepartmentName: string;
   buyerName: string
   sellerName:string
   constructor(
@@ -116,6 +117,7 @@ export class ActiveContractDetailsComponent implements OnInit {
     
     this.queryParems = this.route.snapshot.queryParams;
     this.contractId = this.queryParems.id;
+    this.loggedInDepartmentName=localStorage.getItem('loggedInDepartmentName');
    
 
     this.getContractData();

@@ -520,17 +520,17 @@
                                             </dt>
                                             <dd class="col-sm-6">{{contractProductData.articleName}}</dd>
                                         </dl>
-                                        <dl class="row">
+                                        <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
                                             <dt class="col-sm-6">Piece Length:
                                             </dt>
                                             <dd class="col-sm-6">{{contractProductData.articleName}}</dd>
                                         </dl>
-                                        <dl class="row">
+                                        <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
                                             <dt class="col-sm-6">Pick Insertion:
                                             </dt>
                                             <dd class="col-sm-6">{{contractProductData.articleName}}</dd>
                                         </dl>
-                                        <dl class="row">
+                                        <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
                                             <dt class="col-sm-6">Blending Ratio:
                                             </dt>
                                             <dd class="col-sm-6">{{contractProductData.articleName}}</dd>
@@ -538,23 +538,23 @@
 
                                     </div>
                                     <div class="col-md-6">
-                                        <dl class="row">
+                                        <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
                                             <dt class="col-sm-6">GSM:
                                             </dt>
                                             <dd class="col-sm-6">{{contractProductData.construction}}</dd>
 
                                         </dl>
-                                        <dl class="row">
+                                        <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
                                             <dt class="col-sm-6">Weave:
                                             </dt>
                                             <dd class="col-sm-6">{{contractProductData.articleName}}</dd>
                                         </dl>
-                                        <dl class="row">
+                                        <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
                                             <dt class="col-sm-6">Selvedge:
                                             </dt>
                                             <dd class="col-sm-6">{{contractProductData.articleName}}</dd>
                                         </dl>
-                                        <dl class="row">
+                                        <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
                                             <dt class="col-sm-6">Width:
                                             </dt>
                                             <dd class="col-sm-6">{{contractProductData.articleName}}</dd>
@@ -608,17 +608,17 @@
                                     </div>
                                     <div class="col-md-6">
 
-                                        <dl class="row">
+                                        <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
                                             <dt class="col-sm-6">GST:
                                             </dt>
                                             <dd class="col-sm-6">{{contractCostingData.rateCurrencyName}}</dd>
                                         </dl>
-                                        <dl class="row">
+                                        <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
                                             <dt class="col-sm-6">W.I.Tax:
                                             </dt>
                                             <dd class="col-sm-6">{{contractCostingData.rate}}</dd>
                                         </dl>
-                                        <dl class="row">
+                                        <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
                                             <dt class="col-sm-6">
                                             </dt>
                                             <dd class="col-sm-6"><small>Subject to all taxes if applicable</small></dd>
@@ -686,12 +686,12 @@
 
                                     <div class="col-md-6">
                                      
-                                        <dl class="row">
+                                        <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
                                             <dt class="col-sm-6">Payment Code:
                                             </dt>
                                             <dd class="col-sm-6">{{contractPaymentData.packingName}}</dd>
                                         </dl>
-                                        <dl class="row">
+                                        <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
                                             <dt class="col-sm-6">
                                                 Container:</dt>
                                             <dd class="col-sm-6">{{contractPaymentData.priceTermName}}</dd>
