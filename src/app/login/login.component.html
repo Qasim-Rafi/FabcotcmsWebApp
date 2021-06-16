@@ -39,7 +39,7 @@
  
   <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "line-spin-fade" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
  
-  <img class="OuterClassimg" src="assets/bg.jpg" width="70%" alt="Fabcot Logo">
+  <img class="OuterClassimg imgw" src="assets/bg.jpg" alt="Fabcot Logo">
   <div class="card card-outline shadow">
     <div class="card-header text-center">
       <a href="../../index2.html" class="h1"><img src="assets/fabcot.png" width="200" alt="Fabcot Logo"></a>
@@ -50,6 +50,8 @@
       <div *ngIf="isLoginError" class="red-text center error-message">
         <i class="material-icons">error</i> Incorrect username or password
       </div>
+
+
       <form class="mb-2" #loginForm="ngForm" (ngSubmit)="OnSubmit(loginForm)">
         <div class="input-group mb-3">
           <!-- <label for="username">UserName</label> -->
@@ -62,19 +64,22 @@
             </div>
           </div>
         </div>
+
         <div class="input-group mb-3">
           <input type="password" #password="ngModel" name="password" [(ngModel)]="data.password"
             class="form-control form-control-lg" placeholder="Password" required
             [ngClass]="{error: password.invalid && password.touched}">
-          <div class="input-group-append">
+          
+            <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
             </div>
           </div>
         </div>
+
         <div class="input-group mb-3">
 
-          <ng-select  class="input-w px-0" 
+          <ng-select  class="input-w px-0 input-group-lg" 
           [(ngModel)]="data.departmentId" placeholder="Select Department"  name="departmentId">
       <ng-option *ngFor="let i of departmentId" class="form-control form-control-lg" [value]="i.id">{{ i.name }}</ng-option>
        </ng-select> 
