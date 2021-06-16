@@ -32,14 +32,14 @@ export class AddEditSelvedgeComponent implements OnInit {
     this.statusCheck = this.statusCheck;
     this.FormName = this.FormName;
     if (this.statusCheck == 'edit') {
-      this.editPickInsertion();
+      this.editselvedge();
     }
   }
  
   get activeModal() {
     return this._NgbActiveModal;
   }
-  editPickInsertion() {
+  editselvedge() {
     this.spinner.show();
     this.http.get(`${environment.apiUrl}/api/FLConfigs/GetSelvedgeById/` + this.selvedgeId)
       .subscribe(
@@ -63,10 +63,10 @@ this.spinner.hide();
         });
   }
 
-  UpdatePickInsertion(form:NgForm) {
+  Updateselvedge(form:NgForm) {
 
     let varr = {
-      "pickInsetionName": this.data.pickInsetionName,
+      "selvedgeName": this.data.selvedgeName,
       "description": this.data.description,
       "active": this.active
     }
@@ -99,7 +99,7 @@ this.spinner.show();
 
   // -------------------------------------ADD COUNTRY FROM ---------------------------
 
-  addPickInsertion(form:NgForm) {
+  addselvedge(form:NgForm) {
 
   
 
@@ -136,14 +136,14 @@ this.spinner.show();
 
 
 onSubmit(buttonType): void {
-  if (buttonType === "addPickInsertion"){
+  if (buttonType === "addselvedge"){
 
-    this.addPickInsertion(this.addAgentForm); 
+    this.addselvedge(this.addAgentForm); 
   }
 
-  if (buttonType === "UpdatePickInsertion"){
+  if (buttonType === "Updateselvedge"){
 
-    this.UpdatePickInsertion(this.addAgentForm); 
+    this.Updateselvedge(this.addAgentForm); 
 
   }
 

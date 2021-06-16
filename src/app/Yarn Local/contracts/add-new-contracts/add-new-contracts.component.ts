@@ -19,7 +19,6 @@ import { AddPriceComponent } from '../../yarn-configuration/product/price-term/a
 import { DatePipe } from '@angular/common';
 import { AddTypeComponent } from 'src/app/configuration/product/fabric-type/add-type/add-type.component';
 import { AddWeaveComponent } from '../../yarn-configuration/product/weave/add-weave/add-weave.component';
-import { PickInsertionComponent } from '../../yarn-configuration/product/pick-insertion/pick-insertion.component';
 import { AddEditWarpComponent } from '../../yarn-configuration/product/warp/add-edit-warp/add-edit-warp.component';
 import { AddEditSelvedgeComponent } from '../../yarn-configuration/product/selvedge/add-edit-selvedge/add-edit-selvedge.component';
 import { AddEditPickInsertionComponent } from '../../yarn-configuration/product/pick-insertion/add-edit-pick-insertion/add-edit-pick-insertion.component';
@@ -483,8 +482,10 @@ selectedAttributes:any;
       // on dismiss
     });
   } 
-  addwarpForm() {
+  addwarpForm(check,form) {
     const modalRef = this.modalService.open(AddEditWarpComponent, { centered: true });
+    modalRef.componentInstance.statusCheck = check;
+    modalRef.componentInstance.FormName = form;
     modalRef.result.then((data) => {
       // on close
       if (data.parent == true) {
@@ -501,8 +502,10 @@ selectedAttributes:any;
       // on dismiss
     });
   } 
-  addweftForm() {
+  addweftForm(check,form) {
     const modalRef = this.modalService.open(AddEditWeftComponent, { centered: true });
+    modalRef.componentInstance.statusCheck = check;
+    modalRef.componentInstance.FormName = form;
     modalRef.result.then((data) => {
       // on close
       if (data.parent == true) {
@@ -519,8 +522,10 @@ selectedAttributes:any;
       // on dismiss
     });
   } 
-  addpickinsertionForm() {
+  addpickinsertionForm(check,form) {
     const modalRef = this.modalService.open(AddEditPickInsertionComponent, { centered: true });
+    modalRef.componentInstance.statusCheck = check;
+    modalRef.componentInstance.FormName = form;
     modalRef.result.then((data) => {
       // on close
       if (data.parent == true) {
@@ -537,8 +542,10 @@ selectedAttributes:any;
       // on dismiss
     });
   }
-  addselvedgeForm() {
+  addselvedgeForm(check,form) {
     const modalRef = this.modalService.open(AddEditSelvedgeComponent, { centered: true });
+    modalRef.componentInstance.statusCheck = check;
+    modalRef.componentInstance.FormName = form;
     modalRef.result.then((data) => {
       // on close
       if (data.parent == true) {

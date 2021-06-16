@@ -60,7 +60,6 @@ export class SearchComponent implements OnInit {
    }
  
    ContractsDropdown() {
-
      this.http.get(`${environment.apiUrl}/api/YarnContracts/GetAllSaleInvoiceForMenu`).
 
      subscribe(res => {

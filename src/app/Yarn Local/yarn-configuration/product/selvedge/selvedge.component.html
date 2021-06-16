@@ -28,13 +28,13 @@
       <div class="row mb-3">
         <div class="col-md-6">
           <button type="button" class="btn btn-primary descBtn ml-sm-none ml-md-2">
-            <i class="fas fa-map fa-fw mr-2"></i>{{ PickInsertionCount }}
+            <i class="fas fa-map fa-fw mr-2"></i>{{ selvedgeCount }}
           </button>
           <span class="text-muted text2">Selvedge</span>
         </div>
         <div class="col-md-6 mrg-tsm">
           <button type="button" class="btn btn-primary btn-sm float-right"
-            (click)="addPickInsertionForm('add' , 'countryForm')">
+            (click)="addselvedgeForm('add' , 'countryForm')">
             <i class="fa fa-plus"></i> Add Selvedge
           </button>
         </div>
@@ -48,7 +48,7 @@
               <div class="form-group row">
                 <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
                 <div class="col-sm-9">
-                  <input type="text" placeholder="Search by Pick Insertion Name" class="input form-control form-control-sm"
+                  <input type="text" placeholder="Search by Selvedge Name" class="input form-control form-control-sm"
                   (keyup)="search($event)" />
                 </div>
               </div>
@@ -64,16 +64,16 @@
             <div class="html5buttons mrg-tsm">
               <div class="dt-buttons btn-group btn-group-sm">
                 <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0"
-                  aria-controls="DataTables_Table_0" ngxClipboard (click)="copyPickInsertionList()"><span>Copy</span>
+                  aria-controls="DataTables_Table_0" ngxClipboard (click)="copyselvedgeList()"><span>Copy</span>
                 </a>
                 <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
-                  aria-controls="DataTables_Table_0" (click)="PickInsertionCsvFile()"><span>CSV</span></a>
+                  aria-controls="DataTables_Table_0" (click)="selvedgeCsvFile()"><span>CSV</span></a>
                 <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
-                  aria-controls="DataTables_Table_0" (click)="PickInsertionExcelFile()"><span>Excel</span></a>
+                  aria-controls="DataTables_Table_0" (click)="selvedgeExcelFile()"><span>Excel</span></a>
                 <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0"
-                  aria-controls="DataTables_Table_0" (click)="  PickInsertionPdf()"><span>PDF</span></a>
+                  aria-controls="DataTables_Table_0" (click)="  selvedgePdf()"><span>PDF</span></a>
                 <a class="btn btn-default buttons-print bg-white" tabindex="0" aria-controls="DataTables_Table_0"
-                  (click)="printPickInsertionList()"><span>Print</span></a>
+                  (click)="printselvedgeList()"><span>Print</span></a>
               </div>
             </div>
           </div>
@@ -119,10 +119,10 @@
 
               <div class="ibox-tools text-center">
                 <button type="button" class="btn editIconBack" title=""
-                  data-original-title="Edit" (click)="editPickInsertionForm(row , 'edit' , 'countryForm')"><i
+                  data-original-title="Edit" (click)="editselvedgeForm(row , 'edit' , 'countryForm')"><i
                     class="far fa-edit"></i></button>
                 <button type="button" class="btn deleteIconBack"  title=""
-                  data-original-title="Delete" (click)="deletePickInsertion(row)"><i class="far fa-trash-alt"></i></button>
+                  data-original-title="Delete" (click)="deleteselvedge(row)"><i class="far fa-trash-alt"></i></button>
               </div>
 
             </ng-template>

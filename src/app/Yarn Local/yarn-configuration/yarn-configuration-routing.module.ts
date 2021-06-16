@@ -47,8 +47,8 @@ const routes: Routes = [
     { path: 'container' ,  component: ContainerComponent},
     { path: 'selvedge' ,  component: SelvedgeComponent},
     { path: 'pick-insertion' ,  component: PickInsertionComponent},
-    { path: 'Weft' ,  component: WarpComponent},
-    { path: 'Warp' ,  component: WeftComponent},
+    { path: 'Warp' ,  component: WarpComponent},
+    { path: 'Weft' ,  component: WeftComponent},
 ]
   }
 ]
