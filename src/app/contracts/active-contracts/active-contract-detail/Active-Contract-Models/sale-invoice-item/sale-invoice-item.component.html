@@ -38,7 +38,7 @@
       <div class="form-group row">
         <label for="quantity" class="col-sm-3 col-form-label text-Navy">Quantity</label>
         <div class="col-sm-7">
-          <input required type="text" (keyup)="keyup($event)" placeholder="Quantity no." class="form-control" [(ngModel)]="data.quatity" [ngClass]="{ 'error':  quatity.invalid && saleInvoiceItem.submitted}"
+          <input required type="text" (keyup)="keyup($event)"  placeholder="Quantity no." class="form-control" [(ngModel)]="data.quatity" [ngClass]="{ 'error':  quatity.invalid && saleInvoiceItem.submitted}"
             name="quatity" #quatity="ngModel">
 
         </div>
