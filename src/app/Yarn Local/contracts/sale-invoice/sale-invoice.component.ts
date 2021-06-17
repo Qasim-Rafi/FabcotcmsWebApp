@@ -166,12 +166,13 @@ deleteinvoice(row) {
             if (this.response.success == true) {
               this.toastr.error(this.response.message, 'Message.');
               // this.getAllEnquiryItems();
+           
               this.fetch((data) => {
                 this.rows = data;
               });
-              
 
             }
+          
             else {
               this.toastr.error(this.response.message, 'Message.');
             }
