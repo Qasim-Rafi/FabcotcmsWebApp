@@ -172,7 +172,8 @@ number:any;
       "contractSaleInvoiceId": this.contractSaleInvoiceId ,
       "contractItemId": this.data.contractItemId,
       "quatity":this.data.quatity ,
-      // "amount": this.data.amount,
+    "amount": this.data.amount,
+    // "amount": this.data.amount,
       "saleInvoiceItemRemarks":this.data.saleInvoiceItemRemarks ,
     }
 
