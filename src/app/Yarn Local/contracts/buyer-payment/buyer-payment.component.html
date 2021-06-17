@@ -58,10 +58,11 @@
         <div class="panel-body">
 
             <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'"
+            [scrollbarH]="true"
                 [headerHeight]="50" [footerHeight]="50" [sorts]="[{prop: 'code', dir: 'asce'}]" [rowHeight]="'auto'"
-                [limit]="6">
+                [limit]="1">
 
-                <ngx-datatable-column name="Action" [width]="40">
+                <ngx-datatable-column name="Action" [width]="100">
                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
 
                         <div class="ibox-tools text-center">
@@ -81,11 +82,11 @@
                     </ng-template>
                 </ngx-datatable-column>
 
-                <ngx-datatable-column name="Pay ID" [width]="80" prop="name">
+                <!-- <ngx-datatable-column name="Pay ID" [width]="80" prop="name">
                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                         {{row.id}}
                     </ng-template>
-                </ngx-datatable-column>
+                </ngx-datatable-column> -->
 
                 <ngx-datatable-column name="Parent Buyer" [width]="80" prop="genericName">
                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
@@ -112,11 +113,17 @@
 
 
 
-                <ngx-datatable-column name="Amount" [width]="80" prop="amount">
+                <ngx-datatable-column name="Recived Amount" [width]="80" prop="receivedAmount">
                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                        {{row.amount}}
+                        {{row.receivedAmount}}
                     </ng-template>
                 </ngx-datatable-column>
+
+                <!-- <ngx-datatable-column name="Invoice Amount" [width]="80" prop="invoiceAmount">
+                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                        {{row.invoiceAmount}}
+                    </ng-template>
+                </ngx-datatable-column> -->
 
 
 
@@ -128,31 +135,31 @@
 
 
 
-                <ngx-datatable-column name="Cheque #" [width]="80" prop="genericName">
+                <ngx-datatable-column name="Cheque #" [width]="80" prop="chequeNo">
                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                        {{row.genericName}}
+                        {{row.chequeNo}}
                     </ng-template>
                 </ngx-datatable-column>
 
 
-                <ngx-datatable-column name="Challan Reqd." [width]="80" prop="genericName">
+                <ngx-datatable-column name="Challan Reqd." [width]="80" prop="chalanRequired">
                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                        {{row.genericName}}
+                        {{row.chalanRequired}}
                     </ng-template>
                 </ngx-datatable-column>
 
 
 
-                <ngx-datatable-column name="Challan Amount (Exp)." [width]="80" prop="genericName">
+                <ngx-datatable-column name="Challan Amount (Exp)." [width]="80" prop="chalanAmountExp" [width]="200">
                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                        {{row.genericName}}
+                        {{row.chalanAmountExp}}
                     </ng-template>
                 </ngx-datatable-column>
 
 
-                <ngx-datatable-column name="Challan Amount (Act)." [width]="80" prop="genericName">
+                <ngx-datatable-column name="Challan Amount (Act)." [width]="80" prop="chalanAmountAct" [width]="200">
                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                        {{row.genericName}}
+                        {{row.chalanAmountAct}}
                     </ng-template>
                 </ngx-datatable-column>
             </ngx-datatable>

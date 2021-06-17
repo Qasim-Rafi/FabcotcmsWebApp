@@ -18,6 +18,7 @@ export class BuyerPaymentFormComponent implements OnInit {
   selected = [];
   SelectionType = SelectionType;
   data: any ={};
+  decimalSize:any;
   rows = [];
   row =[];
   columns: any = [];
@@ -35,6 +36,7 @@ export class BuyerPaymentFormComponent implements OnInit {
   calculatedTax:any;
   isAmountDisabled:boolean =false;
   saleInvoiceIds =[];
+  taxpercentage:any;
   buyerPaymentUrl = '/api/Configs/GetAllArticle'
   constructor(
     private service: ServiceService,
@@ -45,6 +47,8 @@ export class BuyerPaymentFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.data.currencyId=1;
+    this.getbyid();
     this.GetBuyersDropdown();
     this.GetSellerDropdown();
     this.GetCurrencyDropdown();
@@ -161,6 +165,30 @@ this.spinner.hide();
           this.spinner.hide();
         });
   }
+  getbyid() {
+
+    this.http.get(`${environment.apiUrl}/api/Configs/GetGeneralSettingById/` + 0)
+      .subscribe(
+        res => {
+          this.response = res;
+          if (this.response.success == true) {
+            if( this.response.data !=null){
+              this.decimalSize = this.response.data.amountDecimalPoints;
+              this.decimalSize=String().padStart(this.response.data.amountDecimalPoints, '0'); 
+
+            }
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(err.error.message, 'Message.');
+          }
+        });
+
+  }
   buyerNameChange(event){
     this.buyerNameId=event;
   }
@@ -182,17 +210,19 @@ this.spinner.hide();
     })
          
   }
+  
   amountCall(event){
-
-      
+ 
         this.amountGivenToCalculate=event.target.value;
-        this.amountGivenToCalculate = this.amountGivenToCalculate +'.000';
+        this.result = this.amountGivenToCalculate +'.'+this.decimalSize;
         this.data.taxChalan = 0;
-       
-   
-     
      
   }
+
+  // texchalancalculation(value){
+  //   let taxcal  = this.amountGivenToCalculate * (event.target.value / (100- event.target.value));
+  //   this.calculatedTax= taxcal.toFixed(2);
+  // }
   onBlurMethod(event){
     if(event != undefined){
       setTimeout(()=>{                           
@@ -207,80 +237,176 @@ this.spinner.hide();
     }
   }
   taxCalculated(event){
-    event.target.value;
-    this.calculatedTax  = this.amountGivenToCalculate * (event.target.value / 100);
+    this.taxpercentage=event.target.value;
+    let taxcal  = this.amountGivenToCalculate * (event.target.value / (100- event.target.value));
+    this.calculatedTax= taxcal.toFixed(2);
   }
   onSelect(event,row) {
     let newrow =this.rows.filter(r=>r.saleInvoiceId ==row.saleInvoiceId)
      this.selected = newrow;  
  
     if(event.currentTarget.checked == true){
+      
       this.saleInvoiceIds.push(row.saleInvoiceId);
       if(row !=null){
-       if(this.selected[0].receivedAmount != '0.000'){
-        this.result=parseInt(this.selected[0].receivedAmount) +  parseInt(this.amountGivenToCalculate);
-        this.selected[0].receivedAmount =this.result +'.000'; 
-       }
 
-else{
 
-        if( this.result != null){
-          if(this.result <  this.selected[0].saleInvoiceAmount){
-          
-            this.selected[0].receivedAmount =this.result;
-            this.result= this.result -this.selected[0].saleInvoiceAmount;
+
+          if(parseInt(this.result) >  parseInt(this.selected[0].saleInvoiceAmount)){
+            this.selected[0].receivedAmount=this.selected[0].saleInvoiceAmount;
+            
+            if(this.calculatedTax !=null){
+              let taxis =this.selected[0].receivedAmount * (this.taxpercentage/(100-this.taxpercentage));
+              this.selected[0].taxChallan =taxis.toFixed(2); 
+              this.selected[0].receivedAmount=this.selected[0].receivedAmount - this.selected[0].taxChallan;
+              this.selected[0].receivedAmount=this.selected[0].receivedAmount;
+              this.result= this.result-this.selected[0].saleInvoiceAmount;
+              this.result =this.result.toFixed(2);
+            }
+            else{
+            this.result= this.result-this.selected[0].receivedAmount;
+            this.result =this.result.toFixed(2);
+            }
           }
-        
-          if(this.result <0 ){
-            this.toastr.error("Partial  Value", 'Message.');
+          else if(parseInt(this.result) ==  parseInt(this.selected[0].saleInvoiceAmount)){
+            this.selected[0].receivedAmount=this.selected[0].saleInvoiceAmount;
+            if(this.calculatedTax !=undefined){
+              let taxis =this.result * (this.taxpercentage/(100-this.taxpercentage));
+              this.selected[0].taxChallan =taxis.toFixed(2); 
+              this.selected[0].receivedAmount= this.selected[0].receivedAmount -this.selected[0].taxChallan;
+              this.selected[0].receivedAmount=this.selected[0].receivedAmount;
+              this.result=  '0.' + this.decimalSize;
+              // this.result =this.result.toFixed(2);
+            }
+            else{
+              this.result= this.result-this.selected[0].receivedAmount;
+              this.result =this.result.toFixed(2);
+            }
            
           }
-        }
-        else{
-          if(parseInt(this.amountGivenToCalculate) >  parseInt(this.selected[0].saleInvoiceAmount)){
-            this.selected[0].receivedAmount=this.selected[0].saleInvoiceAmount
-            this.result= this.amountGivenToCalculate-this.selected[0].receivedAmount
-            this.result =this.result;
+          else if(parseInt(this.result) <  parseInt(this.selected[0].saleInvoiceAmount)){
+             if( this.result =='0.' + this.decimalSize){
+              this.toastr.error("Not Enough Amount", 'Message.');
+             
+            }
+             else{this.selected[0].receivedAmount =this.result;
+              this.result =this.result -this.selected[0].receivedAmount;
+              this.toastr.error("Partial  Value", 'Message.');
+               this.result =this.result;}
+         
           }
-          else if(parseInt(this.amountGivenToCalculate) <  parseInt(this.selected[0].saleInvoiceAmount)){
-            this.selected[0].receivedAmount =this.amountGivenToCalculate;
-            this.result =this.amountGivenToCalculate -this.amountGivenToCalculate;
-            this.toastr.error("Partial  Value", 'Message.');
-             this.result =this.result.replace('.000','');
-          }
-          else{
-            this.result =this.amountGivenToCalculate -  this.selected[0].saleInvoiceAmount;
-            this.selected[0].receivedAmount= this.selected[0].saleInvoiceAmount;
+          // else if(parseInt(this.result) <  parseInt(this.selected[0].saleInvoiceAmount)){
+          //   this.selected[0].receivedAmount =this.result;
+          //   this.result= this.result -this.selected[0].saleInvoiceAmount;
+          //   if(this.result <0 ){
+          //     this.toastr.error("Partial  Value", 'Message.');
+             
+          //   }
+          // }
 
-          }
+
+
+
+
+
+
+
+
+
+
+
+
+//        if(parseInt(this.selected[0].receivedAmount) > 0){
+//         this.result=parseInt(this.selected[0].receivedAmount) +  parseInt(this.amountGivenToCalculate);
+//         this.selected[0].receivedAmount =this.result +'.'+this.decimalSize; 
+//         //  let taxis =this.result * (this.taxpercentage/(100-this.taxpercentage));
+//         //  this.selected[0].taxChallan =taxis+'.'+this.decimalSize; 
+//        }
+
+// else{
+
+//         if( this.result != null){
+//           if(this.result <  this.selected[0].saleInvoiceAmount){
+          
+//             this.selected[0].receivedAmount =this.result;
+//             this.result= this.result -this.selected[0].saleInvoiceAmount;
+//           }
+        
+//           if(this.result <0 ){
+//             this.toastr.error("Partial  Value", 'Message.');
+           
+//           }
+//         }
+//         else{
+//           if(parseInt(this.amountGivenToCalculate) >  parseInt(this.selected[0].saleInvoiceAmount)){
+//             this.selected[0].receivedAmount=this.selected[0].saleInvoiceAmount;
+//         //     let taxis =this.selected[0].saleInvoiceAmount * (this.taxpercentage/(100-this.taxpercentage));
+//         //  this.selected[0].taxChallan =taxis.toFixed(2); 
+//             this.result= this.amountGivenToCalculate-this.selected[0].receivedAmount
+//             this.result =this.result;
+//           }
+//           else if(parseInt(this.amountGivenToCalculate) <  parseInt(this.selected[0].saleInvoiceAmount)){
+//             this.selected[0].receivedAmount =this.amountGivenToCalculate;
+//             // let taxis =this.selected[0].saleInvoiceAmount * (this.taxpercentage/(100-this.taxpercentage));
+//             // this.selected[0].taxChallan =taxis.toFixed(2);
+//             this.result =this.amountGivenToCalculate -this.amountGivenToCalculate;
+//             this.toastr.error("Partial  Value", 'Message.');
+//              this.result =this.result;
+//           }
+//           else{
+//             this.result =this.amountGivenToCalculate -  this.selected[0].saleInvoiceAmount;
+//             this.selected[0].receivedAmount= this.selected[0].saleInvoiceAmount;
+//             // let taxis =this.selected[0].saleInvoiceAmount * (this.taxpercentage/(100-this.taxpercentage));
+//             // this.selected[0].taxChallan =taxis.toFixed(2);
+
+//           }
+//         }
+//       }
+        if (this.result == Math.floor(this.result)) {
+          // not an decimal
+          this.result = this.result
         }
-      }
-        this.result =this.result +'.000';
+        else {
+          this.result = this.result + '.' + this.decimalSize;
+
+        }
         // this.selected[0].receivedAmount= this.selected[0].saleInvoiceAmount;
            this.selected.push(...this.selected);
           this.rows = [...this.rows]
       }
       else{
-        this.result =null;
+        this.result ='0.' + this.decimalSize;
       }
     }
     else if(event.currentTarget.checked == false){
 
+     
+      if( this.saleInvoiceIds.length > 1){
+        let newrow =this.rows.filter(r=>r.saleInvoiceId ==row.saleInvoiceId)
+        this.selected = newrow; 
+        this.result=parseInt(this.result) +parseInt(this.selected[0].receivedAmount);
+        this.result =this.result+'.'+this.decimalSize;
+        // this.result=row.receivedAmount 
+        this.selected[0].receivedAmount= '0.'+this.decimalSize;
+        this.selected[0].taxChallan= '0.'+this.decimalSize;
+        // parseInt(this.result) + parseInt(row.receivedAmount);
+
+        
+      }
+      else if(this.saleInvoiceIds.length = 1){
+        let newrow =this.rows.filter(r=>r.saleInvoiceId ==row.saleInvoiceId)
+        this.selected = newrow; 
+        this.result=parseInt(this.result) +parseInt(this.selected[0].receivedAmount);
+        this.result =this.result+'.'+this.decimalSize;
+        // this.result=row.receivedAmount 
+        this.selected[0].receivedAmount= '0.'+this.decimalSize;
+        this.selected[0].taxChallan= '0.'+this.decimalSize;
+      }
+      this.selected.push(...this.selected);
+          this.rows = [...this.rows]
       this.saleInvoiceIds.forEach((element,index)=>{
         if(element==row.saleInvoiceId) this.saleInvoiceIds.splice(index,1);
      });
-      if( this.result != null){
-        let newrow =this.rows.filter(r=>r.saleInvoiceId ==row.saleInvoiceId)
-        this.selected = newrow; 
-        this.result=0
-        this.result=row.receivedAmount 
-        this.selected[0].receivedAmount= 0;
-        
-        // parseInt(this.result) + parseInt(row.receivedAmount);
-
-        this.selected.push(...this.selected);
-          this.rows = [...this.rows]
-      }
     }
    
   

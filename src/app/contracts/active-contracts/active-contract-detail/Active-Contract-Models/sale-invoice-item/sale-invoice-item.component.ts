@@ -22,6 +22,7 @@ export class SaleInvoiceItemComponent implements OnInit {
   itemData:any=[];
   dateformater: Dateformater = new Dateformater();
 recievedrate:any;
+number:any;
   constructor(
     private http: HttpClient,
     private toastr: ToastrService,
@@ -48,8 +49,6 @@ recievedrate:any;
           this.response = res;
           if (this.response.success == true) {
             this.recievedrate = this.response.data;
-            this.data.quatity =null;
-            this.data.amount =null;
   
           }
           else {
@@ -65,10 +64,11 @@ recievedrate:any;
 
   keyup(event){
 
-    let number=event.target.value;
- let calculatedamount= number*this.recievedrate;
+    this.number=event.target.value;
+ let calculatedamount= this.number*this.recievedrate;
  this.data.amount=calculatedamount;
    }
+
   addSaleInvoiceItem() {
    
  this.spinner.show();
@@ -147,6 +147,8 @@ recievedrate:any;
           this.response = res;
           if (this.response.success == true) {
             this.data = this.response.data;
+            this.rate(this.data.contractItemId)
+            // this.recievedrate = this.response.data.contractRate;
             
   
           }
@@ -170,7 +172,8 @@ recievedrate:any;
       "contractSaleInvoiceId": this.contractSaleInvoiceId ,
       "contractItemId": this.data.contractItemId,
       "quatity":this.data.quatity ,
-      // "amount": this.data.amount,
+    "amount": this.data.amount,
+    // "amount": this.data.amount,
       "saleInvoiceItemRemarks":this.data.saleInvoiceItemRemarks ,
     }
 

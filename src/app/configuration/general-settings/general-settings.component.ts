@@ -58,7 +58,7 @@ export class GeneralSettingsComponent implements OnInit {
         "deptPhoneNo": this.data.deptPhoneNo,
 
       }
-      this.http.put(`${environment.apiUrl}/api/Configs/UpdateGeneralSetting/` + this.localId, varr)
+      this.http.post(`${environment.apiUrl}/api/Configs/AddGeneralSetting`, varr)
         .subscribe(
           res => {
             this.response = res;
@@ -136,7 +136,10 @@ export class GeneralSettingsComponent implements OnInit {
         res => {
           this.response = res;
           if (this.response.success == true) {
-            this.data = this.response.data;
+            if( this.response.data !=null){
+              this.data = this.response.data;
+
+            }
           }
           else {
             this.toastr.error(this.response.message, 'Message.');

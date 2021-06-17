@@ -38,8 +38,8 @@
                   <input type="text" *ngIf = "autocontractId ==null &&  statusCheck == 'addInvoice'"  class="form-control" placeholder="Search Contract..." name = "contractNo"
                   #contractNo = "ngModel" [(ngModel)] = "data.contractNo" (keyup)= "contractNumber()"
                   >
-                  <input type="text" *ngIf = "statusCheck == 'edit' && autocontractId ==null "  class="form-control" placeholder="Search Contract..." name = "autoContractNumber"
-                  #autoContractNumber = "ngModel" [(ngModel)] = "data.autoContractNumber" (keyup)= "contractNumber()"
+                  <input type="text" *ngIf = "statusCheck == 'edit' && autocontractId ==null "  class="form-control" placeholder="Search Contract..." name = "autoContrctNumber"
+                  #autoContrctNumber = "ngModel" [(ngModel)] = "data.autoContrctNumber" (keyup)= "contractNumber()"
                   >
                   <!-- <input type="text" *ngIf = "statusCheck == 'edit' && autocontractId !=null "  class="form-control" placeholder="Search Contract..." name = "autoContractNumber"
                   #autoContractNumber = "ngModel" [(ngModel)] = "data.autoContractNumber" (keyup)= "contractNumber()"

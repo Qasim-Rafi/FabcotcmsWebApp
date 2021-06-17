@@ -19,7 +19,7 @@
 
       <div class="input-group">
         <input type="text" class="form-control" placeholder="Search Bank Account..." name="contractNo" 
-        #contractNo = "ngModel" [(ngModel)] = "data.contractNo"
+        #contractNo = "ngModel" [(ngModel)] = "data.contractNo" (keyup)="ContractsDropdown()"
         >
         <div class="input-group-append">
           <button class="btn btn-primary" type="button"  (click)="ContractsDropdown()" >
@@ -37,13 +37,14 @@
             <a class="faq-question "></a>
 
 
-            <div class="small mb-1"></div>
-            <h5 *ngIf = "bankAcc.contractNumber == null">{{autoContractNumbr}}</h5>
-            <span *ngIf = "bankAcc.contractNumber == null"><i class="fas fa-chart-area"></i>&nbsp;{{buyerName}} &nbsp;&nbsp;</span><br>
-            <p><b *ngIf = "bankAcc.contractNumber == null"><i class="fas fa-globe-africa"></i>&nbsp;{{sellerName}}</b></p>
-            <h5 *ngIf = "bankAcc.contractNumber != null">{{bankAcc.contractNumber}}</h5>
-            <span *ngIf = "bankAcc.contractNumber != null"><i class="fas fa-chart-area"></i>&nbsp;{{bankAcc.buyerName}} &nbsp;&nbsp;</span><br>
-            <p><b *ngIf = "bankAcc.contractNumber != null"><i class="fas fa-globe-africa"></i>&nbsp;{{bankAcc.sellerName}}</b></p>
+            <div  *ngIf = "bankAcc.contractNumber == null">
+            <h5 > <b>Contract Number:</b>  {{autoContractNumbr}}</h5>
+            <span ><b>Buyer Name:</b>&nbsp;{{buyerName}} &nbsp;&nbsp;</span><br>
+            <p > <b>Seller Name:</b> &nbsp;{{sellerName}}</p>
+          </div>
+            <h5 *ngIf = "bankAcc.contractNumber != null"> <b>Contract Number:</b> {{bankAcc.contractNumber}}</h5>
+            <span *ngIf = "bankAcc.contractNumber != null"><b>Buyer Name:</b>&nbsp;{{bankAcc.buyerName}} &nbsp;&nbsp;</span><br>
+            <p *ngIf = "bankAcc.contractNumber != null"> <b>Seller Name:</b> &nbsp;{{bankAcc.sellerName}}</p>
 
           </div>
 

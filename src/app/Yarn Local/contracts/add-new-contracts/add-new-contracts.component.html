@@ -104,7 +104,7 @@
                         </div>
 
 
-                        <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+                        <div class="form-group row">
                             <label for="inputPassword4" class="col-md-3 col-form-label control-label">Purchase Order
                                 #</label>
                             <div class="col-md-7">
@@ -474,7 +474,7 @@
 
                                     <div class="col-md-4">
                                         <div class="input-group">
-                                            <input type="number" min="0" placeholder="quantity" #quantity="ngModel"
+                                            <input type="number" min="0" placeholder="Comm%" #quantity="ngModel"
                                                 class="form-control" [(ngModel)]="data.quantity" name="quantity">
                                             <div class="input-group-append">
                                                 <span class="input-group-text" id="basic-addon2">per</span>
@@ -679,11 +679,16 @@
 
                             <div class="col-md-7">
 
-                                <div class="input-group date">
-                                    <input class="form-control" name="sellerDeliveryDate"
+
+                                <div class="input-group date" (clickOutside)="validity1.close()">
+                                    <input navigation="select" class="form-control  " name="sellerDeliveryDate"
+
                                         [(ngModel)]="data.sellerDeliveryDate" #sellerDeliveryDate="ngModel"
+                                        ngbDatepicker #validity1="ngbDatepicker" (click)="validity1.toggle()"
                                         placeholder="Supplier Date" />
-                                    <div class="input-group-append">
+
+                                    <div class="input-group-append" (click)="validity1.toggle()">
+
                                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                     </div>
                                 </div>
@@ -697,11 +702,14 @@
 
                             <div class="col-md-7">
 
-                                <div class="input-group date">
-                                    <input class="form-control" name="sellerDeliveryDate"
-                                        [(ngModel)]="data.sellerDeliveryDate" #sellerDeliveryDate="ngModel"
-                                        placeholder="Supplier Date" />
-                                    <div class="input-group-append">
+
+                                <div class="input-group date" (clickOutside)="sellerDeliveryDatePicker.close()">
+                                    <input type="text" class="form-control  datetimepicker-input"
+                                        (click)="sellerDeliveryDatePicker.toggle()" placeholder="Date"
+                                        #sellerDeliveryDatePicker="ngbDatepicker" name="sellerDeliveryDate"
+                                        ngbDatepicker>
+                                    <div class="input-group-append" (click)="sellerDeliveryDatePicker.toggle()">
+
                                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                         <button class="btn btn-outline-danger float-right" type="submit"
                                             (click)="remove(i)">
@@ -730,11 +738,15 @@
 
                             <div class="col-md-7">
 
-                                <div class="input-group date">
+                                <div class="input-group date" (clickOutside)="validity2.close()">
+
                                     <input navigation="select" class="form-control  " name="buyerDeliveryDate"
                                         [(ngModel)]="data.buyerDeliveryDate" #buyerDeliveryDate="ngModel" ngbDatepicker
+                                        #validity2="ngbDatepicker" (click)="validity2.toggle()"
                                         placeholder="Buyer Date" />
-                                    <div class="input-group-append">
+
+                                    <div class="input-group-append" (click)="validity2.toggle()">
+
                                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                     </div>
                                 </div>
@@ -748,10 +760,11 @@
 
                             <div class="col-md-3"></div>
                             <div class="col-md-7">
-                                <div class="input-group date">
-                                    <input type="text" class="form-control  " placeholder="Date"
-                                        name="buyerDeliveryDate">
-                                    <div class="input-group-append">
+                                <div class="input-group date" (clickOutside)="buyerDeliveryDatePicker.close()">
+                                    <input type="text" class="form-control  datetimepicker-input"
+                                        (click)="buyerDeliveryDatePicker.toggle()" placeholder="Date"
+                                        #buyerDeliveryDatePicker="ngbDatepicker" name="buyerDeliveryDate" ngbDatepicker>
+                                    <div class="input-group-append" (click)="buyerDeliveryDatePicker.toggle()">
                                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                         <button class="btn btn-outline-danger " type="submit" (click)="remove2(i)">
                                             <i class="fas fa-minus fa-xs"></i></button>
@@ -1129,6 +1142,8 @@
                             </div>
 
 
+                                <div class="form-group col-md-12">
+                                    <label for="code" class="col-form-label control-label">Kick Back:</label>
 
 
 
@@ -1199,7 +1214,7 @@
                                             </ng-select>
                                         </div>
 
-                                        <div class="col-md-4 mrg-sm1" *ngIf="loggedInDepartmentName=='Fabric Local'">
+                                        <div class="col-md-4 mrg-sm1">
                                             <input type="text" placeholder="Additional Info" class="form-control"
                                                 [(ngModel)]="data.fabcotSideCommAdditionalInfo"
                                                 name="fabcotSideCommAdditionalInfo"
@@ -1242,7 +1257,7 @@
                                             </ng-select>
                                         </div>
 
-                                        <div class="col-md-4 mrg-sm1" *ngIf="loggedInDepartmentName=='Fabric Local'">
+                                        <div class="col-md-4 mrg-sm1">
                                             <input type="text" placeholder="Additional Info" class="form-control"
                                                 [(ngModel)]="data.buyerSideCommAdditionalInfo"
                                                 name="buyerSideCommAdditionalInfo"
@@ -1349,7 +1364,9 @@
                                 <span class="badge badge-primary">Remarks/ Other Conditions</span>
                             </div>
 
-                            <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+                            <br>
+
+                            <div class="form-group row">
                                 <label for="inputEmail3" class="col-md-3 col-form-label control-label">Remarks:</label>
                                 <div class="col-md-7">
                                     <div class="input-group">
@@ -1359,20 +1376,9 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row" *ngIf="loggedInDepartmentName=='Yarn Local'">
-                                <label for="inputEmail3" class="col-md-3 col-form-label control-label">Seller
-                                    Remarks:</label>
-                                <div class="col-md-7">
-                                    <div class="input-group">
-                                        <textarea rows="3" class="form-control" [(ngModel)]="data.contractRemarks"
-                                            name="contractRemarks"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-
                             <div class="form-group row">
-                                <label for="inputEmail3" class="col-md-3 col-form-label control-label">Buyer Remarks
-                                    :</label>
+                                <label for="inputEmail3" class="col-md-3 col-form-label control-label">Remarks
+                                    Buyer:</label>
                                 <div class="col-md-7">
                                     <div class="input-group">
                                         <textarea rows="3" class="form-control" [(ngModel)]="data.buyerRemarks"
@@ -1381,18 +1387,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row" *ngIf="loggedInDepartmentName=='Yarn Local'">
-                                <label for="inputEmail3" class="col-md-3 col-form-label control-label">Other
-                                    Conditions:</label>
-                                <div class="col-md-7">
-                                    <div class="input-group">
-                                        <textarea rows="3" class="form-control" [(ngModel)]="condition"
-                                            name="condition"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+                            <div class="form-group row">
                                 <label for="inputEmail3" class="col-md-3 col-form-label control-label">Other
                                     Conditions:</label>
                                 <div class="col-md-7">

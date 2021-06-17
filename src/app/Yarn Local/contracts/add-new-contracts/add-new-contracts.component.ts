@@ -444,6 +444,24 @@ export class AddNewContractsComponent implements OnInit {
       }
     })
   }
+
+  getPieceLength(type: string) {
+    this.service.getFabricType().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.fabricType = this.response.data;
+        if (type == "other") {
+          // this.seller.id = this.newSeller;
+          this.data.fabricTypeId = this.newFabric
+        }
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
+
+
   addFabricTypeForm() {
     const modalRef = this.modalService.open(AddTypeComponent, { centered: true });
     modalRef.result.then((data) => {

@@ -168,11 +168,11 @@
             </div>
 
             <div class="col-md-4 text-right ">
-                <button class="btn btn-outline-primary border-rounded btn-sm px-3 mr-1">
+                <button class="btn btn-outline-primary border-rounded btn-sm px-3 mr-1" (click)= "print()">
                     <i class="fas fa-print"></i>
                     Buyer
                 </button>
-                <button class="btn btn-outline-primary border-rounded btn-sm px-3 mr-1">
+                <button class="btn btn-outline-primary border-rounded btn-sm px-3 mr-1" (click) = "printSeller()">
                     <i class="fas fa-print"></i>
                     Seller
                 </button>
@@ -587,14 +587,16 @@
                                     <div class="col-md-6">
 
                                         <dl class="row">
-                                            <dt class="col-sm-6">Currency:
+                                            <dt class="col-sm-6">Quantity:
                                             </dt>
-                                            <dd class="col-sm-6">{{contractCostingData.rateCurrencyName}}</dd>
+                                            <dd class="col-sm-6">{{contractCostingData.quantity}} / {{contractCostingData.quantityUOMName}}</dd>
                                         </dl>
                                         <dl class="row">
                                             <dt class="col-sm-6">Rate:
                                             </dt>
-                                            <dd class="col-sm-6">{{contractCostingData.rate}}</dd>
+                                            <dd class="col-sm-6">{{contractCostingData.rate}} / {{contractCostingData.rateUOMName}}</dd>
+
+                                            
                                         </dl>
                                         <dl class="row">
                                             <dt class="col-sm-6">Project Cost:
@@ -655,8 +657,8 @@
 
                                         <dl class="row">
                                             <dt class="col-sm-6">Payment terms:</dt>
-                                            <dd class="col-sm-6">{{contractPaymentData.sellerPaymentTerm}}
-                                                {{contractPaymentData.paymentTermDays}}
+                                            <dd class="col-sm-6">{{contractPaymentData.sellerPaymentTermName}}
+                                                {{contractPaymentData.sellerPaymentTermDays}}
                                                 {{contractPaymentData.paymentTermInfo}}
                                             </dd>
                                         </dl>
@@ -664,21 +666,21 @@
                                         <dl class="row">
                                             <dt class="col-sm-6">Buyer Payment terms:
                                             </dt>
-                                            <dd class="col-sm-6">{{contractPaymentData.buyerPaymentTerm}}
+                                            <dd class="col-sm-6">{{contractPaymentData.buyerPaymentTermName}}
                                               </dd>
                                             <dd class="col-sm-6"></dd>
                                         </dl>
                                         <dl class="row">
                                             <dt class="col-sm-6">Packing:
                                             </dt>
-                                            <dd class="col-sm-6">{{contractPaymentData.buyerPaymentTerm}}
+                                            <dd class="col-sm-6">{{contractPaymentData.packingName}}
                                               </dd>
                                             <dd class="col-sm-6"></dd>
                                         </dl>
                                         <dl class="row">
                                             <dt class="col-sm-6">Price / Delivery Terms:
                                             </dt>
-                                            <dd class="col-sm-6">{{contractPaymentData.buyerPaymentTerm}}
+                                            <dd class="col-sm-6">{{contractPaymentData.priceTermName}}
                                               </dd>
                                             <dd class="col-sm-6"></dd>
                                         </dl>

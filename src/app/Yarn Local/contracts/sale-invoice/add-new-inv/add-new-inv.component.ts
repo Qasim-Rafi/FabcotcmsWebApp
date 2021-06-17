@@ -230,7 +230,7 @@ this.spinner.show();
 
   editSaleInvoice() {
     // this.spinner.show();
-    this.http.get(`${environment.apiUrl}/api/Contracts/GetContractSaleInvoiceById/` + this.invoiceId)
+    this.http.get(`${environment.apiUrl}/api/YarnContracts/GetContractSaleInvoiceById/` + this.invoiceId)
       .subscribe(
         res => {
           this.response = res;
@@ -260,7 +260,7 @@ this.spinner.show();
   
   updateSaleInvoice() {
    let varr = {
-    "contractId": this.contractId,
+    "contractId":   this.autocontractId == null ? this.data.contractId : this.autocontractId,
       "saleInvoiceNo": this.data.saleInvoiceNo,
       "saleInvoiceDate":this.dateformater.toModel(this.data.saleInvoiceDate),
       "saleInvoiceRemarks":this.data.saleInvoiceRemarks,
@@ -271,7 +271,7 @@ this.spinner.show();
    }
 this.spinner.show();
    this.http.
-     put(`${environment.apiUrl}/api/Contracts/UpdateContractSaleInvoice/` + this.invoiceId, varr)
+     put(`${environment.apiUrl}/api/YarnContracts/UpdateContractSaleInvoice/` + this.invoiceId, varr)
      .subscribe(
        res => {
 

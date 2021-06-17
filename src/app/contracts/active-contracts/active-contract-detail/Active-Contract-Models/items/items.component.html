@@ -41,7 +41,7 @@
     
             </label>
             <div class="col-sm-3">
-                <input type="number" min="0" required (keyup)="itemquantity($event)"
+                <input type="number" min="0" required (keyup)="itemquantity($event)" (keyup)="getcost($event)" (keyup)="itemrate($event)"
                 id="itemQuantity" [ngClass]="{ 'error': itemQuantity.invalid && ItemForm.submitted }"
               name="itemQuantity" [(ngModel)]="data.itemQuantity" #itemQuantity="ngModel"
                 class="form-control" value="" placeholder="Quantity" />
@@ -132,7 +132,7 @@
           <div class="form-group row">
             <label for="contractRate" class="col-sm-3 col-form-label text_Navy">Price / Rate</label>
             <div class="col-sm-2">
-                <input id="contractRate" min="0" (keyup)="rate($event)"
+                <input id="contractRate" min="0" (keyup)="itemrate($event)" (keyup)="getcost($event)" (keyup)="itemquantity($event)"
                 name="contractRate" [(ngModel)]="data.contractRate" #contractRate="ngModel" class="form-control" value="" placeholder="Rate">
             </div>
             <div class="col-md-3">
