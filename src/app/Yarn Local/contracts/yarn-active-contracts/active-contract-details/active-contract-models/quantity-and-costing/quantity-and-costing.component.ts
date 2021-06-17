@@ -19,7 +19,7 @@ export class QuantityAndCostingComponent implements OnInit {
   response: any;
   currency: any={};
   uomList: any={};
-
+  loggedInDepartmentName: any={};
   constructor(
     private _NgbActiveModal: NgbActiveModal,
     private http: HttpClient,
@@ -29,6 +29,7 @@ export class QuantityAndCostingComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.loggedInDepartmentName=localStorage.getItem('loggedInDepartmentName');
 
     this.GetUOMDropdown();
     this.GetCurrencyDropdown();
