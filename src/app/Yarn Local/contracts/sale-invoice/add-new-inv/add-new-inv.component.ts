@@ -260,7 +260,7 @@ this.spinner.show();
   
   updateSaleInvoice() {
    let varr = {
-    "contractId":  this.data.contractId,
+    "contractId":   this.autocontractId == null ? this.data.contractId : this.autocontractId,
       "saleInvoiceNo": this.data.saleInvoiceNo,
       "saleInvoiceDate":this.dateformater.toModel(this.data.saleInvoiceDate),
       "saleInvoiceRemarks":this.data.saleInvoiceRemarks,
