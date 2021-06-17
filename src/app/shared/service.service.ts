@@ -207,6 +207,18 @@ getAgentType(){
   getWeave() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/Weaves`)
   }
+  getBrWarp() {
+    return this.http.get(`${environment.apiUrl}/api/Lookups/BlendingRatioWarps`)
+  }
+  getBrWeft() {
+    return this.http.get(`${environment.apiUrl}/api/Lookups/BlendingRatioWefts`)
+  }
+  getPickInsertion() {
+    return this.http.get(`${environment.apiUrl}/api/Lookups/PickInsertions`)
+  }
+  getPieceLength() {
+    return this.http.get(`${environment.apiUrl}/api/Lookups/PieceLengths`)
+  }
   getColor() {
     return this.http.get(`${environment.apiUrl}/api/TextileGarments/GetAllColor`)
   } 

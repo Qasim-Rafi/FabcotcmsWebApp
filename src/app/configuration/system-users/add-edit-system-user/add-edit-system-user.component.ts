@@ -123,6 +123,8 @@ addSystemUser(form:NgForm) {
         }
         else {
           this.toastr.error(this.response.message, 'Message.');
+          this.spinner.hide();
+
         }
 
       },(err: HttpErrorResponse) => {
