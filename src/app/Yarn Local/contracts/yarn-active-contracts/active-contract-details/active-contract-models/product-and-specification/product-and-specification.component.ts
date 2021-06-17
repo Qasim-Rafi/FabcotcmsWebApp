@@ -14,9 +14,20 @@ import { Form, NgForm } from '@angular/forms';
 })
 export class ProductAndSpecificationComponent implements OnInit {
   dateformater: Dateformater = new Dateformater();  
+  loggedInDepartmentName: string;
+
   @Input() contractId;
   data:any ={};
   article: any={};
+  weave:any = {};
+  fabric:any = {};
+  selvedge:any = {};
+  pick:any = {};
+  warp:any = {};
+  weft:any = {};
+
+  piece:any = {};
+
   @ViewChild(NgForm) prodSpecForm;
 
   response: any;
@@ -29,9 +40,17 @@ export class ProductAndSpecificationComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.loggedInDepartmentName=localStorage.getItem('loggedInDepartmentName');
+
     this.GetArticleDropdown();
     this.getContractProductData();
-
+    this.GetFabricDropdown();
+    this.GetPickDropdown();
+this.GetPieceDropdown();
+this.GetWeaveDropdown();
+this.GetWeftDropdown();
+this.GetWarpDropdown();
+this.GetSelvedgeDropdown();
   }
   get activeModal() {
     return this._NgbActiveModal;
@@ -41,6 +60,83 @@ export class ProductAndSpecificationComponent implements OnInit {
       this.response = res;
       if (this.response.success == true) {
         this.article = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
+  GetWeaveDropdown() {
+    this.service.getWeave().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.weave = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
+  GetFabricDropdown() {
+    this.service.getFabricType().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.fabric = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
+  GetSelvedgeDropdown() {
+    this.service.getSelvedge().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.selvedge = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
+  GetPieceDropdown() {
+    this.service.getPieceLength().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.piece = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
+  GetWarpDropdown() {
+    this.service.getBrWarp().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.warp = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
+  GetWeftDropdown() {
+    this.service.getBrWeft().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.weft = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
+  GetPickDropdown() {
+    this.service.getPickInsertion().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.pick = this.response.data;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -74,7 +170,17 @@ export class ProductAndSpecificationComponent implements OnInit {
       "contractId": this.contractId,
       "construction": this.data.construction,
       "articleId": this.data.articleId,
-   
+      "pecenetAge": this.data.pecenetAge,
+      "febricId": this.data.febricId,
+      "gsm": this.data.gsm,
+      "tolerance": this.data.tolerance,
+      "weaveId": this.data.weaveId,
+      "selvedgeId": this.data.selvedgeId,
+      "pieceLengthId": this.data.pieceLengthId,
+      "pickInsertionId": this.data.pickInsertionId,
+      "width": this.data.width,
+      "blendingRatioWarpId": this.data.blendingRatioWarpId,
+      "blendingRatioWeftId": this.data.blendingRatioWeftId
     }
 
     this.http.

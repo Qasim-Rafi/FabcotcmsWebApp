@@ -70,6 +70,10 @@
 .input-w3{
   width: 81% !important;
 }
+.input-w4{
+  width: 91% !important;
+}
+
 
 .ng-select.ng-select-single .ng-select-container {
   height: 38px !important;
@@ -90,6 +94,9 @@
   .input-w3{
     width: 76% !important;
   }
+  .input-w4{
+    width: 88% !important;
+  }
 
 }
 
@@ -106,6 +113,9 @@
   }
   .input-w3{
     width: 70% !important;
+  }
+  .input-w4{
+    width: 88% !important;
   }
 }
 
