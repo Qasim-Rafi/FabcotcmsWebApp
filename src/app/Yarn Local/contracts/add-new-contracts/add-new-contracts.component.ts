@@ -62,7 +62,7 @@ export class AddNewContractsComponent implements OnInit {
   new3: any = [];
   data1: any = [];
   data2: any = [];
-test:any;
+
  condition:string="17% GST";
   weave: any = [];
   agents: any = {};
