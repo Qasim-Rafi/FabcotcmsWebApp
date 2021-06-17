@@ -33,6 +33,7 @@ export class ItemsComponent implements OnInit {
   @Input() contractId;
   recievedrate:any;
   quantity:any;
+  rate:any;
   timeout: any = null;
   @ViewChild(NgForm) ItemForm;
   @Input() statusCheck;
@@ -72,14 +73,22 @@ export class ItemsComponent implements OnInit {
       }
    
    }
-
-  rate(event){
+   itemrate(event){
     clearTimeout(this.timeout);
     
     
       if (event.keyCode != 13) {
-    let rate=event.target.value;
- let calculatedcost= rate*this.quantity;
+    this.rate=event.target.value;
+      }
+   
+   }
+  getcost(event){
+    clearTimeout(this.timeout);
+    
+    
+      if (event.keyCode != 13) {
+    // this.rate=event.target.value;
+ let calculatedcost= this.rate*this.quantity;
  this.data.contractCost=calculatedcost;
 
       }
@@ -93,6 +102,9 @@ export class ItemsComponent implements OnInit {
           if (this.response.success == true) {
 
             this.data = this.response.data;
+            this.quantity=this.response.data.itemQuantity;
+            this.rate=this.response.data.contractRate;
+
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
