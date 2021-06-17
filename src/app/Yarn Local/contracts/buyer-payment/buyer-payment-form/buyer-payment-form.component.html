@@ -204,7 +204,7 @@
                                 <input class="form-control" type="number" placeholder="Tax Challan Number" (keyup)="taxCalculated($event)"
                                     [(ngModel)]="data.taxChalan" />
                             </div>
-                            <label for="number" class="col-sm-1 col-form-label  ">{{calculatedTax}}</label>
+                            <label for="number" class="col-sm-1 col-form-label  ">Rs:{{calculatedTax}}</label>
                         </div>
 
                     </div>
@@ -232,11 +232,18 @@
 
 
 
-                                <ngx-datatable-column name="S. No#" [width]="80" prop="name">
+                                <ngx-datatable-column name="S. No#" [width]="80" prop="saleInvoiceNo">
                                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                        {{row.saleInvoiceId}}
+                                        {{row.saleInvoiceNo}}
                                     </ng-template>
                                 </ngx-datatable-column>
+
+                                <ngx-datatable-column name="Date" [width]="80" prop="saleInvoiceDateToDisplay">
+                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                        {{row.saleInvoiceDateToDisplay}}
+                                    </ng-template>
+                                </ngx-datatable-column>
+                                
 
                                 <ngx-datatable-column name="Invoice Amount" [width]="80" prop="genericName">
                                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
@@ -250,7 +257,13 @@
                                 
                               > 
                               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                <input type="checkbox"  class="checkbox-lg" (change)="onSelect($event,row)" >
+                                <div>
+                                    <label class="checkbox-container">
+                                    <input type="checkbox" (change)="onSelect($event,row)">
+                                    <span class="check"></span>
+                                  </label>
+                                </div>
+                                <!-- <input type="checkbox"  class="checkbox-lg" (change)="onSelect($event,row)" > -->
                             </ng-template>
                             </ngx-datatable-column>
 
@@ -259,62 +272,14 @@
                                     {{row.receivedAmount}}
                                 </ng-template>
                             </ngx-datatable-column> 
-                                 <ngx-datatable-column name="texChallan" [width]="80" prop="texChallan">
+
+                                 <ngx-datatable-column name="Tax Challan" [width]="80" prop="taxChallan">
                                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                        {{row.texChallan}}
+                                        {{row.taxChallan}}
                                     </ng-template>
                                 </ngx-datatable-column> 
 
-
-                             
-
-
-
-
-                           <!--  <ngx-datatable-column name="Received" [width]="80" prop="genericName">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                        {{row.genericName}}
-                                    </ng-template>
-                                </ngx-datatable-column>
-
-
-
-                                <ngx-datatable-column name="Balance" [width]="80" prop="genericName">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                        {{row.genericName}}
-                                    </ng-template>
-                                </ngx-datatable-column> -->
-<!-- 
-                                <ngx-datatable-column name="Action" [width]="40">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-
-                                        <div class="ibox-tools text-center">
-
-                                            <button type="button" class="btn editIconBack">
-                                                <i class="far fa-edit "></i>
-                                            </button>
-
-                                            <button type="button" class="btn deleteIconBack">
-                                                <i class="far fa-trash-alt"></i>
-                                            </button>
-
-                                        </div>
-                                
-                                    </ng-template>
-                                </ngx-datatable-column> -->
-
-                                <!-- <ngx-datatable-column name="Paid Amount" [width]="80" prop="genericName">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                        {{row.company}}
-                                    </ng-template>
-                                </ngx-datatable-column>
-
-
-                                <ngx-datatable-column name="Tax Challan" [width]="80" prop="genericName">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                        {{row.genericName}}
-                                    </ng-template>
-                                </ngx-datatable-column> -->
+                               
 
                             </ngx-datatable>
 
