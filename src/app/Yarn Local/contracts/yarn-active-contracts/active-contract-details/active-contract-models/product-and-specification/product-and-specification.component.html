@@ -21,7 +21,26 @@
   
       <div class="col-md-12 pt-3 pb-2">
         <!-- <div class="form-group row"> -->
-   
+          <div class="form-group row"  *ngIf="loggedInDepartmentName=='Fabric Local'">
+            <label  class="col-sm-3 col-form-label text_Navy"> Construction
+    
+            </label>
+            <div class="col-sm-2">
+                <input type="text"
+             
+                class="form-control" value="" placeholder="%"
+                  name="pecenetAge"  #pecenetAge = "ngModel" [(ngModel)] = "data.pecenetAge" />
+            </div>
+            <div class="col-md-4">
+               
+                <ng-select [(ngModel)]="data.febricId" placeholder="-- Select --"   
+                name="febricId" #febricId="ngModel">
+                <ng-option *ngFor = "let i of fabric" [value]= "i.id" >{{i.type}}
+                </ng-option>
+            </ng-select>
+
+            </div>
+          </div>
     
       <div class="form-group row">
         <label for="name" class="col-sm-3 col-form-label"><strong>Cons.info</strong></label>
@@ -49,8 +68,113 @@
         </div>
       </div>
   
+      <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+        <label  class="col-sm-2 col-form-label "> Additional Specs
+
+        </label>
+        <div class="col-sm-2">
+            <input type="text"
+         
+            class="form-control" value="" placeholder="GSM"
+              name="gsm"  #gsm = "ngModel" [(ngModel)] = "data.gsm" />
+        </div>
+        <div class="col-md-3">
+           
+          <div class="input-group">
+            <div class="input-group-append">
+                <span class="input-group-text" id="basic-addon2">+/-</span>
+            </div>
+            <input type="text" placeholder="tolerance value." class="form-control"
+            name="tolerance"  #tolerance = "ngModel"
+             [(ngModel)] = "data.tolerance"
+            >
+            <div class="input-group-append">
+                <span class="input-group-text" id="basic-addon2">%</span>
+            </div>
+        </div>
+
+        </div>
+        <div class="col-md-2">
+          <ng-select [(ngModel)]="data.weaveId" placeholder="Weave"
+          name="weaveId" #weaveId = "ngModel"
+         >
+         <ng-option *ngFor="let i of weave" [value]="i.id">{{ i.weaveName }}
+           </ng-option>
+
+         </ng-select>
+        </div>
+        <div class="col-md-2">
+          <ng-select [(ngModel)]="data.selvedgeId" placeholder="Selvedge"
+          name="selvedgeId"
+         >
+         <ng-option *ngFor="let i of selvedge" [value]="i.id">{{ i.selvedgeName }}
+           </ng-option>
+
+         </ng-select>
+        </div>
   
-  
+      </div>
+      <div class="form-group row"  *ngIf="loggedInDepartmentName=='Fabric Local'">
+        <label class="col-sm-3 col-form-label ">Width:</label>
+        <div class="col-md-6">
+          <div class="input-group">
+              <input type="text"  placeholder="Width" #width="ngModel"
+                  class="form-control" [(ngModel)]="data.width" name="width">
+              <div class="input-group-append">
+                  <span class="input-group-text" id="basic-addon2">per</span>
+              </div>
+          </div>
+      </div>
+      
+    </div>
+    <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+      <label  class="col-sm-3 col-form-label  ">Piece Length</label>
+      <div class="col-sm-8">
+        <ng-select [(ngModel)]="data.pieceLengthId" placeholder=" Select  Piece Length"
+        name="pieceLengthId" #pieceLengthId = "ngModel"
+       >
+       <ng-option *ngFor="let i of piece" [value]="i.id"> {{i.pieceLengthName}}
+         </ng-option>
+
+       </ng-select>
+      </div>
+    </div>
+    <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+      <label  class="col-sm-3 col-form-label  ">Pick Insertion</label>
+      <div class="col-sm-8">
+        <ng-select [(ngModel)]="data.pickInsertionId" placeholder="Select pick insertion"
+        name="pickInsertionId" #pickInsertionId = "ngModel"
+       >
+       <ng-option *ngFor="let i of pick" [value]="i.id"> {{i.pickInsetionName}}
+         </ng-option>
+
+       </ng-select>
+      </div>
+    </div>
+    <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+      <label for="articleId" class="col-sm-3 col-form-label  ">BR Warp</label>
+      <div class="col-sm-8">
+        <ng-select [(ngModel)]="data.blendingRatioWarpId" placeholder="Select Warp"
+        name="blendingRatioWarpId" #blendingRatioWarpId = "ngModel"
+       >
+       <ng-option *ngFor="let i of warp" [value]="i.id"> {{i.blendingRatioWarpName}}
+         </ng-option>
+
+       </ng-select>
+      </div>
+    </div>
+    <div class="form-group row"*ngIf="loggedInDepartmentName=='Fabric Local'">
+      <label for="blendingRatioWeftId" class="col-sm-3 col-form-label  ">BR Weft</label>
+      <div class="col-sm-8">
+        <ng-select [(ngModel)]="data.blendingRatioWeftId" #blendingRatioWeftId  = "ngModel" placeholder="Select Weft"
+        name="blendingRatioWeftId"
+       >
+       <ng-option *ngFor="let i of weft" [value]="i.id"> {{i.blendingRatioWeftName}}
+         </ng-option>
+
+       </ng-select>
+      </div>
+    </div>
   
       <!-- <div class="form-group row"> -->
      </div>
