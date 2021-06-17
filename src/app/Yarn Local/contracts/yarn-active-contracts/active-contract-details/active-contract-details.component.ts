@@ -21,13 +21,16 @@ import { RemarksComponent } from './active-contract-models/remarks/remarks.compo
 import { EmployeeCommissionComponent } from './active-contract-models/employee-commission/employee-commission.component';
 import { CommisionKickbackComponent } from './active-contract-models/commision-kickback/commision-kickback.component';
 import { NgxSpinnerService } from 'ngx-spinner';
-
+import pdfMake from "pdfmake/build/pdfmake";
 import { createBuilderStatusReporter } from 'typescript';
 import { ContractNoteComponent } from './active-contract-models/contract-note/contract-note.component';
 import { AddNewInvComponent } from '../../sale-invoice/add-new-inv/add-new-inv.component';
 import { EditIvnoicePopupComponent } from './active-contract-models/edit-ivnoice-popup/edit-ivnoice-popup.component';
 import { StatusComponent } from 'src/app/shared/MODLES/status/status.component';
+import pdfFonts from "pdfmake/build/vfs_fonts";
+import { style } from '@angular/animations';
 
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 @Component({
   selector: 'app-active-contract-details',
   templateUrl: './active-contract-details.component.html',
@@ -1504,10 +1507,329 @@ deleteDispatch(id) {
           }
 
 
+          print(){
+            let docDefinition = {
+              pageSize: 'A4',
+              pageMargins: [ 30, 20, 40, 20 ],
+              pageOrientation: 'landscape',
+                
+                    info: {
+                      title: 'Contract Buyer'
+                    },
+                    content: [
+                      // {
+                      //   layout:'noBorders',
+                      //   margin: [10 , 0 , 0 , 0],
+                      //   table:{headerRows: 1 , widths:['40%'],
+                      // body: [
+                      //   [{text:'FABCOT' , style:'logo'} ],] }
+                      // },
+                      {
+                        layout:'noBorders',
+                        margin: [580 , 0 , 0 , 0],
+                        table:{headerRows: 1 , widths:['40%' , '40%'],
+                      body: [
+                        [{text:'Contract No.'  , style:'heading'} , {text: this.contractData['autoContractNumber'] , style:'heading2'}],] }
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [560 , 0 , 0 , 0],
+                        table:{headerRows: 1 , widths:['40%' , '80%'],
+                      body: [
+                        [{text:'Contract Date'  , style:'heading'} , {text: this.contractData['createdDateTime'] , style:'heading2'}],] }
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [580 , 0 , 0 , 0],
+                        table:{headerRows: 1 , widths:['40%' , '40%'],
+                      body: [
+                        [{text:'Purchase No.'  , style:'heading'} , {text: this.contractPartiesData['poNumber'] , style:'heading2'}],] }
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [20 , 10 , 0 , 0],
+                        table:{headerRows: 1 , widths:['10%' , '60%'],
+                      body: [
+                        [{text:'Attn:'  , style:'heading'} , {text: this.contractPartiesData['buyerPOCName'] , margin:[-50,0,0,0] , style:'heading2'}]] }
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [20 , 0 , 0 , 0],
+                        table:{headerRows: 1 , widths:['100%'],
+                      body: [
+                        [{text:' We are please to confirm here the booking as per following term and conditions.' , style:'heading2'}  ],] }
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [70 , 25 , 0 , 0],
+                        table:{headerRows: 1 , widths:['20%' , '80%'],
+                      body: [
+                        [{text:'Buyer Name:'  , style:'heading'} , {text: this.contractData['buyerName'] , style:'heading2'}],] }
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [70 , 7 , 0 , 0],
+                        table:{headerRows: 1 , widths:['20%' , '80%'],
+                      body: [
+                        [{text:'Supplier Name:'  , style:'heading'} , {text: this.contractPartiesData['sellerName'] , style:'heading2'}],] }
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [70 , 7 , 0 , 0],
+                        table:{headerRows: 1 , widths:['20%' , '80%'],
+                      body: [
+                        [{text:'Description:'  , style:'heading'} , {text: this.contractProductData['articleName'] , style:'heading2'}],] }
+                      },
+                      {
+
+                        layout:'noBorders',
+                        margin: [70 , 7 , 0 , 0],
+                        table:{headerRows: 1 , widths:['20%' , '80%'],
+                      body: [
+                        [{text:'Packing:'  , style:'heading'} , {text: this.contractPaymentData['packingName'] , style:'heading2'}],] }
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [70 , 7 , 0 , 0],
+                        table:{headerRows: 1 , widths:['20%' , '20%' , '20%'],
+                      body: [
+                        [{text:'Quantity:'  , style:'heading'} , {text: this.contractCostingData['quantity'] , style:'heading2'}, {text: this.contractCostingData['quantityUOMName'] , margin:[-120,0,0,0] , style:'heading2'}],] }
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [70 , 7 , 0 , 0],
+                        table:{headerRows: 1 , widths:['20%' , '20%' , '20%'],
+                      body: [
+                        [{text:'Rate:'  , style:'heading'} , {text: this.contractCostingData['rate'] , style:'heading2'} , {text: this.contractCostingData['rateUOMName'] , margin:[-120,0,0,0] , style:'heading2'}],] }
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [70 , 7 , 0 , 0],
+                        table:{headerRows: 1 , widths:['20%' , '80%'],
+                      body: [
+                        [{text:'Payment Term:'  , style:'heading'} , {text: this.contractPaymentData['sellerPaymentTermName'] , style:'heading2'}],] }
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [70 , 7 , 0 , 0],
+                        table:{headerRows: 1 , widths:['20%' , '80%'],
+                      body: [
+                        [{text:'Delivery Term:'  , style:'heading'} , {text: this.contractPaymentData['priceTermName'] , style:'heading2'}],] }
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [70 , 7 , 0 , 0],
+                        table:{headerRows: 1 , widths:['20%' , '80%'],
+                      body: [
+                        [{text:'Deliveries Date:'  , style:'heading'} , {text: this.contractPartiesData['poNumber'] , style:'heading2'}],] }
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [70 , 7 , 0 , 0],
+                        table:{headerRows: 1 , widths:['20%' , '80%'],
+                      body: [
+                        [{text:'Remarks:'  , style:'heading'} , {text: this.contractRemarksData['buyerRemarks'] , style:'heading2'}],] }
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [70 , 7 , 0 , 0],
+                        table:{headerRows: 1 , widths:['20%' , '50%'],
+                      body: [
+                        [{text:'Other Conditions:' , style:'heading'} , {text: this.contractRemarksData['otherConditionRemarks'] , style:'heading2'}],] }
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [20 , 10 , 0 , 0],
+                        table:{headerRows: 1 , widths:['30%'],
+                      body: [
+                        [{text:'Thanks And Regards:'  , style:'heading'}],] }
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [20 , 10 , 0 , 0],
+                        table:{headerRows: 1 , widths:['30%'],
+                      body: [
+                        [{text:'For FabCot International Enterprises'  , style:'heading'}],] }
+                      },
+                    ],
+                    styles:{
+                     heading:{fontSize: 12,
+                      bold: true,color: '#4d4b4b' },
+                      heading2:{fontSize: 11
+                        },
+                        logo:{
+                          fontSize:30 , color:'#0cb1cc'
+                        }
+                    },
+                    
+          
+            };
+            pdfMake.createPdf(docDefinition).print();
+          
+          }
 
 
+          printSeller(){
+            let docDefinition = {
+              pageSize: 'A4',
+              pageMargins: [ 30, 20, 40, 20 ],
+              pageOrientation: 'landscape',
+                
+                    info: {
+                      title: 'Contract Buyer'
+                    },
+                    content: [
+                      // {
+                      //   layout:'noBorders',
+                      //   margin: [10 , 0 , 0 , 0],
+                      //   table:{headerRows: 1 , widths:['40%'],
+                      // body: [
+                      //   [{text:'FABCOT' , style:'logo'} ],] }
+                      // },
+                      {
+                        layout:'noBorders',
+                        margin: [580 , 0 , 0 , 0],
+                        table:{headerRows: 1 , widths:['40%' , '40%'],
+                      body: [
+                        [{text:'Contract No.'  , style:'heading'} , {text: this.contractData['autoContractNumber'] , style:'heading2'}],] }
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [560 , 0 , 0 , 0],
+                        table:{headerRows: 1 , widths:['40%' , '80%'],
+                      body: [
+                        [{text:'Contract Date'  , style:'heading'} , {text: this.contractData['createdDateTime'] , style:'heading2'}],] }
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [580 , 0 , 0 , 0],
+                        table:{headerRows: 1 , widths:['40%' , '40%'],
+                      body: [
+                        [{text:'Purchase No.'  , style:'heading'} , {text: this.contractPartiesData['poNumber'] , style:'heading2'}],] }
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [20 , 10 , 0 , 0],
+                        table:{headerRows: 1 , widths:['10%' , '60%'],
+                      body: [
+                        [{text:'Attn:'  , style:'heading'} , {text: this.contractPartiesData['sellerPOCName'] , margin:[-50,0,0,0] , style:'heading2'}]] }
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [20 , 0 , 0 , 0],
+                        table:{headerRows: 1 , widths:['100%'],
+                      body: [
+                        [{text:' We are please to confirm here the booking as per following term and conditions.' , style:'heading2'}  ],] }
+                      },
+                     
+                      {
+                        layout:'noBorders',
+                        margin: [70 , 25 , 0 , 0],
+                        table:{headerRows: 1 , widths:['20%' , '80%'],
+                      body: [
+                        [{text:'Supplier Name:'  , style:'heading'} , {text: this.contractPartiesData['sellerName'] , style:'heading2'}],] }
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [70 , 7 , 0 , 0],
+                        table:{headerRows: 1 , widths:['20%' , '80%'],
+                      body: [
+                        [{text:'Buyer Name:'  , style:'heading'} , {text: this.contractData['buyerName'] , style:'heading2'}],] }
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [70 , 7 , 0 , 0],
+                        table:{headerRows: 1 , widths:['20%' , '80%'],
+                      body: [
+                        [{text:'Description:'  , style:'heading'} , {text: this.contractProductData['articleName'] , style:'heading2'}],] }
+                      },
+                      {
 
-
+                        layout:'noBorders',
+                        margin: [70 , 7 , 0 , 0],
+                        table:{headerRows: 1 , widths:['20%' , '80%'],
+                      body: [
+                        [{text:'Packing:'  , style:'heading'} , {text: this.contractPaymentData['packingName'] , style:'heading2'}],] }
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [70 , 7 , 0 , 0],
+                        table:{headerRows: 1 , widths:['20%' , '20%' , '20%'],
+                      body: [
+                        [{text:'Quantity:'  , style:'heading'} , {text: this.contractCostingData['quantity'] , style:'heading2'}, {text: this.contractCostingData['quantityUOMName'] , margin:[-120,0,0,0] , style:'heading2'}],] }
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [70 , 7 , 0 , 0],
+                        table:{headerRows: 1 , widths:['20%' , '20%' , '20%'],
+                      body: [
+                        [{text:'Rate:'  , style:'heading'} , {text: this.contractCostingData['rate'] , style:'heading2'} , {text: this.contractCostingData['rateUOMName'] , margin:[-120,0,0,0] , style:'heading2'}],] }
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [70 , 7 , 0 , 0],
+                        table:{headerRows: 1 , widths:['20%' , '80%'],
+                      body: [
+                        [{text:'Payment Term:'  , style:'heading'} , {text: this.contractPaymentData['sellerPaymentTermName'] , style:'heading2'}],] }
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [70 , 7 , 0 , 0],
+                        table:{headerRows: 1 , widths:['20%' , '80%'],
+                      body: [
+                        [{text:'Delivery Term:'  , style:'heading'} , {text: this.contractPaymentData['priceTermName'] , style:'heading2'}],] }
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [70 , 7 , 0 , 0],
+                        table:{headerRows: 1 , widths:['20%' , '80%'],
+                      body: [
+                        [{text:'Deliveries Date:'  , style:'heading'} , {text: this.contractPartiesData['poNumber'] , style:'heading2'}],] }
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [70 , 7 , 0 , 0],
+                        table:{headerRows: 1 , widths:['20%' , '80%'],
+                      body: [
+                        [{text:'Remarks:'  , style:'heading'} , {text: this.contractRemarksData['buyerRemarks'] , style:'heading2'}],] }
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [70 , 7 , 0 , 0],
+                        table:{headerRows: 1 , widths:['20%' , '50%'],
+                      body: [
+                        [{text:'Other Conditions:' , style:'heading'} , {text: this.contractRemarksData['otherConditionRemarks'] , style:'heading2'}],] }
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [20 , 10 , 0 , 0],
+                        table:{headerRows: 1 , widths:['30%'],
+                      body: [
+                        [{text:'Thanks And Regards:'  , style:'heading'}],] }
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [20 , 10 , 0 , 0],
+                        table:{headerRows: 1 , widths:['30%'],
+                      body: [
+                        [{text:'For FabCot International Enterprises'  , style:'heading'}],] }
+                      },
+                    ],
+                    styles:{
+                     heading:{fontSize: 12,
+                      bold: true,color: '#4d4b4b' },
+                      heading2:{fontSize: 11
+                        },
+                        logo:{
+                          fontSize:30 , color:'#0cb1cc'
+                        }
+                    },
+                    
+          
+            };
+            pdfMake.createPdf(docDefinition).print();
+          
+          }
 
 
 

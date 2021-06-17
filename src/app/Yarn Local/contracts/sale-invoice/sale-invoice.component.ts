@@ -134,7 +134,9 @@ editinvoice(check ,row) {
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
-     this.data = data;
+      this.fetch((data) => {
+        this.rows = data;
+      });
 
     }
   }, (reason) => {
