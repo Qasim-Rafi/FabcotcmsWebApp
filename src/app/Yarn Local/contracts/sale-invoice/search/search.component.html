@@ -19,7 +19,7 @@
 
       <div class="input-group">
         <input type="text" class="form-control" placeholder="Search Bank Account..." name="contractNo" 
-        #contractNo = "ngModel" [(ngModel)] = "data.contractNo"
+        #contractNo = "ngModel" [(ngModel)] = "data.contractNo" (keyup)="ContractsDropdown()"
         >
         <div class="input-group-append">
           <button class="btn btn-primary" type="button"  (click)="ContractsDropdown()" >

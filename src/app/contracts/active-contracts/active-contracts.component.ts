@@ -146,7 +146,65 @@ fetch(cb) {
 }
 
 
+cloneContract(obj){
 
+  // let varr = {
+
+  //   "enquiryId": obj.id,
+  //   "autoEnquiryNumber":obj.autoEnquiryNumber,
+  //   "enquiryDate": obj.enquiryDate,
+  //   "buyerName": obj.buyerName,
+  //   "articleName" : obj.articleName,
+  //   "paymentTermName":obj.paymentTermName,
+  //   "priceTermName":obj.priceTermName
+  
+  // }
+  // if( obj.enquiryDate == "undefined-undefined-undefined")
+  // {
+  //   obj.enquiryDate = ""
+  // }
+  // if( obj.enquiryDate == "0-NaN-NaN" )
+  // {
+  //   obj.enquiryDate = ""
+  // }
+  let varr = {
+
+  }
+this.spinner.show();
+  
+   this.http.put(`${environment.apiUrl}/api/Contracts/CloneContract/`+obj.id , varr )
+        .subscribe(
+          res => {
+  
+            this.response = res;
+            if (this.response.success == true) {
+              this.data = this.response.data;
+              this.temp = [this.data];
+            this.toastr.success(this.response.message, 'Message.');
+            this.fetch((data) => {
+              this.temp = [...data]; 
+              this.rows = data;
+            });
+this.spinner.hide();
+
+             }
+            else {
+              this.toastr.error(this.response.message, 'Message.');
+this.spinner.hide();
+
+            }
+  
+          }, err => {
+            if (err.status == 400) {
+              this.toastr.error(this.response.message, 'Message.');
+
+            }
+this.spinner.hide();
+
+          });
+
+
+}
 
 
 deleteContract(obj) {

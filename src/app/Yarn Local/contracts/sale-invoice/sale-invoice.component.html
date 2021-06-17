@@ -159,29 +159,29 @@
   
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Quantity" prop="articleName">
+            <ngx-datatable-column name="Quantity" prop="quantity">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 
                 {{row.quantity}}
               </ng-template>
             </ngx-datatable-column>
          
-            <ngx-datatable-column name="Invoice Amount" prop="articleName">
+            <ngx-datatable-column name="Invoice Amount" prop="invoiceAmount">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 {{row.invoiceAmount}}
   
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Tax %age" prop="articleName">
+            <ngx-datatable-column name="Tax %age" prop="taxPercentage">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 
                 {{row.taxPercentage}}
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Tax Amount" prop="articleName">
+            <ngx-datatable-column name="Tax Amount" prop="taxAmount">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 {{row.taxAmount}}
-  
+              
               </ng-template>
             </ngx-datatable-column>
           </ngx-datatable>
