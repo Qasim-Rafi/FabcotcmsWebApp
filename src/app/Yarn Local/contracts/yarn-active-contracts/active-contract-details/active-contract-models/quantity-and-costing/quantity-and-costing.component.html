@@ -48,7 +48,7 @@
                             <div class="input-group-append">
                                 <span class="input-group-text" id="basic-addon2">+/-</span>
                             </div>
-                            <input type="text" placeholder="tolerance value." class="form-control"
+                            <input type="text" placeholder="qty" class="form-control"
                             name="quantityToleranceValue"  #quantityToleranceValue = "ngModel"
                              [(ngModel)] = "data.quantityToleranceValue"
                             >
@@ -60,10 +60,9 @@
                 </div>
           
               </div>
+         
               <div class="form-group row">
-                <label for="itemQuantity" class="col-sm-3 col-form-label "> Rate
-        
-                </label>
+                <label for="itemQuantity" class="col-sm-3 col-form-label "> Rate</label>
                 <div class="col-sm-2">
                     <input type="number" min="0"
                     name="rate"  #rate = "ngModel" [(ngModel)] = "data.rate"
@@ -73,11 +72,12 @@
                    
                     <ng-select [(ngModel)]="data.rateCurrencyId" placeholder="-- Select --" 
                     name="rateCurrencyId" #rateCurrencyId="ngModel">
-                    <ng-option *ngFor="let i of currency" [value]="i.id">{{ i.code }}
+                    <ng-option *ngFor="let i of currency" [value]="i.id">{{ i.code }} 
                     </ng-option>
                 </ng-select>
     
                 </div>
+                /
                 <div class="col-md-3">
                     <ng-select [(ngModel)]="data.rateUOMId" placeholder="-- Select --" 
                     name="rateUOMId" #rateUOMId="ngModel">
@@ -87,14 +87,52 @@
                 </div>
           
               </div>
+              <div class="form-group row" *ngIf = "loggedInDepartmentName == 'Fabric Local'">
+                <label for="itemQuantity" class="col-sm-3 col-form-label "> Taxes</label>
+                <div class="col-md-3">
+                        <div class="input-group">
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon2">GST</span>
+                            </div>
+                            <input type="text" placeholder="tolerance value." class="form-control"
+                            name="quantityToleranceValue"  #quantityToleranceValue = "ngModel"
+                             [(ngModel)] = "data.quantityToleranceValue"
+                            >
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon2">%</span>
+                            </div>
+                        </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="basic-addon2">W.I.Tax</span>
+                        </div>
+                        <input type="text" placeholder="tolerance value." class="form-control"
+                        name="quantityToleranceValue"  #quantityToleranceValue = "ngModel"
+                         [(ngModel)] = "data.quantityToleranceValue"
+                        >
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="basic-addon2">%</span>
+                        </div>
+                    </div>
+            </div>
+
+              </div>
               <div class="form-group row">
                 <label for="itemQuantity" class="col-sm-3 col-form-label "> Total Cost </label>
                 <div class="col-sm-4">
                     <input type="number" 
-                  class="form-control" value="" placeholder="" name="contractCost"
+                  class="form-control" value="" placeholder="Total Cost" name="contractCost"
+                    #contractCost = "ngModel" [(ngModel)] = "data.contractCost" />
+                </div>
+                <div class="col-sm-4" *ngIf = "loggedInDepartmentName == 'Fabric Local'">
+                    <input type="number" 
+                  class="form-control" value="" placeholder="Total Cost with GST" name="contractCost"
                     #contractCost = "ngModel" [(ngModel)] = "data.contractCost" />
                 </div>
               </div>
+             
             </div>
 
        <!-- <div class="col-md-12 pt-3 pb-2 px-3" >
