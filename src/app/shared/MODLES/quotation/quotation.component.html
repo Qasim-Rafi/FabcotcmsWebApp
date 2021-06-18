@@ -65,7 +65,7 @@
                         <ng-select placeholder="-- Select UOM --" name="uomId" [(ngModel)]="data.uomId" #uomId="ngModel"
                             [ngClass]="{ 'error': QuotationForm.submitted && uomId.invalid }" required>
                             <ng-option *ngFor="let obj of uom" [value]="obj.id">
-                                {{obj.unit}}
+                                {{obj.name}}
                             </ng-option>
                         </ng-select>
                     </div>

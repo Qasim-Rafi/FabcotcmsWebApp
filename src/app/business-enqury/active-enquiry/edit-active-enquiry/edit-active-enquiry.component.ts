@@ -145,7 +145,7 @@ export class EditActiveEnquiryComponent implements OnInit {
           this.response = res;
           if (this.response.success == true) {
             this.enquiryData = this.response.data;
-            this.showConfirmOn = this.enquiryData.confirmationDate;
+            this.showConfirmOn = this.enquiryData.confirmationDateToDisplay;
 
             this.enquiryData.confirmationDate = this.dateformater.fromModel(this.enquiryData.confirmationDate);
             // this.enquiryData.enquiryDate = this.dateformater.fromModel(this.enquiryData.enquiryDate);
