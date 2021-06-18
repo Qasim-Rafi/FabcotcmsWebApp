@@ -62,8 +62,8 @@ export class AddNewContractsComponent implements OnInit {
   new3: any = [];
   data1: any = [];
   data2: any = [];
-
- condition:string="17% GST";
+condition1:string="We are please to confirm here the booking as per following term and conditions."
+ condition:string="+17% GST As Per Government ";
   weave: any = [];
   agents: any = {};
   commission: any = [];
@@ -740,7 +740,7 @@ export class AddNewContractsComponent implements OnInit {
       "contractRemarks": this.data.contractRemarks,
       "buyerRemarks": this.data.buyerRemarks,
       "otherConditionRemarks": this.data.otherConditionRemarks == null ?  this.condition : this.data.otherConditionRemarks ,
-      "title": this.data.title,
+      "title": this.data.title  == null ?  this.condition1 :this.data.title ,
       "kickbackPercentage": this.data.kickbackPercentage,
       "kickbackUOMId": this.data.kickbackUOMId,
       "beneficiary": this.data.beneficiary,

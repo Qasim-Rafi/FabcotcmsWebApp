@@ -3,9 +3,13 @@
     <span aria-hidden="true">&times;</span>
   </button>
   <div>
-    <h5 class="modal-title py-0">
+    <h5 class="modal-title py-0" *ngIf = "loggedInDepartmentName == 'Fabric Local'">
       <i class="fas fa-edit"></i>
       Edit Commission & Kickback
+    </h5>
+    <h5 class="modal-title py-0" *ngIf = "loggedInDepartmentName == 'Yarn Local'">
+      <i class="fas fa-edit"></i>
+      Edit Commission
     </h5>
     <div class="font text-muted text-center">Contract No. </div>
   </div>
@@ -15,7 +19,7 @@
   <form #CityForm="ngForm" novalidate>
 
     <div class="col-md-12 pt-3 pb-3">
-      <div class="form-group row">
+      <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local'">
         <label for="sellercomm" class="col-sm-3 col-form-label ">Kickback</label>
         <div class=" col-md-8">
           <div class="row">
@@ -47,7 +51,7 @@
           </div>
         </div>
       </div>
-<div class="form-group row">
+<div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local'">
   <label for="sellercomm" class="col-sm-3 col-form-label text_Navy">Beneficiary</label>
 <div class="col-md-8">
   <input class="form-control" placeholder="Kickback Beneficiary Name"  type="text" 
