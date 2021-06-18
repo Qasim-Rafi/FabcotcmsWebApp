@@ -149,7 +149,7 @@
             </div>
           
             <div class="col-md-8 " *ngIf="contractData.status == 'Open' || contractData.status == 'BillAwaited' ">
-                <button class="btn btn-danger btn-sm border-rounded px-3 mr-1 mrg-md">
+                <button class="btn btn-danger btn-sm border-rounded px-3 mr-1 mrg-md" (click)="deleteContract()">
                     <i class="far fa-trash-alt"></i>
                     Delete
                 </button>
