@@ -43,6 +43,7 @@ number:any;
   }
   
   rate(event) {
+    if(event !=undefined){
     this.http.get(`${environment.apiUrl}/api/Contracts/GetContractItemRate/`+ event )
       .subscribe(
         res => {
@@ -60,6 +61,11 @@ number:any;
             this.toastr.error(this.response.message, 'Message.');
           }
         });
+      }
+      else{
+        this.data.quatity=null;
+        this.data.amount=null;
+      }
   }
 
   keyup(event){

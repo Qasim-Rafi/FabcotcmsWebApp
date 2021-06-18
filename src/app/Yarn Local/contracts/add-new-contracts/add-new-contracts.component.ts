@@ -88,9 +88,15 @@ export class AddNewContractsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loggedInDepartmentName = localStorage.getItem('loggedInDepartmentName');
-    this.data.currencyId = 1,
-    this.data.quantityUOMId = 8
-    this.data.rateUOMId = 7
+    if(this.loggedInDepartmentName=='Yarn Local'){
+      this.data.currencyId = 1,
+      this.data.quantityUOMId = 8
+      this.data.rateUOMId = 7
+    }else if(this.loggedInDepartmentName=='Fabric Local'){
+      this.data.quantityUOMId = 9
+      this.data.rateUOMId = 10
+    }
+    
     let olddate = new Date();
     let latest_date = this.datepipe.transform(olddate, 'yyyy-MM-dd');
     this.data.enquiryDate = this.dateformater.fromModel(latest_date);
