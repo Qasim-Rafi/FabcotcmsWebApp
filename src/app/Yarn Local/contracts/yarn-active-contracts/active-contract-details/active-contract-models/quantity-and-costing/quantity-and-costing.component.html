@@ -62,7 +62,7 @@
               </div>
          
               <div class="form-group row">
-                <label for="itemQuantity" class="col-sm-3 col-form-label "> Rate</label>
+                <label  class="col-sm-3 col-form-label "> Rate</label>
                 <div class="col-sm-2">
                     <input type="number" min="0"
                     name="rate"  #rate = "ngModel" [(ngModel)] = "data.rate"
@@ -95,8 +95,8 @@
                                 <span class="input-group-text" id="basic-addon2">GST</span>
                             </div>
                             <input type="text" placeholder="tolerance value." class="form-control"
-                            name="quantityToleranceValue"  #quantityToleranceValue = "ngModel"
-                             [(ngModel)] = "data.quantityToleranceValue"
+                            name="gst"  #gst = "ngModel"
+                             [(ngModel)] = "data.gst"
                             >
                             <div class="input-group-append">
                                 <span class="input-group-text" id="basic-addon2">%</span>
@@ -109,8 +109,8 @@
                             <span class="input-group-text" id="basic-addon2">W.I.Tax</span>
                         </div>
                         <input type="text" placeholder="tolerance value." class="form-control"
-                        name="quantityToleranceValue"  #quantityToleranceValue = "ngModel"
-                         [(ngModel)] = "data.quantityToleranceValue"
+                        name="witAx"  #witAx = "ngModel"
+                         [(ngModel)] = "data.witAx"
                         >
                         <div class="input-group-append">
                             <span class="input-group-text" id="basic-addon2">%</span>
@@ -128,8 +128,8 @@
                 </div>
                 <div class="col-sm-4" *ngIf = "loggedInDepartmentName == 'Fabric Local'">
                     <input type="number" 
-                  class="form-control" value="" placeholder="Total Cost with GST" name="contractCost"
-                    #contractCost = "ngModel" [(ngModel)] = "data.contractCost" />
+                  class="form-control" value="" placeholder="Total Cost with GST" 
+                    />
                 </div>
               </div>
              

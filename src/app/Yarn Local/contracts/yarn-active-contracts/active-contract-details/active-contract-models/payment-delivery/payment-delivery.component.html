@@ -19,18 +19,19 @@
 <div class="modal-body BG p-0">
   <form #partiesForm="ngForm" novalidate (ngSubmit)="addContractPaymentDelivery(partiesForm)">
 
-    <div class="col-md-12 pt-3 pb-2">
+    <div class="col-md-12 pt-3 pb-2" *ngIf = "loggedInDepartmentName == 'Fabric Local'">
 
-      <!-- <div class="form-group row">
+      <div class="form-group row">
         <label for="name" class="col-sm-3 col-form-label">Payment Mode</label>
         <div class="col-sm-4">
-          <ng-select name="paymentMode" placeholder="-- Select --" [(ngModel)]="data.paymentMode">
-            <ng-option *ngFor="let i of paymentMode" [value]="i">
+          <ng-select name="paymentMode" placeholder="-- Select --" #paymentMode= "ngModel"
+           [(ngModel)]="data.paymentMode">
+            <ng-option *ngFor="let i of payment" [value]="i">
               {{i}}
             </ng-option>
           </ng-select>
         </div>
-      </div> -->
+      </div>
 
 
       <div class="form-group row">
@@ -71,13 +72,13 @@
             </ng-option>
           </ng-select>
         </div>
-        <!-- <div class="col-md-4 mrg-sm1">
+        <div class="col-md-4 mrg-sm1" *ngIf = "loggedInDepartmentName == 'Fabric Local'">
           <div class="input-group">
-            <input required type="number" min="0" class="form-control" placeholder="days" name="buyerpaymentTermDays"
-              [(ngModel)]="data.buyerpaymentTermDays" #buyerpaymentTermDays="ngModel"
-              [ngClass]="{'error': buyerpaymentTermDays.invalid && partiesForm.submitted }">
+            <input required type="number" min="0" class="form-control" placeholder="days" name="buyerPaymentTermDays"
+              [(ngModel)]="data.buyerPaymentTermDays" #buyerPaymentTermDays="ngModel"
+              [ngClass]="{'error': buyerPaymentTermDays.invalid && partiesForm.submitted }">
           </div>
-        </div> -->
+        </div>
 
       </div>
 
@@ -113,14 +114,33 @@
           </ng-select>
         </div>
 
-        <!-- <div class="col-sm-4 ">
+        <div class="col-sm-4 " *ngIf = "loggedInDepartmentName == 'Fabric Local'">
           <ng-select required name="destinationId" placeholder="-- Select --" [(ngModel)]="data.destinationId"
             #destinationId="ngModel" [ngClass]="{'error': destinationId.invalid && partiesForm.submitted }">
             <ng-option *ngFor="let i of city" [value]="i.id">
               {{i.name}} <span class="text-secondary" style="font-size: 11px"></span>
             </ng-option>
           </ng-select>
-        </div> -->
+        </div>
+
+      </div>
+
+      <div class="form-group row" *ngIf = "loggedInDepartmentName == 'Fabric Local'">
+        <label for="description" class="col-sm-3 col-form-label text_Navy">Container</label>
+
+        <div class="col-sm-4">
+          <input type="text" class="form-control" placeholder="Count" name="count"
+          [(ngModel)]="data.count" #count = "ngModel">
+        </div>
+
+        <div class="col-sm-4 ">
+          <ng-select required name="containerId" placeholder="Select Container" [(ngModel)]="data.containerId"
+            #containerId="ngModel" [ngClass]="{'error': containerId.invalid && partiesForm.submitted }">
+            <ng-option *ngFor="let i of container" [value]="i.id">
+              {{i.containerName}} <span class="text-secondary" style="font-size: 11px"></span>
+            </ng-option>
+          </ng-select>
+        </div>
 
       </div>
 
