@@ -1433,7 +1433,49 @@ deleteShipmentTimeline(id) {
 }
 
 
+deleteContract(){
 
+  Swal.fire({
+    title: GlobalConstants.deleteTitle, //'Are you sure?',
+    text: GlobalConstants.deleteMessage + this.contractData.buyerName +' '+  'Contract'+ ' '+this.contractData.autoContractNumber,
+    icon: 'error',
+    showCancelButton: true,
+    confirmButtonColor: '#ed5565',
+    cancelButtonColor: '#dae0e5',
+    cancelButtonText: 'No',
+    confirmButtonText: 'Yes',
+    reverseButtons: true, 
+    position: 'top',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.spinner.show();
+      this.http.
+        delete(`${environment.apiUrl}/api/Contracts/DeleteContract/`+ this.queryParems.id )
+        .subscribe(
+          res => {
+  
+            this.response = res;
+            if (this.response.success == true) {
+              this.toastr.error(this.response.message, 'Message.');
+              this.router.navigate(['/contract/active-contract']);
+             
+this.spinner.hide();
+            }
+            else {
+              this.toastr.error(this.response.message, 'Message.');
+              this.spinner.hide();
+            }
+  
+          }, err => {
+            if (err.status == 400) {
+              this.toastr.error(this.response.message, 'Message.');
+              this.spinner.hide();
+            }
+          });
+
+    }
+  })
+}
 
 
  statusform(status,action,component) {

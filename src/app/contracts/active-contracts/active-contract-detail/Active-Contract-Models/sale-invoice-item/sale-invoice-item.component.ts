@@ -41,7 +41,10 @@ number:any;
     }
   
   }
-  
+  rate1(event){
+    this.data.quatity=null;
+    this.data.amount=null;
+  }
   rate(event) {
     if(event !=undefined){
     this.http.get(`${environment.apiUrl}/api/Contracts/GetContractItemRate/`+ event )
