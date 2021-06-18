@@ -129,6 +129,8 @@
                 <div class="col-sm-4" *ngIf = "loggedInDepartmentName == 'Fabric Local'">
                     <input type="number" 
                   class="form-control" value="" placeholder="Total Cost with GST" 
+                  name="totalCostGSt"
+                    #totalCostGSt = "ngModel" [(ngModel)] = "data.totalCostGSt" 
                     />
                 </div>
               </div>

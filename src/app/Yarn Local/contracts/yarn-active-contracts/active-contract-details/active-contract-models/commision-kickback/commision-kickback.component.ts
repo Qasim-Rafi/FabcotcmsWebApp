@@ -18,7 +18,7 @@ export class CommisionKickbackComponent implements OnInit {
   uomList:any=[];
   response: any;
   data1:any=[];
-  
+  loggedInDepartmentName: any={};
   constructor(
     private _NgbActiveModal: NgbActiveModal,
     private http: HttpClient,
@@ -28,6 +28,8 @@ export class CommisionKickbackComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.loggedInDepartmentName=localStorage.getItem('loggedInDepartmentName');
+
     this.GetUOMDropdown();
     this.GetAgentDropdown();
     this.getContractCommisionData();

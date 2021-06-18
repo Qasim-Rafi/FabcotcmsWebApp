@@ -95,7 +95,7 @@ export class QuantityAndCostingComponent implements OnInit {
 
       "rateUOMId": this.data.rateUOMId,
       "contractCost": this.data.contractCost,
-
+      "totalCostGSt":this.data.totalCostGSt,
       "gst": this.data.gst,
       "witAx": this.data.witAx
       

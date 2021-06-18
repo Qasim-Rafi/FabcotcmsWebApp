@@ -42,6 +42,7 @@ export class PaymentDeliveryComponent implements OnInit {
     this.GetDestinationDropdown();
     this.GetPriceDropdown();
     this.getContractPaymentData();
+    this.GetContainerDropdown();
   }
   get activeModal() {
     return this._NgbActiveModal;
@@ -110,7 +111,7 @@ export class PaymentDeliveryComponent implements OnInit {
     })
   }
   GetContainerDropdown() {
-    this.service.getCity().subscribe(res => {
+    this.service.getContainer().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
         this.container = this.response.data;
@@ -120,7 +121,6 @@ export class PaymentDeliveryComponent implements OnInit {
       }
     })
   }
-
 
   getContractPaymentData() {
     this.http.get(`${environment.apiUrl}/api/Contracts/GetContractPaymentDeliveryById/` + this.contractId)
@@ -149,16 +149,25 @@ export class PaymentDeliveryComponent implements OnInit {
     let varr = {
 
       "contractId": this.contractId,
-       "buyerSidePaymentTermInfo": this.data.buyerSidePaymentTermInfo,
+      "paymentMode": this.data.paymentMode,
+    
       "sellerPaymentTermId": this.data.sellerPaymentTermId,
       "sellerPaymentTermDays": this.data.sellerPaymentTermDays,
-      "paymentTermInfo": this.data.paymentTermInfo,
-      "buyerPaymentTerm": this.data.paymentTermId2,
+      "sellerPaymentTermInfo": this.data.sellerPaymentTermInfo,
+      "buyerPaymentTerm": this.data.buyerPaymentTerm,
       "buyerPaymentTermId": this.data.buyerPaymentTermId,
+      "buyerPaymentTermDays": this.data.buyerPaymentTermDays,
+
+      "buyerSidePaymentTermInfo": this.data.buyerSidePaymentTermInfo,
       "packingId": this.data.packingId,
       "priceTermId": this.data.priceTermId,
-      // "destinationId": this.data.destinationId,
+      "destinationId": this.data.destinationId,
+      "count": this.data.count,
+      "containerId": this.data.containerId
+
     
+     
+
     }
 
     this.http.
