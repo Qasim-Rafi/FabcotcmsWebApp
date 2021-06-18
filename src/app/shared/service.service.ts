@@ -210,6 +210,9 @@ getAgentType(){
   getBrWarp() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/BlendingRatioWarps`)
   }
+  getContainer() {
+    return this.http.get(`${environment.apiUrl}/api/Lookups/Containers`)
+  }
   getBrWeft() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/BlendingRatioWefts`)
   }
