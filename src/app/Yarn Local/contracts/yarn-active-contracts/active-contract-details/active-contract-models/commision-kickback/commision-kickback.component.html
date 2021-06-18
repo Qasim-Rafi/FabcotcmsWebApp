@@ -19,7 +19,7 @@
   <form #CityForm="ngForm" novalidate>
 
     <div class="col-md-12 pt-3 pb-3">
-      <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+      <div class="form-group row" *ngIf = "loggedInDepartmentName == 'Fabric Local'">
         <label for="sellercomm" class="col-sm-3 col-form-label ">Kickback</label>
         <div class=" col-md-8">
           <div class="row">
@@ -51,7 +51,7 @@
           </div>
         </div>
       </div>
-<div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+<div class="form-group row" *ngIf = "loggedInDepartmentName == 'Fabric Local'">
   <label for="sellercomm" class="col-sm-3 col-form-label text_Navy">Beneficiary</label>
 <div class="col-md-8">
   <input class="form-control" placeholder="Kickback Beneficiary Name"  type="text" 
