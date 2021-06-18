@@ -26,7 +26,7 @@
         <label for="invoiceItem" class="col-sm-3 col-form-label text_Navy">Invoice Item</label>
         <div class="col-sm-7">
 
-          <ng-select (change)="rate($event)" required name="contractItemId" placeholder="-- Select --" #contractItemId="ngModel" [ngClass]="{ 'error':  contractItemId.invalid && saleInvoiceItem.submitted}"
+          <ng-select (change)="rate($event)" (change)="rate1($event)" required name="contractItemId" placeholder="-- Select --" #contractItemId="ngModel" [ngClass]="{ 'error':  contractItemId.invalid && saleInvoiceItem.submitted}"
             [(ngModel)]="data.contractItemId">
             <ng-option *ngFor="let i of itemData" [value]="i.id">{{ i.description }}, {{ i.colorName }} - {{ i.size }}
             </ng-option>
