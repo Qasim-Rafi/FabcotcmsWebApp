@@ -121,7 +121,7 @@
                             <label for="inputEmail3" class="col-md-3 col-form-label control-label">Buyer Name</label>
                             <div class="col-md-7">
                                 <div class="input-group">
-                                    <ng-select name="buyerId" #buyerId="ngModel" class="input-w px-0"
+                                    <ng-select name="buyerId" (change)="getBuyerPOC($event)" #buyerId="ngModel" class="input-w px-0"
                                         [(ngModel)]="data.buyerId" placeholder="-- Select --">
                                         <ng-option *ngFor="let i of buyer" [value]="i.id">{{ i.buyerName }}
                                         </ng-option>
@@ -156,7 +156,7 @@
                             <label for="inputEmail3" class="col-md-3 col-form-label control-label">Supplier Name</label>
                             <div class="col-md-7">
                                 <div class="input-group">
-                                    <ng-select name="sellerId" #sellerId="ngModel" class="input-w px-0"
+                                    <ng-select name="sellerId" (change)="getSellersPOC($event)" #sellerId="ngModel" class="input-w px-0"
                                         [(ngModel)]="data.sellerId" placeholder="-- Select --">
                                         <ng-option *ngFor="let i of seller" [value]="i.id">{{ i.sellerName
                                             }}
@@ -269,7 +269,7 @@
 
                             <div class="col-md-7">
                                 <div class="input-group">
-                                    <ng-select name="article" #articleId="ngModel" class="input-w px-0"
+                                    <ng-select [multiple]=true name="article" #articleId="ngModel" class="input-w px-0"
                                         [(ngModel)]="data.articleId" placeholder="-- Select --">
                                         <ng-option *ngFor="let i of article" [value]="i.id">{{ i.name }}
                                         </ng-option>
@@ -308,7 +308,7 @@
                                             <div class="input-group-append">
                                                 <span class="input-group-text" id="basic-addon2">+/-</span>
                                             </div>
-                                            <input type="text" placeholder="Tol/Grams" class="form-control"
+                                            <input type="text" placeholder="Tol/Grams" class="form-control" #toleranceValue="ngModel"
                                                 [(ngModel)]="data.toleranceValue" name="toleranceValue">
                                             <div class="input-group-append">
                                                 <span class="input-group-text" id="basic-addon2">%</span>
@@ -353,9 +353,9 @@
 
                             <div class="col-md-7">
                                 <div class="input-group">
-                                    <ng-select name="article" #articleId="ngModel" class="input-w px-0"
-                                        [(ngModel)]="data.articleId" placeholder="Select Piece Length">
-                                        <ng-option *ngFor="let i of article" [value]="i.id">{{ i.name }}
+                                    <ng-select name="pieceLengthId" #pieceLengthId="ngModel" class="input-w px-0"
+                                        [(ngModel)]="data.pieceLengthId" placeholder="Select Piece Length">
+                                        <ng-option *ngFor="let i of PieceLength" [value]="i.id">{{ i.pieceLengthName }}
                                         </ng-option>
                                     </ng-select>
 
@@ -376,9 +376,9 @@
 
                             <div class="col-md-7">
                                 <div class="input-group">
-                                    <ng-select name="article" #articleId="ngModel" class="input-w px-0"
-                                        [(ngModel)]="data.articleId" placeholder="Select Pick Insertion">
-                                        <ng-option *ngFor="let i of article" [value]="i.id">{{ i.name }}
+                                    <ng-select name="pickInsertionId" #pickInsertionId="ngModel" class="input-w px-0"
+                                        [(ngModel)]="data.pickInsertionId" placeholder="Select Pick Insertion">
+                                        <ng-option *ngFor="let i of PickInsertion" [value]="i.id">{{ i.pickInsetionName }}
                                         </ng-option>
                                     </ng-select>
 
@@ -398,8 +398,8 @@
                             <label for="inputEmail3" class="col-md-3 col-form-label control-label">Width:</label>
                             <div class="col-md-7 mrg-sm1">
                                 <div class="input-group">
-                                    <input type="text" placeholder="Tol/Grams" class="form-control"
-                                        [(ngModel)]="data.toleranceValue" name="toleranceValue">
+                                    <input type="text" placeholder="Width in inch" class="form-control"
+                                        [(ngModel)]="data.widthInInch" name="widthInInch" #widthInInch="ngModel">
                                     <div class="input-group-append">
                                         <span class="input-group-text" id="basic-addon2">inch</span>
                                     </div>
@@ -414,9 +414,9 @@
 
                             <div class="col-md-7">
                                 <div class="input-group">
-                                    <ng-select name="article" #articleId="ngModel" class="input-w px-0"
-                                        [(ngModel)]="data.articleId" placeholder="Select Warp">
-                                        <ng-option *ngFor="let i of article" [value]="i.id">{{ i.name }}
+                                    <ng-select name="blendingRatioWarpId" #blendingRatioWarpId="ngModel" class="input-w px-0"
+                                        [(ngModel)]="data.blendingRatioWarpId" placeholder="Select Warp">
+                                        <ng-option *ngFor="let i of blendingRatioWarp" [value]="i.id">{{ i.blendingRatioWarpName }}
                                         </ng-option>
                                     </ng-select>
 
@@ -437,9 +437,9 @@
 
                             <div class="col-md-7">
                                 <div class="input-group">
-                                    <ng-select name="article" #articleId="ngModel" class="input-w px-0"
-                                        [(ngModel)]="data.articleId" placeholder="Select Weft">
-                                        <ng-option *ngFor="let i of article" [value]="i.id">{{ i.name }}
+                                    <ng-select name="blendingRatioWeftId" #blendingRatioWeftId="ngModel" class="input-w px-0"
+                                        [(ngModel)]="data.blendingRatioWeftId" placeholder="Select Weft">
+                                        <ng-option *ngFor="let i of blendingRatioWeft" [value]="i.id">{{ i.blendingRatioWeftName }}
                                         </ng-option>
                                     </ng-select>
 
@@ -496,7 +496,7 @@
                                                 <span class="input-group-text" id="basic-addon2">+/-</span>
                                             </div>
                                             <input type="text" placeholder="tolerance value." class="form-control"
-                                                [(ngModel)]="data.toleranceValue" name="toleranceValue">
+                                                [(ngModel)]="data.tolerance" name="tolerance" #tolerance="ngModel">
                                             <div class="input-group-append">
                                                 <span class="input-group-text" id="basic-addon2">%</span>
                                             </div>
@@ -558,7 +558,7 @@
                                     <div class="col-md-5 mrg-sm1">
                                         <div class="input-group">
                                             <input type="text" placeholder="GST%" class="form-control"
-                                                [(ngModel)]="data.toleranceValue" name="toleranceValue">
+                                                [(ngModel)]="data.gst" name="gst" #gst="ngModel">
                                             <div class="input-group-append">
                                                 <span class="input-group-text" id="basic-addon2">%</span>
                                             </div>
@@ -570,7 +570,7 @@
                                     <div class="col-md-5 mrg-sm1">
                                         <div class="input-group">
                                             <input type="text" placeholder="W.I.Tax%" class="form-control"
-                                                [(ngModel)]="data.toleranceValue" name="toleranceValue">
+                                                [(ngModel)]="data.wiTax" name="wiTax" #wiTax="ngModel">
                                             <div class="input-group-append">
                                                 <span class="input-group-text" id="basic-addon2">%</span>
                                             </div>
@@ -800,9 +800,9 @@
                                 Mode</label>
 
                             <div class="col-md-7">
-                                <ng-select [(ngModel)]="data.quantityUOMId" placeholder="Select UOM"
-                                    name="quantityUOMId">
-                                    <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
+                                <ng-select name="paymentMode" placeholder="-- Select --"  [(ngModel)]="data.paymentMode" >
+                                    <ng-option *ngFor="let i of paymentMode" [value]="i">
+                                        {{i}}
                                     </ng-option>
                                 </ng-select>
                             </div>
@@ -820,9 +820,9 @@
                                     <div class="col-md-4">
 
                                         <div class="input-group">
-                                            <ng-select name="sellerId" #sellerId="ngModel" class="input-w2 px-0"
-                                                [(ngModel)]="data.sellerId" placeholder="Payment Terms">
-                                                <ng-option *ngFor="let i of seller" [value]="i.id">{{ i.sellerName}}
+                                            <ng-select name="sellerPaymentTermId" #sellerPaymentTermId="ngModel" class="input-w2 px-0"
+                                                [(ngModel)]="data.sellerPaymentTermId" placeholder="Payment Terms">
+                                                <ng-option *ngFor="let i of PayementTerm" [value]="i.id">{{ i.term}}
                                                 </ng-option>
                                             </ng-select>
 
@@ -838,9 +838,9 @@
 
                                     <div class="col-md-4 mrg-sm1">
                                         <div class="input-group">
-                                            <input type="text" placeholder="Days" name="construction"
-                                                #construction="ngModel" class="form-control text-w-4"
-                                                [(ngModel)]="data.construction">
+                                            <input type="text" placeholder="Days" name="sellerPaymentTermDays"
+                                                #sellerPaymentTermDays="ngModel" class="form-control text-w-4"
+                                                [(ngModel)]="data.sellerPaymentTermDays">
 
                                         </div>
                                     </div>
@@ -849,7 +849,7 @@
                                         <div class="input-group">
 
                                             <input type="text" placeholder="Payment Term additional Info"
-                                                class="form-control" [(ngModel)]="data.toleranceValue"
+                                                class="form-control" [(ngModel)]="data.toleranceValue" #toleranceValue="ngModel"
                                                 name="toleranceValue">
 
                                         </div>
@@ -871,9 +871,9 @@
                                     <div class="col-md-4">
 
                                         <div class="input-group">
-                                            <ng-select name="sellerId" #sellerId="ngModel" class="input-w2 px-0"
-                                                [(ngModel)]="data.sellerId" placeholder="Payment Terms">
-                                                <ng-option *ngFor="let i of seller" [value]="i.id">{{ i.sellerName}}
+                                            <ng-select name="buyerPaymentTermId" #buyerPaymentTermId="ngModel" class="input-w2 px-0"
+                                                [(ngModel)]="data.buyerPaymentTermId" placeholder="Payment Terms">
+                                                <ng-option *ngFor="let i of PayementTerm" [value]="i.id">{{ i.term}}
                                                 </ng-option>
                                             </ng-select>
 
@@ -889,9 +889,9 @@
 
                                     <div class="col-md-4 mrg-sm1">
                                         <div class="input-group">
-                                            <input type="text" placeholder="Days" name="construction"
-                                                #construction="ngModel" class="form-control text-w-4"
-                                                [(ngModel)]="data.construction">
+                                            <input type="text" placeholder="Days" name="buyerPaymentTermDays"
+                                                #buyerPaymentTermDays="ngModel" class="form-control text-w-4"
+                                                [(ngModel)]="data.buyerPaymentTermDays">
 
                                         </div>
                                     </div>
@@ -900,8 +900,8 @@
                                         <div class="input-group">
 
                                             <input type="text" placeholder="Buyer Payment Term additional Info"
-                                                class="form-control" [(ngModel)]="data.toleranceValue"
-                                                name="toleranceValue">
+                                                class="form-control" [(ngModel)]="data.tolerance" #tolerance="ngModel"
+                                                name="tolerance">
 
                                         </div>
                                     </div>
@@ -918,16 +918,16 @@
 
                             <div class="col-md-7">
                                 <div class="input-group">
-                                    <ng-select name="priceTermId" #priceTermId="ngModel" class="input-w px-0"
-                                        [(ngModel)]="data.priceTermId" placeholder="Packing Information">
-                                        <ng-option *ngFor="let i of priceterm" [value]="i.id">{{ i.term }}
+                                    <ng-select name="packingId" #packingId="ngModel" class="input-w px-0"
+                                        [(ngModel)]="data.packingId" placeholder="Packing Information">
+                                        <ng-option *ngFor="let i of packing" [value]="i.id">{{ i.name }}
                                         </ng-option>
                                     </ng-select>
 
 
                                     <div class="input-group-append">
                                         <button class="btn btn-outline-primary" type="button" id="button-addon2"
-                                            (click)="addYarnPriceForm()">
+                                            (click)="addYarnPackingForm()">
                                             <i class="fa fa-plus"></i></button>
                                     </div>
                                 </div>
@@ -942,18 +942,18 @@
 
                                     <div class="col-md-6">
                                         <div class="input-group">
-                                            <input type="text" placeholder="COUNT" name="construction"
-                                                #construction="ngModel" class="form-control text-w-4"
-                                                [(ngModel)]="data.construction">
+                                            <input type="text" placeholder="COUNT" name="count"
+                                                #count="ngModel" class="form-control text-w-4"
+                                                [(ngModel)]="data.count">
 
                                         </div>
                                     </div>
 
                                     <div class="col-md-6 mrg-sm1">
                                         <div class="input-group">
-                                            <ng-select name="sellerId" #sellerId="ngModel" class="input-w4 px-0"
-                                                [(ngModel)]="data.sellerId" placeholder="Select Container Size">
-                                                <ng-option *ngFor="let i of seller" [value]="i.id">{{ i.sellerName}}
+                                            <ng-select name="containerId" #containerId="ngModel" class="input-w4 px-0"
+                                                [(ngModel)]="data.containerId" placeholder="Select Container Size">
+                                                <ng-option *ngFor="let i of container" [value]="i.id">{{ i.containerName}}
                                                 </ng-option>
                                             </ng-select>
 
@@ -980,11 +980,11 @@
 
                                     <div class="col-md-6">
                                         <div class="input-group">
-                                            <ng-select name="sellerId" #sellerId="ngModel" class="input-w4 px-0"
-                                                [(ngModel)]="data.sellerId" placeholder="Select Price Term">
-                                                <ng-option *ngFor="let i of seller" [value]="i.id">{{ i.sellerName}}
-                                                </ng-option>
-                                            </ng-select>
+                                            <ng-select name="priceTermId" #priceTermId="ngModel" class="input-w4 px-0"
+                                            [(ngModel)]="data.priceTermId" placeholder="-- Select --">
+                                            <ng-option *ngFor="let i of priceterm" [value]="i.id">{{ i.term }}
+                                            </ng-option>
+                                        </ng-select>
 
                                             <div class="input-group-append">
                                                 <button class="btn btn-outline-primary" type="button" id="button-addon2"
@@ -997,9 +997,9 @@
 
                                     <div class="col-md-6 mrg-sm1">
                                         <div class="input-group">
-                                            <ng-select name="sellerId" #sellerId="ngModel" class="input-w4 px-0"
-                                                [(ngModel)]="data.sellerId" placeholder="Destination">
-                                                <ng-option *ngFor="let i of seller" [value]="i.id">{{ i.sellerName}}
+                                            <ng-select name="destinationId" #destinationId="ngModel" class="input-w4 px-0"
+                                                [(ngModel)]="data.destinationId" placeholder="Destination">
+                                                <ng-option *ngFor="let i of destination" [value]="i.id">{{ i.name}}
                                                 </ng-option>
                                             </ng-select>
 
@@ -1388,7 +1388,7 @@
                                     Conditions:</label>
                                 <div class="col-md-7">
                                     <div class="input-group">
-                                        <textarea rows="3" class="form-control" [(ngModel)]="data.otherConditionRemarks"
+                                        <textarea rows="3" class="form-control" [(ngModel)]="data.otherConditionRemarks" #otherConditionRemarks="ngModel"
                                             name="otherConditionRemarks"></textarea>
                                     </div>
                                 </div>
@@ -1407,7 +1407,7 @@
                                 <label for="inputEmail3" class="col-md-3 col-form-label control-label">Title:</label>
                                 <div class="col-md-7">
                                     <div class="input-group">
-                                        <textarea rows="3" class="form-control" [(ngModel)]="data.title"
+                                        <textarea rows="3" class="form-control" [(ngModel)]="data.title" title="ngModel"
                                             name="title"></textarea>
                                     </div>
                                 </div>
