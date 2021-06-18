@@ -587,10 +587,15 @@
                                 <div class="row">
                                     <div class="col-md-6">
 
-                                        <dl class="row">
+                                        <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
                                             <dt class="col-sm-6">Quantity:
                                             </dt>
                                             <dd class="col-sm-6">{{contractCostingData.quantity}} {{contractCostingData.quantityUOMName}} +/- {{contractCostingData.quantityToleranceValue}}%</dd>
+                                        </dl>
+                                        <dl class="row" *ngIf="loggedInDepartmentName=='Yarn Local'">
+                                            <dt class="col-sm-6">Quantity:
+                                            </dt>
+                                            <dd class="col-sm-6">{{contractCostingData.quantity}} {{contractCostingData.quantityUOMName}}</dd>
                                         </dl>
                                         <dl class="row">
                                             <dt class="col-sm-6">Rate:
@@ -829,10 +834,12 @@
                             <div class="form-row border-top">
                                 <div class="col-md-12 pt-2r pb-3">
                                     
-                                    <div class="col-md-12">
+                                    <div class="col-md-12" *ngIf="loggedInDepartmentName=='Yarn Local'">
+                                        <span class="badge badge-primary">Commission</span>
+                                    </div>
+                                    <div class="col-md-12" *ngIf="loggedInDepartmentName=='Fabric Local'">
                                         <span class="badge badge-primary">Commission & Kickback</span>
                                     </div>
-        
                                 </div>
                             </div>
                             <!-- <div class="tab-pane fade show " id="nav-commission" role="tabpanel"
@@ -852,12 +859,13 @@
 
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <dl class="row">
+                                        <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
                                             <dt class="col-sm-6">Kickback:
                                             </dt>
                                             <dd class="col-sm-6">{{contractCommissionData.kickbackPercentage}}% /
                                                 {{contractCommissionData.kickbackUOMName}}</dd>
                                         </dl>
+                                        
                                         <dl class="row">
                                             <dt class="col-sm-6">Fabcot Commission:
                                             </dt>
@@ -1386,7 +1394,7 @@
                             <div class="row pb-5">
                                 <div class="col-md-6 ">
                                     <button class="btn btn-info btn-sm">
-                                        Sale Invoice #1 - 76543</button>
+                                        Sale Invoice #{{i+1}}-{{x.saleInvoiceNo}}</button>
                                 </div>
 
                                 <div class="col-md-6 text-right">
@@ -1457,7 +1465,7 @@
 
 
                                         </dt>
-                                        <dd class="col-sm-6">{{x.id}}</dd>
+                                        <dd class="col-sm-6">{{i+1}}</dd>
                                     </dl>
                                     <dl class="row">
                                         <dt class="col-sm-6">Invoice Date:

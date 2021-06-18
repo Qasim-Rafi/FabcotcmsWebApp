@@ -19,9 +19,9 @@
 <div class="modal-body BG p-0">
   <form #partiesForm="ngForm" novalidate (ngSubmit)="addContractPaymentDelivery(partiesForm)">
 
-    <div class="col-md-12 pt-3 pb-2" *ngIf = "loggedInDepartmentName == 'Fabric Local'">
+    <div class="col-md-12 pt-3 pb-2" >
 
-      <div class="form-group row">
+      <div class="form-group row" *ngIf = "loggedInDepartmentName == 'Fabric Local'">
         <label for="name" class="col-sm-3 col-form-label">Payment Mode</label>
         <div class="col-sm-4">
           <ng-select name="paymentMode" placeholder="-- Select --"  [(ngModel)]="data.paymentMode" >
