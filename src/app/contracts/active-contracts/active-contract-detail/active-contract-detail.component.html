@@ -325,7 +325,7 @@
                                             On-Hold</div>
 
                                         <!-- <button class="btn "><i class="fas fa-history "></i></button> -->
-                                        <button class="btn btn-outline-secondary btn-xs ml-1 mrg-md"><i
+                                        <button class="btn btn-outline-secondary btn-xs ml-1 mrg-md" (click)="showhistorycontract()"><i
                                                 class="fas fa-history "></i></button>
                                         <button class=" btn btn-sm btn-danger p-1 btnsm-f ml-1 mrg-md"
                                             *ngIf="contractData.isApproved == false" (click)="approveContract()">Click

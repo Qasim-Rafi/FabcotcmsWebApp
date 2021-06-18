@@ -58,6 +58,7 @@ import { YarnConfigurationModule } from './Yarn Local/yarn-configuration/yarn-co
 import { SignUpComponent } from './login/sign-up/sign-up.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { CommonModule } from '@angular/common';
+import { HistoryContractComponent } from './shared/MODLES/history-contract/history-contract.component';
 
 
 
@@ -99,6 +100,7 @@ const appRoutes: Routes = []
     StatusComponent,
     OnholdContractsComponent,
     SignUpComponent,
+    HistoryContractComponent,
    
 
   

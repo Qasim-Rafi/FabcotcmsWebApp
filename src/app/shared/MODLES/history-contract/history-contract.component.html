@@ -1,0 +1,66 @@
+<div class="modal-header" >
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
+        <div aria-hidden="true">&times;</div>
+    </button>
+ 
+    <h5  class="modal-title">
+        <i class="fas fa-history"></i>
+        Contract Stage History
+    </h5>
+</div>
+
+<div class="modal-body BG p-0" >
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="panel-body">
+
+                <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'"
+                [headerHeight]="50" [footerHeight]="50" [sorts]="[{ prop: 'autoContractNumber', dir: 'desc' }]" [rowHeight]="'auto'"
+                [limit]="10">
+
+
+
+        
+                  <ngx-datatable-column name="Date" prop="updatedDateTime">
+                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                      {{row.updatedDateTime}}
+                    </ng-template>
+                  </ngx-datatable-column>
+        
+                  <ngx-datatable-column name="User" prop="updatedByName">
+                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                      {{row.updatedByName}}
+                    </ng-template>
+                  </ngx-datatable-column>
+        
+                  <ngx-datatable-column name="Value" prop="value">
+                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                      {{row.value}}
+        
+                    </ng-template>
+                  </ngx-datatable-column>
+
+                  <ngx-datatable-column name="Detail" prop="details">
+                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                      {{row.details}}
+        
+                    </ng-template>
+                  </ngx-datatable-column>
+                </ngx-datatable>
+              </div>
+
+
+
+            </div>
+            </div>
+            <div class="modal-footer NotBG">
+                <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
+                    Close
+                </button>
+
+            
+            </div>
+</div>
+
