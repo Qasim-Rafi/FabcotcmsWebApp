@@ -23,6 +23,8 @@ export class PaymentDeliveryComponent implements OnInit {
   paymentMode: any= {};
   city: any= {};
   packing: any= {};
+  loggedInDepartmentName: any={};
+  container: any= {};
 
 
 
@@ -32,6 +34,8 @@ export class PaymentDeliveryComponent implements OnInit {
     private toastr: ToastrService,) { }
 
   ngOnInit(): void {
+    this.loggedInDepartmentName=localStorage.getItem('loggedInDepartmentName');
+
     this.GetPaymentDropdown();
     this.GetPaymentModeDropdown();
     this.GetPackingDropdown();
@@ -105,6 +109,18 @@ export class PaymentDeliveryComponent implements OnInit {
       }
     })
   }
+  GetContainerDropdown() {
+    this.service.getCity().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.container = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
+
 
   getContractPaymentData() {
     this.http.get(`${environment.apiUrl}/api/Contracts/GetContractPaymentDeliveryById/` + this.contractId)
