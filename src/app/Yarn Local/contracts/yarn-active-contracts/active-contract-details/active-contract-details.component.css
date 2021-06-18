@@ -77,13 +77,13 @@ dt {
 color: #676a6c !important;
 }
 
-dd{
+/* dd{
   margin-bottom: 0rem !important;
   }
 
 .col-md-6 dl{
   line-height: 10px !important;
-}
+} */
 
 /* Progress Bar */
 .progress {
@@ -128,4 +128,17 @@ dd{
   padding: 5px 10px !important;
   font-weight: 500 !important;
   font-size: 100% !important;
+}
+
+
+@media only screen and (max-width: 1024px) {
+  .mrg-btm {
+    margin: 0 0 10px 0;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  dt {
+    text-align: left !important;
+  }
 }
