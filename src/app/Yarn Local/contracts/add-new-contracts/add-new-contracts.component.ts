@@ -44,15 +44,31 @@ export class AddNewContractsComponent implements OnInit {
   packing: any = [];
   priceterm: any = [];
   fabricType: any = [];
+  destination: any = [];
+  PieceLength: any = [];
+  PickInsertion: any = [];
+  paymentMode1: any = [];
   uomList: any = [];
+  blendingRatioWarp: any = [];
+  blendingRatioWeft: any = [];
   currency: any = [];
+  container: any = [];
+  paymentMode: any = {};
+  newdestination: any;
   newBuyer: any;
+  newbuyerPaymentTerm1: any;
+  newsellerPaymentTerm1: any;
+  newblendingRatioWeft: any;
+  newblendingRatioWarp: any;
   newFabric: any;
+  newPickInsertion: any;
   newselvedge: any;
   newweave: any;
   newArticle: any;
   newPacking: any;
+  newcontainer: any;
   newSeller: number;
+  newPieceLength: number;
   counter3: number = 1;
   selvedge: any = [];
   sellerPOC: any = [];
@@ -62,10 +78,12 @@ export class AddNewContractsComponent implements OnInit {
   new3: any = [];
   data1: any = [];
   data2: any = [];
-condition1:string="We are please to confirm here the booking as per following term and conditions."
- condition:string="+17% GST As Per Government ";
+  condition1: string = "We are please to confirm here the booking as per following term and conditions."
+  condition: string = "+17% GST As Per Government ";
   weave: any = [];
   agents: any = {};
+  buyerPayementTerm: any = [];
+  PayementTerm: any = [];
   commission: any = [];
   newPrice: any;
   @ViewChild(NgForm) contractForm;
@@ -88,29 +106,38 @@ condition1:string="We are please to confirm here the booking as per following te
 
   ngOnInit(): void {
     this.loggedInDepartmentName = localStorage.getItem('loggedInDepartmentName');
-    if(this.loggedInDepartmentName=='Yarn Local'){
+    if (this.loggedInDepartmentName == 'Yarn Local') {
       this.data.currencyId = 1,
-      this.data.quantityUOMId = 8
+        this.data.quantityUOMId = 8
       this.data.rateUOMId = 7
-    }else if(this.loggedInDepartmentName=='Fabric Local'){
+    } else if (this.loggedInDepartmentName == 'Fabric Local') {
       this.data.quantityUOMId = 9
       this.data.rateUOMId = 10
     }
-    
+
     let olddate = new Date();
     let latest_date = this.datepipe.transform(olddate, 'yyyy-MM-dd');
     this.data.enquiryDate = this.dateformater.fromModel(latest_date);
+    this.GetWarpDropdown("start");
+    this.GetWeftDropdown("start");
     this.GetBuyersDropdown("start");
     this.GetSellerDropdown("start");
-    this.getSellersPOC();
+    // this.getSellersPOC();
+    this.getPieceLength("start");
+    this.GetContainerDropdown("start");
     this.GetweavesDropdown("start");
-    this.getBuyerPOC();
+    // this.getBuyerPOC();
+    this.GetPaymentModeDropdown();
     this.GetUOMDropdown();
     this.GetSelvedgeDropdown("start");
+    this.getPickInsertion("start");
+    this.GetCitiesDropdown("start");
     this.GetArticleDropdown("start");
     this.GetCurrencyDropdown();
     this.GetpackingDropdown("start");
     this.GetPriceTermDropdown("start");
+    this.GetBuyerPaymentTerm("start");
+    this.GetSellerPaymentTerm("start");
     this.getFabricType("start");
     this.GetAgentDropdown();
     this.getAutoEnquiryNo();
@@ -144,10 +171,6 @@ condition1:string="We are please to confirm here the booking as per following te
     this.new3.splice(i, 1);
     // this.counter3-- ;
   }
-  // addMore() {
-  //   this.data.push({id: this.data.length});
-  // }
-
   GetAgentDropdown() {
     this.service.getAgents().subscribe(res => {
       this.response = res;
@@ -180,7 +203,6 @@ condition1:string="We are please to confirm here the booking as per following te
       }
     })
   }
-
   GetBuyersDropdown(type: string) {
     this.service.getBuyers().subscribe(res => {
       this.response = res;
@@ -202,8 +224,69 @@ condition1:string="We are please to confirm here the booking as per following te
       }
     })
   }
+  getBuyerPOC(event) {
+    let id = event;
+    this.service.getBuyersPOC(id).subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.buyerPOC = this.response.data;
+        if (this.buyerPOC.length == 0) {
+
+          this.data.buyerPOCId = null
+        }
+        else {
+          this.data.buyerPOCId = this.buyerPOC[0].id
+        }
+        // this.data.beneficiaryCriteriaId = 2; 
+
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
+  getSellersPOC(event) {
+    let id = event;
+    this.service.getSellersPOC(id).subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.sellerPOC = this.response.data;
+        if (this.sellerPOC.length == 0) {
+
+          this.data.sellerPOCId = null
+        }
+        else {
+          this.data.sellerPOCId = this.sellerPOC[0].id
+        }
+        // this.data.beneficiaryCriteriaId = 2; 
+
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
+  GetCitiesDropdown(type: string) {
+    this.service.getCity().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+
+        this.destination = this.response.data;
+        // this.newBuyer = this.response.data.lastId
 
 
+
+        if (type == "other") {
+          // this.buyer.id = this.newBuyer;
+          this.data.destinationId = this.newdestination;
+        }
+
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
   GetSellerDropdown(type: string) {
     this.service.getSellerLookup().subscribe(res => {
       this.response = res;
@@ -225,8 +308,59 @@ condition1:string="We are please to confirm here the booking as per following te
       }
     })
   }
+  GetPaymentModeDropdown() {
+    this.service.getPaymentMode().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.paymentMode = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
+  GetSellerPaymentTerm(type: string) {
+    this.service.getPaymentTerm().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+
+        this.PayementTerm = this.response.data;
+        // this.newSeller = this.response.data
 
 
+
+        if (type == "other") {
+          // this.seller.id = this.newSeller;
+          this.data.buyerPaymentTermId = this.newbuyerPaymentTerm1
+        }
+
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
+  GetBuyerPaymentTerm(type: string) {
+    this.service.getPaymentTerm().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+
+        this.buyerPayementTerm = this.response.data;
+        // this.newSeller = this.response.data
+
+
+
+        if (type == "other") {
+          // this.seller.id = this.newSeller;
+          this.data.buyerPaymentTermId = this.newbuyerPaymentTerm1
+        }
+
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
   GetUOMDropdown() {
     this.service.getUOM().subscribe(res => {
       this.response = res;
@@ -238,28 +372,7 @@ condition1:string="We are please to confirm here the booking as per following te
       }
     })
   }
-  getBuyerPOC() {
-    this.service.getBuyersPOC().subscribe(res => {
-      this.response = res;
-      if (this.response.success == true) {
-        this.buyerPOC = this.response.data;
-      }
-      else {
-        this.toastr.error(this.response.message, 'Message.');
-      }
-    })
-  }
-  getSellersPOC() {
-    this.service.getBuyersPOC().subscribe(res => {
-      this.response = res;
-      if (this.response.success == true) {
-        this.sellerPOC = this.response.data;
-      }
-      else {
-        this.toastr.error(this.response.message, 'Message.');
-      }
-    })
-  }
+ 
   GetPriceTermDropdown(type: string) {
     this.service.getPriceTerm().subscribe(res => {
       this.response = res;
@@ -275,7 +388,21 @@ condition1:string="We are please to confirm here the booking as per following te
       }
     })
   }
-
+  GetContainerDropdown(type: string) {
+    this.service.getContainer().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.container = this.response.data;
+        if (type == "other") {
+          // this.seller.id = this.newSeller;
+          this.data.containerId = this.newcontainer
+        }
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
   GetpackingDropdown(type: string) {
     this.service.getPackaging().subscribe(res => {
       this.response = res;
@@ -283,7 +410,7 @@ condition1:string="We are please to confirm here the booking as per following te
         this.packing = this.response.data;
         if (type == "other") {
           // this.seller.id = this.newSeller;
-          this.data.packingIds = this.newPacking
+          this.data.packingId = this.newPacking
         }
 
       }
@@ -292,7 +419,6 @@ condition1:string="We are please to confirm here the booking as per following te
       }
     })
   }
-
   GetArticleDropdown(type: string) {
     this.service.getArticles().subscribe(res => {
       this.response = res;
@@ -308,8 +434,6 @@ condition1:string="We are please to confirm here the booking as per following te
       }
     })
   }
-
-
   GetCurrencyDropdown() {
     this.service.getCurrencyType().subscribe(res => {
       this.response = res;
@@ -321,8 +445,6 @@ condition1:string="We are please to confirm here the booking as per following te
       }
     })
   }
-
-
   getAutoEnquiryNo() {
     this.http.get(`${environment.apiUrl}/api/Enquiries/GetNextEnquiryNumber`)
       .subscribe(
@@ -342,8 +464,6 @@ condition1:string="We are please to confirm here the booking as per following te
           }
         });
   }
-
-
   addBuyerForm() {
     const modalRef = this.modalService.open(AddBuyerComponent, { centered: true });
     modalRef.result.then((data) => {
@@ -359,10 +479,6 @@ condition1:string="We are please to confirm here the booking as per following te
       // on dismiss
     });
   }
-
-
-
-
   addArticleForm() {
     const modalRef = this.modalService.open(AddArticleComponent, { centered: true });
     modalRef.result.then((data) => {
@@ -379,11 +495,6 @@ condition1:string="We are please to confirm here the booking as per following te
     });
 
   }
-
-
-
-
-
   addSellerForm() {
     const modalRef = this.modalService.open(AddSellerFormComponent, { centered: true });
     modalRef.result.then((data) => {
@@ -450,15 +561,56 @@ condition1:string="We are please to confirm here the booking as per following te
       }
     })
   }
-
-  getPieceLength(type: string) {
-    this.service.getFabricType().subscribe(res => {
+  GetWarpDropdown(type: string) {
+    this.service.getBrWarp().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.fabricType = this.response.data;
+
+        this.blendingRatioWarp = this.response.data;
+        // this.newSeller = this.response.data
+
+
+
         if (type == "other") {
           // this.seller.id = this.newSeller;
-          this.data.fabricTypeId = this.newFabric
+          this.data.blendingRatioWarpId = this.newblendingRatioWarp
+        }
+
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
+  GetWeftDropdown(type: string) {
+    this.service.getBrWeft().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+
+        this.blendingRatioWeft = this.response.data;
+        // this.newSeller = this.response.data
+
+
+
+        if (type == "other") {
+          // this.seller.id = this.newSeller;
+          this.data.blendingRatioWeftId = this.newblendingRatioWeft
+        }
+
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
+  getPieceLength(type: string) {
+    this.service.getPieceLength().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.PieceLength = this.response.data;
+        if (type == "other") {
+          // this.seller.id = this.newSeller;
+          this.data.pieceLengthId = this.newPieceLength
         }
       }
       else {
@@ -466,8 +618,21 @@ condition1:string="We are please to confirm here the booking as per following te
       }
     })
   }
-
-
+  getPickInsertion(type: string) {
+    this.service.getPickInsertion().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.PickInsertion = this.response.data;
+        if (type == "other") {
+          // this.seller.id = this.newSeller;
+          this.data.pickInsertionId = this.newPickInsertion
+        }
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
   addFabricTypeForm() {
     const modalRef = this.modalService.open(AddTypeComponent, { centered: true });
     modalRef.result.then((data) => {
@@ -497,7 +662,7 @@ condition1:string="We are please to confirm here the booking as per following te
 
         this.newweave = data.id
 
-        this.GetweavesDropdown("start");
+        this.GetweavesDropdown("other");
 
 
 
@@ -508,7 +673,6 @@ condition1:string="We are please to confirm here the booking as per following te
       // on dismiss
     });
   }
-
   addpiecelengthForm(check, form) {
     const modalRef = this.modalService.open(AddPieceLengthComponent, { centered: true });
     modalRef.componentInstance.statusCheck = check;
@@ -517,9 +681,9 @@ condition1:string="We are please to confirm here the booking as per following te
       // on close
       if (data.parent == true) {
 
-        this.newPrice = data.id
+        this.newPieceLength = data.id
 
-        this.getFabricType("other");
+        this.getPieceLength("other");
 
 
 
@@ -537,9 +701,9 @@ condition1:string="We are please to confirm here the booking as per following te
       // on close
       if (data.parent == true) {
 
-        this.newPrice = data.id
+        this.newblendingRatioWarp = data.id
 
-        this.getFabricType("other");
+        this.GetWarpDropdown("other");
 
 
 
@@ -557,9 +721,9 @@ condition1:string="We are please to confirm here the booking as per following te
       // on close
       if (data.parent == true) {
 
-        this.newPrice = data.id
+        this.newblendingRatioWeft = data.id
 
-        this.getFabricType("other");
+        this.GetWeftDropdown("other");
 
 
 
@@ -577,9 +741,9 @@ condition1:string="We are please to confirm here the booking as per following te
       // on close
       if (data.parent == true) {
 
-        this.newPrice = data.id
+        this.newPickInsertion = data.id
 
-        this.getFabricType("other");
+        this.getPickInsertion("other");
 
 
 
@@ -609,7 +773,6 @@ condition1:string="We are please to confirm here the booking as per following te
       // on dismiss
     });
   }
-
   GetSelvedgeDropdown(type: string) {
     this.service.getSelvedge().subscribe(res => {
       this.response = res;
@@ -637,9 +800,9 @@ condition1:string="We are please to confirm here the booking as per following te
       // on close
       if (data.parent == true) {
 
-        this.newPrice = data.id
+        this.newsellerPaymentTerm1 = data.id
 
-        this.getFabricType("other");
+        this.GetSellerPaymentTerm("other");
 
 
 
@@ -649,8 +812,24 @@ condition1:string="We are please to confirm here the booking as per following te
       // on dismiss
     });
   }
+  addbuyerpayemntForm() {
+    const modalRef = this.modalService.open(AddPaymentComponent, { centered: true });
+    modalRef.result.then((data) => {
+      // on close
+      if (data.parent == true) {
+
+        this.newbuyerPaymentTerm1 = data.id
+
+        this.GetBuyerPaymentTerm("other");
 
 
+
+
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
   addContainerForm(check, form) {
     const modalRef = this.modalService.open(AddContainerComponent, { centered: true });
     modalRef.componentInstance.statusCheck = check;
@@ -659,9 +838,9 @@ condition1:string="We are please to confirm here the booking as per following te
       // on close
       if (data.parent == true) {
 
-        this.newPrice = data.id
+        this.newcontainer = data.id
 
-        this.getFabricType("other");
+        this.GetContainerDropdown("other");
 
 
 
@@ -671,7 +850,6 @@ condition1:string="We are please to confirm here the booking as per following te
       // on dismiss
     });
   }
-
   addcityForm(check, form) {
     const modalRef = this.modalService.open(EditCityComponent, { centered: true });
     modalRef.componentInstance.statusCheck = check;
@@ -680,9 +858,9 @@ condition1:string="We are please to confirm here the booking as per following te
       // on close
       if (data.parent == true) {
 
-        this.newPrice = data.id
+        this.newdestination = data.id
 
-        this.getFabricType("other");
+        this.GetCitiesDropdown("other");
 
 
 
@@ -692,17 +870,9 @@ condition1:string="We are please to confirm here the booking as per following te
       // on dismiss
     });
   }
-
-
-
-
-
-
   navigate() {
     this.router.navigateByUrl('/FabCot/active-contract');
   };
-
-
   addContract() {
     let departmentId = parseInt(localStorage.getItem('loggedInDepartmentId'))
     // statusCheck = check;
@@ -739,8 +909,8 @@ condition1:string="We are please to confirm here the booking as per following te
       "buyerDeliveryDate": this.dateformater.toModel(this.data.buyerDeliveryDate),
       "contractRemarks": this.data.contractRemarks,
       "buyerRemarks": this.data.buyerRemarks,
-      "otherConditionRemarks": this.data.otherConditionRemarks == null ?  this.condition : this.data.otherConditionRemarks ,
-      "title": this.data.title  == null ?  this.condition1 :this.data.title ,
+      "otherConditionRemarks": this.data.otherConditionRemarks == null ? this.condition : this.data.otherConditionRemarks,
+      "title": this.data.title == null ? this.condition1 : this.data.title,
       "kickbackPercentage": this.data.kickbackPercentage,
       "kickbackUOMId": this.data.kickbackUOMId,
       "beneficiary": this.data.beneficiary,
@@ -756,25 +926,25 @@ condition1:string="We are please to confirm here the booking as per following te
       "contractDate": this.data.contractDate,
       "buyerPOCId": this.data.buyerPOCId,
       "sellerPOCId": this.data.sellerPOCId,
-      "constructionAdditionalInfo":this.data.constructionAdditionalInfo,
+      "constructionAdditionalInfo": this.data.constructionAdditionalInfo,
       "gsm": this.data.gsm,
       "tolerance": this.data.tolerance,
       "weaveId": this.data.weaveId,
-      "selvedgeId":this.data.selvedgeId,
-      "pieceLengthId":this.data.pieceLengthId,
-      "pickInsertionId":this.data.pickInsertionId,
+      "selvedgeId": this.data.selvedgeId,
+      "pieceLengthId": this.data.pieceLengthId,
+      "pickInsertionId": this.data.pickInsertionId,
       "widthInInch": this.data.widthInInch,
-      "blendingRatioWarpId":this.data.blendingRatioWarpId,
+      "blendingRatioWarpId": this.data.blendingRatioWarpId,
       "blendingRatioWeftId": this.data.blendingRatioWeftId,
-      "gst":this.data.gst,
+      "gst": this.data.gst,
       "wiTax": this.data.wiTax,
       "priceTermId": this.data.priceTermId,
       "sellerPaymentTermId": this.data.sellerPaymentTermId,
       "buyerPaymentTermId": this.data.buyerPaymentTermId,
       "paymentMode": this.data.paymentMode,
-      "sellerPaymentTermDays":this.data.sellerPaymentTermDays,
-      "buyerPaymentTermDays":this.data.buyerPaymentTermDays,
-      "destinationId":this.data.destinationId,
+      "sellerPaymentTermDays": this.data.sellerPaymentTermDays,
+      "buyerPaymentTermDays": this.data.buyerPaymentTermDays,
+      "destinationId": this.data.destinationId,
       "containerId": this.data.containerId,
       "count": this.data.count,
 
@@ -805,12 +975,5 @@ condition1:string="We are please to confirm here the booking as per following te
           this.spinner.hide();
         });
   }
-
-
-
-
-
-
-
 
 }

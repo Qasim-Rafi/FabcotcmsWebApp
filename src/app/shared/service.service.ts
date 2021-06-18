@@ -136,14 +136,14 @@ export class ServiceService {
   getSellerLookup() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/Sellers`);
   }
-  getBuyersPOC() {
-    return this.http.get(`${environment.apiUrl}/api/Buyers/GetAllPOC`);
+  getBuyersPOC(id) {
+    return this.http.get(`${environment.apiUrl}/api/Lookups/BuyerPOCsByBuyerId/`+id);
   }
   getSellers() {
     return this.http.get(`${environment.apiUrl}/api/Sellers/GetSellers`);
   }
-  getSellersPOC() {
-    return this.http.get(`${environment.apiUrl}/api/Sellers/GetAllPOC`);
+  getSellersPOC(id) {
+    return this.http.get(`${environment.apiUrl}/api/Lookups/SellerPOCsBySellerId/`+id);
   }
   getAgents() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/ExternalAgents`)

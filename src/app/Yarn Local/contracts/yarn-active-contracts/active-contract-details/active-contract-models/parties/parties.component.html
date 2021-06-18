@@ -84,7 +84,7 @@
     <div class="form-group row">
       <label for="parentBuyerId" class="col-sm-3 col-form-label text_Navy">Buyer Name</label>
       <div class="col-sm-8">
-        <ng-select name="buyerId" placeholder="-- Select --" [(ngModel)]=" data.buyerId">
+        <ng-select name="buyerId" (change)="getBuyerPOC($event)" placeholder="-- Select --" [(ngModel)]=" data.buyerId">
           <ng-option *ngFor="let i of buyer" [value]="i.id">
             {{i.buyerName}}
           </ng-option>
@@ -97,7 +97,7 @@
       <label for="buyerPOCId" class="col-sm-3 col-form-label ">Buyer POC</label>
       <div class="col-sm-8">
         <ng-select name="buyerPOCId" placeholder="-- Select --" [(ngModel)]=" data.buyerPOCId">
-          <ng-option *ngFor="let i of buyerPOC" [value]="i.buyerPOCId">
+          <ng-option *ngFor="let i of buyerPOC" [value]="i.id">
             {{i.name}}
           </ng-option>
         </ng-select>
@@ -108,7 +108,7 @@
     <div class="form-group row">
       <label for="sellerId" class="col-sm-3 col-form-label text_Navy">Supplier Name</label>
       <div class="col-sm-8">
-        <ng-select name="sellerId" placeholder="-- Select --" [(ngModel)]=" data.sellerId">
+        <ng-select name="sellerId" (change)="getSellersPOC($event)" placeholder="-- Select --" [(ngModel)]=" data.sellerId">
           <ng-option *ngFor="let i of seller" [value]="i.id">
             {{i.sellerName}}
           </ng-option>
@@ -121,7 +121,7 @@
       <label for="sellerPOCId" class="col-sm-3 col-form-label ">Seller POC</label>
       <div class="col-sm-8">
         <ng-select name="sellerPOCId" placeholder="-- Select --" [(ngModel)]="data.sellerPOCId">
-          <ng-option *ngFor="let i of sellerPOC" [value]="i.selllerPOCId">
+          <ng-option *ngFor="let i of sellerPOC" [value]="i.id">
             {{i.name}}
           </ng-option>
         </ng-select>

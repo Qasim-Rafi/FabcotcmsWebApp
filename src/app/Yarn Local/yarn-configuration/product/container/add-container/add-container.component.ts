@@ -16,6 +16,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class AddContainerComponent implements OnInit {
 
   response: any;
+  obj : any ={};
   data: any = {};
   active = true;
   @Input() containerId;
@@ -116,10 +117,13 @@ this.spinner.show();
       post(`${environment.apiUrl}/api/YarnConfig/AddContainer`, varr)
       .subscribe(
         res => {
-
+          this.obj.parent = this.active;
+          this.obj.status = true;
           this.response = res;
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
+            this.addAgentForm.reset();
+            this.obj.id = this.response.data;
             this.activeModal.close(true);
             this.spinner.hide();
           }

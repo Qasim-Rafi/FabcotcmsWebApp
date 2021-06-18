@@ -19,9 +19,9 @@ export class PartiesComponent implements OnInit {
   response: any;
   certificate: any={};
   buyer: any={};
-  buyerPOC: any={};
+  buyerPOC: any=[];
   seller: any={};
-  sellerPOC: any={};
+  sellerPOC: any=[];
 
 
   
@@ -34,9 +34,9 @@ export class PartiesComponent implements OnInit {
 
   ngOnInit(): void {
     this.GetBuyersDropdown();
-    this.GetBuyersPOCDropdown();
+    // this.GetBuyersPOCDropdown(id);
     this.GetSellersDropdown();
-    this.GetSellersPOCDropdown();
+    // this.GetSellersPOCDropdown();
     this.GetCertificateDropdown();
     this.getContractPartiesData();
 
@@ -90,18 +90,6 @@ export class PartiesComponent implements OnInit {
   }
 
 
-  GetBuyersPOCDropdown() {
-    this.service.getBuyersPOC().subscribe(res => {
-      this.response = res;
-      if (this.response.success == true) {
-        this.buyerPOC = this.response.data;
-      }
-      else {
-        this.toastr.error(this.response.message, 'Message.');
-      }
-    })
-  }
-
 
   GetSellersDropdown() {
     this.service.getSellers().subscribe(res => {
@@ -116,11 +104,21 @@ export class PartiesComponent implements OnInit {
   }
 
 
-  GetSellersPOCDropdown() {
-    this.service.getSellersPOC().subscribe(res => {
+  getSellersPOC(event) {
+    let id = event;
+    this.service.getSellersPOC(id).subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
         this.sellerPOC = this.response.data;
+        if (this.sellerPOC.length == 0) {
+
+          this.data.sellerPOCId = null
+        }
+        else {
+          this.data.sellerPOCId = this.sellerPOC[0].id
+        }
+        // this.data.beneficiaryCriteriaId = 2; 
+
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -128,7 +126,27 @@ export class PartiesComponent implements OnInit {
     })
   }
 
+  getBuyerPOC(event) {
+    let id = event;
+    this.service.getBuyersPOC(id).subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.buyerPOC = this.response.data;
+        if (this.buyerPOC.length == 0) {
 
+          this.data.buyerPOCId = null
+        }
+        else {
+          this.data.buyerPOCId = this.buyerPOC[0].id
+        }
+        // this.data.beneficiaryCriteriaId = 2; 
+
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
 
 
   GetCertificateDropdown() {
