@@ -15,6 +15,8 @@ export class QuantityAndCostingComponent implements OnInit {
 
   dateformater: Dateformater = new Dateformater();  
   @Input() contractId;
+  @Input() autoContractNumber;
+
   data:any ={};
   response: any;
   currency: any={};
