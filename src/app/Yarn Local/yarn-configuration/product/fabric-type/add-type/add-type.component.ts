@@ -16,6 +16,8 @@ export class AddTypeComponent implements OnInit {
   data:any={};
   response: any;
   active = true;
+  obj : any ={};
+  @ViewChild(NgForm) addTypeForm;
  
   constructor(private http:HttpClient,
     private service: ServiceService,
@@ -54,13 +56,14 @@ this.spinner.show();
     post(`${environment.apiUrl}/api/Products/AddFabricType`,varr)
     .subscribe(
       res=> { 
-  
+        this.obj.parent = this.active;
+        this.obj.status = true;
         this.response = res;
         if (this.response.success == true){
           this.toastr.success(this.response.message, 'Message.');
-      
-          // this.buyerForm.reset();
-          this.activeModal.close(true);
+          this.addTypeForm.reset();
+          this.obj.id = this.response.data;
+          this.activeModal.close(this.obj);
           this.spinner.hide();
         }
         else {

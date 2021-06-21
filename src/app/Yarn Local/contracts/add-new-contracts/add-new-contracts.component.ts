@@ -111,8 +111,9 @@ export class AddNewContractsComponent implements OnInit {
         this.data.quantityUOMId = 8
       this.data.rateUOMId = 7
     } else if (this.loggedInDepartmentName == 'Fabric Local') {
-      this.data.quantityUOMId = 9
-      this.data.rateUOMId = 10
+      this.data.quantityUOMId;
+      this.data.rateUOMId;
+      
     }
 
     let olddate = new Date();
@@ -639,7 +640,7 @@ export class AddNewContractsComponent implements OnInit {
       // on close
       if (data.parent == true) {
 
-        this.newPrice = data.id
+        this.newFabric = data.id
 
         this.getFabricType("other");
 
@@ -936,6 +937,8 @@ export class AddNewContractsComponent implements OnInit {
       "widthInInch": this.data.widthInInch,
       "blendingRatioWarpId": this.data.blendingRatioWarpId,
       "blendingRatioWeftId": this.data.blendingRatioWeftId,
+      "buyerSidePaymentTermInfo": this.data.buyerSidePaymentTermInfo,
+      "sellerPaymentTermInfo": this.data.sellerPaymentTermInfo,
       "gst": this.data.gst,
       "wiTax": this.data.wiTax,
       "priceTermId": this.data.priceTermId,
