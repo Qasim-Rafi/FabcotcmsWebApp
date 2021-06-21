@@ -29,6 +29,8 @@ import { RemarksComponent } from './Active-Contract-Models/remarks/remarks.compo
 import { SaleInvoiceItemComponent } from './Active-Contract-Models/sale-invoice-item/sale-invoice-item.component';
 import { SALEINVOICEComponent } from './Active-Contract-Models/sale-invoice/sale-invoice.component';
 import { TnaLogHistoryComponent } from './Active-Contract-Models/tna-log-history/tna-log-history.component';
+import pdfFonts from "pdfmake/build/vfs_fonts";
+import pdfMake from "pdfmake/build/pdfmake";
 
 @Component({
   selector: 'app-active-contract-detail',
@@ -1698,5 +1700,273 @@ this.spinner.hide();
         
           }
     
+          print() {
+            let docDefinition = {
+              pageSize: 'A4',
+              pageOrientation: 'LETTER',
+              pageMargins: [ 10, 10, 10, 0 ],
+              info: {
+                title: 'Fabcot | Contract'
+              },
+              content: [
+                {
+                 
+                  table: {
+                    headerRows: 1,
+                    widths: ['100%'],
+                    body: [
+                    [{
+                      style: 'heading',
+                      text: 'FABCOT INTERNATIONAL'
+                    }],
+                      ]
+                   
+                  }
+        
+                },
+                    
+                {
+                  layout:'noBorders',
+                  margin: [10 , 30 , 0 , 0],
+                  table:{headerRows: 1 , widths:['20%' ],
+                body: [
+                  [{text:'133 Aurangzeb Block'  , style:'propertyValue'} 
+                    ],] }
+                },
+        
+                {
+                  layout:'noBorders',
+                  margin: [10 , 0 , 0 , 0],
+                  table:{headerRows: 1 , widths:['20%'],
+                body: [
+                  [{text:'New Garden Town'  , style:'propertyValue'}  ],] }
+                },
+                {
+                  margin: [300 , -40 , 0 , 0],
+                 
+                  table: {
+                    headerRows: 1,
+                    widths: ['50%','50%'],
+                    body: [
+                      [{text:'Indent Number' , style: 'tableheader'}, {text:'Indent Date' , style: 'tableheader'}],
+                      [ {text:this.contractData['autoContractNumber']  , style:'propertyValue'  }  , {text:this.contractData['createdDateTime'] , style:'propertyValue' }]
+                    
+                    ]
+                  }
+                },
+                { margin:[300 , 10 , 0 , 0],
+                  text:"Commission Payable to Fabcot (Buyer Side):"  , style:'propertyValue2',
+                  
+                },
+                { margin:[500 , -11 , 0 , 0],
+                  text:this.contractData['buyerName']  , style:'propertyValue3',
+                  
+                },
+                { margin:[300 , 0 , 0 , 0],
+                  text:this.contractCommissionData['buyerSideCommission'] + '%'  , style:'propertyValue3',
+                  
+                },
+                {
+                  margin: [0 , 17 , 0 , 0],
+                 
+                  table: {
+                    headerRows: 1,
+                    widths: ['30%'],
+                    body: [
+                      [{text:'Supplier ' , style: 'tableheader'}],
+                      [ {text:this.contractData['sellerName'] , style:'propertyValue'   } ]
+                    
+                    ]
+                  }
+                },
+                {
+                  margin: [300 , -37 , 0 , 0],
+                 
+                  table: {
+                    headerRows: 1,
+                    widths: ['100%'],
+                    body: [
+                      [{text:'CUSTOMER' , style: 'tableheader'}],
+                      [ {text:this.contractData['buyerName'] , style:'propertyValue'  } ]
+                    
+                    ] 
+                  }
+                },
+                {
+                  margin: [300 , 23 , 0 , 0],
+                 
+                  table: {
+                    headerRows: 1,
+                    widths: ['100%'],
+                    body: [
+                      [{text:'FORWARDED/SHIPPING LINE' , style: 'tableheader'}]
+                     
+                    
+                    ] 
+                  }
+                },
+                {
+                  margin:[0,30,0,0],
+                  table: {
+                    headerRows: 1,
+                    widths: ['20%' , '20%' , '20%' , '20%' , '20%'],
+                    body: [
+                      [{text:'Shipped To' , style: 'tableheader'},
+                      {text:'PO Number' , style: 'tableheader'},
+                      {text:'Shipped Date' , style: 'tableheader'},
+                      {text:'Ship Via' , style: 'tableheader'},
+                      {text:'Payment Terms' , style: 'tableheader'}],
+                      [ {text:this.contractPartiesData['buyerName'] , style:'propertyValue'   },
+                      {text:this.contractPartiesData['poNumber'] , style:'propertyValue'   },
+                      {text:this.rows4.map((row=>row.buyerDate )) , style:'propertyValue'   } ,
+                      {text:this.rows4.map((row=>row.shipmentMode ))  , style:'propertyValue'   } ,
+                      {text:this.contractPaymentData['paymentTermName'] + this.contractPaymentData['paymentTermDays'] + this.contractPaymentData['paymentTermInfo'] , style:'propertyValue'   }   ]
+                     
+                    
+                    ] 
+                  }
+                },
+                {
+                  margin:[0,40,0,0],
+                  table: {
+                    headerRows: 1,
+                    widths: ['5%' , '15%','12%' , '6%' , '12%' , '6%' , '12%','13%','10%','12%'],
+                    body: [
+                      [{text:'Item' , style: 'tableheader2'},
+                      {text:'Composition ' , style: 'tableheader2'},
+                      {text:'Construction' , style: 'tableheader2'},
+                      {text:'Sizes' , style: 'tableheader2'},
+                      {text:'GSM/Weight' , style: 'tableheader2'},
+                      {text:'Color' , style: 'tableheader2'},
+                      {text:'Quantity' , style: 'tableheader2'},
+                      {text:'Unit Price' , style: 'tableheader2'},
+                      {text:'Amount' , style: 'tableheader2'},
+                      {text:'Commission' , style: 'tableheader2'}],
+                  
+                    ...this.rows2.map((row=>
+                      [{text:row.description , style:'propertyValue'}, {text:row.compositionPercentage + row.compositionFebricTypeName+row.compositionAdditionalInfo , style:'propertyValue'} ,
+                         {text:row.construction , style:'propertyValue'},{text:row.size , style:'propertyValue'}, {text:row.weight , style:'propertyValue'} , {text:row.description , style:'propertyValue'} ,
+                         { text:row.itemQuantity + row.itemUOMName , style:'propertyValue'} ,
+                          {text:row.contractRate + row.contractCurrencyCode + row.contractUOMName , style:'propertyValue'} , 
+                          {text:row.contractCost , style:'propertyValue'} , {text:row.commission , style:'propertyValue'},
+                   
+                        ]
+                      )),
+                     
+                   
+                    ]
+
+                  }
+                },
+                {
+                 
+                  table: {
+                    headerRows: 1,
+                    widths: ['59%' , '12%' , '12%' , '10%' , '12%'],
+                    body: [
+                      [{text:'Total' , style: 'tableheader3'},
+                      {text:'' , style: 'tableheader3'},
+                      {text:'' , style: 'tableheader3'},
+                      {text:'' , style: 'tableheader3'},
+                      {text:'' , style: 'tableheader3'},]
+                     
+                    
+                    ] 
+                  }
+                },
+                { margin:[20 , 60 , 0 , 0],
+                  
+                  text:'Terms & Conditions'   , style:'propertyValue4',
+                  
+                },
+                { margin:[20 , 5 , 0 , 0],
+                  text:this.contractRemarksData['otherConditionRemarks']   , style:'propertyValue3',
+                  
+                },
+                { margin:[20 , 30 , 0 , 0],
+                  text:'For Fabcot International'   , style:'propertyValue4',
+                  
+                },
+              
+              ],
+              styles: {
+                heading: {
+                  fillColor: '#f3f3f4',
+                  fontSize: 20,
+                  bold: true,
+                  color: '#4d4b4b',
+                  alignment: 'center',
+                  margin : 4,
+                
+                  
+                 },
+                commonTable:{
+                  margin: [0 , 25 , 0 , 0]     
+                },
+                propertyName:{
+                  alignment: 'center',
+                   bold:true,
+                   fontSize: 10,
+                   margin:2
+                },
+                propertyValue:{
+                  alignment: 'center',  
+                  fontSize: 9,
+                  margin:2
+        
+                },
+                propertyValue2:{
+                  alignment: 'left',  
+                  fontSize: 10,
+                  margin:2,
+                  bold:true
+        
+                },
+                propertyValue3:{
+                  alignment: 'left',  
+                  fontSize: 10,
+                  margin:2,
+                 
+                },
+                propertyValue4:{
+                  alignment: 'left',  
+                  fontSize: 10,
+                  margin:2,
+                  
+                 
+                },
+                tableheader: {
+                  fillColor: '#f3f3f4',
+                  fontSize: 10,
+                  bold: true,
+                  color: '#4d4b4b',
+                  alignment: 'center',
+                  margin:3
+                
+                 },
+                 tableheader2: {
+                  fillColor: '#f3f3f4',
+                  fontSize: 9,
+                  bold: true,
+                  color: '#4d4b4b',
+                  alignment: 'left',
+                  margin:3
+                
+                 },
+                 tableheader3: {
+                  fillColor: '#f3f3f4',
+                  fontSize: 9,
+                  bold: true,
+                  color: '#4d4b4b',
+                  alignment: 'center',
+                  margin:3
+                
+                 }
+              }
+            };
+            pdfMake.createPdf(docDefinition).print();
+        
+          }
+          
 
 }

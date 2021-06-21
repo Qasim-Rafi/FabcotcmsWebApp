@@ -1727,7 +1727,7 @@ getImage(){
               pageOrientation: 'letter',
                 
                     info: {
-                      title: 'Contract Buyer'
+                      title: 'Contract Seller'
                     },
                  
                     content: [
