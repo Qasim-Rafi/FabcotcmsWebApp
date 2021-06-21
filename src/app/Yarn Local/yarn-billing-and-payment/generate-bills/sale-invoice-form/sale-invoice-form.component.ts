@@ -18,6 +18,7 @@ export class SaleInvoiceFormComponent implements OnInit {
   data: any = [];
   saleInvoiedata: any = [];
   @Input() contractId;
+  @Input() contractNumber;
 response:any;
 
   constructor(

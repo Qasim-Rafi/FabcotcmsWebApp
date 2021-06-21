@@ -792,6 +792,8 @@ this.spinner.show();
   editQuantity(row) {
     const modalRef = this.modalService.open(QuantityAndCostingComponent, { centered: true });
     modalRef.componentInstance.contractId = this.contractId;
+    modalRef.componentInstance.contractNumber = row.autoContractNumber;
+
 
     modalRef.result.then((data) => {
       // on close
@@ -1659,7 +1661,7 @@ getImage(){
                         margin: [70 , 7 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
-                        [{text:'Deliveries Date:'  , style:'heading'} , {text: this.contractPaymentData['buyerDeliveryDate'] , style:'heading2'}],] }
+                        [{text:'Deliveries Date:'  , style:'heading'} , {text: this.deliveryData.map((row=>row.buyerDateDay+row.buyerDateMonth+row.buyerDateYear)) , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
@@ -1841,7 +1843,7 @@ getImage(){
                         margin: [70 , 7 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
-                        [{text:'Deliveries Date:'  , style:'heading'} , {text: this.contractPaymentData['buyerDeliveryDate'] , style:'heading2'}],] }
+                        [{text:'Deliveries Date:'  , style:'heading'} , {text: this.deliveryData.map((row=>row.supplierDateDay+row.supplierDateMonth+row.supplierDateYear)) , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
