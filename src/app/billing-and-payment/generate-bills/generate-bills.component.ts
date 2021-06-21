@@ -160,6 +160,8 @@ this.spinner.hide();
   SaleInvoiceForm(row) {
     const modalRef = this.modalService.open(SaleInvoiceFormComponent , { centered: true });
     modalRef.componentInstance.contractId = row.id;
+    modalRef.componentInstance.contractNumber = row.autoContractNumber;
+
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
