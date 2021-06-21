@@ -872,7 +872,7 @@ export class AddNewContractsComponent implements OnInit {
     });
   }
   navigate() {
-    this.router.navigateByUrl('/FabCot/active-contract');
+    this.router.navigateByUrl('/FabCot/active-contract-details');
   };
   addContract() {
     let departmentId = parseInt(localStorage.getItem('loggedInDepartmentId'))

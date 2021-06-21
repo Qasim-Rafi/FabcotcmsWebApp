@@ -175,7 +175,7 @@ this.spinner.show();
        "amount": this.data.amount,
        "quantity": this.data.quantity,
        "unit": this.data.unit,
-       "taxPercentage": this.data.taxPercentage,
+       "taxPercentage": this.data.taxPercentage == null ?  this.condition :this.data.taxPercentage,
     }
  this.spinner.show();
     this.http.
@@ -187,6 +187,7 @@ this.spinner.show();
           if (this.response.success == true) {
             this.toastr.success(GlobalConstants.updateMessage, 'Message.');
             this.activeModal.close(true);
+            this.InvoiceForm.reset();
             this.spinner.hide();
            }
           else {
@@ -209,6 +210,7 @@ this.spinner.show();
     if (buttonType === "editInvoice"){
   
       this.updateSaleInvoice(this.InvoiceForm); 
+      this.InvoiceForm.reset();
   
     }
   
