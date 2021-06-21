@@ -1,0 +1,125 @@
+<div class="modal-header" >
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
+      <div aria-hidden="true">&times;</div>
+    </button>
+    <h5 class="modal-title" *ngIf = "statusCheck == 'Add'">
+        <i class="fa fa-plus"></i>
+        Add Debit Note
+         </h5>
+    <h5 class="modal-title" *ngIf = "statusCheck == 'Edit' || statusCheck == 'Edit2'">
+      <i class="fa fa-truck"></i>
+      Edit Debit Note
+    </h5>
+    <div class="font text-muted text-center"><b> Sale Invoice No. </b> {{contractNmbr}}</div>
+    <div class="font text-muted text-center"><b>Sale Invoice Date : </b>{{ buyerName}} </div>
+  </div>
+  
+  
+  <div class="modal-body BG p-0">
+    <form #debitForm="ngForm" novalidate>
+    
+      <div class="col-md-12 pt-3 pb-2">
+
+    
+        <div class="form-group row">
+          <label for="saleInvoiceNo" class="col-sm-3 col-form-label text_Navy">Debit Note No.</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" placeholder="Debit Note No." name="number"
+              [(ngModel)]="data.number" #number="ngModel" />
+          </div>
+        </div>
+  
+  
+        <div class="form-group row">
+          <label for="debitDate" class="col-sm-3 col-form-label text_Navy">Debit Note Date</label>
+          <div class="col-sm-8" (clickOutside)="debitDate.close()">
+  
+            <input navigation="select" class="form-control  " ngbDatepicker #debitDate="ngbDatepicker"
+              (click)="debitDate.toggle()" placeholder="Debit Note date" name="date"
+              [(ngModel)]="data.date" #date="ngModel" />
+          </div>
+        </div>
+
+          <div class="form-group row">
+            <label for="itemQuantity" class="col-sm-3 col-form-label text_Navy">Quantity</label>
+            <div class="col-sm-3">
+                <input type="number" min="0" required
+                id="itemQuantity" #itemQuantity="ngModel"
+              name="quantity" [(ngModel)]="data.quantity" #quantity="ngModel"
+                class="form-control" value="" placeholder="Quantity" />
+            </div>
+            <div class="col-md-5">
+               
+              <ng-select
+              [(ngModel)]="data.uomId" placeholder="Unit" name="uomId">
+              <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
+              </ng-option>
+            </ng-select>
+
+            </div>
+      
+          </div>
+          <div class="form-group row">
+            <label for="itemQuantity" class="col-sm-3 col-form-label text_Navy">Amount</label>
+            <div class="col-sm-3">
+                <input type="number" min="0" required
+                id="itemQuantity" #itemQuantity="ngModel"
+              name="quantity" [(ngModel)]="data.quantity" #quantity="ngModel"
+                class="form-control" value="" placeholder="Amount" />
+            </div>
+            <div class="col-md-5">
+               
+              <ng-select
+              [(ngModel)]="data.uomId" placeholder="Currency" name="uomId">
+              <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
+              </ng-option>
+            </ng-select>
+
+            </div>
+      
+          </div>
+          <div class="form-group row" >
+            <label for="saleInvoiceDate" class="col-sm-3 col-form-label">Tax (%age)</label>
+            <div class="col-sm-8">
+                <div class="input-group">
+                    <div class="input-group-append">
+                    </div>
+                    <input type="number" placeholder="Tax %age" class="form-control"
+                        [(ngModel)]="data.salesTax" name="salesTax" #salesTax="ngModel">
+                    <div class="input-group-append">
+                        <span class="input-group-text" id="basic-addon2">%</span>
+                    </div>
+                </div>
+            </div>
+          </div>
+
+          
+         
+      
+        <div class="form-group row">
+          <label for="saleInvoiceRemarks" class="col-sm-3 col-form-label ">Reason</label>
+          <div class="col-sm-8">
+            <textarea name="remarks" rows="3" class="form-control" placeholder="Debit/Debit Note details here..."
+              name="remarks" [(ngModel)]="data.remarks" #remarks="ngModel"></textarea>
+          </div>
+        </div>
+        
+      </div>
+  
+      <div class="modal-footer NotBG" >
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" (click)="activeModal.close()">Close</button>
+        <button *ngIf="statusCheck == 'Add'"class="btn button-save" type="submit"
+          (click)="addDebit(debitForm)">
+          Save 
+        </button>
+      
+        <button  *ngIf="statusCheck == 'Edit'" class="btn button-save" type="submit"
+          (click)="updateDebit(debitForm)">
+          Update 
+        </button>
+        
+      </div>
+  
+  
+    </form>
+  </div>

@@ -6,7 +6,10 @@ h2 {
   .btnsm-f {
     font-size: 11px !important;
   }
-  
+  .secondary1{
+color: blue;
+outline: #1ab394;
+  }
   .topbox-1{
     background-color: white;
     /* height: 150px; */

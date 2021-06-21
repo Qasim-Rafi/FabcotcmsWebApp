@@ -29,6 +29,8 @@ import { EditIvnoicePopupComponent } from './active-contract-models/edit-ivnoice
 import { StatusComponent } from 'src/app/shared/MODLES/status/status.component';
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import { style } from '@angular/animations';
+import { CreditComponent } from './active-contract-models/sale-invoice-pop-up/credit/credit.component';
+import { DebitComponent } from './active-contract-models/sale-invoice-pop-up/debit/debit.component';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 @Component({
@@ -364,26 +366,33 @@ export class ActiveContractDetailsComponent implements OnInit {
     });
   }
   
-  editinvoice(row) {
-    const modalRef = this.modalService.open(AddNewInvComponent, { centered: true });
-    modalRef.componentInstance.invoiceId = row.id;
+  editinvoice(row,check) {
+    const modalRef = this.modalService.open(SaleInvoicePopUpComponent, { centered: true });
+  modalRef.componentInstance.contractId = this.contractId;
+  modalRef.componentInstance.invoiceId = row.id;
+    modalRef.componentInstance.statusCheck = check;
     modalRef.result.then((data) => {
       // on close
-      if (data == true) {
-       this.data = data;
-  
+      if(data ==true){
+        //  this.date = this.myDate;
+         this.fetch((data) => {
+          this.rows = data;
+    this.saleinvoiceFilter = [...this.rows];
+      this.getContractData();
+        });
+       
       }
     }, (reason) => {
       // on dismiss
     });
   }
   
-  
+ 
   
   deleteinvoice(row) {
     Swal.fire({
       title: GlobalConstants.deleteTitle, //'Are you sure?',
-      text: GlobalConstants.deleteMessage + ' ' + '"' + row.autoContractNumber + '"',
+      text: GlobalConstants.deleteMessage + ' ' +'Sale Invoice Number:'+ '"' + row.saleInvoiceNo + '"',
       icon: 'error',
       showCancelButton: true,
       confirmButtonColor: '#ed5565',
@@ -801,6 +810,7 @@ this.spinner.show();
       // on dismiss
     });
   }
+ 
   editPaymentAndDelivery(row) {
     const modalRef = this.modalService.open(PaymentDeliveryComponent, { centered: true });
     modalRef.componentInstance.contractId = this.contractId;
@@ -1149,6 +1159,55 @@ addDispatch( check) {
     if (data == true) {
       this.getContractData();
       this.getDispatches();
+  
+    }
+    // this.getContractData();
+
+  }, (reason) => {
+    // on dismiss
+  });
+}
+
+addCredit( check) {
+  const modalRef = this.modalService.open(CreditComponent, { centered: true });
+  modalRef.componentInstance.statusCheck = check;
+  modalRef.componentInstance.contractId = this.contractId ;
+  modalRef.componentInstance.buyerName = this.buyerName ;
+  modalRef.componentInstance.sellerName = this.sellerName ;
+  modalRef.componentInstance.contractNmbr = this.contractNmbr ;
+
+
+
+
+  modalRef.result.then((data) => {
+    // on close
+    if (data == true) {
+      this.getContractData();
+      // this.getDispatches();
+  
+    }
+    // this.getContractData();
+
+  }, (reason) => {
+    // on dismiss
+  });
+}
+addDebit( check) {
+  const modalRef = this.modalService.open(DebitComponent, { centered: true });
+  modalRef.componentInstance.statusCheck = check;
+  modalRef.componentInstance.contractId = this.contractId ;
+  modalRef.componentInstance.buyerName = this.buyerName ;
+  modalRef.componentInstance.sellerName = this.sellerName ;
+  modalRef.componentInstance.contractNmbr = this.contractNmbr ;
+
+
+
+
+  modalRef.result.then((data) => {
+    // on close
+    if (data == true) {
+      this.getContractData();
+      // this.getDispatches();
   
     }
     // this.getContractData();
