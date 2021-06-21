@@ -256,11 +256,10 @@ export class ActiveContractDetailsComponent implements OnInit {
           this.toastr.error(this.response.message, 'Message.');
         }
         // this.spinner.hide();
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error(err.error.message, 'Message.');;
-        }
-       
+      },(err: HttpErrorResponse) => {
+        const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+        this.toastr.error(messages.toString(), 'Message.');
+        console.log(messages);
       });
   }
 
@@ -283,11 +282,10 @@ export class ActiveContractDetailsComponent implements OnInit {
           this.toastr.error(this.response.message, 'Message.');
         }
         // this.spinner.hide();
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error(err.error.message, 'Message.');;
-        }
-        //  this.spinner.hide();
+      },(err: HttpErrorResponse) => {
+        const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+        this.toastr.error(messages.toString(), 'Message.');
+        console.log(messages);
       });
   }
 
@@ -310,11 +308,10 @@ export class ActiveContractDetailsComponent implements OnInit {
           this.toastr.error(this.response.message, 'Message.');
         }
         // this.spinner.hide();
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error(err.error.message, 'Message.');;
-        }
-        //  this.spinner.hide();
+      },(err: HttpErrorResponse) => {
+        const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+        this.toastr.error(messages.toString(), 'Message.');
+        console.log(messages);
       });
   }
 
@@ -415,10 +412,10 @@ export class ActiveContractDetailsComponent implements OnInit {
                 this.toastr.error(this.response.message, 'Message.');
               }
   
-            }, err => {
-              if (err.status == 400) {
-                this.toastr.error(this.response.message, 'Message.');
-              }
+            },(err: HttpErrorResponse) => {
+              const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+              this.toastr.error(messages.toString(), 'Message.');
+              console.log(messages);
             });
   
       }
@@ -480,10 +477,10 @@ export class ActiveContractDetailsComponent implements OnInit {
             this.toastr.error(this.response.message, 'Message.');
           }
   
-        }, err => {
-          if (err.status == 400) {
-            this.toastr.error(this.response.message, 'Message.');
-          }
+        },(err: HttpErrorResponse) => {
+          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+          this.toastr.error(messages.toString(), 'Message.');
+          console.log(messages);
         });
   }
 
@@ -502,10 +499,10 @@ getContractPartiesData() {
           this.toastr.error(this.response.message, 'Message.');
         }
 
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error(this.response.message, 'Message.');
-        }
+      },(err: HttpErrorResponse) => {
+        const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+        this.toastr.error(messages.toString(), 'Message.');
+        console.log(messages);
       });
 }
 
@@ -524,10 +521,10 @@ getDeliveryTimeLine() {
           this.toastr.error(this.response.message, 'Message.');
         }
 
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error(this.response.message, 'Message.');
-        }
+      },(err: HttpErrorResponse) => {
+        const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+        this.toastr.error(messages.toString(), 'Message.');
+        console.log(messages);
       });
 }
 getDispatches() {
@@ -546,10 +543,10 @@ getDispatches() {
           this.toastr.error(this.response.message, 'Message.');
         }
 
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error(this.response.message, 'Message.');
-        }
+      },(err: HttpErrorResponse) => {
+        const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+        this.toastr.error(messages.toString(), 'Message.');
+        console.log(messages);
       });
 }
 
@@ -567,10 +564,10 @@ getProdPlan() {
           this.toastr.error(this.response.message, 'Message.');
         }
 
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error(this.response.message, 'Message.');
-        }
+      },(err: HttpErrorResponse) => {
+        const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+        this.toastr.error(messages.toString(), 'Message.');
+        console.log(messages);
       });
 }
 
@@ -590,10 +587,10 @@ getContractProductData() {
           this.toastr.error(this.response.message, 'Message.');
         }
 
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error(this.response.message, 'Message.');
-        }
+      },(err: HttpErrorResponse) => {
+        const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+        this.toastr.error(messages.toString(), 'Message.');
+        console.log(messages);
       });
 }
 
@@ -612,10 +609,10 @@ getContractCostingData() {
           this.toastr.error(this.response.message, 'Message.');
         }
 
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error(this.response.message, 'Message.');
-        }
+      },(err: HttpErrorResponse) => {
+        const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+        this.toastr.error(messages.toString(), 'Message.');
+        console.log(messages);
       });
 }
 
@@ -632,10 +629,10 @@ getContractPaymentData() {
           this.toastr.error(this.response.message, 'Message.');
         }
 
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error(this.response.message, 'Message.');
-        }
+      },(err: HttpErrorResponse) => {
+        const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+        this.toastr.error(messages.toString(), 'Message.');
+        console.log(messages);
       });
 }
 
@@ -659,10 +656,10 @@ getContractCommisionData(){
         this.toastr.error(this.response.message, 'Message.');
       }
 
-    }, err => {
-      if (err.status == 400) {
-        this.toastr.error(this.response.message, 'Message.');
-      }
+    },(err: HttpErrorResponse) => {
+      const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+      this.toastr.error(messages.toString(), 'Message.');
+      console.log(messages);
     });
 
 }
@@ -696,11 +693,10 @@ getAllBenificery(cb) {
     this.toastr.error(this.response.message, 'Message.');
   }
     // this.spinner.hide();
-  }, err => {
-    if ( err.status == 400) {
-this.toastr.error(err.error.message, 'Message.');
-    }
-  //  this.spinner.hide();
+  },(err: HttpErrorResponse) => {
+    const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+    this.toastr.error(messages.toString(), 'Message.');
+    console.log(messages);
   });
 }
 
@@ -742,11 +738,10 @@ this.spinner.show();
   this.spinner.hide();
 }
 
-          }, err => {
-            if (err.status == 400) {
-              this.toastr.error(this.response.message, 'Message.');
-  this.spinner.hide();
-}
+          },(err: HttpErrorResponse) => {
+            const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+            this.toastr.error(messages.toString(), 'Message.');
+            console.log(messages);
           });
 
     }
@@ -959,10 +954,10 @@ getContractRemarkData() {
           this.toastr.error(this.response.message, 'Message.');
         }
 
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error(this.response.message, 'Message.');
-        }
+      },(err: HttpErrorResponse) => {
+        const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+        this.toastr.error(messages.toString(), 'Message.');
+        console.log(messages);
       });
 }
 
@@ -988,10 +983,10 @@ getContractLOC() {
           this.toastr.error(this.response.message, 'Message.');
         }
 
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error(this.response.message, 'Message.');
-        }
+      },(err: HttpErrorResponse) => {
+        const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+        this.toastr.error(messages.toString(), 'Message.');
+        console.log(messages);
       });
 }
 
