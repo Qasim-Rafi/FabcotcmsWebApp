@@ -68,10 +68,10 @@ export class PartiesComponent implements OnInit {
             this.toastr.error(this.response.message, 'Message.');
           }
  
-        }, err => {
-          if (err.status == 400) {
-            this.toastr.error(this.response.message, 'Message.');
-          }
+        },(err: HttpErrorResponse) => {
+          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+          this.toastr.error(messages.toString(), 'Message.');
+          console.log(messages);
         });
   }
 
