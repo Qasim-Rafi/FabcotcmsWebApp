@@ -1106,9 +1106,9 @@ this.spinner.show();
             widths: ['25%' , '25%' , '25%' , '25%' ],
             body: [
            [
-              { style:'propertyName' ,text: 'Date' } , 
+              { style:'propertyName' ,text: 'Date:' } , 
           {  style:'propertyValue', text : this.enquiryData['enquiryDate']},
-          {  style:'propertyName',text: 'Enquiry#' } , 
+          {  style:'propertyName',text: 'Enquiry#:' } , 
           {  style:'propertyValue', text : this.enquiryData['autoEnquiryNumber']},
            ]
           ]
@@ -1122,11 +1122,11 @@ this.spinner.show();
             widths: ['13%' , '20%' , '13%' , '20%' , '13%', '21%'],
             body: [
            [
-              { style:'propertyName' ,text: 'Article' } , 
+              { style:'propertyName' ,text: 'Article:' } , 
           {  style:'propertyValue', text : this.enquiryData['articleName']},
-          {  style:'propertyName',text: 'Process' } , 
+          {  style:'propertyName',text: 'Process:' } , 
           {  style:'propertyValue', text : this.enquiryData['processName']},
-          {  style:'propertyName',text: 'Process Type' } , 
+          {  style:'propertyName',text: 'Process Type:' } , 
           {  style:'propertyValue', text : this.enquiryData['processTypeName']},
            ]
           ]
@@ -1139,9 +1139,9 @@ this.spinner.show();
             widths: ['20%' , '30%' , '20%' , '30%' ],
             body: [
            [
-              { style:'propertyName' ,text: 'Design Type' } , 
+              { style:'propertyName' ,text: 'Design Type:' } , 
           {  style:'propertyValue', text : this.enquiryData['designTypeName']},
-          {  style:'propertyName',text: 'Packaging' } , 
+          {  style:'propertyName',text: 'Packaging:' } , 
           {  style:'propertyValue', text : this.enquiryData['packagingName']},
            ]
           ]
@@ -1154,9 +1154,9 @@ this.spinner.show();
             widths: ['20%' , '30%' , '20%' , '30%' ],
             body: [
            [
-              { style:'propertyName' ,text: 'Shipment' } , 
+              { style:'propertyName' ,text: 'Shipment:' } , 
           {  style:'propertyValue', text : this.enquiryData['shipmentdates']},
-          {  style:'propertyName',text: 'Payment Terms' } , 
+          {  style:'propertyName',text: 'Payment Terms:' } , 
           {  style:'propertyValue', text : this.enquiryData['paymentTermName']},
            ]
           ]
@@ -1169,9 +1169,9 @@ this.spinner.show();
             widths: ['20%' , '15%' , '20%' , '45%' ],
             body: [
            
-              { style:'propertyName' ,text: 'Shipment' } , 
+              { style:'propertyName' ,text: 'Shipment:' } , 
           {  style:'propertyValue', text : this.enquiryData['paymentTermDays']},
-          {  style:'propertyName',text: 'Payment Terms' } , 
+          {  style:'propertyName',text: 'Payment Terms:' } , 
           {  style:'propertyValue', text : this.enquiryData['paymentTermName']},
            
           ]
@@ -1215,7 +1215,8 @@ this.spinner.show();
         propertyName:{
           alignment: 'center',
            bold:true,
-           fontSize: 10,
+           fillColor: '#f3f3f4',
+           fontSize: 12,
            margin:2
         },
         propertyValue:{
