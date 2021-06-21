@@ -18,11 +18,12 @@ export class AddPieceLengthComponent implements OnInit {
 
   response: any;
   data: any = {};
+  obj : any ={};
   active = true;
-  @Input() countryId;
+  @Input() piecelengthId;
   @Input() statusCheck;
   @Input() FormName;
-  @ViewChild(NgForm) addAgentForm;
+  @ViewChild(NgForm) piecelengthForm;
 
   constructor(private http: HttpClient,
     private service: ServiceService,
@@ -34,16 +35,16 @@ export class AddPieceLengthComponent implements OnInit {
     this.statusCheck = this.statusCheck;
     this.FormName = this.FormName;
     if (this.statusCheck == 'edit') {
-      this.editCountry();
+      this.editPieceLength();
     }
   }
  
   get activeModal() {
     return this._NgbActiveModal;
   }
-  editCountry() {
+  editPieceLength() {
     this.spinner.show();
-    this.http.get(`${environment.apiUrl}/api/YarnConfig/GetPieceLengthById/` + this.countryId)
+    this.http.get(`${environment.apiUrl}/api/YarnConfig/GetPieceLengthById/` + this.piecelengthId)
       .subscribe(
         res => {
           this.response = res;
@@ -65,7 +66,7 @@ this.spinner.hide();
         });
   }
 
-  UpdateCountry(form:NgForm) {
+  UpdatePieceLength(form:NgForm) {
 
     let varr = {
       "pieceLengthName": this.data.pieceLengthName,
@@ -74,7 +75,7 @@ this.spinner.hide();
     }
 this.spinner.show();
     this.http.
-      put(`${environment.apiUrl}/api/YarnConfig/UpdatePieceLength/` + this.countryId, varr)
+      put(`${environment.apiUrl}/api/YarnConfig/UpdatePieceLength/` + this.piecelengthId, varr)
       .subscribe(
         res => {
 
@@ -99,9 +100,9 @@ this.spinner.show();
   
 }
 
-  // -------------------------------------ADD COUNTRY FROM ---------------------------
+  // -------------------------------------ADD PIECELENGTH FROM ---------------------------
 
-  addCountry(form:NgForm) {
+  addPieceLength(form:NgForm) {
 
   
 
@@ -115,10 +116,13 @@ this.spinner.show();
       post(`${environment.apiUrl}/api/YarnConfig/AddPieceLength`, varr)
       .subscribe(
         res => {
-
+          this.obj.parent = this.active;
+          this.obj.status = true;
           this.response = res;
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
+            this.piecelengthForm.reset();
+            this.obj.id = this.response.data;
             this.activeModal.close(true);
             this.spinner.hide();
           }
@@ -138,14 +142,14 @@ this.spinner.show();
 
 
 onSubmit(buttonType): void {
-  if (buttonType === "addCountry"){
+  if (buttonType === "addPieceLength"){
 
-    this.addCountry(this.addAgentForm); 
+    this.addPieceLength(this.piecelengthForm); 
   }
 
-  if (buttonType === "UpdateCountry"){
+  if (buttonType === "UpdatePieceLength"){
 
-    this.UpdateCountry(this.addAgentForm); 
+    this.UpdatePieceLength(this.piecelengthForm); 
 
   }
 

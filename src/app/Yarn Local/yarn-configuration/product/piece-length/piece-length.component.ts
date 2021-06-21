@@ -19,17 +19,19 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
   templateUrl: './piece-length.component.html',
   styleUrls: ['./piece-length.component.css']
 })
+
+
 export class PieceLengthComponent implements OnInit {
 
-  countryCount: number;
+  piecelengthCount: number;
   response: any;
   rows: any = [];
   columns: any = [];
   data: any = {};
   copyData: any = [];
   currentDate = Date.now();
-  countryFilter: any = [];
-  CountryUrl = '/api/YarnConfig/GetAllPieceLength'
+  piecelengthFilter: any = [];
+  PieceLengthUrl = '/api/YarnConfig/GetAllPieceLength'
 
   @ViewChild('myTable', { static: false }) table: DatatableComponent;
 
@@ -43,10 +45,10 @@ export class PieceLengthComponent implements OnInit {
   ngOnInit(): void {
     this.service.fetch((data) => {
       this.rows = data;
-      this.countryFilter = [...this.rows];
+      this.piecelengthFilter = [...this.rows];
 
-      this.countryCount = this.rows.length;
-    }, this.CountryUrl);
+      this.piecelengthCount = this.rows.length;
+    }, this.PieceLengthUrl);
 
   }
 
@@ -54,15 +56,15 @@ export class PieceLengthComponent implements OnInit {
   // ------------------- Search function ----------------------------------//
   search(event) {
     const val = event.target.value.toLowerCase();
-    const temp = this.countryFilter.filter(function (d) {
+    const temp = this.piecelengthFilter.filter(function (d) {
       return (d.pieceLengthName.toLowerCase().indexOf(val) !== -1 || !val);
     });
     this.rows = temp;
   }
 
-  //  --------------------- Delete Country ---------------------------//
+  //  --------------------- Delete PieceLength ---------------------------//
 
-  deleteCountry(id) {
+  deletePieceLength(id) {
 
     Swal.fire({
       title: GlobalConstants.deleteTitle, //'Are you sure?',
@@ -86,7 +88,7 @@ this.spinner.show();
                 this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
                 this.service.fetch((data) => {
                   this.rows = data;
-                }, this.CountryUrl);
+                }, this.PieceLengthUrl);
 this.spinner.hide();
               }
               else {
@@ -105,9 +107,9 @@ this.spinner.hide();
 
   }
 
-  //  ----------------------- Add country Form -----------------------//
+  //  ----------------------- Add piecelength Form -----------------------//
 
-  addCountryForm(check, name) {
+  addPieceLengthForm(check, name) {
     const modalRef = this.modalService.open(AddPieceLengthComponent, { centered: true });
     modalRef.componentInstance.statusCheck = check;
     modalRef.componentInstance.FormName = name;
@@ -116,21 +118,21 @@ this.spinner.hide();
       if (data == true) {
         this.service.fetch((data) => {
           this.rows = data;
-      this.countryFilter = [...this.rows];
+      this.piecelengthFilter = [...this.rows];
 
-          this.countryCount = this.rows.length;
-        }, this.CountryUrl);
+          this.piecelengthCount = this.rows.length;
+        }, this.PieceLengthUrl);
       }
     }, (reason) => {
     });
   }
 
-  // ---------------------- Edit Country Form ----------------------//
+  // ---------------------- Edit PieceLength Form ----------------------//
 
 
-  editCountryForm(row, check, name) {
+  editPieceLengthForm(row, check, name) {
     const modalRef = this.modalService.open(AddPieceLengthComponent, { centered: true });
-    modalRef.componentInstance.countryId = row.id;
+    modalRef.componentInstance.piecelengthId = row.id;
     modalRef.componentInstance.statusCheck = check;
     modalRef.componentInstance.FormName = name;
     modalRef.result.then((data) => {
@@ -139,7 +141,7 @@ this.spinner.hide();
         //  this.date = this.myDate;
         this.service.fetch((data) => {
           this.rows = data;
-        }, this.CountryUrl);
+        }, this.PieceLengthUrl);
 
       }
     }, (reason) => {
@@ -151,10 +153,10 @@ this.spinner.hide();
   // --------------------------Export as Excel file----------------------------------//
 
 
-  countryExcelFile(){
+  piecelengthExcelFile(){
     const filtered = this.rows.map(row => ({
       Sno: row.id,
-      CountryName: row.name,
+      PieceLengthName: row.name,
       Details: row.details,
       Status: row.active == true ? "Active" : "In-Active",
       CreatedOn: row.createdDateTime + ' | ' + row.createdByName
@@ -166,10 +168,10 @@ this.spinner.hide();
 
 // -------------------------------- Export as CSV file --------------------------------//
 
-countryCsvFile(){
+piecelengthCsvFile(){
   const filtered = this.rows.map(row => ({
     Sno: row.id,
-    CountryName: row.name,
+    PieceLengthName: row.name,
     Details: row.details,
     Status: row.active == true ? "Active" : "In-Active",
     CreatedOn: row.createdDateTime + ' | ' + row.createdByName
@@ -181,16 +183,16 @@ countryCsvFile(){
 
   // -------------------------------Export as Pdf  ------------------------------------//
 
-  countryPdf() {
+  piecelengthPdf() {
 
     let docDefinition = {
       pageSize: 'A4',
       info: {
-        title: 'Country List'
+        title: 'PieceLength List'
       },
       content: [
         {
-          text: 'Country List',
+          text: 'PieceLength List',
           style: 'heading',
 
         },
@@ -201,7 +203,7 @@ countryCsvFile(){
             headerRows: 1,
             widths: [30, 90, 130, 50, 150],
             body: [
-              ['S.no.', 'Country', 'Details', 'Status', 'Created On| Created By'],
+              ['S.no.', 'PieceLength', 'Details', 'Status', 'Created On| Created By'],
               ...this.rows.map(row => (
                 [row.id, row.name, row.details,
                 row.active == true ? "Active" : "In-Active", row.createdDateTime + '|' + row.createdByName]
@@ -221,21 +223,21 @@ countryCsvFile(){
     };
 
 
-    pdfMake.createPdf(docDefinition).download('CountryList.pdf');
+    pdfMake.createPdf(docDefinition).download('PieceLengthList.pdf');
   }
 
-  //-------------------------------------- Print country List ------------------------- ///
+  //-------------------------------------- Print piecelength List ------------------------- ///
 
-  printCountryList() {
+  printPieceLengthList() {
 
     let docDefinition = {
       pageSize: 'A4',
       info: {
-        title: 'Country List'
+        title: 'PieceLength List'
       },
       content: [
         {
-          text: 'Country List',
+          text: 'PieceLength List',
           style: 'heading',
 
         },
@@ -246,7 +248,7 @@ countryCsvFile(){
             headerRows: 1,
             widths: [30, 90, 130, 50, 150],
             body: [
-              ['S.no.', 'Country', 'Details', 'Status', 'Created On| Created By'],
+              ['S.no.', 'PieceLength', 'Details', 'Status', 'Created On| Created By'],
               ...this.rows.map(row => (
                 [row.id, row.name, row.details,
                 row.active == true ? "Active" : "In-Active", row.createdDateTime + '|' + row.createdByName]
@@ -270,9 +272,9 @@ countryCsvFile(){
   }
 
 
-  //------------------------------------ Copy Country list --------------------///
+  //------------------------------------ Copy PieceLength list --------------------///
 
-  copyCountryList() {
+  copyPieceLengthList() {
     let count1 = this.rows.map(x => x.name.length);
     let max1 = count1.reduce((a, b) => Math.max(a, b));
     let count3 = this.rows.map(x => x.details.length);
@@ -285,7 +287,7 @@ countryCsvFile(){
 
     // ................................................ headings replace yours............................
 
-    this.copyData.push('S No.' + 'Country Name'.padEnd(max1) + 'Details'.padEnd(max3) + 'Status'.padEnd(max4) + 'Changed On' + '| Changed By \n');
+    this.copyData.push('S No.' + 'PieceLength Name'.padEnd(max1) + 'Details'.padEnd(max3) + 'Status'.padEnd(max4) + 'Changed On' + '| Changed By \n');
     // ................................................ headings............................
 
     // ................................................ coloum data...........replace your coloum names.................
@@ -300,7 +302,7 @@ countryCsvFile(){
 
     Swal.fire({
       title: GlobalConstants.copySuccess,
-      footer: 'Copied' + '\n' + this.countryCount + '\n' + 'rows to clipboard',
+      footer: 'Copied' + '\n' + this.piecelengthCount + '\n' + 'rows to clipboard',
       showConfirmButton: false,
       timer: 2000,
     })

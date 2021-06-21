@@ -110,7 +110,7 @@
                             <div class="col-md-7">
                                 <div class="input-group">
                                     <input type="text" placeholder="Purchase order no. optional"
-                                        class="form-control text-w-4" id="poNumber" [(ngModel)]="data.poNumber"
+                                        class="form-control text-w-4" #poNumber="ngModel" [(ngModel)]="data.poNumber"
                                         name="poNumber">
                                 </div>
                             </div>
@@ -264,12 +264,12 @@
 
 
 
-                        <div class="form-group row">
+                        <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local'">
                             <label for="inputEmail3" class="col-md-3 col-form-label control-label">Article:</label>
 
                             <div class="col-md-7">
                                 <div class="input-group">
-                                    <ng-select [multiple]=true name="article" #articleId="ngModel" class="input-w px-0"
+                                    <ng-select name="article" #articleId="ngModel" class="input-w px-0"
                                         [(ngModel)]="data.articleId" placeholder="-- Select --">
                                         <ng-option *ngFor="let i of article" [value]="i.id">{{ i.name }}
                                         </ng-option>
@@ -286,7 +286,27 @@
 
                         </div>
 
+                        <div class="form-group row" *ngIf="loggedInDepartmentName=='Yarn Local'">
+                            <label for="inputEmail3" class="col-md-3 col-form-label control-label">Article:</label>
 
+                            <div class="col-md-7">
+                                <div class="input-group">
+                                    <ng-select name="article" #articleId="ngModel" class="input-w px-0"
+                                        [(ngModel)]="data.articleId" placeholder="-- Select --">
+                                        <ng-option *ngFor="let i of article" [value]="i.id">{{ i.name }}
+                                        </ng-option>
+                                    </ng-select>
+
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-primary" type="button" id="button-addon2"
+                                            (click)="addArticleForm()">
+                                            <i class="fa fa-plus"></i></button>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
 
 
                         <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local'">
@@ -361,7 +381,7 @@
 
                                     <div class="input-group-append">
                                         <button class="btn btn-outline-primary" type="button" id="button-addon2"
-                                            (click)="addpiecelengthForm('add','countryForm')">
+                                            (click)="addpiecelengthForm('add','piecelengthForm')">
                                             <i class="fa fa-plus"></i></button>
                                     </div>
 
