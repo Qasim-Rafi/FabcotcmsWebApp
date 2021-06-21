@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { GlobalConstants } from 'src/app/Common/global-constants';
 import { Dateformater } from 'src/app/shared/dateformater';
 import { EnquiryNotesComponent } from 'src/app/shared/MODLES/enquiry-notes/enquiry-notes.component';
+import { HistoryContractComponent } from 'src/app/shared/MODLES/history-contract/history-contract.component';
 import { StatusComponent } from 'src/app/shared/MODLES/status/status.component';
 import { ServiceService } from 'src/app/shared/service.service';
 import { environment } from 'src/environments/environment';
@@ -1086,7 +1087,26 @@ getAllInvoiceItems(cb) {
     });
 }
 
+showhistorycontract() {
+  const modalRef = this.modalService.open(HistoryContractComponent, { centered: true });
+  modalRef.componentInstance.contractId = this.contractId;
+  modalRef.result.then((data) => {
+    // on close
+    if (data == true) {
+    //   this.getSaleInvoice();
+    // // this.getContractData();
+    // this.getAllInvoiceItems((invoiceItem) => {
+    //   this.rows6 = invoiceItem;
+    //   this.invoiceItemFilter = [...invoiceItem];
 
+    // });
+
+
+    }
+  }, (reason) => {
+    // on dismiss
+  });
+}
 
 
 AddsaleInvoiceItem(check,value) {
