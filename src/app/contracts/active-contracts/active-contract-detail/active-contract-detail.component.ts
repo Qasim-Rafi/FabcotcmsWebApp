@@ -31,7 +31,7 @@ import { SALEINVOICEComponent } from './Active-Contract-Models/sale-invoice/sale
 import { TnaLogHistoryComponent } from './Active-Contract-Models/tna-log-history/tna-log-history.component';
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import pdfMake from "pdfmake/build/pdfmake";
-
+import {ContractOwnerComponent} from '../../contract-owner/contract-owner.component'
 @Component({
   selector: 'app-active-contract-detail',
   templateUrl: './active-contract-detail.component.html',
@@ -50,6 +50,8 @@ export class ActiveContractDetailComponent implements OnInit {
   rows6: any = [];
   data:any = {};
   items:any = {};
+  preview:any = {};
+
   empData:any = {};
   shipment:any = {};
   contractNote:any = {};
@@ -103,7 +105,10 @@ quantitynmbr : number;
     this.queryParems = this.route.snapshot.queryParams;
     this.contractId = this.queryParems.id;
    
+    this.getPreview((data)=>{
+      this.preview = data;
 
+    });
     this.getContractData();
     this.getAllReminder();
     this.getContractPartiesData();
@@ -237,7 +242,29 @@ quantitynmbr : number;
       });
   }
 
+  getPreview(cb) {
 
+    this.http
+      .get(`${environment.apiUrl}/api/Contracts/GetContractPreviewById/`+ this.contractId)
+      .subscribe(res => {
+        this.response = res;
+        
+
+        if (this.response.success == true) {
+          this.preview = this.response.data
+          cb(this.items);
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+        // this.spinner.hide();
+      }, err => {
+        if (err.status == 400) {
+          this.toastr.error(err.error.message, 'Message.');;
+        }
+        //  this.spinner.hide();
+      });
+  }
 
   getAllNotes(cb) {
 
@@ -479,7 +506,19 @@ PartiesForm() {
   });
 }
 
-
+contractOwner() {
+  const modalRef = this.modalService.open(ContractOwnerComponent, { centered: true });
+  modalRef.componentInstance.contractId = this.contractId;
+  modalRef.result.then((data) => {
+  
+    // on close
+    if (data == true) {
+      this.getContractData();
+    }
+  }, (reason) => {
+    // on dismiss
+  });
+}
 
 
 getContractPartiesData() {

@@ -119,6 +119,10 @@ dd{
 .noDisplay{
   display: none;
 }
+.clr{
+  color: rgb(19, 19, 231);
+  cursor: pointer;
+}
 
 
 

@@ -59,6 +59,7 @@ import { SignUpComponent } from './login/sign-up/sign-up.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { CommonModule } from '@angular/common';
 import { HistoryContractComponent } from './shared/MODLES/history-contract/history-contract.component';
+import { ContractOwnerComponent } from './contracts/contract-owner/contract-owner.component';
 
 
 
@@ -101,6 +102,7 @@ const appRoutes: Routes = []
     OnholdContractsComponent,
     SignUpComponent,
     HistoryContractComponent,
+    ContractOwnerComponent,
    
 
   

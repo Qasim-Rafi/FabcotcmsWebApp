@@ -5,6 +5,7 @@ import { TemplateComponent } from '../template/template.component';
 import { ActiveContractDetailComponent } from './active-contracts/active-contract-detail/active-contract-detail.component';
 import { ActiveContractsComponent } from './active-contracts/active-contracts.component';
 import { ArchivedContractsComponent } from './archived-contracts/archived-contracts.component';
+import { ContractOwnerComponent } from './contract-owner/contract-owner.component';
 import { OnholdContractsComponent } from './onhold-contracts/onhold-contracts.component';
 
 
@@ -17,6 +18,8 @@ const routes: Routes = [
   { path: 'active-contract-details', component: ActiveContractDetailComponent },
   { path: 'onhold-contract', component: OnholdContractsComponent },
   { path: 'archived-contract', component: ArchivedContractsComponent },
+  { path: 'contract-owner', component: ContractOwnerComponent },
+
  
 ]
   }
