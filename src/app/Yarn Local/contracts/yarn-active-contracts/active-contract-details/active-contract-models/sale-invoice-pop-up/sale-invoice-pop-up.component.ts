@@ -154,11 +154,10 @@ this.spinner.show();
             // this.spinner.hide();
           }
 
-        }, err => {
-          if (err.status == 400) {
-            this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
-            // this.spinner.hide();
-          }
+        },(err: HttpErrorResponse) => {
+          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+          this.toastr.error(messages.toString(), 'Message.');
+          console.log(messages);
         });
   }
   
@@ -195,11 +194,10 @@ this.spinner.show();
             this.spinner.hide();
            }
  
-        }, err => {
-          if (err.status == 400) {
-            this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
-            this.spinner.hide();
-           }
+        },(err: HttpErrorResponse) => {
+          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+          this.toastr.error(messages.toString(), 'Message.');
+          console.log(messages);
         });
   }
   onSubmit(buttonType): void {
