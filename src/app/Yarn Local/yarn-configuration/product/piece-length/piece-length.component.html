@@ -30,13 +30,13 @@
         <div class="row mb-3">
           <div class="col-md-6">
             <button type="button" class="btn btn-primary descBtn ml-sm-none ml-md-2">
-              <i class="fas fa-map fa-fw mr-2"></i>{{ countryCount }}
+              <i class="fas fa-map fa-fw mr-2"></i>{{ piecelengthCount }}
             </button>
             <span class="text-muted text2">Piece Length</span>
           </div>
           <div class="col-md-6 mrg-tsm">
             <button type="button" class="btn btn-primary btn-sm float-right"
-              (click)="addCountryForm('add' , 'countryForm')">
+              (click)="addPieceLengthForm('add' , 'piecelengthForm')">
               <i class="fa fa-plus"></i> Add Piece Length
             </button>
           </div>
@@ -56,7 +56,7 @@
                 </div>
   
                 <!-- <div class="input-group col-md-offset-3">
-                  <input type="text" placeholder="Search by Country Name" class="input form-control w-50"
+                  <input type="text" placeholder="Search by PieceLength Name" class="input form-control w-50"
                     (keyup)="search($event)" />
                 </div> -->
   
@@ -66,16 +66,16 @@
               <div class="html5buttons mrg-tsm">
                 <div class="dt-buttons btn-group btn-group-sm">
                   <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0"
-                    aria-controls="DataTables_Table_0" ngxClipboard (click)="copyCountryList()"><span>Copy</span>
+                    aria-controls="DataTables_Table_0" ngxClipboard (click)="copyPieceLengthList()"><span>Copy</span>
                   </a>
                   <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
-                    aria-controls="DataTables_Table_0" (click)="countryCsvFile()"><span>CSV</span></a>
+                    aria-controls="DataTables_Table_0" (click)="piecelengthCsvFile()"><span>CSV</span></a>
                   <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
-                    aria-controls="DataTables_Table_0" (click)="countryExcelFile()"><span>Excel</span></a>
+                    aria-controls="DataTables_Table_0" (click)="piecelengthExcelFile()"><span>Excel</span></a>
                   <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0"
-                    aria-controls="DataTables_Table_0" (click)="  countryPdf()"><span>PDF</span></a>
+                    aria-controls="DataTables_Table_0" (click)="  piecelengthPdf()"><span>PDF</span></a>
                   <a class="btn btn-default buttons-print bg-white" tabindex="0" aria-controls="DataTables_Table_0"
-                    (click)="printCountryList()"><span>Print</span></a>
+                    (click)="printPieceLengthList()"><span>Print</span></a>
                 </div>
               </div>
             </div>
@@ -93,6 +93,7 @@
                 {{ rowIndex+1 }}
               </ng-template>
             </ngx-datatable-column>
+
             <ngx-datatable-column name="Piece Length Name" [width]="80" prop="name" [flexGrow]="0.05">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 {{ row.pieceLengthName }}
@@ -121,10 +122,10 @@
   
                 <div class="ibox-tools text-center">
                   <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top" title=""
-                    data-original-title="Edit" (click)="editCountryForm(row , 'edit' , 'countryForm')"><i
+                    data-original-title="Edit" (click)="editPieceLengthForm(row , 'edit' , 'piecelengthForm')"><i
                       class="far fa-edit"></i></button>
                   <button type="button" class="btn deleteIconBack" data-toggle="tooltip" data-placement="top" title=""
-                    data-original-title="Delete" (click)="deleteCountry(row)"><i class="far fa-trash-alt"></i></button>
+                    data-original-title="Delete" (click)="deletePieceLength(row)"><i class="far fa-trash-alt"></i></button>
                 </div>
   
               </ng-template>
