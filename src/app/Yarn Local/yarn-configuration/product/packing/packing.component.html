@@ -117,8 +117,8 @@
         [rowHeight]="'auto'" [limit]="6">
 
       <ngx-datatable-column name="S. No." [width]="20" prop="id" > 
-          <ng-template let-row="row"  ngx-datatable-cell-template>
-            {{row.id}}
+          <ng-template let-row="row" let-rowIndex = "rowIndex"   ngx-datatable-cell-template>
+            {{ rowIndex+1 }}
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="Packing Name" [width]="80" prop="name">
