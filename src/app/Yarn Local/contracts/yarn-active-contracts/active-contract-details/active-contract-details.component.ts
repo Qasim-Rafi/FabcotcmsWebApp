@@ -1553,8 +1553,53 @@ deleteDispatch(id) {
         
           }
 
+          deleteContract(id) {
+            Swal.fire({
+              title: GlobalConstants.deleteTitle, //'Are you sure?',
+              text: GlobalConstants.deleteMessage + ' ' + '"' + this.contractData.autoContractNumber + '"',
+              icon: 'error',
+              showCancelButton: true,
+              confirmButtonColor: '#ed5565',
+              cancelButtonColor: '#dae0e5',
+              cancelButtonText: 'No',
+              confirmButtonText: 'Yes',
+              reverseButtons: true,
+              position: 'top',
+            }).then((result) => {
+              if (result.isConfirmed) {
+          
+                this.http.delete(`${environment.apiUrl}/api/Contracts/DeleteContract/` + id)
+                  .subscribe(
+                    res => {
+                      this.response = res;
+                      if (this.response.success == true) {
+                        this.toastr.error(this.response.message, 'Message.');
+                        // this.getAllEnquiryItems();
+                        this.fetch((data) => {
+                          this.rows = data;
 
-
+                        });
+            this.router.navigate(['/FabCot/active-contract']);
+                        
+          
+                      }
+                      else {
+                        this.toastr.error(this.response.message, 'Message.');
+                      }
+          
+                    }, err => {
+                      if (err.status == 400) {
+                        this.toastr.error(this.response.message, 'Message.');
+                      }
+                    });
+          
+              }
+            })
+          
+          }
+          navigateafterdelete() {
+            this.router.navigate(['/FabCot/active-contract']);
+          };
           editpopup(row) {
             const modalRef = this.modalService.open(EditIvnoicePopupComponent , { centered: true });
             modalRef.componentInstance.bill_id = row.billPaymentId;

@@ -36,7 +36,7 @@
                     </div>
 
                     <div class="box-body">
-                        <div class="mid-text">{{contractData.OrderQuantity}}</div>
+                        <div class="mid-text">{{contractData.orderAmount}}</div>
                         <div class="progress mt-1">
                             <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="75"
                                 aria-valuemin="0" aria-valuemax="100"></div>
@@ -85,7 +85,7 @@
 
 
                     <div class="box-body">
-                        <div class="mid-text">241,500.00</div>
+                        <div class="mid-text">{{contractData.saleInvoiceAmount}}</div>
                         <div class="progress mt-1">
                             <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="0"
                                 aria-valuemin="0" aria-valuemax="100"></div>
@@ -109,7 +109,7 @@
                     </div>
 
                     <div class="box-body">
-                        <div class="mid-text">35%</div>
+                        <div class="mid-text">{{contractData.billingPayment}}</div>
                         <div class="progress mt-1">
                             <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="0"
                                 aria-valuemin="0" aria-valuemax="100"></div>
@@ -137,7 +137,9 @@
             </div>
 
             <div class="col-md-8 " *ngIf="contractData.status == 'Open' || contractData.status == 'BillAwaited' ">
-                <button class="btn btn-danger btn-sm border-rounded px-3 mr-1 mrg-btm">
+                <button class="btn btn-danger btn-sm border-rounded px-3 mr-1 mrg-btm" 
+                (click)="deleteContract(contractId)" 
+                >
                     <i class="far fa-trash-alt"></i>
                     Delete
                 </button>
@@ -516,7 +518,7 @@
                                 <dl class="row">
                                     <dt class="col-sm-6">Construction:
                                     </dt>
-                                    <dd class="col-sm-6">{{contractProductData.pecenetAge}}% 
+                                    <dd class="col-sm-6">{{contractProductData.pecenetAge}} 
                                         {{contractProductData.type}}{{contractProductData.construction}}</dd>
 
                                 </dl>
@@ -802,9 +804,9 @@
                                     </ng-template>
                                 </ngx-datatable-column>
 
-                                <ngx-datatable-column name="Container" prop="poNumber">
+                                <ngx-datatable-column name="Container" prop="poNumber" *ngIf="loggedInDepartmentName=='Fabric Local'">
                                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                        {{row.container}}
+                                        {{row.containerName}}
                                     </ng-template>
                                 </ngx-datatable-column>
 
@@ -1154,9 +1156,9 @@
 
                                         </ng-template>
                                     </ngx-datatable-column>
-                                    <ngx-datatable-column name="Container" prop="weight" [width]="80">
+                                    <ngx-datatable-column name="Container" prop="weight" [width]="80" *ngIf="loggedInDepartmentName=='Fabric Local'">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                            {{row.id}}
+                                            {{row.containerName}}
 
                                         </ng-template>
                                     </ngx-datatable-column>

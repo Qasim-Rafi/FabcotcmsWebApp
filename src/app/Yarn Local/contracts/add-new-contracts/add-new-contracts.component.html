@@ -56,9 +56,10 @@
                     <div class="form-group col-xl-1 col-md-2 col-lg-2 text-right">
                         <label for="inputEmail4">Contract #</label>
                         <!-- <div class="input-group"> -->
-                        <div class="text-right">
-                            <h6 class="inputaddenquiryCity-group-addon text-lightgrey mt-2">YL-</h6>
+                        <div class="text-right" >
+                            <h6 class="inputaddenquiryCity-group-addon text-lightgrey mt-2">{{loggedInDepartmentCode}}</h6>
                         </div>
+                        
                     </div>
                     <div class="form-group col-md-2">
                         <label for="inputPassword4">Auto</label>
@@ -516,7 +517,7 @@
                                                 <span class="input-group-text" id="basic-addon2">+/-</span>
                                             </div>
                                             <input type="text" placeholder="tolerance value." class="form-control"
-                                                [(ngModel)]="data.tolerance" name="tolerance" #tolerance="ngModel">
+                                                [(ngModel)]="data.toleranceValue" name="toleranceValue" #toleranceValue="ngModel">
                                             <div class="input-group-append">
                                                 <span class="input-group-text" id="basic-addon2">%</span>
                                             </div>
@@ -1403,17 +1404,17 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+                            <div class="form-group row">
                                 <label for="inputEmail3" class="col-md-3 col-form-label control-label">Other
                                     Conditions:</label>
                                 <div class="col-md-7">
                                     <div class="input-group">
-                                        <textarea rows="3" class="form-control" [(ngModel)]="data.otherConditionRemarks" #otherConditionRemarks="ngModel"
+                                        <textarea rows="9" class="form-control" [(ngModel)]="data.otherConditionRemarks" #otherConditionRemarks="ngModel"
                                             name="otherConditionRemarks"></textarea>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group row" *ngIf="loggedInDepartmentName=='Yarn Local'">
+                            <!-- <div class="form-group row" *ngIf="loggedInDepartmentName=='Yarn Local'">
                                 <label for="inputEmail3" class="col-md-3 col-form-label control-label">Other
                                     Conditions:</label>
                                 <div class="col-md-7">
@@ -1422,8 +1423,8 @@
                                             name="condition"></textarea>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+                            </div> -->
+                            <div class="form-group row">
                                 <label for="inputEmail3" class="col-md-3 col-form-label control-label">Title:</label>
                                 <div class="col-md-7">
                                     <div class="input-group">
@@ -1432,7 +1433,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group row" *ngIf="loggedInDepartmentName=='Yarn Local'">
+                            <!-- <div class="form-group row" *ngIf="loggedInDepartmentName=='Yarn Local'">
                                 <label for="inputEmail3" class="col-md-3 col-form-label control-label">Title:</label>
                                 <div class="col-md-7">
                                     <div class="input-group">
@@ -1440,7 +1441,7 @@
                                             name="condition1"></textarea>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
                         </form>
 

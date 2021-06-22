@@ -80,6 +80,8 @@ export class AddNewContractsComponent implements OnInit {
   data2: any = [];
   condition1: string = "We are please to confirm here the booking as per following term and conditions."
   condition: string = "+17% GST As Per Government ";
+  fabricCondition:string="(1)Fabric should be A-grad and export mended therefore any pencil or chalk marks will not be accepted.\n(2) Subject to quality approval and 05 mtrs sample to be sent on the start of production for approval.\n(3) Count variation is not acceptable.\n(4) One yarn source will be preferred in entire quantity but in case of problem, maximun two yarn sources are allowed.\n(5) Any sub-standard / rejected goods will be replaced by seller.\n(6) Partial shipment allowed.\n(7) Maximum 2 cutting faults allowed with allowance of 01 mtr against each cutting fault.\n(8) Tag Flag for each cut-able fault."
+  title:string="We are pleased to confirm the following contract for A Grade Air jet Fabric"
   weave: any = [];
   agents: any = {};
   buyerPayementTerm: any = [];
@@ -91,6 +93,8 @@ export class AddNewContractsComponent implements OnInit {
   dateformater: Dateformater = new Dateformater();
   selected: any;
   loggedInDepartmentName: string;
+  loggedInDepartmentCode: string;
+
   // FabricLocal:boolean;
   sensorTypes: any;
   selectedAttributes: any;
@@ -106,17 +110,19 @@ export class AddNewContractsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loggedInDepartmentName = localStorage.getItem('loggedInDepartmentName');
+    this.loggedInDepartmentCode = localStorage.getItem('loggedInDepartmentCode');
     if (this.loggedInDepartmentName == 'Yarn Local') {
       this.data.currencyId = 1,
-        this.data.quantityUOMId = 8
-      this.data.rateUOMId = 7
+        this.data.quantityUOMId = 8,
+      this.data.rateUOMId = 7,
       this.data.otherConditionRemarks=this.condition;
       this.data.title =this.condition1;
     } else if (this.loggedInDepartmentName == 'Fabric Local') {
       this.data.quantityUOMId;
+      this.data.currencyId = 1,
       this.data.rateUOMId;
-      this.data.otherConditionRemarks;
-      this.data.title;
+      this.data.otherConditionRemarks=this.fabricCondition;
+      this.data.title=this.title;
     }
 
     let olddate = new Date();
@@ -965,7 +971,7 @@ export class AddNewContractsComponent implements OnInit {
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
             this.contractForm.reset();
-            this.router.navigate(['/FabCot/active-contract'], { queryParams: { id: this.response.data } });
+            this.router.navigate(['/FabCot/active-contract-details'], { queryParams: { id: this.response.data } });
             // this.router.navigate(['/enquiry/active-enquiries']);
             this.spinner.hide();
           }

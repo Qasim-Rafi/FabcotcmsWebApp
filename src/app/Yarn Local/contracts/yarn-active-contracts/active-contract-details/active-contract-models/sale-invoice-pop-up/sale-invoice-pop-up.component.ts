@@ -75,10 +75,10 @@ uomList : any = {};
    
       if (event.keyCode != 13) {
 
-if(event==8){
+if(event==7){
  
   this.data.amount=this.calculatedcost*10;
-}else if(event==7){
+}else if(event==8){
   this.data.amount=this.calculatedcost;
 }
       }
