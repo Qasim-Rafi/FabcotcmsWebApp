@@ -86,7 +86,6 @@ uomList : any = {};
       "buyerDateDay": this.data.buyerDateDay,
       "buyerDateMonth": this.data.buyerDateMonth,
       "buyerDateYear": this.data.buyerDateYear,
-      
       "quantity": this.data.quantity,
       "quantityUOMId": this.data.quantityUOMId,
     }

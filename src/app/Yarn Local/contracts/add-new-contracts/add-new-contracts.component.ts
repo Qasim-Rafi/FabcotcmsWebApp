@@ -110,10 +110,13 @@ export class AddNewContractsComponent implements OnInit {
       this.data.currencyId = 1,
         this.data.quantityUOMId = 8
       this.data.rateUOMId = 7
+      this.data.otherConditionRemarks=this.condition;
+      this.data.title =this.condition1;
     } else if (this.loggedInDepartmentName == 'Fabric Local') {
       this.data.quantityUOMId;
       this.data.rateUOMId;
-      
+      this.data.otherConditionRemarks;
+      this.data.title;
     }
 
     let olddate = new Date();
@@ -332,7 +335,7 @@ export class AddNewContractsComponent implements OnInit {
 
         if (type == "other") {
           // this.seller.id = this.newSeller;
-          this.data.buyerPaymentTermId = this.newbuyerPaymentTerm1
+          this.data.sellerPaymentTermId = this.newsellerPaymentTerm1
         }
 
       }
@@ -910,8 +913,8 @@ export class AddNewContractsComponent implements OnInit {
       "buyerDeliveryDate": this.dateformater.toModel(this.data.buyerDeliveryDate),
       "contractRemarks": this.data.contractRemarks,
       "buyerRemarks": this.data.buyerRemarks,
-      "otherConditionRemarks": this.data.otherConditionRemarks == null ? this.condition : this.data.otherConditionRemarks,
-      "title": this.data.title == null ? this.condition1 : this.data.title,
+      "otherConditionRemarks": this.data.otherConditionRemarks,
+      "title": this.data.title,
       "kickbackPercentage": this.data.kickbackPercentage,
       "kickbackUOMId": this.data.kickbackUOMId,
       "beneficiary": this.data.beneficiary,
