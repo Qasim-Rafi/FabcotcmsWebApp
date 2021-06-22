@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
@@ -6,6 +6,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ServiceService } from 'src/app/shared/service.service';
 import { NgForm } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-edit-seller-form',
@@ -29,7 +30,8 @@ export class EditSellerFormComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private toastr: ToastrService,
     private service: ServiceService,
-    private _NgbActiveModal: NgbActiveModal,) { }
+    private _NgbActiveModal: NgbActiveModal,
+    @Inject(DOCUMENT) private _document: Document) { }
 
 
   ngOnInit() {
@@ -44,7 +46,9 @@ export class EditSellerFormComponent implements OnInit {
   get activeModal() {
     return this._NgbActiveModal;
   }
-
+  refreshPage() {
+    this._document.defaultView.location.reload();
+  }
   GetCertificationDropdown() {
     this.service.getCertification().subscribe(res => {
       this.response = res;

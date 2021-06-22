@@ -11,7 +11,7 @@
 </div>
 
 <div class="modal-body BG p-0">
-  <form #addAgentForm="ngForm" novalidate (ngSubmit)="UpdateAgent()">
+  <form #addAgentForm="ngForm" novalidate >
 
     <div class="col-md-12 pt-3 pb-2">
 
@@ -152,7 +152,7 @@
         (click)="activeModal.close()">
         Close
       </button>
-      <button class="btn button-save" type="submit">
+      <button class="btn button-save" type="submit" (click)="UpdateAgent()" (click)="refreshPage()">
         Update Agent
       </button>
     </div>

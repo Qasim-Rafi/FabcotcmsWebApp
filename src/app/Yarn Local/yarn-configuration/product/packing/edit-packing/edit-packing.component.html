@@ -11,7 +11,7 @@
 </div>
 
 <div class="modal-body BG p-0">
-  <form #addPackingForm="ngForm" novalidate (ngSubmit)="UpdatePacking(addPackingForm)">
+  <form #addPackingForm="ngForm" novalidate >
 
     <div class="col-md-12 pt-3 pb-2">
 
@@ -51,7 +51,7 @@
 
     <div class="modal-footer NotBG">
 
-      <button class="btn button-save" type="submit">
+      <button class="btn button-save" type="submit" (click)="UpdatePacking(addPackingForm)" (click)="refreshPage()">
         Update Packing
       </button>
     </div>

@@ -62,7 +62,8 @@
       <button *ngIf="statusCheck == 'add' " class="btn button-save" type="submit" (click)="onSubmit('addCountry')">
         Add Country
       </button>
-      <button *ngIf="statusCheck == 'edit'" class="btn button-save" type="submit" (click)="onSubmit('UpdateCountry')">
+
+    <button *ngIf="statusCheck == 'edit'" class="btn button-save" type="submit" (click)="onSubmit('UpdateCountry')" (click)="refreshPage()">
         Update Country
       </button>
 
