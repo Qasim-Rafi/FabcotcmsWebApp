@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
       <div aria-hidden="true">&times;</div>
     </button>
   
@@ -36,11 +36,7 @@
             </div>
         </div>
       <div class="modal-footer NotBG">
-        <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal"
-          >
-          Close
-        </button>
-    
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" (click)="activeModal.close()">Close</button>    
         <button class="btn button-save" type="submit" >
          Update
         </button>

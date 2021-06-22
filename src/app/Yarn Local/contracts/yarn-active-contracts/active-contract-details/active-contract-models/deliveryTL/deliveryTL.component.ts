@@ -19,7 +19,7 @@ export class DeliveryTLComponent implements OnInit {
   data: any = {};
   response: any;
 uomList : any = {};
-
+containers:any={}
   // @Input() itemId;
   // @Input() enquiryId;
   @Input() contractId;
@@ -28,6 +28,7 @@ uomList : any = {};
   @ViewChild(NgForm) deliveryForm;
   @Input() statusCheck;
   @ViewChild("focus") myInputField: ElementRef;
+  loggedInDepartmentName: string;
   
   constructor(
     private http: HttpClient,
@@ -38,7 +39,9 @@ uomList : any = {};
   ) { }
 
   ngOnInit(): void {
+    this.loggedInDepartmentName = localStorage.getItem('loggedInDepartmentName');
    this.GetUOMDropdown();
+   this.GetContainersDropdown();
     this.statusCheck = this.statusCheck;
     if (this.statusCheck == 'Edit') {
       this.getById();
@@ -58,6 +61,7 @@ uomList : any = {};
           if (this.response.success == true) {
 
             this.data = this.response.data;
+            // this.data.buyerDateMonth=this.data.buyerDateDay+'-'+this.data.buyerDateMonth+'-'+this.data.buyerDateYear;
             this.data.buyerDate = this.dateformater.fromModel(this.data.buyerDate);
             this.data.supplierDate = this.dateformater.fromModel(this.data.supplierDate);
           }
@@ -87,7 +91,8 @@ uomList : any = {};
       "buyerDateMonth": this.data.buyerDateMonth,
       "buyerDateYear": this.data.buyerDateYear,
       "quantity": this.data.quantity,
-      "quantityUOMId": this.data.quantityUOMId,
+       "containerId":this.data.containerId,
+       "quantityUOMId": this.data.quantityUOMId,
     }
 this.spinner.show();
     this.http.
@@ -125,7 +130,18 @@ this.spinner.hide();
       }
     })
   }
-
+  GetContainersDropdown() {
+    this.http.get(`${environment.apiUrl}/api/Lookups/Containers`).
+    subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.containers = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
   addDelivery(form:NgForm) {
 
     let varr = {
@@ -138,8 +154,8 @@ this.spinner.hide();
       "buyerDateYear": this.data.buyerDateYear,
       "quantity": this.data.quantity,
       "quantityUOMId": this.data.quantityUOMId,
-      "active": true
-
+      "active": true,
+       "containerId":this.data.containerId
     }
 this.spinner.show();
     this.http.
@@ -150,7 +166,7 @@ this.spinner.show();
           this.response = res;
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
-                  
+            // this.data.buyerDateMonth=this.data.buyerDateDay+'-'+this.data.buyerDateMonth+'-'+this.data.buyerDateYear;
             // this.deliveryForm.reset();
             this.activeModal.close(true);
             this.spinner.hide();

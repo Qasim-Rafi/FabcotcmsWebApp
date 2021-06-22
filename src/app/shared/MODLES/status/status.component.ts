@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
@@ -21,6 +22,7 @@ export class StatusComponent implements OnInit {
   @Input() action;
   @Input() component;
   constructor(private http: HttpClient,
+    private router: Router,
     private toastr: ToastrService,private spinner: NgxSpinnerService,
     private _NgbActiveModal: NgbActiveModal) { }
 
@@ -110,6 +112,7 @@ else
         this.toastr.success(this.response.message, 'Message.');
         this.activeModal.close(true);
         this.spinner.hide();
+      this.router.navigate(['/FabCot/active-contract']);
       }
       else {
         this.toastr.error('Something went Worng', 'Message.');
