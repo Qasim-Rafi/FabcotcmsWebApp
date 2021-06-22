@@ -21,21 +21,47 @@ export class TemplateComponent implements OnInit {
   ngOnInit(): void {
     this.userrole=localStorage.getItem('role');
     this.loggedInDepartmentId=localStorage.getItem('loggedInDepartmentId');
-    if(this.loggedInDepartmentId == '3'){
-        this.isYarnLocal = true;
-        this.isHomeTextileandGarments= false;
-       this.isFabricLocal=false;
-    }
-    else if(this.loggedInDepartmentId == '6'){
-      this.isYarnLocal = false;
-      this.isHomeTextileandGarments= true;
+    
+    if(this.loggedInDepartmentId == '1'){
+      this.isYarnLocal = true;
+      this.isHomeTextileandGarments= false;
  this.isFabricLocal=false;
     } 
-    else if(this.loggedInDepartmentId == '5'){
-      this.isYarnLocal = false;
+    else if(this.loggedInDepartmentId == '2'){
+      this.isYarnLocal = true;
       this.isHomeTextileandGarments= false;
- this.isFabricLocal=true;
-    }
+ this.isFabricLocal=false;
+    } 
+    else if(this.loggedInDepartmentId == '3'){
+      this.isYarnLocal = true;
+      this.isHomeTextileandGarments= false;
+     this.isFabricLocal=false;
+  }
+  else if(this.loggedInDepartmentId == '4'){
+    this.isYarnLocal = true;
+    this.isHomeTextileandGarments= false;
+this.isFabricLocal=false;
+  }   else if(this.loggedInDepartmentId == '5'){
+    this.isYarnLocal = false;
+    this.isHomeTextileandGarments= false;
+this.isFabricLocal=true;
+  }
+  else if(this.loggedInDepartmentId == '6'){
+    this.isYarnLocal = false;
+    this.isHomeTextileandGarments= true;
+this.isFabricLocal=false;
+  } 
+    else if(this.loggedInDepartmentId == '7'){
+      this.isYarnLocal = true;
+      this.isHomeTextileandGarments= false;
+ this.isFabricLocal=false;
+    } 
+    else if(this.loggedInDepartmentId == '8'){
+      this.isYarnLocal = true;
+      this.isHomeTextileandGarments= false;
+ this.isFabricLocal=false;
+    } 
+   
     this.userName=localStorage.getItem('loggedInUserName');
     $('li.dropdown.mega-dropdown a').on('click', function (event) {
       $(this).parent().toggleClass("open");
