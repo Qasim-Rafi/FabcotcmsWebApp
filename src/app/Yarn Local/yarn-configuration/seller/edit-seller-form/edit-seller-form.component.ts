@@ -112,7 +112,6 @@ export class EditSellerFormComponent implements OnInit {
 
 
   editSeller(Id) {
-    this.spinner.show();
     this.http.get(`${environment.apiUrl}/api/Sellers/GetSeller/` + Id)
       .subscribe(
         res => {
@@ -122,17 +121,14 @@ export class EditSellerFormComponent implements OnInit {
 
             this.data.machineIds = this.data.machineIds.split(',');
             this.data.capabilitiesIds = this.data.capabilitiesIds.split(',');
-         this.spinner.hide();
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
-         this.spinner.hide();
           }
 
         }, err => {
           if (err.status == 400) {
             this.toastr.error(this.response.message, 'Message.');
-          this.spinner.hide();
           }
         });
   }
