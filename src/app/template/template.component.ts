@@ -12,6 +12,7 @@ export class TemplateComponent implements OnInit {
   title = 'Project';
   userName:string;
   loggedInDepartmentId: string;
+  loggedInDepartmentName: string;
   isYarnLocal:boolean;
   isHomeTextileandGarments:boolean;
   isFabricLocal:boolean;
@@ -21,6 +22,8 @@ export class TemplateComponent implements OnInit {
   ngOnInit(): void {
     this.userrole=localStorage.getItem('role');
     this.loggedInDepartmentId=localStorage.getItem('loggedInDepartmentId');
+    this.userName=localStorage.getItem('loggedInUserName');
+    this.loggedInDepartmentName=localStorage.getItem('loggedInDepartmentName');
     
     if(this.loggedInDepartmentId == '1'){
       this.isYarnLocal = true;
@@ -62,7 +65,6 @@ this.isFabricLocal=false;
  this.isFabricLocal=false;
     } 
    
-    this.userName=localStorage.getItem('loggedInUserName');
     $('li.dropdown.mega-dropdown a').on('click', function (event) {
       $(this).parent().toggleClass("open");
   });

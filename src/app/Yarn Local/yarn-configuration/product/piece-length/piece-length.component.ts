@@ -116,13 +116,14 @@ this.spinner.hide();
     modalRef.result.then((data) => {
 
       if (data == true) {
-        this.service.fetch((data) => {
-          this.rows = data;
-      this.piecelengthFilter = [...this.rows];
-
-          this.piecelengthCount = this.rows.length;
-        }, this.PieceLengthUrl);
+        
       }
+      this.service.fetch((data) => {
+        this.rows = data;
+    this.piecelengthFilter = [...this.rows];
+
+        this.piecelengthCount = this.rows.length;
+      }, this.PieceLengthUrl);
     }, (reason) => {
     });
   }
@@ -139,11 +140,12 @@ this.spinner.hide();
       // on close
       if (data == true) {
         //  this.date = this.myDate;
-        this.service.fetch((data) => {
-          this.rows = data;
-        }, this.PieceLengthUrl);
+        
 
       }
+      this.service.fetch((data) => {
+        this.rows = data;
+      }, this.PieceLengthUrl);
     }, (reason) => {
       // on dismiss
     });
