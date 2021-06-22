@@ -11,7 +11,7 @@
 </div>
 
 <div class="modal-body BG p-0">
-  <form #addAgentForm="ngForm" novalidate (ngSubmit)="UpdateCurrency(addAgentForm)">
+  <form #addAgentForm="ngForm" novalidate >
 
     <div class="col-md-12 pt-3 pb-2">
 
@@ -69,7 +69,7 @@
     <div class="modal-footer NotBG pr-md1"> 
       <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal"
         (click)="activeModal.close()">Close</button>
-      <button class="btn button-save" type="submit">
+      <button class="btn button-save" type="submit" (click)="UpdateCurrency(addAgentForm)" (click)="refreshPage()">
         Update Rate
       </button>
     </div>

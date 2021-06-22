@@ -77,7 +77,7 @@
         Save City
       </button>
 
-      <button *ngIf="statusCheck == 'CityEdit'" class="btn button-save" type="submit" (click)="onSubmit('UpdateCity')">
+      <button *ngIf="statusCheck == 'CityEdit'" class="btn button-save" type="submit" (click)="onSubmit('UpdateCity')" (click)="refreshPage()">
         Update City
       </button>
     </div>

@@ -63,7 +63,7 @@
       <button *ngIf="statusCheck == 'add' " class="btn button-save" type="submit" (click)="onSubmit('addselvedge')">
         Add Selvedge
       </button>
-      <button *ngIf="statusCheck == 'edit'" class="btn button-save" type="submit" (click)="onSubmit('Updateselvedge')">
+      <button *ngIf="statusCheck == 'edit'" class="btn button-save" type="submit" (click)="onSubmit('Updateselvedge')" (click)="refreshPage()">
         Update Selvedge
       </button>
 

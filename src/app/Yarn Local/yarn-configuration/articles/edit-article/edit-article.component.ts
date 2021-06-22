@@ -1,5 +1,6 @@
+import { DOCUMENT } from '@angular/common';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -22,13 +23,16 @@ export class EditArticleComponent implements OnInit {
     private service: ServiceService,
     private spinner: NgxSpinnerService,
     private toastr: ToastrService,
-              private _NgbActiveModal: NgbActiveModal) { }
+    @Inject(DOCUMENT) private _document: Document,
+    private _NgbActiveModal: NgbActiveModal) { }
 
   ngOnInit(): void {
     this.editArticle();
   }
 
-
+  refreshPage() {
+    this._document.defaultView.location.reload();
+  }
   get activeModal() {
     return this._NgbActiveModal;
   }

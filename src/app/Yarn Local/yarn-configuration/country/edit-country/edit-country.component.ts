@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Inject, Input, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -7,6 +7,7 @@ import { GlobalConstants } from 'src/app/Common/global-constants'
 import { NgForm } from '@angular/forms';
 import { ServiceService } from 'src/app/shared/service.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-edit-country',
@@ -26,7 +27,9 @@ export class EditCountryComponent implements OnInit {
     private service: ServiceService,
     private spinner: NgxSpinnerService,
     private toastr: ToastrService,
-    private _NgbActiveModal: NgbActiveModal) { }
+    private _NgbActiveModal: NgbActiveModal,
+    @Inject(DOCUMENT) private _document: Document
+    ) { }
 
   ngOnInit(): void {
     this.statusCheck = this.statusCheck;
@@ -35,9 +38,12 @@ export class EditCountryComponent implements OnInit {
       this.editCountry();
     }
   }
- 
+
   get activeModal() {
     return this._NgbActiveModal;
+  }
+  refreshPage() {
+    this._document.defaultView.location.reload();
   }
   editCountry() {
     this.spinner.show();
@@ -51,26 +57,26 @@ export class EditCountryComponent implements OnInit {
             this.spinner.hide();
           }
           else {
-                     this.toastr.error(this.response.message, 'Message.');
-this.spinner.hide();
+            this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
           }
 
         }, err => {
           if (err.status == 400) {
-                     this.toastr.error(this.response.message, 'Message.');
-this.spinner.hide();
+            this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
           }
         });
   }
 
-  UpdateCountry(form:NgForm) {
+  UpdateCountry(form: NgForm) {
 
     let varr = {
       "name": this.data.name,
       "details": this.data.details,
       "active": this.active
     }
-this.spinner.show();
+    this.spinner.show();
     this.http.
       put(`${environment.apiUrl}/api/Configs/UpdateCountry/` + this.countryId, varr)
       .subscribe(
@@ -78,14 +84,13 @@ this.spinner.show();
 
           this.response = res;
           if (this.response.success == true) {
-                   this.toastr.success(this.response.message, 'Message.');
-
+            this.toastr.success(this.response.message, 'Message.');
             this.activeModal.close(true);
             this.spinner.hide();
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
-         this.spinner.hide();
+            this.spinner.hide();
           }
 
         }, (err: HttpErrorResponse) => {
@@ -94,21 +99,21 @@ this.spinner.show();
           console.log(messages);
           this.spinner.hide();
         });
-  
-}
+
+  }
 
   // -------------------------------------ADD COUNTRY FROM ---------------------------
 
-  addCountry(form:NgForm) {
+  addCountry(form: NgForm) {
 
-  
+
 
     let varr = {
       "name": this.data.name,
       "details": this.data.details,
       "active": this.active
     }
-this.spinner.show();
+    this.spinner.show();
     this.http.
       post(`${environment.apiUrl}/api/Configs/AddCountry`, varr)
       .subscribe(
@@ -122,7 +127,7 @@ this.spinner.show();
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
-          this.spinner.hide();
+            this.spinner.hide();
           }
 
         }, (err: HttpErrorResponse) => {
@@ -132,22 +137,22 @@ this.spinner.show();
           this.spinner.hide();
         });
 
-}
-
-
-onSubmit(buttonType): void {
-  if (buttonType === "addCountry"){
-
-    this.addCountry(this.addAgentForm); 
   }
 
-  if (buttonType === "UpdateCountry"){
 
-    this.UpdateCountry(this.addAgentForm); 
+  onSubmit(buttonType): void {
+    if (buttonType === "addCountry") {
+
+      this.addCountry(this.addAgentForm);
+    }
+
+    if (buttonType === "UpdateCountry") {
+
+      this.UpdateCountry(this.addAgentForm);
+
+    }
 
   }
-
-}
 
 
 }

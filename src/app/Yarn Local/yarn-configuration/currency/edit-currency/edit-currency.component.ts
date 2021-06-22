@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -8,6 +8,7 @@ import { ServiceService } from 'src/app/shared/service.service';
 import { Dateformater } from 'src/app/shared/dateformater';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
 
@@ -26,7 +27,9 @@ export class EditCurrencyComponent implements OnInit {
     private service: ServiceService,
     private spinner: NgxSpinnerService,
     private toastr: ToastrService,
-    private _NgbActiveModal: NgbActiveModal ) { }
+    private _NgbActiveModal: NgbActiveModal,
+    @Inject(DOCUMENT) private _document: Document
+     ) { }
 
   ngOnInit(): void {
     this.editCurrency();
@@ -35,7 +38,9 @@ export class EditCurrencyComponent implements OnInit {
     return this._NgbActiveModal;
   }
 
-
+  refreshPage() {
+    this._document.defaultView.location.reload();
+  }
 
   editCurrency()
   {

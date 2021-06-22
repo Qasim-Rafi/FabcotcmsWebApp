@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -6,6 +6,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
 import { ServiceService } from 'src/app/shared/service.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-edit-bank',
@@ -21,7 +22,9 @@ export class EditBankComponent implements OnInit {
     private service: ServiceService,
     private spinner: NgxSpinnerService,
     private toastr: ToastrService,
-    private _NgbActiveModal: NgbActiveModal) { }
+    private _NgbActiveModal: NgbActiveModal,
+    @Inject(DOCUMENT) private _document: Document
+    ) { }
 
   ngOnInit(): void {
     this.editBank();
@@ -31,7 +34,9 @@ export class EditBankComponent implements OnInit {
   get activeModal() {
     return this._NgbActiveModal;
   }
-
+  refreshPage() {
+    this._document.defaultView.location.reload();
+  }
 
   editBank()
   {

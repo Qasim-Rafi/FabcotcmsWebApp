@@ -10,7 +10,7 @@
 </div>
 
 <div class="modal-body BG p-0">
-  <form #addPriceForm="ngForm" novalidate (ngSubmit)="UpdatePrice(addPriceForm)">
+  <form #addPriceForm="ngForm" novalidate >
 
     <div class="col-md-12 pt-3 pb-2">
 
@@ -47,7 +47,7 @@
     </div>
 
     <div class="modal-footer NotBG">
-      <button class="btn button-save" type="submit">
+      <button class="btn button-save" type="submit" (click)="UpdatePrice(addPriceForm)" (click)="refreshPage()">
         Update Price Term
       </button>
     </div>

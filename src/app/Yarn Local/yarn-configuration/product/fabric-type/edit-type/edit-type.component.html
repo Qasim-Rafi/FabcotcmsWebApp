@@ -10,7 +10,7 @@
 </div>
 
 <div class="modal-body BG p-0">
-  <form #addTypeForm="ngForm" novalidate (ngSubmit)=" UpdateType(addTypeForm)">
+  <form #addTypeForm="ngForm" novalidate >
 
     <div class="col-md-12 pt-3 pb-2">
 
@@ -50,7 +50,7 @@
 
 
     <div class="modal-footer NotBG">
-      <button class="btn button-save" type="submit">
+      <button class="btn button-save" type="submit" (click)=" UpdateType(addTypeForm)" (click)="refreshPage()"> 
         Update Fabric Type
       </button>
     </div>

@@ -57,6 +57,7 @@ export class CountryComponent implements OnInit {
       return (d.name.toLowerCase().indexOf(val) !== -1 || !val);
     });
     this.rows = temp;
+    // this.data.name=null;
   }
 
   //  --------------------- Delete Country ---------------------------//

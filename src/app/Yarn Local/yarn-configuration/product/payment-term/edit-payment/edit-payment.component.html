@@ -11,7 +11,7 @@
 </div>
 
 <div class="modal-body BG p-0">
-  <form #addPaymentForm="ngForm" novalidate (ngSubmit)="UpdatePayment(addPaymentForm)">
+  <form #addPaymentForm="ngForm" novalidate >
 
     <div class="col-md-12 pt-3 pb-2">
 
@@ -49,7 +49,7 @@
     </div>
 
     <div class="modal-footer NotBG">
-      <button class="btn button-save" type="submit">
+      <button class="btn button-save" type="submit" (click)="UpdatePayment(addPaymentForm)" (click)="refreshPage()">
         Update Payment Term
       </button>
     </div>

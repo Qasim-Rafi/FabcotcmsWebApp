@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Inject, Input, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -6,6 +6,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ServiceService } from 'src/app/shared/service.service';
 import { NgForm } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { DOCUMENT } from '@angular/common';
 @Component({
   selector: 'app-edit-city',
   templateUrl: './edit-city.component.html',
@@ -26,7 +27,8 @@ export class EditCityComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private toastr: ToastrService,
     private _NgbActiveModal: NgbActiveModal,
-    private service: ServiceService) { }
+    private service: ServiceService,
+    @Inject(DOCUMENT) private _document: Document) { }
 
   ngOnInit(): void {
 
@@ -50,6 +52,9 @@ export class EditCityComponent implements OnInit {
 
   get activeModal() {
     return this._NgbActiveModal;
+  }
+  refreshPage() {
+    this._document.defaultView.location.reload();
   }
   //EDIT CITIES
 
