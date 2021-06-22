@@ -421,8 +421,9 @@ this.spinner.hide();
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        this.getSellers();
       }
+      this.getSellers();
+
     }, (reason) => {
       // on dismiss
     });
@@ -436,8 +437,9 @@ this.spinner.hide();
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        this.getSellers();
       }
+      this.getSellers();
+
     }, (reason) => {
       // on dismiss
     });
