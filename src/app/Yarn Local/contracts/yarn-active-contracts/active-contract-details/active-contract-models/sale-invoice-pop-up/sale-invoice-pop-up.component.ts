@@ -27,9 +27,11 @@ export class SaleInvoicePopUpComponent implements OnInit {
   quantitya:any;
   calculatedcost:any;
   response: any;
+  saleInvoiceNo:string;
   loggedInDepartmentName:string;
 uomList : any = {};
 @ViewChild(NgForm) InvoiceForm;
+  saleInvoiceDate: any;
  
   constructor(
     private _NgbActiveModal: NgbActiveModal,
@@ -145,7 +147,9 @@ this.spinner.show();
           this.response = res;
           if (this.response.success == true) {
             this.data = this.response.data;
+            this.saleInvoiceNo=this.data.saleInvoiceNo;
             this.data.saleInvoiceDate = this.dateformater.fromModel(this.data.saleInvoiceDate);
+            this.saleInvoiceDate=this.data.saleInvoiceDate;
             // this.spinner.hide();
 
           }

@@ -382,7 +382,6 @@ export class AddNewContractsComponent implements OnInit {
       }
     })
   }
- 
   GetPriceTermDropdown(type: string) {
     this.service.getPriceTerm().subscribe(res => {
       this.response = res;
