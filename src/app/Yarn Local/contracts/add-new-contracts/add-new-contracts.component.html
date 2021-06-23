@@ -329,8 +329,8 @@
                                             <div class="input-group-append">
                                                 <span class="input-group-text" id="basic-addon2">+/-</span>
                                             </div>
-                                            <input type="text" placeholder="Tol/Grams" class="form-control" #toleranceValue="ngModel"
-                                                [(ngModel)]="data.toleranceValue" name="toleranceValue">
+                                            <input type="text" placeholder="Tol/Grams" class="form-control" #tolerance="ngModel"
+                                                [(ngModel)]="data.tolerance" name="tolerance">
                                             <div class="input-group-append">
                                                 <span class="input-group-text" id="basic-addon2">%</span>
                                             </div>
@@ -694,48 +694,89 @@
                         <!-- Supplier Delivery Date -->
 
                         <div class="form-group row">
-
-                            <label for="inputPassword4" class=" col-md-3 col-form-label control-label">Supplier Delivery
-                                Date</label>
-
-                            <div class="col-md-7">
-
-
-                                <div class="input-group date" >
-                                    <input navigation="select" class="form-control  " name="sellerDeliveryDate"
-                                        [(ngModel)]="data.sellerDeliveryDate" #sellerDeliveryDate="ngModel"
-                                         
-                                        placeholder="Supplier Date" />
-
-                                    <div class="input-group-append">
-
-                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                    </div>
-                                </div>
-
+                            <label class="col-sm-3 col-form-label text_Navy">Supplier Delivery Date
+                              <!-- <span class="required-denote">*</span> -->
+                            </label>
+                            <div class="col-sm-3">
+                              <input  class="form-control"  
+                              name="sellerDeliveryDateDay" placeholder="Day" [(ngModel)]="data.sellerDeliveryDateDay" #sellerDeliveryDateDay="ngModel"  />
+                               
                             </div>
-
-                        </div>
+                            <div class="col-sm-2">
+                              <ng-select placeholder="Month" name="sellerDeliveryDateMonth" [(ngModel)]="data.sellerDeliveryDateMonth" #sellerDeliveryDateMonth="ngModel">
+                                <ng-option value="Jan"> Jan</ng-option>
+                                <ng-option value="Feb"> Feb</ng-option>
+                                <ng-option value="Mar"> Mar</ng-option>
+                                <ng-option value="Apr"> Apr</ng-option>
+                                <ng-option value="May"> May</ng-option>
+                                <ng-option value="Jun"> Jun</ng-option>
+                                <ng-option value="Jul"> Jul</ng-option>
+                                <ng-option value="Aug"> Aug</ng-option>
+                                <ng-option value="Sep"> Sep</ng-option>
+                                <ng-option value="Oct"> Oct</ng-option>
+                                <ng-option value="Nov"> Nov</ng-option>
+                                <ng-option value="Dec"> Dec</ng-option>
+                              </ng-select>
+                            </div>
+                            <div class="col-sm-2">
+                              <ng-select placeholder="Year" name="sellerDeliveryDateYear" [(ngModel)]="data.sellerDeliveryDateYear" #sellerDeliveryDateYear="ngModel">
+                                <ng-option value="2016"> 2016</ng-option>
+                                <ng-option value="2017"> 2017</ng-option>
+                                <ng-option value="2018"> 2018</ng-option>
+                                <ng-option value="2019"> 2019</ng-option>
+                                <ng-option value="2020"> 2020</ng-option>
+                                <ng-option value="2021"> 2021</ng-option>
+                                <ng-option value="2022"> 2022</ng-option>
+                                <ng-option value="2023"> 2023</ng-option>
+                                <ng-option value="2024"> 2024</ng-option>
+                                <ng-option value="2025"> 2025</ng-option>
+                              </ng-select>
+                            </div>
+                          </div>
+                  
 
                         <div class="form-group row" *ngFor="let a of new; let i = index;">
-                            <div class="col-md-3"></div>
-
-                            <div class="col-md-7">
-
-
-                                <div class="input-group date" >
-                                    <input type="text" class="form-control  datetimepicker-input"
-                                         placeholder="Date"
-                                        name="sellerDeliveryDate"
-                                        ngbDatepicker>
-                                    <div class="input-group-append">
-
-                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                        <button class="btn btn-outline-danger float-right" type="submit"
-                                            (click)="remove(i)">
-                                            <i class="fas fa-minus fa-xs"></i></button>
-                                    </div>
-                                </div>
+                            <label class="col-sm-3 col-form-label text_Navy">
+                                <!-- <span class="required-denote">*</span> -->
+                              </label>
+                              <div class="col-sm-3">
+                                <input  class="form-control"  
+                                name="sellerDeliveryDateDay" placeholder="Day" [(ngModel)]="data.sellerDeliveryDateDay" #sellerDeliveryDateDay="ngModel"  />
+                                 
+                              </div>
+                              <div class="col-sm-2">
+                                <ng-select placeholder="Month" name="sellerDeliveryDateMonth" [(ngModel)]="data.sellerDeliveryDateMonth" #sellerDeliveryDateMonth="ngModel">
+                                  <ng-option value="Jan"> Jan</ng-option>
+                                  <ng-option value="Feb"> Feb</ng-option>
+                                  <ng-option value="Mar"> Mar</ng-option>
+                                  <ng-option value="Apr"> Apr</ng-option>
+                                  <ng-option value="May"> May</ng-option>
+                                  <ng-option value="Jun"> Jun</ng-option>
+                                  <ng-option value="Jul"> Jul</ng-option>
+                                  <ng-option value="Aug"> Aug</ng-option>
+                                  <ng-option value="Sep"> Sep</ng-option>
+                                  <ng-option value="Oct"> Oct</ng-option>
+                                  <ng-option value="Nov"> Nov</ng-option>
+                                  <ng-option value="Dec"> Dec</ng-option>
+                                </ng-select>
+                              </div>
+                              <div class="col-sm-2">
+                                <ng-select placeholder="Year" name="sellerDeliveryDateYear" [(ngModel)]="data.sellerDeliveryDateYear" #sellerDeliveryDateYear="ngModel">
+                                  <ng-option value="2016"> 2016</ng-option>
+                                  <ng-option value="2017"> 2017</ng-option>
+                                  <ng-option value="2018"> 2018</ng-option>
+                                  <ng-option value="2019"> 2019</ng-option>
+                                  <ng-option value="2020"> 2020</ng-option>
+                                  <ng-option value="2021"> 2021</ng-option>
+                                  <ng-option value="2022"> 2022</ng-option>
+                                  <ng-option value="2023"> 2023</ng-option>
+                                  <ng-option value="2024"> 2024</ng-option>
+                                  <ng-option value="2025"> 2025</ng-option>
+                                </ng-select>
+                              </div>
+                              <div class="input-group-append">
+                                <button class="btn btn-outline-danger " type="submit" (click)="remove(i)">
+                                    <i class="fas fa-minus fa-xs"></i></button>
                             </div>
                         </div>
 
@@ -756,39 +797,90 @@
                             <label for="inputPassword4" class="col-md-3 col-form-label control-label">Buyer Delivery
                                 Date</label>
 
-                            <div class="col-md-7">
-
-                                <div class="input-group date" >
-
-                                    <input navigation="select" class="form-control  " name="buyerDeliveryDate"
-                                        [(ngModel)]="data.buyerDeliveryDate" #buyerDeliveryDate="ngModel" 
-                                        placeholder="Buyer Date" />
-
-                                    <div class="input-group-append" >
-
-                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                    </div>
-                                </div>
-
-                            </div>
-
+                                  <div class="col-sm-3">
+                                    <input  class="form-control"  
+                                    name="buyerDeliveryDateDay" placeholder="Day" [(ngModel)]="data.buyerDeliveryDateDay" #buyerDeliveryDateDay="ngModel"  />
+                                     
+                                  </div>
+                                  <div class="col-sm-2">
+                                    <ng-select placeholder="Month" name="buyerDeliveryDateMonth" [(ngModel)]="data.buyerDeliveryDateMonth" #buyerDeliveryDateMonth="ngModel">
+                                      <ng-option value="Jan"> Jan</ng-option>
+                                      <ng-option value="Feb"> Feb</ng-option>
+                                      <ng-option value="Mar"> Mar</ng-option>
+                                      <ng-option value="Apr"> Apr</ng-option>
+                                      <ng-option value="May"> May</ng-option>
+                                      <ng-option value="Jun"> Jun</ng-option>
+                                      <ng-option value="Jul"> Jul</ng-option>
+                                      <ng-option value="Aug"> Aug</ng-option>
+                                      <ng-option value="Sep"> Sep</ng-option>
+                                      <ng-option value="Oct"> Oct</ng-option>
+                                      <ng-option value="Nov"> Nov</ng-option>
+                                      <ng-option value="Dec"> Dec</ng-option>
+                                    </ng-select>
+                                  </div>
+                                  <div class="col-sm-2">
+                                    <ng-select placeholder="Year" name="buyerDeliveryDateYear" [(ngModel)]="data.buyerDeliveryDateYear" #buyerDeliveryDateYear="ngModel">
+                                      <ng-option value="2016"> 2016</ng-option>
+                                      <ng-option value="2017"> 2017</ng-option>
+                                      <ng-option value="2018"> 2018</ng-option>
+                                      <ng-option value="2019"> 2019</ng-option>
+                                      <ng-option value="2020"> 2020</ng-option>
+                                      <ng-option value="2021"> 2021</ng-option>
+                                      <ng-option value="2022"> 2022</ng-option>
+                                      <ng-option value="2023"> 2023</ng-option>
+                                      <ng-option value="2024"> 2024</ng-option>
+                                      <ng-option value="2025"> 2025</ng-option>
+                                    </ng-select>
+                                  </div>
+                                  
 
                         </div>
 
                         <div class="form-group row" *ngFor="let a of new2; let i = index;">
 
-                            <div class="col-md-3"></div>
-                            <div class="col-md-7">
-                                <div class="input-group date">
-                                    <input type="text" class="form-control  datetimepicker-input"
-                                       placeholder="Date" name="buyerDeliveryDate" >
-                                    <div class="input-group-append">
-                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                        <button class="btn btn-outline-danger " type="submit" (click)="remove2(i)">
-                                            <i class="fas fa-minus fa-xs"></i></button>
-                                    </div>
+                            <label for="inputPassword4" class="col-md-3 col-form-label control-label">Buyer Delivery
+                                Date</label>
+
+                                  <div class="col-sm-3">
+                                    <input  class="form-control"  
+                                    name="buyerDeliveryDateDay" placeholder="Day" [(ngModel)]="data.buyerDeliveryDateDay" #buyerDeliveryDateDay="ngModel"  />
+                                     
+                                  </div>
+                                  <div class="col-sm-2">
+                                    <ng-select placeholder="Month" name="buyerDeliveryDateMonth" [(ngModel)]="data.buyerDeliveryDateMonth" #buyerDeliveryDateMonth="ngModel">
+                                      <ng-option value="Jan"> Jan</ng-option>
+                                      <ng-option value="Feb"> Feb</ng-option>
+                                      <ng-option value="Mar"> Mar</ng-option>
+                                      <ng-option value="Apr"> Apr</ng-option>
+                                      <ng-option value="May"> May</ng-option>
+                                      <ng-option value="Jun"> Jun</ng-option>
+                                      <ng-option value="Jul"> Jul</ng-option>
+                                      <ng-option value="Aug"> Aug</ng-option>
+                                      <ng-option value="Sep"> Sep</ng-option>
+                                      <ng-option value="Oct"> Oct</ng-option>
+                                      <ng-option value="Nov"> Nov</ng-option>
+                                      <ng-option value="Dec"> Dec</ng-option>
+                                    </ng-select>
+                                  </div>
+                                  <div class="col-sm-2">
+                                    <ng-select placeholder="Year" name="buyerDeliveryDateYear" [(ngModel)]="data.buyerDeliveryDateYear" #buyerDeliveryDateYear="ngModel">
+                                      <ng-option value="2016"> 2016</ng-option>
+                                      <ng-option value="2017"> 2017</ng-option>
+                                      <ng-option value="2018"> 2018</ng-option>
+                                      <ng-option value="2019"> 2019</ng-option>
+                                      <ng-option value="2020"> 2020</ng-option>
+                                      <ng-option value="2021"> 2021</ng-option>
+                                      <ng-option value="2022"> 2022</ng-option>
+                                      <ng-option value="2023"> 2023</ng-option>
+                                      <ng-option value="2024"> 2024</ng-option>
+                                      <ng-option value="2025"> 2025</ng-option>
+                                    </ng-select>
+                                  </div>
+                                  <div class="input-group-append">
+                                    <button class="btn btn-outline-danger " type="submit" (click)="remove2(i)">
+                                        <i class="fas fa-minus fa-xs"></i></button>
                                 </div>
-                            </div>
+
                         </div>
 
                         <div class="row">
@@ -1042,47 +1134,89 @@
                         <!-- Supplier Delivery Date -->
 
                         <div class="form-group row">
-
-                            <label for="inputPassword4" class=" col-md-3 col-form-label control-label">Supplier Delivery
-                                Date</label>
-
-                            <div class="col-md-7">
-
-                                <div class="input-group date" (clickOutside)="validity1.close()">
-                                    <!-- <input type="text" class="form-control  datetimepicker-input" (click)="sellerDeliveryDatePicker.toggle()"
-                                            placeholder="Date" #sellerDeliveryDatePicker="ngbDatepicker"
-                                            #sellerDeliveryDate = "ngModel"
-                                            name="sellerDeliveryDate" ngbDatepicker [(ngModel)] = "data.sellerDeliveryDate"> -->
-                                    <input navigation="select" class="form-control  " name="sellerDeliveryDate"
-                                        [(ngModel)]="data.sellerDeliveryDate" #sellerDeliveryDate="ngModel"
-                                        ngbDatepicker #validity1="ngbDatepicker" (click)="validity1.toggle()"
-                                        placeholder="Supplier Date" />
-                                    <div class="input-group-append" (click)="validity1.toggle()">
-                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                    </div>
-                                </div>
-
+                            <label class="col-sm-3 col-form-label text_Navy">Supplier Delivery Date
+                              <!-- <span class="required-denote">*</span> -->
+                            </label>
+                            <div class="col-sm-3">
+                              <input  class="form-control"  
+                              name="sellerDeliveryDateDay" placeholder="Day" [(ngModel)]="data.sellerDeliveryDateDay" #sellerDeliveryDateDay="ngModel"  />
+                               
                             </div>
-
-                        </div>
+                            <div class="col-sm-2">
+                              <ng-select placeholder="Month" name="sellerDeliveryDateMonth" [(ngModel)]="data.sellerDeliveryDateMonth" #sellerDeliveryDateMonth="ngModel">
+                                <ng-option value="Jan"> Jan</ng-option>
+                                <ng-option value="Feb"> Feb</ng-option>
+                                <ng-option value="Mar"> Mar</ng-option>
+                                <ng-option value="Apr"> Apr</ng-option>
+                                <ng-option value="May"> May</ng-option>
+                                <ng-option value="Jun"> Jun</ng-option>
+                                <ng-option value="Jul"> Jul</ng-option>
+                                <ng-option value="Aug"> Aug</ng-option>
+                                <ng-option value="Sep"> Sep</ng-option>
+                                <ng-option value="Oct"> Oct</ng-option>
+                                <ng-option value="Nov"> Nov</ng-option>
+                                <ng-option value="Dec"> Dec</ng-option>
+                              </ng-select>
+                            </div>
+                            <div class="col-sm-2">
+                              <ng-select placeholder="Year" name="sellerDeliveryDateYear" [(ngModel)]="data.sellerDeliveryDateYear" #sellerDeliveryDateYear="ngModel">
+                                <ng-option value="2016"> 2016</ng-option>
+                                <ng-option value="2017"> 2017</ng-option>
+                                <ng-option value="2018"> 2018</ng-option>
+                                <ng-option value="2019"> 2019</ng-option>
+                                <ng-option value="2020"> 2020</ng-option>
+                                <ng-option value="2021"> 2021</ng-option>
+                                <ng-option value="2022"> 2022</ng-option>
+                                <ng-option value="2023"> 2023</ng-option>
+                                <ng-option value="2024"> 2024</ng-option>
+                                <ng-option value="2025"> 2025</ng-option>
+                              </ng-select>
+                            </div>
+                          </div>
+                  
 
                         <div class="form-group row" *ngFor="let a of new; let i = index;">
-                            <div class="col-md-3"></div>
-
-                            <div class="col-md-7">
-
-                                <div class="input-group date" (clickOutside)="sellerDeliveryDatePicker.close()">
-                                    <input type="text" class="form-control  datetimepicker-input"
-                                        (click)="sellerDeliveryDatePicker.toggle()" placeholder="Date"
-                                        #sellerDeliveryDatePicker="ngbDatepicker" name="sellerDeliveryDate"
-                                        ngbDatepicker>
-                                    <div class="input-group-append" (click)="sellerDeliveryDatePicker.toggle()">
-                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                        <button class="btn btn-outline-danger float-right" type="submit"
-                                            (click)="remove(i)">
-                                            <i class="fas fa-minus fa-xs"></i></button>
-                                    </div>
-                                </div>
+                            <label class="col-sm-3 col-form-label text_Navy">
+                                <!-- <span class="required-denote">*</span> -->
+                              </label>
+                              <div class="col-sm-3">
+                                <input  class="form-control"  
+                                name="sellerDeliveryDateDay" placeholder="Day" [(ngModel)]="data.sellerDeliveryDateDay" #sellerDeliveryDateDay="ngModel"  />
+                                 
+                              </div>
+                              <div class="col-sm-2">
+                                <ng-select placeholder="Month" name="sellerDeliveryDateMonth" [(ngModel)]="data.sellerDeliveryDateMonth" #sellerDeliveryDateMonth="ngModel">
+                                  <ng-option value="Jan"> Jan</ng-option>
+                                  <ng-option value="Feb"> Feb</ng-option>
+                                  <ng-option value="Mar"> Mar</ng-option>
+                                  <ng-option value="Apr"> Apr</ng-option>
+                                  <ng-option value="May"> May</ng-option>
+                                  <ng-option value="Jun"> Jun</ng-option>
+                                  <ng-option value="Jul"> Jul</ng-option>
+                                  <ng-option value="Aug"> Aug</ng-option>
+                                  <ng-option value="Sep"> Sep</ng-option>
+                                  <ng-option value="Oct"> Oct</ng-option>
+                                  <ng-option value="Nov"> Nov</ng-option>
+                                  <ng-option value="Dec"> Dec</ng-option>
+                                </ng-select>
+                              </div>
+                              <div class="col-sm-2">
+                                <ng-select placeholder="Year" name="sellerDeliveryDateYear" [(ngModel)]="data.sellerDeliveryDateYear" #sellerDeliveryDateYear="ngModel">
+                                  <ng-option value="2016"> 2016</ng-option>
+                                  <ng-option value="2017"> 2017</ng-option>
+                                  <ng-option value="2018"> 2018</ng-option>
+                                  <ng-option value="2019"> 2019</ng-option>
+                                  <ng-option value="2020"> 2020</ng-option>
+                                  <ng-option value="2021"> 2021</ng-option>
+                                  <ng-option value="2022"> 2022</ng-option>
+                                  <ng-option value="2023"> 2023</ng-option>
+                                  <ng-option value="2024"> 2024</ng-option>
+                                  <ng-option value="2025"> 2025</ng-option>
+                                </ng-select>
+                              </div>
+                              <div class="input-group-append">
+                                <button class="btn btn-outline-danger " type="submit" (click)="remove(i)">
+                                    <i class="fas fa-minus fa-xs"></i></button>
                             </div>
                         </div>
 
@@ -1103,38 +1237,90 @@
                             <label for="inputPassword4" class="col-md-3 col-form-label control-label">Buyer Delivery
                                 Date</label>
 
-                            <div class="col-md-7">
-
-                                <div class="input-group date" (clickOutside)="validity2.close()">
-                                    <input navigation="select" class="form-control  " name="buyerDeliveryDate"
-                                        [(ngModel)]="data.buyerDeliveryDate" #buyerDeliveryDate="ngModel" ngbDatepicker
-                                        #validity2="ngbDatepicker" (click)="validity2.toggle()"
-                                        placeholder="Buyer Date" />
-                                    <div class="input-group-append" (click)="validity2.toggle()">
-                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                    </div>
-                                </div>
-
-                            </div>
-
+                                  <div class="col-sm-3">
+                                    <input  class="form-control"  
+                                    name="buyerDeliveryDateDay" placeholder="Day" [(ngModel)]="data.buyerDeliveryDateDay" #buyerDeliveryDateDay="ngModel"  />
+                                     
+                                  </div>
+                                  <div class="col-sm-2">
+                                    <ng-select placeholder="Month" name="buyerDeliveryDateMonth" [(ngModel)]="data.buyerDeliveryDateMonth" #buyerDeliveryDateMonth="ngModel">
+                                      <ng-option value="Jan"> Jan</ng-option>
+                                      <ng-option value="Feb"> Feb</ng-option>
+                                      <ng-option value="Mar"> Mar</ng-option>
+                                      <ng-option value="Apr"> Apr</ng-option>
+                                      <ng-option value="May"> May</ng-option>
+                                      <ng-option value="Jun"> Jun</ng-option>
+                                      <ng-option value="Jul"> Jul</ng-option>
+                                      <ng-option value="Aug"> Aug</ng-option>
+                                      <ng-option value="Sep"> Sep</ng-option>
+                                      <ng-option value="Oct"> Oct</ng-option>
+                                      <ng-option value="Nov"> Nov</ng-option>
+                                      <ng-option value="Dec"> Dec</ng-option>
+                                    </ng-select>
+                                  </div>
+                                  <div class="col-sm-2">
+                                    <ng-select placeholder="Year" name="buyerDeliveryDateYear" [(ngModel)]="data.buyerDeliveryDateYear" #buyerDeliveryDateYear="ngModel">
+                                      <ng-option value="2016"> 2016</ng-option>
+                                      <ng-option value="2017"> 2017</ng-option>
+                                      <ng-option value="2018"> 2018</ng-option>
+                                      <ng-option value="2019"> 2019</ng-option>
+                                      <ng-option value="2020"> 2020</ng-option>
+                                      <ng-option value="2021"> 2021</ng-option>
+                                      <ng-option value="2022"> 2022</ng-option>
+                                      <ng-option value="2023"> 2023</ng-option>
+                                      <ng-option value="2024"> 2024</ng-option>
+                                      <ng-option value="2025"> 2025</ng-option>
+                                    </ng-select>
+                                  </div>
+                                  
 
                         </div>
 
                         <div class="form-group row" *ngFor="let a of new2; let i = index;">
 
-                            <div class="col-md-3"></div>
-                            <div class="col-md-7">
-                                <div class="input-group date" (clickOutside)="buyerDeliveryDatePicker.close()">
-                                    <input type="text" class="form-control  datetimepicker-input"
-                                        (click)="buyerDeliveryDatePicker.toggle()" placeholder="Date"
-                                        #buyerDeliveryDatePicker="ngbDatepicker" name="buyerDeliveryDate" ngbDatepicker>
-                                    <div class="input-group-append" (click)="buyerDeliveryDatePicker.toggle()">
-                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                        <button class="btn btn-outline-danger " type="submit" (click)="remove2(i)">
-                                            <i class="fas fa-minus fa-xs"></i></button>
-                                    </div>
+                            <label for="inputPassword4" class="col-md-3 col-form-label control-label">Buyer Delivery
+                                Date</label>
+
+                                  <div class="col-sm-3">
+                                    <input  class="form-control"  
+                                    name="buyerDeliveryDateDay" placeholder="Day" [(ngModel)]="data.buyerDeliveryDateDay" #buyerDeliveryDateDay="ngModel"  />
+                                     
+                                  </div>
+                                  <div class="col-sm-2">
+                                    <ng-select placeholder="Month" name="buyerDeliveryDateMonth" [(ngModel)]="data.buyerDeliveryDateMonth" #buyerDeliveryDateMonth="ngModel">
+                                      <ng-option value="Jan"> Jan</ng-option>
+                                      <ng-option value="Feb"> Feb</ng-option>
+                                      <ng-option value="Mar"> Mar</ng-option>
+                                      <ng-option value="Apr"> Apr</ng-option>
+                                      <ng-option value="May"> May</ng-option>
+                                      <ng-option value="Jun"> Jun</ng-option>
+                                      <ng-option value="Jul"> Jul</ng-option>
+                                      <ng-option value="Aug"> Aug</ng-option>
+                                      <ng-option value="Sep"> Sep</ng-option>
+                                      <ng-option value="Oct"> Oct</ng-option>
+                                      <ng-option value="Nov"> Nov</ng-option>
+                                      <ng-option value="Dec"> Dec</ng-option>
+                                    </ng-select>
+                                  </div>
+                                  <div class="col-sm-2">
+                                    <ng-select placeholder="Year" name="buyerDeliveryDateYear" [(ngModel)]="data.buyerDeliveryDateYear" #buyerDeliveryDateYear="ngModel">
+                                      <ng-option value="2016"> 2016</ng-option>
+                                      <ng-option value="2017"> 2017</ng-option>
+                                      <ng-option value="2018"> 2018</ng-option>
+                                      <ng-option value="2019"> 2019</ng-option>
+                                      <ng-option value="2020"> 2020</ng-option>
+                                      <ng-option value="2021"> 2021</ng-option>
+                                      <ng-option value="2022"> 2022</ng-option>
+                                      <ng-option value="2023"> 2023</ng-option>
+                                      <ng-option value="2024"> 2024</ng-option>
+                                      <ng-option value="2025"> 2025</ng-option>
+                                    </ng-select>
+                                  </div>
+                                  <div class="input-group-append">
+                                    <button class="btn btn-outline-danger " type="submit" (click)="remove2(i)">
+                                        <i class="fas fa-minus fa-xs"></i></button>
                                 </div>
-                            </div>
+
                         </div>
 
                         <div class="row">

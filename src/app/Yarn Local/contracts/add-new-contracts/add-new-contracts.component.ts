@@ -915,8 +915,6 @@ export class AddNewContractsComponent implements OnInit {
       "buyerPaymentTerm": this.data.buyerPaymentTerm,
       "packingId": this.data.packingId,
       "priceautoContractNoTermId": this.data.priceTermId,
-      "sellerDeliveryDate": this.dateformater.toModel(this.data.sellerDeliveryDate),
-      "buyerDeliveryDate": this.dateformater.toModel(this.data.buyerDeliveryDate),
       "contractRemarks": this.data.contractRemarks,
       "buyerRemarks": this.data.buyerRemarks,
       "otherConditionRemarks": this.data.otherConditionRemarks,
@@ -959,7 +957,12 @@ export class AddNewContractsComponent implements OnInit {
       "destinationId": this.data.destinationId,
       "containerId": this.data.containerId,
       "count": this.data.count,
-
+      "sellerDeliveryDateDay": this.data.sellerDeliveryDateDay,
+      "sellerDeliveryDateMonth": this.data.sellerDeliveryDateMonth,
+      "sellerDeliveryDateYear": this.data.sellerDeliveryDateYear,
+      "buyerDeliveryDateDay":this.data.buyerDeliveryDateDay,
+      "buyerDeliveryDateMonth": this.data.buyerDeliveryDateMonth,
+      "buyerDeliveryDateYear": this.data.buyerDeliveryDateYear,
     }
     this.spinner.show();
     this.http.
