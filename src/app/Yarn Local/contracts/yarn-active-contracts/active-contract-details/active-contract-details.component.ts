@@ -1909,10 +1909,38 @@ getImage(){
                       },
                       {
                         layout:'noBorders',
+                        margin: [350 , -10 , 0 , 0],
+                        table:{headerRows: 1 , widths:['12%' , '80%'],
+                      body: [
+                        [{text:'GST:'  , style:'heading3'} , {text: this.printData['sellerGSTNumber'] , style:'heading3'}],] }
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [400 , -13 , 0 , 0],
+                        table:{headerRows: 1 , widths:['16%' , '80%'],
+                      body: [
+                        [{text:'NTN:'  , style:'heading3'} , {text: this.printData['sellerNTNNumber'] , style:'heading3'}],] }
+                      },
+                      {
+                        layout:'noBorders',
                         margin: [70 , 7 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
                         [{text:'Buyer Name:'  , style:'heading'} , {text: this.contractData['buyerName'] , style:'heading2'}],] }
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [350 , -10 , 0 , 0],
+                        table:{headerRows: 1 , widths:['12%' , '80%'],
+                      body: [
+                        [{text:'GST:'  , style:'heading3'} , {text: this.printData['buyerGSTNumber'] , style:'heading3'}],] }
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [400 , -13 , 0 , 0],
+                        table:{headerRows: 1 , widths:['16%' , '80%'],
+                      body: [
+                        [{text:'NTN:'  , style:'heading3'} , {text: this.printData['buyerNTNNumber'] , style:'heading3'}],] }
                       },
                       {
                         layout:'noBorders',
@@ -2005,6 +2033,9 @@ getImage(){
                       bold: true,color: '#4d4b4b' },
                       heading2:{fontSize: 11  , color:'#4d4b4b'
                         },
+                        
+                        heading3:{fontSize: 8  , color:'#4d4b4b'
+                      },
                         tableheader: {
                           fillColor: '#f3f3f4',
                           fontSize: 10,
@@ -2136,7 +2167,7 @@ getImage(){
                         margin: [70 , 2 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
-                        [{text:'Description:'  , style:'heading'} , {text: this.contractProductData['pecenetAge'] + this.contractProductData['type'] +this.contractProductData['construction']  , style:'heading2'}],] }
+                        [{text:'Description:'  , style:'heading'} , {text: this.contractProductData['pecenetAge']+'%' + this.contractProductData['febricType'] +this.contractProductData['construction']  , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
@@ -2454,7 +2485,7 @@ getImage(){
                         margin: [70 , 2 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
-                        [{text:'Description:'  , style:'heading'} , {text: this.contractProductData['pecenetAge'] + this.contractProductData['type'] +this.contractProductData['construction']  , style:'heading2'}],] }
+                        [{text:'Description:'  , style:'heading'} , {text: this.contractProductData['pecenetAge'] +'%' + this.contractProductData['febricType'] +this.contractProductData['construction']  , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
