@@ -149,7 +149,7 @@ printData : any = {}
     this.getPrintData();
     this.getContractData();
     this.getAllReminder();
-    this.getCreditDebit();
+    // this.getCreditDebit();
     this.getContractPartiesData();
     this.getContractProductData();
     this.getContractCostingData();
@@ -361,7 +361,7 @@ printData : any = {}
   }
   
   fetch(cb) {
-      this.spinner.show();
+      // this.spinner.show();
     this.http
     .get(`${environment.apiUrl}/api/YarnContracts/GetAllContractSaleInvoice/`+this.contractId )
     .subscribe(res => {
@@ -375,17 +375,18 @@ printData : any = {}
       this.saleInvoiceId=this.response.data[0].id;
   
     cb(this.saleInvoice);
-   this.spinner.hide(); }
+  //  this.spinner.hide();
+   }
     else{
       this.toastr.error(this.response.message, 'Message.');
-    this.spinner.hide();
+    // this.spinner.hide();
     }
       // this.spinner.hide();
     }, err => {
       if ( err.status == 400) {
   this.toastr.error(err.error.message, 'Message.');
       }
-     this.spinner.hide();
+    //  this.spinner.hide();
     });
   }
   
@@ -478,7 +479,7 @@ printData : any = {}
               this.response = res;
               if (this.response.success == true) {
                 this.toastr.error(this.response.message, 'Message.');
-                this.getCreditDebit();
+                // this.getCreditDebit();
 
                 this.spinner.hide();
   
@@ -603,27 +604,27 @@ getDeliveryTimeLine() {
         console.log(messages);
       });
 }
-getCreditDebit() {
-  this.http.get(`${environment.apiUrl}/api/YarnContracts/GetAllInvoiceDebitCreditNote/`+28 )
-    .subscribe(
-      res => {
-        this.response = res;
-        if (this.response.success == true) {
-          this.creditdebit = this.response.data;
+// getCreditDebit() {
+//   this.http.get(`${environment.apiUrl}/api/YarnContracts/GetAllInvoiceDebitCreditNote/`+28 )
+//     .subscribe(
+//       res => {
+//         this.response = res;
+//         if (this.response.success == true) {
+//           this.creditdebit = this.response.data;
           
-          this.getCreditDebit();
+//           this.getCreditDebit();
 
-        }
-        else {
-          this.toastr.error(this.response.message, 'Message.');
-        }
+//         }
+//         else {
+//           this.toastr.error(this.response.message, 'Message.');
+//         }
 
-      },(err: HttpErrorResponse) => {
-        const messages = this.service.extractErrorMessagesFromErrorResponse(err);
-        this.toastr.error(messages.toString(), 'Message.');
-        console.log(messages);
-      });
-}
+//       },(err: HttpErrorResponse) => {
+//         const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+//         this.toastr.error(messages.toString(), 'Message.');
+//         console.log(messages);
+//       });
+// }
 getDispatches() {
   this.http.get(`${environment.apiUrl}/api/YarnContracts/GetAllDispatchRegister/`+ this.contractId)
     .subscribe(
