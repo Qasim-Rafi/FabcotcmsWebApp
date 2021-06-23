@@ -130,7 +130,7 @@ this.spinner.show();
             this.toastr.success(this.response.message, 'Message.');
             this.addAgentForm.reset();
             this.obj.id = this.response.data;
-            this.activeModal.close(true);
+            this.activeModal.close(this.obj);
             this.spinner.hide();
           }
           else {

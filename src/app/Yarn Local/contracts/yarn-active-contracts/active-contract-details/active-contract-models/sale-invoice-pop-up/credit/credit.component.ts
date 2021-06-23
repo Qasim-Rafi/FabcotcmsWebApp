@@ -17,16 +17,17 @@ export class CreditComponent implements OnInit {
 
   dateformater: Dateformater = new Dateformater();  
   data:any ={};
-  uomList = []
+  currency:any = []
+  uomList:any = []
   count : any = []
-
+  @Input() saleInvoiceId; 
   @Input() creditId; 
   @Input() statusCheck; 
   @Input() contractId; 
   response: any;
-  @Input() buyerName;
-  @Input() sellerName;
-  @Input() contractNmbr;
+  @Input() saleInvoiceNo;
+  @Input() saleInvoiceDate;
+
 
   @ViewChild(NgForm) creditForm;
  
@@ -39,19 +40,20 @@ export class CreditComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this. GetCurrencyDropdown();
     this.statusCheck = this.statusCheck
-    this.buyerName = this.buyerName
-    this.sellerName = this.sellerName
-    this.contractNmbr = this.contractNmbr
+    this.saleInvoiceNo = this.saleInvoiceNo
+    this.saleInvoiceDate=this.saleInvoiceDate
+ this.saleInvoiceId=this.saleInvoiceId
 
     if(this.statusCheck == 'Edit')
     {
     this.getCredit();
   }
-  if(this.statusCheck == 'Edit2')
-  {
-  this.getCredit();
-}
+//   if(this.statusCheck == 'Edit2')
+//   {
+//   this.getCredit();
+// }
 
 
   this.GetUOMDropdown();
@@ -86,16 +88,26 @@ export class CreditComponent implements OnInit {
       }
     })
   }
-
+  GetCurrencyDropdown() {
+    this.service.getCurrencyType().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.currency = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
 
   getCredit() {
-    this.http.get(`${environment.apiUrl}/api/YarnContracts/GetCreditRegisterById/` + this.creditId)
+    this.http.get(`${environment.apiUrl}/api/YarnContracts/GetInvoiceDebitCreditNoteById/` + this.saleInvoiceId)
       .subscribe(
         res => {
           this.response = res;
           if (this.response.success == true) {
             this.data = this.response.data;
-            this.data.date = this.dateformater.fromModel(this.data.date);
+            // this.data.date = this.dateformater.fromModel(this.data.date);
             
 
           }
@@ -117,16 +129,23 @@ export class CreditComponent implements OnInit {
 
     let varr = {
 
-      "contractId":this.contractId, 
-      "number": this.data.number,
-      "date": this.dateformater.toModel(this.data.date),
+      "saleInvoiceId": this.saleInvoiceId,
+      "saleInvoiceDate": this.data.saleInvoiceDate,
+      "creditNoteNo": this.data.creditNoteNo,
+      // "creditNoteDate": this.data.creditNoteDate,
+      "creditNoteDate": this.dateformater.toModel(this.data.creditNoteDate),
+      "debitNoteNo": this.data.debitNoteNo,
+      "debitNoteDate":this.data.debitNoteDate,
       "quantity": this.data.quantity,
       "uomId": this.data.uomId,
-      "remarks": this.data.remarks,
+      "amount": this.data.amount,
+      "currencyId": this.data.currencyId,
+      "taxPercentage": this.data.taxPercentage,
+      "reason":this.data.reason
     }
 
     this.http.
-      post(`${environment.apiUrl}/api/YarnContracts/AddCreditRegister`, varr)
+      post(`${environment.apiUrl}/api/YarnContracts/AddInvoiceDebitCreditNote`, varr)
       .subscribe(
         res => {
 

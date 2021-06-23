@@ -6,12 +6,12 @@
         <i class="fa fa-plus"></i>
         Add Credit Note
          </h5>
-    <h5 class="modal-title" *ngIf = "statusCheck == 'Edit' || statusCheck == 'Edit2'">
+    <h5 class="modal-title" *ngIf = "statusCheck == 'Edit'">
       <i class="fa fa-truck"></i>
       Edit Credit Note
     </h5>
-    <div class="font text-muted text-center"><b> Sale Invoice No. </b> {{contractNmbr}}</div>
-    <div class="font text-muted text-center"><b>Sale Invoice Date : </b>{{ buyerName}} </div>
+    <div class="font text-muted text-center"><b> Sale Invoice No. </b> {{saleInvoiceNo}}</div>
+    <div class="font text-muted text-center"><b>Sale Invoice Date : </b>{{saleInvoiceDate}} </div>
   </div>
   
   
@@ -22,10 +22,10 @@
 
     
         <div class="form-group row">
-          <label for="saleInvoiceNo" class="col-sm-3 col-form-label text_Navy">Credit Note No.</label>
+          <label for="creditNoteNo" class="col-sm-3 col-form-label text_Navy">Credit Note No.</label>
           <div class="col-sm-8">
-            <input type="text" class="form-control" placeholder="Credit Note No." name="number"
-              [(ngModel)]="data.number" #number="ngModel" />
+            <input type="text" class="form-control" placeholder="Credit Note No." name="creditNoteNo"
+              [(ngModel)]="data.creditNoteNo" #creditNoteNo="ngModel" />
           </div>
         </div>
   
@@ -35,15 +35,15 @@
           <div class="col-sm-8" (clickOutside)="creditDate.close()">
   
             <input navigation="select" class="form-control  " ngbDatepicker #creditDate="ngbDatepicker"
-              (click)="creditDate.toggle()" placeholder="Credit Note date" name="date"
-              [(ngModel)]="data.date" #date="ngModel" />
+              (click)="creditDate.toggle()" placeholder="Credit Note date" name="creditNoteDate"
+              [(ngModel)]="data.creditNoteDate" #creditNoteDate="ngModel" />
           </div>
         </div>
 
           <div class="form-group row">
             <label for="itemQuantity" class="col-sm-3 col-form-label text_Navy">Quantity</label>
             <div class="col-sm-3">
-                <input type="number" min="0" required
+                <input type="number" min="0" 
                 id="itemQuantity" #itemQuantity="ngModel"
               name="quantity" [(ngModel)]="data.quantity" #quantity="ngModel"
                 class="form-control" value="" placeholder="Quantity" />
@@ -60,18 +60,17 @@
       
           </div>
           <div class="form-group row">
-            <label for="itemQuantity" class="col-sm-3 col-form-label text_Navy">Amount</label>
+            <label for="amount" class="col-sm-3 col-form-label text_Navy">Amount</label>
             <div class="col-sm-3">
-                <input type="number" min="0" required
-                id="itemQuantity" #itemQuantity="ngModel"
-              name="quantity" [(ngModel)]="data.quantity" #quantity="ngModel"
+                <input type="number" min="0"  #amount="ngModel"
+              name="amount" [(ngModel)]="data.amount"
                 class="form-control" value="" placeholder="Amount" />
             </div>
             <div class="col-md-5">
                
               <ng-select
-              [(ngModel)]="data.uomId" placeholder="Currency" name="uomId">
-              <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
+              [(ngModel)]="data.currencyId" placeholder="Currency" name="currencyId" #currencyId="ngModel">
+              <ng-option *ngFor="let i of currency" [value]="i.id">{{ i.code }}
               </ng-option>
             </ng-select>
 
@@ -79,13 +78,13 @@
       
           </div>
           <div class="form-group row" >
-            <label for="saleInvoiceDate" class="col-sm-3 col-form-label">Tax (%age)</label>
+            <label for="taxPercentage" class="col-sm-3 col-form-label">Tax (%age)</label>
             <div class="col-sm-8">
                 <div class="input-group">
                     <div class="input-group-append">
                     </div>
                     <input type="number" placeholder="Tax %age" class="form-control"
-                        [(ngModel)]="data.salesTax" name="salesTax" #salesTax="ngModel">
+                        [(ngModel)]="data.taxPercentage" name="taxPercentage" #taxPercentage="ngModel">
                     <div class="input-group-append">
                         <span class="input-group-text" id="basic-addon2">%</span>
                     </div>
@@ -97,10 +96,10 @@
          
       
         <div class="form-group row">
-          <label for="saleInvoiceRemarks" class="col-sm-3 col-form-label ">Reason</label>
+          <label for="reason" class="col-sm-3 col-form-label ">Reason</label>
           <div class="col-sm-8">
-            <textarea name="remarks" rows="3" class="form-control" placeholder="Credit/Debit Note details here..."
-              name="remarks" [(ngModel)]="data.remarks" #remarks="ngModel"></textarea>
+            <textarea rows="3" class="form-control" placeholder="Credit/Debit Note details here..."
+              name="reason" [(ngModel)]="data.reason" #reason="ngModel"></textarea>
           </div>
         </div>
         

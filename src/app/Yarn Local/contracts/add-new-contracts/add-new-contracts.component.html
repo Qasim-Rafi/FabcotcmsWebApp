@@ -894,13 +894,13 @@
                                         <div class="input-group">
                                             <ng-select name="buyerPaymentTermId" #buyerPaymentTermId="ngModel" class="input-w2 px-0"
                                                 [(ngModel)]="data.buyerPaymentTermId" placeholder="Payment Terms">
-                                                <ng-option *ngFor="let i of PayementTerm" [value]="i.id">{{ i.term}}
+                                                <ng-option *ngFor="let i of buyerPayementTerm" [value]="i.id">{{ i.term}}
                                                 </ng-option>
                                             </ng-select>
 
                                             <div class="input-group-append">
                                                 <button class="btn btn-outline-primary" type="button" id="button-addon2"
-                                                    (click)="addsellerpayemntForm()">
+                                                    (click)="addbuyerpayemntForm()">
                                                     <i class="fa fa-plus"></i></button>
                                             </div>
 

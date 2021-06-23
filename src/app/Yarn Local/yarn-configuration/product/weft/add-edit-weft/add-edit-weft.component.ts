@@ -17,6 +17,7 @@ import { DOCUMENT } from '@angular/common';
 export class AddEditWeftComponent implements OnInit {
 
   response: any;
+  obj: any = {};
   data: any = {};
   active = true;
   @Input() BlendingRatioWeftId;
@@ -120,11 +121,14 @@ this.spinner.show();
       post(`${environment.apiUrl}/api/FLConfigs/AddBlendingRatioWeft`, varr)
       .subscribe(
         res => {
-
+          this.obj.parent = this.active;
+          this.obj.status = true;
           this.response = res;
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
-            this.activeModal.close(true);
+            this.addAgentForm.reset();
+            this.obj.id = this.response.data;
+            this.activeModal.close(this.obj);
             this.spinner.hide();
           }
           else {
