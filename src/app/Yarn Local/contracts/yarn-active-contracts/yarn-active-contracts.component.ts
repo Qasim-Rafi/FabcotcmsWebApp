@@ -74,7 +74,7 @@ export class YarnActiveContractsComponent implements OnInit {
   };
   
   navigateAddContract() {
-    this.router.navigate(['/FabCot/add-new-yarn-contract']);
+    this.router.navigate(['/FabCot/add-new-contract']);
   };
 activeContract(){
   console.log("Active Contracts");

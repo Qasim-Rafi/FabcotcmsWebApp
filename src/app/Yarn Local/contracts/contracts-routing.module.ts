@@ -19,7 +19,7 @@ const routes: Routes = [
 
   children:[
 
-    { path: 'add-new-yarn-contract' ,  component: AddNewContractsComponent},
+    { path: 'add-new-contract' ,  component: AddNewContractsComponent},
     { path: 'active-contract' ,  component: YarnActiveContractsComponent},
     { path: 'completed-contract' ,  component: CompletedContractComponent},
     { path: 'dispatched-register' , component:DispatchedRegisterComponent},
