@@ -57,6 +57,7 @@ printData : any = {}
   contractNote:any = {};
   columns: any = [];
   queryParems: any = {};
+  invoiceId: any = {};
   contractId: any = {};
   contractData: any = {};
   contractPartiesData: any = {};
@@ -86,14 +87,17 @@ printData : any = {}
   invoiceItemFilter = [];
   invoiceItem = {};
   reminderData = [];
+  creditdebit = [];
   deliveryTimeLineData = [];
   deliveryCount: number;
   prodPlanData = [];
   dispatchData = [];
   deliveryData = [];
-
+  saleInvoiceNo:string
   contractKickbackData = [];
   saleinvoicecount: number;
+  saleInvoiceDate: any;
+  saleInvoiceId: any;
 
   deliveryUrl = '/api/YarnContracts/GetAllContractDeliverySchedule'
   shipmentUrl='/api/Contracts/GetAllContractShipmentSchedule/{contractId}';
@@ -144,6 +148,7 @@ printData : any = {}
     this.getPrintData();
     this.getContractData();
     this.getAllReminder();
+    this.getCreditDebit();
     this.getContractPartiesData();
     this.getContractProductData();
     this.getContractCostingData();
@@ -350,7 +355,10 @@ printData : any = {}
      
     if(this.response.success==true)
     {
-    this.saleInvoice =this.response.data;
+      this.saleInvoice =this.response.data;
+      this.saleInvoiceNo=this.response.data[0].saleInvoiceNo;
+      this.saleInvoiceDate=this.response.data[0].saleInvoiceDate;
+      this.saleInvoiceId=this.response.data[0].id;
   
     cb(this.saleInvoice);
    this.spinner.hide(); }
@@ -434,7 +442,51 @@ printData : any = {}
   }
   
   
+ 
+  deleteCreditDebit(row) {
+    Swal.fire({
+      title: GlobalConstants.deleteTitle, //'Are you sure?',
+      text: GlobalConstants.deleteMessage + ' ' +'Debit/Credit Note:'+ '"' + row.creditNoteNo + '"',
+      icon: 'error',
+      showCancelButton: true,
+      confirmButtonColor: '#ed5565',
+      cancelButtonColor: '#dae0e5',
+      cancelButtonText: 'No',
+      confirmButtonText: 'Yes',
+      reverseButtons: true,
+      position: 'top',
+    }).then((result) => {
+      if (result.isConfirmed) {
+  this.spinner.show()
+        this.http.delete(`${environment.apiUrl}/api/YarnContracts/DeleteInvoiceDebitCreditNote/` + row.id)
+          .subscribe(
+            res => {
+              this.response = res;
+              if (this.response.success == true) {
+                this.toastr.error(this.response.message, 'Message.');
+                this.getCreditDebit();
 
+                this.spinner.hide();
+  
+              }
+              else {
+                this.toastr.error(this.response.message, 'Message.');
+                this.spinner.hide();
+
+              }
+  
+            },(err: HttpErrorResponse) => {
+              const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+              this.toastr.error(messages.toString(), 'Message.');
+              console.log(messages);
+              this.spinner.hide();
+
+            });
+  
+      }
+    })
+  
+  }
 
 
 
@@ -525,6 +577,27 @@ getDeliveryTimeLine() {
         if (this.response.success == true) {
           this.deliveryTimeLineData = this.response.data;
           
+
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+
+      },(err: HttpErrorResponse) => {
+        const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+        this.toastr.error(messages.toString(), 'Message.');
+        console.log(messages);
+      });
+}
+getCreditDebit() {
+  this.http.get(`${environment.apiUrl}/api/YarnContracts/GetAllInvoiceDebitCreditNote/`+28 )
+    .subscribe(
+      res => {
+        this.response = res;
+        if (this.response.success == true) {
+          this.creditdebit = this.response.data;
+          
+          this.getCreditDebit();
 
         }
         else {
@@ -1193,8 +1266,8 @@ addCredit( check) {
   modalRef.componentInstance.statusCheck = check;
   modalRef.componentInstance.contractId = this.contractId ;
   modalRef.componentInstance.buyerName = this.buyerName ;
-  modalRef.componentInstance.sellerName = this.sellerName ;
-  modalRef.componentInstance.contractNmbr = this.contractNmbr ;
+  modalRef.componentInstance.saleInvoiceId = this.saleInvoiceId ;
+  modalRef.componentInstance.saleInvoiceNo = this.saleInvoiceNo ;
 
 
 

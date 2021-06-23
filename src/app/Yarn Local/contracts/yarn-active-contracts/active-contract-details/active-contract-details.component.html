@@ -1408,17 +1408,17 @@
 
                         <div class="card-body  BG" *ngFor="let x of saleInvoice; let i = index;">
 
-                            <div class="row pb-5">
+                            <div class="row pb-5" >
                                 <div class="col-md-6 ">
                                     <button class="btn btn-info btn-sm">
                                         Sale Invoice #{{i+1}}-{{x.saleInvoiceNo}}</button>
                                 </div>
 
                                 <div class="col-md-6 text-right">
-                                    <button class="btn btn-outline-info btn-sm" (click)="addCredit('Add')"> <i class="fas fa-sticky-note"></i>
+                                    <button class="btn btn-outline-info btn-sm" (click)="addCredit('Credit')" > <i class="fas fa-sticky-note"></i>
                                         Credit Note
                                     </button>
-                                    <button class="btn btn-outline-warning btn-sm ml-3 " (click)="addDebit('Add')">
+                                    <button class="btn btn-outline-warning btn-sm ml-3 " (click)="addCredit('Debit')">
                                         <i class="fas fa-sticky-note"></i>
                                         Debit Note</button>
                                     <button class="btn btn-outline-primary btn-sm ml-3 " (click)="editinvoice(x,'editInvoice')" >
@@ -1533,6 +1533,74 @@
                                 </div>
 
                             </div>
+                            <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="creditdebit"
+                            *ngIf="creditdebit.length != 0" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+                            [sorts]="[{prop: 'code', dir: 'asce'}]" [rowHeight]="'auto'" [limit]="6">
+
+
+                            <ngx-datatable-column name="Sr. #"  prop="">
+                                <ng-template let-rowIndex="rowIndex" let-row="row" let-expanded="expanded"
+                                    ngx-datatable-cell-template>
+                                    {{rowIndex + 1}}
+                                </ng-template>
+                            </ngx-datatable-column>
+
+                            <ngx-datatable-column name="Credit/Debit">
+                                <ng-template let-row="row" ngx-datatable-cell-template>
+                                  <p *ngIf = "row.creditNoteNo != null">
+                      <i class="far fa-circle credit"></i>
+                      Credit
+                                    </p> 
+                                    <p *ngIf = "row.creditNoteNo == null">
+                      <i class="far fa-circle debit"></i>
+                      Debit
+                                    </p>
+                                    
+                                </ng-template>
+                            </ngx-datatable-column>
+
+                            <ngx-datatable-column name="Number" prop="name">
+                                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                    {{row.creditNoteNo}}
+                                    {{row.debitNoteNo}}
+                                </ng-template>
+                            </ngx-datatable-column>
+
+                            <ngx-datatable-column name="Date" prop="genericName">
+                                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                    {{row.creditNoteDate}}
+                                    {{row.debitNoteDate}}
+                                </ng-template>
+                            </ngx-datatable-column>
+                            <ngx-datatable-column name="Quantity" prop="quantity">
+                                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                    {{row.quantity}}
+                                </ng-template>
+                            </ngx-datatable-column>
+                            <ngx-datatable-column name="Amount" prop="amount">
+                                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                    {{row.amount}}
+                                </ng-template>
+                            </ngx-datatable-column>
+                            <ngx-datatable-column name="Tax" prop="taxPercentage">
+                                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                    {{row.taxPercentage}}
+                                </ng-template>
+                            </ngx-datatable-column>
+                            <ngx-datatable-column name="Action" prop="status">
+                                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                    <div class="ibox-tools text-center">
+
+
+                                        <button type="button" class="btn deleteIconBack"
+                                            (click)="deleteCreditDebit(row)">
+                                            <i class="far fa-trash-alt"></i>
+                                        </button>
+
+                                    </div>
+                                </ng-template>
+                            </ngx-datatable-column>
+                        </ngx-datatable>
 
 
 

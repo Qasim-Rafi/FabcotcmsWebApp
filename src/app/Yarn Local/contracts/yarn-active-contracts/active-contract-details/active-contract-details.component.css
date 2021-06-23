@@ -126,7 +126,12 @@ color: #676a6c !important;
   font-size: medium;
 
 }
-
+.debit{
+  color:orange
+}
+.credit{
+  color:#1ab394
+}
 .badge {
   padding: 5px 10px !important;
   font-weight: 500 !important;
