@@ -31,6 +31,7 @@ import pdfFonts from "pdfmake/build/vfs_fonts";
 import { style } from '@angular/animations';
 import { CreditComponent } from './active-contract-models/sale-invoice-pop-up/credit/credit.component';
 import { DebitComponent } from './active-contract-models/sale-invoice-pop-up/debit/debit.component';
+import {ContractOwnerComponent} from 'src/app/contracts/contract-owner/contract-owner.component'
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 @Component({
@@ -194,6 +195,19 @@ printData : any = {}
     });
   
 
+  }
+  contractOwner() {
+    const modalRef = this.modalService.open(ContractOwnerComponent, { centered: true });
+    modalRef.componentInstance.contractId = this.contractId;
+    modalRef.result.then((data) => {
+    
+      // on close
+      if (data == true) {
+        this.getContractData();
+      }
+    }, (reason) => {
+      // on dismiss
+    });
   }
   navigateUploadDoc() {
     this.router.navigate(['/FabCot/doc-upload']);

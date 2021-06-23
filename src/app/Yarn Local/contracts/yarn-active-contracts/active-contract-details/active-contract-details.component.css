@@ -137,6 +137,10 @@ color: #676a6c !important;
   font-weight: 500 !important;
   font-size: 100% !important;
 }
+.clr{
+  color: rgb(19, 19, 231);
+  cursor: pointer;
+}
 
 
 @media only screen and (max-width: 1024px) {
