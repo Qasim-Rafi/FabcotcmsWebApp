@@ -17,7 +17,7 @@ import { AddArticleComponent } from '../../yarn-configuration/articles/add-artic
 import { AddPackingComponent } from '../../yarn-configuration/product/packing/add-packing/add-packing.component';
 import { AddPriceComponent } from '../../yarn-configuration/product/price-term/add-price/add-price.component';
 import { DatePipe } from '@angular/common';
-import { AddTypeComponent } from 'src/app/configuration/product/fabric-type/add-type/add-type.component';
+// import { AddTypeComponent } from 'src/app/configuration/product/fabric-type/add-type/add-type.component';
 import { AddWeaveComponent } from '../../yarn-configuration/product/weave/add-weave/add-weave.component';
 import { AddEditWarpComponent } from '../../yarn-configuration/product/warp/add-edit-warp/add-edit-warp.component';
 import { AddEditSelvedgeComponent } from '../../yarn-configuration/product/selvedge/add-edit-selvedge/add-edit-selvedge.component';
@@ -27,6 +27,7 @@ import { AddPieceLengthComponent } from '../../yarn-configuration/product/piece-
 import { AddPaymentComponent } from 'src/app/configuration/product/payment-term/add-payment/add-payment.component';
 import { AddContainerComponent } from '../../yarn-configuration/product/container/add-container/add-container.component';
 import { EditCityComponent } from 'src/app/configuration/city/edit-city/edit-city.component';
+import { AddTypeComponent } from '../../yarn-configuration/product/fabric-type/add-type/add-type.component';
 
 
 @Component({

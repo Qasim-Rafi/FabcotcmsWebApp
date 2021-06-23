@@ -135,7 +135,7 @@ export class CreditComponent implements OnInit {
       // "creditNoteDate": this.data.creditNoteDate,
       "creditNoteDate": this.dateformater.toModel(this.data.creditNoteDate),
       "debitNoteNo": this.data.debitNoteNo,
-      "debitNoteDate":this.data.debitNoteDate,
+      "debitNoteDate":this.dateformater.toModel(this.data.debitNoteDate),
       "quantity": this.data.quantity,
       "uomId": this.data.uomId,
       "amount": this.data.amount,
