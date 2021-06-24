@@ -82,11 +82,11 @@ color: #676a6c !important;
 
 /* dd{
   margin-bottom: 0rem !important;
-  }
+  }*/
 
 .col-md-6 dl{
-  line-height: 10px !important;
-} */
+  line-height: 15px !important;
+} 
 
 /* Progress Bar */
 .progress {
@@ -153,4 +153,7 @@ color: #676a6c !important;
   dt {
     text-align: left !important;
   }
+  .col-md-6 dl{
+    line-height: normal !important;
+  } 
 }
