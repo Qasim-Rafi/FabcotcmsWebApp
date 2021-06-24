@@ -4,7 +4,20 @@
   background: #fff;
   border-color: #e2e7eb;
 }
-
+.edit{
+  color: lightgrey;
+}
+.delete{
+  color: red;
+}
+.editIconBack1 :hover {
+  color: #36afd4;
+  transform: scale(1.5);
+}
+.deleteIconBack1 :hover {
+  color: red;
+  transform: scale(1.5);
+}
 .label-primary, .badge-primary {
   background-color: #1ab394;
   color: #FFFFFF !important;

@@ -680,6 +680,35 @@
                                 </div>
                     
                     
+                            <div class="col-md-6">
+                                <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+                                    <dt class="col-sm-6">GSM:
+                                    </dt>
+                                    <dd class="col-sm-6">{{contractProductData.gsm}}</dd>
+
+                                </dl>
+                                <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+                                    <dt class="col-sm-6">Weave:
+                                    </dt>
+                                    <dd class="col-sm-6">{{contractProductData.weaveName}}</dd>
+                                </dl>
+                                <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+                                    <dt class="col-sm-6">Selvedge:
+                                    </dt>
+                                    <dd class="col-sm-6">{{contractProductData.selvedgeName}}</dd>
+                                </dl>
+                                <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+                                    <dt class="col-sm-6">Width:
+                                    </dt>
+                                    <dd class="col-sm-6" *ngIf = "contractProductData.width != null">{{contractProductData.width}} inch</dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 mb-4">
+                                <button class="btn btn-outline-primary btn-sm float-right"
+                                    (click)="editProductAndSpec(contractProductData)"> <i
+                                        class="far fa-edit"></i></button>
                             </div>
                     
                             <div class="row">
@@ -701,6 +730,47 @@
                     
                                 </div>
                             </div> -->
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+
+                                <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+                                    <dt class="col-sm-6">Quantity:
+                                    </dt>
+                                    <dd class="col-sm-6">{{contractCostingData.quantity}}
+                                        {{contractCostingData.quantityUOMName}} <b *ngIf = "contractCostingData.quantityToleranceValue !=''">+/- </b>
+                                        {{contractCostingData.quantityToleranceValue}} <b *ngIf = "contractCostingData.quantityToleranceValue != ''"> % </b></dd>
+                                </dl>
+                                <dl class="row" *ngIf="loggedInDepartmentName=='Yarn Local'">
+                                    <dt class="col-sm-6">Quantity:
+                                    </dt>
+                                    <dd class="col-sm-6">{{contractCostingData.quantity}}
+                                        {{contractCostingData.quantityUOMName}}</dd>
+                                </dl>
+                                <dl class="row">
+                                    <dt class="col-sm-6">Rate:
+                                    </dt>
+                                    <dd class="col-sm-6">{{contractCostingData.rate}} <b *ngIf = "contractCostingData.rateUOMName !=null"> / </b>
+                                        {{contractCostingData.rateUOMName}}</dd>
+
+
+                                </dl>
+                                <dl class="row">
+                                    <dt class="col-sm-6">Project Cost:
+                                    </dt>
+                                    <dd class="col-sm-6">{{contractCostingData.rateCurrencyName}}
+                                        {{contractCostingData.contractCost}}</dd>
+
+                                </dl>
+                                <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+                                    <dt class="col-sm-6">&nbsp; &nbsp;
+                                    </dt>
+                                    <dd class="col-sm-6">{{contractCostingData.rateCurrencyName}}
+                                        {{contractCostingData.totalCostGSt}} <b *ngIf = "contractCostingData.totalCostGSt != null"> Inclusive Of GST</b></dd>
+
+                                </dl>
 
 
                             <div class="border-top pt-3 pb-2">
@@ -769,6 +839,23 @@
                                         (click)="editPaymentAndDelivery(contractPaymentData)">
                                         <i class="far fa-edit"></i></button>
                                 </div>
+                            <div class="col-md-6">
+
+                                <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+                                    <dt class="col-sm-6">GST:
+                                    </dt>
+                                    <dd class="col-sm-6" *ngIf = "contractCostingData.gst != ''">{{contractCostingData.gst}}%</dd>
+                                </dl>
+                                <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+                                    <dt class="col-sm-6">W.I.Tax:
+                                    </dt>
+                                    <dd class="col-sm-6" *ngIf = "contractCostingData.witAx != ''">{{contractCostingData.witAx}}%</dd>
+                                </dl>
+                                <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+                                    <dt class="col-sm-6">
+                                    </dt>
+                                    <dd class="col-sm-6"><small>Subject to all taxes if applicable</small></dd>
+                                </dl>
                             </div>
                     
                             <!-- </div> -->
@@ -799,6 +886,46 @@
                                     <button class="btn btn-outline-primary btn-sm float-right" (click)="addDeliveryTL('Add')">
                                         <i class="fas fa-plus"></i></button>
                                 </div>
+
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+
+                                <dl class="row">
+                                    <dt class="col-sm-6">Payment terms:</dt>
+                                    <dd class="col-sm-6">{{contractPaymentData.sellerPaymentTermName}}
+                                        <b *ngIf ="contractPaymentData.sellerPaymentTermDays != ''"> {{contractPaymentData.sellerPaymentTermDays}} Days  </b>
+                                        {{contractPaymentData.sellerPaymentTermInfo}}
+                                    </dd>
+                                </dl>
+
+                                <dl class="row">
+                                    <dt class="col-sm-6">Buyer Payment terms:
+                                    </dt>
+                                    <dd class="col-sm-6">{{contractPaymentData.buyerPaymentTermName}}
+                                        <b *ngIf = "contractPaymentData.buyerPaymentTermDays !=null"> {{contractPaymentData.buyerPaymentTermDays}}  Days </b>
+                                        {{contractPaymentData.buyerSidePaymentTermInfo}}
+                                    </dd>
+                                    <dd class="col-sm-6"></dd>
+                                </dl>
+                                <dl class="row">
+                                    <dt class="col-sm-6">Packing:
+                                    </dt>
+                                    <dd class="col-sm-6">{{contractPaymentData.packingName}}
+                                    </dd>
+                                    <dd class="col-sm-6"></dd>
+                                </dl>
+                                <dl class="row">
+                                    <dt class="col-sm-6">Price / Delivery Terms:
+                                    </dt>
+                                    <dd class="col-sm-6">{{contractPaymentData.priceTermName}}
+                                        {{contractPaymentData.destinationName}}
+                                    </dd>
+                                    <dd class="col-sm-6"></dd>
+                                </dl>
                             </div>
 
 
@@ -1466,10 +1593,10 @@
                                 </div>
 
                                 <div class="col-md-6 text-right">
-                                    <button class="btn btn-outline-info btn-sm" (click)="addCredit('Credit')" > <i class="fas fa-sticky-note"></i>
+                                    <button class="btn btn-outline-info btn-sm" (click)="addCredit(x,'Credit')" > <i class="fas fa-sticky-note"></i>
                                         Credit Note
                                     </button>
-                                    <button class="btn btn-outline-warning btn-sm ml-3 " (click)="addCredit('Debit')">
+                                    <button class="btn btn-outline-warning btn-sm ml-3 " (click)="addCredit(x,'Debit')">
                                         <i class="fas fa-sticky-note"></i>
                                         Debit Note</button>
                                     <button class="btn btn-outline-primary btn-sm ml-3 " (click)="editinvoice(x,'editInvoice')" >

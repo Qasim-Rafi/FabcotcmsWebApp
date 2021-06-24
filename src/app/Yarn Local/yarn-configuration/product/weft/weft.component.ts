@@ -114,13 +114,13 @@ this.spinner.hide();
     modalRef.result.then((data) => {
 
       if (data == true) {
-        this.service.fetch((data) => {
-          this.rows = data;
-      this.BlendingRatioWeftFilter = [...this.rows];
+       
+      } this.service.fetch((data) => {
+        this.rows = data;
+    this.BlendingRatioWeftFilter = [...this.rows];
 
-          this.BlendingRatioWeftCount = this.rows.length;
-        }, this.BlendingRatioWeftUrl);
-      }
+        this.BlendingRatioWeftCount = this.rows.length;
+      }, this.BlendingRatioWeftUrl);
     }, (reason) => {
     });
   }

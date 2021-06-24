@@ -102,16 +102,22 @@
             <ngx-datatable-column name="Action">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
   
-                <div class="ibox-tools text-center">
+                <div class="ibox-tools text-center" >
   
-                  <button type="button" class="btn editIconBack" (click)="editinvoice('edit' ,row)" >
-                    <i class="far fa-edit "></i>
-                  </button>
+                  <span  class=" editIconBack mr-2" >
+                    <i class="far fa-sticky-note credit"  (click)="addCredit(row ,'Credit')" ></i>
+                  </span>
+    
+                  <span  class="deleteIconBack ml-1 " >
+                    <i class="far fa-sticky-note debit " (click)="addCredit(row,'Debit')" ></i>
+                  </span>
   
-                  <button type="button" class="btn deleteIconBack" (click)="deleteinvoice(row)" >
-                    <i class="far fa-trash-alt"></i>
-                  </button>
-  
+   <!-- <button class="btn btn-outline-info btn-sm" (click)="addCredit('Credit')" > <i class="fas fa-sticky-note"></i>
+    Credit Note
+</button>
+<button class="btn btn-outline-warning btn-sm ml-3 " (click)="addCredit('Debit')">
+    <i class="fas fa-sticky-note"></i>
+    Debit Note</button> -->
                 </div>
               </ng-template>
             </ngx-datatable-column>
