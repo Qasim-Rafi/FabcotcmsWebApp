@@ -745,7 +745,7 @@
                                  
                               </div>
                               <div class="col-sm-2">
-                                <ng-select placeholder="Month" name="sellerDeliveryDateMonth" [(ngModel)]="data.sellerDeliveryDateMonth" #sellerDeliveryDateMonth="ngModel">
+                                <ng-select placeholder="Month" name="sellerDeliveryDateMonth_{{i}}" [(ngModel)]="a.sellerDeliveryDateMonth" #sellerDeliveryDateMonth="ngModel">
                                   <ng-option value="Jan"> Jan</ng-option>
                                   <ng-option value="Feb"> Feb</ng-option>
                                   <ng-option value="Mar"> Mar</ng-option>
@@ -761,7 +761,7 @@
                                 </ng-select>
                               </div>
                               <div class="col-sm-2">
-                                <ng-select placeholder="Year" name="sellerDeliveryDateYear" [(ngModel)]="data.sellerDeliveryDateYear" #sellerDeliveryDateYear="ngModel">
+                                <ng-select placeholder="Year" name="sellerDeliveryDateYear_{{i}}" [(ngModel)]="a.sellerDeliveryDateYear" #sellerDeliveryDateYear="ngModel">
                                   <ng-option value="2016"> 2016</ng-option>
                                   <ng-option value="2017"> 2017</ng-option>
                                   <ng-option value="2018"> 2018</ng-option>
@@ -843,7 +843,7 @@
 
                                   <div class="col-sm-3">
                                     <input  class="form-control"  
-                                    name="buyerDeliveryDateDay" placeholder="Day" [(ngModel)]="data.buyerDeliveryDateDay" #buyerDeliveryDateDay="ngModel"  />
+                                    name="buyerDeliveryDateDay_{{i}}" placeholder="Day" [(ngModel)]="a.buyerDeliveryDateDay" #buyerDeliveryDateDay="ngModel"  />
                                      
                                   </div>
                                   <div class="col-sm-2">
@@ -863,7 +863,7 @@
                                     </ng-select>
                                   </div>
                                   <div class="col-sm-2">
-                                    <ng-select placeholder="Year" name="buyerDeliveryDateYear" [(ngModel)]="data.buyerDeliveryDateYear" #buyerDeliveryDateYear="ngModel">
+                                    <ng-select placeholder="Year" name="buyerDeliveryDateYear+{{i}}" [(ngModel)]="a.buyerDeliveryDateYear" #buyerDeliveryDateYear="ngModel">
                                       <ng-option value="2016"> 2016</ng-option>
                                       <ng-option value="2017"> 2017</ng-option>
                                       <ng-option value="2018"> 2018</ng-option>
@@ -1181,7 +1181,7 @@
                               </label>
                               <div class="col-sm-3">
                                 <input  class="form-control"  
-                                name="sellerDeliveryDateDay" placeholder="Day" [(ngModel)]="data.sellerDeliveryDateDay" #sellerDeliveryDateDay="ngModel"  />
+                                name="sellerDeliveryDateDay_{{i}}" placeholder="Day" [(ngModel)]="a.sellerDeliveryDateDay" #sellerDeliveryDateDay="ngModel"  />
                                  
                               </div>
                               <div class="col-sm-2">
