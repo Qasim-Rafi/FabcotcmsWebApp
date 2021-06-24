@@ -787,7 +787,15 @@ getContractPaymentData() {
           if(this.response.data.destinationName == null){
             this.contractPaymentData.destinationName = ""
           }
-          
+          if(this.response.data.buyerDeliveryDateDay == null){
+            this.contractPaymentData.buyerDeliveryDateDay = ""
+          }
+          if(this.response.data.buyerDeliveryDateMonth == null){
+            this.contractPaymentData.buyerDeliveryDateMonth = ""
+          }
+          if(this.response.data.buyerDeliveryDateYear == null){
+            this.contractPaymentData.buyerDeliveryDateYear = ""
+          }
         }
         else {
           this.toastr.error(this.response.message, 'Message.');
@@ -2166,10 +2174,6 @@ getImage(){
           }
 
           print2(){
-            
-           
-            
-           
             let docDefinition = {
               pageSize: 'A4',
               pageMargins: [ 10, 10, 10, 20 ],
@@ -2197,21 +2201,21 @@ getImage(){
                         margin: [290 , -45 , 0 , 0],
                         table:{headerRows: 1 , widths:['30%' , '90%'],
                       body: [
-                        [{text:'Contract No:'  , style:'heading'} , {text: this.contractData['autoContractNumber'] , style:'heading2'}],] }
+                        [{text:'Contract No:'  , style:'heading'} , {text: this.contractData['autoContractNumber'] , style:'heading2' , margin:[-20 , 0, 0,0]}],] }
                       },
                       {
                         layout:'noBorders',
                         margin: [290 , 0 , 0 , 0],
                         table:{headerRows: 1 , widths:['40%' , '80%'],
                       body: [
-                        [{text:'Contract Date:'  , style:'heading'} , {text: this.contractData['createdDateTime'] , style:'heading2'}],] }
+                        [{text:'Contract Date:'  , style:'heading'} , {text: this.contractData['createdDateTime'] , style:'heading2' , margin:[-45 , 0, 0,0]}],] }
                       },
                       {
                         layout:'noBorders',
                         margin: [290 , 0 , 0 , 0],
                         table:{headerRows: 1 , widths:['40%' , '80%'],
                       body: [
-                        [{text:'Purchase No:'  , style:'heading'} , {text: this.contractPartiesData['poNumber'] , style:'heading2'}],] }
+                        [{text:'Purchase No:'  , style:'heading'} , {text: this.contractPartiesData['poNumber'] , style:'heading2' , margin:[-45 , 0, 0,0]}],] }
                       },
                       {
                         layout:'noBorders',
@@ -2289,7 +2293,7 @@ getImage(){
                         margin: [350 , -10 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
-                        [{text:'Weave'  , style:'heading3'} , {text: this.printData['weaveName'] , style:'heading3'}],] }
+                        [{text:'Weave:'  , style:'heading3'} , {text: this.printData['weaveName'] , style:'heading3' , margin:[-20 ,0 ,0, 0]}],] }
                       },
                       {
                         layout:'noBorders',
@@ -2410,7 +2414,7 @@ getImage(){
                         margin: [80 , 2 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
-                        [{text:'Deliveries Date:'  , style:'heading'} , {text: this.contractPaymentData['buyerDeliveryDateDay'] + '/' + this.contractPaymentData['buyerDeliveryDateMonth'] + '/' +this.contractPaymentData['buyerDeliveryDateYear'] , style:'heading2'}],] }
+                        [{text:'Deliveries Date:'  , style:'heading'} , {text: this.contractPaymentData['buyerDeliveryDateDay']  + this.contractPaymentData['buyerDeliveryDateMonth']  +this.contractPaymentData['buyerDeliveryDateYear'] , style:'heading2'}],] }
 
                       },
                       {
@@ -2520,21 +2524,21 @@ getImage(){
                         margin: [290 , -45 , 0 , 0],
                         table:{headerRows: 1 , widths:['30%' , '90%'],
                       body: [
-                        [{text:'Contract No:'  , style:'heading'} , {text: this.contractData['autoContractNumber'] , style:'heading2'}],] }
+                        [{text:'Contract No:'  , style:'heading'} , {text: this.contractData['autoContractNumber'] , style:'heading2' , margin:[-20 , 0, 0,0]}],] }
                       },
                       {
                         layout:'noBorders',
                         margin: [290 , 0 , 0 , 0],
                         table:{headerRows: 1 , widths:['40%' , '80%'],
                       body: [
-                        [{text:'Contract Date:'  , style:'heading'} , {text: this.contractData['createdDateTime'] , style:'heading2'}],] }
+                        [{text:'Contract Date:'  , style:'heading'} , {text: this.contractData['createdDateTime'] , style:'heading2' , margin:[-45 , 0, 0,0]}],] }
                       },
                       {
                         layout:'noBorders',
                         margin: [290 , 0 , 0 , 0],
                         table:{headerRows: 1 , widths:['40%' , '80%'],
                       body: [
-                        [{text:'Purchase No:'  , style:'heading'} , {text: this.contractPartiesData['poNumber'] , style:'heading2'}],] }
+                        [{text:'Purchase No:'  , style:'heading'} , {text: this.contractPartiesData['poNumber'] , style:'heading2' , margin:[-45 , 0, 0,0]}],] }
                       },
                       {
                         layout:'noBorders',
@@ -2612,7 +2616,7 @@ getImage(){
                         margin: [350 , -10 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
-                        [{text:'Weave'  , style:'heading3'} , {text: this.printData['weaveName'] , style:'heading3'}],] }
+                        [{text:'Weave'  , style:'heading3'} , {text: this.printData['weaveName'] , style:'heading3' , margin:[-20 ,0 ,0, 0]}],] }
                       },
                       {
                         layout:'noBorders',
@@ -2733,7 +2737,7 @@ getImage(){
                         margin: [80 , 2 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
-                        [{text:'Deliveries Date:'  , style:'heading'} , {text: this.contractPaymentData['buyerDeliveryDateDay'] + '/' + this.contractPaymentData['buyerDeliveryDateMonth'] + '/' +this.contractPaymentData['buyerDeliveryDateYear'] , style:'heading2'}],] }
+                        [{text:'Deliveries Date:'  , style:'heading'} , {text: this.contractPaymentData['buyerDeliveryDateDay']  + this.contractPaymentData['buyerDeliveryDateMonth']  +this.contractPaymentData['buyerDeliveryDateYear'] , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',

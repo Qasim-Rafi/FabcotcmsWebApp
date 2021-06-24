@@ -21,6 +21,7 @@ export class ContractOwnerComponent implements OnInit {
 search:any;
 ownerFilter: any = [];
 searchOwner: any = [];
+loggedInDepartmentName : any = {}
 
 temp: any[];
 response:any;
@@ -39,6 +40,7 @@ response:any;
 
   ngOnInit(): void {
   this.GetUsersDropdown();
+  this.loggedInDepartmentName=localStorage.getItem('loggedInDepartmentName');
   }
   updateFilter(event) {
     const val = event.target.value.toLowerCase();
