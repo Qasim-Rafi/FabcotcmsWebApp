@@ -2410,7 +2410,8 @@ getImage(){
                         margin: [80 , 2 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
-                        [{text:'Deliveries Date:'  , style:'heading'} , {text: this.deliveryData.map((row=>row.buyerDateDay+'/'+row.buyerDateMonth+'/'+row.buyerDateYear)) , style:'heading2'}],] }
+                        [{text:'Deliveries Date:'  , style:'heading'} , {text: this.contractPaymentData['buyerDeliveryDateDay'] + '/' + this.contractPaymentData['buyerDeliveryDateMonth'] + '/' +this.contractPaymentData['buyerDeliveryDateYear'] , style:'heading2'}],] }
+
                       },
                       {
                         layout:'noBorders',
@@ -2732,7 +2733,7 @@ getImage(){
                         margin: [80 , 2 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
-                        [{text:'Deliveries Date:'  , style:'heading'} , {text: this.deliveryData.map((row=>row.buyerDateDay+'/'+row.buyerDateMonth+'/'+row.buyerDateYear)) , style:'heading2'}],] }
+                        [{text:'Deliveries Date:'  , style:'heading'} , {text: this.contractPaymentData['buyerDeliveryDateDay'] + '/' + this.contractPaymentData['buyerDeliveryDateMonth'] + '/' +this.contractPaymentData['buyerDeliveryDateYear'] , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
