@@ -113,13 +113,14 @@ this.spinner.hide();
     modalRef.result.then((data) => {
 
       if (data == true) {
-        this.service.fetch((data) => {
-          this.rows = data;
-      this.weaveFilter = [...this.rows];
-
-          this.weaveCount = this.rows.length;
-        }, this.weaveUrl);
+      
       }
+      this.service.fetch((data) => {
+        this.rows = data;
+    this.weaveFilter = [...this.rows];
+
+        this.weaveCount = this.rows.length;
+      }, this.weaveUrl);
     }, (reason) => {
     });
   }
@@ -136,11 +137,12 @@ this.spinner.hide();
       // on close
       if (data == true) {
         //  this.date = this.myDate;
+       
         this.service.fetch((data) => {
           this.rows = data;
         }, this.weaveUrl);
-
       }
+     
     }, (reason) => {
       // on dismiss
     });
