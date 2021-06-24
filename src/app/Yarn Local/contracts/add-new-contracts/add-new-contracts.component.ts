@@ -75,6 +75,7 @@ export class AddNewContractsComponent implements OnInit {
   sellerPOC: any = [];
   buyerPOC: any = [];
   new: any = [];
+  Article: any = [];
   new2: any = [];
   new3: any = [];
   data1: any = [];
@@ -122,13 +123,14 @@ export class AddNewContractsComponent implements OnInit {
       this.data.title =this.condition1;
     } else if (this.loggedInDepartmentName == 'Fabric Local') {
       this.data.quantityUOMId;
-      this.data.currencyId = 1,
+      this.data.currencyId = 1;
       this.data.rateUOMId;
       this.data.otherConditionRemarks=this.fabricCondition;
       this.data.title=this.title;
     }else if(this.loggedInDepartmentName=='Yarn Export'){
       this.data.otherConditionRemarks=this.exportCondition;
       this.data.title=this.exportTitle;
+      this.data.currencyId = 2;
     }
 
     let olddate = new Date();
@@ -170,6 +172,9 @@ export class AddNewContractsComponent implements OnInit {
   addMore() {
     this.new.push({ id: this.new.length });
   }
+  addArticle() {
+    this.Article.push({ id: this.Article.length });
+  }
   add() {
     this.new2.push({ id: this.new2.length });
   }
@@ -182,6 +187,9 @@ export class AddNewContractsComponent implements OnInit {
   }
   remove2(i: number) {
     this.new2.splice(i, 1);
+  }
+  removeArticle(i: number) {
+    this.Article.splice(i, 1);
   }
   remove3(i: number) {
     this.new3.splice(i, 1);
