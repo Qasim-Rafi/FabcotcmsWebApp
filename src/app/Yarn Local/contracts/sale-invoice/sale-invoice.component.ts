@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { GlobalConstants } from 'src/app/Common/global-constants';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
+import { CreditComponent } from '../yarn-active-contracts/active-contract-details/active-contract-models/sale-invoice-pop-up/credit/credit.component';
 import { AddNewInvComponent } from './add-new-inv/add-new-inv.component';
 
 @Component({
@@ -188,6 +189,30 @@ deleteinvoice(row) {
     }
   })
 
+}
+addCredit(row, check) {
+  const modalRef = this.modalService.open(CreditComponent, { centered: true });
+  modalRef.componentInstance.statusCheck = check;
+  modalRef.componentInstance.contractId = this.contractId ;
+  // modalRef.componentInstance.buyerName = this.buyerName ;
+  // modalRef.componentInstance.saleInvoiceId = this.saleInvoiceId ;
+  modalRef.componentInstance.saleInvoiceNo = row.saleInvoiceNo;
+  modalRef.componentInstance.saleInvoiceDate = row.saleInvoiceDateToDisplay;
+
+
+
+
+  modalRef.result.then((data) => {
+    // on close
+    if (data == true) {
+      // this.getContractData();
+  
+    }
+    // this.getContractData();
+
+  }, (reason) => {
+    // on dismiss
+  });
 }
 
 
