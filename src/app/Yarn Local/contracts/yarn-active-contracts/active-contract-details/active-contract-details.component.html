@@ -29,7 +29,7 @@
         <!-- Info boxes -->
         <div class="row">
 
-            <div class="col-12 col-sm-6 col-md-6 col-xl-3 pt-2">
+            <div class="col-12 col-sm-6 col-md-3 pt-2">
                 <div class="topbox-1">
                     <div class="topbox-margin-top-text border-bottom"> Completion Status
                         <span class="badge badge-primary float-right">Active</span>
@@ -53,7 +53,7 @@
                 <!-- /.info-box -->
             </div>
 
-            <div class="col-12 col-sm-6 col-md-6 col-xl-3 pt-2">
+            <div class="col-12 col-sm-6 col-md-3 pt-2">
                 <div class="topbox-1">
                     <div class="topbox-margin-top-text border-bottom"> Order Quantity
                         <span class="badge badge-info float-right">Contract</span>
@@ -77,7 +77,7 @@
                 <!-- /.info-box -->
             </div>
 
-            <div class="col-12 col-sm-6 col-md-6 col-xl-3 pt-2">
+            <div class="col-12 col-sm-6 col-md-3 pt-2">
                 <div class="topbox-1">
                     <div class="topbox-margin-top-text border-bottom"> Sale Invoice
                         <span class="badge badge-info float-right">Contract</span>
@@ -102,7 +102,7 @@
             </div>
 
 
-            <div class="col-12 col-sm-6 col-md-6 col-xl-3 pt-2">
+            <div class="col-12 col-sm-6 col-md-3 pt-2">
                 <div class="topbox-1">
                     <div class="topbox-margin-top-text border-bottom">Billing / Payment
                         <span class="badge badge-info float-right">Contract</span>
@@ -244,442 +244,319 @@
                 <div class="tab-pane fade show active" id="nav-Details" role="tabpanel"
                     aria-labelledby="nav-Details-tab">
 
-                    <div class="row">
-                    
-                        <div class="col-md-12">
-                    
-                    
-                            <div class="row my-3">
-                    
-                                <div class="col-md-8">
-                                    <div class="h2 ">
-                                        <span><i class="fas fa-flag mr-3 text-secondary"></i>
-                                            <span class="text-right text_Navy">{{contractData.autoContractNumber}}
-                                            </span></span>
-                                    </div>
+                    <div class="col-md-12">
+
+
+                        <div class="row my-3">
+
+                            <div class="col-md-8">
+                                <div class="h2 ">
+                                    <span><i class="fas fa-flag mr-3 text-secondary"></i>
+                                        <span class="text-right text_Navy">{{contractData.autoContractNumber}}
+                                        </span></span>
                                 </div>
-                    
-                                <div class="col-md-4 text-right">
-                    
-                    
-                                    <button class="btn btn-primary btn-sm" [ngClass]="{ noDisplay : reminderToggle==true }"
-                                        (click)="reminderToggle = !reminderToggle">
-                                        <i class="far fa-bell"></i> No Reminder Set</button>
-                    
-                                    <button class="btn btn-outline-secondary btn-sm ml-1" [ngClass]="{ noDisplay : reminderToggle==true }">
-                                        <i class="fas fa-sync-alt"></i>
+                            </div>
+
+                            <div class="col-md-4 text-right">
+
+
+                                <button class="btn btn-primary btn-sm" [ngClass]="{ noDisplay : reminderToggle==true }"
+                                    (click)="reminderToggle = !reminderToggle">
+                                    <i class="far fa-bell"></i> No Reminder Set</button>
+
+                                <button class="btn btn-outline-secondary btn-sm ml-1"
+                                    [ngClass]="{ noDisplay : reminderToggle==true }">
+                                    <i class="fas fa-sync-alt"></i>
+                                </button>
+
+
+                                <div [ngClass]="{ noDisplay : reminderToggle == false }">
+                                    <button class="btn btn-white float-right btn-xs" (click)="toggle()">
+                                        <i class="fas fa-times"></i>
                                     </button>
-                    
-                    
-                                    <div [ngClass]="{ noDisplay : reminderToggle == false }">
-                                        <button class="btn btn-white float-right btn-xs" (click)="toggle()">
-                                            <i class="fas fa-times"></i>
-                                        </button>
-                    
-                                        <button class="btn btn-primary btn-xs" (click)=" AddReminder(); toggle()"> <i
-                                                class="fas fa-check"></i>
-                                        </button>
-                                    </div>
-                    
-                    
-                    
-                                    <form #rem="ngForm" novalidate>
-                                        <div class="col-md-12">
-                                            <div [ngClass]="{ noDisplay : reminderToggle==false }">
-                                                <input required class="form-control" ngbDatepicker #reminderDate="ngbDatepicker"
-                                                    (click)="reminderDate.toggle()" placeholder="Reminder" [(ngModel)]="data.contractUpDate"
-                                                    name="contractUpDate" [ngClass]="{'error': contractUpDate.invalid && rem.submitted }"
-                                                    #contractUpDate="ngModel" />
-                                            </div>
-                                        </div>
-                                    </form>
-                    
-                    
-                    
-                                    <div class="col-md-12 pt-2" *ngFor="let i of reminderData">
-                                        <div class="text_Navy h5 mb-0">{{i.contractUpDate}}
-                                            <button class="btn deleteIconBack " (click)="deleteReminder(i)"><i
-                                                    class="far fa-trash-alt"></i></button>
-                                        </div>
-                    
-                    
-                                    </div>
-                    
-                    
-                    
+
+                                    <button class="btn btn-primary btn-xs" (click)=" AddReminder(); toggle()"> <i
+                                            class="fas fa-check"></i>
+                                    </button>
                                 </div>
-                            </div>
-                    
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="row">
-                    
-                    
-                                        <div class="col-md-4 text-right">Status & Stage:</div>
-                                        <div class="col-md-8">
-                    
-                                            <span class="badge badge-primary" *ngIf="contractData.active == true">Active</span>
-                                            <span class="badge badge-secondary" *ngIf="contractData.active == false">Inactive</span>
-                                            <div class="badge badge-info ml-1" *ngIf="contractData.status == 'Open'">OPEN
-                                            </div>
-                                            <div class="badge badge-warning ml-1" *ngIf="contractData.status == 'OnHold'">
-                                                On-Hold</div>
-                                            <!-- <button class="btn "><i class="fas fa-history "></i></button> -->
-                                            <button class="btn btn-outline-secondary btn-xs ml-1"><i class="fas fa-history "></i></button>
-                                            <button class=" btn btn-sm btn-danger p-1 btnsm-f ml-1" *ngIf="contractData.isApproved == false"
-                                                (click)="approveContract()">Click
-                                                to Approve</button>
-                                            <button class="  btn btn-sm btn-primary p-1 btnsm-f ml-1"
-                                                *ngIf="contractData.isApproved == true">Approved</button>
-                    
+
+
+
+                                <form #rem="ngForm" novalidate>
+                                    <div class="col-md-12">
+                                        <div [ngClass]="{ noDisplay : reminderToggle==false }">
+                                            <input required class="form-control" ngbDatepicker
+                                                #reminderDate="ngbDatepicker" (click)="reminderDate.toggle()"
+                                                placeholder="Reminder" [(ngModel)]="data.contractUpDate"
+                                                name="contractUpDate"
+                                                [ngClass]="{'error': contractUpDate.invalid && rem.submitted }"
+                                                #contractUpDate="ngModel" />
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <span>Contract On:</span> &nbsp;
-                                    <span class="text_Navy font-weight-bold">
-                    
-                                        <i class="far fa-clock "></i>
-                                        <span> {{contractData.createdDateTime}}</span>
-                    
-                                    </span>
-                                </div>
-                    
-                            </div>
-                    
-                            <br>
-                            <!-- <br> -->
-                    
-                    
-                    
-                            <!-- <div class="form-row border-top">
-                                <div class="col-md-12 pt-2r pb-3">
-                    
-                                    <div class="col-md-12">
-                                        <span class="badge badge-primary">General Information</span>
+                                </form>
+
+
+
+                                <div class="col-md-12 pt-2" *ngFor="let i of reminderData">
+                                    <div class="text_Navy h5 mb-0">{{i.contractUpDate}}
+                                        <button class="btn deleteIconBack " (click)="deleteReminder(i)"><i
+                                                class="far fa-trash-alt"></i></button>
                                     </div>
-                    
-                                </div>
-                            </div> -->
 
-                            <div class="border-top pt-3 pb-2">
-                                <span class="badge badge-primary">General Information</span>
+
+                                </div>
+
+
+
                             </div>
-                    
-                            <!-- <div class="tab-content" id="nav-tabContent"> -->
-                    
-                            <!-- -------General Information Tab 1----------- -->
-                            <!-- <div class="tab-pane fade show active" id="nav-general" role="tabpanel"
-                                                    aria-labelledby="nav-general-tab"> -->
-                    
-                           <!-- <div class="row">
-                                <div class="col-md-12 mb-2 py-1">
-                    
-                                     <div class="col-sm-12 text-muted">
-                                                                <h4 class="font-weight-light">
-                                                                    General Information
-                                                                </h4>
-                                                            </div> 
-                    
-                                </div>
-                            </div>-->
-                    
-                            <div class="row ">
-                                <div class="col-md-6">
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Contract Owner:</dt>
-                                        <dd class="col-sm-6 clr">
-                                            <b> <span (click)="contractOwner()"> {{contractData.contractOwner}} </span> </b>
-                                        </dd>
-                                    </dl>
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Created By:</dt>
-                                        <dd class="col-sm-6">{{contractData.createdByName}}</dd>
-                                    </dl>
-                                    <dl class="row">
-                                        <dt class="col-sm-6"> Last Updated By:</dt>
-                                        <dd class="col-sm-6">{{contractData.updatedByName}}</dd>
-                                    </dl>
-                                </div>
-                    
-                                <div class="col-md-6">
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Contract No:</dt>
-                                        <dd class="col-sm-6">{{contractData.autoContractNumber}}</dd>
-                                    </dl>
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Created On:</dt>
-                                        <dd class="col-sm-6">
-                                            <i class="far fa-calendar-alt"></i>
-                                            {{contractData.createdDateTime}}
-                                        </dd>
-                                    </dl>
-                                    <dl class="row">
-                                        <dt class="col-sm-6"> Last Updated On:</dt>
-                                        <dd class="col-sm-6">
-                                            <i class="far fa-calendar-alt"></i>
-                                            {{contractData.updatedDateTime}}
-                                        </dd>
-                                    </dl>
-                                </div>
-                    
-                            </div>
-                    
-                            <!-- </div> -->
-                    
-                            <!-- -------Parties Tab 2----------- -->
-                            <!-- <div class="form-row border-top">
-                                <div class="col-md-12 pt-2r pb-3">
-                    
-                                    <div class="col-md-12">
-                                        <span class="badge badge-primary"> Parties</span>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row">
+
+
+                                    <div class="col-md-4 text-right">Status & Stage:</div>
+                                    <div class="col-md-8">
+
+                                        <span class="badge badge-primary"
+                                            *ngIf="contractData.active == true">Active</span>
+                                        <span class="badge badge-secondary"
+                                            *ngIf="contractData.active == false">Inactive</span>
+                                        <div class="badge badge-info ml-1" *ngIf="contractData.status == 'Open'">OPEN
+                                        </div>
+                                        <div class="badge badge-warning ml-1" *ngIf="contractData.status == 'OnHold'">
+                                            On-Hold</div>
+                                        <!-- <button class="btn "><i class="fas fa-history "></i></button> -->
+                                        <button class="btn btn-outline-secondary btn-xs ml-1"><i
+                                                class="fas fa-history "></i></button>
+                                        <button class=" btn btn-sm btn-danger p-1 btnsm-f ml-1"
+                                            *ngIf="contractData.isApproved == false" (click)="approveContract()">Click
+                                            to Approve</button>
+                                        <button class="  btn btn-sm btn-primary p-1 btnsm-f ml-1"
+                                            *ngIf="contractData.isApproved == true">Approved</button>
+
                                     </div>
-                    
                                 </div>
-                            </div> -->
+                            </div>
+                            <div class="col-md-6">
+                                <span>Contract On:</span> &nbsp;
+                                <span class="text_Navy font-weight-bold">
 
-                            <div class="border-top pt-3 pb-2">
-                                <span class="badge badge-primary">Parties</span>
+                                    <i class="far fa-clock "></i>
+                                    <span> {{contractData.createdDateTime}}</span>
+
+                                </span>
                             </div>
-                    
-                    
-                            <div class="row">
-                                <div class="col-md-6">
-                    
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Purchase Order #:
-                                        </dt>
-                                        <dd class="col-sm-6">{{contractPartiesData.poNumber}}</dd>
-                                    </dl>
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Buyer Name:</dt>
-                                        <dd class="col-sm-6">{{contractPartiesData.buyerName}}</dd>
-                                    </dl>
-                                    <dl class="row">
-                                        <dt class="col-sm-6"> Buyer POC:</dt>
-                                        <dd class="col-sm-6">{{contractPartiesData.buyerPOCName}}</dd>
-                                    </dl>
-                                    <dl class="row">
-                                        <dt class="col-sm-6"> Supplier Name:</dt>
-                                        <dd class="col-sm-6">{{contractPartiesData.sellerName}}</dd>
-                                    </dl>
-                                    <dl class="row">
-                                        <dt class="col-sm-6"> Supplier POC:</dt>
-                                        <dd class="col-sm-6"> {{contractPartiesData.sellerPOCName}}</dd>
-                                    </dl>
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Supplier Contract #:
-                                        </dt>
-                                        <dd class="col-sm-6">{{contractPartiesData.sellerContract}}</dd>
-                                    </dl>
-                    
-                                </div>
-                    
-                                <div class="col-md-6">
-                                    <dl class="row">
-                                        <dt class="col-sm-6"> PO Date:</dt>
-                                        <dd class="col-sm-6">
-                                            <i class="far fa-calendar-alt"></i>
-                                            {{contractPartiesData.poDateToDisplay}}
-                                        </dd>
-                                    </dl>
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Approved On:
-                                        </dt>
-                                        <dd class="col-sm-6">
-                                            <i class="far fa-calendar-alt"></i>
-                                            {{contractData.approvedOnToDisplay}}
-                                        </dd>
-                                    </dl>
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Approved By:
-                                        </dt>
-                                        <dd class="col-sm-6">
-                                            <i class="fas fa-user-tie"></i>
-                                            {{contractData.approvedByName}}
-                                        </dd>
-                                    </dl>
-                    
-                                </div>
-                    
-                            </div>
-                    
-                            <div class="row">
-                                <div class="col-md-12 mb-4">
-                                    <button class="btn btn-outline-primary btn-sm float-right" (click)="editParties(contractData)">
-                                        <i class="far fa-edit"></i></button>
-                                </div>
-                            </div>
-                    
-                            <!-- </div> -->
-                    
-                            <!-- -------Product & Specification Tab 3----------- -->
-                            <!-- <div class="form-row border-top">
-                                <div class="col-md-12 pt-2r pb-3">
-                    
-                                    <div class="col-md-12">
-                                        <span class="badge badge-primary"> Product & Specification</span>
-                                    </div>
-                    
-                                </div>
-                            </div> -->
+
+                        </div>
+
+                        <br>
+                        <br>
 
 
-                            <div class="border-top pt-3 pb-2">
-                                <span class="badge badge-primary">Product & Specification</span>
+
+                        <div class="form-row border-top">
+                            <div class="col-md-12 pt-2r pb-3">
+
+                                <div class="col-md-12">
+                                    <span class="badge badge-primary">General Information</span>
+                                </div>
+
                             </div>
-                    
-                    
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Construction:
-                                        </dt>
-                                        <dd class="col-sm-6">{{contractProductData.pecenetAge}}
-                                            {{contractProductData.type}}{{contractProductData.construction}}</dd>
-                    
-                                    </dl>
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Article:
-                                        </dt>
-                                        <dd class="col-sm-6">{{contractProductData.articleName}}</dd>
-                                    </dl>
-                                    <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
-                                        <dt class="col-sm-6">Piece Length:
-                                        </dt>
-                                        <dd class="col-sm-6">{{contractProductData.pieceLengthName}}</dd>
-                                    </dl>
-                                    <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
-                                        <dt class="col-sm-6">Pick Insertion:
-                                        </dt>
-                                        <dd class="col-sm-6">{{contractProductData.pickInsertionName}}</dd>
-                                    </dl>
-                                    <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
-                                        <dt class="col-sm-6">Blending Ratio &nbsp; Warp:
-                                        </dt>
-                                        <dd class="col-sm-6">{{contractProductData.blendingRatioWarpName}}</dd>
-                                    </dl>
-                                    <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
-                                        <dt class="col-sm-6">&nbsp; &nbsp; Weft:
-                                        </dt>
-                                        <dd class="col-sm-6">{{contractProductData.blendingRatioWeftName}}</dd>
-                                    </dl>
-                                </div>
-                                <div class="col-md-6">
-                                    <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
-                                        <dt class="col-sm-6">GSM:
-                                        </dt>
-                                        <dd class="col-sm-6">{{contractProductData.gsm}}</dd>
-                    
-                                    </dl>
-                                    <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
-                                        <dt class="col-sm-6">Weave:
-                                        </dt>
-                                        <dd class="col-sm-6">{{contractProductData.weaveName}}</dd>
-                                    </dl>
-                                    <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
-                                        <dt class="col-sm-6">Selvedge:
-                                        </dt>
-                                        <dd class="col-sm-6">{{contractProductData.selvedgeName}}</dd>
-                                    </dl>
-                                    <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
-                                        <dt class="col-sm-6">Width:
-                                        </dt>
-                                        <dd class="col-sm-6">{{contractProductData.width}} inch</dd>
-                                    </dl>
-                                </div>
+                        </div>
+
+                        <!-- <div class="tab-content" id="nav-tabContent"> -->
+
+                        <!-- -------General Information Tab 1----------- -->
+                        <!-- <div class="tab-pane fade show active" id="nav-general" role="tabpanel"
+                                aria-labelledby="nav-general-tab"> -->
+
+                        <div class="row">
+                            <div class="col-md-12 mb-2 py-1">
+
+                                <!-- <div class="col-sm-12 text-muted">
+                                            <h4 class="font-weight-light">
+                                                General Information
+                                            </h4>
+                                        </div> -->
+
                             </div>
-                            <div class="row">
-                                <div class="col-md-12 mb-4">
-                                    <button class="btn btn-outline-primary btn-sm float-right"
-                                        (click)="editProductAndSpec(contractProductData)"> <i class="far fa-edit"></i></button>
-                                </div>
+                        </div>
+
+                        <div class="row ">
+                            <div class="col-md-6">
+                                <dl class="row">
+                                    <dt class="col-sm-6">Contract Owner:</dt>
+                                    <dd class="col-sm-6 clr">
+                                        <b> <span (click) = "contractOwner()"> {{contractData.contractOwner}} </span> </b>
+                                    </dd>
+                                </dl>
+                                <dl class="row">
+                                    <dt class="col-sm-6">Created By:</dt>
+                                    <dd class="col-sm-6">{{contractData.createdByName}}</dd>
+                                </dl>
+                                <dl class="row">
+                                    <dt class="col-sm-6"> Last Updated By:</dt>
+                                    <dd class="col-sm-6">{{contractData.updatedByName}}</dd>
+                                </dl>
                             </div>
-                    
-                    
-                            <!-- </div> -->
-                    
-                            <!-- -------Quantity & Costing Tab 4----------- -->
-                            <!-- <div class="form-row border-top">
-                                <div class="col-md-12 pt-2r pb-3">
-                    
-                                    <div class="col-md-12">
-                                        <span class="badge badge-primary"> Quantity & Costing</span>
-                                    </div>
-                    
+
+                            <div class="col-md-6">
+                                <dl class="row">
+                                    <dt class="col-sm-6">Contract No:</dt>
+                                    <dd class="col-sm-6">{{contractData.autoContractNumber}}</dd>
+                                </dl>
+                                <dl class="row">
+                                    <dt class="col-sm-6">Created On:</dt>
+                                    <dd class="col-sm-6">
+                                        <i class="far fa-calendar-alt"></i>
+                                        {{contractData.createdDateTime}}
+                                    </dd>
+                                </dl>
+                                <dl class="row">
+                                    <dt class="col-sm-6"> Last Updated On:</dt>
+                                    <dd class="col-sm-6">
+                                        <i class="far fa-calendar-alt"></i>
+                                        {{contractData.updatedDateTime}}
+                                    </dd>
+                                </dl>
+                            </div>
+
+                        </div>
+
+                        <!-- </div> -->
+
+                        <!-- -------Parties Tab 2----------- -->
+                        <div class="form-row border-top">
+                            <div class="col-md-12 pt-2r pb-3">
+
+                                <div class="col-md-12">
+                                    <span class="badge badge-primary"> Parties</span>
                                 </div>
-                            </div> -->
+
+                            </div>
+                        </div>
 
 
-                            <div class="border-top pt-3 pb-2">
-                                <span class="badge badge-primary">Quantity & Costing</span>
+                        <div class="row">
+                            <div class="col-md-6">
+
+                                <dl class="row">
+                                    <dt class="col-sm-6">Purchase Order #:
+                                    </dt>
+                                    <dd class="col-sm-6">{{contractPartiesData.poNumber}}</dd>
+                                </dl>
+                                <dl class="row">
+                                    <dt class="col-sm-6">Buyer Name:</dt>
+                                    <dd class="col-sm-6">{{contractPartiesData.buyerName}}</dd>
+                                </dl>
+                                <dl class="row">
+                                    <dt class="col-sm-6"> Buyer POC:</dt>
+                                    <dd class="col-sm-6">{{contractPartiesData.buyerPOCName}}</dd>
+                                </dl>
+                                <dl class="row">
+                                    <dt class="col-sm-6"> Supplier Name:</dt>
+                                    <dd class="col-sm-6">{{contractPartiesData.sellerName}}</dd>
+                                </dl>
+                                <dl class="row">
+                                    <dt class="col-sm-6"> Supplier POC:</dt>
+                                    <dd class="col-sm-6"> {{contractPartiesData.sellerPOCName}}</dd>
+                                </dl>
+                                <dl class="row">
+                                    <dt class="col-sm-6">Supplier Contract #:
+                                    </dt>
+                                    <dd class="col-sm-6">{{contractPartiesData.sellerContract}}</dd>
+                                </dl>
+
                             </div>
-                    
-                    
-                            <div class="row">
-                                <div class="col-md-6">
-                    
-                                    <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
-                                        <dt class="col-sm-6">Quantity:
-                                        </dt>
-                                        <dd class="col-sm-6">{{contractCostingData.quantity}}
-                                            {{contractCostingData.quantityUOMName}} <b
-                                                *ngIf="contractCostingData.quantityToleranceValue !=null">+/- </b>
-                                            {{contractCostingData.quantityToleranceValue}} <b
-                                                *ngIf="contractCostingData.quantityToleranceValue !=null"> % </b></dd>
-                                    </dl>
-                                    <dl class="row" *ngIf="loggedInDepartmentName=='Yarn Local'">
-                                        <dt class="col-sm-6">Quantity:
-                                        </dt>
-                                        <dd class="col-sm-6">{{contractCostingData.quantity}}
-                                            {{contractCostingData.quantityUOMName}}</dd>
-                                    </dl>
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Rate:
-                                        </dt>
-                                        <dd class="col-sm-6">{{contractCostingData.rate}} /
-                                            {{contractCostingData.rateUOMName}}</dd>
-                    
-                    
-                                    </dl>
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Project Cost:
-                                        </dt>
-                                        <dd class="col-sm-6">{{contractCostingData.rateCurrencyName}}
-                                            {{contractCostingData.contractCost}}</dd>
-                    
-                                    </dl>
-                                    <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
-                                        <dt class="col-sm-6">&nbsp; &nbsp;
-                                        </dt>
-                                        <dd class="col-sm-6">{{contractCostingData.rateCurrencyName}}
-                                            {{contractCostingData.totalCostGSt}} <b *ngIf="contractCostingData.totalCostGSt != null">
-                                                Inclusive Of GST</b></dd>
-                    
-                                    </dl>
-                    
-                    
+
+                            <div class="col-md-6">
+                                <dl class="row">
+                                    <dt class="col-sm-6"> PO Date:</dt>
+                                    <dd class="col-sm-6">
+                                        <i class="far fa-calendar-alt"></i>
+                                        {{contractPartiesData.poDateToDisplay}}
+                                    </dd>
+                                </dl>
+                                <dl class="row">
+                                    <dt class="col-sm-6">Approved On:
+                                    </dt>
+                                    <dd class="col-sm-6">
+                                        <i class="far fa-calendar-alt"></i>
+                                        {{contractData.approvedOnToDisplay}}
+                                    </dd>
+                                </dl>
+                                <dl class="row">
+                                    <dt class="col-sm-6">Approved By:
+                                    </dt>
+                                    <dd class="col-sm-6">
+                                        <i class="fas fa-user-tie"></i>
+                                        {{contractData.approvedByName}}
+                                    </dd>
+                                </dl>
+
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 mb-4">
+                                <button class="btn btn-outline-primary btn-sm float-right"
+                                    (click)="editParties(contractData)">
+                                    <i class="far fa-edit"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- </div> -->
+
+                        <!-- -------Product & Specification Tab 3----------- -->
+                        <div class="form-row border-top">
+                            <div class="col-md-12 pt-2r pb-3">
+
+                                <div class="col-md-12">
+                                    <span class="badge badge-primary"> Product & Specification</span>
                                 </div>
-                                <div class="col-md-6">
-                    
-                                    <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
-                                        <dt class="col-sm-6">GST:
-                                        </dt>
-                                        <dd class="col-sm-6">{{contractCostingData.gst}}%</dd>
-                                    </dl>
-                                    <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
-                                        <dt class="col-sm-6">W.I.Tax:
-                                        </dt>
-                                        <dd class="col-sm-6">{{contractCostingData.witAx}}%</dd>
-                                    </dl>
-                                    <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
-                                        <dt class="col-sm-6">
-                                        </dt>
-                                        <dd class="col-sm-6"><small>Subject to all taxes if applicable</small></dd>
-                                    </dl>
-                                </div>
-                    
-                    
+
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <dl class="row">
+                                    <dt class="col-sm-6">Construction:
+                                    </dt>
+                                    <dd class="col-sm-6">{{contractProductData.pecenetAge}} 
+                                        {{contractProductData.type}}{{contractProductData.construction}}</dd>
+
+                                </dl>
+                                <dl class="row">
+                                    <dt class="col-sm-6">Article:
+                                    </dt>
+                                    <dd class="col-sm-6">{{contractProductData.articleName}}</dd>
+                                </dl>
+                                <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+                                    <dt class="col-sm-6">Piece Length:
+                                    </dt>
+                                    <dd class="col-sm-6">{{contractProductData.pieceLengthName}}</dd>
+                                </dl>
+                                <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+                                    <dt class="col-sm-6">Pick Insertion:
+                                    </dt>
+                                    <dd class="col-sm-6">{{contractProductData.pickInsertionName}}</dd>
+                                </dl>
+                                <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+                                    <dt class="col-sm-6">Blending Ratio &nbsp; Warp:
+                                    </dt>
+                                    <dd class="col-sm-6">{{contractProductData.blendingRatioWarpName}}</dd>
+                                </dl>
+                                <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+                                    <dt class="col-sm-6">&nbsp; &nbsp; Weft:
+                                    </dt>
+                                    <dd class="col-sm-6">{{contractProductData.blendingRatioWeftName}}</dd>
+                                </dl>
+                            </div>
                             <div class="col-md-6">
                                 <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
                                     <dt class="col-sm-6">GSM:
@@ -710,26 +587,20 @@
                                     (click)="editProductAndSpec(contractProductData)"> <i
                                         class="far fa-edit"></i></button>
                             </div>
-                    
-                            <div class="row">
-                                <div class="col-md-12 mb-4">
-                                    <button class="btn btn-outline-primary btn-sm float-right" (click)="editQuantity(contractCostingData)">
-                                        <i class="far fa-edit"></i></button>
+                        </div>
+
+
+                        <!-- </div> -->
+
+                        <!-- -------Quantity & Costing Tab 4----------- -->
+                        <div class="form-row border-top">
+                            <div class="col-md-12 pt-2r pb-3">
+
+                                <div class="col-md-12">
+                                    <span class="badge badge-primary"> Quantity & Costing</span>
                                 </div>
+
                             </div>
-                    
-                            <!-- </div> -->
-                    
-                            <!-- -------Payment & Delivery Terms Tab 5----------- -->
-                            <!-- <div class="form-row border-top">
-                                <div class="col-md-12 pt-2r pb-3">
-                    
-                                    <div class="col-md-12">
-                                        <span class="badge badge-primary">Payment & Delivery Terms</span>
-                                    </div>
-                    
-                                </div>
-                            </div> -->
                         </div>
 
 
@@ -772,74 +643,8 @@
 
                                 </dl>
 
-                                
 
-                            <div class="border-top pt-3 pb-2">
-                                <span class="badge badge-primary">Payment & Delivery Terms</span>
                             </div>
-                    
-                    
-                            <div class="row">
-                                <div class="col-md-6">
-                    
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Payment terms:</dt>
-                                        <dd class="col-sm-6">{{contractPaymentData.sellerPaymentTermName}}
-                                            <b *ngIf="contractPaymentData.sellerPaymentTermDays !=null">
-                                                {{contractPaymentData.sellerPaymentTermDays}} Days </b>
-                                            {{contractPaymentData.sellerPaymentTermInfo}}
-                                        </dd>
-                                    </dl>
-                    
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Buyer Payment terms:
-                                        </dt>
-                                        <dd class="col-sm-6">{{contractPaymentData.buyerPaymentTermName}}
-                                            <b *ngIf="contractPaymentData.buyerPaymentTermDays != null">
-                                                {{contractPaymentData.buyerPaymentTermDays}} Days </b>
-                                            {{contractPaymentData.buyerSidePaymentTermInfo}}
-                                        </dd>
-                                        <dd class="col-sm-6"></dd>
-                                    </dl>
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Packing:
-                                        </dt>
-                                        <dd class="col-sm-6">{{contractPaymentData.packingName}}
-                                        </dd>
-                                        <dd class="col-sm-6"></dd>
-                                    </dl>
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Price / Delivery Terms:
-                                        </dt>
-                                        <dd class="col-sm-6">{{contractPaymentData.priceTermName}}
-                                            {{contractPaymentData.destinationName}}
-                                        </dd>
-                                        <dd class="col-sm-6"></dd>
-                                    </dl>
-                                </div>
-                    
-                                <div class="col-md-6">
-                    
-                                    <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
-                                        <dt class="col-sm-6">Payment Mode:
-                                        </dt>
-                                        <dd class="col-sm-6">{{contractPaymentData.paymentMode}}</dd>
-                                    </dl>
-                                    <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
-                                        <dt class="col-sm-6">
-                                            Container:</dt>
-                                        <dd class="col-sm-6">{{contractPaymentData.containerName}}</dd>
-                                    </dl>
-                    
-                                </div>
-                            </div>
-                    
-                            <div class="row">
-                                <div class="col-md-12 mb-4">
-                                    <button class="btn btn-outline-primary btn-sm float-right"
-                                        (click)="editPaymentAndDelivery(contractPaymentData)">
-                                        <i class="far fa-edit"></i></button>
-                                </div>
                             <div class="col-md-6">
 
                                 <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
@@ -858,34 +663,26 @@
                                     <dd class="col-sm-6"><small>Subject to all taxes if applicable</small></dd>
                                 </dl>
                             </div>
-                    
-                            <!-- </div> -->
-                    
-                            <!-- -------Letter of Credit (L/C) Tab 6----------- -->
-
-                            <!-- <div class="form-row border-top">
-                                <div class="col-md-12 pt-2r pb-3">
-                    
-                                    <div class="col-md-12">
-                                        <span class="badge badge-primary"> Delivery TimeLine</span>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <button class="btn btn-outline-primary btn-sm float-right" (click)="addDeliveryTL('Add')">
-                                            <i class="fas fa-plus"></i></button>
-                                    </div>
-                                </div>
-                            </div> -->
 
 
+                        </div>
 
-                            <div class="border-top pt-3 pb-2">
-                                <span class="badge badge-primary">Delivery TimeLine</span>
+                        <div class="row">
+                            <div class="col-md-12 mb-4">
+                                <button class="btn btn-outline-primary btn-sm float-right"
+                                    (click)="editQuantity(contractCostingData)">
+                                    <i class="far fa-edit"></i></button>
                             </div>
+                        </div>
 
-                            <div class="row mb-2">
+                        <!-- </div> -->
+
+                        <!-- -------Payment & Delivery Terms Tab 5----------- -->
+                        <div class="form-row border-top">
+                            <div class="col-md-12 pt-2r pb-3">
+
                                 <div class="col-md-12">
-                                    <button class="btn btn-outline-primary btn-sm float-right" (click)="addDeliveryTL('Add')">
-                                        <i class="fas fa-plus"></i></button>
+                                    <span class="badge badge-primary">Payment & Delivery Terms</span>
                                 </div>
 
                             </div>
@@ -929,342 +726,371 @@
                                 </dl>
                             </div>
 
+                            <div class="col-md-6">
 
-                            <!-- <div class="row">
-                                                    <div class="col-md-12 mb-4">
-                                                        <button class="btn btn-outline-primary btn-sm float-right" >
-                                                            Edit</button>
-                                                    </div>
-                                                </div> -->
-                            <!-- <div class="tab-pane fade show " id="nav-letterCredit" role="tabpanel"
-                                                    aria-labelledby="nav-letterCredit-tab"> -->
-                    
-                            <div class="panel-body mb-4">
-                    
-                                <ngx-datatable #myTable class="bootstrap" [columnMode]="'force'" [rows]="deliveryData" [headerHeight]="50"
-                                    [footerHeight]="50" [sorts]="[{ prop: 'autoContractNumber', dir: 'desc' }]" [rowHeight]="'auto'"
-                                    [limit]="6">
-                    
-                    
-                                    <ngx-datatable-column name="S.No." prop="contractAge">
-                                        <ng-template let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
-                                            {{rowIndex+1}}
-                                        </ng-template>
-                                    </ngx-datatable-column>
-                                    <ngx-datatable-column name="L/C#" prop="contractAge">
-                                        <ng-template let-row="row" ngx-datatable-cell-template>
-                                            {{row.lcNo}}
-                                        </ng-template>
-                                    </ngx-datatable-column>
-                                    <ngx-datatable-column name="Supplier Date" prop="contractAge">
-                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                            <span class="badge badge-primary"></span>
-                                            {{row.supplierDateDay}}-{{row.supplierDateMonth}}-{{row.supplierDateYear}}
-                                        </ng-template>
-                                    </ngx-datatable-column>
-                    
-                                    <ngx-datatable-column name="Buyer Date" prop="autoContractNumber">
-                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                            {{row.buyerDateDay}}-{{row.buyerDateMonth}}-{{row.buyerDateYear}}
-                    
-                                        </ng-template>
-                                    </ngx-datatable-column>
-                    
-                                    <ngx-datatable-column name="Quantity " prop="contractOn">
-                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                            {{row.quantity}}
-                                        </ng-template>
-                                    </ngx-datatable-column>
-                    
-                                    <ngx-datatable-column name="Container" prop="poNumber" *ngIf="loggedInDepartmentName=='Fabric Local'">
-                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                            {{row.containerName}}
-                                        </ng-template>
-                                    </ngx-datatable-column>
-                    
-                                    <!-- <ngx-datatable-column name="Quantity" prop="scNumber">
-                                                            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                                            </ng-template>
-                                                          </ngx-datatable-column> -->
-                    
-                                    <ngx-datatable-column name="Action">
-                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                    
-                                            <div class="ibox-tools text-center">
-                    
-                                                <button type="button" class="btn editIconBack" (click)="editDeliveries(row, 'Edit')">
-                                                    <i class="far fa-edit "></i>
-                                                </button>
-                    
-                                                <button type="button" class="btn deleteIconBack" (click)="deleteDeliveries(row)">
-                                                    <i class="far fa-trash-alt"></i>
-                                                </button>
-                    
-                                            </div>
-                                        </ng-template>
-                                    </ngx-datatable-column>
-                                </ngx-datatable>
+                                <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+                                    <dt class="col-sm-6">Payment Mode:
+                                    </dt>
+                                    <dd class="col-sm-6">{{contractPaymentData.paymentMode}}</dd>
+                                </dl>
+                                <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+                                    <dt class="col-sm-6">
+                                        Container:</dt>
+                                    <dd class="col-sm-6">{{contractPaymentData.containerName}}</dd>
+                                </dl>
+
                             </div>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                            <!-- </div> -->
-                    
-                            <!-- -------Commission Tab 7----------- -->
-                            <div class="border-top pt-3 pb-2">
-                                <div *ngIf="loggedInDepartmentName=='Yarn Local'">
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 mb-4">
+                                <button class="btn btn-outline-primary btn-sm float-right"
+                                    (click)="editPaymentAndDelivery(contractPaymentData)">
+                                    <i class="far fa-edit"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- </div> -->
+
+                        <!-- -------Letter of Credit (L/C) Tab 6----------- -->
+                        <div class="form-row border-top">
+                            <div class="col-md-12 pt-2r pb-3">
+
+                                <div class="col-md-12">
+                                    <span class="badge badge-primary"> Delivery TimeLine</span>
+                                </div>
+                                <div class="col-md-12">
+                                    <button class="btn btn-outline-primary btn-sm float-right"
+                                        (click)="addDeliveryTL('Add')">
+                                        <i class="fas fa-plus"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="row">
+                                <div class="col-md-12 mb-4">
+                                    <button class="btn btn-outline-primary btn-sm float-right" >
+                                        Edit</button>
+                                </div>
+                            </div> -->
+                        <!-- <div class="tab-pane fade show " id="nav-letterCredit" role="tabpanel"
+                                aria-labelledby="nav-letterCredit-tab"> -->
+
+                        <div class="panel-body">
+
+                            <ngx-datatable #myTable class="bootstrap" [columnMode]="'force'" [rows]="deliveryData"
+                                [headerHeight]="50" [footerHeight]="50"
+                                [sorts]="[{ prop: 'autoContractNumber', dir: 'desc' }]" [rowHeight]="'auto'"
+                                [limit]="6">
+
+
+                                <ngx-datatable-column name="S.No." prop="contractAge">
+                                    <ng-template let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
+                                        {{rowIndex+1}}
+                                    </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column name="L/C#" prop="contractAge">
+                                    <ng-template let-row="row" ngx-datatable-cell-template>
+                                        {{row.lcNo}}
+                                    </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column name="Supplier Date" prop="contractAge">
+                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                        <span class="badge badge-primary"></span>
+                                        {{row.supplierDateDay}}-{{row.supplierDateMonth}}-{{row.supplierDateYear}}
+                                    </ng-template>
+                                </ngx-datatable-column>
+
+                                <ngx-datatable-column name="Buyer Date" prop="autoContractNumber">
+                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                        {{row.buyerDateDay}}-{{row.buyerDateMonth}}-{{row.buyerDateYear}}
+
+                                    </ng-template>
+                                </ngx-datatable-column>
+
+                                <ngx-datatable-column name="Quantity " prop="contractOn">
+                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                        {{row.quantity}}
+                                    </ng-template>
+                                </ngx-datatable-column>
+
+                                <ngx-datatable-column name="Container" prop="poNumber" *ngIf="loggedInDepartmentName=='Fabric Local'">
+                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                        {{row.containerName}}
+                                    </ng-template>
+                                </ngx-datatable-column>
+
+                                <!-- <ngx-datatable-column name="Quantity" prop="scNumber">
+                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                        </ng-template>
+                                      </ngx-datatable-column> -->
+
+                                <ngx-datatable-column name="Action">
+                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+
+                                        <div class="ibox-tools text-center">
+
+                                            <button type="button" class="btn editIconBack"
+                                                (click)="editDeliveries(row, 'Edit')">
+                                                <i class="far fa-edit "></i>
+                                            </button>
+
+                                            <button type="button" class="btn deleteIconBack"
+                                                (click)="deleteDeliveries(row)">
+                                                <i class="far fa-trash-alt"></i>
+                                            </button>
+
+                                        </div>
+                                    </ng-template>
+                                </ngx-datatable-column>
+                            </ngx-datatable>
+                        </div>
+
+
+
+
+
+
+
+                        <!-- </div> -->
+
+                        <!-- -------Commission Tab 7----------- -->
+                        <div class="form-row border-top">
+                            <div class="col-md-12 pt-2r pb-3">
+
+                                <div class="col-md-12" *ngIf="loggedInDepartmentName=='Yarn Local'">
                                     <span class="badge badge-primary">Commission</span>
                                 </div>
                                 <div class="col-md-12" *ngIf="loggedInDepartmentName=='Fabric Local'">
                                     <span class="badge badge-primary">Commission & Kickback</span>
                                 </div>
                             </div>
-                            <!-- <div class="tab-pane fade show " id="nav-commission" role="tabpanel"
-                                                    aria-labelledby="nav-commission-tab"> -->
-                    
-                            <!-- <div class="row">
-                                                        <div class="col-md-12 mb-2 py-1"> -->
-                    
-                            <!-- <div class="col-sm-12 text-muted">
-                                                                <h4 class="font-weight-light">
-                                                                    Commission (Supplier, Buyer & External Agent)
-                                                                </h4>
-                                                            </div> -->
-                    
-                            <!-- </div>
-                                                    </div> -->
-                    
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
-                                        <dt class="col-sm-6">Kickback:
-                                        </dt>
-                                        <dd class="col-sm-6">{{contractCommissionData.kickbackPercentage}}
-                                            <b *ngIf="contractCommissionData.kickbackUOMName!=null">/ </b>
-                                            {{contractCommissionData.kickbackUOMName}}
-                                        </dd>
-                                    </dl>
-                    
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Fabcot Commission:
-                                        </dt>
-                                        <dd class="col-sm-6">{{contractCommissionData.fabCotCommision}}
-                                            <b *ngIf="contractCommissionData.fabCotCommisionUOMName!=null">/ </b>
-                    
-                                            {{contractCommissionData.fabCotCommisionUOMName}}
-                                        </dd>
-                                    </dl>
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Buyer side Commission:
-                                        </dt>
-                                        <dd class="col-sm-6">{{contractCommissionData.buyersideCommision}}
-                                            <b *ngIf="contractCommissionData.buyersideCommisionUOMName!=null">/ </b>
-                    
-                                            {{contractCommissionData.buyersideCommisionUOMName}}
-                                        </dd>
-                                    </dl>
-                                    <!-- <dl class="row">
-                                                                <dt class="col-sm-6">Foreign Agent Comm:
-                                                                </dt>
-                                                                <dd class="col-sm-6"
-                                                                    *ngFor="let i of contractCommissionData.agentCommissions">
-                                                                    {{i.agentName}}: {{i.agentCommission}}%</dd>
-                    
-                                                            </dl> -->
-                    
-                    
-                    
-                                </div>
-                                <div class="col-md-12 mb-4">
-                                    <button class="btn btn-outline-primary btn-sm float-right" (click)="editKickbackComm()">
-                                        <i class="far fa-edit"></i></button>
-                                </div>
-                            </div>
-                    
-                    
-                            <!-- </div> -->
-                    
-                            <!-- -------Employee Commission Tab 8----------- -->
-                            <!-- <div class="form-row border-top">
-                                <div class="col-md-12 pt-2r pb-3">
-                    
-                                    <div class="col-md-12">
-                                        <span class="badge badge-primary"> Employee Commission</span>
-                                    </div>
-                    
-                                </div>
-                            </div> -->
-
-                            <div class="border-top pt-3 pb-2">
-                                <span class="badge badge-primary">Employee Commission</span>
-                            </div>
-
-
-                            <!-- <div class="tab-pane fade show " id="nav-employee" role="tabpanel"
-                                                    aria-labelledby="nav-employee-tab"> -->
-                    
-                            <!-- <div class="row">
-                                                        <div class="col-md-12 mb-2 py-1">
-                    
-                                                            <div class="col-sm-12 text-muted">
-                                                                <h4 class="font-weight-light">
-                                                                    Employee Commission
-                                                                </h4>
-                                                            </div>
-                    
-                                                        </div>
-                                                    </div> -->
-                    
-                            <div class="row">
-                                <div class="col-md-12 mb-4">
-                                    <button class="btn btn-outline-primary btn-sm float-right" (click)="AddEmployeeComm('Add')"> <i
-                                            class="fas fa-plus"></i></button>
-                                </div>
-                            </div>
-                    
-                            <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows1" *ngIf="rows1.length != 0"
-                                [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [sorts]="[{prop: 'code', dir: 'asce'}]"
-                                [rowHeight]="'auto'" [limit]="6">
-                    
-                    
-                                <ngx-datatable-column name="S. No." [width]="5" prop="">
-                                    <ng-template let-rowIndex="rowIndex" let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                        {{rowIndex + 1}}
-                                    </ng-template>
-                                </ngx-datatable-column>
-                    
-                                <ngx-datatable-column name="Agent">
-                                    <ng-template let-row="row" ngx-datatable-cell-template>
-                                        {{row.agentName}}
-                                    </ng-template>
-                                </ngx-datatable-column>
-                    
-                                <ngx-datatable-column name="Criteria" prop="name">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                        {{row.beneficiaryCriteriaName}}
-                                    </ng-template>
-                                </ngx-datatable-column>
-                    
-                                <ngx-datatable-column name="Details" prop="genericName">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                        {{row.criteriaDetail}}
-                                    </ng-template>
-                                </ngx-datatable-column>
-                    
-                                <ngx-datatable-column name="Action" prop="status">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                        <div class="ibox-tools text-center">
-                    
-                                            <button type="button" class="btn editIconBack"
-                                                (click)="editEmployeeComm('editCommission' , row)">
-                                                <i class="far fa-edit "></i>
-                                            </button>
-                    
-                                            <button type="button" class="btn deleteIconBack" (click)="deleteCommission(row)">
-                                                <i class="far fa-trash-alt"></i>
-                                            </button>
-                    
-                                        </div>
-                                    </ng-template>
-                                </ngx-datatable-column>
-                            </ngx-datatable>
-                    
-                    
-                            <!-- </div> -->
-                    
-                            <!-- -------Tab 9----------- -->
-                            <!-- <div class="form-row border-top">
-                                <div class="col-md-12 pt-2r pb-3">
-                    
-                                    <div class="col-md-12">
-                                        <span class="badge badge-primary">Remarks / Other Conditions</span>
-                                    </div>
-                    
-                                </div>
-                            </div> -->
-
-
-
-                            <div class="border-top pt-3 pb-2">
-                                <span class="badge badge-primary">Remarks / Other Conditions</span>
-                            </div>
-
-
-                            <!-- <div class="tab-pane fade show " id="nav-remarks" role="tabpanel"
-                                                    aria-labelledby="nav-remarks-tab"> -->
-                    
-                            <!-- <div class="row">
-                                                        <div class="col-md-12 mb-2 py-1">
-                    
-                                                            <div class="col-sm-12 text-muted">
-                                                                <h4 class="font-weight-light">
-                                                                    Remarks / Other Conditions
-                                                                </h4>
-                                                            </div>
-                    
-                                                        </div>
-                                                    </div> -->
-                    
-                            <div class="row">
-                                <div class="col-md-6">
-                    
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Remarks:
-                    
-                                        </dt>
-                                        <dd class="col-sm-6">{{contractRemarksData.contractRemarks}}</dd>
-                                    </dl>
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Buyer Remarks:
-                    
-                                        </dt>
-                                        <dd class="col-sm-6">{{contractRemarksData.buyerRemarks}}</dd>
-                                    </dl>
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Other Condition:
-                    
-                                        </dt>
-                                        <dd class="col-sm-6">{{contractRemarksData.otherConditionRemarks}}</dd>
-                    
-                                    </dl>
-                                    <!-- <dl class="row">
-                                                                <dt class="col-sm-6">Other Condition:
-                                                                </dt>
-                                                                <dd class="col-sm-6"></dd>
-                    
-                                                            </dl> -->
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Preview Title:
-                                        </dt>
-                                        <dd class="col-sm-6">{{contractRemarksData.title}}</dd>
-                    
-                                    </dl>
-                    
-                    
-                    
-                                </div>
-                                <div class="col-md-12 mb-4">
-                                    <button class="btn btn-outline-primary btn-sm float-right" (click)="editRemarks(contractRemarksData)">
-                                        <i class="far fa-edit"></i></button>
-                                </div>
-                    
-                            </div>
-                    
-                    
-                    
-                    
-                            <!-- </div> -->
-                    
-                            <!-- </div> -->
-                    
-                            <!-- ------ -->
-                    
                         </div>
-                    
+                        <!-- <div class="tab-pane fade show " id="nav-commission" role="tabpanel"
+                                aria-labelledby="nav-commission-tab"> -->
+
+                        <!-- <div class="row">
+                                    <div class="col-md-12 mb-2 py-1"> -->
+
+                        <!-- <div class="col-sm-12 text-muted">
+                                            <h4 class="font-weight-light">
+                                                Commission (Supplier, Buyer & External Agent)
+                                            </h4>
+                                        </div> -->
+
+                        <!-- </div>
+                                </div> -->
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+                                    <dt class="col-sm-6">Kickback:
+                                    </dt>
+                                    <dd class="col-sm-6">{{contractCommissionData.kickbackPercentage}}
+                                        <b *ngIf = "contractCommissionData.kickbackUOMName!=null">/ </b>
+                                        {{contractCommissionData.kickbackUOMName}}</dd>
+                                </dl>
+
+                                <dl class="row">
+                                    <dt class="col-sm-6">Fabcot Commission:
+                                    </dt>
+                                    <dd class="col-sm-6">{{contractCommissionData.fabCotCommision}}
+                                        <b *ngIf = "contractCommissionData.fabCotCommisionUOMName!=null">/ </b>
+                                        
+                                        {{contractCommissionData.fabCotCommisionUOMName}}</dd>
+                                </dl>
+                                <dl class="row">
+                                    <dt class="col-sm-6">Buyer side Commission:
+                                    </dt>
+                                    <dd class="col-sm-6">{{contractCommissionData.buyersideCommision}}
+                                        <b *ngIf = "contractCommissionData.buyersideCommisionUOMName!=null">/ </b>
+                                        
+                                        {{contractCommissionData.buyersideCommisionUOMName}}</dd>
+                                </dl>
+                                <!-- <dl class="row">
+                                            <dt class="col-sm-6">Foreign Agent Comm:
+                                            </dt>
+                                            <dd class="col-sm-6"
+                                                *ngFor="let i of contractCommissionData.agentCommissions">
+                                                {{i.agentName}}: {{i.agentCommission}}%</dd>
+
+                                        </dl> -->
+
+
+
+                            </div>
+                            <div class="col-md-12 mb-4">
+                                <button class="btn btn-outline-primary btn-sm float-right" (click)="editKickbackComm()">
+                                    <i class="far fa-edit"></i></button>
+                            </div>
+                        </div>
+
+
+                        <!-- </div> -->
+
+                        <!-- -------Employee Commission Tab 8----------- -->
+                        <div class="form-row border-top">
+                            <div class="col-md-12 pt-2r pb-3">
+
+                                <div class="col-md-12">
+                                    <span class="badge badge-primary"> Employee Commission</span>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- <div class="tab-pane fade show " id="nav-employee" role="tabpanel"
+                                aria-labelledby="nav-employee-tab"> -->
+
+                        <!-- <div class="row">
+                                    <div class="col-md-12 mb-2 py-1">
+
+                                        <div class="col-sm-12 text-muted">
+                                            <h4 class="font-weight-light">
+                                                Employee Commission
+                                            </h4>
+                                        </div>
+
+                                    </div>
+                                </div> -->
+
+                        <div class="row">
+                            <div class="col-md-12 mb-4">
+                                <button class="btn btn-outline-primary btn-sm float-right"
+                                    (click)="AddEmployeeComm('Add')"> <i class="fas fa-plus"></i></button>
+                            </div>
+                        </div>
+
+                        <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows1"
+                            *ngIf="rows1.length != 0" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+                            [sorts]="[{prop: 'code', dir: 'asce'}]" [rowHeight]="'auto'" [limit]="6">
+
+
+                            <ngx-datatable-column name="S. No." [width]="5" prop="">
+                                <ng-template let-rowIndex="rowIndex" let-row="row" let-expanded="expanded"
+                                    ngx-datatable-cell-template>
+                                    {{rowIndex + 1}}
+                                </ng-template>
+                            </ngx-datatable-column>
+
+                            <ngx-datatable-column name="Agent">
+                                <ng-template let-row="row" ngx-datatable-cell-template>
+                                    {{row.agentName}}
+                                </ng-template>
+                            </ngx-datatable-column>
+
+                            <ngx-datatable-column name="Criteria" prop="name">
+                                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                    {{row.beneficiaryCriteriaName}}
+                                </ng-template>
+                            </ngx-datatable-column>
+
+                            <ngx-datatable-column name="Details" prop="genericName">
+                                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                    {{row.criteriaDetail}}
+                                </ng-template>
+                            </ngx-datatable-column>
+
+                            <ngx-datatable-column name="Action" prop="status">
+                                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                    <div class="ibox-tools text-center">
+
+                                        <button type="button" class="btn editIconBack"
+                                            (click)="editEmployeeComm('editCommission' , row)">
+                                            <i class="far fa-edit "></i>
+                                        </button>
+
+                                        <button type="button" class="btn deleteIconBack"
+                                            (click)="deleteCommission(row)">
+                                            <i class="far fa-trash-alt"></i>
+                                        </button>
+
+                                    </div>
+                                </ng-template>
+                            </ngx-datatable-column>
+                        </ngx-datatable>
+
+
+                        <!-- </div> -->
+
+                        <!-- -------Tab 9----------- -->
+                        <div class="form-row border-top">
+                            <div class="col-md-12 pt-2r pb-3">
+
+                                <div class="col-md-12">
+                                    <span class="badge badge-primary">Remarks / Other Conditions</span>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- <div class="tab-pane fade show " id="nav-remarks" role="tabpanel"
+                                aria-labelledby="nav-remarks-tab"> -->
+
+                        <!-- <div class="row">
+                                    <div class="col-md-12 mb-2 py-1">
+
+                                        <div class="col-sm-12 text-muted">
+                                            <h4 class="font-weight-light">
+                                                Remarks / Other Conditions
+                                            </h4>
+                                        </div>
+
+                                    </div>
+                                </div> -->
+
+                        <div class="row">
+                            <div class="col-md-6">
+
+                                <dl class="row">
+                                    <dt class="col-sm-6">Remarks:
+
+                                    </dt>
+                                    <dd class="col-sm-6">{{contractRemarksData.contractRemarks}}</dd>
+                                </dl>
+                                <dl class="row">
+                                    <dt class="col-sm-6">Buyer Remarks:
+
+                                    </dt>
+                                    <dd class="col-sm-6">{{contractRemarksData.buyerRemarks}}</dd>
+                                </dl>
+                                <dl class="row">
+                                    <dt class="col-sm-6">Other Condition:
+
+                                    </dt>
+                                    <dd class="col-sm-6">{{contractRemarksData.otherConditionRemarks}}</dd>
+
+                                </dl>
+                                <!-- <dl class="row">
+                                            <dt class="col-sm-6">Other Condition:
+                                            </dt>
+                                            <dd class="col-sm-6"></dd>
+
+                                        </dl> -->
+                                <dl class="row">
+                                    <dt class="col-sm-6">Preview Title:
+                                    </dt>
+                                    <dd class="col-sm-6">{{contractRemarksData.title}}</dd>
+
+                                </dl>
+
+
+
+                            </div>
+                            <div class="col-md-12 mb-4">
+                                <button class="btn btn-outline-primary btn-sm float-right"
+                                    (click)="editRemarks(contractRemarksData)">
+                                    <i class="far fa-edit"></i></button>
+                            </div>
+
+                        </div>
+
+
+
+
+                        <!-- </div> -->
+
+                        <!-- </div> -->
+
+                        <!-- ------ -->
+
                     </div>
 
 
@@ -1594,7 +1420,7 @@
                                 </div>
 
                                 <div class="col-md-6 text-right">
-                                    <button class="btn btn-outline-info btn-sm" (click)="addCredit(x,'Credit')" > <i class="fas fa-sticky-note"></i>
+                                    <button class="btn btn-outline-info btn-sm" (click)="addCredit(x,'Credit')"> <i class="fas fa-sticky-note"></i>
                                         Credit Note
                                     </button>
                                     <button class="btn btn-outline-warning btn-sm ml-3 " (click)="addCredit(x,'Debit')">
