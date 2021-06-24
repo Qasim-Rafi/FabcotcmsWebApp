@@ -39,8 +39,16 @@
 
             <div class="small mb-1"></div>
             <h5>{{i.fullName}}</h5>
-            <span><i class="fa fa-user"></i>&nbsp;{{i.role}} &nbsp;&nbsp;<i
-                class="fa fa-object-group"></i>&nbsp;&nbsp; Home Textile & Garment &nbsp;&nbsp; <i class="fa fa-envelope"></i>&nbsp;&nbsp;{{i.email}}</span>
+            <span><i class="fa fa-user"></i>&nbsp;{{i.role}}&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<i
+                class="fa fa-object-group"></i>&nbsp;&nbsp;  <b *ngIf = "loggedInDepartmentName =='Home Textile & Garment' "> Home Textile & Garment </b>
+                <b *ngIf = "loggedInDepartmentName =='Yarn Local' "> Yarn Local</b>
+                <b *ngIf = "loggedInDepartmentName =='Fabric Local' ">Fabric Local</b>
+                <b *ngIf = "loggedInDepartmentName =='Yarn Local Karachi' ">Yarn Local Karachi</b>
+               
+                <b *ngIf = "loggedInDepartmentName =='Fabric Export' ">Fabric Export</b>
+                <b *ngIf = "loggedInDepartmentName =='Yarn Export' ">Yarn Export</b>
+                
+                &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; <i class="fa fa-envelope"></i>&nbsp;&nbsp;{{i.email}}</span>
             
 
           </div>
