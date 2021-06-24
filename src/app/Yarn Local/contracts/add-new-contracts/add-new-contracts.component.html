@@ -265,7 +265,7 @@
 
 
 
-                        <div class="form-group row">
+                        <div class="form-group row" *ngIf="loggedInDepartmentName!='Yarn Export'">
                             <label for="inputEmail3" class="col-md-3 col-form-label control-label">Article:</label>
 
                             <div class="col-md-7">
@@ -286,7 +286,113 @@
                             </div>
 
                         </div>
+                      
+                        <div class="form-group row" *ngIf="loggedInDepartmentName=='Yarn Export'">
+                            <label for="inputEmail3" class="col-md-3 col-form-label control-label">Article:</label>
 
+                            <div class="col-md-7">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="input-group">
+                                            <ng-select name="article" #articleId="ngModel" class="input-w px-0"
+                                            [(ngModel)]="data.articleId" placeholder="-- Select --">
+                                            <ng-option *ngFor="let i of article" [value]="i.id">{{ i.name }}
+                                            </ng-option>
+                                        </ng-select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="input-group">
+                                            <input type="number" min="0" placeholder="quantity" #quantity="ngModel"
+                                                class="form-control" [(ngModel)]="data.quantity" name="quantity">
+                                            <!-- <div class="input-group-append">
+                                                <span class="input-group-text" id="basic-addon2">per</span>
+                                            </div> -->
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3 mrg-sm1">
+                                        <div class="input-group">
+                                            <input type="number" min="0" placeholder="Rate" #quantity="ngModel"
+                                                class="form-control" [(ngModel)]="data.quantity" name="quantity">
+                                            <!-- <div class="input-group-append">
+                                                <span class="input-group-text" id="basic-addon2">per</span>
+                                            </div> -->
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3 mrg-sm1">
+                                        <div class="input-group">
+                                            <input type="number" min="0" placeholder="Commission" #quantity="ngModel"
+                                                class="form-control" [(ngModel)]="data.quantity" name="quantity">
+                                            <!-- <div class="input-group-append">
+                                                <span class="input-group-text" id="basic-addon2">per</span>
+                                            </div> -->
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="loggedInDepartmentName=='Yarn Export'" >
+                            <div class="form-group row" *ngFor="let a of Article; let i = index;">
+                                <label for="inputEmail3" class="col-md-3 col-form-label control-label"></label>
+
+                                <div class="col-md-7">
+                                    <div class="row">
+    
+                                <div class="col-md-3">
+                                    <div class="input-group">
+                                        <ng-select name="article_{{i}}" #articleId="ngModel" class="input-w px-0"
+                                        [(ngModel)]="a.articleId" placeholder="Article">
+                                        <ng-option *ngFor="let i of article" [value]="i.id">{{ i.name }}
+                                        </ng-option>
+                                    </ng-select>
+                                    </div>
+                                </div>
+                                      <div class="col-md-3">
+                                        <div class="input-group">
+                                            <input type="number" min="0" placeholder="quantity" #quantity="ngModel"
+                                                class="form-control" [(ngModel)]="a.quantity" name="quantity_{{i}}">
+                                            <!-- <div class="input-group-append">
+                                                <span class="input-group-text" id="basic-addon2">per</span>
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                      <div class="col-md-2 mrg-sm1">
+                                        <div class="input-group">
+                                            <input type="number" min="0" placeholder="Rate" #quantity="ngModel"
+                                                class="form-control" [(ngModel)]="a.quantity" name="quantity_{{i}}">
+                                            <!-- <div class="input-group-append">
+                                                <span class="input-group-text" id="basic-addon2">per</span>
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                      <div class="col-md-2 mrg-sm1">
+                                        <div class="input-group">
+                                            <input type="number" min="0" placeholder="Commission" #quantity="ngModel"
+                                            class="form-control" [(ngModel)]="a.quantity" name="quantity_{{i}}">
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 mrg-sm1">
+                                      <div class="input-group-append">
+                                        <button class="btn btn-outline-danger " type="submit" (click)="removeArticle(i)">
+                                            <i class="fas fa-minus fa-xs"></i></button>
+                                    </div>
+                                    </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-7">
+                                <button class="btn btn-outline-primary btn-sm" (click)="addArticle()"> Add Another Article</button>
+                            </div>
+                        </div>
+
+                        </div>
+                        <br>
                         <div class="form-group row" *ngIf="loggedInDepartmentName=='Yarn Export'">
                             <label for="inputEmail3" class="col-md-3 col-form-label control-label">Brand Name:</label>
 
@@ -741,7 +847,7 @@
                               </label>
                               <div class="col-sm-3">
                                 <input  class="form-control"  
-                                name="sellerDeliveryDateDay" placeholder="Day" [(ngModel)]="data.sellerDeliveryDateDay" #sellerDeliveryDateDay="ngModel"  />
+                                name="sellerDeliveryDateDay_{{i}}" placeholder="Day" [(ngModel)]="a.sellerDeliveryDateDay" #sellerDeliveryDateDay="ngModel"  />
                                  
                               </div>
                               <div class="col-sm-2">
@@ -847,7 +953,7 @@
                                      
                                   </div>
                                   <div class="col-sm-2">
-                                    <ng-select placeholder="Month" name="buyerDeliveryDateMonth" [(ngModel)]="data.buyerDeliveryDateMonth" #buyerDeliveryDateMonth="ngModel">
+                                    <ng-select placeholder="Month" name="buyerDeliveryDateMonth_{{i}}" [(ngModel)]="a.buyerDeliveryDateMonth" #buyerDeliveryDateMonth="ngModel">
                                       <ng-option value="Jan"> Jan</ng-option>
                                       <ng-option value="Feb"> Feb</ng-option>
                                       <ng-option value="Mar"> Mar</ng-option>
@@ -863,7 +969,7 @@
                                     </ng-select>
                                   </div>
                                   <div class="col-sm-2">
-                                    <ng-select placeholder="Year" name="buyerDeliveryDateYear+{{i}}" [(ngModel)]="a.buyerDeliveryDateYear" #buyerDeliveryDateYear="ngModel">
+                                    <ng-select placeholder="Year" name="buyerDeliveryDateYear_{{i}}" [(ngModel)]="a.buyerDeliveryDateYear" #buyerDeliveryDateYear="ngModel">
                                       <ng-option value="2016"> 2016</ng-option>
                                       <ng-option value="2017"> 2017</ng-option>
                                       <ng-option value="2018"> 2018</ng-option>
@@ -1185,7 +1291,7 @@
                                  
                               </div>
                               <div class="col-sm-2">
-                                <ng-select placeholder="Month" name="sellerDeliveryDateMonth" [(ngModel)]="data.sellerDeliveryDateMonth" #sellerDeliveryDateMonth="ngModel">
+                                <ng-select placeholder="Month" name="sellerDeliveryDateMonth_{{i}}" [(ngModel)]="a.sellerDeliveryDateMonth" #sellerDeliveryDateMonth="ngModel">
                                   <ng-option value="Jan"> Jan</ng-option>
                                   <ng-option value="Feb"> Feb</ng-option>
                                   <ng-option value="Mar"> Mar</ng-option>
@@ -1201,7 +1307,7 @@
                                 </ng-select>
                               </div>
                               <div class="col-sm-2">
-                                <ng-select placeholder="Year" name="sellerDeliveryDateYear" [(ngModel)]="data.sellerDeliveryDateYear" #sellerDeliveryDateYear="ngModel">
+                                <ng-select placeholder="Year" name="sellerDeliveryDateYear_{{i}}" [(ngModel)]="a.sellerDeliveryDateYear" #sellerDeliveryDateYear="ngModel">
                                   <ng-option value="2016"> 2016</ng-option>
                                   <ng-option value="2017"> 2017</ng-option>
                                   <ng-option value="2018"> 2018</ng-option>
@@ -1283,11 +1389,11 @@
 
                                   <div class="col-sm-3">
                                     <input  class="form-control"  
-                                    name="buyerDeliveryDateDay" placeholder="Day" [(ngModel)]="data.buyerDeliveryDateDay" #buyerDeliveryDateDay="ngModel"  />
+                                    name="buyerDeliveryDateDay_{{i}}" placeholder="Day" [(ngModel)]="a.buyerDeliveryDateDay" #buyerDeliveryDateDay="ngModel"  />
                                      
                                   </div>
                                   <div class="col-sm-2">
-                                    <ng-select placeholder="Month" name="buyerDeliveryDateMonth" [(ngModel)]="data.buyerDeliveryDateMonth" #buyerDeliveryDateMonth="ngModel">
+                                    <ng-select placeholder="Month" name="buyerDeliveryDateMonth_{{i}}" [(ngModel)]="a.buyerDeliveryDateMonth" #buyerDeliveryDateMonth="ngModel">
                                       <ng-option value="Jan"> Jan</ng-option>
                                       <ng-option value="Feb"> Feb</ng-option>
                                       <ng-option value="Mar"> Mar</ng-option>
@@ -1303,7 +1409,7 @@
                                     </ng-select>
                                   </div>
                                   <div class="col-sm-2">
-                                    <ng-select placeholder="Year" name="buyerDeliveryDateYear" [(ngModel)]="data.buyerDeliveryDateYear" #buyerDeliveryDateYear="ngModel">
+                                    <ng-select placeholder="Year" name="buyerDeliveryDateYear_{{i}}}" [(ngModel)]="a.buyerDeliveryDateYear" #buyerDeliveryDateYear="ngModel">
                                       <ng-option value="2016"> 2016</ng-option>
                                       <ng-option value="2017"> 2017</ng-option>
                                       <ng-option value="2018"> 2018</ng-option>
@@ -1554,11 +1660,11 @@
           </label>
           <div class="col-sm-3">
             <input  class="form-control"  
-            name="sellerDeliveryDateDay" placeholder="Day" [(ngModel)]="data.sellerDeliveryDateDay" #sellerDeliveryDateDay="ngModel"  />
+            name="sellerDeliveryDateDay_{{i}}" placeholder="Day" [(ngModel)]="a.sellerDeliveryDateDay" #sellerDeliveryDateDay="ngModel"  />
              
           </div>
           <div class="col-sm-2">
-            <ng-select placeholder="Month" name="sellerDeliveryDateMonth" [(ngModel)]="data.sellerDeliveryDateMonth" #sellerDeliveryDateMonth="ngModel">
+            <ng-select placeholder="Month" name="sellerDeliveryDateMonth_{{i}}" [(ngModel)]="a.sellerDeliveryDateMonth" #sellerDeliveryDateMonth="ngModel">
               <ng-option value="Jan"> Jan</ng-option>
               <ng-option value="Feb"> Feb</ng-option>
               <ng-option value="Mar"> Mar</ng-option>
@@ -1574,7 +1680,7 @@
             </ng-select>
           </div>
           <div class="col-sm-2">
-            <ng-select placeholder="Year" name="sellerDeliveryDateYear" [(ngModel)]="data.sellerDeliveryDateYear" #sellerDeliveryDateYear="ngModel">
+            <ng-select placeholder="Year" name="sellerDeliveryDateYear_{{i}}" [(ngModel)]="a.sellerDeliveryDateYear" #sellerDeliveryDateYear="ngModel">
               <ng-option value="2016"> 2016</ng-option>
               <ng-option value="2017"> 2017</ng-option>
               <ng-option value="2018"> 2018</ng-option>
