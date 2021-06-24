@@ -114,13 +114,13 @@ this.spinner.hide();
     modalRef.result.then((data) => {
 
       if (data == true) {
-        this.service.fetch((data) => {
-          this.rows = data;
-          this.containerFilter = [...this.rows];
-        }, this.ContainerUrl);
+       
      
       }
-     
+      this.service.fetch((data) => {
+        this.rows = data;
+        this.containerFilter = [...this.rows];
+      }, this.ContainerUrl);
     }, (reason) => {
     });
   }

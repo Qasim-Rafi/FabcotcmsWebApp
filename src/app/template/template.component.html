@@ -38,15 +38,26 @@
             <li class="nav-item visibility">
               <div class="welcome">
                 Welcome to Fabcot CRM &copy;
-                <span class="btn-primary" *ngIf="loggedInDepartmentId == '6' " >
-                  Home Textile & Garment
+                <span class="btn-primary" *ngIf="loggedInDepartmentId == '1' " >
+                  Yarn Export
+                </span>
+                <span class="btn-primary" *ngIf="loggedInDepartmentId == '2' " >
+                  Fabric Export
                 </span>
                 <span class="btn-info" *ngIf="loggedInDepartmentId == '3' ">
                   Yarn Local
                 </span>
+                <span class="btn-primary" *ngIf="loggedInDepartmentId == '4' " >
+                  Yarn Local Karachi
+                </span>
                 <span class="btn-primary" *ngIf="loggedInDepartmentId == '5' " >
                   Fabric Local
                 </span>
+                <span class="btn-primary" *ngIf="loggedInDepartmentId == '6' " >
+                  Home Textile & Garment
+                </span>
+                
+                
               </div>
             </li>
             <li class="nav-item">

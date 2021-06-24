@@ -113,13 +113,13 @@ this.spinner.hide();
     modalRef.result.then((data) => {
 
       if (data == true) {
-        this.service.fetch((data) => {
-          this.rows = data;
-      this.PickInsertionFilter = [...this.rows];
+       
+      } this.service.fetch((data) => {
+        this.rows = data;
+    this.PickInsertionFilter = [...this.rows];
 
-          this.PickInsertionCount = this.rows.length;
-        }, this.PickInsertionUrl);
-      }
+        this.PickInsertionCount = this.rows.length;
+      }, this.PickInsertionUrl);
     }, (reason) => {
     });
   }
