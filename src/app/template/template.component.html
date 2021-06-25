@@ -487,7 +487,7 @@
 
 
 
-          <nav class="mt-2" *ngIf="isYarnLocal">
+          <nav class="mt-2" *ngIf="isYarnLocal || loggedInDepartmentName == 'Yarn Export'">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
               <!-- Add icons to the links using the .nav-icon class
                  with font-awesome or any other icon font library -->
@@ -523,25 +523,25 @@
                       <p>Completed Contracts</p>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item" *ngIf = "loggedInDepartmentName != 'Yarn Export'">
                     <a routerLink="/FabCot/dispatched-register" class="nav-link" routerLinkActive="active">
                       <i class="fas fa-truck nav-icon"></i>
                       <p>Dispatched Register</p>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item" *ngIf = "loggedInDepartmentName != 'Yarn Export'">
                     <a routerLink="/FabCot/buyer-payment" class="nav-link" routerLinkActive="active">
                       <i class="far fa-money-bill-alt"></i>
                       <p>Buyer Payments</p>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item" *ngIf = "loggedInDepartmentName != 'Yarn Export'">
                     <a routerLink="/FabCot/sale-invoice" class="nav-link" routerLinkActive="active">
                       <i class="fas fa-file-invoice-dollar"></i>
                       <p>Sale Invoices</p>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item" *ngIf = "loggedInDepartmentName != 'Yarn Export'">
                     <a routerLink="/FabCot/tax" class="nav-link" routerLinkActive="active">
                       <i class="fas fa-tags"></i>
                       <p>Tax Challan</p>
