@@ -42,7 +42,7 @@
                 </ng-select>
     
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <!-- <div class="col-md-4 mrg-sm1"> -->
                         <div class="input-group">
                             <div class="input-group-append">
@@ -78,7 +78,7 @@
     
                 </div>
                 /
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <ng-select [(ngModel)]="data.rateUOMId" placeholder="-- Select --" 
                     name="rateUOMId" #rateUOMId="ngModel">
                     <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
@@ -89,7 +89,7 @@
               </div>
               <div class="form-group row" *ngIf = "loggedInDepartmentName == 'Fabric Local'">
                 <label for="itemQuantity" class="col-sm-3 col-form-label "> Taxes</label>
-                <div class="col-md-3">
+                <div class="col-md-4">
                         <div class="input-group">
                             <div class="input-group-append">
                                 <span class="input-group-text" id="basic-addon2">GST</span>
@@ -103,7 +103,7 @@
                             </div>
                         </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="input-group">
                         <div class="input-group-append">
                             <span class="input-group-text" id="basic-addon2">W.I.Tax</span>

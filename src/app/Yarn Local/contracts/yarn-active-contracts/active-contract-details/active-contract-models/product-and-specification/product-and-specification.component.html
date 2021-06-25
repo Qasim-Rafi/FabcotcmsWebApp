@@ -19,7 +19,7 @@
   <div class="modal-body BG p-0">
     <form #prodSpecForm="ngForm" novalidate>
   
-      <div class="col-md-12 pt-3 pb-2">
+      <div class="col-md-12 pt-3 pb-2 px-5">
         <!-- <div class="form-group row"> -->
           <div class="form-group row"  *ngIf="loggedInDepartmentName=='Fabric Local'">
             <label  class="col-sm-3 col-form-label text_Navy"> Construction
@@ -31,7 +31,7 @@
                 class="form-control" value="" placeholder="%"
                   name="pecenetAge"  #pecenetAge = "ngModel" [(ngModel)] = "data.pecenetAge" />
             </div>
-            <div class="col-md-4">
+            <div class="col-md-7">
                
                 <ng-select [(ngModel)]="data.febricId" placeholder="-- Select --"   
                 name="febricId" #febricId="ngModel">
@@ -45,7 +45,7 @@
       <div class="form-group row">
         <label for="name" class="col-sm-3 col-form-label"><strong>Cons.info</strong></label>
         <!-- <label for="name" class="col-sm-3 col-form-label">Puchase Order</label> -->
-        <div class="col-sm-8">
+        <div class="col-sm-9">
           <input type="text" class="form-control" name="construction" #construction  = "ngModel"
           [(ngModel)] = "data.construction"
             placeholder="Construction Information" />
@@ -57,7 +57,7 @@
   
       <div class="form-group row">
         <label for="articleId" class="col-sm-3 col-form-label text_Navy ">Article</label>
-        <div class="col-sm-8">
+        <div class="col-sm-9">
           <ng-select [(ngModel)]="data.articleId" placeholder="-- Select --"
           name="articleId"
          >
@@ -69,7 +69,7 @@
       </div>
   
       <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local'">
-        <label  class="col-sm-2 col-form-label "> Additional Specs
+        <label  class="col-sm-3 col-form-label "> Additional Specs
 
         </label>
         <div class="col-sm-2">
@@ -127,9 +127,10 @@
       </div>
       
     </div>
+
     <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local'">
       <label  class="col-sm-3 col-form-label  ">Piece Length</label>
-      <div class="col-sm-8">
+      <div class="col-sm-9">
         <ng-select [(ngModel)]="data.pieceLengthId" placeholder=" Select  Piece Length"
         name="pieceLengthId" #pieceLengthId = "ngModel"
        >
@@ -141,7 +142,7 @@
     </div>
     <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local'">
       <label  class="col-sm-3 col-form-label  ">Pick Insertion</label>
-      <div class="col-sm-8">
+      <div class="col-sm-9">
         <ng-select [(ngModel)]="data.pickInsertionId" placeholder="Select pick insertion"
         name="pickInsertionId" #pickInsertionId = "ngModel"
        >
@@ -153,7 +154,7 @@
     </div>
     <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local'">
       <label for="articleId" class="col-sm-3 col-form-label  ">BR Warp</label>
-      <div class="col-sm-8">
+      <div class="col-sm-9">
         <ng-select [(ngModel)]="data.blendingRatioWarpId" placeholder="Select Warp"
         name="blendingRatioWarpId" #blendingRatioWarpId = "ngModel"
        >
@@ -165,7 +166,7 @@
     </div>
     <div class="form-group row"*ngIf="loggedInDepartmentName=='Fabric Local'">
       <label for="blendingRatioWeftId" class="col-sm-3 col-form-label  ">BR Weft</label>
-      <div class="col-sm-8">
+      <div class="col-sm-9">
         <ng-select [(ngModel)]="data.blendingRatioWeftId" #blendingRatioWeftId  = "ngModel" placeholder="Select Weft"
         name="blendingRatioWeftId"
        >
