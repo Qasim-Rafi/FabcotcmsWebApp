@@ -206,29 +206,34 @@
                                 href="#nav-Details" role="tab" aria-controls="nav-Details" aria-selected="true">
                                 Details</a>
 
-                            <a class="nav-delivery nav-link " *ngIf="loggedInDepartmentName=='Fabric Local'"
+                            <a class="nav-credit nav-link " *ngIf="loggedInDepartmentName=='Yarn Export'"
+                                id="nav-credit-tab" data-toggle="tab" href="#nav-credit" role="tab"
+                                aria-controls="nav-credit" aria-selected="false">L/C info &nbsp;<span
+                                    class="badge badge-pill badge-primary">{{deliveryData.length}}</span></a>
+
+                            <a class="nav-delivery nav-link " *ngIf="loggedInDepartmentName!='Yarn Local'"
                                 id="nav-delivery-tab" data-toggle="tab" href="#nav-delivery" role="tab"
                                 aria-controls="nav-delivery" aria-selected="false">Delivery TL &nbsp;<span
                                     class="badge badge-pill badge-primary">{{deliveryData.length}}</span></a>
 
-                            <!-- <a class="nav-dispatches nav-link " *ngIf="loggedInDepartmentName=='Fabric Local'"
-                                id="nav-dispatches-tab" data-toggle="tab" href="#nav-dispatches" role="tab"
-                                aria-controls="nav-dispatches" aria-selected="false">Dispatches &nbsp;<span
-                                    class="badge badge-pill badge-primary">{{dispatchData.length}}</span></a> -->
-
-                            <a class="nav-prodPlan nav-link " *ngIf="loggedInDepartmentName=='Fabric Local'"
+                            <a class="nav-prodPlan nav-link " *ngIf="loggedInDepartmentName!='Yarn Local'"
                                 id="nav-prodPlan-tab" data-toggle="tab" href="#nav-prodPlan" role="tab"
                                 aria-controls="nav-prodPlan" aria-selected="false">Prod Plan &nbsp;<span
                                     class="badge badge-pill badge-primary">{{rows5.length}}</span></a>
+
                             <a class="nav-item nav-link " id="nav-Sale-tab" data-toggle="tab" href="#nav-Sale"
                                 role="tab" aria-controls="nav-Sale" aria-selected="false">Sale Invoice &nbsp;<span
                                     class="badge badge-pill badge-primary">{{saleInvoice.length}}</span></a>
+
                             <a class="nav-item nav-link " id="nav-Documents-tab" data-toggle="tab" href="#nav-Documents"
-                                role="tab" aria-controls="nav-Documents" aria-selected="false">Documents</a>
-                            <a class="nav-item nav-link " *ngIf="loggedInDepartmentName=='Fabric Local'"
+                                role="tab" aria-controls="nav-Documents" aria-selected="false">Documents&nbsp;<span
+                                class="badge badge-pill badge-primary">{{rows3.length}}</span></a>
+
+                            <a class="nav-item nav-link " *ngIf="loggedInDepartmentName!='Yarn Local'"
                                 id="nav-Notes-tab" data-toggle="tab" href="#nav-Notes" role="tab"
                                 aria-controls="nav-Notes" aria-selected="false">Notes &nbsp;<span
                                     class="badge badge-pill badge-primary">{{rows3.length}}</span></a>
+
                         </div>
                     </nav>
                 </div>
@@ -1419,8 +1424,243 @@
                 </div>
 
 
-                <!---------- Sale Invoices Tab ---------->
+                <!---------- Letter of Credit Tab---------->
+                <div class="tab-pane fade show " id="nav-credit" role="tabpanel" aria-labelledby="nav-credit-tab">
+                    <div class="col-md-12">
 
+                        <div class="row">
+                            <div class="col-md-12 py-1">
+                                <div class="row mb-2">
+                                    <div class="col-sm-12 col-md-6 col-lg-8 text-muted">
+                                        <h1 class="row wrapper page-header font-weight-light">
+                                            <i class="fas fa-file-signature"></i>
+                                            L/C Information
+
+                                        </h1>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-4 text-right">
+                                        <button class="btn btn-outline-primary btn-sm"
+                                            (click)="addinvoiceForm('addInvoice')">
+                                            <i class="fas fa-plus"></i>
+                                            Add Sale Invoice </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="card-body  BG" *ngFor="let x of saleInvoice; let i = index;">
+
+                            <div class="row pb-5" >
+                                <div class="col-md-6 ">
+                                    <button class="btn btn-info btn-sm">
+                                        Sale Invoice #{{i+1}}-{{x.saleInvoiceNo}}</button>
+                                </div>
+
+                                <div class="col-md-6 text-right">
+                                    <button class="btn btn-outline-info btn-sm" (click)="addCredit(x,'Credit')"> <i class="fas fa-sticky-note"></i>
+                                        Credit Note
+                                    </button>
+                                    <button class="btn btn-outline-warning btn-sm ml-3 " (click)="addCredit(x,'Debit')">
+                                        <i class="fas fa-sticky-note"></i>
+                                        Debit Note</button>
+                                    <button class="btn btn-outline-primary btn-sm ml-3 " (click)="editinvoice(x,'editInvoice')" >
+                                        <i class="fas fa-sticky-note"></i>
+                                        Edit</button>
+                                    <button class="btn btn-outline-danger btn-sm ml-3 " (click)="deleteinvoice(x)">
+                                        <i class="fas fa-sticky-note"></i>
+                                        Delete</button>
+                                </div>
+
+                            </div>
+
+                            <!-- <div class="row">
+                                <div class="col-md-12 mb-3">
+                                    <button class="btn btn-outline-primary" (click)="editSaleInvoice('editInvoice',x)"> <i class="far fa-edit"></i>
+                                        Edit Invoice
+                                    </button>
+                                    <button class="btn btn-outline-danger ml-3 " (click)="deleteSaleInvoice(x)"> <i class="far fa-trash-alt"></i>
+                                        Delete</button>
+                            
+                                </div>
+                            </div> -->
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Sale Invoice Status:
+
+                                        </dt>
+                                        <dd class="col-sm-6"></dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Sale Invoice No.:
+
+                                        </dt>
+                                        <dd class="col-sm-6">{{x.saleInvoiceNo}}</dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Quantity:</dt>
+                                        <dd class="col-sm-6">{{x.quantity}}</dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Invoice Amount:</dt>
+                                        <dd class="col-sm-6">{{x.amount}}</dd>
+                                    </dl>
+
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Last Updated by:
+
+
+                                        </dt>
+                                        <dd class="col-sm-6">{{x.updatedByName}}</dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Buyer Payment:</dt>
+                                        <dd class="col-sm-6">{{x.quantity}}</dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Remarks:</dt>
+                                        <dd class="col-sm-6">{{x.saleInvoiceRemarks}}</dd>
+                                    </dl>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Sale Invoice ID:
+
+
+                                        </dt>
+                                        <dd class="col-sm-6">{{i+1}}</dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Invoice Date:
+
+                                        </dt>
+                                        <dd class="col-sm-6">{{x.saleInvoiceDate}}</dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Unit Rate:
+                                        </dt>
+                                        <dd class="col-sm-6">{{x.unit}}</dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Tax Amount:</dt>
+                                        <dd class="col-sm-6">{{x.taxPercentage}}</dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Last Updated on:
+
+
+                                        </dt>
+                                        <dd class="col-sm-6">{{x.updatedDateTime}}</dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Tax Challan Info:</dt>
+                                        <dd class="col-sm-6">{{x.quantity}}</dd>
+                                    </dl>
+                                </div>
+
+                            </div>
+
+                            <div class="row pb-5">
+                                <div class="col-md-6 ">
+
+                                </div>
+
+                                <div class="col-md-6 text-right">
+                                    <button class="btn btn-outline-primary btn-sm" (click)="editpopup(rows)"> <i
+                                            class="fas fa-edit"></i> Edit
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+
+
+
+                            
+                            <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="creditdebit"
+                            *ngIf="creditdebit.length != 0" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+                            [sorts]="[{prop: 'code', dir: 'asce'}]" [rowHeight]="'auto'" [limit]="6">
+
+
+                            <ngx-datatable-column name="Sr. #"  prop="">
+                                <ng-template let-rowIndex="rowIndex" let-row="row" let-expanded="expanded"
+                                    ngx-datatable-cell-template>
+                                    {{rowIndex + 1}}
+                                </ng-template>
+                            </ngx-datatable-column>
+
+                            <ngx-datatable-column name="Credit/Debit">
+                                <ng-template let-row="row" ngx-datatable-cell-template>
+                                  <p *ngIf = "row.creditNoteNo != null">
+                      <i class="far fa-circle credit"></i>
+                      Credit
+                                    </p> 
+                                    <p *ngIf = "row.creditNoteNo == null">
+                      <i class="far fa-circle debit"></i>
+                      Debit
+                                    </p>
+                                    
+                                </ng-template>
+                            </ngx-datatable-column>
+
+                            <ngx-datatable-column name="Number" prop="name">
+                                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                    {{row.creditNoteNo}}
+                                    {{row.debitNoteNo}}
+                                </ng-template>
+                            </ngx-datatable-column>
+
+                            <ngx-datatable-column name="Date" prop="genericName">
+                                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                    {{row.creditNoteDate}}
+                                    {{row.debitNoteDate}}
+                                </ng-template>
+                            </ngx-datatable-column>
+                            <ngx-datatable-column name="Quantity" prop="quantity">
+                                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                    {{row.quantity}}
+                                </ng-template>
+                            </ngx-datatable-column>
+                            <ngx-datatable-column name="Amount" prop="amount">
+                                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                    {{row.amount}}
+                                </ng-template>
+                            </ngx-datatable-column>
+                            <ngx-datatable-column name="Tax" prop="taxPercentage">
+                                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                    {{row.taxPercentage}}
+                                </ng-template>
+                            </ngx-datatable-column>
+                            <ngx-datatable-column name="Action" prop="status">
+                                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                    <div class="ibox-tools text-center">
+
+
+                                        <button type="button" class="btn deleteIconBack"
+                                            (click)="deleteCreditDebit(row)">
+                                            <i class="far fa-trash-alt"></i>
+                                        </button>
+
+                                    </div>
+                                </ng-template>
+                            </ngx-datatable-column>
+                        </ngx-datatable>
+
+
+
+
+
+                        </div>
+
+
+
+                    </div>
+                </div>
 
                 <!---------- Sale Invoices Tab ---------->
 
