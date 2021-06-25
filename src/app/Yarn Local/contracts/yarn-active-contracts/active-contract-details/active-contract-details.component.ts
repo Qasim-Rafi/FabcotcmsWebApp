@@ -32,6 +32,7 @@ import { style } from '@angular/animations';
 import { CreditComponent } from './active-contract-models/sale-invoice-pop-up/credit/credit.component';
 import { DebitComponent } from './active-contract-models/sale-invoice-pop-up/debit/debit.component';
 import {ContractOwnerComponent} from 'src/app/contracts/contract-owner/contract-owner.component'
+import { LCInfoComponent } from './active-contract-models/lcinfo/lcinfo.component';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 @Component({
@@ -359,6 +360,30 @@ printData : any = {}
        });
   }
   
+//  ----------------- L/C pop up -----------------------
+
+
+lcForm(check){
+  const modalRef = this.modalService.open(LCInfoComponent, { centered: true });
+  modalRef.componentInstance.statusCheck = check;
+  modalRef.componentInstance.contractId = this.contractId ;
+
+        modalRef.result.then((data) => {
+       // on close
+        if(data ==true){
+    //      this.fetch((data) => {
+    //       this.rows = data;
+    // this.saleinvoiceFilter = [...this.rows];
+      
+    //     });
+       
+      }
+     }, (reason) => {
+       // on dismiss
+     });
+}
+
+
   fetch(cb) {
       // this.spinner.show();
     this.http

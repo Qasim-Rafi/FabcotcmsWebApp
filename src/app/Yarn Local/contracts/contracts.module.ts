@@ -43,6 +43,7 @@ import { SearchComponent } from './sale-invoice/search/search.component';
 import { EditIvnoicePopupComponent } from './yarn-active-contracts/active-contract-details/active-contract-models/edit-ivnoice-popup/edit-ivnoice-popup.component';
 import { DebitComponent } from './yarn-active-contracts/active-contract-details/active-contract-models/sale-invoice-pop-up/debit/debit.component';
 import { CreditComponent } from './yarn-active-contracts/active-contract-details/active-contract-models/sale-invoice-pop-up/credit/credit.component';
+import { LCInfoComponent } from './yarn-active-contracts/active-contract-details/active-contract-models/lcinfo/lcinfo.component';
 
 @NgModule({
   declarations: [AddNewContractsComponent,
@@ -66,6 +67,7 @@ SearchComponent,
 EditIvnoicePopupComponent,
 DebitComponent,
 CreditComponent,
+LCInfoComponent,
 
   ],
   imports: [

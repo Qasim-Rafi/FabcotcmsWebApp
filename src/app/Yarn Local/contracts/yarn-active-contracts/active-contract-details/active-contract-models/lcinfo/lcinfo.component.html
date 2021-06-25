@@ -1,0 +1,96 @@
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "line-spin-fade" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
+      <div aria-hidden="true">&times;</div>
+    </button>
+  
+    <h5 class="modal-title" *ngIf="statusCheck == 'add'">
+      <i class="fa fa-plus"></i>
+      Add New L/C
+    </h5>
+  
+    <h5 class="modal-title" *ngIf="statusCheck == 'edit'">
+      <i class="fa fa-plus"></i>
+      Edit L/C
+    </h5>
+  </div>
+  
+  <div class="modal-body BG p-0">
+    <form #InvoiceForm="ngForm" novalidate>
+  
+      <div class="col-md-12 pt-3 pb-2">
+
+        <div class="form-group row">
+            <label for="saleInvoiceNo" class="col-sm-3 col-form-label text_Navy">L/C No.</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" placeholder="L/C number" name="lcNo"
+                [(ngModel)]="data.lcNo" #lcNo="ngModel" />
+            </div>
+          </div>
+
+        <div class="form-group row">
+          <label for="saleInvoiceNo" class="col-sm-3 col-form-label text_Navy">L/C open By:</label>
+          <div class="col-sm-8">
+            <ng-select  
+            placeholder="Select Buyer">
+             <!-- <ng-option *ngFor = "let i of uomList"  [value] = "i.id">{{i.name}}</ng-option> -->
+         </ng-select>
+          </div>
+        </div>
+  
+  
+        <div class="form-group row">
+          <label for="lcDate" class="col-sm-3 col-form-label text_Navy">L/C Open On</label>
+          <div class="col-sm-8" (clickOutside)="lcDate.close()">
+  
+            <input navigation="select" class="form-control  " ngbDatepicker #lcDate="ngbDatepicker"
+              (click)="lcDate.toggle()" placeholder="L/C Openning Date" name="lcDate"
+              [(ngModel)]="data.lcDate" />
+          </div>
+        </div>
+
+   
+
+        <div class="form-group row">
+            <label for="lcShipmentDate" class="col-sm-3 col-form-label text_Navy">L/C Shipment On</label>
+            <div class="col-sm-8" (clickOutside)="lcShipmentDate.close()">
+    
+              <input navigation="select" class="form-control  " ngbDatepicker #lcShipmentDate="ngbDatepicker"
+                (click)="lcShipmentDate.toggle()" placeholder="L/C latest Shipment Date" name="lcShipmentDate"
+                [(ngModel)]="data.lcShipmentDate" />
+            </div>
+
+          </div>
+          <div class="form-group row">
+            <!-- <label for="saleInvoiceNo" class="col-sm-3 col-form-label text_Navy">L/C No.</label> -->
+            <div class="col-sm-8">
+              <input type="text" class="form-control" placeholder="L/C Shipment Date Info" name="shipmentInfo"
+                [(ngModel)]="data.shipmentInfo" #shipmentInfo="ngModel" />
+            </div>
+          </div>
+
+        <div class="form-group row">
+          <label for="remarks" class="col-sm-3 col-form-label ">Remarks</label>
+          <div class="col-sm-8">
+            <textarea name="remarks" rows="3" class="form-control" placeholder="L/C additional details here..."
+             [(ngModel)]="data.remarks" #remarks="ngModel"></textarea>
+          </div>
+        </div>
+        
+      </div>
+  
+      <div class="modal-footer NotBG">
+        <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal"
+          (click)="activeModal.close()">
+          Close
+        </button>
+        <button class="btn button-save" type="submit" (click)="onSubmit('addInvoice')" *ngIf="statusCheck == 'addInvoice'">
+          Save L/C
+        </button>
+        <button class="btn button-save" type="submit" (click)="onSubmit('editInvoice')" *ngIf="statusCheck == 'editInvoice'">
+          Update L/C
+        </button>
+      </div>
+  
+    </form>
+  </div>
