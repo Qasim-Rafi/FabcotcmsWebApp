@@ -49,7 +49,7 @@ export class ActiveContractDetailsComponent implements OnInit {
 printData : any = {}
   rows1: any = [];
   rows2: any = [{numbr:1}];
-  rows3: any = [{numbr:1}];
+  rows3: any = [];
   rows4: any = [{numbr:1}];
   rows6: any = [{numbr:1}];
   data:any = {};
