@@ -15,7 +15,7 @@ export class RemarksComponent implements OnInit {
   @Input() contractId;
   data:any ={};
   response: any;
-  
+  loggedInDepartmentName : any = {};
   constructor(
     private _NgbActiveModal: NgbActiveModal,
     private http: HttpClient,
@@ -25,6 +25,7 @@ export class RemarksComponent implements OnInit {
 
   ngOnInit(): void {
     this.getContractRemarkData();
+    this.loggedInDepartmentName=localStorage.getItem('loggedInDepartmentName');
 
   }
   get activeModal() {

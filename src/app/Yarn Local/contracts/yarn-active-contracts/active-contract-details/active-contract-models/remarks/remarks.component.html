@@ -44,7 +44,7 @@
             </div>
           </div> -->
 
-        <div class="form-group ">
+        <div class="form-group " *ngIf = "loggedInDepartmentName != 'Yarn Export'">
             <label for="buyerRemarks" class=" col-form-label text_grey">Buyers Remarks</label>
             
               <textarea [(ngModel)]="data.buyerRemarks"

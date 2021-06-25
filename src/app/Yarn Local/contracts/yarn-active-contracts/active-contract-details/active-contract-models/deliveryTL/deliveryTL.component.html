@@ -23,6 +23,21 @@
 
       <div class="col-md-12 pt-3 pb-2" *ngIf="this.statusCheck !='Edit'">
 
+        <div class="form-group row" *ngIf="loggedInDepartmentName == 'Yarn Export'">
+          <label for="itemQuantity" class="col-sm-3 col-form-label text_Navy"> L/C No.
+          </label>
+         
+          <div class="col-md-8">
+             
+            <ng-select  [(ngModel)] = "data.lcNo"   #lcNo="ngModel"
+             placeholder="Select L/C" name="lcNo">
+              <!-- <ng-option *ngFor = "let i of containers" [value] = "i.id">{{i.containerName}}</ng-option> -->
+          </ng-select>
+  
+          </div>
+    
+        </div>
+
         <div class="form-group row">
           <label class="col-sm-3 col-form-label text_Navy">Supplier Date
             <!-- <span class="required-denote">*</span> -->
@@ -67,7 +82,7 @@
        
 
         <div class="form-group row">
-          <label class="col-sm-3 col-form-label text_Navy">Supplier Date
+          <label class="col-sm-3 col-form-label text_Navy">Buyer Date
             <!-- <span class="required-denote">*</span> -->
           </label>
           <div class="col-sm-4">
@@ -127,7 +142,7 @@
             </div>
       
           </div>
-          <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+          <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName == 'Yarn Export'">
             <label for="itemQuantity" class="col-sm-3 col-form-label text_Navy"> Container
             </label>
            
@@ -144,6 +159,20 @@
   </div>
 
   <div class="col-md-12 pt-3 pb-2" *ngIf="this.statusCheck =='Edit'">
+    <div class="form-group row" *ngIf="loggedInDepartmentName == 'Yarn Export'">
+      <label  class="col-sm-3 col-form-label text_Navy"> L/C No.
+      </label>
+     
+      <div class="col-md-8">
+         
+        <ng-select  [(ngModel)] = "data.lcNo"   #lcNo="ngModel"
+         placeholder="Select L/C" name="lcNo">
+          <!-- <ng-option *ngFor = "let i of containers" [value] = "i.id">{{i.containerName}}</ng-option> -->
+      </ng-select>
+
+      </div>
+
+    </div>
 
     <div class="form-group row">
       <label class="col-sm-3 col-form-label text_Navy">Supplier Date
@@ -189,7 +218,7 @@
         </div>
   
       </div>
-      <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+      <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName == 'Yarn Export'">
         <label for="itemQuantity" class="col-sm-3 col-form-label text_Navy"> Container
         </label>
        
