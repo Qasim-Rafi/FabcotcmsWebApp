@@ -42,18 +42,18 @@
       </div> -->
 
       <div class="form-group row">
-        <label for="name" class="col-sm-3 col-form-label">Title<span
+        <label for="name" class="col-md-3 col-form-label">Title<span
           class="required-denote">*</span></label>
-        <div class="col-sm-8">
+        <div class="col-md-8">
           <input type="text" class="form-control" placeholder="Note Title" [(ngModel)]="data.title " name="title"
             #title="ngModel" [ngClass]="{ 'error': NotesForm.submitted && title.invalid }" required />
         </div>
       </div>
 
       <div class="form-group row">
-        <label for="name" class="col-sm-3 col-form-label">Detail<span
+        <label for="name" class="col-md-3 col-form-label">Detail<span
           class="required-denote">*</span></label>
-        <div class="col-sm-8">
+        <div class="col-md-8">
           <textarea required type="text" class="form-control" rows="4" placeholder="Details..." #details="ngModel"
             [(ngModel)]="data.description " name="description"
             [ngClass]="{ 'error': NotesForm.submitted && details.invalid }"></textarea>

@@ -21,91 +21,110 @@
 <div class="modal-body BG p-0">
   <form #partiesForm="ngForm" novalidate (ngSubmit)="addContractPaymentDelivery(partiesForm)">
 
-    <div class="col-md-12 pt-3 pb-2">
-
-      <div class="form-group row">
-        <label for="name" class="col-sm-3 col-form-label">Payment Mode</label>
-        <div class="col-sm-4">
-          <ng-select name="paymentMode" placeholder="-- Select --" [(ngModel)]="data.paymentMode">
-            <ng-option *ngFor="let i of paymentMode" [value]="i">
-              {{i}}
-            </ng-option>
-          </ng-select>
-        </div>
-      </div>
-
-
-      <div class="form-group row">
-        <label for="description" class="col-sm-3 col-form-label text-Navy">Payment Terms</label>
-        <div class="col-sm-4">
-          <ng-select required name="paymentTermId" placeholder="-- Select --" [(ngModel)]="data.paymentTermId"
-            #paymentTermId="ngModel" [ngClass]="{'error': paymentTermId.invalid && partiesForm.submitted }">
-            <ng-option *ngFor="let i of payment" [value]="i.id">
-              {{i.term}}
-            </ng-option>
-          </ng-select>
-        </div>
-        <div class="col-md-4 mrg-sm1">
-          <div class="input-group">
-            <input required type="number" min="0" class="form-control" placeholder="days" name="paymentTermDays"
-              [(ngModel)]="data.paymentTermDays" #paymentTermDays="ngModel"
-              [ngClass]="{'error': paymentTermDays.invalid && partiesForm.submitted }">
+    <div class="row justify-content-center">
+      <div class="col-10 col-md-10 pt-3 pb-2">
+    
+    
+    
+        <div class="form-group row">
+          <label for="name" class="col-md-3 col-form-label">Payment Mode</label>
+          <div class="col-md-9">
+            <div class="row">
+              <div class="col-md-6">
+                <ng-select name="paymentMode" placeholder="-- Select --" [(ngModel)]="data.paymentMode">
+                  <ng-option *ngFor="let i of paymentMode" [value]="i">
+                    {{i}}
+                  </ng-option>
+                </ng-select>
+              </div>
+            </div>
           </div>
         </div>
+    
+    
+        <div class="form-group row">
+          <label for="description" class="col-md-3 col-form-label text-Navy">Payment Terms</label>
 
-      </div>
-
-      <div class="form-group row">
-        <label for="description" class="col-sm-3 col-form-label text-Navy"></label>
-        <div class="col-sm-8">
-          <input type="text" class="form-control" placeholder="Payment term Additional Info" name="paymentTermInfo"
-            [(ngModel)]="data.paymentTermInfo">
+          <div class="col-md-9">
+            <div class="row">
+              <div class="col-md-6">
+                <ng-select required name="paymentTermId" placeholder="-- Select --" [(ngModel)]="data.paymentTermId"
+                  #paymentTermId="ngModel" [ngClass]="{'error': paymentTermId.invalid && partiesForm.submitted }">
+                  <ng-option *ngFor="let i of payment" [value]="i.id">
+                    {{i.term}}
+                  </ng-option>
+                </ng-select>
+              </div>
+              <div class="col-md-6 mrg-tsm">
+                <div class="input-group">
+                  <input required type="number" min="0" class="form-control" placeholder="days" name="paymentTermDays"
+                    [(ngModel)]="data.paymentTermDays" #paymentTermDays="ngModel"
+                    [ngClass]="{'error': paymentTermDays.invalid && partiesForm.submitted }">
+                </div>
+              </div>
+            </div>
+          </div>
+    
         </div>
-      </div>
-
-      <div class="form-group row">
-        <label for="description" class="col-sm-3 col-form-label text-Navy"></label>
-        <div class="col-sm-8">
-          <input type="text" class="form-control" placeholder="Buyer side payment term info"
-            name="buyerSidePaymentTermInfo" [(ngModel)]="data.buyerSidePaymentTermInfo">
+    
+        <div class="form-group row">
+          <label for="description" class="col-md-3 col-form-label text-Navy"></label>
+          <div class="col-md-9">
+            <input type="text" class="form-control" placeholder="Payment term Additional Info" name="paymentTermInfo"
+              [(ngModel)]="data.paymentTermInfo">
+          </div>
         </div>
-      </div>
-
-      <div class="form-group row">
-        <label for="description" class="col-sm-3 col-form-label text-Navy">Packing</label>
-        <div class="col-sm-8">
-          <ng-select required name="packingId" placeholder="-- Select --" [(ngModel)]="data.packingId"
-            #packingId="ngModel" [ngClass]="{'error': packingId.invalid && partiesForm.submitted }">
-            <ng-option *ngFor="let i of packing" [value]="i.id">
-              {{i.name}}
-            </ng-option>
-          </ng-select>
+    
+        <div class="form-group row">
+          <label for="description" class="col-md-3 col-form-label text-Navy"></label>
+          <div class="col-md-9">
+            <input type="text" class="form-control" placeholder="Buyer side payment term info"
+              name="buyerSidePaymentTermInfo" [(ngModel)]="data.buyerSidePaymentTermInfo">
+          </div>
         </div>
-      </div>
-
-      <div class="form-group row">
-        <label for="description" class="col-sm-3 col-form-label text_Navy">Price / Delivery</label>
-
-        <div class="col-sm-4">
-          <ng-select required name="priceTermId" placeholder="-- Select --" [(ngModel)]="data.priceTermId"
-            #priceTermId="ngModel" [ngClass]="{'error': priceTermId.invalid && partiesForm.submitted }">
-            <ng-option *ngFor="let i of price" [value]="i.id">
-              {{i.term}}
-            </ng-option>
-          </ng-select>
+    
+        <div class="form-group row">
+          <label for="description" class="col-md-3 col-form-label text-Navy">Packing</label>
+          <div class="col-md-9">
+            <ng-select required name="packingId" placeholder="-- Select --" [(ngModel)]="data.packingId"
+              #packingId="ngModel" [ngClass]="{'error': packingId.invalid && partiesForm.submitted }">
+              <ng-option *ngFor="let i of packing" [value]="i.id">
+                {{i.name}}
+              </ng-option>
+            </ng-select>
+          </div>
         </div>
+    
+        <div class="form-group row">
+          <label for="description" class="col-md-3 col-form-label text_Navy">Price / Delivery</label>
 
-        <div class="col-sm-4 ">
-          <ng-select required name="destinationId" placeholder="-- Select --" [(ngModel)]="data.destinationId"
-            #destinationId="ngModel" [ngClass]="{'error': destinationId.invalid && partiesForm.submitted }">
-            <ng-option *ngFor="let i of city" [value]="i.id">
-              {{i.name}} <span class="text-secondary" style="font-size: 11px">{{i.country}}</span>
-            </ng-option>
-          </ng-select>
+          <div class="col-md-9">
+            <div class="row">
+    
+          <div class="col-md-6">
+            <ng-select required name="priceTermId" placeholder="-- Select --" [(ngModel)]="data.priceTermId"
+              #priceTermId="ngModel" [ngClass]="{'error': priceTermId.invalid && partiesForm.submitted }">
+              <ng-option *ngFor="let i of price" [value]="i.id">
+                {{i.term}}
+              </ng-option>
+            </ng-select>
+          </div>
+    
+          <div class="col-md-6 mrg-tsm">
+            <ng-select required name="destinationId" placeholder="-- Select --" [(ngModel)]="data.destinationId"
+              #destinationId="ngModel" [ngClass]="{'error': destinationId.invalid && partiesForm.submitted }">
+              <ng-option *ngFor="let i of city" [value]="i.id">
+                {{i.name}} <span class="text-secondary" style="font-size: 11px">{{i.country}}</span>
+              </ng-option>
+            </ng-select>
+          </div>
+
         </div>
-
+        </div>
+    
+        </div>
+    
       </div>
-
     </div>
 
 

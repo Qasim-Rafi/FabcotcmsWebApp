@@ -124,10 +124,26 @@ dd{
   cursor: pointer;
 }
 
-
+.t-right{
+  text-align: right;
+}
 
 @media only screen and (max-width: 1024px) {
   .mrg-md { 
     margin: 3px 0;
   }
+}
+
+@media only screen and (max-width: 767px) {
+
+  dt {
+    text-align: left !important;
+  }
+  .col-md-6 dl{
+    line-height: 1.5 !important;
+  }
+  .t-right{
+    text-align: left;
+  }
+  
 }

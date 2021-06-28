@@ -181,3 +181,30 @@
     width: 92% !important;
   }
 }
+
+@media only screen and (max-width: 414px) {
+  .input-w{
+    width: 86% !important;
+  }
+  .input-w1{
+    width: 86% !important;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .input-w{
+    width: 84% !important;
+  }
+  .input-w1{
+    width: 84% !important;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .input-w{
+    width: 83% !important;
+  }
+  .input-w1{
+    width: 83% !important;
+  }
+}
