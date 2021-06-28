@@ -610,6 +610,7 @@
                                         <dt class="col-sm-6">Brand Name:
                                         </dt>
                                         <dd class="col-sm-6" >
+                                            {{contractProductData.brandName}}
                                         </dd>
                                     </dl>
                                 </div>
@@ -965,9 +966,9 @@
                                                                 <dt class="col-sm-6">Foreign Agent Comm:
                                                                 </dt>
                                                                 <dd class="col-sm-6"
-                                                                    *ngFor="let i of contractCommissionData.agentCommissions">
+                                                                    *ngFor="let i of agent">
                                                                     {{i.agentName}}: {{i.agentCommission}}%</dd>
-                    
+                                                                    
                                                             </dl> 
                     
                     

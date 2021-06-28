@@ -31,10 +31,11 @@
         <div class="form-group row">
           <label for="saleInvoiceNo" class="col-sm-3 col-form-label text_Navy">L/C open By:</label>
           <div class="col-sm-8">
-            <ng-select  
-            placeholder="Select Buyer">
-             <!-- <ng-option *ngFor = "let i of uomList"  [value] = "i.id">{{i.name}}</ng-option> -->
-         </ng-select>
+            <ng-select name="buyerId"  placeholder="-- Select --" [(ngModel)]=" data.buyerId">
+              <ng-option *ngFor="let i of buyer" [value]="i.id">
+                {{i.buyerName}}
+              </ng-option>
+            </ng-select>
           </div>
         </div>
   

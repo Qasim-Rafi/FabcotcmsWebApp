@@ -996,7 +996,7 @@ brandId : any;
     }
     for (let i = 0; i < this.Article.length; i++) {
 
-      this.articleArray.push({ ['articleId']: this.Article[i].articleId , ['quantity']: this.Article.quantity , ['rate']: this.Article.rate , ['commission']: this.Article.commission})
+      this.articleArray.push({ ['articleId']: this.Article[i].articleId , ['quantity']: this.Article[i].quantity , ['rate']: this.Article[i].rate , ['commission']: this.Article[i].commission})
     }
 
     let varr = {

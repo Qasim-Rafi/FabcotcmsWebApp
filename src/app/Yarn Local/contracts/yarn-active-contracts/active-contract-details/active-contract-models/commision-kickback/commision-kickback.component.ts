@@ -13,6 +13,7 @@ import { environment } from 'src/environments/environment';
 export class CommisionKickbackComponent implements OnInit {
   @Input() contractId;
   data : any = {};
+  
   commission:any=[];
   agents:any=[];
   uomList:any=[];
@@ -103,6 +104,8 @@ export class CommisionKickbackComponent implements OnInit {
         this.response = res;
         if (this.response.success == true) {
           this.data = this.response.data;
+          // this.agents = this.response.data.agentCommission;
+
           // this.commission.agenetName= parseInt(this.commission.agenetName);
           
         }
@@ -123,14 +126,14 @@ export class CommisionKickbackComponent implements OnInit {
   addContractCommision() {
 
 
-    for(let i=0; i<this.data1.length;i++ )
-    {
-      // this.commission[i] = Object.assign(this.data1[i], {
-        
-      
-    
-      // })
-      this.commission.push({['agentId']: this.data1[i].agentId , ["agentCommission"]: this.data1[i].agentCommission}) 
+   
+    if (this.data.agentId != null) {
+      this.commission.push({ ['agentId']: this.data.agentId, ["agentCommission"]: this.data.agentCommission })
+
+    }
+    for (let i = 0; i < this.data1.length; i++) {
+
+      this.commission.push({ ['agentId']: this.data1[i].agentId, ["agentCommission"]: this.data1[i].agentCommission })
     }
 
     let varr = {
