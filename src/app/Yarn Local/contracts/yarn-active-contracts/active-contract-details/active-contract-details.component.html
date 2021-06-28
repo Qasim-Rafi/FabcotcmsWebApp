@@ -36,11 +36,10 @@
                     </div>
 
                     <div class="box-body">
-                        <div class="mid-text">{{contractData.orderAmount}}</div>
-                        <div class="progress mt-1">
-                            <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="75"
-                                aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
+                        <div class="mid-text">{{check}}%</div>
+                        <br>
+                            <ngb-progressbar class="progress-bar progress text_Navy" role="progressbar" aria-valuenow="15"
+                            aria-valuemin="0" aria-valuemax="100" [value]="check"></ngb-progressbar>
                         <small class="topbox-margin-end-text">Last Action @</small>
                         <span class="text_Navy float-right ">19-Dec-2016 11:50</span>
                     </div>
@@ -60,16 +59,22 @@
                     </div>
 
                     <div class="box-body">
-                        <div class="mid-text">{{contractData.orderQuantity}}</div>
-                        <div class="progress mt-1">
-                            <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="15"
-                                aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="mid-text">{{contractData.orderQuantity}}
+                            <span class="topbox-margin-end-text">
+                                {{contractCostingData.quantityUOMName}}
+                            </span>   
                         </div>
+                            
+                        <br>
+                        <ngb-progressbar class="progress-bar progress text_Navy" role="progressbar" aria-valuenow="15"
+                        aria-valuemin="0" aria-valuemax="100" [value]="25"></ngb-progressbar>
                         <small class="topbox-margin-end-text">
                             <i class="fas fa-truck"></i>
                             Total Delivered
                         </small>
-                        <span class="text_Navy float-right ">0 12</span>
+                        <span class="text_Navy float-right ">{{contractData.saleInvoiceQuantity}}
+                            {{contractCostingData.quantityUOMName}}
+                        </span>
                     </div>
 
                     <!-- /.info-box-content -->
@@ -85,16 +90,21 @@
 
 
                     <div class="box-body">
-                        <div class="mid-text">{{contractData.saleInvoiceAmount}}</div>
-                        <div class="progress mt-1">
-                            <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="0"
-                                aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="mid-text">{{contractData.orderAmount}}
+                            <span class="topbox-margin-end-text">
+                                {{contractCostingData.rateCurrencyName}}
+                            </span>
                         </div>
+                        <br>
+                        <ngb-progressbar class="progress-bar progress text_Navy" role="progressbar" aria-valuenow="15"
+                        aria-valuemin="0" aria-valuemax="100" [value]="25"></ngb-progressbar>
                         <small class="topbox-margin-end-text">
                             <i class="far fa-money-bill-alt"></i>
                             Invoice Sent
                         </small>
-                        <span class="text_Navy float-right ">0.00</span>
+                        <span class="text_Navy float-right ">{{contractData.saleInvoiceAmount}}
+                            {{contractCostingData.rateCurrencyName}}
+                        </span>
                     </div>
                     <!-- /.info-box-content -->
                 </div>
@@ -109,15 +119,15 @@
 
                     <div class="box-body">
                         <div class="mid-text">{{contractData.billingPayment}}</div>
-                        <div class="progress mt-1">
-                            <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="0"
-                                aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
+                        <br>
+                        <ngb-progressbar class="progress-bar progress text_Navy" role="progressbar" aria-valuenow="15"
+                        aria-valuemin="0" aria-valuemax="100" [value]="25"></ngb-progressbar>
                         <small class="topbox-margin-end-text">
                             <i class="far fa-money-bill-alt"></i>
                             Amount Received
                         </small>
-                        <span class="text_Navy float-right ">0
+                        <span class="text_Navy float-right ">0.00 {{contractCostingData.rateCurrencyName}}
+
                         </span>
                     </div>
                     <!-- /.info-box-content -->
@@ -135,7 +145,7 @@
                 </button>
             </div>
 
-            <div class="col-md-8 " *ngIf="contractData.status == 'Open' || contractData.status == 'BillAwaited' ">
+            <div class="col-md-8 " *ngIf="contractData.status == 'Open' ">
                 <button class="btn btn-danger btn-sm border-rounded px-3 mr-1 mrg-btm" 
                 (click)="deleteContract(contractId)" 
                 >
@@ -166,7 +176,16 @@
                     Ready For Bill
                 </button>
             </div>
-
+            <div class="col-md-8 " *ngIf="contractData.status =='BillAwaited'">
+                <button class="btn btn-info border-rounded px-3 mr-2 text-white" (click)="statusOpen()">
+                    <i class="fas fa-level-down-alt"></i>
+                    Re-Open Contract
+                </button>
+                <button class="btn btn-warning border-rounded px-3 mr-2 text-white">
+                    <i class="fas fa-level-down-alt"></i>
+                    Contract Held For Billing
+                </button>
+            </div>
             <div class="col-md-4 text-right ">
                 <button class="btn btn-outline-primary border-rounded btn-sm px-3 mr-1" *ngIf = "loggedInDepartmentName == 'Yarn Local'" (click)="print()">
                     <i class="fas fa-print"></i>
@@ -333,6 +352,8 @@
                                             </div>
                                             <div class="badge badge-warning ml-1" *ngIf="contractData.status == 'OnHold'">
                                                 On-Hold</div>
+                                                <div class="badge badge-info ml-1" *ngIf="contractData.status == 'BillAwaited'">
+                                                    Bill Awaited</div>
                                             <!-- <button class="btn "><i class="fas fa-history "></i></button> -->
                                             <button class="btn btn-outline-secondary btn-xs ml-1"><i class="fas fa-history "></i></button>
                                             <button class=" btn btn-sm btn-danger p-1 btnsm-f ml-1" *ngIf="contractData.isApproved == false"

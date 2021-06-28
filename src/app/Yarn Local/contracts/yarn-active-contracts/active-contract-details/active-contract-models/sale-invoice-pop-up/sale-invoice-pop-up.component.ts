@@ -21,6 +21,8 @@ export class SaleInvoicePopUpComponent implements OnInit {
   @Input() contractId;
   @Input() invoiceId; 
   @Input() statusCheck; 
+  @Input() quantity; 
+
   data:any ={};
   rate:any;
   condition:string="17"
@@ -43,6 +45,7 @@ uomList : any = {};
 
 
   ngOnInit(): void {
+    this.quantity = this.quantity;
     this.loggedInDepartmentName = localStorage.getItem('loggedInDepartmentName');
 
     this.GetUOMDropdown();
@@ -98,7 +101,12 @@ if(event==7){
     })
   }
   addSaleInvoice(form:NgForm) {
+    if(this.data.quantity > this.quantity ){
+      this.toastr.error("Total Sale Invoice Quantity"+"["+this.data.quantity+"]"+ "should be less than contract quantity"+"["+this.quantity+"]", 'Message.');
+
+    }
     //  this.data.saleInvoiceDate = this.dateformater.toModel(this.data.saleInvoiceDate);
+    else{
     let varr = {
 
       "contractId": parseInt(this.contractId),
@@ -135,6 +143,7 @@ this.spinner.show();
           this.spinner.hide();
           
         });
+      }
   }
 
 
@@ -150,6 +159,7 @@ this.spinner.show();
             this.saleInvoiceNo=this.data.saleInvoiceNo;
             this.data.saleInvoiceDate = this.dateformater.fromModel(this.data.saleInvoiceDate);
             this.saleInvoiceDate=this.data.saleInvoiceDate;
+            this.quantity=this.quantity
             // this.spinner.hide();
 
           }
@@ -171,6 +181,10 @@ this.spinner.show();
 
   
   updateSaleInvoice(form:NgForm) {
+    if(this.data.quantity > this.quantity ){
+      this.toastr.error("Total Sale Invoice Quantity"+"["+this.data.quantity+"]"+ "should be less than contract quantity"+"["+this.quantity+"]", 'Message.');
+
+    }else{
     let varr = {
      "contractId": this.contractId,
        "saleInvoiceNo": this.data.saleInvoiceNo,
@@ -204,7 +218,7 @@ this.spinner.show();
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
         });
-  }
+  }}
   onSubmit(buttonType): void {
     if (buttonType === "addInvoice"){
   
