@@ -990,13 +990,13 @@ brandId : any;
 
       this.commission.push({ ['agentId']: this.data1[i].agentId, ["agentCommission"]: this.data1[i].agentCommission })
     }
-    if (this.data5.articleId != null) {
-      this.articleArray.push({ ['articleId']: this.data5.articleId , ['quantity']: this.data5.quantity , ['rate']: this.data5.rate , ['commission']: this.data5.commission})
+    if (this.data5.contractArticleName != '') {
+      this.articleArray.push({ ['articleId']: this.data5.articleId , ['contractArticleQuantity']: this.data5.contractArticleQuantity , ['contractArticleRate']: this.data5.contractArticleRate , ['contractArticleCommission']: this.data5.contractArticleCommission})
 
     }
     for (let i = 0; i < this.Article.length; i++) {
 
-      this.articleArray.push({ ['articleId']: this.Article[i].articleId , ['quantity']: this.Article[i].quantity , ['rate']: this.Article[i].rate , ['commission']: this.Article[i].commission})
+      this.articleArray.push({ ['contractArticleName']: this.Article[i].contractArticleName , ['contractArticleQuantity']: this.Article[i].contractArticleQuantity , ['contractArticleRate']: this.Article[i].contractArticleRate , ['contractArticleCommission']: this.Article[i].contractArticleCommission})
     }
 
     let varr = {
@@ -1013,7 +1013,7 @@ brandId : any;
       "toleranceValue": this.data.toleranceValue,
       "brandId": this.data.brandId,
       "rate": this.data.rate,
-      "articleIds" : this.articleArray,
+      "contractArticles" : this.articleArray,
       "currencyId": this.data.currencyId,
       "rateUOMId": this.data.rateUOMId,
       "sellerPaymentTerm": this.data.sellerPaymentTerm,

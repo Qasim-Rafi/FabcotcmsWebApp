@@ -956,31 +956,31 @@
                     
                             <div class="row">
                                 <div class="col-md-6">
-                                    <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName == 'Yarn Export'">
+                                    <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Local'">
                                         <dt class="col-sm-6">Kickback:
                                         </dt>
-                                        <dd class="col-sm-6">{{contractCommissionData.kickbackPercentage}}
+                                        <dd class="col-sm-6" *ngIf = "contractCommissionData.kickbackPercentage != null">PKR &nbsp; {{contractCommissionData.kickbackPercentage}} %
                                             <b *ngIf="contractCommissionData.kickbackUOMName!=null">/ </b>
-                                            {{contractCommissionData.kickbackUOMName}}
+                                          [PKR  {{contractCommissionData.commissionAmountKickback}} ]
                                         </dd>
                                     </dl>
                     
                                     <dl class="row">
                                         <dt class="col-sm-6">Fabcot Commission:
                                         </dt>
-                                        <dd class="col-sm-6">{{contractCommissionData.fabCotCommision}}
+                                        <dd class="col-sm-6" *ngIf = "contractCommissionData.fabCotCommision!= null">PKR {{contractCommissionData.fabCotCommision}} %
                                             <b *ngIf="contractCommissionData.fabCotCommisionUOMName!=null">/ </b>
                     
-                                            {{contractCommissionData.fabCotCommisionUOMName}}
+                                           [PKR {{contractCommissionData.commissionAmountFabcot}} ]
                                         </dd>
                                     </dl>
                                     <dl class="row" *ngIf = "loggedInDepartmentName != 'Yarn Export'">
                                         <dt class="col-sm-6">Buyer side Commission:
                                         </dt>
-                                        <dd class="col-sm-6">{{contractCommissionData.buyersideCommision}}
-                                            <b *ngIf="contractCommissionData.buyersideCommisionUOMName!=null">/ </b>
+                                        <dd class="col-sm-6" *ngIf = "contractCommissionData.buyersideCommision != null"> PKR {{contractCommissionData.buyersideCommision}}  %
+                                            <b *ngIf="contractCommissionData.commissionAmountBuyer!=null">/ </b>
                     
-                                            {{contractCommissionData.buyersideCommisionUOMName}}
+                                           [PKR {{contractCommissionData.commissionAmountBuyer}} ]
                                         </dd>
                                     </dl>
                                      <dl class="row" *ngIf = "loggedInDepartmentName == 'Yarn Export'">
