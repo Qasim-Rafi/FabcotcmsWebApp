@@ -1812,22 +1812,27 @@ this.spinner.hide();
                     headerRows: 1,
                     widths: ['30%'],
                     body: [
-                      [{text:'Supplier ' , style: 'tableheader'}],
-                      [ {text:this.contractData['sellerName'] , style:'propertyValue'   } ]
+                      [{text:'Supplier ' , style: 'tableheader'}
+                    
+                    ],
+                   [{text:this.contractData['sellerName']   , style:'propertyValue'},
+                  ],
+                  [{ text:this.preview['sellerBillingAdress']   , style:'propertyValue'}]
                     
                     ]
                   }
                 },
+            
                 {
-                  margin: [300 , -37 , 0 , 0],
+                  margin: [300 , -70 , 0 , 0],
                  
                   table: {
                     headerRows: 1,
                     widths: ['100%'],
                     body: [
                       [{text:'CUSTOMER' , style: 'tableheader'}],
-                      [ {text:this.contractData['buyerName'] , style:'propertyValue'  } ]
-                    
+                      [ {text:this.contractData['buyerName'] , style:'propertyValue'  } ],
+                      [{ text:this.preview['buyerBillingAdress']   , style:'propertyValue'}]
                     ] 
                   }
                 },
@@ -1869,7 +1874,7 @@ this.spinner.hide();
                   margin:[0,40,0,0],
                   table: {
                     headerRows: 1,
-                    widths: ['5%' , '15%','12%' , '6%' , '12%' , '6%' , '12%','13%','10%','12%'],
+                    widths: ['5%' , '15%','12%' , '6%' , '12%' , '6%' , '10%','13%','10%','12%'],
                     body: [
                       [{text:'Item' , style: 'tableheader2'},
                       {text:'Composition ' , style: 'tableheader2'},
@@ -1901,7 +1906,7 @@ this.spinner.hide();
                  
                   table: {
                     headerRows: 1,
-                    widths: ['59%' , '12%' , '12%' , '10%' , '12%'],
+                    widths: ['60%' , '9%' , '12%' , '9%' , '11%'],
                     body: [
                       [{text:'Total' , style: 'tableheader3'},
                       {text:'' , style: 'tableheader3'},
@@ -2080,40 +2085,29 @@ this.spinner.hide();
                     headerRows: 1,
                     widths: ['30%'],
                     body: [
-                      [{text:'Supplier ' , style: 'tableheader'}],
-                   
+                      [{text:'Supplier ' , style: 'tableheader'}
+                    
+                    ],
+                   [{text:this.contractData['sellerName']   , style:'propertyValue'},
+                  ],
+                  [{ text:this.preview['sellerBillingAdress']   , style:'propertyValue'}]
                     
                     ]
                   }
                 },
-                { margin:[-500 , 5 , 0 , 0],
-                  text:this.contractData['sellerName']   , style:'propertyValue',
-                  
-                },
-                { margin:[-500  , 2 , 0 , 0],
-                  text:this.preview['sellerBillingAdress']   , style:'propertyValue',
-                  
-                },
+            
                 {
-                  margin: [300 , -37 , 0 , 0],
+                  margin: [300 , -70 , 0 , 0],
                  
                   table: {
                     headerRows: 1,
                     widths: ['100%'],
                     body: [
                       [{text:'CUSTOMER' , style: 'tableheader'}],
-                
-                    
+                      [ {text:this.contractData['buyerName'] , style:'propertyValue'  } ],
+                      [{ text:this.preview['buyerBillingAdress']   , style:'propertyValue'}]
                     ] 
                   }
-                },
-                { margin:[100 , 5 , 0 , 0],
-                  text:this.contractData['buyerName']   , style:'propertyValue',
-                  
-                },
-                { margin:[80 , 2 , 0 , 0],
-                  text:this.preview['buyerBillingAdress']   , style:'propertyValue',
-                  
                 },
                 {
                   margin: [300 , 23 , 0 , 0],
@@ -2153,7 +2147,7 @@ this.spinner.hide();
                   margin:[0,40,0,0],
                   table: {
                     headerRows: 1,
-                    widths: ['8%' , '15%','15%' , '6%' , '12%' , '6%' , '12%','13%','10%'],
+                    widths: ['8%' , '15%','15%' , '6%' , '12%' , '6%' , '12%','13%','11%'],
                     body: [
                       [{text:'Item' , style: 'tableheader2'},
                       {text:'Composition ' , style: 'tableheader2'},
@@ -2185,7 +2179,7 @@ this.spinner.hide();
                  
                   table: {
                     headerRows: 1,
-                    widths: ['65%' , '11%' , '12%' , '9%' ],
+                    widths: ['65%' , '11%' , '12%' , '10%' ],
                     body: [
                       [{text:'Total' , style: 'tableheader3'},
                       {text:this.preview['enquiryItemQuantityTotal'] , style: 'tableheader3'},
@@ -2364,40 +2358,29 @@ this.spinner.hide();
                     headerRows: 1,
                     widths: ['30%'],
                     body: [
-                      [{text:'Supplier ' , style: 'tableheader'}],
-                   
+                      [{text:'Supplier ' , style: 'tableheader'}
+                    
+                    ],
+                   [{text:this.contractData['sellerName']   , style:'propertyValue'},
+                  ],
+                  [{ text:this.preview['sellerBillingAdress']   , style:'propertyValue'}]
                     
                     ]
                   }
                 },
-                { margin:[-500 , 5 , 0 , 0],
-                  text:this.contractData['sellerName']   , style:'propertyValue',
-                  
-                },
-                { margin:[-500  , 2 , 0 , 0],
-                  text:this.preview['sellerBillingAdress']   , style:'propertyValue',
-                  
-                },
+            
                 {
-                  margin: [300 , -37 , 0 , 0],
+                  margin: [300 , -70 , 0 , 0],
                  
                   table: {
                     headerRows: 1,
                     widths: ['100%'],
                     body: [
                       [{text:'CUSTOMER' , style: 'tableheader'}],
-                
-                    
+                      [ {text:this.contractData['buyerName'] , style:'propertyValue'  } ],
+                      [{ text:this.preview['buyerBillingAdress']   , style:'propertyValue'}]
                     ] 
                   }
-                },
-                { margin:[100 , 5 , 0 , 0],
-                  text:this.contractData['buyerName']   , style:'propertyValue',
-                  
-                },
-                { margin:[80 , 2 , 0 , 0],
-                  text:this.preview['buyerBillingAdress']   , style:'propertyValue',
-                  
                 },
                 {
                   margin: [300 , 23 , 0 , 0],
@@ -2469,7 +2452,7 @@ this.spinner.hide();
                  
                   table: {
                     headerRows: 1,
-                    widths: ['58%' , '10%' , '12%' , '9%' , '11%' ],
+                    widths: ['58%' , '11%' , '12%' , '9%' , '11%' ],
                     body: [
                       [{text:'Total' , style: 'tableheader3'},
                       {text:this.preview['enquiryItemQuantityTotal'] , style: 'tableheader3'},
