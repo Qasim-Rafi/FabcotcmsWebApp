@@ -60,7 +60,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { CommonModule } from '@angular/common';
 import { HistoryContractComponent } from './shared/MODLES/history-contract/history-contract.component';
 import { ContractOwnerComponent } from './contracts/contract-owner/contract-owner.component';
-
+import { NgProgressModule } from 'ngx-progressbar';
 
 
 
@@ -134,6 +134,7 @@ const appRoutes: Routes = []
     ConfigurationModule,
     BusinessEnquryModule,
     FormsModule,
+    NgProgressModule,
     ContractsModule,
     CloudDocumentationModule,
     NgSelectModule,

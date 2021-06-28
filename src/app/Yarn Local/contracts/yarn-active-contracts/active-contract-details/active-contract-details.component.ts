@@ -73,6 +73,7 @@ printData : any = {}
   saleinvoiceFilter: any = {};
   saleInvoice: any = {};
   response: any;
+  check:any=25;
   ItemCount: number;
   contractCount: number;
   shipmentCount: number;
@@ -81,8 +82,8 @@ printData : any = {}
   noteFilter: any = [];
   deliveryFilter: any = [];
   dispatchFilter: any = [];
-
   TnaData: any = {};
+  // check="75";
   TnaFilter: any = {};
   shipmentData: any = {};
   invoiceData:any =[];
@@ -109,7 +110,7 @@ printData : any = {}
   id: any = {};
   tnaId: any = {};
   agent: any = {};
-
+max:any;
   contractNmbr : string
   loggedInDepartmentName: string;
   buyerName: string
@@ -142,12 +143,13 @@ printData : any = {}
             console.log(base64data);
             this.image2 = base64data;
       }
-  
+ 
       reader.readAsDataURL(res); 
       console.log(res);
       this.image = res;
      
     });
+   
     this.getPrintData();
     this.getContractData();
     this.getAllReminder();
@@ -175,6 +177,9 @@ printData : any = {}
 
       this.rows = data;
       this.saleinvoicecount = this.rows.length;
+      if(this.saleInvoice.length=1){
+        this.check=this.check+15;
+      }
     });
     // this.service.fetch((data) => {
     //   this.rows7 = data;
@@ -183,6 +188,9 @@ printData : any = {}
     this.getAllBenificery((empData) => {
       this.rows1 = empData;
       // this.listCount= this.rows.length;
+      if(this.rows1.length=1){
+        this.check=this.check+15;
+      }
     });
 
     this.getAllNotes((NotesData) => {
@@ -193,7 +201,7 @@ printData : any = {}
     this.getAllShipmentDates((shipmentData) => {
       this.rows4 = shipmentData;
       this.shipmentFilter = [...shipmentData];
-
+     
     });
   
 
@@ -270,7 +278,6 @@ printData : any = {}
     this.http.get(`${environment.apiUrl}/api/YarnContracts/GetAllContractDeliverySchedule/`+ this.contractId)
       .subscribe(res => {
         this.response = res;
-        
 
         if (this.response.success == true) {
           this.deliveryData = this.response.data
@@ -345,10 +352,13 @@ printData : any = {}
     const modalRef = this.modalService.open(SaleInvoicePopUpComponent, { centered: true });
     modalRef.componentInstance.statusCheck = check;
     modalRef.componentInstance.contractId = this.contractId ;
+    modalRef.componentInstance.quantity = this.max ;
+
   
           modalRef.result.then((data) => {
          // on close
           if(data ==true){
+
           //  this.date = this.myDate;
            this.fetch((data) => {
             this.rows = data;
@@ -754,7 +764,11 @@ getContractCostingData() {
         this.response = res;
         if (this.response.success == true) {
           this.contractCostingData = this.response.data;
-      
+          this.max = this.response.data.quantity;
+
+          if(this.contractCostingData.length=1){
+            this.check=this.check+15;
+          }
           localStorage.setItem('rate',this.response.data.quantity);
           if(this.response.data.quantity === "0"){
             this.contractCostingData.quantity = ""

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ContractsRoutingModule } from './contracts-routing.module';
 import { AddNewContractsComponent } from './add-new-contracts/add-new-contracts.component';
-import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDatepickerModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BuyerComponent } from './Modals/buyer/buyer.component';
 import { SellerComponent } from './Modals/seller/seller.component';
 import { ArticleComponent } from './Modals/article/article.component';
@@ -44,6 +44,7 @@ import { EditIvnoicePopupComponent } from './yarn-active-contracts/active-contra
 import { DebitComponent } from './yarn-active-contracts/active-contract-details/active-contract-models/sale-invoice-pop-up/debit/debit.component';
 import { CreditComponent } from './yarn-active-contracts/active-contract-details/active-contract-models/sale-invoice-pop-up/credit/credit.component';
 import { LCInfoComponent } from './yarn-active-contracts/active-contract-details/active-contract-models/lcinfo/lcinfo.component';
+import { NgProgressModule } from 'ngx-progressbar';
 
 @NgModule({
   declarations: [AddNewContractsComponent,
@@ -78,7 +79,9 @@ LCInfoComponent,
     HttpClientModule,
     ContractsRoutingModule,
     NgbDatepickerModule,
+    NgProgressModule,
     NgSelectModule,
+    NgbModule,
     NgxDatatableModule,
     ReactiveFormsModule
   ]

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -6,6 +6,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
+import { ServiceService } from '../../service.service';
 
 @Component({
   selector: 'app-status',
@@ -23,7 +24,9 @@ export class StatusComponent implements OnInit {
   @Input() component;
   constructor(private http: HttpClient,
     private router: Router,
-    private toastr: ToastrService,private spinner: NgxSpinnerService,
+    private toastr: ToastrService,
+    private service: ServiceService,
+    private spinner: NgxSpinnerService,
     private _NgbActiveModal: NgbActiveModal) { }
 
   
@@ -63,18 +66,15 @@ else
         if (this.response.success == true){
           this.toastr.success(this.response.message, 'Message.');
           this.activeModal.close(true);
-          this.spinner.hide();
        
         }
         else {
           this.toastr.error('Something went Worng', 'Message.');
-          this.spinner.hide();
             }
 
       }, err => {
         if (err.status == 400) {
           this.toastr.error('Something went Worng', 'Message.');
-          this.spinner.hide();
         }
       });
   }
@@ -86,15 +86,7 @@ else
 
   UpdateContractStatus(form:NgForm)
 { 
-  this.spinner.show();
-    if(form.status == "INVALID"){
-
-    }
-
-else
-
-{
-
+ 
   let varr = {
     
     "reason":this.data.reason,
@@ -111,24 +103,22 @@ else
       if (this.response.success == true){
         this.toastr.success(this.response.message, 'Message.');
         this.activeModal.close(true);
-        this.spinner.hide();
       this.router.navigate(['/FabCot/active-contract']);
       }
       else {
         this.toastr.error('Something went Worng', 'Message.');
-        this.spinner.hide();
           }
 
-    }, err => {
-      if (err.status == 400) {
-        this.toastr.error('Something went Worng', 'Message.');
-        this.spinner.hide();
-      }
+    },(err: HttpErrorResponse) => {
+      const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+      this.toastr.error(messages.toString(), 'Message.');
+      console.log(messages);
     });
+
 }
 
 }
-}
+
 
 
 
