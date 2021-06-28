@@ -108,6 +108,8 @@ printData : any = {}
   rows5: any = [];
   id: any = {};
   tnaId: any = {};
+  agent: any = {};
+
   contractNmbr : string
   loggedInDepartmentName: string;
   buyerName: string
@@ -846,6 +848,8 @@ getContractCommisionData(){
       if (this.response.success == true) {
         // this.response.data ==null? '':this.response.data;
         this.contractCommissionData = this.response.data;
+        this.agent = this.response.data.agentCommissions;
+
         // this.contractCommissionData.agenetName= parseInt(this.contractCommissionData.agenetName);
         
       }

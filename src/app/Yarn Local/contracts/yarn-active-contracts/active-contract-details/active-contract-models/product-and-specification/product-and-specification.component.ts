@@ -18,6 +18,8 @@ export class ProductAndSpecificationComponent implements OnInit {
 
   @Input() contractId;
   data:any ={};
+  data4:any ={};
+
   article: any={};
   weave:any = {};
   fabric:any = {};
@@ -48,12 +50,34 @@ export class ProductAndSpecificationComponent implements OnInit {
     this.GetPickDropdown();
 this.GetPieceDropdown();
 this.GetWeaveDropdown();
+this.getBrand();
 this.GetWeftDropdown();
 this.GetWarpDropdown();
 this.GetSelvedgeDropdown();
   }
   get activeModal() {
     return this._NgbActiveModal;
+  }
+  getBrand() {
+
+    this.http
+      .get(`${environment.apiUrl}/api/ExportConfigs/GetAllBrand`)
+      .subscribe(res => {
+        this.response = res;
+  
+        if (this.response.success == true) {
+          this.data4 = this.response.data;
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+        // this.spinner.hide();
+      }, err => {
+        if (err.status == 400) {
+          this.toastr.error(err.error.message, 'Message.');;
+        }
+        //  this.spinner.hide();
+      });
   }
   GetArticleDropdown() {
     this.service.getArticles().subscribe(res => {
@@ -171,6 +195,7 @@ this.GetSelvedgeDropdown();
       "construction": this.data.construction,
       "articleId": this.data.articleId,
       "pecenetAge": this.data.pecenetAge,
+      "brandId": this.data.brandId,
       "febricId": this.data.febricId,
       "gsm": this.data.gsm,
       "tolerance": this.data.tolerance,

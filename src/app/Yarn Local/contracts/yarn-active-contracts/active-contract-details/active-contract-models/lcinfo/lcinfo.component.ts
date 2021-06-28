@@ -18,6 +18,8 @@ export class LCInfoComponent implements OnInit {
   dateformater: Dateformater = new Dateformater();  
 response: any;
 data:any = {};
+buyer: any={};
+
 @Input() contractId;
 @Input() invoiceId; 
 @Input() statusCheck; 
@@ -32,23 +34,43 @@ data:any = {};
   ) { }
 
   ngOnInit(): void {
-    
+    this.GetBuyersDropdown();
     if (this.statusCheck == 'editInvoice') {
       this.editSaleInvoice();
     }
+    
    
   }
   get activeModal() {
     return this._NgbActiveModal;
   }
+  GetBuyersDropdown() {
+    this.service.getBuyers().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.buyer = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
+
   addSaleInvoice(form:NgForm) {
     let varr = {
-
+      "contractId": this.contractId,
+      "buyerId":this.data.buyerId,
+      "lcNumber": this.data.lcNumber,
+      "lcOpenOn": this.dateformater.toModel(this.data.lcOpenOn),
+      "lcShipmentOn": this.dateformater.toModel(this.data.lcShipmentOn),
+      "lcShipmentInfo": this.data.lcShipmentInfo,
+      "lcExpiryDate": this.dateformater.toModel(this.data.lcExpiryDate),
+      "remarks": this.data.remarks
      
     }
 this.spinner.show();
     this.http.
-      post(`${environment.apiUrl}`, varr)
+      post(`${environment.apiUrl}/api/Contracts/AddContractLetterCredit`, varr)
       .subscribe(
         res => {
 
@@ -56,7 +78,7 @@ this.spinner.show();
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
             this.activeModal.close(true);
-          localStorage.setItem('quantity',this.data.quantity);
+          // localStorage.setItem('quantity',this.data.quantity);
          this.spinner.hide();
           }
           else {
@@ -73,7 +95,7 @@ this.spinner.show();
   }
   editSaleInvoice() {
     // this.spinner.show();
-    this.http.get(`${environment.apiUrl}` + this.invoiceId)
+    this.http.get(`${environment.apiUrl}/api/Contracts/GetContractLetterCreditById/` + this.invoiceId)
       .subscribe(
         res => {
           this.response = res;
@@ -96,11 +118,18 @@ this.spinner.show();
   
   updateSaleInvoice(form:NgForm) {
     let varr = {
-     
+      "contractId": this.contractId,
+      "buyerId":this.data.buyerId,
+      "lcNumber": this.data.lcNumber,
+      "lcOpenOn": this.dateformater.toModel(this.data.lcOpenOn),
+      "lcShipmentOn": this.dateformater.toModel(this.data.lcShipmentOn),
+      "lcShipmentInfo": this.data.lcShipmentInfo,
+      "lcExpiryDate": this.dateformater.toModel(this.data.lcExpiryDate),
+      "remarks": this.data.remarks
     }
  this.spinner.show();
     this.http.
-      put(`${environment.apiUrl}` + this.invoiceId, varr)
+      put(`${environment.apiUrl}/api​/Contracts​/UpdateContractLetterCredit​/` + this.invoiceId, varr)
       .subscribe(
         res => {
  
