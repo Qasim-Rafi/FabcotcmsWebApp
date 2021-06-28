@@ -1,5 +1,5 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, Input, OnInit, ViewChild } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { GlobalConstants } from 'src/app/Common/global-constants';
@@ -8,6 +8,7 @@ import { ServiceService } from 'src/app/shared/service.service';
 import { environment } from 'src/environments/environment';
 import {FormsModule , NgForm, ReactiveFormsModule}  from '@angular/forms'
 import { NgxSpinnerService } from 'ngx-spinner';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-sale-invoice-pop-up',
@@ -22,6 +23,7 @@ export class SaleInvoicePopUpComponent implements OnInit {
   @Input() invoiceId; 
   @Input() statusCheck; 
   @Input() quantity; 
+  @Input() saleInvoiceQuantity; 
 
   data:any ={};
   rate:any;
@@ -41,11 +43,13 @@ uomList : any = {};
     private http: HttpClient,
     private service: ServiceService,
     private toastr: ToastrService,
+    @Inject(DOCUMENT) private _document: Document
   ) { }
 
 
   ngOnInit(): void {
     this.quantity = this.quantity;
+    this.saleInvoiceQuantity=this.saleInvoiceQuantity;
     this.loggedInDepartmentName = localStorage.getItem('loggedInDepartmentName');
 
     this.GetUOMDropdown();
@@ -54,7 +58,9 @@ uomList : any = {};
     }
    
   }
-
+  refreshPage() {
+    this._document.defaultView.location.reload();
+  }
   get activeModal() {
     return this._NgbActiveModal;
   }
@@ -101,8 +107,9 @@ if(event==7){
     })
   }
   addSaleInvoice(form:NgForm) {
-    if(this.data.quantity > this.quantity ){
-      this.toastr.error("Total Sale Invoice Quantity"+"["+this.data.quantity+"]"+ "should be less than contract quantity"+"["+this.quantity+"]", 'Message.');
+    let sum=parseInt(this.data.quantity)+parseInt(this.saleInvoiceQuantity);
+    if( this.saleInvoiceQuantity > this.quantity && sum>this.quantity ){
+      this.toastr.error("Total Sale Invoice Quantity"+"["+sum+"]"+ "should be less than contract quantity"+"["+this.quantity+"]", 'Message.');
 
     }
     //  this.data.saleInvoiceDate = this.dateformater.toModel(this.data.saleInvoiceDate);
@@ -129,6 +136,7 @@ this.spinner.show();
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
             this.activeModal.close(true);
+    this._document.defaultView.location.reload();
           localStorage.setItem('quantity',this.data.quantity);
          this.spinner.hide();
           }
