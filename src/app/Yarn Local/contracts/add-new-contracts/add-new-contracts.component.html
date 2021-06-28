@@ -294,6 +294,8 @@
                                 <div class="row">
                                     <div class="col-md-3">
                                         <div class="input-group">
+                                            <!-- <input type="text"  placeholder="Article" #contractArticleName="ngModel"
+                                            class="form-control" [(ngModel)]="data5.contractArticleName" name="contractArticleName"> -->
                                             <ng-select name="article" #articleId="ngModel" class="input-w px-0"
                                             [(ngModel)]="data5.articleId" placeholder="-- Select --">
                                             <ng-option *ngFor="let i of article" [value]="i.id">{{ i.name }}
@@ -303,8 +305,8 @@
                                     </div>
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <input type="number" min="0" placeholder="quantity" #quantity="ngModel"
-                                                class="form-control" [(ngModel)]="data5.quantity" name="quantity">
+                                            <input type="number" min="0" placeholder="quantity" #contractArticleQuantity="ngModel"
+                                                class="form-control" [(ngModel)]="data5.contractArticleQuantity" name="contractArticleQuantity">
                                             <!-- <div class="input-group-append">
                                                 <span class="input-group-text" id="basic-addon2">per</span>
                                             </div> -->
@@ -313,8 +315,8 @@
 
                                     <div class="col-md-3 mrg-sm1">
                                         <div class="input-group">
-                                            <input type="number" min="0" placeholder="Rate" #rate="ngModel"
-                                                class="form-control" [(ngModel)]="data5.rate" name="rate">
+                                            <input type="number" min="0" placeholder="Rate" #contractArticleRate="ngModel"
+                                                class="form-control" [(ngModel)]="data5.contractArticleRate" name="contractArticleRate">
                                             <!-- <div class="input-group-append">
                                                 <span class="input-group-text" id="basic-addon2">per</span>
                                             </div> -->
@@ -323,8 +325,8 @@
 
                                     <div class="col-md-3 mrg-sm1">
                                         <div class="input-group">
-                                            <input type="number" min="0" placeholder="Commission" #commission="ngModel"
-                                                class="form-control" [(ngModel)]="data5.commission" name="commission">
+                                            <input type="number" min="0" placeholder="Commission" #contractArticleCommission="ngModel"
+                                                class="form-control" [(ngModel)]="data5.contractArticleCommission" name="contractArticleCommission">
                                             <!-- <div class="input-group-append">
                                                 <span class="input-group-text" id="basic-addon2">per</span>
                                             </div> -->
@@ -343,17 +345,19 @@
     
                                 <div class="col-md-3">
                                     <div class="input-group">
-                                        <ng-select name="article_{{i}}" #articleId="ngModel" class="input-w px-0"
+                                        <!-- <ng-select name="article_{{i}}" #articleId="ngModel" class="input-w px-0"
                                         [(ngModel)]="a.articleId" placeholder="Article">
                                         <ng-option *ngFor="let i of article" [value]="i.id">{{ i.name }}
                                         </ng-option>
-                                    </ng-select>
+                                    </ng-select> -->
+                                    <input type="text"  placeholder="Article" #contractArticleName="ngModel"
+                                    class="form-control" [(ngModel)]="a.contractArticleName" name="contractArticleName_{{i}}">
                                     </div>
                                 </div>
                                       <div class="col-md-3">
                                         <div class="input-group">
-                                            <input type="number" min="0" placeholder="quantity" #quantity="ngModel"
-                                                class="form-control" [(ngModel)]="a.quantity" name="quantity_{{i}}">
+                                            <input type="number" min="0" placeholder="quantity" #contractArticleQuantity="ngModel"
+                                                class="form-control" [(ngModel)]="a.contractArticleQuantity" name="contractArticleQuantity_{{i}}">
                                             <!-- <div class="input-group-append">
                                                 <span class="input-group-text" id="basic-addon2">per</span>
                                             </div> -->
@@ -361,8 +365,8 @@
                                     </div>
                                       <div class="col-md-2 mrg-sm1">
                                         <div class="input-group">
-                                            <input type="number" min="0" placeholder="Rate" #rate="ngModel"
-                                                class="form-control" [(ngModel)]="a.rate" name="rate{{i}}">
+                                            <input type="number" min="0" placeholder="Rate" #contractArticleRate="ngModel"
+                                                class="form-control" [(ngModel)]="a.contractArticleRate" name="contractArticleRate_{{i}}">
                                             <!-- <div class="input-group-append">
                                                 <span class="input-group-text" id="basic-addon2">per</span>
                                             </div> -->
@@ -370,8 +374,8 @@
                                     </div>
                                       <div class="col-md-2 mrg-sm1">
                                         <div class="input-group">
-                                            <input type="number" min="0" placeholder="Commission" #commission="ngModel"
-                                            class="form-control" [(ngModel)]="a.commission" name="commission_{{i}}">
+                                            <input type="number" min="0" placeholder="Commission" #contractArticleCommission="ngModel"
+                                            class="form-control" [(ngModel)]="a.contractArticleCommission" name="contractArticleCommission_{{i}}">
                                             
                                         </div>
                                     </div>
