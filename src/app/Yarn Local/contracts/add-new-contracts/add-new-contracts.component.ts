@@ -98,7 +98,12 @@ export class AddNewContractsComponent implements OnInit {
   selected: any;
   loggedInDepartmentName: string;
   loggedInDepartmentCode: string;
-
+brand : boolean;
+data3: any = {}
+data4: any = {}
+data5: any = {}
+articleArray: any = []
+brandId : any;
   // FabricLocal:boolean;
   sensorTypes: any;
   selectedAttributes: any;
@@ -136,6 +141,7 @@ export class AddNewContractsComponent implements OnInit {
     let olddate = new Date();
     let latest_date = this.datepipe.transform(olddate, 'yyyy-MM-dd');
     this.data.enquiryDate = this.dateformater.fromModel(latest_date);
+    this.getBrand();
     this.GetWarpDropdown("start");
     this.GetWeftDropdown("start");
     this.GetBuyersDropdown("start");
@@ -447,6 +453,7 @@ export class AddNewContractsComponent implements OnInit {
       this.response = res;
       if (this.response.success == true) {
         this.article = this.response.data;
+        
         if (type == "other") {
           // this.seller.id = this.newSeller;
           this.data.articleId = this.newArticle
@@ -896,6 +903,81 @@ export class AddNewContractsComponent implements OnInit {
   navigate() {
     this.router.navigateByUrl('/FabCot/active-contract-details');
   };
+  click(event){
+  console.log(event);
+  if(event.type == 'click'){
+    this.brand = true;
+  }
+ 
+  
+
+  }
+  cross(event){
+    console.log(event);
+    if(event.type == 'click'){
+      this.brand = false;
+    }
+  }
+  getBrand() {
+
+    this.http
+      .get(`${environment.apiUrl}/api/ExportConfigs/GetAllBrand`)
+      .subscribe(res => {
+        this.response = res;
+  
+        if (this.response.success == true) {
+          this.data4 = this.response.data;
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+        // this.spinner.hide();
+      }, err => {
+        if (err.status == 400) {
+          this.toastr.error(err.error.message, 'Message.');;
+        }
+        //  this.spinner.hide();
+      });
+  }
+  addBrand(event) {
+    let departmentId = parseInt(localStorage.getItem('loggedInDepartmentId'))
+
+    let varr = {
+      "brandName": this.data3.brandName,
+   
+      "departmentId": departmentId,
+      "active": true
+    }
+    this.spinner.show();
+    this.http.
+      post(`${environment.apiUrl}/api/ExportConfigs/AddBrand` , varr)
+      .subscribe(
+        res => {
+
+          this.response = res;
+          if (this.response.success == true) {
+            this.toastr.success(this.response.message, 'Message.');
+            this.spinner.hide();
+        // this.data4.brandName = this.response.data.brandName;
+            
+          this.getBrand();
+           if(event.type == 'click'){
+             this.brand = false
+             this.data3 = ""
+           }
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
+          }
+
+        }, (err: HttpErrorResponse) => {
+          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+          this.toastr.error(messages.toString(), 'Message.');
+          console.log(messages);
+          this.spinner.hide();
+        });
+  }
   addContract() {
     let departmentId = parseInt(localStorage.getItem('loggedInDepartmentId'))
     // statusCheck = check;
@@ -907,6 +989,14 @@ export class AddNewContractsComponent implements OnInit {
     for (let i = 0; i < this.data1.length; i++) {
 
       this.commission.push({ ['agentId']: this.data1[i].agentId, ["agentCommission"]: this.data1[i].agentCommission })
+    }
+    if (this.data5.articleId != null) {
+      this.articleArray.push({ ['articleId']: this.data5.articleId , ['quantity']: this.data5.quantity , ['rate']: this.data5.rate , ['commission']: this.data5.commission})
+
+    }
+    for (let i = 0; i < this.Article.length; i++) {
+
+      this.articleArray.push({ ['articleId']: this.Article[i].articleId , ['quantity']: this.Article.quantity , ['rate']: this.Article.rate , ['commission']: this.Article.commission})
     }
 
     let varr = {
@@ -921,7 +1011,9 @@ export class AddNewContractsComponent implements OnInit {
       "quantity": this.data.quantity,
       "quantityUOMId": this.data.quantityUOMId,
       "toleranceValue": this.data.toleranceValue,
+      "brandId": this.data.brandId,
       "rate": this.data.rate,
+      "articleIds" : this.articleArray,
       "currencyId": this.data.currencyId,
       "rateUOMId": this.data.rateUOMId,
       "sellerPaymentTerm": this.data.sellerPaymentTerm,

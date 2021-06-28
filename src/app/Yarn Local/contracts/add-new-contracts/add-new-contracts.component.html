@@ -295,7 +295,7 @@
                                     <div class="col-md-3">
                                         <div class="input-group">
                                             <ng-select name="article" #articleId="ngModel" class="input-w px-0"
-                                            [(ngModel)]="data.articleId" placeholder="-- Select --">
+                                            [(ngModel)]="data5.articleId" placeholder="-- Select --">
                                             <ng-option *ngFor="let i of article" [value]="i.id">{{ i.name }}
                                             </ng-option>
                                         </ng-select>
@@ -304,7 +304,7 @@
                                     <div class="col-md-3">
                                         <div class="input-group">
                                             <input type="number" min="0" placeholder="quantity" #quantity="ngModel"
-                                                class="form-control" [(ngModel)]="data.quantity" name="quantity">
+                                                class="form-control" [(ngModel)]="data5.quantity" name="quantity">
                                             <!-- <div class="input-group-append">
                                                 <span class="input-group-text" id="basic-addon2">per</span>
                                             </div> -->
@@ -313,8 +313,8 @@
 
                                     <div class="col-md-3 mrg-sm1">
                                         <div class="input-group">
-                                            <input type="number" min="0" placeholder="Rate" #quantity="ngModel"
-                                                class="form-control" [(ngModel)]="data.quantity" name="quantity">
+                                            <input type="number" min="0" placeholder="Rate" #rate="ngModel"
+                                                class="form-control" [(ngModel)]="data5.rate" name="rate">
                                             <!-- <div class="input-group-append">
                                                 <span class="input-group-text" id="basic-addon2">per</span>
                                             </div> -->
@@ -323,8 +323,8 @@
 
                                     <div class="col-md-3 mrg-sm1">
                                         <div class="input-group">
-                                            <input type="number" min="0" placeholder="Commission" #quantity="ngModel"
-                                                class="form-control" [(ngModel)]="data.quantity" name="quantity">
+                                            <input type="number" min="0" placeholder="Commission" #commission="ngModel"
+                                                class="form-control" [(ngModel)]="data5.commission" name="commission">
                                             <!-- <div class="input-group-append">
                                                 <span class="input-group-text" id="basic-addon2">per</span>
                                             </div> -->
@@ -361,8 +361,8 @@
                                     </div>
                                       <div class="col-md-2 mrg-sm1">
                                         <div class="input-group">
-                                            <input type="number" min="0" placeholder="Rate" #quantity="ngModel"
-                                                class="form-control" [(ngModel)]="a.quantity" name="quantity_{{i}}">
+                                            <input type="number" min="0" placeholder="Rate" #rate="ngModel"
+                                                class="form-control" [(ngModel)]="a.rate" name="rate{{i}}">
                                             <!-- <div class="input-group-append">
                                                 <span class="input-group-text" id="basic-addon2">per</span>
                                             </div> -->
@@ -370,8 +370,8 @@
                                     </div>
                                       <div class="col-md-2 mrg-sm1">
                                         <div class="input-group">
-                                            <input type="number" min="0" placeholder="Commission" #quantity="ngModel"
-                                            class="form-control" [(ngModel)]="a.quantity" name="quantity_{{i}}">
+                                            <input type="number" min="0" placeholder="Commission" #commission="ngModel"
+                                            class="form-control" [(ngModel)]="a.commission" name="commission_{{i}}">
                                             
                                         </div>
                                     </div>
@@ -397,17 +397,33 @@
                             <label for="inputEmail3" class="col-md-3 col-form-label control-label">Brand Name:</label>
 
                             <div class="col-md-7">
-                                <div class="input-group">
-                                    <ng-select name="article" #articleId="ngModel" class="input-w px-0"
-                                        [(ngModel)]="data.articleId" placeholder="Select Brand Name">
-                                        <ng-option *ngFor="let i of article" [value]="i.id">{{ i.name }}
+                                <div class="input-group" *ngIf = "!brand">
+                                    <ng-select name="brandId" #brandId="ngModel" class="input-w px-0"
+                                        [(ngModel)]="data.brandId" placeholder="Select Brand Name">
+                                        <ng-option *ngFor="let i of data4" [value]="i.id">{{ i.brandName }}
                                         </ng-option>
                                     </ng-select>
 
                                     <div class="input-group-append">
                                         <button class="btn btn-outline-primary" type="button" id="button-addon2"
-                                            (click)="addArticleForm()">
+                                            (click)="click($event)">
                                             <i class="fa fa-plus"></i></button>
+                                    </div>
+
+                                </div>
+                                <div class="input-group" *ngIf = "brand">
+                                    <input type="text" placeholder="Enter Brand Name" class="form-control"
+                                         name="brandName"  [(ngModel)] = "data3.brandName"  >
+
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-primary" type="button" id="button-addon2"
+                                         (click) = "addBrand($event)"  >
+                                            <i class="fa fa-check"></i></button>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-primary" type="button" id="button-addon2"
+                                            (click)="cross($event)">
+                                            <i class="fa fa-times"></i></button>
                                     </div>
 
                                 </div>
@@ -2016,7 +2032,7 @@
                         
                         
                             <div class="form-group row">
-                                <label for="code" class="col-md-3 col-form-label control-label">Foreign Agent Commissi...</label>
+                                <label for="code" class="col-md-3 col-form-label control-label">Foreign Agent Commission</label>
                         
                                 <div class="col-md-7">
                                     <div class="row">

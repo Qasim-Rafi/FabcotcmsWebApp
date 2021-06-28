@@ -43,12 +43,18 @@ data:any = {};
   }
   addSaleInvoice(form:NgForm) {
     let varr = {
-
+      "contractId": this.contractId,
+      "lcNumber": this.data.lcNumber,
+      "lcOpenOn": this.dateformater.toModel(this.data.lcOpenOn),
+      "lcShipmentOn": this.dateformater.toModel(this.data.lcShipmentOn),
+      "lcShipmentInfo": this.data.lcShipmentInfo,
+      "lcExpiryDate": this.dateformater.toModel(this.data.lcExpiryDate),
+      "remarks": this.data.remarks
      
     }
 this.spinner.show();
     this.http.
-      post(`${environment.apiUrl}`, varr)
+      post(`${environment.apiUrl}/api/Contracts/AddContractLetterCredit`, varr)
       .subscribe(
         res => {
 
@@ -56,7 +62,7 @@ this.spinner.show();
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
             this.activeModal.close(true);
-          localStorage.setItem('quantity',this.data.quantity);
+          // localStorage.setItem('quantity',this.data.quantity);
          this.spinner.hide();
           }
           else {

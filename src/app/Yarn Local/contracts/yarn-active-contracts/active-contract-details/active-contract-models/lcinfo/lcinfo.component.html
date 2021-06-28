@@ -23,8 +23,8 @@
         <div class="form-group row">
             <label for="saleInvoiceNo" class="col-sm-3 col-form-label text_Navy">L/C No.</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" placeholder="L/C number" name="lcNo"
-                [(ngModel)]="data.lcNo" #lcNo="ngModel" />
+              <input type="text" class="form-control" placeholder="L/C number" name="lcNumber"
+                [(ngModel)]="data.lcNumber" #lcNumber="ngModel" />
             </div>
           </div>
 
@@ -40,35 +40,44 @@
   
   
         <div class="form-group row">
-          <label for="lcDate" class="col-sm-3 col-form-label text_Navy">L/C Open On</label>
-          <div class="col-sm-8" (clickOutside)="lcDate.close()">
+          <label for="lcOpenOn" class="col-sm-3 col-form-label text_Navy">L/C Open On</label>
+          <div class="col-sm-8" (clickOutside)="lcOpenOn.close()">
   
-            <input navigation="select" class="form-control  " ngbDatepicker #lcDate="ngbDatepicker"
-              (click)="lcDate.toggle()" placeholder="L/C Openning Date" name="lcDate"
-              [(ngModel)]="data.lcDate" />
+            <input navigation="select" class="form-control  " ngbDatepicker #lcOpenOn="ngbDatepicker"
+              (click)="lcOpenOn.toggle()" placeholder="L/C Openning Date" name="lcOpenOn"
+              [(ngModel)]="data.lcOpenOn" />
           </div>
         </div>
 
    
 
         <div class="form-group row">
-            <label for="lcShipmentDate" class="col-sm-3 col-form-label text_Navy">L/C Shipment On</label>
-            <div class="col-sm-8" (clickOutside)="lcShipmentDate.close()">
+            <label for="lcShipmentOn" class="col-sm-3 col-form-label text_Navy">L/C Shipment On</label>
+            <div class="col-sm-8" (clickOutside)="lcShipmentOn.close()">
     
-              <input navigation="select" class="form-control  " ngbDatepicker #lcShipmentDate="ngbDatepicker"
-                (click)="lcShipmentDate.toggle()" placeholder="L/C latest Shipment Date" name="lcShipmentDate"
-                [(ngModel)]="data.lcShipmentDate" />
+              <input navigation="select" class="form-control  " ngbDatepicker #lcShipmentOn="ngbDatepicker"
+                (click)="lcShipmentOn.toggle()" placeholder="L/C latest Shipment Date" name="lcShipmentOn"
+                [(ngModel)]="data.lcShipmentOn" />
             </div>
 
           </div>
           <div class="form-group row">
-            <!-- <label for="saleInvoiceNo" class="col-sm-3 col-form-label text_Navy">L/C No.</label> -->
+            <label for="lcShipmentInfo" class="col-sm-3 col-form-label text_Navy"></label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" placeholder="L/C Shipment Date Info" name="shipmentInfo"
-                [(ngModel)]="data.shipmentInfo" #shipmentInfo="ngModel" />
+              <input type="text" class="form-control" placeholder="L/C Shipment Date Info" name="lcShipmentInfo"
+                [(ngModel)]="data.lcShipmentInfo" #lcShipmentInfo="ngModel" />
             </div>
           </div>
+          <div class="form-group row">
+            <label for="lcExpiryDate" class="col-sm-3 col-form-label text_Navy">L/C Expiry Date</label>
+            <div class="col-sm-8" (clickOutside)="lcExpiryDate.close()">
+    
+              <input navigation="select" class="form-control  " ngbDatepicker #lcExpiryDate="ngbDatepicker"
+                (click)="lcExpiryDate.toggle()" placeholder="L/C  Expiry Date" name="lcExpiryDate"
+                [(ngModel)]="data.lcExpiryDate" />
+            </div>
 
+          </div>
         <div class="form-group row">
           <label for="remarks" class="col-sm-3 col-form-label ">Remarks</label>
           <div class="col-sm-8">
@@ -84,10 +93,10 @@
           (click)="activeModal.close()">
           Close
         </button>
-        <button class="btn button-save" type="submit" (click)="onSubmit('addInvoice')" *ngIf="statusCheck == 'addInvoice'">
+        <button class="btn button-save" type="submit" (click)="onSubmit('add')" *ngIf="statusCheck == 'add'">
           Save L/C
         </button>
-        <button class="btn button-save" type="submit" (click)="onSubmit('editInvoice')" *ngIf="statusCheck == 'editInvoice'">
+        <button class="btn button-save" type="submit" (click)="onSubmit('edit')" *ngIf="statusCheck == 'edit'">
           Update L/C
         </button>
       </div>
