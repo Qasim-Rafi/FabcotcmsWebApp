@@ -111,6 +111,7 @@ printData : any = {}
   tnaId: any = {};
   agent: any = {};
 max:any;
+max1:any;
   contractNmbr : string
   loggedInDepartmentName: string;
   buyerName: string
@@ -353,6 +354,8 @@ max:any;
     modalRef.componentInstance.statusCheck = check;
     modalRef.componentInstance.contractId = this.contractId ;
     modalRef.componentInstance.quantity = this.max ;
+    modalRef.componentInstance.saleInvoiceQuantity = this.max1 ;
+
 
   
           modalRef.result.then((data) => {
@@ -585,6 +588,8 @@ lcForm(check){
             this.buyerName = this.contractData.buyerName
              this.contractNmbr = this.contractData.autoContractNumber
              this.sellerName = this.contractData.sellerName
+             this.max1 = this.response.data.saleInvoiceQuantity;
+
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
