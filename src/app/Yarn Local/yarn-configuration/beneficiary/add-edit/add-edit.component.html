@@ -1,0 +1,114 @@
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "line-spin-fade" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+<div class="modal-header" *ngIf="FormName == 'beneficiaryForm'">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <div *ngIf="statusCheck == 'BeneficiaryAdd'">
+    <h5 class="modal-title">
+      <i class="fa fa-plus fa-fw"></i>
+      Add Beneficiary
+    </h5>
+  </div>
+  <div *ngIf="statusCheck == 'BeneficiaryEdit'">
+    <h5 class="modal-title">
+      <i class="far fa-edit fa-fw"></i>
+      Edit Beneficiary
+    </h5>
+  </div>
+</div>
+
+
+<div class="modal-body BG p-0">
+
+  <form #BeneficiaryForm="ngForm" novalidate>
+
+    <div class="col-md-12 pt-3 pb-2">
+
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label text-grey">Department Name</label>
+            <div class="col-sm-4">
+              <ng-select [(ngModel)]="data.id" placeholder="-- Select --" name="id"
+                #id="ngModel" [ngClass]="{ error: id.invalid && BeneficiaryForm.submitted}">
+                <ng-option *ngFor="let i of departments" [value]="i.id">{{ i.name }}
+                </ng-option>
+              </ng-select>
+            </div>
+    
+            <label class="col-sm-1 col-form-label text-grey">Users</label>
+            <div class="col-sm-3">
+              <ng-select [(ngModel)]="data.userId" placeholder="-- Select --" name="userId"
+                #userId="ngModel" [ngClass]="{ error: userId.invalid && BeneficiaryForm.submitted}">
+                <ng-option *ngFor="let i of users" [value]="i.id">{{ i.fullName }}
+                </ng-option>
+              </ng-select>
+            </div>
+          </div>
+      <div class="form-group row">
+        <label for="commissionRatio" class="col-sm-3 col-form-label control-label text-grey">Commission</label>
+        <div class="col-sm-8">
+          <input maxlength="80" type="number" minlength="0" type="text" class="form-control"
+            placeholder="Commission" name="commissionRatio" [(ngModel)]="data.commissionRatio" #commissionRatio="ngModel"
+            [ngClass]="{ error: commissionRatio.invalid && BeneficiaryForm.submitted}" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="status" class="col-sm-3 col-form-label text-grey"></label>
+        <div class="col-sm-8">
+          <div class="form-check form-check-inline">
+            <input  class="form-check-input check-btn "  id="status"  type="checkbox" name="status" [(ngModel)]="status">
+            <label for="status"  class="form-check-label text-grey">Marked as Active</label>
+      </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="dateTime" class="col-sm-3 col-form-label text-grey">Date</label>
+        <div class="col-sm-8" (clickOutside)="dateTime.close()">
+
+          <input navigation="select" class="form-control  " ngbDatepicker #dateTime="ngbDatepicker"
+            (click)="dateTime.toggle()" placeholder="Date Here" name="dateTime"
+            [(ngModel)]="data.dateTime" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label text-grey">Exclude</label>
+        <div class="col-sm-4">
+          <ng-select [(ngModel)]="data.excludingBuyerId" placeholder="-- Select --" name="excludingBuyerId"
+            #excludingBuyerId="ngModel" [ngClass]="{ error: excludingBuyerId.invalid && BeneficiaryForm.submitted}">
+            <ng-option *ngFor="let i of excludingBuyer" [value]="i.id">{{ i.buyerName }}
+            </ng-option>
+          </ng-select>
+        </div>
+        <label class="col-sm-1 col-form-label text-grey">Include</label>
+        <div class="col-sm-3">
+          <ng-select [(ngModel)]="data.includingBuyerId" placeholder="-- Select --" name="includingBuyerId"
+            #includingBuyerId="ngModel" [ngClass]="{ error: includingBuyerId.invalid && BeneficiaryForm.submitted}">
+            <ng-option *ngFor="let i of includingBuyer" [value]="i.id">{{ i.buyerName }}
+            </ng-option>
+          </ng-select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="remarks" class="col-sm-3 col-form-label text-grey">Remarks</label>
+        <div class="col-sm-8">
+          <textarea class="form-control" id="remarks" rows="3" maxlength="300" placeholder="Brief description here ..."
+            name="remarks" [(ngModel)]="data.remarks" #remarks="ngModel"></textarea>
+        </div>
+      </div>
+
+
+    </div>
+
+
+    <div class="modal-footer NotBG" *ngIf="FormName == 'beneficiaryForm'">
+      <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" (click)="activeModal.close()">Close</button>
+      <button *ngIf="statusCheck == 'BeneficiaryAdd'" class="btn button-save" type="submit" (click)="addbeneficiary()" >
+        Add Beneficiary
+      </button>
+
+      <button *ngIf="statusCheck == 'BeneficiaryEdit'" class="btn button-save" type="submit" (click)="UpdateBeneficiary()">
+        Update Beneficiary
+      </button>
+    </div>
+
+  </form>
+</div>

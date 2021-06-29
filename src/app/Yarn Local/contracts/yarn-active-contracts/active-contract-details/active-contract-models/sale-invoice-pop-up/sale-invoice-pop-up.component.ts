@@ -107,8 +107,8 @@ if(event==7){
     })
   }
   addSaleInvoice(form:NgForm) {
-    let sum=parseInt(this.data.quantity)+parseInt(this.saleInvoiceQuantity);
-    if( this.saleInvoiceQuantity > this.quantity && sum>this.quantity ){
+    let sum=parseInt(this.quantitya)+parseInt(this.saleInvoiceQuantity);
+    if(sum>this.quantity ){
       this.toastr.error("Total Sale Invoice Quantity"+"["+sum+"]"+ "should be less than contract quantity"+"["+this.quantity+"]", 'Message.');
 
     }
@@ -168,6 +168,7 @@ this.spinner.show();
             this.data.saleInvoiceDate = this.dateformater.fromModel(this.data.saleInvoiceDate);
             this.saleInvoiceDate=this.data.saleInvoiceDate;
             this.quantity=this.quantity
+            this.saleInvoiceQuantity=this.saleInvoiceQuantity
             // this.spinner.hide();
 
           }
@@ -189,8 +190,9 @@ this.spinner.show();
 
   
   updateSaleInvoice(form:NgForm) {
-    if(this.data.quantity > this.quantity ){
-      this.toastr.error("Total Sale Invoice Quantity"+"["+this.data.quantity+"]"+ "should be less than contract quantity"+"["+this.quantity+"]", 'Message.');
+    let sum=parseInt(this.quantitya)+parseInt(this.saleInvoiceQuantity);
+    if(sum>this.quantity ){
+      this.toastr.error("Total Sale Invoice Quantity"+"["+sum+"]"+ "should be less than contract quantity"+"["+this.quantity+"]", 'Message.');
 
     }else{
     let varr = {
