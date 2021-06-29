@@ -125,6 +125,7 @@ max1:any;
  newArticle: any;
  contractArticles : any = {};
  percent:string;
+ isdeletedArticla:boolean=false;
   constructor(
     private router: Router,
     private modalService: NgbModal,
@@ -221,6 +222,7 @@ max1:any;
     let filterlist = this.contractArticles.findIndex(x => x.id ==last.id );
     if (filterlist !== -1) {
       this.contractArticles[filterlist].isAddedMore = true;
+      this.contractArticles[filterlist].isDeleted = false;
     }
   }
   removeArticle(a) {
@@ -229,9 +231,12 @@ max1:any;
     let filterlist = this.contractArticles.findIndex(x => x.id ==a.id );
     if (filterlist !== -1) {
       this.contractArticles[filterlist].isDeleted = true;
+      // this.contractArticles[filterlist].isAddedMore = false;
+
   
     }
   // }
+  this.isdeletedArticla=true;
 
   }
   GetArticleDropdown(type: string) {
@@ -278,6 +283,7 @@ max1:any;
         if (this.response.success == true){
           this.toastr.success(this.response.message, 'Message.');
           this.getContractData()
+          this.isdeletedArticla =false;
   this.spinner.hide();
         
         }
