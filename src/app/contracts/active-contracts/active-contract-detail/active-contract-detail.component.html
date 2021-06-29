@@ -1052,58 +1052,58 @@
                                     *ngIf="rows2.length != 0" [columnMode]="'force'" [headerHeight]="50"
                                     [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
 
-                                    <ngx-datatable-column name="Item Detail" prop="description" [width]="80">
+                                    <ngx-datatable-column name="Item Detail" prop="description" [width]="102">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                                             {{ row.description}}
                                         </ng-template>
                                     </ngx-datatable-column>
-                                    <ngx-datatable-column name="Construcrion" prop="compositionPercentage" [width]="80">
+                                    <ngx-datatable-column name="Construcrion" prop="compositionPercentage" [width]="110">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                                             {{ row.compositionPercentage}}% {{ row.compositionFebricTypeName}} {{
                                             row.compositionAdditionalInfo}}
                                         </ng-template>
                                     </ngx-datatable-column>
-                                    <ngx-datatable-column name="Composition" prop="construction" [width]="80">
+                                    <ngx-datatable-column name="Composition" prop="construction" [width]="110">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                                             {{ row.construction }}
                                         </ng-template>
                                     </ngx-datatable-column>
-                                    <ngx-datatable-column name="Loom Type" prop="loomTypeId" [width]="80">
+                                    <ngx-datatable-column name="Loom Type" prop="loomTypeId" [width]="102">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                                             {{ row.loomTypeName }}
                                         </ng-template>
                                     </ngx-datatable-column>
-                                    <ngx-datatable-column name="Sizes" prop="size" [width]="80">
+                                    <ngx-datatable-column name="Sizes" prop="size" [width]="102">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                                             {{ row.size }}
                                         </ng-template>
                                     </ngx-datatable-column>
-                                    <ngx-datatable-column name="GSM/Weight" prop="weight" [width]="80">
+                                    <ngx-datatable-column name="GSM/Weight" prop="weight" [width]="102">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                                             {{ row.weight }}
                                         </ng-template>
                                     </ngx-datatable-column>
-                                    <ngx-datatable-column name="QTY" prop="itemQuantity" [width]="80">
+                                    <ngx-datatable-column name="QTY" prop="itemQuantity" [width]="70">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                                             {{ row.itemQuantity }} {{ row.itemUOMName }}
                                         </ng-template>
                                     </ngx-datatable-column>
-                                    <ngx-datatable-column name="Unit Price" prop="contractRate" [width]="80">
+                                    <ngx-datatable-column name="Unit Price" prop="contractRate" [width]="100">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                                             {{ row.contractRate }} {{row.contractCurrencyCode}}/{{row.contractUOMName}}
                                         </ng-template>
                                     </ngx-datatable-column>
-                                    <ngx-datatable-column name="Amount" prop="contractCost" [width]="80">
+                                    <ngx-datatable-column name="Amount" prop="contractCost" [width]="100">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                                             {{ row.contractCost }}
                                         </ng-template>
                                     </ngx-datatable-column>
-                                    <ngx-datatable-column name="Commission" prop="commission" [width]="80">
+                                    <ngx-datatable-column name="Commission" prop="commission" [width]="102">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                                             {{ row.commission }}
                                         </ng-template>
                                     </ngx-datatable-column>
-                                    <ngx-datatable-column name="Action" [width]="80">
+                                    <ngx-datatable-column name="Action" [width]="90">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
 
 
