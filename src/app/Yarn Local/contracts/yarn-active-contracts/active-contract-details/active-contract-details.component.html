@@ -582,7 +582,7 @@
                                         <dt class="col-sm-6" >Article:
                                         </dt>
                                         <dd class="col-sm-6" *ngIf = "loggedInDepartmentName != 'Yarn Export'">{{contractProductData.articleName}}</dd>
-                                        <dd>
+                                        <dd class="pt-3" >
                                             <!-- <div class="form-group row" *ngIf="loggedInDepartmentName=='Yarn Export'"> -->
                                               
                     
@@ -642,8 +642,8 @@
                                                     <div class="col-md-3  mr-2">
                                                         <div class="input-group">
                                                        
-                                                        <ng-select name="articleName_{{i}}" #articleName="ngModel" class="input-w px-0"
-                                                        [(ngModel)]="a.articleName" placeholder="-- Select --">
+                                                        <ng-select name="articleId_{{i}}" #articleId="ngModel" class="input-w px-0"
+                                                        [(ngModel)]="a.articleId" placeholder="-- Select --">
                                                         <ng-option *ngFor="let c of article" [value]="c.id">{{ c.name }}
                                                         </ng-option>
                                                     </ng-select>
@@ -676,12 +676,16 @@
                                                         </div>
                                                         <div class="col-md-2 mrg-sm1">
                                                           <div class="input-group-append">
-                                                            <button class="btn btn-outline-danger " type="submit" (click)="removeArticle(i)">
+                                                            <button class="btn btn-outline-danger " type="submit" (click)="removeArticle(a)">
                                                                 <i class="fas fa-minus fa-xs"></i></button>
                                                         </div>
                                                         </div>
+                                                        
                                                 <!-- </div> -->
                                             <!-- </div> -->
+                                            </div>
+                                            <div class="col-md-7">
+                                                <button class="btn btn-outline-primary btn-sm" (click)="editArticle()"> Edit Article</button>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-3"></div>

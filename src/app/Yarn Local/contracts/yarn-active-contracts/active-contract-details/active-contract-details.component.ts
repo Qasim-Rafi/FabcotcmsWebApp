@@ -84,7 +84,7 @@ printData : any = {}
   dispatchFilter: any = [];
   TnaData: any = {};
   article: any = [];
-
+  articleArray : any = [];
   // check="75";
   TnaFilter: any = {};
   shipmentData: any = {};
@@ -157,7 +157,7 @@ max1:any;
      
     });
    this.GetArticleDropdown("start");
-   this.getArticles();
+  
     this.getPrintData();
     this.getContractData();
     this.getAllReminder();
@@ -217,9 +217,22 @@ max1:any;
 
   addArticle() {
     this.contractArticles.push({ id: this.contractArticles.length });
+    let last = this.contractArticles[this.contractArticles.length-1];
+    let filterlist = this.contractArticles.findIndex(x => x.id ==last.id );
+    if (filterlist !== -1) {
+      this.contractArticles[filterlist].isAddedMore = true;
+    }
   }
-  removeArticle(i: number) {
-    this.contractArticles.splice(i, 1);
+  removeArticle(a) {
+    // this.contractArticles.splice(i, 1);
+    // for( let i = 0 ; i < this.contractArticles.length ; i++ ){
+    let filterlist = this.contractArticles.findIndex(x => x.id ==a.id );
+    if (filterlist !== -1) {
+      this.contractArticles[filterlist].isDeleted = true;
+  
+    }
+  // }
+
   }
   GetArticleDropdown(type: string) {
     this.service.getArticles().subscribe(res => {
@@ -237,26 +250,70 @@ max1:any;
       }
     })
   }
-  getArticles() {
-
-    this.http.get(`${environment.apiUrl}/api/Lookups/ContractArticles/`+ this.contractId)
-      .subscribe(res => {
-        this.response = res;
-
-        if (this.response.success == true) {
-          this.contractArticles = this.response.data
+  
+  editArticle()
+  {
+    for(let i =0; i <this.contractArticles.length ;i++ ){
+      let varr = {
+        "id" :this.contractArticles[i].id,
+        "articleId": this.contractArticles[i].articleId,
+        "contractId":this.contractId,
+        "contractArticleQuantity" :this.contractArticles[i].contractArticleQuantity,
+        "contractArticleRate": this.contractArticles[i].contractArticleRate,
+        "contractArticleCommission": this.contractArticles[i].contractArticleCommission,
+        "isDeleted": this.contractArticles[i].isDeleted,
+        "isAddedMore": this.contractArticles[i].isAddedMore,
+  
+      }
     
+      this.articleArray.push(varr);
+    // this.spinner.show();
+    }
+    this.http.
+    put(`${environment.apiUrl}/api/ExportContracts/UpdateContractArticle`,this.articleArray)
+    .subscribe(
+      res=> { 
+  
+        this.response = res;
+        if (this.response.success == true){
+          this.toastr.success(this.response.message, 'Message.');
+          this.getContractData()
+  this.spinner.hide();
+        
         }
         else {
           this.toastr.error(this.response.message, 'Message.');
-        }
-        // this.spinner.hide();
-      },(err: HttpErrorResponse) => {
+  this.spinner.hide();
+}
+
+      }, (err: HttpErrorResponse) => {
         const messages = this.service.extractErrorMessagesFromErrorResponse(err);
         this.toastr.error(messages.toString(), 'Message.');
         console.log(messages);
+  this.spinner.hide();
+
       });
   }
+  // getArticles() {
+
+  //   this.http.get(`${environment.apiUrl}/api/Lookups/ContractArticles/`+ this.contractId)
+  //     .subscribe(res => {
+  //       this.response = res;
+
+  //       if (this.response.success == true) {
+  //         this.contractArticles = this.response.data
+    
+  //       }
+  //       else {
+  //         this.toastr.error(this.response.message, 'Message.');
+  //       }
+  //       // this.spinner.hide();
+  //     },(err: HttpErrorResponse) => {
+  //       const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+  //       this.toastr.error(messages.toString(), 'Message.');
+  //       console.log(messages);
+  //     });
+  // }
   contractOwner() {
     const modalRef = this.modalService.open(ContractOwnerComponent, { centered: true });
     modalRef.componentInstance.contractId = this.contractId;
@@ -635,6 +692,7 @@ lcForm(check){
           this.response = res;
           if (this.response.success == true) {
             this.contractData = this.response.data;
+            this.contractArticles = this.response.data.contractArticles;
             this.buyerName = this.contractData.buyerName
              this.contractNmbr = this.contractData.autoContractNumber
              this.sellerName = this.contractData.sellerName
