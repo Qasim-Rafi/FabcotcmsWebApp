@@ -996,7 +996,7 @@ brandId : any;
     }
     for (let i = 0; i < this.Article.length; i++) {
 
-      this.articleArray.push({ ['contractArticleName']: this.Article[i].contractArticleName , ['contractArticleQuantity']: this.Article[i].contractArticleQuantity , ['contractArticleRate']: this.Article[i].contractArticleRate , ['contractArticleCommission']: this.Article[i].contractArticleCommission})
+      this.articleArray.push({ ['articleId']: this.Article[i].articleId , ['contractArticleQuantity']: this.Article[i].contractArticleQuantity , ['contractArticleRate']: this.Article[i].contractArticleRate , ['contractArticleCommission']: this.Article[i].contractArticleCommission})
     }
 
     let varr = {
