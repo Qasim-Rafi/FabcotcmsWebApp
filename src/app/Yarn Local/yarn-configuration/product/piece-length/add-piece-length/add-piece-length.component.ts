@@ -50,7 +50,7 @@ export class AddPieceLengthComponent implements OnInit {
   }
   editPieceLength() {
     this.spinner.show();
-    this.http.get(`${environment.apiUrl}/api/YarnConfig/GetPieceLengthById/` + this.piecelengthId)
+    this.http.get(`${environment.apiUrl}/api/YarnConfigs/GetPieceLengthById/` + this.piecelengthId)
       .subscribe(
         res => {
           this.response = res;
@@ -81,7 +81,7 @@ this.spinner.hide();
     }
 this.spinner.show();
     this.http.
-      put(`${environment.apiUrl}/api/YarnConfig/UpdatePieceLength/` + this.piecelengthId, varr)
+      put(`${environment.apiUrl}/api/YarnConfigs/UpdatePieceLength/` + this.piecelengthId, varr)
       .subscribe(
         res => {
 
@@ -119,7 +119,7 @@ this.spinner.show();
     }
 this.spinner.show();
     this.http.
-      post(`${environment.apiUrl}/api/YarnConfig/AddPieceLength`, varr)
+      post(`${environment.apiUrl}/api/YarnConfigs/AddPieceLength`, varr)
       .subscribe(
         res => {
           this.obj.parent = this.active;

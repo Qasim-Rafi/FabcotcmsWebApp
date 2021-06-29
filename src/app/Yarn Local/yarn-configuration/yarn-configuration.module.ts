@@ -63,6 +63,8 @@ import { AddEditWarpComponent } from './product/warp/add-edit-warp/add-edit-warp
 import { AddEditSelvedgeComponent } from './product/selvedge/add-edit-selvedge/add-edit-selvedge.component';
 import { AddEditWeftComponent } from './product/weft/add-edit-weft/add-edit-weft.component';
 import { AddEditPickInsertionComponent } from './product/pick-insertion/add-edit-pick-insertion/add-edit-pick-insertion.component';
+import { BeneficiaryComponent } from './beneficiary/beneficiary.component';
+import { AddEditComponent } from './beneficiary/add-edit/add-edit.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +82,7 @@ import { AddEditPickInsertionComponent } from './product/pick-insertion/add-edit
      AddBankComponent, CityComponent,
      EditCityComponent,CountryComponent,EditCountryComponent, CurrencyComponent, 
      EditCurrencyComponent ,AddCurrencyComponent, WeaveComponent, PieceLengthComponent, 
-     ContainerComponent, AddWeaveComponent, AddPieceLengthComponent, AddContainerComponent, SelvedgeComponent, WeftComponent, WarpComponent, PickInsertionComponent, AddEditWarpComponent, AddEditSelvedgeComponent, AddEditWeftComponent, AddEditPickInsertionComponent
+     ContainerComponent, AddWeaveComponent, AddPieceLengthComponent, AddContainerComponent, SelvedgeComponent, WeftComponent, WarpComponent, PickInsertionComponent, AddEditWarpComponent, AddEditSelvedgeComponent, AddEditWeftComponent, AddEditPickInsertionComponent, BeneficiaryComponent, AddEditComponent
   ],
   imports: [
     CommonModule,

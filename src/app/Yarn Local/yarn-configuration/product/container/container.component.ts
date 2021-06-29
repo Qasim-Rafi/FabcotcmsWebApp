@@ -29,7 +29,7 @@ export class ContainerComponent implements OnInit {
   copyData: any = [];
   currentDate = Date.now();
   containerFilter: any = [];
-  ContainerUrl = '/api/YarnConfig/GetAllContainer'
+  ContainerUrl = '/api/YarnConfigs/GetAllContainer'
 
   @ViewChild('myTable', { static: false }) table: DatatableComponent;
 
@@ -78,7 +78,7 @@ export class ContainerComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
 this.spinner.show();
-        this.http.delete(`${environment.apiUrl}/api/YarnConfig/DeleteContainer/` + id.id)
+        this.http.delete(`${environment.apiUrl}/api/YarnConfigs/DeleteContainer/` + id.id)
           .subscribe(
             res => {
               this.response = res;

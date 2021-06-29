@@ -28,7 +28,7 @@ export class WeaveComponent implements OnInit {
   data: any = {};
   copyData: any = [];
   weaveFilter: any = [];
-  weaveUrl = '/api/YarnConfig/GetAllWeave'
+  weaveUrl = '/api/YarnConfigs/GetAllWeave'
 
   @ViewChild('myTable', { static: false }) table: DatatableComponent;
 
@@ -77,7 +77,7 @@ export class WeaveComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
 this.spinner.show();
-        this.http.delete(`${environment.apiUrl}/api/YarnConfig/DeleteWeave/` + id.id)
+        this.http.delete(`${environment.apiUrl}/api/YarnConfigs/DeleteWeave/` + id.id)
           .subscribe(
             res => {
               this.response = res;

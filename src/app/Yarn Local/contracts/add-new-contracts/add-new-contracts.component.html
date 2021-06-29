@@ -350,8 +350,11 @@
                                         <ng-option *ngFor="let i of article" [value]="i.id">{{ i.name }}
                                         </ng-option>
                                     </ng-select> -->
-                                    <input type="text"  placeholder="Article" #contractArticleName="ngModel"
-                                    class="form-control" [(ngModel)]="a.contractArticleName" name="contractArticleName_{{i}}">
+                                    <ng-select name="articleId_{{i}}" #articleId="ngModel" class="input-w px-0"
+                                    [(ngModel)]="a.articleId" placeholder="-- Select --">
+                                    <ng-option *ngFor="let i of article" [value]="i.id">{{ i.name }}
+                                    </ng-option>
+                                </ng-select>
                                     </div>
                                 </div>
                                       <div class="col-md-3">
