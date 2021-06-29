@@ -49,7 +49,7 @@ export class AddContainerComponent implements OnInit {
   }
   editContainer() {
     this.spinner.show();
-    this.http.get(`${environment.apiUrl}/api/YarnConfig/GetContainerById/` + this.containerId)
+    this.http.get(`${environment.apiUrl}/api/YarnConfigs/GetContainerById/` + this.containerId)
       .subscribe(
         res => {
           this.response = res;
@@ -81,7 +81,7 @@ this.spinner.hide();
     }
 this.spinner.show();
     this.http.
-      put(`${environment.apiUrl}/api/YarnConfig/UpdateContainer/` + this.containerId, varr)
+      put(`${environment.apiUrl}/api/YarnConfigs/UpdateContainer/` + this.containerId, varr)
       .subscribe(
         res => {
 
@@ -120,7 +120,7 @@ this.spinner.show();
     }
 this.spinner.show();
     this.http.
-      post(`${environment.apiUrl}/api/YarnConfig/AddContainer`, varr)
+      post(`${environment.apiUrl}/api/YarnConfigs/AddContainer`, varr)
       .subscribe(
         res => {
           this.obj.parent = this.active;

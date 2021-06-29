@@ -48,7 +48,7 @@ export class AddWeaveComponent implements OnInit {
   }
   editWeave() {
     this.spinner.show();
-    this.http.get(`${environment.apiUrl}/api/YarnConfig/GetWeaveById/` + this.weaveId)
+    this.http.get(`${environment.apiUrl}/api/YarnConfigs/GetWeaveById/` + this.weaveId)
       .subscribe(
         res => {
           this.response = res;
@@ -79,7 +79,7 @@ this.spinner.hide();
     }
 this.spinner.show();
     this.http.
-      put(`${environment.apiUrl}/api/YarnConfig/UpdateWeave/` + this.weaveId, varr)
+      put(`${environment.apiUrl}/api/YarnConfigs/UpdateWeave/` + this.weaveId, varr)
       .subscribe(
         res => {
 
@@ -117,7 +117,7 @@ this.spinner.show();
     }
 this.spinner.show();
     this.http.
-      post(`${environment.apiUrl}/api/YarnConfig/AddWeave`, varr)
+      post(`${environment.apiUrl}/api/YarnConfigs/AddWeave`, varr)
       .subscribe(
         res => {
           this.obj.parent = this.active;

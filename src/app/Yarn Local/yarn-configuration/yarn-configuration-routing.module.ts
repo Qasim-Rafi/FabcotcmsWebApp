@@ -21,6 +21,7 @@ import { WeftComponent } from './product/weft/weft.component';
 import { WarpComponent } from './product/warp/warp.component';
 import { SelvedgeComponent } from './product/selvedge/selvedge.component';
 import { PickInsertionComponent } from './product/pick-insertion/pick-insertion.component';
+import { BeneficiaryComponent } from './beneficiary/beneficiary.component';
 
 
 const routes: Routes = [
@@ -49,6 +50,7 @@ const routes: Routes = [
     { path: 'pick-insertion' ,  component: PickInsertionComponent},
     { path: 'Warp' ,  component: WarpComponent},
     { path: 'Weft' ,  component: WeftComponent},
+    { path: 'Beneficiary' ,  component: BeneficiaryComponent},
 ]
   }
 ]

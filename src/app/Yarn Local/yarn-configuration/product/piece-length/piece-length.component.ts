@@ -31,7 +31,7 @@ export class PieceLengthComponent implements OnInit {
   copyData: any = [];
   currentDate = Date.now();
   piecelengthFilter: any = [];
-  PieceLengthUrl = '/api/YarnConfig/GetAllPieceLength'
+  PieceLengthUrl = '/api/YarnConfigs/GetAllPieceLength'
 
   @ViewChild('myTable', { static: false }) table: DatatableComponent;
 
@@ -80,7 +80,7 @@ export class PieceLengthComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
 this.spinner.show();
-        this.http.delete(`${environment.apiUrl}/api/YarnConfig/DeletePieceLength/` + id.id)
+        this.http.delete(`${environment.apiUrl}/api/YarnConfigs/DeletePieceLength/` + id.id)
           .subscribe(
             res => {
               this.response = res;

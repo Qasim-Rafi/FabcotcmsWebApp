@@ -1,0 +1,154 @@
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "line-spin-fade" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+<div class="content-header">
+
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-8">
+      <h2 class="row wrapper page-header font-weight-light"> Beneficiary
+        <div class="ml-2 descr"> Manage Beneficiary detail </div>
+      </h2>
+    </div>
+
+    <div class="col-sm-12 col-md-6 col-lg-4">
+      <ol class="breadcrumb flt-RnL">
+        <li class="breadcrumb-item"><a href="#">Configuration</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Beneficiary</li>
+      </ol>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+<div class="card ibox-content">
+  <div class=" panel blank-panel">
+    <div class=" panel-heading">
+
+      <div class="row mb-2">
+
+        <div class="col-6 col-md-4 col-xl-4 agents-pdg">
+          <button type="button" class="btn btn-primary descBtn display-b">
+            <i class="fas fa-user-tie fa-fw mr-2"></i>{{BeneficiaryCount}}</button>
+          <span class="text-muted text2">Beneficiaries</span>
+        </div>
+        <div class="col-12 col-md-4 col-xl-8 agents-pdg float-right">
+          <button type="button" class="btn btn-primary btn-sm float-right" (click)="addBeneficiary('BeneficiaryAdd', 'beneficiaryForm')">
+            <i class="fa fa-plus"></i>Add New Beneficiary</button>
+        </div>
+
+
+      </div>
+
+      <div class="row">
+        <div class="col-md-12 mb-4">
+          <div class="row justify-content-end">
+
+            <div class=" col-md-4 pr-0">
+
+              <div class="form-group row">
+                <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
+                <div class="col-sm-9">
+                  <input type="text" placeholder="Search by Beneficiary Name" class="input form-control form-control-sm"
+                  (keyup)="search($event)">
+                </div>
+              </div>
+
+              <!-- <div class="input-group col-md-offset-3">
+                <input type="text" placeholder="Search by Agent Code or Agent Name" class="input form-control w-50"
+                  (keyup)="search($event)">
+              </div> -->
+
+            </div>
+
+            <div class="html5buttons mrg-tsm">
+              <div class="dt-buttons btn-group btn-group-sm">
+                <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0"
+                (click)="copyBeneficiaryList()"
+                  aria-controls="DataTables_Table_0"><span>Copy</span></a>
+                <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
+                  aria-controls="DataTables_Table_0"
+                  (click)="beneficiaryCsvFile()"
+                  ><span>CSV</span></a>
+                <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
+                  aria-controls="DataTables_Table_0"
+                   (click)="beneficiaryExcelFile()"><span>Excel</span></a>
+                <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0"
+                  aria-controls="DataTables_Table_0"
+                  (click)="beneficiaryPdfList()"
+                  ><span>PDF</span></a>
+                <a class="btn btn-default buttons-print bg-white" tabindex="0"
+                  aria-controls="DataTables_Table_0"
+                  (click)="printBeneficiaryList()"
+                  ><span>Print</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="panel-body">
+
+      <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'"
+        [headerHeight]="50" [footerHeight]="50" [sorts]="[{prop: 'code', dir: 'asce'}]" [rowHeight]="'auto'"
+        [limit]="6">
+
+        <!-- <ngx-datatable-column name="Derpartment Name" [width]="60" prop="code">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.code}}
+          </ng-template>
+        </ngx-datatable-column> -->
+        <ngx-datatable-column name="User Name" [width]="20" prop="userId">
+          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+            {{row.userId}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Commission" [width]="10" prop="commissionRatio">
+          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+            {{row.commissionRatio}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Last Updated On | By" [width]="80" prop="dateTime">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              {{row.dateTime}}
+            </ng-template>
+          </ngx-datatable-column>
+        <ngx-datatable-column name="Include" [width]="20" prop="includingBuyerId">
+          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+            {{row.includingBuyerId}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Exclude" [width]="10" prop="excludingBuyerId">
+          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+            {{row.excludingBuyerId}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Status " [width]="5" prop="status">
+          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+            <span class="badge badge-primary" *ngIf="row.status=='true'">Active</span>
+            <span class="badge badge-secondary" *ngIf="row.status=='false'">Inactive</span>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Remarks" [width]="5" prop="remarks">
+          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+            {{row.remarks}}
+          </ng-template>
+        </ngx-datatable-column>
+       
+        <ngx-datatable-column name="Action" [width]="80">
+          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+            <button type="button" class="btn editIconBack" (click)="editBeneficiary(row, 'BeneficiaryEdit','beneficiaryForm')">
+              <i class="far fa-edit "></i>
+            </button>
+         
+          </ng-template>
+        </ngx-datatable-column>
+
+      </ngx-datatable>
+
+    </div>
+
+  </div>
+</div>
