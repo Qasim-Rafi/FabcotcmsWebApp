@@ -83,6 +83,8 @@ printData : any = {}
   deliveryFilter: any = [];
   dispatchFilter: any = [];
   TnaData: any = {};
+  article: any = [];
+
   // check="75";
   TnaFilter: any = {};
   shipmentData: any = {};
@@ -117,6 +119,10 @@ max:any;
   sellerName:string
   image : any;
   image2 : any;
+  Article: any = [];
+ data5: any = {};
+ newArticle: any;
+ contractArticles : any = {};
  percent:string;
   constructor(
     private router: Router,
@@ -149,7 +155,8 @@ max:any;
       this.image = res;
      
     });
-   
+   this.GetArticleDropdown("start");
+   this.getArticles();
     this.getPrintData();
     this.getContractData();
     this.getAllReminder();
@@ -205,6 +212,49 @@ max:any;
     });
   
 
+  }
+
+  addArticle() {
+    this.contractArticles.push({ id: this.contractArticles.length });
+  }
+  removeArticle(i: number) {
+    this.contractArticles.splice(i, 1);
+  }
+  GetArticleDropdown(type: string) {
+    this.service.getArticles().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.article = this.response.data;
+        
+        if (type == "other") {
+          // this.seller.id = this.newSeller;
+          this.data.articleId = this.newArticle
+        }
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
+  getArticles() {
+
+    this.http.get(`${environment.apiUrl}/api/Lookups/ContractArticles/`+ this.contractId)
+      .subscribe(res => {
+        this.response = res;
+
+        if (this.response.success == true) {
+          this.contractArticles = this.response.data
+    
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+        // this.spinner.hide();
+      },(err: HttpErrorResponse) => {
+        const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+        this.toastr.error(messages.toString(), 'Message.');
+        console.log(messages);
+      });
   }
   contractOwner() {
     const modalRef = this.modalService.open(ContractOwnerComponent, { centered: true });

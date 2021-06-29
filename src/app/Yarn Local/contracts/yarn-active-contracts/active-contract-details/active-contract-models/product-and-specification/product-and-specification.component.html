@@ -55,7 +55,7 @@
    
   
   
-      <div class="form-group row">
+      <div class="form-group row " *ngIf = "loggedInDepartmentName != 'Yarn Export'">
         <label for="articleId" class="col-sm-3 col-form-label text_Navy ">Article</label>
         <div class="col-sm-9">
           <ng-select [(ngModel)]="data.articleId" placeholder="-- Select --"
