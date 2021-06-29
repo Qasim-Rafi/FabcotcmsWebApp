@@ -555,7 +555,7 @@
                             </div>
                     
                     
-                            <div class="row">
+                            <div class="row" *ngIf = "loggedInDepartmentName == 'Yarn Export'">
                                 <div class="col-md-6">
                     
                                     <dl class="row">
@@ -577,7 +577,7 @@
                     
                             </div>
                     
-                            <div class="row">
+                            <div class="row" *ngIf = "loggedInDepartmentName == 'Yarn Export'">
                                 <div class="col-md-12 mb-4">
                                     <button class="btn btn-outline-primary btn-sm float-right"
                                         (click)="editProductAndSpec(contractProductData)"> <i class="far fa-edit"></i></button>
@@ -589,7 +589,7 @@
                             </div>
                     
                     
-                            <div class="row">
+                            <div class="row"  *ngIf="loggedInDepartmentName=='Yarn Export'">
                                 <div class="col-md-8">
                     
                                     <dl class="row">
@@ -608,11 +608,12 @@
                                                     <div class="col-md-3 ">
                                                         <div class="input-group">
                                                        
-                                                        <ng-select name="articleId_{{i}}" #articleId="ngModel" class="input-w px-0"
+                                                        <ng-select  name="articleId_{{i}}" #articleId="ngModel" class="input-w px-0"
                                                         [(ngModel)]="a.articleId" placeholder="-- Select --">
                                                         <ng-option *ngFor="let c of article" [value]="c.id">{{ c.name }}
                                                         </ng-option>
                                                     </ng-select>
+                                                   
                                                         </div>
                                                     </div>
                                                           <div class="col-md-3 ">
@@ -662,7 +663,7 @@
                     
                     
                             </div>
-                            <div class="row">
+                            <div class="row"  *ngIf="loggedInDepartmentName=='Yarn Export'">
                                 <div class="col-md-12 mb-4">
                                     <button class="btn btn-outline-primary btn-sm" (click)="editArticle()"> Edit Article</button>
 
