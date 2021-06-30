@@ -14,13 +14,13 @@
   <form #addTypeForm="ngForm" novalidate (ngSubmit)=" UpdateType(addTypeForm)">
 
     <div class="row justify-content-center">
-      <div class="col-10 col-md-10 pt-3 pb-2">
+      <div class="col-10 col-md-11 pt-3 pb-2">
     
     
         <div class="form-group row">
           <label for="type" class="col-md-3 col-form-label control-label text_Navy">Fabric Type<span
               class="required-denote">*</span> </label>
-          <div class="col-md-9">
+          <div class="col-md-8">
             <input appAutofocus required id="type" type="text" class="form-control" placeholder="Name" name="type"
               [(ngModel)]="data.type" maxlength="100" #type="ngModel"
               [ngClass]="{'error': type.invalid && addTypeForm.submitted}">
@@ -31,7 +31,7 @@
     
         <div class="form-group row">
           <label for="description" class="col-md-3 col-form-label text-grey">Description</label>
-          <div class="col-md-9">
+          <div class="col-md-8">
             <textarea class="form-control" id="description" rows="3" placeholder="Brief Fabric description here ..."
               maxlength="500" name="description" [(ngModel)]="data.description" #description="ngModel"></textarea>
           </div>
@@ -39,7 +39,7 @@
     
         <div class="form-group row">
           <label for="active" class="col-md-3 col-form-label text-grey"></label>
-          <div class="col-md-9">
+          <div class="col-md-8">
             <div class="form-check form-check-inline">
               <input class="form-check-input check-btn " id="active" type="checkbox" name="active" [(ngModel)]="data.active"
                 #active="ngModel">

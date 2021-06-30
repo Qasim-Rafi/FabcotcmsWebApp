@@ -15,12 +15,12 @@
   <form #sellerForm="ngForm" novalidate >
 
     <div class="row justify-content-center">
-      <div class="col-10 col-md-10 pt-3 pb-2">
+      <div class="col-10 col-md-11 pt-3 pb-2">
     
         <div class="form-group row">
           <label for="sellerName" class="col-md-3 col-form-label text_Navy">Seller Name<span
               class="required-denote">*</span></label>
-          <div class="col-md-9">
+          <div class="col-md-8">
             <input appAutofocus required maxlength="60" type="text" class="form-control" placeholder="Seller name"
               name="sellerName" [(ngModel)]="data.sellerName" #sellerName="ngModel"
               [ngClass]="{ 'error': sellerForm.submitted  && sellerName.invalid }" />
@@ -29,7 +29,7 @@
     
         <div class="form-group row">
           <label for="sellerBillAddress" class="col-md-3 col-form-label">Billing Address</label>
-          <div class="col-md-9">
+          <div class="col-md-8">
             <textarea maxlength="300" class="form-control" id="sellerBillAddress" rows="3"
               placeholder="Seller mailing address" name="sellerBillAddress" [(ngModel)]="data.sellerBillAddress"
               #sellerBillAddress="ngModel"></textarea>
@@ -40,7 +40,7 @@
           <label for="country" class="col-md-3 col-form-label text_Navy">Country<span
               class="required-denote">*</span></label>
     
-          <div class="col-md-9">
+          <div class="col-md-8">
             <ng-select [(ngModel)]="data.countryId" required placeholder="-- Select --" name="countryId"
               #countryId="ngModel" [ngClass]="{ 'error': countryId.invalid && sellerForm.submitted }">
               <ng-option *ngFor="let i of country" [value]="i.id">{{ i.name }}
@@ -54,7 +54,7 @@
     
         <div class="form-group row">
           <label for="sellerContact" class="col-md-3 col-form-label">Contact Nos.</label>
-          <div class="col-md-9">
+          <div class="col-md-8">
             <div class="row">
               <div class="col-md-6 fieldmrgbtm">
                 <input pattern="[+0-9-]{7,15}" maxlength="15" class="form-control" id="sellerContact"
@@ -76,7 +76,7 @@
     
         <div class="form-group row">
           <label for="sellerFax" class="col-md-3 col-form-label">Fax Number</label>
-          <div class="col-md-9">
+          <div class="col-md-8">
             <input pattern="[0-9-]{0,15}" maxlength="15" class="form-control" id="sellerFax" placeholder="Seller Fax No."
               name="sellerFax" [(ngModel)]="data.sellerFax" #sellerFax="ngModel"
               [ngClass]="{ 'error': sellerFax.invalid && sellerFax.touched }" />
@@ -85,7 +85,7 @@
     
         <div class="form-group row">
           <label for="sellerNTN" class="col-md-3 col-form-label">NTN/GST Nos.</label>
-          <div class="col-md-9">
+          <div class="col-md-8">
             <div class="row">
               <div class="col-md-6 fieldmrgbtm">
                 <input type="text" pattern="[+-a-zA-Z0-9]" class="form-control" id="sellerNTN" placeholder="NTN No."
@@ -103,7 +103,7 @@
     
         <div class="form-group row">
           <label for="certificatedeIds" class="col-md-3 col-form-label">Certificate(s)</label>
-          <div class="col-md-9">
+          <div class="col-md-8">
             <ng-select [multiple]="true" [(ngModel)]="data.certificateIds" placeholder="-- Select --"
               name="certificatedeIds" #certificatedeIds="ngModel">
               <ng-option *ngFor="let i of certification" [value]="i.id">{{ i.name }}
@@ -115,7 +115,7 @@
     
         <div class="form-group row">
           <label for="capabilitiesIds" class="col-md-3 col-form-label">Capabilities</label>
-          <div class="col-md-9">
+          <div class="col-md-8">
             <ng-select [multiple]="true" [(ngModel)]="data.capabilitiesIds" placeholder="-- Select --"
               name="capabilitiesIds" #capabilitiesIds="ngModel">
               <ng-option *ngFor="let i of capabilities" [value]="i.id">{{ i.name }}
@@ -127,7 +127,7 @@
     
         <div class="form-group row">
           <label for="sellerStrenght" class="col-md-3 col-form-label">Major Strenghts</label>
-          <div class="col-md-9">
+          <div class="col-md-8">
             <textarea maxlength="300" class="form-control" id="sellerStrenght" rows="3"
               placeholder="Major marketing strengths ..." name="sellerStrenght" [(ngModel)]="data.sellerStrenght"
               #sellerStrenght="ngModel"></textarea>
@@ -136,7 +136,7 @@
     
         <div class="form-group row">
           <label for="leadTime" class="col-md-3 col-form-label">Leadtime / MOQ</label>
-          <div class="col-md-9">
+          <div class="col-md-8">
             <textarea maxlength="300" class="form-control" id="leadTime" rows="3" placeholder="Lead time and MOQ ..."
               name="leadTime" [(ngModel)]="data.leadTime" #leadTime="ngModel"></textarea>
           </div>
@@ -144,7 +144,7 @@
     
         <div class="form-group row">
           <label for="sellerDetails" class="col-md-3 col-form-label">Seller Details</label>
-          <div class="col-md-9">
+          <div class="col-md-8">
             <textarea maxlength="300" class="form-control" id="sellerDetails" rows="3"
               placeholder="Seller additional details here ..." name="sellerDetails" [(ngModel)]="data.sellerDetails"
               #sellerDetails="ngModel"></textarea>
@@ -160,7 +160,7 @@
         <div class="form-group row">
           <label for="parentSellerId" class="col-md-3 col-form-label">Parent Seller</label>
     
-          <div class="col-md-9">
+          <div class="col-md-8">
             <ng-select name="parentSellerId" [(ngModel)]="data.parentSellerId" placeholder="-- Select --">
               <ng-option *ngFor="let i of seller" [value]="i.id">
                 {{ i.sellerName }}

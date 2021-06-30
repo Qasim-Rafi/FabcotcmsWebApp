@@ -15,14 +15,14 @@
   <form #buyerForm="ngForm" novalidate (ngSubmit)="addBuyer(buyerForm)">
 
     <div class="row justify-content-center">
-      <div class="col-10 col-md-10 pt-3 pb-2">
+      <div class="col-10 col-md-11 pt-3 pb-2">
     
     
         <div class="form-group row">
           <label for="name" class="col-md-3 col-form-label text_Navy"><strong>Buyer Name</strong>
             <span class="required-denote">*</span>
           </label>
-          <div class="col-md-9">
+          <div class="col-md-8">
             <input appAutofocus required maxlength="60" type="text" class="form-control" placeholder="Buyer name"
               name="buyerName" [(ngModel)]="data.buyerName" #buyerName="ngModel"
               [ngClass]="{ 'error': buyerForm.submitted &&  buyerName.invalid }" />
@@ -32,7 +32,7 @@
     
         <div class="form-group row">
           <label for="bill-address" class="col-md-3 col-form-label">Billing Address</label>
-          <div class="col-md-9">
+          <div class="col-md-8">
             <textarea maxlength="300" class="form-control" id="buyerBillAddress" rows="3"
               placeholder="Buyer mailing address" name="buyerBillAddress" [(ngModel)]="data.buyerBillAddress"
               #buyerBillAddress="ngModel"></textarea>
@@ -41,7 +41,7 @@
     
         <div class="form-group row">
           <label for="delivery-address" class="col-md-3 col-form-label">Delivery Address</label>
-          <div class="col-md-9">
+          <div class="col-md-8">
             <textarea maxlength="300" class="form-control" id="buyerDiliveryAddress" rows="3"
               placeholder="Buyer delivery address" name="buyerDiliveryAddress" [(ngModel)]="data.buyerDiliveryAddress"
               #buyerDiliveryAddress="ngModel"></textarea>
@@ -50,7 +50,7 @@
     
         <div class="form-group row">
           <label for="countryId" class="col-md-3 col-form-label">Country<span class="required-denote">*</span></label>
-          <div class="col-md-9">
+          <div class="col-md-8">
             <ng-select [(ngModel)]="data.countryId" required placeholder="-- Select --" name="countryId"
               #countryId="ngModel" [ngClass]="{ error: buyerForm.submitted && countryId.invalid }">
               <ng-option *ngFor="let i of country" [value]="i.id">{{ i.name }}
@@ -62,7 +62,7 @@
     
         <div class="form-group row">
           <label for="buyerContact" class="col-md-3 col-form-label">Contact Nos.</label>
-          <div class="col-md-9">
+          <div class="col-md-8">
             <div class="row">
               <div class="col-md-6 fieldmrgbtm">
                 <input pattern="[+0-9-]{7,15}" maxlength="15" minlength="7" class="form-control" id="buyerContact"
@@ -86,7 +86,7 @@
     
         <div class="form-group row">
           <label for="faxNumber" class="col-md-3 col-form-label">Fax Number</label>
-          <div class="col-md-9">
+          <div class="col-md-8">
             <input pattern="[+0-9-]{5,15}" minlength="5" maxlength="15" class="form-control" id="faxNumber"
               placeholder="Buyer Fax No." name="faxNumber" [(ngModel)]="data.faxNumber" #faxNumber="ngModel"
               [ngClass]="{ error: faxNumber.invalid && buyerForm.submitted }" />
@@ -97,7 +97,7 @@
         <div class="form-group row">
           <label for="ntnNumber" class="col-md-3 col-form-label">NTN/GST Nos.</label>
     
-          <div class="col-md-9">
+          <div class="col-md-8">
             <div class="row">
               <div class="col-md-6 fieldmrgbtm">
                 <input type="text" pattern="[+0-9-]" class="form-control" id="ntnNumber" placeholder="NTN No."
@@ -116,7 +116,7 @@
     
         <div class="form-group row">
           <label for="buyerDetails" class="col-md-3 col-form-label">Buyer Details</label>
-          <div class="col-md-9">
+          <div class="col-md-8">
             <textarea maxlength="500" class="form-control" id="buyerDetails" rows="4"
               placeholder="Buyer additional details here ..." name="buyerDetails" [(ngModel)]="data.buyerDetails"
               #buyerDetails="ngModel"></textarea>
@@ -130,7 +130,7 @@
     
         <div class="form-group row">
           <label for="parentBuyerId" class="col-md-3 col-form-label">Parent Buyer</label>
-          <div class="col-md-9">
+          <div class="col-md-8">
             <ng-select name="parentBuyerId" [(ngModel)]="data.parentBuyerId" placeholder="-- Select --">
               <ng-option *ngFor="let i of buyer" [value]="i.id">
                 {{ i.buyerName }}
