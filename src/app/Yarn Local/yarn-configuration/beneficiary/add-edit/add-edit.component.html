@@ -28,7 +28,7 @@
             <label class="col-sm-3 col-form-label text-grey">Department Name</label>
             <div class="col-sm-4">
               <ng-select [(ngModel)]="data.id" placeholder="-- Select --" name="id"
-                #id="ngModel" [ngClass]="{ error: id.invalid && BeneficiaryForm.submitted}">
+                #id="ngModel" (change) = "getDeptDropdown2($event)" [ngClass]="{ error: id.invalid && BeneficiaryForm.submitted}">
                 <ng-option *ngFor="let i of departments" [value]="i.id">{{ i.name }}
                 </ng-option>
               </ng-select>

@@ -22,11 +22,16 @@ export class AddEditComponent implements OnInit {
   departments: any = [];
   users: any = [];
   response: any;
-  data: any = {};
+  data: any = [];
   obj: any = {};
   dateformater: Dateformater = new Dateformater();  
   status = true;
   FormName: any;
+  userName : any;
+  userrole:string;
+  typeId : any;
+  deptId : any;
+
   @Input() beneficiaryId;
   @Input() statusCheck;
   @ViewChild(NgForm) BeneficiaryForm;
@@ -39,31 +44,56 @@ export class AddEditComponent implements OnInit {
     @Inject(DOCUMENT) private _document: Document) { }
 
   ngOnInit(): void {
+    this.userrole=localStorage.getItem('role');
+    if(this.userrole == 'SuperAdmin'){
+      this.typeId = 1 ;
+   
+    } 
+    else if(this.userrole == 'Admin'){
+      this.typeId = 2;
+
+    } 
+    else if(this.userrole == 'Manager'){
+      this.typeId = 3;
+  
+  }
+  else if(this.userrole == 'SalesExecutive'){
+    this.typeId = 4;
+ 
+  } 
 this.GetExcludingBuyersDropdown();
 this.GetIncludingBuyersDropdown();
-this.GetUsersDropdown();
-    {
-      this.service.getDepartments().subscribe(res => {
-        this.response = res;
-        if (this.response.success == true) {
-          this.departments = this.response.data;
-        }
-        else {
-          this.toastr.error(this.response.message, 'Message.');
-        }
-      })
+ 
+    this.statusCheck = this.statusCheck;
+    if (this.statusCheck == 'BeneficiaryEdit') {
+      this.editBeneficiary();
     }
-    // this.statusCheck = this.statusCheck;
-    // if (this.statusCheck == 'BeneficiaryEdit') {
-    //   this.editBeneficiary();
-    // }
-    this.editBeneficiary();
+    // this.editBeneficiary();
+  this.getDeptDropdown();
   }
 
   get activeModal() {
     return this._NgbActiveModal;
   }
- 
+  getDeptDropdown(){
+  
+      this.service.getDepartments().subscribe(res => {
+        this.response = res;
+        if (this.response.success == true) {
+          this.departments = this.response.data;
+         
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+      })
+    
+  }
+ getDeptDropdown2(event){
+  this.deptId = event;
+this.GetUsersDropdown(this.deptId);
+   
+   }
   //EDIT Beneficiaries
 
   editBeneficiary() {
@@ -74,7 +104,8 @@ this.GetUsersDropdown();
           this.response = res;
           if (this.response.success == true) {
 
-            this.data = this.response.data;
+            this.data = this.response.data[0];
+          
             this.spinner.hide();
           }
           else {
@@ -89,8 +120,8 @@ this.GetUsersDropdown();
           }
         });
   }
-  GetUsersDropdown() {
-    this.http.get(`${environment.apiUrl}/api/Lookups/Users`).
+  GetUsersDropdown(dept) {
+    this.http.get(`${environment.apiUrl}/api/Lookups/Users/`+ 0 +'/' + dept).
     subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
@@ -180,26 +211,26 @@ this.spinner.show();
 // }
 
   //GET BENEFICIARY
-  getBeneficiary() {
-    this.http.get(`${environment.apiUrl}/api/Configs/GetAllBeneficiary`)
-      .subscribe(
-        res => {
+  // getBeneficiary() {
+  //   this.http.get(`${environment.apiUrl}/api/Configs/GetAllBeneficiary`)
+  //     .subscribe(
+  //       res => {
 
-          this.response = res;
-          if (this.response.success == true) {
-            this.data = this.response.data;
+  //         this.response = res;
+  //         if (this.response.success == true) {
+  //           this.data = this.response.data;
 
-          }
-          else {
-            this.toastr.error(this.response.message, 'Message.');
-          }
+  //         }
+  //         else {
+  //           this.toastr.error(this.response.message, 'Message.');
+  //         }
 
-        }, err => {
-          if (err.status == 400) {
-            this.toastr.error(this.response.message, 'Message.');
-          }
-        });
-  }
+  //       }, err => {
+  //         if (err.status == 400) {
+  //           this.toastr.error(this.response.message, 'Message.');
+  //         }
+  //       });
+  // }
 
 
 
