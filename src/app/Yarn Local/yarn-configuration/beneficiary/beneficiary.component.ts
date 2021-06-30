@@ -55,8 +55,7 @@ export class BeneficiaryComponent implements OnInit {
   search(event) {
     const val = event.target.value.toLowerCase();
     const temp = this.beneficiaryFilter.filter(function (d) {
-      return (d.name.toLowerCase().indexOf(val) !== -1 ||
-        d.country.toLowerCase().indexOf(val) !== -1 || !val);
+      return (d.userName.toLowerCase().indexOf(val) !== -1 ||!val);
     });
     this.rows = temp;
   }

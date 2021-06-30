@@ -982,7 +982,9 @@ getContractCommisionData(){
         // this.response.data ==null? '':this.response.data;
         this.contractCommissionData = this.response.data;
         this.agent = this.response.data.agentCommissions;
-
+    if(this.response.data.fabCotComission == null ){
+      this.contractCommissionData.fabCotComission == "";
+    }
         // this.contractCommissionData.agenetName= parseInt(this.contractCommissionData.agenetName);
         
       }
@@ -2275,6 +2277,7 @@ getImage(){
                       body: [
                         [{text:'Deliveries Date:'  , style:'heading'} , {text: this.deliveryData.map((row=>row.supplierDateDay+row.supplierDateMonth+row.supplierDateYear)) , style:'heading2'}],] }
                       },
+ 
                       {
                         layout:'noBorders',
                         margin: [70 , 7 , 0 , 0],
