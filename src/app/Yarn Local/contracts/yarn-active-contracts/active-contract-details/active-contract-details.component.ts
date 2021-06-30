@@ -223,7 +223,9 @@ max1:any;
     if (filterlist !== -1) {
       this.contractArticles[filterlist].isAddedMore = true;
       this.contractArticles[filterlist].isDeleted = false;
+      
     }
+ 
   }
   removeArticle(a) {
     // this.contractArticles.splice(i, 1);
@@ -235,8 +237,10 @@ max1:any;
 
   
     }
+
   // }
   this.isdeletedArticla=true;
+
 
   }
   GetArticleDropdown(type: string) {
@@ -258,6 +262,7 @@ max1:any;
   
   editArticle()
   {
+    this.spinner.show();
     for(let i =0; i <this.contractArticles.length ;i++ ){
       let varr = {
         "id" :this.contractArticles[i].id,
@@ -282,7 +287,10 @@ max1:any;
         this.response = res;
         if (this.response.success == true){
           this.toastr.success(this.response.message, 'Message.');
-          this.getContractData()
+          this.contractArticles =[];
+          this.articleArray=[];
+          this.getContractData();
+         
           this.isdeletedArticla =false;
   this.spinner.hide();
         

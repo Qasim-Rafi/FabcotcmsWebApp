@@ -1486,8 +1486,8 @@
                 <div class="col-md-4">
 
                     <div class="input-group">
-                        <ng-select name="sellerPaymentTermId" #sellerPaymentTermId="ngModel" class="input-w2 px-0"
-                            [(ngModel)]="data.sellerPaymentTermId" placeholder="Payment Terms">
+                        <ng-select name="paymentTermId" #paymentTermId="ngModel" class="input-w2 px-0"
+                            [(ngModel)]="data.paymentTermId" placeholder="Payment Terms">
                             <ng-option *ngFor="let i of PayementTerm" [value]="i.id">{{ i.term}}
                             </ng-option>
                         </ng-select>
@@ -1504,9 +1504,9 @@
 
                 <div class="col-md-4 mrg-sm1">
                     <div class="input-group">
-                        <input type="text" placeholder="Days" name="sellerPaymentTermDays"
-                            #sellerPaymentTermDays="ngModel" class="form-control text-w-4"
-                            [(ngModel)]="data.sellerPaymentTermDays">
+                        <input type="text" placeholder="Days" name="paymentTermDays"
+                            #paymentTermDays="ngModel" class="form-control text-w-4"
+                            [(ngModel)]="data.paymentTermDays">
 
                     </div>
                 </div>
@@ -1515,8 +1515,8 @@
                     <div class="input-group">
 
                         <input type="text" placeholder="Payment Term additional Info"
-                            class="form-control" [(ngModel)]="data.sellerPaymentTermInfo" #sellerPaymentTermInfo="ngModel"
-                            name="sellerPaymentTermInfo">
+                            class="form-control" [(ngModel)]="data.paymentTermInfo" #paymentTermInfo="ngModel"
+                            name="paymentTermInfo">
 
                     </div>
                 </div>
