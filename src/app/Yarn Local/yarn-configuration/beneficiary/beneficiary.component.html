@@ -102,7 +102,7 @@
         </ngx-datatable-column> -->
         <ngx-datatable-column name="User Name" [width]="20" prop="userId">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            {{row.userId}}
+            {{row.userName}}
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="Commission" [width]="10" prop="commissionRatio">
@@ -117,12 +117,12 @@
           </ngx-datatable-column>
         <ngx-datatable-column name="Include" [width]="20" prop="includingBuyerId">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            {{row.includingBuyerId}}
+            {{row.includingBuyerName}}
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="Exclude" [width]="10" prop="excludingBuyerId">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            {{row.excludingBuyerId}}
+            {{row.excludingBuyerName}}
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="Status " [width]="5" prop="status">
@@ -142,7 +142,11 @@
             <button type="button" class="btn editIconBack" (click)="editBeneficiary(row, 'BeneficiaryEdit','beneficiaryForm')">
               <i class="far fa-edit "></i>
             </button>
-         
+            <!-- <button type="button" class="btn editIconBack" (click)="reviveBeneficiary(row, 'BeneficiaryRevive','beneficiaryForm')">
+              <i class="far fa-edit "></i>
+            </button> -->
+            <button type="button" class="btn deleteIconBack" data-toggle="tooltip"
+            data-placement="top" title=""><i class="fas fa-trash" (click) = "deleteBeneficiary(row)"></i></button>
           </ng-template>
         </ngx-datatable-column>
 

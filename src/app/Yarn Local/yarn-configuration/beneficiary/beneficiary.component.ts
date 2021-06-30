@@ -107,7 +107,68 @@ export class BeneficiaryComponent implements OnInit {
       // on dismiss
     });
   }
+  // reviveBeneficiary(row, check, name) {
+  //   const modalRef = this.modalService.open(AddEditComponent, { centered: true });
+  //   modalRef.componentInstance.beneficiaryId = row.id; //just for edit.. to access the needed row
+  //   modalRef.componentInstance.statusCheck = check;
+  //   modalRef.componentInstance.FormName = name;
+
+  //   modalRef.result.then((data) => {
+  //     // on close
+  //     if (data == true) {
+      
+  //     }
+  //     this.service.fetch((data) => {
+  //       this.rows = data;
+  //     }, this.beneficiaryUrl);
+  //   }, (reason) => {
+  //     // on dismiss
+  //   });
+  // }
  
+  deleteBeneficiary(row) {
+    Swal.fire({
+      title: GlobalConstants.deleteTitle, //'Are you sure?',
+      text: GlobalConstants.deleteMessage + 'Beneficiary of User:' + '"' + row.userName + '"',
+      icon: 'error',
+      showCancelButton: true,
+      confirmButtonColor: '#ed5565',
+      cancelButtonColor: '#dae0e5',
+      cancelButtonText: 'No',
+      confirmButtonText: 'Yes',
+      reverseButtons: true,
+      position: 'top',
+    }).then((result) => {
+      if (result.isConfirmed) {
+  
+        this.http.delete(`${environment.apiUrl}/api/Configs/DeleteBeneficiary/` + row.id )
+          .subscribe(
+            res => {
+              this.response = res;
+              if (this.response.success == true) {
+                this.toastr.error(this.response.message, 'Message.');
+                this.service.fetch((data) => {
+                  this.rows = data;
+                  this.beneficiaryFilter = [...this.rows];
+            
+                  this.BeneficiaryCount = this.rows.length;
+                }, this.beneficiaryUrl);
+  
+              }
+              else {
+                this.toastr.error(this.response.message, 'Message.');
+              }
+  
+            }, err => {
+              if (err.status == 400) {
+                this.toastr.error(this.response.message, 'Message.');
+              }
+            });
+  
+      }
+    })
+  
+  }
 
   beneficiaryExcelFile(){
     const filtered = this.rows.map(row => ({
