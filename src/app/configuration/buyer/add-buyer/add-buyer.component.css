@@ -6,11 +6,11 @@ select {
   color: grey;
   border-radius: 0px;
 }
-label {
+/* label {
   text-align: right;
   font-size: 11px;
   color: grey;
-}
+} */
 
 .button-save {
   background-color: #1ab394;
@@ -39,6 +39,14 @@ textarea{
   font-family: "open sans", "Helvetica Neue";
 } */
 
+
+
+@media only screen and (max-width: 767px) {
+  .fieldmrgbtm {
+    margin: 0 0 10px 0;
+  }
+}
+
 @media (max-width: 640px) {
   label {
     text-align: left;
@@ -50,3 +58,7 @@ textarea{
     margin: 0 0 10px 0;
   }
 }
+
+
+
+

@@ -513,6 +513,9 @@ select {
   label {
     text-align: left;
   }
+  .modal-dialog {
+    max-width: 65% !important;
+  }
 }
 
 @media only screen and (max-width: 667px) {
@@ -545,6 +548,11 @@ select {
 
   .winput {
     width: 40% !important;
+  }
+
+  .modal-dialog {
+    max-width: 100% !important;
+    margin: 2.0rem !important;
   }
 }
 

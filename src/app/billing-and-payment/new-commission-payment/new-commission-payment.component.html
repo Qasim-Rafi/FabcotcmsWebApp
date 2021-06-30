@@ -55,43 +55,45 @@
 
                 <form #commissionForm="ngForm" novalidate>
                     <div class="form-row">
-                        <div class="col-md-12 pt-2r pb-3">
-                            <div class="col-md-12">
-                                <span class="badge badge-primary">Parties</span>
-                                <!-- <div class="form-Group row">
-                                    <button class="btn btn-primary float-left">
-                                        Parties
-                                    </button>
-                                </div> -->
+                        <div class="col-md-12 pt-2 pb-3">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <span class="badge badge-primary">Parties</span>
+                                    <!-- <div class="form-Group row">
+                                                        <button class="btn btn-primary float-left">
+                                                            Parties
+                                                        </button>
+                                                    </div> -->
+                                </div>
                             </div>
-
+                    
                             <div class="form-group row">
                                 <label class="col-md-3 col-form-label control-label">
                                     Supplier Name:
                                 </label>
-                                <div class="col-md-6">
-                                
-                                
+                                <div class="col-md-7">
+                    
+                    
                                     <ng-select name="supplier" placeholder="--- Select Suppiler ---">
                                         <ng-option>new-Supplier</ng-option>
                                     </ng-select>
-                                
-                                
-                                    <div class="col-md-6">
+                    
+                    
+                                    <div class="col-md-12">
                                         <small id="passwordHelpBlock" class="form-text text-lightgrey">
                                             Parent Supplier are available for selection
                                         </small>
                                     </div>
                                 </div>
                             </div>
-
-
+                    
+                    
                             <div class="form-group row">
                                 <label class="col-md-3 col-form-label control-label">
                                     Is Buyer Commission
                                 </label>
-
-                                <div class="col-md-6">
+                    
+                                <div class="col-md-7">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                         <small id="passwordHelpBlock" class="form-text text-lightgrey">
@@ -101,171 +103,182 @@
                                 </div>
                             </div>
                         </div>
-
+                    
                     </div>
 
 
 
                     <!-- payment Details -->
                     <div class="form-row border-top">
-                        <div class="col-md-12 pt-2r pb-3">
-                            
-                            <div class="col-md-12">
-                                <span class="badge badge-primary">Payment Details</span>
-                            </div>
+                        <div class="col-md-12 pt-3 pb-3">
 
-                        </div>
-                    </div>
-
-
-                    <div class="form-group row">
-                    
-                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">Payment Date</label>
-                    
-                        <div class="col-md-6">
                             <div class="row">
+                                <div class="col-md-12 mb-3">
+                                    <span class="badge badge-primary">Payment Details</span>
+                                </div>
+                            </div>
                     
                     
-                                <div class="col-md-5">
-                                    <div class="input-group">
-                                        <input navigation="select" class="form-control  " ngbDatepicker #validityDate="ngbDatepicker"
-                                            (click)="validityDate.toggle()" name="validityDate" />
+                    
+                    
+                            <div class="form-group row">
+                    
+                                <label for="inputEmail3" class="col-md-3 col-form-label control-label">Payment Date</label>
+                    
+                                <div class="col-md-7">
+                                    <div class="row">
+                    
+                    
+                                        <div class="col-md-5">
+                                            <div class="input-group">
+                                                <input navigation="select" class="form-control  " ngbDatepicker
+                                                    #validityDate="ngbDatepicker" (click)="validityDate.toggle()" name="validityDate" />
+                                            </div>
+                                        </div>
+                    
+                                        <div class="col-md-7 mrg-tsm">
+                                            <div class="input-group">
+                                                <label for="inputEmail3" class="col-form-label control-label col-md-3">Pay No.</label>
+                    
+                                                <div class="col-md-9">
+                                                    <input type="text" placeholder="Payment Number" class="form-control text-w-60">
+                                                </div>
+                                            </div>
+                                        </div>
+                    
                                     </div>
                                 </div>
                     
-                                <div class="col-md-7 mrg-sm1">
-                                    <div class="input-group">
-                                        <label for="inputEmail3" class="col-form-label control-label col-md-4">Pay No.</label>
+                            </div>
                     
-                                        <div class="col-md-8">
-                                            <input type="text" placeholder="Payment Number" class="form-control text-w-60">
+                    
+                    
+                            <!--  amount-->
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-md-3 col-form-label control-label">Amount</label>
+                                <div class="col-md-7">
+                                    <div class="row">
+                    
+                    
+                                        <div class="col-md-3">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control text-w-40" value="0">
+                                            </div>
+                                        </div>
+                    
+                                        <div class="col-md-2 mrg-tsm">
+                                            <ng-select name="supplier" placeholder="">
+                                                <ng-option>PKR</ng-option>
+                                                <ng-option>USD</ng-option>
+                                                <ng-option>EUR</ng-option>
+                                                <ng-option>GBP</ng-option>
+                                            </ng-select>
+                                        </div>
+                    
+                                        <div class="col-md-7 mrg-tsm">
+                                            <div class="input-group">
+                                                <label for="inputEmail3" class="col-form-label control-label col-md-3">Pay Mode</label>
+                                                <div class="col-md-9">
+                                                    <ng-select name="supplier" placeholder=" Payment Mode">
+                                                        <ng-option>PO</ng-option>
+                                                        <ng-option>TT</ng-option>
+                                                        <ng-option>Cash</ng-option>
+                                                        <ng-option>Cheque</ng-option>
+                    
+                                                    </ng-select>
+                                                </div>
+                                            </div>
+                                        </div>
+                    
+                                    </div>
+                                </div>
+                    
+                            </div>
+                    
+                            <!-- Additional details -->
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-md-3 col-form-label control-label">
+                                    Additional Details</label>
+                                <div class="col-md-7">
+                                    <input type="text" class="form-control text-w-40" placeholder="Additional Details">
+                                    <small id="passwordHelpBlock" class="form-text text-lightgrey">
+                                        Cheque DO , IT etc Number
+                                    </small>
+                                </div>
+                    
+                            </div>
+                    
+                            <!-- Bank Account -->
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-md-3 col-form-label control-label">
+                                    Bank Account</label>
+                                <div class="col-md-7">
+                                    <div class="row">
+                                        <div class="col-md-6 mrg-tsm">
+                                            <ng-select name="supplier" placeholder=" From Bank">
+                                                <ng-option>
+                                                    Bank
+                                                </ng-option>
+                                            </ng-select>
+                                        </div>
+                            
+                                        <div class="col-md-6 mrg-tsm">
+                                            <div class="input-group">
+                                                <div class="col-md-12">
+                                                    <ng-select name="supplier" placeholder=" To Bank">
+                                                        <ng-option>
+                                                            Bank
+                                                        </ng-option>
+                                                    </ng-select>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                     
-                            </div>
-                        </div>
+                            <!-- deposited in bank -->
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-md-3 col-form-label control-label">Deposited in Bank</label>
                     
-                    </div>
-
-
-
-                    <!--  amount-->
-                    <div class="form-group row">
-                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">Amount</label>
-                        <div class="col-md-6">
-                            <div class="row">
-
-                            
-                        <div class="col-md-3">
-                            <div class="input-group">
-                                <input type="text" class="form-control text-w-40" value="0">
-                            </div>
-                        </div>
-
-                        <div class="col-md-2 mrg-sm1">
-                            <ng-select name="supplier" placeholder="">
-                                <ng-option>PKR</ng-option>
-                                <ng-option>USD</ng-option>
-                                <ng-option>EUR</ng-option>
-                                <ng-option>GBP</ng-option>
-                            </ng-select>
-                        </div>
-
-                        <div class="col-md-7 mrg-sm1">
-                            <div class="input-group">
-                                <label for="inputEmail3" class="col-form-label control-label col-md-4">Pay Mode</label>
-                                <div class="col-md-8">
-                                    <ng-select name="supplier" placeholder=" Payment Mode">
-                                        <ng-option>PO</ng-option>
-                                        <ng-option>TT</ng-option>
-                                        <ng-option>Cash</ng-option>
-                                        <ng-option>Cheque</ng-option>
-                                
-                                    </ng-select>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                    </div>
-
-                    <!-- Additional details -->
-                    <div class="form-group row">
-                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">
-                            Additional Details</label>
-                        <div class="col-md-6">
-                            <input type="text" class="form-control text-w-40" placeholder="Additional Details">
-                            <small id="passwordHelpBlock" class="form-text text-lightgrey">
-                                Cheque DO , IT etc Number
-                            </small>
-                        </div>
-
-                    </div>
-
-                    <!-- Bank Account -->
-                    <div class="form-group row">
-                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">
-                            Bank Account</label>
-                            <div class="col-md-3 mrg-sm1">
-                                <ng-select name="supplier" placeholder=" From Bank">
-                                    <ng-option>
-                                        Bank
-                                    </ng-option>
-                                </ng-select>
-                            </div>
-    
-                            <div class="col-md-4 mrg-sm1">
-                                <div class="input-group">
-                                    <div class="col-md-9">
-                                        <ng-select name="supplier" placeholder=" To Bank">
-                                            <ng-option>
-                                               Bank
-                                            </ng-option>
-                                        </ng-select>
+                                <div class="col-md-7">
+                                    <div class="row">
+                                        <div class="col-md-1">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                            </div>
+                                        </div>
+                    
+                                        <div class="col-md-11 mrg-tsm">
+                                            <div class="input-group">
+                                                <label for="inputEmail3" class="col-md-4 col-form-label control-label col-md-4">
+                                                    Bank Deposit Date</label>
+                                                <div class="col-md-8">
+                                                    <input navigation="select" class="form-control  " ngbDatepicker
+                                                        #validityDate1="ngbDatepicker" (click)="validityDate1.toggle()"
+                                                        name="validityDate1" />
+                                                </div>
+                                            </div>
+                                        </div>
+                    
                                     </div>
                                 </div>
                             </div>
-                    </div>
-
-                <!-- deposited in bank -->
-                <div class="form-group row">
-                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Deposited in Bank</label>
-                
-                    <div class="col-md-6">
-                        <div class="row">
-                            <div class="col-md-1">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                </div>
-                            </div>
-                
-                            <div class="col-md-11 mrg-sm1">
-                                <div class="input-group">
-                                    <label for="inputEmail3" class="col-md-4 col-form-label control-label col-md-4">
-                                        Bank Deposit Date</label>
-                                    <div class="col-md-8">
-                                        <input navigation="select" class="form-control  " ngbDatepicker #validityDate1="ngbDatepicker"
-                                            (click)="validityDate1.toggle()" name="validityDate1" />
-                                    </div>
-                                </div>
-                            </div>
-                
+                    
                         </div>
                     </div>
-                </div>
 
 
 
 
                 <!--  Sale invoice -->
                 <div class="form-row border-top">
-                    <div class="col-md-12 pt-2r pb-3">
+                    <div class="col-md-12 pt-3 pb-3">
 
-                        <div class="col-md-12 mb-3">
-                            <span class="badge badge-primary">Sale Invoices</span>
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <span class="badge badge-primary">Sale Invoices</span>
+                            </div>
                         </div>
 
                         <!-- <div class="form-group row">
@@ -357,54 +370,54 @@
                                   </div>
                               </div>
                           <!-- remarks and other -->
-
-                          <div class="form-row border-top">
-                            <div class="col-md-12 pt-2r pb-3">
-
-                                <div class="col-md-12 mb-3">
-                                    <span class="badge badge-primary">Remarks/Other Conditions</span>
-                                </div>
-
-                                <!-- <div class="form-group row">
-                                    <button class="btn btn-primary float-left">
-                                        Remarks/Other Conditions
-                                    </button>
-                                </div> -->
-
-                                <!-- <div class="col-md-12">
-                                    <label for="inputEmail3" 
-                                    class="col-md-3 col-form-label control-label"> Remarks </label>
-                                </div> -->
-
-
-                                <!-- table -->
-                                <div class="form-group row">
-                                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Remarks:</label>
-                                    <div class="col-md-6">
-                                        <textarea class="form-control" rows="4" placeholder="Any Remarks Here..."
-                                         name="remarks"></textarea>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6 offset-md-3">
-                                        <button class="btn button-save" *ngIf="statusCheck.statusCheck =='new'" > 
-                                            <i class="fas fa-check"></i> Save &
-                                            Next</button>
-                                        <button class="btn btn-secondary ml-4" *ngIf="statusCheck.statusCheck =='new2'">
-                                            <i class="fas fa-times">
-                                            </i> Close
-                                        </button>
-                                    </div>
-                                </div>
-
-                                </div>
-                                </div>
-                            
-
-                        
                  </div>
                  </div>
+
+
+                 <div class="form-row border-top">
+                    <div class="col-md-12 pt-3 pb-3">
+
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <span class="badge badge-primary">Remarks/Other Conditions</span>
+                            </div>
+                        </div>
+
+                        <!-- <div class="form-group row">
+                            <button class="btn btn-primary float-left">
+                                Remarks/Other Conditions
+                            </button>
+                        </div> -->
+
+                        <!-- <div class="col-md-12">
+                            <label for="inputEmail3" 
+                            class="col-md-3 col-form-label control-label"> Remarks </label>
+                        </div> -->
+
+
+                        <!-- table -->
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-md-3 col-form-label control-label">Remarks:</label>
+                            <div class="col-md-7">
+                                <textarea class="form-control" rows="4" placeholder="Any Remarks Here..."
+                                 name="remarks"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 offset-md-3">
+                                <button class="btn button-save" *ngIf="statusCheck.statusCheck =='new'" > 
+                                    <i class="fas fa-check"></i> Save &
+                                    Next</button>
+                                <button class="btn btn-secondary ml-4" *ngIf="statusCheck.statusCheck =='new2'">
+                                    <i class="fas fa-times">
+                                    </i> Close
+                                </button>
+                            </div>
+                        </div>
+
+                        </div>
+                        </div>
                 
                 </form>
             </div>

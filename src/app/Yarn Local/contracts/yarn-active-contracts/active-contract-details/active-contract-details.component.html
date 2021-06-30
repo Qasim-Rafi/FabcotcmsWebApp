@@ -550,146 +550,104 @@
                                 </div>
                             </div>
                     
-                            <!-- </div> -->
-                    
-                            <!-- -------Product & Specification Tab 3----------- -->
-                            <!-- <div class="form-row border-top">
-                                <div class="col-md-12 pt-2r pb-3">
-                    
-                                    <div class="col-md-12">
-                                        <span class="badge badge-primary"> Product & Specification</span>
-                                    </div>
-                    
-                                </div>
-                            </div> -->
-
-
-                            <div class="border-top pt-3 pb-2">
-                                <span class="badge badge-primary">Product & Specification</span>
+                            <div class="border-top pt-3 pb-2" *ngIf = "loggedInDepartmentName == 'Yarn Export'">
+                                <span class="badge badge-primary">Construction</span>
                             </div>
                     
                     
-                            <div class="row">
+                            <div class="row" *ngIf = "loggedInDepartmentName == 'Yarn Export'">
                                 <div class="col-md-6">
+                    
                                     <dl class="row">
                                         <dt class="col-sm-6">Construction:
                                         </dt>
-                                        <dd class="col-sm-6">{{contractProductData.pecenetAge}}
-                                            {{contractProductData.type}}{{contractProductData.construction}}</dd>
-                    
+                                        <dd class="col-sm-6">{{contractProductData.construction}}</dd>
                                     </dl>
                                     <dl class="row">
-                                        <dt class="col-sm-6" >Article:
+                                        <dt class="col-sm-6">Brand Name:
                                         </dt>
-                                        <dd class="col-sm-6" *ngIf = "loggedInDepartmentName != 'Yarn Export'">{{contractProductData.articleName}}</dd>
-                                        <dd class="pt-3" >
-                                            <!-- <div class="form-group row" *ngIf="loggedInDepartmentName=='Yarn Export'"> -->
-                                              
+                                        <dd class="col-sm-6">{{contractProductData.brandName}}
+                                            </dd>
+                                    </dl>
+                                  
+                                 
+                                </div>
+                      
                     
-                                                <!-- <div class="col-md-7"> -->
-                                                    <!-- <div class="row"> -->
-                                                        <!-- <div class="col-md-3">
-                                                            <div class="input-group"> -->
-                                                                <!-- <input type="text"  placeholder="Article" #contractArticleName="ngModel"
-                                                                class="form-control" [(ngModel)]="data5.contractArticleName" name="contractArticleName"> -->
-                                                                <!-- <ng-select name="id" #id="ngModel" class="input-w px-0"
-                                                                [(ngModel)]="contractArticles.id" placeholder="-- Select --">
-                                                                <ng-option *ngFor="let i of article" [value]="i.id">{{ i.name }}
-                                                                </ng-option>
-                                                            </ng-select>
-                                                            </div>
-                                                        </div> -->
-                                                        <!-- <div class="col-md-3  mrg-sm1">
-                                                            <div class="input-group">
-                                                                <input type="number" min="0" placeholder="quantity" #contractArticleQuantity="ngModel"
-                                                                    class="form-control" [(ngModel)]="contractArticles.contractArticleQuantity" name="contractArticleQuantity"> -->
-                                                                <!-- <div class="input-group-append">
-                                                                    <span class="input-group-text" id="basic-addon2">per</span>
-                                                                </div> -->
-                                                            <!-- </div>
-                                                        </div> -->
                     
-                                                        <!-- <div class="col-md-3 mrg-sm1">
-                                                            <div class="input-group">
-                                                                <input type="number" min="0" placeholder="Rate" #contractArticleRate="ngModel"
-                                                                    class="form-control" [(ngModel)]="contractArticles.contractArticleRate" name="contractArticleRate"> -->
-                                                                <!-- <div class="input-group-append">
-                                                                    <span class="input-group-text" id="basic-addon2">per</span>
-                                                                </div> -->
-                                                            <!-- </div>
-                                                        </div> -->
+                            </div>
                     
-                                                        <!-- <div class="col-md-3 mrg-sm1">
-                                                            <div class="input-group">
-                                                                <input type="number" min="0" placeholder="Commission" #contractArticleCommission="ngModel"
-                                                                    class="form-control" [(ngModel)]="contractArticles.contractArticleCommission" name="contractArticleCommission"> -->
-                                                                <!-- <div class="input-group-append">
-                                                                    <span class="input-group-text" id="basic-addon2">per</span>
-                                                                </div> -->
-                                                            <!-- </div>
-                                                        </div> -->
+                            <div class="row" *ngIf = "loggedInDepartmentName == 'Yarn Export'">
+                                <div class="col-md-12 mb-4">
+                                    <button class="btn btn-outline-primary btn-sm float-right"
+                                        (click)="editProductAndSpec(contractProductData)"> <i class="far fa-edit"></i></button>
+                                </div>
+                            </div> 
+
+                            <div class="border-top pt-3 pb-2" *ngIf = "loggedInDepartmentName == 'Yarn Export'">
+                                <span class="badge badge-primary">Article</span>
+                            </div>
                     
-                                                    <!-- </div> -->
-                                                <!-- </div> -->
-                                            <!-- </div> -->
+                    
+                            <div class="row"  *ngIf="loggedInDepartmentName=='Yarn Export'">
+                                <div class="col-md-12">
+                    
+                                    <!-- <dl class="row">
+                                        <dt class="col-sm-6">Article:
+                                        </dt>
+                                        <dd class="col-sm-6"></dd>
+                                    </dl> -->
+                                    <dl class="row">
+                
+                                        <dd class="col-md-12 pt-1" >
+                                    
                                             <div *ngIf="loggedInDepartmentName=='Yarn Export'" >
                                                 <div class="form-group row" *ngFor="let a of contractArticles; let i = index;">
-                                                    <!-- <label for="inputEmail3" class="col-md-3 col-form-label control-label"></label> -->
-                    
-                                                    <!-- <div class="col-md-7"> -->
-                                                        <!-- <div class="row"> -->
+                                         
                         
-                                                    <div class="col-md-3  mr-2">
+                                                    <div class="col-md-3 ">
                                                         <div class="input-group">
                                                        
-                                                        <ng-select name="articleId_{{i}}" #articleId="ngModel" class="input-w px-0"
+                                                        <ng-select [disabled]="a.isDeleted ==true" name="articleId_{{i}}" #articleId="ngModel" class="input-w px-0"
                                                         [(ngModel)]="a.articleId" placeholder="-- Select --">
                                                         <ng-option *ngFor="let c of article" [value]="c.id">{{ c.name }}
                                                         </ng-option>
                                                     </ng-select>
+                                                   
                                                         </div>
                                                     </div>
+                                                          <div class="col-md-3 ">
+                                                            <div class="input-group">
+                                                                <input type="number" [disabled]="a.isDeleted ==true" min="0" placeholder="quantity" #contractArticleQuantity="ngModel"
+                                                                    class="form-control" [(ngModel)]="a.contractArticleQuantity" name="contractArticleQuantity_{{i}}">
+                                                            
+                                                            </div>
+                                                        </div>
                                                           <div class="col-md-3">
                                                             <div class="input-group">
-                                                                <input type="number" min="0" placeholder="quantity" #contractArticleQuantity="ngModel"
-                                                                    class="form-control" [(ngModel)]="a.contractArticleQuantity" name="contractArticleQuantity_{{i}}">
-                                                                <!-- <div class="input-group-append">
-                                                                    <span class="input-group-text" id="basic-addon2">per</span>
-                                                                </div> -->
-                                                            </div>
-                                                        </div>
-                                                          <div class="col-md-2 mrg-sm1">
-                                                            <div class="input-group">
-                                                                <input type="number" min="0" placeholder="Rate" #contractArticleRate="ngModel"
+                                                                <input type="number" [disabled]="a.isDeleted ==true" min="0" placeholder="Rate" #contractArticleRate="ngModel"
                                                                     class="form-control" [(ngModel)]="a.contractArticleRate" name="contractArticleRate_{{i}}">
-                                                                <!-- <div class="input-group-append">
-                                                                    <span class="input-group-text" id="basic-addon2">per</span>
-                                                                </div> -->
+                                                             
                                                             </div>
                                                         </div>
-                                                          <div class="col-md-2 mrg-sm1">
+                                                          <div class="col-md-2">
                                                             <div class="input-group">
-                                                                <input type="number" min="0" placeholder="Commission" #contractArticleCommission="ngModel"
+                                                                <input type="number" [disabled]="a.isDeleted ==true" min="0" placeholder="Commission" #contractArticleCommission="ngModel"
                                                                 class="form-control" [(ngModel)]="a.contractArticleCommission" name="contractArticleCommission_{{i}}">
                                                                 
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-2 mrg-sm1">
+                                                        <div class="col-md-1">
                                                           <div class="input-group-append">
-                                                            <button class="btn btn-outline-danger " type="submit" (click)="removeArticle(a)">
+                                                            <button class="btn btn-outline-danger" [disabled]="a.isDeleted ==true" type="submit" (click)="removeArticle(a)">
                                                                 <i class="fas fa-minus fa-xs"></i></button>
+                                                                <span class="badge badge-danger h5 ml-2" *ngIf="a.isDeleted ==true">Deleted</span>
                                                         </div>
                                                         </div>
-                                                        
-                                                <!-- </div> -->
-                                            <!-- </div> -->
                                             </div>
-                                            <div class="col-md-7">
-                                                <button class="btn btn-outline-primary btn-sm" (click)="editArticle()"> Edit Article</button>
-                                            </div>
+                                       
                                             <div class="row">
-                                                <div class="col-md-3"></div>
-                                                <div class="col-md-7">
+                                                <div class="col-md-11 text-right">
                                                     <button class="btn btn-outline-primary btn-sm" (click)="addArticle()"> Add Another Article</button>
                                                 </div>
                                             </div>
@@ -697,6 +655,45 @@
                                             </div>
 
                                         </dd>
+
+                                    </dl>
+                                </div>
+                      
+                    
+                    
+                            </div>
+                            <div class="row"  *ngIf="loggedInDepartmentName=='Yarn Export'">
+                                <div class="col-md-12 text-right">
+                                    <button class="btn btn-outline-primary btn-sm" (click)="editArticle()"> Update Article</button>
+
+                                </div>
+                            </div>
+                            <!-- <div class="row">
+                                <div class="col-md-12 mb-4">
+                                    <button class="btn btn-outline-primary btn-sm float-right"
+                                        (click)="editProductAndSpec(contractProductData)"> <i class="far fa-edit"></i></button>
+                                </div>
+                            </div> -->
+
+                            <div class="border-top pt-3 pb-2" *ngIf = "loggedInDepartmentName != 'Yarn Export'">
+                                <span class="badge badge-primary" *ngIf = "loggedInDepartmentName != 'Yarn Export'">Product & Specification</span>
+                            </div>
+                    
+                    
+                            <div class="row" >
+                                <div class="col-md-6">
+                                    <dl class="row">
+                                        <dt class="col-sm-6" *ngIf = "loggedInDepartmentName != 'Yarn Export'">Construction:
+                                        </dt>
+                                        <dd class="col-sm-6" *ngIf = "loggedInDepartmentName != 'Yarn Export'">{{contractProductData.pecenetAge}}
+                                            {{contractProductData.type}}{{contractProductData.construction}}</dd>
+                    
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6" *ngIf = "loggedInDepartmentName != 'Yarn Export'" >Article:
+                                        </dt>
+                                        <dd class="col-sm-6" *ngIf = "loggedInDepartmentName != 'Yarn Export'">{{contractProductData.articleName}}</dd>
+                                     
 
                                     </dl>
                                     <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
@@ -743,16 +740,10 @@
                                         <dd class="col-sm-6" *ngIf="contractProductData.width != null">{{contractProductData.width}} inch
                                         </dd>
                                     </dl>
-                                    <dl class="row" *ngIf="loggedInDepartmentName=='Yarn Export'">
-                                        <dt class="col-sm-6">Brand Name:
-                                        </dt>
-                                        <dd class="col-sm-6" >
-                                            {{contractProductData.brandName}}
-                                        </dd>
-                                    </dl>
+                                   
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row" *ngIf = "loggedInDepartmentName != 'Yarn Export'">
                                 <div class="col-md-12 mb-4">
                                     <button class="btn btn-outline-primary btn-sm float-right"
                                         (click)="editProductAndSpec(contractProductData)"> <i class="far fa-edit"></i></button>

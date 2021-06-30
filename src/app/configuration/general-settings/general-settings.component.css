@@ -1,5 +1,5 @@
- label:not(.form-check-label):not(.custom-file-label) {
+ /* label:not(.form-check-label):not(.custom-file-label) {
   font-weight: 500;
   color: #3e3d3d;
   text-align: right;
-}
+} */

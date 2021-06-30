@@ -22,103 +22,107 @@
 <div class="modal-body BG p-0">
   <form #addAgentForm="ngForm" novalidate>
 
-    <div class="col-md-12 pt-3 pb-2">
-
-      <div class="form-group row">
-        <label for="code" class="col-sm-3 col-form-label control-label text_Navy">User Name <span class="required-denote">*</span> </label>
-        <div class="col-sm-8">
-          <input appAutofocus required maxlength="80" minlength="3" type="text" class="form-control"
-            placeholder="User name" name="username" [(ngModel)]="data.username" #username="ngModel"
-            [ngClass]="{'error': username.invalid && addAgentForm.submitted}">
-        </div>
-      </div>
-
-      <div class="form-group row">
-        <label for="code" class="col-sm-3 col-form-label control-label ">Full Name </label>
-        <div class="col-sm-8">
-          <input appAutofocus maxlength="80" minlength="3" type="text" class="form-control"
-            placeholder="User name" name="fullName" [(ngModel)]="data.fullName" #fullName="ngModel"
-            [ngClass]="{'error': fullName.invalid && addAgentForm.submitted}">
-        </div>
-      </div>
-
-
-      <div class="form-group row">
-        <label for="name" class="col-sm-3 col-form-label text_Navy">Email <span class="required-denote">*</span> </label>
-        <div class="col-sm-8">
-          <input type="email"
-            pattern="[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})" maxlength="50"
-            class="form-control" placeholder="Enter email address" name="email" [(ngModel)]="data.email"
-            #email="ngModel" [ngClass]="{error: email.invalid && email.touched}" />
-        </div>
-      </div>
-
-
-      <div class="form-group row">
-        <label for="userTypeId" class="col-sm-3 col-form-label text_Navy">User Type <span class="required-denote">*</span></label>
-        <div class="col-sm-8">
-          <ng-select [(ngModel)]="data.userTypeId" required placeholder="-- Select --" name="userTypeId"
-            #userTypeId="ngModel" [ngClass]="{ error: userTypeId.invalid && addAgentForm.submitted}">
-            <ng-option *ngFor="let i of userType" [value]="i.id">{{ i.name }}
-
-              <!-- <span *ngIf="i.details !=null" class="text-muted" style="font-size: 11px">{{ i.details }}</span> -->
-
-            </ng-option>
-          </ng-select>
-        </div>
-      </div>
-
-      <div class="form-group row">
-        <label for="departmentId" class="col-sm-3 col-form-label text_Navy">Department <span class="required-denote">*</span></label>
-        <div class="col-sm-8">
-          <ng-select [(ngModel)]="data.departmentId" required placeholder="-- Select --" name="departmentId"
-            #departmentId="ngModel" [ngClass]="{ error: departmentId.invalid && addAgentForm.submitted}">
-            <ng-option *ngFor="let i of department" [value]="i.id">{{ i.name }}
-
-              <!-- <span *ngIf="i.details !=null" class="text-muted" style="font-size: 11px">{{ i.details }}</span> -->
-
-            </ng-option>
-          </ng-select>
-        </div>
-      </div>
-
-      <div class="form-group row" *ngIf="statusCheck == 'add'">
-        <label for="password" class="col-sm-3 col-form-label text-grey">Password</label>
-        <div class="col-sm-8">
-          <input type="password" minlength="8" class="form-control" placeholder="Enter Password" name="password"
-            [(ngModel)]="data.password" #password="ngModel" [ngClass]="{error: password.invalid && password.touched}" />
-          <!-- <div class="form-control-feedback" *ngIf="password.errors?.pattern">Atleast 8 Characters!
-            </div> -->
-        </div>
-      </div>
-
-      <!-- <div class="form-group row">
-        <label for="confirmpassword" class="col-sm-3 col-form-label text-grey">Confirm Password</label>
-        <div class="col-sm-8">
-          <input  type="password"
-          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" minlength="8"
-            class="form-control" placeholder="ReEnter Password" name="confirmpassword" pattern="{{ password.value }}"
-            [(ngModel)]="data.confirmpassword" #password="ngModel"
-            [ngClass]="{error: confirmpassword.invalid && confirmpassword.touched}" />
-            <div class="form-control-feedback" *ngIf="confirmpassword.errors?.pattern">Atleast 8 Characters!
-            </div>
-            <div class="form-control-feedback" *ngIf="confirmpassword.errors?.pattern">Password & Confirm Password does not match.
-            </div>
-        </div>
-      </div> -->
-
-      <!-- <div class="form-group row" >
-        <label for="active" class="col-sm-3 col-form-label text-grey"></label>
-        <div class="col-sm-8">
-          <div class="form-check form-check-inline">
-            <input [checked] class="form-check-input check-btn " id="active"
-             type="checkbox" name="active" [(ngModel)]="data.active"
-              #active="ngModel" >
-            <label for="active" class="form-check-label text-grey" id="active" >Marked as Active</label>
+    <div class="row justify-content-center">
+      <div class="col-10 col-md-11 pt-3 pb-2">
+    
+        <div class="form-group row">
+          <label for="code" class="col-md-3 col-form-label control-label text_Navy">User Name <span
+              class="required-denote">*</span> </label>
+          <div class="col-md-8">
+            <input appAutofocus required maxlength="80" minlength="3" type="text" class="form-control"
+              placeholder="User name" name="username" [(ngModel)]="data.username" #username="ngModel"
+              [ngClass]="{'error': username.invalid && addAgentForm.submitted}">
           </div>
         </div>
-      </div> -->
-
+    
+        <div class="form-group row">
+          <label for="code" class="col-md-3 col-form-label control-label ">Full Name </label>
+          <div class="col-md-8">
+            <input appAutofocus maxlength="80" minlength="3" type="text" class="form-control" placeholder="User name"
+              name="fullName" [(ngModel)]="data.fullName" #fullName="ngModel"
+              [ngClass]="{'error': fullName.invalid && addAgentForm.submitted}">
+          </div>
+        </div>
+    
+    
+        <div class="form-group row">
+          <label for="name" class="col-md-3 col-form-label text_Navy">Email <span class="required-denote">*</span> </label>
+          <div class="col-md-8">
+            <input type="email" pattern="[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})"
+              maxlength="50" class="form-control" placeholder="Enter email address" name="email" [(ngModel)]="data.email"
+              #email="ngModel" [ngClass]="{error: email.invalid && email.touched}" />
+          </div>
+        </div>
+    
+    
+        <div class="form-group row">
+          <label for="userTypeId" class="col-md-3 col-form-label text_Navy">User Type <span
+              class="required-denote">*</span></label>
+          <div class="col-md-8">
+            <ng-select [(ngModel)]="data.userTypeId" required placeholder="-- Select --" name="userTypeId"
+              #userTypeId="ngModel" [ngClass]="{ error: userTypeId.invalid && addAgentForm.submitted}">
+              <ng-option *ngFor="let i of userType" [value]="i.id">{{ i.name }}
+    
+                <!-- <span *ngIf="i.details !=null" class="text-muted" style="font-size: 11px">{{ i.details }}</span> -->
+    
+              </ng-option>
+            </ng-select>
+          </div>
+        </div>
+    
+        <div class="form-group row">
+          <label for="departmentId" class="col-md-3 col-form-label text_Navy">Department <span
+              class="required-denote">*</span></label>
+          <div class="col-md-8">
+            <ng-select [(ngModel)]="data.departmentId" required placeholder="-- Select --" name="departmentId"
+              #departmentId="ngModel" [ngClass]="{ error: departmentId.invalid && addAgentForm.submitted}">
+              <ng-option *ngFor="let i of department" [value]="i.id">{{ i.name }}
+    
+                <!-- <span *ngIf="i.details !=null" class="text-muted" style="font-size: 11px">{{ i.details }}</span> -->
+    
+              </ng-option>
+            </ng-select>
+          </div>
+        </div>
+    
+        <div class="form-group row" *ngIf="statusCheck == 'add'">
+          <label for="password" class="col-md-3 col-form-label text-grey">Password</label>
+          <div class="col-md-8">
+            <input type="password" minlength="8" class="form-control" placeholder="Enter Password" name="password"
+              [(ngModel)]="data.password" #password="ngModel" [ngClass]="{error: password.invalid && password.touched}" />
+            <!-- <div class="form-control-feedback" *ngIf="password.errors?.pattern">Atleast 8 Characters!
+                </div> -->
+          </div>
+        </div>
+    
+        <!-- <div class="form-group row">
+            <label for="confirmpassword" class="col-md-3 col-form-label text-grey">Confirm Password</label>
+            <div class="col-md-8">
+              <input  type="password"
+              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" minlength="8"
+                class="form-control" placeholder="ReEnter Password" name="confirmpassword" pattern="{{ password.value }}"
+                [(ngModel)]="data.confirmpassword" #password="ngModel"
+                [ngClass]="{error: confirmpassword.invalid && confirmpassword.touched}" />
+                <div class="form-control-feedback" *ngIf="confirmpassword.errors?.pattern">Atleast 8 Characters!
+                </div>
+                <div class="form-control-feedback" *ngIf="confirmpassword.errors?.pattern">Password & Confirm Password does not match.
+                </div>
+            </div>
+          </div> -->
+    
+        <!-- <div class="form-group row" >
+            <label for="active" class="col-md-3 col-form-label text-grey"></label>
+            <div class="col-md-8">
+              <div class="form-check form-check-inline">
+                <input [checked] class="form-check-input check-btn " id="active"
+                 type="checkbox" name="active" [(ngModel)]="data.active"
+                  #active="ngModel" >
+                <label for="active" class="form-check-label text-grey" id="active" >Marked as Active</label>
+              </div>
+            </div>
+          </div> -->
+    
+      </div>
     </div>
 
     <div class="modal-footer NotBG" *ngIf="FormName == 'systemUserForm'">
