@@ -10,29 +10,26 @@ import { ServiceService } from 'src/app/shared/service.service';
 import pdfMake from "pdfmake/build/pdfmake";
 import { ClipboardService } from 'ngx-clipboard';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { AddEditComponent } from './add-edit/add-edit.component';
+import { AddEditConfigContractOwnerComponent } from './add-edit-config-contract-owner/add-edit-config-contract-owner.component';
 
 @Component({
-  selector: 'app-beneficiary',
-  templateUrl: './beneficiary.component.html',
-  styleUrls: ['./beneficiary.component.css']
+  selector: 'app-config-contract-owner',
+  templateUrl: './config-contract-owner.component.html',
+  styleUrls: ['./config-contract-owner.component.css']
 })
-export class BeneficiaryComponent implements OnInit {
-
-  
-  BeneficiaryCount: number;
+export class ConfigContractOwnerComponent implements OnInit {
+  contractOwnerCount: number;
   response: any;
   rows: any = [];
   columns: any = [];
   data: any = [];
   copyData: any = [];
   beneficiaryDate = Date.now();
-  beneficiaryFilter: any = [];
-  beneficiaryUrl = '/api/Configs/GetAllBeneficiary'
+  contractOwnerFilter: any = [];
+  contractOwnerUrl = '/api/Configs/GetAllDocumentUserType'
 
   @ViewChild('myTable') table: DatatableComponent;
-
-
+ 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
     private spinner: NgxSpinnerService,
@@ -41,33 +38,28 @@ export class BeneficiaryComponent implements OnInit {
     private modalService: NgbModal) { }
 
   ngOnInit(): void {
-    // Temporary.............
     this.service.fetch((data) => {
       this.rows = data;
-      this.beneficiaryFilter = [...this.rows];
+      this.contractOwnerFilter = [...this.rows];
 
-      this.BeneficiaryCount = this.rows.length;
-    }, this.beneficiaryUrl);
-
+      this.contractOwnerCount = this.rows.length;
+    }, this.contractOwnerUrl);
   }
 
-  // ------------------------------- search Function---------------------//
-  search(event) {
-    const val = event.target.value.toLowerCase();
-    const temp = this.beneficiaryFilter.filter(function (d) {
-      return (d.name.toLowerCase().indexOf(val) !== -1 ||
-        d.country.toLowerCase().indexOf(val) !== -1 || !val);
-    });
-    this.rows = temp;
-  }
-
- 
- 
+ // ------------------------------- search Function---------------------//
+ search(event) {
+  const val = event.target.value.toLowerCase();
+  const temp = this.contractOwnerFilter.filter(function (d) {
+    return (d.description.toLowerCase().indexOf(val) !== -1 ||
+      d.country.toLowerCase().indexOf(val) !== -1 || !val);
+  });
+  this.rows = temp;
+}
 
   // -------------------------------- Add beneficiary Form --------------------------------//
 
   addBeneficiary(check, name) {
-    const modalRef = this.modalService.open(AddEditComponent, { centered: true });
+    const modalRef = this.modalService.open(AddEditConfigContractOwnerComponent, { centered: true });
     modalRef.componentInstance.statusCheck = check;
     modalRef.componentInstance.FormName = name;
     modalRef.result.then((data) => {
@@ -79,9 +71,9 @@ export class BeneficiaryComponent implements OnInit {
       }
       this.service.fetch((data) => {
         this.rows = data;
-    this.beneficiaryFilter = [...this.rows];       
-        this.BeneficiaryCount = this.rows.length;
-      }, this.beneficiaryUrl);
+    this.contractOwnerFilter = [...this.rows];       
+        this.contractOwnerCount = this.rows.length;
+      }, this.contractOwnerUrl);
     }, (reason) => {
       // on dismiss
     });
@@ -90,8 +82,8 @@ export class BeneficiaryComponent implements OnInit {
   // ----------------------------- Edit Beneficiary Form -------------------------//
 
   editBeneficiary(row, check, name) {
-    const modalRef = this.modalService.open(AddEditComponent, { centered: true });
-    modalRef.componentInstance.beneficiaryId = row.id; //just for edit.. to access the needed row
+    const modalRef = this.modalService.open(AddEditConfigContractOwnerComponent, { centered: true });
+    modalRef.componentInstance.ContractOwnerId = row.id; //just for edit.. to access the needed row
     modalRef.componentInstance.statusCheck = check;
     modalRef.componentInstance.FormName = name;
 
@@ -102,72 +94,12 @@ export class BeneficiaryComponent implements OnInit {
       }
       this.service.fetch((data) => {
         this.rows = data;
-      }, this.beneficiaryUrl);
+    this.contractOwnerFilter = [...this.rows];       
+        this.contractOwnerCount = this.rows.length;
+      }, this.contractOwnerUrl);
     }, (reason) => {
       // on dismiss
     });
-  }
-  // reviveBeneficiary(row, check, name) {
-  //   const modalRef = this.modalService.open(AddEditComponent, { centered: true });
-  //   modalRef.componentInstance.beneficiaryId = row.id; //just for edit.. to access the needed row
-  //   modalRef.componentInstance.statusCheck = check;
-  //   modalRef.componentInstance.FormName = name;
-
-  //   modalRef.result.then((data) => {
-  //     // on close
-  //     if (data == true) {
-      
-  //     }
-  //     this.service.fetch((data) => {
-  //       this.rows = data;
-  //     }, this.beneficiaryUrl);
-  //   }, (reason) => {
-  //     // on dismiss
-  //   });
-  // }
- 
-  deleteBeneficiary(row) {
-    Swal.fire({
-      title: GlobalConstants.deleteTitle, //'Are you sure?',
-      text: GlobalConstants.deleteMessage + 'Beneficiary of User:' + '"' + row.userName + '"',
-      icon: 'error',
-      showCancelButton: true,
-      confirmButtonColor: '#ed5565',
-      cancelButtonColor: '#dae0e5',
-      cancelButtonText: 'No',
-      confirmButtonText: 'Yes',
-      reverseButtons: true,
-      position: 'top',
-    }).then((result) => {
-      if (result.isConfirmed) {
-  
-        this.http.delete(`${environment.apiUrl}/api/Configs/DeleteBeneficiary/` + row.id )
-          .subscribe(
-            res => {
-              this.response = res;
-              if (this.response.success == true) {
-                this.toastr.error(this.response.message, 'Message.');
-                this.service.fetch((data) => {
-                  this.rows = data;
-                  this.beneficiaryFilter = [...this.rows];
-            
-                  this.BeneficiaryCount = this.rows.length;
-                }, this.beneficiaryUrl);
-  
-              }
-              else {
-                this.toastr.error(this.response.message, 'Message.');
-              }
-  
-            }, err => {
-              if (err.status == 400) {
-                this.toastr.error(this.response.message, 'Message.');
-              }
-            });
-  
-      }
-    })
-  
   }
 
   beneficiaryExcelFile(){
@@ -185,8 +117,7 @@ export class BeneficiaryComponent implements OnInit {
 
   }
 
-
-// ---------------------------------- Export as CSV file -------------------------//
+  // ---------------------------------- Export as CSV file -------------------------//
 
 beneficiaryCsvFile(){
   const filtered = this.rows.map(row => ({
@@ -202,8 +133,6 @@ beneficiaryCsvFile(){
   this.service.exportAsCsvFile(filtered, 'Beneficiary Location');
 
 }
-
-
 
 
   //---------------------------- Export As Pdf --------------------------//
@@ -334,10 +263,10 @@ beneficiaryCsvFile(){
 
     Swal.fire({
       title: GlobalConstants.copySuccess,
-      footer: 'Copied' + '\n' + this.BeneficiaryCount + '\n' + 'rows to clipboard',
+      footer: 'Copied' + '\n' + this.contractOwnerCount + '\n' + 'rows to clipboard',
       showConfirmButton: false,
       timer: 2000,
     })
   }
-}
 
+}

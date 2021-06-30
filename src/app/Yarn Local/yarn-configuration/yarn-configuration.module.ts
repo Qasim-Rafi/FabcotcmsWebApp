@@ -65,6 +65,8 @@ import { AddEditWeftComponent } from './product/weft/add-edit-weft/add-edit-weft
 import { AddEditPickInsertionComponent } from './product/pick-insertion/add-edit-pick-insertion/add-edit-pick-insertion.component';
 import { BeneficiaryComponent } from './beneficiary/beneficiary.component';
 import { AddEditComponent } from './beneficiary/add-edit/add-edit.component';
+import { ConfigContractOwnerComponent } from './config-contract-owner/config-contract-owner.component';
+import { AddEditConfigContractOwnerComponent } from './config-contract-owner/add-edit-config-contract-owner/add-edit-config-contract-owner.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +84,7 @@ import { AddEditComponent } from './beneficiary/add-edit/add-edit.component';
      AddBankComponent, CityComponent,
      EditCityComponent,CountryComponent,EditCountryComponent, CurrencyComponent, 
      EditCurrencyComponent ,AddCurrencyComponent, WeaveComponent, PieceLengthComponent, 
-     ContainerComponent, AddWeaveComponent, AddPieceLengthComponent, AddContainerComponent, SelvedgeComponent, WeftComponent, WarpComponent, PickInsertionComponent, AddEditWarpComponent, AddEditSelvedgeComponent, AddEditWeftComponent, AddEditPickInsertionComponent, BeneficiaryComponent, AddEditComponent
+     ContainerComponent, AddWeaveComponent, AddPieceLengthComponent, AddContainerComponent, SelvedgeComponent, WeftComponent, WarpComponent, PickInsertionComponent, AddEditWarpComponent, AddEditSelvedgeComponent, AddEditWeftComponent, AddEditPickInsertionComponent, BeneficiaryComponent, AddEditComponent, ConfigContractOwnerComponent, AddEditConfigContractOwnerComponent
   ],
   imports: [
     CommonModule,

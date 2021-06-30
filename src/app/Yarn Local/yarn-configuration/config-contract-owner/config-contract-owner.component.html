@@ -3,15 +3,15 @@
 
   <div class="row">
     <div class="col-sm-12 col-md-6 col-lg-8">
-      <h2 class="row wrapper page-header font-weight-light"> Beneficiary
-        <div class="ml-2 descr"> Manage Beneficiary detail </div>
+      <h2 class="row wrapper page-header font-weight-light"> Contract Owner
+        <div class="ml-2 descr"> Manage Contract Owner detail </div>
       </h2>
     </div>
 
     <div class="col-sm-12 col-md-6 col-lg-4">
       <ol class="breadcrumb flt-RnL">
         <li class="breadcrumb-item"><a href="#">Configuration</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Beneficiary</li>
+        <li class="breadcrumb-item active" aria-current="page">Contract Owner</li>
       </ol>
     </div>
 
@@ -29,12 +29,12 @@
 
         <div class="col-6 col-md-4 col-xl-4 agents-pdg">
           <button type="button" class="btn btn-primary descBtn display-b">
-            <i class="fas fa-user-tie fa-fw mr-2"></i>{{BeneficiaryCount}}</button>
-          <span class="text-muted text2">Beneficiaries</span>
+            <i class="fas fa-user-tie fa-fw mr-2"></i>{{contractOwnerCount}}</button>
+          <span class="text-muted text2">Contract Owner</span>
         </div>
         <div class="col-12 col-md-4 col-xl-8 agents-pdg float-right">
-          <button type="button" class="btn btn-primary btn-sm float-right" (click)="addBeneficiary('BeneficiaryAdd', 'beneficiaryForm')">
-            <i class="fa fa-plus"></i>Add New Beneficiary</button>
+          <button type="button" class="btn btn-primary btn-sm float-right" (click)="addBeneficiary('ContractOwnerAdd', 'contractOwnerForm')">
+            <i class="fa fa-plus"></i>Add New Contract Owner</button>
         </div>
 
 
@@ -100,53 +100,25 @@
             {{row.code}}
           </ng-template>
         </ngx-datatable-column> -->
-        <ngx-datatable-column name="User Name" [width]="20" prop="userId">
+        <ngx-datatable-column name="User From Department" [width]="20" prop="userId">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            {{row.userName}}
+            {{row.userId}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Commission" [width]="10" prop="commissionRatio">
+        <ngx-datatable-column name="User Name" [width]="10" prop="description">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            {{row.commissionRatio}}
+            {{row.description}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Last Updated On | By" [width]="80" prop="dateTime">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{row.dateTime}}
-            </ng-template>
-          </ngx-datatable-column>
-        <ngx-datatable-column name="Include" [width]="20" prop="includingBuyerId">
-          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            {{row.includingBuyerName}}
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Exclude" [width]="10" prop="excludingBuyerId">
-          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            {{row.excludingBuyerName}}
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Status " [width]="5" prop="status">
-          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            <span class="badge badge-primary" *ngIf="row.status=='true'">Active</span>
-            <span class="badge badge-secondary" *ngIf="row.status=='false'">Inactive</span>
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Remarks" [width]="5" prop="remarks">
-          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            {{row.remarks}}
-          </ng-template>
-        </ngx-datatable-column>
+
+      
        
         <ngx-datatable-column name="Action" [width]="80">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            <button type="button" class="btn editIconBack" (click)="editBeneficiary(row, 'BeneficiaryEdit','beneficiaryForm')">
+            <button type="button" class="btn editIconBack" (click)="editBeneficiary(row, 'ContractOwnerEdit','contractOwnerForm')">
               <i class="far fa-edit "></i>
             </button>
-            <!-- <button type="button" class="btn editIconBack" (click)="reviveBeneficiary(row, 'BeneficiaryRevive','beneficiaryForm')">
-              <i class="far fa-edit "></i>
-            </button> -->
-            <button type="button" class="btn deleteIconBack" data-toggle="tooltip"
-            data-placement="top" title=""><i class="fas fa-trash" (click) = "deleteBeneficiary(row)"></i></button>
+         
           </ng-template>
         </ngx-datatable-column>
 
