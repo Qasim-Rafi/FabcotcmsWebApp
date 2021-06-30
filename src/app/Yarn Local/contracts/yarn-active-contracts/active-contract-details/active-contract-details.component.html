@@ -590,16 +590,16 @@
                     
                     
                             <div class="row"  *ngIf="loggedInDepartmentName=='Yarn Export'">
-                                <div class="col-md-8">
+                                <div class="col-md-12">
                     
-                                    <dl class="row">
+                                    <!-- <dl class="row">
                                         <dt class="col-sm-6">Article:
                                         </dt>
                                         <dd class="col-sm-6"></dd>
-                                    </dl>
+                                    </dl> -->
                                     <dl class="row">
                 
-                                        <dd class="col-md-12 pt-3 ml-5" >
+                                        <dd class="col-md-12 pt-1" >
                                     
                                             <div *ngIf="loggedInDepartmentName=='Yarn Export'" >
                                                 <div class="form-group row" *ngFor="let a of contractArticles; let i = index;">
@@ -608,7 +608,7 @@
                                                     <div class="col-md-3 ">
                                                         <div class="input-group">
                                                        
-                                                        <ng-select  name="articleId_{{i}}" #articleId="ngModel" class="input-w px-0"
+                                                        <ng-select [disabled]="a.isDeleted ==true" name="articleId_{{i}}" #articleId="ngModel" class="input-w px-0"
                                                         [(ngModel)]="a.articleId" placeholder="-- Select --">
                                                         <ng-option *ngFor="let c of article" [value]="c.id">{{ c.name }}
                                                         </ng-option>
@@ -618,37 +618,36 @@
                                                     </div>
                                                           <div class="col-md-3 ">
                                                             <div class="input-group">
-                                                                <input type="number" min="0" placeholder="quantity" #contractArticleQuantity="ngModel"
+                                                                <input type="number" [disabled]="a.isDeleted ==true" min="0" placeholder="quantity" #contractArticleQuantity="ngModel"
                                                                     class="form-control" [(ngModel)]="a.contractArticleQuantity" name="contractArticleQuantity_{{i}}">
                                                             
                                                             </div>
                                                         </div>
-                                                          <div class="col-md-2">
+                                                          <div class="col-md-3">
                                                             <div class="input-group">
-                                                                <input type="number" min="0" placeholder="Rate" #contractArticleRate="ngModel"
+                                                                <input type="number" [disabled]="a.isDeleted ==true" min="0" placeholder="Rate" #contractArticleRate="ngModel"
                                                                     class="form-control" [(ngModel)]="a.contractArticleRate" name="contractArticleRate_{{i}}">
                                                              
                                                             </div>
                                                         </div>
-                                                          <div class="col-md-3 ">
+                                                          <div class="col-md-2">
                                                             <div class="input-group">
-                                                                <input type="number" min="0" placeholder="Commission" #contractArticleCommission="ngModel"
+                                                                <input type="number" [disabled]="a.isDeleted ==true" min="0" placeholder="Commission" #contractArticleCommission="ngModel"
                                                                 class="form-control" [(ngModel)]="a.contractArticleCommission" name="contractArticleCommission_{{i}}">
                                                                 
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-2 ">
+                                                        <div class="col-md-1">
                                                           <div class="input-group-append">
-                                                            <button class="btn btn-outline-danger " type="submit" (click)="removeArticle(a)">
+                                                            <button class="btn btn-outline-danger" [disabled]="a.isDeleted ==true" type="submit" (click)="removeArticle(a)">
                                                                 <i class="fas fa-minus fa-xs"></i></button>
-                                                                <label *ngIf="a.isDeleted ==true">Deleted</label>
+                                                                <span class="badge badge-danger h5 ml-2" *ngIf="a.isDeleted ==true">Deleted</span>
                                                         </div>
                                                         </div>
                                             </div>
                                        
                                             <div class="row">
-                                                <div class="col-md-3"></div>
-                                                <div class="col-md-7">
+                                                <div class="col-md-11 text-right">
                                                     <button class="btn btn-outline-primary btn-sm" (click)="addArticle()"> Add Another Article</button>
                                                 </div>
                                             </div>
@@ -664,8 +663,8 @@
                     
                             </div>
                             <div class="row"  *ngIf="loggedInDepartmentName=='Yarn Export'">
-                                <div class="col-md-12 mb-4">
-                                    <button class="btn btn-outline-primary btn-sm" (click)="editArticle()"> Edit Article</button>
+                                <div class="col-md-12 text-right">
+                                    <button class="btn btn-outline-primary btn-sm" (click)="editArticle()"> Update Article</button>
 
                                 </div>
                             </div>
