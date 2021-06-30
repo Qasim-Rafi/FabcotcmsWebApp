@@ -867,12 +867,20 @@
                             <div class="row">
                                 <div class="col-md-6">
                     
-                                    <dl class="row">
+                                    <dl class="row" *ngIf = "loggedInDepartmentName != 'Yarn Export'">
                                         <dt class="col-sm-6">Payment terms:</dt>
                                         <dd class="col-sm-6">{{contractPaymentData.sellerPaymentTermName}}
-                                            <b *ngIf="contractPaymentData.sellerPaymentTermDays != ''">
+                                            <b *ngIf="contractPaymentData.paymentTermDays != ''">
                                                 {{contractPaymentData.sellerPaymentTermDays}} Days </b>
                                             {{contractPaymentData.sellerPaymentTermInfo}}
+                                        </dd>
+                                    </dl>
+                                    <dl class="row" *ngIf = "loggedInDepartmentName == 'Yarn Export'">
+                                        <dt class="col-sm-6">Payment terms:</dt>
+                                        <dd class="col-sm-6">{{contractPaymentData.paymentTermName}}
+                                            <b *ngIf="contractPaymentData.paymentTermDays != ''">
+                                                {{contractPaymentData.paymentTermDays}} Days </b>
+                                            {{contractPaymentData.paymentTermInfo}}
                                         </dd>
                                     </dl>
                     

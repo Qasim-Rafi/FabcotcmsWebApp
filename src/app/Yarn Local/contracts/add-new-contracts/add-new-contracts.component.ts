@@ -1055,10 +1055,12 @@ brandId : any;
       "wiTax": this.data.wiTax,
       "priceTermId": this.data.priceTermId,
       "sellerPaymentTermId": this.data.sellerPaymentTermId,
-      
+      "paymentTermId":this.data.paymentTermId,
       "buyerPaymentTermId": this.data.buyerPaymentTermId,
       "paymentMode": this.data.paymentMode,
       "sellerPaymentTermDays": this.data.sellerPaymentTermDays,
+      "paymentTermDays":this.data.paymentTermDays,
+      "paymentTermInfo":this.data.paymentTermInfo,
       "buyerPaymentTermDays": this.data.buyerPaymentTermDays,
       "destinationId": this.data.destinationId,
       "containerId": this.data.containerId,

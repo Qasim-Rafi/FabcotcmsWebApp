@@ -94,10 +94,10 @@ export class QuantityAndCostingComponent implements OnInit {
       "quantityToleranceValue": this.data.quantityToleranceValue,
       "rate": this.data.rate,
       "rateCurrencyId": this.data.rateCurrencyId,
-
+      
       "rateUOMId": this.data.rateUOMId,
       "contractCost": this.data.contractCost,
-      "totalCostGSt":this.data.totalCostGSt,
+      "totalCostGSt":this.data.totalCostGSt == ""?  null :this.data.totalCostGSt  ,
       "gst": this.data.gst,
       "witAx": this.data.witAx
       

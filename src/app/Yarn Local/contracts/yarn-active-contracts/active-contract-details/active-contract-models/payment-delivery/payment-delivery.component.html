@@ -33,7 +33,7 @@
       </div>
 
 
-      <div class="form-group row">
+      <div class="form-group row" *ngIf = "loggedInDepartmentName != 'Yarn Export'">
         <label for="description" class="col-sm-3 col-form-label text-Navy">Payment Terms</label>
         <div class="col-sm-4">
           <ng-select required name="sellerPaymentTermId" placeholder="Payment Terms" [(ngModel)]="data.sellerPaymentTermId"
@@ -53,13 +53,45 @@
 
       </div>
 
-      <div class="form-group row">
+      <div class="form-group row" *ngIf = "loggedInDepartmentName != 'Yarn Export'">
         <label for="description" class="col-sm-3 col-form-label text-Navy"></label>
         <div class="col-sm-8">
           <input type="text" class="form-control" placeholder="Payment term Additional Info" name="sellerPaymentTermInfo"
             [(ngModel)]="data.sellerPaymentTermInfo">
         </div>
       </div>
+      
+<!-- for yarn export -->
+
+<div class="form-group row" *ngIf = "loggedInDepartmentName == 'Yarn Export'">
+  <label for="description" class="col-sm-3 col-form-label text-Navy">Payment Terms</label>
+  <div class="col-sm-4">
+    <ng-select required name="paymentTermId" placeholder="Payment Terms" [(ngModel)]="data.paymentTermId"
+      #paymentTermId="ngModel">
+      <ng-option *ngFor="let i of payment" [value]="i.id">
+        {{i.term}}
+      </ng-option>
+    </ng-select>
+  </div>
+  <div class="col-md-4 mrg-sm1">
+    <div class="input-group">
+      <input required type="number" min="0" class="form-control" placeholder="days" name="paymentTermDays"
+        [(ngModel)]="data.paymentTermDays" #paymentTermDays="ngModel"
+        [ngClass]="{'error': paymentTermDays.invalid && partiesForm.submitted }">
+    </div>
+  </div>
+
+</div>
+
+<div class="form-group row" *ngIf = "loggedInDepartmentName == 'Yarn Export'">
+  <label for="description" class="col-sm-3 col-form-label text-Navy"></label>
+  <div class="col-sm-8">
+    <input type="text" class="form-control" placeholder="Payment term Additional Info" name="paymentTermInfo"
+      [(ngModel)]="data.paymentTermInfo">
+  </div>
+</div>
+
+
       <div class="form-group row" *ngIf = "loggedInDepartmentName != 'Yarn Export'">
         <label for="description" class="col-sm-3 col-form-label text-Navy">Payment Terms (Buyer Side)</label>
         <div class="col-sm-4">
