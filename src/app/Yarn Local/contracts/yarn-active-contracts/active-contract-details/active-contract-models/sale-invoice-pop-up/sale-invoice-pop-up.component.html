@@ -40,6 +40,19 @@
           </div>
         </div>
 
+       <div class="form-group row" *ngIf="loggedInDepartmentName=='Yarn Export'">
+          <label for="contractArticleId" class="col-sm-3 col-form-label">Article</label>
+          <div class="col-sm-8">
+            <ng-select [(ngModel)] = "data.contractArticleId"   #contractArticleId="ngModel"
+               placeholder="Contract Articles" name="contractArticleId" >
+                <ng-option *ngFor = "let i of articles"  [value] = "i.id">{{i.articleName}}</ng-option>
+            </ng-select>
+          </div>
+        </div>
+
+
+
+
           <div class="form-group row">
             <label for="quantity" class="col-sm-3 col-form-label text_Navy">Quantity</label>
             <div class="col-sm-3">

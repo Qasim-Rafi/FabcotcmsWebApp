@@ -34,6 +34,7 @@ export class SaleInvoicePopUpComponent implements OnInit {
   saleInvoiceNo:string;
   loggedInDepartmentName:string;
 uomList : any = {};
+articles:any=[];
 @ViewChild(NgForm) InvoiceForm;
   saleInvoiceDate: any;
  
@@ -51,7 +52,7 @@ uomList : any = {};
     this.quantity = this.quantity;
     this.saleInvoiceQuantity=this.saleInvoiceQuantity;
     this.loggedInDepartmentName = localStorage.getItem('loggedInDepartmentName');
-
+this.GetArticleDropdown();
     this.GetUOMDropdown();
     if (this.statusCheck == 'editInvoice') {
       this.editSaleInvoice();
@@ -106,6 +107,37 @@ if(event==7){
       }
     })
   }
+ GetArticleDropdown() {
+    this.http.get(`${environment.apiUrl}/api/Lookups/ContractArticles/` + this.contractId)
+      .subscribe(
+        res => {
+          this.response = res;
+          if (this.response.success == true) {
+            this.articles = this.response.data;
+            
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+  
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+        });
+  }
+//  GetArticleDropdown() {
+//     this.service.getArticles().subscribe(res => {
+//       this.response = res;
+//       if (this.response.success == true) {
+//         this.articles = this.response.data;   
+//       }
+//       else {
+//         this.toastr.error(this.response.message, 'Message.');
+//       }
+//     })
+//   }
+
   addSaleInvoice(form:NgForm) {
     let sum=parseInt(this.quantitya)+parseInt(this.saleInvoiceQuantity);
     if(sum>this.quantity ){
@@ -124,7 +156,7 @@ if(event==7){
       "quantity": this.data.quantity,
       "unit": this.data.unit.toString(),
       "taxPercentage": this.data.taxPercentage == null ?  this.condition :this.data.taxPercentage,
-      // this.data.otherConditionRemarks == null ?  this.condition : this.data.otherConditionRemarks 
+      "contractArticleId":this.data.contractArticleId
     }
 this.spinner.show();
     this.http.
