@@ -143,7 +143,9 @@ color: #676a6c !important;
   color: rgb(19, 19, 231);
   cursor: pointer;
 }
-
+.input-w{
+  width: 100% !important;
+}
 
 @media only screen and (max-width: 1024px) {
   .mrg-btm {
