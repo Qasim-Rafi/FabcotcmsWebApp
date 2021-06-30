@@ -1055,6 +1055,7 @@ brandId : any;
       "wiTax": this.data.wiTax,
       "priceTermId": this.data.priceTermId,
       "sellerPaymentTermId": this.data.sellerPaymentTermId,
+      
       "buyerPaymentTermId": this.data.buyerPaymentTermId,
       "paymentMode": this.data.paymentMode,
       "sellerPaymentTermDays": this.data.sellerPaymentTermDays,
