@@ -64,12 +64,15 @@ this.GetArticleDropdown();
 
   articleData(event) {
     if(event !=undefined){
-    this.http.get(`${environment.apiUrl}/api/ExportContracts/GetContractArticleById/`+this.articleId+ event )
+    this.http.get(`${environment.apiUrl}/api/ExportContracts/GetContractArticleById/`+ event )
       .subscribe(
         res => {
           this.response = res;
           if (this.response.success == true) {
             this.articledata = this.response.data;
+            this.data.quantity=this.articledata.contractArticleQuantity;
+             this.data.amount=this.articledata.contractArticleRate * this.data.quantity;
+
   
           }
           else {
@@ -81,6 +84,10 @@ this.GetArticleDropdown();
             this.toastr.error(this.response.message, 'Message.');
           }
         });
+      }
+      else{
+        this.data.amount =null;
+        this.data.quantity=null;
       }
   }
   get activeModal() {
