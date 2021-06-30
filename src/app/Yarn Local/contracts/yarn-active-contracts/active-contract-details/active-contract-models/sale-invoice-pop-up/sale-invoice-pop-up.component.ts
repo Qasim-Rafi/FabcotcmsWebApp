@@ -20,6 +20,7 @@ export class SaleInvoicePopUpComponent implements OnInit {
   dateformater: Dateformater = new Dateformater();  
   timeout: any = null;
   @Input() contractId;
+  @Input() articleId;
   @Input() invoiceId; 
   @Input() statusCheck; 
   @Input() quantity; 
@@ -34,6 +35,7 @@ export class SaleInvoicePopUpComponent implements OnInit {
   saleInvoiceNo:string;
   loggedInDepartmentName:string;
 uomList : any = {};
+articledata:any=[];
 articles:any=[];
 @ViewChild(NgForm) InvoiceForm;
   saleInvoiceDate: any;
@@ -59,8 +61,27 @@ this.GetArticleDropdown();
     }
    
   }
-  refreshPage() {
-    this._document.defaultView.location.reload();
+
+  articleData(event) {
+    if(event !=undefined){
+    this.http.get(`${environment.apiUrl}/api/ExportContracts/GetContractArticleById/`+this.articleId+ event )
+      .subscribe(
+        res => {
+          this.response = res;
+          if (this.response.success == true) {
+            this.articledata = this.response.data;
+  
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+  
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+        });
+      }
   }
   get activeModal() {
     return this._NgbActiveModal;
