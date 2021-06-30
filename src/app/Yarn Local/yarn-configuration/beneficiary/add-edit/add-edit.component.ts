@@ -22,7 +22,7 @@ export class AddEditComponent implements OnInit {
   departments: any = [];
   users: any = [];
   response: any;
-  data: any = [];
+  Bendata: any = [];
   obj: any = {};
   dateformater: Dateformater = new Dateformater();  
   status = true;
@@ -110,8 +110,8 @@ this.GetUsersDropdown(this.deptId);
           this.response = res;
           if (this.response.success == true) {
 
-            this.data = this.response.data;
-          
+            this.Bendata = this.response.data;
+          this.Bendata.dateTime = this.dateformater.fromModel(this.Bendata.dateTime)
           //   if(this.response.data[0].departmentName == 'Yarn Export'){
           //     this.departments.id = 1 ;
            
@@ -202,14 +202,14 @@ this.GetUsersDropdown(this.deptId);
   addbeneficiary() {
     // this.data.poDate = this.dateformater.toModel(this.data.poDate);
     let varr = {
-      "userId": this.data.userId,
-      "commission": this.data.commission,
+      "userId": this.Bendata.userId,
+      "commission": this.Bendata.commission,
       "status": this.status.toString(),
-      "dateTime": this.dateformater.toModel(this.data.dateTime),
-      "includingBuyerId":this.data.includingBuyerId,
-      "commissionRatio": parseInt(this.data.commissionRatio),
-      "remarks":this.data.remarks,
-      "excludingBuyerId":this.data.excludingBuyerId
+      "dateTime": this.dateformater.toModel(this.Bendata.dateTime),
+      "includingBuyerId":this.Bendata.includingBuyerId,
+      "commissionRatio": parseInt(this.Bendata.commissionRatio),
+      "remarks":this.Bendata.remarks,
+      "excludingBuyerId":this.Bendata.excludingBuyerId
     }
 this.spinner.show();
     this.http.
@@ -270,14 +270,14 @@ this.spinner.show();
   UpdateBeneficiary() {
     
     let varr = {
-      "userId": this.data.userId,
-      "commission": this.data.commission,
+      "userId": this.Bendata.userId,
+      "commission": this.Bendata.commission,
       "status": this.status.toString(),
-      "dateTime": this.dateformater.toModel(this.data.dateTime),
-      "includingBuyerId":this.data.includingBuyerId,
-      "commissionRatio": parseInt(this.data.commissionRatio),
-      "remarks":this.data.remarks,
-      "excludingBuyerId":this.data.excludingBuyerId
+      "dateTime": this.dateformater.toModel(this.Bendata.dateTime),
+      "includingBuyerId":this.Bendata.includingBuyerId,
+      "commissionRatio": parseInt(this.Bendata.commissionRatio),
+      "remarks":this.Bendata.remarks,
+      "excludingBuyerId":this.Bendata.excludingBuyerId
     }
 this.spinner.show();
     this.http.
@@ -323,14 +323,14 @@ this.spinner.show();
   reviveBeneficiary() {
     
     let varr = {
-      "userId": this.data.userId,
+      "userId": this.Bendata.userId,
       // "commission": this.data.commission,
       "status": this.status.toString(),
-      "dateTime": this.dateformater.toModel(this.data.dateTime),
-      "includingBuyerId":this.data.includingBuyerId,
-      "commissionRatio": parseInt(this.data.commissionRatio),
-      "remarks":this.data.remarks,
-      "excludingBuyerId":this.data.excludingBuyerId
+      "dateTime": this.dateformater.toModel(this.Bendata.dateTime),
+      "includingBuyerId":this.Bendata.includingBuyerId,
+      "commissionRatio": parseInt(this.Bendata.commissionRatio),
+      "remarks":this.Bendata.remarks,
+      "excludingBuyerId":this.Bendata.excludingBuyerId
     }
 this.spinner.show();
     this.http.

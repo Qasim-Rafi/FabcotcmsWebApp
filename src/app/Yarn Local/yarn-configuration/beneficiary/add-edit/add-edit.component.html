@@ -33,7 +33,7 @@
         <div class="form-group row">
             <label class="col-sm-3 col-form-label text-grey">Department Name</label>
             <div class="col-sm-4">
-              <ng-select [(ngModel)]="data.departmentId" placeholder="-- Select --" name="departmentId"
+              <ng-select [(ngModel)]="Bendata.departmentId" placeholder="-- Select --" name="departmentId"
                 #departmentId="ngModel" (change) = "getDeptDropdown2($event)" >
                 <ng-option *ngFor="let i of departments" [value]="i.id">{{ i.name }}
                 </ng-option>
@@ -42,7 +42,7 @@
     
             <label class="col-sm-1 col-form-label text-grey">Users</label>
             <div class="col-sm-3">
-              <ng-select [(ngModel)]="data.userId" placeholder="-- Select --" name="userId"
+              <ng-select [(ngModel)]="Bendata.userId" placeholder="-- Select --" name="userId"
                 #userId="ngModel" [ngClass]="{ error: userId.invalid && BeneficiaryForm.submitted}">
                 <ng-option *ngFor="let i of users" [value]="i.id">{{ i.fullName }}
                 </ng-option>
@@ -53,7 +53,7 @@
         <label for="commissionRatio" class="col-sm-3 col-form-label control-label text-grey">Commission</label>
         <div class="col-sm-8">
           <input maxlength="80" type="number" minlength="0" type="text" class="form-control"
-            placeholder="Commission" name="commissionRatio" [(ngModel)]="data.commissionRatio" #commissionRatio="ngModel"
+            placeholder="Commission" name="commissionRatio" [(ngModel)]="Bendata.commissionRatio" #commissionRatio="ngModel"
             [ngClass]="{ error: commissionRatio.invalid && BeneficiaryForm.submitted}" />
         </div>
       </div>
@@ -72,13 +72,13 @@
 
           <input navigation="select" class="form-control  " ngbDatepicker #dateTime="ngbDatepicker"
             (click)="dateTime.toggle()" placeholder="Date Here" name="dateTime"
-            [(ngModel)]="data.dateTime" />
+            [(ngModel)]="Bendata.dateTime" />
         </div>
       </div>
       <div class="form-group row">
         <label class="col-sm-3 col-form-label text-grey">Exclude</label>
         <div class="col-sm-4">
-          <ng-select [(ngModel)]="data.excludingBuyerId" placeholder="-- Select --" name="excludingBuyerId"
+          <ng-select [(ngModel)]="Bendata.excludingBuyerId" placeholder="-- Select --" name="excludingBuyerId"
             #excludingBuyerId="ngModel" [ngClass]="{ error: excludingBuyerId.invalid && BeneficiaryForm.submitted}">
             <ng-option *ngFor="let i of excludingBuyer" [value]="i.id">{{ i.buyerName }}
             </ng-option>
@@ -86,7 +86,7 @@
         </div>
         <label class="col-sm-1 col-form-label text-grey">Include</label>
         <div class="col-sm-3">
-          <ng-select [(ngModel)]="data.includingBuyerId" placeholder="-- Select --" name="includingBuyerId"
+          <ng-select [(ngModel)]="Bendata.includingBuyerId" placeholder="-- Select --" name="includingBuyerId"
             #includingBuyerId="ngModel" [ngClass]="{ error: includingBuyerId.invalid && BeneficiaryForm.submitted}">
             <ng-option *ngFor="let i of includingBuyer" [value]="i.id">{{ i.buyerName }}
             </ng-option>
@@ -97,7 +97,7 @@
         <label for="remarks" class="col-sm-3 col-form-label text-grey">Remarks</label>
         <div class="col-sm-8">
           <textarea class="form-control" id="remarks" rows="3" maxlength="300" placeholder="Brief description here ..."
-            name="remarks" [(ngModel)]="data.remarks" #remarks="ngModel"></textarea>
+            name="remarks" [(ngModel)]="Bendata.remarks" #remarks="ngModel"></textarea>
         </div>
       </div>
      
