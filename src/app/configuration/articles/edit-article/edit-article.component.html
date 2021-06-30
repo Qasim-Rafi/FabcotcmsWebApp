@@ -15,11 +15,11 @@
   <form #addAgentForm="ngForm" novalidate (ngSubmit)="UpdateArticle(addAgentForm)">
 
     <div class="row justify-content-center">
-      <div class="col-10 col-md-10 pt-3 pb-2">
+      <div class="col-10 col-md-11 pt-3 pb-2">
     
         <div class="form-group row" [class.has-error]="code.invalid ">
           <label for="code" class="col-md-3 col-form-label control-label ">Article Code </label>
-          <div class="col-md-9">
+          <div class="col-md-8">
             <input id="code" appAutofocus type="text" class="form-control" maxlength="50" placeholder="Article Code"
               name="code" [(ngModel)]="data.code" #code="ngModel">
             <small>Standard code for the article</small>
@@ -30,7 +30,7 @@
         <div class="form-group row" [class.has-error]="name.invalid && name.touched">
           <label for="code" class="col-md-3 col-form-label control-label text_Navy">Article Name<span
               class="required-denote">*</span> </label>
-          <div class="col-md-9">
+          <div class="col-md-8">
             <input required id="name" type="text" class="form-control" placeholder="Article name" name="name"
               maxlength="100" [(ngModel)]="data.name" #name="ngModel"
               [ngClass]="{'error': name.invalid && addAgentForm.submitted}">
@@ -41,7 +41,7 @@
     
         <div class="form-group row">
           <label for="genericName" class="col-md-3 col-form-label text-grey">Generic Name</label>
-          <div class="col-md-9">
+          <div class="col-md-8">
             <input id="genericName" type="text" class="form-control" placeholder="Article generic name" name="genericName"
               [(ngModel)]="data.genericName" #genericName="ngModel">
           </div>
@@ -49,7 +49,7 @@
     
         <div class="form-group row">
           <label for="description" class="col-md-3 col-form-label text-grey">Description</label>
-          <div class="col-md-9">
+          <div class="col-md-8">
             <textarea class="form-control" id="description" rows="3" maxlength="300"
               placeholder="Brief article description here ..." name="description" [(ngModel)]="data.description"
               #description="ngModel"></textarea>
@@ -58,7 +58,7 @@
     
         <div class="form-group row">
           <label for="active" class="col-md-3 col-form-label text-grey"></label>
-          <div class="col-md-9">
+          <div class="col-md-8">
             <div class="form-check form-check-inline">
               <input class="form-check-input check-btn " id="scales" type="checkbox" name="active"
                 [(ngModel)]="data.active">

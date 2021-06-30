@@ -36,83 +36,91 @@
 <div class="modal-body BG p-0">
   <form #certificateForm="ngForm" novalidate>
 
-    <div class="col-md-12 pt-3 pb-2">
-
-      <div class="form-group row" *ngIf="
-        statusCheck == 'CertificateEdit' || statusCheck == 'CertificateAdd'
-      ">
-        <label for="name" class="col-sm-3 col-form-label control-label text_Navy">Certificate Name<span
-            class="required-denote">*</span></label>
-        <div class="col-sm-8">
-          <input appAutofocus required id="name" type="text" class="form-control" placeholder="Certificate name"
-            name="name" [(ngModel)]="data.name" #name="ngModel"
-            [ngClass]="{ error: name.invalid && certificateForm.submitted }" />
-        </div>
-      </div>
-
-      <div class="form-group row" *ngIf="
-    statusCheck == 'SellerEdit' || statusCheck == 'SellerAdd'
-  ">
-        <label for="name" class="col-sm-3 col-form-label control-label text_Navy">Certificate<span
-            class="required-denote">*</span>
-        </label>
-        <div class="col-sm-8">
-          <ng-select required placeholder="-- Select --" [(ngModel)]="data.certificateId" name="certificateId"
-            [ngClass]="{ error: certificateId.invalid && certificateForm.submitted}" #certificateId="ngModel">
-            <ng-option *ngFor="let i of certificate" [value]="i.id">
-              {{ i.name }}</ng-option>
-          </ng-select>
-        </div>
-      </div>
-
-      <div class="form-group row" *ngIf="
-    statusCheck == 'SellerEdit' || statusCheck == 'SellerAdd'">
-        <label for="description" class="col-sm-3 col-form-label text-Navy">Validity Date</label>
-        <div class="col-sm-8" (clickOutside)="validityDate.close()">
-
-          <input navigation="select" class="form-control text_Navy " ngbDatepicker #validityDate="ngbDatepicker"
-            (click)="validityDate.toggle()" placeholder="Certificate validity date" [(ngModel)]="data.validityDate"
-            name="validityDate" />
-        </div>
-
-      </div>
-
-      <div class="form-group row" *ngIf="statusCheck == 'CertificateEdit' || statusCheck == 'CertificateAdd'">
-        <label for="description" class="col-sm-3 col-form-label text-grey">Description</label>
-        <div class="col-sm-8">
-          <textarea maxlength="300" class="form-control" id="description" rows="3"
-            placeholder="Brief Certificate description here ..." name="description" [(ngModel)]="data.description"
-            #description="ngModel"></textarea>
-        </div>
-      </div>
-
-      <div class="form-group row" *ngIf="
-    statusCheck == 'SellerEdit' || statusCheck == 'SellerAdd'
-  ">
-        <label for="description" class="col-sm-3 col-form-label text-grey">Remarks</label>
-        <div class="col-sm-8">
-          <textarea maxlength="300" class="form-control" id="description" rows="3"
-            placeholder="Brief Certificate description here ..." name="description" [(ngModel)]="data.description"
-            #description="ngModel"></textarea>
-        </div>
-      </div>
-
-      <div class="form-group row" *ngIf="statusCheck == 'CertificateEdit' || statusCheck == 'CertificateAdd'
-      ">
-        <label for="active" class="col-sm-3 col-form-label text-grey"></label>
-        <div class="col-sm-8">
-          <div class="form-check form-check-inline">
-            <input  class="form-check-input check-btn " *ngIf="statusCheck == 'CertificateAdd'" id="active"  type="checkbox" name="active" [(ngModel)]="active">
-            <label for="active"  *ngIf="statusCheck == 'CertificateAdd'"  class="form-check-label text-grey" >Marked as Active</label>
-
-            <input class="form-check-input check-btn " *ngIf="statusCheck == 'CertificateEdit'" id="active" type="checkbox" name="active" [(ngModel)]="data.active"
-            #active="ngModel">
-          <label for="active" *ngIf="statusCheck == 'CertificateEdit'" class="form-check-label text-grey" >Marked as Active</label>
+    <div class="row justify-content-center">
+      <div class="col-10 col-md-11 pt-3 pb-2">
+    
+        <div class="form-group row" *ngIf="
+            statusCheck == 'CertificateEdit' || statusCheck == 'CertificateAdd'
+          ">
+          <label for="name" class="col-md-3 col-form-label control-label text_Navy">Certificate Name<span
+              class="required-denote">*</span></label>
+          <div class="col-md-8">
+            <input appAutofocus required id="name" type="text" class="form-control" placeholder="Certificate name"
+              name="name" [(ngModel)]="data.name" #name="ngModel"
+              [ngClass]="{ error: name.invalid && certificateForm.submitted }" />
           </div>
         </div>
+    
+        <div class="form-group row" *ngIf="
+        statusCheck == 'SellerEdit' || statusCheck == 'SellerAdd'
+      ">
+          <label for="name" class="col-md-3 col-form-label control-label text_Navy">Certificate<span
+              class="required-denote">*</span>
+          </label>
+          <div class="col-md-8">
+            <ng-select required placeholder="-- Select --" [(ngModel)]="data.certificateId" name="certificateId"
+              [ngClass]="{ error: certificateId.invalid && certificateForm.submitted}" #certificateId="ngModel">
+              <ng-option *ngFor="let i of certificate" [value]="i.id">
+                {{ i.name }}</ng-option>
+            </ng-select>
+          </div>
+        </div>
+    
+        <div class="form-group row" *ngIf="
+        statusCheck == 'SellerEdit' || statusCheck == 'SellerAdd'">
+          <label for="description" class="col-md-3 col-form-label text-Navy">Validity Date</label>
+          <div class="col-md-8" (clickOutside)="validityDate.close()">
+    
+            <input navigation="select" class="form-control text_Navy " ngbDatepicker #validityDate="ngbDatepicker"
+              (click)="validityDate.toggle()" placeholder="Certificate validity date" [(ngModel)]="data.validityDate"
+              name="validityDate" />
+          </div>
+    
+        </div>
+    
+        <div class="form-group row" *ngIf="statusCheck == 'CertificateEdit' || statusCheck == 'CertificateAdd'">
+          <label for="description" class="col-md-3 col-form-label text-grey">Description</label>
+          <div class="col-md-8">
+            <textarea maxlength="300" class="form-control" id="description" rows="3"
+              placeholder="Brief Certificate description here ..." name="description" [(ngModel)]="data.description"
+              #description="ngModel"></textarea>
+          </div>
+        </div>
+    
+        <div class="form-group row" *ngIf="
+        statusCheck == 'SellerEdit' || statusCheck == 'SellerAdd'
+      ">
+          <label for="description" class="col-md-3 col-form-label text-grey">Remarks</label>
+          <div class="col-md-8">
+            <textarea maxlength="300" class="form-control" id="description" rows="3"
+              placeholder="Brief Certificate description here ..." name="description" [(ngModel)]="data.description"
+              #description="ngModel"></textarea>
+          </div>
+        </div>
+    
+        <div class="form-group row" *ngIf="statusCheck == 'CertificateEdit' || statusCheck == 'CertificateAdd'
+          ">
+          <label for="active" class="col-md-3 col-form-label text-grey"></label>
+          <div class="col-md-8">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input check-btn " *ngIf="statusCheck == 'CertificateAdd'" id="active" type="checkbox"
+                name="active" [(ngModel)]="active">
+              <label for="active" *ngIf="statusCheck == 'CertificateAdd'" class="form-check-label text-grey">Marked as
+                Active</label>
+    
+              <input class="form-check-input check-btn " *ngIf="statusCheck == 'CertificateEdit'" id="active"
+                type="checkbox" name="active" [(ngModel)]="data.active" #active="ngModel">
+              <label for="active" *ngIf="statusCheck == 'CertificateEdit'" class="form-check-label text-grey">Marked as
+                Active</label>
+            </div>
+          </div>
+        </div>
+    
       </div>
-
     </div>
+
+
+
 
     <div class="modal-footer NotBG">
       <!-- <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" (click)="activeModal.close()">Close</button> -->
