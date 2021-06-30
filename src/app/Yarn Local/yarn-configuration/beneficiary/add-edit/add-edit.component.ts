@@ -31,6 +31,8 @@ export class AddEditComponent implements OnInit {
   userrole:string;
   typeId : any;
   deptId : any;
+  deptId2 : any;
+
 
   @Input() beneficiaryId;
   @Input() statusCheck;
@@ -68,6 +70,10 @@ this.GetIncludingBuyersDropdown();
     if (this.statusCheck == 'BeneficiaryEdit') {
       this.editBeneficiary();
     }
+    this.statusCheck = this.statusCheck;
+    // if (this.statusCheck == 'BeneficiaryRevive') {
+    //   this.editBeneficiary();
+    // }
     // this.editBeneficiary();
   this.getDeptDropdown();
   }
@@ -104,8 +110,33 @@ this.GetUsersDropdown(this.deptId);
           this.response = res;
           if (this.response.success == true) {
 
-            this.data = this.response.data[0];
+            this.data = this.response.data;
           
+          //   if(this.response.data[0].departmentName == 'Yarn Export'){
+          //     this.departments.id = 1 ;
+           
+          //   } 
+          //   else if(this.response.data[0].departmentName == 'Fabric Export'){
+          //     this.departments.id = 2;
+        
+          //   } 
+          //   else if(this.response.data[0].departmentName == 'Yarn Local'){
+          //     this.departments.id = 3;
+          
+          // }
+          // else if(this.response.data[0].departmentName == 'Yarn Local Karachi'){
+          //   this.departments.id = 4;
+         
+          // } 
+          // else if(this.response.data[0].departmentName == 'Fabric Local'){
+          //   this.departments.id = 5;
+         
+          // } 
+          // else if(this.response.data[0].departmentName == 'Home Textile & Garment'){
+          //   this.deptId2 = 6;
+         
+          // } 
+          this.GetUsersDropdown(this.response.data.departmentId)
             this.spinner.hide();
           }
           else {
@@ -289,6 +320,43 @@ this.spinner.show();
   // }
 
   
+  reviveBeneficiary() {
+    
+    let varr = {
+      "userId": this.data.userId,
+      // "commission": this.data.commission,
+      "status": this.status.toString(),
+      "dateTime": this.dateformater.toModel(this.data.dateTime),
+      "includingBuyerId":this.data.includingBuyerId,
+      "commissionRatio": parseInt(this.data.commissionRatio),
+      "remarks":this.data.remarks,
+      "excludingBuyerId":this.data.excludingBuyerId
+    }
+this.spinner.show();
+    this.http.
+      put(`${environment.apiUrl}/api/Configs/UpdateBeneficiaryIsRevive/` + this.beneficiaryId, varr)
+      .subscribe(
+        res => {
+
+          this.response = res;
+          if (this.response.success == true) {
+            this.toastr.success(this.response.message, 'Message.');
+            this.activeModal.close(true);
+            this.spinner.hide();
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          this.spinner.hide();
+          }
+
+        }, (err: HttpErrorResponse) => {
+          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+          this.toastr.error(messages.toString(), 'Message.');
+          console.log(messages);
+          this.spinner.hide();
+        });
+  
+}
 
 }
 
