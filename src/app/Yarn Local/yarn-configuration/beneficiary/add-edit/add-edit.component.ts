@@ -112,30 +112,7 @@ this.GetUsersDropdown(this.deptId);
 
             this.Bendata = this.response.data;
           this.Bendata.dateTime = this.dateformater.fromModel(this.Bendata.dateTime)
-          //   if(this.response.data[0].departmentName == 'Yarn Export'){
-          //     this.departments.id = 1 ;
-           
-          //   } 
-          //   else if(this.response.data[0].departmentName == 'Fabric Export'){
-          //     this.departments.id = 2;
-        
-          //   } 
-          //   else if(this.response.data[0].departmentName == 'Yarn Local'){
-          //     this.departments.id = 3;
-          
-          // }
-          // else if(this.response.data[0].departmentName == 'Yarn Local Karachi'){
-          //   this.departments.id = 4;
          
-          // } 
-          // else if(this.response.data[0].departmentName == 'Fabric Local'){
-          //   this.departments.id = 5;
-         
-          // } 
-          // else if(this.response.data[0].departmentName == 'Home Textile & Garment'){
-          //   this.deptId2 = 6;
-         
-          // } 
           this.GetUsersDropdown(this.response.data.departmentId)
             this.spinner.hide();
           }
