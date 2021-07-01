@@ -188,6 +188,7 @@ if(event==7){
       "contractArticleId":this.data.contractArticleId
     }
 this.spinner.show();
+          // this._document.defaultView.location.reload();
     this.http.
       post(`${environment.apiUrl}/api/YarnContracts/AddContractSaleInvoice`, varr)
       .subscribe(
@@ -206,12 +207,13 @@ this.spinner.show();
          this.spinner.hide();
           }
 
-        }, (err: HttpErrorResponse) => {
+        },(err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(),'Message.');
           this.spinner.hide();
           
-        });
+        })
+        ;
       }
   }
 
@@ -274,6 +276,7 @@ this.spinner.show();
  
           this.response = res;
           if (this.response.success == true) {
+    // this._document.defaultView.location.reload();
             this.toastr.success(GlobalConstants.updateMessage, 'Message.');
             this.activeModal.close(true);
             this.InvoiceForm.reset();
