@@ -1982,7 +1982,7 @@
                                         </h1>
                                     </div>
                                     <div class="col-sm-12 col-md-6 col-lg-4 text-right">
-                                        <button class="btn btn-outline-primary btn-sm" (click)="navigateUploadDoc('AddDocument')">
+                                        <button class="btn btn-outline-primary btn-sm" (click)="navigateUploadDoc('Add')">
                                             <i class="fas fa-plus"></i>
                                             Attatch New Document </button>
                                     </div>
@@ -2038,7 +2038,22 @@
 
                                         </ng-template>
                                     </ngx-datatable-column>
+                                    <ngx-datatable-column name="Action" [width]="80">
+                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                            <div class="ibox-tools text-center">
+                                                <div class="ibox-tools text-center">
+                                                    <button type="button" class="btn editIconBack"
+                                                        (click)="editDocument(row  , 'Edit')"><i
+                                                            class="far fa-edit"></i></button>
 
+                                                    <button type="button" class="btn deleteIconBack" title=""
+                                                        data-original-title="Delete" (click)="deleteDocument(row)">
+
+                                                        <i class="far fa-trash-alt"></i></button>
+                                                </div>
+                                            </div>
+                                        </ng-template>
+                                    </ngx-datatable-column>
                                 </ngx-datatable>
                             </div>
                         </div>

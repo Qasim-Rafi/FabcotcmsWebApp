@@ -61,8 +61,10 @@ printData : any = {}
   columns: any = [];
   queryParems: any = {};
   invoiceId: any = {};
+  documentId: any = {};
   contractId: any = {};
   contractData: any = {};
+  DocumentData: any = {};
   contractPartiesData: any = {};
   contractProductData: any = {};
   contractCostingData: any = {};
@@ -95,6 +97,7 @@ printData : any = {}
   reminderData = [];
   creditdebit = [];
   deliveryTimeLineData = [];
+  Documents = [];
   deliveryCount: number;
   prodPlanData = [];
   dispatchData = [];
@@ -159,7 +162,7 @@ max1:any;
      
     });
    this.GetArticleDropdown("start");
-  
+  this.getAllDocuments();
     this.getPrintData();
     this.getContractData();
     this.getAllReminder();
@@ -357,6 +360,29 @@ max1:any;
     });
     // this.router.navigate(['/FabCot/doc-upload']);
   };
+  editDocument(row, check) {
+    const modalRef = this.modalService.open(DocumentUploadPopUpComponent, { centered: true });
+    modalRef.componentInstance.NoteId = row.id; //just for edit.. to access the needed row
+    modalRef.componentInstance.statusCheck = check;
+    // modalRef.componentInstance.FormName = name;
+    modalRef.componentInstance.contractId =this.contractId;
+  
+    modalRef.result.then((data) => {
+      // on close
+      if (data == true) {
+        this.getAllNotes((NotesData) => {
+          this.rows3 = NotesData;
+          this.noteFilter = [...NotesData];
+          // this.listCount= this.rows.length;
+        });
+      this.getContractData();
+  
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
+
   searchTna(event) {
     const val = event.target.value.toLowerCase();
     const temp = this.TnaFilter.filter(function (d) {
@@ -584,7 +610,48 @@ lcForm(check){
     });
   }
   
- 
+  deleteDocument(row) {
+    Swal.fire({
+      title: GlobalConstants.deleteTitle, //'Are you sure?',
+      text: GlobalConstants.deleteMessage + ' ' +'Sale Invoice Number:'+ '"' + row.saleInvoiceNo + '"',
+      icon: 'error',
+      showCancelButton: true,
+      confirmButtonColor: '#ed5565',
+      cancelButtonColor: '#dae0e5',
+      cancelButtonText: 'No',
+      confirmButtonText: 'Yes',
+      reverseButtons: true,
+      position: 'top',
+    }).then((result) => {
+      if (result.isConfirmed) {
+  
+        this.http.delete(`${environment.apiUrl}/api/YarnContracts/DeleteContractSaleInvoice/` + row.id)
+          .subscribe(
+            res => {
+              this.response = res;
+              if (this.response.success == true) {
+                this.toastr.error(this.response.message, 'Message.');
+                // this.getAllEnquiryItems();
+                this.fetch((data) => {
+                  this.rows = data;
+                });
+                
+  
+              }
+              else {
+                this.toastr.error(this.response.message, 'Message.');
+              }
+  
+            },(err: HttpErrorResponse) => {
+              const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+              this.toastr.error(messages.toString(), 'Message.');
+              console.log(messages);
+            });
+  
+      }
+    })
+  
+  }
   
   deleteinvoice(row) {
     Swal.fire({
@@ -801,6 +868,47 @@ getDeliveryTimeLine() {
 //         console.log(messages);
 //       });
 // }
+getAllDocuments() {
+  this.http.get(`${environment.apiUrl}​/api/Contracts/GetAllUploadDocument` )
+    .subscribe(
+      res => {
+        this.response = res;
+        if (this.response.success == true) {
+          this.Documents = this.response.data;
+          
+
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+
+      },(err: HttpErrorResponse) => {
+        const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+        this.toastr.error(messages.toString(), 'Message.');
+        console.log(messages);
+      });
+}
+
+getDocumentData() {
+  this.http.get(`${environment.apiUrl}/api/Contracts/GetContractById/` + this.documentId)
+    .subscribe(
+      res => {
+        this.response = res;
+        if (this.response.success == true) {
+          this.DocumentData = this.response.data;
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+
+      },(err: HttpErrorResponse) => {
+        const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+        this.toastr.error(messages.toString(), 'Message.');
+        console.log(messages);
+      });
+}
+
+
 getDispatches() {
   this.http.get(`${environment.apiUrl}/api/YarnContracts/GetAllDispatchRegister/`+ this.contractId)
     .subscribe(
