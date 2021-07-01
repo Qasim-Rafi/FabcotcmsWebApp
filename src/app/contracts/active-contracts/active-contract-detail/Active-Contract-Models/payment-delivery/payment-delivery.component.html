@@ -22,13 +22,13 @@
   <form #partiesForm="ngForm" novalidate (ngSubmit)="addContractPaymentDelivery(partiesForm)">
 
     <div class="row justify-content-center">
-      <div class="col-10 col-md-10 pt-3 pb-2">
+      <div class="col-10 col-md-11 pt-3 pb-2">
     
     
     
         <div class="form-group row">
           <label for="name" class="col-md-3 col-form-label">Payment Mode</label>
-          <div class="col-md-9">
+          <div class="col-md-8">
             <div class="row">
               <div class="col-md-6">
                 <ng-select name="paymentMode" placeholder="-- Select --" [(ngModel)]="data.paymentMode">
@@ -45,7 +45,7 @@
         <div class="form-group row">
           <label for="description" class="col-md-3 col-form-label text-Navy">Payment Terms</label>
 
-          <div class="col-md-9">
+          <div class="col-md-8">
             <div class="row">
               <div class="col-md-6">
                 <ng-select required name="paymentTermId" placeholder="-- Select --" [(ngModel)]="data.paymentTermId"
@@ -69,7 +69,7 @@
     
         <div class="form-group row">
           <label for="description" class="col-md-3 col-form-label text-Navy"></label>
-          <div class="col-md-9">
+          <div class="col-md-8">
             <input type="text" class="form-control" placeholder="Payment term Additional Info" name="paymentTermInfo"
               [(ngModel)]="data.paymentTermInfo">
           </div>
@@ -77,7 +77,7 @@
     
         <div class="form-group row">
           <label for="description" class="col-md-3 col-form-label text-Navy"></label>
-          <div class="col-md-9">
+          <div class="col-md-8">
             <input type="text" class="form-control" placeholder="Buyer side payment term info"
               name="buyerSidePaymentTermInfo" [(ngModel)]="data.buyerSidePaymentTermInfo">
           </div>
@@ -85,7 +85,7 @@
     
         <div class="form-group row">
           <label for="description" class="col-md-3 col-form-label text-Navy">Packing</label>
-          <div class="col-md-9">
+          <div class="col-md-8">
             <ng-select required name="packingId" placeholder="-- Select --" [(ngModel)]="data.packingId"
               #packingId="ngModel" [ngClass]="{'error': packingId.invalid && partiesForm.submitted }">
               <ng-option *ngFor="let i of packing" [value]="i.id">
@@ -98,7 +98,7 @@
         <div class="form-group row">
           <label for="description" class="col-md-3 col-form-label text_Navy">Price / Delivery</label>
 
-          <div class="col-md-9">
+          <div class="col-md-8">
             <div class="row">
     
           <div class="col-md-6">

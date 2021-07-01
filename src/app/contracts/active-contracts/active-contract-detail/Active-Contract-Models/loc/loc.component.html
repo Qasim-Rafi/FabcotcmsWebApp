@@ -22,12 +22,12 @@
   <form #LCForm="ngForm" novalidate>
 
     <div class="row justify-content-center">
-      <div class="col-10 col-md-10 pt-3 pb-2">
+      <div class="col-10 col-md-11 pt-3 pb-2">
     
     
         <div class="form-group row">
           <label for="name" class="col-md-3 col-form-label">L/C No.<span class="required-denote">*</span></label>
-          <div class="col-md-9">
+          <div class="col-md-8">
             <input type="text" class="form-control" name="lcNumber" [(ngModel)]="data.lcNumber" required #lcNumber="ngModel"
               [ngClass]="{ 'error': lcNumber.invalid && LCForm.submitted }"
               placeholder="purchase order number from buyer" />
@@ -37,7 +37,7 @@
         <div class="form-group row">
           <label for="description" class="col-md-3 col-form-label ">L/C Open On<span
               class="required-denote">*</span></label>
-          <div class="col-md-9" (clickOutside)="enquiryDatePicker.close()">
+          <div class="col-md-8" (clickOutside)="enquiryDatePicker.close()">
     
             <input type="text" class="form-control  datetimepicker-input" (click)="enquiryDatePicker.toggle()" required
               #lcOpenOn="ngModel" [ngClass]="{ 'error': lcOpenOn.invalid && LCForm.submitted }" placeholder="Date"
@@ -49,7 +49,7 @@
         <div class="form-group row">
           <label for="description" class="col-md-3 col-form-label ">L/C Shipment On<span
               class="required-denote">*</span></label>
-          <div class="col-md-9" (clickOutside)="enquiryDatePicker.close()">
+          <div class="col-md-8" (clickOutside)="enquiryDatePicker.close()">
     
     
             <input navigation="select" class="form-control text_Navy mb-1" ngbDatepicker #validity="ngbDatepicker" required
@@ -65,7 +65,7 @@
         <div class="form-group row">
           <label for="description" class="col-md-3 col-form-label ">L/C Expiry Date<span
               class="required-denote">*</span></label>
-          <div class="col-md-9" (clickOutside)="validity2.close()">
+          <div class="col-md-8" (clickOutside)="validity2.close()">
     
             <input class="form-control text_Navy " ngbDatepicker #validity2="ngbDatepicker" required #lcExpiryDate="ngModel"
               [ngClass]="{ 'error': lcExpiryDate.invalid && LCForm.submitted }" (click)="validity2.toggle()"
@@ -75,7 +75,7 @@
     
         <div class="form-group row">
           <label for="name" class="col-md-3 col-form-label">Remarks</label>
-          <div class="col-md-9">
+          <div class="col-md-8">
             <textarea type="text" class="form-control" rows="4" name="remarks" [(ngModel)]="data.remarks"
               placeholder="L/C Additional Details here..."></textarea>
           </div>

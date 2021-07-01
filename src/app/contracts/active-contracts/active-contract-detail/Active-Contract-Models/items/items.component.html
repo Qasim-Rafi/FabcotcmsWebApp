@@ -23,14 +23,14 @@
     <form #ItemForm="ngForm" novalidate>
 
       <div class="row justify-content-center">
-        <div class="col-10 col-md-10 pt-3 pb-2">
+        <div class="col-10 col-md-11 pt-3 pb-2">
       
       
           <div class="form-group row">
             <label class="col-md-3 col-form-label text_Navy">Item Description
               <span class="required-denote">*</span>
             </label>
-            <div class="col-md-9">
+            <div class="col-md-8">
               <input #focus required type="text" class="form-control" name="description" [(ngModel)]="data.description"
                 #description="ngModel" [ngClass]="{ 'error': ItemForm.submitted && description.invalid  }"
                 placeholder="Description" />
@@ -41,57 +41,62 @@
           <div class="form-group row">
             <label for="itemQuantity" class="col-md-3 col-form-label text_Navy">Item Quantity<span
                 class="required-denote">*</span>
-      
             </label>
-            <div class="col-md-4">
-              <input type="number" min="0" required (keyup)="itemquantity($event)" (keyup)="getcost($event)"
-                (keyup)="itemrate($event)" id="itemQuantity"
-                [ngClass]="{ 'error': itemQuantity.invalid && ItemForm.submitted }" name="itemQuantity"
-                [(ngModel)]="data.itemQuantity" #itemQuantity="ngModel" class="form-control" value=""
-                placeholder="Quantity" />
+            <div class="col-md-8">
+            <div class="row">
+              <div class="col-md-6">
+                <input type="number" min="0" required (keyup)="itemquantity($event)" (keyup)="getcost($event)"
+                  (keyup)="itemrate($event)" id="itemQuantity" [ngClass]="{ 'error': itemQuantity.invalid && ItemForm.submitted }"
+                  name="itemQuantity" [(ngModel)]="data.itemQuantity" #itemQuantity="ngModel" class="form-control" value=""
+                  placeholder="Quantity" />
+              </div>
+              <div class="col-md-6 mrg-tsm">
+            
+                <ng-select [(ngModel)]="data.itemUOMId" placeholder="Select UOM" name="itemUOMId">
+                  <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}</ng-option>
+                </ng-select>
+            
+              </div>
             </div>
-            <div class="col-md-5 mrg-tsm">
-      
-              <ng-select [(ngModel)]="data.itemUOMId" placeholder="Select UOM" name="itemUOMId">
-                <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}</ng-option>
-              </ng-select>
-      
-            </div>
+          </div>
       
           </div>
       
           <div class="form-group row">
             <label for="construction" class="col-md-3 col-form-label">Construcrion<span
                 class="required-denote">*</span></label>
-            <div class="col-md-3">
-              <input type="number" id="compositionPercentage" min="0" required
-                [ngClass]="{ 'error': compositionPercentage.invalid && ItemForm.submitted }" #compositionPercentage="ngModel"
-                name="compositionPercentage" [(ngModel)]="data.compositionPercentage" #compositionPercentage="ngModel"
-                class="form-control" value="" placeholder="%age">
-            </div>
-            <div class="col-md-3 mrg-tsm">
-      
-              <ng-select [(ngModel)]="data.compositionFebricTypeId" placeholder="Select Fabric Type"
-                name="compositionFebricTypeId">
-                <ng-option *ngFor="let i of fabric" [value]="i.id">{{ i.type }}</ng-option>
-              </ng-select>
-      
-            </div>
-      
-            <div class="col-md-3 mrg-tsm">
-      
-              <input type="text" id="compositionAdditionalInfo" name="compositionAdditionalInfo"
-                [(ngModel)]="data.compositionAdditionalInfo" #compositionAdditionalInfo="ngModel" class="form-control"
-                value="" placeholder="Additional Info">
-      
-      
-            </div>
+
+                <div class="col-md-8">
+                  <div class="row">
+                
+                    <div class="col-md-4">
+                      <input type="number" id="compositionPercentage" min="0" required
+                        [ngClass]="{ 'error': compositionPercentage.invalid && ItemForm.submitted }" #compositionPercentage="ngModel"
+                        name="compositionPercentage" [(ngModel)]="data.compositionPercentage" #compositionPercentage="ngModel"
+                        class="form-control" value="" placeholder="%age">
+                    </div>
+                
+                    <div class="col-md-4 mrg-tsm">
+                      <ng-select [(ngModel)]="data.compositionFebricTypeId" placeholder="Select Fabric Type"
+                        name="compositionFebricTypeId">
+                        <ng-option *ngFor="let i of fabric" [value]="i.id">{{ i.type }}</ng-option>
+                      </ng-select>
+                    </div>
+                
+                    <div class="col-md-4 mrg-tsm">
+                      <input type="text" id="compositionAdditionalInfo" name="compositionAdditionalInfo"
+                        [(ngModel)]="data.compositionAdditionalInfo" #compositionAdditionalInfo="ngModel" class="form-control" value=""
+                        placeholder="Additional Info">
+                    </div>
+
+                  </div>
+                </div>
       
           </div>
       
           <div class="form-group row">
             <label for="construction" class="col-md-3 col-form-label ">Composition</label>
-            <div class="col-md-9">
+            <div class="col-md-8">
               <input type="text" class="form-control" value="" placeholder="Item Composition" id="construction"
                 name="construction" [(ngModel)]="data.construction" #construction="ngModel" />
       
@@ -100,7 +105,7 @@
       
           <div class="form-group row">
             <label for="description" class="col-md-3 col-form-label text-Navy">Item Color</label>
-            <div class="col-md-9">
+            <div class="col-md-8">
               <ng-select [(ngModel)]="data.colorId" placeholder="Select Color" name="colorId">
                 <ng-option *ngFor="let i of color" [value]="i.id">{{ i.name }}</ng-option>
               </ng-select>
@@ -110,7 +115,7 @@
       
           <div class="form-group row">
             <label for="weight" class="col-md-3 col-form-label text-Navy">GSM / Weight</label>
-            <div class="col-md-9">
+            <div class="col-md-8">
               <input type="text" class="form-control" id="weight" name="weight" [(ngModel)]="data.weight" #weight="ngModel"
                 value="" placeholder="Item GSM / Weight">
       
@@ -119,7 +124,7 @@
       
           <div class="form-group row">
             <label for="loomTypeId" class="col-md-3 col-form-label text-Navy">Loom Type</label>
-            <div class="col-md-9">
+            <div class="col-md-8">
               <ng-select [(ngModel)]="data.loomTypeId" placeholder="Select Loom Type" name="loomTypeId">
                 <ng-option *ngFor="let i of loomType" [value]="i.id">{{ i.type }}</ng-option>
               </ng-select>
@@ -129,7 +134,7 @@
       
           <div class="form-group row">
             <label for="size" class="col-md-3 col-form-label text-Navy">Size</label>
-            <div class="col-md-9">
+            <div class="col-md-8">
               <input type="text" id="size" name="size" [(ngModel)]="data.size" #size="ngModel" class="form-control" value=""
                 placeholder="Item Size">
       
@@ -138,32 +143,35 @@
       
           <div class="form-group row">
             <label for="contractRate" class="col-md-3 col-form-label text_Navy">Price / Rate</label>
-            <div class="col-md-3">
-              <input id="contractRate" min="0" (keyup)="itemrate($event)" (keyup)="getcost($event)"
-                (keyup)="itemquantity($event)" name="contractRate" [(ngModel)]="data.contractRate" #contractRate="ngModel"
-                class="form-control" value="" placeholder="Rate">
+          
+            <div class="col-md-8">
+              <div class="row">
+          
+                <div class="col-md-4">
+                  <input id="contractRate" min="0" (keyup)="itemrate($event)" (keyup)="getcost($event)"
+                    (keyup)="itemquantity($event)" name="contractRate" [(ngModel)]="data.contractRate" #contractRate="ngModel"
+                    class="form-control" value="" placeholder="Rate">
+                </div>
+                <div class="col-md-4 mrg-tsm">
+                  <ng-select [(ngModel)]="data.contractCurrencyId" placeholder="Select Currency" name="contractCurrencyId">
+                    <ng-option *ngFor="let i of currency" [value]="i.id">{{ i.code }}</ng-option>
+                  </ng-select>
+                </div>
+          
+                <div class="col-md-4 mrg-tsm">
+                  <ng-select [(ngModel)]="data.contractUOMId" placeholder="Select UOM" name="contractUOMId">
+                    <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.unit }}</ng-option>
+                  </ng-select>
+                </div>
+          
+              </div>
             </div>
-            <div class="col-md-3 mrg-tsm">
-      
-              <ng-select [(ngModel)]="data.contractCurrencyId" placeholder="Select Currency" name="contractCurrencyId">
-                <ng-option *ngFor="let i of currency" [value]="i.id">{{ i.code }}</ng-option>
-              </ng-select>
-      
-            </div>
-      
-            <div class="col-md-3 mrg-tsm">
-      
-              <ng-select [(ngModel)]="data.contractUOMId" placeholder="Select UOM" name="contractUOMId">
-                <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.unit }}</ng-option>
-              </ng-select>
-      
-            </div>
-      
+          
           </div>
       
           <div class="form-group row">
             <label for="contractCost" class="col-md-3 col-form-label text-Navy">Cost</label>
-            <div class="col-md-9">
+            <div class="col-md-8">
               <input disabled type="text" class="form-control" placeholder="" name="contractCost"
                 [(ngModel)]="data.contractCost" #contractCost="ngModel">
       
@@ -172,7 +180,7 @@
       
           <div class="form-group row">
             <label for="remarks" class="col-md-3 col-form-label text_grey"> Remarks</label>
-            <div class="col-md-9">
+            <div class="col-md-8">
               <textarea class="form-control" id="remarks" name="description" [(ngModel)]="data.remarks" #remarks="ngModel"
                 rows="5" placeholder="Item Additional details here ..." name="remarks"></textarea>
             </div>

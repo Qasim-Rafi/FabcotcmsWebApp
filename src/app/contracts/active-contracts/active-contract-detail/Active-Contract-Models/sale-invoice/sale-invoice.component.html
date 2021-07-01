@@ -21,11 +21,11 @@
   <form #InvoiceForm="ngForm" novalidate>
 
     <div class="row justify-content-center">
-      <div class="col-10 col-md-10 pt-3 pb-2">
+      <div class="col-10 col-md-11 pt-3 pb-2">
     
         <div class="form-group row">
           <label for="saleInvoiceNo" class="col-md-3 col-form-label text_Navy">Sale Inv. No.</label>
-          <div class="col-md-9">
+          <div class="col-md-8">
             <input type="text" class="form-control" placeholder="Sale Invoice number" name="saleInvoiceNo"
               [(ngModel)]="data.saleInvoiceNo" #saleInvoiceNo="ngModel" />
           </div>
@@ -34,7 +34,7 @@
     
         <div class="form-group row">
           <label for="saleInvoiceDate" class="col-md-3 col-form-label text_Navy">Sale Inv. Date</label>
-          <div class="col-md-9" (clickOutside)="saleInvoiceDate.close()">
+          <div class="col-md-8" (clickOutside)="saleInvoiceDate.close()">
     
             <input navigation="select" class="form-control  " ngbDatepicker #saleInvoiceDate="ngbDatepicker"
               (click)="saleInvoiceDate.toggle()" placeholder="Sale Invoice date" name="saleInvoiceDate"
@@ -44,7 +44,7 @@
     
         <div class="form-group row">
           <label for="saleInvoiceRemarks" class="col-md-3 col-form-label ">Remarks</label>
-          <div class="col-md-9">
+          <div class="col-md-8">
             <textarea name="remarks" rows="3" class="form-control" placeholder="Sale invoice additional details here..."
               name="saleInvoiceRemarks" [(ngModel)]="data.saleInvoiceRemarks" #saleInvoiceRemarks="ngModel"></textarea>
           </div>
