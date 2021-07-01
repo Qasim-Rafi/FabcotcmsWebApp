@@ -889,7 +889,7 @@ getDeliveryTimeLine() {
 //       });
 // }
 getAllDocuments() {
-  this.http.get(`${environment.apiUrl}​/api/Contracts/GetAllUploadDocument` )
+  this.http.get(`${environment.apiUrl}/api/Contracts/GetAllUploadDocument` )
     .subscribe(
       res => {
         this.response = res;
