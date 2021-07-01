@@ -227,8 +227,7 @@
                                 <a class="nav-lcInfo nav-link " *ngIf="loggedInDepartmentName == 'Yarn Export'"
                                 id="nav-lcInfo-tab" data-toggle="tab" href="#nav-lcInfo" role="tab"
                                 aria-controls="nav-lcInfo" aria-selected="false">L/C Info &nbsp;
-                                <span
-                                    class="badge badge-pill badge-primary"></span>
+                                <span class="badge badge-pill badge-primary">{{rows5.length}}</span>
                                 </a>
 
                             <a class="nav-delivery nav-link " *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName == 'Yarn Export'"
@@ -243,15 +242,18 @@
 
                             <a class="nav-prodPlan nav-link " *ngIf="loggedInDepartmentName=='Fabric Local'  || loggedInDepartmentName == 'Yarn Export'"
                                 id="nav-prodPlan-tab" data-toggle="tab" href="#nav-prodPlan" role="tab"
-                                aria-controls="nav-prodPlan" aria-selected="false">Prod Plan &nbsp;<span
-                                    class="badge badge-pill badge-primary">{{rows5.length}}</span></a>
+                                aria-controls="nav-prodPlan" aria-selected="false">Prod Plan &nbsp;
+                                <span class="badge badge-pill badge-primary">{{rows5.length}}</span>
+                                </a>
 
                             <a class="nav-item nav-link " id="nav-Sale-tab" data-toggle="tab" href="#nav-Sale"
                                 role="tab" aria-controls="nav-Sale" aria-selected="false">Sale Invoice &nbsp;<span
                                     class="badge badge-pill badge-primary">{{saleInvoice.length}}</span></a>
 
                             <a class="nav-item nav-link " id="nav-Documents-tab" data-toggle="tab" href="#nav-Documents"
-                                role="tab" aria-controls="nav-Documents" aria-selected="false">Documents</a>
+                                role="tab" aria-controls="nav-Documents" aria-selected="false">Documents
+                                <span class="badge badge-pill badge-primary">{{Documents.length}}</span>
+                            </a>
 
                             <a class="nav-item nav-link " *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName == 'Yarn Export'"
                                 id="nav-Notes-tab" data-toggle="tab" href="#nav-Notes" role="tab"
@@ -1818,11 +1820,16 @@
                                         <dd class="col-sm-6">{{x.saleInvoiceNo}}</dd>
                                     </dl>
                                     <dl class="row">
-                                        <dt class="col-sm-6">Quantity:</dt>
-                                        <dd class="col-sm-6">{{x.quantity}}</dd>
+                                        <dt class="col-sm-6">Article:</dt>
+                                        <dd class="col-sm-6">{{x.articleName}}</dd>
                                     </dl>
                                     <dl class="row">
-                                        <dt class="col-sm-6">Invoice Amount:</dt>
+                                        <dt class="col-sm-6">Article Quantity:</dt>
+                                        <dd class="col-sm-6">{{x.quantity}}</dd>
+                                    </dl>
+                                    
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Article Rate:</dt>
                                         <dd class="col-sm-6">{{x.amount}}</dd>
                                     </dl>
 
@@ -1858,14 +1865,19 @@
                                         <dd class="col-sm-6">{{x.saleInvoiceDate}}</dd>
                                     </dl>
                                     <dl class="row">
-                                        <dt class="col-sm-6">Unit Rate:
+                                        <dt class="col-sm-6">Article Unit:
                                         </dt>
-                                        <dd class="col-sm-6">{{x.unit}}</dd>
+                                        <dd class="col-sm-6">{{x.rate}}</dd>
+                                    </dl>
+                                    <dl class="row">
+                                        <dt class="col-sm-6">Invoice Amount:</dt>
+                                        <dd class="col-sm-6">{{x.amount}}</dd>
                                     </dl>
                                     <dl class="row">
                                         <dt class="col-sm-6">Tax Amount:</dt>
                                         <dd class="col-sm-6">{{x.taxPercentage}}</dd>
                                     </dl>
+                                    
                                     <dl class="row">
                                         <dt class="col-sm-6">Last Updated on:
 
