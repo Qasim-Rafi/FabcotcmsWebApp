@@ -33,6 +33,7 @@ import { CreditComponent } from './active-contract-models/sale-invoice-pop-up/cr
 import { DebitComponent } from './active-contract-models/sale-invoice-pop-up/debit/debit.component';
 import {ContractOwnerComponent} from 'src/app/contracts/contract-owner/contract-owner.component'
 import { LCInfoComponent } from './active-contract-models/lcinfo/lcinfo.component';
+import { DocumentUploadPopUpComponent } from './active-contract-models/document-upload-pop-up/document-upload-pop-up.component';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 @Component({
@@ -341,8 +342,20 @@ max1:any;
       // on dismiss
     });
   }
-  navigateUploadDoc() {
-    this.router.navigate(['/FabCot/doc-upload']);
+  navigateUploadDoc(check) {
+    const modalRef = this.modalService.open(DocumentUploadPopUpComponent, { centered: true });
+    modalRef.componentInstance.contractId = this.contractId;
+    modalRef.componentInstance.statusCheck = check;
+    modalRef.result.then((data) => {
+    
+      // on close
+      if (data == true) {
+        // this.getContractData();
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+    // this.router.navigate(['/FabCot/doc-upload']);
   };
   searchTna(event) {
     const val = event.target.value.toLowerCase();
