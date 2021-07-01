@@ -58,7 +58,7 @@ response:any;
     return this._NgbActiveModal;
   }
   GetUsersDropdown() {
-    this.http.get(`${environment.apiUrl}/api/Lookups/Users`).
+    this.http.get(`${environment.apiUrl}/api/Lookups/Owners`).
     subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
