@@ -195,7 +195,9 @@
 
                     <form #costing="ngForm" novalidate *ngIf = "loggedInDepartmentName == 'Yarn Export'">
                         <div class="pb-2">
-                            <span class="badge badge-primary">Quantity & Costing</span>
+                            <span class="badge badge-primary">Quantity & 
+                                
+                            </span>
                         </div>
 
 
@@ -214,11 +216,11 @@
                                     </div>
 
                                     <div class="col-md-4 mrg-sm1">
-                                        <ng-select [(ngModel)]="data.quantityUOMId" placeholder="Select UOM"
-                                            name="quantityUOMId">
-                                            <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
-                                            </ng-option>
-                                        </ng-select>
+                                        <ng-select [(ngModel)]="data.rateUOMId" placeholder="Select UOM"
+                                        name="rateUOMId">
+                                        <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
+                                        </ng-option>
+                                    </ng-select>
                                     </div>
 
                                     <div class="col-md-4 mrg-sm1">
