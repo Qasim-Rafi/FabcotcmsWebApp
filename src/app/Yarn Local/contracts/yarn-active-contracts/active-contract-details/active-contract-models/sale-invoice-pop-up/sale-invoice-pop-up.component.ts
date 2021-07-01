@@ -195,9 +195,9 @@ this.spinner.show();
 
           this.response = res;
           if (this.response.success == true) {
+    this._document.defaultView.location.reload();
             this.toastr.success(this.response.message, 'Message.');
             this.activeModal.close(true);
-    this._document.defaultView.location.reload();
           localStorage.setItem('quantity',this.data.quantity);
          this.spinner.hide();
           }
