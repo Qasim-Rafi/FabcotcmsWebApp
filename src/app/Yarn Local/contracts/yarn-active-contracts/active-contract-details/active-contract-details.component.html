@@ -203,7 +203,10 @@
                     <i class="fas fa-print"></i>
                     Seller
                 </button>
-               
+                <button class="btn btn-outline-primary border-rounded btn-sm px-3 mr-1" *ngIf = "loggedInDepartmentName == 'Yarn Export'" (click)="printSupplier()">
+                    <i class="fas fa-print"></i>
+                  Supplier
+                </button>
                 <!-- <button class="btn btn-outline-info border-rounded btn-sm px-3 mr-1">
                     <i class="fas fa-print"></i>
                     S
