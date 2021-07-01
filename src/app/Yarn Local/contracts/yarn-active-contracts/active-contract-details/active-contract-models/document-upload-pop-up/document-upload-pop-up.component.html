@@ -139,13 +139,13 @@
         
     <div class="modal-footer NotBG" >
         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" (click)="activeModal.close()">Close</button>
-        <button class="btn button-save" data-toggle="tooltip" data-placement="top" title="Upload File on Server"  *ngIf="statusCheck == 'AddDocument'" type="submit"
-          (click)="onSubmit('AddDocument')">
+        <button class="btn button-save" data-toggle="tooltip" data-placement="top" title="Upload File on Server"  *ngIf="statusCheck == 'Add'" type="submit"
+          (click)="onSubmit('Add')">
           Upload Document
         </button>
       
-        <button  *ngIf="statusCheck == 'EditDocument'" class="btn button-save" type="submit"
-          (click)="onSubmit('EditDocument')">
+        <button  *ngIf="statusCheck == 'Edit'" class="btn button-save" type="submit"
+          (click)="onSubmit('Edit')">
           Update Document
         </button>
         
