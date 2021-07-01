@@ -765,15 +765,33 @@
                             </div> -->
 
 
-                            <div class="border-top pt-3 pb-2">
+                            <div class="border-top pt-3 pb-2" >
                                 <span class="badge badge-primary">Quantity & Costing</span>
                             </div>
                     
                     
                             <div class="row">
                                 <div class="col-md-6">
+                                    <dl class="row"  *ngIf = "loggedInDepartmentName == 'Yarn Export'">
+                                        <dt class="col-sm-6">Currency:
+                                        </dt>
+                                        <dd class="col-sm-6">{{contractCostingData.rateCurrencyName}}
+                                          </dd>
+                                    </dl>
+                                    <dl class="row"  *ngIf = "loggedInDepartmentName == 'Yarn Export'">
+                                        <dt class="col-sm-6">UOM:
+                                        </dt>
+                                        <dd class="col-sm-6"> {{contractCostingData.quantityUOMName}}
+                                          </dd>
+                                    </dl>
+                                    <dl class="row"  *ngIf = "loggedInDepartmentName == 'Yarn Export'">
+                                        <dt class="col-sm-6">Tolerance value:
+                                        </dt>
+                                        <dd class="col-sm-6"> {{contractCostingData.quantityToleranceValue}}
+                                          </dd>
+                                    </dl>
                     
-                                    <dl class="row">
+                                    <dl class="row"  *ngIf = "loggedInDepartmentName != 'Yarn Export'">
                                         <dt class="col-sm-6">Quantity:
                                         </dt>
                                         <dd class="col-sm-6">{{contractCostingData.quantity}}
@@ -782,13 +800,13 @@
                                             {{contractCostingData.quantityToleranceValue}} <b
                                                 *ngIf="contractCostingData.quantityToleranceValue != ''"> % </b></dd>
                                     </dl>
-                                    <dl class="row" *ngIf="loggedInDepartmentName=='Yarn Local'">
+                                    <!-- <dl class="row" *ngIf="loggedInDepartmentName=='Yarn Local' ||  loggedInDepartmentName != 'Yarn Export'">
                                         <dt class="col-sm-6">Quantity:
                                         </dt>
                                         <dd class="col-sm-6">{{contractCostingData.quantity}}
                                             {{contractCostingData.quantityUOMName}}</dd>
-                                    </dl>
-                                    <dl class="row">
+                                    </dl> -->
+                                    <dl class="row" *ngIf = "loggedInDepartmentName != 'Yarn Export'">
                                         <dt class="col-sm-6">Rate:
                                         </dt>
                                         <dd class="col-sm-6">{{contractCostingData.rate}} <b *ngIf="contractCostingData.rateUOMName !=null">
@@ -797,14 +815,14 @@
                     
                     
                                     </dl>
-                                    <dl class="row">
+                                    <dl class="row" *ngIf = "loggedInDepartmentName != 'Yarn Export'">
                                         <dt class="col-sm-6">Project Cost:
                                         </dt>
                                         <dd class="col-sm-6">{{contractCostingData.rateCurrencyName}}
                                             {{contractCostingData.contractCost}}</dd>
                     
                                     </dl>
-                                    <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+                                    <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName != 'Yarn Export' ">
                                         <dt class="col-sm-6">&nbsp; &nbsp;
                                         </dt>
                                         <dd class="col-sm-6">{{contractCostingData.rateCurrencyName}}
@@ -818,17 +836,17 @@
                                 </div>
                                 <div class="col-md-6">
                     
-                                    <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+                                    <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName != 'Yarn Export'">
                                         <dt class="col-sm-6">GST:
                                         </dt>
                                         <dd class="col-sm-6" *ngIf="contractCostingData.gst != ''">{{contractCostingData.gst}}%</dd>
                                     </dl>
-                                    <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+                                    <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName != 'Yarn Export'">
                                         <dt class="col-sm-6">W.I.Tax:
                                         </dt>
                                         <dd class="col-sm-6" *ngIf="contractCostingData.witAx != ''">{{contractCostingData.witAx}}%</dd>
                                     </dl>
-                                    <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+                                    <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName != 'Yarn Export'">
                                         <dt class="col-sm-6">
                                         </dt>
                                         <dd class="col-sm-6"><small>Subject to all taxes if applicable</small></dd>
