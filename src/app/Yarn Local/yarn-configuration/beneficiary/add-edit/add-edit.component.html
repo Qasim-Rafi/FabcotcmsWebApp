@@ -68,11 +68,16 @@
       </div>
       <div class="form-group row">
         <label for="dateTime" class="col-sm-3 col-form-label text-grey">Date</label>
-        <div class="col-sm-8" (clickOutside)="dateTime.close()">
+        <div class="col-sm-8" (clickOutside)="validity1.close()">
 
-          <input navigation="select" class="form-control  " ngbDatepicker #dateTime="ngbDatepicker"
+          <!-- <input navigation="select" class="form-control  " ngbDatepicker #dateTime="ngbDatepicker"
             (click)="dateTime.toggle()" placeholder="Date Here" name="dateTime"
-            [(ngModel)]="Bendata.dateTime" />
+            [(ngModel)]="Bendata.dateTime" /> -->
+            <input navigation="select" class="form-control"  name="dateTime" 
+            [(ngModel)]="Bendata.dateTime" #dateTime="ngModel"  ngbDatepicker #validity1="ngbDatepicker"
+           (click)="validity1.toggle()"
+            placeholder="Date"
+            />
         </div>
       </div>
       <div class="form-group row">

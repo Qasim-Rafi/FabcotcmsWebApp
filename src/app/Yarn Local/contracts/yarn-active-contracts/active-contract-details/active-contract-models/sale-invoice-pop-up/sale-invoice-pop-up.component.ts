@@ -71,6 +71,7 @@ this.GetArticleDropdown();
           if (this.response.success == true) {
             this.articledata = this.response.data;
             this.data.quantity=this.articledata.contractArticleQuantity;
+            this.data.unit=this.articledata.costingUOMId;
              this.data.amount=this.articledata.contractArticleRate * this.data.quantity;
 
   
