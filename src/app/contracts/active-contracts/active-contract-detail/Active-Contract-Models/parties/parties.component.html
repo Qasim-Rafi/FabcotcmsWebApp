@@ -22,12 +22,12 @@
   <form #partiesForm="ngForm" novalidate>
 
     <div class="row justify-content-center">
-      <div class="col-10 col-md-10 pt-3 pb-2">
+      <div class="col-10 col-md-11 pt-3 pb-2">
     
         <div class="form-group row">
           <label for="name" class="col-md-3 col-form-label"><strong>Puchase Order</strong></label>
           <!-- <label for="name" class="col-sm-3 col-form-label">Puchase Order</label> -->
-          <div class="col-md-9">
+          <div class="col-md-8">
             <input type="text" class="form-control" [(ngModel)]=" data.poNumber" name="poNumber"
               placeholder="purchase order number from buyer" />
     
@@ -36,7 +36,7 @@
         <div class="form-group row">
           <label for="description" class="col-md-3 col-form-label text-Navy">PO Date</label>
           <!-- <label for="description" class="col-sm-3 col-form-label ">PO Date</label> -->
-          <div class="col-md-9" (clickOutside)="poDate.close()">
+          <div class="col-md-8" (clickOutside)="poDate.close()">
     
             <!-- <input navigation="select" class="form-control text_Navy " ngbDatepicker #validityDate="ngbDatepicker"/> -->
             <input navigation="select" class="form-control  " ngbDatepicker #poDate="ngbDatepicker"
@@ -46,7 +46,7 @@
     
         <div class="form-group row">
           <label for="name" class="col-md-3 col-form-label">Contract No.</label>
-          <div class="col-md-9">
+          <div class="col-md-8">
             <input type="text" class="form-control" [(ngModel)]="data.contractNo" name="contractNo"
               placeholder="Contract Number" />
           </div>
@@ -54,7 +54,7 @@
     
         <div class="form-group row">
           <label for="description" class="col-md-3 col-form-label text_Navy">Contract Date</label>
-          <div class="col-md-9" (clickOutside)="contractDate.close()">
+          <div class="col-md-8" (clickOutside)="contractDate.close()">
     
             <input navigation="select" class="form-control text_Navy " ngbDatepicker #contractDate="ngbDatepicker"
               (click)="contractDate.toggle()" placeholder="Certificate validity date" [(ngModel)]="data.contractDate"
@@ -65,7 +65,7 @@
     
         <div class="form-group row">
           <label for="parentBuyerId" class="col-md-3 col-form-label text_Navy">Buyer Name</label>
-          <div class="col-md-9">
+          <div class="col-md-8">
             <ng-select name="buyerId" (change)="getBuyerPOC($event)" placeholder="-- Select --" [(ngModel)]=" data.buyerId">
               <ng-option *ngFor="let i of buyer" [value]="i.id">
                 {{i.buyerName}}
@@ -77,7 +77,7 @@
     
         <div class="form-group row">
           <label for="buyerPOCId" class="col-md-3 col-form-label ">Buyer POC</label>
-          <div class="col-md-9">
+          <div class="col-md-8">
             <ng-select name="buyerPOCId" placeholder="-- Select --" [(ngModel)]=" data.buyerPOCId">
               <ng-option *ngFor="let i of buyerPOC" [value]="i.id">
                 {{i.name}}
@@ -89,7 +89,7 @@
     
         <div class="form-group row">
           <label for="sellerId" class="col-md-3 col-form-label text_Navy">Seller Name</label>
-          <div class="col-md-9">
+          <div class="col-md-8">
             <ng-select name="sellerId" (change)="getSellersPOC($event)" placeholder="-- Select --"
               [(ngModel)]=" data.sellerId">
               <ng-option *ngFor="let i of seller" [value]="i.id">
@@ -102,7 +102,7 @@
     
         <div class="form-group row">
           <label for="sellerPOCId" class="col-md-3 col-form-label ">Seller POC</label>
-          <div class="col-md-9">
+          <div class="col-md-8">
             <ng-select name="sellerPOCId" placeholder="-- Select --" [(ngModel)]="data.sellerPOCId">
               <ng-option *ngFor="let i of sellerPOC" [value]="i.id">
                 {{i.name}}
@@ -114,7 +114,7 @@
     
         <div class="form-group row">
           <label for="name" class="col-md-3 col-form-label">Seller Contract #</label>
-          <div class="col-md-9">
+          <div class="col-md-8">
             <input type="text" class="form-control" [(ngModel)]="data.sellerContract" name="sellerContract"
               placeholder="Contract No. received from Supplier" />
           </div>
@@ -122,7 +122,7 @@
     
         <div class="form-group row">
           <label for="certificateId" class="col-md-3 col-form-label ">Certification</label>
-          <div class="col-md-9">
+          <div class="col-md-8">
             <ng-select name="certificateIds" placeholder="-- Select --" [(ngModel)]="data.certificateIds">
               <ng-option *ngFor="let i of certificate" [value]="i.id">
                 {{i.name}}

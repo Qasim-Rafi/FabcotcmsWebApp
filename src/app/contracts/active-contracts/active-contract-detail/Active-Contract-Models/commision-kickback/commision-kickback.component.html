@@ -18,13 +18,13 @@
   <form #CityForm="ngForm" novalidate>
 
     <div class="row justify-content-center">
-      <div class="col-10 col-md-10 pt-3 pb-2">
+      <div class="col-10 col-md-11 pt-3 pb-2">
     
     
     
         <div class="form-group row">
           <label for="sellercomm" class="col-md-3 col-form-label text_Navy">Comm Seller side</label>
-          <div class=" col-md-9">
+          <div class=" col-md-8">
             <div class="row">
               <div class="col fieldmrgbtm">
                 <input class="form-control" placeholder="Comm %" name="sellerSideCommission" type="text"
@@ -55,7 +55,7 @@
         <div class="form-group row">
           <label for="addinfo" class="col-md-3 col-form-label">Additional Info</label>
     
-          <div class="col-md-9 fieldmrgbtm">
+          <div class="col-md-8 fieldmrgbtm">
             <input class="form-control" id="addinfo" placeholder="Something about FabCot Commission"
               name="sellerAdditionalInfo" [(ngModel)]=" commission.sellerAdditionalInfo" />
           </div>
@@ -63,7 +63,7 @@
     
         <div class="form-group row">
           <label for="buyercomm" class="col-md-3 col-form-label text_Navy">Comm Buyer side</label>
-          <div class=" col-md-9">
+          <div class=" col-md-8">
             <div class="row">
               <div class="col fieldmrgbtm">
                 <input class="form-control" placeholder="Comm %" name="buyerSideCommission" type="text"
@@ -92,7 +92,7 @@
         <div class="form-group row">
           <label for="buyerinfo" class="col-md-3 col-form-label">Additional Info</label>
     
-          <div class="col-md-9 fieldmrgbtm">
+          <div class="col-md-8 fieldmrgbtm">
             <input class="form-control" id="buyerinfo" placeholder="Something about buyer side Commission"
               name="buyerAdditionalInfo" [(ngModel)]=" commission.buyerAdditionalInfo" />
           </div>
@@ -100,7 +100,7 @@
     
         <div class="form-group row" *ngFor="let a of data; let i = index;">
           <label for="agentcomm" class="col-sm-3 col-form-label">Agent Comm</label>
-          <div class=" col-md-9">
+          <div class=" col-md-8">
             <div class="row">
               <div class=" col-md-6">
                 <ng-select placeholder="Select an Agent" [(ngModel)]="a.agentId" name="agentId_{{i}}">
@@ -129,7 +129,7 @@
     
         <div class="row">
           <div class="col-md-3"></div>
-          <div class="col-md-9">
+          <div class="col-md-8">
             <button class="btn btn-outline-success" type="submit" (click)="addMore()">
               <i class="fas fa-plus"></i>
               Add Agent
