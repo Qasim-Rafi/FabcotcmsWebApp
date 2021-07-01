@@ -602,6 +602,12 @@
                                         <dd class="col-md-12 pt-1" >
                                     
                                             <div *ngIf="loggedInDepartmentName=='Yarn Export'" >
+                                                <div class="col-md-12 ">
+                                                    <label class="col-sm-2 col-form-label">Articel Name:</label>
+                                                    <label class="col-sm-3 col-form-label">Quantity:</label>
+                                                    <label class="col-sm-2 col-form-label">Rate:</label>
+                                                    <label class="col-sm-3 col-form-label">Commission:</label>
+
                                                 <div class="form-group row" *ngFor="let a of contractArticles; let i = index;">
                                          
                         
@@ -617,13 +623,16 @@
                                                         </div>
                                                     </div>
                                                           <div class="col-md-3 ">
+
                                                             <div class="input-group">
+
                                                                 <input type="number" [disabled]="a.isDeleted ==true" min="0" placeholder="quantity" #contractArticleQuantity="ngModel"
                                                                     class="form-control" [(ngModel)]="a.contractArticleQuantity" name="contractArticleQuantity_{{i}}">
                                                             
                                                             </div>
                                                         </div>
                                                           <div class="col-md-3">
+
                                                             <div class="input-group">
                                                                 <input type="number" [disabled]="a.isDeleted ==true" min="0" placeholder="Rate" #contractArticleRate="ngModel"
                                                                     class="form-control" [(ngModel)]="a.contractArticleRate" name="contractArticleRate_{{i}}">
@@ -631,7 +640,9 @@
                                                             </div>
                                                         </div>
                                                           <div class="col-md-2">
+
                                                             <div class="input-group">
+
                                                                 <input type="number" [disabled]="a.isDeleted ==true" min="0" placeholder="Commission" #contractArticleCommission="ngModel"
                                                                 class="form-control" [(ngModel)]="a.contractArticleCommission" name="contractArticleCommission_{{i}}">
                                                                 
@@ -651,7 +662,7 @@
                                                     <button class="btn btn-outline-primary btn-sm" (click)="addArticle()"> Add Another Article</button>
                                                 </div>
                                             </div>
-                    
+                    </div>
                                             </div>
 
                                         </dd>
@@ -2003,11 +2014,10 @@
                                             <!-- {{ row.createdByName }} -->
                                         </ng-template>
                                     </ngx-datatable-column>
-                                    <ngx-datatable-column name="Dept" prop="createdDateTime" [width]="80">
+                                    <!-- <ngx-datatable-column name="Dept" prop="createdDateTime" [width]="80">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                            <!-- {{ row.createdDateTime }} -->
                                         </ng-template>
-                                    </ngx-datatable-column>
+                                    </ngx-datatable-column> -->
                                     <ngx-datatable-column name="File Name " prop="description" [width]="80">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
 
@@ -2038,7 +2048,7 @@
 
                                         </ng-template>
                                     </ngx-datatable-column>
-                                    <ngx-datatable-column name="Action" [width]="80">
+                                    <!-- <ngx-datatable-column name="Action" [width]="80">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                                             <div class="ibox-tools text-center">
                                                 <div class="ibox-tools text-center">
@@ -2053,7 +2063,7 @@
                                                 </div>
                                             </div>
                                         </ng-template>
-                                    </ngx-datatable-column>
+                                    </ngx-datatable-column> -->
                                 </ngx-datatable>
                             </div>
                         </div>

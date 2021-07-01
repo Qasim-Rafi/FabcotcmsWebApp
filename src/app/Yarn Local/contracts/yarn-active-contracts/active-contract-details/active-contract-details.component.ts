@@ -185,15 +185,16 @@ max1:any;
     //   this.deliveryCount = this.rows.length;
     // }, this.deliveryUrl);
     this.getDeliveries();
-    this.fetch((data) => {
-      this.saleinvoiceFilter = [...data];
+    this.getAllInvoices();
+    // this.fetch((data) => {
+    //   this.saleinvoiceFilter = [...data];
 
-      this.rows = data;
-      this.saleinvoicecount = this.rows.length;
-      if(this.saleInvoice.length=1){
-        this.check=this.check+15;
-      }
-    });
+    //   this.rows = data;
+    //   this.saleinvoicecount = this.rows.length;
+    //   if(this.saleInvoice.length=1){
+    //     this.check=this.check+15;
+    //   }
+    // });
     // this.service.fetch((data) => {
     //   this.rows7 = data;
     // }, this.dispatchUrl);
@@ -588,7 +589,26 @@ lcForm(check){
     //  this.spinner.hide();
     });
   }
-  
+  getAllInvoices() {
+
+    this.http.get(`${environment.apiUrl}/api/YarnContracts/GetAllContractSaleInvoice/`+ this.contractId)
+      .subscribe(res => {
+        this.response = res;
+
+        if (this.response.success == true) {
+          this.saleInvoice = this.response.data
+          // this.deliveryFilter = [...this.deliveryData]
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+        // this.spinner.hide();
+      },(err: HttpErrorResponse) => {
+        const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+        this.toastr.error(messages.toString(), 'Message.');
+        console.log(messages);
+      });
+  }
   editinvoice(row,check) {
     const modalRef = this.modalService.open(SaleInvoicePopUpComponent, { centered: true });
   modalRef.componentInstance.contractId = this.contractId;
