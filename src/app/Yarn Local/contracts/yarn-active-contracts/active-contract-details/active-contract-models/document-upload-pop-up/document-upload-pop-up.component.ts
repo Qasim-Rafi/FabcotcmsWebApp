@@ -114,7 +114,7 @@ getDocumentsType(){
 
     const formData = new FormData();
     formData.append('DepartmentId', this.data.departmentId);
-    formData.append('ContractId', this.data.contractId);
+    formData.append('ContractId', this.contractId);
     formData.append('DocumentTypeId', this.data.typeId);
     formData.append('Notes', this.data.note);
     formData.append('File', this.file);
