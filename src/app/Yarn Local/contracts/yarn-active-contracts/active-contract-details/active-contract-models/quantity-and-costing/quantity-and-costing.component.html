@@ -18,8 +18,83 @@
   
   <div class="modal-body BG p-0">
     <form #costing="ngForm" novalidate>
+        <div class="col-md-12 pt-3 pb-2" *ngIf = "loggedInDepartmentName == 'Yarn Export'">
 
-        <div class="col-md-12 pt-3 pb-2">
+            <div class="form-group row">
+                <label for="itemQuantity" class="col-sm-3 col-form-label text_Navy"> Currency
+        
+                </label>
+                <div class="col-md-6">
+                    <ng-select [(ngModel)]="data.rateCurrencyId" placeholder="-- Select --" 
+                    name="rateCurrencyId" #rateCurrencyId="ngModel">
+                    <ng-option *ngFor="let i of currency" [value]="i.id">{{ i.code }} 
+                    </ng-option>
+                </ng-select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="itemQuantity" class="col-sm-3 col-form-label text_Navy"> UOM
+        
+                </label>
+                <div class="col-md-6">
+                    <ng-select [(ngModel)]="data.quantityUOMId" placeholder="-- Select --"   
+                    name="quantityUOMId" #quantityUOMId="ngModel">
+                    <ng-option *ngFor="let i of uomList"
+                
+                    [value]="i.id">{{ i.name }}
+                    </ng-option>
+                </ng-select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="itemQuantity" class="col-sm-3 col-form-label text_Navy"> Tolerance Value
+        
+                </label>
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="basic-addon2">+/-</span>
+                        </div>
+                        <input type="text" placeholder="qty" class="form-control"
+                        name="quantityToleranceValue"  #quantityToleranceValue = "ngModel"
+                         [(ngModel)] = "data.quantityToleranceValue"
+                        >
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="basic-addon2">%</span>
+                        </div>
+                    </div>
+                </div>
+              </div>
+                <!-- <div class="col-md-2">
+                   
+                    <ng-select [(ngModel)]="data.quantityUOMId" placeholder="-- Select --"   
+                    name="quantityUOMId" #quantityUOMId="ngModel">
+                    <ng-option *ngFor="let i of uomList"
+                
+                    [value]="i.id">{{ i.name }}
+                    </ng-option>
+                </ng-select>
+    
+                </div> -->
+                <!-- <div class="col-md-4">
+                        <div class="input-group">
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon2">+/-</span>
+                            </div>
+                            <input type="text" placeholder="qty" class="form-control"
+                            name="quantityToleranceValue"  #quantityToleranceValue = "ngModel"
+                             [(ngModel)] = "data.quantityToleranceValue"
+                            >
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon2">%</span>
+                            </div>
+                        </div>
+                </div> -->
+          
+             
+            </div>
+
+        <div class="col-md-12 pt-3 pb-2" *ngIf = "loggedInDepartmentName != 'Yarn Export'">
 
             <div class="form-group row">
                 <label for="itemQuantity" class="col-sm-3 col-form-label text_Navy"> Quantity

@@ -192,6 +192,54 @@
                     </form>
 
                     <hr>
+
+                    <form #costing="ngForm" novalidate *ngIf = "loggedInDepartmentName == 'Yarn Export'">
+                        <div class="pb-2">
+                            <span class="badge badge-primary">Quantity & Costing</span>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-md-3 col-form-label control-label"></label>
+
+                            <div class="col-md-7">
+                                <div class="row">
+
+                                    <div class="col-md-4 ">
+                                        <ng-select [(ngModel)]="data.currencyId" placeholder="Select Currency"
+                                            name="currencyId">
+                                            <ng-option *ngFor="let i of currency" [value]="i.id">{{ i.code }}
+                                            </ng-option>
+                                        </ng-select>
+                                    </div>
+
+                                    <div class="col-md-4 mrg-sm1">
+                                        <ng-select [(ngModel)]="data.quantityUOMId" placeholder="Select UOM"
+                                            name="quantityUOMId">
+                                            <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
+                                            </ng-option>
+                                        </ng-select>
+                                    </div>
+
+                                    <div class="col-md-4 mrg-sm1">
+                                        <div class="input-group">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text" id="basic-addon2">+/-</span>
+                                            </div>
+                                            <input type="text" placeholder="tolerance value." class="form-control"
+                                                [(ngModel)]="data.toleranceValue" name="toleranceValue" #toleranceValue="ngModel">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text" id="basic-addon2">%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        </form>
+
+                        <hr>
                     <!---------- product ---------->
 
                     <form #product="ngForm" novalidate>
@@ -606,11 +654,11 @@
 
                     </form>
 
-                    <hr>
+                    <hr *ngIf = "loggedInDepartmentName != 'Yarn Export' ">
                     <!---------- Quantity ---------->
 
 
-                    <form #costing="ngForm" novalidate>
+                    <form #costing="ngForm" novalidate *ngIf = "loggedInDepartmentName != 'Yarn Export'">
                         <div class="pb-2">
                             <span class="badge badge-primary">Quantity & Costing</span>
                         </div>
