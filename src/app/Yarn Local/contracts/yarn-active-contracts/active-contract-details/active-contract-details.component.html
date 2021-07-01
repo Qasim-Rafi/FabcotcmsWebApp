@@ -2017,67 +2017,59 @@
 
                                 </div>
 
-                                <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows3"
-                                    [sorts]="[{ prop: 'createdByName,createdDateTime,description', dir: 'asce' }]"
-                                    [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'"
-                                    [limit]="10">
+                                <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rowsDoc"
+                                [sorts]="[{ prop: 'createdByName,createdDateTime,description', dir: 'asce' }]"
+                                [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'"
+                                [limit]="10">
 
-                                    <ngx-datatable-column name="ID" prop="createdByName" [width]="80">
-                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                            <!-- {{ row.createdByName }} -->
-                                        </ng-template>
-                                    </ngx-datatable-column>
-                                    <!-- <ngx-datatable-column name="Dept" prop="createdDateTime" [width]="80">
-                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                        </ng-template>
-                                    </ngx-datatable-column> -->
-                                    <ngx-datatable-column name="File Name " prop="description" [width]="80">
-                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-
-                                        </ng-template>
-                                    </ngx-datatable-column>
-                                    <ngx-datatable-column name="File Type(KB) " prop="description" [width]="80">
-                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-
-                                        </ng-template>
-                                    </ngx-datatable-column>
-                                    <ngx-datatable-column name="File Size " prop="description" [width]="80">
-                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-
-                                        </ng-template>
-                                    </ngx-datatable-column>
-                                    <ngx-datatable-column name="Notes " prop="description" [width]="80">
-                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-
-                                        </ng-template>
-                                    </ngx-datatable-column>
-                                    <ngx-datatable-column name="Uploaded On " prop="description" [width]="80">
-                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-
-                                        </ng-template>
-                                    </ngx-datatable-column>
-                                    <ngx-datatable-column name="Uploaded By " prop="description" [width]="80">
-                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-
-                                        </ng-template>
-                                    </ngx-datatable-column>
-                                    <!-- <ngx-datatable-column name="Action" [width]="80">
-                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                             
+                              
+                                <ngx-datatable-column name="Department Name " prop="departmentName" [width]="80">
+                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                         {{row.departmentName}}
+                                    </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column name="Document Type " prop="documentType" [width]="80">
+                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                        {{row.documentType}}
+                                    </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column name="Date " prop="fileDate" [width]="80">
+                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                        {{row.fileDate}}
+                                    </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column name="File Name " prop="fileName" [width]="80">
+                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                        {{row.fileName}}
+                                    </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column name="Note" prop="notes" [width]="80">
+                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                        {{row.notes}}
+                                    </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column name="Uploaded By " prop="uploadedByName" [width]="80">
+                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                         {{row.uploadedByName}}
+                                    </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column name="Action" [width]="80">
+                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                        <div class="ibox-tools text-center">
                                             <div class="ibox-tools text-center">
-                                                <div class="ibox-tools text-center">
-                                                    <button type="button" class="btn editIconBack"
-                                                        (click)="editDocument(row  , 'Edit')"><i
-                                                            class="far fa-edit"></i></button>
+                                                <button type="button" class="btn editIconBack"
+                                                data-toggle="tooltip" data-placement="top" title="Download" (click)="fileDownload(row)"><i class="fa fa-download"></i></button>
 
-                                                    <button type="button" class="btn deleteIconBack" title=""
-                                                        data-original-title="Delete" (click)="deleteDocument(row)">
+                                                <!-- <button type="button" class="btn deleteIconBack" title=""
+                                                    data-original-title="Delete" (click)="deleteDocument(row)">
 
-                                                        <i class="far fa-trash-alt"></i></button>
-                                                </div>
+                                                    <i class="far fa-trash-alt"></i></button> -->
                                             </div>
-                                        </ng-template>
-                                    </ngx-datatable-column> -->
-                                </ngx-datatable>
+                                        </div>
+                                    </ng-template>
+                                </ngx-datatable-column>
+                            </ngx-datatable>
                             </div>
                         </div>
                     </div>

@@ -113,6 +113,7 @@ printData : any = {}
   dispatchUrl = '/api/YarnContracts/GetAllDispatchRegister'
   // tna data
   rows5: any = [];
+  rowsDoc:any=[];
   id: any = {};
   tnaId: any = {};
   agent: any = {};
@@ -888,6 +889,18 @@ getDeliveryTimeLine() {
 //         console.log(messages);
 //       });
 // }
+
+fileDownload(row){
+  let file =row.file;
+  window.open(file, '_blank');
+  //this.writeContents(file, 'File'+'.pdf', 'application/pdf');
+  }
+
+  // downloadFile(data: Response) {
+  //   const blob = new Blob([data], { type: 'text/csv' });
+  //   const url= window.URL.createObjectURL(blob);
+  //   window.open(url);
+  // }
 getAllDocuments() {
   this.http.get(`${environment.apiUrl}/api/Contracts/GetAllUploadDocument` )
     .subscribe(
@@ -895,7 +908,7 @@ getAllDocuments() {
         this.response = res;
         if (this.response.success == true) {
           this.Documents = this.response.data;
-          
+              this.rowsDoc=this.Documents
 
         }
         else {
