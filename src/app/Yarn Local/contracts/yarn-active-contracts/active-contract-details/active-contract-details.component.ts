@@ -34,6 +34,7 @@ import { DebitComponent } from './active-contract-models/sale-invoice-pop-up/deb
 import {ContractOwnerComponent} from 'src/app/contracts/contract-owner/contract-owner.component'
 import { LCInfoComponent } from './active-contract-models/lcinfo/lcinfo.component';
 import { DocumentUploadPopUpComponent } from './active-contract-models/document-upload-pop-up/document-upload-pop-up.component';
+import { ArticleRevisePopupComponent } from 'src/app/shared/MODLES/article-revise-popup/article-revise-popup.component';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 @Component({
@@ -391,7 +392,21 @@ max1:any;
       // on dismiss
     });
   }
+  revisedpopup(row,check){
+    const modalRef = this.modalService.open(ArticleRevisePopupComponent, { centered: true });
+    modalRef.componentInstance.rowData = row;
+    modalRef.componentInstance.statusCheck = check;
+    modalRef.result.then((data) => {
+    
+      // on close
+      if (data == true) {
+        this.getContractData();
+      }
+    }, (reason) => {
+      // on dismiss
+    });
 
+  }
   searchTna(event) {
     const val = event.target.value.toLowerCase();
     const temp = this.TnaFilter.filter(function (d) {

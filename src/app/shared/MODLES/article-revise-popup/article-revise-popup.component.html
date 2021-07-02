@@ -1,0 +1,87 @@
+
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "line-spin-fade"
+[fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+<!-- Modal -->
+<div class="modal-header" >
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
+        <div aria-hidden="true">&times;</div>
+    </button>
+
+
+    <div *ngIf="statusCheck == 'ADD'">
+        <h5 class="modal-title">
+            <i class="fa fa-plus fa-fw"></i>
+            Add Revised Article Detail
+        </h5>
+    </div>
+
+    <div *ngIf="statusCheck == 'Edit'">
+        <h5 class="modal-title">
+            <i class="far fa-edit fa-fw"></i>
+            Edit Revised Article Detail
+        </h5>
+    </div>
+</div>
+
+
+
+
+<div class="modal-body BG p-0">
+    <form #NotesForm="ngForm" novalidate>
+  
+      <div class="row justify-content-center">
+        <div class="col-10 col-md-11 pt-3 pb-2">
+       <div class="row">
+        <label for="name" class="col-md-4 col-form-label">Previous Quantity: ({{displaydata.contractArticleQuantity}})</label>
+        <label for="name" class="col-md-4 col-form-label">Previous Rate: ({{displaydata.contractArticleRate}})</label>
+        <label for="name" class="col-md-4 col-form-label">Previous Commission: ({{displaydata.contractArticleCommission}})</label>
+        
+       </div>
+    
+          <div class="form-group row">
+            <label for="name" class="col-md-3 col-form-label">Quantity</label>
+            <div class="col-md-8">
+                <input type="number"  min="0" placeholder="quantity" #contractArticleQuantity="ngModel"
+                class="form-control" [(ngModel)]="data.contractArticleQuantity" name="contractArticleQuantity">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="name" class="col-md-3 col-form-label">Rate</label>
+            <div class="col-md-8">
+                <input type="number" min="0" placeholder="Rate" #contractArticleRate="ngModel"
+                class="form-control" [(ngModel)]="data.contractArticleRate" name="contractArticleRate">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="name" class="col-md-3 col-form-label">Commission</label>
+            <div class="col-md-8">
+                <input type="number" min="0" placeholder="Commission" #contractArticleCommission="ngModel"
+                  class="form-control" [(ngModel)]="data.contractArticleCommission" name="contractArticleCommission">
+            </div>
+          </div>
+      
+      
+      
+        </div>
+      </div>
+  
+      <div class="modal-footer NotBG">
+        <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal"
+          (click)="activeModal.close()">
+          Close
+        </button>
+        <button class="btn button-save" type="submit" *ngIf="statusCheck == 'ADD'"
+          (click)="saveData('ADD')">
+          Save
+        </button>
+        <button class="btn button-save" type="submit" *ngIf="statusCheck == 'Edit'"
+          (click)="saveData('Edit')">
+          Update
+        </button>
+      </div>
+  
+    </form>
+  </div>
+
+
+
