@@ -76,7 +76,7 @@ printData : any = {}
   saleinvoiceFilter: any = {};
   saleInvoice: any = {};
   response: any;
-  check:any=25;
+  check:any=15;
   ItemCount: number;
   contractCount: number;
   shipmentCount: number;
@@ -187,6 +187,13 @@ max1:any;
     // }, this.deliveryUrl);
     this.getDeliveries();
     this.getAllInvoices();
+    
+    if(this.saleInvoice.length>1){
+          this.check=this.check+15;
+        }
+    //     if(this.Documents.length=1){
+    //       this.check=this.check+15;
+    //     }
     // this.fetch((data) => {
     //   this.saleinvoiceFilter = [...data];
 
@@ -528,7 +535,6 @@ max1:any;
            this.fetch((data) => {
             this.rows = data;
       this.saleinvoiceFilter = [...this.rows];
-        
           });
          
         }
@@ -3263,7 +3269,7 @@ getImage(){
                         margin: [70 , 7 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
-                        [{text:'Deliveries Date:'  , style:'heading'} , {text: this.contractPaymentData['sellerDeliveryDateDay'] , style:'heading2'}],] }
+                        [{text:'Deliveries Date:'  , style:'heading'} , {text: this.contractPaymentData.contractDeliveryDates.map((x=>x.sellerDeliveryDateDay +'-' + x.sellerDeliveryDateMonth + '-'+ x.sellerDeliveryDateYear)) , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
