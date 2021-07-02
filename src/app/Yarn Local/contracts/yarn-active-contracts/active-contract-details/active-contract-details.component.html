@@ -1103,7 +1103,7 @@
                     
                             <div class="row">
                                 <div class="col-md-6">
-                                    <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName == 'Yarn Export' ">
+                                    <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'  ">
                                         <dt class="col-sm-6">Kickback:
                                         </dt>
                                         <dd class="col-sm-6" *ngIf = "contractCommissionData.kickbackPercentage != null">PKR &nbsp; {{contractCommissionData.kickbackPercentage}} %
@@ -1111,8 +1111,15 @@
                                           [PKR  {{contractCommissionData.commissionAmountKickback}} ]
                                         </dd>
                                     </dl>
-                    
-                                    <dl class="row">
+                                    <dl class="row" *ngIf="loggedInDepartmentName=='Yarn Export'  ">
+                                        <dt class="col-sm-6">Kickback:
+                                        </dt>
+                                        <dd class="col-sm-6" *ngIf = "contractCommissionData.kickbackPercentage != null">USD &nbsp; {{contractCommissionData.kickbackPercentage}} %
+                                            <b *ngIf="contractCommissionData.kickbackUOMName!=null">/ </b>
+                                          [USD  {{contractCommissionData.commissionAmountKickback}} ]
+                                        </dd>
+                                    </dl>
+                                    <dl class="row" *ngIf="loggedInDepartmentName !='Yarn Export'  ">
                                         <dt class="col-sm-6">Fabcot Commission:
                                         </dt>
                                         <dd class="col-sm-6" *ngIf = "contractCommissionData.fabCotCommision!= null">PKR {{contractCommissionData.fabCotCommision}} %
@@ -1121,6 +1128,16 @@
                                            [PKR {{contractCommissionData.commissionAmountFabcot}} ]
                                         </dd>
                                     </dl>
+                                    <dl class="row" *ngIf="loggedInDepartmentName =='Yarn Export'  ">
+                                        <dt class="col-sm-6">Fabcot Commission:
+                                        </dt>
+                                        <dd class="col-sm-6" *ngIf = "contractCommissionData.fabCotCommision!= null">USD {{contractCommissionData.fabCotCommision}} %
+                                            <b *ngIf="contractCommissionData.fabCotCommisionUOMName!=null">/ </b>
+                    
+                                           [USD {{contractCommissionData.commissionAmountFabcot}} ]
+                                        </dd>
+                                    </dl>
+                                    
                                     <dl class="row" *ngIf = "loggedInDepartmentName != 'Yarn Export'">
                                         <dt class="col-sm-6">Buyer side Commission:
                                         </dt>
