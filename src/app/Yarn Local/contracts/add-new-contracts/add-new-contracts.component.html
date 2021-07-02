@@ -187,11 +187,11 @@
 
                             </div>
                         </div>
+                        <hr>
 
 
                     </form>
 
-                    <hr>
 
                     <form #costing="ngForm" novalidate *ngIf = "loggedInDepartmentName == 'Yarn Export'">
                         <div class="pb-2">
@@ -239,9 +239,10 @@
                                 </div>
                             </div>
                         </div>
+                        <hr>
+
                         </form>
 
-                        <hr>
                     <!---------- product ---------->
 
                     <form #product="ngForm" novalidate>
@@ -252,7 +253,7 @@
 
 
 
-                        <div class="form-group row" *ngIf="loggedInDepartmentName!='Fabric Local'">
+                        <div class="form-group row" *ngIf="loggedInDepartmentName!='Fabric Local' && loggedInDepartmentName!='Fabric Export'">
                             <label for="construction" class="col-md-3 col-form-label control-label">Construction</label>
 
                             <div class="col-md-7">
@@ -265,7 +266,7 @@
                         </div>
 
 
-                        <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+                        <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName=='Fabric Export'">
                             <label for="inputEmail3" class="col-md-3 col-form-label control-label">Construction:</label>
 
                             <div class="col-md-7">
@@ -489,7 +490,7 @@
                         </div>
 
 
-                        <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+                        <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName=='Fabric Export'">
                             <label for="inputEmail3" class="col-md-3 col-form-label control-label">Additional
                                 Specs:</label>
 
@@ -548,7 +549,7 @@
                         </div>
 
 
-                        <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+                        <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName=='Fabric Export' ">
                             <label for="inputEmail3" class="col-md-3 col-form-label control-label">Piece Length:</label>
 
                             <div class="col-md-7">
@@ -1079,7 +1080,7 @@
                     <!---------- Payment & Delivery for Fabric Local Department ---------->
 
 
-                    <form #payment="ngForm" novalidate *ngIf="loggedInDepartmentName=='Fabric Local'">
+                    <form #payment="ngForm" novalidate *ngIf="loggedInDepartmentName=='Fabric Local' ">
                         <div class="pb-2">
                             <span class="badge badge-primary">Payment & Delivery Terms</span>
                         </div>
@@ -1513,10 +1514,16 @@
 
 
                     </form>
+
+
+
+
+
+
  <!---------- Payment & Delivery for Yarn Export Department ---------->
 
 
- <form #payment="ngForm" novalidate *ngIf="loggedInDepartmentName=='Yarn Export'">
+ <form #payment="ngForm" novalidate *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName=='Fabric Export'">
     <div class="pb-2">
         <span class="badge badge-primary">Payment & Delivery Terms</span>
     </div>
@@ -1793,13 +1800,13 @@
                     <div>
 
                         <form #commission="ngForm" novalidate>
-                            <div class="pb-2" *ngIf="loggedInDepartmentName=='Fabric Local'">
+                            <div class="pb-2" *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName=='Fabric Export'">
                                 <span class="badge badge-primary">Commission & Kickbak</span>
                             </div>
                             <div class="pb-2" *ngIf="loggedInDepartmentName=='Yarn Local'">
                                 <span class="badge badge-primary">Commission</span>
                             </div>
-                            <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+                            <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName=='Fabric Export'">
                                 <label for="code" class="col-md-3 col-form-label control-label">Kick Back:</label>
                         
                                 <div class="col-md-7">
@@ -1864,7 +1871,7 @@
                                         </div>
 
 
-                                        <div class="col-md-4 mrg-sm1" *ngIf="loggedInDepartmentName=='Fabric Local'">
+                                        <div class="col-md-4 mrg-sm1" *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName=='Fabric Export'">
 
 
                                             <input type="text" placeholder="Additional Info" class="form-control"
@@ -1882,7 +1889,7 @@
                             </div>
                         
                         
-                            <div class="form-group row" *ngIf="loggedInDepartmentName!='Yarn Export'">
+                            <div class="form-group row" *ngIf="loggedInDepartmentName!='Yarn Export' && loggedInDepartmentName!='Fabric Export'">
                                 <label for="code" class="col-md-3 col-form-label control-label">Commission Buyer
                                     Side:</label>
                         
@@ -1907,7 +1914,7 @@
                                         </div>
 
 
-                                        <div class="col-md-4 mrg-sm1" *ngIf="loggedInDepartmentName=='Fabric Local'">
+                                        <div class="col-md-4 mrg-sm1" *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName=='Fabric Export'">
 
                                             <input type="text" placeholder="Additional Info" class="form-control"
                                                 [(ngModel)]="data.buyerSideCommAdditionalInfo" name="buyerSideCommAdditionalInfo"
@@ -1921,7 +1928,7 @@
                             </div>
                         
                         
-                            <div class="form-group row" *ngIf="loggedInDepartmentName=='Yarn Local'">
+                            <div class="form-group row" *ngIf="loggedInDepartmentName=='Yarn Local' || loggedInDepartmentName=='Fabric Export'">
                                 <label for="code" class="col-md-3 col-form-label control-label">Agent
                                     Commission:</label>
                         
@@ -1948,7 +1955,7 @@
                         
                         
                         
-                            <div *ngIf="loggedInDepartmentName=='Yarn Local'">
+                            <div *ngIf="loggedInDepartmentName=='Yarn Local' || loggedInDepartmentName=='Fabric Export'">
                                 <div class="form-group row" *ngFor="let a of data1; let i = index;">
                         
                         
@@ -1988,7 +1995,7 @@
                         
                             <div class="row">
                                 <div class="col-md-3"></div>
-                                <div class="col-md-7" *ngIf="loggedInDepartmentName=='Yarn Local'">
+                                <div class="col-md-7" *ngIf="loggedInDepartmentName=='Yarn Local' || loggedInDepartmentName=='Fabric Export'">
                                     <button class="btn btn-outline-primary btn-sm" type="submit" (click)="addfield()">
                                         <i class="fas fa-plus"></i>
                                         Add Agent
@@ -2187,7 +2194,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group row" *ngIf="loggedInDepartmentName!='Yarn Local'">
+                            <div class="form-group row" *ngIf="loggedInDepartmentName!='Yarn Local' && loggedInDepartmentName!='Fabric Export'">
                                 <label for="inputEmail3" class="col-md-3 col-form-label control-label">Remarks:</label>
                                 <div class="col-md-7">
                                     <div class="input-group">
@@ -2195,8 +2202,18 @@
                                             name="contractRemarks"></textarea>
                                     </div>
                                 </div>
+                                
                             </div>
-                            <div class="form-group row" *ngIf="loggedInDepartmentName!='Yarn Export'">
+                            <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Export'">
+                                <label for="inputEmail3" class="col-md-3 col-form-label control-label">Remarks:</label>
+                                <div class="col-md-7">
+                                    <div class="input-group">
+                                        <textarea rows="3" class="form-control" placeholder="Supplier side remarks here..." [(ngModel)]="data.contractRemarks"
+                                            name="contractRemarks"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row" *ngIf="loggedInDepartmentName!='Yarn Export' && loggedInDepartmentName!='Fabric Export'">
                                 <label for="inputEmail3" class="col-md-3 col-form-label control-label">Buyer Remarks
                                     :</label>
                                 <div class="col-md-7">
