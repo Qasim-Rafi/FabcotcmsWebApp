@@ -56,7 +56,7 @@
           <div class="form-group row">
             <label for="quantity" class="col-sm-3 col-form-label text_Navy">Quantity</label>
             <div class="col-sm-3">
-                <input  min="0"
+                <input  min="0" disabled
                 #quantity="ngModel" (keyup)="getquantity($event)"
               name="quantity" [(ngModel)]="data.quantity"
                 class="form-control" value="" placeholder="Quantity" />

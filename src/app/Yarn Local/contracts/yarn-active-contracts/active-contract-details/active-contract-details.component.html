@@ -1842,17 +1842,25 @@
                                         </dt>
                                         <dd class="col-sm-6">{{x.saleInvoiceNo}}</dd>
                                     </dl>
-                                    <dl class="row">
+                                    <dl class="row"  *ngIf="loggedInDepartmentName=='Yarn Export'">
                                         <dt class="col-sm-6">Article:</dt>
                                         <dd class="col-sm-6">{{x.contractArticleName}}</dd>
                                     </dl>
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Article Quantity:</dt>
+                                    <dl class="row" *ngIf="loggedInDepartmentName!='Yarn Export'">
+                                        <dt class="col-sm-6" >Quantity:</dt>
+                                        <dd class="col-sm-6">{{x.quantity}}&nbsp;{{x.unit}}</dd>
+                                    </dl>
+                                  
+                                    <dl class="row" *ngIf="loggedInDepartmentName=='Yarn Export'">
+                                        <dt class="col-sm-6" >Article Quantity:</dt>
                                         <dd class="col-sm-6">{{x.contractArticleQuantity}}</dd>
                                     </dl>
-                                    
                                     <dl class="row">
-                                        <dt class="col-sm-6">Article Rate:</dt>
+                                        <dt class="col-sm-6">Invoice Amount:</dt>
+                                        <dd class="col-sm-6 text_Navy">{{contractCostingData.rateCurrencyName}}&nbsp;{{x.amount}}</dd>
+                                    </dl>
+                                    <dl class="row" *ngIf="loggedInDepartmentName=='Yarn Export'">
+                                        <dt class="col-sm-6" >Article Rate:</dt>
                                         <dd class="col-sm-6">{{x.contractArticleRate}}</dd>
                                     </dl>
 
@@ -1863,7 +1871,7 @@
                                         </dt>
                                         <dd class="col-sm-6">{{x.updatedByName}}</dd>
                                     </dl>
-                                    <dl class="row">
+                                    <dl class="row" *ngIf="loggedInDepartmentName=='Yarn Export'">
                                         <dt class="col-sm-6">Buyer Payment:</dt>
                                         <dd class="col-sm-6">{{x.quantity}}</dd>
                                     </dl>
@@ -1887,15 +1895,19 @@
                                         </dt>
                                         <dd class="col-sm-6">{{x.saleInvoiceDate}}</dd>
                                     </dl>
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Article Unit:
+                                    <dl class="row" *ngIf="loggedInDepartmentName=='Yarn Export'">
+                                        <dt class="col-sm-6" >Article Unit:
                                         </dt>
-                                        <dd class="col-sm-6">{{x.unit}}</dd>
+                                        <dd class="col-sm-6" >{{x.unit}}</dd>
                                     </dl>
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Invoice Amount:</dt>
-                                        <dd class="col-sm-6">{{x.amount}}</dd>
+                                    <dl class="row"  *ngIf="loggedInDepartmentName!='Yarn Export'">
+                                        <dt class="col-sm-6">Unit Rate:
+                                        </dt>
+                                        <dd class="col-sm-6 text_Navy" >{{contractCostingData.rate}} <b *ngIf="contractCostingData.rateUOMName !=null">
+                                            / </b>
+                                        {{contractCostingData.rateUOMName}}</dd>
                                     </dl>
+                                    
                                     <dl class="row">
                                         <dt class="col-sm-6">Tax Amount:</dt>
                                         <dd class="col-sm-6">{{x.taxPercentage}}</dd>
@@ -1908,7 +1920,7 @@
                                         </dt>
                                         <dd class="col-sm-6">{{x.updatedDateTime}}</dd>
                                     </dl>
-                                    <dl class="row">
+                                    <dl class="row" *ngIf="loggedInDepartmentName=='Yarn Export'">
                                         <dt class="col-sm-6">Tax Challan Info:</dt>
                                         <dd class="col-sm-6">{{x.quantity}}</dd>
                                     </dl>

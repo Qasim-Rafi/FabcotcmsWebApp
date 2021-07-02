@@ -3269,7 +3269,7 @@ getImage(){
                         margin: [70 , 7 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
-                        [{text:'Deliveries Date:'  , style:'heading'} , {text: this.contractPaymentData.contractDeliveryDates.map((x=>x.sellerDeliveryDateDay +'-' + x.sellerDeliveryDateMonth + '-'+ x.sellerDeliveryDateYear)) , style:'heading2'}],] }
+                          [{text:'Deliveries Date:'  , style:'heading'} , {text: this.contractPaymentData.contractDeliveryDates.map((x=>x.sellerDeliveryDateDay +'-' + x.sellerDeliveryDateMonth + '-'+ x.sellerDeliveryDateYear)) , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
