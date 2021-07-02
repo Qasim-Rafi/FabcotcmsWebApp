@@ -270,15 +270,19 @@ getAgentType(){
       .get(`${environment.apiUrl}` + apiUrl2)
       .subscribe(res => {
         this.response = res;
-        if (this.response.success == true) {
+        if(this.response.data != null){
+        if (this.response.success == true ) {
+         
           this.listCount = this.response.data.length;
 
           desc.data = this.response.data;
           cb(this.data);
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          }
         }
-        else {
-          this.toastr.error(this.response.message, 'Message.');
-        }
+       
       }, err => {
         if (err.status == 400) {
           this.toastr.error(err.error.message, 'Message.');;
