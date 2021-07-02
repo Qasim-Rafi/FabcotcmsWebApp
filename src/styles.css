@@ -516,6 +516,9 @@ select {
   .modal-dialog {
     max-width: 65% !important;
   }
+  .fieldmrgbtm {
+    margin: 0 0 10px 0;
+  }
 }
 
 @media only screen and (max-width: 667px) {

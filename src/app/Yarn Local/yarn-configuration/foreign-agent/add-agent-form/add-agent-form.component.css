@@ -6,11 +6,11 @@ select {
   color: grey;
   border-radius: 0px;
 }
-label {
+/* label {
   text-align: right;
   font-size: 11px;
   color: grey;
-}
+} */
 
 .button-save {
   background-color: #1ab394;

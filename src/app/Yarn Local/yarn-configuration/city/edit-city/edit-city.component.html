@@ -22,52 +22,57 @@
 
   <form #CityForm="ngForm" novalidate>
 
-    <div class="col-md-12 pt-3 pb-2">
-
-      <div class="form-group row">
-        <label for="name" class="col-sm-3 col-form-label control-label text_Navy">City Name<span
-            class="required-denote">*</span></label>
-        <div class="col-sm-8">
-          <input appAutofocus required id="name" maxlength="80" minlength="3" type="text" class="form-control"
-            placeholder="Port City Name" name="name" [(ngModel)]="data.name" #name="ngModel"
-            [ngClass]="{ error: name.invalid && CityForm.submitted}" />
-        </div>
-      </div>
-
-      <div class="form-group row">
-        <label class="col-sm-3 col-form-label text-grey">Country Name<span class="required-denote">*</span></label>
-        <div class="col-sm-8">
-          <ng-select required [(ngModel)]="data.countryId" placeholder="-- Select --" name="countryId"
-            #countryId="ngModel" [ngClass]="{ error: countryId.invalid && CityForm.submitted}">
-            <ng-option *ngFor="let i of country" [value]="i.id">{{ i.name }}
-              <span class="text-muted" style="font-size: 11px">( {{ i.details }} )</span>
-            </ng-option>
-          </ng-select>
-        </div>
-      </div>
-
-      <div class="form-group row">
-        <label for="details" class="col-sm-3 col-form-label text-grey">Description</label>
-        <div class="col-sm-8">
-          <textarea class="form-control" id="details" rows="3" maxlength="300" placeholder="Brief description here ..."
-            name="details" [(ngModel)]="data.details" #details="ngModel"></textarea>
-        </div>
-      </div>
-
-      <div class="form-group row">
-        <label for="active" class="col-sm-3 col-form-label text-grey"></label>
-        <div class="col-sm-8">
-          <div class="form-check form-check-inline">
-            <input  class="form-check-input check-btn "  id="scales" *ngIf="statusCheck == 'CityAdd'"  type="checkbox" name="active" [(ngModel)]="active">
-            <label for="scales" id="active" *ngIf="statusCheck == 'CityAdd'"  class="form-check-label text-grey" id="active">Marked as Active</label>
-
-            <input class="form-check-input check-btn " id="scales" *ngIf="statusCheck == 'CityEdit'"  type="checkbox" name="active" [(ngModel)]="data.active"
-            #active="ngModel">
-          <label for="scales" id="active" *ngIf="statusCheck == 'CityEdit'" class="form-check-label text-grey" id="active">Marked as Active</label>
+    <div class="row justify-content-center">
+      <div class="col-10 col-md-11 pt-3 pb-2">
+    
+        <div class="form-group row">
+          <label for="name" class="col-md-3 col-form-label control-label text_Navy">City Name<span
+              class="required-denote">*</span></label>
+          <div class="col-md-8">
+            <input appAutofocus required id="name" maxlength="80" minlength="3" type="text" class="form-control"
+              placeholder="Port City Name" name="name" [(ngModel)]="data.name" #name="ngModel"
+              [ngClass]="{ error: name.invalid && CityForm.submitted}" />
           </div>
         </div>
+    
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label text-grey">Country Name<span class="required-denote">*</span></label>
+          <div class="col-md-8">
+            <ng-select required [(ngModel)]="data.countryId" placeholder="-- Select --" name="countryId"
+              #countryId="ngModel" [ngClass]="{ error: countryId.invalid && CityForm.submitted}">
+              <ng-option *ngFor="let i of country" [value]="i.id">{{ i.name }}
+                <span class="text-muted" style="font-size: 11px">( {{ i.details }} )</span>
+              </ng-option>
+            </ng-select>
+          </div>
+        </div>
+    
+        <div class="form-group row">
+          <label for="details" class="col-md-3 col-form-label text-grey">Description</label>
+          <div class="col-md-8">
+            <textarea class="form-control" id="details" rows="3" maxlength="300" placeholder="Brief description here ..."
+              name="details" [(ngModel)]="data.details" #details="ngModel"></textarea>
+          </div>
+        </div>
+    
+        <div class="form-group row">
+          <label for="active" class="col-md-3 col-form-label text-grey"></label>
+          <div class="col-md-8">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input check-btn " id="scales" *ngIf="statusCheck == 'CityAdd'" type="checkbox"
+                name="active" [(ngModel)]="active">
+              <label for="scales" id="active" *ngIf="statusCheck == 'CityAdd'" class="form-check-label text-grey"
+                id="active">Marked as Active</label>
+    
+              <input class="form-check-input check-btn " id="scales" *ngIf="statusCheck == 'CityEdit'" type="checkbox"
+                name="active" [(ngModel)]="data.active" #active="ngModel">
+              <label for="scales" id="active" *ngIf="statusCheck == 'CityEdit'" class="form-check-label text-grey"
+                id="active">Marked as Active</label>
+            </div>
+          </div>
+        </div>
+    
       </div>
-
     </div>
 
 
