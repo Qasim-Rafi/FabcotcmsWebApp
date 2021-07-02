@@ -111,9 +111,9 @@ getDocumentsType(){
     // const formData = new FormData();
     // formData.append('name', this.profileForm.get('name').value);
     // formData.append('profile', this.profileForm.get('profile').value);
-
+    let departmentID=localStorage.getItem('loggedInDepartmentId');
     const formData = new FormData();
-    formData.append('DepartmentId', this.data.departmentId != undefined? this.data.departmentId:null);
+     formData.append('DepartmentId', this.data.departmentId != undefined? this.data.departmentId:departmentID);
     formData.append('ContractId', this.contractId);
     formData.append('DocumentTypeId', this.data.typeId);
     formData.append('Notes', this.data.note != undefined? this.data.note:null);
@@ -127,7 +127,7 @@ getDocumentsType(){
         this.response = res;
         if (this.response.success == true) {
           this.toastr.success(this.response.message, 'Message.');
-          // this.activeModal.close(true);
+           this.activeModal.close(true);
 
         }
         else {

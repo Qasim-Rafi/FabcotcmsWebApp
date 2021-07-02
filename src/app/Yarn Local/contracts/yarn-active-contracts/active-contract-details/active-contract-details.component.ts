@@ -355,7 +355,7 @@ max1:any;
     
       // on close
       if (data == true) {
-        // this.getContractData();
+        this.getAllDocuments();
       }
     }, (reason) => {
       // on dismiss
