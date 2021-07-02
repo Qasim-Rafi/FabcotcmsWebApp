@@ -113,10 +113,10 @@ getDocumentsType(){
     // formData.append('profile', this.profileForm.get('profile').value);
 
     const formData = new FormData();
-    formData.append('DepartmentId', this.data.departmentId);
+    formData.append('DepartmentId', this.data.departmentId != undefined? this.data.departmentId:null);
     formData.append('ContractId', this.contractId);
     formData.append('DocumentTypeId', this.data.typeId);
-    formData.append('Notes', this.data.note);
+    formData.append('Notes', this.data.note != undefined? this.data.note:null);
     formData.append('File', this.file);
 
     this.http.

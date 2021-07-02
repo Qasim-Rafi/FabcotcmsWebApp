@@ -902,7 +902,7 @@ fileDownload(row){
   //   window.open(url);
   // }
 getAllDocuments() {
-  this.http.get(`${environment.apiUrl}/api/Contracts/GetAllUploadDocument` )
+  this.http.get(`${environment.apiUrl}/api/Contracts/GetAllUploadDocument/`+this.contractId )
     .subscribe(
       res => {
         this.response = res;
