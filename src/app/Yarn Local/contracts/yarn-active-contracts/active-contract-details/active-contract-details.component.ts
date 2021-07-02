@@ -322,6 +322,27 @@ max1:any;
 
       });
   }
+  revisedMethod(){
+    if(this.loggedInDepartmentName =='Yarn Export'){
+    this.http.get(`${environment.apiUrl}/api/Lookups/ContractArticles/`+ this.contractId)
+      .subscribe(res => {
+        this.response = res;
+
+        if (this.response.success == true) {
+          this.contractArticles = this.response.data
+    
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+        // this.spinner.hide();
+      },(err: HttpErrorResponse) => {
+        const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+        this.toastr.error(messages.toString(), 'Message.');
+        console.log(messages);
+      });
+    }
+  }
   // getArticles() {
 
   //   this.http.get(`${environment.apiUrl}/api/Lookups/ContractArticles/`+ this.contractId)
