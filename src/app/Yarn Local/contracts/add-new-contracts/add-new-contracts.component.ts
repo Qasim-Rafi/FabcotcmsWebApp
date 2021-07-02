@@ -998,6 +998,7 @@ brandId : any;
 
       this.articleArray.push({ ['articleId']: this.Article[i].articleId , ['contractArticleQuantity']: this.Article[i].contractArticleQuantity , ['contractArticleRate']: this.Article[i].contractArticleRate , ['contractArticleCommission']: this.Article[i].contractArticleCommission})
     }
+ 
 
     let varr = {
       // "enquiryDate": this.dateformater.toModel(this.data.enquiryDate),
@@ -1033,7 +1034,7 @@ brandId : any;
       "buyersideCommision": this.data.buyersideCommision,
       "buyersideCommisionUOMId": this.data.buyersideCommisionUOMId,
       "buyerSideCommAdditionalInfo": this.data.buyerSideCommAdditionalInfo,
-      "agentCommission": this.commission,
+      "agentCommissions": this.commission,
       "fabricTypeId": this.data.fabricTypeId,
       "contractNumber": this.data.contractNumber,
       "contractDate": this.data.contractDate,
@@ -1065,12 +1066,15 @@ brandId : any;
       "destinationId": this.data.destinationId,
       "containerId": this.data.containerId,
       "count": this.data.count,
+      "contractDeliveryDates":[{
       "sellerDeliveryDateDay": this.data.sellerDeliveryDateDay,
       "sellerDeliveryDateMonth": this.data.sellerDeliveryDateMonth,
       "sellerDeliveryDateYear": this.data.sellerDeliveryDateYear,
       "buyerDeliveryDateDay":this.data.buyerDeliveryDateDay,
       "buyerDeliveryDateMonth": this.data.buyerDeliveryDateMonth,
       "buyerDeliveryDateYear": this.data.buyerDeliveryDateYear,
+      }
+    ]
     }
     this.spinner.show();
     this.http.
