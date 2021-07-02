@@ -18,6 +18,7 @@ export class ArticleRevisePopupComponent implements OnInit {
   data: any = {};
   response: any;
   displaydata:any={};
+  obj:any;
   constructor(
     private _NgbActiveModal: NgbActiveModal,
     private http: HttpClient,
@@ -58,7 +59,48 @@ export class ArticleRevisePopupComponent implements OnInit {
   saveData( check) {
    
     this.spinner.show();
-
+if(this.statusCheck =='ADD'){
+  
+    let varr = {
+    
+      
+      "id":  this.rowData.id,
+      "articleId":  this.rowData.acrticleId,
+      "contractId": this.rowData.contractId,
+      "contractArticleQuantity": this.data.contractArticleQuantity,
+      "contractArticleRate": this.data.contractArticleRate,
+      "contractArticleCommission": this.data.contractArticleCommissionv,
+      "isDeleted": this.data.isDeleted,
+      "isAddedMore": this.data.isAddedMore,
+      
+    }
+  this.http.
+  post(`${environment.apiUrl}/api/ExportContracts/AddContractArticleRevised`, varr)
+  .subscribe(
+    res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.toastr.success(this.response.message, 'Message.');
+        this.obj = this.response.data 
+        this.activeModal.close(this.obj);
+        this.spinner.hide();
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+        this.spinner.hide();
+      }
+    
+    },(err: HttpErrorResponse) => {
+      const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+      this.toastr.error(messages.toString(), 'Message.');
+      console.log(messages);
+      this.spinner.hide();
+      // if (err.status == 400) {
+      //   this.toastr.error(this.response.message, 'Message.');
+      // }
+    });
+}
+else{
     this.http.
       post(`${environment.apiUrl}/api/Enquiries/AddEnquiryItem`, this.data)
       .subscribe(
@@ -84,6 +126,7 @@ export class ArticleRevisePopupComponent implements OnInit {
           //   this.toastr.error(this.response.message, 'Message.');
           // }
         });
+      }
   }
   get activeModal() {
     return this._NgbActiveModal;

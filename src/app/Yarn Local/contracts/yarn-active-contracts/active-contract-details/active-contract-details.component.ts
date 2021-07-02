@@ -131,6 +131,7 @@ max1:any;
  newArticle: any;
  contractArticles : any = {};
  percent:string;
+ firstTime:any;
  isdeletedArticla:boolean=false;
   constructor(
     private router: Router,
@@ -324,7 +325,8 @@ max1:any;
   }
   revisedMethod(){
     if(this.loggedInDepartmentName =='Yarn Export'){
-    this.http.get(`${environment.apiUrl}/api/Lookups/ContractArticles/`+ this.contractId)
+    this.http
+    .put(`${environment.apiUrl}/api/Contracts/ReviseContract/`+ this.contractId,{})
       .subscribe(res => {
         this.response = res;
 
@@ -421,6 +423,7 @@ max1:any;
     
       // on close
       if (data == true) {
+        // this.firstTime=data.obj.
         this.getContractData();
       }
     }, (reason) => {
