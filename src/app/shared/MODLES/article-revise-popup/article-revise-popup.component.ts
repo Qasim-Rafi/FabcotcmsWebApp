@@ -65,7 +65,7 @@ if(this.statusCheck =='ADD'){
     
       
       "id":  this.rowData.id,
-      "articleId":  this.rowData.acrticleId,
+      "articleId":  this.rowData.articleId,
       "contractId": this.rowData.contractId,
       "contractArticleQuantity": this.data.contractArticleQuantity,
       "contractArticleRate": this.data.contractArticleRate,

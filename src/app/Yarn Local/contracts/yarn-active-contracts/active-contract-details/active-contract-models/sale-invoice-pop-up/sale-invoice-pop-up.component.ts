@@ -71,6 +71,9 @@ this.GetArticleDropdown();
           if (this.response.success == true) {
             this.articledata = this.response.data;
             this.data.quantity=this.articledata.contractArticleQuantity;
+            this.data.contractArticleRate=this.articledata.contractArticleRate;
+            this.data.contractArticleCommission=this.articledata.contractArticleCommission;
+
             this.data.unit=this.articledata.costingUOMId;
              this.data.amount=this.articledata.contractArticleRate * this.data.quantity;
 
@@ -260,12 +263,15 @@ this.spinner.show();
     }else{
     let varr = {
      "contractId": this.contractId,
+     "contractArticleId":this.data.contractArticleId,
        "saleInvoiceNo": this.data.saleInvoiceNo,
        "saleInvoiceDate":this.dateformater.toModel(this.data.saleInvoiceDate),
        "saleInvoiceRemarks":this.data.saleInvoiceRemarks,
        "amount": this.data.amount,
        "quantity": this.data.quantity,
        "unit": this.data.unit,
+       "rate":  this.data.contractArticleRate,
+       "commission": this.data.contractArticleCommission,
        "taxPercentage": this.data.taxPercentage == null ?  this.condition :this.data.taxPercentage,
     }
  this.spinner.show();

@@ -617,7 +617,7 @@
                                                     <label class="col-sm-3 col-form-label">Commission:</label>
 
                                                 <div class="form-group row" *ngFor="let a of contractArticles; let i = index;">
-                                                    <button *ngIf="contractArticles.isRevised == true" class="btn btn-info btn-sm h5 ml-2"
+                                                    <button *ngIf="a.isRevised == true" class="btn btn-info btn-sm h5 ml-2"
                                                     ngbTooltip="Edit Revised Articel"
                                                      (click)="revisedpopup(a,'Edit')">Revised</button>
                         
@@ -663,7 +663,7 @@
                                                             <button class="btn btn-outline-danger" [disabled]="a.isDeleted ==true" type="submit" (click)="removeArticle(a)">
                                                                 <i class="fas fa-minus fa-xs"></i></button>
                                                                 <span class="badge badge-danger h5 ml-2" *ngIf="a.isDeleted ==true">Deleted</span>
-                                                                <button *ngIf="contractArticles.isRevised == true" class="btn btn-outline-primary btn-sm h5 ml-2"
+                                                                <button *ngIf="isRevisedStart == true" class="btn btn-outline-primary btn-sm h5 ml-2"
                                                                 ngbTooltip="Add Revised Articel"
                                                                  (click)="revisedpopup(a,'ADD')">Revise</button>
                                                         </div>
@@ -1786,6 +1786,12 @@
                                         </h1>
                                     </div>
                                     <div class="col-sm-12 col-md-6 col-lg-4 text-right">
+
+                                        <button *ngIf="loggedInDepartmentName=='Yarn Export'" class="btn btn-outline-primary btn-sm"
+                                        (click)="salesInvoicereportLocalYarn()">
+                                        <i class="fas fa-plus"></i>
+                                       Sale Invoice Report </button>
+
                                         <button class="btn btn-outline-primary btn-sm"
                                             (click)="addinvoiceForm('addInvoice')">
                                             <i class="fas fa-plus"></i>
