@@ -32,6 +32,7 @@ export class ArticleRevisePopupComponent implements OnInit {
     this.statusCheck =this.statusCheck;
     this.rowData;
     this.get();
+    this.getRevisedArticleData();
   }
 
   get() {
@@ -40,6 +41,30 @@ export class ArticleRevisePopupComponent implements OnInit {
         res => {
           this.response = res;
           this.displaydata= this.response.data;
+          // if(this.statusCheck == 'Edit'){
+          //   if (this.response.success == true) {
+            
+          //     // this.data = this.response.data;
+          //   }
+          //   else {
+          //     this.toastr.error(this.response.message, 'Message.');
+          //   }
+          // }
+
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+        });
+  }
+
+  getRevisedArticleData() {
+    this.http.
+    get(`${environment.apiUrl}/api/ExportContracts/GetContractArticleTransactionRow?`+this.rowData.contractId +'/'+ this.rowData.articleId)
+      .subscribe(
+        res => {
+          this.response = res;
+         // this.displaydata= this.response.data;
           if(this.statusCheck == 'Edit'){
             if (this.response.success == true) {
             
@@ -69,7 +94,8 @@ if(this.statusCheck =='ADD'){
       "contractId": this.rowData.contractId,
       "contractArticleQuantity": this.data.contractArticleQuantity,
       "contractArticleRate": this.data.contractArticleRate,
-      "contractArticleCommission": this.data.contractArticleCommissionv,
+      "contractArticleCommission": this.data.contractArticleCommission,
+      "remarks": this.data.remarks,
       "isDeleted": this.data.isDeleted,
       "isAddedMore": this.data.isAddedMore,
       
@@ -101,8 +127,23 @@ if(this.statusCheck =='ADD'){
     });
 }
 else{
+
+  let varr = {
+    
+      
+    "id":  this.rowData.id,
+    "articleId":  this.rowData.articleId,
+    "contractId": this.rowData.contractId,
+    "contractArticleQuantity": this.data.contractArticleQuantity,
+    "contractArticleRate": this.data.contractArticleRate,
+    "contractArticleCommission": this.data.contractArticleCommission,
+    "remarks": this.data.remarks,
+    "isDeleted": this.data.isDeleted,
+    "isAddedMore": this.data.isAddedMore,
+    
+  }
     this.http.
-      post(`${environment.apiUrl}/api/Enquiries/AddEnquiryItem`, this.data)
+      post(`${environment.apiUrl}/api/ExportContracts/UpdateContractArticleRevised`, varr)
       .subscribe(
         res => {
           this.response = res;

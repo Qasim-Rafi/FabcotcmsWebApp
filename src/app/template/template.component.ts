@@ -20,6 +20,7 @@ export class TemplateComponent implements OnInit {
   constructor( private router: Router,) { }
 
   ngOnInit(): void {
+    $('[data-widget="pushmenu"]').addClass('toggle')
     this.userrole=localStorage.getItem('role');
     this.loggedInDepartmentId=localStorage.getItem('loggedInDepartmentId');
     this.userName=localStorage.getItem('loggedInUserName');
@@ -66,7 +67,7 @@ this.isFabricLocal=false;
     } 
    
   //   $('li.dropdown.mega-dropdown a').on('click', function (event) {
-  //     $(this).parent().toggleClass("sidebar-collapse");
+  //     $(this).parent().toggleClass("open");
   // });
   
   // $('body').on('click', function (e) {

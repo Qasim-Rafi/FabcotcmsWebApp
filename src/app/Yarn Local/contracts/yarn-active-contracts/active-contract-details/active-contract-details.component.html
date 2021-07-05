@@ -617,14 +617,15 @@
                                                     <label class="col-sm-3 col-form-label">Commission:</label>
 
                                                 <div class="form-group row" *ngFor="let a of contractArticles; let i = index;">
-                                                    <button *ngIf="a.isRevised == true" class="btn btn-info btn-sm h5 ml-2"
+                                                    <div class="col-md-1">
+                                                    <button *ngIf="a.isRevised == true" class="btn btn-info btn-sm h5"
                                                     ngbTooltip="Edit Revised Articel"
                                                      (click)="revisedpopup(a,'Edit')">Revised</button>
-                        
+                                                    </div>
                                                     <div class="col-md-3 ">
                                                         <div class="input-group">
                                                        
-                                                        <ng-select [disabled]="a.isDeleted ==true" name="articleId_{{i}}" #articleId="ngModel" class="input-w px-0"
+                                                        <ng-select [disabled]="a.isDeleted ==true || a.isRevised ==true" name="articleId_{{i}}" #articleId="ngModel" class="input-w px-0"
                                                         [(ngModel)]="a.articleId" placeholder="-- Select --">
                                                         <ng-option *ngFor="let c of article" [value]="c.id">{{ c.name }}
                                                         </ng-option>
@@ -636,7 +637,7 @@
 
                                                             <div class="input-group">
 
-                                                                <input type="number" [disabled]="a.isDeleted ==true" min="0" placeholder="quantity" #contractArticleQuantity="ngModel"
+                                                                <input type="number" [disabled]="a.isDeleted ==true || a.isRevised ==true" min="0" placeholder="quantity" #contractArticleQuantity="ngModel"
                                                                     class="form-control" [(ngModel)]="a.contractArticleQuantity" name="contractArticleQuantity_{{i}}">
                                                             
                                                             </div>
@@ -644,7 +645,7 @@
                                                           <div class="col-md-2">
 
                                                             <div class="input-group">
-                                                                <input type="number" [disabled]="a.isDeleted ==true" min="0" placeholder="Rate" #contractArticleRate="ngModel"
+                                                                <input type="number" [disabled]="a.isDeleted ==true || a.isRevised ==true" min="0" placeholder="Rate" #contractArticleRate="ngModel"
                                                                     class="form-control" [(ngModel)]="a.contractArticleRate" name="contractArticleRate_{{i}}">
                                                              
                                                             </div>
@@ -653,14 +654,14 @@
 
                                                             <div class="input-group">
 
-                                                                <input type="number" [disabled]="a.isDeleted ==true" min="0" placeholder="Commission" #contractArticleCommission="ngModel"
+                                                                <input type="number" [disabled]="a.isDeleted ==true || a.isRevised ==true" min="0" placeholder="Commission" #contractArticleCommission="ngModel"
                                                                 class="form-control" [(ngModel)]="a.contractArticleCommission" name="contractArticleCommission_{{i}}">
                                                                 
                                                             </div>
                                                         </div>
                                                         <div class="col-md-1">
                                                           <div class="input-group-append">
-                                                            <button class="btn btn-outline-danger" [disabled]="a.isDeleted ==true" type="submit" (click)="removeArticle(a)">
+                                                            <button class="btn btn-outline-danger" [disabled]="a.isDeleted ==true || a.isRevised ==true" type="submit" (click)="removeArticle(a)">
                                                                 <i class="fas fa-minus fa-xs"></i></button>
                                                                 <span class="badge badge-danger h5 ml-2" *ngIf="a.isDeleted ==true">Deleted</span>
                                                                 <button *ngIf="isRevisedStart == true" class="btn btn-outline-primary btn-sm h5 ml-2"
