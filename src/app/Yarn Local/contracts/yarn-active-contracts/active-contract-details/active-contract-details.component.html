@@ -1805,9 +1805,9 @@
 
 
                         <div class="card shadow mb-4" *ngFor="let x of saleInvoice; let i = index;">
-                        <div class="card-body" >
-
-                            <div class="row pb-5" >
+                       
+                            <div class="card-body" >
+                            <div class="row pb-3 border-bottom">
                                 <div class="col-md-6 ">
                                     <button class="btn btn-info btn-sm">
                                         Sale Invoice #{{i+1}}-{{x.saleInvoiceNo}}</button>
@@ -1829,7 +1829,7 @@
                                 </div>
 
                             </div>
-
+                          
                             <!-- <div class="row">
                                 <div class="col-md-12 mb-3">
                                     <button class="btn btn-outline-primary" (click)="editSaleInvoice('editInvoice',x)"> <i class="far fa-edit"></i>
@@ -1841,7 +1841,7 @@
                                 </div>
                             </div> -->
 
-                            <div class="row">
+                            <div class="row pt-4">
                                 <div class="col-md-12">
                                     <div class="row mb-4">
                                         <div class="col-md-4">

@@ -51,9 +51,11 @@
         <div class="row">
             <div class="col-md-12 p-3">
 
-
+                  <div class="card shadow mb-4">
+                      <div class="card-body">
                 <div class="form-row">
-                    <div class="form-group col-xl-1 col-md-2 col-lg-2 text-right">
+
+                    <div class="form-group col-md-3 col-lg-3 col-xl-2 text-right">
                         <label for="inputEmail4">Contract #</label>
                         <!-- <div class="input-group"> -->
                         <div class="text-right" >
@@ -61,19 +63,22 @@
                         </div>
                         
                     </div>
+
                     <div class="form-group col-md-2">
                         <label for="inputPassword4">Auto</label>
                         <!-- <input type="password" class="form-control" id="inputPassword4"> -->
                         <input type="text" placeholder="Auto Contract no." [(ngModel)]="data.autoContractNo"
                             name="autoContractNo" #autoContractNo="ngModel" class="form-control text-w-4" readonly>
                     </div>
+
                     <div class="form-group col-md-3">
                         <label for="inputPassword4">(Manual)</label>
                         <!-- <input type="password" class="form-control" id="inputPassword4"> -->
                         <input type="text" placeholder="Contract no." class="form-control text-w-4"
                             #contractNo="ngModel" [(ngModel)]="data.contractNo" name="contractNo">
                     </div>
-                    <div class="form-group col-md-3 offset-md-2 offset-lg-2">
+                    
+                    <div class="form-group col-md-3 offset-md-1 offset-lg-1">
                         <label for="inputPassword4">Contract Date</label>
                         <div class="input-group date" (clickOutside)="validity.close()">
 
@@ -88,6 +93,8 @@
                         </div>
                     </div>
                 </div>
+            </div>
+                </div>
 
                 <hr>
 
@@ -97,7 +104,8 @@
 
 
 
-
+                    <div class="card shadow mb-4">
+                        <div class="card-body">
                     <form #enquiryForm="ngForm" novalidate>
 
                         <div class="pb-2">
@@ -187,13 +195,19 @@
 
                             </div>
                         </div>
-                        <hr>
+                       
 
 
                     </form>
+                        </div>
+                    </div>
 
+                    <hr>
 
-                    <form #costing="ngForm" novalidate *ngIf = "loggedInDepartmentName == 'Yarn Export'">
+                    <div class="card shadow mb-4" *ngIf = "loggedInDepartmentName == 'Yarn Export'">
+                        <div class="card-body">
+
+                    <form #costing="ngForm" novalidate >
                         <div class="pb-2">
                             <span class="badge badge-primary">Quantity
                                 
@@ -239,11 +253,15 @@
                                 </div>
                             </div>
                         </div>
-                        <hr>
+                        
 
                         </form>
-
+                    </div>
+                    </div>
+                    <hr>
                     <!---------- product ---------->
+                    <div class="card shadow mb-4">
+                        <div class="card-body">
 
                     <form #product="ngForm" novalidate>
                         <div class="pb-2">
@@ -656,12 +674,14 @@
                         </div>
 
                     </form>
-
+                        </div>
+                    </div>
                     <hr *ngIf = "loggedInDepartmentName != 'Yarn Export' ">
                     <!---------- Quantity ---------->
+                    <div class="card shadow mb-4" *ngIf = "loggedInDepartmentName != 'Yarn Export'">
+                        <div class="card-body">
 
-
-                    <form #costing="ngForm" novalidate *ngIf = "loggedInDepartmentName != 'Yarn Export'">
+                    <form #costing="ngForm" novalidate >
                         <div class="pb-2">
                             <span class="badge badge-primary">Quantity & Costing</span>
                         </div>
@@ -783,14 +803,16 @@
                         </div>
 
                     </form>
-
+                        </div>
+                    </div>
 
                     <hr>
 
                     <!---------- Payment & Delivery for Local Yarn---------->
 
-
-                    <form #payment="ngForm" novalidate *ngIf="loggedInDepartmentName=='Yarn Local'">
+                    <div class="card shadow mb-4" *ngIf="loggedInDepartmentName=='Yarn Local'">
+                        <div class="card-body">
+                    <form #payment="ngForm" novalidate >
                         <div class="pb-2">
                             <span class="badge badge-primary">Payment & Delivery Terms</span>
                         </div>
@@ -1075,12 +1097,14 @@
 
                     </form>
 
-
+                        </div>
+                    </div>
 
                     <!---------- Payment & Delivery for Fabric Local Department ---------->
 
-
-                    <form #payment="ngForm" novalidate *ngIf="loggedInDepartmentName=='Fabric Local' ">
+                    <div class="card shadow mb-4" *ngIf="loggedInDepartmentName=='Fabric Local' ">
+                        <div class="card-body">
+                    <form #payment="ngForm" novalidate >
                         <div class="pb-2">
                             <span class="badge badge-primary">Payment & Delivery Terms</span>
                         </div>
@@ -1514,6 +1538,8 @@
 
 
                     </form>
+                        </div>
+                    </div>
 
 
 
@@ -1521,9 +1547,10 @@
 
 
  <!---------- Payment & Delivery for Yarn Export Department ---------->
+ <div class="card shadow mb-4" *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName=='Fabric Export'">
+    <div class="card-body">
 
-
- <form #payment="ngForm" novalidate *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName=='Fabric Export'">
+ <form #payment="ngForm" novalidate >
     <div class="pb-2">
         <span class="badge badge-primary">Payment & Delivery Terms</span>
     </div>
@@ -1794,11 +1821,15 @@
 
 
 </form>
+
+    </div>
+ </div>
                     <hr>
                     <!---------- commission ---------->
 
                     <div>
-
+                        <div class="card shadow mb-4">
+                            <div class="card-body">
                         <form #commission="ngForm" novalidate>
                             <div class="pb-2" *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName=='Fabric Export'">
                                 <span class="badge badge-primary">Commission & Kickbak</span>
@@ -2006,7 +2037,9 @@
                         
                         
                         </form>
+                        
                         <!--Commission for Yarn Export-->
+                       
                         <form #commission="ngForm" novalidate *ngIf="loggedInDepartmentName=='Yarn Export'">
                             <div class="pb-2" >
                                 <span class="badge badge-primary">Commission & Kickbak</span>
@@ -2172,11 +2205,14 @@
                         
                         
                         </form>
+                            </div>
+                        </div>
                         <hr>
 
 
                         <!---------- remarks ---------->
-
+                        <div class="card shadow mb-4">
+                            <div class="card-body">
 
                         <form #remarks="ngForm" novalidate>
                             <div class="pb-2">
@@ -2264,7 +2300,8 @@
                             </div> -->
 
                         </form>
-
+                            </div>
+                        </div>
                         <hr>
 
 
@@ -2291,3 +2328,6 @@
             </div>
 
         </div>
+
+    </div>
+</div>

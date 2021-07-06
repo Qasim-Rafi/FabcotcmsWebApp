@@ -62,16 +62,16 @@
   width: 95% !important;
 }
 .input-w1{
-  width: 97% !important;
+  width: 96% !important;
 }
 .input-w2{
-  width: 86% !important;
+  width: 85% !important;
 }
 .input-w3{
-  width: 81% !important;
+  width: 80% !important;
 }
 .input-w4{
-  width: 91% !important;
+  width: 90% !important;
 }
 
 
@@ -83,16 +83,16 @@
 
 @media only screen and (max-width: 1600px) {
   .input-w{
-    width: 94% !important;
+    width: 93% !important;
   }
   .input-w1{
-    width: 96% !important;
+    width: 95% !important;
   } 
   .input-w2{
-    width: 82% !important;
+    width: 81% !important;
   }
   .input-w3{
-    width: 76% !important;
+    width: 75% !important;
   }
   .input-w4{
     width: 88% !important;
@@ -102,17 +102,17 @@
 
 @media only screen and (max-width: 1366px), (max-width: 1440px) {
   .input-w{
-    width: 93% !important;
+    width: 92% !important;
   }
    .input-w1{
-    width: 96% !important;
+    width: 95% !important;
   }
 
   .input-w2{
-    width: 78% !important;
+    width: 77% !important;
   }
   .input-w3{
-    width: 70% !important;
+    width: 69% !important;
   }
   .input-w4{
     width: 85% !important;
@@ -125,36 +125,36 @@
   }
 
   .input-w1{
-    width: 95% !important;
+    width: 94% !important;
   } 
 
   .input-w2{
-    width: 75% !important;
+    width: 74% !important;
   }
   .input-w3{
-    width: 66% !important;
+    width: 65% !important;
   }
   .input-w4{
-    width: 84% !important;
+    width: 83% !important;
   }
 
 }
 
 @media only screen and (max-width: 1024px) {
   .input-w {
-    width: 89% !important;
+    width: 88% !important;
   }
   .input-w1{
-    width: 94% !important;
+    width: 93% !important;
   } 
   .input-w2{
-    width: 65% !important;
+    width: 63% !important;
   }
   .input-w3{
-    width: 52% !important;
+    width: 51% !important;
   }
   .input-w4{
-    width: 78% !important;
+    width: 76% !important;
   }
 }
 @media only screen and (max-width: 768px) {
@@ -172,55 +172,55 @@
 
 @media only screen and (max-width: 736px) {
   .input-w{
-    width: 93% !important;
+    width: 92% !important;
   }
   .input-w1{
-    width: 93% !important;
+    width: 92% !important;
   } 
   .input-w2{
-    width: 93% !important;
+    width: 92% !important;
   }
   .input-w3{
-    width: 93% !important;
+    width: 92% !important;
   }
   .input-w4{
-    width: 93% !important;
+    width: 92% !important;
   }
 }
 
 @media only screen and (max-width: 667px) {
   .input-w{
-    width: 92% !important;
+    width: 91% !important;
   }
   .input-w1{
-    width: 92% !important;
+    width: 91% !important;
   }
   .input-w2{
-    width: 92% !important;
+    width: 91% !important;
   }
   .input-w3{
-    width: 92% !important;
+    width: 91% !important;
   }
   .input-w4{
-    width: 92% !important;
+    width: 91% !important;
   }
 }
 
 @media only screen and (max-width: 414px) {
   .input-w{
-    width: 85% !important;
+    width: 84% !important;
   }
   .input-w1{
-    width: 85% !important;
+    width: 84% !important;
   }
   .input-w2{
-    width: 85% !important;
+    width: 84% !important;
   }
   .input-w3{
-    width: 85% !important;
+    width: 84% !important;
   }
   .input-w4{
-    width: 85% !important;
+    width: 84% !important;
   }
   .mrg-top {
     margin: 10px 0 0 0;
@@ -229,18 +229,18 @@
 
 @media only screen and (max-width: 375px) {
   .input-w{
-    width: 83% !important;
+    width: 82% !important;
   }
   .input-w1{
-    width: 83% !important;
+    width: 82% !important;
   }
   .input-w2{
-    width: 83% !important;
+    width: 82% !important;
   }
   .input-w3{
-    width: 83% !important;
+    width: 82% !important;
   }
   .input-w4{
-    width: 83% !important;
+    width: 82% !important;
   }
 }

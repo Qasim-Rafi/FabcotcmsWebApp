@@ -136,7 +136,7 @@ max1:any;
  isRevisedStart:boolean =false;
  thereisrevisedData:boolean=false;
  yarnExportInvoiceReports:any={};
- revisedindexData:any=[];
+ revisedindexData:any;
   constructor(
     private router: Router,
     private modalService: NgbModal,
@@ -3219,7 +3219,10 @@ yarnExportInvoicesReportPrint(){
   for(let i =0;i<this.yarnExportInvoiceReports.length;i++ ){
     if( this.yarnExportInvoiceReports[i].contractArticleRevisedTransactions.length > 0){
           this.thereisrevisedData=true;
-          this.revisedindexData.push(this.yarnExportInvoiceReports[i].contractArticleRevisedTransactions);
+          this.revisedindexData=this.yarnExportInvoiceReports[i].contractArticleRevisedTransactions
+          // let a =[];
+          // a.push(this.yarnExportInvoiceReports[i].contractArticleRevisedTransactions)
+          // this.revisedindexData=a;
 
     }
   }
@@ -3347,7 +3350,7 @@ yarnExportInvoicesReportPrint(){
                 margin: [20 , 10 , 0 , 0],
                 table:{
                   headerRows:1,
-                  widths: [ 'auto' , 'auto' , 'auto' , 'auto','auto','auto','auto','auto' ],
+                  widths: [ 'auto' , 'auto' , 'auto' , 'auto','auto','auto','auto' ],
                   body:[
                     [  {text:'Invoice #' , style: 'tableheader2'},
                     {text:'Article' , style: 'tableheader2'},
@@ -3355,14 +3358,14 @@ yarnExportInvoicesReportPrint(){
                      {text:'Quantity' , style: 'tableheader2'},
                     {text:'Commission' , style: 'tableheader2'},
                      {text:'Rate' , style: 'tableheader2'},
-                    {text:'Tax Amount' , style: 'tableheader2'},
+                    // {text:'Tax Amount' , style: 'tableheader2'},
                     {text:'Invoice Amount' , style: 'tableheader2'},
                    
   
                   ],
             ...this.revisedindexData.map((row=>
             [row.saleInvoiceNo,row.contractArticleName,row.unit, row.contractArticleQuantity, row.contractArticleCommission,
-                row.contractArticleRate,row.taxAmount,row.amount
+                row.contractArticleRate,row.saleInvoiceAmount
                 ]
                 
               ))
