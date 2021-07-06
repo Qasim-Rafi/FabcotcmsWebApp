@@ -60,7 +60,7 @@ export class ArticleRevisePopupComponent implements OnInit {
 
   getRevisedArticleData() {
     this.http.
-    get(`${environment.apiUrl}/api/ExportContracts/GetContractArticleTransactionRow?`+this.rowData.contractId +'/'+ this.rowData.articleId)
+    get(`${environment.apiUrl}/api/ExportContracts/GetContractArticleTransactionRow/`+this.rowData.contractId +'/'+ this.rowData.id)
       .subscribe(
         res => {
           this.response = res;
@@ -107,8 +107,8 @@ if(this.statusCheck =='ADD'){
       this.response = res;
       if (this.response.success == true) {
         this.toastr.success(this.response.message, 'Message.');
-        this.obj = this.response.data 
-        this.activeModal.close(this.obj);
+        // this.obj = this.response.data 
+        this.activeModal.close(true);
         this.spinner.hide();
       }
       else {
@@ -138,12 +138,12 @@ else{
     "contractArticleRate": this.data.contractArticleRate,
     "contractArticleCommission": this.data.contractArticleCommission,
     "remarks": this.data.remarks,
-    "isDeleted": this.data.isDeleted,
-    "isAddedMore": this.data.isAddedMore,
+    "isDeleted": this.data.isDeleted != undefined?this.data.isDeleted:false,
+    "isAddedMore": this.data.isAddedMore != undefined?this.data.isAddedMore:false,
     
   }
     this.http.
-      post(`${environment.apiUrl}/api/ExportContracts/UpdateContractArticleRevised`, varr)
+      put(`${environment.apiUrl}/api/ExportContracts/UpdateContractArticleRevised`, varr)
       .subscribe(
         res => {
           this.response = res;

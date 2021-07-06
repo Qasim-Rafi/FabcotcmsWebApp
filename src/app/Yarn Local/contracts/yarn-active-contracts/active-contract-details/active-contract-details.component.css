@@ -146,7 +146,13 @@ color: #676a6c !important;
 .input-w{
   width: 100% !important;
 }
-
+.customFontStyle{
+  font-weight: 700;
+  font-size: 14px;
+}
+.customFontS{
+  font-size: 14px;
+}
 @media only screen and (max-width: 1024px) {
   .mrg-btm {
     margin: 0 0 10px 0;

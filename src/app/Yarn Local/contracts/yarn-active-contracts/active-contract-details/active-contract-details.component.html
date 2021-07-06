@@ -1779,14 +1779,14 @@
                         <div class="row">
                             <div class="col-md-12 py-1">
                                 <div class="row mb-2">
-                                    <div class="col-sm-12 col-md-6 col-lg-8 text-muted">
+                                    <div class="col-sm-12 col-md-6 col-lg-7 text-muted">
                                         <h1 class="row wrapper page-header font-weight-light">
                                             <i class="fas fa-receipt mr-3"></i>
                                             Sale Invoices
 
                                         </h1>
                                     </div>
-                                    <div class="col-sm-12 col-md-6 col-lg-4 text-right">
+                                    <div class="col-sm-12 col-md-6 col-lg-5 text-right">
 
                                         <button *ngIf="loggedInDepartmentName=='Yarn Export'" class="btn btn-outline-primary btn-sm  mr-2"
                                         (click)="salesInvoicereportLocalYarn()">
@@ -1804,7 +1804,8 @@
 
 
 
-                        <div class="card-body  BG" *ngFor="let x of saleInvoice; let i = index;">
+                        <div class="card shadow mb-4" *ngFor="let x of saleInvoice; let i = index;">
+                        <div class="card-body" >
 
                             <div class="row pb-5" >
                                 <div class="col-md-6 ">
@@ -1841,106 +1842,171 @@
                             </div> -->
 
                             <div class="row">
-                                <div class="col-md-6">
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Sale Invoice Status:
+                                <div class="col-md-12">
+                                    <div class="row mb-4">
+                                        <div class="col-md-4">
+                                            <div class="row">
+                                                <div class="col-sm-6 customFontStyle">Sale Invoice Status:
+                                
+                                                </div>
+                                                <div class="col-sm-6 customFontS"></div>
+                                            </div>
+                                            <!-- <dl class="row">
+                                                                        <dt class="col-sm-6">Sale Invoice No.:
+                                
+                                                                        </dt>
+                                                                        <dd class="col-sm-6">{{x.saleInvoiceNo}}</dd>
+                                                                    </dl> -->
+                                            <!-- <dl class="row"  *ngIf="loggedInDepartmentName=='Yarn Export'">
+                                                                        <dt class="col-sm-6">Article:</dt>
+                                                                        <dd class="col-sm-6">{{x.contractArticleName}}</dd>
+                                                                    </dl> -->
+                                            <!-- <dl class="row" *ngIf="loggedInDepartmentName!='Yarn Export'">
+                                                                        <dt class="col-sm-6" >Quantity:</dt>
+                                                                        <dd class="col-sm-6">{{x.quantity}}&nbsp;{{x.unit}}</dd>
+                                                                    </dl> -->
+                                
+                                            <!-- <dl class="row" *ngIf="loggedInDepartmentName=='Yarn Export'">
+                                                                        <dt class="col-sm-6" >Article Quantity:</dt>
+                                                                        <dd class="col-sm-6">{{x.contractArticleQuantity}}</dd>
+                                                                    </dl> -->
+                                            <!-- <dl class="row">
+                                                                        <dt class="col-sm-6">Invoice Amount:</dt>
+                                                                        <dd class="col-sm-6 text_Navy">{{contractCostingData.rateCurrencyName}}&nbsp;{{x.amount}}</dd>
+                                                                    </dl> -->
+                                            <!-- <dl class="row" *ngIf="loggedInDepartmentName=='Yarn Export'">
+                                                                        <dt class="col-sm-6" >Article Rate:</dt>
+                                                                        <dd class="col-sm-6">{{x.contractArticleRate}}</dd>
+                                                                    </dl> -->
+                                
+                                
+                                            <div class="row" *ngIf="loggedInDepartmentName=='Yarn Export'">
+                                                <div class="col-sm-6 customFontStyle">Buyer Payment:</div>
+                                                <div class="col-sm-6 customFontS">{{x.quantity}}</div>
+                                            </div>
+                                
+                                        </div>
+                                
+                                        <div class="col-md-4">
+                                
+                                            <div class="row">
+                                                <div class="col-sm-6 customFontStyle">Remarks:</div>
+                                                <div class="col-sm-6 customFontS">{{x.saleInvoiceRemarks}}</div>
+                                            </div>
+                                
+                                            <div class="row">
+                                                <div class="col-sm-6 customFontStyle">Sale Invoice ID:
+                                
+                                
+                                                </div>
+                                                <div class="col-sm-6 customFontS">{{i+1}}</div>
+                                            </div>
+                                
+                                
+                                            <!-- <dl class="row" *ngIf="loggedInDepartmentName=='Yarn Export'">
+                                                                        <dt class="col-sm-6" >Article Unit:
+                                                                        </dt>
+                                                                        <dd class="col-sm-6" >{{x.unit}}</dd>
+                                                                    </dl> -->
+                                            <!-- <dl class="row"  *ngIf="loggedInDepartmentName!='Yarn Export'">
+                                                                        <dt class="col-sm-6">Unit Rate:
+                                                                        </dt>
+                                                                        <dd class="col-sm-6 text_Navy" >{{contractCostingData.rate}} <b *ngIf="contractCostingData.rateUOMName !=null">
+                                                                            / </b>
+                                                                        {{contractCostingData.rateUOMName}}</dd>
+                                                                    </dl> -->
+                                
+                                            <!-- <dl class="row">
+                                                                        <dt class="col-sm-6">Tax Amount:</dt>
+                                                                        <dd class="col-sm-6">{{x.taxPercentage}}</dd>
+                                                                    </dl> -->
+                                
+                                
+                                
+                                        </div>
+                                
+                                
+                                        <div class="col-md-4 ">
+                                            <div class="row">
+                                                <div class="col-sm-6 customFontStyle">Invoice Date:
+                                
+                                                </div>
+                                                <div class="col-sm-6 customFontS">{{x.saleInvoiceDate}}</div>
+                                            </div>
+                                
+                                            <div class="row" *ngIf="loggedInDepartmentName=='Yarn Export'">
+                                                <div class="col-sm-6 customFontStyle">Tax Challan Info:</div>
+                                                <div class="col-sm-6 customFontS">{{x.quantity}}</div>
+                                            </div>
+                                
+                                
+                                        </div>
+                                    </div>
+                                </div>
 
-                                        </dt>
-                                        <dd class="col-sm-6"></dd>
-                                    </dl>
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Sale Invoice No.:
 
-                                        </dt>
-                                        <dd class="col-sm-6">{{x.saleInvoiceNo}}</dd>
-                                    </dl>
-                                    <dl class="row"  *ngIf="loggedInDepartmentName=='Yarn Export'">
-                                        <dt class="col-sm-6">Article:</dt>
-                                        <dd class="col-sm-6">{{x.contractArticleName}}</dd>
-                                    </dl>
-                                    <dl class="row" *ngIf="loggedInDepartmentName!='Yarn Export'">
-                                        <dt class="col-sm-6" >Quantity:</dt>
-                                        <dd class="col-sm-6">{{x.quantity}}&nbsp;{{x.unit}}</dd>
-                                    </dl>
+                                <table class="table">
+                                    <thead class="bg-info">
+                                      <tr>
+                                        <th scope="col">sale Invoice #</th>
+                                        <th scope="col" *ngIf="loggedInDepartmentName=='Yarn Export'">Article</th>
+                                        <th scope="col" *ngIf="loggedInDepartmentName=='Yarn Export'">Article Quantity</th>
+                                        <th scope="col" *ngIf="loggedInDepartmentName!='Yarn Export'">Quantity</th>
+                                        <th scope="col" *ngIf="loggedInDepartmentName!='Yarn Export'">Unit Rate</th>
+                                        <th scope="col" *ngIf="loggedInDepartmentName=='Yarn Export'">Article Unit</th>
+                                        <th scope="col" *ngIf="loggedInDepartmentName=='Yarn Export'">Article Rate</th>
+                                        <th scope="col">Tax %</th>
+                                        <th scope="col">Invoice Amount</th>
+                                        <!-- <th scope="col">Handle</th> -->
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr class="customFontS">
+                                        <!-- <th scope="row">1</th> -->
+                                        <td>{{x.saleInvoiceNo}}</td>
+                                        <td *ngIf="loggedInDepartmentName=='Yarn Export'">{{x.contractArticleName}}</td>
+                                        <td *ngIf="loggedInDepartmentName=='Yarn Export'">{{x.quantity}}</td>
+                                        <td *ngIf="loggedInDepartmentName!='Yarn Export'">{{x.quantity}}&nbsp;{{x.unit}}</td>
+                                        <td *ngIf="loggedInDepartmentName!='Yarn Export' && contractCostingData.rateUOMName !=null">{{contractCostingData.rate}}</td>
+                                        <td *ngIf="loggedInDepartmentName=='Yarn Export'">{{x.unit}}</td>
+                                        <td *ngIf="loggedInDepartmentName=='Yarn Export'">{{x.contractArticleRate}}</td>
+                                        <td>{{x.taxPercentage}}</td>
+                                        <td>{{contractCostingData.rateCurrencyName}}&nbsp;{{x.amount}}</td>
+                                      </tr>
+                              
+                                    </tbody>
+                                  </table>
                                   
-                                    <dl class="row" *ngIf="loggedInDepartmentName=='Yarn Export'">
-                                        <dt class="col-sm-6" >Article Quantity:</dt>
-                                        <dd class="col-sm-6">{{x.contractArticleQuantity}}</dd>
-                                    </dl>
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Invoice Amount:</dt>
-                                        <dd class="col-sm-6 text_Navy">{{contractCostingData.rateCurrencyName}}&nbsp;{{x.amount}}</dd>
-                                    </dl>
-                                    <dl class="row" *ngIf="loggedInDepartmentName=='Yarn Export'">
-                                        <dt class="col-sm-6" >Article Rate:</dt>
-                                        <dd class="col-sm-6">{{x.contractArticleRate}}</dd>
-                                    </dl>
+                                      <div class="col-sm-4">
+                                        <div class="row">
+                                            <div class="col-sm-6"><small> Updated on: </small></div>
+                                            <div class="col-sm-6"><small> {{x.updatedDateTime}}</small></div>
+                                        </div>
+                                      </div>
 
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Last Updated by:
+                                      <div class="col-sm-4">
+                                        <div class="row">
+                                            <div class="col-sm-6"><small> Last Updated by:</small></div>
+                                            <div class="col-sm-6"><small>{{x.updatedByName}}</small></div>
+                                        </div>
+                                      </div>
 
+                                      <div class="col-md-4 text-right">
+                                        <button class="btn btn-outline-primary btn-sm" (click)="editpopup(rows)"> <i
+                                                class="fas fa-edit"></i> Edit
+                                        </button>
+    
+                                    </div>
 
-                                        </dt>
-                                        <dd class="col-sm-6">{{x.updatedByName}}</dd>
-                                    </dl>
-                                    <dl class="row" *ngIf="loggedInDepartmentName=='Yarn Export'">
-                                        <dt class="col-sm-6">Buyer Payment:</dt>
-                                        <dd class="col-sm-6">{{x.quantity}}</dd>
-                                    </dl>
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Remarks:</dt>
-                                        <dd class="col-sm-6">{{x.saleInvoiceRemarks}}</dd>
-                                    </dl>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Sale Invoice ID:
-
-
-                                        </dt>
-                                        <dd class="col-sm-6">{{i+1}}</dd>
-                                    </dl>
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Invoice Date:
-
-                                        </dt>
-                                        <dd class="col-sm-6">{{x.saleInvoiceDate}}</dd>
-                                    </dl>
-                                    <dl class="row" *ngIf="loggedInDepartmentName=='Yarn Export'">
-                                        <dt class="col-sm-6" >Article Unit:
-                                        </dt>
-                                        <dd class="col-sm-6" >{{x.unit}}</dd>
-                                    </dl>
-                                    <dl class="row"  *ngIf="loggedInDepartmentName!='Yarn Export'">
-                                        <dt class="col-sm-6">Unit Rate:
-                                        </dt>
-                                        <dd class="col-sm-6 text_Navy" >{{contractCostingData.rate}} <b *ngIf="contractCostingData.rateUOMName !=null">
-                                            / </b>
-                                        {{contractCostingData.rateUOMName}}</dd>
-                                    </dl>
-                                    
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Tax Amount:</dt>
-                                        <dd class="col-sm-6">{{x.taxPercentage}}</dd>
-                                    </dl>
-                                    
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Last Updated on:
-
-
-                                        </dt>
-                                        <dd class="col-sm-6">{{x.updatedDateTime}}</dd>
-                                    </dl>
-                                    <dl class="row" *ngIf="loggedInDepartmentName=='Yarn Export'">
-                                        <dt class="col-sm-6">Tax Challan Info:</dt>
-                                        <dd class="col-sm-6">{{x.quantity}}</dd>
-                                    </dl>
-                                </div>
-
+                                  
+                                  
+                                
                             </div>
 
-                            <div class="row pb-5">
+                       
+                              
+
+                            <!-- <div class="row pb-5">
                                 <div class="col-md-6 ">
 
                                 </div>
@@ -1952,7 +2018,7 @@
 
                                 </div>
 
-                            </div>
+                            </div> -->
 
 
 
@@ -2031,6 +2097,7 @@
 
 
 
+                        </div>
                         </div>
 
 

@@ -134,7 +134,9 @@ max1:any;
  firstTime:any;
  isdeletedArticla:boolean=false;
  isRevisedStart:boolean =false;
+ thereisrevisedData:boolean=false;
  yarnExportInvoiceReports:any={};
+ revisedindexData:any=[];
   constructor(
     private router: Router,
     private modalService: NgbModal,
@@ -451,6 +453,7 @@ max1:any;
       // on close
       if (data == true) {
         // this.firstTime=data.obj.
+        this.isRevisedStart = false;
         this.getContractData();
       }
     }, (reason) => {
@@ -3213,7 +3216,14 @@ getImage(){
           }
 
 yarnExportInvoicesReportPrint(){
-  if(this.yarnExportInvoiceReports.contractArticleRevisedTransactions != undefined){
+  for(let i =0;i<this.yarnExportInvoiceReports.length;i++ ){
+    if( this.yarnExportInvoiceReports[i].contractArticleRevisedTransactions.length > 0){
+          this.thereisrevisedData=true;
+          this.revisedindexData.push(this.yarnExportInvoiceReports[i].contractArticleRevisedTransactions);
+
+    }
+  }
+  if(this.thereisrevisedData == true){
     let docDefinition = {
       pageSize: 'A4',
       pageMargins: [ 30, 10, 40, 20 ],
@@ -3350,7 +3360,7 @@ yarnExportInvoicesReportPrint(){
                    
   
                   ],
-            ...this.yarnExportInvoiceReports.contractArticleRevisedTransactions.map((row=>
+            ...this.revisedindexData.map((row=>
             [row.saleInvoiceNo,row.contractArticleName,row.unit, row.contractArticleQuantity, row.contractArticleCommission,
                 row.contractArticleRate,row.taxAmount,row.amount
                 ]
@@ -3415,6 +3425,7 @@ yarnExportInvoicesReportPrint(){
   
     };
     pdfMake.createPdf(docDefinition).print();
+    this.revisedindexData=[];
   }
   else{
     let docDefinition = {
@@ -3583,6 +3594,7 @@ yarnExportInvoicesReportPrint(){
   
     };
     pdfMake.createPdf(docDefinition).print();
+    this.revisedindexData=[];
   }
 
   
