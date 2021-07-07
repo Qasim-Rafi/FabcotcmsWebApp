@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import * as $ from 'jquery';
-import * as AdminLte from 'admin-lte';
+// import * as $ from 'jquery';
+// import * as AdminLte from 'admin-lte';
 @Component({
   selector: 'app-template',
   templateUrl: './template.component.html',
@@ -20,7 +20,7 @@ export class TemplateComponent implements OnInit {
   constructor( private router: Router,) { }
 
   ngOnInit(): void {
-    $('[data-widget="pushmenu"]').addClass('toggle')
+    
     this.userrole=localStorage.getItem('role');
     this.loggedInDepartmentId=localStorage.getItem('loggedInDepartmentId');
     this.userName=localStorage.getItem('loggedInUserName');
@@ -113,10 +113,10 @@ Swal.fire({
   }
 })
   }
-  ngAfterViewInit() {
-    $('[data-widget="treeview"]').each(function() {
-        AdminLte.Treeview._jQueryInterface.call($(this), 'init');
-    });
-  }
+  // ngAfterViewInit() {
+  //   $('[data-widget="treeview"]').each(function() {
+  //       AdminLte.Treeview._jQueryInterface.call($(this), 'init');
+  //   });
+  // }
 
 }
