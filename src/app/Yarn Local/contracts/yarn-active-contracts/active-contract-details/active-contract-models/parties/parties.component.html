@@ -19,126 +19,127 @@
 <div class="modal-body BG p-0">
   <form #partiesForm="ngForm" novalidate>
 
-    <div class="col-md-12 pt-3 pb-2">
-      <!-- <div class="form-group row"> -->
+    <div class="row justify-content-center">
+      <div class="col-10 col-md-11 pt-3 pb-2">
+        <!-- <div class="form-group row"> -->
         <div class="form-group row">
-          <label for="name" class="col-sm-3 col-form-label">Contract Type</label>
-          <div class="col-sm-8 pt-2">
-  
+          <label for="name" class="col-md-3 col-form-label">Contract Type</label>
+          <div class="col-md-8 pt-2">
+    
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" value="Seller" aria-selected="true" name="contractType" #contractType = "ngModel"
-              [(ngModel)] = "data.contractType" id="seller" 
-              >
+              <input class="form-check-input" type="radio" value="Seller" aria-selected="true" name="contractType"
+                #contractType="ngModel" [(ngModel)]="data.contractType" id="seller">
               <label class="form-check-label" for="seller">Seller Contract</label>
             </div>
-  
+    
             <div class="form-check form-check-inline">
-              <input class="form-check-input" id="buyer" type="radio" name="contractType"  value="Buyer" #contractType = "ngModel"
-              [(ngModel)] = "data.contractType"
-              >
+              <input class="form-check-input" id="buyer" type="radio" name="contractType" value="Buyer"
+                #contractType="ngModel" [(ngModel)]="data.contractType">
               <label class="form-check-label" for="buyer">Buyer Contract</label>
             </div>
-  
+    
           </div>
         </div>
-  
-    <div class="form-group row">
-      <label for="name" class="col-sm-3 col-form-label"><strong>Puchase Order</strong></label>
-      <!-- <label for="name" class="col-sm-3 col-form-label">Puchase Order</label> -->
-      <div class="col-sm-8">
-        <input type="text" class="form-control" [(ngModel)]=" data.poNumber" name="poNumber" #poNumber = "ngModel"
-          placeholder="purchase order number from buyer" />
-
+    
+        <div class="form-group row">
+          <label for="name" class="col-md-3 col-form-label"><strong>Puchase Order</strong></label>
+          <!-- <label for="name" class="col-md-3 col-form-label">Puchase Order</label> -->
+          <div class="col-md-8">
+            <input type="text" class="form-control" [(ngModel)]=" data.poNumber" name="poNumber" #poNumber="ngModel"
+              placeholder="purchase order number from buyer" />
+    
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="description" class="col-md-3 col-form-label text-Navy">PO Date</label>
+          <!-- <label for="description" class="col-md-3 col-form-label ">PO Date</label> -->
+          <div class="col-md-8" (clickOutside)="poDate.close()">
+    
+            <!-- <input navigation="select" class="form-control text_Navy " ngbDatepicker #validityDate="ngbDatepicker"/> -->
+            <input navigation="select" class="form-control  " ngbDatepicker #poDate="ngbDatepicker"
+              (click)="poDate.toggle()" placeholder="Certificate validity date" name="poDate" [(ngModel)]="data.poDate" />
+          </div>
+        </div>
+    
+        <div class="form-group row">
+          <label for="name" class="col-md-3 col-form-label">Contract No.</label>
+          <div class="col-md-8">
+            <input type="text" class="form-control" [(ngModel)]="data.contractNo" name="contractNo"
+              placeholder="Contract Number" />
+          </div>
+        </div>
+    
+        <div class="form-group row">
+          <label for="description" class="col-md-3 col-form-label text_Navy">Contract Date</label>
+          <div class="col-md-8" (clickOutside)="contractDate.close()">
+    
+            <input navigation="select" class="form-control text_Navy " ngbDatepicker #contractDate="ngbDatepicker"
+              (click)="contractDate.toggle()" placeholder="Certificate validity date" [(ngModel)]="data.contractDate"
+              name="contractDate" />
+          </div>
+        </div>
+    
+    
+        <div class="form-group row">
+          <label for="parentBuyerId" class="col-md-3 col-form-label text_Navy">Buyer Name</label>
+          <div class="col-md-8">
+            <ng-select name="buyerId" (change)="getBuyerPOC($event)" placeholder="-- Select --" [(ngModel)]=" data.buyerId">
+              <ng-option *ngFor="let i of buyer" [value]="i.id">
+                {{i.buyerName}}
+              </ng-option>
+            </ng-select>
+          </div>
+        </div>
+    
+    
+        <div class="form-group row">
+          <label for="buyerPOCId" class="col-md-3 col-form-label ">Buyer POC</label>
+          <div class="col-md-8">
+            <ng-select name="buyerPOCId" placeholder="-- Select --" [(ngModel)]=" data.buyerPOCId">
+              <ng-option *ngFor="let i of buyerPOC" [value]="i.id">
+                {{i.name}}
+              </ng-option>
+            </ng-select>
+          </div>
+        </div>
+    
+    
+        <div class="form-group row">
+          <label for="sellerId" class="col-md-3 col-form-label text_Navy">Supplier Name</label>
+          <div class="col-md-8">
+            <ng-select name="sellerId" (change)="getSellersPOC($event)" placeholder="-- Select --"
+              [(ngModel)]=" data.sellerId">
+              <ng-option *ngFor="let i of seller" [value]="i.id">
+                {{i.sellerName}}
+              </ng-option>
+            </ng-select>
+          </div>
+        </div>
+    
+    
+        <div class="form-group row">
+          <label for="sellerPOCId" class="col-md-3 col-form-label ">Seller POC</label>
+          <div class="col-md-8">
+            <ng-select name="sellerPOCId" placeholder="-- Select --" [(ngModel)]="data.sellerPOCId">
+              <ng-option *ngFor="let i of sellerPOC" [value]="i.id">
+                {{i.name}}
+              </ng-option>
+            </ng-select>
+          </div>
+        </div>
+    
+    
+        <div class="form-group row">
+          <label for="name" class="col-md-3 col-form-label">Seller Contract #</label>
+          <div class="col-md-8">
+            <input type="text" class="form-control" [(ngModel)]="data.sellerContract" name="sellerContract"
+              placeholder="Contract No. received from Supplier" />
+          </div>
+        </div>
+    
+        <!-- <div class="form-group row"> -->
       </div>
     </div>
-    <div class="form-group row">
-      <label for="description" class="col-sm-3 col-form-label text-Navy">PO Date</label>
-      <!-- <label for="description" class="col-sm-3 col-form-label ">PO Date</label> -->
-      <div class="col-sm-8" (clickOutside)="poDate.close()">
-
-        <!-- <input navigation="select" class="form-control text_Navy " ngbDatepicker #validityDate="ngbDatepicker"/> -->
-        <input navigation="select" class="form-control  " ngbDatepicker #poDate="ngbDatepicker"
-          (click)="poDate.toggle()" placeholder="Certificate validity date" name="poDate" [(ngModel)]="data.poDate" />
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label for="name" class="col-sm-3 col-form-label">Contract No.</label>
-      <div class="col-sm-8">
-        <input type="text" class="form-control" [(ngModel)]="data.contractNo" name="contractNo"
-          placeholder="Contract Number" />
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label for="description" class="col-sm-3 col-form-label text_Navy">Contract Date</label>
-      <div class="col-sm-8" (clickOutside)="contractDate.close()">
-
-        <input navigation="select" class="form-control text_Navy " ngbDatepicker #contractDate="ngbDatepicker"
-          (click)="contractDate.toggle()" placeholder="Certificate validity date" [(ngModel)]="data.contractDate"
-          name="contractDate" />
-      </div>
-    </div>
-
-
-    <div class="form-group row">
-      <label for="parentBuyerId" class="col-sm-3 col-form-label text_Navy">Buyer Name</label>
-      <div class="col-sm-8">
-        <ng-select name="buyerId" (change)="getBuyerPOC($event)" placeholder="-- Select --" [(ngModel)]=" data.buyerId">
-          <ng-option *ngFor="let i of buyer" [value]="i.id">
-            {{i.buyerName}}
-          </ng-option>
-        </ng-select>
-      </div>
-    </div>
-
-
-    <div class="form-group row">
-      <label for="buyerPOCId" class="col-sm-3 col-form-label ">Buyer POC</label>
-      <div class="col-sm-8">
-        <ng-select name="buyerPOCId" placeholder="-- Select --" [(ngModel)]=" data.buyerPOCId">
-          <ng-option *ngFor="let i of buyerPOC" [value]="i.id">
-            {{i.name}}
-          </ng-option>
-        </ng-select>
-      </div>
-    </div>
-
-
-    <div class="form-group row">
-      <label for="sellerId" class="col-sm-3 col-form-label text_Navy">Supplier Name</label>
-      <div class="col-sm-8">
-        <ng-select name="sellerId" (change)="getSellersPOC($event)" placeholder="-- Select --" [(ngModel)]=" data.sellerId">
-          <ng-option *ngFor="let i of seller" [value]="i.id">
-            {{i.sellerName}}
-          </ng-option>
-        </ng-select>
-      </div>
-    </div>
-
-
-    <div class="form-group row">
-      <label for="sellerPOCId" class="col-sm-3 col-form-label ">Seller POC</label>
-      <div class="col-sm-8">
-        <ng-select name="sellerPOCId" placeholder="-- Select --" [(ngModel)]="data.sellerPOCId">
-          <ng-option *ngFor="let i of sellerPOC" [value]="i.id">
-            {{i.name}}
-          </ng-option>
-        </ng-select>
-      </div>
-    </div>
-
-
-    <div class="form-group row">
-      <label for="name" class="col-sm-3 col-form-label">Seller Contract #</label>
-      <div class="col-sm-8">
-        <input type="text" class="form-control" [(ngModel)]="data.sellerContract" name="sellerContract"
-          placeholder="Contract No. received from Supplier" />
-      </div>
-    </div>
-
-    <!-- <div class="form-group row"> -->
-   </div>
    
 <div class="modal-footer NotBG">
   <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal" (click)="activeModal.close()">
