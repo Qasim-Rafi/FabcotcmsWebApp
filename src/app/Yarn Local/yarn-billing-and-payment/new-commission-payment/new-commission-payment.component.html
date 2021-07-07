@@ -284,7 +284,7 @@
                                             </div>
                                         </div>
                 
-                                        <div class="col-md-2 mrg-sm1">
+                                        <div class="col-md-2 mrg-tsm">
                                             <ng-select placeholder="--Select currency--" id="currencyId"
                                                 [(ngModel)]="commData.currencyId" name="currencyId" #currencyId="ngModel">
                                                 <ng-option *ngFor="let i of currency" [value]="i.id">{{ i.code }}
@@ -295,7 +295,7 @@
                                             </ng-select>
                                         </div>
                 
-                                        <div class="col-md-7 mrg-sm1 p-0">
+                                        <div class="col-md-7 mrg-tsm p-0">
                                             <div class="input-group">
                                                 <label for="inputEmail3" class="col-form-label control-label col-md-3">Pay Mode</label>
                                                 <div class="col-md-9">
@@ -328,7 +328,7 @@
                                             </div>
                                         </div>
                 
-                                        <div class="col-md-2 mrg-sm1">
+                                        <div class="col-md-2 mrg-tsm">
                                             <ng-select placeholder="--Select currency--" id="currencyId"
                                                 [(ngModel)]="extCommData.currencyId" name="currencyId" #currencyId="ngModel">
                                                 <ng-option *ngFor="let i of currency" [value]="i.id">{{ i.code }}
@@ -339,7 +339,7 @@
                                             </ng-select>
                                         </div>
                 
-                                        <div class="col-md-7 mrg-sm1 p-0">
+                                        <div class="col-md-7 mrg-tsm p-0">
                                             <div class="input-group">
                                                 <label for="inputEmail3" class="col-form-label control-label col-md-3">Pay Mode</label>
                                                 <div class="col-md-9">
@@ -418,28 +418,31 @@
                             <div class="form-group row" *ngIf="statusCheck.statusCheck == 'add'">
                                 <label for="inputEmail3" class="col-md-3 col-form-label control-label">
                                     Bank Account</label>
-                                <div class="col-md-3 mrg-sm1">
-                                    <ng-select placeholder="From Bank Account" name="fromBankAccountId"
-                                        [(ngModel)]="commData.fromBankAccountId" id="fromBankAccountId" #fromBankAccountId="ngModel">
-                                        <ng-option *ngFor="let i of bankAcc" [value]="i.id">{{ i.accountName }}
-                                        </ng-option>
-                
-                                    </ng-select>
-                                </div>
-                
-                                <div class="col-md-4 mrg-sm1">
-                                    <div class="input-group">
-                                        <div class="col-md-12 p-0">
-                                            <ng-select placeholder="--Select--" name="toBankAccountId"
-                                                [(ngModel)]="commData.toBankAccountId" id="toBankAccountId" #toBankAccountId="ngModel"
-                                                placeholder="to Bank Account">
-                                                <ng-option *ngFor="let i of bankAcc" [value]="i.id">{{ i.accountName }}
-                                                </ng-option>
-                
-                                            </ng-select>
+                                    <div class="col-md-7">
+                                        <div class="row">
+                                            <div class="col-md-5 mrg-tsm">
+                                                <ng-select placeholder="From Bank Account" name="fromBankAccountId" [(ngModel)]="commData.fromBankAccountId"
+                                                    id="fromBankAccountId" #fromBankAccountId="ngModel">
+                                                    <ng-option *ngFor="let i of bankAcc" [value]="i.id">{{ i.accountName }}
+                                                    </ng-option>
+                                    
+                                                </ng-select>
+                                            </div>
+                                    
+                                            <div class="col-md-7 mrg-tsm">
+                                                <div class="input-group">
+                                                    <div class="col-md-12 p-0">
+                                                        <ng-select placeholder="--Select--" name="toBankAccountId" [(ngModel)]="commData.toBankAccountId"
+                                                            id="toBankAccountId" #toBankAccountId="ngModel" placeholder="to Bank Account">
+                                                            <ng-option *ngFor="let i of bankAcc" [value]="i.id">{{ i.accountName }}
+                                                            </ng-option>
+                                    
+                                                        </ng-select>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
                             </div>
                 
                             <!-- deposited in bank -->
@@ -455,11 +458,11 @@
                                             </div>
                                         </div>
                 
-                                        <div class="col-md-11 mrg-sm1 p-0">
+                                        <div class="col-md-11 mrg-tsm p-0">
                                             <div class="input-group">
-                                                <label for="inputEmail3" class="col-form-label control-label col-md-3">
+                                                <label for="inputEmail3" class="col-form-label control-label col-md-4">
                                                     Bank Deposit Date</label>
-                                                <div class="col-md-9">
+                                                <div class="col-md-8">
                                                     <input navigation="select" class="form-control  "
                                                         placeholder="Date at which instruement deposited in Bank" ngbDatepicker
                                                         #validityDate1="ngbDatepicker" (click)="validityDate1.toggle()"
@@ -483,10 +486,16 @@
                 
                     <!---------- add Commission  Sale invoice ---------->
                     <div class="border-top" *ngIf="statusCheck.statusCheck == 'add'">
-                        <div class="col-md-12 pt-4 pb-4">
+                        <div class="col-md-12 pt-3 pb-3">
                 
-                            <div class=" mb-3">
+                            <!-- <div class=" mb-3">
                                 <span class="badge badge-primary">Sale Invoices</span>
+                            </div> -->
+
+                            <div class="row">
+                                <div class="col-md-12 mb-3">
+                                    <span class="badge badge-primary">Sale Invoices</span>
+                                </div>
                             </div>
                 
                             <!-- <div class="form-group row">
@@ -579,10 +588,16 @@
                 
                 
                             <div class="border-top">
-                                <div class="col-md-12 pt-4 pb-4">
+                                <div class="col-md-12 pt-3 pb-3">
                 
-                                    <div class="mb-3">
+                                    <!-- <div class="mb-3">
                                         <span class="badge badge-primary">Remarks/Other Conditions</span>
+                                    </div> -->
+
+                                    <div class="row">
+                                        <div class="col-md-12 mb-3">
+                                            <span class="badge badge-primary">Remarks/Other Conditions</span>
+                                        </div>
                                     </div>
                 
                                     <!-- <div class="form-group row">
@@ -611,8 +626,7 @@
                                         <div class="col-md-6 offset-md-3">
                                             <button class="btn button-save" *ngIf="statusCheck.statusCheck =='add'"
                                                 (click)="addCommissionPayment()">
-                                                <i class="fas fa-check"></i> Save &
-                                                Next</button>
+                                                <i class="fas fa-check"></i> Save & Next</button>
                                             <button class="btn btn-secondary ml-4" *ngIf="statusCheck.statusCheck =='new2'">
                                                 <i class="fas fa-times">
                                                 </i> Close
@@ -629,10 +643,16 @@
                     </div>
                     <!-- addNew  -->
                     <div class="border-top" *ngIf="statusCheck.statusCheck == 'addNew'">
-                        <div class="col-md-12 pt-4 pb-4">
+                        <div class="col-md-12 pt-3 pb-3">
                 
-                            <div class="mb-3">
+                            <!-- <div class="mb-3">
                                 <span class="badge badge-primary">Sale Invoices</span>
+                            </div> -->
+
+                            <div class="row">
+                                <div class="col-md-12 mb-3">
+                                    <span class="badge badge-primary">Sale Invoices</span>
+                                </div>
                             </div>
                 
                             <!-- <div class="form-group row">
@@ -718,10 +738,16 @@
                             <!-- remarks and other -->
                 
                             <div class="border-top">
-                                <div class="col-md-12 pt-4 pb-4">
+                                <div class="col-md-12 pt-3 pb-3">
                 
-                                    <div class="mb-3">
+                                    <!-- <div class="mb-3">
                                         <span class="badge badge-primary">Remarks/Other Conditions</span>
+                                    </div> -->
+
+                                    <div class="row">
+                                        <div class="col-md-12 mb-3">
+                                            <span class="badge badge-primary">Remarks/Other Conditions</span>
+                                        </div>
                                     </div>
                 
                                     <!-- <div class="form-group row">
