@@ -58,25 +58,27 @@
 
                 <form #commissionForm="ngForm" novalidate>
                     <!-- add commission parties -->
-                    <div class="form-row" *ngIf = "statusCheck.statusCheck == 'add'">
-
-                        <div class="col-md-12 pt-4 pb-4">
-                            <div class="mb-3">
-                                <span class="badge badge-primary">Parties</span> </div>
-
-
-                            <div class="form-group row" *ngIf= "!commData.isBuyerCommission ">
+                    <div class="form-row" *ngIf="statusCheck.statusCheck == 'add'">
+                
+                        <div class="col-md-12 pt-2 pb-3">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <span class="badge badge-primary">Parties</span>
+                                </div>
+                            </div>
+                
+                            <div class="form-group row" *ngIf="!commData.isBuyerCommission ">
                                 <label class="col-md-3 col-form-label control-label">
                                     Supplier Name:
                                 </label>
                                 <div class="col-md-7">
                                     <ng-select name="sellerId" #sellerId="ngModel" class="input-w px-0" [(ngModel)]="commData.sellerId"
-                                    placeholder="-- Select --">
-                                    <ng-option *ngFor="let i of seller" [value]="i.id">{{ i.sellerName }}
-                                    </ng-option>
-                                </ng-select>
-                                
-                                
+                                        placeholder="-- Select --">
+                                        <ng-option *ngFor="let i of seller" [value]="i.id">{{ i.sellerName }}
+                                        </ng-option>
+                                    </ng-select>
+                
+                
                                     <div class="col-md-7">
                                         <small id="passwordHelpBlock" class="form-text text-lightgrey">
                                             Parent Supplier are available for selection
@@ -84,19 +86,19 @@
                                     </div>
                                 </div>
                             </div>
-
+                
                             <div class="form-group row" *ngIf="commData.isBuyerCommission ">
-                                <label class="col-md-3 col-form-label control-label" >
+                                <label class="col-md-3 col-form-label control-label">
                                     Buyer Name:
                                 </label>
                                 <div class="col-md-7">
                                     <ng-select name="buyerId" #sellerId="ngModel" class="input-w px-0" [(ngModel)]="commData.buyerId"
-                                    placeholder="-- Select --">
-                                    <ng-option *ngFor="let i of buyer" [value]="i.id">{{ i.buyerName }}
-                                    </ng-option>
-                                </ng-select>
-                                
-                                
+                                        placeholder="-- Select --">
+                                        <ng-option *ngFor="let i of buyer" [value]="i.id">{{ i.buyerName }}
+                                        </ng-option>
+                                    </ng-select>
+                
+                
                                     <div class="col-md-7">
                                         <small id="passwordHelpBlock" class="form-text text-lightgrey">
                                             Parent Buyer are available for selection
@@ -104,18 +106,18 @@
                                     </div>
                                 </div>
                             </div>
-
-
+                
+                
                             <div class="form-group row">
                                 <label class="col-md-3 col-form-label control-label" for="isBuyerCommission">
                                     Is Buyer Commission
                                 </label>
-
+                
                                 <div class="col-md-7">
                                     <div class="form-check">
-                                        <input id = "isBuyerCommission" class="form-check-input" type="checkbox" value="" 
-                                        name="isBuyerCommission" #isBuyerCommission = "ngModel" [(ngModel)] = "commData.isBuyerCommission"
-                                        >
+                                        <input id="isBuyerCommission" class="form-check-input" type="checkbox" value=""
+                                            name="isBuyerCommission" #isBuyerCommission="ngModel"
+                                            [(ngModel)]="commData.isBuyerCommission">
                                         <small id="passwordHelpBlock" class="form-text text-lightgrey pt-1">
                                             Checked if commission payment is from Buyer
                                         </small>
@@ -123,118 +125,124 @@
                                 </div>
                             </div>
                         </div>
-
+                
                     </div>
-
+                
                     <!-- addNew commission parties -->
-
-                    <div class="form-row" *ngIf = "statusCheck.statusCheck == 'addNew'">
-
-                        <div class="col-md-12 pt-4 pb-4">
-
-                            <div class="mb-3">
-                                <span class="badge badge-primary">Parties</span> </div>
-
+                
+                    <div class="form-row" *ngIf="statusCheck.statusCheck == 'addNew'">
+                
+                        <div class="col-md-12 pt-2 pb-3">
+                
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <span class="badge badge-primary">Parties</span>
+                                </div>
+                            </div>
+                
                             <div class="form-group row">
                                 <label class="col-md-3 col-form-label control-label">
                                     External Agent:
                                 </label>
                                 <div class="col-md-7">
                                     <ng-select name="agentId" #agentId="ngModel" class="input-w px-0" [(ngModel)]="extCommData.agentId"
-                                    placeholder="-- Select --">
-                                    <ng-option *ngFor="let i of agent" [value]="i.id">{{ i.name }}
-                                    </ng-option>
-                                </ng-select>
-                                
-                                
+                                        placeholder="-- Select --">
+                                        <ng-option *ngFor="let i of agent" [value]="i.id">{{ i.name }}
+                                        </ng-option>
+                                    </ng-select>
+                
+                
                                     <div class="col-md-7">
                                         <small id="passwordHelpBlock" class="form-text text-lightgrey">
-                                           All foriegn external agent are available for selection 
+                                            All foriegn external agent are available for selection
                                         </small>
                                     </div>
                                 </div>
                             </div>
-
+                
                             <div class="form-group row">
                                 <label class="col-md-3 col-form-label control-label">
-                                   Supplier Name:
+                                    Supplier Name:
                                 </label>
                                 <div class="col-md-7">
-                                    <ng-select name="sellerId" #sellerId="ngModel" class="input-w px-0" [(ngModel)]="extCommData.sellerId"
-                                    placeholder="-- Select --">
-                                    <ng-option *ngFor="let i of seller" [value]="i.id">{{ i.sellerName }}
-                                    </ng-option>
-                                </ng-select>
-                                
-                                
+                                    <ng-select name="sellerId" #sellerId="ngModel" class="input-w px-0"
+                                        [(ngModel)]="extCommData.sellerId" placeholder="-- Select --">
+                                        <ng-option *ngFor="let i of seller" [value]="i.id">{{ i.sellerName }}
+                                        </ng-option>
+                                    </ng-select>
+                
+                
                                     <div class="col-md-7">
                                         <small id="passwordHelpBlock" class="form-text text-lightgrey">
-                                           All Sellers are available for selection 
+                                            All Sellers are available for selection
                                         </small>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
+                
                     </div>
-
-
-
-
-
-
-
+                
+                
+                
+                
+                
+                
+                
                     <!---------- payment Details ---------->
-                    <div class="border-top">
-                        <div class="col-md-12 pt-4 pb-4">
-                    
-                            <div class="mb-3">
-                                <span class="badge badge-primary">Payment Details</span>
+                    <div class="form-row border-top">
+                        <div class="col-md-12 pt-3 pb-3">
+                
+                            <div class="row">
+                                <div class="col-md-12 mb-3">
+                                    <span class="badge badge-primary">Payment Details</span>
+                                </div>
                             </div>
-                    
-                    
-                    
+                
+                
+                
                             <!--  add commission payment Date -->
                             <div class="form-group row" *ngIf="statusCheck.statusCheck == 'add'">
-                    
+                
                                 <label for="inputEmail3" class="col-md-3 col-form-label control-label">Payment Date</label>
-                    
+                
                                 <div class="col-md-7">
                                     <div class="row">
-                    
-                    
+                
+                
                                         <div class="col-md-5">
                                             <div class="input-group">
                                                 <input navigation="select" class="form-control  " ngbDatepicker
                                                     #validityDate="ngbDatepicker" (click)="validityDate.toggle()" name="paymentDate"
-                                                    placeholder="Payment Date" #paymentDate="ngModel" [(ngModel)]="commData.paymentDate" />
+                                                    placeholder="Payment Date" #paymentDate="ngModel"
+                                                    [(ngModel)]="commData.paymentDate" />
                                             </div>
                                         </div>
-                    
-                                        <div class="col-md-7 mrg-sm1 p-0">
+                
+                                        <div class="col-md-7 mrg-tsm">
                                             <div class="input-group">
                                                 <label for="inputEmail3" class="col-form-label control-label col-md-3">Pay No.</label>
-                    
+                
                                                 <div class="col-md-9">
                                                     <input type="text" placeholder="Payment Number" class="form-control text-w-60"
                                                         name="payNo" #payNo="ngModel" [(ngModel)]="commData.payNo">
                                                 </div>
                                             </div>
                                         </div>
-                    
+                
                                     </div>
                                 </div>
-                    
+                
                             </div>
-                    
+                
                             <div class="form-group row" *ngIf="statusCheck.statusCheck == 'addNew'">
-                    
+                
                                 <label for="inputEmail3" class="col-md-3 col-form-label control-label">Payment Date</label>
-                    
+                
                                 <div class="col-md-7">
                                     <div class="row">
-                    
-                    
+                
+                
                                         <div class="col-md-5">
                                             <div class="input-group">
                                                 <input navigation="select" class="form-control  " ngbDatepicker
@@ -243,49 +251,50 @@
                                                     [(ngModel)]="extCommData.paymentDate" />
                                             </div>
                                         </div>
-                    
+                
                                         <div class="col-md-7 mrg-sm1 p-0">
                                             <div class="input-group">
                                                 <label for="inputEmail3" class="col-form-label control-label col-md-3">Pay No.</label>
-                    
+                
                                                 <div class="col-md-9">
                                                     <input type="text" placeholder="Payment Number" class="form-control text-w-60"
                                                         name="payNo" #payNo="ngModel" [(ngModel)]="extCommData.payNo">
                                                 </div>
                                             </div>
                                         </div>
-                    
+                
                                     </div>
                                 </div>
-                    
+                
                             </div>
-                    
-
-
+                
+                
+                
                             <!-- add commission amount-->
                             <div class="form-group row" *ngIf="statusCheck.statusCheck == 'add'">
                                 <label for="inputEmail3" class="col-md-3 col-form-label control-label">Amount</label>
                                 <div class="col-md-7">
                                     <div class="row">
-                    
-                    
+                
+                
                                         <div class="col-md-3">
                                             <div class="input-group">
                                                 <input type="text" class="form-control text-w-40" name="amount" #amount="ngModel"
                                                     [(ngModel)]="commData.amount" placeholder="Amount">
                                             </div>
                                         </div>
-                    
+                
                                         <div class="col-md-2 mrg-sm1">
-                                            <ng-select placeholder="--Select currency--" id="currencyId" [(ngModel)]="commData.currencyId"
-                                                name="currencyId" #currencyId="ngModel">
+                                            <ng-select placeholder="--Select currency--" id="currencyId"
+                                                [(ngModel)]="commData.currencyId" name="currencyId" #currencyId="ngModel">
                                                 <ng-option *ngFor="let i of currency" [value]="i.id">{{ i.code }}
-                                                    <span *ngIf="i.name !=null" class="text-muted" style="font-size: 11px">( {{ i.name }}
+                                                    <span *ngIf="i.name !=null" class="text-muted" style="font-size: 11px">( {{ i.name
+                                                        }}
                                                         )</span>
                                                 </ng-option>
                                             </ng-select>
                                         </div>
-                    
+                
                                         <div class="col-md-7 mrg-sm1 p-0">
                                             <div class="input-group">
                                                 <label for="inputEmail3" class="col-form-label control-label col-md-3">Pay Mode</label>
@@ -299,36 +308,37 @@
                                                 </div>
                                             </div>
                                         </div>
-                    
+                
                                     </div>
                                 </div>
-                    
+                
                             </div>
-                    
+                
                             <!-- addNew -->
                             <div class="form-group row" *ngIf="statusCheck.statusCheck == 'addNew'">
                                 <label for="inputEmail3" class="col-md-3 col-form-label control-label">Amount</label>
                                 <div class="col-md-7">
                                     <div class="row">
-                    
-                    
+                
+                
                                         <div class="col-md-3">
                                             <div class="input-group">
                                                 <input type="text" class="form-control text-w-40" name="amount" #amount="ngModel"
                                                     [(ngModel)]="extCommData.amount" placeholder="Amount">
                                             </div>
                                         </div>
-                    
+                
                                         <div class="col-md-2 mrg-sm1">
                                             <ng-select placeholder="--Select currency--" id="currencyId"
                                                 [(ngModel)]="extCommData.currencyId" name="currencyId" #currencyId="ngModel">
                                                 <ng-option *ngFor="let i of currency" [value]="i.id">{{ i.code }}
-                                                    <span *ngIf="i.name !=null" class="text-muted" style="font-size: 11px">( {{ i.name }}
+                                                    <span *ngIf="i.name !=null" class="text-muted" style="font-size: 11px">( {{ i.name
+                                                        }}
                                                         )</span>
                                                 </ng-option>
                                             </ng-select>
                                         </div>
-                    
+                
                                         <div class="col-md-7 mrg-sm1 p-0">
                                             <div class="input-group">
                                                 <label for="inputEmail3" class="col-form-label control-label col-md-3">Pay Mode</label>
@@ -342,14 +352,14 @@
                                                 </div>
                                             </div>
                                         </div>
-                    
+                
                                     </div>
                                 </div>
-                    
+                
                             </div>
-
-
-
+                
+                
+                
                             <!-- add commission Additional details -->
                             <div class="form-group row" *ngIf="statusCheck.statusCheck == 'add'">
                                 <label for="inputEmail3" class="col-md-3 col-form-label control-label">
@@ -361,10 +371,10 @@
                                         Cheque DO , IT etc Number
                                     </small>
                                 </div>
-                    
+                
                             </div>
                             <!-- addNew -->
-                    
+                
                             <div class="form-group row" *ngIf="statusCheck.statusCheck == 'addNew'">
                                 <label for="inputEmail3" class="col-md-3 col-form-label control-label">
                                     Additional Details</label>
@@ -375,20 +385,20 @@
                                         Cheque DO , IT etc Number
                                     </small>
                                 </div>
-                    
+                
                             </div>
-
-
-                    
+                
+                
+                
                             <!-- received Date -->
                             <div class="form-group row" *ngIf="statusCheck.statusCheck == 'addNew'">
-                    
+                
                                 <label for="inputEmail3" class="col-md-3 col-form-label control-label">Received Date</label>
-                    
+                
                                 <div class="col-md-7">
                                     <div class="row">
-                    
-                    
+                
+                
                                         <div class="col-md-5">
                                             <div class="input-group">
                                                 <input navigation="select" class="form-control  " ngbDatepicker
@@ -399,11 +409,11 @@
                                         </div>
                                     </div>
                                 </div>
-                    
+                
                             </div>
-                    
-
-
+                
+                
+                
                             <!-- Bank Account -->
                             <div class="form-group row" *ngIf="statusCheck.statusCheck == 'add'">
                                 <label for="inputEmail3" class="col-md-3 col-form-label control-label">
@@ -413,10 +423,10 @@
                                         [(ngModel)]="commData.fromBankAccountId" id="fromBankAccountId" #fromBankAccountId="ngModel">
                                         <ng-option *ngFor="let i of bankAcc" [value]="i.id">{{ i.accountName }}
                                         </ng-option>
-                    
+                
                                     </ng-select>
                                 </div>
-                    
+                
                                 <div class="col-md-4 mrg-sm1">
                                     <div class="input-group">
                                         <div class="col-md-12 p-0">
@@ -425,17 +435,17 @@
                                                 placeholder="to Bank Account">
                                                 <ng-option *ngFor="let i of bankAcc" [value]="i.id">{{ i.accountName }}
                                                 </ng-option>
-                    
+                
                                             </ng-select>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                    
+                
                             <!-- deposited in bank -->
                             <div class="form-group row" *ngIf="statusCheck.statusCheck == 'add'">
                                 <label for="depositInBank" class="col-md-3 col-form-label control-label">Deposited in Bank</label>
-                    
+                
                                 <div class="col-md-7">
                                     <div class="row">
                                         <div class="col-md-1">
@@ -444,7 +454,7 @@
                                                     name="depositInBank" #depositInBank="ngModel" [(ngModel)]="commData.depositInBank">
                                             </div>
                                         </div>
-                    
+                
                                         <div class="col-md-11 mrg-sm1 p-0">
                                             <div class="input-group">
                                                 <label for="inputEmail3" class="col-form-label control-label col-md-3">
@@ -452,248 +462,104 @@
                                                 <div class="col-md-9">
                                                     <input navigation="select" class="form-control  "
                                                         placeholder="Date at which instruement deposited in Bank" ngbDatepicker
-                                                        #validityDate1="ngbDatepicker" (click)="validityDate1.toggle()" name="depositDate"
-                                                        #depositDate="ngModel" [(ngModel)]="commData.depositDate" />
+                                                        #validityDate1="ngbDatepicker" (click)="validityDate1.toggle()"
+                                                        name="depositDate" #depositDate="ngModel" [(ngModel)]="commData.depositDate" />
                                                 </div>
                                             </div>
                                         </div>
-                    
+                
                                     </div>
                                 </div>
                             </div>
-                    
-                    
+                
+                
                         </div>
                     </div>
-            
-
-
-
-
-
-                <!---------- add Commission  Sale invoice ---------->
-                <div class="border-top" *ngIf = "statusCheck.statusCheck == 'add'">
-                    <div class="col-md-12 pt-4 pb-4">
-
-                        <div class=" mb-3">
-                            <span class="badge badge-primary">Sale Invoices</span>
-                        </div>
-
-                        <!-- <div class="form-group row">
-                            <button class="btn btn-primary float-left">
-                                Sale Invoices
-                            </button>
-                        </div> -->
-
-                        <!-- table -->
+                
+                
+                
+                
+                
+                
+                    <!---------- add Commission  Sale invoice ---------->
+                    <div class="border-top" *ngIf="statusCheck.statusCheck == 'add'">
+                        <div class="col-md-12 pt-4 pb-4">
+                
+                            <div class=" mb-3">
+                                <span class="badge badge-primary">Sale Invoices</span>
+                            </div>
+                
+                            <!-- <div class="form-group row">
+                                            <button class="btn btn-primary float-left">
+                                                Sale Invoices
+                                            </button>
+                                        </div> -->
+                
+                            <!-- table -->
                             <div class="panel-body">
-                                <ngx-datatable
-                              class="bootstrap datatable-row-wrapper" [columns]="columns" [rows]="rows"
-                                  [columnMode]="'flex'" [headerHeight]="50" [footerHeight]="50" 
-                                  [rowHeight]="'auto'" [limit]="6">
-                                  
-                                  <ngx-datatable-column name="Sno" [width]="80" prop="sno" [flexGrow]="0.03"   >
-                                    <ng-template let-row="row" ngx-datatable-cell-template >
-                        
-                                    </ng-template>
-                                  </ngx-datatable-column>
-                                  <ngx-datatable-column name="Inv #" [width]="80" prop="invNum" [flexGrow]="0.05">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                      
-                                    </ng-template>
-                                  </ngx-datatable-column>
-                                  <ngx-datatable-column name="Contract#" [width]="80" prop="contract" [flexGrow]="0.06">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                
-                                    </ng-template>
-                                  </ngx-datatable-column>
-                                  <ngx-datatable-column name="Bill#" [width]="80" prop="bill" [flexGrow]="0.06">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                
-                                    </ng-template>
-                                  </ngx-datatable-column>
-                        
-                                  <ngx-datatable-column name="Date" [width]="80" prop="date" [flexGrow]="0.06">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                
-                                    </ng-template>
-                                  </ngx-datatable-column>
-                        
-                                  <ngx-datatable-column name="Inv Amount" [width]="80" prop="amount" [flexGrow]="0.06">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                
-                                    </ng-template>
-                                  </ngx-datatable-column>
-                                  <ngx-datatable-column name="Received" [width]="80" prop="rec" [flexGrow]="0.06">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                
-                                    </ng-template>
-                                  </ngx-datatable-column>
-                                  <ngx-datatable-column name="Balance" [width]="80" prop="blnc" [flexGrow]="0.06">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                
-                                    </ng-template>
-                                  </ngx-datatable-column>
-                                  <ngx-datatable-column name="Action" [width]="80" prop="action" [flexGrow]="0.06">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                
-                                    </ng-template>
-                                  </ngx-datatable-column>
-                        
-                                  <ngx-datatable-column name="Paid Amount" [width]="80" prop="paid" [flexGrow]="0.06">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                
-                                    </ng-template>
-                                  </ngx-datatable-column>
-                        
+                                <ngx-datatable class="bootstrap datatable-row-wrapper" [columns]="columns" [rows]="rows"
+                                    [columnMode]="'flex'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="6">
+                
+                                    <ngx-datatable-column name="Sno" [width]="80" prop="sno" [flexGrow]="0.03">
+                                        <ng-template let-row="row" ngx-datatable-cell-template>
+                
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column name="Inv #" [width]="80" prop="invNum" [flexGrow]="0.05">
+                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column name="Contract#" [width]="80" prop="contract" [flexGrow]="0.06">
+                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column name="Bill#" [width]="80" prop="bill" [flexGrow]="0.06">
+                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                
+                                    <ngx-datatable-column name="Date" [width]="80" prop="date" [flexGrow]="0.06">
+                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                
+                                    <ngx-datatable-column name="Inv Amount" [width]="80" prop="amount" [flexGrow]="0.06">
+                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column name="Received" [width]="80" prop="rec" [flexGrow]="0.06">
+                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column name="Balance" [width]="80" prop="blnc" [flexGrow]="0.06">
+                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column name="Action" [width]="80" prop="action" [flexGrow]="0.06">
+                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                
+                                    <ngx-datatable-column name="Paid Amount" [width]="80" prop="paid" [flexGrow]="0.06">
+                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                
                                 </ngx-datatable>
-                              </div>
-
-                              <div class="col-md-12 pt-5 pb-1">
-                              <div class="form-group row">
-                             
-                                  <div class="col-md-3 font-weight-bold">
-                                   <p >Paid Amount:</p>
-                                  </div>
-                                  <div  class="col-md-3  font-weight-bold">
-                                    <p>Blnc Amount:</p>
-                                   </div>
-                                   <div class="col-md-3  font-weight-bold">
-                                    <p>Outstanding Balance:</p>
-                                   </div>
-                                   <div class="col-md-3  font-weight-bold">
-                                    <p>Selected Inv:</p>
-                                   </div>
-                                  
-                                  </div>
-                              </div>
-                          <!-- remarks and other -->
-
-
-                          <div class="border-top">
-                            <div class="col-md-12 pt-4 pb-4">
-
-                                <div class="mb-3">
-                                    <span class="badge badge-primary">Remarks/Other Conditions</span>
-                                </div>
-
-                                <!-- <div class="form-group row">
-                                    <button class="btn btn-primary float-left">
-                                        Remarks/Other Conditions
-                                    </button>
-                                </div> -->
-
-                                <!-- <div class="col-md-12">
-                                    <label for="inputEmail3" 
-                                    class="col-md-3 col-form-label control-label"> Remarks </label>
-                                </div> -->
-
-
-                                <!-- table -->
-                                <div class="form-group row" *ngIf="statusCheck.statusCheck =='add'" >
-                                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Remarks:</label>
-                                    <div class="col-md-7">
-                                        <textarea class="form-control" rows="4" placeholder="Any Remarks Here..."
-                                         name="remarks" #paymentRemarks = "ngModel" name="paymentRemarks" [(ngModel)] = "commData.paymentRemarks"></textarea>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6 offset-md-3">
-                                        <button class="btn button-save" *ngIf="statusCheck.statusCheck =='add'"
-                                        (click) = "addCommissionPayment()"
-                                        > 
-                                            <i class="fas fa-check"></i> Save &
-                                            Next</button>
-                                        <button class="btn btn-secondary ml-4" *ngIf="statusCheck.statusCheck =='new2'">
-                                            <i class="fas fa-times">
-                                            </i> Close
-                                        </button>
-                                    </div>
-                                </div>
-
-                                </div>
-                                </div>
-                            
-
-                        
-                 </div>
-                 </div>
-                <!-- addNew  -->
-                <div class="border-top" *ngIf = "statusCheck.statusCheck == 'addNew'">
-                    <div class="col-md-12 pt-4 pb-4">
-
-                        <div class="mb-3">
-                            <span class="badge badge-primary">Sale Invoices</span>
-                        </div>
-
-                        <!-- <div class="form-group row">
-                            <button class="btn btn-primary float-left">
-                                Sale Invoices
-                            </button>
-                        </div> -->
-
-                        <!-- table -->
-                            <div class="panel-body">
-                                <ngx-datatable
-                              class="bootstrap datatable-row-wrapper" [columns]="columns" [rows]="rows"
-                                  [columnMode]="'flex'" [headerHeight]="50" [footerHeight]="50" 
-                                  [rowHeight]="'auto'" [limit]="6">
-                                  
-                                  <ngx-datatable-column name="Sno" [width]="80" prop="sno" [flexGrow]="0.03"   >
-                                    <ng-template let-row="row" ngx-datatable-cell-template >
-                        
-                                    </ng-template>
-                                  </ngx-datatable-column>
-                                  <ngx-datatable-column name="Inv #" [width]="80" prop="invNum" [flexGrow]="0.05">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                      
-                                    </ng-template>
-                                  </ngx-datatable-column>
-                                  <ngx-datatable-column name="Contract#" [width]="80" prop="contract" [flexGrow]="0.06">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                
-                                    </ng-template>
-                                  </ngx-datatable-column>
-                                  <ngx-datatable-column name="Date" [width]="80" prop="date" [flexGrow]="0.06">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                
-                                    </ng-template>
-                                  </ngx-datatable-column>
-                        
-                                  <ngx-datatable-column name="Inv Amount" [width]="80" prop="amount" [flexGrow]="0.06">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                
-                                    </ng-template>
-                                  </ngx-datatable-column>
-                                  <ngx-datatable-column name="Received" [width]="80" prop="rec" [flexGrow]="0.06">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                
-                                    </ng-template>
-                                  </ngx-datatable-column>
-                                  <ngx-datatable-column name="Balance" [width]="80" prop="blnc" [flexGrow]="0.06">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                
-                                    </ng-template>
-                                  </ngx-datatable-column>
-                                  <ngx-datatable-column name="Action" [width]="80" prop="action" [flexGrow]="0.06">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                
-                                    </ng-template>
-                                  </ngx-datatable-column>
-                        
-                                  <ngx-datatable-column name="Paid Amount" [width]="80" prop="paid" [flexGrow]="0.06">
-                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                
-                                    </ng-template>
-                                  </ngx-datatable-column>
-                        
-                                </ngx-datatable>
-                              </div>
-
+                            </div>
+                
                             <div class="col-md-12 pt-5 pb-1">
                                 <div class="form-group row">
-                            
+                
                                     <div class="col-md-3 font-weight-bold">
                                         <p>Paid Amount:</p>
                                     </div>
@@ -706,59 +572,199 @@
                                     <div class="col-md-3  font-weight-bold">
                                         <p>Selected Inv:</p>
                                     </div>
-                            
+                
                                 </div>
                             </div>
-                          <!-- remarks and other -->
-
-                          <div class="border-top">
-                            <div class="col-md-12 pt-4 pb-4">
-
-                                <div class="mb-3">
-                                    <span class="badge badge-primary">Remarks/Other Conditions</span>
+                            <!-- remarks and other -->
+                
+                
+                            <div class="border-top">
+                                <div class="col-md-12 pt-4 pb-4">
+                
+                                    <div class="mb-3">
+                                        <span class="badge badge-primary">Remarks/Other Conditions</span>
+                                    </div>
+                
+                                    <!-- <div class="form-group row">
+                                                    <button class="btn btn-primary float-left">
+                                                        Remarks/Other Conditions
+                                                    </button>
+                                                </div> -->
+                
+                                    <!-- <div class="col-md-12">
+                                                    <label for="inputEmail3" 
+                                                    class="col-md-3 col-form-label control-label"> Remarks </label>
+                                                </div> -->
+                
+                
+                                    <!-- table -->
+                                    <div class="form-group row" *ngIf="statusCheck.statusCheck =='add'">
+                                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">Remarks:</label>
+                                        <div class="col-md-7">
+                                            <textarea class="form-control" rows="4" placeholder="Any Remarks Here..." name="remarks"
+                                                #paymentRemarks="ngModel" name="paymentRemarks"
+                                                [(ngModel)]="commData.paymentRemarks"></textarea>
+                                        </div>
+                                    </div>
+                
+                                    <div class="row">
+                                        <div class="col-md-6 offset-md-3">
+                                            <button class="btn button-save" *ngIf="statusCheck.statusCheck =='add'"
+                                                (click)="addCommissionPayment()">
+                                                <i class="fas fa-check"></i> Save &
+                                                Next</button>
+                                            <button class="btn btn-secondary ml-4" *ngIf="statusCheck.statusCheck =='new2'">
+                                                <i class="fas fa-times">
+                                                </i> Close
+                                            </button>
+                                        </div>
+                                    </div>
+                
                                 </div>
-
-                                <!-- <div class="form-group row">
-                                    <button class="btn btn-primary float-left">
-                                        Remarks/Other Conditions
-                                    </button>
-                                </div> -->
-
-                                <!-- <div class="col-md-12">
-                                    <label for="inputEmail3" 
-                                    class="col-md-3 col-form-label control-label"> Remarks </label>
-                                </div> -->
-
-
-                                <!-- table -->
+                            </div>
+                
+                
+                
+                        </div>
+                    </div>
+                    <!-- addNew  -->
+                    <div class="border-top" *ngIf="statusCheck.statusCheck == 'addNew'">
+                        <div class="col-md-12 pt-4 pb-4">
+                
+                            <div class="mb-3">
+                                <span class="badge badge-primary">Sale Invoices</span>
+                            </div>
+                
+                            <!-- <div class="form-group row">
+                                            <button class="btn btn-primary float-left">
+                                                Sale Invoices
+                                            </button>
+                                        </div> -->
+                
+                            <!-- table -->
+                            <div class="panel-body">
+                                <ngx-datatable class="bootstrap datatable-row-wrapper" [columns]="columns" [rows]="rows"
+                                    [columnMode]="'flex'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="6">
+                
+                                    <ngx-datatable-column name="Sno" [width]="80" prop="sno" [flexGrow]="0.03">
+                                        <ng-template let-row="row" ngx-datatable-cell-template>
+                
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column name="Inv #" [width]="80" prop="invNum" [flexGrow]="0.05">
+                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column name="Contract#" [width]="80" prop="contract" [flexGrow]="0.06">
+                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column name="Date" [width]="80" prop="date" [flexGrow]="0.06">
+                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                
+                                    <ngx-datatable-column name="Inv Amount" [width]="80" prop="amount" [flexGrow]="0.06">
+                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column name="Received" [width]="80" prop="rec" [flexGrow]="0.06">
+                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column name="Balance" [width]="80" prop="blnc" [flexGrow]="0.06">
+                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column name="Action" [width]="80" prop="action" [flexGrow]="0.06">
+                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                
+                                    <ngx-datatable-column name="Paid Amount" [width]="80" prop="paid" [flexGrow]="0.06">
+                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                
+                                </ngx-datatable>
+                            </div>
+                
+                            <div class="col-md-12 pt-5 pb-1">
                                 <div class="form-group row">
-                                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Remarks:</label>
-                                    <div class="col-md-7">
-                                        <textarea class="form-control" rows="4" placeholder="Any Remarks Here..."
-                                         name="paymentRemarks" #paymentRemarks = "ngModel" [(ngModel)] = "extCommData.paymentRemarks"></textarea>
+                
+                                    <div class="col-md-3 font-weight-bold">
+                                        <p>Paid Amount:</p>
                                     </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6 offset-md-3">
-                                        <button class="btn button-save" 
-                                        (click) = "addExtCommissionPayment()"
-                                        > 
-                                            <i class="fas fa-check"></i> Save &
-                                            Next</button>
-                                   
+                                    <div class="col-md-3  font-weight-bold">
+                                        <p>Blnc Amount:</p>
                                     </div>
+                                    <div class="col-md-3  font-weight-bold">
+                                        <p>Outstanding Balance:</p>
+                                    </div>
+                                    <div class="col-md-3  font-weight-bold">
+                                        <p>Selected Inv:</p>
+                                    </div>
+                
                                 </div>
-
+                            </div>
+                            <!-- remarks and other -->
+                
+                            <div class="border-top">
+                                <div class="col-md-12 pt-4 pb-4">
+                
+                                    <div class="mb-3">
+                                        <span class="badge badge-primary">Remarks/Other Conditions</span>
+                                    </div>
+                
+                                    <!-- <div class="form-group row">
+                                                    <button class="btn btn-primary float-left">
+                                                        Remarks/Other Conditions
+                                                    </button>
+                                                </div> -->
+                
+                                    <!-- <div class="col-md-12">
+                                                    <label for="inputEmail3" 
+                                                    class="col-md-3 col-form-label control-label"> Remarks </label>
+                                                </div> -->
+                
+                
+                                    <!-- table -->
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">Remarks:</label>
+                                        <div class="col-md-7">
+                                            <textarea class="form-control" rows="4" placeholder="Any Remarks Here..."
+                                                name="paymentRemarks" #paymentRemarks="ngModel"
+                                                [(ngModel)]="extCommData.paymentRemarks"></textarea>
+                                        </div>
+                                    </div>
+                
+                                    <div class="row">
+                                        <div class="col-md-6 offset-md-3">
+                                            <button class="btn button-save" (click)="addExtCommissionPayment()">
+                                                <i class="fas fa-check"></i> Save &
+                                                Next</button>
+                
+                                        </div>
+                                    </div>
+                
                                 </div>
-                                </div>
-                            
-
-                        
-                 </div>
-                 </div>
-
+                            </div>
+                
+                
+                
+                        </div>
+                    </div>
+                
                 </form>
+
             </div>
         </div>
 

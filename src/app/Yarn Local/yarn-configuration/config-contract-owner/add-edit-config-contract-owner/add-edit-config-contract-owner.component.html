@@ -22,34 +22,37 @@
 
   <form #BeneficiaryForm="ngForm" novalidate>
 
-    <div class="col-md-12 pt-3 pb-2">
-
-      <div class="form-group row">
-        <label class="col-sm-3 col-form-label text-grey">User From Department<span class="required-denote">*</span></label>
-        <div class="col-sm-8">
-          <ng-select [(ngModel)]="data.userId" placeholder="-- Select --" name="userId"
-          #userId="ngModel" [ngClass]="{ error: userId.invalid && BeneficiaryForm.submitted}">
-          <ng-option *ngFor="let i of departmentUsers" [value]="i.id">{{ i.fullName }}
-          </ng-option>
-        </ng-select>
+    <div class="row justify-content-center">
+      <div class="col-10 col-md-11 pt-3 pb-2">
+    
+        <div class="form-group row">
+          <label class="col-md-4 col-form-label text-grey">User From Department<span
+              class="required-denote">*</span></label>
+          <div class="col-md-7">
+            <ng-select [(ngModel)]="data.userId" placeholder="-- Select --" name="userId" #userId="ngModel"
+              [ngClass]="{ error: userId.invalid && BeneficiaryForm.submitted}">
+              <ng-option *ngFor="let i of departmentUsers" [value]="i.id">{{ i.fullName }}
+              </ng-option>
+            </ng-select>
+          </div>
         </div>
-      </div>
-
-      <div class="form-group row">
-        <label class="col-sm-3 col-form-label text-grey">Users Role<span class="required-denote">*</span></label>
-        <div class="col-sm-8">
-          <ng-select [(ngModel)]="data.description" placeholder="-- Select --" name="description"
-          #description="ngModel" [ngClass]="{ error: description.invalid && BeneficiaryForm.submitted}">
-          <ng-option *ngFor="let i of filterUsers" [value]="i">{{ i }}
-          </ng-option>
-        </ng-select>
+    
+        <div class="form-group row">
+          <label class="col-md-4 col-form-label text-grey">Users Role<span class="required-denote">*</span></label>
+          <div class="col-md-7">
+            <ng-select [(ngModel)]="data.description" placeholder="-- Select --" name="description" #description="ngModel"
+              [ngClass]="{ error: description.invalid && BeneficiaryForm.submitted}">
+              <ng-option *ngFor="let i of filterUsers" [value]="i">{{ i }}
+              </ng-option>
+            </ng-select>
+          </div>
         </div>
+    
+    
+    
+    
+    
       </div>
-
-     
-  
-
-
     </div>
 
 
