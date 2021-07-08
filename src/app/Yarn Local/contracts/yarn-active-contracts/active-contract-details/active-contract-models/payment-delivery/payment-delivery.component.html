@@ -19,162 +19,166 @@
 <div class="modal-body BG p-0">
   <form #partiesForm="ngForm" novalidate (ngSubmit)="addContractPaymentDelivery(partiesForm)">
 
-    <div class="col-md-12 pt-3 pb-2" >
-
-      <div class="form-group row" *ngIf = "loggedInDepartmentName == 'Fabric Local'">
-        <label for="name" class="col-sm-3 col-form-label">Payment Mode</label>
-        <div class="col-sm-4">
-          <ng-select name="paymentMode" placeholder="-- Select --"  [(ngModel)]="data.paymentMode" >
+    <div class="row justify-content-center">
+      <div class="col-10 col-md-11 pt-3 pb-2">
+    
+        <div class="form-group row" *ngIf="loggedInDepartmentName == 'Fabric Local'">
+          <label for="name" class="col-md-3 col-form-label">Payment Mode</label>
+          <div class="col-md-4">
+            <ng-select name="paymentMode" placeholder="-- Select --" [(ngModel)]="data.paymentMode">
               <ng-option *ngFor="let i of paymentMode" [value]="i">
-                  {{i}}
+                {{i}}
               </ng-option>
-          </ng-select>
-        </div>
-      </div>
-
-
-      <div class="form-group row" *ngIf = "loggedInDepartmentName != 'Yarn Export'">
-        <label for="description" class="col-sm-3 col-form-label text-Navy">Payment Terms</label>
-        <div class="col-sm-4">
-          <ng-select required name="sellerPaymentTermId" placeholder="Payment Terms" [(ngModel)]="data.sellerPaymentTermId"
-            #sellerPaymentTermId="ngModel">
-            <ng-option *ngFor="let i of payment" [value]="i.id">
-              {{i.term}}
-            </ng-option>
-          </ng-select>
-        </div>
-        <div class="col-md-4 mrg-sm1">
-          <div class="input-group">
-            <input required type="number" min="0" class="form-control" placeholder="days" name="sellerPaymentTermDays"
-              [(ngModel)]="data.sellerPaymentTermDays" #sellerPaymentTermDays="ngModel"
-              [ngClass]="{'error': sellerPaymentTermDays.invalid && partiesForm.submitted }">
+            </ng-select>
           </div>
         </div>
-
-      </div>
-
-      <div class="form-group row" *ngIf = "loggedInDepartmentName != 'Yarn Export'">
-        <label for="description" class="col-sm-3 col-form-label text-Navy"></label>
-        <div class="col-sm-8">
-          <input type="text" class="form-control" placeholder="Payment term Additional Info" name="sellerPaymentTermInfo"
-            [(ngModel)]="data.sellerPaymentTermInfo">
+    
+    
+        <div class="form-group row" *ngIf="loggedInDepartmentName != 'Yarn Export'">
+          <label for="description" class="col-md-3 col-form-label text-Navy">Payment Terms</label>
+          <div class="col-md-4">
+            <ng-select required name="sellerPaymentTermId" placeholder="Payment Terms"
+              [(ngModel)]="data.sellerPaymentTermId" #sellerPaymentTermId="ngModel">
+              <ng-option *ngFor="let i of payment" [value]="i.id">
+                {{i.term}}
+              </ng-option>
+            </ng-select>
+          </div>
+          <div class="col-md-4 mrg-tsm">
+            <div class="input-group">
+              <input required type="number" min="0" class="form-control" placeholder="days" name="sellerPaymentTermDays"
+                [(ngModel)]="data.sellerPaymentTermDays" #sellerPaymentTermDays="ngModel"
+                [ngClass]="{'error': sellerPaymentTermDays.invalid && partiesForm.submitted }">
+            </div>
+          </div>
+    
         </div>
-      </div>
-      
-<!-- for yarn export -->
-
-<div class="form-group row" *ngIf = "loggedInDepartmentName == 'Yarn Export'">
-  <label for="description" class="col-sm-3 col-form-label text-Navy">Payment Terms</label>
-  <div class="col-sm-4">
-    <ng-select required name="paymentTermId" placeholder="Payment Terms" [(ngModel)]="data.paymentTermId"
-      #paymentTermId="ngModel">
-      <ng-option *ngFor="let i of payment" [value]="i.id">
-        {{i.term}}
-      </ng-option>
-    </ng-select>
-  </div>
-  <div class="col-md-4 mrg-sm1">
-    <div class="input-group">
-      <input required type="number" min="0" class="form-control" placeholder="days" name="paymentTermDays"
-        [(ngModel)]="data.paymentTermDays" #paymentTermDays="ngModel"
-        [ngClass]="{'error': paymentTermDays.invalid && partiesForm.submitted }">
-    </div>
-  </div>
-
-</div>
-
-<div class="form-group row" *ngIf = "loggedInDepartmentName == 'Yarn Export'">
-  <label for="description" class="col-sm-3 col-form-label text-Navy"></label>
-  <div class="col-sm-8">
-    <input type="text" class="form-control" placeholder="Payment term Additional Info" name="paymentTermInfo"
-      [(ngModel)]="data.paymentTermInfo">
-  </div>
-</div>
-
-
-      <div class="form-group row" *ngIf = "loggedInDepartmentName != 'Yarn Export'">
-        <label for="description" class="col-sm-3 col-form-label text-Navy">Payment Terms (Buyer Side)</label>
-        <div class="col-sm-4">
-          <ng-select required name="buyerPaymentTermId" id="buyerPaymentTermId"
-           placeholder="Payment Terms" [(ngModel)]="data.buyerPaymentTermId"
-            #buyerPaymentTermId="ngModel" [ngClass]="{'error': buyerPaymentTermId.invalid && partiesForm.submitted }">
-            <ng-option *ngFor="let i of payment" [value]="i.id">
-              {{i.term}}
-            </ng-option>
-          </ng-select>
-        </div>
-        <div class="col-md-4 mrg-sm1" *ngIf = "loggedInDepartmentName == 'Fabric Local'">
-          <div class="input-group">
-            <input required type="number" min="0" class="form-control" placeholder="days" name="buyerPaymentTermDays"
-              [(ngModel)]="data.buyerPaymentTermDays" #buyerPaymentTermDays="ngModel"
-              [ngClass]="{'error': buyerPaymentTermDays.invalid && partiesForm.submitted }">
+    
+        <div class="form-group row" *ngIf="loggedInDepartmentName != 'Yarn Export'">
+          <label for="description" class="col-md-3 col-form-label text-Navy"></label>
+          <div class="col-md-8">
+            <input type="text" class="form-control" placeholder="Payment term Additional Info" name="sellerPaymentTermInfo"
+              [(ngModel)]="data.sellerPaymentTermInfo">
           </div>
         </div>
-
+    
+        <!-- for yarn export -->
+    
+        <div class="form-group row" *ngIf="loggedInDepartmentName == 'Yarn Export'">
+          <label for="description" class="col-md-3 col-form-label text-Navy">Payment Terms</label>
+          <div class="col-md-4">
+            <ng-select required name="paymentTermId" placeholder="Payment Terms" [(ngModel)]="data.paymentTermId"
+              #paymentTermId="ngModel">
+              <ng-option *ngFor="let i of payment" [value]="i.id">
+                {{i.term}}
+              </ng-option>
+            </ng-select>
+          </div>
+          <div class="col-md-4 mrg-tsm">
+            <div class="input-group">
+              <input required type="number" min="0" class="form-control" placeholder="days" name="paymentTermDays"
+                [(ngModel)]="data.paymentTermDays" #paymentTermDays="ngModel"
+                [ngClass]="{'error': paymentTermDays.invalid && partiesForm.submitted }">
+            </div>
+          </div>
+    
+        </div>
+    
+        <div class="form-group row" *ngIf="loggedInDepartmentName == 'Yarn Export'">
+          <label for="description" class="col-md-3 col-form-label text-Navy"></label>
+          <div class="col-md-8">
+            <input type="text" class="form-control" placeholder="Payment term Additional Info" name="paymentTermInfo"
+              [(ngModel)]="data.paymentTermInfo">
+          </div>
+        </div>
+    
+    
+        <div class="form-group row" *ngIf="loggedInDepartmentName != 'Yarn Export'">
+          <label for="description" class="col-md-3 col-form-label text-Navy">Payment Terms (Buyer Side)</label>
+          <div class="col-md-4">
+            <ng-select required name="buyerPaymentTermId" id="buyerPaymentTermId" placeholder="Payment Terms"
+              [(ngModel)]="data.buyerPaymentTermId" #buyerPaymentTermId="ngModel"
+              [ngClass]="{'error': buyerPaymentTermId.invalid && partiesForm.submitted }">
+              <ng-option *ngFor="let i of payment" [value]="i.id">
+                {{i.term}}
+              </ng-option>
+            </ng-select>
+          </div>
+          <div class="col-md-4 mrg-tsm" *ngIf="loggedInDepartmentName == 'Fabric Local'">
+            <div class="input-group">
+              <input required type="number" min="0" class="form-control" placeholder="days" name="buyerPaymentTermDays"
+                [(ngModel)]="data.buyerPaymentTermDays" #buyerPaymentTermDays="ngModel"
+                [ngClass]="{'error': buyerPaymentTermDays.invalid && partiesForm.submitted }">
+            </div>
+          </div>
+    
+        </div>
+    
+        <!-- <div class="form-group row">
+            <label for="description" class="col-md-3 col-form-label text-Navy" *ngIf = "loggedInDepartmentName != 'Yarn Export'"></label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" placeholder="Payment term Additional Info" name="buyerSidePaymentTermInfo"
+                [(ngModel)]="data.buyerSidePaymentTermInfo" #buyerSidePaymentTermInfo = "ngModel">
+            </div>
+          </div> -->
+    
+        <div class="form-group row">
+          <label for="description" class="col-md-3 col-form-label text-Navy">Packing</label>
+          <div class="col-md-8">
+            <ng-select required name="packingId" placeholder="-- Select --" [(ngModel)]="data.packingId"
+              #packingId="ngModel" [ngClass]="{'error': packingId.invalid && partiesForm.submitted }">
+              <ng-option *ngFor="let i of packing" [value]="i.id">
+                {{i.name}}
+              </ng-option>
+            </ng-select>
+          </div>
+        </div>
+    
+        <div class="form-group row">
+          <label for="description" class="col-md-3 col-form-label text_Navy">Price / Delivery</label>
+    
+          <div class="col-md-4">
+            <ng-select required name="priceTermId" placeholder="-- Select --" [(ngModel)]="data.priceTermId"
+              #priceTermId="ngModel" [ngClass]="{'error': priceTermId.invalid && partiesForm.submitted }">
+              <ng-option *ngFor="let i of price" [value]="i.id">
+                {{i.term}}
+              </ng-option>
+            </ng-select>
+          </div>
+    
+          <div class="col-md-4 mrg-tsm"
+            *ngIf="loggedInDepartmentName == 'Fabric Local' || loggedInDepartmentName == 'Yarn Export'">
+            <ng-select required name="destinationId" placeholder="-- Select --" [(ngModel)]="data.destinationId"
+              #destinationId="ngModel" [ngClass]="{'error': destinationId.invalid && partiesForm.submitted }">
+              <ng-option *ngFor="let i of city" [value]="i.id">
+                {{i.name}} <span class="text-secondary" style="font-size: 11px"></span>
+              </ng-option>
+            </ng-select>
+          </div>
+    
+        </div>
+    
+        <div class="form-group row"
+          *ngIf="loggedInDepartmentName == 'Fabric Local' || loggedInDepartmentName == 'Yarn Export'">
+          <label for="description" class="col-md-3 col-form-label text_Navy">Container</label>
+    
+          <div class="col-md-4">
+            <input type="text" class="form-control" placeholder="Count" name="count" [(ngModel)]="data.count"
+              #count="ngModel">
+          </div>
+    
+          <div class="col-md-4 mrg-tsm">
+            <ng-select required name="containerId" placeholder="Select Container" [(ngModel)]="data.containerId"
+              #containerId="ngModel" [ngClass]="{'error': containerId.invalid && partiesForm.submitted }">
+              <ng-option *ngFor="let i of container" [value]="i.id">
+                {{i.containerName}} <span class="text-secondary" style="font-size: 11px"></span>
+              </ng-option>
+            </ng-select>
+          </div>
+    
+        </div>
+    
       </div>
-
-      <!-- <div class="form-group row">
-        <label for="description" class="col-sm-3 col-form-label text-Navy" *ngIf = "loggedInDepartmentName != 'Yarn Export'"></label>
-        <div class="col-sm-8">
-          <input type="text" class="form-control" placeholder="Payment term Additional Info" name="buyerSidePaymentTermInfo"
-            [(ngModel)]="data.buyerSidePaymentTermInfo" #buyerSidePaymentTermInfo = "ngModel">
-        </div>
-      </div> -->
-
-      <div class="form-group row">
-        <label for="description" class="col-sm-3 col-form-label text-Navy">Packing</label>
-        <div class="col-sm-8">
-          <ng-select required name="packingId" placeholder="-- Select --" [(ngModel)]="data.packingId"
-            #packingId="ngModel" [ngClass]="{'error': packingId.invalid && partiesForm.submitted }">
-            <ng-option *ngFor="let i of packing" [value]="i.id">
-              {{i.name}}
-            </ng-option>
-          </ng-select>
-        </div>
-      </div>
-
-      <div class="form-group row">
-        <label for="description" class="col-sm-3 col-form-label text_Navy">Price / Delivery</label>
-
-        <div class="col-sm-4">
-          <ng-select required name="priceTermId" placeholder="-- Select --" [(ngModel)]="data.priceTermId"
-            #priceTermId="ngModel" [ngClass]="{'error': priceTermId.invalid && partiesForm.submitted }">
-            <ng-option *ngFor="let i of price" [value]="i.id">
-              {{i.term}}
-            </ng-option>
-          </ng-select>
-        </div>
-
-        <div class="col-sm-4 " *ngIf = "loggedInDepartmentName == 'Fabric Local' || loggedInDepartmentName == 'Yarn Export'">
-          <ng-select required name="destinationId" placeholder="-- Select --" [(ngModel)]="data.destinationId"
-            #destinationId="ngModel" [ngClass]="{'error': destinationId.invalid && partiesForm.submitted }">
-            <ng-option *ngFor="let i of city" [value]="i.id">
-              {{i.name}} <span class="text-secondary" style="font-size: 11px"></span>
-            </ng-option>
-          </ng-select>
-        </div>
-
-      </div>
-
-      <div class="form-group row" *ngIf = "loggedInDepartmentName == 'Fabric Local' || loggedInDepartmentName == 'Yarn Export'">
-        <label for="description" class="col-sm-3 col-form-label text_Navy">Container</label>
-
-        <div class="col-sm-4">
-          <input type="text" class="form-control" placeholder="Count" name="count"
-          [(ngModel)]="data.count" #count = "ngModel">
-        </div>
-
-        <div class="col-sm-4 ">
-          <ng-select required name="containerId" placeholder="Select Container" [(ngModel)]="data.containerId"
-            #containerId="ngModel" [ngClass]="{'error': containerId.invalid && partiesForm.submitted }">
-            <ng-option *ngFor="let i of container" [value]="i.id">
-              {{i.containerName}} <span class="text-secondary" style="font-size: 11px"></span>
-            </ng-option>
-          </ng-select>
-        </div>
-
-      </div>
-
     </div>
 
 

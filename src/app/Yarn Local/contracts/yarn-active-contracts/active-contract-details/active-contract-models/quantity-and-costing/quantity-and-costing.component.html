@@ -18,197 +18,200 @@
   
   <div class="modal-body BG p-0">
     <form #costing="ngForm" novalidate>
-        <div class="col-md-12 pt-3 pb-2" *ngIf = "loggedInDepartmentName == 'Yarn Export'">
 
-            <div class="form-group row">
-                <label for="itemQuantity" class="col-sm-3 col-form-label text_Navy"> Currency
+        <div class="row justify-content-center">
+            <div class="col-10 col-md-11 pt-3 pb-2" *ngIf="loggedInDepartmentName == 'Yarn Export'">
+                <!-- <div class="col-md-12 pt-3 pb-2" *ngIf="loggedInDepartmentName == 'Yarn Export'"> -->
         
-                </label>
-                <div class="col-md-6">
-                    <ng-select [(ngModel)]="data.rateCurrencyId" placeholder="-- Select --" 
-                    name="rateCurrencyId" #rateCurrencyId="ngModel">
-                    <ng-option *ngFor="let i of currency" [value]="i.id">{{ i.code }} 
-                    </ng-option>
-                </ng-select>
+                <div class="form-group row">
+                    <label for="itemQuantity" class="col-md-3 col-form-label text_Navy"> Currency
+        
+                    </label>
+                    <div class="col-md-6">
+                        <ng-select [(ngModel)]="data.rateCurrencyId" placeholder="-- Select --" name="rateCurrencyId"
+                            #rateCurrencyId="ngModel">
+                            <ng-option *ngFor="let i of currency" [value]="i.id">{{ i.code }}
+                            </ng-option>
+                        </ng-select>
+                    </div>
                 </div>
-              </div>
-              <div class="form-group row">
-                <label for="itemQuantity" class="col-sm-3 col-form-label text_Navy"> UOM
+                <div class="form-group row">
+                    <label for="itemQuantity" class="col-md-3 col-form-label text_Navy"> UOM
         
-                </label>
-                <div class="col-md-6">
-                    <ng-select [(ngModel)]="data.rateUOMId" placeholder="-- Select --" 
-                    name="rateUOMId" #rateUOMId="ngModel">
-                    <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
-                    </ng-option>
-                </ng-select>
+                    </label>
+                    <div class="col-md-6">
+                        <ng-select [(ngModel)]="data.rateUOMId" placeholder="-- Select --" name="rateUOMId"
+                            #rateUOMId="ngModel">
+                            <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
+                            </ng-option>
+                        </ng-select>
+                    </div>
                 </div>
-              </div>
-              <div class="form-group row">
-                <label for="itemQuantity" class="col-sm-3 col-form-label text_Navy"> Tolerance Value
+                <div class="form-group row">
+                    <label for="itemQuantity" class="col-md-3 col-form-label text_Navy"> Tolerance Value
         
-                </label>
-                <div class="col-md-6">
-                    <div class="input-group">
-                        <div class="input-group-append">
-                            <span class="input-group-text" id="basic-addon2">+/-</span>
-                        </div>
-                        <input type="text" placeholder="qty" class="form-control"
-                        name="quantityToleranceValue"  #quantityToleranceValue = "ngModel"
-                         [(ngModel)] = "data.quantityToleranceValue"
-                        >
-                        <div class="input-group-append">
-                            <span class="input-group-text" id="basic-addon2">%</span>
+                    </label>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon2">+/-</span>
+                            </div>
+                            <input type="text" placeholder="qty" class="form-control" name="quantityToleranceValue"
+                                #quantityToleranceValue="ngModel" [(ngModel)]="data.quantityToleranceValue">
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon2">%</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-              </div>
                 <!-- <div class="col-md-2">
-                   
-                    <ng-select [(ngModel)]="data.quantityUOMId" placeholder="-- Select --"   
-                    name="quantityUOMId" #quantityUOMId="ngModel">
-                    <ng-option *ngFor="let i of uomList"
-                
-                    [value]="i.id">{{ i.name }}
-                    </ng-option>
-                </ng-select>
-    
-                </div> -->
+                                   
+                                    <ng-select [(ngModel)]="data.quantityUOMId" placeholder="-- Select --"   
+                                    name="quantityUOMId" #quantityUOMId="ngModel">
+                                    <ng-option *ngFor="let i of uomList"
+                                
+                                    [value]="i.id">{{ i.name }}
+                                    </ng-option>
+                                </ng-select>
+                    
+                                </div> -->
                 <!-- <div class="col-md-4">
-                        <div class="input-group">
-                            <div class="input-group-append">
-                                <span class="input-group-text" id="basic-addon2">+/-</span>
-                            </div>
-                            <input type="text" placeholder="qty" class="form-control"
-                            name="quantityToleranceValue"  #quantityToleranceValue = "ngModel"
-                             [(ngModel)] = "data.quantityToleranceValue"
-                            >
-                            <div class="input-group-append">
-                                <span class="input-group-text" id="basic-addon2">%</span>
-                            </div>
-                        </div>
-                </div> -->
-          
-             
-            </div>
-
-        <div class="col-md-12 pt-3 pb-2" *ngIf = "loggedInDepartmentName != 'Yarn Export'">
-
-            <div class="form-group row">
-                <label for="itemQuantity" class="col-sm-3 col-form-label text_Navy"> Quantity
+                                        <div class="input-group">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text" id="basic-addon2">+/-</span>
+                                            </div>
+                                            <input type="text" placeholder="qty" class="form-control"
+                                            name="quantityToleranceValue"  #quantityToleranceValue = "ngModel"
+                                             [(ngModel)] = "data.quantityToleranceValue"
+                                            >
+                                            <div class="input-group-append">
+                                                <span class="input-group-text" id="basic-addon2">%</span>
+                                            </div>
+                                        </div>
+                                </div> -->
         
-                </label>
-                <div class="col-sm-2">
-                    <input type="number" min="0"
-                 
-                    class="form-control" value="" placeholder="Quantity"
-                      name="quantity"  #quantity = "ngModel" [(ngModel)] = "data.quantity" />
-                </div>
-                <div class="col-md-2">
-                   
-                    <ng-select [(ngModel)]="data.quantityUOMId" placeholder="-- Select --"   
-                    name="quantityUOMId" #quantityUOMId="ngModel">
-                    <ng-option *ngFor="let i of uomList"
-                
-                    [value]="i.id">{{ i.name }}
-                    </ng-option>
-                </ng-select>
-    
-                </div>
-                <div class="col-md-4">
-                    <!-- <div class="col-md-4 mrg-sm1"> -->
+        
+            </div>
+        </div>
+
+
+        <div class="row justify-content-center">
+            <div class="col-10 col-md-11 pt-3 pb-2" *ngIf="loggedInDepartmentName != 'Yarn Export'">
+                <!-- <div class="col-md-12 pt-3 pb-2" *ngIf="loggedInDepartmentName != 'Yarn Export'"> -->
+        
+                <div class="form-group row">
+                    <label for="itemQuantity" class="col-md-3 col-form-label text_Navy"> Quantity
+        
+                    </label>
+                    <div class="col-md-2">
+                        <input type="number" min="0" class="form-control" value="" placeholder="Quantity" name="quantity"
+                            #quantity="ngModel" [(ngModel)]="data.quantity" />
+                    </div>
+                    <div class="col-md-2 mrg-tsm">
+        
+                        <ng-select [(ngModel)]="data.quantityUOMId" placeholder="-- Select --" name="quantityUOMId"
+                            #quantityUOMId="ngModel">
+                            <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
+                            </ng-option>
+                        </ng-select>
+        
+                    </div>
+                    <div class="col-md-4 mrg-tsm">
+                        <!-- <div class="col-md-4 mrg-sm1"> -->
                         <div class="input-group">
                             <div class="input-group-append">
                                 <span class="input-group-text" id="basic-addon2">+/-</span>
                             </div>
-                            <input type="text" placeholder="qty" class="form-control"
-                            name="quantityToleranceValue"  #quantityToleranceValue = "ngModel"
-                             [(ngModel)] = "data.quantityToleranceValue"
-                            >
+                            <input type="text" placeholder="qty" class="form-control" name="quantityToleranceValue"
+                                #quantityToleranceValue="ngModel" [(ngModel)]="data.quantityToleranceValue">
                             <div class="input-group-append">
                                 <span class="input-group-text" id="basic-addon2">%</span>
                             </div>
                         </div>
-                    <!-- </div> -->
+                        <!-- </div> -->
+                    </div>
+        
                 </div>
-          
-              </div>
-         
-              <div class="form-group row">
-                <label  class="col-sm-3 col-form-label "> Rate</label>
-                <div class="col-sm-2">
-                    <input type="number" min="0"
-                    name="rate"  #rate = "ngModel" [(ngModel)] = "data.rate"
-                    class="form-control" placeholder="" />
+        
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label "> Rate</label>
+                    <div class="col-md-2">
+                        <input type="number" min="0" name="rate" #rate="ngModel" [(ngModel)]="data.rate" class="form-control"
+                            placeholder="" />
+                    </div>
+                    <div class="col-md-2 mrg-tsm">
+        
+                        <ng-select [(ngModel)]="data.rateCurrencyId" placeholder="-- Select --" name="rateCurrencyId"
+                            #rateCurrencyId="ngModel">
+                            <ng-option *ngFor="let i of currency" [value]="i.id">{{ i.code }}
+                            </ng-option>
+                        </ng-select>
+        
+                    </div>
+                    /
+                    <div class="col-md-4 mrg-tsm">
+                        <ng-select [(ngModel)]="data.rateUOMId" placeholder="-- Select --" name="rateUOMId"
+                            #rateUOMId="ngModel">
+                            <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
+                            </ng-option>
+                        </ng-select>
+                    </div>
+        
                 </div>
-                <div class="col-md-2">
-                   
-                    <ng-select [(ngModel)]="data.rateCurrencyId" placeholder="-- Select --" 
-                    name="rateCurrencyId" #rateCurrencyId="ngModel">
-                    <ng-option *ngFor="let i of currency" [value]="i.id">{{ i.code }} 
-                    </ng-option>
-                </ng-select>
-    
-                </div>
-                /
-                <div class="col-md-4">
-                    <ng-select [(ngModel)]="data.rateUOMId" placeholder="-- Select --" 
-                    name="rateUOMId" #rateUOMId="ngModel">
-                    <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
-                    </ng-option>
-                </ng-select>
-                </div>
-          
-              </div>
-              <div class="form-group row" *ngIf = "loggedInDepartmentName == 'Fabric Local'">
-                <label for="itemQuantity" class="col-sm-3 col-form-label "> Taxes</label>
-                <div class="col-md-4">
+        
+                <div class="form-group row" *ngIf="loggedInDepartmentName == 'Fabric Local'">
+                    <label for="itemQuantity" class="col-md-3 col-form-label "> Taxes</label>
+                    <div class="col-md-8">
+                        <div class="row">
+                    <div class="col-md-6">
                         <div class="input-group">
                             <div class="input-group-append">
                                 <span class="input-group-text" id="basic-addon2">GST</span>
                             </div>
-                            <input type="text" placeholder="tolerance value." class="form-control"
-                            name="gst"  #gst = "ngModel"
-                             [(ngModel)] = "data.gst"
-                            >
+                            <input type="text" placeholder="tolerance value." class="form-control" name="gst" #gst="ngModel"
+                                [(ngModel)]="data.gst">
                             <div class="input-group-append">
                                 <span class="input-group-text" id="basic-addon2">%</span>
                             </div>
                         </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="input-group">
-                        <div class="input-group-append">
-                            <span class="input-group-text" id="basic-addon2">W.I.Tax</span>
-                        </div>
-                        <input type="text" placeholder="tolerance value." class="form-control"
-                        name="witAx"  #witAx = "ngModel"
-                         [(ngModel)] = "data.witAx"
-                        >
-                        <div class="input-group-append">
-                            <span class="input-group-text" id="basic-addon2">%</span>
+                    </div>
+                    <div class="col-md-6 mrg-tsm">
+                        <div class="input-group">
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon2">W.I.Tax</span>
+                            </div>
+                            <input type="text" placeholder="tolerance value." class="form-control" name="witAx" #witAx="ngModel"
+                                [(ngModel)]="data.witAx">
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon2">%</span>
+                            </div>
                         </div>
                     </div>
-            </div>
+                    </div>
+                    </div>
+                </div>
+        
+                
+                <div class="form-group row">
+                    <label for="itemQuantity" class="col-md-3 col-form-label "> Total Cost </label>
 
-              </div>
-              <div class="form-group row">
-                <label for="itemQuantity" class="col-sm-3 col-form-label "> Total Cost </label>
-                <div class="col-sm-4">
-                    <input type="number" 
-                  class="form-control" value="" placeholder="Total Cost" name="contractCost"
-                    #contractCost = "ngModel" [(ngModel)] = "data.contractCost" />
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="number" class="form-control" value="" placeholder="Total Cost" name="contractCost"
+                                    #contractCost="ngModel" [(ngModel)]="data.contractCost" />
+                            </div>
+                            <div class="col-md-6 mrg-tsm" *ngIf="loggedInDepartmentName == 'Fabric Local'">
+                                <input type="number" class="form-control" value="" placeholder="Total Cost with GST" name="totalCostGSt"
+                                    #totalCostGSt="ngModel" [(ngModel)]="data.totalCostGSt" />
+                            </div>
+                        </div>
+                    </div>
+                
                 </div>
-                <div class="col-sm-4" *ngIf = "loggedInDepartmentName == 'Fabric Local'">
-                    <input type="number" 
-                  class="form-control" value="" placeholder="Total Cost with GST" 
-                  name="totalCostGSt"
-                    #totalCostGSt = "ngModel" [(ngModel)] = "data.totalCostGSt" 
-                    />
-                </div>
-              </div>
-             
+        
             </div>
+        </div>
 
        <!-- <div class="col-md-12 pt-3 pb-2 px-3" >
         <div class="form-row">

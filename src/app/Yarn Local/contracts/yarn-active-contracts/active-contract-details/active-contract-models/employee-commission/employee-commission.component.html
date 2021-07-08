@@ -19,43 +19,45 @@
 <div class="modal-body BG p-0">
   <form #CityForm="ngForm" novalidate>
 
-    <div class="col-md-12 pt-3 pb-2">
-
-      <div class="form-group row">
-        <label class="col-sm-3 col-form-label text_Navy">Agent</label>
-        <div class="col-sm-8">
-          <ng-select required placeholder="Select an Agent" name="userId" [(ngModel)]="data.userId"
-            (change)="GetCriteriaDropdown($event)" #userId="ngModel"
-            [ngClass]="{'error': userId.invalid && CityForm.submitted }">
-            <ng-option *ngFor="let i of user" [value]="i.id">
-              {{i.fullName}}
-            </ng-option>
-          </ng-select>
-
+    <div class="row justify-content-center">
+      <div class="col-10 col-md-11 pt-3 pb-2">
+    
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label text_Navy">Agent</label>
+          <div class="col-md-8">
+            <ng-select required placeholder="Select an Agent" name="userId" [(ngModel)]="data.userId"
+              (change)="GetCriteriaDropdown($event)" #userId="ngModel"
+              [ngClass]="{'error': userId.invalid && CityForm.submitted }">
+              <ng-option *ngFor="let i of user" [value]="i.id">
+                {{i.fullName}}
+              </ng-option>
+            </ng-select>
+    
+          </div>
         </div>
-      </div>
-
-      <div class="form-group row">
-        <label class="col-sm-3 col-form-label text_Navy">Criteria</label>
-        <div class="col-sm-8">
-          <ng-select required placeholder="Select Criteria" name="beneficiaryCriteriaId"
-            [(ngModel)]="data.beneficiaryCriteriaId" #beneficiaryCriteriaId="ngModel"
-            [ngClass]="{'error': beneficiaryCriteriaId.invalid && CityForm.submitted }">
-            <ng-option *ngFor="let i of criteria" [value]="i.id">
-              {{i.criteriaName}}
-            </ng-option>
-          </ng-select>
+    
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label text_Navy">Criteria</label>
+          <div class="col-md-8">
+            <ng-select required placeholder="Select Criteria" name="beneficiaryCriteriaId"
+              [(ngModel)]="data.beneficiaryCriteriaId" #beneficiaryCriteriaId="ngModel"
+              [ngClass]="{'error': beneficiaryCriteriaId.invalid && CityForm.submitted }">
+              <ng-option *ngFor="let i of criteria" [value]="i.id">
+                {{i.criteriaName}}
+              </ng-option>
+            </ng-select>
+          </div>
         </div>
-      </div>
-
-      <div class="form-group row">
-        <label for="details" class="col-sm-3 col-form-label">Detail</label>
-        <div class="col-sm-8">
-          <textarea [(ngModel)]="data.criteriaDetail" class="form-control" id="details" rows="5"
-            placeholder="Criteria Details" name="criteriaDetail"></textarea>
+    
+        <div class="form-group row">
+          <label for="details" class="col-md-3 col-form-label">Detail</label>
+          <div class="col-md-8">
+            <textarea [(ngModel)]="data.criteriaDetail" class="form-control" id="details" rows="5"
+              placeholder="Criteria Details" name="criteriaDetail"></textarea>
+          </div>
         </div>
+    
       </div>
-
     </div>
 
     <div class="modal-footer NotBG">

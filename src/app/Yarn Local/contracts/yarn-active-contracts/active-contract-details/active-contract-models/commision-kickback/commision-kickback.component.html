@@ -15,196 +15,204 @@
   </div>
 </div>
 
+
+
+
 <div class="modal-body BG p-0">
   <form #CityForm="ngForm" novalidate>
 
-    <div class="col-md-12 pt-3 pb-3">
-
-      <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName == 'Yarn Export'">
-
-        <label for="sellercomm" class="col-sm-3 col-form-label ">Kickback</label>
-        <div class=" col-md-8">
-          <div class="row">
-            <div class="col fieldmrgbtm">
-              <input type="number" class="form-control" placeholder="Comm %" 
-                    #kickbackPercentage="ngModel" name="kickbackPercentage" 
-                    [(ngModel)]="data.kickbackPercentage"
-
-               />
-
+    <div class="row justify-content-center">
+      <div class="col-10 col-md-11 pt-3 pb-2">
+    
+        <div class="form-group row"
+          *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName == 'Yarn Export'">
+    
+          <label for="sellercomm" class="col-md-3 col-form-label ">Kickback</label>
+    
+          <div class=" col-md-8">
+            <div class="row">
+              <div class="col fieldmrgbtm">
+                <input type="number" class="form-control" placeholder="Comm %" #kickbackPercentage="ngModel"
+                  name="kickbackPercentage" [(ngModel)]="data.kickbackPercentage" />
+    
+              </div>
+    
+              <div class="col-md-1 text-center">per</div>
+    
+              <div class="col">
+                <ng-select name="kickbackUOMId" placeholder="Select UOM" [(ngModel)]=" data.kickbackUOMId"
+                  #kickbackUOMId="ngModel">
+                  <ng-option *ngFor="let i of uomList" [value]="i.id">
+                    {{i.name}}
+                  </ng-option>
+                </ng-select>
+              </div>
+    
+              <div class="col-md-12">
+                <small>Kickback in %age, if UOM not selected</small>
+              </div>
+    
+    
             </div>
-
-            <div class="col-md-1 text-center">per</div>
-
-            <div class="col">
-              <ng-select name="kickbackUOMId" placeholder="Select UOM"
-                [(ngModel)]=" data.kickbackUOMId" #kickbackUOMId = "ngModel">
-                <ng-option *ngFor="let i of uomList" [value]="i.id">
-                  {{i.name}}
-                </ng-option>
-              </ng-select>
-            </div>
-
-            <div class="col-md-12">
-              <small>Kickback in %age, if UOM not selected</small>
-            </div>
-
-
           </div>
         </div>
-      </div>
-<div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName == 'Yarn Export'">
-
-  <label for="sellercomm" class="col-sm-3 col-form-label text_Navy">Beneficiary</label>
-<div class="col-md-8">
-  <input class="form-control" placeholder="Kickback Beneficiary Name"  type="text" 
-  #beneficiary = "ngModel"
-              [(ngModel)] = "data.beneficiary" name="beneficiary"
-  />
-</div>
-</div>
-      <div class="form-group row">
-        <label for="sellercomm" class="col-sm-3 col-form-label text_Navy">Fabcot Comm</label>
-        <div class=" col-md-8">
-          <div class="row">
-            <div class="col fieldmrgbtm">
-              <input type="number" class="form-control" placeholder="Comm %" #fabCotCommision = "ngModel"
-              [(ngModel)] = "data.fabCotCommision" name="fabCotCommision" 
-               />
-
-            </div>
-
-            <div class="col-md-1 text-center">per</div>
-
-            <div class="col">
-              <ng-select name="fabCotCommisionUOMId" placeholder="Select UOM"
-                [(ngModel)]=" data.fabCotCommisionUOMId" #fabCotCommisionUOMId = "ngModel">
-                <ng-option *ngFor="let i of uomList" [value]="i.id">
-                  {{i.name}}
-                </ng-option>
-              </ng-select>
-            </div>
-
-            <div class="col-md-12">
-              <small>FabCot Commission in %age, if UOM not selected</small>
-            </div>
-
-
+    
+        <div class="form-group row"
+          *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName == 'Yarn Export'">
+    
+          <label for="sellercomm" class="col-md-3 col-form-label text_Navy">Beneficiary</label>
+          <div class="col-md-8">
+            <input class="form-control" placeholder="Kickback Beneficiary Name" type="text" #beneficiary="ngModel"
+              [(ngModel)]="data.beneficiary" name="beneficiary" />
           </div>
         </div>
-      </div>
-
-      <div class="form-group row">
-        <label for="addinfo" class="col-sm-3 col-form-label">Additional Info</label>
-
-        <div class="col-md-8 fieldmrgbtm">
-          <input class="form-control" placeholder="Something about FabCot Commission"
-            name="fabcotSideCommAdditionalInfo" [(ngModel)]=" data.fabcotSideCommAdditionalInfo"
-             #fabcotSideCommAdditionalInfo = "ngModel" />
-        </div>
-      </div>
-  
-
-      <div class="form-group row" *ngIf = "loggedInDepartmentName != 'Yarn Export'">
-        <label for="buyercomm" class="col-sm-3 col-form-label text_Navy">Comm Buyer side</label>
-        <div class=" col-md-8">
-          <div class="row">
-            <div class="col fieldmrgbtm">
-              <input type="number" class="form-control" placeholder="Comm %" name="buyersideCommision" 
-                [(ngModel)]=" data.buyersideCommision" #buyersideCommision = "ngModel" />
+    
+        <div class="form-group row">
+          <label for="sellercomm" class="col-md-3 col-form-label text_Navy">Fabcot Comm</label>
+          <div class=" col-md-8">
+            <div class="row">
+              <div class="col fieldmrgbtm">
+                <input type="number" class="form-control" placeholder="Comm %" #fabCotCommision="ngModel"
+                  [(ngModel)]="data.fabCotCommision" name="fabCotCommision" />
+    
+              </div>
+    
+              <div class="col-md-1 text-center">per</div>
+    
+              <div class="col">
+                <ng-select name="fabCotCommisionUOMId" placeholder="Select UOM" [(ngModel)]=" data.fabCotCommisionUOMId"
+                  #fabCotCommisionUOMId="ngModel">
+                  <ng-option *ngFor="let i of uomList" [value]="i.id">
+                    {{i.name}}
+                  </ng-option>
+                </ng-select>
+              </div>
+    
+              <div class="col-md-12">
+                <small>FabCot Commission in %age, if UOM not selected</small>
+              </div>
+    
+    
             </div>
-
-            <div class="col-md-1">per</div>
-
-            <div class="col">
-              <ng-select name="buyersideCommisionUOMId" placeholder="Select UOM"
-                [(ngModel)]=" data.buyersideCommisionUOMId" #buyersideCommisionUOMId = "ngModel">
-                <ng-option *ngFor="let i of uomList" [value]="i.id">
-                  {{i.name}}
-                </ng-option>
-              </ng-select>
-            </div>
-
-            <div class="col-md-12">
-              <small>FabCot Commission in %age, if UOM not selected</small>
-            </div>
-
           </div>
         </div>
-      </div>
-
-      <div class="form-group row">
-        <label for="buyerinfo" class="col-sm-3 col-form-label">Additional Info</label>
-
-        <div class="col-md-8 fieldmrgbtm">
-          <input class="form-control" id="buyerinfo" placeholder="Something about buyer side Commission"
-            name="buyerSideCommAdditionalInfo" 
-            [(ngModel)]=" data.buyerSideCommAdditionalInfo" #buyerSideCommAdditionalInfo = "ngModel"/>
+    
+        <div class="form-group row">
+          <label for="addinfo" class="col-md-3 col-form-label">Additional Info</label>
+    
+          <div class="col-md-8 fieldmrgbtm">
+            <input class="form-control" placeholder="Something about FabCot Commission" name="fabcotSideCommAdditionalInfo"
+              [(ngModel)]=" data.fabcotSideCommAdditionalInfo" #fabcotSideCommAdditionalInfo="ngModel" />
+          </div>
         </div>
-      </div>
-<div class="form-group row" *ngIf = "loggedInDepartmentName == 'Yarn Export'">
-  <label for="agentcomm" class="col-sm-3 col-form-label">Agent Comm</label>
-  <div class=" col-md-8">
-    <div class="row">
-      <div class=" col-md-6">
-        <ng-select placeholder="Select an Agent" [(ngModel)]="data.agentId" #agentId = "ngModel" name="agentId">
-          <ng-option *ngFor="let i of agents" [value]="i.id">
-            {{i.name}}
-          </ng-option>
-        </ng-select>
-      </div>
-
-
-      <div class="col-md-6 fieldmrgbtm">
-        <input class="form-control" placeholder="Commission %" [(ngModel)]="data.agentCommission" #agentCommission = "ngModel" min="0"
-        name="agentCommission" />
-      </div>
-
-
-     </div>
-  </div>
-</div>
-
-
-      <div class="form-group row" *ngFor="let a of data1; let i = index;">
-        <label for="agentcomm" class="col-sm-3 col-form-label">Agent Comm</label>
-        <div class=" col-md-8">
-          <div class="row">
-            <div class=" col-md-6">
-              <ng-select placeholder="Select an Agent" [(ngModel)]="a.agentId" #agentId = "ngModel" name="agentId_{{i}}">
-                <ng-option *ngFor="let i of agents" [value]="i.id">
-                  {{i.name}}
-                </ng-option>
-              </ng-select>
+    
+    
+        <div class="form-group row" *ngIf="loggedInDepartmentName != 'Yarn Export'">
+          <label for="buyercomm" class="col-md-3 col-form-label text_Navy">Comm Buyer side</label>
+          <div class=" col-md-8">
+            <div class="row">
+              <div class="col fieldmrgbtm">
+                <input type="number" class="form-control" placeholder="Comm %" name="buyersideCommision"
+                  [(ngModel)]=" data.buyersideCommision" #buyersideCommision="ngModel" />
+              </div>
+    
+              <div class="col-md-1">per</div>
+    
+              <div class="col">
+                <ng-select name="buyersideCommisionUOMId" placeholder="Select UOM"
+                  [(ngModel)]=" data.buyersideCommisionUOMId" #buyersideCommisionUOMId="ngModel">
+                  <ng-option *ngFor="let i of uomList" [value]="i.id">
+                    {{i.name}}
+                  </ng-option>
+                </ng-select>
+              </div>
+    
+              <div class="col-md-12">
+                <small>FabCot Commission in %age, if UOM not selected</small>
+              </div>
+    
             </div>
-
-
-            <div class="col-md-6 fieldmrgbtm">
-              <input class="form-control" placeholder="Commission %" [(ngModel)]="a.agentCommission" #agentCommission = "ngModel" min="0"
-              name="agentCommission_{{i}}" />
+          </div>
+        </div>
+    
+        <div class="form-group row">
+          <label for="buyerinfo" class="col-md-3 col-form-label">Additional Info</label>
+    
+          <div class="col-md-8 fieldmrgbtm">
+            <input class="form-control" id="buyerinfo" placeholder="Something about buyer side Commission"
+              name="buyerSideCommAdditionalInfo" [(ngModel)]=" data.buyerSideCommAdditionalInfo"
+              #buyerSideCommAdditionalInfo="ngModel" />
+          </div>
+        </div>
+    
+        <div class="form-group row" *ngIf="loggedInDepartmentName == 'Yarn Export'">
+          <label for="agentcomm" class="col-md-3 col-form-label">Agent Comm</label>
+          <div class=" col-md-8">
+            <div class="row">
+              <div class=" col-md-6">
+                <ng-select placeholder="Select an Agent" [(ngModel)]="data.agentId" #agentId="ngModel" name="agentId">
+                  <ng-option *ngFor="let i of agents" [value]="i.id">
+                    {{i.name}}
+                  </ng-option>
+                </ng-select>
+              </div>
+    
+    
+              <div class="col-md-6 fieldmrgbtm">
+                <input class="form-control" placeholder="Commission %" [(ngModel)]="data.agentCommission"
+                  #agentCommission="ngModel" min="0" name="agentCommission" />
+              </div>
+    
+    
             </div>
-
-            <div class="col-md-12"><button class="btn btn-outline-danger mt-2 float-right" type="submit"
-              (click)="removefield(i)">
-                <i class="fas fa-minus fa-xs"></i></button>
-            </div> 
-
-           </div>
+          </div>
         </div>
-
-      </div>
-
-
-      <div class="row" *ngIf = "loggedInDepartmentName == 'Yarn Local' || loggedInDepartmentName == 'Yarn Export'">
-        <div class="col-md-3"></div>
-        <div class="col-md-7">
-          <button class="btn btn-outline-success" type="submit" (click)="addfield()">
-            <i class="fas fa-plus"></i>
-            Add Agent
-          </button>
+    
+    
+        <div class="form-group row" *ngFor="let a of data1; let i = index;">
+          <label for="agentcomm" class="col-md-3 col-form-label">Agent Comm</label>
+          <div class=" col-md-8">
+            <div class="row">
+              <div class=" col-md-6">
+                <ng-select placeholder="Select an Agent" [(ngModel)]="a.agentId" #agentId="ngModel" name="agentId_{{i}}">
+                  <ng-option *ngFor="let i of agents" [value]="i.id">
+                    {{i.name}}
+                  </ng-option>
+                </ng-select>
+              </div>
+    
+    
+              <div class="col-md-6 fieldmrgbtm">
+                <input class="form-control" placeholder="Commission %" [(ngModel)]="a.agentCommission"
+                  #agentCommission="ngModel" min="0" name="agentCommission_{{i}}" />
+              </div>
+    
+              <div class="col-md-12"><button class="btn btn-outline-danger mt-2 float-right" type="submit"
+                  (click)="removefield(i)">
+                  <i class="fas fa-minus fa-xs"></i></button>
+              </div>
+    
+            </div>
+          </div>
+    
         </div>
+    
+    
+    
+    
+    
+    
+        <div class="row" *ngIf="loggedInDepartmentName == 'Yarn Local' || loggedInDepartmentName == 'Yarn Export'">
+          <div class="col-md-3"></div>
+          <div class="col-md-7">
+            <button class="btn btn-outline-success" type="submit" (click)="addfield()">
+              <i class="fas fa-plus"></i>
+              Add Agent
+            </button>
+          </div>
+        </div>
+    
       </div>
-
     </div>
 
 
