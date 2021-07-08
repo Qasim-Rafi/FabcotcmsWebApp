@@ -37,3 +37,11 @@
   color: #337ab7 !important;
   background-color: #fff !important;
 }
+.buttonOuter{
+  background-color: #ffffff;
+  border: 1px solid #e2e2e2;
+  border-radius: 50px;
+  padding: 0px 10px;
+  margin: 10px 0px;
+  box-shadow: 0 0.4rem 0.5rem rgb(0 0 0 / 15%) !important;
+}
