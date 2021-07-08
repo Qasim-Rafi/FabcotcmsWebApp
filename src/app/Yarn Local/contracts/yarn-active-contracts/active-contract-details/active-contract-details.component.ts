@@ -35,6 +35,8 @@ import {ContractOwnerComponent} from 'src/app/contracts/contract-owner/contract-
 import { LCInfoComponent } from './active-contract-models/lcinfo/lcinfo.component';
 import { DocumentUploadPopUpComponent } from './active-contract-models/document-upload-pop-up/document-upload-pop-up.component';
 import { ArticleRevisePopupComponent } from 'src/app/shared/MODLES/article-revise-popup/article-revise-popup.component';
+import {NgbProgressbarConfig} from '@ng-bootstrap/ng-bootstrap';
+
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 @Component({
@@ -43,6 +45,7 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
   styleUrls: ['./active-contract-details.component.css']
 })
 export class ActiveContractDetailsComponent implements OnInit {
+
   dateformater: Dateformater = new Dateformater();
  
   reminderToggle : boolean = false
@@ -138,6 +141,7 @@ max1:any;
  yarnExportInvoiceReports:any={};
  revisedindexData:any;
   constructor(
+    config: NgbProgressbarConfig,
     private router: Router,
     private modalService: NgbModal,
     private route: ActivatedRoute,
@@ -145,7 +149,10 @@ max1:any;
     private http: HttpClient,
     private service: ServiceService,
     private toastr: ToastrService,
-  ) { }
+  ) { 
+    config.striped = true;
+    config.animated = true;
+  }
 
 
   ngOnInit(): void {

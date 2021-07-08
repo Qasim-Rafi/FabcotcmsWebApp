@@ -33,11 +33,14 @@
                 <div class="topbox-1">
                     <div class="topbox-margin-top-text border-bottom"> Completion Status
                         <span class="badge badge-primary float-right">Active</span>
+                        <span class="topbox-margin-end-text">
+                            &nbsp;
+                        </span>
                     </div>
 
                     <div class="box-body">
-                        <div class="mid-text" *ngIf="contractData.status =='BillAwaited'">100%</div>
-                        <div class="mid-text" *ngIf="contractData.status !='BillAwaited'">{{check}}%</div>
+                        <div class="mid-text text-primary" *ngIf="contractData.status =='BillAwaited'">100%</div>
+                        <div class="mid-text text-primary" *ngIf="contractData.status !='BillAwaited'">{{check}}%</div>
 
                         <br>
                             <ngb-progressbar *ngIf="contractData.status !='BillAwaited'" class="progress-bar progress text_Navy" role="progressbar" aria-valuenow="15"
@@ -62,14 +65,14 @@
                     </div>
 
                     <div class="box-body">
-                        <div class="mid-text">{{contractData.orderQuantity}}
+                        <div class="mid-text text-info">{{contractData.orderQuantity}}
                             <span class="topbox-margin-end-text">
                                 {{contractCostingData.rateUOMName}}
                             </span>   
                         </div>
                             
                         <br>
-                        <ngb-progressbar class="progress-bar progress text_Navy" role="progressbar" aria-valuenow="15"
+                        <ngb-progressbar class="progress-bar progress text_Navy" type="warning" role="progressbar" aria-valuenow="15"
                         aria-valuemin="0" aria-valuemax="100" [value]="25"></ngb-progressbar>
                         <small class="topbox-margin-end-text">
                             <i class="fas fa-truck"></i>
@@ -92,13 +95,13 @@
 
 
                     <div class="box-body">
-                        <div class="mid-text">{{contractData.orderAmount}}
+                        <div class="mid-text  text-danger">{{contractData.orderAmount}}
                             <span class="topbox-margin-end-text">
                                 {{contractCostingData.rateCurrencyName}}
                             </span>
                         </div>
                         <br>
-                        <ngb-progressbar class="progress-bar progress text_Navy" role="progressbar" aria-valuenow="15"
+                        <ngb-progressbar class="progress-bar progress text_Navy" type="danger" role="progressbar" aria-valuenow="15"
                         aria-valuemin="0" aria-valuemax="100" [value]="25"></ngb-progressbar>
                         <small class="topbox-margin-end-text">
                             <i class="far fa-money-bill-alt"></i>
@@ -120,9 +123,12 @@
                     </div>
 
                     <div class="box-body">
-                        <div class="mid-text">{{contractData.billingPayment}}</div>
+                        <div class="mid-text text-success">{{contractData.billingPayment}}</div>
+                        <span class="topbox-margin-end-text">
+                            &nbsp;
+                        </span>
                         <br>
-                        <ngb-progressbar class="progress-bar progress text_Navy" role="progressbar" aria-valuenow="15"
+                        <ngb-progressbar class="progress-bar progress text_Navy" type="success" role="progressbar" aria-valuenow="15"
                         aria-valuemin="0" aria-valuemax="100" [value]="25"></ngb-progressbar>
                         <small class="topbox-margin-end-text">
                             <i class="far fa-money-bill-alt"></i>
@@ -138,7 +144,7 @@
             </div>
         </div>
         <!-- /.row -->
-
+      <div class="buttonOuter">
         <div class="row py-3 justify-content-end">
             <div class="col-md-8 " *ngIf="contractData.status =='OnHold'">
                 <button class="btn btn-warning border-rounded px-3 mr-2 text-white" (click)="statusOpen()">
@@ -219,7 +225,7 @@
                 </button> -->
             </div>
         </div>
-
+    </div>
         <div class="card ibox-content">
             <div class="row">
                 <div class="col-md-12">
@@ -283,7 +289,8 @@
                     
                         <div class="col-md-12">
                     
-                    
+                            <div class="card shadow mb-4">
+                                <div class="card-body">
                             <div class="row my-3">
                     
                                 <div class="col-md-8">
@@ -384,8 +391,9 @@
                                 </div>
                     
                             </div>
-                    
-                            <br>
+                                </div>
+                            </div>
+                           
                             <!-- <br> -->
                     
                     
@@ -399,9 +407,10 @@
                     
                                 </div>
                             </div> -->
-                    
-
-                            <div class="border-top pt-3 pb-2">
+                    <hr>
+                            <div class="card shadow mb-4">
+                                <div class="card-body">
+                            <div class="pb-2">
                                 <span class="badge badge-primary">General Information</span>
                             </div>
 
@@ -464,7 +473,8 @@
                                 </div>
                     
                             </div>
-                    
+                    </div>
+                    </div>
                             <!-- </div> -->
                     
                             <!-- -------Parties Tab 2----------- -->
@@ -477,8 +487,10 @@
                     
                                 </div>
                             </div> -->
-
-                            <div class="border-top pt-3 pb-2">
+                            <hr>
+                            <div class="card shadow mb-4">
+                                <div class="card-body">
+                            <div class="pb-2">
                                 <span class="badge badge-primary">Parties</span>
                             </div>
                     
@@ -552,13 +564,17 @@
                             </div>
                     
                             <div class="row">
-                                <div class="col-md-12 mb-4">
+                                <div class="col-md-12">
                                     <button class="btn btn-outline-primary btn-sm float-right" (click)="editParties(contractData)">
                                         <i class="far fa-edit"></i></button>
                                 </div>
                             </div>
-                    
-                            <div class="border-top pt-3 pb-2" *ngIf = "loggedInDepartmentName == 'Yarn Export'">
+                                </div>
+                            </div>
+                               <hr *ngIf = "loggedInDepartmentName == 'Yarn Export'">
+                            <div class="card shadow mb-4"  *ngIf = "loggedInDepartmentName == 'Yarn Export'">
+                                <div class="card-body">
+                            <div class="pb-2">
                                 <span class="badge badge-primary">Construction</span>
                             </div>
                     
@@ -586,13 +602,18 @@
                             </div>
                     
                             <div class="row" *ngIf = "loggedInDepartmentName == 'Yarn Export'">
-                                <div class="col-md-12 mb-4">
+                                <div class="col-md-12">
                                     <button class="btn btn-outline-primary btn-sm float-right"
                                         (click)="editProductAndSpec(contractProductData)"> <i class="far fa-edit"></i></button>
                                 </div>
                             </div> 
+                                </div>
+                            </div>
 
-                            <div class="border-top pt-3 pb-2" *ngIf = "loggedInDepartmentName == 'Yarn Export'">
+                              <hr *ngIf = "loggedInDepartmentName == 'Yarn Export'">
+                            <div class="card shadow mb-4" *ngIf = "loggedInDepartmentName == 'Yarn Export'">
+                                <div class="card-body">
+                            <div class="pb-2">
                                 <span class="badge badge-primary">Article</span>
                             </div>
                     
@@ -693,14 +714,18 @@
 
                                 </div>
                             </div>
+                                </div>
+                            </div>
                             <!-- <div class="row">
-                                <div class="col-md-12 mb-4">
+                                <div class="col-md-12">
                                     <button class="btn btn-outline-primary btn-sm float-right"
                                         (click)="editProductAndSpec(contractProductData)"> <i class="far fa-edit"></i></button>
                                 </div>
                             </div> -->
-
-                            <div class="border-top pt-3 pb-2" *ngIf = "loggedInDepartmentName != 'Yarn Export'">
+                            <hr *ngIf = "loggedInDepartmentName != 'Yarn Export'">
+                            <div class="card shadow mb-4"  *ngIf = "loggedInDepartmentName != 'Yarn Export'">
+                                <div class="card-body">
+                            <div class="pb-2">
                                 <span class="badge badge-primary" *ngIf = "loggedInDepartmentName != 'Yarn Export'">Product & Specification</span>
                             </div>
                     
@@ -769,12 +794,13 @@
                                 </div>
                             </div>
                             <div class="row" *ngIf = "loggedInDepartmentName != 'Yarn Export'">
-                                <div class="col-md-12 mb-4">
+                                <div class="col-md-12">
                                     <button class="btn btn-outline-primary btn-sm float-right"
                                         (click)="editProductAndSpec(contractProductData)"> <i class="far fa-edit"></i></button>
                                 </div>
                             </div>
-                    
+                                </div>
+                            </div>
                     
                             <!-- </div> -->
                     
@@ -788,9 +814,10 @@
                     
                                 </div>
                             </div> -->
-
-
-                            <div class="border-top pt-3 pb-2" >
+                              <hr>
+                            <div class="card shadow mb-4">
+                                <div class="card-body">
+                            <div class="pb-2" >
                                 <span class="badge badge-primary">Quantity & Costing</span>
                             </div>
                     
@@ -882,12 +909,13 @@
                             </div>
                     
                             <div class="row">
-                                <div class="col-md-12 mb-4">
+                                <div class="col-md-12">
                                     <button class="btn btn-outline-primary btn-sm float-right" (click)="editQuantity(contractCostingData)">
                                         <i class="far fa-edit"></i></button>
                                 </div>
                             </div>
-                    
+                                </div>
+                            </div>
                             <!-- </div> -->
                     
                             <!-- -------Payment & Delivery Terms Tab 5----------- -->
@@ -900,9 +928,11 @@
                     
                                 </div>
                             </div> -->
+                            <hr>
+                            <div class="card shadow mb-4">
+                                <div class="card-body">
 
-
-                            <div class="border-top pt-3 pb-2">
+                            <div class="pb-2">
                                 <span class="badge badge-primary">Payment & Delivery Terms</span>
                             </div>
                     
@@ -971,17 +1001,21 @@
                             </div>
                     
                             <div class="row">
-                                <div class="col-md-12 mb-4">
+                                <div class="col-md-12">
                                     <button class="btn btn-outline-primary btn-sm float-right"
                                         (click)="editPaymentAndDelivery(contractPaymentData)">
                                         <i class="far fa-edit"></i></button>
                                 </div>
                             </div>
-                    
+                                </div>
+                            </div>
                             <!-- </div> -->
                     
                             <!-- -------Letter of Credit (L/C) Tab 6----------- -->
-                            <div class="form-row border-top">
+                            <hr>
+                            <div class="card shadow mb-4">
+                                <div class="card-body">
+                            <div class="form-row">
                                 <div class="col-md-12 pt-2r pb-3">
                     
                                     <div class="col-md-12">
@@ -995,7 +1029,7 @@
                             </div>
 
 
-                            <!-- <div class="border-top pt-3 pb-2">
+                            <!-- <div class="border-top pb-2">
                                 <span class="badge badge-primary">Delivery TimeLine</span>
                                
                             </div>
@@ -1005,7 +1039,7 @@
                             </div> -->
 
                             <!-- <div class="row">
-                                                    <div class="col-md-12 mb-4">
+                                                    <div class="col-md-12">
                                                         <button class="btn btn-outline-primary btn-sm float-right" >
                                                             Edit</button>
                                                     </div>
@@ -1081,15 +1115,18 @@
                             </div>
                     
                     
-                    
+                                </div>
+                            </div>
                     
                     
                     
                     
                             <!-- </div> -->
-                    
+                    <hr>
                             <!-- -------Commission Tab 7----------- -->
-                            <div class="border-top pt-3 pb-2">
+                            <div class="card shadow mb-4">
+                                <div class="card-body">
+                            <div class="pb-2">
                                 <div *ngIf="loggedInDepartmentName=='Yarn Local'">
                                     <span class="badge badge-primary">Commission</span>
                                 </div>
@@ -1170,12 +1207,13 @@
                     
                     
                                 </div>
-                                <div class="col-md-12 mb-4">
+                                <div class="col-md-12">
                                     <button class="btn btn-outline-primary btn-sm float-right" (click)="editKickbackComm()">
                                         <i class="far fa-edit"></i></button>
                                 </div>
                             </div>
-                    
+                                </div>
+                            </div>
                     
                             <!-- </div> -->
                     
@@ -1189,9 +1227,11 @@
                     
                                 </div>
                             </div> -->
+                              <hr>
+                              <div class="card shadow mb-4">
+                                <div class="card-body">
 
-
-                            <div class="border-top pt-3 pb-2">
+                            <div class="pb-2">
                                 <span class="badge badge-primary">Employee Commission</span>
                             </div>
 
@@ -1212,7 +1252,7 @@
                                                     </div> -->
                     
                             <div class="row">
-                                <div class="col-md-12 mb-4">
+                                <div class="col-md-12">
                                     <button class="btn btn-outline-primary btn-sm float-right" (click)="AddEmployeeComm('Add')"> <i
                                             class="fas fa-plus"></i></button>
                                 </div>
@@ -1265,7 +1305,8 @@
                                 </ngx-datatable-column>
                             </ngx-datatable>
                     
-                    
+                                </div>
+                              </div>
                             <!-- </div> -->
                     
                             <!-- -------Tab 9----------- -->
@@ -1278,9 +1319,10 @@
                     
                                 </div>
                             </div> -->
-
-
-                            <div class="border-top pt-3 pb-2">
+                                   <hr>
+                                   <div class="card shadow mb-4">
+                                    <div class="card-body">
+                            <div class="pb-2">
                                 <span class="badge badge-primary">Remarks / Other Conditions</span>
                             </div>
                             <!-- <div class="tab-pane fade show " id="nav-remarks" role="tabpanel"
@@ -1336,14 +1378,15 @@
                     
                     
                                 </div>
-                                <div class="col-md-12 mb-4">
+                                <div class="col-md-12">
                                     <button class="btn btn-outline-primary btn-sm float-right" (click)="editRemarks(contractRemarksData)">
                                         <i class="far fa-edit"></i></button>
                                 </div>
                     
                             </div>
                     
-                    
+                                    </div>
+                                   </div>
                     
                     
                             <!-- </div> -->
@@ -1365,6 +1408,8 @@
 
                 <div class="tab-pane fade show " id="nav-delivery" role="tabpanel" aria-labelledby="nav-delivery-tab">
                     <div class="col-md-12">
+                        <div class="card shadow mb-4">
+                            <div class="card-body">
                         <div class="row">
                             <div class="col-md-12 py-1">
                                 <div class="row mb-2">
@@ -1461,6 +1506,9 @@
                             </div>
 
                         </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
@@ -1644,7 +1692,8 @@
 <!-- L/C info tab -->
 <div class="tab-pane fade show " id="nav-lcInfo" role="tabpanel" aria-labelledby="nav-lcInfo-tab">
     <div class="col-md-12">
-
+        <div class="card shadow mb-4">
+            <div class="card-body">
         <div class="row">
             <div class="col-md-12 py-1">
                 <div class="row mb-2">
@@ -1667,7 +1716,7 @@
 
 
 
-        <div class="card-body  BG" >
+        <div class="card-body BG" >
 
             <div class="row pb-5" >
                 <div class="col-md-6 ">
@@ -1765,7 +1814,8 @@
 
         </div>
 
-
+            </div>
+        </div>
 
     </div>
 </div>
@@ -2109,6 +2159,8 @@
 
                 <div class="tab-pane fade show " id="nav-Documents" role="tabpanel" aria-labelledby="nav-Documents-tab">
                     <div class="col-md-12">
+                        <div class="card shadow mb-4">
+                            <div class="card-body">
                         <div class="row">
                             <div class="col-md-12 py-1">
                                 <div class="row mb-2">
@@ -2185,12 +2237,16 @@
                             </ngx-datatable>
                             </div>
                         </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!---------- Notes/Activity Tab ---------->
 
                 <div class="tab-pane fade show " id="nav-Notes" role="tabpanel" aria-labelledby="nav-Notes-tab">
                     <div class="col-md-12">
+                        <div class="card shadow mb-4">
+                            <div class="card-body">
                         <div class="row">
                             <div class="col-md-12 py-1">
                                 <div class="row mb-2">
@@ -2260,6 +2316,8 @@
                                         </ng-template>
                                     </ngx-datatable-column>
                                 </ngx-datatable>
+                            </div>
+                        </div>
                             </div>
                         </div>
                     </div>
