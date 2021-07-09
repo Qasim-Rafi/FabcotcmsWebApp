@@ -3,7 +3,7 @@
     <span aria-hidden="true">&times;</span>
   </button>
   <div>
-    <h5 class="modal-title py-0" *ngIf = "loggedInDepartmentName == 'Fabric Local' || loggedInDepartmentName == 'Yarn Export'">
+    <h5 class="modal-title py-0" *ngIf = "loggedInDepartmentName == 'Fabric Local' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Fabric Export'">
       <i class="fas fa-edit"></i>
       Edit Commission & Kickback
     </h5>
@@ -25,7 +25,7 @@
       <div class="col-10 col-md-11 pt-3 pb-2">
     
         <div class="form-group row"
-          *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName == 'Yarn Export'">
+          *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Fabric Export'">
     
           <label for="sellercomm" class="col-md-3 col-form-label ">Kickback</label>
     
@@ -58,7 +58,7 @@
         </div>
     
         <div class="form-group row"
-          *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName == 'Yarn Export'">
+          *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Fabric Export'">
     
           <label for="sellercomm" class="col-md-3 col-form-label text_Navy">Beneficiary</label>
           <div class="col-md-8">
@@ -107,7 +107,7 @@
         </div>
     
     
-        <div class="form-group row" *ngIf="loggedInDepartmentName != 'Yarn Export'">
+        <div class="form-group row" *ngIf="loggedInDepartmentName != 'Yarn Export' &&  loggedInDepartmentName == '!Fabric Export'">
           <label for="buyercomm" class="col-md-3 col-form-label text_Navy">Comm Buyer side</label>
           <div class=" col-md-8">
             <div class="row">
@@ -145,7 +145,7 @@
           </div>
         </div>
     
-        <div class="form-group row" *ngIf="loggedInDepartmentName == 'Yarn Export'">
+        <div class="form-group row" *ngIf="loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Fabric Export'">
           <label for="agentcomm" class="col-md-3 col-form-label">Agent Comm</label>
           <div class=" col-md-8">
             <div class="row">
@@ -202,7 +202,7 @@
     
     
     
-        <div class="row" *ngIf="loggedInDepartmentName == 'Yarn Local' || loggedInDepartmentName == 'Yarn Export'">
+        <div class="row" *ngIf="loggedInDepartmentName == 'Yarn Local' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Fabric Export'">
           <div class="col-md-3"></div>
           <div class="col-md-7">
             <button class="btn btn-outline-success" type="submit" (click)="addfield()">
