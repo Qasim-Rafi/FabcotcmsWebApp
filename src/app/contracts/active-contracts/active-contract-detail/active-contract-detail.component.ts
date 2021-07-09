@@ -67,6 +67,7 @@ export class ActiveContractDetailComponent implements OnInit {
   contractCommissionData: any = {};
   contractRemarksData: any = {};
   saleInvoiceData: any = {};
+  check:any=15;
   response: any;
   ItemCount: number;
   contractCount: number;
