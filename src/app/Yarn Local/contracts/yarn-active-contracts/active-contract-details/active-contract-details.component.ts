@@ -2445,14 +2445,14 @@ getImage(){
                         margin: [350 , -10 , 0 , 0],
                         table:{headerRows: 1 , widths:['12%' , '80%'],
                       body: [
-                        [{text:'GST:'  , style:'heading3'} , {text: this.printData['sellerGSTNumber'] , style:'heading3'}],] }
+                        [{text:'GST:'  , style:'heading3'} , {text: this.printData['sellerGSTNumber'] , style:'heading3' ,margin:[-20 , 0,0,0]}],] }
                       },
                       {
                         layout:'noBorders',
                         margin: [400 , -13 , 0 , 0],
                         table:{headerRows: 1 , widths:['16%' , '80%'],
                       body: [
-                        [{text:'NTN:'  , style:'heading3'} , {text: this.printData['sellerNTNNumber'] , style:'heading3'}],] }
+                        [{text:'NTN:'  , style:'heading3'} , {text: this.printData['sellerNTNNumber'] , style:'heading3' ,margin:[-10 , 0,0,0]}],] }
                       },
                       {
                         layout:'noBorders',
@@ -2675,7 +2675,7 @@ getImage(){
                      
                       {
                         layout:'noBorders',
-                        margin: [300 , -10 , 0 , 0],
+                        margin: [300 , -6 , 0 , 0],
                         table:{headerRows: 1 , widths:['12%' , '80%'],
                       body: [
                         [{text:'GST:'  , style:'heading3'} , {text: this.printData['sellerGSTNumber'] , style:'heading3',margin:[-20 , 0,0,0] }],] }
@@ -2998,7 +2998,7 @@ getImage(){
                      
                       {
                         layout:'noBorders',
-                        margin: [300 , -10 , 0 , 0],
+                        margin: [300 , -6 , 0 , 0],
                         table:{headerRows: 1 , widths:['12%' , '80%'],
                       body: [
                         [{text:'GST:'  , style:'heading3'} , {text: this.printData['sellerGSTNumber'] , style:'heading3',margin:[-20 , 0,0,0] }],] }
