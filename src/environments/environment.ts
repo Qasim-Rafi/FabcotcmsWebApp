@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   // apiUrl:'http://localhost:51381'
-  apiUrl:'https://egreatminds.com/WebApi'
+   apiUrl:'http://localhost:51381'
 };
 
 /*
