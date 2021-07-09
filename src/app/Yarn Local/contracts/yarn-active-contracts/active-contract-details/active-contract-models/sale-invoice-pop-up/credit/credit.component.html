@@ -18,105 +18,107 @@
   <div class="modal-body BG p-0">
     <form #creditForm="ngForm" novalidate>
     
-      <div class="col-md-12 pt-3 pb-2">
-
-    
-        <div class="form-group row" *ngIf="statusCheck=='Credit'" >
-          <label for="creditNoteNo" class="col-sm-3 col-form-label text_Navy">Credit Note No.</label>
-          <div class="col-sm-8">
-            <input type="text" class="form-control" placeholder="Credit Note No." name="creditNoteNo"
-              [(ngModel)]="data.creditNoteNo" #creditNoteNo="ngModel" />
+      <div class="row justify-content-center">
+        <div class="col-10 col-md-11 pt-3 pb-2">
+      
+      
+          <div class="form-group row" *ngIf="statusCheck=='Credit'">
+            <label for="creditNoteNo" class="col-md-3 col-form-label text_Navy">Credit Note No.</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" placeholder="Credit Note No." name="creditNoteNo"
+                [(ngModel)]="data.creditNoteNo" #creditNoteNo="ngModel" />
+            </div>
           </div>
-        </div>
-        <div class="form-group row" *ngIf="statusCheck=='Debit'" >
-          <label for="debitNoteNo" class="col-sm-3 col-form-label text_Navy">Debit Note No.</label>
-          <div class="col-sm-8">
-            <input type="text" class="form-control" placeholder="Debit Note No." name="debitNoteNo"
-              [(ngModel)]="data.debitNoteNo" #debitNoteNo="ngModel" />
+      
+          <div class="form-group row" *ngIf="statusCheck=='Debit'">
+            <label for="debitNoteNo" class="col-md-3 col-form-label text_Navy">Debit Note No.</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" placeholder="Debit Note No." name="debitNoteNo"
+                [(ngModel)]="data.debitNoteNo" #debitNoteNo="ngModel" />
+            </div>
           </div>
-        </div>
-  
-        <div class="form-group row" *ngIf="statusCheck=='Credit'">
-          <label for="creditDate" class="col-sm-3 col-form-label text_Navy">Credit Note Date</label>
-          <div class="col-sm-8" (clickOutside)="creditDate.close()">
-  
-            <input navigation="select" class="form-control  " ngbDatepicker #creditDate="ngbDatepicker"
-              (click)="creditDate.toggle()" placeholder="Credit Note date" name="creditNoteDate"
-              [(ngModel)]="data.creditNoteDate" #creditNoteDate="ngModel" />
+      
+          <div class="form-group row" *ngIf="statusCheck=='Credit'">
+            <label for="creditDate" class="col-md-3 col-form-label text_Navy">Credit Note Date</label>
+            <div class="col-md-8" (clickOutside)="creditDate.close()">
+      
+              <input navigation="select" class="form-control  " ngbDatepicker #creditDate="ngbDatepicker"
+                (click)="creditDate.toggle()" placeholder="Credit Note date" name="creditNoteDate"
+                [(ngModel)]="data.creditNoteDate" #creditNoteDate="ngModel" />
+            </div>
           </div>
-        </div>
-        <div class="form-group row" *ngIf="statusCheck=='Debit'">
-          <label for="debitNoteDate" class="col-sm-3 col-form-label text_Navy">Debit Note Date</label>
-          <div class="col-sm-8" (clickOutside)="debitDate.close()">
-  
-            <input navigation="select" class="form-control  " ngbDatepicker #debitDate="ngbDatepicker"
-              (click)="debitDate.toggle()" placeholder="Debit Note date" name="debitNoteDate"
-              [(ngModel)]="data.debitNoteDate" #debitNoteDate="ngModel" />
+      
+          <div class="form-group row" *ngIf="statusCheck=='Debit'">
+            <label for="debitNoteDate" class="col-md-3 col-form-label text_Navy">Debit Note Date</label>
+            <div class="col-md-8" (clickOutside)="debitDate.close()">
+      
+              <input navigation="select" class="form-control  " ngbDatepicker #debitDate="ngbDatepicker"
+                (click)="debitDate.toggle()" placeholder="Debit Note date" name="debitNoteDate"
+                [(ngModel)]="data.debitNoteDate" #debitNoteDate="ngModel" />
+            </div>
           </div>
-        </div>
+      
           <div class="form-group row">
-            <label for="itemQuantity" class="col-sm-3 col-form-label text_Navy">Quantity</label>
-            <div class="col-sm-3">
-                <input type="number" min="0" 
-                id="itemQuantity" #itemQuantity="ngModel"
-              name="quantity" [(ngModel)]="data.quantity" #quantity="ngModel"
-                class="form-control" value="" placeholder="Quantity" />
+            <label for="itemQuantity" class="col-md-3 col-form-label text_Navy">Quantity</label>
+            <div class="col-md-3">
+              <input type="number" min="0" id="itemQuantity" #itemQuantity="ngModel" name="quantity"
+                [(ngModel)]="data.quantity" #quantity="ngModel" class="form-control" value="" placeholder="Quantity" />
             </div>
             <div class="col-md-5">
-               
-              <ng-select
-              [(ngModel)]="data.uomId" placeholder="Unit" name="uomId">
-              <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
-              </ng-option>
-            </ng-select>
-
+      
+              <ng-select [(ngModel)]="data.uomId" placeholder="Unit" name="uomId">
+                <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
+                </ng-option>
+              </ng-select>
+      
             </div>
       
           </div>
+      
           <div class="form-group row">
-            <label for="amount" class="col-sm-3 col-form-label text_Navy">Amount</label>
-            <div class="col-sm-3">
-                <input type="number" min="0"  #amount="ngModel"
-              name="amount" [(ngModel)]="data.amount"
-                class="form-control" value="" placeholder="Amount" />
+            <label for="amount" class="col-md-3 col-form-label text_Navy">Amount</label>
+      
+            <div class="col-md-3">
+              <input type="number" min="0" #amount="ngModel" name="amount" [(ngModel)]="data.amount" class="form-control"
+                value="" placeholder="Amount" />
             </div>
+      
             <div class="col-md-5">
-               
-              <ng-select
-              [(ngModel)]="data.currencyId" placeholder="Currency" name="currencyId" #currencyId="ngModel">
-              <ng-option *ngFor="let i of currency" [value]="i.id">{{ i.code }}
-              </ng-option>
-            </ng-select>
-
+              <ng-select [(ngModel)]="data.currencyId" placeholder="Currency" name="currencyId" #currencyId="ngModel">
+                <ng-option *ngFor="let i of currency" [value]="i.id">{{ i.code }}
+                </ng-option>
+              </ng-select>
             </div>
       
           </div>
-          <div class="form-group row" >
-            <label for="taxPercentage" class="col-sm-3 col-form-label">Tax (%age)</label>
-            <div class="col-sm-8">
-                <div class="input-group">
-                    <div class="input-group-append">
-                    </div>
-                    <input type="number" placeholder="Tax %age" class="form-control"
-                        [(ngModel)]="data.taxPercentage" name="taxPercentage" #taxPercentage="ngModel">
-                    <div class="input-group-append">
-                        <span class="input-group-text" id="basic-addon2">%</span>
-                    </div>
+      
+          <div class="form-group row">
+            <label for="taxPercentage" class="col-md-3 col-form-label">Tax (%age)</label>
+            <div class="col-md-8">
+              <div class="input-group">
+                <div class="input-group-append">
                 </div>
+                <input type="number" placeholder="Tax %age" class="form-control" [(ngModel)]="data.taxPercentage"
+                  name="taxPercentage" #taxPercentage="ngModel">
+                <div class="input-group-append">
+                  <span class="input-group-text" id="basic-addon2">%</span>
+                </div>
+              </div>
             </div>
           </div>
-
-          
-         
       
-        <div class="form-group row">
-          <label for="reason" class="col-sm-3 col-form-label ">Reason</label>
-          <div class="col-sm-8">
-            <textarea rows="3" class="form-control" placeholder="Credit/Debit Note details here..."
-              name="reason" [(ngModel)]="data.reason" #reason="ngModel"></textarea>
+      
+      
+      
+          <div class="form-group row">
+            <label for="reason" class="col-md-3 col-form-label ">Reason</label>
+            <div class="col-md-8">
+              <textarea rows="3" class="form-control" placeholder="Credit/Debit Note details here..." name="reason"
+                [(ngModel)]="data.reason" #reason="ngModel"></textarea>
+            </div>
           </div>
+      
         </div>
-        
       </div>
   
       <div class="modal-footer NotBG" >
