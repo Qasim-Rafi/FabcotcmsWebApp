@@ -18,131 +18,132 @@
   <div class="modal-body BG p-0">
     <form #InvoiceForm="ngForm" novalidate>
   
-      <div class="col-md-12 pt-3 pb-2">
-
-       
-        <div class="form-group row">
-          <label for="saleInvoiceNo" class="col-sm-3 col-form-label text_Navy">Sale Inv. No.</label>
-          <div class="col-sm-8">
-            <input type="text" class="form-control" placeholder="Sale Invoice number" name="saleInvoiceNo"
-              [(ngModel)]="data.saleInvoiceNo" #saleInvoiceNo="ngModel" />
-          </div>
-        </div>
-  
-  
-        <div class="form-group row">
-          <label for="saleInvoiceDate" class="col-sm-3 col-form-label text_Navy">Sale Inv. Date</label>
-          <div class="col-sm-8" (clickOutside)="saleInvoiceDate.close()">
-  
-            <input navigation="select" class="form-control  " ngbDatepicker #saleInvoiceDate="ngbDatepicker"
-              (click)="saleInvoiceDate.toggle()" placeholder="Sale Invoice date" name="saleInvoiceDate"
-              [(ngModel)]="data.saleInvoiceDate" />
-          </div>
-        </div>
-
-       <div class="form-group row" *ngIf="loggedInDepartmentName=='Yarn Export'">
-          <label for="contractArticleId" class="col-sm-3 col-form-label">Article</label>
-          <div class="col-sm-8">
-            <ng-select [(ngModel)] = "data.contractArticleId" (change)="articleData($event)"  #contractArticleId="ngModel"
-               placeholder="Contract Articles" name="contractArticleId" >
-                <ng-option *ngFor = "let i of articles"  [value] = "i.id">{{i.articleName}}</ng-option>
-            </ng-select>
-          </div>
-        </div>
-        <div class="form-group row" *ngIf="loggedInDepartmentName=='Yarn Export'">
-          <label for="contractArticleCommission" class="col-sm-3 col-form-label text_Navy">Commission</label>
-          <div class="col-sm-3">
-              <input  min="0" disabled
-              #contractArticleCommission="ngModel" (keyup)="getquantity($event)"
-            name="contractArticleCommission" [(ngModel)]="data.contractArticleCommission"
-              class="form-control" value="" placeholder="Commission" />
-          </div>
-          <!-- <div class="col-md-4"> -->
-             
-          <label for="contractArticleRate" class="col-sm-1 col-form-label text_Navy">Rate</label>
-          <div class="col-sm-4">
-                
-            <input  min="0" disabled
-            #quantity="ngModel" (keyup)="getquantity($event)"
-          name="Article Rate" [(ngModel)]="data.contractArticleRate"
-            class="form-control" value="" placeholder="contractArticleRate" />
-</div>
-          <!-- </div> -->
-    
-        </div>
-        
-
-
+      <div class="row justify-content-center">
+        <div class="col-10 col-md-11 pt-3 pb-2">
+      
+      
           <div class="form-group row">
-            <label for="quantity" class="col-sm-3 col-form-label text_Navy">Quantity</label>
-            <div class="col-sm-3">
-                <input  min="0" disabled
-                #quantity="ngModel" (keyup)="getquantity($event)"
-              name="quantity" [(ngModel)]="data.quantity"
-                class="form-control" value="" placeholder="Quantity" />
+            <label for="saleInvoiceNo" class="col-md-3 col-form-label text_Navy">Sale Inv. No.</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" placeholder="Sale Invoice number" name="saleInvoiceNo"
+                [(ngModel)]="data.saleInvoiceNo" #saleInvoiceNo="ngModel" />
             </div>
-          <label for="quantity" class="col-sm-1 col-form-label text_Navy">Unit</label>
+          </div>
+      
+      
+          <div class="form-group row">
+            <label for="saleInvoiceDate" class="col-md-3 col-form-label text_Navy">Sale Inv. Date</label>
+            <div class="col-md-8" (clickOutside)="saleInvoiceDate.close()">
+      
+              <input navigation="select" class="form-control  " ngbDatepicker #saleInvoiceDate="ngbDatepicker"
+                (click)="saleInvoiceDate.toggle()" placeholder="Sale Invoice date" name="saleInvoiceDate"
+                [(ngModel)]="data.saleInvoiceDate" />
+            </div>
+          </div>
+      
+          <div class="form-group row" *ngIf="loggedInDepartmentName=='Yarn Export'">
+            <label for="contractArticleId" class="col-md-3 col-form-label">Article</label>
+            <div class="col-md-8">
+              <ng-select [(ngModel)]="data.contractArticleId" (change)="articleData($event)" #contractArticleId="ngModel"
+                placeholder="Contract Articles" name="contractArticleId">
+                <ng-option *ngFor="let i of articles" [value]="i.id">{{i.articleName}}</ng-option>
+              </ng-select>
+            </div>
+          </div>
 
+          <div class="form-group row" *ngIf="loggedInDepartmentName=='Yarn Export'">
+            <label for="contractArticleCommission" class="col-md-3 col-form-label text_Navy">Commission</label>
+            <div class="col-md-3">
+              <input min="0" disabled #contractArticleCommission="ngModel" (keyup)="getquantity($event)"
+                name="contractArticleCommission" [(ngModel)]="data.contractArticleCommission" class="form-control" value=""
+                placeholder="Commission" />
+            </div>
+            <!-- <div class="col-md-4"> -->
+      
+            <label for="contractArticleRate" class="col-sm-1 col-form-label text_Navy">Rate</label>
             <div class="col-md-4">
-               
-                  
-              <ng-select  (change)="getunit($event)" [(ngModel)] = "data.unit"   #unit="ngModel"
-               placeholder="Unit" name="unit" required>
-                <ng-option *ngFor = "let i of uomList"  [value] = "i.id">{{i.name}}</ng-option>
-            </ng-select>
-
+      
+              <input min="0" disabled #quantity="ngModel" (keyup)="getquantity($event)" name="Article Rate"
+                [(ngModel)]="data.contractArticleRate" class="form-control" value="" placeholder="contractArticleRate" />
+            </div>
+            <!-- </div> -->
+      
+          </div>
+      
+      
+      
+          <div class="form-group row">
+            <label for="quantity" class="col-md-3 col-form-label text_Navy">Quantity</label>
+            <div class="col-md-3">
+              <input min="0" disabled #quantity="ngModel" (keyup)="getquantity($event)" name="quantity"
+                [(ngModel)]="data.quantity" class="form-control" value="" placeholder="Quantity" />
+            </div>
+            <label for="quantity" class="col-md-1 col-form-label text_Navy">Unit</label>
+      
+            <div class="col-md-4">
+      
+      
+              <ng-select (change)="getunit($event)" [(ngModel)]="data.unit" #unit="ngModel" placeholder="Unit" name="unit"
+                required>
+                <ng-option *ngFor="let i of uomList" [value]="i.id">{{i.name}}</ng-option>
+              </ng-select>
+      
             </div>
       
           </div>
-
-
-
-
+      
+      
+      
+      
           <div class="form-group row">
-            <label for="amount" class="col-sm-3 col-form-label text_Navy">Amount</label>
-            <div class="col-sm-8">
-    
-                <input disabled type="text" class="form-control" placeholder="Invoice Amount" name="amount"
+            <label for="amount" class="col-md-3 col-form-label text_Navy">Amount</label>
+            <div class="col-md-8">
+      
+              <input disabled type="text" class="form-control" placeholder="Invoice Amount" name="amount"
                 [(ngModel)]="data.amount" #amount="ngModel" />
             </div>
           </div>
-
+      
           <div class="form-group row" *ngIf="loggedInDepartmentName=='Yarn Local'">
-            <label for="taxPercentage" class="col-sm-3 col-form-label">Tax %</label>
-            <div class="col-sm-8">
-                <div class="input-group">
-                    <div class="input-group-append">
-                    </div>
-                    <input type="text" placeholder="Invoice tax %age" class="form-control"
-                        [(ngModel)]="condition" name="condition">
-                    <div class="input-group-append">
-                        <span class="input-group-text" id="basic-addon2">%</span>
-                    </div>
+            <label for="taxPercentage" class="col-md-3 col-form-label">Tax %</label>
+            <div class="col-md-8">
+              <div class="input-group">
+                <div class="input-group-append">
                 </div>
+                <input type="text" placeholder="Invoice tax %age" class="form-control" [(ngModel)]="condition"
+                  name="condition">
+                <div class="input-group-append">
+                  <span class="input-group-text" id="basic-addon2">%</span>
+                </div>
+              </div>
             </div>
           </div>
+
           <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local'">
-            <label for="taxPercentage" class="col-sm-3 col-form-label">Tax %</label>
-            <div class="col-sm-8">
-                <div class="input-group">
-                    <div class="input-group-append">
-                    </div>
-                    <input type="text" placeholder="Invoice tax %age" class="form-control"
-                        [(ngModel)]="data.taxPercentage" name="taxPercentage" #taxPercentage="ngModel">
-                    <div class="input-group-append">
-                        <span class="input-group-text" id="basic-addon2">%</span>
-                    </div>
+            <label for="taxPercentage" class="col-md-3 col-form-label">Tax %</label>
+            <div class="col-md-8">
+              <div class="input-group">
+                <div class="input-group-append">
                 </div>
+                <input type="text" placeholder="Invoice tax %age" class="form-control" [(ngModel)]="data.taxPercentage"
+                  name="taxPercentage" #taxPercentage="ngModel">
+                <div class="input-group-append">
+                  <span class="input-group-text" id="basic-addon2">%</span>
+                </div>
+              </div>
             </div>
           </div>
-        <div class="form-group row">
-          <label for="saleInvoiceRemarks" class="col-sm-3 col-form-label ">Remarks</label>
-          <div class="col-sm-8">
-            <textarea name="saleInvoiceRemarks" rows="3" class="form-control" placeholder="Sale invoice additional details here..."
-              name="saleInvoiceRemarks" [(ngModel)]="data.saleInvoiceRemarks" #saleInvoiceRemarks="ngModel"></textarea>
+          
+          <div class="form-group row">
+            <label for="saleInvoiceRemarks" class="col-md-3 col-form-label ">Remarks</label>
+            <div class="col-md-8">
+              <textarea name="saleInvoiceRemarks" rows="3" class="form-control"
+                placeholder="Sale invoice additional details here..." name="saleInvoiceRemarks"
+                [(ngModel)]="data.saleInvoiceRemarks" #saleInvoiceRemarks="ngModel"></textarea>
+            </div>
           </div>
+      
         </div>
-        
       </div>
   
       <div class="modal-footer NotBG">

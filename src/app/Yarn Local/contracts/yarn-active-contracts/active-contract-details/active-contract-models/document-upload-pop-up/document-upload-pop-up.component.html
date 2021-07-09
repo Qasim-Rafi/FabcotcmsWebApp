@@ -24,119 +24,124 @@
 
     <form #form='ngForm'>
 
-        <!-- <div class="form-group row">
-            <label class="col-md-3 col-form-label control-label">Department</label>
-
-            <div class="col-sm-8">
-                <ng-select required [(ngModel)]="data.departmentId" placeholder="-- Select --"
-                    name="departmentId">
-                    <ng-option *ngFor="let i of department" [value]="i.id">{{ i.name }}
-                        <span class="text-muted" style="font-size: 11px">( {{ i.details }} )</span>
-                    </ng-option>
-                </ng-select>
-            </div>
-        </div> -->
-
-
-        <!-- <div class="form-group row">
-            <label for="inputEmail3" class="col-md-3 col-form-label control-label">Contract</label>
-            <div class="col-md-8">
-                <div class="input-group">
-
-                    <ng-select required [(ngModel)]="data.contractId" placeholder="-- Select --"
-                        name="contractId">
-                        <ng-option *ngFor="let i of contracts" [value]="i.id">{{ i.autoContractNumber }}
-                            <span class="text-muted" style="font-size: 11px">( {{ i.details }} )</span>
-                        </ng-option>
-                    </ng-select>
-                    
-                    <input class="form-control text-w-4" placeholder="ENTER AND SEARCH CONTRACT">
-
-                    <button type="button" class="btn btn-light btn-outline clrbtn" >
-                        <i class="fa fa-search"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-dark">
-                        <i class="fas fa-sync-alt"></i>
-                    </button>
-
-                    
-                </div>
-
-                <small>Enter atleast 3 digits of the contract no. & press the button</small>
-
-            </div>
-        </div> -->
-
-
-
-        <div class="form-group row">
-            <label class="col-md-3 col-form-label control-label">Document Type</label>
-            <div class="col-md-8">
-                <div>
-                    <ng-select [(ngModel)]="data.typeId" placeholder="-- Select --" name="typeId">
-                        <ng-option *ngFor="let i of type" [value]="i.id">{{ i.name }}
-                            <span class="text-muted" style="font-size: 11px">( {{ i.details }} )</span>
-                        </ng-option>
-                    </ng-select>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <label class="col-md-3 col-form-label control-label">File</label>
-            <div class="col-md-8">
-                <div class="input-group">
-                    <!-- <button type="button" class="btn clrbtn">
-                        <i class="fa fa-folder-open"></i> Browse file to upload on Cloud Server
-                    </button> -->
-                    <input type="file" class="btn clrbtn text-white" (change)="onSelectedFile($event)" />
-                </div>
-            </div>
-        </div>
-
-
-        <div class="form-group row">
-            <label class="col-md-3 col-form-label control-label">Note</label>
-            <div class="col-md-8">
-                <textarea [(ngModel)]="data.note"
-                name="note" cols="50" rows="3" class="form-control text-w-4"
-                    placeholder="Brief note about scan document"></textarea>
-            </div>
-        </div>
-
-        <!-- <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-8">
-
-            
-        <div *ngIf="fileUpload.status==='progress'">
-            <div class="progress progressbar">
-                <div class="progress-bar" role="progressbar" [style.width.%]="fileUpload.message">
-                    {{fileUpload.message}}%</div>
-            </div>
-        </div>
-
-             </div>
-        </div> -->
-
-
-        <!-- <div class="form-group row mt-5">
-            <label class="col-md-3 col-form-label control-label"></label>
-            <div class="col-md-8">
-                <div class="btn-group mr-2">
-                    <button type="submit" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Upload File on Server">
-                        <i class="fas fa-cloud-upload-alt"></i> Upload Document
-                    </button>
-                </div>
-                <button type="button" routerLink="/cloud/doclist" class="btn btn clrbtn btn-sm">
-                    <i class="fa fa-list"></i>&nbsp;Document List
-                </button>
-
-            </div>
-        </div> -->
-
+        <div class="row justify-content-center">
+            <div class="col-10 col-md-11 pt-3 pb-2">
         
+                <!-- <div class="form-group row">
+                    <label class="col-md-3 col-form-label control-label">Department</label>
+        
+                    <div class="col-sm-8">
+                        <ng-select required [(ngModel)]="data.departmentId" placeholder="-- Select --"
+                            name="departmentId">
+                            <ng-option *ngFor="let i of department" [value]="i.id">{{ i.name }}
+                                <span class="text-muted" style="font-size: 11px">( {{ i.details }} )</span>
+                            </ng-option>
+                        </ng-select>
+                    </div>
+                </div> -->
+        
+        
+                <!-- <div class="form-group row">
+                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Contract</label>
+                    <div class="col-md-8">
+                        <div class="input-group">
+        
+                            <ng-select required [(ngModel)]="data.contractId" placeholder="-- Select --"
+                                name="contractId">
+                                <ng-option *ngFor="let i of contracts" [value]="i.id">{{ i.autoContractNumber }}
+                                    <span class="text-muted" style="font-size: 11px">( {{ i.details }} )</span>
+                                </ng-option>
+                            </ng-select>
+                            
+                            <input class="form-control text-w-4" placeholder="ENTER AND SEARCH CONTRACT">
+        
+                            <button type="button" class="btn btn-light btn-outline clrbtn" >
+                                <i class="fa fa-search"></i>
+                            </button>
+                            <button type="button" class="btn btn-outline-dark">
+                                <i class="fas fa-sync-alt"></i>
+                            </button>
+        
+                            
+                        </div>
+        
+                        <small>Enter atleast 3 digits of the contract no. & press the button</small>
+        
+                    </div>
+                </div> -->
+        
+        
+        
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label control-label">Document Type</label>
+                    <div class="col-md-8">
+                        <div>
+                            <ng-select [(ngModel)]="data.typeId" placeholder="-- Select --" name="typeId">
+                                <ng-option *ngFor="let i of type" [value]="i.id">{{ i.name }}
+                                    <span class="text-muted" style="font-size: 11px">( {{ i.details }} )</span>
+                                </ng-option>
+                            </ng-select>
+                        </div>
+        
+                    </div>
+                </div>
+        
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label control-label">File</label>
+                    <div class="col-md-8">
+                        <div class="input-group">
+                            <!-- <button type="button" class="btn clrbtn">
+                                <i class="fa fa-folder-open"></i> Browse file to upload on Cloud Server
+                            </button> -->
+                            <input type="file" class="btn clrbtn text-white" (change)="onSelectedFile($event)" />
+                        </div>
+                    </div>
+                </div>
+        
+        
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label control-label">Note</label>
+                    <div class="col-md-8">
+                        <textarea [(ngModel)]="data.note" name="note" cols="50" rows="3" class="form-control text-w-4"
+                            placeholder="Brief note about scan document"></textarea>
+                    </div>
+                </div>
+        
+                <!-- <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-8">
+        
+                    
+                <div *ngIf="fileUpload.status==='progress'">
+                    <div class="progress progressbar">
+                        <div class="progress-bar" role="progressbar" [style.width.%]="fileUpload.message">
+                            {{fileUpload.message}}%</div>
+                    </div>
+                </div>
+        
+                     </div>
+                </div> -->
+        
+        
+                <!-- <div class="form-group row mt-5">
+                    <label class="col-md-3 col-form-label control-label"></label>
+                    <div class="col-md-8">
+                        <div class="btn-group mr-2">
+                            <button type="submit" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Upload File on Server">
+                                <i class="fas fa-cloud-upload-alt"></i> Upload Document
+                            </button>
+                        </div>
+                        <button type="button" routerLink="/cloud/doclist" class="btn btn clrbtn btn-sm">
+                            <i class="fa fa-list"></i>&nbsp;Document List
+                        </button>
+        
+                    </div>
+                </div> -->
+        
+            </div>
+        </div>
+
+
     <div class="modal-footer NotBG" >
         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" (click)="activeModal.close()">Close</button>
         <button class="btn button-save" data-toggle="tooltip" data-placement="top" title="Upload File on Server"  *ngIf="statusCheck == 'Add'" type="submit"
