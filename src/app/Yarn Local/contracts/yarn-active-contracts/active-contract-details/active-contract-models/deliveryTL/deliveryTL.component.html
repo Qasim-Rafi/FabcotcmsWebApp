@@ -28,7 +28,7 @@
       <div class="row justify-content-center">
         <div class="col-10 col-md-11 pt-3 pb-2" *ngIf="this.statusCheck !='Edit'">
   
-          <div class="form-group row" *ngIf="loggedInDepartmentName == 'Yarn Export'">
+          <div class="form-group row" *ngIf="loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Fabric Export'">
             <label for="itemQuantity" class="col-md-3 col-form-label text_Navy"> L/C No.
             </label>
   
@@ -209,7 +209,7 @@
         <div class="row justify-content-center">
           <div class="col-10 col-md-11 pt-3 pb-2" *ngIf="this.statusCheck =='Edit'">
         
-            <div class="form-group row" *ngIf="loggedInDepartmentName == 'Yarn Export'">
+            <div class="form-group row" *ngIf="loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Fabric Export'">
               <label class="col-md-3 col-form-label text_Navy"> L/C No.
               </label>
         

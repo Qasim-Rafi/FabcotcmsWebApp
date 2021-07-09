@@ -93,7 +93,7 @@
         </div>
     
     
-        <div class="form-group row" *ngIf="loggedInDepartmentName != 'Yarn Export'">
+        <div class="form-group row" *ngIf="loggedInDepartmentName != 'Yarn Export' &&  loggedInDepartmentName != 'Fabric Export'">
           <label for="description" class="col-md-3 col-form-label text-Navy">Payment Terms (Buyer Side)</label>
           <div class="col-md-4">
             <ng-select required name="buyerPaymentTermId" id="buyerPaymentTermId" placeholder="Payment Terms"
@@ -147,7 +147,7 @@
           </div>
     
           <div class="col-md-4 mrg-tsm"
-            *ngIf="loggedInDepartmentName == 'Fabric Local' || loggedInDepartmentName == 'Yarn Export'">
+            *ngIf="loggedInDepartmentName == 'Fabric Local' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Fabric Export' ">
             <ng-select required name="destinationId" placeholder="-- Select --" [(ngModel)]="data.destinationId"
               #destinationId="ngModel" [ngClass]="{'error': destinationId.invalid && partiesForm.submitted }">
               <ng-option *ngFor="let i of city" [value]="i.id">
@@ -159,7 +159,7 @@
         </div>
     
         <div class="form-group row"
-          *ngIf="loggedInDepartmentName == 'Fabric Local' || loggedInDepartmentName == 'Yarn Export'">
+          *ngIf="loggedInDepartmentName == 'Fabric Local' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Fabric Export'">
           <label for="description" class="col-md-3 col-form-label text_Navy">Container</label>
     
           <div class="col-md-4">
