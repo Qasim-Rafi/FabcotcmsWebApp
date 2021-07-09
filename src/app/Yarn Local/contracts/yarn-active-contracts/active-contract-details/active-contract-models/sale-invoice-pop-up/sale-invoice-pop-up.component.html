@@ -53,7 +53,12 @@
 
           <div class="form-group row" *ngIf="loggedInDepartmentName=='Yarn Export'">
             <label for="contractArticleCommission" class="col-md-3 col-form-label text_Navy">Commission</label>
-            <div class="col-md-3">
+            <div class="col-md-3" *ngIf="loggedInDepartmentName!='Yarn Export'">
+              <input min="0" #contractArticleCommission="ngModel" (keyup)="getquantity($event)"
+                name="contractArticleCommission" [(ngModel)]="data.contractArticleCommission" class="form-control" value=""
+                placeholder="Commission" />
+            </div>
+            <div class="col-md-3" *ngIf="loggedInDepartmentName=='Yarn Export'">
               <input min="0" disabled #contractArticleCommission="ngModel" (keyup)="getquantity($event)"
                 name="contractArticleCommission" [(ngModel)]="data.contractArticleCommission" class="form-control" value=""
                 placeholder="Commission" />
@@ -61,7 +66,12 @@
             <!-- <div class="col-md-4"> -->
       
             <label for="contractArticleRate" class="col-sm-1 col-form-label text_Navy">Rate</label>
-            <div class="col-md-4">
+            <div class="col-md-4" *ngIf="loggedInDepartmentName!='Yarn Export'">
+      
+              <input min="0" #quantity="ngModel" (keyup)="getquantity($event)" name="Article Rate"
+                [(ngModel)]="data.contractArticleRate" class="form-control" value="" placeholder="contractArticleRate" />
+            </div>
+            <div class="col-md-4" *ngIf="loggedInDepartmentName=='Yarn Export'">
       
               <input min="0" disabled #quantity="ngModel" (keyup)="getquantity($event)" name="Article Rate"
                 [(ngModel)]="data.contractArticleRate" class="form-control" value="" placeholder="contractArticleRate" />
@@ -74,7 +84,11 @@
       
           <div class="form-group row">
             <label for="quantity" class="col-md-3 col-form-label text_Navy">Quantity</label>
-            <div class="col-md-3">
+            <div class="col-md-3" *ngIf="loggedInDepartmentName!='Yarn Export'">
+              <input min="0" #quantity="ngModel" (keyup)="getquantity($event)" name="quantity"
+                [(ngModel)]="data.quantity" class="form-control" value="" placeholder="Quantity" />
+            </div>
+            <div class="col-md-3" *ngIf="loggedInDepartmentName=='Yarn Export'">
               <input min="0" disabled #quantity="ngModel" (keyup)="getquantity($event)" name="quantity"
                 [(ngModel)]="data.quantity" class="form-control" value="" placeholder="Quantity" />
             </div>
