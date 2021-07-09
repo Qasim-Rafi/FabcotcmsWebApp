@@ -17,6 +17,13 @@ export class TemplateComponent implements OnInit {
   isHomeTextileandGarments:boolean;
   isFabricLocal:boolean;
   userrole:string;
+  Contract: boolean = false;
+  Billing: boolean = false;
+  Config: boolean = false;
+  Product: boolean = false;
+  Bank: boolean = false;
+  Enqurie: boolean = false;
+  Textile: boolean = false;
   constructor( private router: Router,) { }
 
   ngOnInit(): void {
@@ -118,5 +125,27 @@ Swal.fire({
   //       AdminLte.Treeview._jQueryInterface.call($(this), 'init');
   //   });
   // }
-
+  menuOpen(menuName){
+    if(menuName == 'Contract'){
+      this.Contract = !this.Contract;       
+    }
+    else if(menuName == 'Billing'){
+       this.Billing =!this.Billing;
+    }
+    else if(menuName == 'Config'){
+      this.Config =!this.Config;
+   }
+   else if(menuName == 'Product'){
+    this.Product =!this.Product;
+ }
+ else if(menuName == 'Bank'){
+  this.Bank =!this.Bank;
+}
+else if(menuName == 'Enqurie'){
+  this.Enqurie =!this.Enqurie;
+}
+else if(menuName == 'Textile'){
+  this.Textile =!this.Textile;
+}
+}
 }

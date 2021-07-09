@@ -117,7 +117,7 @@
         <!-- Sidebar Menu -->
         <div class="bar">
           <nav class="mt-2" *ngIf="isHomeTextileandGarments">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="true">
               <!-- Add icons to the links using the .nav-icon class
                  with font-awesome or any other icon font library -->
               <li class="nav-item">
@@ -126,13 +126,13 @@
                   <p>Home</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link">
+              <li class="nav-item" [ngClass]="Enqurie ? 'menu-open' : ''">
+                <a (click)="menuOpen('Enqurie')" class="nav-link">
                   <i class="fas fa-phone-volume nav-icon"></i>
                   <p>Business Enquiry</p>
                   <i class="right fas fa-angle-left"></i>
                 </a>
-                <ul class="nav nav-treeview sublist">
+                <ul class="nav nav-treeview sublist" [ngClass]="Enqurie ? 'UlClassOpenMenu' : 'UlClassCloseMenu'">
                   <li class="nav-item">
                     <a routerLink="/enquiry/enquiries" class="nav-link" routerLinkActive="active">
                       <i class="fas fa-plus nav-icon"></i>
@@ -166,13 +166,13 @@
                 </ul>
               </li>
   
-              <li class="nav-item">
-                <a class="nav-link">
+              <li class="nav-item" [ngClass]="Contract ? 'menu-open' : ''">
+                <a (click)="menuOpen('Contract')" class="nav-link">
                   <i class="fas fa-file-contract"></i>
                   <p>Contracts</p>
                   <i class="right fas fa-angle-left"></i>
                 </a>
-                <ul class="nav nav-treeview sublist">
+                <ul class="nav nav-treeview sublist" [ngClass]="Contract ? 'UlClassOpenMenu' : 'UlClassCloseMenu'">
                   <li class="nav-item">
                     <a routerLink="/contract/active-contract" class="nav-link" routerLinkActive="active">
                       <i class="fas fa-plus nav-icon"></i>
@@ -194,14 +194,14 @@
                 </ul>
               </li>
              
-              <li class="nav-item">
-                <a class="nav-link">
+              <li class="nav-item" [ngClass]="Billing ? 'menu-open' : ''">
+                <a (click)="menuOpen('Billing')" class="nav-link">
                   <i class="far fa-money-bill-alt"></i>
                   <p>Billing & Payment</p>
                   <i class="right fas fa-angle-left"></i>
                 </a>
               
-                <ul class="nav nav-treeview sublist">
+                <ul class="nav nav-treeview sublist" [ngClass]="Billing ? 'UlClassOpenMenu' : 'UlClassCloseMenu'">
                   <li class="nav-item">
                     <a routerLink="/billing-and-payment/generate-bills" class="nav-link" routerLinkActive="active">
                       <i class="far fa-circle nav-icon"></i>
@@ -276,13 +276,13 @@
                   </li>
                 </ul>
               </li> 
-              <li class="nav-item">
-                <a class="nav-link">
+              <li class="nav-item" [ngClass]="Config ? 'menu-open' : ''">
+                <a (click)="menuOpen('Config')" class="nav-link">
                   <i class="fas fa-cogs"></i>
                   <p>Configuration</p>
                   <i class="right fas fa-angle-left"></i>
                 </a>
-                <ul class="nav nav-treeview sublist">
+                <ul class="nav nav-treeview sublist" [ngClass]="Config ? 'UlClassOpenMenu' : 'UlClassCloseMenu'">
                   <li class="nav-item">
                     <a routerLink="/config/buyer" class="nav-link" routerLinkActive="active">
                       <i class="fas fa-hands-helping"></i>
@@ -307,13 +307,13 @@
                       <p>Articles</p>
                     </a>
                   </li>
-                  <li class="nav-item">
-                    <a routerLink="/config/product" class="nav-link" routerLinkActive="active">
+                  <li class="nav-item" [ngClass]="Product ? 'menu-open' : ''">
+                    <a (click)="menuOpen('Product')" routerLink="/config/product" class="nav-link" routerLinkActive="active">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Product</p>
                       <i class="right fas fa-angle-left"></i>
                     </a>
-                    <ul class="nav nav-treeview sublist">
+                    <ul class="nav nav-treeview sublist" [ngClass]="Product ? 'UlClassOpenMenu' : 'UlClassCloseMenu'">
                       <li class="nav-item">
                         <a routerLink="/config/fabric-type" class="nav-link" routerLinkActive="active">
                           <i class="far fa-circle nav-icon"></i>
@@ -340,13 +340,13 @@
                       </li>
                     </ul>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link">
+                  <li class="nav-item" [ngClass]="Textile ? 'menu-open' : ''">
+                    <a (click)="menuOpen('Textile')" class="nav-link">
                       <i class="fas fa-tshirt"></i>
                       <p>Textile/Garments</p>
                       <p><i class="right fas fa-angle-left"></i></p>
                     </a>
-                    <ul class="nav nav-treeview sublist">
+                    <ul class="nav nav-treeview sublist" [ngClass]="Textile ? 'UlClassOpenMenu' : 'UlClassCloseMenu'">
                       <li class="nav-item">
                         <a routerLink="/config/process" class="nav-link" routerLinkActive="active">
                           <i class="far fa-circle nav-icon"></i>
@@ -392,13 +392,13 @@
                     </ul>
   
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link">
+                  <li class="nav-item" [ngClass]="Bank ? 'menu-open' : ''">
+                    <a (click)="menuOpen('Bank')" class="nav-link">
                       <i class="fas fa-calculator"></i>
                       <p>Bank Info</p>
                       <i class="right fas fa-angle-left"></i>
                     </a>
-                    <ul class="nav nav-treeview sublist">
+                    <ul class="nav nav-treeview sublist" [ngClass]="Bank ? 'UlClassOpenMenu' : 'UlClassCloseMenu'">
                       <li class="nav-item">
                         <a routerLink="/config/bank" class="nav-link" routerLinkActive="active">
                           <i class="far fa-circle nav-icon"></i>
@@ -498,13 +498,13 @@
                 </a>
               </li>
              
-              <li class="nav-item">
-                <a class="nav-link">
+              <li class="nav-item" [ngClass]="Contract ? 'menu-open' : ''">
+                <a (click)="menuOpen('Contract')" class="nav-link">
                   <i class="fas fa-file-contract"></i>
                   <p>Contracts</p>
                   <i class="right fas fa-angle-left"></i>
                 </a>
-                <ul class="nav nav-treeview sublist">
+                <ul class="nav nav-treeview sublist" [ngClass]="Contract ? 'UlClassOpenMenu' : 'UlClassCloseMenu'">
                   <li class="nav-item">
                     <a routerLink="/FabCot/add-new-contract" class="nav-link" routerLinkActive="active">
                       <i class="fas fa-plus nav-icon"></i>
@@ -551,14 +551,14 @@
               </li>
 
               <!-- yarn billing -->
-            <li class="nav-item">
-                <a class="nav-link">
+            <li class="nav-item" [ngClass]="Billing ? 'menu-open' : ''">
+                <a (click)="menuOpen('Billing')" class="nav-link">
                   <i class="far fa-money-bill-alt"></i>
                   <p>Billing & Payment</p>
                   <i class="right fas fa-angle-left"></i>
                 </a>
               
-                <ul class="nav nav-treeview sublist">
+                <ul class="nav nav-treeview sublist" [ngClass]="Billing ? 'UlClassOpenMenu' : 'UlClassCloseMenu'">
                   <li class="nav-item">
                     <a routerLink="/yarn-billing-and-payment/generate-bills" class="nav-link" routerLinkActive="active">
                       <i class="far fa-circle nav-icon"></i>
@@ -599,13 +599,13 @@
               </li>
 <!--YARN CONFIGURATION-->
 
-               <li class="nav-item">
-                <a class="nav-link">
+               <li class="nav-item" [ngClass]="Config ? 'menu-open' : ''">
+                <a (click)="menuOpen('Config')" class="nav-link">
                   <i class="fas fa-cogs"></i>
                   <p>Configuration</p>
                   <i class="right fas fa-angle-left"></i>
                 </a>
-                <ul class="nav nav-treeview sublist">
+                <ul class="nav nav-treeview sublist" [ngClass]="Config ? 'UlClassOpenMenu' : 'UlClassCloseMenu'">
                   <li class="nav-item">
                     <a routerLink="/yarn-local/buyers" class="nav-link" routerLinkActive="active">
                       <i class="fas fa-hands-helping"></i>
@@ -630,13 +630,13 @@
                       <p>Articles</p>
                     </a>
                   </li>
-                  <li class="nav-item">
-                    <a  class="nav-link" routerLinkActive="active">
+                  <li class="nav-item" [ngClass]="Product ? 'menu-open' : ''">
+                    <a (click)="menuOpen('Product')" class="nav-link" routerLinkActive="active">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Product</p>
                       <i class="right fas fa-angle-left"></i>
                     </a>
-                    <ul class="nav nav-treeview sublist">
+                    <ul class="nav nav-treeview sublist" [ngClass]="Product ? 'UlClassOpenMenu' : 'UlClassCloseMenu'">
                       <li class="nav-item">
                         <a routerLink="/yarn-local/fabric-type" class="nav-link" routerLinkActive="active">
                           <i class="far fa-circle nav-icon"></i>
@@ -682,13 +682,13 @@
                     </ul>
                   </li>
           
-                  <li class="nav-item">
-                    <a class="nav-link">
+                  <li class="nav-item" [ngClass]="Bank ? 'menu-open' : ''">
+                    <a (click)="menuOpen('Bank')" class="nav-link">
                       <i class="fas fa-calculator"></i>
                       <p>Bank Info</p>
                       <i class="right fas fa-angle-left"></i>
                     </a>
-                    <ul class="nav nav-treeview sublist">
+                    <ul class="nav nav-treeview sublist" [ngClass]="Bank ? 'UlClassOpenMenu' : 'UlClassCloseMenu'">
                       <li class="nav-item">
                         <a routerLink="/yarn-local/bank" class="nav-link" routerLinkActive="active">
                           <i class="far fa-circle nav-icon"></i>
@@ -771,13 +771,13 @@
                 </a>
               </li>
              
-              <li class="nav-item">
-                <a class="nav-link">
+              <li class="nav-item" [ngClass]="Contract ? 'menu-open' : ''">
+                <a (click)="menuOpen('Contract')" class="nav-link">
                   <i class="fas fa-file-contract"></i>
                   <p>Contracts</p>
                   <i class="right fas fa-angle-left"></i>
                 </a>
-                <ul class="nav nav-treeview sublist">
+                <ul class="nav nav-treeview sublist" [ngClass]="Contract ? 'UlClassOpenMenu' : 'UlClassCloseMenu'">
                   <li class="nav-item">
                     <a routerLink="/FabCot/add-new-contract" class="nav-link" routerLinkActive="active">
                       <i class="fas fa-plus nav-icon"></i>
@@ -818,14 +818,14 @@
               </li>
 
               <!-- Fabric billing -->
-            <li class="nav-item">
-                <a class="nav-link">
+            <li class="nav-item" [ngClass]="Billing ? 'menu-open' : ''">
+                <a (click)="menuOpen('Billing')" class="nav-link">
                   <i class="far fa-money-bill-alt"></i>
                   <p>Billing & Payment</p>
                   <i class="right fas fa-angle-left"></i>
                 </a>
               
-                <ul class="nav nav-treeview sublist">
+                <ul class="nav nav-treeview sublist" [ngClass]="Billing ? 'UlClassOpenMenu' : 'UlClassCloseMenu'">
                   <li class="nav-item">
                     <a routerLink="/yarn-billing-and-payment/generate-bills" class="nav-link" routerLinkActive="active">
                       <i class="far fa-circle nav-icon"></i>
@@ -866,13 +866,13 @@
               </li>
 <!--Fabric CONFIGURATION-->
 
-               <li class="nav-item">
-                <a class="nav-link">
+               <li class="nav-item" [ngClass]="Config ? 'menu-open' : ''">
+                <a (click)="menuOpen('Config')" class="nav-link">
                   <i class="fas fa-cogs"></i>
                   <p>Configuration</p>
                   <i class="right fas fa-angle-left"></i>
                 </a>
-                <ul class="nav nav-treeview sublist">
+                <ul class="nav nav-treeview sublist" [ngClass]="Config ? 'UlClassOpenMenu' : 'UlClassCloseMenu'">
                   <li class="nav-item">
                     <a routerLink="/yarn-local/buyers" class="nav-link" routerLinkActive="active">
                       <i class="fas fa-hands-helping"></i>
@@ -897,13 +897,13 @@
                       <p>Articles</p>
                     </a>
                   </li>
-                  <li class="nav-item">
-                    <a  class="nav-link" routerLinkActive="active">
+                  <li class="nav-item" [ngClass]="Product ? 'menu-open' : ''">
+                    <a (click)="menuOpen('Product')" class="nav-link" routerLinkActive="active">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Product</p>
                       <i class="right fas fa-angle-left"></i>
                     </a>
-                    <ul class="nav nav-treeview sublist">
+                    <ul class="nav nav-treeview sublist" [ngClass]="Product ? 'UlClassOpenMenu' : 'UlClassCloseMenu'">
                       <li class="nav-item">
                         <a routerLink="/yarn-local/fabric-type" class="nav-link" routerLinkActive="active">
                           <i class="far fa-circle nav-icon"></i>
@@ -973,13 +973,13 @@
                     </ul>
                   </li>
           
-                  <li class="nav-item">
-                    <a class="nav-link">
+                  <li class="nav-item" [ngClass]="Bank ? 'menu-open' : ''">
+                    <a (click)="menuOpen('Bank')" class="nav-link">
                       <i class="fas fa-calculator"></i>
                       <p>Bank Info</p>
                       <i class="right fas fa-angle-left"></i>
                     </a>
-                    <ul class="nav nav-treeview sublist">
+                    <ul class="nav nav-treeview sublist" [ngClass]="Bank ? 'UlClassOpenMenu' : 'UlClassCloseMenu'">
                       <li class="nav-item">
                         <a routerLink="/yarn-local/bank" class="nav-link" routerLinkActive="active">
                           <i class="far fa-circle nav-icon"></i>

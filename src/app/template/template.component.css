@@ -19,7 +19,12 @@ div{
    border-radius: 5px;
 
 }
-
+.UlClassOpenMenu{
+   display: block;
+}
+.UlClassCloseMenu{
+   display: none;
+}
 
 .welcome{
    font-size:13px;

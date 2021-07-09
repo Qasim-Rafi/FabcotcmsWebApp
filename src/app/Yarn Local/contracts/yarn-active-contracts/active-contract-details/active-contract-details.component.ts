@@ -883,6 +883,7 @@ lcForm(check){
   
 
   getContractData() {
+    this.spinner.show();
     this.http.get(`${environment.apiUrl}/api/Contracts/GetContractById/` + this.contractId)
       .subscribe(
         res => {
@@ -894,16 +895,19 @@ lcForm(check){
              this.contractNmbr = this.contractData.autoContractNumber
              this.sellerName = this.contractData.sellerName
              this.max1 = this.response.data.saleInvoiceQuantity;
+             this.spinner.hide();
 
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
           }
   
         },(err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
+          this.spinner.hide();
         });
   }
 
