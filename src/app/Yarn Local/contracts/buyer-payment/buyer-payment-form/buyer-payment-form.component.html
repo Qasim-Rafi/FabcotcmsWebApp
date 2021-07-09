@@ -133,7 +133,7 @@
 
                         <div class="form-group row">
 
-                            <label for="inputEmail3" class="col-form-label col-sm-3 control-label ">Amount</label>
+                            <label for="inputEmail3" class="col-form-label col-md-3 control-label ">Amount</label>
 
                             <div class="col-md-7">
                                 <div class="row">
@@ -158,11 +158,11 @@
                                     <div class="col-md-6 mrg-sm1">
                                         <div class="row">
                                             <label for="inputEmail3"
-                                                class="col-form-label col-sm-4 control-label ">Payment
+                                                class="col-form-label col-md-5 control-label ">Payment
                                                 Mode</label>
 
 
-                                            <div class="col-md-8 mrg-sm1">
+                                            <div class="col-md-7 mrg-sm1">
 
                                                 <ng-select name="paymentMode " [(ngModel)]="data.paymentMode"
                                                     placeholder="Select Payment Mode">
@@ -190,7 +190,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="name" class="col-sm-3 col-form-label  ">Deposite Date</label>
+                            <label for="name" class="col-md-3 col-form-label  ">Deposite Date</label>
                             <div class="col-md-7">
                                 <input navigation="select" class="form-control" ngbDatepicker
                                     #validityDate1="ngbDatepicker" (click)="validityDate1.toggle()" placeholder=""
@@ -199,12 +199,12 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="number" class="col-sm-3 col-form-label  ">Tax Challan</label>
+                            <label for="number" class="col-md-3 col-form-label  ">Tax Challan</label>
                             <div class="col-md-3">
                                 <input class="form-control" type="number" placeholder="Tax Challan Number" (keyup)="taxCalculated($event)"
                                     [(ngModel)]="data.taxChalan" />
                             </div>
-                            <label for="number" class="col-sm-1 col-form-label  ">Rs:{{calculatedTax}}</label>
+                            <label for="number" class="col-md-1 col-form-label  ">Rs:{{calculatedTax}}</label>
                         </div>
 
                     </div>

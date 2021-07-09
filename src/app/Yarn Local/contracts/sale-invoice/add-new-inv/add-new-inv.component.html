@@ -19,118 +19,118 @@
   <div class="modal-body BG p-0">
     <form #InvoiceForm="ngForm" novalidate>
   
-      <div class="col-md-12 pt-3 pb-2">
-
+      <div class="row justify-content-center">
+        <div class="col-10 col-md-11 pt-3 pb-2">
+      
           <div class="form-group row">
             <label for="inputEmail3" class="col-md-3 col-form-label control-label text_Navy">Contract No.</label>
             <div class="col-md-8">
-                <!-- <div class="input-group">                    
-                    <input class="form-control text-w-4" placeholder="ENTER AND SEARCH CONTRACT NUMBER">
-
-                    <button (click)="ChangeBankForm(rows)" type="button" class="btn btn-light btn-outline clrbtn" >
-                        <i class="fa fa-search"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-dark">
-                        <i class="fas fa-sync-alt"></i>
-                    </button>                    
-                </div> -->
-                <div class="input-group">
-                  <input type="text" *ngIf = "autocontractId ==null &&  statusCheck == 'addInvoice'"  class="form-control" placeholder="Search Contract..." name = "contractNo"
-                  #contractNo = "ngModel" [(ngModel)] = "data.contractNo" (keyup)= "contractNumber()"
-                  >
-                  <input type="text" *ngIf = "statusCheck == 'edit' && autocontractId ==null "  class="form-control" placeholder="Search Contract..." name = "autoContrctNumber"
-                  #autoContrctNumber = "ngModel" [(ngModel)] = "data.autoContrctNumber" (keyup)= "contractNumber()"
-                  >
-                  <!-- <input type="text" *ngIf = "statusCheck == 'edit' && autocontractId !=null "  class="form-control" placeholder="Search Contract..." name = "autoContractNumber"
-                  #autoContractNumber = "ngModel" [(ngModel)] = "data.autoContractNumber" (keyup)= "contractNumber()"
-                  > -->
-                  <input *ngIf = "autocontractId !=null" type="text" class="form-control" placeholder="Search Contract..."
-                  name = "contractNum"   [value] = "contractNum"
-                  >
-                  <div class="input-group-append">
-                    <button class="btn btn-primary" type="button" (click)= "ContractsDropdown()">
-                      <i class="fa fa-search"></i>
-                    </button>
-                  </div>
+              <!-- <div class="input-group">                    
+                          <input class="form-control text-w-4" placeholder="ENTER AND SEARCH CONTRACT NUMBER">
+      
+                          <button (click)="ChangeBankForm(rows)" type="button" class="btn btn-light btn-outline clrbtn" >
+                              <i class="fa fa-search"></i>
+                          </button>
+                          <button type="button" class="btn btn-outline-dark">
+                              <i class="fas fa-sync-alt"></i>
+                          </button>                    
+                      </div> -->
+              <div class="input-group">
+                <input type="text" *ngIf="autocontractId ==null &&  statusCheck == 'addInvoice'" class="form-control"
+                  placeholder="Search Contract..." name="contractNo" #contractNo="ngModel" [(ngModel)]="data.contractNo"
+                  (keyup)="contractNumber()">
+                <input type="text" *ngIf="statusCheck == 'edit' && autocontractId ==null " class="form-control"
+                  placeholder="Search Contract..." name="autoContrctNumber" #autoContrctNumber="ngModel"
+                  [(ngModel)]="data.autoContrctNumber" (keyup)="contractNumber()">
+                <!-- <input type="text" *ngIf = "statusCheck == 'edit' && autocontractId !=null "  class="form-control" placeholder="Search Contract..." name = "autoContractNumber"
+                        #autoContractNumber = "ngModel" [(ngModel)] = "data.autoContractNumber" (keyup)= "contractNumber()"
+                        > -->
+                <input *ngIf="autocontractId !=null" type="text" class="form-control" placeholder="Search Contract..."
+                  name="contractNum" [value]="contractNum">
+                <div class="input-group-append">
+                  <button class="btn btn-primary" type="button" (click)="ContractsDropdown()">
+                    <i class="fa fa-search"></i>
+                  </button>
                 </div>
+              </div>
             </div>
-        </div>
-        <div class="form-group row">
-          <label for="saleInvoiceNo" class="col-sm-3 col-form-label text_Navy">Sale Inv. No.</label>
-          <div class="col-sm-8">
-            <input type="text" class="form-control" placeholder="Sale Invoice number" name="saleInvoiceNo"
-              [(ngModel)]="data.saleInvoiceNo" #saleInvoiceNo="ngModel" />
           </div>
-        </div>
-  
-  
-        <div class="form-group row">
-          <label for="saleInvoiceDate" class="col-sm-3 col-form-label text_Navy">Sale Inv. Date</label>
-          <div class="col-sm-8" (clickOutside)="saleInvoiceDate.close()">
-  
-            <input navigation="select" class="form-control  " ngbDatepicker #saleInvoiceDate="ngbDatepicker"
-              (click)="saleInvoiceDate.toggle()" placeholder="Sale Invoice date" name="saleInvoiceDate"
-              [(ngModel)]="data.saleInvoiceDate" />
-          </div>
-        </div>
-
           <div class="form-group row">
-            <label for="quantity" class="col-sm-3 col-form-label text_Navy">Quantity</label>
-            <div class="col-sm-3">
-                <input min="0"
-                #quantity="ngModel" (keyup)="getquantity($event)"
-              name="quantity" [(ngModel)]="data.quantity"
+            <label for="saleInvoiceNo" class="col-md-3 col-form-label text_Navy">Sale Inv. No.</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" placeholder="Sale Invoice number" name="saleInvoiceNo"
+                [(ngModel)]="data.saleInvoiceNo" #saleInvoiceNo="ngModel" />
+            </div>
+          </div>
+      
+      
+          <div class="form-group row">
+            <label for="saleInvoiceDate" class="col-md-3 col-form-label text_Navy">Sale Inv. Date</label>
+            <div class="col-md-8" (clickOutside)="saleInvoiceDate.close()">
+      
+              <input navigation="select" class="form-control  " ngbDatepicker #saleInvoiceDate="ngbDatepicker"
+                (click)="saleInvoiceDate.toggle()" placeholder="Sale Invoice date" name="saleInvoiceDate"
+                [(ngModel)]="data.saleInvoiceDate" />
+            </div>
+          </div>
+      
+          <div class="form-group row">
+            <label for="quantity" class="col-md-3 col-form-label text_Navy">Quantity</label>
+            <div class="col-md-3">
+              <input min="0" #quantity="ngModel" (keyup)="getquantity($event)" name="quantity" [(ngModel)]="data.quantity"
                 class="form-control" value="" placeholder="Quantity" />
             </div>
-            <div class="col-md-5">
-               
-                  
-              <ng-select  [(ngModel)] = "data.unit" (change)="getunit($event)"  #unit="ngModel"
-               placeholder="Unit" name="unit">
-                <ng-option *ngFor = "let i of uomList" [value] = "i.id">{{i.name}}</ng-option>
-            </ng-select>
-
+            <div class="col-md-5 mrg-tsm">
+      
+      
+              <ng-select [(ngModel)]="data.unit" (change)="getunit($event)" #unit="ngModel" placeholder="Unit" name="unit">
+                <ng-option *ngFor="let i of uomList" [value]="i.id">{{i.name}}</ng-option>
+              </ng-select>
+      
             </div>
       
           </div>
-
-
-
-
+      
+      
+      
+      
           <div class="form-group row">
-            <label for="amount" class="col-sm-3 col-form-label text_Navy">Amount</label>
-            <div class="col-sm-8">
-    
-                <input type="text" disabled class="form-control" placeholder="Invoice Amount" name="amount"
+            <label for="amount" class="col-md-3 col-form-label text_Navy">Amount</label>
+            <div class="col-md-8">
+      
+              <input type="text" disabled class="form-control" placeholder="Invoice Amount" name="amount"
                 [(ngModel)]="data.amount" #amount="ngModel" />
             </div>
           </div>
-
+      
           <div class="form-group row">
-            <label for="taxPercentage" class="col-sm-3 col-form-label">Tax %</label>
-            <div class="col-sm-8">
-                <div class="input-group">
-                    <div class="input-group-append">
-                    </div>
-                    <input type="text" placeholder="Invoice tax %age" class="form-control"
-                        [(ngModel)]="data.taxPercentage" name="taxPercentage" #taxPercentage="ngModel">
-                    <div class="input-group-append">
-                        <span class="input-group-text" id="basic-addon2">%</span>
-                    </div>
+            <label for="taxPercentage" class="col-md-3 col-form-label">Tax %</label>
+            <div class="col-md-8">
+              <div class="input-group">
+                <div class="input-group-append">
                 </div>
+                <input type="text" placeholder="Invoice tax %age" class="form-control" [(ngModel)]="data.taxPercentage"
+                  name="taxPercentage" #taxPercentage="ngModel">
+                <div class="input-group-append">
+                  <span class="input-group-text" id="basic-addon2">%</span>
+                </div>
+              </div>
             </div>
           </div>
-
-        <div class="form-group row">
-          <label for="saleInvoiceRemarks" class="col-sm-3 col-form-label ">Remarks</label>
-          <div class="col-sm-8">
-            <textarea name="saleInvoiceRemarks" rows="3" class="form-control" placeholder="Sale invoice additional details here..."
-              name="saleInvoiceRemarks" [(ngModel)]="data.saleInvoiceRemarks" #saleInvoiceRemarks="ngModel"></textarea>
+      
+          <div class="form-group row">
+            <label for="saleInvoiceRemarks" class="col-md-3 col-form-label ">Remarks</label>
+            <div class="col-md-8">
+              <textarea name="saleInvoiceRemarks" rows="3" class="form-control"
+                placeholder="Sale invoice additional details here..." name="saleInvoiceRemarks"
+                [(ngModel)]="data.saleInvoiceRemarks" #saleInvoiceRemarks="ngModel"></textarea>
+            </div>
           </div>
+      
         </div>
-        
       </div>
   
+
       <div class="modal-footer NotBG">
         <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal"
           (click)="activeModal.close()">
