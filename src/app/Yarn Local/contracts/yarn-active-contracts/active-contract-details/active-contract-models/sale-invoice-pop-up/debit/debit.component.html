@@ -47,7 +47,7 @@
               <input type="number" min="0" required id="itemQuantity" #itemQuantity="ngModel" name="quantity"
                 [(ngModel)]="data.quantity" #quantity="ngModel" class="form-control" value="" placeholder="Quantity" />
             </div>
-            <div class="col-md-5">
+            <div class="col-md-5 mrg-tsm">
       
               <ng-select [(ngModel)]="data.uomId" placeholder="Unit" name="uomId">
                 <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
@@ -63,7 +63,7 @@
               <input type="number" min="0" required id="itemQuantity" #itemQuantity="ngModel" name="quantity"
                 [(ngModel)]="data.quantity" #quantity="ngModel" class="form-control" value="" placeholder="Amount" />
             </div>
-            <div class="col-md-5">
+            <div class="col-md-5 mrg-tsm">
       
               <ng-select [(ngModel)]="data.uomId" placeholder="Currency" name="uomId">
                 <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
