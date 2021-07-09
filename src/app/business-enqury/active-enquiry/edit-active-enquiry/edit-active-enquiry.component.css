@@ -46,32 +46,34 @@ dt {
   /* TAB STYLING  */
 
   
-  .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-    color: #ffffff !important;
-    background-color: #1ab394;
-    /* padding: 10px 25px;
-    font-size: 15px;
-    font-weight: 500; */
-}
+  /* .............................////Nav */
 
-.nav-pills .nav-link{
-  color: #6c757d !important;
-  background-color: #f4f4f4;
-}
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #ffffff !important;
+  background-color: #1ab394 !important;
+  border-radius: 0px 20px !important;
 
-.nav-pills .nav-link:not(.active):hover {
-  color: #6c757d !important;
-  background-color: #e8e8e8;
 }
-
-.nav a{
-  margin-left: 3px;
-  font-weight: 500;
+.nav-pills .nav-link {
+color: #6c757d !important;
+border: 1px solid #dadada !important;
+border-radius: 0px 20px !important;
 }
 
 .nav-link.active .badge-primary {
-  color: #1ab394;
-  background-color: #ffffff !important;
+color: #1ab394 !important;
+background-color: #ffffff !important;
+/* border-radius: 0px 20px; */
+
+}
+
+.nav-pills .nav-link:not(.active):hover {
+color: #6c757d !important;
+background-color: #dadada !important;
+}
+.nav a{
+  margin-left: 3px;
+  font-weight: 500;
 }
   /* ---------------------------------------------- */
 
@@ -203,13 +205,16 @@ dt {
 .dataTables_length {
   float: left;
 }
-
+.bg-color{
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #dadada;
+}
 
 
 
 @media only screen and (max-width: 1280px) {
   .navlinkpdg{
-    padding: 0.5rem 8px !important;
+    padding: 0.5rem 6px !important;
   }
 
   .fontTwl {

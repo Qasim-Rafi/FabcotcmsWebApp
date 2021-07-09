@@ -128,6 +128,52 @@ dd{
   text-align: right;
 }
 
+.buttonOuter{
+  background-color: #ffffff;
+  border: 1px solid #e2e2e2;
+  border-radius: 50px;
+  padding: 0px 10px;
+  margin: 10px 0px;
+  box-shadow: 0 0.4rem 0.5rem rgb(0 0 0 / 15%) !important;
+}
+/* .........................................///navtabs */
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #ffffff;
+  background-color: #1ab394;
+  border-radius: 0px 20px;
+  /* padding: 10px 25px;
+  font-size: 15px;
+  font-weight: 500; */
+}
+.nav-pills .nav-link {
+color: #6c757d;
+border: 1px solid #e8e8e8;
+border-radius: 0px 20px;
+}
+
+.nav-link.active .badge-primary {
+color: #1ab394;
+background-color: #ffffff !important;
+/* border-radius: 0px 20px; */
+
+}
+
+.nav-pills .nav-link:not(.active):hover {
+color: #6c757d !important;
+background-color: #e8e8e8;
+}
+
+.nav a{
+margin-left: 3px;
+font-weight: 500;
+}
+.customFontStyle{
+  font-weight: 700;
+  font-size: 14px;
+}
+.customFontS{
+  font-size: 14px;
+}
 @media only screen and (max-width: 1024px) {
   .mrg-md { 
     margin: 3px 0;

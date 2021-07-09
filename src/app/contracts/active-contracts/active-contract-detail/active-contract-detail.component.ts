@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbProgressbarConfig } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { GlobalConstants } from 'src/app/Common/global-constants';
@@ -91,6 +91,7 @@ quantitynmbr : number;
   tnaId: any = {};
   
   constructor(
+    config: NgbProgressbarConfig,
     private router: Router,
     private modalService: NgbModal,
     private route: ActivatedRoute,
@@ -98,7 +99,8 @@ quantitynmbr : number;
     private service: ServiceService,
     private toastr: ToastrService,
     private spinner: NgxSpinnerService,
-  ) { }
+  ) { config.striped = true;
+    config.animated = true;}
 
   ngOnInit(): void {
     // this.userName=localStorage.getItem('loggedInUserName');
@@ -469,22 +471,25 @@ quantitynmbr : number;
   
 
   getContractData() {
+    this.spinner.show();
     this.http.get(`${environment.apiUrl}/api/Contracts/GetContractById/` + this.contractId)
       .subscribe(
         res => {
           this.response = res;
           if (this.response.success == true) {
             this.contractData = this.response.data;
-            
+            this.spinner.hide();
   
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
           }
   
         }, err => {
           if (err.status == 400) {
             this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
           }
         });
   }

@@ -44,41 +44,65 @@
 
 
   <div class="card-body p-0">
-    <div class="row border-bottom">
+    <div class="row py-2">
 
-      <div class="col-md-6 col-lg-6 col-xl-3 active-enqury-pdg">
-        <button type="button" class="btn btn-primary text ">
-          <i class="fas fa-phone-alt px-1"></i>
-          <span class="text-muted text ml-1 ">{{listCount}}</span>
-        </button>
-        <span class="text-s-md  ml-2">Active</span>
+      <div class="col-md-3">
+        <div class="widget style1 yellow-bg shadow">
+          <div class="row">
+            <div class="col-md-4">
+              <i class="fas fa-phone-alt fa-4x"></i>
+            </div>
+            <div class="col-md-8 text-right">
+              <div> Active </div>
+              <h3 class="font-bold">{{listCount}}</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-md-3">
+        <div class="widget style1 lazur-bg shadow">
+          <div class="row">
+            <div class="col-md-4">
+              <i class="far fa-check-circle fa-4x"></i>
+            </div>
+            <div class="col-md-8 text-right">
+              <div>Confirmed </div>
+              <h3 class="font-bold">{{confirmedCount}}</h3>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="col-md-6 col-lg-6 col-xl-3 active-enqury-pdg">
-        <button type="button" class="btn btn-info  text ">
-          <i class="far fa-check-circle px-1"></i>
-          <span class="text-muted text ml-1">{{confirmedCount}}</span>
-        </button>
-        <span class="text-s-md  ml-2">Confirmed</span>
+      <div class="col-md-3">
+        <div class="widget style1 bg-info shadow">
+          <div class="row">
+            <div class="col-md-4">
+              <i class="far fa-file-archive fa-4x"></i>
+            </div>
+            <div class="col-md-8 text-right">
+              <div> Closed </div>
+              <h3 class="font-bold">{{closedCount}}</h3>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="col-md-6 col-lg-6 col-xl-3 active-enqury-pdg">
-        <button type="button" class="btn btn-danger m-r-sm text ">
-          <!-- <i class="far fa-window-close px-1"></i> -->
-          <i class="far fa-file-archive  px-1"></i>
-          <span class="text-muted text ml-1">{{closedCount}}</span>
-        </button>
-        <span class="text-s-md  ml-2">Closed</span>
+      <div class="col-md-3">
+        <div class="widget style1 bg-success shadow">
+          <div class="row">
+            <div class="col-md-4">
+              <i class="fas fa-level-down-alt fa-4x"></i>
+            </div>
+            <div class="col-md-8 text-right">
+              <div> On-Hold </div>
+              <h3 class="font-bold">{{onHoldCount}}</h3>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="col-md-6 col-lg-6 col-xl-3 active-enqury-pdg">
-        <button type="button" class="btn btn-secondary m-r-sm text ">
-          <!-- <i class="fas fa-mug-hot px-1"></i> -->
-          <i class="fas fa-level-down-alt px-1"></i>
-          <span class="text-muted text ml-1">{{onHoldCount}}</span>
-        </button>
-        <span class="text-s-md  ml-2">On-Hold</span>
-      </div>
+
 
  
     </div>
@@ -91,7 +115,8 @@
           <input type="text" placeholder="Search" class="input form-control" (keyup)="updateFilter($event)">
         </div>
       </div> -->
-
+      <div class="card shadow mb-4">
+        <div class="card-body"> 
       <div class="row">
       <div class="col-md-12 mt-3 mb-4">
         <button type="button" class="btn btn-primary btn-sm float-right mrg-tsm" (click)=" navigateAddEnquiry()">
@@ -207,5 +232,7 @@
       </ngx-datatable>
 
     </div>
+        </div>
+      </div>
   </div>
 </div>

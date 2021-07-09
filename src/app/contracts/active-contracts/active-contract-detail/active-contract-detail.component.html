@@ -139,7 +139,7 @@
             </div>
         </div>
         <!-- /.row -->
-
+        <div class="buttonOuter">
         <div class="row py-3 justify-content-end">
             <div class="col-md-8 " *ngIf="contractData.status =='OnHold'">
                 <button class="btn btn-warning border-rounded px-3 mr-2 text-white" (click)="statusOpen()">
@@ -205,8 +205,11 @@
                 </button>
             </div>
         </div>
+        </div>
 
-        <div class="card ibox-content">
+        <div class="card shadow mb-4">
+            <div class="card-body">
+       
             <div class="row">
                 <div class="col-md-12">
                     <nav>
@@ -362,7 +365,8 @@
                         <br>
 
                         <!-- -------General Info Tab----------- -->
-
+                        <div class="card shadow mb-4">
+                            <div class="card-body">
                         <div class="row">
                             <div class="col-md-12">
                                 <nav>
@@ -998,7 +1002,8 @@
                             </div>
 
                         </div>
-
+                            </div>
+                        </div>
                         <!-- ------ -->
 
                     </div>
@@ -1047,6 +1052,8 @@
 
                                     </div>
                                 </div>
+                                <div class="card shadow mb-4">
+                                    <div class="card-body">
                                 <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows2" [sorts]="[{ prop: 'description,construction,compositionPercentage,loomTypeId
                                     size,weight,itemQuantity,contractRate,contractCost,commission', dir: 'asce' }]"
                                     *ngIf="rows2.length != 0" [columnMode]="'force'" [headerHeight]="50"
@@ -1121,7 +1128,8 @@
                                         </ng-template>
                                     </ngx-datatable-column>
                                 </ngx-datatable>
-
+                                    </div>
+                                </div>
                             </div>
 
                         </div>
@@ -1359,10 +1367,10 @@
                         </div>
 
 
+                        <div class="card shadow mb-4" *ngFor="let x of invoiceData; let i = index;">
+                        <div class="card-body">
 
-                        <div class="card-body  BG" *ngFor="let x of invoiceData; let i = index;">
-
-                            <div class="row pb-5">
+                            <div class="row pb-3 border-bottom">
                                 <div class="col-md-6 ">
                                     <button class="btn btn-info btn-sm">
                                         Sale Invoice #{{i+1}}-{{x.saleInvoiceNo}}</button>
@@ -1391,73 +1399,92 @@
                                 </div>
                             </div> -->
 
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Sale Invoice Status:
+                            <div class="row pt-4">
+                                <div class="col-md-12">
+                                    <div class="row mb-4">
+                                    <div class="col-md-4">
+                                        <div class="row">
+                                            <div class="col-sm-6 customFontStyle">Sale Invoice Status:
+                            
+                                            </div>
+                                            <div class="col-sm-6 customFontS"></div>
+                                        </div>
+                            
+                            
+                                        <div class="row">
+                                            <div class="col-sm-6 customFontStyle">Sale Invoice ID:
+                            
+                                            </div>
+                                            <div class="col-sm-6 customFontS">{{i+1}}</div>
+                                        </div>
+                                       
+                                        <div class="row">
+                                            <div class="col-sm-6 customFontStyle">Remarks:
+                            
+                                            </div>
+                                            <div class="col-sm-6 customFontS">{{x.saleInvoiceRemarks}}</div>
+                                        </div>
+                                       
+                                        
 
-                                        </dt>
-                                        <dd class="col-sm-6"></dd>
-                                    </dl>
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Sale Invoice No.:
+                                       
 
-                                        </dt>
-                                        <dd class="col-sm-6">{{x.saleInvoiceNo}}</dd>
-                                    </dl>
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Quantity:</dt>
-                                        <dd class="col-sm-6">{{x.quantity}}</dd>
-                                    </dl>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="row">
+                                            <div class="col-sm-6 customFontStyle">Quantity:
+                            
+                                            </div>
+                                            <div class="col-sm-6 customFontS">{{x.quantity}}</div>
+                                        </div>
+                                        <div class="row">
+                                      
+                                            <div class="col-sm-6 customFontStyle">Invoice Amount:
+                            
+                                            </div>
+                                            <div class="col-sm-6 customFontS">{{x.amount}}</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6 customFontStyle">Sale Invoice No.:
+                            
+                                            </div>
+                                            <div class="col-sm-6 customFontS">{{x.saleInvoiceNo}}</div>
+                                        </div>
+                                        
+                                      
+                                        
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="row">
+                                            <div class="col-sm-6 customFontStyle">Invoice Date:
+                            
+                                            </div>
+                                            <div class="col-sm-6 customFontS">{{x.saleInvoiceDate}}</div>
+                                        </div>
 
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Last Updated by:
+                                        <div class="row">
+                                            <div class="col-sm-6 customFontStyle">Last Updated by:
+                            
+                                            </div>
+                                            <div class="col-sm-6 customFontS">{{x.updatedByName}}</div>
+                                        </div>
 
+                                        
+                                        <div class="row">
+                                            <div class="col-sm-6 customFontStyle">Last Updated on:
+                            
+                                            </div>
+                                            <div class="col-sm-6 customFontS">{{x.updatedDateTime}}</div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-md-4">
 
-                                        </dt>
-                                        <dd class="col-sm-6">{{x.updatedByName}}</dd>
-                                    </dl>
-
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Remarks:
-
-
-                                        </dt>
-                                        <dd class="col-sm-6">{{x.saleInvoiceRemarks}}</dd>
-                                    </dl>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Sale Invoice ID:
-
-
-                                        </dt>
-                                        <dd class="col-sm-6">{{i+1}}</dd>
-                                    </dl>
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Invoice Date:
-
-                                        </dt>
-                                        <dd class="col-sm-6">{{x.saleInvoiceDate}}</dd>
-                                    </dl>
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Invoice Amount:
-                                        </dt>
-                                        <dd class="col-sm-6">{{x.amount}}</dd>
-                                    </dl>
-
-                                    <dl class="row">
-                                        <dt class="col-sm-6">Last Updated on:
-
-
-                                        </dt>
-                                        <dd class="col-sm-6">{{x.updatedDateTime}}</dd>
-                                    </dl>
+                                    </div> -->
+                                    </div>
                                 </div>
 
                             </div>
-
+           <hr>
 
                             <div class="row mb-3">
                                 <div class="col-md-6">
@@ -1518,7 +1545,7 @@
 
 
                         </div>
-
+                        </div>
 
 
                     </div>
@@ -1698,8 +1725,9 @@
 
 
             </div>
+        
+            </div>
         </div>
-
     </div>
 
 </section>
