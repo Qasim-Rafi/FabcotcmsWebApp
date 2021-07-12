@@ -109,14 +109,15 @@ this.spinner.hide();
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        this.service.fetch((data) => {
-          this.rows = data;
-          this.bankAccFilter = [...this.rows];
-
-        }, this.bankAccUrl);
+       
 
 
       }
+      this.service.fetch((data) => {
+        this.rows = data;
+        this.bankAccFilter = [...this.rows];
+
+      }, this.bankAccUrl);
     }, (reason) => {
       // on dismiss
     });
@@ -130,12 +131,13 @@ this.spinner.hide();
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-        this.service.fetch((data) => {
-          this.rows = data;
-
-        }, this.bankAccUrl);
+       
 
       }
+      this.service.fetch((data) => {
+        this.rows = data;
+
+      }, this.bankAccUrl);
     }, (reason) => {
       // on dismiss
     });
