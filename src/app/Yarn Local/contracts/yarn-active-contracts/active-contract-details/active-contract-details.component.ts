@@ -1204,6 +1204,18 @@ getContractPaymentData() {
           if(this.response.data.buyerDeliveryDateYear == null){
             this.contractPaymentData.buyerDeliveryDateYear = ""
           }
+          for(let i=0; i<this.response.data.contractDeliveryDates.length; i++){
+          if(this.response.data.contractDeliveryDates[i].sellerDeliveryDateDay == null){
+            this.contractPaymentData.contractDeliveryDates[i].sellerDeliveryDateDay = ""
+          }
+          if(this.response.data.contractDeliveryDates[i].sellerDeliveryDateMonth == null){
+            this.contractPaymentData.contractDeliveryDates[i].sellerDeliveryDateMonth = ""
+          }
+          if(this.response.data.contractDeliveryDates[i].sellerDeliveryDateYear == null){
+            this.contractPaymentData.contractDeliveryDates[i].sellerDeliveryDateYear = ""
+          }
+        }
+    
         }
         else {
           this.toastr.error(this.response.message, 'Message.');
@@ -2260,10 +2272,38 @@ getImage(){
                       },
                       {
                         layout:'noBorders',
+                        margin: [280 , -4 , 0 , 0],
+                        table:{headerRows: 1 , widths:['12%' , '80%'],
+                      body: [
+                        [{text:'GST:'  , style:'heading3'} , {text: this.printData['buyerGSTNumber'], style:'heading3' ,margin:[-20 , 0,0,0] }],] }
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [380 , -11 , 0 , 0],
+                        table:{headerRows: 1 , widths:['16%' , '80%'],
+                      body: [
+                        [{text:'NTN:'  , style:'heading3'} , {text: this.printData['buyerNTNNumber'] , style:'heading3',margin:[-10 , 0,0,0] }],] }
+                      },
+                      {
+                        layout:'noBorders',
                         margin: [70 , 7 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
                         [{text:'Supplier Name:'  , style:'heading'} , {text: this.contractPartiesData['sellerName'] , style:'heading2'}],] }
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [280 , -6 , 0 , 0],
+                        table:{headerRows: 1 , widths:['12%' , '80%'],
+                      body: [
+                        [{text:'GST:'  , style:'heading3'} , {text: this.printData['sellerGSTNumber'] , style:'heading3',margin:[-20 , 0,0,0] }],] }
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [380 , -13 , 0 , 0],
+                        table:{headerRows: 1 , widths:['16%' , '80%'],
+                      body: [
+                        [{text:'NTN:'  , style:'heading3'} , {text: this.printData['sellerNTNNumber'] , style:'heading3' , margin:[-10 , 0,0,0] }],] }
                       },
                       {
                         layout:'noBorders',
@@ -2356,6 +2396,8 @@ getImage(){
                       bold: true,color: '#4d4b4b' },
                       heading2:{fontSize: 11  , color:'#4d4b4b'
                         },
+                        heading3:{fontSize: 8  , color:'#4d4b4b'
+                      },
                         tableheader: {
                           fillColor: '#f3f3f4',
                           fontSize: 10,
@@ -2442,38 +2484,39 @@ getImage(){
                       },
                       {
                         layout:'noBorders',
-                        margin: [350 , -10 , 0 , 0],
+                        margin: [280 , -4 , 0 , 0],
                         table:{headerRows: 1 , widths:['12%' , '80%'],
                       body: [
-                        [{text:'GST:'  , style:'heading3'} , {text: this.printData['sellerGSTNumber'] , style:'heading3' ,margin:[-20 , 0,0,0]}],] }
+                        [{text:'GST:'  , style:'heading3'} , {text: this.printData['sellerGSTNumber'], style:'heading3' ,margin:[-20 , 0,0,0] }],] }
                       },
                       {
                         layout:'noBorders',
-                        margin: [400 , -13 , 0 , 0],
+                        margin: [380 , -11 , 0 , 0],
                         table:{headerRows: 1 , widths:['16%' , '80%'],
                       body: [
-                        [{text:'NTN:'  , style:'heading3'} , {text: this.printData['sellerNTNNumber'] , style:'heading3' ,margin:[-10 , 0,0,0]}],] }
+                        [{text:'NTN:'  , style:'heading3'} , {text: this.printData['sellerNTNNumber'] , style:'heading3',margin:[-10 , 0,0,0] }],] }
                       },
                       {
                         layout:'noBorders',
-                        margin: [70 , 7 , 0 , 0],
+                        margin: [70 , 1 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
                         [{text:'Buyer Name:'  , style:'heading'} , {text: this.contractData['buyerName'] , style:'heading2'}],] }
                       },
+                          
                       {
                         layout:'noBorders',
-                        margin: [350 , -10 , 0 , 0],
+                        margin: [280 , -6 , 0 , 0],
                         table:{headerRows: 1 , widths:['12%' , '80%'],
                       body: [
-                        [{text:'GST:'  , style:'heading3'} , {text: this.printData['buyerGSTNumber'] , style:'heading3'}],] }
+                        [{text:'GST:'  , style:'heading3'} , {text: this.printData['buyerGSTNumber'] , style:'heading3',margin:[-20 , 0,0,0] }],] }
                       },
                       {
                         layout:'noBorders',
-                        margin: [400 , -13 , 0 , 0],
+                        margin: [380 , -13 , 0 , 0],
                         table:{headerRows: 1 , widths:['16%' , '80%'],
                       body: [
-                        [{text:'NTN:'  , style:'heading3'} , {text: this.printData['buyerNTNNumber'] , style:'heading3'}],] }
+                        [{text:'NTN:'  , style:'heading3'} , {text: this.printData['buyerNTNNumber'] , style:'heading3' , margin:[-10 , 0,0,0] }],] }
                       },
                       {
                         layout:'noBorders',
@@ -3778,7 +3821,7 @@ yarnExportInvoicesReportPrint(){
                       },
                       {
                         layout:'noBorders',
-                        margin: [20 , 220 , 0 , 0],
+                        margin: [20 , 80 , 0 , 0],
                         table:{headerRows: 1 , widths:[ '100%'],
                       body: [
                         [ {text:'NOTE: This is a system generated Contract and does not require any signature.'  , style:'tableheader' }],] }
