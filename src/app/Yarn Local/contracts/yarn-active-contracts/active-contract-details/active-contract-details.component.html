@@ -207,6 +207,14 @@
                     <i class="fas fa-print"></i>
                     Seller
                 </button>
+                <button class="btn btn-outline-primary border-rounded btn-sm px-3 mr-1" *ngIf = "loggedInDepartmentName == 'Fabric Export'" (click)="printFE()">
+                    <i class="fas fa-print"></i>
+                    Buyer
+                </button>
+                <button class="btn btn-outline-primary border-rounded btn-sm px-3 mr-1" *ngIf = "loggedInDepartmentName == 'Fabric Export'" (click)="print2FE()">
+                    <i class="fas fa-print"></i>
+                    Seller
+                </button>
                 <button class="btn btn-outline-primary border-rounded btn-sm px-3 mr-1" *ngIf = "loggedInDepartmentName == 'Fabric Local'"  (click)="printS()">
                     <i class="fas fa-print"></i>
                     Seller
@@ -735,8 +743,8 @@
                                     <dl class="row">
                                         <dt class="col-sm-6" *ngIf = "loggedInDepartmentName != 'Yarn Export'">Construction:
                                         </dt>
-                                        <dd class="col-sm-6" *ngIf = "loggedInDepartmentName != 'Yarn Export'">{{contractProductData.pecenetAge}}
-                                            {{contractProductData.type}}{{contractProductData.construction}}</dd>
+                                        <dd class="col-sm-6" *ngIf = "loggedInDepartmentName != 'Yarn Export'"><b *ngIf ="contractProductData.pecenetAge != null || contractProductData.pecenetAge == '' " >{{contractProductData.pecenetAge}} % </b>
+                                            {{contractProductData.febricType}}&nbsp;{{contractProductData.construction}}</dd>
                     
                                     </dl>
                                     <dl class="row">
