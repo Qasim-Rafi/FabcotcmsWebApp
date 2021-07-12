@@ -888,17 +888,17 @@
                                 </div>
                                 <div class="col-md-6">
                     
-                                    <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName != 'Yarn Export' ">
+                                    <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local' || (loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Local' )">
                                         <dt class="col-sm-6" *ngIf = "loggedInDepartmentName != 'Fabric Export'">GST:
                                         </dt>
                                         <dd class="col-sm-6" *ngIf="contractCostingData.gst != ''">{{contractCostingData.gst}}%</dd>
                                     </dl>
-                                    <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName != 'Yarn Export'">
+                                    <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local' ||( loggedInDepartmentName != 'Yarn Export'  && loggedInDepartmentName != 'Yarn Local')">
                                         <dt class="col-sm-6" *ngIf = "loggedInDepartmentName != 'Fabric Export'">W.I.Tax:
                                         </dt>
                                         <dd class="col-sm-6" *ngIf="contractCostingData.witAx != ''">{{contractCostingData.witAx}}%</dd>
                                     </dl>
-                                    <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName != 'Yarn Export' ">
+                                    <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local' || (loggedInDepartmentName != 'Yarn Export'  && loggedInDepartmentName != 'Yarn Local') ">
                                         <dt class="col-sm-6">
                                         </dt>
                                         <dd class="col-sm-6" *ngIf = "loggedInDepartmentName == '!Fabric Export'"><small>Subject to all taxes if applicable</small></dd>
@@ -943,7 +943,7 @@
                                     <dl class="row" *ngIf = "loggedInDepartmentName != 'Yarn Export'">
                                         <dt class="col-sm-6">Payment terms:</dt>
                                         <dd class="col-sm-6">{{contractPaymentData.sellerPaymentTermName}}
-                                            <b *ngIf="contractPaymentData.paymentTermDays != ''">
+                                            <b *ngIf="contractPaymentData.sellerPaymentTermDays != ''">
                                                 {{contractPaymentData.sellerPaymentTermDays}} Days </b>
                                             {{contractPaymentData.sellerPaymentTermInfo}}
                                         </dd>
@@ -1349,7 +1349,7 @@
                                         </dt>
                                         <dd class="col-sm-6">{{contractRemarksData.contractRemarks}}</dd>
                                     </dl>
-                                    <dl class="row" *ngIf = "loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName == '!Fabric Export' ">
+                                    <dl class="row" *ngIf = "(loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName == '!Fabric Export') || loggedInDepartmentName == 'Yarn Local' ">
                                         <dt class="col-sm-6">Buyer Remarks:
                     
                                         </dt>
