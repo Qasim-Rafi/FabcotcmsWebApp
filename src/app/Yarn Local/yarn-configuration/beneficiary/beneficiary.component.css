@@ -35,6 +35,29 @@ label {
 /* span {
   color: red;
 } */
+.table tbody tr td {
+  text-align: left;
+}
+
+td {
+  width: 33.3%;
+  border: none;
+  float: left;
+  font-size: 20px;
+}
+
+small,
+.small {
+  font-size: 80% !important;
+  font-weight: 400;
+  padding: 12px 0 0 0;
+}
+label {
+  text-align: right;
+  font-size: 11px;
+  color: grey;
+}
+
 
 @media (max-width: 640px) {
   label {
