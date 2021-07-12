@@ -83,7 +83,7 @@ export class ActiveEnquiryComponent implements OnInit {
 
 
   fetch(cb) {
-
+    this.spinner.show();
     this.http
       .get(`${environment.apiUrl}/api/Enquiries/GetAllEnquiry`)
       .subscribe(res => {
@@ -98,14 +98,17 @@ export class ActiveEnquiryComponent implements OnInit {
           this.confirmedCount = this.response.data.confirmedCount
           this.temp = [this.data];
           cb(this.data);
+          this.spinner.hide();
         }
         else {
           this.toastr.error(this.response.message, 'Message.');
+          this.spinner.hide();
         }
         // this.spinner.hide();
       }, err => {
         if (err.status == 400) {
-          this.toastr.error(err.error.message, 'Message.');;
+          this.toastr.error(err.error.message, 'Message.');
+          this.spinner.hide();
         }
         //  this.spinner.hide();
       });

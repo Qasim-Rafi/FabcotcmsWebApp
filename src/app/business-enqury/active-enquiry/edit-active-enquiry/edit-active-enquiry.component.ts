@@ -139,6 +139,7 @@ export class EditActiveEnquiryComponent implements OnInit {
 
 
   getEnquiryData(row) {
+    this.spinner.show();
     this.http.get(`${environment.apiUrl}/api/Enquiries/GetEnquiryById/` + row)
       .subscribe(
         res => {
@@ -169,15 +170,19 @@ export class EditActiveEnquiryComponent implements OnInit {
               this.enquiryData.totalQuantity = "";
             }
             this.temp = [...this.enquiryData.enquiryItemList];
-
+            this.spinner.hide();
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
+
           }
 
         }, err => {
           if (err.status == 400) {
             this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
+
           }
         });
   }
