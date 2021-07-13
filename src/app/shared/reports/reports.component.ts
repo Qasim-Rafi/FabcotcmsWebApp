@@ -16,6 +16,7 @@ export class ReportsComponent implements OnInit {
   response: any;
   temp: any[];
   rows: any = [];
+  columns: any = [];
   openContractReport: any = [];
   agentBookingStatus: any = [];
   cancleContarctReport: any = [];
