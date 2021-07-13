@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { TemplateComponent } from './template/template.component';
 import { ActiveContractsComponent } from './contracts/active-contracts/active-contracts.component';
 import { ArchivedContractsComponent } from './contracts/archived-contracts/archived-contracts.component';
+import { ReportsComponent } from './shared/reports/reports.component';
 
 
 const configurationModule = () => import('./configuration/configuration.module')
@@ -41,6 +42,11 @@ loadChildren:'./billing-and-payment/billing-and-payment.module#BillingAndPayment
   path:'contract',
 // loadChildren:'./contracts/contracts.module#ContractsModule'
 component:ActiveContractsComponent
+},
+{
+  path:'reports',
+// loadChildren:'./contracts/contracts.module#ContractsModule'
+component:ReportsComponent
 },
 {
   path:'contract',
