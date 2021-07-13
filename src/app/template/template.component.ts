@@ -20,6 +20,9 @@ export class TemplateComponent implements OnInit {
   Contract: boolean = false;
   Billing: boolean = false;
   Config: boolean = false;
+  Report: boolean = false;
+  Departments: boolean = false;
+
   Product: boolean = false;
   Bank: boolean = false;
   Enqurie: boolean = false;
@@ -146,6 +149,12 @@ else if(menuName == 'Enqurie'){
 }
 else if(menuName == 'Textile'){
   this.Textile =!this.Textile;
+}
+else if(menuName == 'Report'){
+  this.Report =!this.Report;
+}
+else if(menuName == 'Departments'){
+  this.Departments =!this.Departments;
 }
 }
 }
