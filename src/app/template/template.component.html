@@ -248,11 +248,54 @@
                 </a>
               </li>
   
-              <li class="nav-item">
-                <a routerLink="/home" class="nav-link">
+               <!-- reporting -->
+               <li class="nav-item" [ngClass]="Report ? 'menu-open' : ''">
+                <a (click)="menuOpen('Report')" class="nav-link">
                   <i class="fas fa-chart-line"></i>
                   <p>Reports</p>
+                  <i class="right fas fa-angle-left"></i>
                 </a>
+                <ul class="nav nav-treeview sublist" >
+                  <li class="nav-item" [ngClass]="Departments ? 'menu-open' : ''">
+                    <a (click)="menuOpen('Departments')" class="nav-link" >
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Departments</p>
+                      <i class="right fas fa-angle-left"></i>
+                    </a>
+                    <ul class="nav nav-treeview sublist" [ngClass]="Departments ? 'UlClassOpenMenu' : 'UlClassCloseMenu'">
+                      <li class="nav-item">
+                        <a routerLink="/reports" class="nav-link" >
+                          <p>Open Contract Report</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a routerLink="/reports" class="nav-link" >
+                          <p>All Contract Report</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a routerLink="/reports"  class="nav-link" >
+                          <p>Dispatch Report</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a routerLink="/reports" class="nav-link" >
+                          <p>Cancel Contract Report</p>
+                        </a>
+                      </li>
+                   
+                   
+                  
+                   
+                      <li class="nav-item">
+                        <a routerLink="/reports" class="nav-link" >
+                          <p>Commission Report</p>
+                        </a>
+                      </li>
+                   
+                    </ul>
+                  </li>
+                </ul>
               </li>
   
               <li class="nav-item">
@@ -597,7 +640,97 @@
                   </li>
                 </ul>
               </li>
+              <!-- reporting -->
+              <li class="nav-item" [ngClass]="Report ? 'menu-open' : ''">
+                <a (click)="menuOpen('Report')" class="nav-link">
+                  <i class="fas fa-chart-line"></i>
+                  <p>Reports</p>
+                  <i class="right fas fa-angle-left"></i>
+                </a>
+                <ul class="nav nav-treeview sublist" >
+                  <li class="nav-item" [ngClass]="Departments ? 'menu-open' : ''">
+                    <a (click)="menuOpen('Departments')" class="nav-link" >
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Departments</p>
+                      <i class="right fas fa-angle-left"></i>
+                    </a>
+                    <ul class="nav nav-treeview sublist" [ngClass]="Departments ? 'UlClassOpenMenu' : 'UlClassCloseMenu'">
+                      <li class="nav-item">
+                        <a routerLink="/reports" class="nav-link" >
+                          <p>Open Contract Report</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a routerLink="/reports" class="nav-link" >
+                          <p>All Contract Report</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a routerLink="/reports"  class="nav-link" >
+                          <p>Agent Booking Status</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a routerLink="/reports" class="nav-link" >
+                          <p>Cancel Contract Report</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a routerLink="/reports" class="nav-link" >
+                          <p>Billing Report(Invoice Wise)</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a routerLink="/reports" class="nav-link" >
+                          <p>Dispatch Report</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a routerLink="/reports" class="nav-link" >
+                          <p>Billing Report(Contract Wise)</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a routerLink="/reports" class="nav-link" >
+                          <p>Payment Report</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a routerLink="/reports" class="nav-link" >
+                          <p>Tax Challan Report</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a routerLink="/reports" class="nav-link" >
+                          <p>Commission Report</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a routerLink="/reports" class="nav-link" >
+                          <p></p>Db-Cr Note Summary
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a routerLink="/reports" class="nav-link" >
+                          <p>External Agent Commission</p>
+                        </a>
+                      </li>
+                      <li class="nav-item" *ngIf  = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export'">
+                        <a routerLink="/reports" class="nav-link" >
+                          <p>LC Reports</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a routerLink="/reports" class="nav-link" >
+                          <p>Kickback Report</p>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
 <!--YARN CONFIGURATION-->
+
 
                <li class="nav-item" [ngClass]="Config ? 'menu-open' : ''">
                 <a (click)="menuOpen('Config')" class="nav-link">
@@ -864,6 +997,92 @@
                   </li>
                 </ul>
               </li>
+      <!-- reporting -->
+      <li class="nav-item" [ngClass]="Report ? 'menu-open' : ''">
+        <a (click)="menuOpen('Report')" class="nav-link">
+          <i class="fas fa-chart-line"></i>
+          <p>Reports</p>
+          <i class="right fas fa-angle-left"></i>
+        </a>
+        <ul class="nav nav-treeview sublist" >
+          <li class="nav-item" [ngClass]="Departments ? 'menu-open' : ''">
+            <a (click)="menuOpen('Departments')" class="nav-link" >
+              <i class="far fa-circle nav-icon"></i>
+              <p>Departments</p>
+              <i class="right fas fa-angle-left"></i>
+            </a>
+            <ul class="nav nav-treeview sublist" [ngClass]="Departments ? 'UlClassOpenMenu' : 'UlClassCloseMenu'">
+              <li class="nav-item">
+                <a routerLink="/reports" class="nav-link" >
+                  <p>Open Contract Report</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a routerLink="/reports" class="nav-link" >
+                  <p>All Contract Report</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a routerLink="/reports"  class="nav-link" >
+                  <p>Agent Booking Status</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a routerLink="/reports" class="nav-link" >
+                  <p>Cancel Contract Report</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a routerLink="/reports" class="nav-link" >
+                  <p>Billing Report(Invoice Wise)</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a routerLink="/reports" class="nav-link" >
+                  <p>Dispatch Report</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a routerLink="/reports" class="nav-link" >
+                  <p>Billing Report(Contract Wise)</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a routerLink="/reports" class="nav-link" >
+                  <p>Payment Report</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a routerLink="/reports" class="nav-link" >
+                  <p>Tax Challan Report</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a routerLink="/reports" class="nav-link" >
+                  <p>Commission Report</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a routerLink="/reports" class="nav-link" >
+                  <p></p>Db-Cr Note Summary
+                </a>
+              </li>
+              <li class="nav-item">
+                <a routerLink="/reports" class="nav-link" >
+                  <p>External Agent Commission</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a routerLink="/reports" class="nav-link" >
+                  <p>Kickback Report</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+
 <!--Fabric CONFIGURATION-->
 
                <li class="nav-item" [ngClass]="Config ? 'menu-open' : ''">
