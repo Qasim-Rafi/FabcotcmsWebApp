@@ -62,6 +62,7 @@ import { HistoryContractComponent } from './shared/MODLES/history-contract/histo
 import { ContractOwnerComponent } from './contracts/contract-owner/contract-owner.component';
 import { NgProgressModule } from 'ngx-progressbar';
 import { ArticleRevisePopupComponent } from './shared/MODLES/article-revise-popup/article-revise-popup.component';
+import { ReportsComponent } from './shared/reports/reports.component';
 
 
 
@@ -105,6 +106,7 @@ const appRoutes: Routes = []
     HistoryContractComponent,
     ContractOwnerComponent,
     ArticleRevisePopupComponent,
+    ReportsComponent,
    
 
   
