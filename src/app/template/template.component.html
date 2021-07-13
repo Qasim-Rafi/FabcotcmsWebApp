@@ -264,22 +264,22 @@
                     </a>
                     <ul class="nav nav-treeview sublist" [ngClass]="Departments ? 'UlClassOpenMenu' : 'UlClassCloseMenu'">
                       <li class="nav-item">
-                        <a routerLink="/reports" class="nav-link" >
+                        <a (click)="reportsRoughtMethod('OpenContractReport')" class="nav-link" >
                           <p>Open Contract Report</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a routerLink="/reports" class="nav-link" >
+                        <a (click)="reportsRoughtMethod('AllContracReport')" class="nav-link" >
                           <p>All Contract Report</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a routerLink="/reports"  class="nav-link" >
+                        <a (click)="reportsRoughtMethod('DispatchReport')" class="nav-link" >
                           <p>Dispatch Report</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a routerLink="/reports" class="nav-link" >
+                        <a (click)="reportsRoughtMethod('CancleContarctReport')" class="nav-link" >
                           <p>Cancel Contract Report</p>
                         </a>
                       </li>
@@ -288,7 +288,7 @@
                   
                    
                       <li class="nav-item">
-                        <a routerLink="/reports" class="nav-link" >
+                        <a (click)="reportsRoughtMethod('CommissionReport')" class="nav-link" >
                           <p>Commission Report</p>
                         </a>
                       </li>
@@ -656,72 +656,72 @@
                     </a>
                     <ul class="nav nav-treeview sublist" [ngClass]="Departments ? 'UlClassOpenMenu' : 'UlClassCloseMenu'">
                       <li class="nav-item">
-                        <a routerLink="/reports" class="nav-link" >
+                        <a (click)="reportsRoughtMethod('OpenContractReport')" class="nav-link" >
                           <p>Open Contract Report</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a routerLink="/reports" class="nav-link" >
+                        <a (click)="reportsRoughtMethod('AllContractReport')" class="nav-link" >
                           <p>All Contract Report</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a routerLink="/reports"  class="nav-link" >
+                        <a (click)="reportsRoughtMethod('AgentBookingStatus')"  class="nav-link" >
                           <p>Agent Booking Status</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a routerLink="/reports" class="nav-link" >
+                        <a (click)="reportsRoughtMethod('CancleContarctReport')" class="nav-link" >
                           <p>Cancel Contract Report</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a routerLink="/reports" class="nav-link" >
+                        <a (click)="reportsRoughtMethod('BillingReportInvoiceWise')" class="nav-link" >
                           <p>Billing Report(Invoice Wise)</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a routerLink="/reports" class="nav-link" >
+                        <a (click)="reportsRoughtMethod('DispatchReport')" class="nav-link" >
                           <p>Dispatch Report</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a routerLink="/reports" class="nav-link" >
+                        <a (click)="reportsRoughtMethod('BillingReportContractWise')" class="nav-link" >
                           <p>Billing Report(Contract Wise)</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a routerLink="/reports" class="nav-link" >
+                        <a (click)="reportsRoughtMethod('PaymentReport')" class="nav-link" >
                           <p>Payment Report</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a routerLink="/reports" class="nav-link" >
+                        <a (click)="reportsRoughtMethod('TaxChallanReport')" class="nav-link" >
                           <p>Tax Challan Report</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a routerLink="/reports" class="nav-link" >
+                        <a (click)="reportsRoughtMethod('CommissionReport')" class="nav-link" >
                           <p>Commission Report</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a routerLink="/reports" class="nav-link" >
+                        <a (click)="reportsRoughtMethod('DbcrNoteSummary')" class="nav-link" >
                           <p></p>Db-Cr Note Summary
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a routerLink="/reports" class="nav-link" >
+                        <a (click)="reportsRoughtMethod('ExternalAgentReport')" class="nav-link" >
                           <p>External Agent Commission</p>
                         </a>
                       </li>
                       <li class="nav-item" *ngIf  = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export'">
-                        <a routerLink="/reports" class="nav-link" >
+                        <a (click)="reportsRoughtMethod('LCReport')" class="nav-link" >
                           <p>LC Reports</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a routerLink="/reports" class="nav-link" >
+                        <a (click)="reportsRoughtMethod('KickbackReport')" class="nav-link" >
                           <p>Kickback Report</p>
                         </a>
                       </li>
@@ -1013,68 +1013,68 @@
             </a>
             <ul class="nav nav-treeview sublist" [ngClass]="Departments ? 'UlClassOpenMenu' : 'UlClassCloseMenu'">
               <li class="nav-item">
-                <a routerLink="/reports" class="nav-link" >
+                <a (click)="reportsRoughtMethod('OpenContractReport')" class="nav-link" >
                   <p>Open Contract Report</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a routerLink="/reports" class="nav-link" >
+                <a  class="nav-link" (click)="reportsRoughtMethod('AllContractReport')">
                   <p>All Contract Report</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a routerLink="/reports"  class="nav-link" >
+                <a (click)="reportsRoughtMethod('AllBookingStatus')"  class="nav-link" >
                   <p>Agent Booking Status</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a routerLink="/reports" class="nav-link" >
+                <a (click)="reportsRoughtMethod('CancleContarctReport')" class="nav-link" >
                   <p>Cancel Contract Report</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a routerLink="/reports" class="nav-link" >
+                <a (click)="reportsRoughtMethod('BillingReportInvoiceWise')" class="nav-link" >
                   <p>Billing Report(Invoice Wise)</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a routerLink="/reports" class="nav-link" >
+                <a (click)="reportsRoughtMethod('DispatchReport')" class="nav-link" >
                   <p>Dispatch Report</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a routerLink="/reports" class="nav-link" >
+                <a (click)="reportsRoughtMethod('BillingReportContractWise')" class="nav-link" >
                   <p>Billing Report(Contract Wise)</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a routerLink="/reports" class="nav-link" >
+                <a (click)="reportsRoughtMethod('PaymentReport')" class="nav-link" >
                   <p>Payment Report</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a routerLink="/reports" class="nav-link" >
+                <a (click)="reportsRoughtMethod('TaxChallanReport')" class="nav-link" >
                   <p>Tax Challan Report</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a routerLink="/reports" class="nav-link" >
+                <a (click)="reportsRoughtMethod('CommissionReport')" class="nav-link" >
                   <p>Commission Report</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a routerLink="/reports" class="nav-link" >
+                <a (click)="reportsRoughtMethod('DbcrNoteSummary')" class="nav-link" >
                   <p></p>Db-Cr Note Summary
                 </a>
               </li>
               <li class="nav-item">
-                <a routerLink="/reports" class="nav-link" >
+                <a (click)="reportsRoughtMethod('ExternalAgentReport')" class="nav-link" >
                   <p>External Agent Commission</p>
                 </a>
               </li>
 
               <li class="nav-item">
-                <a routerLink="/reports" class="nav-link" >
+                <a (click)="reportsRoughtMethod('KickbackReport')" class="nav-link" >
                   <p>Kickback Report</p>
                 </a>
               </li>

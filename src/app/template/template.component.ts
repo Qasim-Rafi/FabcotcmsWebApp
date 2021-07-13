@@ -123,6 +123,9 @@ Swal.fire({
   }
 })
   }
+  reportsRoughtMethod(menuName){
+    this.router.navigate(['/reports'], { queryParams: { menuName: menuName } });
+  }
   // ngAfterViewInit() {
   //   $('[data-widget="treeview"]').each(function() {
   //       AdminLte.Treeview._jQueryInterface.call($(this), 'init');
