@@ -82,6 +82,8 @@ this.spinner.show();
                 this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
                 this.service.fetch((data) => {
                   this.rows = data;
+      this.priceTermCount = this.rows.length;
+
                 }, this.PriceTermUrl);
 this.spinner.hide();
               }
@@ -116,6 +118,8 @@ this.spinner.hide();
       }
       this.service.fetch((data) => {
         this.rows = data;
+      this.priceTermCount = this.rows.length;
+
     this.priceTermFilter = [...this.rows];
 
       }, this.PriceTermUrl);

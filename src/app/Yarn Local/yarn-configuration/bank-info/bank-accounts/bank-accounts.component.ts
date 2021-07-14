@@ -116,6 +116,7 @@ this.spinner.hide();
       this.service.fetch((data) => {
         this.rows = data;
         this.bankAccFilter = [...this.rows];
+        this.bankAccCount = this.rows.length
 
       }, this.bankAccUrl);
     }, (reason) => {
