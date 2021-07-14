@@ -38,68 +38,70 @@ export class ReportsComponent implements OnInit {
     private modalService: NgbModal,
     private http: HttpClient,
     private toastr: ToastrService,
+    private spinner:NgxSpinnerService,
     private router: Router,
-    private spinner:NgxSpinnerService
+    
 
-  ) { }
+  ) { this.router.routeReuseStrategy.shouldReuseRoute = () => false; }
 
   ngOnInit(): void {
     this.menuName = this.route.snapshot.queryParams;
-    // this.GetReportData();
+    this.GetReportData();
   }
   GetReportData() {
     this.spinner.show();
-    this.http.get(`${environment.apiUrl}/api/Configs/GetCapabilityById`)
+    this.http.get(`${environment.apiUrl}/api/Contracts/GetAllContract`)
       .subscribe(
         res => {
           this.response = res;
           if (this.response.success == true) {
 
-            if(this.menuName == 'OpenContractReport'){
-              this.openContractReport = this.response.data;
+            if(this.menuName.menuName == 'OpenContractReport'){
+              this.openContractReport = this.response.data.list;
             }
-            else if(this.menuName == 'AllContractReport'){
-              this.allContractReport = this.response.data;
+            else if(this.menuName.menuName == 'AllContractReport'){
+              this.allContractReport = this.response.data.list;
             }
-            else if(this.menuName == 'AgentBookingStatus'){
-              this.agentBookingStatus = this.response.data;
+            else if(this.menuName.menuName == 'AgentBookingStatus'){
+              this.agentBookingStatus = this.response.data.list;
             }
-            else if(this.menuName == 'CancleContarctReport'){
-              this.cancleContarctReport = this.response.data;
+            else if(this.menuName.menuName == 'CancleContarctReport'){
+              this.cancleContarctReport = this.response.data.list;
             }
-            else if(this.menuName == 'BillingReportInvoiceWise'){
-              this.billingReportInvoiceWise = this.response.data;
+            else if(this.menuName.menuName == 'BillingReportInvoiceWise'){
+              this.billingReportInvoiceWise = this.response.data.list;
             }
-            else if(this.menuName == 'DispatchReport'){
-              this.dispatchReport = this.response.data;
+            else if(this.menuName.menuName == 'DispatchReport'){
+              this.dispatchReport = this.response.data.list;
             }
-            else if(this.menuName == 'BillingReportContractWise'){
-              this.billingReportContractWise = this.response.data;
+            else if(this.menuName.menuName == 'BillingReportContractWise'){
+              this.billingReportContractWise = this.response.data.list;
             }
-            else if(this.menuName == 'PaymentReport'){
-              this.paymentReport = this.response.data;
+            else if(this.menuName.menuName == 'PaymentReport'){
+              this.paymentReport = this.response.data.list;
             }
-            else if(this.menuName == 'TaxChallanReport'){
-              this.taxChallanReport = this.response.data;
+            else if(this.menuName.menuName == 'TaxChallanReport'){
+              this.taxChallanReport = this.response.data.list;
             }
-            else if(this.menuName == 'CommissionReport'){
-              this.commissionReport = this.response.data;
+            else if(this.menuName.menuName == 'CommissionReport'){
+              this.commissionReport = this.response.data.list;
             }
-            else if(this.menuName == 'DbcrNoteSummary'){
-              this.dbcrNoteSummary = this.response.data;
+            else if(this.menuName.menuName == 'DbcrNoteSummary'){
+              this.dbcrNoteSummary = this.response.data.list;
             }
-            else if(this.menuName == 'ExternalAgentReport'){
-              this.externalAgentReport = this.response.data;
+            else if(this.menuName.menuName == 'ExternalAgentReport'){
+              this.externalAgentReport = this.response.data.list;
             }
-            else if(this.menuName == 'LCReport'){
-              this.lCReport = this.response.data;
+            else if(this.menuName.menuName == 'LCReport'){
+              this.lCReport = this.response.data.list;
             }
-            else if(this.menuName == 'KickbackReport'){
-              this.kickbackReport = this.response.data;
+            else if(this.menuName.menuName == 'KickbackReport'){
+              this.kickbackReport = this.response.data.list;
             }
             //this.data = this.response.data;
             this.spinner.hide();
           }
+
           else {
             this.toastr.error(this.response.message, 'Message.');
             this.spinner.hide();

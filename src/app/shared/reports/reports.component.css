@@ -10,17 +10,11 @@
     background-color: #23c6c8;
     color: #ffffff;
   }
-
-
   .widget {
     border-radius: 5px;
     padding: 15px 20px;
     margin-bottom: 10px;
     margin-top: 10px;
-  }
-  .yellow-bg {
-    background-color: #f8ac59;
-    color: #ffffff;
   }
   .text-right {
     text-align: right !important;
@@ -28,7 +22,6 @@
   .fa-4x {
     font-size: 4em;
   }
-  
   .lazur-bg {
     background-color: #23c6c8;
     color: #ffffff;
