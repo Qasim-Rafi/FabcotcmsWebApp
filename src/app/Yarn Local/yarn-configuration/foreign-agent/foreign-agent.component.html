@@ -57,7 +57,7 @@
 
         <div class="col-6 col-md-4 col-xl-4 agents-pdg">
           <button type="button" class="btn btn-info descBtn display-b">
-            <i class="fas fa-user-tie pr-2"></i>{{agentCount}}</button>
+            <i class="fas fa-user-tie pr-2"></i></button>
           <span class="text-muted text2">L/C Openner</span>
         </div>
 
@@ -122,7 +122,7 @@
     <div class="panel-body">
 
       <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'"
-        [headerHeight]="50" [footerHeight]="50" [sorts]="[{prop: 'code', dir: 'asce'}]" [rowHeight]="'auto'"
+        [headerHeight]="50" [footerHeight]="50" [sorts]="[{prop: 'code', dir: 'desc'}]" [rowHeight]="'auto'"
         [limit]="6">
 
         <ngx-datatable-column name="Agent Code" [width]="20" prop="code">
