@@ -5,6 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
+import { Dateformater } from '../dateformater';
 
 @Component({
   selector: 'app-reports',
@@ -12,7 +13,9 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./reports.component.css']
 })
 export class ReportsComponent implements OnInit {
-  menuName:any={};
+  dateformater: Dateformater = new Dateformater();  
+
+  menuName: any = {};
   response: any;
   temp: any[];
   rows: any = [];
@@ -29,73 +32,93 @@ export class ReportsComponent implements OnInit {
   externalAgentReport: any = [];
   kickbackReport: any = [];
   allContractReport: any = [];
-  paymentReport:any=[];
-  lCReport:any=[];
-
+  paymentReport: any = [];
+  lCReport: any = [];
+  url: any;
   constructor(
 
     private route: ActivatedRoute,
     private modalService: NgbModal,
     private http: HttpClient,
     private toastr: ToastrService,
-    private spinner:NgxSpinnerService,
+    private spinner: NgxSpinnerService,
     private router: Router,
-    
+
 
   ) { this.router.routeReuseStrategy.shouldReuseRoute = () => false; }
 
   ngOnInit(): void {
     this.menuName = this.route.snapshot.queryParams;
+  
     this.GetReportData();
+
   }
   GetReportData() {
+    if (this.menuName.menuName == 'OpenContractReport') {
+      this.url = '/api/Contracts/GetAllContract'
+    }
+    else if (this.menuName.menuName == 'AllContractReport') {
+      this.url = '/api/Contracts/GetAllContract'
+
+    }
+    else if (this.menuName.menuName == 'BillingReportInvoiceWise') {
+      this.billingReportInvoiceWise.startDate = this.dateformater.toModel(this.billingReportInvoiceWise.startDate);
+      this.billingReportInvoiceWise.endDate = this.dateformater.toModel(this.billingReportInvoiceWise.endDate);
+
+      this.url = '/api/Contracts/GetBllingInvoiceWise/'+this.billingReportInvoiceWise.startDate+'/'+this.billingReportInvoiceWise.endDate;
+
+    }
+    else if (this.menuName.menuName == 'CancleContarctReport') {
+      this.url = '/api/Contracts/GetAllContract'
+
+    }
     this.spinner.show();
-    this.http.get(`${environment.apiUrl}/api/Contracts/GetAllContract`)
+    this.http.get(`${environment.apiUrl}` + this.url)
       .subscribe(
         res => {
           this.response = res;
           if (this.response.success == true) {
 
-            if(this.menuName.menuName == 'OpenContractReport'){
+            if (this.menuName.menuName == 'OpenContractReport') {
               this.openContractReport = this.response.data.list;
             }
-            else if(this.menuName.menuName == 'AllContractReport'){
+            else if (this.menuName.menuName == 'AllContractReport') {
               this.allContractReport = this.response.data.list;
             }
-            else if(this.menuName.menuName == 'AgentBookingStatus'){
+            else if (this.menuName.menuName == 'AgentBookingStatus') {
               this.agentBookingStatus = this.response.data.list;
             }
-            else if(this.menuName.menuName == 'CancleContarctReport'){
+            else if (this.menuName.menuName == 'CancleContarctReport') {
               this.cancleContarctReport = this.response.data.list;
             }
-            else if(this.menuName.menuName == 'BillingReportInvoiceWise'){
+            else if (this.menuName.menuName == 'BillingReportInvoiceWise') {
               this.billingReportInvoiceWise = this.response.data.list;
             }
-            else if(this.menuName.menuName == 'DispatchReport'){
+            else if (this.menuName.menuName == 'DispatchReport') {
               this.dispatchReport = this.response.data.list;
             }
-            else if(this.menuName.menuName == 'BillingReportContractWise'){
+            else if (this.menuName.menuName == 'BillingReportContractWise') {
               this.billingReportContractWise = this.response.data.list;
             }
-            else if(this.menuName.menuName == 'PaymentReport'){
+            else if (this.menuName.menuName == 'PaymentReport') {
               this.paymentReport = this.response.data.list;
             }
-            else if(this.menuName.menuName == 'TaxChallanReport'){
+            else if (this.menuName.menuName == 'TaxChallanReport') {
               this.taxChallanReport = this.response.data.list;
             }
-            else if(this.menuName.menuName == 'CommissionReport'){
+            else if (this.menuName.menuName == 'CommissionReport') {
               this.commissionReport = this.response.data.list;
             }
-            else if(this.menuName.menuName == 'DbcrNoteSummary'){
+            else if (this.menuName.menuName == 'DbcrNoteSummary') {
               this.dbcrNoteSummary = this.response.data.list;
             }
-            else if(this.menuName.menuName == 'ExternalAgentReport'){
+            else if (this.menuName.menuName == 'ExternalAgentReport') {
               this.externalAgentReport = this.response.data.list;
             }
-            else if(this.menuName.menuName == 'LCReport'){
+            else if (this.menuName.menuName == 'LCReport') {
               this.lCReport = this.response.data.list;
             }
-            else if(this.menuName.menuName == 'KickbackReport'){
+            else if (this.menuName.menuName == 'KickbackReport') {
               this.kickbackReport = this.response.data.list;
             }
             //this.data = this.response.data;
@@ -115,7 +138,7 @@ export class ReportsComponent implements OnInit {
 
           }
         });
-        this.spinner.hide();
+    this.spinner.hide();
 
   }
   searchFilter(event) {
@@ -125,7 +148,7 @@ export class ReportsComponent implements OnInit {
       return (
         d.autoContractNumber.toLowerCase().indexOf(val) !== -1 ||
         d.buyerName.toLowerCase().indexOf(val) !== -1 ||
-         !val);
+        !val);
     });
     this.rows = temp;
   }
