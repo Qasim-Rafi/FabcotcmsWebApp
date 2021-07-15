@@ -51,9 +51,12 @@ export class ReportsComponent implements OnInit {
 
   ngOnInit(): void {
     this.menuName = this.route.snapshot.queryParams;
-    if(this.menuName.menuName == "CommissionReport"){
-    this.filterPopUform();
-    }
+    // if(this.menuName.menuName == "CommissionReport"){
+    // this.filterPopUform();
+    // }
+    // else  if(this.menuName.menuName == "LCReport"){
+    //   this.filterPopUform();
+    //   }
     this.GetReportData();
 
   }
@@ -69,7 +72,7 @@ export class ReportsComponent implements OnInit {
       this.billingReportInvoiceWise.startDate = this.dateformater.toModel(this.billingReportInvoiceWise.startDate);
       this.billingReportInvoiceWise.endDate = this.dateformater.toModel(this.billingReportInvoiceWise.endDate);
 
-      this.url = '/api/Contracts/GetBllingInvoiceWise/'+this.billingReportInvoiceWise.startDate+'/'+this.billingReportInvoiceWise.endDate;
+      this.url = '/api/Contracts/GetBillingInvoiceWise/'+this.billingReportInvoiceWise.startDate+'/'+this.billingReportInvoiceWise.endDate;
 
     }
     else if (this.menuName.menuName == 'CancleContarctReport') {
@@ -112,6 +115,7 @@ export class ReportsComponent implements OnInit {
             }
             else if (this.menuName.menuName == 'CommissionReport') {
               this.commissionReport = this.response.data.list;
+
             }
             else if (this.menuName.menuName == 'DbcrNoteSummary') {
               this.dbcrNoteSummary = this.response.data.list;
