@@ -149,7 +149,11 @@ this.getAllItems()
     });
     this.getAllShipmentDates((shipmentData) => {
       this.rows4 = shipmentData;
-
+      for(let i=0 ; i<this.rows4.length; i++){
+           
+        this.rows4[i].buyerDate = this.rows4[i].buyerDate.split(' ').splice(1,2);
+             
+           }
       this.shipmentFilter = [...shipmentData];
 
     });
@@ -238,7 +242,9 @@ this.getAllItems()
           //   this.rows2['compositionPercentage'] = this.response.data.compositionPercentage + "%"
           // }
           for(let i = 0 ; i<this.response.data.length ; i++){
+
             this.rows2[i].compositionPercentage = this.response.data[i].compositionPercentage + "%"
+            
             if(this.response.data[i].contractCurrencyCode == null){
               this.rows2[i].contractCurrencyCode = ''
             }
@@ -254,7 +260,11 @@ this.getAllItems()
             }
             else if(this.rows2[i].contractCurrencyCode == 'EUR'){
              
-              this.rows2[i].contractCost  = this.response.data[i].contractCost + ""
+              this.rows2[i].contractCost  = this.response.data[i].contractCost + "€"
+            }
+            else if(this.rows2[i].contractCurrencyCode == 'GBP'){
+             
+              this.rows2[i].contractCost  = this.response.data[i].contractCost + "£"
             }
           }
           this.ItemFilter = [this.rows2]; 
@@ -329,13 +339,10 @@ this.getAllItems()
       .get(`${environment.apiUrl}/api/Contracts/GetAllContractShipmentSchedule/`+ this.contractId)
       .subscribe(res => {
         this.response = res;
-        
 
         if (this.response.success == true) {
           this.shipment = this.response.data
-           for(let i=0 ; i<this.shipment.length; i++){
-             this.buyerShipmentDate[i] = this.shipment[i].buyerDate.split(' ').splice(1,2)
-           }
+         
           this.shipmentFilter = [this.shipment]; 
           cb(this.shipment);
         }
@@ -738,8 +745,14 @@ getContractCommisionData(){
         if(this.response.data.buyerSideCommission != 'null'){
           this.contractCommissionData['buyerSideCommission'] = this.response.data.buyerSideCommission + "%"
         }
+        if( this.response.data.buyerSideCommission === 0){
+          this.contractCommissionData['buyerSideCommission'] = " "
+        }
         if(this.response.data.sellerSideCommission != 'null'){
           this.contractCommissionData['sellerSideCommission'] = this.response.data.sellerSideCommission + "%"
+        }
+        else{
+          this.contractCommissionData['sellerSideCommission'] = " "
         }
         // this.contractCommissionData.agenetName= parseInt(this.contractCommissionData.agenetName);
         
@@ -1910,7 +1923,7 @@ this.spinner.hide();
                       {text:'Payment Terms' , style: 'tableheader'}],
                       [ {text:this.contractPartiesData['buyerName'] , style:'propertyValue'   },
                       {text:this.contractPartiesData['poNumber'] , style:'propertyValue'   },
-                      {text:this.buyerShipmentDate.map((row=>row )) , style:'propertyValue'   } ,
+                      {text:this.rows4.map((row=>row.buyerDate[0] +"      ")) , style:'propertyValue'   } ,
                       {text:this.rows4[0].shipmentMode  , style:'propertyValue'   } ,
                       {text:this.contractPaymentData['paymentTermName'] + this.contractPaymentData['paymentTermDays'] + this.contractPaymentData['paymentTermInfo'] , style:'propertyValue'   }   ]
                      
@@ -1954,7 +1967,7 @@ this.spinner.hide();
                  
                   table: {
                     headerRows: 1,
-                    widths: ['60%' , '9%' , '12%' , '9%' , '11%'],
+                    widths: ['67%' , '9%' , '9%' , '8%' , '8%'],
                     body: [
                       [{text:'Total' , style: 'tableheader3'},
                       {text:this.preview['enquiryItemQuantityTotal'] , style: 'tableheader3'},
