@@ -1,11 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {  NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
 import { Dateformater } from '../dateformater';
+import { FilterPopUpComponent } from './filter-pop-up/filter-pop-up.component';
 
 @Component({
   selector: 'app-reports',
@@ -42,6 +43,7 @@ export class ReportsComponent implements OnInit {
     private http: HttpClient,
     private toastr: ToastrService,
     private spinner: NgxSpinnerService,
+
     private router: Router,
 
 
@@ -49,7 +51,9 @@ export class ReportsComponent implements OnInit {
 
   ngOnInit(): void {
     this.menuName = this.route.snapshot.queryParams;
-  
+    if(this.menuName.menuName == "CommissionReport"){
+    this.filterPopUform();
+    }
     this.GetReportData();
 
   }
@@ -141,6 +145,7 @@ export class ReportsComponent implements OnInit {
     this.spinner.hide();
 
   }
+
   searchFilter(event) {
     const val = event.target.value.toLowerCase();
     // filter our data
@@ -151,5 +156,18 @@ export class ReportsComponent implements OnInit {
         !val);
     });
     this.rows = temp;
+  }
+  filterPopUform() {
+    const modalRef = this.modalService.open(FilterPopUpComponent, { centered: true });
+   
+    modalRef.result.then((data) => {
+      // on close
+      if (data == true) {
+
+
+      }
+    }, (reason) => {
+      // on dismiss
+    });
   }
 }
