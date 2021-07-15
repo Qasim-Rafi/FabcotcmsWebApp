@@ -5,6 +5,8 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { FilterPopUpComponent } from '../shared/reports/filter-pop-up/filter-pop-up.component';
 
 // import * as $ from 'jquery';
 // import * as AdminLte from 'admin-lte';
@@ -52,6 +54,7 @@ export class TemplateComponent implements OnInit {
     private toastr: ToastrService,
     private spinner:NgxSpinnerService,
     private route: ActivatedRoute,
+    private modalService: NgbModal,
 
     ) { }
 
@@ -152,6 +155,16 @@ Swal.fire({
   reportsRoughtMethod(menuName){
     this.router.navigate(['/reports'], { queryParams: { menuName: menuName } });
     this.GetReportData();
+    if(menuName == "CommissionReport"){
+      // localStorage.removetem('lc');
+      // localStorage.setItem('comm', "CommissionReport");
+    this.filterPopUform("CommissionReport");
+    }
+    else  if(menuName == "LCReport"){
+      // localStorage.removetem('comm');
+      // localStorage.setItem('lc', "LCReport");
+      this.filterPopUform("LCReport");
+      }
   }
   // ngAfterViewInit() {
   //   $('[data-widget="treeview"]').each(function() {
@@ -228,6 +241,10 @@ GetReportData() {
           }
           else if(this.menuName.menuName == 'CommissionReport'){
             this.commissionReport = this.response.data;
+            localStorage.removeItem('newName');
+            localStorage.removetem('lc');
+
+
           }
           else if(this.menuName.menuName == 'DbcrNoteSummary'){
             this.dbcrNoteSummary = this.response.data;
@@ -237,6 +254,7 @@ GetReportData() {
           }
           else if(this.menuName.menuName == 'LCReport'){
             this.lCReport = this.response.data;
+            localStorage.removetem('comm');
           }
           else if(this.menuName.menuName == 'KickbackReport'){
             this.kickbackReport = this.response.data;
@@ -261,6 +279,19 @@ GetReportData() {
       this.spinner.hide();
 
 }
+filterPopUform(menu) {
+  const modalRef = this.modalService.open(FilterPopUpComponent, { centered: true });
+  modalRef.componentInstance.menu = menu;
 
+  modalRef.result.then((data) => {
+    // on close
+    if (data == true) {
+
+
+    }
+  }, (reason) => {
+    // on dismiss
+  });
+}
 
 }
