@@ -38,109 +38,166 @@
 <div class="OuterClass">
  
   <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "line-spin-fade" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
- 
-  <img class="OuterClassimg imgw" src="assets/bg.jpg" alt="Fabcot Logo">
-  <div class="card card-outline shadow">
-    <div class="card-header text-center">
-      <a href="../../index2.html" class="h1"><img src="assets/fabcot.png" width="200" alt="Fabcot Logo"></a>
+ <div class="OuterClassimg imgw">
+  <div class="animation01">
+    <div class="rhombus_small">
+        <div class="rhombus">
+            <div class="border_box">
+                <span class="line line01"></span>
+                <span class="line line02"></span>
+                <span class="line line03"></span>
+                <span class="line line04"></span>
+                <span class="circle circle01"></span>
+                <span class="circle circle02"></span>
+                <span class="circle circle03"></span>
+                <span class="circle circle04"></span>
+                <span class="animation_line animation_line01"></span>
+                <span class="animation_line_wrapper animation_line02_wrapper"><span class="animation_line animation_line02"></span></span>
+                <span class="animation_line animation_line03"></span>
+                <span class="animation_line_wrapper animation_line04_wrapper"><span class="animation_line animation_line04"></span></span>
+                <span class="animation_line animation_line05"></span>
+                <span class="animation_line_wrapper animation_line06_wrapper"><span class="animation_line animation_line06"></span></span>
+                <span class="animation_line animation_line07"></span>
+                <span class="animation_line_wrapper animation_line08_wrapper"><span class="animation_line animation_line08"></span></span>
+            </div>
+            <div class="wave">
+                <div class="wave_wrapper"><div class="wave_box"></div></div>
+            </div>
+        </div>
     </div>
-
-    <div class="card-body">
-      <h2 class="login-box-msg">Sign in to start your session</h2>
-      <div *ngIf="isLoginError" class="red-text center error-message">
-        <i class="material-icons">error</i> Incorrect username or password
-      </div>
-
-
-      <form class="mb-2" #loginForm="ngForm" (ngSubmit)="OnSubmit(loginForm)">
-        <div class="input-group mb-3">
-          <!-- <label for="username">UserName</label> -->
-          <input type="text" class="form-control form-control-lg" placeholder="UserName" #username="ngModel"
-            name="username" [(ngModel)]="data.username" required
-            [ngClass]="{error: username.invalid && username.touched}">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-user"></span>
-            </div>
-          </div>
-        </div>
-
-        <div class="input-group mb-3">
-          <input type="password" #password="ngModel" name="password" [(ngModel)]="data.password"
-            class="form-control form-control-lg" placeholder="Password" required
-            [ngClass]="{error: password.invalid && password.touched}">
-          
-            <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
-        </div>
-
-        <div class="input-group mb-3">
-
-          <ng-select  class="input-w px-0 input-group-lg" 
-          [(ngModel)]="data.departmentId" placeholder="Select Department"  name="departmentId">
-      <ng-option *ngFor="let i of departmentId" class="form-control form-control-lg" [value]="i.id">{{ i.name }}</ng-option>
-       </ng-select> 
-                     
-       <div class="input-group-append">
-        <div class="input-group-text">
-          <span class="fa fa-building"></span>
-        </div>
-      </div>
-
-      </div>
+</div>
+<div class="animation02">
+    <div class="rhombus_box">
+        <span class="rhombus_item_wrapper rhombus_item01_wrapper"><span class="rhombus_item"></span></span>
+        <span class="rhombus_item_wrapper rhombus_item02_wrapper"><span class="rhombus_item"></span></span>
+    </div>
+    <div class="double_content">
+        <div class="double_wrapper02 dotted02"><div class="dotted_hide"><div class="double_wrapper01 dotted01"><span class="dotted_right"></span></div></div></div>
+        <div class="double_wrapper02 white02"><div class="double_wrapper01 white01"></div></div>
+        <div class="double_wrapper02 gray02"><div class="double_wrapper01 gray01"></div></div>
+        <div class="double_wrapper02 orange02"><div class="double_wrapper01 orange01"></div></div>
+    </div>
+    <div class="name">
+        <p>FABCOT-CMS</p>
+      
+        <button class="navbar-toggler button1" (click)="openNav1()" type="button">Sign In</button>
+        <button class="navbar-toggler button2" (click)="signUpForm()" type="button">Sign Up</button>
         
-        <div class="row">
-          <div class="col-12">
-
-            <!-- <div class="icheck-primary">
-                  <input type="checkbox" id="remember">
-                  <label for="remember">
-                    Remember Me
-                  </label>
-                </div> -->
-
-            <div class="form-group form-check">
-              <input type="checkbox" class="form-check-input" id="exampleCheck1">
-              <label class="form-check-label" for="exampleCheck1">Remember Me</label>
-            </div>
-
-          </div>
-          <!-- /.col -->
-          <div class="col-12">
-            <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary btn-block btn-lg rounded">Sign
-              In</button>
-          </div>
-          <!-- /.col -->
+        <span class="name_circle01">          
+        </span>
+        <span class="name_circle02"></span>
+    </div>
+</div>
+ </div>
+  <!-- <img class="OuterClassimg imgw" src="assets/bg.jpg" alt="Fabcot Logo"> -->
+  <div id="mySidenav" class="sidenav ">
+   
+    <div class="card card-outline shadow">
+      <div class="card-header text-center">
+        <div class="heading"> 
+          <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+        
         </div>
-      </form>
-
-   
-      <div class="form-group">
-      <div class="mb-4 text-center"> Don't have account?
-        <p class="color pointer" (click)="signUpForm()">Create One Here! </p>
-
+        <a href="../../index2.html" class="h1"><img src="assets/fabcot.png" width="200" alt="Fabcot Logo"></a>
       </div>
-
-
-
-      <p class="mb-4 text-center">
-        <a href="forgot-password.html">I forgot my password</a>
-      </p>
+  
+      <div class="card-body">
+        <h2 class="login-box-msg">Sign in to start your session</h2>
+        <div *ngIf="isLoginError" class="red-text center error-message">
+          <i class="material-icons">error</i> Incorrect username or password
+        </div>
+  
+  
+        <form class="mb-2" #loginForm="ngForm" (ngSubmit)="OnSubmit(loginForm)">
+          <div class="input-group mb-3">
+            <!-- <label for="username">UserName</label> -->
+            <input type="text" class="form-control form-control-lg" placeholder="UserName" #username="ngModel"
+              name="username" [(ngModel)]="data.username" required
+              [ngClass]="{error: username.invalid && username.touched}">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-user"></span>
+              </div>
+            </div>
+          </div>
+  
+          <div class="input-group mb-3">
+            <input type="password" #password="ngModel" name="password" [(ngModel)]="data.password"
+              class="form-control form-control-lg" placeholder="Password" required
+              [ngClass]="{error: password.invalid && password.touched}">
+            
+              <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+              </div>
+            </div>
+          </div>
+  
+          <div class="input-group mb-3">
+  
+            <ng-select  class="input-w px-0 input-group-lg" 
+            [(ngModel)]="data.departmentId" placeholder="Select Department"  name="departmentId">
+        <ng-option *ngFor="let i of departmentId" class="form-control form-control-lg" [value]="i.id">{{ i.name }}</ng-option>
+         </ng-select> 
+                       
+         <div class="input-group-append">
+          <div class="input-group-text">
+            <span class="fa fa-building"></span>
+          </div>
+        </div>
+  
+        </div>
+          
+          <div class="row">
+            <div class="col-12">
+  
+              <!-- <div class="icheck-primary">
+                    <input type="checkbox" id="remember">
+                    <label for="remember">
+                      Remember Me
+                    </label>
+                  </div> -->
+  
+              <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Remember Me</label>
+              </div>
+  
+            </div>
+            <!-- /.col -->
+            <div class="col-12">
+              <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary btn-block btn-lg rounded">Sign
+                In</button>
+            </div>
+            <!-- /.col -->
+          </div>
+        </form>
+  
+     
+        <div class="form-group">
+        <div class="mb-2 text-center"> Don't have account?
+          <p class="color pointer" (click)="signUpForm()">Create One Here! </p>
+  
+        </div>
+  
+  
+  
+        <p class="mb-4 text-center">
+          <a href="forgot-password.html">I forgot my password</a>
+        </p>
+      </div>
+     
+  
+      </div>
+  
+      <div class="card-footer">
+        <p class="mb-0 text-center">
+          Fabcot International Enterprises® © 2021 All rights reserved
+        </p>
+      </div>
+  
+  
     </div>
-   
-
-    </div>
-
-    <div class="card-footer">
-      <p class="mb-0 text-center">
-        Fabcot International Enterprises® © 2021 All rights reserved
-      </p>
-    </div>
-
-
   </div>
 
 </div>
