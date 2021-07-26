@@ -201,7 +201,7 @@
                         </div>
                     </div>
 
-                    <!-- <hr> -->
+                    <hr>
 
                     <div class="card shadow mb-4" *ngIf="loggedInDepartmentName == 'Yarn Export'">
                         <div class="card-body">
@@ -824,29 +824,63 @@
                         </div>
 
 
-                        <div class="form-group row">
-                            <label for="inputPassword4" class="col-md-3 col-form-label control-label">Seller Payment
+                       <div class="form-group row">
+                            <label for="inputEmail3" class="col-md-3 col-form-label control-label">Seller Payment
                                 Terms:</label>
 
-                            <div class="col-md-7">
-                                <div class="input-group">
-                                    <input type="text" placeholder="Enter Specification here"
-                                        class="form-control text-w-4" name="sellerPaymentTerm"
-                                        #sellerPaymentTerm="ngModel" [(ngModel)]="data.sellerPaymentTerm">
-                                </div>
+                            <!-- <div class="col-md-7">
+                                <div class="row"> -->
+
+                                    <div class="col-md-7">
+
+                                        <div class="input-group">
+                                            <ng-select name="sellerPaymentTermId" #sellerPaymentTermId="ngModel" class="input-w px-0"
+                                                [(ngModel)]="data.sellerPaymentTermId" placeholder="Seller Payment Terms">
+                                                <ng-option *ngFor="let i of PayementTerm" [value]="i.id">{{ i.term}}
+                                                </ng-option>
+                                            </ng-select>
+
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-primary" type="button" id="button-addon2"
+                                                    (click)="addsellerpayemntForm()">
+                                                    <i class="fa fa-plus"></i></button>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                <!-- </div> -->
                             </div>
-                        </div>
+                        <!-- </div> -->
 
                         <div class="form-group row">
-                            <label for="inputPassword4" class="col-md-3 col-form-label control-label">Buyer Payment
+                            <label for="inputEmail3" class="col-md-3 col-form-label control-label">Buyer Payment
                                 Terms:</label>
-                            <div class="col-md-7">
-                                <div class="input-group">
-                                    <input type="text" placeholder="Enter Specification here"
-                                        class="form-control text-w-4" name="buyerPaymentTerm"
-                                        #buyerPaymentTerm="ngModel" [(ngModel)]="data.buyerPaymentTerm">
-                                </div>
-                            </div>
+
+                           
+
+                                    <div class="col-md-7">
+
+                                        <div class="input-group">
+                                            <ng-select name="buyerPaymentTermId" #buyerPaymentTermId="ngModel" class="input-w px-0"
+                                                [(ngModel)]="data.buyerPaymentTermId" placeholder="Buyer Payment Terms">
+                                                <ng-option *ngFor="let i of buyerPayementTerm" [value]="i.id">{{ i.term}}
+                                                </ng-option>
+                                            </ng-select>
+
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-primary" type="button" id="button-addon2"
+                                                    (click)="addbuyerpayemntForm()">
+                                                    <i class="fa fa-plus"></i></button>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
                         </div>
 
                         <div class="form-group row">
