@@ -119,7 +119,7 @@ quantitynmbr : number;
     this.getContractProductData();
     this.getContractCostingData();
     this.getContractPaymentData();
-    this.getContractLOC();
+     this.getContractLOC();
     this.getContractRemarkData();
     this.getContractCommisionData();
     this.getSaleInvoice();
@@ -235,12 +235,12 @@ this.getAllItems()
 
         if (this.response.success == true) {
           this.rows2 = this.response.data
-          // if(this.response.data.compositionPercentage != "null"){
-          //   this.items['compositionPercentage'] = this.response.data.compositionPercentage  + "%" 
-          // }
-          // if(this.response.data.compositionPercentage != "null"){
-          //   this.rows2['compositionPercentage'] = this.response.data.compositionPercentage + "%"
-          // }
+          if(this.response.data.compositionPercentage != "null"){
+            this.items['compositionPercentage'] = this.response.data.compositionPercentage  + "%" 
+          }
+          if(this.response.data.compositionPercentage != "null"){
+            this.rows2['compositionPercentage'] = this.response.data.compositionPercentage + "%"
+          }
           for(let i = 0 ; i<this.response.data.length ; i++){
 
             this.rows2[i].compositionPercentage = this.response.data[i].compositionPercentage + "%"
@@ -963,7 +963,7 @@ getContractLOC() {
     .subscribe(
       res => {
         this.response = res;
-        if (this.response.success == true) {
+        if (this.response.success == true && this.response.data != null) {
           this.contractLOCdata = this.response.data;
          
 
