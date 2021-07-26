@@ -120,6 +120,18 @@
     right: 55% !important;
   }
   }
+
+  @media only screen and (max-width: 1326px) {
+    .card{
+		height: calc(100vh - 23px);
+		width: 70%;
+		
+	}
+    .sidenav{
+        top: 10px !important;
+        height: 96% !important;
+    }
+  }
   
   @media only screen and (max-width: 1024px) {
 	.input-w {
