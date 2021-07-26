@@ -57,10 +57,10 @@
     float: right;
   }
 .card{
-  /* border: 2px solid black; */
-  height:  calc(81vh - 76px);
+  /* border: 2px solid black; 
+  height:  calc(88vh - 76px);
  
-  float: right;
+  float: right;*/
 }
 .card-header{
     background-color: #1ab394;
@@ -88,6 +88,21 @@
   .modal-dialog {
     max-width: 40% !important;
 }
+
+.sidenav {
+	height: 80%;
+    width: 0;
+    position: absolute;
+    z-index: 1;
+    /* top: 104px; */
+    top: 5%;
+    right: 35%;
+    bottom: 16%;
+    /* background-color: #36404a; */
+    overflow-x: hidden;
+    transition: 0.5s;
+    /* padding-top: 60px; */
+  }
 @media only screen and (max-width: 1600px) {
 	.input-w{
 	  width: 91% !important;
@@ -98,6 +113,17 @@
 	.input-w{
 	  width: 89% !important;
 	}
+
+    .card{
+        /* border: 2px solid black;*/ 
+        height:  calc(85vh - 0px);
+        float: right;
+      }
+
+      .sidenav {
+        height: 90%;
+      }
+
   }
 
   @media only screen and (max-width: 1326px) {
@@ -475,19 +501,7 @@ footer a {
 .sidemessagenavW{
 	width: 30% !important;
   }
-  .sidenav {
-	height: 80%;
-    width: 0;
-    position: absolute;
-    z-index: 1;
-    top: 104px;
-    right: 35%;
-    bottom: 16%;
-    /* background-color: #36404a; */
-    overflow-x: hidden;
-    transition: 0.5s;
-    /* padding-top: 60px; */
-  }
+ 
   .closebtn {
 	font-size: 25px;
     color: #ffffff;
