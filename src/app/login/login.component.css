@@ -129,7 +129,7 @@
   @media only screen and (max-width: 1326px) {
     .card{
 		height: calc(97vh - 23px) !important;
-		width: 70%;
+		/* width: 70%; */
 		
 	}
     .sidenav{
