@@ -57,8 +57,9 @@
     float: right;
   }
 .card{
+    height:  calc(86vh - 76px);
   /* border: 2px solid black; 
-  height:  calc(88vh - 76px);
+
  
   float: right;*/
 }
@@ -116,7 +117,7 @@
 
     .card{
         /* border: 2px solid black;*/ 
-        height:  calc(85vh - 0px);
+        height:  calc(85vh - 0px) !important;
         float: right;
       }
 
