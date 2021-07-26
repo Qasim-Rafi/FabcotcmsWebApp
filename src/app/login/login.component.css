@@ -123,7 +123,7 @@
 
   @media only screen and (max-width: 1326px) {
     .card{
-		height: calc(100vh - 23px);
+		height: calc(97vh - 23px);
 		width: 70%;
 		
 	}
