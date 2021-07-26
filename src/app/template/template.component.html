@@ -785,6 +785,12 @@
                           <p>Price Term</p>
                         </a>
                       </li>
+                      <li class="nav-item" *ngIf="loggedInDepartmentName == 'Fabric Export'">
+                        <a routerLink="/yarn-local/selvedge" class="nav-link" routerLinkActive="active">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Selvedge</p>
+                        </a>
+                      </li>
                       <li class="nav-item">
                         <a routerLink="/yarn-local/payment-term" class="nav-link" routerLinkActive="active">
                           <i class="far fa-circle nav-icon"></i>

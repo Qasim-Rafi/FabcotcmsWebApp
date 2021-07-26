@@ -265,9 +265,13 @@
                                 <span class="badge badge-pill badge-primary">{{rows5.length}}</span>
                                 </a>
 
-                            <a class="nav-item nav-link " id="nav-Sale-tab" data-toggle="tab" href="#nav-Sale"
+                            <a  class="nav-item nav-link " id="nav-Sale-tab" data-toggle="tab" href="#nav-Sale"
                                 role="tab" aria-controls="nav-Sale" aria-selected="false">Sale Invoice &nbsp;<span
                                     class="badge badge-pill badge-primary">{{saleInvoice.length}}</span></a>
+
+                                    <a *ngIf="contractData.status == 'OnHold'|| loggedInDepartmentName=='Yarn Export'" class="nav-item nav-link " id="nav-Sale-tab" data-toggle="tab" href="#nav-Sale"
+                                    role="tab" aria-controls="nav-Sale" aria-selected="false">Bill & Payment &nbsp;<span
+                                        class="badge badge-pill badge-primary">{{saleInvoice.length}}</span></a>
 
                             <a class="nav-item nav-link " id="nav-Documents-tab" data-toggle="tab" href="#nav-Documents"
                                 role="tab" aria-controls="nav-Documents" aria-selected="false">Documents
