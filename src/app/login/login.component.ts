@@ -98,4 +98,16 @@ invalidLogin: boolean=false;
 //  this.router.navigate(['home']));
 
 }
+openNav1() {
+  var element = document.getElementById("mySidenav");
+  element.classList.add("sidemessagenavW");
+  
+  // document.getElementById("mySidenav").style.width = "40%";
+}
+closeNav() {
+var element = document.getElementById("mySidenav");
+element.classList.remove("sidemessagenavW");
+
+  // document.getElementById("mySidenav").style.width = "0";
+}
 }

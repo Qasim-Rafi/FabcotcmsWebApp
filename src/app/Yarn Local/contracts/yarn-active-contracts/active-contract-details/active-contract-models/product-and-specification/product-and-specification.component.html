@@ -34,7 +34,7 @@
                 </div>
                 <div class="col-md-9">
           
-                  <ng-select [(ngModel)]="data.febricId" placeholder="-- Select --" name="febricId" #febricId="ngModel">
+                  <ng-select [(ngModel)]="data.febricId" placeholder="Fabric Type" name="febricId" #febricId="ngModel">
                     <ng-option *ngFor="let i of fabric" [value]="i.id">{{i.type}}
                     </ng-option>
                   </ng-select>

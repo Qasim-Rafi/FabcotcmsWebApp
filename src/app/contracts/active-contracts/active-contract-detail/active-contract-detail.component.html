@@ -13,9 +13,8 @@
 
         <div class="col-sm-12 col-md-6 col-lg-4">
             <ol class="breadcrumb flt-RnL">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
-            </ol>
+                <li class="breadcrumb-item"><a href="#">Home/</a></li>
+Contract Details </ol>
         </div>
 
     </div>
@@ -41,22 +40,27 @@
         <!-- Info boxes -->
         <div class="row">
 
-            <div class="col-12 col-sm-6 col-xl-3 pt-2">
+            <div class="col-12 col-sm-6 col-md-6 col-xl-3 pt-2">
                 <div class="topbox-1">
                     <div class="topbox-margin-top-text border-bottom"> Completion Status
                         <span class="badge badge-primary float-right">Active</span>
+                        <span class="topbox-margin-end-text">
+                            &nbsp;
+                        </span>
                     </div>
-                    
+
                     <div class="box-body">
-                        <div class="mid-text">35%</div>
-                        <div class="progress mt-1">
-                            <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="75"
-                                aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
+                        <div class="mid-text text-primary" *ngIf="contractData.status =='BillAwaited'">100%</div>
+                        <div class="mid-text text-primary" *ngIf="contractData.status !='BillAwaited'">{{check}}%</div>
+
+                        <br>
+                            <ngb-progressbar *ngIf="contractData.status !='BillAwaited'" class="progress-bar progress text_Navy" role="progressbar" aria-valuenow="15"
+                            aria-valuemin="0" aria-valuemax="100" [value]="check"></ngb-progressbar>
+                            <ngb-progressbar *ngIf="contractData.status =='BillAwaited'" class="progress-bar progress text_Navy" role="progressbar" aria-valuenow="15"
+                            aria-valuemin="0" aria-valuemax="100" [value]="100"></ngb-progressbar>
                         <small class="topbox-margin-end-text">Last Action @</small>
                         <span class="text_Navy float-right ">19-Dec-2016 11:50</span>
                     </div>
-
 
 
 
@@ -68,20 +72,25 @@
             <div class="col-12 col-sm-6 col-xl-3 pt-2">
                 <div class="topbox-1">
                     <div class="topbox-margin-top-text border-bottom"> Order Quantity
-                        <span class="badge badge-info float-right">Contract</span>
                     </div>
 
-                    <div class="box-body">
-                        <div class="mid-text">100,000</div>
-                        <div class="progress mt-1">
-                            <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="15"
-                                aria-valuemin="0" aria-valuemax="100"></div>
+                     <div class="box-body">
+                        <div class="mid-text text-info">{{contractCostingData.quantity}}
+                            <span class="topbox-margin-end-text">
+                               <!-- {{contractCostingData.currencyName}} -->
+                            </span>   
                         </div>
+                            
+                        <br>
+                        <ngb-progressbar class="progress-bar progress text_Navy" type="warning" role="progressbar" aria-valuenow="15"
+                        aria-valuemin="0" aria-valuemax="100" [value]="25"></ngb-progressbar>
                         <small class="topbox-margin-end-text">
                             <i class="fas fa-truck"></i>
                             Total Delivered
                         </small>
-                        <span class="text_Navy float-right ">0 12</span>
+                        <span class="text_Navy float-right ">{{invoiceData.quantity}}
+                            {{contractCostingData.rateUOMName}}
+                        </span>
                     </div>
 
                     <!-- /.info-box-content -->
@@ -92,21 +101,25 @@
             <div class="col-12 col-sm-6 col-xl-3 pt-2">
                 <div class="topbox-1">
                     <div class="topbox-margin-top-text border-bottom"> Sale Invoice
-                        <span class="badge badge-info float-right">Contract</span>
                     </div>
 
 
-                    <div class="box-body">
-                        <div class="mid-text">241,500.00</div>
-                        <div class="progress mt-1">
-                            <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="0"
-                                aria-valuemin="0" aria-valuemax="100"></div>
+                   <div class="box-body">
+                        <div class="mid-text  text-danger">{{contractCostingData.contractCost}}
+                            <span class="topbox-margin-end-text">
+                               {{contractCostingData.currencyName}}
+                            </span>
                         </div>
+                        <br>
+                        <ngb-progressbar class="progress-bar progress text_Navy" type="danger" role="progressbar" aria-valuenow="15"
+                        aria-valuemin="0" aria-valuemax="100" [value]="25"></ngb-progressbar>
                         <small class="topbox-margin-end-text">
                             <i class="far fa-money-bill-alt"></i>
                             Invoice Sent
                         </small>
-                        <span class="text_Navy float-right ">0.00</span>
+                        <span class="text_Navy float-right ">{{invoiceData.amount}}
+                            {{contractCostingData.currencyName}}
+                        </span>
                     </div>
                     <!-- /.info-box-content -->
                 </div>
@@ -117,20 +130,22 @@
             <div class="col-12 col-sm-6 col-xl-3 pt-2">
                 <div class="topbox-1">
                     <div class="topbox-margin-top-text border-bottom">Billing / Payment
-                        <span class="badge badge-info float-right">Contract</span>
                     </div>
 
-                    <div class="box-body">
-                        <div class="mid-text">35%</div>
-                        <div class="progress mt-1">
-                            <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="0"
-                                aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
+                                  <div class="box-body">
+                        <div class="mid-text text-success">{{contractData.billingPayment}}</div>
+                        <span class="topbox-margin-end-text">
+                            &nbsp;
+                        </span>
+                        <br>
+                        <ngb-progressbar class="progress-bar progress text_Navy" type="success" role="progressbar" aria-valuenow="15"
+                        aria-valuemin="0" aria-valuemax="100" [value]="25"></ngb-progressbar>
                         <small class="topbox-margin-end-text">
                             <i class="far fa-money-bill-alt"></i>
                             Amount Received
                         </small>
-                        <span class="text_Navy float-right ">0
+                        <span class="text_Navy float-right ">0.00 {{contractCostingData.rateCurrencyName}}
+
                         </span>
                     </div>
                     <!-- /.info-box-content -->
@@ -1066,7 +1081,7 @@
                                     </ngx-datatable-column>
                                     <ngx-datatable-column name="Construcrion" prop="compositionPercentage" [width]="80">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                            {{ row.compositionPercentage}}% {{ row.compositionFebricTypeName}} {{
+                                            {{ row.compositionPercentage}} {{ row.compositionFebricTypeName}} {{
                                             row.compositionAdditionalInfo}}
                                         </ng-template>
                                     </ngx-datatable-column>

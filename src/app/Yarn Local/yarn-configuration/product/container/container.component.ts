@@ -86,6 +86,7 @@ this.spinner.show();
                 this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
                 this.service.fetch((data) => {
                   this.rows = data;
+
                 }, this.ContainerUrl);
 this.spinner.hide();
               }
@@ -120,6 +121,8 @@ this.spinner.hide();
       this.service.fetch((data) => {
         this.rows = data;
         this.containerFilter = [...this.rows];
+      this.countryCount = this.rows.length;
+
       }, this.ContainerUrl);
     }, (reason) => {
     });

@@ -67,6 +67,7 @@ export class ActiveContractDetailComponent implements OnInit {
   contractCommissionData: any = {};
   contractRemarksData: any = {};
   saleInvoiceData: any = {};
+  check:any=15;
   response: any;
   ItemCount: number;
   contractCount: number;
@@ -82,8 +83,10 @@ export class ActiveContractDetailComponent implements OnInit {
   invoiceItem = {};
   reminderData = [];
 quantitynmbr : number;
-  
- 
+  buyerShipmentDate:any = [];
+ pakCurrency:string;
+ usdCurrency:string;
+
   shipmentUrl='/api/Contracts/GetAllContractShipmentSchedule/{contractId}';
   // tna data
   rows5: any = [];
@@ -109,7 +112,6 @@ quantitynmbr : number;
    
     this.getPreview((data)=>{
       this.preview = data;
-  console.log('total',this.preview['enquiryItemQuantityTotal'])
     });
     this.getContractData();
     this.getAllReminder();
@@ -135,12 +137,11 @@ quantitynmbr : number;
     });
 
 
-    this.getAllItems((itemsData) => {
-      this.rows2 = itemsData;
-      this.ItemFilter = [...itemsData];
-      // this.listCount= this.rows.length;
-    });
-
+    // this.getAllItems((itemsData) => {
+    //   this.rows2 = itemsData;
+    //   this.ItemFilter = [...itemsData];
+    // });
+this.getAllItems()
     this.getAllNotes((NotesData) => {
       this.rows3 = NotesData;
       this.noteFilter = [...NotesData];
@@ -148,6 +149,11 @@ quantitynmbr : number;
     });
     this.getAllShipmentDates((shipmentData) => {
       this.rows4 = shipmentData;
+      for(let i=0 ; i<this.rows4.length; i++){
+           
+        this.rows4[i].buyerDate = this.rows4[i].buyerDate.split(' ').splice(1,2);
+             
+           }
       this.shipmentFilter = [...shipmentData];
 
     });
@@ -219,7 +225,7 @@ quantitynmbr : number;
 }
 
 
-  getAllItems(cb) {
+  getAllItems() {
 
     this.http
       .get(`${environment.apiUrl}/api/Contracts/GetAllContractItem/`+ this.contractId)
@@ -228,9 +234,41 @@ quantitynmbr : number;
         
 
         if (this.response.success == true) {
-          this.items = this.response.data
-          this.ItemFilter = [this.items]; 
-          cb(this.items);
+          this.rows2 = this.response.data
+          // if(this.response.data.compositionPercentage != "null"){
+          //   this.items['compositionPercentage'] = this.response.data.compositionPercentage  + "%" 
+          // }
+          // if(this.response.data.compositionPercentage != "null"){
+          //   this.rows2['compositionPercentage'] = this.response.data.compositionPercentage + "%"
+          // }
+          for(let i = 0 ; i<this.response.data.length ; i++){
+
+            this.rows2[i].compositionPercentage = this.response.data[i].compositionPercentage + "%"
+            
+            if(this.response.data[i].contractCurrencyCode == null){
+              this.rows2[i].contractCurrencyCode = ''
+            }
+            else if(this.rows2[i].contractCurrencyCode == 'PKR'){
+             
+              this.pakCurrency = "RS"
+              this.rows2[i].contractCost  = this.response.data[i].contractCost + "RS"
+            }
+            else if(this.rows2[i].contractCurrencyCode == 'USD'){
+             
+              this.usdCurrency = "$"
+              this.rows2[i].contractCost  = this.response.data[i].contractCost + "$"
+            }
+            else if(this.rows2[i].contractCurrencyCode == 'EUR'){
+             
+              this.rows2[i].contractCost  = this.response.data[i].contractCost + "€"
+            }
+            else if(this.rows2[i].contractCurrencyCode == 'GBP'){
+             
+              this.rows2[i].contractCost  = this.response.data[i].contractCost + "£"
+            }
+          }
+          this.ItemFilter = [this.rows2]; 
+          // cb(this.items);
         }
         else {
           this.toastr.error(this.response.message, 'Message.');
@@ -301,10 +339,10 @@ quantitynmbr : number;
       .get(`${environment.apiUrl}/api/Contracts/GetAllContractShipmentSchedule/`+ this.contractId)
       .subscribe(res => {
         this.response = res;
-        
 
         if (this.response.success == true) {
           this.shipment = this.response.data
+         
           this.shipmentFilter = [this.shipment]; 
           cb(this.shipment);
         }
@@ -658,6 +696,9 @@ getContractPaymentData() {
         this.response = res;
         if (this.response.success == true) {
           this.contractPaymentData = this.response.data;
+          if(this.response.data.paymentTermDays == 0){
+            this.contractPaymentData.paymentTermDays = ""
+          }
           
         }
         else {
@@ -701,6 +742,18 @@ getContractCommisionData(){
       this.response = res;
       if (this.response.success == true) {
         this.contractCommissionData = this.response.data;
+        if(this.response.data.buyerSideCommission != 'null'){
+          this.contractCommissionData['buyerSideCommission'] = this.response.data.buyerSideCommission + "%"
+        }
+        if( this.response.data.buyerSideCommission == "0%"){
+          this.contractCommissionData['buyerSideCommission'] = " "
+        }
+        if(this.response.data.sellerSideCommission != 'null'){
+          this.contractCommissionData['sellerSideCommission'] = this.response.data.sellerSideCommission + "%"
+        }
+        if( this.response.data.sellerSideCommission == "0%"){
+          this.contractCommissionData['sellerSideCommission'] = " "
+        }
         // this.contractCommissionData.agenetName= parseInt(this.contractCommissionData.agenetName);
         
       }
@@ -1262,10 +1315,11 @@ addItems(check, name) {
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
-      this.getAllItems((itemsData) => {
-        this.rows2 = itemsData;
-        // this.listCount= this.rows.length;
-      });
+      // this.getAllItems((itemsData) => {
+      //   this.rows2 = itemsData;
+       
+      // });
+      this.getAllItems();
       this.getContractData();
   
 
@@ -1363,11 +1417,10 @@ deleteItem(id) {
             this.response = res;
             if (this.response.success == true) {
               this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
-              this.getAllItems((itemsData) => {
-                this.rows2 = itemsData;
-                // this.listCount= this.rows.length;
-              });
-
+              // this.getAllItems((itemsData) => {
+              //   this.rows2 = itemsData;
+              // });
+this.getAllItems();
               this.spinner.hide();
             }
             else {
@@ -1394,11 +1447,10 @@ editItem(row, check, name) {
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
-      this.getAllItems((itemsData) => {
-        this.rows2 = itemsData;
-        // this.listCount= this.rows.length;
-      });
-  
+      // this.getAllItems((itemsData) => {
+      //   this.rows2 = itemsData;
+      // });
+  this.getAllItems();
     }
     this.getContractData();
 
@@ -1748,7 +1800,7 @@ this.spinner.hide();
             let docDefinition = {
               pageSize: 'A4',
               pageOrientation: 'LETTER',
-              pageMargins: [ 10, 10, 10, 0 ],
+              pageMargins: [ 15, 10, 10, 0 ],
               info: {
                 title: 'Fabcot | Contract'
               },
@@ -1798,16 +1850,20 @@ this.spinner.hide();
                     ]
                   }
                 },
-                { margin:[300 , 10 , 0 , 0],
+                { margin:[300 , 6 , 0 , 0],
                   text:"Commission Payable to Fabcot (Buyer Side):"  , style:'propertyValue2',
                   
                 },
                 { margin:[500 , -11 , 0 , 0],
-                  text:this.contractData['buyerName']  , style:'propertyValue3',
+                  text:this.contractCommissionData['buyerSideCommission']  , style:'propertyValue3',
                   
                 },
                 { margin:[300 , 0 , 0 , 0],
-                  text:this.contractCommissionData['buyerSideCommission'] + '%'  , style:'propertyValue3',
+                  text:"Commission Payable to Fabcot (Seller Side):"  , style:'propertyValue2',
+                  
+                },
+                { margin:[500 , -11 , 0 , 0],
+                  text:this.contractCommissionData['sellerSideCommission']  , style:'propertyValue3',
                   
                 },
                 {
@@ -1829,7 +1885,7 @@ this.spinner.hide();
                 },
             
                 {
-                  margin: [300 , -70 , 0 , 0],
+                  margin: [300 , -85 , 0 , 0],
                  
                   table: {
                     headerRows: 1,
@@ -1867,8 +1923,8 @@ this.spinner.hide();
                       {text:'Payment Terms' , style: 'tableheader'}],
                       [ {text:this.contractPartiesData['buyerName'] , style:'propertyValue'   },
                       {text:this.contractPartiesData['poNumber'] , style:'propertyValue'   },
-                      {text:this.rows4.map((row=>row.buyerDate )) , style:'propertyValue'   } ,
-                      {text:this.rows4.map((row=>row.shipmentMode ))  , style:'propertyValue'   } ,
+                      {text:this.rows4.map((row=>row.buyerDate[0] +"      ")) , style:'propertyValue'   } ,
+                      {text:this.rows4[0].shipmentMode  , style:'propertyValue'   } ,
                       {text:this.contractPaymentData['paymentTermName'] + this.contractPaymentData['paymentTermDays'] + this.contractPaymentData['paymentTermInfo'] , style:'propertyValue'   }   ]
                      
                     
@@ -1879,7 +1935,7 @@ this.spinner.hide();
                   margin:[0,40,0,0],
                   table: {
                     headerRows: 1,
-                    widths: ['5%' , '15%','12%' , '6%' , '12%' , '6%' , '10%','13%','10%','12%'],
+                    widths: ['12%' , '14%','13%' , '11%' , '8%' , '6%' , '10%','10%','9%','8%'],
                     body: [
                       [{text:'Item' , style: 'tableheader2'},
                       {text:'Composition ' , style: 'tableheader2'},
@@ -1894,10 +1950,10 @@ this.spinner.hide();
                   
                     ...this.rows2.map((row=>
                       [{text:row.description , style:'propertyValue'}, {text:row.compositionPercentage + row.compositionFebricTypeName+row.compositionAdditionalInfo , style:'propertyValue'} ,
-                         {text:row.construction , style:'propertyValue'},{text:row.size , style:'propertyValue'}, {text:row.weight , style:'propertyValue'} , {text:row.description , style:'propertyValue'} ,
-                         { text:row.itemQuantity + row.itemUOMName , style:'propertyValue'} ,
-                          {text:row.contractRate + row.contractCurrencyCode + row.contractUOMName , style:'propertyValue'} , 
-                          {text:row.contractCost , style:'propertyValue'} , {text:row.commission , style:'propertyValue'},
+                         {text:row.construction , style:'propertyValue'},{text:row.size , style:'propertyValue'}, {text:row.weight , style:'propertyValue'} , {text:row.colorName , style:'propertyValue'} ,
+                         { text:row.itemQuantity + row.itemUOMUnit , style:'propertyValue'} ,
+                          {text:row.contractRate+" " + row.contractCurrencyCode+" " + row.contractUOMUnit , style:'propertyValue'} , 
+                          {text:row.contractCost, style:'propertyValue'} , {text:row.commission , style:'propertyValue'},
                    
                         ]
                       )),
@@ -1911,13 +1967,13 @@ this.spinner.hide();
                  
                   table: {
                     headerRows: 1,
-                    widths: ['60%' , '9%' , '12%' , '9%' , '11%'],
+                    widths: ['67%' , '9%' , '9%' , '8%' , '8%'],
                     body: [
                       [{text:'Total' , style: 'tableheader3'},
-                      {text:'' , style: 'tableheader3'},
-                      {text:'' , style: 'tableheader3'},
-                      {text:'' , style: 'tableheader3'},
-                      {text:'' , style: 'tableheader3'},]
+                      {text:this.preview['enquiryItemQuantityTotal'] , style: 'tableheader3'},
+                      {text:'', style: 'tableheader3'},
+                      {text:this.preview['enquiryItemAmountTotal'] , style: 'tableheader3'},
+                      {text:this.preview['enquiryItemCommissionTotal'] , style: 'tableheader3'},]
                      
                     
                     ] 
@@ -2017,11 +2073,12 @@ this.spinner.hide();
         
           }
           
+        
           printB2() {
             let docDefinition = {
               pageSize: 'A4',
               pageOrientation: 'LETTER',
-              pageMargins: [ 10, 10, 10, 0 ],
+              pageMargins: [ 20, 10, 10, 0 ],
               info: {
                 title: 'Fabcot | Contract'
               },
@@ -2071,16 +2128,20 @@ this.spinner.hide();
                     ]
                   }
                 },
-                { margin:[300 , 10 , 0 , 0],
+                { margin:[300 , 6 , 0 , 0],
                   text:"Commission Payable to Fabcot (Buyer Side):"  , style:'propertyValue2',
                   
                 },
                 { margin:[500 , -11 , 0 , 0],
-                  text:this.contractData['buyerName']  , style:'propertyValue3',
+                  text:this.contractCommissionData['buyerSideCommission']  , style:'propertyValue3',
                   
                 },
                 { margin:[300 , 0 , 0 , 0],
-                  text:this.contractCommissionData['buyerSideCommission'] + '%'  , style:'propertyValue3',
+                  text:"Commission Payable to Fabcot (Seller Side):"  , style:'propertyValue2',
+                  
+                },
+                { margin:[500 , -11 , 0 , 0],
+                  text:this.contractCommissionData['sellerSideCommission']  , style:'propertyValue3',
                   
                 },
                 {
@@ -2102,7 +2163,7 @@ this.spinner.hide();
                 },
             
                 {
-                  margin: [300 , -70 , 0 , 0],
+                  margin: [300 , -85 , 0 , 0],
                  
                   table: {
                     headerRows: 1,
@@ -2140,8 +2201,8 @@ this.spinner.hide();
                       {text:'Payment Terms' , style: 'tableheader'}],
                       [ {text:this.contractPartiesData['buyerName'] , style:'propertyValue'   },
                       {text:this.contractPartiesData['poNumber'] , style:'propertyValue'   },
-                      {text:this.rows4.map((row=>row.buyerDate )) , style:'propertyValue'   } ,
-                      {text:this.rows4.map((row=>row.shipmentMode ))  , style:'propertyValue'   } ,
+                      {text:this.rows4.map((row=>row.buyerDate[0] +"      ")) , style:'propertyValue'   } ,
+                      {text:this.rows4[0].shipmentMode  , style:'propertyValue'   } ,
                       {text:this.contractPaymentData['paymentTermName'] + this.contractPaymentData['paymentTermDays'] + this.contractPaymentData['paymentTermInfo'] , style:'propertyValue'   }   ]
                      
                     
@@ -2152,7 +2213,7 @@ this.spinner.hide();
                   margin:[0,40,0,0],
                   table: {
                     headerRows: 1,
-                    widths: ['8%' , '15%','15%' , '6%' , '12%' , '6%' , '12%','13%','11%'],
+                    widths: ['12%' , '14%','13%' , '11%' , '8%' , '6%' , '10%','10%','9%'],
                     body: [
                       [{text:'Item' , style: 'tableheader2'},
                       {text:'Composition ' , style: 'tableheader2'},
@@ -2167,10 +2228,10 @@ this.spinner.hide();
                   
                     ...this.rows2.map((row=>
                       [{text:row.description , style:'propertyValue'}, {text:row.compositionPercentage + row.compositionFebricTypeName+row.compositionAdditionalInfo , style:'propertyValue'} ,
-                         {text:row.construction , style:'propertyValue'},{text:row.size , style:'propertyValue'}, {text:row.weight , style:'propertyValue'} , {text:row.description , style:'propertyValue'} ,
-                         { text:row.itemQuantity + row.itemUOMName , style:'propertyValue'} ,
-                          {text:row.contractRate + row.contractCurrencyCode + row.contractUOMName , style:'propertyValue'} , 
-                          {text:row.contractCost , style:'propertyValue'} ,
+                         {text:row.construction , style:'propertyValue'},{text:row.size , style:'propertyValue'}, {text:row.weight , style:'propertyValue'} , {text:row.colorName , style:'propertyValue'} ,
+                         { text:row.itemQuantity + row.itemUOMUnit , style:'propertyValue'} ,
+                          {text:row.contractRate+" " + row.contractCurrencyCode+" " + row.contractUOMUnit , style:'propertyValue'} , 
+                          {text:row.contractCost, style:'propertyValue'} 
                    
                         ]
                       )),
@@ -2184,13 +2245,13 @@ this.spinner.hide();
                  
                   table: {
                     headerRows: 1,
-                    widths: ['65%' , '11%' , '12%' , '10%' ],
+                    widths: ['67%' , '9%' , '9%' , '8%' ],
                     body: [
                       [{text:'Total' , style: 'tableheader3'},
                       {text:this.preview['enquiryItemQuantityTotal'] , style: 'tableheader3'},
-                      {text:'' , style: 'tableheader3'},
+                      {text:'', style: 'tableheader3'},
                       {text:this.preview['enquiryItemAmountTotal'] , style: 'tableheader3'},
-                     ]
+                      ]
                      
                     
                     ] 
@@ -2209,7 +2270,6 @@ this.spinner.hide();
                   text:'For Fabcot International'   , style:'propertyValue4',
                   
                 },
-              
               
               ],
               styles: {
@@ -2255,7 +2315,8 @@ this.spinner.hide();
                   alignment: 'left',  
                   fontSize: 10,
                   margin:2,
-                  bold:true
+                  
+                 
                 },
                 tableheader: {
                   fillColor: '#f3f3f4',
@@ -2294,7 +2355,7 @@ this.spinner.hide();
             let docDefinition = {
               pageSize: 'A4',
               pageOrientation: 'LETTER',
-              pageMargins: [ 10, 10, 10, 0 ],
+              pageMargins: [ 30, 10, 10, 0 ],
               info: {
                 title: 'Fabcot | Contract'
               },
@@ -2344,16 +2405,20 @@ this.spinner.hide();
                     ]
                   }
                 },
-                { margin:[300 , 10 , 0 , 0],
+                { margin:[300 , 6 , 0 , 0],
                   text:"Commission Payable to Fabcot (Buyer Side):"  , style:'propertyValue2',
                   
                 },
                 { margin:[500 , -11 , 0 , 0],
-                  text:this.contractData['buyerName']  , style:'propertyValue3',
+                  text:this.contractCommissionData['buyerSideCommission']  , style:'propertyValue3',
                   
                 },
                 { margin:[300 , 0 , 0 , 0],
-                  text:this.contractCommissionData['buyerSideCommission'] + '%'  , style:'propertyValue3',
+                  text:"Commission Payable to Fabcot (Seller Side):"  , style:'propertyValue2',
+                  
+                },
+                { margin:[500 , -11 , 0 , 0],
+                  text:this.contractCommissionData['sellerSideCommission']  , style:'propertyValue3',
                   
                 },
                 {
@@ -2375,7 +2440,7 @@ this.spinner.hide();
                 },
             
                 {
-                  margin: [300 , -70 , 0 , 0],
+                  margin: [300 , -85 , 0 , 0],
                  
                   table: {
                     headerRows: 1,
@@ -2413,8 +2478,8 @@ this.spinner.hide();
                       {text:'Payment Terms' , style: 'tableheader'}],
                       [ {text:this.contractPartiesData['buyerName'] , style:'propertyValue'   },
                       {text:this.contractPartiesData['poNumber'] , style:'propertyValue'   },
-                      {text:this.rows4.map((row=>row.buyerDate )) , style:'propertyValue'   } ,
-                      {text:this.rows4.map((row=>row.shipmentMode ))  , style:'propertyValue'   } ,
+                      {text:this.rows4.map((row=>row.buyerDate[0] +"      ")) , style:'propertyValue'   } ,
+                      {text:this.rows4[0].shipmentMode  , style:'propertyValue'   } ,
                       {text:this.contractPaymentData['paymentTermName'] + this.contractPaymentData['paymentTermDays'] + this.contractPaymentData['paymentTermInfo'] , style:'propertyValue'   }   ]
                      
                     
@@ -2425,25 +2490,23 @@ this.spinner.hide();
                   margin:[0,40,0,0],
                   table: {
                     headerRows: 1,
-                    widths: ['5%' , '13%','12%' , '6%' , '12%' , '6%' , '12%','13%','10%' , '12%'],
+                    widths: ['15%'  , '15%' , '10%' , '10%' , '10%','10%','10%','10%'],
                     body: [
                       [{text:'Item' , style: 'tableheader2'},
-                      {text:'Composition ' , style: 'tableheader2'},
-                      {text:'Construction' , style: 'tableheader2'},
+                  
                       {text:'Sizes' , style: 'tableheader2'},
                       {text:'GSM/Weight' , style: 'tableheader2'},
                       {text:'Color' , style: 'tableheader2'},
                       {text:'Quantity' , style: 'tableheader2'},
                       {text:'Unit Price' , style: 'tableheader2'},
                       {text:'Amount' , style: 'tableheader2'},
-                      {text:'Commission' , style: 'tableheader2'} ],
+                      {text:'Commission' , style: 'tableheader2'}],
                   
                     ...this.rows2.map((row=>
-                      [{text:row.description , style:'propertyValue'}, {text:row.compositionPercentage + row.compositionFebricTypeName+row.compositionAdditionalInfo , style:'propertyValue'} ,
-                         {text:row.construction , style:'propertyValue'},{text:row.size , style:'propertyValue'}, {text:row.weight , style:'propertyValue'} , {text:row.description , style:'propertyValue'} ,
-                         { text:row.itemQuantity + row.itemUOMName , style:'propertyValue'} ,
-                          {text:row.contractRate + row.contractCurrencyCode + row.contractUOMName , style:'propertyValue'} , 
-                          {text:row.contractCost , style:'propertyValue'} , {text:row.commission , style:'propertyValue'},
+                      [{text:row.description , style:'propertyValue'},{text:row.size , style:'propertyValue'}, {text:row.weight , style:'propertyValue'} , {text:row.colorName , style:'propertyValue'} ,
+                         { text:row.itemQuantity + row.itemUOMUnit , style:'propertyValue'} ,
+                          {text:row.contractRate+" " + row.contractCurrencyCode+" " + row.contractUOMUnit , style:'propertyValue'} , 
+                          {text:row.contractCost, style:'propertyValue'} , {text:row.commission , style:'propertyValue'},
                    
                         ]
                       )),
@@ -2457,15 +2520,13 @@ this.spinner.hide();
                  
                   table: {
                     headerRows: 1,
-                    widths: ['58%' , '11%' , '12%' , '9%' , '11%' ],
+                    widths: ['54%' , '9%' , '9%' , '8%' , '10%'],
                     body: [
                       [{text:'Total' , style: 'tableheader3'},
                       {text:this.preview['enquiryItemQuantityTotal'] , style: 'tableheader3'},
-                      {text:'' , style: 'tableheader3'},
+                      {text:'', style: 'tableheader3'},
                       {text:this.preview['enquiryItemAmountTotal'] , style: 'tableheader3'},
-                      {text:this.preview['enquiryItemCommissionTotal'] , style: 'tableheader3'},
-
-                     ]
+                      {text:this.preview['enquiryItemCommissionTotal'] , style: 'tableheader3'},]
                      
                     
                     ] 
@@ -2563,5 +2624,6 @@ this.spinner.hide();
             };
             pdfMake.createPdf(docDefinition).print();
         
-          }    
+          }
+          
 }

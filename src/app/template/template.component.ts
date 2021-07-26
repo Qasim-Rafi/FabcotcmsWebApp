@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { FilterPopUpComponent } from '../shared/reports/filter-pop-up/filter-pop-up.component';
+
 // import * as $ from 'jquery';
 // import * as AdminLte from 'admin-lte';
 @Component({
@@ -20,14 +27,39 @@ export class TemplateComponent implements OnInit {
   Contract: boolean = false;
   Billing: boolean = false;
   Config: boolean = false;
+  Report: boolean = false;
+  Departments: boolean = false;
+  menuName:any={};
+  response: any;
+  openContractReport: any = [];
+  agentBookingStatus: any = [];
+  cancleContarctReport: any = [];
+  billingReportInvoiceWise: any = [];
+  dispatchReport: any = [];
+  billingReportContractWise: any = [];
+  taxChallanReport: any = [];
+  commissionReport: any = [];
+  dbcrNoteSummary: any = [];
+  externalAgentReport: any = [];
+  kickbackReport: any = [];
+  allContractReport: any = [];
+  paymentReport:any=[];
+  lCReport:any=[];
   Product: boolean = false;
   Bank: boolean = false;
   Enqurie: boolean = false;
   Textile: boolean = false;
-  constructor( private router: Router,) { }
+  constructor( private router: Router,
+    private http: HttpClient,
+    private toastr: ToastrService,
+    private spinner:NgxSpinnerService,
+    private route: ActivatedRoute,
+    private modalService: NgbModal,
+
+    ) { }
 
   ngOnInit(): void {
-    
+
     this.userrole=localStorage.getItem('role');
     this.loggedInDepartmentId=localStorage.getItem('loggedInDepartmentId');
     this.userName=localStorage.getItem('loggedInUserName');
@@ -120,6 +152,20 @@ Swal.fire({
   }
 })
   }
+  reportsRoughtMethod(menuName){
+    this.router.navigate(['/reports'], { queryParams: { menuName: menuName } });
+    this.GetReportData();
+    if(menuName == "CommissionReport"){
+      // localStorage.removetem('lc');
+      // localStorage.setItem('comm', "CommissionReport");
+    this.filterPopUform("CommissionReport");
+    }
+    else  if(menuName == "LCReport"){
+      // localStorage.removetem('comm');
+      // localStorage.setItem('lc', "LCReport");
+      this.filterPopUform("LCReport");
+      }
+  }
   // ngAfterViewInit() {
   //   $('[data-widget="treeview"]').each(function() {
   //       AdminLte.Treeview._jQueryInterface.call($(this), 'init');
@@ -147,5 +193,105 @@ else if(menuName == 'Enqurie'){
 else if(menuName == 'Textile'){
   this.Textile =!this.Textile;
 }
+else if(menuName == 'Report'){
+  this.Report =!this.Report;
+  
 }
+else if(menuName == 'Departments'){
+  this.Departments =!this.Departments;
+  this.Report =!this.Report;
+}
+}
+
+
+GetReportData() {
+  this.spinner.show();
+  this.http.get(`${environment.apiUrl}/api/Contracts/GetAllContract`)
+    .subscribe(
+      res => {
+        this.response = res;
+        if (this.response.success == true) {
+          this.menuName = this.route.snapshot.queryParams;
+          if(this.menuName.menuName == 'OpenContractReport'){
+            this.openContractReport = this.response.data;
+          }
+          else if(this.menuName.menuName == 'AllContractReport'){
+            this.allContractReport = this.response.data;
+          }
+          else if(this.menuName.menuName == 'AgentBookingStatus'){
+            this.agentBookingStatus = this.response.data;
+          }
+          else if(this.menuName.menuName == 'CancleContarctReport'){
+            this.cancleContarctReport = this.response.data;
+          }
+          else if(this.menuName.menuName == 'BillingReportInvoiceWise'){
+            this.billingReportInvoiceWise = this.response.data;
+          }
+          else if(this.menuName.menuName == 'DispatchReport'){
+            this.dispatchReport = this.response.data;
+          }
+          else if(this.menuName.menuName == 'BillingReportContractWise'){
+            this.billingReportContractWise = this.response.data;
+          }
+          else if(this.menuName.menuName == 'PaymentReport'){
+            this.paymentReport = this.response.data;
+          }
+          else if(this.menuName.menuName == 'TaxChallanReport'){
+            this.taxChallanReport = this.response.data;
+          }
+          else if(this.menuName.menuName == 'CommissionReport'){
+            this.commissionReport = this.response.data;
+            localStorage.removeItem('newName');
+            localStorage.removetem('lc');
+
+
+          }
+          else if(this.menuName.menuName == 'DbcrNoteSummary'){
+            this.dbcrNoteSummary = this.response.data;
+          }
+          else if(this.menuName.menuName == 'ExternalAgentReport'){
+            this.externalAgentReport = this.response.data;
+          }
+          else if(this.menuName.menuName == 'LCReport'){
+            this.lCReport = this.response.data;
+            localStorage.removetem('comm');
+          }
+          else if(this.menuName.menuName == 'KickbackReport'){
+            this.kickbackReport = this.response.data;
+          }
+          //this.data = this.response.data;
+          this.spinner.hide();
+        }
+
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+          this.spinner.hide();
+
+        }
+
+      }, err => {
+        if (err.status == 400) {
+          this.toastr.error(this.response.message, 'Message.');
+          this.spinner.hide();
+
+        }
+      });
+      this.spinner.hide();
+
+}
+filterPopUform(menu) {
+  const modalRef = this.modalService.open(FilterPopUpComponent, { centered: true });
+  modalRef.componentInstance.menu = menu;
+
+  modalRef.result.then((data) => {
+    // on close
+    if (data == true) {
+
+
+    }
+  }, (reason) => {
+    // on dismiss
+  });
+}
+
 }
