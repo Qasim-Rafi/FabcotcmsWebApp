@@ -30,6 +30,8 @@ export class ArticlesComponent implements OnInit {
   articleCount: number;
   articleFilter: any = [];
   articleUrl = '/api/Configs/GetAllArticle'
+  inActiveRecord: any = [];
+  activeRecord: any = [];
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
@@ -66,6 +68,18 @@ export class ArticlesComponent implements OnInit {
     this.rows = temp;
   }
 
+  activeInactive(event){
+    if(event.target.value == "InActive"){
+     this.inActiveRecord = this.articleFilter.filter(x=>x.active == false); 
+      this.rows =this.inActiveRecord 
+    }
+    else if(event.target.value == "Active"){
+     this.activeRecord = this.articleFilter.filter(x=>x.active == true); 
+      this.rows =this.activeRecord; 
+    }
+   }
+ 
+
   // ------------------------- Delete Article Form ------------------//
 
   deleteArticle(id) {
@@ -92,6 +106,8 @@ this.spinner.show();
                 this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
                 this.service.fetch((data) => {
                   this.rows = data;
+      this.articleFilter = [...this.rows];
+
 this.spinner.hide();
                 }, this.articleUrl);
 
@@ -142,13 +158,14 @@ this.spinner.hide();
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-     
+        this.service.fetch((data) => {
+          this.rows = data;
+          this.articleFilter = [...this.rows];
+  
+        }, this.articleUrl);
 
       }
-      this.service.fetch((data) => {
-        this.rows = data;
-
-      }, this.articleUrl);
+     
     }, (reason) => {
       // on dismiss
     });

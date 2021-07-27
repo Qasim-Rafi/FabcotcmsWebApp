@@ -27,7 +27,8 @@ export class CityComponent implements OnInit {
   cityDate = Date.now();
   cityFilter: any = [];
   cityUrl = '/api/Configs/GetAllCity'
-
+  inActiveRecord: any = [];
+  activeRecord: any = [];
   @ViewChild('myTable') table: DatatableComponent;
 
 
@@ -58,6 +59,16 @@ export class CityComponent implements OnInit {
     this.rows = temp;
   }
 
+  activeInactive(event){
+    if(event.target.value == "InActive"){
+     this.inActiveRecord = this.cityFilter.filter(x=>x.active == false); 
+      this.rows =this.inActiveRecord 
+    }
+    else if(event.target.value == "Active"){
+     this.activeRecord = this.cityFilter.filter(x=>x.active == true); 
+      this.rows =this.activeRecord; 
+    }
+   }
   // -------------------------- Delete City -----------------------------------//
 
   deleteCity(id) {
@@ -83,6 +94,8 @@ this.spinner.show();
                 this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
                 this.service.fetch((data) => {
                   this.rows = data;
+      this.cityFilter = [...this.rows];
+
                 }, this.cityUrl);
 this.spinner.hide();
               }
@@ -139,6 +152,8 @@ this.spinner.hide();
       }
       this.service.fetch((data) => {
         this.rows = data;
+      this.cityFilter = [...this.rows];
+
       }, this.cityUrl);
     }, (reason) => {
       // on dismiss
