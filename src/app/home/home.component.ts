@@ -22,6 +22,8 @@ export class HomeComponent implements OnInit {
   temp: any = [];
   rows2: any = [];
   data2: any = {};
+  sellers: any = {};
+  buyers: any = {};
 
 
   constructor(private http: HttpClient,
@@ -40,7 +42,10 @@ export class HomeComponent implements OnInit {
 
     });
     this.dashboardAmount((dataRows) => {
-      this.rows2 = this.data2;
+      this.rows2 = dataRows;
+      this.sellers = this.rows2.topSellers;
+      this.buyers = this.rows2.topBuyers;
+
      
     });
   }
