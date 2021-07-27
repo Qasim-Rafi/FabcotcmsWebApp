@@ -29,6 +29,8 @@ export class PackingComponent implements OnInit {
   packingCount: number;
   myDate = Date.now();
   packingFilter: any[];
+  inActiveRecord: any = [];
+  activeRecord: any = [];
   packingUrl = '/api/Products/GetAllPacking'
 
   constructor(private http: HttpClient,
@@ -46,7 +48,16 @@ export class PackingComponent implements OnInit {
       this.packingCount = this.rows.length;
     }, this.packingUrl);
   }
-
+  activeInactive(event){
+    if(event.target.value == "InActive"){
+     this.inActiveRecord = this.packingFilter.filter(x=>x.active == false); 
+      this.rows =this.inActiveRecord 
+    }
+    else if(event.target.value == "Active"){
+     this.activeRecord = this.packingFilter.filter(x=>x.active == true); 
+      this.rows =this.activeRecord; 
+    }
+   }
   // ------------------------search Function ----------------------------//
 
   search(event) {
@@ -82,7 +93,7 @@ export class PackingComponent implements OnInit {
                 this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
                 this.service.fetch((data) => {
                   this.rows = data;
-
+                  this.packingFilter = [...this.rows];
                   this.packingCount = this.rows.length;
                 }, this.packingUrl);
 

@@ -30,6 +30,8 @@ export class PaymentTermComponent implements OnInit {
   paymentTermCount: number;
   myDate = Date.now();
   paymentTermFilter: any[];
+  inActiveRecord: any = [];
+  activeRecord: any = [];
   paymentTermUrl = '/api/Products/GetAllPaymentTerm'
 
   constructor(private http: HttpClient,
@@ -47,7 +49,16 @@ export class PaymentTermComponent implements OnInit {
       this.paymentTermCount = this.rows.length;
     }, this.paymentTermUrl);
   }
-
+  activeInactive(event){
+    if(event.target.value == "InActive"){
+     this.inActiveRecord = this.paymentTermFilter.filter(x=>x.active == false); 
+      this.rows =this.inActiveRecord 
+    }
+    else if(event.target.value == "Active"){
+     this.activeRecord = this.paymentTermFilter.filter(x=>x.active == true); 
+      this.rows =this.activeRecord; 
+    }
+   }
   // ---------------------------------Search Function ------------------------------//
 
   search(event) {
@@ -84,6 +95,9 @@ export class PaymentTermComponent implements OnInit {
                 this.toastr.error(this.response.message, 'Message.');
                 this.service.fetch((data) => {
                   this.rows = data;
+                  this.paymentTermFilter = [...this.rows];
+            
+                  this.paymentTermCount = this.rows.length;
                 }, this.paymentTermUrl);
 
               }

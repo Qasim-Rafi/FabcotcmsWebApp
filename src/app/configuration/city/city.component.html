@@ -36,44 +36,59 @@
         </div>
       </div>
 
+    
+
       <div class="row">
         <div class="col-md-12 mb-3">
-          <div class="row justify-content-end">
-            <div class="col-md-4 pr-0">
+        
+          <div class="row ">
+            <div class="col-md-4">
+            
+              <div class="form-group row">
+                <label for="inputSearch" class="col-sm-3 col-form-label">Status</label>
+                <div class="col-sm-4">
+                  <select class="form-control" (change)="activeInactive($event)">
+                    <option value="Active">Active</option>
+                    <option value="InActive">Inactive</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-8">
+            <div class="row justify-content-end">
+            <div class=" col-md-6 pr-0">
 
               <div class="form-group row">
                 <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
                 <div class="col-sm-9">
-                  <input type="text" placeholder="Search by City Name or Country" class="input form-control form-control-sm"
-                  (keyup)="search($event)" />
+                  <input type="text" placeholder="Search by City Name or Country "
+                  class="input form-control form-control-sm" (keyup)="search($event)">
                 </div>
               </div>
 
               <!-- <div class="input-group col-md-offset-3">
-                <input type="text" placeholder="Search by City Name or Country" class="input form-control w-50"
-                  (keyup)="search($event)" />
+                <input type="text" placeholder="Search by Article Code or Article Name.. "
+                  class="input form-control w-50" (keyup)="search($event)">
               </div> -->
-
             </div>
 
             <div class="html5buttons mrg-tsm">
               <div class="dt-buttons btn-group btn-group-sm">
-                <a class="btn btn-default buttons-copy buttons-html5 bg-white"
-                (click)="copyCityList()"
-                tabindex="0"
+                <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0"
                   aria-controls="DataTables_Table_0"
+              (click)="copyCityList()"
                   ><span>Copy</span></a>
                 <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
                   aria-controls="DataTables_Table_0"
                   (click)="cityCsvFile()"
                   ><span>CSV</span></a>
                 <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
-                  aria-controls="DataTables_Table_0"
-                  (click)="cityExcelFile()"
-                  ><span>Excel</span></a>
+                  aria-controls="DataTables_Table_0" 
+                  (click)="cityExcelFile()"><span>Excel</span></a>
                 <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0"
                   aria-controls="DataTables_Table_0"
-                (click)="cityPdfList()"
+                  (click)="cityPdfList()"
                   ><span>PDF</span></a>
                 <a class="btn btn-default buttons-print bg-white" tabindex="0"
                   aria-controls="DataTables_Table_0"
@@ -83,7 +98,11 @@
             </div>
           </div>
         </div>
+
+          </div>
+        </div>
       </div>
+
     </div>
     
 

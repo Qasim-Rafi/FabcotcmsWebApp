@@ -28,6 +28,8 @@ export class CountryComponent implements OnInit {
   copyData: any = [];
   currentDate = Date.now();
   countryFilter: any = [];
+  inActiveRecord: any = [];
+  activeRecord: any = [];
   CountryUrl = '/api/Configs/GetAllCountry'
 
   @ViewChild('myTable', { static: false }) table: DatatableComponent;
@@ -49,7 +51,16 @@ export class CountryComponent implements OnInit {
 
   }
 
-
+  activeInactive(event){
+    if(event.target.value == "InActive"){
+     this.inActiveRecord = this.countryFilter.filter(x=>x.active == false); 
+      this.rows =this.inActiveRecord 
+    }
+    else if(event.target.value == "Active"){
+     this.activeRecord = this.countryFilter.filter(x=>x.active == true); 
+      this.rows =this.activeRecord; 
+    }
+   }
   // ------------------- Search function ----------------------------------//
   search(event) {
     const val = event.target.value.toLowerCase();
@@ -86,6 +97,9 @@ this.spinner.show();
                 this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
                 this.service.fetch((data) => {
                   this.rows = data;
+                  this.countryFilter = [...this.rows];
+            
+                  this.countryCount = this.rows.length;
                 }, this.CountryUrl);
 this.spinner.hide();
               }
