@@ -152,18 +152,18 @@
     <div class="col-12 col-md-6 col-xl-4">
       <div class="endbox-1 ">
         <div class="topbox-margin-top-text pl-4 pt-3">
-          Top 5 Buyers / Customers
+          Top  Buyers / Customers
         </div>
         <div class="px-3 pb-3">
           <div class="bgd">
             <ul class="list"><b>
-                <li>
-                  SPIRIT TEX LLC. USA
-                  <span class="list2"> [9]</span>
+                <li *ngFor = "let buyer of rows2.topBuyers">
+                  {{buyer.buyerName}}
+                  <span class="list2"> [{{buyer.count}}]</span>
     
                 </li>
     
-                <li>
+                <!-- <li>
                   Bay City Textilhandels GmbH
                   <span class="list2"> [14]</span>
                 </li>
@@ -181,7 +181,7 @@
                 <li>
                   Test Buyer
                   <span class="list2"> [7]</span>
-                </li>
+                </li> -->
               </b>
             </ul>
           </div>
@@ -192,18 +192,18 @@
     <div class="col-12 col-md-6 col-xl-4">
       <div class="endbox-2">
         <div class="topbox-margin-top-text pl-4 pt-3">
-          Top 5 Supplier / Seller
+          Top Supplier / Seller
         </div>
         <div class="px-3 pb-3">
           <div class="bgd">
             <ul class="list"><b>
-                <li>
-                  Rustam Towels (Pvt) Ltd.
-                  <span class="list2"> [33]</span>
+                <li *ngFor = "let row of rows2.topSellers">
+                  {{row.sellerName}}
+                  <span class="list2"> [{{row.count}}]</span>
     
                 </li>
     
-                <li>
+                <!-- <li>
                   Kay&Emms (Pvt) Ltd.
                   <span class="list2"> [19]</span>
                 </li>
@@ -221,7 +221,7 @@
                 <li>
                   US Denim Mills (Pvt) Ltd.
                   <span class="list2"> [6]</span>
-                </li>
+                </li> -->
               </b>
             </ul>
           </div>
@@ -232,18 +232,18 @@
     <div class="col-12 col-md-6 col-xl-4">
       <div class="endbox-3">
         <div class="topbox-margin-top-text pl-4 pt-3">
-          Top 5 Selling Articles
+          Top  Selling Articles
         </div>
         <div class="px-3 pb-3">
           <div class="bgd">
-            <ul class="list"><b>
-                <li>
-                  Towel
-                  <span class="list2"> [20]</span>
+            <ul class="list" ><b>
+                <li *ngFor = "let article of rows2.topArticles">
+                  {{article.articleName}}
+                  <span class="list2"> [{{article.count}}]</span>
     
                 </li>
     
-                <li>
+                <!-- <li>
                   Bathrobe
                   <span class="list2"> [14]</span>
                 </li>
@@ -261,7 +261,7 @@
                 <li>
                   Night shirt patient
                   <span class="list2"> [5]</span>
-                </li>
+                </li> -->
               </b>
             </ul>
           </div>

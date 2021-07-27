@@ -12,6 +12,7 @@ import { ServiceService } from 'src/app/shared/service.service';
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import { ClipboardService } from 'ngx-clipboard';
+import { NgxSpinnerService } from 'ngx-spinner';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 
@@ -32,12 +33,15 @@ export class ForeignAgentComponent implements OnInit {
   date: number;
   myDate = Date.now();
   agentFilter: any[];
+  inActiveRecord: any = [];
+  activeRecord: any = [];
   agentUrl = '/api/Configs/GetAllExternalAgent'
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
     private _clipboardService: ClipboardService,
     private service: ServiceService,
+    private spinner: NgxSpinnerService,
     private modalService: NgbModal,) { }
 
   ngOnInit(): void {
@@ -48,7 +52,16 @@ export class ForeignAgentComponent implements OnInit {
       this.agentCount = this.rows.length
     }, this.agentUrl);
   }
-
+  activeInactive(event){
+    if(event.target.value == "InActive"){
+     this.inActiveRecord = this.agentFilter.filter(x=>x.active == false); 
+      this.rows =this.inActiveRecord 
+    }
+    else if(event.target.value == "Active"){
+     this.activeRecord = this.agentFilter.filter(x=>x.active == true); 
+      this.rows =this.activeRecord; 
+    }
+   }
   // -------------------------- Search Function -------------------------//
 
   search(event) {
@@ -80,7 +93,7 @@ export class ForeignAgentComponent implements OnInit {
       position: 'top',
     }).then((result) => {
       if (result.isConfirmed) {
-
+        this.spinner.show();
         this.http.delete(`${environment.apiUrl}/api/Configs/DeleteExternalAgent/` + id.id)
           .subscribe(
             res => {
@@ -89,18 +102,21 @@ export class ForeignAgentComponent implements OnInit {
                 this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
                 this.service.fetch((data) => {
                   this.rows = data;
-
-                  this.agentCount = this.rows.length;
+                  this.agentFilter = [...this.rows];
+            
+                  this.agentCount = this.rows.length
                 }, this.agentUrl);
-
+                this.spinner.hide();
               }
               else {
                 this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
+                this.spinner.hide();
               }
 
             }, err => {
               if (err.status == 400) {
                 this.toastr.error(this.response.message, 'Message.');
+                this.spinner.hide();
               }
             });
       }

@@ -59,52 +59,74 @@
         </table> -->
 
 
-      <div class="row">
-        <div class="col-md-12 mb-3">
-          <div class="row justify-content-end">
-
-            <div class=" col-md-4 pr-0">
-
-              <div class="form-group row">
-                <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
-                <div class="col-sm-9">
-                  <input type="text" placeholder="Search by Article Code or Article Name.. "
-                  class="input form-control form-control-sm" (keyup)="search($event)">
+        <div class="row">
+          <div class="col-md-12 mb-3">
+          
+            <div class="row ">
+              <div class="col-md-4">
+              
+                <div class="form-group row">
+                  <label for="inputSearch" class="col-sm-3 col-form-label">Status</label>
+                  <div class="col-sm-4">
+                    <select class="form-control" (change)="activeInactive($event)">
+                      <option value="Active">Active</option>
+                      <option value="InActive">Inactive</option>
+                    </select>
+                  </div>
                 </div>
               </div>
-
-              <!-- <div class="input-group col-md-offset-3">
-                <input type="text" placeholder="Search by Article Code or Article Name.. "
-                  class="input form-control w-50" (keyup)="search($event)">
-              </div> -->
-            </div>
-
-            <div class="html5buttons mrg-tsm">
-              <div class="dt-buttons btn-group btn-group-sm">
-                <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0"
-                  aria-controls="DataTables_Table_0"
-              (click)="copyArticleList()"
-                  ><span>Copy</span></a>
-                <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
-                  aria-controls="DataTables_Table_0"
-                  (click)="articleCsvFile()"
-                  ><span>CSV</span></a>
-                <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
-                  aria-controls="DataTables_Table_0" 
-                  (click)="articleExcelFile()"><span>Excel</span></a>
-                <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0"
-                  aria-controls="DataTables_Table_0"
-                  (click)="articlePdf()"
-                  ><span>PDF</span></a>
-                <a class="btn btn-default buttons-print bg-white" tabindex="0"
-                  aria-controls="DataTables_Table_0"
-                  (click)="printArticleList()"
-                  ><span>Print</span></a>
+  
+              <div class="col-md-8">
+              <div class="row justify-content-end">
+              <div class=" col-md-6 pr-0">
+  
+                <div class="form-group row">
+                  <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
+                  <div class="col-sm-9">
+                    <input type="text" placeholder="Search by Article Code or Article Name.. "
+                    class="input form-control form-control-sm" (keyup)="search($event)">
+                  </div>
+                </div>
+  
+                <!-- <div class="input-group col-md-offset-3">
+                  <input type="text" placeholder="Search by Article Code or Article Name.. "
+                    class="input form-control w-50" (keyup)="search($event)">
+                </div> -->
+              </div>
+  
+              <div class="html5buttons mrg-tsm">
+                <div class="dt-buttons btn-group btn-group-sm">
+                  <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0"
+                    aria-controls="DataTables_Table_0"
+                (click)="copyArticleList()"
+                    ><span>Copy</span></a>
+                  <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
+                    aria-controls="DataTables_Table_0"
+                    (click)="articleCsvFile()"
+                    ><span>CSV</span></a>
+                  <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
+                    aria-controls="DataTables_Table_0" 
+                    (click)="articleExcelFile()"><span>Excel</span></a>
+                  <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0"
+                    aria-controls="DataTables_Table_0"
+                    (click)="articlePdf()"
+                    ><span>PDF</span></a>
+                  <a class="btn btn-default buttons-print bg-white" tabindex="0"
+                    aria-controls="DataTables_Table_0"
+                    (click)="printArticleList()"
+                    ><span>Print</span></a>
+                </div>
               </div>
             </div>
           </div>
+  
+            </div>
+          </div>
         </div>
-      </div>
+
+
+
+     
 
     </div>
     <div class="card shadow mb-4">
@@ -116,20 +138,20 @@
         [limit]="6">
 
 
-        <ngx-datatable-column name="S. No." [width]="5" prop="id">
+        <!-- <ngx-datatable-column name="S. No." [width]="5" prop="id">
           <ng-template let-rowIndex="rowIndex" let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{rowIndex + 1}}
 
           </ng-template>
-        </ngx-datatable-column>
+        </ngx-datatable-column> -->
 
-        <ngx-datatable-column name="Article Code" [width]="5" prop="code">
+        <ngx-datatable-column name="Code" [width]="5" prop="code">
           <ng-template let-row="row" ngx-datatable-cell-template>
             {{row.code}}
           </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column name="Article Name" [width]="80" prop="name">
+        <ngx-datatable-column name="Name" [width]="80" prop="name">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.name}}
           </ng-template>
@@ -157,13 +179,13 @@
           </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column name="Last Updated On" [width]="80" prop="modifiedDate">
+        <ngx-datatable-column name="Updated On" [width]="80" prop="modifiedDate">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.updatedDateTime}}
           </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column name="Last Updated By" [width]="80" prop="createdByName">
+        <ngx-datatable-column name="Updated By" [width]="80" prop="createdByName">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.createdByName}}
           </ng-template>

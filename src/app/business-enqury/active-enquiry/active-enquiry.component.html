@@ -1,4 +1,6 @@
-<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "line-spin-fade" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="line-spin-fade" [fullScreen]="true">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>
 
 <div class="content-header">
 
@@ -59,7 +61,7 @@
           </div>
         </div>
       </div>
-  
+
       <div class="col-md-3">
         <div class="widget style1 lazur-bg shadow">
           <div class="row">
@@ -104,7 +106,7 @@
 
 
 
- 
+
     </div>
 
 
@@ -115,124 +117,125 @@
           <input type="text" placeholder="Search" class="input form-control" (keyup)="updateFilter($event)">
         </div>
       </div> -->
-      <div class="card shadow mb-4">
-        <div class="card-body"> 
-      <div class="row">
-      <div class="col-md-12 mt-3 mb-4">
-        <button type="button" class="btn btn-primary btn-sm float-right mrg-tsm" (click)=" navigateAddEnquiry()">
-          <i class="fa fa-plus"></i> Add New Enqury</button>
-      </div>
-    </div>
 
-          
-          <div class="row">
-            <div class="col-md-12 mb-3">
-              <div class="row justify-content-end">
+    <div class="card shadow mb-4">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-12 mt-3 mb-4">
+            <button type="button" class="btn btn-primary btn-sm float-right mrg-tsm" (click)=" navigateAddEnquiry()">
+              <i class="fa fa-plus"></i> Add New Enqury</button>
+          </div>
+        </div>
 
-                <div class="col-md-4 pr-0">
 
-                  <div class="form-group row">
-                    <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
-                    <div class="col-sm-9">
-                      <input type="text" placeholder="Enquiry Number" class="input form-control form-control-sm"
+        <div class="row">
+          <div class="col-md-12 mb-3">
+            <div class="row justify-content-end">
+
+              <div class="col-md-4 pr-0">
+
+                <div class="form-group row">
+                  <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
+                  <div class="col-sm-9">
+                    <input type="text" placeholder="Enquiry Number" class="input form-control form-control-sm"
                       (keyup)="updateFilter($event)" />
-                    </div>
+                  </div>
                 </div>
 
 
-                  <!-- <div class="input-group col-md-offset-3">
+                <!-- <div class="input-group col-md-offset-3">
                     
                     <input type="text" placeholder="Enquiry Number" class="input form-control w-50"
                       (keyup)="updateFilter($event)" />
                     
                   </div> -->
-                </div>
-          
-                <div class="html5buttons mrg-tsm">
-                  <div class="dt-buttons btn-group btn-group-sm ">
-                    <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0" aria-controls="DataTables_Table_0"
-                      ngxClipboard (click)="copyEnquiryList()"><span>Copy</span>
-                    </a>
-                    <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0" aria-controls="DataTables_Table_0"
-                      (click)="activeEnquiryCsvFile()"><span>CSV</span></a>
-                    <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
-                      (click)="activeEnquiryExcelFile()" aria-controls="DataTables_Table_0"><span>Excel</span></a>
-                    <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0" aria-controls="DataTables_Table_0"
-                      (click)="enquiryPdf()"><span>PDF</span></a>
-                    <a class="btn btn-default buttons-print bg-white" tabindex="0" (click)="printactiveEnquiryList()"
-                      aria-controls="DataTables_Table_0"><span>Print</span></a>
-                  </div>
-                </div>
-                
               </div>
+
+              <div class="html5buttons mrg-tsm">
+                <div class="dt-buttons btn-group btn-group-sm ">
+                  <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0"
+                    aria-controls="DataTables_Table_0" ngxClipboard (click)="copyEnquiryList()"><span>Copy</span>
+                  </a>
+                  <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
+                    aria-controls="DataTables_Table_0" (click)="activeEnquiryCsvFile()"><span>CSV</span></a>
+                  <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
+                    (click)="activeEnquiryExcelFile()" aria-controls="DataTables_Table_0"><span>Excel</span></a>
+                  <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0"
+                    aria-controls="DataTables_Table_0" (click)="enquiryPdf()"><span>PDF</span></a>
+                  <a class="btn btn-default buttons-print bg-white" tabindex="0" (click)="printactiveEnquiryList()"
+                    aria-controls="DataTables_Table_0"><span>Print</span></a>
+                </div>
+              </div>
+
             </div>
           </div>
-     
-    
-    <div class="panel-body">
+        </div>
 
-      <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'"
-        [headerHeight]="50" [footerHeight]="50" [sorts]="[{prop: 'autoEnquiryNumber', dir: 'desc'}]" [rowHeight]="'auto'"
-        [limit]="6">
 
-        <ngx-datatable-column name="Enquiry No." [width]="50" prop="autoEnquiryNumber">
-          <ng-template let-row="row" ngx-datatable-cell-template>
-            {{row.autoEnquiryNumber}}
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Enquiry On." [width]="80" prop="enquiryDate">
-          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            {{row.enquiryDate}}
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Customer" [width]="80" prop="buyerName">
-          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            {{row.buyerName}}
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Article" [width]="5" prop="articleName">
-          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            {{row.articleName}}
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Payment Terms" [width]="80" prop="paymentTermName">
-          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            {{row.paymentTermName}}
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Price Terms" [width]="50" prop="priceTermName">
-          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            {{row.priceTermName}}
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Status" [width]="50" prop="Status">
-          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            <span class="badge badge-primary" *ngIf="row.active==true">Active</span>
-            <span class="badge badge-secondary" *ngIf="row.active==false">Inactive</span>
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Action" [width]="50">
-          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            <div class="ibox-tools text-center" data-toggle="tooltip" data-placement="top" title=""
-              data-original-title="Edit">
+        <div class="panel-body">
 
-              <button type="button" class="btn editIconBack px-1 py-1" (click)="navigateEditEnquiry(row)">
-                <i class="fas fa-external-link-alt"></i>
-              </button>
+          <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'"
+            [headerHeight]="50" [footerHeight]="50" [sorts]="[{prop: 'autoEnquiryNumber', dir: 'desc'}]"
+            [rowHeight]="'auto'" [limit]="6">
 
-              <button type="button" class="btn editIconBack px-1 py-1" (click) = "cloneEnquiry(row)">
-                <i class="far fa-copy"></i>
-              </button>
-              <button type="button" class="btn deleteIconBack px-1 py-1" (click)=" deleteEnquiry(row)">
-                <i class="far fa-trash-alt"></i>
-              </button>
-            </div>
-          </ng-template>
-        </ngx-datatable-column>
-      </ngx-datatable>
+            <ngx-datatable-column name="Enquiry No." [width]="50" prop="autoEnquiryNumber">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.autoEnquiryNumber}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Enquiry On." [width]="80" prop="enquiryDate">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                {{row.enquiryDate}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Customer" [width]="80" prop="buyerName">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                {{row.buyerName}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Article" [width]="5" prop="articleName">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                {{row.articleName}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Payment Terms" [width]="80" prop="paymentTermName">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                {{row.paymentTermName}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Price Terms" [width]="50" prop="priceTermName">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                {{row.priceTermName}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Status" [width]="50" prop="Status">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                <span class="badge badge-primary" *ngIf="row.active==true">Active</span>
+                <span class="badge badge-secondary" *ngIf="row.active==false">Inactive</span>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Action" [width]="50">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                <div class="ibox-tools text-center" data-toggle="tooltip" data-placement="top" title=""
+                  data-original-title="Edit">
 
-    </div>
+                  <button type="button" class="btn editIconBack px-1 py-1" (click)="navigateEditEnquiry(row)">
+                    <i class="fas fa-external-link-alt"></i>
+                  </button>
+
+                  <button type="button" class="btn editIconBack px-1 py-1" (click)="cloneEnquiry(row)">
+                    <i class="far fa-copy"></i>
+                  </button>
+                  <button type="button" class="btn deleteIconBack px-1 py-1" (click)=" deleteEnquiry(row)">
+                    <i class="far fa-trash-alt"></i>
+                  </button>
+                </div>
+              </ng-template>
+            </ngx-datatable-column>
+          </ngx-datatable>
+
         </div>
       </div>
+    </div>
   </div>
 </div>

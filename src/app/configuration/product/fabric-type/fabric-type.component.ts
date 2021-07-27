@@ -28,6 +28,9 @@ export class FabricTypeComponent implements OnInit {
   columns: any = [];
   fabricTypeCount: number;
   fabricFilter: any[];
+  inActiveRecord: any = [];
+  activeRecord: any = [];
+
   fabricTypeUrl = '/api/Products/GetAllFabricType'
 
 
@@ -45,7 +48,16 @@ export class FabricTypeComponent implements OnInit {
       this.fabricTypeCount = this.rows.length;
     }, this.fabricTypeUrl);
   }
-
+  activeInactive(event){
+    if(event.target.value == "InActive"){
+     this.inActiveRecord = this.fabricFilter.filter(x=>x.active == false); 
+      this.rows =this.inActiveRecord 
+    }
+    else if(event.target.value == "Active"){
+     this.activeRecord = this.fabricFilter.filter(x=>x.active == true); 
+      this.rows =this.activeRecord; 
+    }
+   }
   // --------------------------Search Function --------------------------------//
 
   search(event) {
@@ -81,6 +93,7 @@ export class FabricTypeComponent implements OnInit {
                 this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
                 this.service.fetch((data) => {
                   this.rows = data;
+                  this.fabricFilter = [...this.rows];
                   this.fabricTypeCount = this.rows.length;
                 }, this.fabricTypeUrl);
 

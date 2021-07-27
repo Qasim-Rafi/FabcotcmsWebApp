@@ -125,17 +125,17 @@
         [headerHeight]="50" [footerHeight]="50" [sorts]="[{prop: 'code', dir: 'desc'}]" [rowHeight]="'auto'"
         [limit]="6">
 
-        <ngx-datatable-column name="Agent Code" [width]="20" prop="code">
+        <ngx-datatable-column name="Code" [width]="20" prop="code">
           <ng-template let-row="row" ngx-datatable-cell-template>
             {{row.code}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Agent Name" [width]="20" prop="name">
+        <ngx-datatable-column name="Name" [width]="20" prop="name">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.name}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name=" Agent Type" [width]="10" prop="agentType">
+        <ngx-datatable-column name="Type" [width]="10" prop="agentType">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.agentType}}
           </ng-template>
@@ -150,7 +150,7 @@
             {{row.emailAddress}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Contact Nos." [width]="10" prop="cellNumber">
+        <ngx-datatable-column name="Contact No." [width]="10" prop="cellNumber">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.cellNumber}}
           </ng-template>
@@ -166,7 +166,7 @@
             {{row.agentSide}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Last Updated On | By" [width]="80" prop="createdByName">
+        <ngx-datatable-column name="Updated On | By" [width]="80" prop="createdByName">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.updatedDateTime}} | {{row.createdByName}}
           </ng-template>

@@ -28,6 +28,9 @@ export class PriceTermComponent implements OnInit {
   columns: any = [];
   priceTermCount: number;
   priceTermFilter: any[];
+  inActiveRecord: any = [];
+  activeRecord: any = [];
+
   PriceTermUrl = '/api/Products/GetAllPriceTerm'
 
   constructor(private http: HttpClient,
@@ -44,7 +47,16 @@ export class PriceTermComponent implements OnInit {
       this.priceTermCount = this.rows.length;
     }, this.PriceTermUrl);
   }
-
+  activeInactive(event){
+    if(event.target.value == "InActive"){
+     this.inActiveRecord = this.priceTermFilter.filter(x=>x.active == false); 
+      this.rows =this.inActiveRecord 
+    }
+    else if(event.target.value == "Active"){
+     this.activeRecord = this.priceTermFilter.filter(x=>x.active == true); 
+      this.rows =this.activeRecord; 
+    }
+   }
   //--------------------------- Search Function ------------------------//
 
   search(event) {
@@ -80,6 +92,8 @@ export class PriceTermComponent implements OnInit {
                 this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
                 this.service.fetch((data) => {
                   this.rows = data;
+                  this.priceTermFilter = [...this.rows];
+                  this.priceTermCount = this.rows.length;
                 }, this.PriceTermUrl);
 
               }

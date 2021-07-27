@@ -157,13 +157,13 @@
 
     <div class="col-md-3 col-xl-2">
       <div class="ibox-tools">
-        <button type="button" class="btn editIconBack" (click)="addCertificateForm('SellerAdd', obj)">
+        <button type="button" class="btn editIconBack px-1 py-1" (click)="addCertificateForm('SellerAdd', obj)">
           <i class="fa fa-certificate"></i>
         </button>
-        <button type="button" class="btn editIconBack" (click)="editSellerform(obj)">
+        <button type="button" class="btn editIconBack px-1 py-1" (click)="editSellerform(obj)">
           <i class="far fa-edit"></i>
         </button>
-        <button type="button" class="btn deleteIconBack" (click)="deleteSeller(obj)">
+        <button type="button" class="btn deleteIconBack px-1 py-1" (click)="deleteSeller(obj)">
           <i class="far fa-trash-alt"></i>
         </button>
       </div>
@@ -212,10 +212,10 @@
           <div class="badge badge-secondary" *ngIf="poc.active==false">Inactive</div>
         </div>
         <div class="col-md-2 border ">
-          <button type="button" class="btn editIconBack" (click)="editPocform(obj , 'SellerEditPOC', poc)">
+          <button type="button" class="btn editIconBack px-1 py-1" (click)="editPocform(obj , 'SellerEditPOC', poc)">
             <i class="far fa-edit"></i>
           </button>
-          <button type="button" class="btn deleteIconBack" (click)="deleteSellerPOC(poc)">
+          <button type="button" class="btn deleteIconBack px-1 py-1" (click)="deleteSellerPOC(poc)">
             <i class="far fa-trash-alt"></i>
           </button>
         </div>
@@ -230,10 +230,10 @@
         <div class="col-md-3 border p-2 ">{{ j.description }}</div>
         <div class="col-md-2 border p-2 ">{{j.validityDate}}</div>
         <div class="col-md-4 border p-2 text-right">
-          <button type="button" class="btn editIconBack" (click)="editCertificateForm('SellerEdit', obj , j)">
+          <button type="button" class="btn editIconBack px-1 py-1" (click)="editCertificateForm('SellerEdit', obj , j)">
             <i class="far fa-edit"></i>
           </button>
-          <button type="button" class="btn deleteIconBack" (click)="deleteSellerCertificate(j)">
+          <button type="button" class="btn deleteIconBack px-1 py-1" (click)="deleteSellerCertificate(j)">
             <i class="far fa-trash-alt"></i>
           </button>
         </div>

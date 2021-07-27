@@ -27,6 +27,8 @@ export class SystemUsersComponent implements OnInit {
   copyData: any = [];
   currentDate = Date.now();
   systemUsersFilter: any = [];
+  inActiveRecord: any = [];
+  activeRecord: any = [];
   systemUsersUrl = '/api/Users/GetUsers'
   systemUsersCount:number;
 
@@ -46,7 +48,16 @@ export class SystemUsersComponent implements OnInit {
       this.systemUsersCount = this.rows.length;
     }, this.systemUsersUrl);
   }
-
+  activeInactive(event){
+    if(event.target.value == "InActive"){
+     this.inActiveRecord = this.systemUsersFilter.filter(x=>x.active == false); 
+      this.rows =this.inActiveRecord 
+    }
+    else if(event.target.value == "Active"){
+     this.activeRecord = this.systemUsersFilter.filter(x=>x.active == true); 
+      this.rows =this.activeRecord; 
+    }
+   }
     // ------------------- Search function ----------------------------------//
     search(event) {
       const val = event.target.value.toLowerCase();
@@ -133,6 +144,9 @@ editSystemUserForm(row, check, name) {
               this.toastr.error(this.response.message, 'Message.');
               this.service.fetch((data) => {
                 this.rows = data;
+                this.systemUsersFilter = [...this.rows];
+          
+                this.systemUsersCount = this.rows.length;
               }, this.systemUsersUrl);
 
             }

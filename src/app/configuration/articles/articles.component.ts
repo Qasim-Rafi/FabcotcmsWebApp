@@ -29,6 +29,8 @@ export class ArticlesComponent implements OnInit {
   data: any = {};
   articleCount: number;
   articleFilter: any = [];
+  inActiveRecord: any = [];
+  activeRecord: any = [];
   articleUrl = '/api/Configs/GetAllArticle'
 
   constructor(private http: HttpClient,
@@ -50,17 +52,25 @@ export class ArticlesComponent implements OnInit {
 
 
   }
-
+  activeInactive(event){
+    if(event.target.value == "InActive"){
+     this.inActiveRecord = this.articleFilter.filter(x=>x.active == false); 
+      this.rows =this.inActiveRecord 
+    }
+    else if(event.target.value == "Active"){
+     this.activeRecord = this.articleFilter.filter(x=>x.active == true); 
+      this.rows =this.activeRecord; 
+    }
+   }
   // ----------------------- Search Function ---------------------------//
 
   search(event) {
     const val = event.target.value.toLowerCase();
-
     const temp = this.articleFilter.filter(function (d) {
       return (
-        // d.code.toLowerCase().indexOf(val) !== -1 ||
+         d.code.toLowerCase().indexOf(val) !== -1 ||
         d.name.toLowerCase().indexOf(val) !== -1 ||
-        // d.genericName.toLowerCase().indexOf(val) !== -1 || 
+         //d.genericName.toLowerCase().indexOf(val) !== -1 || 
         !val);
     });
     this.rows = temp;
