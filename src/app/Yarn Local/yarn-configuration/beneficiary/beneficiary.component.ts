@@ -29,7 +29,8 @@ export class BeneficiaryComponent implements OnInit {
   beneficiaryDate = Date.now();
   beneficiaryFilter: any = [];
   beneficiaryUrl = '/api/Configs/GetAllBeneficiary'
-
+  inActiveRecord: any = [];
+  activeRecord: any = [];
   @ViewChild('myTable') table: DatatableComponent;
 
 
@@ -51,6 +52,7 @@ export class BeneficiaryComponent implements OnInit {
 
   }
 
+
   // ------------------------------- search Function---------------------//
   search(event) {
     const val = event.target.value.toLowerCase();
@@ -61,8 +63,17 @@ export class BeneficiaryComponent implements OnInit {
   }
 
  
+  activeInactive(event){
+    if(event.target.value == "InActive"){
+     this.inActiveRecord = this.beneficiaryFilter.filter(x=>x.status == 'false'); 
+      this.rows =this.inActiveRecord 
+    }
+    else if(event.target.value == "Active"){
+     this.activeRecord = this.beneficiaryFilter.filter(x=>x.status == 'true'); 
+      this.rows =this.activeRecord; 
+    }
+   }
  
-
   // -------------------------------- Add beneficiary Form --------------------------------//
 
   addBeneficiary(check, name) {
@@ -97,11 +108,13 @@ export class BeneficiaryComponent implements OnInit {
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-      
+        this.service.fetch((data) => {
+          this.rows = data;
+        this.beneficiaryFilter = [...this.rows];
+  
+        }, this.beneficiaryUrl);
       }
-      this.service.fetch((data) => {
-        this.rows = data;
-      }, this.beneficiaryUrl);
+     
     }, (reason) => {
       // on dismiss
     });

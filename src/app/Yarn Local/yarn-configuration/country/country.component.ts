@@ -29,7 +29,8 @@ export class CountryComponent implements OnInit {
   currentDate = Date.now();
   countryFilter: any = [];
   CountryUrl = '/api/Configs/GetAllCountry'
-
+  inActiveRecord: any = [];
+  activeRecord: any = [];
   @ViewChild('myTable', { static: false }) table: DatatableComponent;
 
   constructor(private http: HttpClient,
@@ -60,6 +61,17 @@ export class CountryComponent implements OnInit {
     // this.data.name=null;
   }
 
+  activeInactive(event){
+    if(event.target.value == "InActive"){
+     this.inActiveRecord = this.countryFilter.filter(x=>x.active == false); 
+      this.rows =this.inActiveRecord 
+    }
+    else if(event.target.value == "Active"){
+     this.activeRecord = this.countryFilter.filter(x=>x.active == true); 
+      this.rows =this.activeRecord; 
+    }
+   }
+ 
   //  --------------------- Delete Country ---------------------------//
 
   deleteCountry(id) {
@@ -86,6 +98,8 @@ this.spinner.show();
                 this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
                 this.service.fetch((data) => {
                   this.rows = data;
+      this.countryFilter = [...this.rows];
+
                 }, this.CountryUrl);
 this.spinner.hide();
               }
@@ -139,6 +153,8 @@ this.spinner.hide();
         //  this.date = this.myDate;
         this.service.fetch((data) => {
           this.rows = data;
+      this.countryFilter = [...this.rows];
+
         }, this.CountryUrl);
 
       }
