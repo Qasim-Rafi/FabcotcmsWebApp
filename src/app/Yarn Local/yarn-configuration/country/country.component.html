@@ -114,11 +114,11 @@
           [columnMode]="'flex'" [headerHeight]="50" [footerHeight]="50" [sorts]="[{ prop: 'id', dir: 'desc' }]"
           [rowHeight]="'auto'" [limit]="6">
 
-          <ngx-datatable-column name="S. No." [width]="80" prop="id" [flexGrow]="0.03">
+          <!-- <ngx-datatable-column name="S. No." [width]="80" prop="id" [flexGrow]="0.03">
             <ng-template let-row="row" let-rowIndex = "rowIndex" ngx-datatable-cell-template>
               {{ rowIndex+1 }}
             </ng-template>
-          </ngx-datatable-column>
+          </ngx-datatable-column> -->
           <ngx-datatable-column name="Country Name" [width]="80" prop="name" [flexGrow]="0.05">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
               {{ row.name }}
@@ -136,7 +136,7 @@
             </ng-template>
           </ngx-datatable-column>
 
-          <ngx-datatable-column name="Created On |Created By" [width]="80" prop="date" [flexGrow]="0.07">
+          <ngx-datatable-column name="Created On|By" [width]="80" prop="date" [flexGrow]="0.07">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
               {{ row.createdDateTime }} | {{ row.createdByName }}
             </ng-template>
