@@ -30,7 +30,8 @@ export class WeftComponent implements OnInit {
   currentDate = Date.now();
   BlendingRatioWeftFilter: any = [];
   BlendingRatioWeftUrl = '/api/FLConfigs/GetAllBlendingRatioWeft'
-
+  inActiveRecord: any = [];
+  activeRecord: any = [];
   @ViewChild('myTable', { static: false }) table: DatatableComponent;
 
   constructor(private http: HttpClient,
@@ -49,7 +50,16 @@ export class WeftComponent implements OnInit {
     }, this.BlendingRatioWeftUrl);
 
   }
-
+  activeInactive(event){
+    if(event.target.value == "InActive"){
+     this.inActiveRecord = this.BlendingRatioWeftFilter.filter(x=>x.active == false); 
+      this.rows =this.inActiveRecord 
+    }
+    else if(event.target.value == "Active"){
+     this.activeRecord = this.BlendingRatioWeftFilter.filter(x=>x.active == true); 
+      this.rows =this.activeRecord; 
+    }
+   }
 
   // ------------------- Search function ----------------------------------//
   search(event) {
@@ -86,7 +96,8 @@ this.spinner.show();
                 this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
                 this.service.fetch((data) => {
                   this.rows = data;
-                }, this.BlendingRatioWeftUrl);
+      this.BlendingRatioWeftFilter = [...this.rows];
+    }, this.BlendingRatioWeftUrl);
 this.spinner.hide();
               }
               else {
@@ -139,7 +150,8 @@ this.spinner.hide();
         //  this.date = this.myDate;
         this.service.fetch((data) => {
           this.rows = data;
-        }, this.BlendingRatioWeftUrl);
+      this.BlendingRatioWeftFilter = [...this.rows];
+    }, this.BlendingRatioWeftUrl);
 
       }
     }, (reason) => {

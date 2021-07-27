@@ -44,43 +44,74 @@
   
         <div class="row">
           <div class="col-md-12 mb-3">
-            <div class="row justify-content-end">
-              <div class="col-md-4 pr-0">
+          
+            <div class="row ">
+              <div class="col-md-4">
+              
+                <div class="form-group row">
+                  <label for="inputSearch" class="col-sm-3 col-form-label">Status</label>
+                  <div class="col-sm-4">
+                    <select class="form-control" (change)="activeInactive($event)">
+                      <option value="Active">Active</option>
+                      <option value="InActive">Inactive</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+  
+              <div class="col-md-8">
+              <div class="row justify-content-end">
+              <div class=" col-md-6 pr-0">
   
                 <div class="form-group row">
                   <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
                   <div class="col-sm-9">
-                    <input type="text" placeholder="Search by Container Size" class="input form-control form-control-sm"
-                    (keyup)="search($event)" />
+                    <input type="text" placeholder="Search by Article Code or Article Name.. "
+                    class="input form-control form-control-sm" (keyup)="search($event)">
                   </div>
                 </div>
   
                 <!-- <div class="input-group col-md-offset-3">
-                  <input type="text" placeholder="Search by Country Name" class="input form-control w-50"
-                    (keyup)="search($event)" />
+                  <input type="text" placeholder="Search by Article Code or Article Name.. "
+                    class="input form-control w-50" (keyup)="search($event)">
                 </div> -->
-  
               </div>
-  
   
               <div class="html5buttons mrg-tsm">
                 <div class="dt-buttons btn-group btn-group-sm">
                   <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0"
-                    aria-controls="DataTables_Table_0" ngxClipboard (click)="copyCountryList()"><span>Copy</span>
-                  </a>
+                    aria-controls="DataTables_Table_0"
+                (click)="copyContainerList()"
+                    ><span>Copy</span></a>
                   <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
-                    aria-controls="DataTables_Table_0" (click)="countryCsvFile()"><span>CSV</span></a>
+                    aria-controls="DataTables_Table_0"
+                    (click)="containerCsvFile()"
+                    ><span>CSV</span></a>
                   <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
-                    aria-controls="DataTables_Table_0" (click)="countryExcelFile()"><span>Excel</span></a>
+                    aria-controls="DataTables_Table_0" 
+                    (click)="containerExcelFile()"><span>Excel</span></a>
                   <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0"
-                    aria-controls="DataTables_Table_0" (click)="  countryPdf()"><span>PDF</span></a>
-                  <a class="btn btn-default buttons-print bg-white" tabindex="0" aria-controls="DataTables_Table_0"
-                    (click)="printCountryList()"><span>Print</span></a>
+                    aria-controls="DataTables_Table_0"
+                    (click)="containerPdf()"
+                    ><span>PDF</span></a>
+                  <a class="btn btn-default buttons-print bg-white" tabindex="0"
+                    aria-controls="DataTables_Table_0"
+                    (click)="printContainerList()"
+                    ><span>Print</span></a>
                 </div>
               </div>
             </div>
           </div>
+  
+            </div>
+          </div>
         </div>
+
+
+
+
+
+        
       </div>
       <div>
         <div class="card shadow mb-4">
@@ -90,12 +121,12 @@
           [columnMode]="'force'"  [headerHeight]="50" [footerHeight]="50" [sorts]="[{ prop: 'id', dir: 'desc' }]"
             [rowHeight]="'auto'" [limit]="6">
   
-            <ngx-datatable-column name="S. No." prop="id">
+            <!-- <ngx-datatable-column name="S. No." prop="id">
               <ng-template let-rowIndex="rowIndex" let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 {{rowIndex + 1}}
     
               </ng-template>
-            </ngx-datatable-column>
+            </ngx-datatable-column> -->
             <ngx-datatable-column name="Container Size" [width]="80" prop="name" >
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 {{ row.containerName }}
@@ -113,7 +144,7 @@
               </ng-template>
             </ngx-datatable-column>
   
-            <ngx-datatable-column name="Created On |Created By" [width]="80" prop="date">
+            <ngx-datatable-column name="Created On|By" [width]="80" prop="date">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 {{ row.createdDateTime }} | {{ row.createdByName }}
               </ng-template>

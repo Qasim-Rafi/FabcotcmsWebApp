@@ -29,7 +29,8 @@ export class WarpComponent implements OnInit {
   currentDate = Date.now();
   BlendingRatioWarpFilter: any = [];
   BlendingRatioWarpUrl = '/api/FLConfigs/GetAllBlendingRatioWarp'
-
+  inActiveRecord: any = [];
+  activeRecord: any = [];
   @ViewChild('myTable', { static: false }) table: DatatableComponent;
 
   constructor(private http: HttpClient,
@@ -58,7 +59,16 @@ export class WarpComponent implements OnInit {
     });
     this.rows = temp;
   }
-
+  activeInactive(event){
+    if(event.target.value == "InActive"){
+     this.inActiveRecord = this.BlendingRatioWarpFilter.filter(x=>x.active == false); 
+      this.rows =this.inActiveRecord 
+    }
+    else if(event.target.value == "Active"){
+     this.activeRecord = this.BlendingRatioWarpFilter.filter(x=>x.active == true); 
+      this.rows =this.activeRecord; 
+    }
+   }
   //  --------------------- Delete Pick Insertion ---------------------------//
 
   deleteBlendingRatioWarp(id) {
@@ -85,6 +95,8 @@ this.spinner.show();
                 this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
                 this.service.fetch((data) => {
                   this.rows = data;
+      this.BlendingRatioWarpFilter = [...this.rows];
+
                 }, this.BlendingRatioWarpUrl);
 this.spinner.hide();
               }
@@ -138,6 +150,8 @@ this.spinner.hide();
         //  this.date = this.myDate;
         this.service.fetch((data) => {
           this.rows = data;
+      this.BlendingRatioWarpFilter = [...this.rows];
+
         }, this.BlendingRatioWarpUrl);
 
       }

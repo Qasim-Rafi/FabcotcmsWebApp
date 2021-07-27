@@ -29,7 +29,8 @@ export class WeaveComponent implements OnInit {
   copyData: any = [];
   weaveFilter: any = [];
   weaveUrl = '/api/YarnConfigs/GetAllWeave'
-
+  inActiveRecord: any = [];
+  activeRecord: any = [];
   @ViewChild('myTable', { static: false }) table: DatatableComponent;
 
   constructor(private http: HttpClient,
@@ -49,6 +50,16 @@ export class WeaveComponent implements OnInit {
 
   }
 
+  activeInactive(event){
+    if(event.target.value == "InActive"){
+     this.inActiveRecord = this.weaveFilter.filter(x=>x.active == false); 
+      this.rows =this.inActiveRecord 
+    }
+    else if(event.target.value == "Active"){
+     this.activeRecord = this.weaveFilter.filter(x=>x.active == true); 
+      this.rows =this.activeRecord; 
+    }
+   }
 
   // ------------------- Search function ----------------------------------//
   search(event) {
@@ -85,6 +96,8 @@ this.spinner.show();
                 this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
                 this.service.fetch((data) => {
                   this.rows = data;
+      this.weaveFilter = [...this.rows];
+
                 }, this.weaveUrl);
 this.spinner.hide();
               }
@@ -140,6 +153,8 @@ this.spinner.hide();
        
         this.service.fetch((data) => {
           this.rows = data;
+      this.weaveFilter = [...this.rows];
+
         }, this.weaveUrl);
       }
      

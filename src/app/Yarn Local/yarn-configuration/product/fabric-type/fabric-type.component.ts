@@ -30,7 +30,8 @@ export class FabricTypeComponent implements OnInit {
   fabricTypeCount: number;
   fabricFilter: any[];
   fabricTypeUrl = '/api/Products/GetAllFabricType'
-
+  inActiveRecord: any = [];
+  activeRecord: any = [];
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
@@ -49,7 +50,16 @@ export class FabricTypeComponent implements OnInit {
   }
 
   // --------------------------Search Function --------------------------------//
-
+  activeInactive(event){
+    if(event.target.value == "InActive"){
+     this.inActiveRecord = this.fabricFilter.filter(x=>x.active == false); 
+      this.rows =this.inActiveRecord 
+    }
+    else if(event.target.value == "Active"){
+     this.activeRecord = this.fabricFilter.filter(x=>x.active == true); 
+      this.rows =this.activeRecord; 
+    }
+   }
   search(event) {
     const val = event.target.value.toLowerCase();
     const temp = this.fabricFilter.filter(function (d) {
@@ -83,6 +93,7 @@ this.spinner.show();
                 this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
                 this.service.fetch((data) => {
                   this.rows = data;
+      this.fabricFilter = [...this.rows];
                   this.fabricTypeCount = this.rows.length;
                 }, this.fabricTypeUrl);
 this.spinner.hide();
@@ -135,12 +146,13 @@ this.spinner.hide();
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-     
+        this.service.fetch((data) => {
+          this.rows = data;
+      this.fabricFilter = [...this.rows];
+        }, this.fabricTypeUrl);
 
       }
-      this.service.fetch((data) => {
-        this.rows = data;
-      }, this.fabricTypeUrl);
+     
     }, (reason) => {
       // on dismiss
     });

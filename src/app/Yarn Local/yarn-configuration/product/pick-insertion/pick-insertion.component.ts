@@ -29,7 +29,8 @@ export class PickInsertionComponent implements OnInit {
   currentDate = Date.now();
   PickInsertionFilter: any = [];
   PickInsertionUrl = '/api/FLConfigs/GetAllPickInsertion'
-
+  inActiveRecord: any = [];
+  activeRecord: any = [];
   @ViewChild('myTable', { static: false }) table: DatatableComponent;
 
   constructor(private http: HttpClient,
@@ -49,7 +50,16 @@ export class PickInsertionComponent implements OnInit {
 
   }
 
-
+  activeInactive(event){
+    if(event.target.value == "InActive"){
+     this.inActiveRecord = this.PickInsertionFilter.filter(x=>x.active == false); 
+      this.rows =this.inActiveRecord 
+    }
+    else if(event.target.value == "Active"){
+     this.activeRecord = this.PickInsertionFilter.filter(x=>x.active == true); 
+      this.rows =this.activeRecord; 
+    }
+   }
   // ------------------- Search function ----------------------------------//
   search(event) {
     const val = event.target.value.toLowerCase();
@@ -85,6 +95,7 @@ this.spinner.show();
                 this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
                 this.service.fetch((data) => {
                   this.rows = data;
+      this.PickInsertionFilter = [...this.rows];
                 }, this.PickInsertionUrl);
 this.spinner.hide();
               }
@@ -138,6 +149,7 @@ this.spinner.hide();
         //  this.date = this.myDate;
         this.service.fetch((data) => {
           this.rows = data;
+      this.PickInsertionFilter = [...this.rows];
         }, this.PickInsertionUrl);
 
       }
