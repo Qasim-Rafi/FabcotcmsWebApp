@@ -112,11 +112,11 @@
       <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows"
         [sorts]="[{ prop: 'id', dir: 'desc' }]" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
         [rowHeight]="'auto'" [limit]="10">
-        <ngx-datatable-column prop="id" name="S. No." [width]="20">
+        <!-- <ngx-datatable-column prop="id" name="S. No." [width]="20">
           <ng-template let-row="row" let-rowIndex= "rowIndex"  ngx-datatable-cell-template>
             {{ rowIndex+1 }}
           </ng-template>
-        </ngx-datatable-column>
+        </ngx-datatable-column> -->
         <ngx-datatable-column name="City Name" prop="name" [width]="80">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{ row.name }}
