@@ -30,7 +30,8 @@ export class PriceTermComponent implements OnInit {
   priceTermCount: number;
   priceTermFilter: any[];
   PriceTermUrl = '/api/Products/GetAllPriceTerm'
-
+  inActiveRecord: any = [];
+  activeRecord: any = [];
   constructor(private http: HttpClient,
     private spinner: NgxSpinnerService,
     private toastr: ToastrService,
@@ -46,7 +47,16 @@ export class PriceTermComponent implements OnInit {
       this.priceTermCount = this.rows.length;
     }, this.PriceTermUrl);
   }
-
+  activeInactive(event){
+    if(event.target.value == "InActive"){
+     this.inActiveRecord = this.priceTermFilter.filter(x=>x.active == false); 
+      this.rows =this.inActiveRecord 
+    }
+    else if(event.target.value == "Active"){
+     this.activeRecord = this.priceTermFilter.filter(x=>x.active == true); 
+      this.rows =this.activeRecord; 
+    }
+   }
   //--------------------------- Search Function ------------------------//
 
   search(event) {
@@ -82,6 +92,7 @@ this.spinner.show();
                 this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
                 this.service.fetch((data) => {
                   this.rows = data;
+      this.priceTermFilter = [...this.rows];
       this.priceTermCount = this.rows.length;
 
                 }, this.PriceTermUrl);
@@ -137,11 +148,12 @@ this.spinner.hide();
       // on close
       if (data == true) {
       
-
+        this.service.fetch((data) => {
+          this.rows = data;
+        this.priceTermFilter = [...this.rows];
+        }, this.PriceTermUrl);
       }
-      this.service.fetch((data) => {
-        this.rows = data;
-      }, this.PriceTermUrl);
+      
     }, (reason) => {
       // on dismiss
     });

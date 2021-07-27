@@ -26,6 +26,8 @@ export class ContainerComponent implements OnInit {
   rows: any = [];
   columns: any = [];
   data: any = {};
+   inActiveRecord: any = [];
+  activeRecord: any = [];
   copyData: any = [];
   currentDate = Date.now();
   containerFilter: any = [];
@@ -49,7 +51,16 @@ export class ContainerComponent implements OnInit {
     }, this.ContainerUrl);
 
   }
-
+  activeInactive(event){
+    if(event.target.value == "InActive"){
+     this.inActiveRecord = this.containerFilter.filter(x=>x.active == false); 
+      this.rows =this.inActiveRecord 
+    }
+    else if(event.target.value == "Active"){
+     this.activeRecord = this.containerFilter.filter(x=>x.active == true); 
+      this.rows =this.activeRecord; 
+    }
+   }
 
   // ------------------- Search function ----------------------------------//
   search(event) {
@@ -86,7 +97,7 @@ this.spinner.show();
                 this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
                 this.service.fetch((data) => {
                   this.rows = data;
-
+                  this.containerFilter = [...this.rows];
                 }, this.ContainerUrl);
 this.spinner.hide();
               }
@@ -142,6 +153,7 @@ this.spinner.hide();
         //  this.date = this.myDate;
         this.service.fetch((data) => {
           this.rows = data;
+      this.containerFilter = [...this.rows];
         }, this.ContainerUrl);
 
       }
@@ -155,7 +167,7 @@ this.spinner.hide();
   // --------------------------Export as Excel file----------------------------------//
 
 
-  countryExcelFile(){
+  containerExcelFile(){
     const filtered = this.rows.map(row => ({
       Sno: row.id,
       CountryName: row.name,
@@ -170,7 +182,7 @@ this.spinner.hide();
 
 // -------------------------------- Export as CSV file --------------------------------//
 
-countryCsvFile(){
+containerCsvFile(){
   const filtered = this.rows.map(row => ({
     Sno: row.id,
     CountryName: row.name,
@@ -185,7 +197,7 @@ countryCsvFile(){
 
   // -------------------------------Export as Pdf  ------------------------------------//
 
-  countryPdf() {
+  containerPdf() {
 
     let docDefinition = {
       pageSize: 'A4',
@@ -230,7 +242,7 @@ countryCsvFile(){
 
   //-------------------------------------- Print country List ------------------------- ///
 
-  printCountryList() {
+  printContainerList() {
 
     let docDefinition = {
       pageSize: 'A4',
@@ -276,7 +288,7 @@ countryCsvFile(){
 
   //------------------------------------ Copy Country list --------------------///
 
-  copyCountryList() {
+  copyContainerList() {
     let count1 = this.rows.map(x => x.containerName.length);
     let max1 = count1.reduce((a, b) => Math.max(a, b));
     let count3 = this.rows.map(x => x.description.length);

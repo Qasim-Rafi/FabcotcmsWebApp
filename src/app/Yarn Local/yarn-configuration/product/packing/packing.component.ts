@@ -31,7 +31,8 @@ export class PackingComponent implements OnInit {
   myDate = Date.now();
   packingFilter: any[];
   packingUrl = '/api/Products/GetAllPacking'
-
+  inActiveRecord: any = [];
+  activeRecord: any = [];
   constructor(private http: HttpClient,
     private spinner: NgxSpinnerService,
     private toastr: ToastrService,
@@ -48,7 +49,16 @@ export class PackingComponent implements OnInit {
       this.packingCount = this.rows.length;
     }, this.packingUrl);
   }
-
+  activeInactive(event){
+    if(event.target.value == "InActive"){
+     this.inActiveRecord = this.packingFilter.filter(x=>x.active == false); 
+      this.rows =this.inActiveRecord 
+    }
+    else if(event.target.value == "Active"){
+     this.activeRecord = this.packingFilter.filter(x=>x.active == true); 
+      this.rows =this.activeRecord; 
+    }
+   }
   // ------------------------search Function ----------------------------//
 
   search(event) {
@@ -84,7 +94,7 @@ this.spinner.show();
                 this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
                 this.service.fetch((data) => {
                   this.rows = data;
-
+                  this.packingFilter = [...this.rows];
                   this.packingCount = this.rows.length;
                 }, this.packingUrl);
 this.spinner.hide();
@@ -137,12 +147,13 @@ this.spinner.hide();
       // on close
       if (data == true) {
 
-       
+        this.service.fetch((data) => {
+          this.rows = data;
+          this.packingFilter = [...this.rows];
+        }, this.packingUrl);
 
       }
-      this.service.fetch((data) => {
-        this.rows = data;
-      }, this.packingUrl);
+  
     }, (reason) => {
       // on dismiss
     });

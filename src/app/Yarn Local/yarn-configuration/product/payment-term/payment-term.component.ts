@@ -32,7 +32,8 @@ export class PaymentTermComponent implements OnInit {
   myDate = Date.now();
   paymentTermFilter: any[];
   paymentTermUrl = '/api/Products/GetAllPaymentTerm'
-
+  inActiveRecord: any = [];
+  activeRecord: any = [];
   constructor(private http: HttpClient,
     private spinner: NgxSpinnerService,
     private toastr: ToastrService,
@@ -60,7 +61,16 @@ export class PaymentTermComponent implements OnInit {
     this.rows = temp;
 
   }
-
+  activeInactive(event){
+    if(event.target.value == "InActive"){
+     this.inActiveRecord = this.paymentTermFilter.filter(x=>x.active == false); 
+      this.rows =this.inActiveRecord 
+    }
+    else if(event.target.value == "Active"){
+     this.activeRecord = this.paymentTermFilter.filter(x=>x.active == true); 
+      this.rows =this.activeRecord; 
+    }
+   }
   // -------------------------------- Delete Payment Term ---------------------------//
 
   deletePayment(id) {
@@ -86,6 +96,7 @@ this.spinner.show();
                 this.toastr.error(this.response.message, 'Message.');
                 this.service.fetch((data) => {
                   this.rows = data;
+      this.paymentTermFilter = [...this.rows];
                 }, this.paymentTermUrl);
 this.spinner.hide();
               }
@@ -133,12 +144,13 @@ this.spinner.hide();
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
-     
+        this.service.fetch((data) => {
+          this.rows = data;
+        this.paymentTermFilter = [...this.rows];
+        }, this.paymentTermUrl);
 
       }
-      this.service.fetch((data) => {
-        this.rows = data;
-      }, this.paymentTermUrl);
+      
     }, (reason) => {
       // on dismiss
     });

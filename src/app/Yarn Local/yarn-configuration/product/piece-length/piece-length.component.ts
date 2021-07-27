@@ -32,7 +32,8 @@ export class PieceLengthComponent implements OnInit {
   currentDate = Date.now();
   piecelengthFilter: any = [];
   PieceLengthUrl = '/api/YarnConfigs/GetAllPieceLength'
-
+  inActiveRecord: any = [];
+  activeRecord: any = [];
   @ViewChild('myTable', { static: false }) table: DatatableComponent;
 
   constructor(private http: HttpClient,
@@ -52,7 +53,16 @@ export class PieceLengthComponent implements OnInit {
 
   }
 
-
+  activeInactive(event){
+    if(event.target.value == "InActive"){
+     this.inActiveRecord = this.piecelengthFilter.filter(x=>x.active == false); 
+      this.rows =this.inActiveRecord 
+    }
+    else if(event.target.value == "Active"){
+     this.activeRecord = this.piecelengthFilter.filter(x=>x.active == true); 
+      this.rows =this.activeRecord; 
+    }
+   }
   // ------------------- Search function ----------------------------------//
   search(event) {
     const val = event.target.value.toLowerCase();
@@ -88,7 +98,8 @@ this.spinner.show();
                 this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
                 this.service.fetch((data) => {
                   this.rows = data;
-                }, this.PieceLengthUrl);
+      this.piecelengthFilter = [...this.rows];
+    }, this.PieceLengthUrl);
 this.spinner.hide();
               }
               else {
@@ -140,12 +151,13 @@ this.spinner.hide();
       // on close
       if (data == true) {
         //  this.date = this.myDate;
-        
+        this.service.fetch((data) => {
+          this.rows = data;
+        this.piecelengthFilter = [...this.rows];
+      }, this.PieceLengthUrl);
 
       }
-      this.service.fetch((data) => {
-        this.rows = data;
-      }, this.PieceLengthUrl);
+     
     }, (reason) => {
       // on dismiss
     });

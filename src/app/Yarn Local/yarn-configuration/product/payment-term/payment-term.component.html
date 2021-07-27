@@ -65,29 +65,45 @@
 
       <div class="row">
         <div class="col-md-12 mb-3">
-          <div class="row justify-content-end">
+        
+          <div class="row ">
+            <div class="col-md-4">
+            
+              <div class="form-group row">
+                <label for="inputSearch" class="col-sm-3 col-form-label">Status</label>
+                <div class="col-sm-4">
+                  <select class="form-control" (change)="activeInactive($event)">
+                    <option value="Active">Active</option>
+                    <option value="InActive">Inactive</option>
+                  </select>
+                </div>
+              </div>
+            </div>
 
-            <div class=" col-md-4 pr-0">
+            <div class="col-md-8">
+            <div class="row justify-content-end">
+            <div class=" col-md-6 pr-0">
 
               <div class="form-group row">
                 <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
                 <div class="col-sm-9">
-                  <input type="text" placeholder="Search by Payment Term..." class="input form-control form-control-sm"
-                  (keyup)="search($event)">
+                  <input type="text" placeholder="Search by Article Code or Article Name.. "
+                  class="input form-control form-control-sm" (keyup)="search($event)">
                 </div>
               </div>
 
               <!-- <div class="input-group col-md-offset-3">
-                <input type="text" placeholder="Search by Payment Term..." class="input form-control w-50"
-                  (keyup)="search($event)">
+                <input type="text" placeholder="Search by Article Code or Article Name.. "
+                  class="input form-control w-50" (keyup)="search($event)">
               </div> -->
-
             </div>
 
             <div class="html5buttons mrg-tsm">
               <div class="dt-buttons btn-group btn-group-sm">
                 <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0"
-                 (click)="copyPaymentTermList()" aria-controls="DataTables_Table_0"><span>Copy</span></a>
+                  aria-controls="DataTables_Table_0"
+              (click)="copyPaymentTermList()"
+                  ><span>Copy</span></a>
                 <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
                   aria-controls="DataTables_Table_0"
                   (click)="paymentCsvFile()"
@@ -105,6 +121,8 @@
                   ><span>Print</span></a>
               </div>
             </div>
+          </div>
+        </div>
 
           </div>
         </div>
@@ -118,11 +136,11 @@
       <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows" [columnMode]="'force'"
         [headerHeight]="50" [footerHeight]="50" [sorts]="[{prop: 'id', dir: 'desc'}]" [rowHeight]="'auto'" [limit]="6">
 
-        <ngx-datatable-column name="S. No." [width]="20" prop="i">
+        <!-- <ngx-datatable-column name="S. No." [width]="20" prop="i">
           <ng-template let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
             {{rowIndex + 1}}
           </ng-template>
-        </ngx-datatable-column>
+        </ngx-datatable-column> -->
         <ngx-datatable-column name="Payment Terms" [width]="80" prop="term">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.term}}
@@ -148,7 +166,7 @@
 
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Last Changed On | Updated By" [width]="80" prop="updatedByName|updatedDateTime">
+        <ngx-datatable-column name="Changed On | Updated By" [width]="80" prop="updatedByName|updatedDateTime">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.updatedDateTime}} | {{row.updatedByName}}
           </ng-template>

@@ -27,7 +27,7 @@ import { ConfigContractOwnerComponent } from './config-contract-owner/config-con
 
 
 const routes: Routes = [
-  { path:'yarn-local', component:TemplateComponent,
+  { path:'FabCot', component:TemplateComponent,
   // canActivate:[AuthGuard],
 
   children:[
