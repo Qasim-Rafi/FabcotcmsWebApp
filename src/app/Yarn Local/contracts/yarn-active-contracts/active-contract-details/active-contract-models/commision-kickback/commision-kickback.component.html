@@ -32,7 +32,7 @@
           <div class=" col-md-8">
             <div class="row">
               <div class="col fieldmrgbtm">
-                <input type="number" min="0" class="form-control" placeholder="Comm %" #kickbackPercentage="ngModel"
+                <input type="number" step="0.0001" min="0" class="form-control" placeholder="Comm %" #kickbackPercentage="ngModel"
                   name="kickbackPercentage" [(ngModel)]="data.kickbackPercentage" />
     
               </div>
@@ -72,7 +72,7 @@
           <div class=" col-md-8">
             <div class="row">
               <div class="col fieldmrgbtm">
-                <input type="number" min="0" class="form-control" placeholder="Comm %" #fabCotCommision="ngModel"
+                <input type="number" step="0.0001" min="0" class="form-control" placeholder="Comm %" #fabCotCommision="ngModel"
                   [(ngModel)]="data.fabCotCommision" name="fabCotCommision" />
     
               </div>
@@ -159,7 +159,7 @@
     
     
               <div class="col-md-6 fieldmrgbtm">
-                <input class="form-control" placeholder="Commission %" [(ngModel)]="data.agentCommission"
+                <input class="form-control" placeholder="Commission %" [(ngModel)]="data.agentCommission" type="number" step="0.001"
                   #agentCommission="ngModel" min="0" name="agentCommission" />
               </div>
     
