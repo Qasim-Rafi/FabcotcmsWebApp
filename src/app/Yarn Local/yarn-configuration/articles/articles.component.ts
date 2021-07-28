@@ -60,9 +60,9 @@ export class ArticlesComponent implements OnInit {
 
     const temp = this.articleFilter.filter(function (d) {
       return (
-        // d.code.toLowerCase().indexOf(val) !== -1 ||
+        d.code.toLowerCase().indexOf(val) !== -1 ||
         d.name.toLowerCase().indexOf(val) !== -1 ||
-        // d.genericName.toLowerCase().indexOf(val) !== -1 || 
+        d.genericName.toLowerCase().indexOf(val) !== -1 || 
         !val);
     });
     this.rows = temp;
