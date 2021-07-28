@@ -94,17 +94,17 @@
           [headerHeight]="50" [footerHeight]="50" [sorts]="[{prop: 'id', dir: 'asce'}]" [rowHeight]="'auto'"
           [limit]="6">
 
-          <ngx-datatable-column name="S. No." [width]="0.5" prop="id">
+          <!-- <ngx-datatable-column name="S. No." [width]="0.5" prop="id">
             <ng-template let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
               {{rowIndex + 1}}
             </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="Account Name" [width]="80" prop="accountName">
+          </ngx-datatable-column> -->
+          <ngx-datatable-column name="Name" [width]="80" prop="accountName">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
               {{row.accountName}}
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Account No" [width]="80">
+          <ngx-datatable-column name="Account#" [width]="80">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
               {{row.accountNumber}}
             </ng-template>
@@ -119,7 +119,7 @@
               {{row.swiftCode}}
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Account Type" [width]="80">
+          <ngx-datatable-column name="Acc Type" [width]="80">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
               {{row.type}}
             </ng-template>

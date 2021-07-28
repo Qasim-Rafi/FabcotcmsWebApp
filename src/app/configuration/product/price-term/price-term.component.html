@@ -195,7 +195,7 @@
 
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Last Changed On | Updated By" [width]="80" prop="updatedByName">
+        <ngx-datatable-column name="Updated On | By" [width]="80" prop="updatedByName">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.updatedDateTime}} | {{row.updatedByName}}
           </ng-template>

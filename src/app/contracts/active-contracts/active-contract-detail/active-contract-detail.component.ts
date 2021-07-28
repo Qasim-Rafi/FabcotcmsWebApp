@@ -699,6 +699,12 @@ getContractPaymentData() {
           if(this.response.data.paymentTermDays == 0){
             this.contractPaymentData.paymentTermDays = ""
           }
+          if(this.response.data.paymentTermName = "null"){
+            this.contractPaymentData.paymentTermName = ""
+          }
+          // if(this.response.data.paymentTermInfo == null){
+          //   this.contractPaymentData.paymentTermInfo = ""
+          // }
           
         }
         else {
@@ -1885,7 +1891,7 @@ this.spinner.hide();
                 },
             
                 {
-                  margin: [300 , -85 , 0 , 0],
+                  margin: [300 , -55 , 0 , 0],
                  
                   table: {
                     headerRows: 1,
@@ -1946,7 +1952,7 @@ this.spinner.hide();
                       {text:'Quantity' , style: 'tableheader2'},
                       {text:'Unit Price' , style: 'tableheader2'},
                       {text:'Amount' , style: 'tableheader2'},
-                      {text:'Commission' , style: 'tableheader2'}],
+                      {text:'Comm' , style: 'tableheader2'}],
                   
                     ...this.rows2.map((row=>
                       [{text:row.description , style:'propertyValue'}, {text:row.compositionPercentage + row.compositionFebricTypeName+row.compositionAdditionalInfo , style:'propertyValue'} ,
@@ -1957,7 +1963,7 @@ this.spinner.hide();
                    
                         ]
                       )),
-                     
+                  
                    
                     ]
 
@@ -1967,7 +1973,7 @@ this.spinner.hide();
                  
                   table: {
                     headerRows: 1,
-                    widths: ['67%' , '9%' , '9%' , '8%' , '8%'],
+                    widths: ['67%' , '9.5%' , '9%' , '8%' , '7.5%'],
                     body: [
                       [{text:'Total' , style: 'tableheader3'},
                       {text:this.preview['enquiryItemQuantityTotal'] , style: 'tableheader3'},
@@ -2163,7 +2169,7 @@ this.spinner.hide();
                 },
             
                 {
-                  margin: [300 , -85 , 0 , 0],
+                  margin: [300 , -55 , 0 , 0],
                  
                   table: {
                     headerRows: 1,
@@ -2245,7 +2251,7 @@ this.spinner.hide();
                  
                   table: {
                     headerRows: 1,
-                    widths: ['67%' , '9%' , '9%' , '8%' ],
+                    widths: ['67%' , '9.25%' , '9.25%' , '8.25%' ],
                     body: [
                       [{text:'Total' , style: 'tableheader3'},
                       {text:this.preview['enquiryItemQuantityTotal'] , style: 'tableheader3'},
@@ -2440,7 +2446,7 @@ this.spinner.hide();
                 },
             
                 {
-                  margin: [300 , -85 , 0 , 0],
+                  margin: [300 , -55 , 0 , 0],
                  
                   table: {
                     headerRows: 1,
@@ -2500,7 +2506,7 @@ this.spinner.hide();
                       {text:'Quantity' , style: 'tableheader2'},
                       {text:'Unit Price' , style: 'tableheader2'},
                       {text:'Amount' , style: 'tableheader2'},
-                      {text:'Commission' , style: 'tableheader2'}],
+                      {text:'Comm' , style: 'tableheader2'}],
                   
                     ...this.rows2.map((row=>
                       [{text:row.description , style:'propertyValue'},{text:row.size , style:'propertyValue'}, {text:row.weight , style:'propertyValue'} , {text:row.colorName , style:'propertyValue'} ,
@@ -2520,7 +2526,7 @@ this.spinner.hide();
                  
                   table: {
                     headerRows: 1,
-                    widths: ['54%' , '9%' , '9%' , '8%' , '10%'],
+                    widths: ['52.725%' , '9.325%' , '9.475%' , '9.55%' , '9.35%'],
                     body: [
                       [{text:'Total' , style: 'tableheader3'},
                       {text:this.preview['enquiryItemQuantityTotal'] , style: 'tableheader3'},
