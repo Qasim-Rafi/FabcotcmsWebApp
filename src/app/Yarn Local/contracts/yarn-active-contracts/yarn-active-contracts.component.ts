@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { GlobalConstants } from 'src/app/Common/global-constants';
 import { environment } from 'src/environments/environment';
@@ -34,6 +35,7 @@ export class YarnActiveContractsComponent implements OnInit {
     private http: HttpClient,
     private toastr: ToastrService,
     private modalService: NgbModal,
+    private spinner: NgxSpinnerService,
  
   ) { }
 
@@ -112,6 +114,7 @@ on_HandContract(){
 
 
 fetch(cb) {
+  this.spinner.show();
 
   this.http
     .get(`${environment.apiUrl}/api/Contracts/GetAllContract`)
@@ -119,6 +122,7 @@ fetch(cb) {
       this.response = res;
 
       if (this.response.success == true) {
+
         this.data = this.response.data.list;
         this.allCount = this.response.data.allCount;
         this.openCount = this.response.data.openCount;
@@ -130,14 +134,20 @@ fetch(cb) {
         this.onHoldCount = this.response.data.onHoldCount;
         this.temp = [this.data]; 
         cb(this.data);
+this.spinner.hide();
+
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
+this.spinner.hide();
+
       }
       // this.spinner.hide();
     }, err => {
       if (err.status == 400) {
-        this.toastr.error(err.error.message, 'Message.');;
+        this.toastr.error(err.error.message, 'Message.');
+this.spinner.hide();
+
       }
       //  this.spinner.hide();
     });
