@@ -61,7 +61,8 @@ containers:any={}
           if (this.response.success == true) {
 
             this.data = this.response.data;
-            // this.data.buyerDateMonth=this.data.buyerDateDay+'-'+this.data.buyerDateMonth+'-'+this.data.buyerDateYear;
+            this.data.supplierDateMonth=this.data.supplierDateDay+'-'+this.data.supplierDateMonth+'-'+this.data.supplierDateYear;
+            this.data.buyerDateMonth=this.data.buyerDateDay+'-'+this.data.buyerDateMonth+'-'+this.data.buyerDateYear;
             this.data.buyerDate = this.dateformater.fromModel(this.data.buyerDate);
             this.data.supplierDate = this.dateformater.fromModel(this.data.supplierDate);
           }

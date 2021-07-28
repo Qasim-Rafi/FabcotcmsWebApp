@@ -70,7 +70,7 @@ this.GetArticleDropdown();
           this.response = res;
           if (this.response.success == true) {
             this.articledata = this.response.data;
-            // this.data.quantity=this.articledata.contractArticleQuantity;
+            this.data.quantity=this.articledata.contractArticleQuantity;
             this.data.contractArticleRate=this.articledata.contractArticleRate;
             this.data.contractArticleCommission=this.articledata.contractArticleCommission;
 
