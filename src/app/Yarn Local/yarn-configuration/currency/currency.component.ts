@@ -25,7 +25,8 @@ export class CurrencyComponent implements OnInit {
   currencyFilter: any = [];
   data:any={};
   myDate=Date.now();
-
+  inActiveRecord: any = [];
+  activeRecord: any = [];
   constructor(private http:HttpClient,
     private _clipboardService: ClipboardService,
     private spinner: NgxSpinnerService,
@@ -53,7 +54,16 @@ export class CurrencyComponent implements OnInit {
     });
     this.rows = temp;
   }
-  
+   activeInactive(event){
+    if(event.target.value == "InActive"){
+     this.inActiveRecord = this.currencyFilter.filter(x=>x.active == false); 
+      this.rows =this.inActiveRecord 
+    }
+    else if(event.target.value == "Active"){
+     this.activeRecord = this.currencyFilter.filter(x=>x.active == true); 
+      this.rows =this.activeRecord; 
+    }
+   }
   fetch(cb) {
     let that = this;
     that.http
