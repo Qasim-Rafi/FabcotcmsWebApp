@@ -134,20 +134,20 @@
         [limit]="6">
 
 
-        <ngx-datatable-column name="S. No." [width]="5" prop="id">
+        <!-- <ngx-datatable-column name="S. No." [width]="5" prop="id">
           <ng-template let-rowIndex="rowIndex" let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{rowIndex + 1}}
 
           </ng-template>
-        </ngx-datatable-column>
+        </ngx-datatable-column> -->
 
-        <ngx-datatable-column name="Article Code" [width]="5" prop="code">
+        <ngx-datatable-column name="Code" [width]="5" prop="code">
           <ng-template let-row="row" ngx-datatable-cell-template>
             {{row.code}}
           </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column name="Article Name" [width]="80" prop="name">
+        <ngx-datatable-column name="Name" [width]="80" prop="name">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.name}}
           </ng-template>
@@ -175,13 +175,13 @@
           </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column name="Last Updated On" [width]="80" prop="modifiedDate">
+        <ngx-datatable-column name="Updated On" [width]="80" prop="modifiedDate">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.createdDateTime}}
           </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column name="Last Updated By" [width]="80" prop="updatedByName">
+        <ngx-datatable-column name="Updated By" [width]="80" prop="updatedByName">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.updatedByName}}
           </ng-template>

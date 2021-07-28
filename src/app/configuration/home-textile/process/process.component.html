@@ -96,11 +96,11 @@
     [headerHeight]="50" [footerHeight]="50" [sorts]="[{prop: 'id', dir: 'asce'}]"
     [rowHeight]="'auto'" [limit]="6">
 
-      <ngx-datatable-column name="S. No." [width]="5" prop="id" > 
+      <!-- <ngx-datatable-column name="S. No." [width]="5" prop="id" > 
           <ng-template let-row="row"  ngx-datatable-cell-template>
             {{row.id}}
           </ng-template>
-        </ngx-datatable-column>
+        </ngx-datatable-column> -->
         <ngx-datatable-column name="Process Name" [width]="40" prop="name">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.name}}
@@ -119,7 +119,7 @@
 
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Last Changed On | Updated By" [width]="80" prop="updatedByName">
+        <ngx-datatable-column name="Updated On | By" [width]="80" prop="updatedByName">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.updatedDateTime}} | {{row.updatedByName}}
           </ng-template>

@@ -89,11 +89,11 @@
       createdByName,updatedDateTime ', dir: 'asce'}]"
         [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
 
-        <ngx-datatable-column name="S. No." [width]="5" prop="id">
+        <!-- <ngx-datatable-column name="S. No." [width]="5" prop="id">
           <ng-template let-row="row" ngx-datatable-cell-template>
             {{row.id}}
-          </ng-template>
-        </ngx-datatable-column>
+          </ng-template> -->
+        <!-- </ngx-datatable-column> -->
         <ngx-datatable-column name="Valid Form" [width]="40" prop="validFrom">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.validFrom}}
