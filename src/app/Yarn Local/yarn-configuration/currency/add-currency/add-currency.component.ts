@@ -18,6 +18,8 @@ export class AddCurrencyComponent implements OnInit {
   dateformater: Dateformater = new Dateformater();
   data:any={};
   response: any;
+  active = true;
+
   constructor(private http:HttpClient,
     private service: ServiceService,
     private spinner: NgxSpinnerService,
@@ -45,7 +47,8 @@ export class AddCurrencyComponent implements OnInit {
       "validFrom": this.data.validFrom,
       "currencyCode":  this.data.currencyCode,
       "rate": this.data.rate,
-      "details": this.data.details
+      "details": this.data.details,
+      "active": this.active
     }
 this.spinner.show();
     this.http.
