@@ -70,7 +70,7 @@ this.GetArticleDropdown();
           this.response = res;
           if (this.response.success == true) {
             this.articledata = this.response.data;
-            this.data.quantity=this.articledata.contractArticleQuantity;
+            // this.data.quantity=this.articledata.contractArticleQuantity;
             this.data.contractArticleRate=this.articledata.contractArticleRate;
             this.data.contractArticleCommission=this.articledata.contractArticleCommission;
 
@@ -113,7 +113,16 @@ this.GetArticleDropdown();
       }
     
    }
-
+getArticleAmount(event){
+  clearTimeout(this.timeout);
+    
+  // this.rate=parseInt(localStorage.getItem('rate'))
+    if (event.keyCode != 13) {
+  this.quantitya=event.target.value;
+this.calculatedcost= this.quantitya*this.data.contractArticleRate;
+this.data.amount=this.calculatedcost;
+}
+}
    getunit(event:any){
     // clearTimeout(this.timeout);
    
@@ -171,13 +180,12 @@ if(event==7){
 //   }
 
   addSaleInvoice(form:NgForm) {
-    let sum=parseInt(this.quantitya)+parseInt(this.saleInvoiceQuantity);
-    if(sum>this.quantity ){
-      this.toastr.error("Total Sale Invoice Quantity"+"["+sum+"]"+ "should be less than contract quantity"+"["+this.quantity+"]", 'Message.');
+    // let sum=parseInt(this.quantitya)+parseInt(this.saleInvoiceQuantity);
+    // if(sum>this.quantity ){
+    //   this.toastr.error("Total Sale Invoice Quantity"+"["+sum+"]"+ "should be less than contract quantity"+"["+this.quantity+"]", 'Message.');
 
-    }
-    //  this.data.saleInvoiceDate = this.dateformater.toModel(this.data.saleInvoiceDate);
-    else{
+    // }
+    // else{
     let varr = {
 
       "contractId": parseInt(this.contractId),
@@ -218,7 +226,7 @@ this.spinner.show();
         })
         ;
       }
-  }
+  // }
 
 
 
