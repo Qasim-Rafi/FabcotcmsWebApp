@@ -22,6 +22,7 @@ export class EditCurrencyComponent implements OnInit {
   data:any={};
   response: any;
   @Input() userId;
+  active = true;
   
   constructor(private http:HttpClient,
     private service: ServiceService,
@@ -51,6 +52,8 @@ export class EditCurrencyComponent implements OnInit {
         this.response = res;
         if (this.response.success == true){
           this.data =this.response.data; 
+          this.active = this.data.active;
+
     this.data.validFrom = this.dateformater.fromModel(this.data.validFrom);
 this.spinner.hide();
         }
@@ -78,7 +81,9 @@ this.spinner.hide();
       "validFrom": this.data.validFrom,
       "currencyCode":  this.data.currencyCode,
       "rate": this.data.rate,
-      "details": this.data.details
+      "details": this.data.details,
+      "active": this.active
+
     }
 this.spinner.show();
     this.http.
