@@ -969,8 +969,11 @@ getContractLOC() {
     .subscribe(
       res => {
         this.response = res;
-        if (this.response.success == true && this.response.data != null) {
+        if (this.response.success == true ) {
+          if(this.response.data != null){
           this.contractLOCdata = this.response.data;
+
+          }
          
 
 

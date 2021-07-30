@@ -1570,8 +1570,9 @@ getContractLOC() {
       res => {
         this.response = res;
         if (this.response.success == true) {
+          if(this.response.data != null){
           this.contractLOCdata = this.response.data;
-         
+          }
 
 
           
