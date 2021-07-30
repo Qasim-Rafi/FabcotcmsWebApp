@@ -194,15 +194,22 @@
         <div class="col-sm-11">
           <button type="button" class="btn btn-primary float-right" data-toggle="modal"
             data-target="#exampleModalScrollable" (click)="addPocform(obj,'SellerAddPOC')">
-            <i class="fa fa-user" aria-hidden="true"></i> POC not found, <i class="fa fa-plus" aria-hidden="true"></i> Add
+            <i class="fa fa-user" aria-hidden="true"></i> POC not found, <i class="fa fa-plus" aria-hidden="true"></i>
+            Add
             a new one?
           </button>
         </div>
       </div>
 
-      <h2>Contacts</h2>
+      <div class="row text-center pt-3" *ngFor="let poc of obj.sellerPOCList">
+
+      <div *ngIf="poc.name!=''">
+        <h2>Contacts</h2>
+      </div>
+     </div>
 
       <div class="row text-center pt-3" *ngFor="let poc of obj.sellerPOCList">
+     
         <div class="col-md-2 border p-2 ">{{ poc.name }}</div>
         <div class="col-md-2 border p-2">{{ poc.description }}</div>
         <div class="col-md-2 border p-2">{{ poc.email }}</div>
@@ -220,9 +227,11 @@
           </button>
         </div>
       </div>
-
- 
-      <h2 class="pt-5">Certificate</h2>
+      <div class="row text-center pt-3" *ngFor="let j of obj.sellerCertificateList">
+      <div *ngIf="j.sellerCertificateName!=''">
+       <h2 class="pt-5">Certificate</h2>
+      </div>
+      </div>
 
       <div class="row text-center pt-3" *ngFor="let j of obj.sellerCertificateList">
         <div class="col-md-1 border text-left p-2"><i class="fas fa-bolt"></i></div>
@@ -239,30 +248,32 @@
         </div>
       </div>
 
-
-      <h2 class="pt-5">Machine Details</h2>
+      <!--Commented this snippet becuase there was no source of data that'll show here.-->
+      <!-- <h2 class="pt-5">Machine Details</h2>
       <div class="pt-3">
 
+      </div> -->
+      <div *ngIf="obj.majorStrength!=''">
+        <h2 class="pt-5">Major Market & Strengths</h2>
       </div>
 
-      <h2 class="pt-5">Major Market & Strengths</h2>
-
-      <div class="col-md-12 pt-3">
+      <div class="col-md-12 size pt-3">
         {{obj.majorStrength}}
       </div>
-
-      <h2 class="pt-5">Product Capabilties</h2>
-
-      <div class="pt-3">
-
+      <div *ngIf="obj.capabilitiesNames!=''">
+        <h2 class="pt-5">Product Capabilties</h2>
+      </div>
+      <div class="col-md-12 size pt-3">
+        {{obj.capabilitiesNames}}
       </div>
 
-
-      <h2 class="pt-5">Lead time & MOQ</h2>
-
-      <div class="col-md-12 pt-3">
+      <div *ngIf="obj.leadTime!=''">
+        <h2 class="pt-5">Lead time & MOQ</h2>
+      </div>
+      <div class="col-md-12 size pt-3">
         {{obj.leadTime}}
       </div>
+      
     </div>
   </div>
 </div>

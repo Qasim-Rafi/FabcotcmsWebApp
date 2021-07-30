@@ -47,12 +47,12 @@
                     <label for="name" class="col-md-3 col-form-label ">Price / Rate<span
                         class="required-denote">*</span></label>
 
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <input type="number" min="0" class="form-control" placeholder="Rate" name="rate"
                             [(ngModel)]="data.rate" #rate="ngModel"
                             [ngClass]="{ 'error': QuotationForm.submitted && rate.invalid }" required />
                     </div>
-                    <div class="col-md-3 mrg-tsm">
+                    <div class="col-md-3">
                         <ng-select placeholder="-- Select Currency --" name="currencyId" [(ngModel)]="data.currencyId"
                             #currencyId="ngModel" [ngClass]="{ 'error': QuotationForm.submitted && currencyId.invalid }"
                             required>
@@ -61,7 +61,7 @@
                             </ng-option>
                         </ng-select>
                     </div>
-                    <div class="col-md-3 mrg-tsm">
+                    <div class="col-md-3">
                         <ng-select placeholder="-- Select UOM --" name="uomId" [(ngModel)]="data.uomId" #uomId="ngModel"
                             [ngClass]="{ 'error': QuotationForm.submitted && uomId.invalid }" required>
                             <ng-option *ngFor="let obj of uom" [value]="obj.id">

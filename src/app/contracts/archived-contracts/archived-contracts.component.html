@@ -27,7 +27,7 @@
         <div class="row mb-3">
           <div class="col-md-6 ">
             <button type="button" class="btn btn-primary descBtn ml-sm-none ml-md-2 ">
-              <i class="fas fa-map fa-fw mr-2"></i></button>
+              <i class="fas fa-map fa-fw mr-2"></i>{{closedCount}}</button>
             <span class="text-muted text2">Archived Contracts</span>
           </div>  
         </div>
@@ -82,12 +82,7 @@
             </ng-template>
           </ngx-datatable-column>
 
-          <ngx-datatable-column>
-            <ng-template let-row="row" ngx-datatable-cell-template>
-
-            </ng-template>
-          </ngx-datatable-column>
-
+   
           <ngx-datatable-column name="Age" prop="contractAge">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
               <span class="badge badge-primary">{{row.contractAge}}</span>
@@ -95,7 +90,7 @@
             </ng-template>
           </ngx-datatable-column>
 
-          <ngx-datatable-column name="Contract Details" prop="autoContractNumber">
+          <ngx-datatable-column name="Details" prop="autoContractNumber">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
               {{row.autoContractNumber}}
               B:{{row.buyerName}}
@@ -103,7 +98,7 @@
             </ng-template>
           </ngx-datatable-column>
 
-          <ngx-datatable-column name="Contract On" prop="contractOn">
+          <ngx-datatable-column name="Dated" prop="contractOn">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
               {{row.contractOn}}
             </ng-template>

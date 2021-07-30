@@ -17,6 +17,7 @@ export class OnholdContractsComponent implements OnInit {
   rows: any = [];
   columns: any = [];
   temp: any = [];
+  onHoldCount: number;
   data: any = {};
   listCount: number;
   constructor(
@@ -43,6 +44,7 @@ export class OnholdContractsComponent implements OnInit {
         if (this.response.success == true) {
           
           this.data = this.response.data.list;
+        this.onHoldCount = this.response.data.onHoldCount;
           this.temp = [this.data];
           cb(this.data);
         }

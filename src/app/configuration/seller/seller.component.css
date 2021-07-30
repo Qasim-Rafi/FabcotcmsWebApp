@@ -35,7 +35,9 @@ label {
   background-image: url("/assets/caution.png");
   background-size: 15px;
 }
-
+.size{
+  font-size: 20px;
+}
 .faq-item {
   padding: 20px;
   margin-bottom: 10px;
