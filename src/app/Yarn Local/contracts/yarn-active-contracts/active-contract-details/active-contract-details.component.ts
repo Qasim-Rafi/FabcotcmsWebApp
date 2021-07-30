@@ -1357,7 +1357,7 @@ this.spinner.show();
       if (data == true) {
   
         this.getContractPartiesData();
-      this.getContractData();
+      // this.getContractData();
 
     
       }
@@ -1374,7 +1374,7 @@ this.spinner.show();
       if (data == true) {
   
         this.getContractProductData();
-        this.getContractData();
+        // this.getContractData();
       }
     }, (reason) => {
       // on dismiss
@@ -1391,7 +1391,7 @@ this.spinner.show();
       if (data == true) {
   
         this.getContractCostingData();
-        this.getContractData();
+        // this.getContractData();
       }
     }, (reason) => {
       // on dismiss
@@ -1413,7 +1413,7 @@ this.spinner.show();
           // this.rows1 = empData;
           // this.listCount= this.rows.length;
         // });
-        this.getContractData();
+        // this.getContractData();
         this.getContractPaymentData();
       }
     }, (reason) => {
@@ -1428,7 +1428,7 @@ this.spinner.show();
       // on close
       if (data == true) {
         this.getContractPaymentData();
-        this.getContractData();
+        // this.getContractData();
       }
     }, (reason) => {
       // on dismiss
@@ -1507,7 +1507,7 @@ this.spinner.show();
       // on close
       if (data == true) {
   
-      this.getContractData();
+      // this.getContractData();
 this.getContractCommisionData();      }
     }, (reason) => {
       // on dismiss
@@ -1612,7 +1612,7 @@ addDeliveryTL(check) {
     // on close
     if (data == true) {
       
-      this.getContractData();
+      // this.getContractData();
     //  this.service.fetch((data=>{
     //    this.rows = data;
     //  }) , this.deliveryUrl)
@@ -1721,7 +1721,7 @@ editDeliveries(row, check) {
       // this.service.fetch((data) => {
       //   this.rows = data;
       // }, this.deliveryUrl);
-      this.getContractData();
+      // this.getContractData();
       this.getDeliveries();
     }
 
@@ -1745,7 +1745,7 @@ addDispatch( check) {
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
-      this.getContractData();
+      // this.getContractData();
       this.getDispatches();
   
     }
@@ -1794,7 +1794,7 @@ editDispatch( row ,check) {
     if (data == true) {
   
     }
-    this.getContractData();
+    // this.getContractData();
     this.getDispatches();
 
 
@@ -1816,7 +1816,7 @@ ContractNotes(check) {
         this.noteFilter = [...NotesData];
         // this.listCount= this.rows.length;
       });
-    this.getContractData();
+    // this.getContractData();
 
     }
   }, (reason) => {
@@ -1838,7 +1838,7 @@ editNote(row, check) {
         this.noteFilter = [...NotesData];
         // this.listCount= this.rows.length;
       });
-    this.getContractData();
+    // this.getContractData();
 
     }
   }, (reason) => {
