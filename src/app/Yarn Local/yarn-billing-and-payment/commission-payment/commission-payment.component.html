@@ -106,9 +106,9 @@
           <ngx-datatable-column name="action" [width]="80" prop="sno" [flexGrow]="0.04">
             <ng-template let-row="row" let-rowIndex="rowIndex" let-expanded="expanded" ngx-datatable-cell-template>
               <div class="ibox-tools text-center">
-                <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top" title=""
+                <button type="button" class="btn editIconBack px-1 py-1" data-toggle="tooltip" data-placement="top" title=""
                   data-original-title="edit" (click)= "navigateEditForm(row)" ><i class="far fa-edit"></i></button>
-                <button type="button" class="btn editIconBack" data-toggle="tooltip" data-placement="top" title=""
+                <button type="button" class="btn editIconBack px-1 py-1" data-toggle="tooltip" data-placement="top" title=""
                  (click) = "deletePayment(row)"  ><i class="fas fa-trash"></i></button>
               </div>
             </ng-template>

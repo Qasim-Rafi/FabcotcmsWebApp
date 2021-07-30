@@ -1079,13 +1079,13 @@
                                     <ngx-datatable-column name="Supplier Date" prop="contractAge">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                                             <span class="badge badge-primary"></span>
-                                            {{row.supplierDateDay}}-{{row.supplierDateMonth}}-{{row.supplierDateYear}}
+                                            {{row.supplierDateMonth}}
                                         </ng-template>
                                     </ngx-datatable-column>
                     
                                     <ngx-datatable-column name="Buyer Date" prop="autoContractNumber">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                            {{row.buyerDateDay}}-{{row.buyerDateMonth}}-{{row.buyerDateYear}}
+                                           {{row.buyerDateMonth}}
                     
                                         </ng-template>
                                     </ngx-datatable-column>
@@ -1264,7 +1264,7 @@
                                                     </div> -->
                     
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-12 mb-2">
                                     <button class="btn btn-outline-primary btn-sm float-right" (click)="AddEmployeeComm('Add')"> <i
                                             class="fas fa-plus"></i></button>
                                 </div>
