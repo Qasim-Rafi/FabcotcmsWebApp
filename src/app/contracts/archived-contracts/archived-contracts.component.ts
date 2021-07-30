@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { GlobalConstants } from 'src/app/Common/global-constants';
 import Swal from 'sweetalert2';
+import { NumberLiteralType } from 'typescript';
 
 
 @Component({
@@ -20,6 +21,7 @@ export class ArchivedContractsComponent implements OnInit {
   temp: any = [];
   data: any = {};
   listCount: number;
+  closedCount: NumberLiteralType;
   constructor(
     private service: ServiceService,
     private router: Router,
@@ -37,13 +39,14 @@ export class ArchivedContractsComponent implements OnInit {
   }
   fetch(cb) {
     this.http
-      .get(`${environment.apiUrl}/api/Contracts/GetAllContract/OnHold`)
+      .get(`${environment.apiUrl}/api/Contracts/GetAllContract/Closed`)
       .subscribe(res => {
         this.response = res;
 
         if (this.response.success == true) {
           
           this.data = this.response.data.list;
+        this.closedCount = this.response.data.closedCount;
           this.temp = [this.data];
           cb(this.data);
         }
