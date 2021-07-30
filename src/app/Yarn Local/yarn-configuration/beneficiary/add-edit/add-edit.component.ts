@@ -16,6 +16,7 @@ import { Dateformater } from 'src/app/shared/dateformater';
 })
 export class AddEditComponent implements OnInit {
   includingArray: any = [{id:0}];
+  excludingArray:any = [{id:0}];
   includingBuyer: any = [];
   excludingBuyer: any = [];
   country: any = [];
@@ -181,6 +182,13 @@ this.GetUsersDropdown(this.deptId);
   removefield(i: number) {
     this.includingArray.splice(i, 1);
   }
+
+  addfieldEX() {
+    this.excludingArray.push({ id: this.excludingArray.length });
+  }
+  removefieldEX(i: number) {
+    this.excludingArray.splice(i, 1);
+  }
   addbeneficiary() {
     // this.data.poDate = this.dateformater.toModel(this.data.poDate);
     let varr = {
@@ -188,10 +196,10 @@ this.GetUsersDropdown(this.deptId);
       "commission": this.Bendata.commission,
       "status": this.status.toString(),
       "dateTime": this.dateformater.toModel(this.Bendata.dateTime),
-      "includingBuyerId":this.includingArray,
+      "includingCompany":this.includingArray,
       "commissionRatio": parseInt(this.Bendata.commissionRatio),
       "remarks":this.Bendata.remarks,
-      "excludingBuyerId":this.Bendata.excludingBuyerId
+      "excludingCompany":this.excludingArray
     }
 this.spinner.show();
     this.http.
