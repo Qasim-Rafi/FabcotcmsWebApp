@@ -81,13 +81,13 @@
         <div class="col-md-6 mrg-tsm">
           <!-- refresh button -->
   
-      <button type="button" class="btn btn-light btn-sm">
+      <!-- <button type="button" class="btn btn-light btn-sm">
           <i class="fas fa-sync-alt"></i>
-          </button>
+          </button> -->
      <!-- Filter Button -->
-          <button type="button" class="btn btn-primary btn-sm mr-1" >
+          <!-- <button type="button" class="btn btn-primary btn-sm mr-1" >
           <i class="fa fa-filter"></i>
-      </button>
+      </button> -->
       <!-- add new commision button -->
       <button type="button" class="btn btn-primary btn-sm mr-1"
       (click)="navigateAddContract()"
@@ -101,7 +101,9 @@
           <div class="form-group row">
             <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" id="inputSearch" (keyup)="searchFilter($event)">
+              <input type="text" class="form-control" id="inputSearch" (keyup)="searchFilter($event)"
+              placeholder="Search by Contract Number, Buyer and Seller Name"
+              >
             </div>
           </div>
 
@@ -144,7 +146,7 @@
             </ng-template>
           </ngx-datatable-column>
 
-          <ngx-datatable-column name="Con Det." [width] = "20" [flexGrow]="0.07"   prop="autoContractNumber">
+          <ngx-datatable-column name="Details" [width] = "20" [flexGrow]="0.07"   prop="autoContractNumber">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
               {{row.autoContractNumber}}
               B:{{row.buyerName}}
@@ -152,7 +154,7 @@
             </ng-template>
           </ngx-datatable-column>
 
-          <ngx-datatable-column name="Date" [width] = "20"  [flexGrow]="0.07"  prop="contractOn">
+          <ngx-datatable-column name="Dated" [width] = "20"  [flexGrow]="0.07"  prop="contractOn">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
               {{row.contractOn}}
               
