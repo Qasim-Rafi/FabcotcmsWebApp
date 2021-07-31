@@ -1,6 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Dateformater } from 'src/app/shared/dateformater';
 import { ServiceService } from 'src/app/shared/service.service';
@@ -26,6 +27,8 @@ export class QuantityAndCostingComponent implements OnInit {
     private _NgbActiveModal: NgbActiveModal,
     private http: HttpClient,
     private service: ServiceService,
+    private spinner: NgxSpinnerService,
+
     private toastr: ToastrService,
   ) { }
 
@@ -102,7 +105,7 @@ export class QuantityAndCostingComponent implements OnInit {
       "witAx": this.data.witAx
       
     }
-
+this.spinner.show();
     this.http.
       post(`${environment.apiUrl}/api/Contracts/AddContractCosting`, varr)
       .subscribe(
@@ -115,16 +118,22 @@ export class QuantityAndCostingComponent implements OnInit {
             this.activeModal.close(true);
             this.getContractCostingData();
             localStorage.setItem('rate',this.data.quantity);
+this.spinner.hide();
+
 
         }
           else {
             this.toastr.error(this.response.message, 'Message.');
+this.spinner.hide();
+
           }
 
         },(err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
+this.spinner.hide();
+
         });
   }
 

@@ -6,6 +6,7 @@ import { Dateformater } from 'src/app/shared/dateformater';
 import { ServiceService } from 'src/app/shared/service.service';
 import { environment } from 'src/environments/environment';
 import { Form, NgForm } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-product-and-specification',
@@ -37,6 +38,8 @@ export class ProductAndSpecificationComponent implements OnInit {
     private _NgbActiveModal: NgbActiveModal,
     private http: HttpClient,
     private service: ServiceService,
+    private spinner: NgxSpinnerService,
+
     private toastr: ToastrService,
   ) { }
 
@@ -207,7 +210,7 @@ this.GetSelvedgeDropdown();
       "blendingRatioWarpId": this.data.blendingRatioWarpId,
       "blendingRatioWeftId": this.data.blendingRatioWeftId
     }
-
+ this.spinner.show();
     this.http.
       post(`${environment.apiUrl}/api/Contracts/AddContractProductSpecification`, varr)
       .subscribe(
@@ -219,16 +222,21 @@ this.GetSelvedgeDropdown();
             // this.getEnquiryData(this.objEnquiry);
             this.activeModal.close(true);
             this.getContractProductData();
+            this.spinner.hide();
             
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
+
           }
 
         },(err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
+          this.spinner.hide();
+
         });
   
 }

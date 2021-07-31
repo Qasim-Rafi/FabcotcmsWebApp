@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
 import { ServiceService } from 'src/app/shared/service.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-delivery-time-line',
@@ -40,6 +41,8 @@ export class DeliveryTimeLineComponent implements OnInit {
     private http: HttpClient,
     private toastr: ToastrService,
     private _NgbActiveModal: NgbActiveModal,
+    private spinner: NgxSpinnerService,
+
     private service: ServiceService
   ) { }
 
@@ -86,6 +89,7 @@ export class DeliveryTimeLineComponent implements OnInit {
     let varr = {
 
     }
+    this.spinner.show();
 
     this.http.
       put(`${environment.apiUrl}` ,varr)
@@ -96,14 +100,20 @@ export class DeliveryTimeLineComponent implements OnInit {
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
             this.activeModal.close(true);
+            this.spinner.hide();
+
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
+
           }
 
         }, (err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
+          this.spinner.hide();
+
 
         });
   }
@@ -117,6 +127,7 @@ export class DeliveryTimeLineComponent implements OnInit {
     let varr = {
 
     }
+    this.spinner.show();
 
     this.http.
       post(`${environment.apiUrl}`, varr)
@@ -129,14 +140,19 @@ export class DeliveryTimeLineComponent implements OnInit {
 
             this.deliveryForm.reset();
             this.activeModal.close(true);
+            this.spinner.hide();
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
+
           }
 
         }, (err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(),'Message.');
+          this.spinner.hide();
+
 
         });
 
