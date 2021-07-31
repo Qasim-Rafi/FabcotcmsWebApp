@@ -114,10 +114,10 @@
     
         </div>
     
-        <div class="form-group row">
-            <label for="description" class="col-md-3 col-form-label text-Navy" *ngIf = "loggedInDepartmentName == 'Yarn Local'"></label>
+        <div class="form-group row" *ngIf = "loggedInDepartmentName == 'Yarn Local'">
+            <label for="description" class="col-md-3 col-form-label text-Navy"  ></label>
             <div class="col-md-8">
-              <input type="text" class="form-control" placeholder="Payment term Additional Info" name="buyerSidePaymentTermInfo"
+              <input type="text" class="form-control" placeholder="Payment  term Additional Info" name="buyerSidePaymentTermInfo"
                 [(ngModel)]="data.buyerSidePaymentTermInfo" #buyerSidePaymentTermInfo = "ngModel">
             </div>
           </div>

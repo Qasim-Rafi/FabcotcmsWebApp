@@ -952,8 +952,11 @@
                             <div class="row">
                                 <div class="col-md-6">
                     
-                                    <dl class="row" *ngIf = "loggedInDepartmentName != 'Yarn Export'">
-                                        <dt class="col-sm-6">Seller Payment terms:</dt>
+                                    <dl class="row" *ngIf = "loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName == 'Fabric Export'">
+                                        <dt class="col-sm-6" *ngIf = "loggedInDepartmentName == 'Fabric Export'"> Payment terms:</dt>
+                                        <dt class="col-sm-6" *ngIf = "loggedInDepartmentName != 'Fabric Export'">Seller Payment terms:</dt>
+                                       
+
                                         <dd class="col-sm-6">{{contractPaymentData.sellerPaymentTermName}}
                                             <b *ngIf="contractPaymentData.sellerPaymentTermDays != ''">
                                                 {{contractPaymentData.sellerPaymentTermDays}} Days </b>
@@ -969,10 +972,10 @@
                                         </dd>
                                     </dl>
                     
-                                    <dl class="row" *ngIf = "loggedInDepartmentName != 'Yarn Export'">
-                                        <dt class="col-sm-6" *ngIf = "loggedInDepartmentName !='Fabric Export'" >Buyer Payment terms:
+                                    <dl class="row" *ngIf = "loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName !='Fabric Export' ">
+                                        <dt class="col-sm-6"  >Buyer Payment terms:
                                         </dt>
-                                        <dd class="col-sm-6" *ngIf = "loggedInDepartmentName !='Fabric Export'">{{contractPaymentData.buyerPaymentTermName}}
+                                        <dd class="col-sm-6" >{{contractPaymentData.buyerPaymentTermName}}
                                             <b *ngIf="contractPaymentData.buyerPaymentTermDays !=null">
                                                 {{contractPaymentData.buyerPaymentTermDays}} Days </b>
                                             {{contractPaymentData.buyerSidePaymentTermInfo}}

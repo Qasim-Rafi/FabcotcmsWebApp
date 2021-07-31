@@ -177,6 +177,7 @@ max1:any;
     });
    this.GetArticleDropdown("start");
   this.getAllDocuments();
+  // this.getArticles();
     this.getPrintData();
     this.getContractData();
     this.getAllReminder();
