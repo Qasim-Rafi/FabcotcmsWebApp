@@ -16,6 +16,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class AddCurrencyComponent implements OnInit {
   dateformater: Dateformater = new Dateformater();
   data: any = {};
+  active = true;
   response: any;
   constructor(private http: HttpClient,
     private service: ServiceService,
@@ -44,7 +45,8 @@ export class AddCurrencyComponent implements OnInit {
       "validFrom": this.dateformater.toModel(this.data.validFrom),
       "currencyCode": this.data.currencyCode,
       "rate": this.data.rate,
-      "details": this.data.details
+      "details": this.data.details,
+      "active": this.active,
     }
 this.spinner.show();
     this.http.

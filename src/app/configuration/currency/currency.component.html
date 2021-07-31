@@ -39,45 +39,69 @@
 
       </div>
 
-
       <div class="row">
         <div class="col-md-12 mb-3">
-          <div class="row justify-content-end">
-            <div class=" col-md-4 pr-0">
+        
+          <div class="row ">
+            <div class="col-md-4">
+            
+              <div class="form-group row">
+                <label for="inputSearch" class="col-sm-3 col-form-label">Status</label>
+                <div class="col-sm-4">
+                  <select class="form-control" (change)="activeInactive($event)">
+                    <option value="Active">Active</option>
+                    <option value="InActive">Inactive</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-8">
+            <div class="row justify-content-end">
+            <div class=" col-md-6 pr-0">
 
               <div class="form-group row">
                 <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
                 <div class="col-sm-9">
-                  <input type="text" (keyup)="searchcurrency($event)"
-                 placeholder="Search by currency" class="input form-control form-control-sm">
+                  <input type="text" placeholder="Search by Currency Code "
+                  class="input form-control form-control-sm" (keyup)="searchcurrency($event)">
                 </div>
               </div>
 
               <!-- <div class="input-group col-md-offset-3">
-                <input type="text" (keyup)="searchcurrency($event)"
-                 placeholder="Search by currency" class="input form-control w-50">
+                <input type="text" placeholder="Search by Article Code or Article Name.. "
+                  class="input form-control w-50" (keyup)="search($event)">
               </div> -->
-
             </div>
 
             <div class="html5buttons mrg-tsm">
               <div class="dt-buttons btn-group btn-group-sm">
                 <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0"
-                (click)="copyCurrencyList()"  aria-controls="DataTables_Table_0"><span>Copy</span></a>
+                  aria-controls="DataTables_Table_0"
+              (click)="copyCurrencyList()"
+                  ><span>Copy</span></a>
                 <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
-                  aria-controls="DataTables_Table_0"><span>CSV</span></a>
+                  aria-controls="DataTables_Table_0"
+                  ><span>CSV</span></a>
                 <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
                   aria-controls="DataTables_Table_0"><span>Excel</span></a>
                 <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0"
-                  aria-controls="DataTables_Table_0"><span>PDF</span></a>
+                  aria-controls="DataTables_Table_0"
+                  ><span>PDF</span></a>
                 <a class="btn btn-default buttons-print bg-white" tabindex="0"
-                  aria-controls="DataTables_Table_0"><span>Print</span></a>
+                  aria-controls="DataTables_Table_0"
+                  ><span>Print</span></a>
               </div>
             </div>
+          </div>
+        </div>
 
           </div>
         </div>
       </div>
+
+
+
 
     </div>
 
@@ -122,6 +146,14 @@
         <ngx-datatable-column name=" Updated On" [width]="80">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             {{row.updatedDateTime}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Status" id="active" prop="status" [flexGrow]="0.06">
+          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+
+            <span class="badge badge-primary" *ngIf="row.active==true">Active</span>
+            <span class="badge badge-secondary" *ngIf="row.active==false">Inactive</span>
+
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="Action" [width]="80">
