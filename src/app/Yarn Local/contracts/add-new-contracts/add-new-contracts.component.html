@@ -1601,7 +1601,50 @@
                 <label for="inputEmail3" class="col-md-3 col-form-label control-label">Payment
                     Terms:</label>
 
-                <div class="col-md-7">
+                <div class="col-md-7" *ngIf = "loggedInDepartmentName == 'Yarn Export'  ">
+                    <div class="row">
+
+                        <div class="col-md-4">
+
+                            <div class="input-group">
+                                <ng-select name="paymentTermId" #paymentTermId="ngModel" class="input-w2 px-0"
+                                    [(ngModel)]="data.paymentTermId" placeholder="Payment Terms">
+                                    <ng-option *ngFor="let i of PayementTerm" [value]="i.id">{{ i.term}}
+                                    </ng-option>
+                                </ng-select>
+
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-primary" type="button" id="button-addon2"
+                                        (click)="addsellerpayemntForm()">
+                                        <i class="fa fa-plus"></i></button>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-4 mrg-tsm">
+                            <div class="input-group">
+                                <input type="text" placeholder="Days" name="paymentTermDays" #paymentTermDays="ngModel"
+                                    class="form-control text-w-4" [(ngModel)]="data.paymentTermDays">
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mrg-tsm">
+                            <div class="input-group">
+
+                                <input type="text" placeholder="Payment Term additional Info" class="form-control"
+                                    [(ngModel)]="data.paymentTermInfo" #paymentTermInfo="ngModel"
+                                    name="paymentTermInfo">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- fabric export -->
+                <div class="col-md-7" *ngIf = "loggedInDepartmentName == 'Fabric Export'">
                     <div class="row">
 
                         <div class="col-md-4">
@@ -2023,7 +2066,7 @@
                                                 </div>
                         
                                                 <div class="col-md-6 mrg-tsm">
-                                                    <input class="form-control" placeholder="Commission %" [(ngModel)]="data2.agentCommission"
+                                                    <input class="form-control" type="number" placeholder="Commission %" [(ngModel)]="data2.agentCommission"
                                                         #agentCommission="ngModel" min="0" name="agentCommission" />
                                                 </div>
                         
@@ -2054,7 +2097,7 @@
                                                     </div>
                         
                                                     <div class="col-md-6 mrg-tsm">
-                                                        <input class="form-control" placeholder="Commission %" [(ngModel)]="a.agentCommission"
+                                                        <input class="form-control" type="number"  placeholder="Commission %" [(ngModel)]="a.agentCommission"
                                                             #agentCommission="ngModel" min="0" name="agentCommission_{{i}}" />
                                                     </div>
                         
@@ -2193,7 +2236,7 @@
                                                 </div>
                         
                                                 <div class="col-md-6 mrg-tsm">
-                                                    <input class="form-control" placeholder="Commission %" [(ngModel)]="data2.agentCommission"
+                                                    <input class="form-control" type="number" min="0" placeholder="Commission %" [(ngModel)]="data2.agentCommission"
                                                         #agentCommission="ngModel" min="0" name="agentCommission" />
                                                 </div>
                         
@@ -2224,7 +2267,7 @@
                                                     </div>
                         
                                                     <div class="col-md-6 mrg-tsm">
-                                                        <input class="form-control" placeholder="Commission %" [(ngModel)]="a.agentCommission"
+                                                        <input class="form-control"  type="number"  placeholder="Commission %" [(ngModel)]="a.agentCommission"
                                                             #agentCommission="ngModel" min="0" name="agentCommission_{{i}}" />
                                                     </div>
                         
