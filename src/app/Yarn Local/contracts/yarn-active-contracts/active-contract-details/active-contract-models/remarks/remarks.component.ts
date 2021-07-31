@@ -1,6 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { ServiceService } from 'src/app/shared/service.service';
 import { environment } from 'src/environments/environment';
@@ -20,6 +21,8 @@ export class RemarksComponent implements OnInit {
     private _NgbActiveModal: NgbActiveModal,
     private http: HttpClient,
     private service: ServiceService,
+    private spinner: NgxSpinnerService,
+
     private toastr: ToastrService,
   ) { }
 
@@ -63,7 +66,7 @@ export class RemarksComponent implements OnInit {
       "otherConditionRemarks":this.data.otherConditionRemarks,
       "title": this.data.title,
     }
-
+this.spinner.show();
     this.http.
       post(`${environment.apiUrl}/api/Contracts/AddContractRemark`, varr)
       .subscribe(
@@ -75,15 +78,20 @@ export class RemarksComponent implements OnInit {
             // this.getEnquiryData(this.objEnquiry);
             this.activeModal.close(true);
             this.getContractRemarkData();
+            this.spinner.hide();
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
+
           }
 
         },(err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
+          this.spinner.hide();
+
         });
   }
 

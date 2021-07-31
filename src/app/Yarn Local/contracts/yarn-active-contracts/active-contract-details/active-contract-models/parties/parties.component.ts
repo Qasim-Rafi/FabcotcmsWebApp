@@ -1,6 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Dateformater } from 'src/app/shared/dateformater';
 import { ServiceService } from 'src/app/shared/service.service';
@@ -29,6 +30,8 @@ export class PartiesComponent implements OnInit {
     private _NgbActiveModal: NgbActiveModal,
     private http: HttpClient,
     private service: ServiceService,
+    private spinner: NgxSpinnerService,
+
     private toastr: ToastrService,
   ) { }
 
@@ -207,7 +210,7 @@ export class PartiesComponent implements OnInit {
       "sellerPOCId": this.data.sellerPOCId,
       "sellerContract":this.data.sellerContract,
     }
-
+this.spinner.show();
     this.http.
       post(`${environment.apiUrl}/api/Contracts/AddContractParties`, varr)
       .subscribe(
@@ -219,15 +222,21 @@ export class PartiesComponent implements OnInit {
             // this.getEnquiryData(this.objEnquiry);
             this.activeModal.close(true);
             this.getContractPartiesData();
+this.spinner.hide();
+
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+this.spinner.hide();
+
           }
 
         },(err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
+this.spinner.hide();
+
         });
   }
 

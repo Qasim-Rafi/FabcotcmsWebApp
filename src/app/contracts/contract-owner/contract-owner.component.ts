@@ -71,7 +71,7 @@ response:any;
     })
   }
   update(i) {
-    this.spinner.show();
+    // this.spinner.show();
     let varr = {
 
     "contractOwner":i.id
@@ -88,19 +88,19 @@ response:any;
        
             this.activeModal.close(true);
            
-            this.spinner.hide();
+            // this.spinner.hide();
 
         }
           else {
             this.toastr.error(this.response.message, 'Message.');
-            this.spinner.hide();
+            // this.spinner.hide();
           }
 
         },(err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
-          this.spinner.hide();
+          // this.spinner.hide();
         });
   }
 
