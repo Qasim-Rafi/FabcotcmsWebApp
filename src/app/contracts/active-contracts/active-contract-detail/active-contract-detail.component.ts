@@ -241,10 +241,13 @@ this.getAllItems()
           if(this.response.data.compositionPercentage != "null"){
             this.rows2['compositionPercentage'] = this.response.data.compositionPercentage + "%"
           }
+     
           for(let i = 0 ; i<this.response.data.length ; i++){
 
             this.rows2[i].compositionPercentage = this.response.data[i].compositionPercentage + "%"
-            
+            if(this.rows2[i].contractUOMUnit == null ){
+              this.rows2[i].contractUOMUnit = ''
+            }
             if(this.response.data[i].contractCurrencyCode == null){
               this.rows2[i].contractCurrencyCode = ''
             }
