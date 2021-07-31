@@ -59,7 +59,7 @@
         <div class="form-group row">
           <label for="description" class="col-md-3 col-form-label text-Navy">Shipment Line</label>
           <div class="col-md-8">
-            <ng-select placeholder="Select Shipment Line " [(ngModel)]="data.shipmentLine" name="shipmentLine">
+            <ng-select placeholder="Select Shipment Line " [(ngModel)]="data.shipmentLineId" name="shipmentLineId" #shipmentLineId="ngModel">
               <ng-option *ngFor="let i of line" [value]="i.id"> {{i.shipmentLineType}}
               </ng-option>
             </ng-select>

@@ -542,7 +542,7 @@ PartiesForm() {
     // on close
     if (data == true) {
       this.getContractPartiesData();
-      this.getContractData();
+      // this.getContractData();
     }
   }, (reason) => {
     // on dismiss
@@ -597,7 +597,7 @@ ProductANDSpecificationForm() {
     // on close
     if (data == true) {
     this.getContractProductData();
-    this.getContractData();
+    // this.getContractData();
 
 
     }
@@ -638,7 +638,7 @@ QuantityCosting() {
     // on close
     if (data == true) {
       this.getContractCostingData();
-      this.getContractData();
+      // this.getContractData();
       
     }
   }, (reason) => {
@@ -677,7 +677,7 @@ PaymentDelivery() {
     // on close
     if (data == true) {
       this.getContractPaymentData();
-      this.getContractData();
+      // this.getContractData();
 
 
     }
@@ -728,7 +728,7 @@ CommissionKickback() {
     // on close
     if (data == true) {
       this.getContractCommisionData();
-      this.getContractData();
+      // this.getContractData();
 
 
     }
@@ -792,7 +792,7 @@ EmployeeCommission(status) {
         this.rows1 = empData;
         // this.listCount= this.rows.length;
       });
-      this.getContractData();
+      // this.getContractData();
 
 
     }
@@ -907,7 +907,7 @@ Remarks() {
     // on close
     if (data == true) {
       this.getContractRemarkData();
-      this.getContractData();
+      // this.getContractData();
 
 
     }
@@ -1003,7 +1003,7 @@ ProductionPlanform() {
         this.rows5 = Tna;
       });
     
-      this.getContractData();
+      // this.getContractData();
     }
 
   }, (reason) => {
@@ -1020,7 +1020,7 @@ addSaleInvoice(status) {
     // on close
     if (data == true) {
       this.getSaleInvoice();
-      this.getContractData();
+      // this.getContractData();
 
 
     }
@@ -1040,7 +1040,7 @@ editSaleInvoice(status, obj) {
     // on close
     if (data == true) {
       this.getSaleInvoice();
-    this.getContractData();
+    // this.getContractData();
 
     }
   }, (reason) => {
@@ -1065,7 +1065,7 @@ Note() {
         this.noteFilter = [...NotesData];
         // this.listCount= this.rows.length;
       });
-    this.getContractData();
+    // this.getContractData();
 
 
     }
@@ -1087,7 +1087,7 @@ ContractNotes(check, name) {
         this.noteFilter = [...NotesData];
         // this.listCount= this.rows.length;
       });
-    this.getContractData();
+    // this.getContractData();
 
     }
   }, (reason) => {
@@ -1329,7 +1329,7 @@ addItems(check, name) {
        
       // });
       this.getAllItems();
-      this.getContractData();
+      // this.getContractData();
   
 
 
@@ -1397,7 +1397,7 @@ editContractNote(row, check, name) {
         this.noteFilter = [...NotesData];
         // this.listCount= this.rows.length;
       });
-    this.getContractData();
+    // this.getContractData();
 
     }
   }, (reason) => {
@@ -1480,7 +1480,7 @@ addShipmentTimeline(check) {
         this.shipmentFilter = [...shipmentData];
   
       });
-    this.getContractData();
+    // this.getContractData();
 
   
 
@@ -1508,7 +1508,7 @@ EditShipmentTimeline(check , row) {
         this.shipmentFilter = [...shipmentData];
   
       });
-    this.getContractData();
+    // this.getContractData();
 
     }
   }, (reason) => {

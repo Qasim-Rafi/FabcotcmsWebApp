@@ -60,7 +60,8 @@ export class PartiesComponent implements OnInit {
             // this.data.certificateIds = this.data.certificateIds == "" ? this.data.certificateIds = null : this.data.certificateIds;
             this.data.poDate = this.dateformater.fromModel(this.data.poDate);
             this.data.contractDate = this.dateformater.fromModel(this.data.contractDate);
-            
+            this.getBuyerPOC(this.data.buyerId)
+    this.getSellersPOC(this.data.sellerId)
           }
           else {
             this.toastr.error(this.response.message, 'Message.');

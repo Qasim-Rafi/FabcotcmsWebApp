@@ -45,8 +45,7 @@
             <div class="col-md-8">
             <div class="row">
               <div class="col-md-6">
-                <input type="number" min="0" required (keyup)="itemquantity($event)" (keyup)="getcost($event)"
-                  (keyup)="itemrate($event)" id="itemQuantity" [ngClass]="{ 'error': itemQuantity.invalid && ItemForm.submitted }"
+                <input required (keyup)="itemquantity($event)" (onChange)="itemquantity($event)" (keyup)="getcost($event)" id="itemQuantity" [ngClass]="{ 'error': itemQuantity.invalid && ItemForm.submitted }"
                   name="itemQuantity" [(ngModel)]="data.itemQuantity" #itemQuantity="ngModel" class="form-control" value=""
                   placeholder="Quantity" />
               </div>
@@ -149,7 +148,7 @@
           
                 <div class="col-md-4">
                   <input id="contractRate" min="0" (keyup)="itemrate($event)" (keyup)="getcost($event)"
-                    (keyup)="itemquantity($event)" name="contractRate" [(ngModel)]="data.contractRate" #contractRate="ngModel"
+                    name="contractRate" [(ngModel)]="data.contractRate" #contractRate="ngModel"
                     class="form-control" value="" placeholder="Rate">
                 </div>
                 <div class="col-md-4 mrg-tsm">

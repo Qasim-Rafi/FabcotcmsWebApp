@@ -20,12 +20,12 @@
         <div class="form-group row">
           <label for="validFrom" class="col-md-3 col-form-label control-label text_Navy">Form Validity<span
               class="required-denote">*</span> </label>
-          <div class="col-md-8" (click)="validFrom.close()">
+          <div class="col-md-8">
             <!-- <input required id="validFrom" type="date" class="form-control" placeholder="Date" name="validFrom"
               [(ngModel)]="data.validFrom" #validFrom="ngModel" [ngClass]="{'error': validFrom.invalid && addAgentForm.submitted}"> -->
-            <input navigation="select" required class="form-control  " ngbDatepicker #validFrom="ngbDatepicker"
-              (click)="validFrom.toggle()" placeholder=" Date" name="validFrom" [(ngModel)]="data.validFrom"
-              #validFrom="ngModel" />
+              <input navigation="select" class="form-control  " ngbDatepicker #validityDate3="ngbDatepicker"
+              (click)="validityDate3.toggle()" name="validityDate3" placeholder="" name="validFrom"
+              [(ngModel)]="data.validFrom" #validFrom="ngModel" />
     
           </div>
         </div>
@@ -62,7 +62,17 @@
               #details="ngModel"></textarea>
           </div>
         </div>
-    
+        <div class="form-group row">
+          <label for="active" class="col-md-3 col-form-label text-grey"></label>
+          <div class="col-md-8">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input check-btn " id="scales" type="checkbox"
+                name="active" [(ngModel)]="active">
+              <label for="scales" id="active" class="form-check-label text-grey"
+                id="active">Marked as Active</label>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 

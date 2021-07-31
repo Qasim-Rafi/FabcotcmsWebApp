@@ -77,7 +77,7 @@ Contract Details </ol>
                      <div class="box-body">
                         <div class="mid-text text-info">{{contractCostingData.quantity}}
                             <span class="topbox-margin-end-text">
-                               <!-- {{contractCostingData.currencyName}} -->
+                               {{contractCostingData.currencyName}}
                             </span>   
                         </div>
                             
@@ -107,7 +107,7 @@ Contract Details </ol>
                    <div class="box-body">
                         <div class="mid-text  text-danger">{{contractCostingData.contractCost}}
                             <span class="topbox-margin-end-text">
-                               {{contractCostingData.currencyName}}
+                               {{contractCostingData.rateCurrencyName}}
                             </span>
                         </div>
                         <br>
@@ -556,7 +556,7 @@ Contract Details </ol>
                                             </dt>
                                             <dd class="col-sm-6">
                                                 <i class="far fa-calendar-alt"></i>
-                                                {{contractData.approvedOnToDisplay}}
+                                                {{contractData.approvedOn}}
                                             </dd>
                                         </dl>
                                         <dl class="row">

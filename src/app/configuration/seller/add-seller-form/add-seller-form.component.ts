@@ -76,7 +76,7 @@ export class AddSellerFormComponent implements OnInit {
     this.service.getCertification().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-        this.certification = this.response.data.list;
+        this.certification = this.response.data;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
