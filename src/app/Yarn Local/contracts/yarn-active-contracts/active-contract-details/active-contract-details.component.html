@@ -73,7 +73,7 @@
                             
                         <br>
                         <ngb-progressbar class="progress-bar progress text_Navy" type="warning" role="progressbar" aria-valuenow="15"
-                        aria-valuemin="0" aria-valuemax="100" [value]="25"></ngb-progressbar>
+                        aria-valuemin="0" aria-valuemax="100" [value]="(contractData.saleInvoiceQuantity/contractData.orderQuantity)*100"></ngb-progressbar>
                         <small class="topbox-margin-end-text">
                             <i class="fas fa-truck"></i>
                             Total Delivered
@@ -102,7 +102,7 @@
                         </div>
                         <br>
                         <ngb-progressbar class="progress-bar progress text_Navy" type="danger" role="progressbar" aria-valuenow="15"
-                        aria-valuemin="0" aria-valuemax="100" [value]="25"></ngb-progressbar>
+                        aria-valuemin="0" aria-valuemax="100" [value]="(contractData.saleInvoiceAmount/contractData.orderAmount)*100"></ngb-progressbar>
                         <small class="topbox-margin-end-text">
                             <i class="far fa-money-bill-alt"></i>
                             Invoice Sent
@@ -163,7 +163,7 @@
                 <button class="btn btn-danger btn-sm border-rounded px-3 mr-1 mrg-btm"
                     (click)="statusform('ContractCancel','Cancel','contract')">
                     <i class="fas fa-times"></i>
-                    Cancle
+                    Cancel
                 </button>
                 <button class="btn btn-warning btn-sm border-rounded px-3 mr-1 text-white mrg-btm"
                     (click)="statusform('ContractOnHold','OnHold','contract')">
@@ -192,6 +192,16 @@
                 <button class="btn btn-warning border-rounded px-3 mr-2 text-white">
                     <i class="fas fa-level-down-alt"></i>
                     Contract Held For Billing
+                </button>
+            </div>
+            <div class="col-md-8 " *ngIf="contractData.status =='Closed'">
+                <button class="btn btn-info border-rounded px-3 mr-2 text-white" (click)="statusOpen()">
+                    <i class="fas fa-level-down-alt"></i>
+                    Re-Open Contract
+                </button>
+                <button class="btn btn-warning border-rounded px-3 mr-2 text-white">
+                    <i class="fas fa-level-down-alt"></i>
+                    Contract Closed
                 </button>
             </div>
             <div class="col-md-4 text-right ">
