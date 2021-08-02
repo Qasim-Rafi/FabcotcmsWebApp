@@ -2262,7 +2262,8 @@ this.spinner.hide();
                     body: [
                       [{text:'Total' , style: 'tableheader3'},
                       {text:this.preview['enquiryItemQuantityTotal'] , style: 'tableheader3'},
-                      {text:'', style: 'tableheader3'},
+                      {text:this.preview['unitPriceTotal'], style: 'tableheader3'},
+
                       {text:this.preview['enquiryItemAmountTotal'] , style: 'tableheader3'},
                       ]
                      
@@ -2537,7 +2538,8 @@ this.spinner.hide();
                     body: [
                       [{text:'Total' , style: 'tableheader3'},
                       {text:this.preview['enquiryItemQuantityTotal'] , style: 'tableheader3'},
-                      {text:'', style: 'tableheader3'},
+                      {text:this.preview['unitPriceTotal'], style: 'tableheader3'},
+
                       {text:this.preview['enquiryItemAmountTotal'] , style: 'tableheader3'},
                       {text:this.preview['enquiryItemCommissionTotal'] , style: 'tableheader3'},]
                      
