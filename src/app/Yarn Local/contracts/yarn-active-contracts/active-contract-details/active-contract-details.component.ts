@@ -135,6 +135,7 @@ max1:any;
  contractArticles : any = {};
  percent:string;
  firstTime:any;
+ fabCot:any;
  isdeletedArticla:boolean=false;
  isRevisedStart:boolean =false;
  thereisrevisedData:boolean=false;
@@ -1247,7 +1248,7 @@ getContractCommisionData(){
     //   this.contractCommissionData.fabCotComission == "";
     // }
         // this.contractCommissionData.agenetName= parseInt(this.contractCommissionData.agenetName);
-        
+       
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -4193,9 +4194,14 @@ yarnExportInvoicesReportPrint(){
                             {text:'Commission' , style: 'tableheader2'} , {text:'Rate' , style: 'tableheader2'}
       
                           ],
-                    ...this.contractArticles.map((row=>
-                      [row.articleName, row.contractArticleQuantity, row.contractArticleCommission,
-                        row.contractArticleRate 
+                    ...this.contractData['contractArticles'].map((row=>
+                      [
+                        // row.articleName  , row.contractArticleQuantity, row.contractArticleCommission,
+                        // row.contractArticleRate 
+                             {text: row.articleName , style: 'tableheader3'} , 
+                             {text: row.contractArticleQuantity , style: 'tableheader3'},
+                             {text: row.contractArticleCommission , style: 'tableheader3'},
+                             {text: row.contractArticleRate , style: 'tableheader3'}
                         ]
                       ))
                   
@@ -4225,14 +4231,22 @@ yarnExportInvoicesReportPrint(){
                         margin: [70 , 7 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
-                        [{text:'Payment Term:'  , style:'heading'} , {text: this.contractPaymentData['paymentTermName'] , style:'heading2'}],] }
+                        [{text:'Payment Term:'  , style:'heading'} , {text: this.contractPaymentData['paymentTermDays'] + "  "+this.contractPaymentData['paymentTermName'] , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
                         margin: [70 , 7 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
-                        [{text:'Delivery Term:'  , style:'heading'} , {text: this.contractPaymentData['priceTermName'] , style:'heading2'}],] }
+                        [{text:'Delivery Term:'  , style:'heading'} , {text: this.contractPaymentData['priceTermName'] +" " +this.contractPaymentData['destinationName'] , style:'heading2'}],] }
+                      },
+                      {
+
+                        layout:'noBorders',
+                        margin: [70 , 7 , 0 , 0],
+                        table:{headerRows: 1 , widths:['20%' , '80%'],
+                      body: [
+                        [{text:'Container:'  , style:'heading'} , {text: this.contractPaymentData['containerName'] , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
@@ -4246,7 +4260,18 @@ yarnExportInvoicesReportPrint(){
                         margin: [70 , 7 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
-                        [{text:'Commission:'  , style:'heading'} , {text: this.contractCommissionData['fabCotCommision'] , style:'heading2'}],] }
+                        [{text:'Commission:'  , style:'heading'} ,{text:   "Fabcot International FZE: " + this.contractCostingData['rateCurrencyName']  + " "  + this.contractCommissionData['fabCotCommision'] + "%" , style:'heading2'}],] }
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [165 , 0 , 0 , 3],
+                        table:{headerRows: 1 , widths:['100%'],
+                      body: [
+                        ...this.contractCommissionData['agentCommissions'].map((row=>
+                        [
+                          {text:"Foreign Agent: " + row.agentName +" "  +row.agentCommission + "%"  , style : 'heading4'}
+                        ])),
+                      ] }
                       },
                       {
                         layout:'noBorders',
@@ -4304,13 +4329,24 @@ yarnExportInvoicesReportPrint(){
                          
                         tableheader2: {
                           fillColor: '#f3f3f4',
-                          fontSize: 8,
+                          fontSize: 9,
                           bold: true,
                           color: '#4d4b4b',
                          alignment:'center',
                           margin:5
                         
+                         },
+                         heading4:{fontSize: 10,color: '#4d4b4b' },
+                         tableheader3: {
+                          
+                          fontSize: 8,
+                         
+                          color: '#4d4b4b',
+                         alignment:'center',
+                          margin:5
+                        
                          }
+
                     },
                     
           
