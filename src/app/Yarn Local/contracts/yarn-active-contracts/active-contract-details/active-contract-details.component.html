@@ -650,14 +650,16 @@
                                     </dl> -->
                                     <dl class="row">
                 
-                                        <dd class="col-md-12 pt-1" >
+                                        <dd class="col-md-12 pt-1 " >
                                     
                                             <div *ngIf="loggedInDepartmentName=='Yarn Export'" >
                                                 <div class="col-md-12 ">
-                                                    <label class="col-sm-2 col-form-label">Articel Name:</label>
-                                                    <label class="col-sm-3 col-form-label">Quantity:</label>
-                                                    <label class="col-sm-2 col-form-label">Rate:</label>
-                                                    <label class="col-sm-3 col-form-label">Commission:</label>
+                                                    <label class="col-sm-3 col-form-label">Article Name:</label>
+                                                    <label class="col-sm-1 col-form-label">Quantity:</label>
+                                                    <label class="col-sm-1 col-form-label">Rate:</label>
+                                                    <label class="col-sm-3 col-form-label">Fabcot Commission:</label>
+                                                    <label class="col-sm-2 col-form-label">Foreign Agent Comm:</label>
+
 
                                                 <div class="form-group row" *ngFor="let a of contractArticles; let i = index;">
                                                     <div class="col-md-1">
@@ -665,7 +667,7 @@
                                                     ngbTooltip="Edit Revised Articel"
                                                      (click)="revisedpopup(a,'Edit')">Revised</button>
                                                     </div>
-                                                    <div class="col-md-3 ">
+                                                    <div class="col-md-2 ">
                                                         <div class="input-group">
                                                        
                                                         <ng-select [disabled]="a.isDeleted ==true || a.isRevised ==true" name="articleId_{{i}}" #articleId="ngModel" class="input-w px-0"
@@ -676,11 +678,11 @@
                                                    
                                                         </div>
                                                     </div>
-                                                          <div class="col-md-2">
+                                                          <div class="col-md-1">
 
                                                             <div class="input-group">
 
-                                                                <input type="number" [disabled]="a.isDeleted ==true || a.isRevised ==true" min="0" placeholder="quantity" #contractArticleQuantity="ngModel"
+                                                                <input type="number" [disabled]="a.isDeleted ==true || a.isRevised ==true" min="0" placeholder="qty" #contractArticleQuantity="ngModel"
                                                                     class="form-control" [(ngModel)]="a.contractArticleQuantity" name="contractArticleQuantity_{{i}}">
                                                             
                                                             </div>
@@ -698,6 +700,15 @@
                                                             <div class="input-group">
 
                                                                 <input type="number" [disabled]="a.isDeleted ==true || a.isRevised ==true" min="0" placeholder="Commission" #contractArticleCommission="ngModel"
+                                                                class="form-control" [(ngModel)]="a.contractArticleCommission" name="contractArticleCommission_{{i}}">
+                                                                
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+
+                                                            <div class="input-group">
+
+                                                                <input type="number" [disabled]="a.isDeleted ==true || a.isRevised ==true" min="0" placeholder="Agent Comm" #contractArticleCommission="ngModel"
                                                                 class="form-control" [(ngModel)]="a.contractArticleCommission" name="contractArticleCommission_{{i}}">
                                                                 
                                                             </div>
@@ -1204,7 +1215,7 @@
                                     <dl class="row" *ngIf="loggedInDepartmentName =='Yarn Export' || loggedInDepartmentName == 'Fabric Export'  ">
                                         <dt class="col-sm-6">Fabcot Commission:
                                         </dt>
-                                        <dd class="col-sm-6" *ngIf = "contractCommissionData.fabCotCommision!= null">USD {{contractCommissionData.fabCotCommision}} %
+                                        <dd class="col-sm-6" *ngIf = "contractCommissionData.fabCotCommision!= null && contractCommissionData.fabCotCommision!= ''">USD {{contractCommissionData.fabCotCommision}} %
                                             <b *ngIf="contractCommissionData.fabCotCommisionUOMName!=null">/ </b>
                     
                                            [{{contractCostingData.rateCurrencyName}} {{contractCommissionData.commissionAmountFabcot}} ] <span *ngIf = "contractCommissionData.fabcotSideCommAdditionalInfo != null"> {{contractCommissionData.fabcotSideCommAdditionalInfo}}</span>
@@ -1214,7 +1225,7 @@
                                     <dl class="row" *ngIf = "loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName == '!Fabric Export'  || loggedInDepartmentName == 'Yarn Local' || loggedInDepartmentName == 'Fabric Local'">
                                         <dt class="col-sm-6">Buyer side Commission:
                                         </dt>
-                                        <dd class="col-sm-6" *ngIf = "contractCommissionData.buyersideCommision != null"> {{contractCostingData.rateCurrencyName}} {{contractCommissionData.buyersideCommision}}  %
+                                        <dd class="col-sm-6" *ngIf = "contractCommissionData.buyersideCommision != null && contractCommissionData.buyersideCommision != '' "> {{contractCostingData.rateCurrencyName}} {{contractCommissionData.buyersideCommision}}  %
                                             <b *ngIf="contractCommissionData.commissionAmountBuyer!=null">/ </b>
                     
                                            [{{contractCostingData.rateCurrencyName}} {{contractCommissionData.commissionAmountBuyer}} ] <span *ngIf = "contractCommissionData.buyerSideCommAdditionalInfo != null"> {{contractCommissionData.buyerSideCommAdditionalInfo}}</span>
