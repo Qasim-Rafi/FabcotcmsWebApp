@@ -192,7 +192,29 @@ Contract Details </ol>
                     Ready For Bill
                 </button> -->
             </div>
-
+            <div class="col-md-8 " *ngIf="contractData.status =='BillAwaited'">
+               
+                <button class="btn btn-info border-rounded px-3 mr-2 text-white" (click)="statusOpen()">
+                    <i class="fas fa-level-down-alt"></i>
+                    Re-Open Contract
+                </button>
+                  <label class="mr-2">
+                    <i class="fas fa-info-circle"></i>
+                    This contract was held For Billing click here to Re-Open
+                </label>
+               
+               
+            </div>
+            <div class="col-md-8 " *ngIf="contractData.status =='Closed'">
+                <button class="btn btn-info border-rounded px-3 mr-2 text-white" (click)="statusOpen()">
+                    <i class="fas fa-level-down-alt"></i>
+                    Re-Open Contract
+                </button>
+                <label class="mr-2">
+                    <i class="fas fa-info-circle"></i>
+                    This contract was closed click here to Re-Open
+                </label>               
+            </div>
             <div class="col-md-4 t-right mrg-tsm">
                 <button class="btn btn-outline-primary border-rounded btn-sm px-3 mr-1 mrg-md"
                 (click) = "print()"
