@@ -528,7 +528,10 @@ max1:any;
         this.response = res;
 
         if (this.response.success == true) {
-          this.deliveryData = this.response.data
+          this.deliveryData = this.response.data;
+          if(this.deliveryData[0].buyerDateDay == null){
+            this.deliveryData[0].buyerDateDay = '';
+          }
           this.deliveryFilter = [...this.deliveryData]
         }
         else {
@@ -1248,7 +1251,13 @@ getContractCommisionData(){
     //   this.contractCommissionData.fabCotComission == "";
     // }
         // this.contractCommissionData.agenetName= parseInt(this.contractCommissionData.agenetName);
-       
+       if(this.response.data.buyersideCommision == null){
+         this.contractCommissionData.buyersideCommision = '';
+       }
+       if(this.response.data.fabCotCommision == null){
+        this.contractCommissionData.fabCotCommision = '';
+      }
+
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -2363,6 +2372,13 @@ getImage(){
                         margin: [70 , 7 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
+                        [{text:'Commission:'  , style:'heading'} , {text:this.contractCostingData['rateCurrencyName']+ " " +this.contractCommissionData['buyersideCommision'] + "%" + " Buyer Side Comm." , style:'heading2'}],] }
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [70 , 7 , 0 , 0],
+                        table:{headerRows: 1 , widths:['20%' , '80%'],
+                      body: [
                         [{text:'Remarks:'  , style:'heading'} , {text: this.contractRemarksData['buyerRemarks'] , style:'heading2'}],] }
                       },
                       {
@@ -2571,7 +2587,13 @@ getImage(){
                       body: [
                         [{text:'Deliveries Date:'  , style:'heading'} , {text: this.deliveryData.map((row=>row.supplierDateDay+row.supplierDateMonth+row.supplierDateYear)) , style:'heading2'}],] }
                       },
- 
+                      {
+                        layout:'noBorders',
+                        margin: [70 , 7 , 0 , 0],
+                        table:{headerRows: 1 , widths:['20%' , '80%'],
+                      body: [
+                        [{text:'Commission:'  , style:'heading'} , {text:this.contractCostingData['rateCurrencyName']+ " " +this.contractCommissionData['fabCotCommision']+"%" + " " + " From Seller Side" , style:'heading2'}],] }
+                      },
                       {
                         layout:'noBorders',
                         margin: [70 , 7 , 0 , 0],
