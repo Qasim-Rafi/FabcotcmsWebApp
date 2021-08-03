@@ -2371,8 +2371,9 @@ getImage(){
                         layout:'noBorders',
                         margin: [70 , 7 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
+                        
                       body: [
-                        [{text:'Commission:'  , style:'heading'} , {text:this.contractCostingData['rateCurrencyName']+ " " +this.contractCommissionData['buyersideCommision'] + "%" + " Buyer Side Comm." , style:'heading2'}],] }
+                        [{text:'Commission:'  , style:'heading'} , {text:this.contractCommissionData['buyersideCommision'] != '' ?  this.contractCostingData['rateCurrencyName']+ " " + this.contractCommissionData['buyersideCommision'] + "%" + " Buyer Side Comm." :  " " , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
@@ -2592,7 +2593,7 @@ getImage(){
                         margin: [70 , 7 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
-                        [{text:'Commission:'  , style:'heading'} , {text:this.contractCostingData['rateCurrencyName']+ " " +this.contractCommissionData['fabCotCommision']+"%" + " " + " From Seller Side" , style:'heading2'}],] }
+                        [{text:'Commission:'  , style:'heading'} , {text:this.contractCommissionData['fabCotCommision'] != '' ?  this.contractCostingData['rateCurrencyName']+ " " + this.contractCommissionData['fabCotCommision'] + "%" + " From Seller Side" :  " "  , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
