@@ -996,12 +996,16 @@ brandId : any;
       this.commission.push({ ['agentId']: this.data1[i].agentId, ["agentCommission"]: this.data1[i].agentCommission })
     }
     if (this.data5.contractArticleName != '') {
-      this.articleArray.push({ ['articleId']: this.data5.articleId , ['contractArticleQuantity']: this.data5.contractArticleQuantity , ['contractArticleRate']: this.data5.contractArticleRate , ['contractArticleCommission']: this.data5.contractArticleCommission})
+      this.articleArray.push({ ['articleId']: this.data5.articleId , ['contractArticleQuantity']: this.data5.contractArticleQuantity , ['contractArticleRate']: this.data5.contractArticleRate , ['contractArticleCommission']: this.data5.contractArticleCommission
+      , ['contractArticleForignAgentCommission']: this.data5.contractArticleForignAgentCommission
+    })
 
     }
     for (let i = 0; i < this.Article.length; i++) {
 
-      this.articleArray.push({ ['articleId']: this.Article[i].articleId , ['contractArticleQuantity']: this.Article[i].contractArticleQuantity , ['contractArticleRate']: this.Article[i].contractArticleRate , ['contractArticleCommission']: this.Article[i].contractArticleCommission})
+      
+      this.articleArray.push({ ['articleId']: this.Article[i].articleId , ['contractArticleQuantity']: this.Article[i].contractArticleQuantity , ['contractArticleRate']: this.Article[i].contractArticleRate , ['contractArticleCommission']: this.Article[i].contractArticleCommission
+       , ['contractArticleForignAgentCommission']: this.Article[i].contractArticleForignAgentCommission})
     }
  
 
