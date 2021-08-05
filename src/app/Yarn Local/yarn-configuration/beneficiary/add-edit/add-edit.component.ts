@@ -193,7 +193,7 @@ this.GetUsersDropdown(this.deptId);
     // this.data.poDate = this.dateformater.toModel(this.data.poDate);
     let varr = {
       "userId": this.Bendata.userId,
-      "commission": this.Bendata.commission,
+      // "commission": this.Bendata.commission,
       "status": this.status.toString(),
       "dateTime": this.dateformater.toModel(this.Bendata.dateTime),
       "includingCompany":this.includingArray,
