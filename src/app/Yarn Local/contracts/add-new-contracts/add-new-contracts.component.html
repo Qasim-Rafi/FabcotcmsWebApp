@@ -368,9 +368,9 @@
                                                     </ng-select>
                                                 </div>
                                             </div>
-                                            <div class="col-md-3">
+                                            <div class="col-md-2">
                                                 <div class="input-group">
-                                                    <input type="number" min="0" placeholder="quantity" #contractArticleQuantity="ngModel"
+                                                    <input type="number" min="0" placeholder="Qty" #contractArticleQuantity="ngModel"
                                                         class="form-control" [(ngModel)]="data5.contractArticleQuantity"
                                                         name="contractArticleQuantity">
                                                     <!-- <div class="input-group-append">
@@ -395,9 +395,15 @@
                                                     <input type="number" min="0" placeholder="Commission"
                                                         #contractArticleCommission="ngModel" class="form-control"
                                                         [(ngModel)]="data5.contractArticleCommission" name="contractArticleCommission">
-                                                    <!-- <div class="input-group-append">
-                                                                    <span class="input-group-text" id="basic-addon2">per</span>
-                                                                </div> -->
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 mrg-tsm">
+                                                <div class="input-group">
+                                                    <input type="number" min="0" placeholder="Age.Comm."
+                                                        #contractArticleForignAgentCommission="ngModel" class="form-control"
+                                                        [(ngModel)]="data5.contractArticleForignAgentCommission" name="contractArticleForignAgentCommission">
+                                                    
                                                 </div>
                                             </div>
                     
@@ -425,9 +431,9 @@
                                                         </ng-select>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-3">
+                                                <div class="col-md-2">
                                                     <div class="input-group">
-                                                        <input type="number" min="0" placeholder="quantity"
+                                                        <input type="number" min="0" placeholder="Qty"
                                                             #contractArticleQuantity="ngModel" class="form-control"
                                                             [(ngModel)]="a.contractArticleQuantity" name="contractArticleQuantity_{{i}}">
                                                         <!-- <div class="input-group-append">
@@ -452,6 +458,14 @@
                                                             [(ngModel)]="a.contractArticleCommission"
                                                             name="contractArticleCommission_{{i}}">
                     
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 mrg-tsm">
+                                                    <div class="input-group">
+                                                        <input type="number" min="0" placeholder="Age.Comm."
+                                                            #contractArticleForignAgentCommission="ngModel" class="form-control"
+                                                            [(ngModel)]="a.contractArticleForignAgentCommission" name="contractArticleForignAgentCommission_{{i}}">
+                                                        
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2 mrg-tsm">
