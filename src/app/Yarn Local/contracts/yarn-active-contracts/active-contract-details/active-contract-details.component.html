@@ -1203,13 +1203,25 @@
                                           [{{contractCostingData.rateCurrencyName}}  {{contractCommissionData.commissionAmountKickback}} ]
                                         </dd>
                                     </dl>
-                                    <dl class="row" *ngIf="loggedInDepartmentName !='Yarn Export' && loggedInDepartmentName == '!Fabric Export'  || loggedInDepartmentName == 'Yarn Local' || loggedInDepartmentName == 'Fabric Local'">
+                                    <dl class="row" *ngIf="loggedInDepartmentName !='Yarn Export' && loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Local' ">
                                         <dt class="col-sm-6">Fabcot Commission:
                                         </dt>
                                         <dd class="col-sm-6" *ngIf = "contractCommissionData.fabCotCommision!= 0">PKR {{contractCommissionData.fabCotCommision}} %
                                             <b *ngIf="contractCommissionData.fabCotCommisionUOMName!=null">/ </b>
                     
                                            [{{contractCostingData.rateCurrencyName}} {{contractCommissionData.commissionAmountFabcot}} ] <span *ngIf = "contractCommissionData.fabcotSideCommAdditionalInfo != null"> {{contractCommissionData.fabcotSideCommAdditionalInfo}}</span>
+                                        </dd>
+                                    </dl>
+                                    <dl class="row" *ngIf="loggedInDepartmentName =='Yarn Local'">
+                                        <dt class="col-sm-6">Fabcot Commission:
+                                        </dt>
+                                        <dd class="col-sm-6" *ngIf = "contractCommissionData.fabCotCommisionUOMName == null">
+                    
+                                           {{contractCostingData.rateCurrencyName}} {{contractCommissionData.commissionAmountFabcot}}  <span *ngIf = "contractCommissionData.fabcotSideCommAdditionalInfo != null"> {{contractCommissionData.fabcotSideCommAdditionalInfo}}</span>
+                                        </dd>
+                                        <dd class="col-sm-6" *ngIf = "contractCommissionData.fabCotCommisionUOMName != null">
+                    
+                                           {{contractCommissionData.fabCotCommision}} / {{value}}  <span *ngIf = "contractCommissionData.fabcotSideCommAdditionalInfo != null"> {{contractCommissionData.fabcotSideCommAdditionalInfo}}</span>
                                         </dd>
                                     </dl>
                                     <dl class="row" *ngIf="loggedInDepartmentName =='Yarn Export' || loggedInDepartmentName == 'Fabric Export'  ">
@@ -1222,7 +1234,7 @@
                                         </dd>
                                     </dl>
                                     
-                                    <dl class="row" *ngIf = "loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName == '!Fabric Export'  || loggedInDepartmentName == 'Yarn Local' || loggedInDepartmentName == 'Fabric Local'">
+                                    <dl class="row" *ngIf = "loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Fabric Export'   &&  loggedInDepartmentName != 'Yarn Local'">
                                         <dt class="col-sm-6">Buyer side Commission:
                                         </dt>
                                         <dd class="col-sm-6" *ngIf = "contractCommissionData.buyersideCommision != null && contractCommissionData.buyersideCommision != '' "> {{contractCostingData.rateCurrencyName}} {{contractCommissionData.buyersideCommision}}  %
@@ -1230,6 +1242,21 @@
                     
                                            [{{contractCostingData.rateCurrencyName}} {{contractCommissionData.commissionAmountBuyer}} ] <span *ngIf = "contractCommissionData.buyerSideCommAdditionalInfo != null"> {{contractCommissionData.buyerSideCommAdditionalInfo}}</span>
                                         </dd>
+                                    </dl>
+
+                                    <dl class="row" *ngIf = "loggedInDepartmentName == 'Yarn Local' ">
+                                        <dt class="col-sm-6">Buyer side Commission:
+                                        </dt>
+                                        <dd class="col-sm-6" *ngIf = "contractCommissionData.buyersideCommisionUOMName == null &&  contractCommissionData.buyersideCommision != '' "> 
+                    
+                                           {{contractCostingData.rateCurrencyName}} {{contractCommissionData.commissionAmountBuyer}}  <span *ngIf = "contractCommissionData.buyerSideCommAdditionalInfo != null"> {{contractCommissionData.buyerSideCommAdditionalInfo}}</span>
+                                        </dd>
+                                        <dd class="col-sm-6" *ngIf = "contractCommissionData.buyersideCommisionUOMName != null &&  contractCommissionData.buyersideCommision != null "> 
+                    
+                                            {{contractCommissionData.buyersideCommision}} /  <span *ngIf = "contractCommissionData.buyersideCommisionUOMName = 'Bags">  {{value2}}  </span>
+                                            <span *ngIf = "contractCommissionData.buyersideCommisionUOMName != 'Bags">   {{contractCommissionData.buyersideCommisionUOMName}} </span>
+                                            <span *ngIf = "contractCommissionData.buyerSideCommAdditionalInfo != null"> {{contractCommissionData.buyerSideCommAdditionalInfo}}</span>
+                                         </dd>
                                     </dl>
                                      <dl class="row" *ngIf = "loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Local' ">
                                                                 <dt class="col-sm-6">Foreign Agent Comm:

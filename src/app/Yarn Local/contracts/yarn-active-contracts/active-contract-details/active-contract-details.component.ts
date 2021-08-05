@@ -141,6 +141,9 @@ max1:any;
  thereisrevisedData:boolean=false;
  yarnExportInvoiceReports:any={};
  revisedindexData:any;
+ value : any;
+ value2 : any;
+
   constructor(
     config: NgbProgressbarConfig,
     private router: Router,
@@ -1258,6 +1261,12 @@ getContractCommisionData(){
        if(this.response.data.fabCotCommision == null){
         this.contractCommissionData.fabCotCommision = '';
       }
+     if(this.response.data.fabCotCommisionUOMName = 'Bags'){
+       this.value = 'Bag'
+     }
+     if(this.response.data.buyersideCommisionUOMName = 'Bags'){
+      this.value2 = 'Bag'
+    }
 
       }
       else {
