@@ -143,7 +143,7 @@ max1:any;
  revisedindexData:any;
  value : any;
  value2 : any;
-
+comm = "Commission:";
   constructor(
     config: NgbProgressbarConfig,
     private router: Router,
@@ -1261,12 +1261,7 @@ getContractCommisionData(){
        if(this.response.data.fabCotCommision == null){
         this.contractCommissionData.fabCotCommision = '';
       }
-     if(this.response.data.fabCotCommisionUOMName = 'Bags'){
-       this.value = 'Bag'
-     }
-     if(this.response.data.buyersideCommisionUOMName = 'Bags'){
-      this.value2 = 'Bag'
-    }
+  
 
       }
       else {
@@ -2362,6 +2357,14 @@ getImage(){
                         margin: [70 , 7 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
+                        [{text:'Project Cost:'  , style:'heading'} , {text:this.contractCostingData['rateCurrencyName'] != '' ?  this.contractCostingData['rateCurrencyName'] + " " +this.contractCostingData['contractCost'] :  " " , style:'heading2' , margin:[0,0,0,0]} ],] }
+                      
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [70 , 7 , 0 , 0],
+                        table:{headerRows: 1 , widths:['20%' , '80%'],
+                      body: [
                         [{text:'Payment Term:'  , style:'heading'} , {text: this.contractPaymentData['sellerPaymentTermName'] , style:'heading2'}],] }
                       },
                       {
@@ -2384,7 +2387,7 @@ getImage(){
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                         
                       body: [
-                        [{text:'Commission:'  , style:'heading'} , {text:this.contractCommissionData['buyersideCommision'] != '' ?  this.contractCostingData['rateCurrencyName']+ " " + this.contractCommissionData['buyersideCommision'] + "%" + " Buyer Side Comm." :  " " , style:'heading2'}],] }
+                        [{text: "Commission"  , style:'heading'} , {text:this.contractCommissionData['buyersideCommisionUOMName'] == null  ?  this.contractCostingData['rateCurrencyName']+ " " + this.contractCommissionData['commissionAmountBuyer']  + " Buyer Side Comm." : this.contractCommissionData['buyersideCommision'] + "/ " + this.contractCommissionData['buyersideCommisionUOMName'] + " "+"From Buyer Side" , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
@@ -2584,6 +2587,14 @@ getImage(){
                         margin: [70 , 7 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
+                        [{text:'Project Cost:'  , style:'heading'} , {text:this.contractCostingData['rateCurrencyName'] != '' ?  this.contractCostingData['rateCurrencyName'] + " " +this.contractCostingData['contractCost'] :  " " , style:'heading2' , margin:[0,0,0,0]} ],] }
+                      
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [70 , 7 , 0 , 0],
+                        table:{headerRows: 1 , widths:['20%' , '80%'],
+                      body: [
                         [{text:'Payment Term:'  , style:'heading'} , {text: this.contractPaymentData['sellerPaymentTermName'] , style:'heading2'}],] }
                       },
                       {
@@ -2605,7 +2616,8 @@ getImage(){
                         margin: [70 , 7 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
-                        [{text:'Commission:'  , style:'heading'} , {text:this.contractCommissionData['fabCotCommision'] != '' ?  this.contractCostingData['rateCurrencyName']+ " " + this.contractCommissionData['fabCotCommision'] + "%" + " From Seller Side" :  " "  , style:'heading2'}],] }
+                        [{text:'Commission:'  , style:'heading'} , {text:this.contractCommissionData['fabCotCommisionUOMName'] == null  ?  this.contractCostingData['rateCurrencyName']+ " " + this.contractCommissionData['commissionAmountFabcot']  + " Seller Side Comm." : this.contractCommissionData['fabCotCommision'] + "/ " + this.contractCommissionData['fabCotCommisionUOMName'] + " " +"From Seller Side" , style:'heading2'}],] }
+                        
                       },
                       {
                         layout:'noBorders',
