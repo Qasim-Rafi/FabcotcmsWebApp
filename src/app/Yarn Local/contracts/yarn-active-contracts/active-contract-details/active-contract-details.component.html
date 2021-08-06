@@ -661,81 +661,135 @@
                                                     <label class="col-sm-2 col-form-label">Foreign Agent Comm:</label> -->
 
 
+
+
                                                 <div class="form-group row" *ngFor="let a of contractArticles; let i = index;">
                                                     <div class="col-md-1">
-                                                    <button *ngIf="a.isRevised == true" class="btn btn-info btn-sm h5"
-                                                    ngbTooltip="Edit Revised Articel"
-                                                     (click)="revisedpopup(a,'Edit')">Revised</button>
+                                                        <button *ngIf="a.isRevised == true" class="btn btn-info btn-sm h5" ngbTooltip="Edit Revised Articel"
+                                                            (click)="revisedpopup(a,'Edit')">Revised</button>
                                                     </div>
-                                                      <div class=" modalBorder d-inline ">
-                        <div class="h6 pdngLR text_Navy">{{i+1}}</div>
-                    </div>
+                                                    <div class=" modalBorder d-inline ">
+                                                        <div class="h6 pdngLR text_Navy">{{i+1}}</div>
+                                                    </div>
                                                     <div class="col-md-4 ml-0">
                                                         <div class="input-group">
-                                                    <label class="col-form-label">Article Name:</label>
-                                                       
-                                                        <ng-select [disabled]="a.isDeleted ==true || a.isRevised ==true" name="articleId_{{i}}" #articleId="ngModel" class="input-w px-0"
-                                                        [(ngModel)]="a.articleId" placeholder="-- Select --">
-                                                        <ng-option *ngFor="let c of article" [value]="c.id">{{ c.name }}
-                                                        </ng-option>
-                                                    </ng-select>
-                                                   
+                                                            <label class="col-form-label">Article Name:</label>
+                                                
+                                                            <ng-select [disabled]="a.isDeleted ==true || a.isRevised ==true" name="articleId_{{i}}" #articleId="ngModel"
+                                                                class="input-w px-0" [(ngModel)]="a.articleId" placeholder="-- Select --">
+                                                                <ng-option *ngFor="let c of article" [value]="c.id">{{ c.name }}
+                                                                </ng-option>
+                                                            </ng-select>
+                                                
                                                         </div>
                                                     </div>
-                                                          <div class="col-md-3">
-                                                            <label class="col-form-label">Quantity:</label>
-
-                                                            <div class="input-group">
-
-                                                                <input type="number" [disabled]="a.isDeleted ==true || a.isRevised ==true" min="0" placeholder="qty" #contractArticleQuantity="ngModel"
-                                                                    class="form-control" [(ngModel)]="a.contractArticleQuantity" name="contractArticleQuantity_{{i}}">
-                                                            
-                                                            </div>
+                                                    <div class="col-md-3">
+                                                        <label class="col-form-label">Quantity:</label>
+                                                
+                                                        <div class="input-group">
+                                                
+                                                            <input type="number" [disabled]="a.isDeleted ==true || a.isRevised ==true" min="0" placeholder="qty"
+                                                                #contractArticleQuantity="ngModel" class="form-control" [(ngModel)]="a.contractArticleQuantity"
+                                                                name="contractArticleQuantity_{{i}}">
+                                                
                                                         </div>
-                                                      
-                                                          <div class="col-md-2">
-                                                            <label class="col-form-label">Rate:</label>
-                                                            <div class="input-group">
-
-                                                                <input type="number" [disabled]="a.isDeleted ==true || a.isRevised ==true" min="0" placeholder="Rate" #contractArticleRate="ngModel"
-                                                                    class="form-control" [(ngModel)]="a.contractArticleRate" name="contractArticleRate_{{i}}">
-                                                             
-                                                            </div>
+                                                    </div>
+                                                
+                                                    <div class="col-md-2">
+                                                        <label class="col-form-label">Rate:</label>
+                                                        <div class="input-group">
+                                                
+                                                            <input type="number" [disabled]="a.isDeleted ==true || a.isRevised ==true" min="0" placeholder="Rate"
+                                                                #contractArticleRate="ngModel" class="form-control" [(ngModel)]="a.contractArticleRate"
+                                                                name="contractArticleRate_{{i}}">
+                                                
                                                         </div>
-                                                        <br>
-                                                        <br> 
-                                                          <div class="col-md-2  ml-5">
-
-                                                            <div class="input-group">
-                                                                <label class="col-form-label">Fabcot Comm:</label>
-
-                                                                <input type="number" [disabled]="a.isDeleted ==true || a.isRevised ==true" min="0" placeholder="Commission" #contractArticleCommission="ngModel"
-                                                                class="form-control" [(ngModel)]="a.contractArticleCommission" name="contractArticleCommission_{{i}}">
-                                                                
-                                                            </div>
+                                                    </div>
+                                                    <br>
+                                                    <br>
+                                                    <!-- <div class="col-md-2  ml-5">
+                                                
+                                                        <div class="input-group">
+                                                            <label class="col-form-label">Fabcot Comm:</label>
+                                                
+                                                            <input type="number" [disabled]="a.isDeleted ==true || a.isRevised ==true" min="0" placeholder="Commission"
+                                                                #contractArticleCommission="ngModel" class="form-control" [(ngModel)]="a.contractArticleCommission"
+                                                                name="contractArticleCommission_{{i}}">
+                                                
                                                         </div>
-                                                        <div class="col-md-3">
-                                                            <label class="col-form-label">For. Agent Comm:</label>
-
-                                                            <div class="input-group">
-
-                                                                <input type="number" [disabled]="a.isDeleted ==true || a.isRevised ==true" min="0" placeholder="Agent Comm" #contractArticleForignAgentCommission="ngModel"
-                                                                class="form-control" [(ngModel)]="a.contractArticleForignAgentCommission" name="contractArticleForignAgentCommission_{{i}}">
-                                                                
-                                                            </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <label class="col-form-label">For. Agent Comm:</label>
+                                                
+                                                        <div class="input-group">
+                                                
+                                                            <input type="number" [disabled]="a.isDeleted ==true || a.isRevised ==true" min="0" placeholder="Agent Comm"
+                                                                #contractArticleForignAgentCommission="ngModel" class="form-control"
+                                                                [(ngModel)]="a.contractArticleForignAgentCommission" name="contractArticleForignAgentCommission_{{i}}">
+                                                
                                                         </div>
-                                                        <div class="col-md-1 mt-4">
-                                                          <div class="input-group-append">
-                                                            <button class="btn btn-outline-danger" [disabled]="a.isDeleted ==true || a.isRevised ==true" type="submit" (click)="removeArticle(a)">
+                                                    </div>
+                                                    <div class="col-md-1 mt-4">
+                                                        <div class="input-group-append">
+                                                            <button class="btn btn-outline-danger" [disabled]="a.isDeleted ==true || a.isRevised ==true" type="submit"
+                                                                (click)="removeArticle(a)">
                                                                 <i class="fas fa-minus fa-xs"></i></button>
-                                                                <span class="badge badge-danger h5 ml-2" *ngIf="a.isDeleted ==true">Deleted</span>
-                                                                <button *ngIf="isRevisedStart == true" class="btn btn-outline-primary btn-sm h5 ml-2"
-                                                                ngbTooltip="Add Revised Articel"
-                                                                 (click)="revisedpopup(a,'ADD')">Revise</button>
+                                                            <span class="badge badge-danger h5 ml-2" *ngIf="a.isDeleted ==true">Deleted</span>
+                                                            <button *ngIf="isRevisedStart == true" class="btn btn-outline-primary btn-sm h5 ml-2"
+                                                                ngbTooltip="Add Revised Articel" (click)="revisedpopup(a,'ADD')">Revise</button>
                                                         </div>
+                                                    </div> -->
+                                                </div>
+
+<!-- ------------------------------------------------------------------ -->
+
+
+
+                                                <div class="form-group row" *ngFor="let a of contractArticles; let i = index;">
+                                                    
+                                                    <div class="div col-md-1 mr-2"></div>
+
+                                                    <div class="col-md-2">
+                                                        <label class="col-form-label">Fabcot Comm:</label>
+                                                        <div class="input-group">
+                                                            
+                                                
+                                                            <input type="number" [disabled]="a.isDeleted ==true || a.isRevised ==true" min="0" placeholder="Commission"
+                                                                #contractArticleCommission="ngModel" class="form-control" [(ngModel)]="a.contractArticleCommission"
+                                                                name="contractArticleCommission_{{i}}">
+                                                
                                                         </div>
-                                            </div>
+                                                    </div>
+
+                                                    <div class="col-md-3">
+                                                        
+                                                        <label class="col-form-label">For. Agent Comm:</label>
+                                                        <div class="input-group">
+                                                            
+
+                                                            <input type="number" [disabled]="a.isDeleted ==true || a.isRevised ==true" min="0" placeholder="Agent Comm"
+                                                                #contractArticleForignAgentCommission="ngModel" class="form-control"
+                                                                [(ngModel)]="a.contractArticleForignAgentCommission" name="contractArticleForignAgentCommission_{{i}}">
+                                                
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-1">
+                                                        <label class="col-form-label">&nbsp;</label>
+                                                        <div class="input-group-append">
+                                                            <button class="btn btn-outline-danger" [disabled]="a.isDeleted ==true || a.isRevised ==true" type="submit"
+                                                                (click)="removeArticle(a)">
+                                                                <i class="fas fa-minus fa-xs"></i></button>
+                                                            <span class="badge badge-danger h5 ml-2" *ngIf="a.isDeleted ==true">Deleted</span>
+                                                            <button *ngIf="isRevisedStart == true" class="btn btn-outline-primary btn-sm h5 ml-2"
+                                                                ngbTooltip="Add Revised Articel" (click)="revisedpopup(a,'ADD')">Revise</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                        
+
+
+
+
                                             <div class="row">
                                                 <div class="col-md-11 text-right">
                                                     <button class="btn btn-outline-primary btn-sm" (click)="addArticle()"> Add Another Article</button>
