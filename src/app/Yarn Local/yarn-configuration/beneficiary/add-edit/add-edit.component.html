@@ -54,8 +54,8 @@
           <label for="commissionRatio" class="col-md-3 col-form-label control-label text-grey">Commission</label>
           <div class="col-md-8">
             <input maxlength="80" type="number" minlength="0" type="text" class="form-control" placeholder="Commission"
-              name="commissionRatio" [(ngModel)]="Bendata.commissionRatio" #commissionRatio="ngModel"
-              [ngClass]="{ error: commissionRatio.invalid && BeneficiaryForm.submitted}" />
+              name="commission" [(ngModel)]="Bendata.commission" #commission="ngModel"
+              [ngClass]="{ error: commission.invalid && BeneficiaryForm.submitted}" />
           </div>
         </div>
         <div class="form-group row">
@@ -80,12 +80,12 @@
           </div>
         </div>
  
-        <div class="form-group row" *ngFor="let a of includingArray; let i = index;">
+        <div class="form-group row" *ngFor="let inc of includingArray; let i = index;">
         
           <label class="col-md-3 col-form-label text-grey" ><strong *ngIf="i==0"> Include</strong></label>
           <div class="col-md-3">
-            <ng-select [(ngModel)]="a.buyerId" #buyerId="ngModel" placeholder="-- Select --"  name="buyerId_{{i}}"
-              #buyerId="ngModel" [ngClass]="{ error: buyerId.invalid && BeneficiaryForm.submitted}">
+            <ng-select [(ngModel)]="inc.buyerID" #buyerID="ngModel" placeholder="-- Select --"  name="buyerID_{{i}}"
+              #buyerID="ngModel" [ngClass]="{ error: buyerID.invalid && BeneficiaryForm.submitted}">
               <ng-option *ngFor="let i of includingBuyer" [value]="i.id">{{ i.buyerName }}
               </ng-option>
             </ng-select>
@@ -93,7 +93,7 @@
 
           <label class="col-md-2 col-form-label text-grey"><strong *ngIf="i==0">Commission</strong> </label>
           <div class="col-md-3">
-            <input class="form-control" placeholder="Commission %" [(ngModel)]="a.commission"
+            <input class="form-control" placeholder="Commission %" [(ngModel)]="inc.commission"
             #commission="ngModel" min="0" name="commission_{{i}}" />
           </div>
 
@@ -113,25 +113,25 @@
           </div>
       </div>
 
-      <div class="form-group row mt-2" *ngFor="let b of excludingArray; let i = index;">
+      <div class="form-group row mt-2" *ngFor="let exc of excludingArray; let a = index;">
         
-        <label class="col-md-3 col-form-label text-grey" ><strong *ngIf="i==0">Exclude</strong></label>
+        <label class="col-md-3 col-form-label text-grey" ><strong *ngIf="a==0">Exclude</strong></label>
         <div class="col-md-3">
-          <ng-select [(ngModel)]="b.buyerId" #buyerId="ngModel" placeholder="-- Select --"  name="buyerId_{{i}}"
-            #buyerId="ngModel" [ngClass]="{ error: buyerId.invalid && BeneficiaryForm.submitted}">
+          <ng-select [(ngModel)]="exc.buyerIDEx" #buyerIDEx="ngModel" placeholder="-- Select --"  name="buyerIDEx_{{a}}"
+            #buyerIDEx="ngModel" [ngClass]="{ error: buyerIDEx.invalid && BeneficiaryForm.submitted}">
             <ng-option *ngFor="let i of excludingBuyer" [value]="i.id">{{ i.buyerName }}
             </ng-option>
           </ng-select>
         </div>
 
-        <label class="col-md-2 col-form-label text-grey"><strong *ngIf="i==0">Commission</strong></label>
+        <label class="col-md-2 col-form-label text-grey"><strong *ngIf="a==0">Commission</strong></label>
         <div class="col-md-3">
-          <input class="form-control" placeholder="Commission %" [(ngModel)]="b.commission"
-          #commission="ngModel" min="0" name="commission_{{i}}" />
+          <input class="form-control" placeholder="Commission %" [(ngModel)]="exc.commissionEx"
+          #commissionEx="ngModel" min="0" name="commissionEx_{{a}}" />
         </div>
 
-        <div class="input-group-append"  *ngIf="i>0">
-          <button class="btn btn-outline-danger " type="submit" (click)="removefieldEX(i)">
+        <div class="input-group-append"  *ngIf="a>0">
+          <button class="btn btn-outline-danger " type="submit" (click)="removefieldEX(a)">
               <i class="fas fa-minus fa-xs"></i></button>
       </div>
       </div>

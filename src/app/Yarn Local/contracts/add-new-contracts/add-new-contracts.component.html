@@ -270,9 +270,9 @@
                     
                                 <div class="form-group row"
                                     *ngIf="loggedInDepartmentName!='Fabric Local' && loggedInDepartmentName!='Fabric Export'">
-                                    <label for="construction" class="col-md-3 col-form-label control-label">Construction</label>
+                                    <label for="construction" class="col-md-2 col-form-label control-label">Construction</label>
                     
-                                    <div class="col-md-7">
+                                    <div class="col-md-9">
                                         <div class="input-group">
                                             <input type="text" placeholder="Enter Specification here" name="construction"
                                                 #construction="ngModel" class="form-control text-w-4" [(ngModel)]="data.construction">
@@ -331,9 +331,9 @@
                     
                     
                                 <div class="form-group row" *ngIf="loggedInDepartmentName!='Yarn Export'">
-                                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Article:</label>
+                                    <label for="inputEmail3" class="col-md-2 col-form-label control-label">Article:</label>
                     
-                                    <div class="col-md-7">
+                                    <div class="col-md-9">
                                         <div class="input-group">
                                             <ng-select name="article" #articleId="ngModel" class="input-w px-0" [(ngModel)]="data.articleId"
                                                 placeholder="-- Select --">
@@ -353,11 +353,11 @@
                                 </div>
                     
                                 <div class="form-group row" *ngIf="loggedInDepartmentName=='Yarn Export'">
-                                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Article:</label>
+                                    <label for="inputEmail3" class="col-md-2 col-form-label control-label">Article:</label>
                     
-                                    <div class="col-md-7">
+                                    <div class="col-md-9">
                                         <div class="row">
-                                            <div class="col-md-3">
+                                            <div class="col-md-4">
                                                 <div class="input-group">
                                                     <!-- <input type="text"  placeholder="Article" #contractArticleName="ngModel"
                                                                 class="form-control" [(ngModel)]="data5.contractArticleName" name="contractArticleName"> -->
@@ -398,7 +398,7 @@
                                                     
                                                 </div>
                                             </div>
-                                            <div class="col-md-3 mrg-tsm">
+                                            <div class="col-md-2 mrg-tsm">
                                                 <div class="input-group">
                                                     <input type="number" min="0" placeholder="Age.Comm."
                                                         #contractArticleForignAgentCommission="ngModel" class="form-control"
@@ -478,7 +478,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-3"></div>
+                                        <div class="col-md-2"></div>
                                         <div class="col-md-7">
                                             <button class="btn btn-outline-primary btn-sm" (click)="addArticle()"> Add Another
                                                 Article</button>
@@ -488,9 +488,9 @@
                                 </div>
                                 <br>
                                 <div class="form-group row" *ngIf="loggedInDepartmentName=='Yarn Export'">
-                                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Brand Name:</label>
+                                    <label for="inputEmail3" class="col-md-2 col-form-label control-label">Brand Name:</label>
                     
-                                    <div class="col-md-7">
+                                    <div class="col-md-9">
                                         <div class="input-group" *ngIf="!brand">
                                             <ng-select name="brandId" #brandId="ngModel" class="input-w px-0" [(ngModel)]="data.brandId"
                                                 placeholder="Select Brand Name">

@@ -112,7 +112,9 @@ this.GetUsersDropdown(this.deptId);
           if (this.response.success == true) {
 
             this.Bendata = this.response.data;
-          this.Bendata.dateTime = this.dateformater.fromModel(this.Bendata.dateTime)
+             this.includingArray =this.Bendata.includeBuyer;
+            this.excludingArray =this.Bendata.excludeBuyer;
+            this.Bendata.dateTime = this.dateformater.fromModel(this.Bendata.dateTime)
          
           this.GetUsersDropdown(this.response.data.departmentId)
             this.spinner.hide();
@@ -144,35 +146,60 @@ this.GetUsersDropdown(this.deptId);
   }
 
   GetIncludingBuyersDropdown() {
-    this.service.getBuyers().subscribe(res => {
+    this.http.get(`${environment.apiUrl}/api/Lookups/GetBuyersList`).
+    subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-
         this.includingBuyer = this.response.data;
-        // this.newBuyer = this.response.data.lastId
-
-
-
+        // this.temp = [...this.owner];
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
       }
     })
+    // this.service.getBuyers().subscribe(res => {
+    //   this.response = res;
+    //   if (this.response.success == true) {
+
+    //     this.includingBuyer = this.response.data;
+    //     // this.newBuyer = this.response.data.lastId
+
+
+
+    //   }
+    //   else {
+    //     this.toastr.error(this.response.message, 'Message.');
+    //   }
+    // })
   }
   GetExcludingBuyersDropdown() {
-    this.service.getBuyers().subscribe(res => {
+
+    this.http.get(`${environment.apiUrl}/api/Lookups/GetBuyersList`).
+    subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
-
         this.excludingBuyer = this.response.data;
-        // this.newBuyer = this.response.data.lastId
-
-
+        // this.temp = [...this.owner];
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
       }
     })
+
+
+    // this.service.getBuyers().subscribe(res => {
+    //   this.response = res;
+    //   if (this.response.success == true) {
+
+    //     this.excludingBuyer = this.response.data;
+    //     // this.newBuyer = this.response.data.lastId
+
+
+    //   }
+    //   else {
+    //     this.toastr.error(this.response.message, 'Message.');
+    //   }
+    // })
   }
 
   //ADD Beneficiaries
@@ -186,20 +213,20 @@ this.GetUsersDropdown(this.deptId);
   addfieldEX() {
     this.excludingArray.push({ id: this.excludingArray.length });
   }
-  removefieldEX(i: number) {
-    this.excludingArray.splice(i, 1);
+  removefieldEX(a: number) {
+    this.excludingArray.splice(a, 1);
   }
   addbeneficiary() {
     // this.data.poDate = this.dateformater.toModel(this.data.poDate);
     let varr = {
       "userId": this.Bendata.userId,
-      // "commission": this.Bendata.commission,
+       "commission": parseInt(this.Bendata.commission),
       "status": this.status.toString(),
       "dateTime": this.dateformater.toModel(this.Bendata.dateTime),
-      "includingCompany":this.includingArray,
-      "commissionRatio": parseInt(this.Bendata.commissionRatio),
+      "includeBuyer":this.includingArray,
+      // "commission": parseInt(this.Bendata.commissionRatio),
       "remarks":this.Bendata.remarks,
-      "excludingCompany":this.excludingArray
+      "excludeBuyer":this.excludingArray
     }
 this.spinner.show();
     this.http.
@@ -261,13 +288,13 @@ this.spinner.show();
     
     let varr = {
       "userId": this.Bendata.userId,
-      "commission": this.Bendata.commission,
+       "commission": parseInt(this.Bendata.commission),
       "status": this.status.toString(),
       "dateTime": this.dateformater.toModel(this.Bendata.dateTime),
-      "includingBuyerId":this.Bendata.includingBuyerId,
-      "commissionRatio": parseInt(this.Bendata.commissionRatio),
+      "includeBuyer":this.includingArray,
+      // "commission": parseInt(this.Bendata.commissionRatio),
       "remarks":this.Bendata.remarks,
-      "excludingBuyerId":this.Bendata.excludingBuyerId
+      "excludeBuyer":this.excludingArray
     }
 this.spinner.show();
     this.http.
