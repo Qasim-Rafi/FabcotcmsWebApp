@@ -654,11 +654,11 @@
                                     
                                             <div *ngIf="loggedInDepartmentName=='Yarn Export'" >
                                                 <div class="col-md-12 ">
-                                                    <label class="col-sm-3 col-form-label">Article Name:</label>
+                                                    <!-- <label class="col-sm-3 col-form-label">Article Name:</label>
                                                     <label class="col-sm-1 col-form-label">Quantity:</label>
                                                     <label class="col-sm-1 col-form-label">Rate:</label>
                                                     <label class="col-sm-3 col-form-label">Fabcot Commission:</label>
-                                                    <label class="col-sm-2 col-form-label">Foreign Agent Comm:</label>
+                                                    <label class="col-sm-2 col-form-label">Foreign Agent Comm:</label> -->
 
 
                                                 <div class="form-group row" *ngFor="let a of contractArticles; let i = index;">
@@ -667,8 +667,12 @@
                                                     ngbTooltip="Edit Revised Articel"
                                                      (click)="revisedpopup(a,'Edit')">Revised</button>
                                                     </div>
-                                                    <div class="col-md-2 ">
+                                                      <div class=" modalBorder d-inline ">
+                        <div class="h6 pdngLR text_Navy">{{i+1}}</div>
+                    </div>
+                                                    <div class="col-md-4 ml-0">
                                                         <div class="input-group">
+                                                    <label class="col-form-label">Article Name:</label>
                                                        
                                                         <ng-select [disabled]="a.isDeleted ==true || a.isRevised ==true" name="articleId_{{i}}" #articleId="ngModel" class="input-w px-0"
                                                         [(ngModel)]="a.articleId" placeholder="-- Select --">
@@ -678,7 +682,8 @@
                                                    
                                                         </div>
                                                     </div>
-                                                          <div class="col-md-1">
+                                                          <div class="col-md-3">
+                                                            <label class="col-form-label">Quantity:</label>
 
                                                             <div class="input-group">
 
@@ -687,24 +692,30 @@
                                                             
                                                             </div>
                                                         </div>
+                                                      
                                                           <div class="col-md-2">
-
+                                                            <label class="col-form-label">Rate:</label>
                                                             <div class="input-group">
+
                                                                 <input type="number" [disabled]="a.isDeleted ==true || a.isRevised ==true" min="0" placeholder="Rate" #contractArticleRate="ngModel"
                                                                     class="form-control" [(ngModel)]="a.contractArticleRate" name="contractArticleRate_{{i}}">
                                                              
                                                             </div>
                                                         </div>
-                                                          <div class="col-md-2">
+                                                        <br>
+                                                        <br> 
+                                                          <div class="col-md-2  ml-5">
 
                                                             <div class="input-group">
+                                                                <label class="col-form-label">Fabcot Comm:</label>
 
                                                                 <input type="number" [disabled]="a.isDeleted ==true || a.isRevised ==true" min="0" placeholder="Commission" #contractArticleCommission="ngModel"
                                                                 class="form-control" [(ngModel)]="a.contractArticleCommission" name="contractArticleCommission_{{i}}">
                                                                 
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-2">
+                                                        <div class="col-md-3">
+                                                            <label class="col-form-label">For. Agent Comm:</label>
 
                                                             <div class="input-group">
 
@@ -713,7 +724,7 @@
                                                                 
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-1">
+                                                        <div class="col-md-1 mt-4">
                                                           <div class="input-group-append">
                                                             <button class="btn btn-outline-danger" [disabled]="a.isDeleted ==true || a.isRevised ==true" type="submit" (click)="removeArticle(a)">
                                                                 <i class="fas fa-minus fa-xs"></i></button>
