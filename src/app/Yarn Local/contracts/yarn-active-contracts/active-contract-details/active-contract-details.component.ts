@@ -2387,7 +2387,9 @@ getImage(){
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                         
                       body: [
-                        [{text: "Commission"  , style:'heading'} , {text:this.contractCommissionData['buyersideCommisionUOMName'] == null  ?  this.contractCostingData['rateCurrencyName']+ " " + this.contractCommissionData['commissionAmountBuyer']  + " Buyer Side Comm." : this.contractCommissionData['buyersideCommision'] + "/ " + this.contractCommissionData['buyersideCommisionUOMName'] + " "+"From Buyer Side" , style:'heading2'}],] }
+                        [{text: this.contractCommissionData['commissionAmountBuyer'] == 0 ? " " :  'Commission:'  , style:'heading'} , {text:   this.contractCommissionData['commissionAmountBuyer'] == 0  ? " " : this.contractCommissionData['buyersideCommisionUOMName'] == null ?   this.contractCostingData['rateCurrencyName']+ " " + this.contractCommissionData['commissionAmountBuyer']  + " Buyer Side Comm." : this.contractCommissionData['buyersideCommision'] + "/ " + this.contractCommissionData['buyersideCommisionUOMName'] + " " +"Buyer Side Comm." , style:'heading2'}],] }
+                       
+                        // [{text: "Commission"  , style:'heading'} , {text:this.contractCommissionData['buyersideCommisionUOMName'] == null  ?  this.contractCostingData['rateCurrencyName']+ " " + this.contractCommissionData['commissionAmountBuyer']  + " Buyer Side Comm." : this.contractCommissionData['buyersideCommision'] + "/ " + this.contractCommissionData['buyersideCommisionUOMName'] + " "+"From Buyer Side" , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
@@ -2616,7 +2618,7 @@ getImage(){
                         margin: [70 , 7 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
-                        [{text:'Commission:'  , style:'heading'} , {text:this.contractCommissionData['fabCotCommisionUOMName'] == null  ?  this.contractCostingData['rateCurrencyName']+ " " + this.contractCommissionData['commissionAmountFabcot']  + " Seller Side Comm." : this.contractCommissionData['fabCotCommision'] + "/ " + this.contractCommissionData['fabCotCommisionUOMName'] + " " +"From Seller Side" , style:'heading2'}],] }
+                        [{text: this.contractCommissionData['commissionAmountFabcot'] == 0 ? " " :  'Commission:'  , style:'heading'} , {text:   this.contractCommissionData['commissionAmountFabcot'] == 0  ? " " : this.contractCommissionData['fabCotCommisionUOMName'] == null ?   this.contractCostingData['rateCurrencyName']+ " " + this.contractCommissionData['commissionAmountFabcot']  + " Seller Side Comm." : this.contractCommissionData['fabCotCommision'] + "/ " + this.contractCommissionData['fabCotCommisionUOMName'] + " " +"From Seller Side" , style:'heading2'}],] }
                         
                       },
                       {
@@ -4116,7 +4118,7 @@ yarnExportInvoicesReportPrint(){
                         margin: [70 , 25 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
-                        [{text:'Supplier Name:'  , style:'heading'} , {text: this.contractPartiesData['sellerName'] , style:'heading2'}],] }
+                        [{text:'Supplier Name:'  , style:'heading'} , {text: this.contractPartiesData['sellerName'] , style:'heading5'}],] }
                       },
                    
                       {
@@ -4124,7 +4126,7 @@ yarnExportInvoicesReportPrint(){
                         margin: [70 , 7 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
-                        [{text:'Buyer Name:'  , style:'heading'} , {text: this.contractPartiesData['buyerName'], style:'heading2'}],] }
+                        [{text:'Buyer Name:'  , style:'heading'} , {text: this.contractPartiesData['buyerName'], style:'heading5'}],] }
                       },
                       {
                         margin: [70 , 10 , 0 , 10],
@@ -4209,10 +4211,9 @@ yarnExportInvoicesReportPrint(){
                         margin: [165 , 0 , 0 , 3],
                         table:{headerRows: 1 , widths:['100%'],
                       body: [
-                        ...this.contractCommissionData['agentCommissions'].map((row=>
                         [
-                          {text:"Foreign Agent: " + row.agentName +" "  +row.agentCommission + "%"  , style : 'heading4'}
-                        ])),
+                          {text: this.contractCommissionData['agentCommissions'] == '' ? " " : "Foreign Agent: " +  this.contractCommissionData['agentCommissions'].map((row=> row.agentName + " " + row.agentCommission + "%"))   , style : 'heading4'}
+                        ],
                       ] }
                       },
                       {
@@ -4256,7 +4257,9 @@ yarnExportInvoicesReportPrint(){
                       bold: true,color: '#4d4b4b' },
                       heading2:{fontSize: 11  , color:'#4d4b4b'
                         },
-                        
+                        heading5:{fontSize: 10  , color:'#4d4b4b'
+                      },
+                      
                         heading3:{fontSize: 8  , color:'#4d4b4b'
                       },
                         tableheader: {
