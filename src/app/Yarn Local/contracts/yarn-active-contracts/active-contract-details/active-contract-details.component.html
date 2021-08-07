@@ -170,10 +170,12 @@
                     <i class="fas fa-level-down-alt"></i>
                     On-Hold
                 </button>
-                <button class="btn btn-info btn-sm border-rounded px-3 mr-1 mrg-btm" (click)="revisedMethod()">
-                    <i class="far fa-clone"></i>
-                    Revised
-                </button>
+                    <button *ngIf="loggedInDepartmentName== 'Yarn Export' " class="btn btn-info btn-sm border-rounded px-3 mr-1 mrg-btm"   (click)="revisedMethod()">
+                        <i class="far fa-clone"></i>
+                        Revised
+                    </button>
+ 
+               
                 <button class="btn btn-outline-primary btn-sm border-rounded px-3 mr-1 mrg-btm"
                     (click)="statusform('ContractClosed','Closed','contract')">
                     <i class="fas fa-check"></i>
