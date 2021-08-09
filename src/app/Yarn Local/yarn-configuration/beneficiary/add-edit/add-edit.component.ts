@@ -204,14 +204,14 @@ this.GetUsersDropdown(this.deptId);
 
   //ADD Beneficiaries
   addfield() {
-    this.includingArray.push({ id: this.includingArray.length });
+    this.includingArray.push({ id: 0 });
   }
   removefield(i: number) {
     this.includingArray.splice(i, 1);
   }
 
   addfieldEX() {
-    this.excludingArray.push({ id: this.excludingArray.length });
+    this.excludingArray.push({ id: 0 });
   }
   removefieldEX(a: number) {
     this.excludingArray.splice(a, 1);
