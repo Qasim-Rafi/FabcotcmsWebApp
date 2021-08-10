@@ -224,13 +224,13 @@
                   <label class="col-sm-3 col-form-label">Bill Amount</label>
                                                 <label class="col-sm-2 col-form-label">Buyer Name</label>
                                                 <label class="col-sm-2 col-form-label">Seller Name:</label>
-                                                <label class="col-sm-3 col-form-label">Article Name:</label>
+                                                <label class="col-sm-3 col-form-label">Bill Due Date:</label>
 
                  <div class="form-group row">
                     <div class="col-md-2 ml-5">
                         <div class="input-group">
                 
-                            <input type="text" placeholder="Contract ID"
+                            <input type="text" placeholder="Bill Amount"
                                                             class="form-control" >
                 
                         </div>
@@ -262,11 +262,10 @@
                     <div class="col-md-3  ml-5">
                         <div class="input-group">
                 
-                            <ng-select  placeholder="Article" >
-                                <ng-option *ngFor="let i of article" [value]="i.id">{{ i.name }}
-                                </ng-option>
-                      
-                              </ng-select>
+                          <input  class="form-control" ngbDatepicker #reminderDate2="ngbDatepicker"
+                          (click)="reminderDate2.toggle()" placeholder="Bill Date"
+                          name="contractUpDate" 
+                           />
                 
                         </div>
                     </div>
