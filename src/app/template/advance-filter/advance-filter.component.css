@@ -1,0 +1,253 @@
+.lineh {
+    line-height: 18px !important; 
+  }
+  .fontTwl {
+    font-size: 12px;
+  }
+  
+  .forum-info {
+    text-align: center;
+    overflow: hidden;
+  }
+  
+  .views-number {
+    font-size: 20px;
+    line-height: 18px;
+    font-weight: 400;
+    color: #535353;
+  }
+  
+  
+  .list {
+      color: gray;
+      list-style-type: none;
+      font-size: 13px;
+      padding-left: 50px;
+      margin-top: 20px;
+      font-weight: 400;
+    }
+    
+    .list2 {
+      color: gray;
+      font-size: 13px;
+      float: right;
+      margin-right: 20px;
+    }
+  
+  .noDisplay{
+    display: none;
+  }
+  
+  
+  dt {
+    text-align: right;
+  }
+  
+    /* TAB STYLING  */
+  
+    
+    /* .............................////Nav */
+  
+  .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #ffffff !important;
+    background-color: #1ab394 !important;
+    /* border-radius: 0px 20px !important; */
+  
+  }
+  .nav-pills .nav-link {
+  color: #6c757d !important;
+  border: 1px solid #dadada !important;
+  /* border-radius: 0px 20px !important; */
+  }
+  
+  .nav-link.active .badge-primary {
+  color: #1ab394 !important;
+  background-color: #ffffff !important;
+  /* border-radius: 0px 20px; */
+  
+  }
+  
+  .nav-pills .nav-link:not(.active):hover {
+  color: #6c757d !important;
+  background-color: #dadada !important;
+  }
+  .nav a{
+    margin-left: 3px;
+    font-weight: 500;
+  }
+    /* ---------------------------------------------- */
+  
+    /* .lined .nav-link {
+      border: none;
+      border-bottom: 3px solid transparent;
+    }
+    
+    .lined .nav-link:hover {
+      border: none;
+      border-bottom: 3px solid transparent;
+    }
+    
+    .lined .nav-link.active {
+      background: none;
+      color: #138f51 !important;
+      border-color: #138f51;
+    }
+  
+  
+    .servicetab ul li .nav-link {
+      color: #212529 !important; 
+      font-weight: bold;
+    }
+    .servicetab ul li .nav-link:hover {
+      color: #138f51 !important; 
+    }
+    .servicetab ul li .nav-link.active {
+      color: #138f51 !important; 
+    }
+  
+    .servicetab ul li img {
+      display: block;
+      margin: 0 auto;
+      padding: 0 0 10px 0;
+    } */
+  
+    .mid-text {
+      font-size: 25px;
+      line-height: 32px;
+    }
+  
+  
+    /* Progress Bar */
+  .progress {
+    box-shadow: none;
+    border-radius: 8px;
+  }
+  
+  .progress {
+    display: -ms-flexbox;
+    display: flex;
+    height: 8px;
+    overflow: hidden;
+    font-size: 10px;
+    background-color: #e9ecef;
+    /* border-radius: 0.25rem;
+    box-shadow: inset 0 0.1rem 0.1rem rgb(0 0 0 / 10%); */
+  }
+  
+  .progress-bar{
+    background-color:#1ab394 ;
+  }
+  
+  /* --------------------------------------------- */
+  .bg-primary{
+    background-color: #1ab394 !important;
+  }
+  
+  .text-small{
+    font-size: 14px;
+  }
+  .navlinkpdg{
+    padding: 0.5rem 9px !important;
+  }
+  .dropdown-menueqry{
+    min-width: 40px !important;
+  }
+  .btn-sm-eqry {
+    padding: 0.25rem 0.8rem !important;
+  }
+  
+  .btn-success {
+    background-color: #1a7bb9 !important;
+    border-color: #1a7bb9 !important;
+  }
+  
+  .btn-outline-success {
+    color: #1a7bb9 !important;
+    border-color: #1a7bb9 !important;
+  }
+  
+  
+  .btn-outline-success:hover {
+    color: #ffffff !important;
+    background-color: #1a7bb9 !important;
+    border-color: #1a7bb9 !important;
+  }
+  
+  .btn-outline-success:not(:disabled):not(.disabled):active, .btn-outline-success:not(:disabled):not(.disabled).active, .show > .btn-outline-success.dropdown-toggle {
+    color: #ffffff !important;
+    background-color: #1a7bb9 !important;
+    border-color: #1a7bb9 !important;
+  }
+  
+  
+  
+  .poc-icon .fa {
+    font-size: 30px;
+    margin-top: 8px;
+    color: #535353;
+  }
+  .text-s-lg {
+    font-size: 24px;
+    font-weight: 600;
+  }
+  .faq-question {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1ab394;
+    display: block;
+  }
+  .views-number {
+    font-size: 24px;
+    line-height: 18px;
+    font-weight: 400;
+    color: #535353;
+  }
+  .dataTables_length {
+    float: left;
+  }
+  .bg-color{
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #dadada;
+  }
+  
+  
+  
+  @media only screen and (max-width: 1280px) {
+    .navlinkpdg{
+      padding: 0.5rem 6px !important;
+    }
+  
+    .fontTwl {
+      font-size: 11px;
+    }
+  
+    .btn-xs {
+      padding: 0.125rem 0.125rem;
+    }
+  
+    .h6 {
+      font-size: 0.875rem;
+    }
+    
+  
+  }
+  
+  @media only screen and (max-width: 768px) {
+  
+    .navlinkpdg{
+      padding: 0.5rem 6px !important;
+    }
+    
+  }
+  
+  @media only screen and (max-width: 767px) {
+  
+    dt {
+      text-align: left;
+    }
+    
+  }
+  
+  
+  
+  
