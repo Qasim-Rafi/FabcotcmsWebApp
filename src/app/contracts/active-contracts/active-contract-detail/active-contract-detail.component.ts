@@ -703,7 +703,7 @@ getContractPaymentData() {
           if(this.response.data.paymentTermDays == 0){
             this.contractPaymentData.paymentTermDays = ""
           }
-          if(this.response.data.paymentTermName = "null"){
+          if(this.response.data.paymentTermName == null){
             this.contractPaymentData.paymentTermName = ""
           }
           // if(this.response.data.paymentTermInfo == null){
@@ -1833,10 +1833,17 @@ this.spinner.hide();
                   }
         
                 },
-                    
                 {
                   layout:'noBorders',
                   margin: [10 , 30 , 0 , 0],
+                  table:{headerRows: 1 , widths:['20%' ],
+                body: [
+                  [{text:'FabCot International'  , style:'propertyValue'} 
+                    ],] }
+                },
+                {
+                  layout:'noBorders',
+                  margin: [10 , 0 , 0 , 0],
                   table:{headerRows: 1 , widths:['20%' ],
                 body: [
                   [{text:'133 Aurangzeb Block'  , style:'propertyValue'} 
@@ -1864,19 +1871,19 @@ this.spinner.hide();
                   }
                 },
                 { margin:[300 , 6 , 0 , 0],
-                  text:"Commission Payable to Fabcot (Buyer Side):"  , style:'propertyValue2',
+                  text: this.contractCommissionData['buyerSideCommission'] == 0 ? " " : "Commission Payable to Fabcot (Buyer Side):"  , style:'propertyValue2',
                   
                 },
                 { margin:[500 , -11 , 0 , 0],
-                  text:this.contractCommissionData['buyerSideCommission']  , style:'propertyValue3',
+                  text: this.contractCommissionData['buyerSideCommission'] == 0 ?  " " : this.contractCommissionData['buyerSideCommission']  , style:'propertyValue3',
                   
                 },
                 { margin:[300 , 0 , 0 , 0],
-                  text:"Commission Payable to Fabcot (Seller Side):"  , style:'propertyValue2',
+                  text: this.contractCommissionData['sellerSideCommission'] == 0 ? " " : "Commission Payable to Fabcot (Seller Side):"  , style:'propertyValue2',
                   
                 },
                 { margin:[500 , -11 , 0 , 0],
-                  text:this.contractCommissionData['sellerSideCommission']  , style:'propertyValue3',
+                  text: this.contractCommissionData['sellerSideCommission'] == 0 ? " " : this.contractCommissionData['sellerSideCommission']  , style:'propertyValue3',
                   
                 },
                 {
@@ -1898,7 +1905,7 @@ this.spinner.hide();
                 },
             
                 {
-                  margin: [300 , -55 , 0 , 0],
+                  margin: [300 , -75 , 0 , 0],
                  
                   table: {
                     headerRows: 1,
@@ -1948,7 +1955,7 @@ this.spinner.hide();
                   margin:[0,40,0,0],
                   table: {
                     headerRows: 1,
-                    widths: ['12%' , '14%','13%' , '11%' , '8%' , '6%' , '10%','10%','9%','8%'],
+                    widths: ['12%' , '14%','13%' , '11%' , '8%' , '8%' , '10%','10%','10%'],
                     body: [
                       [{text:'Item' , style: 'tableheader2'},
                       {text:'Composition ' , style: 'tableheader2'},
@@ -1959,14 +1966,14 @@ this.spinner.hide();
                       {text:'Quantity' , style: 'tableheader2'},
                       {text:'Unit Price' , style: 'tableheader2'},
                       {text:'Amount' , style: 'tableheader2'},
-                      {text:'Comm' , style: 'tableheader2'}],
+                      ],
                   
                     ...this.rows2.map((row=>
                       [{text:row.description , style:'propertyValue'}, {text:row.compositionPercentage + row.compositionFebricTypeName+row.compositionAdditionalInfo , style:'propertyValue'} ,
                          {text:row.construction , style:'propertyValue'},{text:row.size , style:'propertyValue'}, {text:row.weight , style:'propertyValue'} , {text:row.colorName , style:'propertyValue'} ,
                          { text:row.itemQuantity + row.itemUOMUnit , style:'propertyValue'} ,
                           {text:row.contractRate+" " + row.contractCurrencyCode+" " + row.contractUOMUnit , style:'propertyValue'} , 
-                          {text:row.contractCost, style:'propertyValue'} , {text:row.commission , style:'propertyValue'},
+                          {text:row.contractCost, style:'propertyValue'} ,
                    
                         ]
                       )),
@@ -1980,13 +1987,13 @@ this.spinner.hide();
                  
                   table: {
                     headerRows: 1,
-                    widths: ['67%' , '9.5%' , '9%' , '8%' , '7.5%'],
+                    widths: ['69%' , '9.5%' , '9%' , '9%' ],
                     body: [
                       [{text:'Total' , style: 'tableheader3'},
                       {text:this.preview['enquiryItemQuantityTotal'] , style: 'tableheader3'},
                       {text:this.preview['unitPriceTotal'], style: 'tableheader3'},
                       {text:this.preview['enquiryItemAmountTotal'] , style: 'tableheader3'},
-                      {text:this.preview['enquiryItemCommissionTotal'] , style: 'tableheader3'},]
+                      ]
                      
                     
                     ] 
@@ -2142,19 +2149,23 @@ this.spinner.hide();
                   }
                 },
                 { margin:[300 , 6 , 0 , 0],
-                  text:"Commission Payable to Fabcot (Buyer Side):"  , style:'propertyValue2',
+                  text: this.contractCommissionData['buyerSideCommission'] == 0 ? " " : "Commission Payable to Fabcot (Buyer Side):"  , style:'propertyValue2',
+
                   
                 },
                 { margin:[500 , -11 , 0 , 0],
-                  text:this.contractCommissionData['buyerSideCommission']  , style:'propertyValue3',
+                  text: this.contractCommissionData['buyerSideCommission'] == 0 ?  " " : this.contractCommissionData['buyerSideCommission']  , style:'propertyValue3',
+
                   
                 },
                 { margin:[300 , 0 , 0 , 0],
-                  text:"Commission Payable to Fabcot (Seller Side):"  , style:'propertyValue2',
+                  text: this.contractCommissionData['sellerSideCommission'] == 0 ? " " : "Commission Payable to Fabcot (Seller Side):"  , style:'propertyValue2',
+
                   
                 },
                 { margin:[500 , -11 , 0 , 0],
-                  text:this.contractCommissionData['sellerSideCommission']  , style:'propertyValue3',
+                  text: this.contractCommissionData['sellerSideCommission'] == 0 ? " " : this.contractCommissionData['sellerSideCommission']  , style:'propertyValue3',
+
                   
                 },
                 {
@@ -2176,7 +2187,7 @@ this.spinner.hide();
                 },
             
                 {
-                  margin: [300 , -55 , 0 , 0],
+                  margin: [300 , -75 , 0 , 0],
                  
                   table: {
                     headerRows: 1,
@@ -2420,19 +2431,21 @@ this.spinner.hide();
                   }
                 },
                 { margin:[300 , 6 , 0 , 0],
-                  text:"Commission Payable to Fabcot (Buyer Side):"  , style:'propertyValue2',
+                  text:this.contractCommissionData['buyerSideCommission'] == 0 ? " " : "Commission Payable to Fabcot (Buyer Side):"  , style:'propertyValue2',
                   
                 },
                 { margin:[500 , -11 , 0 , 0],
-                  text:this.contractCommissionData['buyerSideCommission']  , style:'propertyValue3',
+                  text: this.contractCommissionData['buyerSideCommission'] == 0 ?  " " : this.contractCommissionData['buyerSideCommission']  , style:'propertyValue3',
                   
                 },
                 { margin:[300 , 0 , 0 , 0],
-                  text:"Commission Payable to Fabcot (Seller Side):"  , style:'propertyValue2',
+                  text: this.contractCommissionData['sellerSideCommission'] == 0 ? " " : "Commission Payable to Fabcot (Seller Side):"  , style:'propertyValue2',
+
                   
                 },
                 { margin:[500 , -11 , 0 , 0],
-                  text:this.contractCommissionData['sellerSideCommission']  , style:'propertyValue3',
+                  text: this.contractCommissionData['sellerSideCommission'] == 0 ? " " : this.contractCommissionData['sellerSideCommission']  , style:'propertyValue3',
+
                   
                 },
                 {
@@ -2454,7 +2467,7 @@ this.spinner.hide();
                 },
             
                 {
-                  margin: [300 , -55 , 0 , 0],
+                  margin: [300 , -75 , 0 , 0],
                  
                   table: {
                     headerRows: 1,
