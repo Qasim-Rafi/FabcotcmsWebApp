@@ -877,7 +877,10 @@
                                     <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName == 'Fabric Export'">
                                         <dt class="col-sm-6">GSM:
                                         </dt>
-                                        <dd class="col-sm-6">{{contractProductData.gsm}}</dd>
+                                        <dd class="col-sm-6">{{contractProductData.gsm}}
+                                       <span *ngIf = "contractProductData.tolerance != ''"> +/- {{contractProductData.tolerance}} % </span>
+
+                                        </dd>
                     
                                     </dl>
                                     <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName == 'Fabric Export'">
