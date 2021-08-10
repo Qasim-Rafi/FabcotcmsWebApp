@@ -123,7 +123,7 @@
         <div class="row">
           <div class="col-md-12 mt-3 mb-4">
             <button type="button" class="btn btn-primary btn-sm float-right mrg-tsm" (click)=" navigateAddEnquiry()">
-              <i class="fa fa-plus"></i> Add New Enqury</button>
+              <i class="fa fa-plus"></i> Add New Inquiry</button>
           </div>
         </div>
 
@@ -178,12 +178,12 @@
             [headerHeight]="50" [footerHeight]="50" [sorts]="[{prop: 'autoEnquiryNumber', dir: 'desc'}]"
             [rowHeight]="'auto'" [limit]="6">
 
-            <ngx-datatable-column name="Enquiry No." [width]="50" prop="autoEnquiryNumber">
+            <ngx-datatable-column name="Inquiry No." [width]="50" prop="autoEnquiryNumber">
               <ng-template let-row="row" ngx-datatable-cell-template>
                 {{row.autoEnquiryNumber}}
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Enquiry On." [width]="80" prop="enquiryDate">
+            <ngx-datatable-column name="Inquiry On." [width]="80" prop="enquiryDate">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 {{row.enquiryDate}}
               </ng-template>
