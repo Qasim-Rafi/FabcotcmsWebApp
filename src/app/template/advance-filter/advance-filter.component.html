@@ -1,0 +1,164 @@
+<div class="content-header">
+    <div class="row">
+      <div class="col-sm-12 col-md-6 col-lg-8">
+        <h2 class="row wrapper page-header font-weight-light">
+            General Search Page 
+          <div class="ml-2 descr">
+            Search any contract and Bill on this page.
+          </div>
+        </h2>
+      </div>
+  
+      <!-- <div class="col-sm-12 col-md-6 col-lg-4">
+        <ol class="breadcrumb flt-RnL">
+          <li class="breadcrumb-item"><a href="#">Configuration</a></li>
+          <li class="breadcrumb-item active" aria-current="page">
+            Country Location
+          </li>
+        </ol>
+      </div> -->
+    </div>
+  </div>
+
+
+  <div class="card shadow mb-4">
+    <div class="p-3 bg-color">
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist" class="nav nav-pills">
+
+                <a class="nav-item nav-link navlinkpdg active mb-1" id="nav-contract-tab" data-toggle="tab" href="#nav-contract"
+                    role="tab" aria-controls="nav-contract" aria-selected="true">Search Contract</a>
+
+                <a class="nav-item nav-link navlinkpdg mb-1" id="nav-bill-tab" data-toggle="tab" href="#nav-bill"
+                    role="tab" aria-controls="nav-bill" aria-selected="false">Search Bill </a>
+                
+     
+            </div>
+        </nav>
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+         <!-- --------------------------- Tab 1 -------------------------- -->
+         <div class="tab-pane fade show active" id="nav-contract" role="tabpanel" aria-labelledby="nav-contract-tab">
+
+            <div class="row">
+                <div class="col-md-12">
+
+                      <label class="col-sm-3 col-form-label">Contract Auto # / Manual # / Ref #</label>
+                                                    <label class="col-sm-2 col-form-label">Seller Contract No.:</label>
+                                                    <label class="col-sm-2 col-form-label">PO Number:</label>
+                                                    <label class="col-sm-3 col-form-label">Contract Date:</label>
+
+                     <div class="form-group row">
+                        <div class="col-md-2 ml-5">
+                            <div class="input-group">
+                    
+                                <input type="text" placeholder="Contract Number"
+                                                                class="form-control" >
+                    
+                            </div>
+                        </div>
+                        <div class="col-md-2  ml-5">
+                            <div class="input-group">
+                    
+                                <input type="text" placeholder="Seller Contract Number"
+                                                                class="form-control" >
+                    
+                            </div>
+                        </div>
+                        <div class="col-md-2  ml-5">
+                            <div class="input-group">
+                    
+                                <input type="text" placeholder="Buyer PO Number"
+                                                                class="form-control" >
+                    
+                            </div>
+                        </div>
+                        <div class="col-md-3  ml-5">
+                            <div class="input-group">
+                    
+                                <input  class="form-control" ngbDatepicker #reminderDate="ngbDatepicker"
+                                (click)="reminderDate.toggle()" placeholder="Contract Date"
+                                name="contractUpDate" 
+                                 />
+                    
+                            </div>
+                        </div>
+                     </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+
+                      <label class="col-sm-3 col-form-label">Contract ID / Parent Contract ID</label>
+                                                    <label class="col-sm-2 col-form-label">Buyer Name</label>
+                                                    <label class="col-sm-2 col-form-label">Seller Name:</label>
+                                                    <label class="col-sm-3 col-form-label">Article Name:</label>
+
+                     <div class="form-group row">
+                        <div class="col-md-2 ml-5">
+                            <div class="input-group">
+                    
+                                <input type="text" placeholder="Contract ID"
+                                                                class="form-control" >
+                    
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-2  ml-5">
+                            <div class="input-group">
+                    
+                                <ng-select  placeholder="Buyer Name" >
+                                    <ng-option *ngFor="let i of buyer" [value]="i.id">
+                                      {{i.buyerName}}
+                                    </ng-option>
+                                  </ng-select>
+                    
+                            </div>
+                        </div>
+                        <div class="col-md-2  ml-5">
+                            <div class="input-group">
+                    
+                                <ng-select  placeholder="Seller Name"
+                                >
+                                <ng-option *ngFor="let i of seller" [value]="i.id">
+                                  {{i.sellerName}}
+                                </ng-option>
+                              </ng-select>
+                    
+                            </div>
+                        </div>
+                        <div class="col-md-3  ml-5">
+                            <div class="input-group">
+                    
+                                <ng-select  placeholder="Article" >
+                                    <ng-option *ngFor="let i of article" [value]="i.id">{{ i.name }}
+                                    </ng-option>
+                          
+                                  </ng-select>
+                    
+                            </div>
+                        </div>
+
+                </div>
+            </div>
+
+
+
+        </div> 
+
+
+        </div> 
+
+          <div class="tab-pane fade   " id="nav-bill" role="tabpanel" aria-labelledby="nav-bill-tab">
+
+        
+
+    </div> 
+</div>
+</div>
+</div>
+    </div>
