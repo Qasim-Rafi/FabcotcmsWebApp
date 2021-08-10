@@ -1955,7 +1955,7 @@ this.spinner.hide();
                   margin:[0,40,0,0],
                   table: {
                     headerRows: 1,
-                    widths: ['12%' , '14%','13%' , '11%' , '8%' , '8%' , '10%','10%','10%'],
+                    widths: ['12%' , '14%','13%' , '11%' , '8%' , '8%' , '10%','10%'],
                     body: [
                       [{text:'Item' , style: 'tableheader2'},
                       {text:'Composition ' , style: 'tableheader2'},
@@ -1964,7 +1964,7 @@ this.spinner.hide();
                       {text:'GSM/Weight' , style: 'tableheader2'},
                       {text:'Color' , style: 'tableheader2'},
                       {text:'Quantity' , style: 'tableheader2'},
-                      {text:'Unit Price' , style: 'tableheader2'},
+                     
                       {text:'Amount' , style: 'tableheader2'},
                       ],
                   
@@ -1972,7 +1972,7 @@ this.spinner.hide();
                       [{text:row.description , style:'propertyValue'}, {text:row.compositionPercentage + row.compositionFebricTypeName+row.compositionAdditionalInfo , style:'propertyValue'} ,
                          {text:row.construction , style:'propertyValue'},{text:row.size , style:'propertyValue'}, {text:row.weight , style:'propertyValue'} , {text:row.colorName , style:'propertyValue'} ,
                          { text:row.itemQuantity + row.itemUOMUnit , style:'propertyValue'} ,
-                          {text:row.contractRate+" " + row.contractCurrencyCode+" " + row.contractUOMUnit , style:'propertyValue'} , 
+                      
                           {text:row.contractCost, style:'propertyValue'} ,
                    
                         ]
@@ -1987,11 +1987,10 @@ this.spinner.hide();
                  
                   table: {
                     headerRows: 1,
-                    widths: ['69%' , '9.5%' , '9%' , '9%' ],
+                    widths: ['72.55%' , '9%' , '8.75%'  ],
                     body: [
                       [{text:'Total' , style: 'tableheader3'},
                       {text:this.preview['enquiryItemQuantityTotal'] , style: 'tableheader3'},
-                      {text:this.preview['unitPriceTotal'], style: 'tableheader3'},
                       {text:this.preview['enquiryItemAmountTotal'] , style: 'tableheader3'},
                       ]
                      
@@ -2118,7 +2117,14 @@ this.spinner.hide();
                   }
         
                 },
-                    
+                {
+                  layout:'noBorders',
+                  margin: [10 , 30 , 0 , 0],
+                  table:{headerRows: 1 , widths:['20%' ],
+                body: [
+                  [{text:'FabCot International'  , style:'propertyValue'} 
+                    ],] }
+                },
                 {
                   layout:'noBorders',
                   margin: [10 , 30 , 0 , 0],
@@ -2237,7 +2243,7 @@ this.spinner.hide();
                   margin:[0,40,0,0],
                   table: {
                     headerRows: 1,
-                    widths: ['12%' , '14%','13%' , '11%' , '8%' , '6%' , '10%','10%','9%'],
+                    widths: ['12%' , '14%','13%' , '11%' , '8%' , '12%' , '10%','9%'],
                     body: [
                       [{text:'Item' , style: 'tableheader2'},
                       {text:'Composition ' , style: 'tableheader2'},
@@ -2246,7 +2252,7 @@ this.spinner.hide();
                       {text:'GSM/Weight' , style: 'tableheader2'},
                       {text:'Color' , style: 'tableheader2'},
                       {text:'Quantity' , style: 'tableheader2'},
-                      {text:'Unit Price' , style: 'tableheader2'},
+                      
                       {text:'Amount' , style: 'tableheader2'},
                       ],
                   
@@ -2254,7 +2260,7 @@ this.spinner.hide();
                       [{text:row.description , style:'propertyValue'}, {text:row.compositionPercentage + row.compositionFebricTypeName+row.compositionAdditionalInfo , style:'propertyValue'} ,
                          {text:row.construction , style:'propertyValue'},{text:row.size , style:'propertyValue'}, {text:row.weight , style:'propertyValue'} , {text:row.colorName , style:'propertyValue'} ,
                          { text:row.itemQuantity + row.itemUOMUnit , style:'propertyValue'} ,
-                          {text:row.contractRate+" " + row.contractCurrencyCode+" " + row.contractUOMUnit , style:'propertyValue'} , 
+                         
                           {text:row.contractCost, style:'propertyValue'} 
                    
                         ]
@@ -2269,11 +2275,11 @@ this.spinner.hide();
                  
                   table: {
                     headerRows: 1,
-                    widths: ['67%' , '9.25%' , '9.25%' , '8.25%' ],
+                    widths: ['72.55%' , '9%' , '8.75%' ],
                     body: [
                       [{text:'Total' , style: 'tableheader3'},
                       {text:this.preview['enquiryItemQuantityTotal'] , style: 'tableheader3'},
-                      {text:this.preview['unitPriceTotal'], style: 'tableheader3'},
+                     
 
                       {text:this.preview['enquiryItemAmountTotal'] , style: 'tableheader3'},
                       ]
@@ -2400,7 +2406,14 @@ this.spinner.hide();
                   }
         
                 },
-                    
+                {
+                  layout:'noBorders',
+                  margin: [10 , 30 , 0 , 0],
+                  table:{headerRows: 1 , widths:['20%' ],
+                body: [
+                  [{text:'FabCot International'  , style:'propertyValue'} 
+                    ],] }
+                },   
                 {
                   layout:'noBorders',
                   margin: [10 , 30 , 0 , 0],
@@ -2517,7 +2530,7 @@ this.spinner.hide();
                   margin:[0,40,0,0],
                   table: {
                     headerRows: 1,
-                    widths: ['15%'  , '15%' , '10%' , '10%' , '10%','10%','10%','10%'],
+                    widths: ['15%'  , '15%' , '12%' , '10%' , '10%','10%'],
                     body: [
                       [{text:'Item' , style: 'tableheader2'},
                   
@@ -2525,14 +2538,16 @@ this.spinner.hide();
                       {text:'GSM/Weight' , style: 'tableheader2'},
                       {text:'Color' , style: 'tableheader2'},
                       {text:'Quantity' , style: 'tableheader2'},
-                      {text:'Unit Price' , style: 'tableheader2'},
+                     
                       {text:'Amount' , style: 'tableheader2'},
-                      {text:'Comm' , style: 'tableheader2'}],
+                      ],
                   
                     ...this.rows2.map((row=>
-                      [{text:row.description , style:'propertyValue'},{text:row.size , style:'propertyValue'}, {text:row.weight , style:'propertyValue'} , {text:row.colorName , style:'propertyValue'} ,
+                      [{text:row.description , style:'propertyValue'},{text:row.size , style:'propertyValue'}, 
+                      {text:row.weight , style:'propertyValue'} ,
+                       {text:row.colorName , style:'propertyValue'} ,
                          { text:row.itemQuantity + row.itemUOMUnit , style:'propertyValue'} ,
-                          {text:row.contractRate+" " + row.contractCurrencyCode+" " + row.contractUOMUnit , style:'propertyValue'} , 
+                          // {text:row.contractRate+" " + row.contractCurrencyCode+" " + row.contractUOMUnit , style:'propertyValue'} , 
                           {text:row.contractCost, style:'propertyValue'} , {text:row.commission , style:'propertyValue'},
                    
                         ]
@@ -2547,14 +2562,14 @@ this.spinner.hide();
                  
                   table: {
                     headerRows: 1,
-                    widths: ['52.725%' , '9.325%' , '9.475%' , '9.55%' , '9.35%'],
+                    widths: ['72.55%' , '9%', '8.5%' ],
                     body: [
                       [{text:'Total' , style: 'tableheader3'},
                       {text:this.preview['enquiryItemQuantityTotal'] , style: 'tableheader3'},
-                      {text:this.preview['unitPriceTotal'], style: 'tableheader3'},
+                     
 
                       {text:this.preview['enquiryItemAmountTotal'] , style: 'tableheader3'},
-                      {text:this.preview['enquiryItemCommissionTotal'] , style: 'tableheader3'},]
+                    ]
                      
                     
                     ] 
