@@ -58,6 +58,13 @@ export class ActiveContractsComponent implements OnInit {
       return (
         d.autoContractNumber.toLowerCase().indexOf(val) !== -1 ||
         d.buyerName.toLowerCase().indexOf(val) !== -1 ||
+        d.sellerName.toLowerCase().indexOf(val) !== -1 ||
+        d.contractOn.toLowerCase().indexOf(val) !== -1 ||
+        // d.poNumber.toLowerCase().indexOf(val) !== -1 ||
+        // d.scNumber.toLowerCase().indexOf(val) !== -1 ||
+        // d.articleName.toLowerCase().indexOf(val) !== -1 ||
+
+
          !val);
     });
     this.rows = temp;

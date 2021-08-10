@@ -21,12 +21,12 @@ export class OpenActiveBillComponent implements OnInit {
   data: any = {};
   rows: any = {};
   date: number;
-  totalAmount: string;
+  totalAmount = 0;
 
   myDate = Date.now();
   words : string;
   words2 : string = "word";
-
+ 
   constructor(   private route: ActivatedRoute,
     private modalService: NgbModal,
     private http: HttpClient,
@@ -42,6 +42,7 @@ export class OpenActiveBillComponent implements OnInit {
       this.rows = data;
   
     });
+  
 
   }
   
@@ -55,9 +56,17 @@ export class OpenActiveBillComponent implements OnInit {
     if(this.response.success==true)
     {
     this.data =this.response.data;
-this.totalAmount = this.data.contractSaleInvoices[0].totalAmount;
+    for(let i = 0 ; i<this.response.data.contractSaleInvoices.length ; i++){
+      this.response.data.contractSaleInvoices[i].totalAmount = this.data.contractSaleInvoices[i].amount * this.data.contractSaleInvoices[i].commission
+      this.data.contractSaleInvoices[i].totalAmount = this.data.contractSaleInvoices[i].totalAmount/100
+    }
+  
+    for(let j=0;j<this.response.data.contractSaleInvoices.length;j++){   
+      this.totalAmount+= this.response.data.contractSaleInvoices[j].totalAmount  
+ } 
+// this.totalAmount = this.data.contractSaleInvoices[0].totalAmount;
     const toWords = new ToWords();
-    this.words = toWords.convert(this.data.invoiceTotalAmount);
+    this.words = toWords.convert(this.totalAmount);
 
 
     cb(this.data);
