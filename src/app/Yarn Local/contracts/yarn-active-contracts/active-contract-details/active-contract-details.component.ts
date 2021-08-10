@@ -2627,7 +2627,7 @@ getImage(){
                         margin: [70 , 7 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
-                        [{text:'Remarks:'  , style:'heading'} , {text: this.contractRemarksData['buyerRemarks'] , style:'heading2'}],] }
+                        [{text:'Remarks:'  , style:'heading'} , {text: this.contractRemarksData['contractRemarks'] , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',

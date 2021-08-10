@@ -64,6 +64,7 @@ import { NgProgressModule } from 'ngx-progressbar';
 import { ArticleRevisePopupComponent } from './shared/MODLES/article-revise-popup/article-revise-popup.component';
 import { ReportsComponent } from './shared/reports/reports.component';
 import { FilterPopUpComponent } from './shared/reports/filter-pop-up/filter-pop-up.component';
+import { AdvanceFilterComponent } from './template/advance-filter/advance-filter.component';
 
 
 
@@ -109,6 +110,7 @@ const appRoutes: Routes = []
     ArticleRevisePopupComponent,
     ReportsComponent,
     FilterPopUpComponent,
+    AdvanceFilterComponent,
    
 
   

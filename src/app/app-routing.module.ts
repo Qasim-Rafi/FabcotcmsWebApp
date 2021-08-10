@@ -7,6 +7,7 @@ import { TemplateComponent } from './template/template.component';
 import { ActiveContractsComponent } from './contracts/active-contracts/active-contracts.component';
 import { ArchivedContractsComponent } from './contracts/archived-contracts/archived-contracts.component';
 import { ReportsComponent } from './shared/reports/reports.component';
+import { AdvanceFilterComponent } from './template/advance-filter/advance-filter.component';
 
 
 const configurationModule = () => import('./configuration/configuration.module')
@@ -23,9 +24,8 @@ const routes: Routes = [
  {
    path:'', component:TemplateComponent,
    children:[
-    {path:'home', component:HomeComponent,
-    //  canActivate:[AuthGuard],
-    },
+    {path:'home', component:HomeComponent},
+    {path:'filter', component:AdvanceFilterComponent},
    {
      path:'config',
    loadChildren:'./configuration/configuration.module#ConfigurationModule',

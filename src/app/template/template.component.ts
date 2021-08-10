@@ -56,6 +56,7 @@ export class TemplateComponent implements OnInit {
     private route: ActivatedRoute,
     private modalService: NgbModal,
 
+
     ) { }
 
   ngOnInit(): void {
@@ -292,6 +293,10 @@ filterPopUform(menu) {
   }, (reason) => {
     // on dismiss
   });
+}
+
+navigate(){
+  this.router.navigate(['/filter'])
 }
 
 }
