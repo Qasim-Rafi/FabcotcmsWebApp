@@ -2619,7 +2619,7 @@ getImage(){
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
                         [{text: this.contractCommissionData['commissionAmountFabcot'] == 0 ? " " :  'Commission:'  , style:'heading'} ,
-                         {text:   this.contractCommissionData['commissionAmountFabcot'] != 0  ? this.contractCommissionData['fabCotCommision'] +"%  ("+" Seller Side Comm." +" )" : ""  , style:'heading2'}],] }
+                         {text:  this.contractCommissionData['commissionAmountFabcot'] == 0  ? " " : this.contractCommissionData['fabCotCommisionUOMName'] == null ?   this.contractCommissionData['fabCotCommision'] + "%" +"  ("+  " "+"From Seller Side Comm." +" )": this.contractCommissionData['fabCotCommision'] + "/ " + this.contractCommissionData['fabCotCommisionUOMName'] + " " +"From Seller Side"  , style:'heading2'}],] }
                         
                       },
                       {
