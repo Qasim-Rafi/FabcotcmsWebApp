@@ -22,6 +22,10 @@ export class OpenActiveBillComponent implements OnInit {
   rows: any = {};
   date: number;
   totalAmount = 0;
+  totalAmount1 : any;
+  totalAmount2 : number;
+
+
 
   myDate = Date.now();
   words : string;
@@ -59,14 +63,16 @@ export class OpenActiveBillComponent implements OnInit {
     for(let i = 0 ; i<this.response.data.contractSaleInvoices.length ; i++){
       this.response.data.contractSaleInvoices[i].totalAmount = this.data.contractSaleInvoices[i].amount * this.data.contractSaleInvoices[i].commission
       this.data.contractSaleInvoices[i].totalAmount = this.data.contractSaleInvoices[i].totalAmount/100
+      
     }
   
     for(let j=0;j<this.response.data.contractSaleInvoices.length;j++){   
-      this.totalAmount+= this.response.data.contractSaleInvoices[j].totalAmount  
+      this.totalAmount=this.totalAmount + this.response.data.contractSaleInvoices[j].totalAmount 
  } 
-// this.totalAmount = this.data.contractSaleInvoices[0].totalAmount;
+ this.totalAmount1 =this.totalAmount.toFixed(2)
+ this.totalAmount2 = parseFloat(this.totalAmount1)
     const toWords = new ToWords();
-    this.words = toWords.convert(this.totalAmount);
+    this.words = toWords.convert(this.totalAmount2);
 
 
     cb(this.data);
