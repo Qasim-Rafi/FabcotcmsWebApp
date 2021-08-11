@@ -1955,7 +1955,7 @@ this.spinner.hide();
                   margin:[0,40,0,0],
                   table: {
                     headerRows: 1,
-                    widths: ['12%' , '14%','13%' , '11%' , '8%' , '8%' , '10%','10%'],
+                    widths: ['12%' , '14%','13%' , '11%' , '8%' , '12%' , '10%','10%'],
                     body: [
                       [{text:'Item' , style: 'tableheader2'},
                       {text:'Composition ' , style: 'tableheader2'},
@@ -1987,7 +1987,7 @@ this.spinner.hide();
                  
                   table: {
                     headerRows: 1,
-                    widths: ['72.55%' , '9%' , '8.75%'  ],
+                    widths: ['72.55%' , '9%' , '9%'  ],
                     body: [
                       [{text:'Total' , style: 'tableheader3'},
                       {text:this.preview['enquiryItemQuantityTotal'] , style: 'tableheader3'},

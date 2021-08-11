@@ -280,7 +280,7 @@ print(){
               layout:'noBorders',
               table:{headerRows:1 ,  widths:['90%' , '20%' ],
             body:[ [{text: 'Sub Total :' , style:'left'} ,
-             {text: this.rows['invoiceSubTotalAmount'] , style:'left2'}
+             {text: this.totalAmount2 , style:'left2'}
           
           ]]
             }
@@ -298,7 +298,7 @@ print(){
               layout:'noBorders',
               table:{headerRows:1 ,  widths:['90%' , '20%' ],
             body:[ [{text: 'Total :' , style:'left3'} ,
-             {text: this.rows['invoiceTotalAmount'] , style:'left4'}
+             {text: this.totalAmount2, style:'left4'}
           
           ]]
             }
