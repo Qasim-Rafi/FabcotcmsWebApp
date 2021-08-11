@@ -1023,7 +1023,7 @@ brandId : any;
       "toleranceValue": this.data.toleranceValue,
       "brandId": this.data.brandId,
       "rate": this.data.rate,
-      "contractArticles" : this.articleArray,
+      "contractArticles" : this.loggedInDepartmentCode == 'Yarn Export' ?  this.articleArray : null,
       "currencyId": this.data.currencyId,
       "rateUOMId": this.data.rateUOMId,
       "sellerPaymentTerm": this.data.sellerPaymentTerm,
