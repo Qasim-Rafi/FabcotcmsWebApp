@@ -2365,7 +2365,7 @@ getImage(){
                         margin: [70 , 7 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
-                        [{text:'Payment Term:'  , style:'heading'} , {text: this.contractPaymentData['sellerPaymentTermName'] , style:'heading2'}],] }
+                        [{text:'Payment Term:'  , style:'heading'} , {text: this.contractPaymentData['buyerPaymentTermName'] , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
@@ -2387,7 +2387,7 @@ getImage(){
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                         
                       body: [
-                        [{text: this.contractCommissionData['commissionAmountBuyer'] == 0 ? " " :  'Commission:'  , style:'heading'} , {text:   this.contractCommissionData['commissionAmountBuyer'] == 0  ? " " : this.contractCommissionData['buyersideCommisionUOMName'] == null ?   this.contractCostingData['rateCurrencyName']+ " " + this.contractCommissionData['commissionAmountBuyer']  + " Buyer Side Comm." : this.contractCommissionData['buyersideCommision'] + "/ " + this.contractCommissionData['buyersideCommisionUOMName'] + " " +"Buyer Side Comm." , style:'heading2'}],] }
+                        [{text: this.contractCommissionData['commissionAmountBuyer'] == 0 ? " " :  'Commission:'  , style:'heading'} , {text:   this.contractCommissionData['commissionAmountBuyer'] == 0  ? " " : this.contractCommissionData['buyersideCommisionUOMName'] == null ?   this.contractCostingData['rateCurrencyName']+ " " + this.contractCommissionData['commissionAmountBuyer']  + " Buyer Side Comm." : this.contractCommissionData['buyersideCommision'] + " per " + this.contractCommissionData['buyersideCommisionUOMName'] + " " +"Buyer Side Comm." , style:'heading2'}],] }
                        
                         // [{text: "Commission"  , style:'heading'} , {text:this.contractCommissionData['buyersideCommisionUOMName'] == null  ?  this.contractCostingData['rateCurrencyName']+ " " + this.contractCommissionData['commissionAmountBuyer']  + " Buyer Side Comm." : this.contractCommissionData['buyersideCommision'] + "/ " + this.contractCommissionData['buyersideCommisionUOMName'] + " "+"From Buyer Side" , style:'heading2'}],] }
                       },
@@ -2619,7 +2619,7 @@ getImage(){
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
                         [{text: this.contractCommissionData['commissionAmountFabcot'] == 0 ? " " :  'Commission:'  , style:'heading'} ,
-                         {text:  this.contractCommissionData['commissionAmountFabcot'] == 0  ? " " : this.contractCommissionData['fabCotCommisionUOMName'] == null ?   this.contractCommissionData['fabCotCommision'] + "%" +"  ("+  " "+"From Seller Side Comm." +" )": this.contractCommissionData['fabCotCommision'] + "/ " + this.contractCommissionData['fabCotCommisionUOMName'] + " " +"From Seller Side"  , style:'heading2'}],] }
+                         {text:  this.contractCommissionData['commissionAmountFabcot'] == 0  ? " " : this.contractCommissionData['fabCotCommisionUOMName'] == null ?   this.contractCommissionData['fabCotCommision'] + "%" +"  ("+  " "+"From Seller Side Comm." +" )": this.contractCommissionData['fabCotCommision'] + " per " + this.contractCommissionData['fabCotCommisionUOMName'] + " " +"From Seller Side"  , style:'heading2'}],] }
                         
                       },
                       {

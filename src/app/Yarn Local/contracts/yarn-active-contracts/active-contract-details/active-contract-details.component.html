@@ -1049,9 +1049,9 @@
                             <div class="row">
                                 <div class="col-md-6">
                     
-                                    <dl class="row" *ngIf = "loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName == 'Fabric Export'">
-                                        <dt class="col-sm-6" *ngIf = "loggedInDepartmentName == 'Fabric Export'"> Payment terms:</dt>
-                                        <dt class="col-sm-6" *ngIf = "loggedInDepartmentName != 'Fabric Export'">Seller Payment terms:</dt>
+                                    <dl class="row" *ngIf = "loggedInDepartmentName != 'Yarn Export' && (loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Local')">
+                                        <dt class="col-sm-6" *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Local' "> Payment terms:</dt>
+                                        <dt class="col-sm-6" *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Local' ">Seller Payment terms:</dt>
                                        
 
                                         <dd class="col-sm-6">{{contractPaymentData.sellerPaymentTermName}}
@@ -1297,7 +1297,7 @@
                                         </dd>
                                         <dd class="col-sm-6" *ngIf = "contractCommissionData.fabCotCommisionUOMName != null">
                     
-                                           {{contractCommissionData.fabCotCommision}} /  {{contractCommissionData.fabCotCommisionUOMName}} <span *ngIf = "contractCommissionData.fabcotSideCommAdditionalInfo != null"> {{contractCommissionData.fabcotSideCommAdditionalInfo}}</span>
+                                           {{contractCommissionData.fabCotCommision}} per {{contractCommissionData.fabCotCommisionUOMName}} <span *ngIf = "contractCommissionData.fabcotSideCommAdditionalInfo != null"> {{contractCommissionData.fabcotSideCommAdditionalInfo}}</span>
                                         </dd>
                                     </dl>
                                     <dl class="row" *ngIf="loggedInDepartmentName =='Yarn Export' || loggedInDepartmentName == 'Fabric Export'  ">

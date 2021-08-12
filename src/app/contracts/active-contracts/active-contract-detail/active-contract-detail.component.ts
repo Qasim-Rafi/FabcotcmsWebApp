@@ -2127,7 +2127,7 @@ this.spinner.hide();
                 },
                 {
                   layout:'noBorders',
-                  margin: [10 , 30 , 0 , 0],
+                  margin: [10 , 0 , 0 , 0],
                   table:{headerRows: 1 , widths:['20%' ],
                 body: [
                   [{text:'133 Aurangzeb Block'  , style:'propertyValue'} 
@@ -2416,7 +2416,7 @@ this.spinner.hide();
                 },   
                 {
                   layout:'noBorders',
-                  margin: [10 , 30 , 0 , 0],
+                  margin: [10 , 0 , 0 , 0],
                   table:{headerRows: 1 , widths:['20%' ],
                 body: [
                   [{text:'133 Aurangzeb Block'  , style:'propertyValue'} 
