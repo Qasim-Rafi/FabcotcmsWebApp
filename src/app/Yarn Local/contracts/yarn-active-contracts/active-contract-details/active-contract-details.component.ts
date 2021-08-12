@@ -2350,7 +2350,7 @@ getImage(){
                         margin: [70 , 7 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
-                        [{text:'Rate:'  , style:'heading'} , {text:this.contractCostingData['rate'] != '' ?  this.contractCostingData['rate']+ "/" + this.contractCostingData['rateUOMName'] :  " " , style:'heading2' , margin:[0,0,0,0]} ],] }
+                        [{text:'Rate:'  , style:'heading'} , {text:this.contractCostingData['rate'] != '' ?  this.contractCostingData['rate']+ "per" + this.contractCostingData['rateUOMName'] :  " " , style:'heading2' , margin:[0,0,0,0]} ],] }
                       },
                       {
                         layout:'noBorders',
@@ -2584,7 +2584,7 @@ getImage(){
                         margin: [70 , 7 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
-                        [{text:'Rate:'  , style:'heading'} , {text:this.contractCostingData['rate'] != '' ?  this.contractCostingData['rate']+ "/" + this.contractCostingData['rateUOMName'] :  " " , style:'heading2' , margin:[0,0,0,0]} ],] }
+                        [{text:'Rate:'  , style:'heading'} , {text:this.contractCostingData['rate'] != '' ?  this.contractCostingData['rate']+ "per" + this.contractCostingData['rateUOMName'] :  " " , style:'heading2' , margin:[0,0,0,0]} ],] }
                       
                       },
                       {
