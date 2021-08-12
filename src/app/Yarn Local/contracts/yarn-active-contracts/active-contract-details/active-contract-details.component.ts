@@ -2225,7 +2225,7 @@ getImage(){
          
             let docDefinition = {
               pageSize: 'A4',
-              pageMargins: [ 20, 10, 30, 10 ],
+              pageMargins: [ 30, 20, 40, 20 ],
               pageOrientation: 'letter',
                 
                     info: {
@@ -2257,7 +2257,7 @@ getImage(){
                         margin: [330 , 0 , 0 , 0],
                         table:{headerRows: 1 , widths:['40%' , '80%'],
                       body: [
-                        [{text:'Contract Date:'  , style:'heading'} , {text: this.contractData['createdDateTime']  , margin:[-27,0,0,0] , style:'heading2'}],] }
+                        [{text:'Contract Date:'  , style:'heading'} , {text: this.contractData['createdDateTime']  , margin:[-24,0,0,0] , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
@@ -2421,7 +2421,7 @@ getImage(){
                       },
                       {
                         layout:'noBorders',
-                        margin: [20 , 140 , 0 , 0],
+                        margin: [20 , 180 , 0 , 0],
                         table:{headerRows: 1 , widths:[ '100%'],
                       body: [
                         [ {text:'NOTE: This is a system generated Contract and does not require any signature.'  , style:'tableheader' }],] }
@@ -2457,7 +2457,7 @@ getImage(){
           printSeller(){
             let docDefinition = {
               pageSize: 'A4',
-              pageMargins: [ 20, 10, 30, 10 ],
+              pageMargins: [ 30, 20, 40, 20 ],
               pageOrientation: 'letter',
                 
                     info: {
@@ -2490,7 +2490,7 @@ getImage(){
                         margin: [330 , 0 , 0 , 0],
                         table:{headerRows: 1 , widths:['40%' , '80%'],
                       body: [
-                        [{text:'Contract Date:'  , style:'heading'} , {text: this.contractData['createdDateTime'] , margin:[-27,0,0,0],style:'heading2'}],] }
+                        [{text:'Contract Date:'  , style:'heading'} , {text: this.contractData['createdDateTime'] , margin:[-24,0,0,0],style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
@@ -2655,7 +2655,7 @@ getImage(){
                       },
                       {
                         layout:'noBorders',
-                        margin: [20 , 140 , 0 , 0],
+                        margin: [20 , 180 , 0 , 0],
                         table:{headerRows: 1 , widths:[ '100%'],
                       body: [
                         [ {text:'NOTE: This is a system generated Contract and does not require any signature.'  , style:'tableheader' }],] }
@@ -2955,7 +2955,7 @@ getImage(){
           printFE(){
             let docDefinition = {
               pageSize: 'A4',
-              pageMargins: [ 10, 10, 10, 20 ],
+              pageMargins: [ 30, 20, 40, 20 ],
               pageOrientation: 'letter',
                 
                     info: {
@@ -2966,40 +2966,40 @@ getImage(){
              
                       {
                         "image" : this.image2,
-                       fit : [130 , 130]
+                       fit : [120 , 120]
                     
                       },
                       {
                         layout:'noBorders',
-                        margin: [290 , -45 , 0 , 0],
+                        margin: [330 , -30 , 0 , 0],
                         table:{headerRows: 1 , widths:['30%' , '90%'],
                       body: [
-                        [{text:'Contract No:'  , style:'heading'} , {text: this.contractData['autoContractNumber'] , style:'heading2' , margin:[-20 , 0, 0,0]}],] }
+                        [{text:'Contract No:'  , style:'heading'} , {text: this.contractData['autoContractNumber'] , style:'heading2' , margin:[-9 , 0, 0,0]}],] }
                       },
                       {
                         layout:'noBorders',
-                        margin: [290 , 0 , 0 , 0],
+                        margin: [330 , 0 , 0 , 0],
                         table:{headerRows: 1 , widths:['40%' , '80%'],
                       body: [
-                        [{text:'Contract Date:'  , style:'heading'} , {text: this.contractData['createdDateTime'] , style:'heading2' , margin:[-45 , 0, 0,0]}],] }
+                        [{text:'Contract Date:'  , style:'heading'} , {text: this.contractData['createdDateTime'] , style:'heading2' , margin:[-24 , 0, 0,0]}],] }
                       },
                       {
                         layout:'noBorders',
-                        margin: [290 , 0 , 0 , 0],
+                        margin: [330 , 0 , 0 , 0],
                         table:{headerRows: 1 , widths:['40%' , '80%'],
                       body: [
-                        [{text:'Purchase No:'  , style:'heading'} , {text: this.contractPartiesData['poNumber'] , style:'heading2' , margin:[-45 , 0, 0,0]}],] }
+                        [{text:'Purchase No:'  , style:'heading'} , {text: this.contractPartiesData['poNumber'] , style:'heading2' , margin:[-25 , 0, 0,0]}],] }
                       },
                       {
                         layout:'noBorders',
-                        margin: [10 , 5 , 0 , 0],
+                        margin: [80 , 5 , 0 , 0],
                         table:{headerRows: 1 , widths:['10%' , '60%'],
                       body: [
-                        [{text:'Attn:'  , style:'heading'} , {text: this.contractPartiesData['buyerPOCName'] , margin:[-20,0,0,0] , style:'heading2'}]] }
+                        [{text:'Attn:'  , style:'heading'} , {text: this.contractPartiesData['buyerPOCName'] , margin:[-20,0,0,0] , style:'heading5'}]] }
                       },
                       {
                         layout:'noBorders',
-                        margin: [10 , 0 , 0 , 0],
+                        margin: [80 , 0 , 0 , 0],
                         table:{headerRows: 1 , widths:['100%'],
                       body: [
                         [{text:' We are please to confirm here the booking as per following term and conditions.' , style:'heading2'}  ],] }
@@ -3040,7 +3040,7 @@ getImage(){
                         margin: [350 , -10 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
-                        [{text:'Weave:'  , style:'heading3'} , {text: this.printData['weaveName'] , style:'heading3' , margin:[-20 ,0 ,0, 0]}],] }
+                        [{text:'Weave:'  , style:'heading3'} , {text: this.printData['weaveName'] , style:'heading3' , margin:[-10 ,0 ,0, 0]}],] }
                       },
                      
                       {
@@ -3151,22 +3151,24 @@ getImage(){
                       },
                       {
                         layout:'noBorders',
-                        margin: [20 , 10 , 0 , 0],
+                        margin: [20 , 180 , 0 , 0],
                         table:{headerRows: 1 , widths:[ '100%'],
                       body: [
                         [ {text:'NOTE: This is a system generated Contract and does not require any signature.'  , style:'tableheader' }],] }
                       },
                     ],
                     styles:{
-                     heading:{fontSize: 10,
+                     heading:{fontSize: 9,
                       bold: true,color: '#4d4b4b' },
-                      heading2:{fontSize: 10  , color:'#4d4b4b'
+                      heading2:{fontSize: 9  , color:'#4d4b4b'
                         },
+                        heading5:{fontSize: 9  , color:'#4d4b4b',bold: true,
+                      },
                         heading3:{fontSize: 8  , color:'#4d4b4b' , bold:true
                       },
                         tableheader: {
                           fillColor: '#f3f3f4',
-                          fontSize: 10,
+                          fontSize: 8,
                           bold: true,
                           color: '#4d4b4b',
                          alignment:'center',
@@ -3184,7 +3186,7 @@ getImage(){
           print2FE(){
             let docDefinition = {
               pageSize: 'A4',
-              pageMargins: [ 10, 10, 10, 20 ],
+              pageMargins: [ 30, 20, 40, 20 ],
               pageOrientation: 'letter',
                 
                     info: {
@@ -3195,40 +3197,40 @@ getImage(){
              
                       {
                         "image" : this.image2,
-                       fit : [130 , 130]
+                       fit : [120 , 120]
                     
                       },
                       {
                         layout:'noBorders',
-                        margin: [290 , -45 , 0 , 0],
+                        margin: [330 , -30 , 0 , 0],
                         table:{headerRows: 1 , widths:['30%' , '90%'],
                       body: [
-                        [{text:'Contract No:'  , style:'heading'} , {text: this.contractData['autoContractNumber'] , style:'heading2' , margin:[-20 , 0, 0,0]}],] }
+                        [{text:'Contract No:'  , style:'heading'} , {text: this.contractData['autoContractNumber'] , style:'heading2' , margin:[-9 , 0, 0,0]}],] }
                       },
                       {
                         layout:'noBorders',
-                        margin: [290 , 0 , 0 , 0],
+                        margin: [330 , 0 , 0 , 0],
                         table:{headerRows: 1 , widths:['40%' , '80%'],
                       body: [
-                        [{text:'Contract Date:'  , style:'heading'} , {text: this.contractData['createdDateTime'] , style:'heading2' , margin:[-45 , 0, 0,0]}],] }
+                        [{text:'Contract Date:'  , style:'heading'} , {text: this.contractData['createdDateTime'] , style:'heading2' , margin:[-24 , 0, 0,0]}],] }
                       },
                       {
                         layout:'noBorders',
-                        margin: [290 , 0 , 0 , 0],
+                        margin: [330 , 0 , 0 , 0],
                         table:{headerRows: 1 , widths:['40%' , '80%'],
                       body: [
-                        [{text:'Purchase No:'  , style:'heading'} , {text: this.contractPartiesData['poNumber'] , style:'heading2' , margin:[-45 , 0, 0,0]}],] }
+                        [{text:'Purchase No:'  , style:'heading'} , {text: this.contractPartiesData['poNumber'] , style:'heading2' , margin:[-25 , 0, 0,0]}],] }
                       },
                       {
                         layout:'noBorders',
-                        margin: [10 , 5 , 0 , 0],
+                        margin: [80 , 5 , 0 , 0],
                         table:{headerRows: 1 , widths:['10%' , '60%'],
                       body: [
-                        [{text:'Attn:'  , style:'heading'} , {text: this.contractPartiesData['sellerPOCName'] , margin:[-20,0,0,0] , style:'heading2'}]] }
+                        [{text:'Attn:'  , style:'heading'} , {text: this.contractPartiesData['sellerPOCName'] , margin:[-20,0,0,0] , style:'heading4'}]] }
                       },
                       {
                         layout:'noBorders',
-                        margin: [10 , 0 , 0 , 0],
+                        margin: [80 , 0 , 0 , 0],
                         table:{headerRows: 1 , widths:['100%'],
                       body: [
                         [{text:' We are please to confirm here the booking as per following term and conditions.' , style:'heading2'}  ],] }
@@ -3269,7 +3271,7 @@ getImage(){
                         margin: [350 , -10 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
-                        [{text:'Weave:'  , style:'heading3'} , {text: this.printData['weaveName'] , style:'heading3' , margin:[-20 ,0 ,0, 0]}],] }
+                        [{text:'Weave:'  , style:'heading3'} , {text: this.printData['weaveName'] , style:'heading3' , margin:[-10 ,0 ,0, 0]}],] }
                       },
                      
                       {
@@ -3356,7 +3358,7 @@ getImage(){
                         margin: [80 , 2 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
-                        [{text:'Commission:'  , style:'heading'} ,{text:   "Fabcot International FZE: " + this.contractCostingData['rateCurrencyName']  + " "  + this.contractCommissionData['fabCotCommision'] + "%" , style:'heading2'}],] }
+                        [{text:this.contractCommissionData['commissionAmountFabcot'] ==0 ?" ": 'Commission:'  , style:'heading'} ,{text:this.contractCommissionData['commissionAmountFabcot'] ==0 ? " " :  "Fabcot International FZE: " + this.contractCostingData['rateCurrencyName']  + " "  + this.contractCommissionData['fabCotCommision'] + "%" , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
@@ -3399,23 +3401,25 @@ getImage(){
                       },
                       {
                         layout:'noBorders',
-                        margin: [20 , 10 , 0 , 0],
+                        margin: [20 , 180 , 0 , 0],
                         table:{headerRows: 1 , widths:[ '100%'],
                       body: [
                         [ {text:'NOTE: This is a system generated Contract and does not require any signature.'  , style:'tableheader' }],] }
                       },
                     ],
                     styles:{
-                     heading:{fontSize: 10,
+                     heading:{fontSize: 9,
                       bold: true,color: '#4d4b4b' },
-                      heading2:{fontSize: 10  , color:'#4d4b4b'
+                      heading2:{fontSize: 9  , color:'#4d4b4b'
                         },
                         heading3:{fontSize: 8  , color:'#4d4b4b' , bold:true
                       },
+                      heading4:{fontSize: 9  , color:'#4d4b4b',bold: true,
+                    },
                       heading5:{fontSize: 10,color: '#4d4b4b' },
                         tableheader: {
                           fillColor: '#f3f3f4',
-                          fontSize: 10,
+                          fontSize: 9,
                           bold: true,
                           color: '#4d4b4b',
                          alignment:'center',
