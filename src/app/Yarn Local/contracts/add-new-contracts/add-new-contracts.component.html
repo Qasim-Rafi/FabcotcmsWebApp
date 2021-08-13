@@ -203,7 +203,8 @@
 
                     <hr>
 
-                    <div class="card shadow mb-4" *ngIf="loggedInDepartmentName == 'Yarn Export'">
+                    <div class="card shadow mb-4" *ngIf="loggedInDepartmentName == 'Yarn Export' 
+                    || loggedInDepartmentName == 'Yarn Import' ">
                         <div class="card-body">
                     
                             <form #costing="ngForm" novalidate>
@@ -330,7 +331,8 @@
                     
                     
                     
-                                <div class="form-group row" *ngIf="loggedInDepartmentName!='Yarn Export'">
+                                <div class="form-group row" *ngIf="loggedInDepartmentName!='Yarn Export'
+                                && loggedInDepartmentName != 'Yarn Import'">
                                     <label for="inputEmail3" class="col-md-2 col-form-label control-label">Article:</label>
                     
                                     <div class="col-md-9">
@@ -352,7 +354,8 @@
                     
                                 </div>
                     
-                                <div class="form-group row" *ngIf="loggedInDepartmentName=='Yarn Export'">
+                                <div class="form-group row" *ngIf="loggedInDepartmentName=='Yarn Export'
+                                || loggedInDepartmentName == 'Yarn Import'">
                                     <label for="inputEmail3" class="col-md-2 col-form-label control-label">Article:</label>
                     
                                     <div class="col-md-9">
@@ -410,20 +413,23 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div *ngIf="loggedInDepartmentName=='Yarn Export'">
+                                <div *ngIf="loggedInDepartmentName=='Yarn Export'
+                                || loggedInDepartmentName == 'Yarn Import'">
                                     <div class="form-group row" *ngFor="let a of Article; let i = index;">
-                                        <label for="inputEmail3" class="col-md-3 col-form-label control-label"></label>
+                                        <label for="inputEmail3" class="col-md-2 col-form-label control-label"></label>
                     
-                                        <div class="col-md-7">
+                                        <div class="col-md-9">
                                             <div class="row">
-                    
-                                                <div class="col-md-3">
+                                         
+                                                <div class="col-md-4">
+                                                    
                                                     <div class="input-group">
                                                         <!-- <ng-select name="article_{{i}}" #articleId="ngModel" class="input-w px-0"
                                                             [(ngModel)]="a.articleId" placeholder="Article">
                                                             <ng-option *ngFor="let i of article" [value]="i.id">{{ i.name }}
                                                             </ng-option>
                                                         </ng-select> -->
+                                                     
                                                         <ng-select name="articleId_{{i}}" #articleId="ngModel" class="input-w px-0"
                                                             [(ngModel)]="a.articleId" placeholder="-- Select --">
                                                             <ng-option *ngFor="let i of article" [value]="i.id">{{ i.name }}
@@ -460,7 +466,7 @@
                     
                                                     </div>
                                                 </div>
-                                                <div class="col-md-3 mrg-tsm">
+                                                <div class="col-md-2 mrg-tsm">
                                                     <div class="input-group">
                                                         <input type="number" min="0" placeholder="Age.Comm."
                                                             #contractArticleForignAgentCommission="ngModel" class="form-control"
@@ -474,6 +480,7 @@
                                                             <i class="fas fa-minus fa-xs"></i></button>
                                                     </div>
                                                 </div>
+                                               
                                             </div>
                                         </div>
                                     </div>
@@ -487,7 +494,8 @@
                     
                                 </div>
                                 <br>
-                                <div class="form-group row" *ngIf="loggedInDepartmentName=='Yarn Export'">
+                                <div class="form-group row" *ngIf="loggedInDepartmentName=='Yarn Export'
+                                || loggedInDepartmentName == 'Yarn Import'">
                                     <label for="inputEmail3" class="col-md-2 col-form-label control-label">Brand Name:</label>
                     
                                     <div class="col-md-9">
@@ -696,9 +704,11 @@
                             </form>
                         </div>
                     </div>
-                    <hr *ngIf = "loggedInDepartmentName != 'Yarn Export' ">
+                    <hr *ngIf = "loggedInDepartmentName != 'Yarn Export' 
+                    && loggedInDepartmentName == 'Yarn Import' ">
                     <!---------- Quantity ---------->
-                    <div class="card shadow mb-4" *ngIf = "loggedInDepartmentName != 'Yarn Export'">
+                    <div class="card shadow mb-4" *ngIf = "loggedInDepartmentName != 'Yarn Export'
+                    && loggedInDepartmentName != 'Yarn Import'">
                         <div class="card-body">
 
                     <form #costing="ngForm" novalidate >
@@ -1601,7 +1611,7 @@
 
 
  <!---------- Payment & Delivery for Yarn Export Department ---------->
-<div class="card shadow mb-4" *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName=='Fabric Export'">
+<div class="card shadow mb-4" *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName=='Fabric Export' || loggedInDepartmentName == 'Yarn Import'">
     <div class="card-body">
 
         <form #payment="ngForm" novalidate>
@@ -1615,7 +1625,8 @@
                 <label for="inputEmail3" class="col-md-3 col-form-label control-label">Payment
                     Terms:</label>
 
-                <div class="col-md-7" *ngIf = "loggedInDepartmentName == 'Yarn Export'  ">
+                <div class="col-md-7" *ngIf = "loggedInDepartmentName == 'Yarn Export' 
+                || loggedInDepartmentName == 'Yarn Import' ">
                     <div class="row">
 
                         <div class="col-md-4">
@@ -1975,7 +1986,8 @@
                         
                         
                         
-                                    <div class="form-group row" *ngIf="loggedInDepartmentName!='Yarn Export'">
+                                    <div class="form-group row" *ngIf="loggedInDepartmentName!='Yarn Export'
+                                    && loggedInDepartmentName != 'Yarn Import'">
                                         <label for="code" class="col-md-3 col-form-label control-label">FabCot
                                             Commission:</label>
                         
@@ -2021,7 +2033,7 @@
                         
                         
                                     <div class="form-group row"
-                                        *ngIf="loggedInDepartmentName!='Yarn Export' && loggedInDepartmentName!='Fabric Export'">
+                                        *ngIf="loggedInDepartmentName!='Yarn Export' && loggedInDepartmentName!='Fabric Export' && loggedInDepartmentName != 'Yarn Import'">
                                         <label for="code" class="col-md-3 col-form-label control-label">Commission Buyer
                                             Side:</label>
                         
@@ -2145,7 +2157,7 @@
                         
                                 <!--Commission for Yarn Export-->
                         
-                                <form #commission="ngForm" novalidate *ngIf="loggedInDepartmentName=='Yarn Export'">
+                                <form #commission="ngForm" novalidate *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
                                     <div class="pb-2">
                                         <span class="badge badge-primary">Commission & Kickbak</span>
                                     </div>
@@ -2356,7 +2368,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group row" *ngIf="loggedInDepartmentName!='Yarn Export' && loggedInDepartmentName!='Fabric Export'">
+                            <div class="form-group row" *ngIf="loggedInDepartmentName!='Yarn Export' && loggedInDepartmentName!='Fabric Export' && loggedInDepartmentName != 'Yarn Import'">
                                 <label for="inputEmail3" class="col-md-3 col-form-label control-label">Buyer Remarks
                                     :</label>
                                 <div class="col-md-7">

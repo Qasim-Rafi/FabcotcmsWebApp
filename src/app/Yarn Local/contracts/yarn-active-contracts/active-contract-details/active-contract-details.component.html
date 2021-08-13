@@ -170,7 +170,7 @@
                     <i class="fas fa-level-down-alt"></i>
                     On-Hold
                 </button>
-                    <button *ngIf="loggedInDepartmentName== 'Yarn Export' " class="btn btn-info btn-sm border-rounded px-3 mr-1 mrg-btm"   (click)="revisedMethod()">
+                    <button *ngIf="loggedInDepartmentName== 'Yarn Export' || loggedInDepartmentName == 'Yarn Import' " class="btn btn-info btn-sm border-rounded px-3 mr-1 mrg-btm"   (click)="revisedMethod()">
                         <i class="far fa-clone"></i>
                         Revised
                     </button>
@@ -231,7 +231,7 @@
                     <i class="fas fa-print"></i>
                     Seller
                 </button>
-                <button class="btn btn-outline-primary border-rounded btn-sm px-3 mr-1" *ngIf = "loggedInDepartmentName == 'Yarn Export'" (click)="printSupplier()">
+                <button class="btn btn-outline-primary border-rounded btn-sm px-3 mr-1" *ngIf = "loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'" (click)="printSupplier()">
                     <i class="fas fa-print"></i>
                   Supplier
                 </button>
@@ -255,13 +255,13 @@
                             <a class="nav-item nav-link active " id="nav-Details-tab" data-toggle="tab"
                                 href="#nav-Details" role="tab" aria-controls="nav-Details" aria-selected="true">
                                 Details</a>
-                                <a class="nav-lcInfo nav-link " *ngIf="loggedInDepartmentName == 'Yarn Export'  || loggedInDepartmentName == 'Fabric Export'"
+                                <a class="nav-lcInfo nav-link " *ngIf="loggedInDepartmentName == 'Yarn Export'  || loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Import'"
                                 id="nav-lcInfo-tab" data-toggle="tab" href="#nav-lcInfo" role="tab"
                                 aria-controls="nav-lcInfo" aria-selected="false">L/C Info &nbsp;
                                 <span class="badge badge-pill badge-primary">{{rows5.length}}</span>
                                 </a>
 
-                            <a class="nav-delivery nav-link " *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Fabric Export'"
+                            <a class="nav-delivery nav-link " *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Import'"
                                 id="nav-delivery-tab" data-toggle="tab" href="#nav-delivery" role="tab"
                                 aria-controls="nav-delivery" aria-selected="false">Delivery TL &nbsp;<span
                                     class="badge badge-pill badge-primary">{{deliveryData.length}}</span></a>
@@ -281,7 +281,7 @@
                                 role="tab" aria-controls="nav-Sale" aria-selected="false">Sale Invoice &nbsp;<span
                                     class="badge badge-pill badge-primary">{{saleInvoice.length}}</span></a>
 
-                                    <a *ngIf="contractData.status == 'OnHold'|| loggedInDepartmentName=='Yarn Export'" class="nav-item nav-link " id="nav-Sale-tab" data-toggle="tab" href="#nav-Sale"
+                                    <a *ngIf="contractData.status == 'OnHold'|| loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import'" class="nav-item nav-link " id="nav-Sale-tab" data-toggle="tab" href="#nav-Sale"
                                     role="tab" aria-controls="nav-Sale" aria-selected="false">Bill & Payment &nbsp;<span
                                         class="badge badge-pill badge-primary">{{saleInvoice.length}}</span></a>
 
@@ -290,7 +290,7 @@
                                 <span class="badge badge-pill badge-primary">{{Documents.length}}</span>
                             </a>
 
-                            <a class="nav-item nav-link " *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Fabric Export'"
+                            <a class="nav-item nav-link " *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Fabric Export'  || loggedInDepartmentName == 'Yarn Import'"
                                 id="nav-Notes-tab" data-toggle="tab" href="#nav-Notes" role="tab"
                                 aria-controls="nav-Notes" aria-selected="false">Notes &nbsp;<span
                                     class="badge badge-pill badge-primary">{{rows3.length}}</span></a>
@@ -575,7 +575,7 @@
                                             {{contractData.approvedByName}}
                                         </dd>
                                     </dl>
-                                    <dl class="row" *ngIf = "loggedInDepartmentName == 'Yarn Export'">
+                                    <dl class="row" *ngIf = "loggedInDepartmentName == 'Yarn Export'  || loggedInDepartmentName == 'Yarn Import'">
                                         <dt class="col-sm-6">LC Opener:
                                         </dt>
                                         <dd class="col-sm-6">
@@ -595,15 +595,15 @@
                             </div>
                                 </div>
                             </div>
-                               <hr *ngIf = "loggedInDepartmentName == 'Yarn Export'">
-                            <div class="card shadow mb-4"  *ngIf = "loggedInDepartmentName == 'Yarn Export'">
+                               <hr *ngIf = "loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
+                            <div class="card shadow mb-4"  *ngIf = "loggedInDepartmentName == 'Yarn Export'  || loggedInDepartmentName == 'Yarn Import'">
                                 <div class="card-body">
                             <div class="pb-2">
                                 <span class="badge badge-primary">Construction</span>
                             </div>
                     
                     
-                            <div class="row" *ngIf = "loggedInDepartmentName == 'Yarn Export'">
+                            <div class="row" *ngIf = "loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
                                 <div class="col-md-6">
                     
                                     <dl class="row">
@@ -625,7 +625,7 @@
                     
                             </div>
                     
-                            <div class="row" *ngIf = "loggedInDepartmentName == 'Yarn Export'">
+                            <div class="row" *ngIf = "loggedInDepartmentName == 'Yarn Export'  || loggedInDepartmentName == 'Yarn Import'">
                                 <div class="col-md-12">
                                     <button class="btn btn-outline-primary btn-sm float-right"
                                         (click)="editProductAndSpec(contractProductData)"> <i class="far fa-edit"></i></button>
@@ -634,15 +634,15 @@
                                 </div>
                             </div>
 
-                              <hr *ngIf = "loggedInDepartmentName == 'Yarn Export'">
-                            <div class="card shadow mb-4" *ngIf = "loggedInDepartmentName == 'Yarn Export'">
+                              <hr *ngIf = "loggedInDepartmentName == 'Yarn Export'  || loggedInDepartmentName == 'Yarn Import'">
+                            <div class="card shadow mb-4" *ngIf = "loggedInDepartmentName == 'Yarn Export'  || loggedInDepartmentName == 'Yarn Import'">
                                 <div class="card-body">
                             <div class="pb-2">
                                 <span class="badge badge-primary">Article</span>
                             </div>
                     
                     
-                            <div class="row"  *ngIf="loggedInDepartmentName=='Yarn Export'">
+                            <div class="row"  *ngIf="loggedInDepartmentName=='Yarn Export'  || loggedInDepartmentName == 'Yarn Import'">
                                 <div class="col-md-12">
                     
                                     <!-- <dl class="row">
@@ -654,7 +654,7 @@
                 
                                         <dd class="col-md-12 pt-1 " >
                                     
-                                            <div *ngIf="loggedInDepartmentName=='Yarn Export'" >
+                                            <div *ngIf="loggedInDepartmentName=='Yarn Export'  || loggedInDepartmentName == 'Yarn Import'" >
                                                 <div class="col-md-12 ">
                                                     <!-- <label class="col-sm-3 col-form-label">Article Name:</label>
                                                     <label class="col-sm-1 col-form-label">Quantity:</label>
@@ -814,7 +814,7 @@
                     
                     
                             </div>
-                            <div class="row"  *ngIf="loggedInDepartmentName=='Yarn Export'">
+                            <div class="row"  *ngIf="loggedInDepartmentName=='Yarn Export'  || loggedInDepartmentName == 'Yarn Import'">
                                 <div class="col-md-12 text-right">
                                     <button class="btn btn-outline-primary btn-sm" (click)="editArticle()"> Update Article</button>
 
@@ -828,27 +828,31 @@
                                         (click)="editProductAndSpec(contractProductData)"> <i class="far fa-edit"></i></button>
                                 </div>
                             </div> -->
-                            <hr *ngIf = "loggedInDepartmentName != 'Yarn Export'">
-                            <div class="card shadow mb-4"  *ngIf = "loggedInDepartmentName != 'Yarn Export'">
+                            <hr *ngIf = "loggedInDepartmentName != 'Yarn Export'  && loggedInDepartmentName != 'Yarn Import'">
+                            <div class="card shadow mb-4"  *ngIf = "loggedInDepartmentName != 'Yarn Export'
+                            && loggedInDepartmentName != 'Yarn Import'">
                                 <div class="card-body">
                             <div class="pb-2">
-                                <span class="badge badge-primary" *ngIf = "loggedInDepartmentName != 'Yarn Export'">Product & Specification</span>
+                                <span class="badge badge-primary" *ngIf = "loggedInDepartmentName != 'Yarn Export'  && loggedInDepartmentName != 'Yarn Import'">Product & Specification</span>
                             </div>
                     
                     
                             <div class="row" >
                                 <div class="col-md-6">
                                     <dl class="row">
-                                        <dt class="col-sm-6" *ngIf = "loggedInDepartmentName != 'Yarn Export'">Construction:
+                                        <dt class="col-sm-6" *ngIf = "loggedInDepartmentName != 'Yarn Export'  && loggedInDepartmentName != 'Yarn Import'">Construction:
                                         </dt>
-                                        <dd class="col-sm-6" *ngIf = "loggedInDepartmentName != 'Yarn Export'">{{contractProductData.pecenetAge}} 
+                                        <dd class="col-sm-6" *ngIf = "loggedInDepartmentName != 'Yarn Export'
+                                        && loggedInDepartmentName != 'Yarn Import'">{{contractProductData.pecenetAge}} 
                                             {{contractProductData.febricType}}&nbsp;{{contractProductData.construction}}</dd>
                     
                                     </dl>
                                     <dl class="row">
-                                        <dt class="col-sm-6" *ngIf = "loggedInDepartmentName != 'Yarn Export'" >Article:
+                                        <dt class="col-sm-6" *ngIf = "loggedInDepartmentName != 'Yarn Export'
+                                        && loggedInDepartmentName != 'Yarn Import'" >Article:
                                         </dt>
-                                        <dd class="col-sm-6" *ngIf = "loggedInDepartmentName != 'Yarn Export'">{{contractProductData.articleName}}</dd>
+                                        <dd class="col-sm-6" *ngIf = "loggedInDepartmentName != 'Yarn Export'
+                                        && loggedInDepartmentName != 'Yarn Import'">{{contractProductData.articleName}}</dd>
                                      
 
                                     </dl>
@@ -902,7 +906,8 @@
                                    
                                 </div>
                             </div>
-                            <div class="row" *ngIf = "loggedInDepartmentName != 'Yarn Export'">
+                            <div class="row" *ngIf = "loggedInDepartmentName != 'Yarn Export'
+                            && loggedInDepartmentName != 'Yarn Import'">
                                 <div class="col-md-12">
                                     <button class="btn btn-outline-primary btn-sm float-right"
                                         (click)="editProductAndSpec(contractProductData)"> <i class="far fa-edit"></i></button>
@@ -933,26 +938,30 @@
                     
                             <div class="row">
                                 <div class="col-md-6">
-                                    <dl class="row"  *ngIf = "loggedInDepartmentName == 'Yarn Export'">
+                                    <dl class="row"  *ngIf = "loggedInDepartmentName == 'Yarn Export'
+                                    || loggedInDepartmentName == 'Yarn Import'">
                                         <dt class="col-sm-6">Currency:
                                         </dt>
                                         <dd class="col-sm-6">{{contractCostingData.rateCurrencyName}}
                                           </dd>
                                     </dl>
-                                    <dl class="row"  *ngIf = "loggedInDepartmentName == 'Yarn Export'">
+                                    <dl class="row"  *ngIf = "loggedInDepartmentName == 'Yarn Export'
+                                    || loggedInDepartmentName == 'Yarn Import'">
                                         <dt class="col-sm-6">UOM:
                                         </dt>
                                         <dd class="col-sm-6">  {{contractCostingData.rateUOMName}}
                                           </dd>
                                     </dl>
-                                    <dl class="row"  *ngIf = "loggedInDepartmentName == 'Yarn Export'">
+                                    <dl class="row"  *ngIf = "loggedInDepartmentName == 'Yarn Export'
+                                    || loggedInDepartmentName == 'Yarn Import'">
                                         <dt class="col-sm-6">Tolerance value:
                                         </dt>
                                         <dd class="col-sm-6"> {{contractCostingData.quantityToleranceValue}}
                                           </dd>
                                     </dl>
                     
-                                    <dl class="row"  *ngIf = "loggedInDepartmentName != 'Yarn Export'">
+                                    <dl class="row"  *ngIf = "loggedInDepartmentName != 'Yarn Export'
+                                    && loggedInDepartmentName != 'Yarn Import'">
                                         <dt class="col-sm-6">Quantity:
                                         </dt>
                                         <dd class="col-sm-6">{{contractCostingData.quantity}}
@@ -967,7 +976,8 @@
                                         <dd class="col-sm-6">{{contractCostingData.quantity}}
                                             {{contractCostingData.quantityUOMName}}</dd>
                                     </dl> -->
-                                    <dl class="row" *ngIf = "loggedInDepartmentName != 'Yarn Export'">
+                                    <dl class="row" *ngIf = "loggedInDepartmentName != 'Yarn Export'
+                                    && loggedInDepartmentName != 'Yarn Import'">
                                         <dt class="col-sm-6">Rate:
                                         </dt>
                                         <dd class="col-sm-6">{{contractCostingData.rate}} <b *ngIf="contractCostingData.rateUOMName !=null">
@@ -976,14 +986,16 @@
                     
                     
                                     </dl>
-                                    <dl class="row" *ngIf = "loggedInDepartmentName != 'Yarn Export'">
+                                    <dl class="row" *ngIf = "loggedInDepartmentName != 'Yarn Export'
+                                    && loggedInDepartmentName != 'Yarn Import'">
                                         <dt class="col-sm-6">Project Cost:
                                         </dt>
                                         <dd class="col-sm-6">{{contractCostingData.rateCurrencyName}}
                                             {{contractCostingData.contractCost}}</dd>
                     
                                     </dl>
-                                    <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName != 'Yarn Export' ">
+                                    <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName != 'Yarn Export'
+                                    && loggedInDepartmentName != 'Yarn Import' ">
                                         <dt class="col-sm-6">&nbsp; &nbsp;
                                         </dt>
                                         <dd class="col-sm-6" *ngIf = " loggedInDepartmentName == '!Fabric Export'">{{contractCostingData.rateCurrencyName}}
@@ -997,17 +1009,18 @@
                                 </div>
                                 <div class="col-md-6">
                     
-                                    <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local' || (loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Local' )">
+                                    <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local' || (loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Local' &&  loggedInDepartmentName != 'Yarn Import' )">
                                         <dt class="col-sm-6" *ngIf = "loggedInDepartmentName != 'Fabric Export'">GST:
                                         </dt>
                                         <dd class="col-sm-6" *ngIf="contractCostingData.gst != ''">{{contractCostingData.gst}}%</dd>
                                     </dl>
-                                    <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local' ||( loggedInDepartmentName != 'Yarn Export'  && loggedInDepartmentName != 'Yarn Local')">
+                                    <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local' ||( loggedInDepartmentName != 'Yarn Export'  && loggedInDepartmentName != 'Yarn Local'
+                                    && loggedInDepartmentName != 'Yarn Import')">
                                         <dt class="col-sm-6" *ngIf = "loggedInDepartmentName != 'Fabric Export'">W.I.Tax:
                                         </dt>
                                         <dd class="col-sm-6" *ngIf="contractCostingData.witAx != ''">{{contractCostingData.witAx}}%</dd>
                                     </dl>
-                                    <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local' || (loggedInDepartmentName != 'Yarn Export'  && loggedInDepartmentName != 'Yarn Local') ">
+                                    <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local' || (loggedInDepartmentName != 'Yarn Export'  && loggedInDepartmentName != 'Yarn Local'  && loggedInDepartmentName != 'Yarn Import') ">
                                         <dt class="col-sm-6">
                                         </dt>
                                         <dd class="col-sm-6" *ngIf = "loggedInDepartmentName == '!Fabric Export'"><small>Subject to all taxes if applicable</small></dd>
@@ -1049,7 +1062,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                     
-                                    <dl class="row" *ngIf = "loggedInDepartmentName != 'Yarn Export' && (loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Local')">
+                                    <dl class="row" *ngIf = "loggedInDepartmentName != 'Yarn Export'   && loggedInDepartmentName != 'Yarn Import' &&(loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Local'  )">
                                         <dt class="col-sm-6" *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Local' "> Payment terms:</dt>
                                         <dt class="col-sm-6" *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Local' ">Seller Payment terms:</dt>
                                        
@@ -1060,7 +1073,8 @@
                                             {{contractPaymentData.sellerPaymentTermInfo}}
                                         </dd>
                                     </dl>
-                                    <dl class="row" *ngIf = "loggedInDepartmentName == 'Yarn Export'">
+                                    <dl class="row" *ngIf = "loggedInDepartmentName == 'Yarn Export'
+                                    || loggedInDepartmentName == 'Yarn Import'">
                                         <dt class="col-sm-6">Payment terms:</dt>
                                         <dd class="col-sm-6">{{contractPaymentData.paymentTermName}}
                                             <b *ngIf="contractPaymentData.paymentTermDays != ''">
@@ -1069,7 +1083,7 @@
                                         </dd>
                                     </dl>
                     
-                                    <dl class="row" *ngIf = "loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName !='Fabric Export' ">
+                                    <dl class="row" *ngIf = "loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName !='Fabric Export'  && loggedInDepartmentName != 'Yarn Import' ">
                                         <dt class="col-sm-6"  >Buyer Payment terms:
                                         </dt>
                                         <dd class="col-sm-6" >{{contractPaymentData.buyerPaymentTermName}}
@@ -1103,7 +1117,7 @@
                                         </dt>
                                         <dd class="col-sm-6">{{contractPaymentData.paymentMode}}</dd>
                                     </dl>
-                                    <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Fabric Export'">
+                                    <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Fabric Export'  || loggedInDepartmentName == 'Yarn Import'">
                                         <dt class="col-sm-6">
                                             Container:</dt>
                                         <dd class="col-sm-6"> {{contractPaymentData.count}}     {{contractPaymentData.containerName}}</dd>
@@ -1242,7 +1256,7 @@
                                 <div *ngIf="loggedInDepartmentName=='Yarn Local'">
                                     <span class="badge badge-primary">Commission</span>
                                 </div>
-                                <div *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName == 'Yarn Export'   || loggedInDepartmentName == 'Fabric Export'  ">
+                                <div *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName == 'Yarn Export'   || loggedInDepartmentName == 'Fabric Export'   || loggedInDepartmentName == 'Yarn Import' ">
                                     <span class="badge badge-primary">Commission & Kickback</span>
                                 </div>
                             </div>
@@ -1271,7 +1285,7 @@
                                           [{{contractCostingData.rateCurrencyName}}  {{contractCommissionData.commissionAmountKickback}} ]
                                         </dd>
                                     </dl>
-                                    <dl class="row" *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Fabric Export'  ">
+                                    <dl class="row" *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Fabric Export'  || loggedInDepartmentName == 'Yarn Import' ">
                                         <dt class="col-sm-6">Kickback:
                                         </dt>
                                         <dd class="col-sm-6" *ngIf = "contractCommissionData.kickbackPercentage != null">{{contractCostingData.rateCurrencyName}} &nbsp; {{contractCommissionData.kickbackPercentage}} %
@@ -1279,7 +1293,7 @@
                                           [{{contractCostingData.rateCurrencyName}}  {{contractCommissionData.commissionAmountKickback}} ]
                                         </dd>
                                     </dl>
-                                    <dl class="row" *ngIf="loggedInDepartmentName !='Yarn Export' && loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Local' ">
+                                    <dl class="row" *ngIf="loggedInDepartmentName !='Yarn Export' && loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Local'  && loggedInDepartmentName != 'Yarn Import'">
                                         <dt class="col-sm-6">Fabcot Commission:
                                         </dt>
                                         <dd class="col-sm-6" *ngIf = "contractCommissionData.fabCotCommision!= 0">PKR {{contractCommissionData.fabCotCommision}} %
@@ -1300,7 +1314,7 @@
                                            {{contractCommissionData.fabCotCommision}} per {{contractCommissionData.fabCotCommisionUOMName}} <span *ngIf = "contractCommissionData.fabcotSideCommAdditionalInfo != null"> {{contractCommissionData.fabcotSideCommAdditionalInfo}}</span>
                                         </dd>
                                     </dl>
-                                    <dl class="row" *ngIf="loggedInDepartmentName =='Yarn Export' || loggedInDepartmentName == 'Fabric Export'  ">
+                                    <dl class="row" *ngIf="loggedInDepartmentName =='Yarn Export' || loggedInDepartmentName == 'Fabric Export'  || loggedInDepartmentName == 'Yarn Import'  ">
                                         <dt class="col-sm-6">Fabcot Commission:
                                         </dt>
                                         <dd class="col-sm-6" *ngIf = "contractCommissionData.fabCotCommision!= null && contractCommissionData.fabCotCommision!= ''">USD {{contractCommissionData.fabCotCommision}} %
@@ -1310,7 +1324,7 @@
                                         </dd>
                                     </dl>
                                     
-                                    <dl class="row" *ngIf = "loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Fabric Export'   &&  loggedInDepartmentName != 'Yarn Local'">
+                                    <dl class="row" *ngIf = "loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Fabric Export'   &&  loggedInDepartmentName != 'Yarn Local'  && loggedInDepartmentName != 'Yarn Import'">
                                         <dt class="col-sm-6">Buyer side Commission:
                                         </dt>
                                         <dd class="col-sm-6" *ngIf = "contractCommissionData.buyersideCommision != null && contractCommissionData.buyersideCommision != '' "> {{contractCostingData.rateCurrencyName}} {{contractCommissionData.buyersideCommision}}  %
@@ -1333,7 +1347,7 @@
                                             <span *ngIf = "contractCommissionData.buyerSideCommAdditionalInfo != null"> {{contractCommissionData.buyerSideCommAdditionalInfo}}</span>
                                          </dd>
                                     </dl>
-                                     <dl class="row" *ngIf = "loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Local' ">
+                                     <dl class="row" *ngIf = "loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Local'  || loggedInDepartmentName == 'Yarn Import'">
                                                                 <dt class="col-sm-6">Foreign Agent Comm:
                                                                 </dt>
                                                                 <dd class="col-sm-6"
@@ -1487,7 +1501,7 @@
                                         </dt>
                                         <dd class="col-sm-6">{{contractRemarksData.contractRemarks}}</dd>
                                     </dl>
-                                    <dl class="row" *ngIf = "(loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName == '!Fabric Export') || loggedInDepartmentName == 'Yarn Local' ">
+                                    <dl class="row" *ngIf = "loggedInDepartmentName == 'Yarn Local'  ">
                                         <dt class="col-sm-6">Buyer Remarks:
                     
                                         </dt>
@@ -1976,7 +1990,7 @@
                                     </div>
                                     <div class="col-sm-12 col-md-6 col-lg-5 text-right">
 
-                                        <button *ngIf="loggedInDepartmentName=='Yarn Export'" class="btn btn-outline-primary btn-sm  mr-2"
+                                        <button *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import'" class="btn btn-outline-primary btn-sm  mr-2"
                                         (click)="salesInvoicereportLocalYarn()">
                                         <i class="fa fa-file"></i>
                                        Sale Invoice Report </button>
@@ -2068,7 +2082,7 @@
                                                                     </dl> -->
                                 
                                 
-                                            <div class="row" *ngIf="loggedInDepartmentName=='Yarn Export'">
+                                            <div class="row" *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
                                                 <div class="col-sm-6 customFontStyle">Buyer Payment:</div>
                                                 <div class="col-sm-6 customFontS">{{x.quantity}}</div>
                                             </div>
@@ -2122,7 +2136,7 @@
                                                 <div class="col-sm-6 customFontS">{{x.saleInvoiceDate}}</div>
                                             </div>
                                 
-                                            <div class="row" *ngIf="loggedInDepartmentName=='Yarn Export'">
+                                            <div class="row" *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
                                                 <div class="col-sm-6 customFontStyle">Tax Challan Info:</div>
                                                 <div class="col-sm-6 customFontS">{{x.quantity}}</div>
                                             </div>
@@ -2137,12 +2151,12 @@
                                     <thead class="bg-info">
                                       <tr>
                                         <th scope="col">sale Invoice #</th>
-                                        <th scope="col" *ngIf="loggedInDepartmentName=='Yarn Export'">Article</th>
-                                        <th scope="col" *ngIf="loggedInDepartmentName=='Yarn Export'">Article Quantity</th>
-                                        <th scope="col" *ngIf="loggedInDepartmentName!='Yarn Export'">Quantity</th>
-                                        <th scope="col" *ngIf="loggedInDepartmentName!='Yarn Export'">Unit Rate</th>
-                                        <th scope="col" *ngIf="loggedInDepartmentName=='Yarn Export'">Article Unit</th>
-                                        <th scope="col" *ngIf="loggedInDepartmentName=='Yarn Export'">Article Rate</th>
+                                        <th scope="col" *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import'">Article</th>
+                                        <th scope="col" *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import'">Article Quantity</th>
+                                        <th scope="col" *ngIf="loggedInDepartmentName!='Yarn Export' && loggedInDepartmentName != 'Yarn Import'">Quantity</th>
+                                        <th scope="col" *ngIf="loggedInDepartmentName!='Yarn Export' && loggedInDepartmentName != 'Yarn Import'">Unit Rate</th>
+                                        <th scope="col" *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import'">Article Unit</th>
+                                        <th scope="col" *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import'">Article Rate</th>
                                         <th scope="col">Tax %</th>
                                         <th scope="col">Invoice Amount</th>
                                         <!-- <th scope="col">Handle</th> -->
@@ -2152,12 +2166,12 @@
                                       <tr class="customFontS">
                                         <!-- <th scope="row">1</th> -->
                                         <td>{{x.saleInvoiceNo}}</td>
-                                        <td *ngIf="loggedInDepartmentName=='Yarn Export'">{{x.contractArticleName}}</td>
-                                        <td *ngIf="loggedInDepartmentName=='Yarn Export'">{{x.quantity}}</td>
-                                        <td *ngIf="loggedInDepartmentName!='Yarn Export'">{{x.quantity}}&nbsp;{{x.unit}}</td>
-                                        <td *ngIf="loggedInDepartmentName!='Yarn Export' && contractCostingData.rateUOMName !=null">{{contractCostingData.rate}}</td>
-                                        <td *ngIf="loggedInDepartmentName=='Yarn Export'">{{x.unit}}</td>
-                                        <td *ngIf="loggedInDepartmentName=='Yarn Export'">{{x.contractArticleRate}}</td>
+                                        <td *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import'">{{x.contractArticleName}}</td>
+                                        <td *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import'">{{x.quantity}}</td>
+                                        <td *ngIf="loggedInDepartmentName!='Yarn Export' && loggedInDepartmentName != 'Yarn Import'">{{x.quantity}}&nbsp;{{x.unit}}</td>
+                                        <td *ngIf="loggedInDepartmentName!='Yarn Export' && contractCostingData.rateUOMName !=null && loggedInDepartmentName != 'Yarn Import'">{{contractCostingData.rate}}</td>
+                                        <td *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import'">{{x.unit}}</td>
+                                        <td *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import'">{{x.contractArticleRate}}</td>
                                         <td>{{x.taxPercentage}}</td>
                                         <td>{{contractCostingData.rateCurrencyName}}&nbsp;{{x.amount}}</td>
                                       </tr>

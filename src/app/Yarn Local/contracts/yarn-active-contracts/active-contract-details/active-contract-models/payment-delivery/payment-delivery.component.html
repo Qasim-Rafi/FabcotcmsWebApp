@@ -40,7 +40,7 @@
         </div>
     
     
-        <div class="form-group row" *ngIf="loggedInDepartmentName != 'Yarn Export'">
+        <div class="form-group row" *ngIf="loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import'">
           <label for="description" class="col-md-3 col-form-label text-Navy">Payment Terms</label>
           <div class="col-md-4">
             <ng-select required name="sellerPaymentTermId" placeholder="Payment Terms"
@@ -60,7 +60,7 @@
     
         </div>
     
-        <div class="form-group row" *ngIf="loggedInDepartmentName != 'Yarn Export'">
+        <div class="form-group row" *ngIf="loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import'">
           <label for="description" class="col-md-3 col-form-label text-Navy"></label>
           <div class="col-md-8">
             <input type="text" class="form-control" placeholder="Payment term Additional Info" name="sellerPaymentTermInfo"
@@ -70,7 +70,7 @@
     
         <!-- for yarn export -->
     
-        <div class="form-group row" *ngIf="loggedInDepartmentName == 'Yarn Export'">
+        <div class="form-group row" *ngIf="loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
           <label for="description" class="col-md-3 col-form-label text-Navy">Payment Terms</label>
           <div class="col-md-4">
             <ng-select required name="paymentTermId" placeholder="Payment Terms" [(ngModel)]="data.paymentTermId"
@@ -90,7 +90,7 @@
     
         </div>
     
-        <div class="form-group row" *ngIf="loggedInDepartmentName == 'Yarn Export'">
+        <div class="form-group row" *ngIf="loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
           <label for="description" class="col-md-3 col-form-label text-Navy"></label>
           <div class="col-md-8">
             <input type="text" class="form-control" placeholder="Payment term Additional Info" name="paymentTermInfo"
@@ -99,7 +99,7 @@
         </div>
     
     
-        <div class="form-group row" *ngIf="loggedInDepartmentName != 'Yarn Export' &&  loggedInDepartmentName != 'Fabric Export'">
+        <div class="form-group row" *ngIf="loggedInDepartmentName != 'Yarn Export' &&  loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Import'">
           <label for="description" class="col-md-3 col-form-label text-Navy">Payment Terms (Buyer Side)</label>
           <div class="col-md-4">
             <ng-select required name="buyerPaymentTermId" id="buyerPaymentTermId" placeholder="Payment Terms"
@@ -153,7 +153,7 @@
           </div>
     
           <div class="col-md-4 mrg-tsm"
-            *ngIf="loggedInDepartmentName == 'Fabric Local' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Fabric Export' ">
+            *ngIf="loggedInDepartmentName == 'Fabric Local' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Import' ">
             <ng-select required name="destinationId" placeholder="-- Select --" [(ngModel)]="data.destinationId"
               #destinationId="ngModel" [ngClass]="{'error': destinationId.invalid && partiesForm.submitted }">
               <ng-option *ngFor="let i of city" [value]="i.id">
@@ -165,7 +165,7 @@
         </div>
     
         <div class="form-group row"
-          *ngIf="loggedInDepartmentName == 'Fabric Local' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Fabric Export'">
+          *ngIf="loggedInDepartmentName == 'Fabric Local' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Import'">
           <label for="description" class="col-md-3 col-form-label text_Navy">Container</label>
     
           <div class="col-md-4">

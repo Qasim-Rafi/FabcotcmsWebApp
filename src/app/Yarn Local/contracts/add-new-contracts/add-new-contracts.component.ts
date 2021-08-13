@@ -136,6 +136,10 @@ brandId : any;
       this.data.otherConditionRemarks=this.exportCondition;
       this.data.title=this.exportTitle;
       this.data.currencyId = 2;
+    }else if(this.loggedInDepartmentName=='Yarn Import'){
+      this.data.otherConditionRemarks=this.exportCondition;
+      this.data.title=this.exportTitle;
+      this.data.currencyId = 2;
     }
     else if(this.loggedInDepartmentName=='Fabric Export'){
       this.data.otherConditionRemarks="(1) Subject to sample and quality approval.\n(2) Goods will be exported therefore any pencil or chalk marks will not be accepted.\n(3) Fabric should be A-graded export mended.\n(4) Fabric should be under 4 point American inspection system and not more than 12 demerit points per 100 sq. yard.";
@@ -1023,7 +1027,7 @@ brandId : any;
       "toleranceValue": this.data.toleranceValue,
       "brandId": this.data.brandId,
       "rate": this.data.rate,
-      "contractArticles" : this.loggedInDepartmentCode == 'Yarn Export' ?  this.articleArray : null,
+      "contractArticles" : this.loggedInDepartmentName == 'Yarn Export' ?  this.articleArray : this.loggedInDepartmentName == 'Yarn Import' ? this.articleArray : null,
       "currencyId": this.data.currencyId,
       "rateUOMId": this.data.rateUOMId,
       "sellerPaymentTerm": this.data.sellerPaymentTerm,
