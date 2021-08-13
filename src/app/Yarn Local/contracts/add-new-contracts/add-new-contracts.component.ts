@@ -1073,7 +1073,7 @@ brandId : any;
       "buyerPaymentTermId": this.data.buyerPaymentTermId,
       "paymentMode": this.data.paymentMode,
       "sellerPaymentTermDays": this.data.sellerPaymentTermDays == null ?  "" : this.data.sellerPaymentTermDays,
-      "paymentTermDays":this.data.paymentTermDays,
+      "paymentTermDays":this.data.paymentTermDays ==null ?"" :this.data.paymentTermDays,
       "paymentTermInfo":this.data.paymentTermInfo,
       "buyerPaymentTermDays": this.data.buyerPaymentTermDays,
       "destinationId": this.data.destinationId,
