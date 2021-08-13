@@ -341,7 +341,7 @@ comm = "Commission:";
       });
   }
   revisedMethod(){
-    if(this.loggedInDepartmentName =='Yarn Export'){
+    if(this.loggedInDepartmentName =='Yarn Export' || this.loggedInDepartmentName =='Yarn Import'){
     // this.http
     // .put(`${environment.apiUrl}/api/Contracts/ReviseContract/`+ this.contractId,{})
     //   .subscribe(res => {
