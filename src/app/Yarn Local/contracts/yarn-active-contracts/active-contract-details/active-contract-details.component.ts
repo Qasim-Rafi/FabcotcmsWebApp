@@ -1204,6 +1204,12 @@ getContractPaymentData() {
           if(this.response.data.destinationName == null){
             this.contractPaymentData.destinationName = ""
           }
+          if(this.response.data.count == null){
+            this.contractPaymentData.count = ""
+          }
+          if(this.response.data.containerName == null){
+            this.contractPaymentData.containerName = ""
+          }
           if(this.response.data.buyerDeliveryDateDay == null){
             this.contractPaymentData.buyerDeliveryDateDay = ""
           }
@@ -3048,7 +3054,7 @@ getImage(){
                         margin: [80 , 2 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
-                        [{text:'Blend:'  , style:'heading'} , {text: this.contractProductData['pecenetAge']+ '%'+ ' ' + this.contractProductData['febricType']+ ' ' +this.contractProductData['construction'] , style:'heading2'}],] }
+                        [{text:'Blend:'  , style:'heading'} , {text:this.contractProductData['pecenetAge']+ '%'+ ' ' + this.contractProductData['febricType']+ ' ' +this.contractProductData['construction']  , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
@@ -3057,7 +3063,7 @@ getImage(){
                       body: [
                         [{text:'Description:'  , style:'heading'} , {text: this.contractProductData['articleName'] , style:'heading2'}],] }
                       },
-                      {
+                     {
                         layout:'noBorders',
                         margin: [350 , -10 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
@@ -3078,7 +3084,7 @@ getImage(){
                         margin: [80 , 2 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '7%' , '7%'],
                       body: [
-                        [{text:'GSM:'  , style:'heading'} , {text: this.contractProductData['gsm'] , style:'heading2'}  , {text: this.contractProductData['tolerance'] == ''?  " " : "+/- " + this.contractProductData['tolerance'] + "%" , style:'heading2'}],] }
+                        [{text:'GSM:'  , style:'heading'} , {text: this.contractProductData['gsm'] , style:'heading2'}  , {text: this.contractProductData['tolerance'] == null?  " " : "+/- " + this.contractProductData['tolerance'] + "%" , style:'heading2'}],] }
                       },
                       {
 
@@ -3101,7 +3107,9 @@ getImage(){
                         margin: [80 , 2 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '35%' , '10%'],
                       body: [
-                        [{text:'Quantity:'  , style:'heading'} , {text: this.contractCostingData['quantity'] + " " + this.contractCostingData['quantityUOMName'], style:'heading2' , margin:[0,0,0,0]}, {text: this.contractCostingData['quantityToleranceValue'] !='' ?  "+/-" +this.contractCostingData['quantityToleranceValue'] + '%' : " " , margin:[-90,0,0,0] , style:'heading2'}],] }
+                        [{text:'Quantity:'  , style:'heading'} , {text:this.contractCostingData['quantity'] != null ?  this.contractCostingData['quantity'] + " " + this.contractCostingData['quantityUOMName'] : "", style:'heading2' , margin:[0,0,0,0]},
+                        
+                        {text: this.contractCostingData['quantityToleranceValue'] !='' ?  "+/-" +this.contractCostingData['quantityToleranceValue'] + '%' : " " , margin:[-90,0,0,0] , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
@@ -3309,7 +3317,7 @@ getImage(){
                         margin: [80 , 2 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '7%' , '7%'],
                       body: [
-                        [{text:'GSM:'  , style:'heading'} , {text: this.contractProductData['gsm'] , style:'heading2'} , {text: this.contractProductData['tolerance'] == ''?  " " : "+/- " + this.contractProductData['tolerance'] + "%" , style:'heading2'}],] }
+                        [{text:'GSM:'  , style:'heading'} , {text: this.contractProductData['gsm'] , style:'heading2'} , {text: this.contractProductData['tolerance'] == null?  " " : "+/- " + this.contractProductData['tolerance'] + "%" , style:'heading2'}],] }
                       },
                       {
 
@@ -3355,7 +3363,7 @@ getImage(){
                         margin: [80 , 2 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
-                        [{text:'Total Amount:'  , style:'heading'} , {text: this.contractCostingData['rateCurrencyName'] +" " +this.contractCostingData['contractCost'] , style:'heading2'}],] }
+                        [{text:'Total Amount:'  , style:'heading'} , {text: this.contractCostingData['rateCurrencyName'] +"  " +this.contractCostingData['contractCost'] , style:'heading2'}],] }
                       },
                      
                       {
@@ -3380,7 +3388,7 @@ getImage(){
                         margin: [80 , 2 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
-                        [{text:this.contractCommissionData['commissionAmountFabcot'] ==0 ?" ": 'Commission:'  , style:'heading'} ,{text:this.contractCommissionData['commissionAmountFabcot'] ==0 ? " " :  "Fabcot International FZE: " + this.contractCostingData['rateCurrencyName']  + " "  + this.contractCommissionData['fabCotCommision'] + "%" , style:'heading2'}],] }
+                        [{text:this.contractCommissionData['fabCotCommision'] ==0 ?" ": 'Commission:'  , style:'heading'} ,{text:this.contractCommissionData['fabCotCommision'] ==0 ? " " :  "Fabcot International FZE: " + this.contractCostingData['rateCurrencyName']  + " "  + this.contractCommissionData['fabCotCommision'] + "%" , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
@@ -4130,7 +4138,7 @@ yarnExportInvoicesReportPrint(){
                       },
                       {
                         layout:'noBorders',
-                        margin: [290 , -20 , 0 , 0],
+                        margin: [290 , -25 , 0 , 0],
                         table:{headerRows: 1 , widths:['30%' , '90%'],
                       body: [
                         [{text:'Contract No:'  , style:'heading'} , {text: this.contractData['autoContractNumber'] , style:'heading2'}],] }
@@ -4247,7 +4255,7 @@ yarnExportInvoicesReportPrint(){
                         margin: [70 , 7 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
-                        [{text:'Container:'  , style:'heading'} , {text: this.contractPaymentData['count'] + " " +this.contractPaymentData['containerName'] , style:'heading2'}],] }
+                        [{text:'Container:'  , style:'heading'} , {text:  this.contractPaymentData['count'] + " " +this.contractPaymentData['containerName']   , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
@@ -4303,7 +4311,7 @@ yarnExportInvoicesReportPrint(){
                       },
                       {
                         layout:'noBorders',
-                        margin: [20 , 80 , 0 , 0],
+                        margin: [20 , 120 , 0 , 0],
                         table:{headerRows: 1 , widths:[ '100%'],
                       body: [
                         [ {text:'NOTE: This is a system generated Contract and does not require any signature.'  , style:'tableheader' }],] }
