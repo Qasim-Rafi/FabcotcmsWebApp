@@ -1072,20 +1072,20 @@ brandId : any;
       "paymentTermId":this.data.paymentTermId,
       "buyerPaymentTermId": this.data.buyerPaymentTermId,
       "paymentMode": this.data.paymentMode,
-      "sellerPaymentTermDays": this.data.sellerPaymentTermDays == null ?  "" : this.data.sellerPaymentTermDays,
-      "paymentTermDays":this.data.paymentTermDays ==null ?"" :this.data.paymentTermDays,
+      "sellerPaymentTermDays": this.data.sellerPaymentTermDays == null ?  0 : this.data.sellerPaymentTermDays,
+       "paymentTermDays":this.data.paymentTermDays ==null ?0 :this.data.paymentTermDays,
       "paymentTermInfo":this.data.paymentTermInfo,
       "buyerPaymentTermDays": this.data.buyerPaymentTermDays,
       "destinationId": this.data.destinationId,
       "containerId": this.data.containerId,
       "count": this.data.count,
       "contractDeliveryDates":[{
-      "sellerDeliveryDateDay": this.data.sellerDeliveryDateDay,
-      "sellerDeliveryDateMonth": this.data.sellerDeliveryDateMonth,
-      "sellerDeliveryDateYear": this.data.sellerDeliveryDateYear,
-      "buyerDeliveryDateDay":this.data.buyerDeliveryDateDay,
-      "buyerDeliveryDateMonth": this.data.buyerDeliveryDateMonth,
-      "buyerDeliveryDateYear": this.data.buyerDeliveryDateYear,
+      "sellerDeliveryDateDay":this.data.sellerDeliveryDateDay == undefined? "" : this.data.sellerDeliveryDateDay,
+      "sellerDeliveryDateMonth":this.data.sellerDeliveryDateMonth == undefined? "" :  this.data.sellerDeliveryDateMonth,
+      "sellerDeliveryDateYear":this.data.sellerDeliveryDateYear == undefined? "" :  this.data.sellerDeliveryDateYear,
+      "buyerDeliveryDateDay":this.data.buyerDeliveryDateDay == undefined? "" : this.data.buyerDeliveryDateDay,
+      "buyerDeliveryDateMonth":this.data.buyerDeliveryDateMonth == undefined? "" :  this.data.buyerDeliveryDateMonth,
+      "buyerDeliveryDateYear":this.data.buyerDeliveryDateYear == undefined? "" : this.data.buyerDeliveryDateYear,
       }
     ]
     }
