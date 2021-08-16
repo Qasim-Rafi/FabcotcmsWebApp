@@ -2393,6 +2393,16 @@ getImage(){
                       },
                       {
                         layout:'noBorders',
+                        margin: [168 , 0 , 0 , 3],
+                        table:{headerRows: 1 , widths:['100%'],
+                      body: [
+                        [
+                          {text: this.contractCommissionData['agentCommissions'] == '' ? " " : "Foreign Agent: " +  this.contractCommissionData['agentCommissions'].map((row=> row.agentName + " " + row.agentCommission + "%"))   , style : 'heading5'}
+                        ],
+                      ] }
+                      },
+                      {
+                        layout:'noBorders',
                         margin: [70 , 7 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
@@ -2436,6 +2446,7 @@ getImage(){
                       },
                         heading3:{fontSize: 6  , color:'#4d4b4b'
                       },
+                      heading5:{fontSize: 8,color: '#4d4b4b' },
                         tableheader: {
                           fillColor: '#f3f3f4',
                           fontSize: 8,
@@ -2627,6 +2638,16 @@ getImage(){
                       },
                       {
                         layout:'noBorders',
+                        margin: [168 , 0 , 0 , 3],
+                        table:{headerRows: 1 , widths:['100%'],
+                      body: [
+                        [
+                          {text: this.contractCommissionData['agentCommissions'] == '' ? " " : "Foreign Agent: " +  this.contractCommissionData['agentCommissions'].map((row=> row.agentName + " " + row.agentCommission + "%"))   , style : 'heading5'}
+                        ],
+                      ] }
+                      },
+                      {
+                        layout:'noBorders',
                         margin: [70 , 7 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
@@ -2670,6 +2691,7 @@ getImage(){
                       },
                         heading3:{fontSize: 6  , color:'#4d4b4b'
                       },
+                      heading5:{fontSize: 8,color: '#4d4b4b' },
                         tableheader: {
                           fillColor: '#f3f3f4',
                           fontSize: 8,
