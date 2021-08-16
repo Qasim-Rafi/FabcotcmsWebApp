@@ -1191,7 +1191,7 @@ getContractPaymentData() {
           if(this.response.data.sellerPaymentTermName == null){
             this.contractPaymentData.sellerPaymentTermName = ""
           }
-          if(this.response.data.sellerPaymentTermDays == null){
+          if(this.response.data.sellerPaymentTermDays == null || this.response.data.sellerPaymentTermDays == 0){
             this.contractPaymentData.sellerPaymentTermDays = ""
           }
           if(this.response.data.sellerPaymentTermInfo == null){
@@ -3016,7 +3016,7 @@ getImage(){
                         margin: [330 , 0 , 0 , 0],
                         table:{headerRows: 1 , widths:['40%' , '80%'],
                       body: [
-                        [{text:'Purchase No:'  , style:'heading'} , {text: this.contractPartiesData['poNumber'] , style:'heading2' , margin:[-25 , 0, 0,0]}],] }
+                        [{text:'Purchase No:'  , style:'heading'} , {text:this.contractPartiesData['poNumber']== '' ? this.contractPartiesData['poNumber'] : '' , style:'heading2' , margin:[-25 , 0, 0,0]}],] }
                       },
                       {
                         layout:'noBorders',
@@ -3124,7 +3124,7 @@ getImage(){
                         margin: [80 , 2 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '35%' , '10%'],
                       body: [
-                        [{text:'Rate:'  , style:'heading'} , {text: this.contractCostingData['rate' ] , style:'heading2' , margin:[0,0,0,0]} , {text: this.contractCostingData['rateUOMName'] , margin:[-120,0,0,0] , style:'heading2'}],] }
+                        [{text:'Rate:'  , style:'heading'} , {text: this.contractCostingData['rate' ] , style:'heading2' , margin:[0,0,0,0]} , {text: "/" + this.contractCostingData['rateUOMName'] , margin:[-120,0,0,0] , style:'heading2'}],] }
                       },
                      
                       {
@@ -3134,7 +3134,13 @@ getImage(){
                       body: [
                         [{text:'Total Amount:'  , style:'heading'} , {text: this.contractCostingData['rateCurrencyName'] + this.contractCostingData['contractCost'] , style:'heading2'}],] }
                       },
-                     
+                      {
+                        layout:'noBorders',
+                        margin: [80 , 2 , 0 , 0],
+                        table:{headerRows: 1 , widths:['20%' , '80%'],
+                      body: [
+                        [{text:'Payment Term:'  , style:'heading'} , {text: this.contractPaymentData['sellerPaymentTermName'] + " "+this.contractPaymentData['sellerPaymentTermDays']+" " +this.contractPaymentData['sellerPaymentTermInfo'] , style:'heading2'}],] }
+                      },
                       {
                         layout:'noBorders',
                         margin: [80 , 2 , 0 , 0],
@@ -3150,7 +3156,23 @@ getImage(){
                         [{text:'Deliveries Date:'  , style:'heading'} , {text: this.deliveryData.map((row=>row.buyerDateDay)) , style:'heading2'}],] }
 
                       },
-                      
+                      // {
+                      //   layout:'noBorders',
+                      //   margin: [80 , 2 , 0 , 0],
+                      //   table:{headerRows: 1 , widths:['20%' , '80%'],
+                      // body: [
+                      //   [{text:this.contractCommissionData['kickbackPercentage'] ==0 ?" ": 'Commission:'  , style:'heading'} ,{text:this.contractCommissionData['kickbackPercentage'] ==0 ? " " :  "Fabcot International FZE: " + this.contractCostingData['rateCurrencyName']  + " "  + this.contractCommissionData['kickbackPercentage'] + "%" , style:'heading2'}],] }
+                      // },
+                      // {
+                      //   layout:'noBorders',
+                      //   margin: [185 , 0 , 0 , 3],
+                      //   table:{headerRows: 1 , widths:['100%'],
+                      // body: [
+                      //   [
+                      //     {text: this.contractCommissionData['agentCommissions'] == '' ? " " : "Foreign Agent: " +  this.contractCommissionData['agentCommissions'].map((row=> row.agentName + " " + row.agentCommission + "%"))   , style : 'heading5'}
+                      //   ],
+                      // ] }
+                      // },
                       {
                         layout:'noBorders',
                         margin: [80 , 2 , 0 , 0],
@@ -3355,7 +3377,7 @@ getImage(){
                         margin: [80 , 2 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '35%' , '10%'],
                       body: [
-                        [{text:'Rate:'  , style:'heading'} , {text: this.contractCostingData['rate' ] , style:'heading2' , margin:[0,0,0,0]} , {text: this.contractCostingData['rateUOMName'] , margin:[-120,0,0,0] , style:'heading2'}],] }
+                        [{text:'Rate:'  , style:'heading'} , {text: this.contractCostingData['rate' ] , style:'heading2' , margin:[0,0,0,0]} , {text:"/" + this.contractCostingData['rateUOMName'] , margin:[-120,0,0,0] , style:'heading2'}],] }
                       },
                      
                       {
