@@ -2393,7 +2393,7 @@ getImage(){
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                         
                       body: [
-                        [{text: this.contractCommissionData['commissionAmountBuyer'] == 0 ? " " :  'Commission:'  , style:'heading'} , {text:   this.contractCommissionData['commissionAmountBuyer'] == 0  ? " " : this.contractCommissionData['buyersideCommisionUOMName'] == null ?   this.contractCostingData['rateCurrencyName']+ " " + this.contractCommissionData['commissionAmountBuyer']  + " Buyer Side Comm." : this.contractCommissionData['buyersideCommision'] + " per " + this.contractCommissionData['buyersideCommisionUOMName'] + " " +"Buyer Side Comm." , style:'heading2'}],] }
+                        [{text: this.contractCommissionData['commissionAmountBuyer'] == 0 ? " " :  'Commission:'  , style:'heading'} , {text:   this.contractCommissionData['commissionAmountBuyer'] == 0  ? " " : this.contractCommissionData['buyersideCommisionUOMName'] == null ?   this.contractCostingData['rateCurrencyName']+ " " + this.contractCommissionData['commissionAmountBuyer']  + "( Buyer Side Comm.)" : this.contractCommissionData['buyersideCommision'] + " per " + this.contractCommissionData['buyersideCommisionUOMName'] + " " +"( Buyer Side Comm. )" , style:'heading2'}],] }
                        
                         // [{text: "Commission"  , style:'heading'} , {text:this.contractCommissionData['buyersideCommisionUOMName'] == null  ?  this.contractCostingData['rateCurrencyName']+ " " + this.contractCommissionData['commissionAmountBuyer']  + " Buyer Side Comm." : this.contractCommissionData['buyersideCommision'] + "/ " + this.contractCommissionData['buyersideCommisionUOMName'] + " "+"From Buyer Side" , style:'heading2'}],] }
                       },
@@ -3632,7 +3632,7 @@ getImage(){
                         margin: [70 , 4 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
-                        [{text:'Total Amount:'  , style:'heading'} , {text: this.contractCostingData['rateCurrencyName'] + this.contractCostingData['contractCost'] , style:'heading2'}],] }
+                        [{text:'Total Amount:'  , style:'heading'} , {text: this.contractCostingData['rateCurrencyName'] + " " + this.contractCostingData['contractCost'] , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
@@ -3689,7 +3689,7 @@ getImage(){
                       {
                         layout:'noBorders',
                         margin: [70 , 4 , 0 , 0],
-                        table:{headerRows: 1 , widths:['20%' , '50%'],
+                        table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
                         [{text:'Other Conditions:' , style:'heading'} , {text: this.contractRemarksData['otherConditionRemarks'] , style:'heading2'}],] }
                       },
@@ -3950,7 +3950,7 @@ getImage(){
                       {
                         layout:'noBorders',
                         margin: [70 , 4 , 0 , 0],
-                        table:{headerRows: 1 , widths:['20%' , '50%'],
+                        table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
                         [{text:'Other Conditions:' , style:'heading'} , {text: this.contractRemarksData['otherConditionRemarks'] , style:'heading2'}],] }
                       },
