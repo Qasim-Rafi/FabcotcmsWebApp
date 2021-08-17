@@ -3977,18 +3977,18 @@ getImage(){
                       },
                     ],
                     styles:{
-                     heading:{fontSize: 9,
+                     heading:{fontSize: 10,
                       bold: true,color: '#4d4b4b' },
-                      heading2:{fontSize: 9  , color:'#4d4b4b'
+                      heading2:{fontSize: 10  , color:'#4d4b4b'
                         },
-                        heading3:{fontSize: 8  , color:'#4d4b4b' , bold:true
+                        heading3:{fontSize: 9  , color:'#4d4b4b' , bold:true
                       },
-                      heading4:{fontSize: 9  , color:'#4d4b4b',bold: true,
+                      heading4:{fontSize: 10  , color:'#4d4b4b',bold: true,
                     },
-                      heading5:{fontSize: 9,color: '#4d4b4b' },
+                      heading5:{fontSize: 10,color: '#4d4b4b' },
                         tableheader: {
                           fillColor: '#f3f3f4',
-                          fontSize: 9,
+                          fontSize: 10,
                           bold: true,
                           color: '#4d4b4b',
                          alignment:'center',
