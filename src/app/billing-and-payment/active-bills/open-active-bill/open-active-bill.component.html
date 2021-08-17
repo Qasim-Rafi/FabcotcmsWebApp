@@ -116,7 +116,7 @@
                 </tr>
                 <tr *ngFor="let i of rows.contractSaleInvoices">
                     <td>{{i.saleInvoiceNo}}</td>
-                    <td>{{i.saleInvoiceDate}}</td>
+                    <td>{{i.saleInvoiceDateToDisplay}}</td>
                     <td>{{i.amount}}</td>
                     <td>{{i.commission}}% </td>
                     <td>{{i.totalAmount | number:'2.2-2'}}</td>
