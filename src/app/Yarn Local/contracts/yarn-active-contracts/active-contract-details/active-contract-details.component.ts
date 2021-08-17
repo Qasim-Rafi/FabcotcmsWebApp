@@ -3622,7 +3622,7 @@ getImage(){
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
                         [
-                          {text:'Rate:'  , style:'heading'} , {text: this.contractCostingData['rate' ]
+                          {text:'Rate:'  , style:'heading'} , {text:this.contractCostingData['rateCurrencyName']+ " " + this.contractCostingData['rate' ]
                           + "  /" + this.contractCostingData['rateUOMName']  , style:'heading2' , margin:[0,0,0,0]} ,
                         ],] }
                       },
@@ -3885,7 +3885,7 @@ getImage(){
                         table:{headerRows: 1 , widths:['20%' , '80%' ],
                       body: [
                         [
-                          {text:'Rate:'  , style:'heading'} , {text: this.contractCostingData['rate' ]
+                          {text:'Rate:'  , style:'heading'} , {text: this.contractCostingData['rateCurrencyName'] + " " +this.contractCostingData['rate' ]
                         + "  /" + this.contractCostingData['rateUOMName']  , style:'heading2' , margin:[0,0,0,0]} ,
                         //  {text:"/" + this.contractCostingData['rateUOMName'] , margin:[-130,0,0,0] , style:'heading2'}
                         ],] }
