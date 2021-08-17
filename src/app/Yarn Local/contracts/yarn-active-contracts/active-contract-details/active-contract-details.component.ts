@@ -2642,16 +2642,16 @@ getImage(){
                          {text:  this.contractCommissionData['commissionAmountFabcot'] == 0  ? " " : this.contractCommissionData['fabCotCommisionUOMName'] == null ?   this.contractCommissionData['fabCotCommision'] + "%" +"  ("+  " "+"From Seller Side Comm." +" )": this.contractCommissionData['fabCotCommision'] + " per " + this.contractCommissionData['fabCotCommisionUOMName'] + " " +"From Seller Side"  , style:'heading2'}],] }
                         
                       },
-                      {
-                        layout:'noBorders',
-                        margin: [168 , 0 , 0 , 3],
-                        table:{headerRows: 1 , widths:['100%'],
-                      body: [
-                        [
-                          {text: this.contractCommissionData['agentCommissions'] == '' ? " " : "Foreign Agent: " +  this.contractCommissionData['agentCommissions'].map((row=> row.agentName + " " + row.agentCommission + "%"))   , style : 'heading5'}
-                        ],
-                      ] }
-                      },
+                      // {
+                      //   layout:'noBorders',
+                      //   margin: [168 , 0 , 0 , 3],
+                      //   table:{headerRows: 1 , widths:['100%'],
+                      // body: [
+                      //   [
+                      //     {text: this.contractCommissionData['agentCommissions'] == '' ? " " : "Foreign Agent: " +  this.contractCommissionData['agentCommissions'].map((row=> row.agentName + " " + row.agentCommission + "%"))   , style : 'heading5'}
+                      //   ],
+                      // ] }
+                      // },
                       {
                         layout:'noBorders',
                         margin: [70 , 7 , 0 , 0],
@@ -2983,7 +2983,7 @@ getImage(){
           printFE(){
             let docDefinition = {
               pageSize: 'A4',
-              pageMargins: [ 30, 20, 40, 20 ],
+              pageMargins: [ 30, 20, 40, 20],
               pageOrientation: 'letter',
                 
                     info: {
@@ -2994,47 +2994,47 @@ getImage(){
              
                       {
                         "image" : this.image2,
-                       fit : [120 , 120]
+                       fit : [140 , 140]
                     
                       },
                       {
                         layout:'noBorders',
-                        margin: [330 , -30 , 0 , 0],
+                        margin: [320 , -40 , 0 , 0],
                         table:{headerRows: 1 , widths:['30%' , '90%'],
                       body: [
-                        [{text:'Contract No:'  , style:'heading'} , {text: this.contractData['autoContractNumber'] , style:'heading2' , margin:[-9 , 0, 0,0]}],] }
+                        [{text:'Contract No:'  , style:'heading'} , {text: this.contractData['autoContractNumber'] , style:'heading2' , margin:[-7 , 0, 0,0]}],] }
                       },
                       {
                         layout:'noBorders',
-                        margin: [330 , 0 , 0 , 0],
+                        margin: [320 , 0 , 0 , 0],
                         table:{headerRows: 1 , widths:['40%' , '80%'],
                       body: [
-                        [{text:'Contract Date:'  , style:'heading'} , {text: this.contractData['createdDateTime'] , style:'heading2' , margin:[-24 , 0, 0,0]}],] }
+                        [{text:'Contract Date:'  , style:'heading'} , {text: this.contractData['createdDateTime'] , style:'heading2' , margin:[-20 , 0, 0,0]}],] }
                       },
                       {
                         layout:'noBorders',
-                        margin: [330 , 0 , 0 , 0],
+                        margin: [320 , 0 , 0 , 0],
                         table:{headerRows: 1 , widths:['40%' , '80%'],
                       body: [
-                        [{text:'Purchase No:'  , style:'heading'} , {text:this.contractPartiesData['poNumber']== '' ? this.contractPartiesData['poNumber'] : '' , style:'heading2' , margin:[-25 , 0, 0,0]}],] }
+                        [{text:this.contractPartiesData['poNumber'] =='' ? "" :  'Purchase No:'  , style:'heading'} , {text:this.contractPartiesData['poNumber']== '' ? this.contractPartiesData['poNumber'] : '' , style:'heading2' , margin:[-23 , 0, 0,0]}],] }
                       },
                       {
                         layout:'noBorders',
-                        margin: [80 , 5 , 0 , 0],
+                        margin: [70 , 25 , 0 , 0],
                         table:{headerRows: 1 , widths:['10%' , '60%'],
                       body: [
-                        [{text:'Attn:'  , style:'heading'} , {text: this.contractPartiesData['buyerPOCName'] , margin:[-20,0,0,0] , style:'heading5'}]] }
+                        [{text:this.contractPartiesData['buyerPOCName'] ==null ? " " : 'Attn:'  , style:'heading'} , {text:this.contractPartiesData['buyerPOCName'] ==null?" " : this.contractPartiesData['buyerPOCName'] , margin:[-20,0,0,0] , style:'heading5'}]] }
                       },
                       {
                         layout:'noBorders',
-                        margin: [80 , 0 , 0 , 0],
+                        margin: [70 , 3 , 0 , 0],
                         table:{headerRows: 1 , widths:['100%'],
                       body: [
                         [{text:' We are please to confirm here the booking as per following term and conditions.' , style:'heading2'}  ],] }
                       },
                       {
                         layout:'noBorders',
-                        margin: [80 , 10 , 0 , 0],
+                        margin: [70 , 15 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
                         [{text:'Buyer :'  , style:'heading'} , {text: this.contractPartiesData['buyerName'], style:'heading2'}],] }
@@ -3042,7 +3042,7 @@ getImage(){
                  
                       {
                         layout:'noBorders',
-                        margin: [80 , 0 , 0 , 0],
+                        margin: [70 , 4 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
                         [{text:'Supplier :'  , style:'heading'} , {text: this.contractPartiesData['sellerName'] , style:'heading2'}],] }
@@ -3051,21 +3051,21 @@ getImage(){
                     
                       {
                         layout:'noBorders',
-                        margin: [80 , 2 , 0 , 0],
+                        margin: [70 , 4 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
                         [{text:'Blend:'  , style:'heading'} , {text:this.contractProductData['pecenetAge']+ '%'+ ' ' + this.contractProductData['febricType']+ ' ' +this.contractProductData['construction']  , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
-                        margin: [80 , 2 , 0 , 0],
+                        margin: [70 , 4 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
                         [{text:'Description:'  , style:'heading'} , {text: this.contractProductData['articleName'] , style:'heading2'}],] }
                       },
                      {
                         layout:'noBorders',
-                        margin: [350 , -10 , 0 , 0],
+                        margin: [340 , -8 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
                         [{text:'Weave:'  , style:'heading3'} , {text: this.printData['weaveName'] , style:'heading3' , margin:[-10 ,0 ,0, 0]}],] }
@@ -3073,7 +3073,7 @@ getImage(){
                      
                       {
                         layout:'noBorders',
-                        margin: [80 , 2 , 0 , 0],
+                        margin: [70 , 4 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
                         [{text:'Selvedge:'  , style:'heading'} , {text: this.printData['selvedgeName'] , style:'heading2'}],] }
@@ -3081,7 +3081,7 @@ getImage(){
                       
                       {
                         layout:'noBorders',
-                        margin: [80 , 2 , 0 , 0],
+                        margin: [70 , 4 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '7%' , '7%'],
                       body: [
                         [{text:'GSM:'  , style:'heading'} , {text: this.contractProductData['gsm'] , style:'heading2'}  , {text: this.contractProductData['tolerance'] == null?  " " : "+/- " + this.contractProductData['tolerance'] + "%" , style:'heading2'}],] }
@@ -3089,14 +3089,14 @@ getImage(){
                       {
 
                         layout:'noBorders',
-                        margin: [80 , 2 , 0 , 0],
+                        margin: [70 , 4 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
                         [{text:'Packing:'  , style:'heading'} , {text: this.contractPaymentData['packingName'] , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
-                        margin: [80 , 2 , 0 , 0],
+                        margin: [70 , 4 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
                         [{text:'Piece Length:'  , style:'heading'} , {text: this.contractProductData['pieceLengthName'] , style:'heading2'}],] }
@@ -3104,53 +3104,62 @@ getImage(){
                     
                       {
                         layout:'noBorders',
-                        margin: [80 , 2 , 0 , 0],
+                        margin: [70 , 4 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '35%' , '10%'],
                       body: [
                         [{text:'Quantity:'  , style:'heading'} , {text:this.contractCostingData['quantity'] != null ?  this.contractCostingData['quantity'] + " " + this.contractCostingData['quantityUOMName'] : "", style:'heading2' , margin:[0,0,0,0]},
                         
-                        {text: this.contractCostingData['quantityToleranceValue'] !='' ?  "+/-" +this.contractCostingData['quantityToleranceValue'] + '%' : " " , margin:[-90,0,0,0] , style:'heading2'}],] }
+                        {text:"  " +this.contractCostingData['quantityToleranceValue'] !='' ?  "+/-" +this.contractCostingData['quantityToleranceValue'] + '%' : " " , margin:[-80,0,0,0] , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
-                        margin: [350 , -10 , 0 , 0],
-                        table:{headerRows: 1 , widths:['23%' , '80%'],
+                        margin: [340 , -13 , 0 , 0],
+                        table:{headerRows: 1 , widths:['30%' , '70%'],
                       body: [
-                        [{text:'Container'  , style:'heading3'} , {text: this.contractPaymentData['count'] + " " + this.contractPaymentData['containerName'] , style:'heading3'}],] }
+                        [{text:'Container:'  , style:'heading3'} , {text: this.contractPaymentData['count'] + " " + this.contractPaymentData['containerName'], margin:[-20,0,0,0] , style:'heading3'}],] }
                       },
                      
                       {
                         layout:'noBorders',
-                        margin: [80 , 2 , 0 , 0],
-                        table:{headerRows: 1 , widths:['20%' , '35%' , '10%'],
+                        margin: [70 , 4 , 0 , 0],
+                        table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
-                        [{text:'Rate:'  , style:'heading'} , {text: this.contractCostingData['rate' ] , style:'heading2' , margin:[0,0,0,0]} , {text: "/" + this.contractCostingData['rateUOMName'] , margin:[-120,0,0,0] , style:'heading2'}],] }
+                        [
+                          {text:'Rate:'  , style:'heading'} , {text: this.contractCostingData['rate' ]
+                          + "  /" + this.contractCostingData['rateUOMName']  , style:'heading2' , margin:[0,0,0,0]} ,
+                        ],] }
                       },
                      
                       {
                         layout:'noBorders',
-                        margin: [80 , 2 , 0 , 0],
+                        margin: [70 , 4 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
                         [{text:'Total Amount:'  , style:'heading'} , {text: this.contractCostingData['rateCurrencyName'] + this.contractCostingData['contractCost'] , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
-                        margin: [80 , 2 , 0 , 0],
+                        margin: [70 , 4 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
-                        [{text:'Payment Term:'  , style:'heading'} , {text: this.contractPaymentData['sellerPaymentTermName'] + " "+this.contractPaymentData['sellerPaymentTermDays']+" " +this.contractPaymentData['sellerPaymentTermInfo'] , style:'heading2'}],] }
+                        [{text:'Payment Term:'  , style:'heading'} ,
+                        
+                        {text: this.contractPaymentData['sellerPaymentTermName'] + " "+this.contractPaymentData['sellerPaymentTermDays']+" " +this.contractPaymentData['sellerPaymentTermInfo'] , style:'heading2'}
+                        
+                      
+                      
+                      ],] }
                       },
                       {
                         layout:'noBorders',
-                        margin: [80 , 2 , 0 , 0],
+                        margin: [70 , 4 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
                         [{text:'Delivery Term:'  , style:'heading'} , {text: this.contractPaymentData['priceTermName'] + " " +this.contractPaymentData['destinationName'] , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
-                        margin: [80 , 2 , 0 , 0],
+                        margin: [70 , 4 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
                         [{text:'Deliveries Date:'  , style:'heading'} , {text: this.deliveryData.map((row=>row.buyerDateDay)) , style:'heading2'}],] }
@@ -3175,52 +3184,52 @@ getImage(){
                       // },
                       {
                         layout:'noBorders',
-                        margin: [80 , 2 , 0 , 0],
+                        margin: [70 , 4 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
                         [{text:'Remarks:'  , style:'heading'} , {text: this.contractRemarksData['contractRemarks'] , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
-                        margin: [80 , 2 , 0 , 0],
+                        margin: [70 , 4 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '50%'],
                       body: [
                         [{text:'Other Conditions:' , style:'heading'} , {text: this.contractRemarksData['otherConditionRemarks'] , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
-                        margin: [20 , 8 , 0 , 0],
+                        margin: [70 , 8 , 0 , 0],
                         table:{headerRows: 1 , widths:['30%'],
                       body: [
                         [{text:'Thanks And Regards:'  , style:'heading'}],] }
                       },
                       {
                         layout:'noBorders',
-                        margin: [20 , 10 , 0 , 0],
+                        margin: [70 , 10 , 0 , 0],
                         table:{headerRows: 1 , widths:['70%'],
                       body: [
                         [{text:'For FabCot International'  , style:'heading'}],] }
                       },
                       {
                         layout:'noBorders',
-                        margin: [20 , 180 , 0 , 0],
+                        margin: [20 , 130 , 0 , 0],
                         table:{headerRows: 1 , widths:[ '100%'],
                       body: [
                         [ {text:'NOTE: This is a system generated Contract and does not require any signature.'  , style:'tableheader' }],] }
                       },
                     ],
                     styles:{
-                     heading:{fontSize: 9,
+                     heading:{fontSize: 10,
                       bold: true,color: '#4d4b4b' },
-                      heading2:{fontSize: 9  , color:'#4d4b4b'
+                      heading2:{fontSize: 10  , color:'#4d4b4b'
                         },
-                        heading5:{fontSize: 9  , color:'#4d4b4b',bold: true,
+                        heading5:{fontSize: 10  , color:'#4d4b4b',bold: true,
                       },
-                        heading3:{fontSize: 8  , color:'#4d4b4b' , bold:true
+                        heading3:{fontSize: 9  , color:'#4d4b4b' , bold:true
                       },
                         tableheader: {
                           fillColor: '#f3f3f4',
-                          fontSize: 8,
+                          fontSize: 9,
                           bold: true,
                           color: '#4d4b4b',
                          alignment:'center',
@@ -3249,47 +3258,47 @@ getImage(){
              
                       {
                         "image" : this.image2,
-                       fit : [120 , 120]
+                       fit : [140 , 140]
                     
                       },
                       {
                         layout:'noBorders',
-                        margin: [330 , -30 , 0 , 0],
+                        margin: [320 , -40 , 0 , 0],
                         table:{headerRows: 1 , widths:['30%' , '90%'],
                       body: [
-                        [{text:'Contract No:'  , style:'heading'} , {text: this.contractData['autoContractNumber'] , style:'heading2' , margin:[-9 , 0, 0,0]}],] }
+                        [{text:'Contract No:'  , style:'heading'} , {text: this.contractData['autoContractNumber'] , style:'heading2' , margin:[-7 , 0, 0,0]}],] }
                       },
                       {
                         layout:'noBorders',
-                        margin: [330 , 0 , 0 , 0],
+                        margin: [320 , 0 , 0 , 0],
                         table:{headerRows: 1 , widths:['40%' , '80%'],
                       body: [
-                        [{text:'Contract Date:'  , style:'heading'} , {text: this.contractData['createdDateTime'] , style:'heading2' , margin:[-24 , 0, 0,0]}],] }
+                        [{text:'Contract Date:'  , style:'heading'} , {text: this.contractData['createdDateTime'] , style:'heading2' , margin:[-20 , 0, 0,0]}],] }
                       },
                       {
                         layout:'noBorders',
-                        margin: [330 , 0 , 0 , 0],
-                        table:{headerRows: 1 , widths:['40%' , '80%'],
+                        margin: [320 , 0 , 0 , 0],
+                       table:{headerRows: 1 , widths:['40%' , '80%'],
                       body: [
-                        [{text:'Purchase No:'  , style:'heading'} , {text: this.contractPartiesData['poNumber'] , style:'heading2' , margin:[-25 , 0, 0,0]}],] }
+                        [{text:this.contractPartiesData['poNumber'] =='' ? "" :  'Purchase No:'  , style:'heading'} , {text:this.contractPartiesData['poNumber']== '' ? this.contractPartiesData['poNumber'] : '' , style:'heading2' , margin:[-23 , 0, 0,0]}],] }
                       },
                       {
                         layout:'noBorders',
-                        margin: [80 , 5 , 0 , 0],
+                        margin: [70 , 25 , 0 , 0],
                         table:{headerRows: 1 , widths:['10%' , '60%'],
                       body: [
-                        [{text:'Attn:'  , style:'heading'} , {text: this.contractPartiesData['sellerPOCName'] , margin:[-20,0,0,0] , style:'heading4'}]] }
+                        [{text:this.contractPartiesData['sellerPOCName'] ==null ? " " : 'Attn:'  , style:'heading'} , {text:this.contractPartiesData['sellerPOCName'] ==null?" " : this.contractPartiesData['sellerPOCName'] , margin:[-20,0,0,0] , style:'heading5'}]] }
                       },
                       {
                         layout:'noBorders',
-                        margin: [80 , 0 , 0 , 0],
+                        margin: [70 , 3 , 0 , 0],
                         table:{headerRows: 1 , widths:['100%'],
                       body: [
                         [{text:' We are please to confirm here the booking as per following term and conditions.' , style:'heading2'}  ],] }
                       },
                       {
                         layout:'noBorders',
-                        margin: [80 , 10 , 0 , 0],
+                        margin: [70 , 15 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
                         [{text:'Buyer :'  , style:'heading'} , {text: this.contractPartiesData['buyerName'] , style:'heading2'}],] }
@@ -3297,7 +3306,7 @@ getImage(){
                  
                       {
                         layout:'noBorders',
-                        margin: [80 , 0 , 0 , 0],
+                        margin: [70 , 4 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
                         [{text:'Supplier :'  , style:'heading'} , {text: this.contractPartiesData['sellerName'] , style:'heading2'}],] }
@@ -3306,21 +3315,21 @@ getImage(){
                     
                       {
                         layout:'noBorders',
-                        margin: [80 , 2 , 0 , 0],
+                        margin: [70 , 4 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
                         [{text:'Blend:'  , style:'heading'} , {text: this.contractProductData['pecenetAge']+ '%'+ ' ' + this.contractProductData['febricType']+ ' ' +this.contractProductData['construction'] , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
-                        margin: [80 , 2 , 0 , 0],
+                        margin: [70 , 4 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
                         [{text:'Description:'  , style:'heading'} , {text: this.contractProductData['articleName'] , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
-                        margin: [350 , -10 , 0 , 0],
+                        margin: [340 , -8 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
                         [{text:'Weave:'  , style:'heading3'} , {text: this.printData['weaveName'] , style:'heading3' , margin:[-10 ,0 ,0, 0]}],] }
@@ -3328,7 +3337,7 @@ getImage(){
                      
                       {
                         layout:'noBorders',
-                        margin: [80 , 2 , 0 , 0],
+                        margin: [70 , 4 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
                         [{text:'Selvedge:'  , style:'heading'} , {text: this.printData['selvedgeName'] , style:'heading2'}],] }
@@ -3336,7 +3345,7 @@ getImage(){
                       
                       {
                         layout:'noBorders',
-                        margin: [80 , 2 , 0 , 0],
+                        margin: [70 , 4 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '7%' , '7%'],
                       body: [
                         [{text:'GSM:'  , style:'heading'} , {text: this.contractProductData['gsm'] , style:'heading2'} , {text: this.contractProductData['tolerance'] == null?  " " : "+/- " + this.contractProductData['tolerance'] + "%" , style:'heading2'}],] }
@@ -3344,14 +3353,14 @@ getImage(){
                       {
 
                         layout:'noBorders',
-                        margin: [80 , 2 , 0 , 0],
+                        margin: [70 , 4 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
                         [{text:'Packing:'  , style:'heading'} , {text: this.contractPaymentData['packingName'] , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
-                        margin: [80 , 2 , 0 , 0],
+                        margin: [70 , 4 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
                         [{text:'Piece Length:'  , style:'heading'} , {text: this.contractProductData['pieceLengthName'] , style:'heading2'}],] }
@@ -3359,45 +3368,56 @@ getImage(){
                     
                       {
                         layout:'noBorders',
-                        margin: [80 , 2 , 0 , 0],
+                        margin: [70 , 4 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '35%' , '10%'],
                       body: [
-                        [{text:'Quantity:'  , style:'heading'} , {text: this.contractCostingData['quantity'] + " " +  this.contractCostingData['quantityUOMName'] , style:'heading2' , margin:[0,0,0,0]}, {text: this.contractCostingData['quantityToleranceValue'] != '' ?   "+/-" +this.contractCostingData['quantityToleranceValue'] + '%' : ' ' , margin:[-90,0,0,0] , style:'heading2'}],] }
+                        [{text:'Quantity:'  , style:'heading'} , {text: this.contractCostingData['quantity'] + " " +  this.contractCostingData['quantityUOMName'] , style:'heading2' , margin:[0,0,0,0]},
+                        {text:"  " +this.contractCostingData['quantityToleranceValue'] !='' ?  "+/-" +this.contractCostingData['quantityToleranceValue'] + '%' : " " , margin:[-80,0,0,0] , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
-                        margin: [350 , -10 , 0 , 0],
-                        table:{headerRows: 1 , widths:['23%' , '80%'],
+                        margin: [340 , -13 , 0 , 0],
+                        table:{headerRows: 1 , widths:['30%' , '70%'],
                       body: [
-                        [{text:'Container'  , style:'heading3'} , {text: this.contractPaymentData['count'] + " " +this.contractPaymentData['containerName'] , style:'heading3'}],] }
+                        [{text:'Container:'  , style:'heading3'} , {text: this.contractPaymentData['count'] + " " +this.contractPaymentData['containerName'] , margin:[-20,0,0,0]  , style:'heading3'}],] }
                       },
                      
                       {
                         layout:'noBorders',
-                        margin: [80 , 2 , 0 , 0],
-                        table:{headerRows: 1 , widths:['20%' , '35%' , '10%'],
+                        margin: [70 , 4 , 0 , 0],
+                        table:{headerRows: 1 , widths:['20%' , '80%' ],
                       body: [
-                        [{text:'Rate:'  , style:'heading'} , {text: this.contractCostingData['rate' ] , style:'heading2' , margin:[0,0,0,0]} , {text:"/" + this.contractCostingData['rateUOMName'] , margin:[-120,0,0,0] , style:'heading2'}],] }
+                        [
+                          {text:'Rate:'  , style:'heading'} , {text: this.contractCostingData['rate' ]
+                        + "  /" + this.contractCostingData['rateUOMName']  , style:'heading2' , margin:[0,0,0,0]} ,
+                        //  {text:"/" + this.contractCostingData['rateUOMName'] , margin:[-130,0,0,0] , style:'heading2'}
+                        ],] }
                       },
                      
                       {
                         layout:'noBorders',
-                        margin: [80 , 2 , 0 , 0],
+                        margin: [70 , 4 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
                         [{text:'Total Amount:'  , style:'heading'} , {text: this.contractCostingData['rateCurrencyName'] +"  " +this.contractCostingData['contractCost'] , style:'heading2'}],] }
                       },
-                     
                       {
                         layout:'noBorders',
-                        margin: [80 , 2 , 0 , 0],
+                        margin: [70 , 4 , 0 , 0],
+                        table:{headerRows: 1 , widths:['20%' , '80%'],
+                      body: [
+                        [{text:'Payment Term:'  , style:'heading'} , {text: this.contractPaymentData['sellerPaymentTermName'] + " "+this.contractPaymentData['sellerPaymentTermDays']+" " +this.contractPaymentData['sellerPaymentTermInfo'] , style:'heading2'}],] }
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [70 , 4 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
                         [{text:'Delivery Term:'  , style:'heading'} , {text: this.contractPaymentData['priceTermName'] +" "+ this.contractPaymentData['destinationName'] , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
-                        margin: [80 , 2 , 0 , 0],
+                        margin: [70 , 4 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
                         [{text:'Deliveries Date:'  , style:'heading'} , {text: this.deliveryData.map((row=>row.supplierDateDay)) , style:'heading2'}],] }
@@ -3407,14 +3427,14 @@ getImage(){
 
                       {
                         layout:'noBorders',
-                        margin: [80 , 2 , 0 , 0],
+                        margin: [70 , 4 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
                         [{text:this.contractCommissionData['fabCotCommision'] ==0 ?" ": 'Commission:'  , style:'heading'} ,{text:this.contractCommissionData['fabCotCommision'] ==0 ? " " :  "Fabcot International FZE: " + this.contractCostingData['rateCurrencyName']  + " "  + this.contractCommissionData['fabCotCommision'] + "%" , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
-                        margin: [185 , 0 , 0 , 3],
+                        margin: [167 , 0 , 0 , 3],
                         table:{headerRows: 1 , widths:['100%'],
                       body: [
                         [
@@ -3425,35 +3445,35 @@ getImage(){
                       
                       {
                         layout:'noBorders',
-                        margin: [80 , 2 , 0 , 0],
+                        margin: [70 , 0 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
                         [{text:'Remarks:'  , style:'heading'} , {text: this.contractRemarksData['contractRemarks'] , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
-                        margin: [80 , 2 , 0 , 0],
+                        margin: [70 , 4 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '50%'],
                       body: [
                         [{text:'Other Conditions:' , style:'heading'} , {text: this.contractRemarksData['otherConditionRemarks'] , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
-                        margin: [20 , 8 , 0 , 0],
+                        margin: [70 , 8 , 0 , 0],
                         table:{headerRows: 1 , widths:['30%'],
                       body: [
                         [{text:'Thanks And Regards:'  , style:'heading'}],] }
                       },
                       {
                         layout:'noBorders',
-                        margin: [20 , 10 , 0 , 0],
+                        margin: [70 , 10 , 0 , 0],
                         table:{headerRows: 1 , widths:['70%'],
                       body: [
                         [{text:'For FabCot International'  , style:'heading'}],] }
                       },
                       {
                         layout:'noBorders',
-                        margin: [20 , 180 , 0 , 0],
+                        margin: [20 , 140 , 0 , 0],
                         table:{headerRows: 1 , widths:[ '100%'],
                       body: [
                         [ {text:'NOTE: This is a system generated Contract and does not require any signature.'  , style:'tableheader' }],] }
@@ -3468,7 +3488,7 @@ getImage(){
                       },
                       heading4:{fontSize: 9  , color:'#4d4b4b',bold: true,
                     },
-                      heading5:{fontSize: 10,color: '#4d4b4b' },
+                      heading5:{fontSize: 9,color: '#4d4b4b' },
                         tableheader: {
                           fillColor: '#f3f3f4',
                           fontSize: 9,
