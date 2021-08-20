@@ -197,7 +197,7 @@ this.GetSelvedgeDropdown();
       "contractId": this.contractId,
       "construction": this.data.construction,
       "articleId": this.data.articleId,
-      "pecenetAge": this.data.pecenetAge,
+      "pecenetAge":this.data.pecenetAge,
       "brandId": this.data.brandId,
       "febricId": this.data.febricId,
       "gsm": this.data.gsm,
