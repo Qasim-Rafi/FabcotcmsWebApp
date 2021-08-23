@@ -39,7 +39,6 @@ articledata:any=[];
 articles:any=[];
 @ViewChild(NgForm) InvoiceForm;
   saleInvoiceDate: any;
- 
   constructor(
     private _NgbActiveModal: NgbActiveModal,
     private spinner: NgxSpinnerService,
@@ -53,6 +52,7 @@ articles:any=[];
   ngOnInit(): void {
     this.quantity = this.quantity;
     this.saleInvoiceQuantity=this.saleInvoiceQuantity;
+    this.getContractCostingData()
     this.loggedInDepartmentName = localStorage.getItem('loggedInDepartmentName');
 this.GetArticleDropdown();
     this.GetUOMDropdown();
@@ -61,6 +61,29 @@ this.GetArticleDropdown();
     }
    
   }
+
+  getContractCostingData() {
+    this.http.get(`${environment.apiUrl}/api/Contracts/GetContractCostingById/` + this.contractId)
+      .subscribe(
+        res => {
+          this.response = res;
+          if (this.response.success == true) {
+            this.rate = this.response.data.rate;
+         
+          
+          }
+  
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+  
+        },(err: HttpErrorResponse) => {
+          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+          this.toastr.error(messages.toString(), 'Message.');
+          console.log(messages);
+        });
+  }
+
 
   articleData(event) {
     if(event !=undefined){
@@ -101,7 +124,6 @@ this.GetArticleDropdown();
   getquantity(event){
     clearTimeout(this.timeout);
     
-    this.rate=parseInt(localStorage.getItem('rate'))
       if (event.keyCode != 13) {
     this.quantitya=event.target.value;
  this.calculatedcost= this.quantitya*this.rate;
