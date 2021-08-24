@@ -52,6 +52,7 @@ export class OpenActiveBillComponent implements OnInit {
   
   fetch(cb) {
     // this.spinner.show();
+    // this.totalAmount = 0
     this.http
     .get(`${environment.apiUrl}/api/BillingPayments/GetContractBillById/` + this.bill_id)
     .subscribe(res => {
@@ -98,17 +99,13 @@ export class OpenActiveBillComponent implements OnInit {
 
     modalRef.result.then((data) => {
       // on close
+ 
+
+    }, (reason) => {
       this.fetch((data) => {
         this.rows = data;
     
       });
-      
-      if (data == true) {
-        this.date = this.myDate;
-        // this.getBuyers();
-
-      }
-    }, (reason) => {
       // on dismiss
     });
   }
