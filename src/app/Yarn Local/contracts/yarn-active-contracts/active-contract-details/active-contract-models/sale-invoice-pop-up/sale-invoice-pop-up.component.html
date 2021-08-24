@@ -94,7 +94,7 @@
             </div>
             <label for="quantity" class="col-md-1 col-form-label text_Navy">Unit</label>
       
-            <div class="col-md-4">
+            <div class="col-md-4" *ngIf="loggedInDepartmentName!='Yarn Local'">
       
       
               <ng-select (change)="getunit($event)" [(ngModel)]="data.unit" #unit="ngModel" placeholder="Unit" name="unit"
@@ -103,7 +103,15 @@
               </ng-select>
       
             </div>
+            <div class="col-md-4" *ngIf="loggedInDepartmentName=='Yarn Local'">
       
+      
+              <ng-select  [(ngModel)]="data.unit" #unit="ngModel" placeholder="Unit" name="unit"
+                required>
+                <ng-option *ngFor="let i of uomList" [value]="i.id">{{i.name}}</ng-option>
+              </ng-select>
+      
+            </div>
           </div>
       
       
