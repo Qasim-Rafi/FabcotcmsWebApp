@@ -125,9 +125,16 @@ this.GetArticleDropdown();
     clearTimeout(this.timeout);
     
       if (event.keyCode != 13) {
-    this.quantitya=event.target.value;
- this.calculatedcost= this.quantitya*this.rate;
- this.data.amount=this.calculatedcost;
+        if(this.loggedInDepartmentName=="Yarn Local"){
+          this.quantitya=event.target.value;
+          this.calculatedcost= this.quantitya*this.rate*10;
+          this.data.amount=this.calculatedcost;
+        }else{
+          this.quantitya=event.target.value;
+          this.calculatedcost= this.quantitya*this.rate;
+          this.data.amount=this.calculatedcost;
+        }
+
 //  if(this.data.unit){
   // this.data.amount=calculatedcost*10;
  
