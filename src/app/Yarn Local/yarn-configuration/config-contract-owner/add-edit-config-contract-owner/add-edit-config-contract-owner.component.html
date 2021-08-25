@@ -42,7 +42,7 @@
           <div class="col-md-7">
             <ng-select [(ngModel)]="data.description" placeholder="-- Select --" name="description" #description="ngModel"
               [ngClass]="{ error: description.invalid && BeneficiaryForm.submitted}">
-              <ng-option *ngFor="let i of filterUsers" [value]="i">{{ i }}
+              <ng-option *ngFor="let i of filterUsers" [value]="i.name">{{ i.name }}
               </ng-option>
             </ng-select>
           </div>
