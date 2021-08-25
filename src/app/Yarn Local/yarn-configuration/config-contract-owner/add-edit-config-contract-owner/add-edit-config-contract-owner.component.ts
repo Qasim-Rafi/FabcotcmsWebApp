@@ -38,7 +38,7 @@ export class AddEditConfigContractOwnerComponent implements OnInit {
     this.statusCheck =this.statusCheck;
     this.FormName = this.FormName;
     this.GetDepartmentUsersDropdown();
-    this.GetUsersDropdown();
+    this.GetUserTypeDropdown();
     if(this.statusCheck == 'ContractOwnerEdit'){
       this.getContractOwner();
     }
@@ -139,13 +139,29 @@ this.spinner.show();
     })
   }
 
-  GetUsersDropdown() {
-    this.http.get(`${environment.apiUrl}/api/Lookups/DocumentUserTypes`).
-    subscribe(res => {
+  // GetUsersDropdown() {
+  //   this.http.get(`${environment.apiUrl}/api/Lookups/DocumentUserTypes`).
+  //   subscribe(res => {
+  //     this.response = res;
+  //     if (this.response.success == true) {
+  //       this.filterUsers = this.response.data;
+  //       // this.temp = [...this.owner];
+  //     }
+  //     else {
+  //       this.toastr.error(this.response.message, 'Message.');
+  //     }
+  //   })
+  // }
+
+  get activeModal() {
+    return this._NgbActiveModal;
+  }
+
+  GetUserTypeDropdown() {
+    this.service.getUserType().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
         this.filterUsers = this.response.data;
-        // this.temp = [...this.owner];
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -153,8 +169,6 @@ this.spinner.show();
     })
   }
 
-  get activeModal() {
-    return this._NgbActiveModal;
-  }
-
+  
 }
+
