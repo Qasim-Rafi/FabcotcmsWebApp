@@ -304,7 +304,7 @@ this.spinner.show();
        "saleInvoiceNo": this.data.saleInvoiceNo,
        "saleInvoiceDate":this.dateformater.toModel(this.data.saleInvoiceDate),
        "saleInvoiceRemarks":this.data.saleInvoiceRemarks,
-       "amount": this.data.amount,
+       "amount":parseInt(this.data.amount),
        "quantity": this.data.quantity,
        "unit": this.data.unit,
        "rate":  this.data.contractArticleRate,
@@ -316,6 +316,7 @@ this.spinner.show();
       put(`${environment.apiUrl}/api/YarnContracts/UpdateContractSaleInvoice/` + this.invoiceId, varr)
       .subscribe(
         res => {
+        
  
           this.response = res;
           if (this.response.success == true) {
