@@ -1059,6 +1059,7 @@ brandId : any;
       "weaveId": this.data.weaveId,
       "selvedgeId": this.data.selvedgeId,
       "pieceLengthId": this.data.pieceLengthId,
+      "SellerPieceLengthId" : this.data.SellerPieceLengthId,
       "pickInsertionId": this.data.pickInsertionId,
       "widthInInch": this.data.widthInInch,
       "blendingRatioWarpId": this.data.blendingRatioWarpId,
