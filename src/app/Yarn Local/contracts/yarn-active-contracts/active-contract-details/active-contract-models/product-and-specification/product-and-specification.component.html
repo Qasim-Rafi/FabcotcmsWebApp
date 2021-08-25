@@ -142,7 +142,7 @@
       
           </div>
       
-          <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName == 'Fabric Export'">
+          <div class="form-group row" *ngIf=" loggedInDepartmentName == 'Fabric Export'">
             <label class="col-md-3 col-form-label  ">Piece Length</label>
             <div class="col-md-8">
               <ng-select [(ngModel)]="data.pieceLengthId" placeholder=" Select  Piece Length" name="pieceLengthId"
@@ -153,7 +153,28 @@
               </ng-select>
             </div>
           </div>
-
+          <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local' ">
+            <label class="col-md-3 col-form-label  ">Buyer Piece Length</label>
+            <div class="col-md-8">
+              <ng-select [(ngModel)]="data.pieceLengthId" placeholder=" Select  Piece Length" name="pieceLengthId"
+                #pieceLengthId="ngModel">
+                <ng-option *ngFor="let i of piece" [value]="i.id"> {{i.pieceLengthName}}
+                </ng-option>
+      
+              </ng-select>
+            </div>
+          </div>
+          <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local' ">
+            <label class="col-md-3 col-form-label  ">Seller Piece Length</label>
+            <div class="col-md-8">
+              <ng-select [(ngModel)]="data.pieceLengthId" placeholder=" Select  Piece Length" name="pieceLengthId"
+                #pieceLengthId="ngModel">
+                <ng-option *ngFor="let i of piece" [value]="i.id"> {{i.pieceLengthName}}
+                </ng-option>
+      
+              </ng-select>
+            </div>
+          </div>
           <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local'">
             <label class="col-md-3 col-form-label  ">Pick Insertion</label>
             <div class="col-md-8">
