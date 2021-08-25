@@ -595,7 +595,7 @@
                     
                     
                                 <div class="form-group row"
-                                    *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName=='Fabric Export' ">
+                                    *ngIf="loggedInDepartmentName=='Fabric Export' ">
                                     <label for="inputEmail3" class="col-md-3 col-form-label control-label">Piece Length:</label>
                     
                                     <div class="col-md-7">
@@ -617,6 +617,52 @@
                     
                                 </div>
                     
+                                <div class="form-group row"
+                                    *ngIf="loggedInDepartmentName=='Fabric Local' ">
+                                    <label for="rate" class="col-md-3 col-form-label control-label">Seller Side Piece Length:</label>
+
+                                    <div class="col-md-7">
+                                        <div class="input-group">
+                                            <ng-select name="pieceLengthId" #pieceLengthId="ngModel" class="input-w px-0"
+                                                [(ngModel)]="data.pieceLengthId" placeholder="Select Piece Length">
+                                                <ng-option *ngFor="let i of PieceLength" [value]="i.id">{{ i.pieceLengthName }}
+                                                </ng-option>
+                                            </ng-select>
+                    
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-primary" type="button" id="button-addon2"
+                                                    (click)="addpiecelengthForm('add','piecelengthForm')">
+                                                    <i class="fa fa-plus"></i></button>
+                                            </div>
+                    
+                                        </div>
+                                    </div>
+                    
+                                </div>
+
+                                <div class="form-group row"
+                                    *ngIf="loggedInDepartmentName=='Fabric Local' ">
+                                    <label for="rate" class="col-md-3 col-form-label control-label">Buyer Side Piece Length:</label>
+
+                                    <div class="col-md-7">
+                                        <div class="input-group">
+                                            <ng-select name="pieceLengthId" #pieceLengthId="ngModel" class="input-w px-0"
+                                                [(ngModel)]="data.pieceLengthId" placeholder="Select Piece Length">
+                                                <ng-option *ngFor="let i of PieceLength" [value]="i.id">{{ i.pieceLengthName }}
+                                                </ng-option>
+                                            </ng-select>
+                    
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-primary" type="button" id="button-addon2"
+                                                    (click)="addpiecelengthForm('add','piecelengthForm')">
+                                                    <i class="fa fa-plus"></i></button>
+                                            </div>
+                    
+                                        </div>
+                                    </div>
+                    
+                                </div>
+
                                 <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local'">
                                     <label for="inputEmail3" class="col-md-3 col-form-label control-label">Pick
                                         Insertion:</label>

@@ -2924,7 +2924,8 @@ getImage(){
                         margin: [20 , 2 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
-                        [{text:'Payment Terms:'  , style:'heading'} , {text: this.contractPaymentData['sellerPaymentTermDays'] == '' ? " " :this.contractPaymentData['sellerPaymentTermName'] + this.contractPaymentData['sellerPaymentTermDays']+ " Days " + this.contractPaymentData['sellerPaymentTermInfo']  , margin:[-20,0,0,0] , style:'heading2'}],] }
+                        [{text:'Payment Terms:'  , style:'heading'} , {text: this.contractPaymentData['buyerPaymentTermDays'] == '' ? this.contractPaymentData['buyerPaymentTermName'] +
+                        this.contractPaymentData['buyerSidePaymentTermInfo']  :this.contractPaymentData['buyerPaymentTermName'] + this.contractPaymentData['buyerPaymentTermDays']+ " Days " + this.contractPaymentData['buyerSidePaymentTermInfo']  , margin:[-20,0,0,0] , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
@@ -3953,7 +3954,8 @@ getImage(){
                         margin: [20 , 2 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
-                        [{text:'Payment Terms:'  , style:'heading'} , {text: this.contractPaymentData['sellerPaymentTermDays'] == '' ? " " :this.contractPaymentData['sellerPaymentTermName'] + this.contractPaymentData['sellerPaymentTermDays']+ " Days " + this.contractPaymentData['sellerPaymentTermInfo']  , margin:[-20,0,0,0] , style:'heading2'}],] }
+                        [{text:'Payment Terms:'  , style:'heading'} , {text: this.contractPaymentData['sellerPaymentTermDays'] == '' ? this.contractPaymentData['sellerPaymentTermName'] + 
+                        this.contractPaymentData['sellerPaymentTermInfo']  :this.contractPaymentData['sellerPaymentTermName'] + this.contractPaymentData['sellerPaymentTermDays']+ " Days " + this.contractPaymentData['sellerPaymentTermInfo']  , margin:[-20,0,0,0] , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
