@@ -167,8 +167,8 @@
           <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local' ">
             <label class="col-md-3 col-form-label  ">Seller Piece Length</label>
             <div class="col-md-8">
-              <ng-select [(ngModel)]="data.SellerPieceLengthId" placeholder=" Select  Piece Length" name="SellerPieceLengthId"
-                #SellerPieceLengthId="ngModel">
+              <ng-select [(ngModel)]="data.sellerPieceLengthId" placeholder=" Select  Piece Length" name="sellerPieceLengthId"
+                #sellerPieceLengthId="ngModel">
                 <ng-option *ngFor="let i of piece" [value]="i.id"> {{i.pieceLengthName}}
                 </ng-option>
       
