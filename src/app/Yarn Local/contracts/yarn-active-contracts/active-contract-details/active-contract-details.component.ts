@@ -3946,7 +3946,7 @@ getImage(){
                         margin: [20 , 2 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
-                        [{text:'Piece Length:'  , style:'heading'} , {text: this.contractProductData['pieceLengthName'] , margin:[-20,0,0,0] , style:'heading2'}],] }
+                        [{text:'Piece Length:'  , style:'heading'} , {text: this.contractProductData['sellerPieceLengthName'] , margin:[-20,0,0,0] , style:'heading2'}],] }
                       },
                    
                       {

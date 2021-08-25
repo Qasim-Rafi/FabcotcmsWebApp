@@ -18,7 +18,7 @@ export class ProductAndSpecificationComponent implements OnInit {
   loggedInDepartmentName: string;
 
   @Input() contractId;
-  data:any ={};
+  data:any =[];
   data4:any ={};
 
   article: any={};
@@ -205,7 +205,7 @@ this.GetSelvedgeDropdown();
       "weaveId": this.data.weaveId,
       "selvedgeId": this.data.selvedgeId,
       "pieceLengthId": this.data.pieceLengthId,
-      "SellerPieceLengthId" : this.data.SellerPieceLengthId,
+      "sellerPieceLengthId" : this.data.sellerPieceLengthId,
       "pickInsertionId": this.data.pickInsertionId,
       "width": this.data.width,
       "blendingRatioWarpId": this.data.blendingRatioWarpId,
