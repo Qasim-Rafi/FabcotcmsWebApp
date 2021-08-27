@@ -68,7 +68,8 @@ export class DocumentUploadPopUpComponent implements OnInit {
         if (this.response.success == true && this.response.data != null) {
           this.department = this.response.data;
         }
-        else {
+        else if(this.response.success == false) {
+         
           this.toastr.error(this.response.message, 'Message.');
         }
       });
@@ -82,7 +83,8 @@ export class DocumentUploadPopUpComponent implements OnInit {
       if (this.response.success == true && this.response.data != null) {
         this.contracts= this.response.data;
       }
-      else {
+      else if(this.response.success == false) {
+         
         this.toastr.error(this.response.message, 'Message.');
       }
     });
@@ -95,7 +97,8 @@ getDocumentsType(){
       if (this.response.success == true && this.response.data != null) {
         this.type = this.response.data;
       }
-      else {
+      else if(this.response.success == false) {
+         
         this.toastr.error(this.response.message, 'Message.');
       }
     });

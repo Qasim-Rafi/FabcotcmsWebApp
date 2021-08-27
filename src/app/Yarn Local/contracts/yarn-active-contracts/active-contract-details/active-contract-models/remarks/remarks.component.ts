@@ -44,10 +44,10 @@ export class RemarksComponent implements OnInit {
             this.data = this.response.data;
             
           }
-          else {
+          else if(this.response.success == false) {
+         
             this.toastr.error(this.response.message, 'Message.');
           }
- 
         },(err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');

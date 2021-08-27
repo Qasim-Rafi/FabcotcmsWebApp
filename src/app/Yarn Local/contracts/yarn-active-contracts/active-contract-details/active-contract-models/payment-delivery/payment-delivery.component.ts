@@ -134,7 +134,8 @@ export class PaymentDeliveryComponent implements OnInit {
             this.data = this.response.data;
             
           }
-          else {
+          else if(this.response.success == false) {
+         
             this.toastr.error(this.response.message, 'Message.');
           }
  

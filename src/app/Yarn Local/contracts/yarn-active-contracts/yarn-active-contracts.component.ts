@@ -139,6 +139,9 @@ this.spinner.hide();
 
       }
       else {
+        if(this.response.data == null){
+          
+        }
         this.toastr.error(this.response.message, 'Message.');
 this.spinner.hide();
 

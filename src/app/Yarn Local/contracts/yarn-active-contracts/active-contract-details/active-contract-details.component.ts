@@ -376,7 +376,8 @@ comm = "Commission:";
           this.yarnExportInvoicesReportPrint();
     
         }
-        else {
+        else if(this.response.success == false) {
+         
           this.toastr.error(this.response.message, 'Message.');
         }
         // this.spinner.hide();
@@ -538,7 +539,8 @@ comm = "Commission:";
           }
           this.deliveryFilter = [...this.deliveryData]
         }
-        else {
+        else if(this.response.success == false) {
+         
           this.toastr.error(this.response.message, 'Message.');
         }
         // this.spinner.hide();
@@ -564,7 +566,8 @@ comm = "Commission:";
           this.noteFilter = [this.contractNote]; 
           cb(this.contractNote);
         }
-        else {
+        else if(this.response.success == false) {
+         
           this.toastr.error(this.response.message, 'Message.');
         }
         // this.spinner.hide();
@@ -590,7 +593,8 @@ comm = "Commission:";
           this.shipmentFilter = [this.shipment]; 
           cb(this.shipment);
         }
-        else {
+        else if(this.response.success == false) {
+         
           this.toastr.error(this.response.message, 'Message.');
         }
         // this.spinner.hide();
@@ -669,10 +673,10 @@ lcForm(check){
     cb(this.saleInvoice);
   //  this.spinner.hide();
    }
-    else{
-      this.toastr.error(this.response.message, 'Message.');
-    // this.spinner.hide();
-    }
+   else if(this.response.success == false) {
+         
+    this.toastr.error(this.response.message, 'Message.');
+  }
       // this.spinner.hide();
     }, err => {
       if ( err.status == 400) {
@@ -691,7 +695,8 @@ lcForm(check){
           this.saleInvoice = this.response.data
           // this.deliveryFilter = [...this.deliveryData]
         }
-        else {
+        else if(this.response.success == false) {
+         
           this.toastr.error(this.response.message, 'Message.');
         }
         // this.spinner.hide();
@@ -907,11 +912,10 @@ lcForm(check){
              this.spinner.hide();
 
           }
-          else {
+          else if(this.response.success == false) {
+         
             this.toastr.error(this.response.message, 'Message.');
-            this.spinner.hide();
           }
-  
         },(err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
           this.toastr.error(messages.toString(), 'Message.');
@@ -931,7 +935,8 @@ getContractPartiesData() {
           
 
         }
-        else {
+        else if(this.response.success == false) {
+         
           this.toastr.error(this.response.message, 'Message.');
         }
 
@@ -953,7 +958,8 @@ getDeliveryTimeLine() {
           
 
         }
-        else {
+        else if(this.response.success == false) {
+         
           this.toastr.error(this.response.message, 'Message.');
         }
 
@@ -1006,7 +1012,8 @@ getAllDocuments() {
               this.rowsDoc=this.Documents
 
         }
-        else {
+        else if(this.response.success == false) {
+         
           this.toastr.error(this.response.message, 'Message.');
         }
 
@@ -1025,7 +1032,8 @@ getDocumentData() {
         if (this.response.success == true && this.response.data != null) {
           this.DocumentData = this.response.data;
         }
-        else {
+        else if(this.response.success == false) {
+         
           this.toastr.error(this.response.message, 'Message.');
         }
 
@@ -1049,7 +1057,8 @@ getDispatches() {
       this.dispatchFilter = [...this.dispatchData];
 
         }
-        else {
+        else if(this.response.success == false) {
+         
           this.toastr.error(this.response.message, 'Message.');
         }
 
@@ -1069,7 +1078,8 @@ getPrintData() {
       
 
         }
-        else {
+        else if(this.response.success == false) {
+         
           this.toastr.error(this.response.message, 'Message.');
         }
 
@@ -1089,7 +1099,8 @@ getProdPlan() {
           
 
         }
-        else {
+        else if(this.response.success == false) {
+         
           this.toastr.error(this.response.message, 'Message.');
         }
 
@@ -1121,7 +1132,8 @@ getContractProductData() {
             this.contractProductData.construction = ""
           }
         }
-        else {
+        else if(this.response.success == false) {
+         
           this.toastr.error(this.response.message, 'Message.');
         }
 
@@ -1170,10 +1182,10 @@ getContractCostingData() {
         
         }
 
-        else {
+        else if(this.response.success == false) {
+         
           this.toastr.error(this.response.message, 'Message.');
         }
-
       },(err: HttpErrorResponse) => {
         const messages = this.service.extractErrorMessagesFromErrorResponse(err);
         this.toastr.error(messages.toString(), 'Message.');
@@ -1232,7 +1244,8 @@ getContractPaymentData() {
         }
     
         }
-        else {
+        else if(this.response.success == false) {
+         
           this.toastr.error(this.response.message, 'Message.');
         }
 
@@ -1270,7 +1283,8 @@ getContractCommisionData(){
   
 
       }
-      else {
+      else if(this.response.success == false) {
+         
         this.toastr.error(this.response.message, 'Message.');
       }
 
@@ -1307,7 +1321,8 @@ getAllBenificery(cb) {
   this.empData =this.response.data;
   cb(this.empData);
   }
-  else{
+  else if(this.response.success == false) {
+         
     this.toastr.error(this.response.message, 'Message.');
   }
     // this.spinner.hide();
@@ -1569,7 +1584,8 @@ getContractRemarkData() {
           this.contractRemarksData = this.response.data;
           
         }
-        else {
+        else if(this.response.success == false) {
+         
           this.toastr.error(this.response.message, 'Message.');
         }
 
@@ -1961,10 +1977,9 @@ deleteDispatch(id) {
 
            
             }
-            else {
-              this.toastr.error('Something went Worng', 'Message.');
-  this.spinner.hide();
-              
+            else if(this.response.success == false) {
+         
+              this.toastr.error(this.response.message, 'Message.');
             }
     
           }, err => {
@@ -2085,7 +2100,8 @@ deleteDispatch(id) {
                     
           
                   }
-                  else {
+                  else if(this.response.success == false) {
+         
                     this.toastr.error(this.response.message, 'Message.');
                   }
           

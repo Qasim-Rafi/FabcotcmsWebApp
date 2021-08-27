@@ -69,7 +69,8 @@ export class DispatchRegisterComponent implements OnInit {
       if (this.response.success == true && this.response.data != null) {
         this.count = this.response.data;
       }
-      else {
+      else if(this.response.success == false) {
+         
         this.toastr.error(this.response.message, 'Message.');
       }
     })
@@ -81,7 +82,8 @@ export class DispatchRegisterComponent implements OnInit {
       if (this.response.success == true && this.response.data != null) {
         this.uomList = this.response.data;
       }
-      else {
+      else if(this.response.success == false) {
+         
         this.toastr.error(this.response.message, 'Message.');
       }
     })
@@ -99,7 +101,8 @@ export class DispatchRegisterComponent implements OnInit {
             
 
           }
-          else {
+          else if(this.response.success == false) {
+         
             this.toastr.error(this.response.message, 'Message.');
           }
 

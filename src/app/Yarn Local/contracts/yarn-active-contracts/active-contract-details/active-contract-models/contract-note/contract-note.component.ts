@@ -99,10 +99,10 @@ private toastr: ToastrService,
             this.data = this.response.data;
             this.isPublic = this.data.isPublic;
           }
-          else {
+          else if(this.response.success == false) {
+         
             this.toastr.error(this.response.message, 'Message.');
           }
-
         }, err => {
           if (err.status == 400) {
             this.toastr.error(this.response.message, 'Message.');
