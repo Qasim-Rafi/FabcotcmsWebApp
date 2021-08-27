@@ -55,7 +55,8 @@ export class EmployeeCommissionComponent implements OnInit {
       if (this.response.success == true && this.response.data != null) {
         this.user = this.response.data;
       }
-      else {
+      else if(this.response.success == false) {
+         
         this.toastr.error(this.response.message, 'Message.');
       }
     })
@@ -72,8 +73,9 @@ export class EmployeeCommissionComponent implements OnInit {
 
             this.data.beneficiaryCriteriaId = null
         }
-        else{
-            this.data.beneficiaryCriteriaId = this.criteria[0].id
+        else if(this.response.success == false) {
+         
+          this.toastr.error(this.response.message, 'Message.');
         }
         // this.data.beneficiaryCriteriaId = 2; 
 
@@ -91,7 +93,8 @@ export class EmployeeCommissionComponent implements OnInit {
       if (this.response.success == true && this.response.data != null) {
         this.criteria = this.response.data;
       }
-      else {
+      else if(this.response.success == false) {
+         
         this.toastr.error(this.response.message, 'Message.');
       }
     })
@@ -108,7 +111,8 @@ export class EmployeeCommissionComponent implements OnInit {
             this.data = this.response.data;
             this.GetCriteriaDropdownEdit(this.data.userId)
           }
-          else {
+          else if(this.response.success == false) {
+         
             this.toastr.error(this.response.message, 'Message.');
           }
  

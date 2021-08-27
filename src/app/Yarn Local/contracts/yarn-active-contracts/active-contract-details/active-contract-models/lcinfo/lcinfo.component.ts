@@ -50,7 +50,8 @@ buyer: any={};
       if (this.response.success == true && this.response.data != null) {
         this.buyer = this.response.data;
       }
-      else {
+      else if(this.response.success == false) {
+         
         this.toastr.error(this.response.message, 'Message.');
       }
     })
@@ -104,9 +105,9 @@ this.spinner.show();
          
 
           }
-          else {
-            this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
-            // this.spinner.hide();
+          else if(this.response.success == false) {
+         
+            this.toastr.error(this.response.message, 'Message.');
           }
 
         },(err: HttpErrorResponse) => {

@@ -75,7 +75,8 @@ export class CommisionKickbackComponent implements OnInit {
       if (this.response.success == true && this.response.data != null) {
         this.uomList = this.response.data;
       }
-      else {
+      else if(this.response.success == false) {
+         
         this.toastr.error(this.response.message, 'Message.');
       }
     })
@@ -91,7 +92,8 @@ export class CommisionKickbackComponent implements OnInit {
       if (this.response.success == true && this.response.data != null) {
         this.agents = this.response.data;
       }
-      else {
+      else if(this.response.success == false) {
+         
         this.toastr.error(this.response.message, 'Message.');
       }
     })
@@ -112,10 +114,10 @@ export class CommisionKickbackComponent implements OnInit {
           // this.commission.agenetName= parseInt(this.commission.agenetName);
           
         }
-        else {
+        else if(this.response.success == false) {
+         
           this.toastr.error(this.response.message, 'Message.');
         }
-
       },(err: HttpErrorResponse) => {
         const messages = this.service.extractErrorMessagesFromErrorResponse(err);
         this.toastr.error(messages.toString(), 'Message.');
