@@ -265,7 +265,7 @@ this.spinner.show();
       .subscribe(
         res => {
           this.response = res;
-          if (this.response.success == true) {
+          if (this.response.success == true && this.response.data != null) {
             this.data = this.response.data;
             this.saleInvoiceNo=this.data.saleInvoiceNo;
             this.data.saleInvoiceDate = this.dateformater.fromModel(this.data.saleInvoiceDate);

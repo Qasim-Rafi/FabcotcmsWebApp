@@ -72,7 +72,7 @@ export class CommisionKickbackComponent implements OnInit {
     this.http.get(`${environment.apiUrl}/api/Lookups/UOMs`).
     subscribe(res => {
       this.response = res;
-      if (this.response.success == true) {
+      if (this.response.success == true && this.response.data != null) {
         this.uomList = this.response.data;
       }
       else {
@@ -88,7 +88,7 @@ export class CommisionKickbackComponent implements OnInit {
   GetAgentDropdown() {
     this.service.getAgents().subscribe(res => {
       this.response = res;
-      if (this.response.success == true) {
+      if (this.response.success == true && this.response.data != null) {
         this.agents = this.response.data;
       }
       else {
@@ -105,7 +105,7 @@ export class CommisionKickbackComponent implements OnInit {
     .subscribe(
       res => {
         this.response = res;
-        if (this.response.success == true) {
+        if (this.response.success == true && this.response.data != null) {
           this.data = this.response.data;
           // this.agents = this.response.data.agentCommission;
 

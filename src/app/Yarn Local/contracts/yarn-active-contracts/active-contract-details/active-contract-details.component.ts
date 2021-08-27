@@ -371,7 +371,7 @@ comm = "Commission:";
       .subscribe(res => {
         this.response = res;
 
-        if (this.response.success == true) {
+        if (this.response.success == true && this.response.data != null) {
           this.yarnExportInvoiceReports = this.response.data;
           this.yarnExportInvoicesReportPrint();
     
@@ -531,7 +531,7 @@ comm = "Commission:";
       .subscribe(res => {
         this.response = res;
 
-        if (this.response.success == true) {
+        if (this.response.success == true && this.response.data != null) {
           this.deliveryData = this.response.data;
           if(this.deliveryData[0].buyerDateDay == null){
             this.deliveryData[0].buyerDateDay = '';
@@ -559,7 +559,7 @@ comm = "Commission:";
         this.response = res;
         
 
-        if (this.response.success == true) {
+        if (this.response.success == true && this.response.data != null) {
           this.contractNote = this.response.data
           this.noteFilter = [this.contractNote]; 
           cb(this.contractNote);
@@ -585,7 +585,7 @@ comm = "Commission:";
         this.response = res;
         
 
-        if (this.response.success == true) {
+        if (this.response.success == true && this.response.data != null) {
           this.shipment = this.response.data
           this.shipmentFilter = [this.shipment]; 
           cb(this.shipment);
@@ -659,7 +659,7 @@ lcForm(check){
     .subscribe(res => {
       this.response = res;
      
-    if(this.response.success==true)
+    if(this.response.success==true && this.response.data != null)
     {
       this.saleInvoice =this.response.data;
       this.saleInvoiceNo=this.response.data[0].saleInvoiceNo;
@@ -687,7 +687,7 @@ lcForm(check){
       .subscribe(res => {
         this.response = res;
 
-        if (this.response.success == true) {
+        if (this.response.success == true && this.response.data != null) {
           this.saleInvoice = this.response.data
           // this.deliveryFilter = [...this.deliveryData]
         }
@@ -897,7 +897,7 @@ lcForm(check){
       .subscribe(
         res => {
           this.response = res;
-          if (this.response.success == true) {
+          if (this.response.success == true && this.response.data != null) {
             this.contractData = this.response.data;
             this.contractArticles = this.response.data.contractArticles;
             this.buyerName = this.contractData.buyerName
@@ -926,7 +926,7 @@ getContractPartiesData() {
     .subscribe(
       res => {
         this.response = res;
-        if (this.response.success == true) {
+        if (this.response.success == true && this.response.data != null) {
           this.contractPartiesData = this.response.data;
           
 
@@ -948,7 +948,7 @@ getDeliveryTimeLine() {
     .subscribe(
       res => {
         this.response = res;
-        if (this.response.success == true) {
+        if (this.response.success == true && this.response.data != null) {
           this.deliveryTimeLineData = this.response.data;
           
 
@@ -1001,7 +1001,7 @@ getAllDocuments() {
     .subscribe(
       res => {
         this.response = res;
-        if (this.response.success == true) {
+        if (this.response.success == true && this.response.data != null)  {
           this.Documents = this.response.data;
               this.rowsDoc=this.Documents
 
@@ -1022,7 +1022,7 @@ getDocumentData() {
     .subscribe(
       res => {
         this.response = res;
-        if (this.response.success == true) {
+        if (this.response.success == true && this.response.data != null) {
           this.DocumentData = this.response.data;
         }
         else {
@@ -1042,7 +1042,7 @@ getDispatches() {
     .subscribe(
       res => {
         this.response = res;
-        if (this.response.success == true) {
+        if (this.response.success == true && this.response.data != null) {
           this.dispatchData = this.response.data;
           // this.dispatchFilter = [...this.dispatchData]
           // cb(this.dispatchData);
@@ -1064,7 +1064,7 @@ getPrintData() {
     .subscribe(
       res => {
         this.response = res;
-        if (this.response.success == true) {
+        if (this.response.success == true && this.response.data != null) {
           this.printData = this.response.data;
       
 
@@ -1084,7 +1084,7 @@ getProdPlan() {
     .subscribe(
       res => {
         this.response = res;
-        if (this.response.success == true) {
+        if (this.response.success == true && this.response.data != null) {
           this.prodPlanData = this.response.data;
           
 
@@ -1108,7 +1108,7 @@ getContractProductData() {
     .subscribe(
       res => {
         this.response = res;
-        if (this.response.success == true) {
+        if (this.response.success == true && this.response.data != null) {
           this.contractProductData = this.response.data;
           if(this.response.data.pecenetAge == null){
             this.contractProductData.pecenetAge = ""
@@ -1138,7 +1138,7 @@ getContractCostingData() {
     .subscribe(
       res => {
         this.response = res;
-        if (this.response.success == true) {
+        if (this.response.success == true && this.response.data != null) {
           this.contractCostingData = this.response.data;
           this.max = this.response.data.quantity;
 
@@ -1186,7 +1186,7 @@ getContractPaymentData() {
     .subscribe(
       res => {
         this.response = res;
-        if (this.response.success == true) {
+        if (this.response.success == true && this.response.data != null) {
           this.contractPaymentData = this.response.data;
           if(this.response.data.sellerPaymentTermName == null){
             this.contractPaymentData.sellerPaymentTermName = ""
@@ -1253,7 +1253,7 @@ getContractCommisionData(){
   .subscribe(
     res => {
       this.response = res;
-      if (this.response.success == true) {
+      if (this.response.success == true && this.response.data != null) {
         // this.response.data ==null? '':this.response.data;
         this.contractCommissionData = this.response.data;
         this.agent = this.response.data.agentCommissions;
@@ -1302,7 +1302,7 @@ getAllBenificery(cb) {
   .subscribe(res => {
     this.response = res;
    
-  if(this.response.success==true)
+  if(this.response.success==true && this.response.data != null)
   {
   this.empData =this.response.data;
   cb(this.empData);
@@ -1565,7 +1565,7 @@ getContractRemarkData() {
     .subscribe(
       res => {
         this.response = res;
-        if (this.response.success == true) {
+        if (this.response.success == true && this.response.data != null) {
           this.contractRemarksData = this.response.data;
           
         }
@@ -1591,7 +1591,7 @@ getContractLOC() {
     .subscribe(
       res => {
         this.response = res;
-        if (this.response.success == true) {
+        if (this.response.success == true && this.response.data != null) {
           if(this.response.data != null){
           this.contractLOCdata = this.response.data;
           }
@@ -1953,7 +1953,7 @@ deleteDispatch(id) {
           res=> { 
       
             this.response = res;
-            if (this.response.success == true){
+            if (this.response.success == true && this.response.data != null){
               this.toastr.success(this.response.message, 'Message.');
               this.getContractData();
               this.spinner.hide();
@@ -2080,7 +2080,7 @@ deleteDispatch(id) {
                 res => {
                   this.response = res;
 
-                  if (this.response.success == true) {
+                  if (this.response.success == true && this.response.data != null) {
                     this.reminderData = this.response.data;
                     
           

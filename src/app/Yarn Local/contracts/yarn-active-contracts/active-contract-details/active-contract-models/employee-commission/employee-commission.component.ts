@@ -52,7 +52,7 @@ export class EmployeeCommissionComponent implements OnInit {
   GetUserDropdown() {
     this.service.getUsers().subscribe(res => {
       this.response = res;
-      if (this.response.success == true) {
+      if (this.response.success == true && this.response.data != null) {
         this.user = this.response.data;
       }
       else {
@@ -66,7 +66,7 @@ export class EmployeeCommissionComponent implements OnInit {
     let id = event;
     this.service.getCriteria(id).subscribe(res => {
       this.response = res;
-      if (this.response.success == true) {
+      if (this.response.success == true && this.response.data != null) {
         this.criteria = this.response.data;
         if(this.criteria.length == 0){
 
@@ -88,7 +88,7 @@ export class EmployeeCommissionComponent implements OnInit {
     let id = idEdit;
     this.service.getCriteria(id).subscribe(res => {
       this.response = res;
-      if (this.response.success == true) {
+      if (this.response.success == true && this.response.data != null) {
         this.criteria = this.response.data;
       }
       else {
@@ -104,7 +104,7 @@ export class EmployeeCommissionComponent implements OnInit {
       .subscribe(
         res => {
           this.response = res;
-          if (this.response.success == true) {
+          if (this.response.success == true && this.response.data != null) {
             this.data = this.response.data;
             this.GetCriteriaDropdownEdit(this.data.userId)
           }
