@@ -176,7 +176,7 @@ this.GetSelvedgeDropdown();
       .subscribe(
         res => {
           this.response = res;
-          if (this.response.success == true) {
+          if (this.response.success == true && this.response.data != null) {
             this.data = this.response.data;
             
           }

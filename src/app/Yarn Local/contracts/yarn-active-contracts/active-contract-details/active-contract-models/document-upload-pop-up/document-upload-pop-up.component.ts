@@ -65,7 +65,7 @@ export class DocumentUploadPopUpComponent implements OnInit {
     
       this.service.getDepartments().subscribe(res => {
         this.response = res;
-        if (this.response.success == true) {
+        if (this.response.success == true && this.response.data != null) {
           this.department = this.response.data;
         }
         else {
@@ -79,7 +79,7 @@ export class DocumentUploadPopUpComponent implements OnInit {
     
     this.service.getContracts().subscribe(res => {
       this.response = res;
-      if (this.response.success == true) {
+      if (this.response.success == true && this.response.data != null) {
         this.contracts= this.response.data;
       }
       else {
@@ -92,7 +92,7 @@ getDocumentsType(){
   
     this.service.getDocumentType().subscribe(res => {
       this.response = res;
-      if (this.response.success == true) {
+      if (this.response.success == true && this.response.data != null) {
         this.type = this.response.data;
       }
       else {

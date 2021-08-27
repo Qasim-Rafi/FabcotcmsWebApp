@@ -93,7 +93,7 @@ export class DebitComponent implements OnInit {
       .subscribe(
         res => {
           this.response = res;
-          if (this.response.success == true) {
+          if (this.response.success == true && this.response.data != null) {
             this.data = this.response.data;
             this.data.date = this.dateformater.fromModel(this.data.date);
             

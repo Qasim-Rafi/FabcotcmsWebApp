@@ -56,7 +56,7 @@ export class PartiesComponent implements OnInit {
       .subscribe(
         res => {
           this.response = res;
-          if (this.response.success == true) {
+          if (this.response.success == true && this.response.data != null) {
             this.data = this.response.data;
             this.data.certificateIds = this.data.certificateIds != null && this.data.certificateIds != ""  ? parseInt(this.data.certificateIds) : this.data.certificateIds = null;
             // this.data.certificateIds = this.data.certificateIds == "" ? this.data.certificateIds = null : this.data.certificateIds;
@@ -88,7 +88,7 @@ export class PartiesComponent implements OnInit {
   GetBuyersDropdown() {
     this.service.getBuyers().subscribe(res => {
       this.response = res;
-      if (this.response.success == true) {
+      if (this.response.success == true ) {
         this.buyer = this.response.data;
       }
       else {
