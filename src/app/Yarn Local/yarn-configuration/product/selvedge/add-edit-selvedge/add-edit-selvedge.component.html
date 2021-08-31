@@ -28,7 +28,7 @@
           <label for="code" class="col-md-3 col-form-label control-label text_Navy">Selvedge Name<span
               class="required-denote">*</span> </label>
           <div class="col-md-8">
-            <input appAutofocus required maxlength="80" minlength="3" id="code" type="text" class="form-control"
+            <input appAutofocus required  id="code" type="text" class="form-control"
               placeholder="Selvedge Name" name="selvedgeName" [(ngModel)]="data.selvedgeName" #selvedgeName="ngModel"
               [ngClass]="{'error': selvedgeName.invalid && addAgentForm.submitted}">
             <small>Add Selvedge Name</small>
