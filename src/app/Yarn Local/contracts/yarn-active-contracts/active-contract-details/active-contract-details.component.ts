@@ -2823,7 +2823,16 @@ getImage(){
                         table:{headerRows: 1 , widths:['50%' , '50%'],
                       body: [
                         [{text:'Attn:  ' + this.contractPartiesData['buyerPOCName']  , style:'heading'} ,
-                        {text:'Contract No:  ' + this.contractData['createdDateTime']  , margin:[60, 0,0,0] , style:'heading'}
+                        {text:'Contract Date:  ' + this.contractData['createdDateTime']  , margin:[60, 0,0,0] , style:'heading'}
+                      ],] }
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [0 , 0 , 0 , 0],
+                        table:{headerRows: 1 , widths:['90%' , '50%'],
+                      body: [
+                        [{text: this.contractPartiesData['sellerContract'] ==null ? " ": 'Supplier Contract# :  ' + this.contractPartiesData['sellerContract']  , style:'heading'  , margin:[392, -1,0,-10] } ,
+                      
                       ],] }
                       },
                       // {
