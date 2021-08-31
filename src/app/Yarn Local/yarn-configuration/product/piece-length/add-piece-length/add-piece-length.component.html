@@ -28,10 +28,12 @@
             <label for="pieceLengthName" class="col-md-3 col-form-label control-label text_Navy">Piece Length Name<span
                 class="required-denote">*</span> </label>
             <div class="col-md-8">
-              <input appAutofocus required maxlength="80" minlength="3" id="pieceLengthName" type="text" class="form-control"
+           
+                <textarea appAutofocus required rows="3"  id="pieceLengthName" type="text" class="form-control"
                 placeholder="Piece Length name" name="pieceLengthName" [(ngModel)]="data.pieceLengthName"
-                #pieceLengthName="ngModel" [ngClass]="{'error': pieceLengthName.invalid && piecelengthForm.submitted}">
-              <small>Piece Length Description</small>
+                #pieceLengthName="ngModel" [ngClass]="{'error': pieceLengthName.invalid && piecelengthForm.submitted}"></textarea>
+
+              <small>Piece Length name</small>
             </div>
           </div>
       
