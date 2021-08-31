@@ -866,12 +866,12 @@
                                         </dt>
                                         <dd class="col-sm-6">{{contractProductData.pieceLengthName}}</dd>
                                     </dl>
-                                   
-                                    <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
-                                        <dt class="col-sm-6">Pick Insertion:
+                                    <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName == 'Fabric Export'">
+                                        <dt class="col-sm-6">Selvedge:
                                         </dt>
-                                        <dd class="col-sm-6">{{contractProductData.pickInsertionName}}</dd>
+                                        <dd class="col-sm-6">{{contractProductData.selvedgeName}}</dd>
                                     </dl>
+                                   
                                     <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
                                         <dt class="col-sm-6">Blending Ratio &nbsp; Warp:
                                         </dt>
@@ -903,10 +903,10 @@
                                         </dt>
                                         <dd class="col-sm-6">{{contractProductData.sellerPieceLengthName}}</dd>
                                     </dl>
-                                    <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName == 'Fabric Export'">
-                                        <dt class="col-sm-6">Selvedge:
+                                    <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+                                        <dt class="col-sm-6">Pick Insertion:
                                         </dt>
-                                        <dd class="col-sm-6">{{contractProductData.selvedgeName}}</dd>
+                                        <dd class="col-sm-6">{{contractProductData.pickInsertionName}}</dd>
                                     </dl>
                                     <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
                                         <dt class="col-sm-6">Width:

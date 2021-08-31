@@ -1333,7 +1333,10 @@ addItems(check, name) {
        
       // });
       this.getAllItems();
-      // this.getContractData();
+      this.getContractData();
+      this.getPreview((data)=>{
+        this.preview = data;
+      });
   
 
 
@@ -1460,12 +1463,15 @@ editItem(row, check, name) {
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
+
       // this.getAllItems((itemsData) => {
       //   this.rows2 = itemsData;
       // });
+  this.getContractData();
+
   this.getAllItems();
+
     }
-    this.getContractData();
 
   }, (reason) => {
     // on dismiss
@@ -1810,6 +1816,9 @@ this.spinner.hide();
           }
     
           print() {
+            this.getPreview((data)=>{
+              this.preview = data;
+            });
             let docDefinition = {
               pageSize: 'A4',
               pageOrientation: 'LETTER',

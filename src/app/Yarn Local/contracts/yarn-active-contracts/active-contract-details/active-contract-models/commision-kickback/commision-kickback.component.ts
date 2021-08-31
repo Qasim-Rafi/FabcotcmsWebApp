@@ -38,7 +38,6 @@ export class CommisionKickbackComponent implements OnInit {
     this.GetAgentDropdown();
     this.getContractCommisionData();
 
-
   }
   get activeModal() {
     return this._NgbActiveModal;
@@ -82,10 +81,6 @@ export class CommisionKickbackComponent implements OnInit {
     })
   }
 
-
-
-
-
   GetAgentDropdown() {
     this.service.getAgents().subscribe(res => {
       this.response = res;
@@ -98,9 +93,6 @@ export class CommisionKickbackComponent implements OnInit {
       }
     })
   }
-
-
-
 
   getContractCommisionData(){
     this.http.get(`${environment.apiUrl}/api/Contracts/GetContractCommissionKickBackById/` + this.contractId)
@@ -126,12 +118,8 @@ export class CommisionKickbackComponent implements OnInit {
     
   }
 
-
-
   addContractCommision() {
 
-
-   
     if (this.data.agentId != null) {
       this.commission.push({ ['agentId']: this.data.agentId, ["agentCommission"]: this.data.agentCommission })
 
@@ -184,9 +172,6 @@ this.spinner.hide();
 
         });
   }
-
-
-
 
 
 }

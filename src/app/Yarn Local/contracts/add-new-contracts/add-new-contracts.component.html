@@ -333,9 +333,9 @@
                     
                                 <div class="form-group row" *ngIf="loggedInDepartmentName!='Yarn Export'
                                 && loggedInDepartmentName != 'Yarn Import'">
-                                    <label for="inputEmail3" class="col-md-2 col-form-label control-label">Article:</label>
+                                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Article:</label>
                     
-                                    <div class="col-md-9">
+                                    <div class="col-md-7">
                                         <div class="input-group">
                                             <ng-select name="article" #articleId="ngModel" class="input-w px-0" [(ngModel)]="data.articleId"
                                                 placeholder="-- Select --">
@@ -542,7 +542,7 @@
                                     <div class="col-md-7">
                                         <div class="row">
                     
-                                            <div class="col-md-2">
+                                            <div class="col-md-3">
                                                 <div class="input-group">
                                                     <input type="text" placeholder="GSM" class="form-control" [(ngModel)]="data.gsm"
                                                         #gsm="ngModel" name="gsm">
@@ -562,7 +562,7 @@
                                                 </div>
                                             </div>
                     
-                                            <div class="col-md-3 mrg-tsm">
+                                            <div class="col-md-5 mrg-tsm">
                                                 <div class="input-group">
                                                     <ng-select name="weaveId" #weaveId="ngModel" class="input-w3 px-0"
                                                         [(ngModel)]="data.weaveId" placeholder="Weave">
@@ -579,16 +579,30 @@
                                                 </div>
                                             </div>
                     
-                                            <div class="col-md-3 mrg-tsm">
+                                            <!-- <div class="col-md-3 mrg-tsm">
                                                 <ng-select name="selvedgeId" #selvedgeId="ngModel" [(ngModel)]="data.selvedgeId"
                                                     placeholder="Selvedge">
                                                     <ng-option *ngFor="let i of selvedge" [value]="i.id">{{ i.selvedgeName }}
                                                     </ng-option>
                                                 </ng-select>
                     
-                                            </div>
+                                            </div> -->
                     
                                         </div>
+                                    </div>
+                    
+                                </div>
+
+                                <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local'
+                              ">
+                                    <label for="inputEmail3" class="col-md-3 col-form-label control-label">Selvedge:</label>
+                    
+                                    <div class="col-md-7">
+                                        <ng-select name="selvedgeId" #selvedgeId="ngModel" [(ngModel)]="data.selvedgeId"
+                                        placeholder="Selvedge">
+                                        <ng-option *ngFor="let i of selvedge" [value]="i.id">{{ i.selvedgeName }}
+                                        </ng-option>
+                                    </ng-select>
                                     </div>
                     
                                 </div>
