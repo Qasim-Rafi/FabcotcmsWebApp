@@ -223,10 +223,10 @@ this.GetUsersDropdown(this.deptId);
        "commission": parseInt(this.Bendata.commission),
       "status": this.status.toString(),
       "dateTime": this.dateformater.toModel(this.Bendata.dateTime),
-      "includeBuyer":this.includingArray,
+      "includeBuyer":this.includingArray ,
       // "commission": parseInt(this.Bendata.commissionRatio),
       "remarks":this.Bendata.remarks,
-      "excludeBuyer":this.excludingArray
+      "excludeBuyer":this.excludingArray 
     }
 this.spinner.show();
     this.http.

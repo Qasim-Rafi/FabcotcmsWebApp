@@ -46,16 +46,16 @@ export class GeneralSettingsComponent implements OnInit {
     this.spinner.show();
     if (this.localId != null) {
       let varr = {
-        "systemEmailAddress": this.data.systemEmailAddress,
-        "emailFromName": this.data.emailFromName,
+        "systemEmailAddress": this.data.systemEmailAddress ==""? null : this.data.systemEmailAddress,
+        "emailFromName": this.data.emailFromName =="" ? null :this.data.emailFromName,
         "beforeLCReminderDays": this.data.beforeLCReminderDays,
-        "systemNotificationRecipient": this.data.systemNotificationRecipient,
-        "contractTitleMessage": this.data.contractTitleMessage,
-        "termsAndCondition": this.data.termsAndCondition,
-        "amountDecimalPoints": this.data.amountDecimalPoints,
-        "quantityDecimalPoints": this.data.quantityDecimalPoints,
-        "deptEmailAddress": this.data.deptEmailAddress,
-        "deptPhoneNo": this.data.deptPhoneNo,
+        "systemNotificationRecipient": this.data.systemNotificationRecipient ==""? null : this.data.systemNotificationRecipient,
+        "contractTitleMessage": this.data.contractTitleMessage =="" ? null :this.data.contractTitleMessage,
+        "termsAndCondition": this.data.termsAndCondition == "" ? null : this.data.termsAndCondition,
+        "amountDecimalPoints": this.data.amountDecimalPoints ==""? null : this.data.amountDecimalPoints,
+        "quantityDecimalPoints": this.data.quantityDecimalPoints =="" ? null : this.data.quantityDecimalPoints,
+        "deptEmailAddress": this.data.deptEmailAddress =="" ? null : this.data.deptEmailAddress,
+        "deptPhoneNo": this.data.deptPhoneNo =="" ? null : this.data.deptPhoneNo,
 
       }
       this.http.post(`${environment.apiUrl}/api/Configs/AddGeneralSetting`, varr)
