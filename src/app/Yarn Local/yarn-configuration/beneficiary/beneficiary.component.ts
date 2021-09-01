@@ -84,7 +84,11 @@ export class BeneficiaryComponent implements OnInit {
       // on close
       if (data == true) {
  
-
+        this.service.fetch((data) => {
+          this.rows = data;
+      this.beneficiaryFilter = [...this.rows];       
+          this.BeneficiaryCount = this.rows.length;
+        }, this.beneficiaryUrl);
 
       }
       this.service.fetch((data) => {
@@ -92,6 +96,7 @@ export class BeneficiaryComponent implements OnInit {
     this.beneficiaryFilter = [...this.rows];       
         this.BeneficiaryCount = this.rows.length;
       }, this.beneficiaryUrl);
+   
     }, (reason) => {
       // on dismiss
     });

@@ -2831,7 +2831,7 @@ getImage(){
                         margin: [0 , 0 , 0 , 0],
                         table:{headerRows: 1 , widths:['90%' , '50%'],
                       body: [
-                        [{text: this.contractPartiesData['sellerContract'] ==null ? " ": 'Supplier Contract# :  ' + this.contractPartiesData['sellerContract']  , style:'heading'  , margin:[392, -1,0,-10] } ,
+                        [{text: this.contractPartiesData['sellerContract'] ==null ? " ": this.contractPartiesData['sellerContract'] ==''?" ": 'Supplier Contract# :  ' + this.contractPartiesData['sellerContract']  , style:'heading'  , margin:[392, -1,0,-10] } ,
                       
                       ],] }
                       },
@@ -3091,7 +3091,7 @@ getImage(){
                       // },
 
                       { 
-                        margin:[0,-31,0,0],
+                        margin:[0,0,0,0],
                         canvas: 
                         [
                             
@@ -3109,7 +3109,7 @@ getImage(){
 
                        {
                         layout:'noBorders',
-                        margin: [20 , 10 , 0 , 0],
+                        margin: [20 , 30 , 0 , 0],
                         table:{headerRows: 1 , widths:['100%'],
                       body: [
                         [{text:'Please get it signed & send back same for our record purpose'  ,  style:'heading'}],] }
@@ -4017,7 +4017,7 @@ getImage(){
                       },
                    
                       { 
-                        margin:[0,-27,0,0],
+                        margin:[0,0,0,0],
                         canvas: 
                         [
                             
@@ -4034,7 +4034,7 @@ getImage(){
 
                        {
                         layout:'noBorders',
-                        margin: [20 , 10 , 0 , 0],
+                        margin: [20 , 30 , 0 , 0],
                         table:{headerRows: 1 , widths:['100%'],
                       body: [
                         [{text:'Please get it signed & send back same for our record purpose'  ,  style:'heading'}],] }
