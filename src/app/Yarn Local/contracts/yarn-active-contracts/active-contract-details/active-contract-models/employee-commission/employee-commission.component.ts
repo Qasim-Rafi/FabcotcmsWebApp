@@ -20,6 +20,8 @@ export class EmployeeCommissionComponent implements OnInit {
   @Input() beneficiaryId;
   data:any ={};
   user:any = [];
+  users:any = [];
+
   criteria:any = {};
   response: any;
     
@@ -35,7 +37,7 @@ export class EmployeeCommissionComponent implements OnInit {
   ngOnInit(): void {
       this.GetUserDropdown();
       this.GetUserDropdown();
-     
+      this.getdropdown();
       if(this.statusCheck == 'editCommission'){
 
             this.getContractEmployeeCommissionData();
@@ -47,7 +49,25 @@ export class EmployeeCommissionComponent implements OnInit {
   }
 
 
-
+  getdropdown() {
+    this.http.get(`${environment.apiUrl}/api/Lookups/GetBeneficiaryUsers`)
+      .subscribe(
+        res => {
+          this.response = res;
+          if (this.response.success == true) {
+            this.users = this.response.data;
+            
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+  
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+        });
+  }
 
   GetUserDropdown() {
     this.service.getUsers().subscribe(res => {
@@ -65,7 +85,7 @@ export class EmployeeCommissionComponent implements OnInit {
 
   GetCriteriaDropdown(event) {
     let id = event;
-    this.service.getCriteria(id).subscribe(res => {
+    this.http.get(`${environment.apiUrl}/api/Lookups/BeneficiaryDetail/`+ id).subscribe(res => {
       this.response = res;
       if (this.response.success == true && this.response.data != null) {
         this.criteria = this.response.data;
@@ -88,13 +108,22 @@ export class EmployeeCommissionComponent implements OnInit {
 
   GetCriteriaDropdownEdit(idEdit) {
     let id = idEdit;
-    this.service.getCriteria(id).subscribe(res => {
+    this.http.get(`${environment.apiUrl}/api/Lookups/BeneficiaryDetail/`+ id).subscribe(res => {
       this.response = res;
       if (this.response.success == true && this.response.data != null) {
         this.criteria = this.response.data;
-      }
-      else if(this.response.success == false) {
+        if(this.criteria.length == 0){
+
+            this.data.beneficiaryCriteriaId = null
+        }
+        else if(this.response.success == false) {
          
+          this.toastr.error(this.response.message, 'Message.');
+        }
+        // this.data.beneficiaryCriteriaId = 2; 
+
+      }
+      else {
         this.toastr.error(this.response.message, 'Message.');
       }
     })
@@ -109,7 +138,7 @@ export class EmployeeCommissionComponent implements OnInit {
           this.response = res;
           if (this.response.success == true && this.response.data != null) {
             this.data = this.response.data;
-            this.GetCriteriaDropdownEdit(this.data.userId)
+            this.GetCriteriaDropdownEdit(this.data.commissionRatioId)
           }
           else if(this.response.success == false) {
          
@@ -131,7 +160,7 @@ export class EmployeeCommissionComponent implements OnInit {
     let varr = {
       "contractId": this.contractId,
       "userId": this.data.userId,
-      "beneficiaryCriteriaId": this.data.beneficiaryCriteriaId,
+      "commossionRatioId": this.data.commissionRatioId,
       "criteriaDetail": this.data.criteriaDetail,
     }
 this.spinner.show();
@@ -173,7 +202,7 @@ this.spinner.show();
     let varr = {
       "contractId": this.contractId,
       "userId": this.data.userId,
-      "beneficiaryCriteriaId": this.data.beneficiaryCriteriaId,
+      "commissionRatioId": this.data.commissionRatioId,
       "criteriaDetail": this.data.criteriaDetail,
     }
 
