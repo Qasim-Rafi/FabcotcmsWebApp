@@ -30,13 +30,13 @@
       <div class="col-10 col-md-11 pt-3 pb-2">
     
         <div class="form-group row">
-          <label class="col-md-3 col-form-label text_Navy">Agent</label>
+          <label class="col-md-3 col-form-label text_Navy">User</label>
           <div class="col-md-8">
-            <ng-select required placeholder="Select an Agent" name="userId" [(ngModel)]="data.userId"
+            <ng-select required placeholder="Select an User" name="userId" [(ngModel)]="data.userId"
               (change)="GetCriteriaDropdown($event)" #userId="ngModel"
               [ngClass]="{'error': userId.invalid && CityForm.submitted }">
-              <ng-option *ngFor="let i of user" [value]="i.id">
-                {{i.fullName}}
+              <ng-option *ngFor="let i of users" [value]="i.userId">
+                {{i.userName}}
               </ng-option>
             </ng-select>
     
@@ -46,11 +46,11 @@
         <div class="form-group row">
           <label class="col-md-3 col-form-label text_Navy">Criteria</label>
           <div class="col-md-8">
-            <ng-select required placeholder="Select Criteria" name="beneficiaryCriteriaId"
-              [(ngModel)]="data.beneficiaryCriteriaId" #beneficiaryCriteriaId="ngModel"
-              [ngClass]="{'error': beneficiaryCriteriaId.invalid && CityForm.submitted }">
+            <ng-select required placeholder="Select Criteria" name="commissionRatioId"
+              [(ngModel)]="data.commissionRatioId" #commissionRatioId="ngModel"
+              [ngClass]="{'error': commissionRatioId.invalid && CityForm.submitted }">
               <ng-option *ngFor="let i of criteria" [value]="i.id">
-                {{i.criteriaName}}
+                {{i.remarks}}
               </ng-option>
             </ng-select>
           </div>

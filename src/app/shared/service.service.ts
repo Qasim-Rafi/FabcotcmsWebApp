@@ -251,7 +251,7 @@ getAgentType(){
     return this.http.get(`${environment.apiUrl}/api/Lookups/Departments`);
   }
   getCriteria(id) {
-    return this.http.get(`${environment.apiUrl}/api/Lookups/BeneficiaryCriterias/` + id);
+    return this.http.get(`${environment.apiUrl}Lookups/BeneficiaryDetail/` + id);
   }
   getUsers() {
     return this.http.get(`${environment.apiUrl}/api/Users/GetUsers`);
