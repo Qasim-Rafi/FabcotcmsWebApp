@@ -23,6 +23,7 @@ import { SelvedgeComponent } from './product/selvedge/selvedge.component';
 import { PickInsertionComponent } from './product/pick-insertion/pick-insertion.component';
 import { BeneficiaryComponent } from './beneficiary/beneficiary.component';
 import { ConfigContractOwnerComponent } from './config-contract-owner/config-contract-owner.component';
+import { GeneralSettingsComponent } from 'src/app/configuration/general-settings/general-settings.component';
 
 
 
@@ -54,6 +55,7 @@ const routes: Routes = [
     { path: 'Weft' ,  component: WeftComponent},
     { path: 'Beneficiary' ,  component: BeneficiaryComponent},
     { path: 'config-contract-owner' ,  component: ConfigContractOwnerComponent},
+    { path: 'general-settings', component: GeneralSettingsComponent },
 ]
   }
 ]
