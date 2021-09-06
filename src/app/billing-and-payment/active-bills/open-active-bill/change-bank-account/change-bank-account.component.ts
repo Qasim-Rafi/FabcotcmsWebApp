@@ -20,7 +20,7 @@ export class ChangeBankAccountComponent implements OnInit {
 search:any;
 bankFilter: any = [];
 searchBank: any = [];
-
+queryParems: any = {};
 temp: any[];
 response:any;
 constructor(
@@ -37,6 +37,8 @@ constructor(
 ) { }
 
   ngOnInit(): void   {
+    this.queryParems = this.route.snapshot.queryParams;
+    this.bill_id = this.queryParems.id;
     this.GetBankAccDropdown()
     // this.service.getDocumentType().subscribe(res => {
     //   this.response = res;
