@@ -77,6 +77,15 @@ export class OpenActiveBillComponent implements OnInit {
     const toWords = new ToWords();
     this.words = toWords.convert(this.totalAmount2);
 
+  if(this.words.search("Point") == -1 )
+{
+  this.words = this.words.replace(this.words , this.words + " Dollars")
+}  
+else{
+    this.words = this.words.replace("Point" , "Dollars Point")
+    this.words = this.words.replace(this.words , this.words + " Cents")
+}
+
 
     cb(this.data);
     // this.spinner.hide();
