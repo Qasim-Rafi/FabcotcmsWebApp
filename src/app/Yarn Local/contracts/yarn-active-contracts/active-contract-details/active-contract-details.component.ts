@@ -2986,7 +2986,11 @@ getImage(){
                         margin: [20 , 2 , 0 , 0],
                         table:{headerRows: 1 , widths:['20.5%' , '39%' , '20%' , '20%'],
                       body: [
-                        [{text:'Total Amount:'  , style:'heading'} , {text: this.contractCostingData['rateCurrencyName'] + " "+ this.contractCostingData['contractCost'] ,  margin:[-35,0,0,0] ,style:'heading2'} , {text: "Amount Incl GST:"  , margin:[-160,0,0,0] , style:'heading'} , {text: this.contractCostingData['rateCurrencyName'] + " " + this.contractCostingData['totalCostGSt']  , margin:[-200,0,0,0] , style:'heading2'}],] }
+                        [{text:'Total Amount:'  , style:'heading'} , {text: this.contractCostingData['rateCurrencyName'] == 'PKR' ?   
+                          this.contractCostingData['rateCurrencyName'] + " "+ this.contractCostingData['contractCost'] + " RS" : this.contractCostingData['rateCurrencyName'] == 'USD' ?  this.contractCostingData['rateCurrencyName'] + " "+ this.contractCostingData['contractCost'] + " $" :this.contractCostingData['rateCurrencyName'] == 'EUR' ? 
+                          this.contractCostingData['rateCurrencyName'] + " "+ this.contractCostingData['contractCost'] + " €" : this.contractCostingData['rateCurrencyName'] == 'GBP' ?     this.contractCostingData['rateCurrencyName'] + " "+ this.contractCostingData['contractCost'] + " £": '',  margin:[-35,0,0,0] ,style:'heading2'} , {text: "Amount Incl GST:"  , margin:[-160,0,0,0] , style:'heading'} , {text: 
+                            this.contractCostingData['rateCurrencyName'] == 'PKR' ?   
+                            this.contractCostingData['rateCurrencyName'] + " " + this.contractCostingData['totalCostGSt'] + " RS" :  this.contractCostingData['rateCurrencyName'] == 'USD' ?  this.contractCostingData['rateCurrencyName'] + " "+ this.contractCostingData['totalCostGSt'] + " $" : this.contractCostingData['rateCurrencyName'] == 'EUR' ? this.contractCostingData['rateCurrencyName'] + " "+ this.contractCostingData['totalCostGSt'] + " €" : this.contractCostingData['rateCurrencyName'] == 'GBP' ? this.contractCostingData['rateCurrencyName'] + " "+ this.contractCostingData['totalCostGSt'] + " £"  : ''  , margin:[-200,0,0,0] , style:'heading2'}],] }
                       },
                      
                       {
@@ -3922,7 +3926,11 @@ getImage(){
                         margin: [20 , 2 , 0 , 0],
                         table:{headerRows: 1 , widths:['20.5%' , '39%' , '20%' , '20%'],
                       body: [
-                        [{text:'Total Amount:'  , style:'heading'} , {text: this.contractCostingData['rateCurrencyName'] + " "+ this.contractCostingData['contractCost'] ,  margin:[-35,0,0,0] ,style:'heading2'} , {text: "Amount Incl GST:"  , margin:[-160,0,0,0] , style:'heading'} , {text: this.contractCostingData['rateCurrencyName'] + " " + this.contractCostingData['totalCostGSt']  , margin:[-200,0,0,0] , style:'heading2'}],] }
+                        [{text:'Total Amount:'  , style:'heading'} , {text: this.contractCostingData['rateCurrencyName'] == 'PKR' ?   
+                        this.contractCostingData['rateCurrencyName'] + " "+ this.contractCostingData['contractCost'] + " RS" : this.contractCostingData['rateCurrencyName'] == 'USD' ?  this.contractCostingData['rateCurrencyName'] + " "+ this.contractCostingData['contractCost'] + " $" :this.contractCostingData['rateCurrencyName'] == 'EUR' ? 
+                        this.contractCostingData['rateCurrencyName'] + " "+ this.contractCostingData['contractCost'] + " €" : this.contractCostingData['rateCurrencyName'] == 'GBP' ?     this.contractCostingData['rateCurrencyName'] + " "+ this.contractCostingData['contractCost'] + " £": '',  margin:[-35,0,0,0] ,style:'heading2'} , {text: "Amount Incl GST:"  , margin:[-160,0,0,0] , style:'heading'} , {text: 
+                          this.contractCostingData['rateCurrencyName'] == 'PKR' ?   
+                          this.contractCostingData['rateCurrencyName'] + " " + this.contractCostingData['totalCostGSt'] + " RS" :  this.contractCostingData['rateCurrencyName'] == 'USD' ?  this.contractCostingData['rateCurrencyName'] + " "+ this.contractCostingData['totalCostGSt'] + " $" : this.contractCostingData['rateCurrencyName'] == 'EUR' ? this.contractCostingData['rateCurrencyName'] + " "+ this.contractCostingData['totalCostGSt'] + " €" : this.contractCostingData['rateCurrencyName'] == 'GBP' ? this.contractCostingData['rateCurrencyName'] + " "+ this.contractCostingData['totalCostGSt'] + " £"  : ''  , margin:[-200,0,0,0] , style:'heading2'}],] }
                       },
                      
                       {
