@@ -2979,9 +2979,9 @@ getImage(){
                       body: [
                         [
                           {text:'Rate:'  , style:'heading'} , {text: this.contractCostingData['rateUOMName'] == "Meters" ?  
-                          this.contractCostingData['rateCurrencyName'] == 'PKR' ? this.contractCostingData['rate'] + " Rs" + " /  Meter"  :  this.contractCostingData['rateCurrencyName'] == 'USD' ? this.contractCostingData['rate'] + " $" + " /  Meter" : this.contractCostingData['rateCurrencyName'] == 'EUR' ? this.contractCostingData['rate'] + " €" + " /  Meter" : this.contractCostingData['rateCurrencyName'] == 'GBP' ? this.contractCostingData['rate'] + " £" + " /  Meter" : ''
+                          this.contractCostingData['rateCurrencyName'] == 'PKR' ? " Rs " + this.contractCostingData['rate'] +  " /  Meter"  : " $ " +  this.contractCostingData['rateCurrencyName'] == 'USD' ? this.contractCostingData['rate'] +  " /  Meter" : this.contractCostingData['rateCurrencyName'] == 'EUR' ? " € " + this.contractCostingData['rate'] +  " /  Meter" : this.contractCostingData['rateCurrencyName'] == 'GBP' ? " £ " + this.contractCostingData['rate'] +  " /  Meter" : ''
                           : 
-                          this.contractCostingData['rateCurrencyName'] == 'PKR' ? this.contractCostingData['rate'] + " Rs" + " / Yard" :  this.contractCostingData['rateCurrencyName'] == 'USD' ? this.contractCostingData['rate'] + " $" + " /  Yard" : this.contractCostingData['rateCurrencyName'] == 'EUR' ? this.contractCostingData['rate'] + " €" + " /  Yard" : this.contractCostingData['rateCurrencyName'] == 'GBP' ? this.contractCostingData['rate'] + " £" + " /  Yard" : '' 
+                          this.contractCostingData['rateCurrencyName'] == 'PKR' ?  " Rs " + this.contractCostingData['rate'] + " / Yard" : " $ " +  this.contractCostingData['rateCurrencyName'] == 'USD' ? this.contractCostingData['rate'] +  " /  Yard" : this.contractCostingData['rateCurrencyName'] == 'EUR' ? " € " + this.contractCostingData['rate'] + " /  Yard" :" £ " + this.contractCostingData['rateCurrencyName'] == 'GBP' ? this.contractCostingData['rate'] +  " /  Yard" : '' 
                           
                            ,
                           
@@ -3926,9 +3926,9 @@ getImage(){
                       body: [
                         [
                           {text:'Rate:'  , style:'heading'} , {text: this.contractCostingData['rateUOMName'] == "Meters" ?  
-                          this.contractCostingData['rateCurrencyName'] == 'PKR' ? this.contractCostingData['rate'] + " Rs" + " /  Meter"  :  this.contractCostingData['rateCurrencyName'] == 'USD' ? this.contractCostingData['rate'] + " $" + " /  Meter" : this.contractCostingData['rateCurrencyName'] == 'EUR' ? this.contractCostingData['rate'] + " €" + " /  Meter" : this.contractCostingData['rateCurrencyName'] == 'GBP' ? this.contractCostingData['rate'] + " £" + " /  Meter" : ''
+                          this.contractCostingData['rateCurrencyName'] == 'PKR' ? "Rs " + this.contractCostingData['rate']  + " /  Meter"  :  this.contractCostingData['rateCurrencyName'] == 'USD' ? " $ " + this.contractCostingData['rate'] +  " /  Meter" : " €" + this.contractCostingData['rateCurrencyName'] == 'EUR' ? this.contractCostingData['rate'] +  " /  Meter" : " £ " +  this.contractCostingData['rateCurrencyName'] == 'GBP' ? this.contractCostingData['rate'] + " /  Meter" : ''
                           : 
-                          this.contractCostingData['rateCurrencyName'] == 'PKR' ? this.contractCostingData['rate'] + " Rs" + " / Yard" :  this.contractCostingData['rateCurrencyName'] == 'USD' ? this.contractCostingData['rate'] + " $" + " /  Yard" : this.contractCostingData['rateCurrencyName'] == 'EUR' ? this.contractCostingData['rate'] + " €" + " /  Yard" : this.contractCostingData['rateCurrencyName'] == 'GBP' ? this.contractCostingData['rate'] + " £" + " /  Yard" : '' 
+                          this.contractCostingData['rateCurrencyName'] == 'PKR' ? " Rs " + this.contractCostingData['rate'] +  " / Yard" : " $ " +  this.contractCostingData['rateCurrencyName'] == 'USD' ? this.contractCostingData['rate'] +  " /  Yard" : this.contractCostingData['rateCurrencyName'] == 'EUR' ? " € " + this.contractCostingData['rate'] +  " /  Yard" :  this.contractCostingData['rateCurrencyName'] == 'GBP' ? "£ " + this.contractCostingData['rate'] +  " /  Yard" : '' 
                           
                            ,
                           
