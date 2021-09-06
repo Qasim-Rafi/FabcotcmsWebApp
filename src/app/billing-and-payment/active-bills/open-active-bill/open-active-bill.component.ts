@@ -26,7 +26,6 @@ export class OpenActiveBillComponent implements OnInit {
   totalAmount2 : number;
 
 
-
   myDate = Date.now();
   words : string;
   words2 : string = "word";
@@ -61,6 +60,7 @@ export class OpenActiveBillComponent implements OnInit {
     if(this.response.success==true)
     {
     this.data =this.response.data;
+
     for(let i = 0 ; i<this.response.data.contractSaleInvoices.length ; i++){
       this.response.data.contractSaleInvoices[i].totalAmount = this.data.contractSaleInvoices[i].amount * this.data.contractSaleInvoices[i].commission
       this.data.contractSaleInvoices[i].totalAmount = this.data.contractSaleInvoices[i].totalAmount/100
@@ -98,7 +98,10 @@ export class OpenActiveBillComponent implements OnInit {
     modalRef.componentInstance.bill_id = rows.billPaymentId;
 
     modalRef.result.then((data) => {
-      // on close
+      this.fetch((data) => {
+        this.rows = data;
+    
+      });
  
 
     }, (reason) => {
@@ -111,96 +114,6 @@ export class OpenActiveBillComponent implements OnInit {
   }
 
 
-  // print() {
-  //   let docDefinition = {
-  //     pageSize: 'A4',     
-  //     info: {
-  //       title: 'Active Bills List'
-  //     },
-  //     content: [
-  //       {
-  //         text: 'Fabcot International FZE ',
-  //         style: 'heading',
-
-  //       },
-  //       {
-  //   text: 'Flexi Office ,RAKEZ Business ZONE F-Z RAK , United Arab Emirates.',
-  //   style: 'heading2'
-       
-  // },
-  //      {text: 'Seller:'  },
-  //      { text: this.rows['sellerName'], style:'text1'},
-  //     {  text:'Bill No.:' , style:'text2'},
-  //     { text: this.rows['billNumber'], style:'text3'},
-  //     {  text:'Bill Date:' , style:'text4' },
-  //     { text: this.rows['billDate'], style:'text5'},
-  //      {  text: 'Buyer:'  , style:'text6'},
-  //      { text: this.rows['buyerName'], style:'text1'},
-  //     {  text: 'Fabcot Contract Number :' , style:'text9' },
-  //     { text: this.rows['contractNumber'], style:'text10'},
-  //     {text: 'Contract Date :' , style:'text11'},
-  //     { text: this.rows['contractDate'], style:'text12'},
-  //     {text: 'Article :' , },
-  //     { text: this.rows['contractArticleName'], style:'text13'},
-  //     {
-  //       margin: [0 , 10 , 0 , 0],
-
-  //       table:{
-
-  //         headerRows:1,
-  //         widths: [75, 90, 130, 70, 120],
-
-  //         body:[
-  //           ['SaleInvoice #', 'SaleInvoice Date', 'Invoice Amount(PKR)', 'Commission', 'Total Amount(PKR)'],
-  //       // ...this.rows['contractSaleInvoices'].map((row=>
-  //       //   [row.saleInvoiceNo]
-  //       //   ))
-  //         ]
-  //       }
-  //     },
-  //     {  text: 'Sub Total :' , style:'text14' },
-  //     { text: this.rows['invoiceSubTotalAmount'], style:'text15'},
-  //     {text: 'Tax :' , style:'text16'},
-  //     { text: this.rows['invoiceTaxAmount'], style:'text15'},
-  //     {text: 'Total:' , style:'text18' },
-  //     { text: this.rows['invoiceTotalAmount'], style:'text15'},
-  //        ],
-  //     styles: {
-  //       heading: {
-  //         fontSize: 18,
-  //         alignment: 'center',
-  //         margin: [0, 0, 0, 0]
-  //       },
-        
-  //         heading2:{
-  //               fontSize: 10,
-  //               alignment: 'center',
-  //               // [ left , up , right  , down]
-  //               margin: [0 , -3 , 0 , 25]
-
-  //         },
-  //         text1 : {
-  //           margin:[38 ,-15, 0 ,0 ]
-  //         },
-  //         text2 : {margin:[380 ,0, 0 ,0 ]},
-  //         text3 : {margin:[425 ,-15, 0 ,0 ]},
-  //         text4 : {margin:[380 ,0, 0 ,0 ]},
-  //         text5 : {margin:[430 , -15, 0 ,0 ]},
-  //         text6 : {margin:[0 , -25, 0 ,0 ]},
-  //         text10 : {margin:[140 , -15, 0 ,0 ]},
-  //         text12 : {margin:[90 , -15, 0 ,0 ]},
-  //         text13 : {margin:[50 , -15, 0 ,0 ]},
-  //         text14 : {margin:[380 , 20, 0 ,0 ]},
-  //         text15 : {margin:[440 , -13, 0 ,0 ]},
-  //         text16 : {margin:[400 , 0, 0 ,0 ]},
-  //         text18 : {margin:[400 , 0, 0 ,0 ]},        
-  //     }
-  //   };
-
-  //   // const win = window.open('', "tempWinForPdf");
-  //   pdfMake.createPdf(docDefinition).print();
-
-  // }
 
 print(){
   let docDefinition = {
@@ -281,16 +194,24 @@ print(){
                 body:[
                   [{text:'Sale Invoice#' , style:'tableHeader' }
                   ,{text:'Invoice Date' , style:'tableHeader'}  , 
-                  {text:'Invoice Amount' , style:'tableHeader'} , 
+                  {text:'Invoice Amount' +'(' + this.rows.currencyCode+')'  , style:'tableHeader'} , 
                   {text:'Commission' , style:'tableHeader'} , 
-                  {text:'Total Amount' , style:'tableHeader'}],
+                  {text:'Total Amount' +'(' + this.rows.currencyCode+')' , style:'tableHeader'}],
                   
                   ...this.rows['contractSaleInvoices'].map(row => (
                     [{text: row.saleInvoiceNo , style:'tableHeader2'} ,
                     {text:  row.saleInvoiceDateToDisplay , style:'tableHeader2'},
-                     {text:row.amount , style:'tableHeader2'} ,
+                     {text:  this.rows.currencyCode =='USD'? row.amount + " $" :this.rows.currencyCode =='PKR' ? row.amount + " Rs" :   this.rows.currencyCode =='EUR' ? row.amount + " €" : this.rows.currencyCode =='GBP' ? row.amount + " £" : ''
+                      //+ this.rows.currencyCode =='USD'? "$" :''
+                         , style:'tableHeader2'} ,
                       {text:row.commission+ '%' , style:'tableHeader2' }  ,
-                      {text: row.totalAmount.toFixed(2) , style:'tableHeader2'}]
+                      {text:
+                        this.rows.currencyCode =='USD'? row.totalAmount.toFixed(2) + " $" :this.rows.currencyCode =='PKR' ? row.totalAmount.toFixed(2) + " Rs" :   this.rows.currencyCode =='EUR' ? row.totalAmount.toFixed(2) + " €" : this.rows.currencyCode =='GBP' ? row.totalAmount.toFixed(2) + " £" : ''
+                        
+                        
+                        
+                        
+                         , style:'tableHeader2'}]
                   ))
                 ]
               }
@@ -299,7 +220,7 @@ print(){
               layout:'noBorders',
               table:{headerRows:1 ,  widths:['90%' , '20%' ],
             body:[ [{text: 'Sub Total :' ,  margin:[620,60,0,0]  , bold:true} ,
-             {text: this.totalAmount2 , margin:[0,60,0,0] , decoration:'underline'}
+             {text:     this.rows.currencyCode =='USD'? this.totalAmount2 + " $" :this.rows.currencyCode =='PKR' ? this.totalAmount2 + " Rs" :   this.rows.currencyCode =='EUR' ? this.totalAmount2 + " €" : this.rows.currencyCode =='GBP' ? this.totalAmount2 + " £" : '', margin:[0,60,0,0] , decoration:'underline'}
           
           ]]
             }
@@ -308,7 +229,10 @@ print(){
               layout:'noBorders',
               table:{headerRows:1 ,  widths:['90%' , '20%' ],
             body:[ [{text: 'TAX :' ,margin:[647,5,0,0] , bold:true} ,
-             {text: this.rows['invoiceTaxAmount'] , margin: [0 , 5 , 0 , 0]  , decoration:'underline'}
+             {text: 
+             
+             this.rows.currencyCode =='USD'? this.rows['invoiceTaxAmount']+ " $" :this.rows.currencyCode =='PKR' ? this.rows['invoiceTaxAmount'] + " Rs" :   this.rows.currencyCode =='EUR' ? this.rows['invoiceTaxAmount'] + " €" : this.rows.currencyCode =='GBP' ? this.rows['invoiceTaxAmount'] + " £" : ''
+             , margin: [0 , 5 , 0 , 0]  , decoration:'underline'}
           
           ]]
             }
@@ -317,7 +241,10 @@ print(){
               layout:'noBorders',
               table:{headerRows:1 ,  widths:['90%' , '20%' ],
             body:[ [{text: 'Total :' , margin:[642,5,0,0]  , bold:true} ,
-             {text: this.totalAmount.toFixed(2) , margin: [0 , 5 , 0 , 0] , decoration:'underline'}
+             {text: 
+              
+              this.rows.currencyCode =='USD'? this.totalAmount.toFixed(2) + " $" :this.rows.currencyCode =='PKR' ? this.totalAmount.toFixed(2)  + " Rs" :   this.rows.currencyCode =='EUR' ? this.totalAmount.toFixed(2)  + " €" : this.rows.currencyCode =='GBP' ? this.totalAmount.toFixed(2)  + " £" : ''
+              , margin: [0 , 5 , 0 , 0] , decoration:'underline'}
           
           ]]
             }

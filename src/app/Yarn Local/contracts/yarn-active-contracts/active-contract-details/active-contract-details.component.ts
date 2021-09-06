@@ -2978,7 +2978,14 @@ getImage(){
                         table:{headerRows: 1 , widths:['21%' , '20%' , '10%' , '20%' , '10%' , '20%'],
                       body: [
                         [
-                          {text:'Rate:'  , style:'heading'} , {text:this.printData['rateUOMName'] == 'Meters' ?  this.printData['rate'] + " / " + "Meter" : this.printData['rate'] + " / " + "Yard"  , style:'heading2' , margin:[-35,0,0,0]}, {text: "GST:"  , margin:[-30,0,0,0] , style:'heading'} , {text: this.printData['gst'] != null ? this.contractCostingData['gst'] + "%" : " "  , margin:[-60,0,0,0] , style:'heading2'} , {text: "W.Tax:"  , margin:[-110,0,0,0] , style:'heading'} , {text: "As applicable by Government Law"  , margin:[-140,0,0,0] , style:'heading2'}],
+                          {text:'Rate:'  , style:'heading'} , {text: this.contractCostingData['rateUOMName'] == "Meters" ?  
+                          this.contractCostingData['rateCurrencyName'] == 'PKR' ? this.contractCostingData['rate'] + " Rs" + " /  Meter"  :  this.contractCostingData['rateCurrencyName'] == 'USD' ? this.contractCostingData['rate'] + " $" + " /  Meter" : this.contractCostingData['rateCurrencyName'] == 'EUR' ? this.contractCostingData['rate'] + " €" + " /  Meter" : this.contractCostingData['rateCurrencyName'] == 'GBP' ? this.contractCostingData['rate'] + " £" + " /  Meter" : ''
+                          : 
+                          this.contractCostingData['rateCurrencyName'] == 'PKR' ? this.contractCostingData['rate'] + " Rs" + " / Yard" :  this.contractCostingData['rateCurrencyName'] == 'USD' ? this.contractCostingData['rate'] + " $" + " /  Yard" : this.contractCostingData['rateCurrencyName'] == 'EUR' ? this.contractCostingData['rate'] + " €" + " /  Yard" : this.contractCostingData['rateCurrencyName'] == 'GBP' ? this.contractCostingData['rate'] + " £" + " /  Yard" : '' 
+                          
+                           ,
+                          
+                           style:'heading2' , margin:[-35,0,0,0]}, {text: "GST:"  , margin:[-30,0,0,0] , style:'heading'} , {text: this.printData['gst'] != null ? this.contractCostingData['gst'] + "%" : " "  , margin:[-60,0,0,0] , style:'heading2'} , {text: "W.Tax:"  , margin:[-110,0,0,0] , style:'heading'} , {text: "As applicable by Government Law"  , margin:[-140,0,0,0] , style:'heading2'}],
                         ] }
                       },
                       {
@@ -2986,11 +2993,10 @@ getImage(){
                         margin: [20 , 2 , 0 , 0],
                         table:{headerRows: 1 , widths:['20.5%' , '39%' , '20%' , '20%'],
                       body: [
-                        [{text:'Total Amount:'  , style:'heading'} , {text: this.contractCostingData['rateCurrencyName'] == 'PKR' ?   
-                          this.contractCostingData['rateCurrencyName'] + " "+ this.contractCostingData['contractCost'] + " RS" : this.contractCostingData['rateCurrencyName'] == 'USD' ?  this.contractCostingData['rateCurrencyName'] + " "+ this.contractCostingData['contractCost'] + " $" :this.contractCostingData['rateCurrencyName'] == 'EUR' ? 
-                          this.contractCostingData['rateCurrencyName'] + " "+ this.contractCostingData['contractCost'] + " €" : this.contractCostingData['rateCurrencyName'] == 'GBP' ?     this.contractCostingData['rateCurrencyName'] + " "+ this.contractCostingData['contractCost'] + " £": '',  margin:[-35,0,0,0] ,style:'heading2'} , {text: "Amount Incl GST:"  , margin:[-160,0,0,0] , style:'heading'} , {text: 
-                            this.contractCostingData['rateCurrencyName'] == 'PKR' ?   
-                            this.contractCostingData['rateCurrencyName'] + " " + this.contractCostingData['totalCostGSt'] + " RS" :  this.contractCostingData['rateCurrencyName'] == 'USD' ?  this.contractCostingData['rateCurrencyName'] + " "+ this.contractCostingData['totalCostGSt'] + " $" : this.contractCostingData['rateCurrencyName'] == 'EUR' ? this.contractCostingData['rateCurrencyName'] + " "+ this.contractCostingData['totalCostGSt'] + " €" : this.contractCostingData['rateCurrencyName'] == 'GBP' ? this.contractCostingData['rateCurrencyName'] + " "+ this.contractCostingData['totalCostGSt'] + " £"  : ''  , margin:[-200,0,0,0] , style:'heading2'}],] }
+                        [{text:'Total Amount:'  , style:'heading'} , {text:    
+                          this.contractCostingData['rateCurrencyName'] + " "+ this.contractCostingData['contractCost'] ,  margin:[-35,0,0,0] ,style:'heading2'} , {text: "Amount Incl GST:"  , margin:[-160,0,0,0] , style:'heading'} , {text: 
+                          
+                            this.contractCostingData['rateCurrencyName'] + " " + this.contractCostingData['totalCostGSt']   , margin:[-200,0,0,0] , style:'heading2'}],] }
                       },
                      
                       {
@@ -3912,13 +3918,21 @@ getImage(){
                           {text:'Quantity:'  , style:'heading'} , {text: this.contractCostingData['quantity'] + "  " + this.contractCostingData['quantityUOMName'] ,  style:'heading2' , margin:[-35,0,0,0]}, {text: "Margin:"  , margin:[-120,0,0,0] , style:'heading'} , {text: "+/-" +this.contractCostingData['quantityToleranceValue'] + '%' , margin:[-140,0,0,0] , style:'heading2'}],
                         ] }
                       },
+                    
                       {
                         layout:'noBorders',
                         margin: [20 , 2 , 0 , 0],
                         table:{headerRows: 1 , widths:['21%' , '20%' , '10%' , '20%' , '10%' , '20%'],
                       body: [
                         [
-                          {text:'Rate:'  , style:'heading'} , {text:this.printData['rateUOMName'] == 'Meters' ?  this.printData['rate'] + " / " + "Meter" : this.printData['rate'] + " / " + "Yard"  , style:'heading2' , margin:[-35,0,0,0]}, {text: "GST:"  , margin:[-30,0,0,0] , style:'heading'} , {text: this.printData['gst'] != null ? this.contractCostingData['gst'] + "%" : " "  , margin:[-60,0,0,0] , style:'heading2'} , {text: "W.Tax:"  , margin:[-110,0,0,0] , style:'heading'} , {text: "As applicable by Government Law"  , margin:[-140,0,0,0] , style:'heading2'}],
+                          {text:'Rate:'  , style:'heading'} , {text: this.contractCostingData['rateUOMName'] == "Meters" ?  
+                          this.contractCostingData['rateCurrencyName'] == 'PKR' ? this.contractCostingData['rate'] + " Rs" + " /  Meter"  :  this.contractCostingData['rateCurrencyName'] == 'USD' ? this.contractCostingData['rate'] + " $" + " /  Meter" : this.contractCostingData['rateCurrencyName'] == 'EUR' ? this.contractCostingData['rate'] + " €" + " /  Meter" : this.contractCostingData['rateCurrencyName'] == 'GBP' ? this.contractCostingData['rate'] + " £" + " /  Meter" : ''
+                          : 
+                          this.contractCostingData['rateCurrencyName'] == 'PKR' ? this.contractCostingData['rate'] + " Rs" + " / Yard" :  this.contractCostingData['rateCurrencyName'] == 'USD' ? this.contractCostingData['rate'] + " $" + " /  Yard" : this.contractCostingData['rateCurrencyName'] == 'EUR' ? this.contractCostingData['rate'] + " €" + " /  Yard" : this.contractCostingData['rateCurrencyName'] == 'GBP' ? this.contractCostingData['rate'] + " £" + " /  Yard" : '' 
+                          
+                           ,
+                          
+                           style:'heading2' , margin:[-35,0,0,0]}, {text: "GST:"  , margin:[-30,0,0,0] , style:'heading'} , {text: this.printData['gst'] != null ? this.contractCostingData['gst'] + "%" : " "  , margin:[-60,0,0,0] , style:'heading2'} , {text: "W.Tax:"  , margin:[-110,0,0,0] , style:'heading'} , {text: "As applicable by Government Law"  , margin:[-140,0,0,0] , style:'heading2'}],
                         ] }
                       },
                       {
@@ -3926,11 +3940,10 @@ getImage(){
                         margin: [20 , 2 , 0 , 0],
                         table:{headerRows: 1 , widths:['20.5%' , '39%' , '20%' , '20%'],
                       body: [
-                        [{text:'Total Amount:'  , style:'heading'} , {text: this.contractCostingData['rateCurrencyName'] == 'PKR' ?   
-                        this.contractCostingData['rateCurrencyName'] + " "+ this.contractCostingData['contractCost'] + " RS" : this.contractCostingData['rateCurrencyName'] == 'USD' ?  this.contractCostingData['rateCurrencyName'] + " "+ this.contractCostingData['contractCost'] + " $" :this.contractCostingData['rateCurrencyName'] == 'EUR' ? 
-                        this.contractCostingData['rateCurrencyName'] + " "+ this.contractCostingData['contractCost'] + " €" : this.contractCostingData['rateCurrencyName'] == 'GBP' ?     this.contractCostingData['rateCurrencyName'] + " "+ this.contractCostingData['contractCost'] + " £": '',  margin:[-35,0,0,0] ,style:'heading2'} , {text: "Amount Incl GST:"  , margin:[-160,0,0,0] , style:'heading'} , {text: 
-                          this.contractCostingData['rateCurrencyName'] == 'PKR' ?   
-                          this.contractCostingData['rateCurrencyName'] + " " + this.contractCostingData['totalCostGSt'] + " RS" :  this.contractCostingData['rateCurrencyName'] == 'USD' ?  this.contractCostingData['rateCurrencyName'] + " "+ this.contractCostingData['totalCostGSt'] + " $" : this.contractCostingData['rateCurrencyName'] == 'EUR' ? this.contractCostingData['rateCurrencyName'] + " "+ this.contractCostingData['totalCostGSt'] + " €" : this.contractCostingData['rateCurrencyName'] == 'GBP' ? this.contractCostingData['rateCurrencyName'] + " "+ this.contractCostingData['totalCostGSt'] + " £"  : ''  , margin:[-200,0,0,0] , style:'heading2'}],] }
+                        [{text:'Total Amount:'  , style:'heading'} , {text:    
+                        this.contractCostingData['rateCurrencyName'] + " "+ this.contractCostingData['contractCost'] ,  margin:[-35,0,0,0] ,style:'heading2'} , {text: "Amount Incl GST:"  , margin:[-160,0,0,0] , style:'heading'} , {text: 
+                        
+                          this.contractCostingData['rateCurrencyName'] + " " + this.contractCostingData['totalCostGSt']   , margin:[-200,0,0,0] , style:'heading2'}],] }
                       },
                      
                       {

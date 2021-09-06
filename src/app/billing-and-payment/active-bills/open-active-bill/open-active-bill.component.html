@@ -109,17 +109,29 @@
                 <tr>
                     <th>Sale Invoice #</th>
                     <th>Invoice Date</th>
-                    <th>Invoice Amount (USD)</th>
+                    <th>Invoice Amount ({{rows.currencyCode}})</th>
                     <th>Commission</th>
-                    <th>Total Amount (USD)</th>
+                    <th>Total Amount ({{rows.currencyCode}})</th>
 
                 </tr>
                 <tr *ngFor="let i of rows.contractSaleInvoices">
                     <td>{{i.saleInvoiceNo}}</td>
                     <td>{{i.saleInvoiceDateToDisplay}}</td>
-                    <td>{{i.amount}}</td>
+                    <td>{{i.amount}}
+<span *ngIf = "rows.currencyCode == 'USD'">$</span>
+<span *ngIf = "rows.currencyCode == 'PKR'">RS</span>
+<span *ngIf = "rows.currencyCode == 'EUR'">€</span>
+<span *ngIf = "rows.currencyCode == 'GBP'">£</span>
+
+
+                    </td>
                     <td>{{i.commission}}% </td>
-                    <td>{{i.totalAmount | number:'2.2-2'}}</td>
+                    <td>{{i.totalAmount | number:'2.2-2'}}
+                        <span *ngIf = "rows.currencyCode == 'USD'">$</span>
+                        <span *ngIf = "rows.currencyCode == 'PKR'">RS</span>
+                        <span *ngIf = "rows.currencyCode == 'EUR'">€</span>
+                        <span *ngIf = "rows.currencyCode == 'GBP'">£</span>
+                    </td>
 
                 </tr>
             </table>
@@ -128,14 +140,32 @@
             <br>
             <div class="float-right">
                 <span class=" bold text-font1">
-                    Sub Total: <span class="text-font1 underline" >{{totalAmount | number:'2.2-2'}}</span>
+                    Sub Total: <span class="text-font1 underline" >{{totalAmount | number:'2.2-2'}}
+
+                        <span *ngIf = "rows.currencyCode == 'USD'">$</span>
+<span *ngIf = "rows.currencyCode == 'PKR'">RS</span>
+<span *ngIf = "rows.currencyCode == 'EUR'">€</span>
+<span *ngIf = "rows.currencyCode == 'GBP'">£</span>
+                    </span>
                 </span>
                 <br>
                 <span class=" bold text-font1">
-                    TAX : <span class="text-font1 underline">{{rows.invoiceTaxAmount}}</span>
+                    TAX : <span class="text-font1 underline"  >{{rows.invoiceTaxAmount}} </span>
+                    <span >
+                        <span *ngIf = "rows.currencyCode == 'USD'">$</span>
+<span *ngIf = "rows.currencyCode == 'PKR'">RS</span>
+<span *ngIf = "rows.currencyCode == 'EUR'">€</span>
+<span *ngIf = "rows.currencyCode == 'GBP'">£</span>
+</span>
                 </span><br>
                 <span class=" bold text-font1">
-                    TOTAL : <span class="bold text-font1 underline">{{totalAmount | number:'2.2-2'}}</span>
+                    TOTAL : <span class="bold text-font1 underline">{{totalAmount | number:'2.2-2'}}
+
+                        <span *ngIf = "rows.currencyCode == 'USD'">$</span>
+<span *ngIf = "rows.currencyCode == 'PKR'">RS</span>
+<span *ngIf = "rows.currencyCode == 'EUR'">€</span>
+<span *ngIf = "rows.currencyCode == 'GBP'">£</span>
+                    </span>
                 </span>
             </div>
             <!-- left side content -->
