@@ -31,6 +31,7 @@ export class TemplateComponent implements OnInit {
   Departments: boolean = false;
   menuName:any={};
   response: any;
+  loggedInUserId : any;
   openContractReport: any = [];
   agentBookingStatus: any = [];
   cancleContarctReport: any = [];
@@ -65,7 +66,7 @@ export class TemplateComponent implements OnInit {
     this.loggedInDepartmentId=localStorage.getItem('loggedInDepartmentId');
     this.userName=localStorage.getItem('loggedInUserName');
     this.loggedInDepartmentName=localStorage.getItem('loggedInDepartmentName');
-    
+    this.loggedInUserId= localStorage.getItem('loggedInUserId')
     if(this.loggedInDepartmentId == '1'){
       this.isYarnLocal = true;
       this.isHomeTextileandGarments= false;
