@@ -49,7 +49,8 @@ export class ServiceService {
             localStorage.setItem('loggedInDepartmentId', this.user.loggedInDepartmentId);
             localStorage.setItem('loggedInDepartmentName', this.user.loggedInDepartmentName);
             localStorage.setItem('loggedInDepartmentCode', this.user.loggedInDepartmentCode);
- 
+            localStorage.setItem('loggedInUserId', this.user.loggedInUserId);
+            
             //this.authenticateUser(this.userRole);
             //     setTimeout(()=>{                           
             //       localStorage.removeItem('token');
