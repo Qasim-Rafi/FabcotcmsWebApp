@@ -17,7 +17,7 @@ import {NgxSpinnerService} from 'ngx-spinner'
   styleUrls: ['./generate-bills.component.css']
 })
 export class GenerateBillsComponent implements OnInit {
-
+amount:any;
   constructor(    private service: ServiceService,
     private http: HttpClient,
     private toastr: ToastrService,
@@ -67,6 +67,7 @@ export class GenerateBillsComponent implements OnInit {
         this.rows = temp;
       }
       onSelect(selecterow) {
+        this.amount=selecterow.selected.length !=0 ?selecterow.selected[0].amount:null;
         this.selectedids =selecterow;
 
         for(let i=0; i<this.selectedids.selected.length; i++ )
@@ -133,5 +134,8 @@ export class GenerateBillsComponent implements OnInit {
     }, (reason) => {
       // on dismiss
     });
+  }
+  getCheckboxClass(row: any) {
+    return 'stylecheckbox';
   }
 }

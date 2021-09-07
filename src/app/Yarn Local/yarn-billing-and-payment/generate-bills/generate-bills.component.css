@@ -1,4 +1,16 @@
 .clr{
     background-color: white;
   }
-  
+  .stylecheckbox{
+    border-color: black !important;
+  }
+  .datatable-checkbox {
+    position: relative;
+    margin: 0;
+    cursor: pointer;
+    vertical-align: middle;
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 0;
+    border-color: black !important;
+}
