@@ -19,6 +19,8 @@ export class SearchComponent implements OnInit {
   @Input() buyerName;
   @Input() sellerName;
   @Input() autoContractNumbr;
+  @Input() contractNumb;
+
 
   bankAcc : any = []
    data:any = [];
@@ -45,6 +47,7 @@ export class SearchComponent implements OnInit {
      this.autoContractNumbr = this.autoContractNumbr;
      this.buyerName = this.buyerName;
      this.sellerName = this.sellerName;
+     this.ContractsDropdown();
    }
   
    updateFilter(event) {
@@ -67,24 +70,43 @@ export class SearchComponent implements OnInit {
  
    ContractsDropdown() {
          //  let number=parseInt(this.data.contractNmbr);
-         this.http.get(`${environment.apiUrl}/api/Lookups/GetContractsAgainstNumber?contractNo=`+ this.data.contractNo).
+        if(this.data.contractNo == undefined || this.data.contractNo == ""){
+         
+         this.http.get(`${environment.apiUrl}/api/Lookups/GetContractsAgainstNumber?contractNo=`+ this.contractNumb).
     subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
         this.bankAcc = this.response.data;
-        this.bankAcc.contractNumber =  this.response.data[0].autoContractNumber
-        this.bankAcc.buyerName =  this.response.data[0].buyerName
-        this.bankAcc.sellerName =  this.response.data[0].sellerName
+        // this.bankAcc.contractNumber =  this.response.data[0].autoContractNumber
+        // this.bankAcc.buyerName =  this.response.data[0].buyerName
+        // this.bankAcc.sellerName =  this.response.data[0].sellerName
 
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
       }
     })
+  }
+  else{
+    this.http.get(`${environment.apiUrl}/api/Lookups/GetContractsAgainstNumber?contractNo=`+ this.data.contractNo).
+    subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.bankAcc = this.response.data;
+        // this.bankAcc.contractNumber =  this.response.data[0].autoContractNumber
+        // this.bankAcc.buyerName =  this.response.data[0].buyerName
+        // this.bankAcc.sellerName =  this.response.data[0].sellerName
+
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
    }
 
-   Save(){
-     this.activeModal.close(this.bankAcc)
+   Save(obj){
+     this.activeModal.close(obj)
    }
 
 

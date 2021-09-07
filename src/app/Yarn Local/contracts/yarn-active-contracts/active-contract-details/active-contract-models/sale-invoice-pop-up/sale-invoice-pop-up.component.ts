@@ -134,11 +134,6 @@ this.GetArticleDropdown();
           this.calculatedcost= this.quantitya*this.rate;
           this.data.amount=this.calculatedcost;
         }
-
-//  if(this.data.unit){
-  // this.data.amount=calculatedcost*10;
- 
-    //  }
       }
     
    }
