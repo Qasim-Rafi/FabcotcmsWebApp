@@ -37,7 +37,8 @@ buyerName : any;
 contractNum : any;
 autocontractId : any;
 acontractId : any;
-
+loggedInDepartmentName : any;
+aQuantity : any;
 // response: any;
   constructor(
     private _NgbActiveModal: NgbActiveModal,
@@ -51,7 +52,8 @@ acontractId : any;
 
   ngOnInit(): void {
     this.GetUOMDropdown();
-    
+    this.loggedInDepartmentName = localStorage.getItem
+    ('loggedInDepartmentName');
     if (this.statusCheck == 'edit') {
       this.editSaleInvoice();
     }
@@ -67,21 +69,60 @@ acontractId : any;
       }
     })
   }
-  getquantity(event){
-    clearTimeout(this.timeout);
+//   getquantity(event){
+//     clearTimeout(this.timeout);
     
-    this.rate=parseInt(localStorage.getItem('rate'))
-      if (event.keyCode != 13) {
-    this.quantitya=event.target.value;
- this.calculatedcost= this.quantitya*this.rate;
- this.data.amount=this.calculatedcost;
-//  if(this.data.unit){
-  // this.data.amount=calculatedcost*10;
- 
-    //  }
+//     this.rate=parseInt(localStorage.getItem('rate'))
+//       if (event.keyCode != 13) {
+//     this.quantitya=event.target.value;
+//  this.calculatedcost= this.quantitya*this.rate;
+//  this.data.amount=this.calculatedcost;
+
+//       }
+    
+//    }
+
+getContractCostingData(contractId) {
+  this.http.get(`${environment.apiUrl}/api/Contracts/GetContractCostingById/` + contractId)
+    .subscribe(
+      res => {
+        this.response = res;
+        if (this.response.success == true) {
+          this.rate = this.response.data.rate;
+       
+        
+        }
+
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+
+      },(err: HttpErrorResponse) => {
+        const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+        this.toastr.error(messages.toString(), 'Message.');
+        console.log(messages);
+      });
+}
+
+
+getquantity(event){
+
+  clearTimeout(this.timeout);
+  
+    if (event.keyCode != 13) {
+      if(this.loggedInDepartmentName=="Yarn Local"){
+        this.quantitya=event.target.value;
+        this.calculatedcost= this.quantitya*this.rate*10;
+        this.data.amount=this.calculatedcost;
+      }else{
+        this.quantitya=event.target.value;
+        this.calculatedcost= this.quantitya*this.rate;
+        this.data.amount=this.calculatedcost;
       }
-    
-   }
+    }
+  
+ }
+
 
    getunit(event:any){
     // clearTimeout(this.timeout);
@@ -107,18 +148,21 @@ this.http.get(`${environment.apiUrl}/api/Lookups/GetContractsAgainstNumber?contr
  this.response = res;
  if (this.response.success == true) {
   this.contract = this.response.data;
+
   this.acontractId = this.response.data[0].contractId;
   const modalRef = this.modalService.open(SearchComponent , { centered: true });
   modalRef.componentInstance.autoContractNumbr = this.response.data[0].autoContractNumber ;
   modalRef.componentInstance.sellerName = this.response.data[0].sellerName;
   modalRef.componentInstance.buyerName = this.response.data[0].buyerName;
+  modalRef.componentInstance.contractNumb = this.data.contractNo;
+
 
   modalRef.result.then((p) => {
     if (p !=null)
      {
-      this.autocontractId =  p[0].contractId
-     this.contractNum =  p[0].autoContractNumber
-    
+      this.autocontractId =  p.contractId
+     this.contractNum =  p.autoContractNumber
+       this.getContractCostingData(p.contractId)
 
     
     }

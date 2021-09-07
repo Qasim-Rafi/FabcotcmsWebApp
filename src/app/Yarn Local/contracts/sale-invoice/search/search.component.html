@@ -28,7 +28,7 @@
         </div>
       </div>
 
-      <div class="faq-item shadow-sm" >
+      <div class="faq-item shadow-sm"   *ngFor="let obj of bankAcc ; let x = index" (click) = "Save(obj)">
         <div class="row"   >
 
 
@@ -37,15 +37,15 @@
             <a class="faq-question "></a>
 
 
-            <div  *ngIf = "bankAcc.contractNumber == null">
+            <!-- <div  *ngIf = "bankAcc.contractNumber == null">
             <h5 > <b>Contract Number:</b>  {{autoContractNumbr}}</h5>
             <span ><b>Buyer Name:</b>&nbsp;{{buyerName}} &nbsp;&nbsp;</span><br>
             <p > <b>Seller Name:</b> &nbsp;{{sellerName}}</p>
-          </div>
-            <h5 *ngIf = "bankAcc.contractNumber != null"> <b>Contract Number:</b> {{bankAcc.contractNumber}}</h5>
-            <span *ngIf = "bankAcc.contractNumber != null"><b>Buyer Name:</b>&nbsp;{{bankAcc.buyerName}} &nbsp;&nbsp;</span><br>
-            <p *ngIf = "bankAcc.contractNumber != null"> <b>Seller Name:</b> &nbsp;{{bankAcc.sellerName}}</p>
-
+          </div> -->
+            <h5 > <b>Contract Number:</b> {{obj.autoContractNumber}}</h5>
+            <span ><b>Buyer Name:</b>&nbsp;{{obj.buyerName}} &nbsp;&nbsp;</span><br>
+            <p > <b>Seller Name:</b> &nbsp;{{obj.sellerName}}</p>
+           <br>
           </div>
 
 
@@ -59,7 +59,7 @@
         (click)="activeModal.close()">
         Close
       </button>
-      <button class="btn button-save" type="submit" (click) = "Save()" >
+      <button class="btn button-save" type="submit" >
 Save
       </button>
     </div>
