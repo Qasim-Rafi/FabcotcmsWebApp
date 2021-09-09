@@ -24,7 +24,10 @@ outline: #1ab394;
     color: grey;
     font-weight: 500;
   }
-  
+  .left{
+    left:240px;
+    top:-14px
+  }
   .mid-text {
     font-size: 30px;
     line-height: 32px;

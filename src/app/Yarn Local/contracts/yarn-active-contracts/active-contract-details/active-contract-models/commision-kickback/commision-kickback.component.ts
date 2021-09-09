@@ -14,7 +14,8 @@ import { environment } from 'src/environments/environment';
 export class CommisionKickbackComponent implements OnInit {
   @Input() contractId;
   data : any = {};
-  
+  test: any = [{id:0}];
+
   commission:any=[];
   agents:any=[];
   uomList:any=[];
@@ -43,17 +44,19 @@ export class CommisionKickbackComponent implements OnInit {
     return this._NgbActiveModal;
   }
 
-  addMore() {
-    this.data.push({id: this.data.length});
-  }
-  remove(i: number) {
-    this.data.splice(i, 1);
-  }
+  // addMore() {
+  //    this.test.push({ id: 0 });
+  // }
+  // remove(i: number) {
+  //   this.test.splice(i, 1);
+  // }
   addfield() {
-    this.data1.push({id: this.data1.length});
+    this.test.push({ id: 0 });
+
   }
   removefield(i: number) {
-    this.data1.splice(i, 1);
+    this.test.splice(i, 1);
+
   }
   // GetUOMDropdown() {
   //   this.service.getUOM().subscribe(res => {
@@ -101,7 +104,7 @@ export class CommisionKickbackComponent implements OnInit {
         this.response = res;
         if (this.response.success == true && this.response.data != null) {
           this.data = this.response.data;
-          // this.agents = this.response.data.agentCommission;
+          this.test = this.response.data.agentCommissions;
 
           // this.commission.agenetName= parseInt(this.commission.agenetName);
           
@@ -120,14 +123,14 @@ export class CommisionKickbackComponent implements OnInit {
 
   addContractCommision() {
 
-    if (this.data.agentId != null) {
-      this.commission.push({ ['agentId']: this.data.agentId, ["agentCommission"]: this.data.agentCommission })
+    // if (this.data.agentId != null) {
+    //   this.commission.push({ ['agentId']: this.data.agentId, ["agentCommission"]: this.data.agentCommission })
 
-    }
-    for (let i = 0; i < this.data1.length; i++) {
+    // }
+    // for (let i = 0; i < this.data1.length; i++) {
 
-      this.commission.push({ ['agentId']: this.data1[i].agentId, ["agentCommission"]: this.data1[i].agentCommission })
-    }
+    //   this.commission.push({ ['agentId']: this.data1[i].agentId, ["agentCommission"]: this.data1[i].agentCommission })
+    // }
 this.spinner.show();
     let varr = {
 
@@ -141,7 +144,7 @@ this.spinner.show();
       "buyersideCommision": this.data.buyersideCommision,
       "buyersideCommisionUOMId": this.data.buyersideCommisionUOMId,
       "buyerSideCommAdditionalInfo": this.data.buyerSideCommAdditionalInfo,
-      "agentCommissions": this.commission
+      "agentCommissions": this.test
     }
 
     this.http.

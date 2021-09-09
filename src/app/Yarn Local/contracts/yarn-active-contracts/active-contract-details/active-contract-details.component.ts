@@ -182,7 +182,7 @@ comm = "Commission:";
    this.GetArticleDropdown("start");
   this.getAllDocuments();
   // this.getArticles();
-    this.getPrintData();
+    // this.getPrintData();
     this.getContractData();
     this.getAllReminder();
     // this.getCreditDebit();
@@ -1068,27 +1068,7 @@ getDispatches() {
         console.log(messages);
       });
 }
-getPrintData() {
-  this.http.get(`${environment.apiUrl}/api/Reports/ContractIndentPrint/`+ this.contractId)
-    .subscribe(
-      res => {
-        this.response = res;
-        if (this.response.success == true && this.response.data != null) {
-          this.printData = this.response.data;
-      
 
-        }
-        else if(this.response.success == false) {
-         
-          this.toastr.error(this.response.message, 'Message.');
-        }
-
-      },(err: HttpErrorResponse) => {
-        const messages = this.service.extractErrorMessagesFromErrorResponse(err);
-        this.toastr.error(messages.toString(), 'Message.');
-        console.log(messages);
-      });
-}
 getProdPlan() {
   this.http.get(`${environment.apiUrl}/api/YarnContracts/GetAllContractProductionStatus`)
     .subscribe(
@@ -2243,6 +2223,30 @@ getImage(){
 }
 
           print(){
+
+              this.http.get(`${environment.apiUrl}/api/Reports/ContractIndentPrint/`+ this.contractId)
+                .subscribe(
+                  res => {
+                    this.response = res;
+                    if (this.response.success == true && this.response.data != null) {
+                      this.printData = this.response.data;
+                  
+            
+                    }
+                    else if(this.response.success == false) {
+                     
+                      this.toastr.error(this.response.message, 'Message.');
+                    }
+            
+                  },(err: HttpErrorResponse) => {
+                    const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+                    this.toastr.error(messages.toString(), 'Message.');
+                    console.log(messages);
+                  });
+            
+
+
+
              
          
             let docDefinition = {
@@ -2488,6 +2492,28 @@ getImage(){
 
 
           printSeller(){
+
+            this.http.get(`${environment.apiUrl}/api/Reports/ContractIndentPrint/`+ this.contractId)
+            .subscribe(
+              res => {
+                this.response = res;
+                if (this.response.success == true && this.response.data != null) {
+                  this.printData = this.response.data;
+              
+        
+                }
+                else if(this.response.success == false) {
+                 
+                  this.toastr.error(this.response.message, 'Message.');
+                }
+        
+              },(err: HttpErrorResponse) => {
+                const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+                this.toastr.error(messages.toString(), 'Message.');
+                console.log(messages);
+              });
+        
+
             let docDefinition = {
               pageSize: 'A4',
               pageMargins: [ 30, 20, 40, 20 ],
@@ -2735,6 +2761,25 @@ getImage(){
           print2(){
             
            
+            this.http.get(`${environment.apiUrl}/api/Reports/ContractIndentPrint/`+ this.contractId)
+            .subscribe(
+              res => {
+                this.response = res;
+                if (this.response.success == true && this.response.data != null) {
+                  this.printData = this.response.data;
+              
+        
+                }
+                else if(this.response.success == false) {
+                 
+                  this.toastr.error(this.response.message, 'Message.');
+                }
+        
+              },(err: HttpErrorResponse) => {
+                const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+                this.toastr.error(messages.toString(), 'Message.');
+                console.log(messages);
+              });
             
            
             let docDefinition = {
@@ -3170,6 +3215,28 @@ getImage(){
           }
 
           printFE(){
+
+
+            this.http.get(`${environment.apiUrl}/api/Reports/ContractIndentPrint/`+ this.contractId)
+            .subscribe(
+              res => {
+                this.response = res;
+                if (this.response.success == true && this.response.data != null) {
+                  this.printData = this.response.data;
+              
+        
+                }
+                else if(this.response.success == false) {
+                 
+                  this.toastr.error(this.response.message, 'Message.');
+                }
+        
+              },(err: HttpErrorResponse) => {
+                const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+                this.toastr.error(messages.toString(), 'Message.');
+                console.log(messages);
+              });
+
             let docDefinition = {
               pageSize: 'A4',
               pageMargins: [ 30, 20, 40, 20],
@@ -3437,6 +3504,27 @@ getImage(){
           }
   
           print2FE(){
+
+            this.http.get(`${environment.apiUrl}/api/Reports/ContractIndentPrint/`+ this.contractId)
+            .subscribe(
+              res => {
+                this.response = res;
+                if (this.response.success == true && this.response.data != null) {
+                  this.printData = this.response.data;
+              
+        
+                }
+                else if(this.response.success == false) {
+                 
+                  this.toastr.error(this.response.message, 'Message.');
+                }
+        
+              },(err: HttpErrorResponse) => {
+                const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+                this.toastr.error(messages.toString(), 'Message.');
+                console.log(messages);
+              });
+
             let docDefinition = {
               pageSize: 'A4',
               pageMargins: [ 30, 20, 40, 20 ],
@@ -3705,6 +3793,25 @@ getImage(){
           printS(){
             
            
+            this.http.get(`${environment.apiUrl}/api/Reports/ContractIndentPrint/`+ this.contractId)
+            .subscribe(
+              res => {
+                this.response = res;
+                if (this.response.success == true && this.response.data != null) {
+                  this.printData = this.response.data;
+              
+        
+                }
+                else if(this.response.success == false) {
+                 
+                  this.toastr.error(this.response.message, 'Message.');
+                }
+        
+              },(err: HttpErrorResponse) => {
+                const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+                this.toastr.error(messages.toString(), 'Message.');
+                console.log(messages);
+              });
             
            
             let docDefinition = {
@@ -4107,6 +4214,29 @@ getImage(){
 
 
 yarnExportInvoicesReportPrint(){
+
+  
+  this.http.get(`${environment.apiUrl}/api/Reports/ContractIndentPrint/`+ this.contractId)
+  .subscribe(
+    res => {
+      this.response = res;
+      if (this.response.success == true && this.response.data != null) {
+        this.printData = this.response.data;
+    
+
+      }
+      else if(this.response.success == false) {
+       
+        this.toastr.error(this.response.message, 'Message.');
+      }
+
+    },(err: HttpErrorResponse) => {
+      const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+      this.toastr.error(messages.toString(), 'Message.');
+      console.log(messages);
+    });
+
+
   for(let i =0;i<this.yarnExportInvoiceReports.length;i++ ){
     if( this.yarnExportInvoiceReports[i].contractArticleRevisedTransactions.length > 0){
           this.thereisrevisedData=true;
@@ -4496,6 +4626,28 @@ yarnExportInvoicesReportPrint(){
 }
 
           printSupplier(){
+
+
+            this.http.get(`${environment.apiUrl}/api/Reports/ContractIndentPrint/`+ this.contractId)
+            .subscribe(
+              res => {
+                this.response = res;
+                if (this.response.success == true && this.response.data != null) {
+                  this.printData = this.response.data;
+              
+        
+                }
+                else if(this.response.success == false) {
+                 
+                  this.toastr.error(this.response.message, 'Message.');
+                }
+        
+              },(err: HttpErrorResponse) => {
+                const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+                this.toastr.error(messages.toString(), 'Message.');
+                console.log(messages);
+              });
+
             let docDefinition = {
               pageSize: 'A4',
               pageMargins: [ 30, 20, 40, 20 ],
