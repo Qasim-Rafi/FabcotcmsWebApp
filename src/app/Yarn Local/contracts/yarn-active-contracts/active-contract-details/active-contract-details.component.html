@@ -1361,11 +1361,18 @@
                                          </dd>
                                     </dl>
                                      <dl class="row" *ngIf = "loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Local'  || loggedInDepartmentName == 'Yarn Import'">
-                                                                <dt class="col-sm-6">Foreign Agent Comm:
+                                                                <dt class="col-sm-6" >Foreign Agent Comm:
                                                                 </dt>
-                                                                <dd class="col-sm-6"
+                                                                <dd class="col-sm-9 left" 
                                                                     *ngFor="let i of agent">
-                                                                    {{i.agentName}}: {{i.agentCommission}}%</dd>
+                                                                    {{i.agentName}}: {{i.agentCommission}}%
+                                                                
+                                                                </dd>
+
+                                                                <!-- <dt class="col-sm-3">Certifications:</dt>
+                                                                <dd class="col-sm-9">{{enquiryData.certificateNames}}
+                                                                    <button class="btn btn-outline-primary float-right btn-sm" (click)="remarksToggle = !remarksToggle">Edit</button>
+                                                                </dd> -->
                                                                     
                                                             </dl> 
                     
