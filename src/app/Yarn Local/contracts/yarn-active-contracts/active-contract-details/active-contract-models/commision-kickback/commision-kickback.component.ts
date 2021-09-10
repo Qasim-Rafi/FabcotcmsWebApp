@@ -104,8 +104,9 @@ export class CommisionKickbackComponent implements OnInit {
         this.response = res;
         if (this.response.success == true && this.response.data != null) {
           this.data = this.response.data;
+          if(this.response.data.agentCommissions.length != 0){
           this.test = this.response.data.agentCommissions;
-
+          }
           // this.commission.agenetName= parseInt(this.commission.agenetName);
           
         }

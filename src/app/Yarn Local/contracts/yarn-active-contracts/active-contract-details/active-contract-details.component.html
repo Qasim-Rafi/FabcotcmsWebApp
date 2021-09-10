@@ -1316,7 +1316,7 @@
                                     <dl class="row" *ngIf="loggedInDepartmentName =='Yarn Local'">
                                         <dt class="col-sm-6">Fabcot Commission:
                                         </dt>
-                                        <dd class="col-sm-6" *ngIf = "contractCommissionData.fabCotCommisionUOMName == null && contractCommissionData.commissionAmountFabcot != ''">
+                                        <dd class="col-sm-6" *ngIf = "(contractCommissionData.fabCotCommisionUOMName == null && contractCommissionData.commissionAmountFabcot != '' ) || contractCommissionData.fabCotCommision !='' ">
                                              {{contractCommissionData.fabCotCommision}} % &nbsp; 
                                            {{contractCostingData.rateCurrencyName}} {{contractCommissionData.commissionAmountFabcot}}  <span *ngIf = "contractCommissionData.fabcotSideCommAdditionalInfo != null"> {{contractCommissionData.fabcotSideCommAdditionalInfo}}</span>
                                         </dd>
