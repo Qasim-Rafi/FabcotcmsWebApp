@@ -63,15 +63,6 @@ export class YarnActiveContractsComponent implements OnInit {
   }
 
 
-
-
-
-
-
-
-
-
-
   navigateEditContract(obj) {
     this.router.navigate(['/FabCot/active-contract-details'], { queryParams: {id: obj.id} });
   };
@@ -81,12 +72,10 @@ export class YarnActiveContractsComponent implements OnInit {
   };
 activeContract(){
   console.log("Active Contracts");
-  // document.getElementById('all').style. = 'background-color: red; color: white;';
 }
 
 openContract(){
   console.log("open Contracts");
-  // document.getElementById('open').style.cssText = 'background-color: red; color: white;';
 }
 
 
@@ -109,9 +98,6 @@ receivedContract(){
 on_HandContract(){
   console.log("on_Hand Contracts")
 }
-
-
-
 
 
 fetch(cb) {
@@ -175,6 +161,7 @@ deleteContract(obj) {
     position: 'top',
   }).then((result) => {
     if (result.isConfirmed) {
+      this.spinner.show();
 
       this.http.delete(`${environment.apiUrl}/api/Contracts/DeleteContract/` + obj.id)
         .subscribe(
@@ -186,16 +173,21 @@ deleteContract(obj) {
               this.fetch((data) => {
                 this.rows = data;
               });
+this.spinner.hide();
               
 
             }
             else {
               this.toastr.error(this.response.message, 'Message.');
+this.spinner.hide();
+
             }
 
           }, err => {
             if (err.status == 400) {
               this.toastr.error(this.response.message, 'Message.');
+this.spinner.hide();
+
             }
           });
 

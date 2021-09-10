@@ -207,31 +207,31 @@
                 </button>
             </div>
             <div class="col-md-4 text-right ">
-                <button class="btn btn-outline-primary border-rounded btn-sm px-3 mr-1" *ngIf = "loggedInDepartmentName == 'Yarn Local'" (click)="print()">
+                <button class="btn btn-outline-primary border-rounded btn-sm px-3 mr-1" *ngIf = "loggedInDepartmentName == 'Yarn Local'" (click)="getPrintData('yarnLocalB')">
                     <i class="fas fa-print"></i>
                     Buyer
                 </button>
-                <button class="btn btn-outline-primary border-rounded btn-sm px-3 mr-1" *ngIf = "loggedInDepartmentName == 'Fabric Local'" (click)="print2()">
+                <button class="btn btn-outline-primary border-rounded btn-sm px-3 mr-1" *ngIf = "loggedInDepartmentName == 'Fabric Local'" (click)="getPrintData('fabricLocalB')">
                     <i class="fas fa-print"></i>
                     Buyer
                 </button>
-                <button class="btn btn-outline-primary border-rounded btn-sm px-3 mr-1" *ngIf = "loggedInDepartmentName == 'Yarn Local'" (click)="printSeller()">
+                <button class="btn btn-outline-primary border-rounded btn-sm px-3 mr-1" *ngIf = "loggedInDepartmentName == 'Yarn Local'" (click)="getPrintData('yarnLocalS')">
                     <i class="fas fa-print"></i>
                     Seller
                 </button>
-                <button class="btn btn-outline-primary border-rounded btn-sm px-3 mr-1" *ngIf = "loggedInDepartmentName == 'Fabric Export'" (click)="printFE()">
+                <button class="btn btn-outline-primary border-rounded btn-sm px-3 mr-1" *ngIf = "loggedInDepartmentName == 'Fabric Export'" (click)="getPrintData('fabricExportB')">
                     <i class="fas fa-print"></i>
                     Buyer
                 </button>
-                <button class="btn btn-outline-primary border-rounded btn-sm px-3 mr-1" *ngIf = "loggedInDepartmentName == 'Fabric Export'" (click)="print2FE()">
+                <button class="btn btn-outline-primary border-rounded btn-sm px-3 mr-1" *ngIf = "loggedInDepartmentName == 'Fabric Export'" (click)="getPrintData('fabricExportS')">
                     <i class="fas fa-print"></i>
                     Seller
                 </button>
-                <button class="btn btn-outline-primary border-rounded btn-sm px-3 mr-1" *ngIf = "loggedInDepartmentName == 'Fabric Local'"  (click)="printS()">
+                <button class="btn btn-outline-primary border-rounded btn-sm px-3 mr-1" *ngIf = "loggedInDepartmentName == 'Fabric Local'"  (click)="getPrintData('fabricLocalS')">
                     <i class="fas fa-print"></i>
                     Seller
                 </button>
-                <button class="btn btn-outline-primary border-rounded btn-sm px-3 mr-1" *ngIf = "loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'" (click)="printSupplier()">
+                <button class="btn btn-outline-primary border-rounded btn-sm px-3 mr-1" *ngIf = "loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'" (click)="getPrintData('supplier')">
                     <i class="fas fa-print"></i>
                   Supplier
                 </button>
@@ -656,11 +656,7 @@
                                     
                                             <div *ngIf="loggedInDepartmentName=='Yarn Export'  || loggedInDepartmentName == 'Yarn Import'" >
                                                 <div class="col-md-12 ">
-                                                    <!-- <label class="col-sm-3 col-form-label">Article Name:</label>
-                                                    <label class="col-sm-1 col-form-label">Quantity:</label>
-                                                    <label class="col-sm-1 col-form-label">Rate:</label>
-                                                    <label class="col-sm-3 col-form-label">Fabcot Commission:</label>
-                                                    <label class="col-sm-2 col-form-label">Foreign Agent Comm:</label> -->
+                                           
 
 
 
@@ -1685,7 +1681,7 @@
                 </div>
 
                 <!---------- dispatches Dates Tab ---------->
-
+<!-- 
                 <div class="tab-pane fade show " id="nav-dispatches" role="tabpanel"
                     aria-labelledby="nav-dispatches-tab">
                     <div class="col-md-12">
@@ -1775,7 +1771,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
 
                 <!---------- Product Plan Tab ---------->
