@@ -160,7 +160,6 @@ comm = "Commission:";
 
 
   ngOnInit(): void {
-    // this.userName=localStorage.getItem('loggedInUserName');
     this.queryParems = this.route.snapshot.queryParams;
     this.contractId = this.queryParems.id;
     this.loggedInDepartmentName=localStorage.getItem('loggedInDepartmentName');
@@ -181,63 +180,48 @@ comm = "Commission:";
     });
    this.GetArticleDropdown("start");
   this.getAllDocuments();
-  // this.getArticles();
-    // this.getPrintData();
+
     this.getContractData();
     this.getAllReminder();
-    // this.getCreditDebit();
+
     this.getContractPartiesData();
+
     this.getContractProductData();
+    
     this.getContractCostingData();
     this.getContractPaymentData();
+
+    if(this.loggedInDepartmentName == 'Yarn Export' || this.loggedInDepartmentName == 'Yarn Import' ){
     this.getContractLOC();
+    }
+    
     this.getContractRemarkData();
     this.getContractCommisionData();
-    // this.getSaleInvoice();
-    // this.getContractKickBack();
-    this.getDispatches();
-  
-    // this.service.fetch((data) => {
-    //   this.rows = data;
-    //   this.deliveryFilter = [...this.rows];
+ 
+    // this.getDispatches();
 
-    //   this.deliveryCount = this.rows.length;
-    // }, this.deliveryUrl);
     this.getDeliveries();
     this.getAllInvoices();
     
     if(this.saleInvoice.length>1){
           this.check=this.check+15;
         }
-    //     if(this.Documents.length=1){
-    //       this.check=this.check+15;
-    //     }
-    // this.fetch((data) => {
-    //   this.saleinvoiceFilter = [...data];
-
-    //   this.rows = data;
-    //   this.saleinvoicecount = this.rows.length;
-    //   if(this.saleInvoice.length=1){
-    //     this.check=this.check+15;
-    //   }
-    // });
-    // this.service.fetch((data) => {
-    //   this.rows7 = data;
-    // }, this.dispatchUrl);
+  
 
     this.getAllBenificery((empData) => {
       this.rows1 = empData;
-      // this.listCount= this.rows.length;
       if(this.rows1.length=1){
         this.check=this.check+15;
       }
     });
+    if(this.loggedInDepartmentName == 'Yarn Export' || this.loggedInDepartmentName == 'Yarn Import' ){
 
     this.getAllNotes((NotesData) => {
       this.rows3 = NotesData;
       this.noteFilter = [...NotesData];
       // this.listCount= this.rows.length;
     });
+  }
     this.getAllShipmentDates((shipmentData) => {
       this.rows4 = shipmentData;
       this.shipmentFilter = [...shipmentData];
@@ -554,7 +538,7 @@ comm = "Commission:";
 
 
   getAllNotes(cb) {
-
+if(this.loggedInDepartmentName == 'Yarn Export' || this.loggedInDepartmentName == 'Yarn Import'){
     this.http
       .get(`${environment.apiUrl}/api/Contracts/GetAllContractNote/`+ this.contractId)
       .subscribe(res => {
@@ -576,6 +560,7 @@ comm = "Commission:";
         this.toastr.error(messages.toString(), 'Message.');
         console.log(messages);
       });
+    }
   }
 
 
@@ -915,6 +900,7 @@ lcForm(check){
           else if(this.response.success == false) {
          
             this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
           }
         },(err: HttpErrorResponse) => {
           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
@@ -1045,31 +1031,31 @@ getDocumentData() {
 }
 
 
-getDispatches() {
-  this.http.get(`${environment.apiUrl}/api/YarnContracts/GetAllDispatchRegister/`+ this.contractId)
-    .subscribe(
-      res => {
-        this.response = res;
-        if (this.response.success == true && this.response.data != null) {
-          this.dispatchData = this.response.data;
-          // this.dispatchFilter = [...this.dispatchData]
-          // cb(this.dispatchData);
-      this.dispatchFilter = [...this.dispatchData];
+// getDispatches() {
+//   this.http.get(`${environment.apiUrl}/api/YarnContracts/GetAllDispatchRegister/`+ this.contractId)
+//     .subscribe(
+//       res => {
+//         this.response = res;
+//         if (this.response.success == true && this.response.data != null) {
+//           this.dispatchData = this.response.data;
+       
+//       this.dispatchFilter = [...this.dispatchData];
 
-        }
-        else if(this.response.success == false) {
+//         }
+//         else if(this.response.success == false) {
          
-          this.toastr.error(this.response.message, 'Message.');
-        }
+//           this.toastr.error(this.response.message, 'Message.');
+//         }
 
-      },(err: HttpErrorResponse) => {
-        const messages = this.service.extractErrorMessagesFromErrorResponse(err);
-        this.toastr.error(messages.toString(), 'Message.');
-        console.log(messages);
-      });
-}
+//       },(err: HttpErrorResponse) => {
+//         const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+//         this.toastr.error(messages.toString(), 'Message.');
+//         console.log(messages);
+//       });
+// }
 
 getProdPlan() {
+  if(this.loggedInDepartmentName == 'Yarn Export' || this.loggedInDepartmentName == 'Yarn Import'){
   this.http.get(`${environment.apiUrl}/api/YarnContracts/GetAllContractProductionStatus`)
     .subscribe(
       res => {
@@ -1089,6 +1075,7 @@ getProdPlan() {
         this.toastr.error(messages.toString(), 'Message.');
         console.log(messages);
       });
+    }
 }
 
 
@@ -1583,6 +1570,7 @@ getContractRemarkData() {
 
 
 getContractLOC() {
+  if(this.loggedInDepartmentName == 'Yarn Export' || this.loggedInDepartmentName == 'Yarn Import' ){
   this.http.get(`${environment.apiUrl}/api/Contracts/GetContractLetterCreditById/` + this.contractId)
     .subscribe(
       res => {
@@ -1604,6 +1592,7 @@ getContractLOC() {
         this.toastr.error(messages.toString(), 'Message.');
         console.log(messages);
       });
+  }
 }
 
 
@@ -1749,30 +1738,22 @@ editDeliveries(row, check) {
     // on dismiss
   });
 }
-addDispatch( check) {
-  const modalRef = this.modalService.open(DispatchRegisterComponent, { centered: true });
-  modalRef.componentInstance.statusCheck = check;
-  modalRef.componentInstance.contractId = this.contractId ;
-  modalRef.componentInstance.buyerName = this.buyerName ;
-  modalRef.componentInstance.sellerName = this.sellerName ;
-  modalRef.componentInstance.contractNmbr = this.contractNmbr ;
+// addDispatch( check) {
+//   const modalRef = this.modalService.open(DispatchRegisterComponent, { centered: true });
+//   modalRef.componentInstance.statusCheck = check;
+//   modalRef.componentInstance.contractId = this.contractId ;
+//   modalRef.componentInstance.buyerName = this.buyerName ;
+//   modalRef.componentInstance.sellerName = this.sellerName ;
+//   modalRef.componentInstance.contractNmbr = this.contractNmbr ;
 
-
-
-
-  modalRef.result.then((data) => {
-    // on close
-    if (data == true) {
-      // this.getContractData();
-      this.getDispatches();
+//   modalRef.result.then((data) => {
+//     if (data == true) {
   
-    }
-    // this.getContractData();
+//     }
 
-  }, (reason) => {
-    // on dismiss
-  });
-}
+//   }, (reason) => {
+//   });
+// }
 
 addCredit(x, check) {
   const modalRef = this.modalService.open(CreditComponent, { centered: true });
@@ -1800,26 +1781,19 @@ addCredit(x, check) {
   });
 }
 
-editDispatch( row ,check) {
-  const modalRef = this.modalService.open(DispatchRegisterComponent, { centered: true });
-  modalRef.componentInstance.statusCheck = check;
-  modalRef.componentInstance.dispatchId = row.id ;
-  modalRef.componentInstance.contractId = this.contractId ;
-
-
-  modalRef.result.then((data) => {
-    // on close
-    if (data == true) {
+// editDispatch( row ,check) {
+//   const modalRef = this.modalService.open(DispatchRegisterComponent, { centered: true });
+//   modalRef.componentInstance.statusCheck = check;
+//   modalRef.componentInstance.dispatchId = row.id ;
+//   modalRef.componentInstance.contractId = this.contractId ;
+//   modalRef.result.then((data) => {
+//     if (data == true) {
   
-    }
-    // this.getContractData();
-    this.getDispatches();
-
-
-  }, (reason) => {
-    // on dismiss
-  });
-}
+//     }
+//     this.getDispatches();
+//   }, (reason) => {
+//   });
+// }
 
 ContractNotes(check) {
   const modalRef = this.modalService.open(ContractNoteComponent, { centered: true });
@@ -1865,66 +1839,63 @@ editNote(row, check) {
 }
 
 addProd() {
-  const modalRef = this.modalService.open(ProductionStatusComponent, { centered: true });
-  // modalRef.componentInstance.statusCheck = check;
-  // modalRef.componentInstance.contractId = this.contractId ;
+  if(this.loggedInDepartmentName == 'Yarn Export' || this.loggedInDepartmentName == 'Yarn Import'){
 
+  const modalRef = this.modalService.open(ProductionStatusComponent, { centered: true });
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
       this.getProdPlan();
-  
     }
-    // this.getContractData();
 
   }, (reason) => {
-    // on dismiss
   });
 }
+}
 
 
 
 
-deleteDispatch(id) {
-  Swal.fire({
-    title: GlobalConstants.deleteTitle, //'Are you sure?',
-    text: GlobalConstants.deleteMessage,
-    icon: 'error',
-    showCancelButton: true,
-    confirmButtonColor: '#ed5565',
-    cancelButtonColor: '#dae0e5',
-    cancelButtonText: 'No',
-    confirmButtonText: 'Yes',
-    reverseButtons: true,
-    position: 'top',
-  }).then((result) => {
-    if (result.isConfirmed) {
-      this.spinner.show();
+// deleteDispatch(id) {
+//   Swal.fire({
+//     title: GlobalConstants.deleteTitle, //'Are you sure?',
+//     text: GlobalConstants.deleteMessage,
+//     icon: 'error',
+//     showCancelButton: true,
+//     confirmButtonColor: '#ed5565',
+//     cancelButtonColor: '#dae0e5',
+//     cancelButtonText: 'No',
+//     confirmButtonText: 'Yes',
+//     reverseButtons: true,
+//     position: 'top',
+//   }).then((result) => {
+//     if (result.isConfirmed) {
+//       this.spinner.show();
 
-      this.http.delete(`${environment.apiUrl}/api/YarnContracts/DeleteDispatchRegister/` + id.id)
-        .subscribe(
-          res => {
-            this.response = res;
-            if (this.response.success == true) {
-              this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
-              this.getDispatches();
-              this.spinner.hide();
-            }
-            else {
-              this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
-  this.spinner.hide();
+//       this.http.delete(`${environment.apiUrl}/api/YarnContracts/DeleteDispatchRegister/` + id.id)
+//         .subscribe(
+//           res => {
+//             this.response = res;
+//             if (this.response.success == true) {
+//               this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
+//               this.getDispatches();
+//               this.spinner.hide();
+//             }
+//             else {
+//               this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
+//   this.spinner.hide();
            
-            }
+//             }
 
-          }, err => {
-            if (err.status == 400) {
-              this.toastr.error(this.response.message, 'Message.');
-  this.spinner.hide();
-}
-          });
-    }
-  })
-}
+//           }, err => {
+//             if (err.status == 400) {
+//               this.toastr.error(this.response.message, 'Message.');
+//   this.spinner.hide();
+// }
+//           });
+//     }
+//   })
+// }
 
 
 
@@ -2206,6 +2177,75 @@ deleteDispatch(id) {
               // on dismiss
             });
           }
+
+  getPrintData(deptName){
+    this.spinner.show();
+  this.http.get(`${environment.apiUrl}/api/Reports/ContractIndentPrint/`+ this.contractId)
+  .subscribe(
+    res => {
+    this.response = res;
+    if (this.response.success == true && this.response.data != null) {
+      this.printData = this.response.data;
+   
+   if(deptName == 'yarnLocalB'){
+    this.print();
+    this.spinner.hide();
+
+   }
+  else if(deptName == 'yarnLocalS'){
+    this.printSeller();
+    this.spinner.hide();
+
+   }
+   else if(deptName == 'fabricLocalB'){
+    this.print2();
+    this.spinner.hide();
+
+   }
+   else if(deptName == 'fabricExportB'){
+    this.printFE();
+    this.spinner.hide();
+
+   }
+
+   else if(deptName == 'fabricExportS'){
+    this.print2FE();
+    this.spinner.hide();
+
+   }
+   else if(deptName == 'fabricLocalS'){
+    this.printS();
+    this.spinner.hide();
+
+   }
+   else if(deptName == 'supplier'){
+    this.printSupplier();
+    this.spinner.hide();
+
+   }
+   this.spinner.hide();
+
+
+    }
+    else if(this.response.success == false) {
+       
+      this.toastr.error(this.response.message, 'Message.');
+    this.spinner.hide();
+
+    }
+
+      
+     
+    },(err: HttpErrorResponse) => {
+      const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+      this.toastr.error(messages.toString(), 'Message.');
+      console.log(messages);
+    });
+}
+
+
+
+          
 getImage(){
   this.http.get('/assets/fabcot.png', { responseType: 'blob' })
   .subscribe(res => {
@@ -2224,28 +2264,9 @@ getImage(){
 
           print(){
 
-              this.http.get(`${environment.apiUrl}/api/Reports/ContractIndentPrint/`+ this.contractId)
-                .subscribe(
-                  res => {
-                    this.response = res;
-                    if (this.response.success == true && this.response.data != null) {
-                      this.printData = this.response.data;
-                  
-            
-                    }
-                    else if(this.response.success == false) {
-                     
-                      this.toastr.error(this.response.message, 'Message.');
-                    }
-            
-                  },(err: HttpErrorResponse) => {
-                    const messages = this.service.extractErrorMessagesFromErrorResponse(err);
-                    this.toastr.error(messages.toString(), 'Message.');
-                    console.log(messages);
-                  });
-            
+       
 
-
+       
 
              
          
@@ -3793,25 +3814,7 @@ getImage(){
           printS(){
             
            
-            this.http.get(`${environment.apiUrl}/api/Reports/ContractIndentPrint/`+ this.contractId)
-            .subscribe(
-              res => {
-                this.response = res;
-                if (this.response.success == true && this.response.data != null) {
-                  this.printData = this.response.data;
-              
-        
-                }
-                else if(this.response.success == false) {
-                 
-                  this.toastr.error(this.response.message, 'Message.');
-                }
-        
-              },(err: HttpErrorResponse) => {
-                const messages = this.service.extractErrorMessagesFromErrorResponse(err);
-                this.toastr.error(messages.toString(), 'Message.');
-                console.log(messages);
-              });
+       
             
            
             let docDefinition = {
