@@ -271,13 +271,13 @@
                                 aria-controls="nav-dispatches" aria-selected="false">Dispatches &nbsp;<span
                                     class="badge badge-pill badge-primary">{{dispatchData.length}}</span></a> -->
 
-                            <a class="nav-prodPlan nav-link " *ngIf="loggedInDepartmentName=='Fabric Local'  || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Fabric Export'"
+                            <a class="nav-prodPlan nav-link " *ngIf="loggedInDepartmentName=='Fabric Local'  || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Import'  "
                                 id="nav-prodPlan-tab" data-toggle="tab" href="#nav-prodPlan" role="tab"
                                 aria-controls="nav-prodPlan" aria-selected="false">Prod Plan &nbsp;
                                 <span class="badge badge-pill badge-primary">{{rows5.length}}</span>
                                 </a>
 
-                            <a  class="nav-item nav-link " id="nav-Sale-tab" data-toggle="tab" href="#nav-Sale"
+                            <a  class="nav-item nav-link "  id="nav-Sale-tab" data-toggle="tab" href="#nav-Sale"
                                 role="tab" aria-controls="nav-Sale" aria-selected="false">Sale Invoice &nbsp;<span
                                     class="badge badge-pill badge-primary">{{saleInvoice.length}}</span></a>
 
@@ -1997,7 +1997,7 @@
                         <div class="row">
                             <div class="col-md-12 py-1">
                                 <div class="row mb-2">
-                                    <div class="col-sm-12 col-md-6 col-lg-7 text-muted">
+                                    <div class="col-sm-12 col-md-6 col-lg-7 text-muted" >
                                         <h1 class="row wrapper page-header font-weight-light">
                                             <i class="fas fa-receipt mr-3"></i>
                                             Sale Invoices
