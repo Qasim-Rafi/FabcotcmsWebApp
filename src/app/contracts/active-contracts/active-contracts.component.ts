@@ -53,31 +53,17 @@ export class ActiveContractsComponent implements OnInit {
 
   searchFilter(event) {
     const val = event.target.value.toLowerCase();
-    // filter our data
+ 
     const temp = this.temp.filter(function (d) {
       return (
         d.autoContractNumber.toLowerCase().indexOf(val) !== -1 ||
         d.buyerName.toLowerCase().indexOf(val) !== -1 ||
         d.sellerName.toLowerCase().indexOf(val) !== -1 ||
         d.contractOn.toLowerCase().indexOf(val) !== -1 ||
-        // d.poNumber.toLowerCase().indexOf(val) !== -1 ||
-        // d.scNumber.toLowerCase().indexOf(val) !== -1 ||
-        // d.articleName.toLowerCase().indexOf(val) !== -1 ||
-
-
          !val);
     });
     this.rows = temp;
   }
-
-
-
-
-
-
-
-
-
 
 
   navigateEditContract(obj) {
@@ -87,14 +73,11 @@ export class ActiveContractsComponent implements OnInit {
 
 activeContract(){
   console.log("Active Contracts");
-  // document.getElementById('all').style. = 'background-color: red; color: white;';
 }
 
 openContract(){
   console.log("open Contracts");
-  // document.getElementById('open').style.cssText = 'background-color: red; color: white;';
 }
-
 
 bill_awaitedContract(){
   console.log("bill_awaited Contracts")
@@ -115,9 +98,6 @@ receivedContract(){
 on_HandContract(){
   console.log("on_Hand Contracts")
 }
-
-
-
 
 
 fetch(cb) {
@@ -148,39 +128,17 @@ fetch(cb) {
         this.spinner.hide();
 
       }
-      // this.spinner.hide();
     }, err => {
       if (err.status == 400) {
         this.toastr.error(err.error.message, 'Message.');
         this.spinner.hide();
 
       }
-      //  this.spinner.hide();
     });
 }
 
 
 cloneContract(obj){
-
-  // let varr = {
-
-  //   "enquiryId": obj.id,
-  //   "autoEnquiryNumber":obj.autoEnquiryNumber,
-  //   "enquiryDate": obj.enquiryDate,
-  //   "buyerName": obj.buyerName,
-  //   "articleName" : obj.articleName,
-  //   "paymentTermName":obj.paymentTermName,
-  //   "priceTermName":obj.priceTermName
-  
-  // }
-  // if( obj.enquiryDate == "undefined-undefined-undefined")
-  // {
-  //   obj.enquiryDate = ""
-  // }
-  // if( obj.enquiryDate == "0-NaN-NaN" )
-  // {
-  //   obj.enquiryDate = ""
-  // }
   let varr = {
 
   }
@@ -211,9 +169,9 @@ this.spinner.hide();
           }, err => {
             if (err.status == 400) {
               this.toastr.error(this.response.message, 'Message.');
+              this.spinner.hide();
 
             }
-this.spinner.hide();
 
           });
 
@@ -235,27 +193,31 @@ deleteContract(obj) {
     position: 'top',
   }).then((result) => {
     if (result.isConfirmed) {
-
+      this.spinner.show();
       this.http.delete(`${environment.apiUrl}/api/Contracts/DeleteContract/` + obj.id)
         .subscribe(
           res => {
             this.response = res;
             if (this.response.success == true) {
               this.toastr.error(this.response.message, 'Message.');
-              // this.getAllEnquiryItems();
               this.fetch((data) => {
                 this.rows = data;
               });
+      this.spinner.hide();
               
 
             }
             else {
               this.toastr.error(this.response.message, 'Message.');
+      this.spinner.hide();
+            
             }
 
           }, err => {
             if (err.status == 400) {
               this.toastr.error(this.response.message, 'Message.');
+      this.spinner.hide();
+            
             }
           });
 

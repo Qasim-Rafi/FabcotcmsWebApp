@@ -52,7 +52,7 @@ export class ActiveContractDetailComponent implements OnInit {
   items:any = {};
   preview:any = {};
 
-  empData:any = {};
+  // empData:any = {};
   shipment:any = {};
   contractNote:any = {};
   columns: any = [];
@@ -86,9 +86,7 @@ quantitynmbr : number;
   buyerShipmentDate:any = [];
  pakCurrency:string;
  usdCurrency:string;
-
   shipmentUrl='/api/Contracts/GetAllContractShipmentSchedule/{contractId}';
-  // tna data
   rows5: any = [];
   id: any = {};
   tnaId: any = {};
@@ -106,7 +104,6 @@ quantitynmbr : number;
     config.animated = true;}
 
   ngOnInit(): void {
-    // this.userName=localStorage.getItem('loggedInUserName');
     this.queryParems = this.route.snapshot.queryParams;
     this.contractId = this.queryParems.id;
    
@@ -115,13 +112,7 @@ quantitynmbr : number;
     });
     this.getContractData();
     this.getAllReminder();
-    this.getContractPartiesData();
-    this.getContractProductData();
-    this.getContractCostingData();
-    this.getContractPaymentData();
-     this.getContractLOC();
-    this.getContractRemarkData();
-    this.getContractCommisionData();
+
     this.getSaleInvoice();
     
 
@@ -131,22 +122,14 @@ quantitynmbr : number;
 
     });
 
-    this.getAllBenificery((empData) => {
-      this.rows1 = empData;
-      // this.listCount= this.rows.length;
-    });
+    // this.getAllBenificery();
 
-
-    // this.getAllItems((itemsData) => {
-    //   this.rows2 = itemsData;
-    //   this.ItemFilter = [...itemsData];
-    // });
 this.getAllItems()
     this.getAllNotes((NotesData) => {
       this.rows3 = NotesData;
       this.noteFilter = [...NotesData];
-      // this.listCount= this.rows.length;
     });
+
     this.getAllShipmentDates((shipmentData) => {
       this.rows4 = shipmentData;
       for(let i=0 ; i<this.rows4.length; i++){
@@ -226,6 +209,7 @@ this.getAllItems()
 
 
   getAllItems() {
+    this.spinner.show();
 
     this.http
       .get(`${environment.apiUrl}/api/Contracts/GetAllContractItem/`+ this.contractId)
@@ -270,23 +254,30 @@ this.getAllItems()
              
               this.rows2[i].contractCost  = this.response.data[i].contractCost + "£"
             }
+  this.spinner.hide();
+
           }
           this.ItemFilter = [this.rows2]; 
           // cb(this.items);
         }
         else {
           this.toastr.error(this.response.message, 'Message.');
+  this.spinner.hide();
+
         }
         // this.spinner.hide();
       }, err => {
         if (err.status == 400) {
-          this.toastr.error(err.error.message, 'Message.');;
+          this.toastr.error(err.error.message, 'Message.');
+  this.spinner.hide();
+
         }
         //  this.spinner.hide();
       });
   }
 
   getPreview(cb) {
+    this.spinner.show();
 
     this.http
       .get(`${environment.apiUrl}/api/Contracts/GetContractPreviewById/`+ this.contractId)
@@ -297,20 +288,27 @@ this.getAllItems()
         if (this.response.success == true) {
           this.preview = this.response.data
           cb(this.preview);
+  this.spinner.hide();
+        
         }
         else {
           this.toastr.error(this.response.message, 'Message.');
+  this.spinner.hide();
+        
         }
         // this.spinner.hide();
       }, err => {
         if (err.status == 400) {
           this.toastr.error(err.error.message, 'Message.');;
+  this.spinner.hide();
+        
         }
         //  this.spinner.hide();
       });
   }
 
   getAllNotes(cb) {
+    this.spinner.show();
 
     this.http
       .get(`${environment.apiUrl}/api/Contracts/GetAllContractNote/`+ this.contractId)
@@ -322,14 +320,20 @@ this.getAllItems()
           this.contractNote = this.response.data
           this.noteFilter = [this.contractNote]; 
           cb(this.contractNote);
+  this.spinner.hide();
+
         }
         else {
           this.toastr.error(this.response.message, 'Message.');
+          this.spinner.hide();
+
         }
         // this.spinner.hide();
       }, err => {
         if (err.status == 400) {
           this.toastr.error(err.error.message, 'Message.');;
+          this.spinner.hide();
+
         }
         //  this.spinner.hide();
       });
@@ -338,6 +342,7 @@ this.getAllItems()
 
 
   getAllShipmentDates(cb) {
+    this.spinner.show();
 
     this.http
       .get(`${environment.apiUrl}/api/Contracts/GetAllContractShipmentSchedule/`+ this.contractId)
@@ -349,14 +354,20 @@ this.getAllItems()
          
           this.shipmentFilter = [this.shipment]; 
           cb(this.shipment);
+  this.spinner.hide();
+        
         }
         else {
           this.toastr.error(this.response.message, 'Message.');
+  this.spinner.hide();
+        
         }
         // this.spinner.hide();
       }, err => {
         if (err.status == 400) {
           this.toastr.error(err.error.message, 'Message.');;
+  this.spinner.hide();
+        
         }
         //  this.spinner.hide();
       });
@@ -365,6 +376,8 @@ this.getAllItems()
 
 
   getSaleInvoice() {
+  this.spinner.show();
+
     this.http.get(`${environment.apiUrl}/api/Contracts/GetAllContractSaleInvoice/`+ this.contractId )
       .subscribe(
         res => {
@@ -372,15 +385,20 @@ this.getAllItems()
           if (this.response.success == true) {
             this.invoiceData = this.response.data;
             
+            this.spinner.hide();
   
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+  this.spinner.hide();
+            
           }
   
         }, err => {
           if (err.status == 400) {
             this.toastr.error(this.response.message, 'Message.');
+  this.spinner.hide();
+          
           }
         });
   }
@@ -546,7 +564,6 @@ PartiesForm() {
     // on close
     if (data == true) {
       this.getContractPartiesData();
-      // this.getContractData();
     }
   }, (reason) => {
     // on dismiss
@@ -569,22 +586,28 @@ contractOwner() {
 
 
 getContractPartiesData() {
+  this.spinner.show();
   this.http.get(`${environment.apiUrl}/api/Contracts/GetContractPartiesById/` + this.contractId)
     .subscribe(
       res => {
         this.response = res;
         if (this.response.success == true) {
           this.contractPartiesData = this.response.data;
+  this.spinner.hide();
           
 
         }
         else {
           this.toastr.error(this.response.message, 'Message.');
+  this.spinner.hide();
+       
         }
 
       }, err => {
         if (err.status == 400) {
           this.toastr.error(this.response.message, 'Message.');
+  this.spinner.hide();
+       
         }
       });
 }
@@ -601,7 +624,6 @@ ProductANDSpecificationForm() {
     // on close
     if (data == true) {
     this.getContractProductData();
-    // this.getContractData();
 
 
     }
@@ -614,21 +636,27 @@ ProductANDSpecificationForm() {
 
 
 getContractProductData() {
+  this.spinner.show();
   this.http.get(`${environment.apiUrl}/api/Contracts/GetContractProductSpecificationById/` + this.contractId)
     .subscribe(
       res => {
         this.response = res;
         if (this.response.success == true) {
           this.contractProductData = this.response.data;
+  this.spinner.hide();
           
         }
         else {
           this.toastr.error(this.response.message, 'Message.');
+  this.spinner.hide();
+        
         }
 
       }, err => {
         if (err.status == 400) {
           this.toastr.error(this.response.message, 'Message.');
+  this.spinner.hide();
+        
         }
       });
 }
@@ -642,7 +670,6 @@ QuantityCosting() {
     // on close
     if (data == true) {
       this.getContractCostingData();
-      // this.getContractData();
       
     }
   }, (reason) => {
@@ -653,6 +680,8 @@ QuantityCosting() {
 
 
 getContractCostingData() {
+  this.spinner.show();
+
   this.http.get(`${environment.apiUrl}/api/Contracts/GetContractCostingById/` + this.contractId)
     .subscribe(
       res => {
@@ -660,14 +689,20 @@ getContractCostingData() {
         if (this.response.success == true) {
           this.contractCostingData = this.response.data;
           this.quantitynmbr = this.response.data.quantity;
+  this.spinner.hide();
+        
         }
         else {
           this.toastr.error(this.response.message, 'Message.');
+  this.spinner.hide();
+        
         }
 
       }, err => {
         if (err.status == 400) {
           this.toastr.error(this.response.message, 'Message.');
+  this.spinner.hide();
+        
         }
       });
 }
@@ -681,7 +716,6 @@ PaymentDelivery() {
     // on close
     if (data == true) {
       this.getContractPaymentData();
-      // this.getContractData();
 
 
     }
@@ -694,6 +728,8 @@ PaymentDelivery() {
 
 
 getContractPaymentData() {
+  this.spinner.show();
+
   this.http.get(`${environment.apiUrl}/api/Contracts/GetContractPaymentDeliveryById/` + this.contractId)
     .subscribe(
       res => {
@@ -709,15 +745,20 @@ getContractPaymentData() {
           // if(this.response.data.paymentTermInfo == null){
           //   this.contractPaymentData.paymentTermInfo = ""
           // }
+  this.spinner.hide();
           
         }
         else {
           this.toastr.error(this.response.message, 'Message.');
+  this.spinner.hide();
+        
         }
 
       }, err => {
         if (err.status == 400) {
           this.toastr.error(this.response.message, 'Message.');
+  this.spinner.hide();
+        
         }
       });
 }
@@ -732,7 +773,6 @@ CommissionKickback() {
     // on close
     if (data == true) {
       this.getContractCommisionData();
-      // this.getContractData();
 
 
     }
@@ -746,6 +786,8 @@ CommissionKickback() {
 
 
 getContractCommisionData(){
+  this.spinner.show();
+
   this.http.get(`${environment.apiUrl}/api/Contracts/GetContractCommissionById/` + this.contractId)
   .subscribe(
     res => {
@@ -765,15 +807,20 @@ getContractCommisionData(){
           this.contractCommissionData['sellerSideCommission'] = " "
         }
         // this.contractCommissionData.agenetName= parseInt(this.contractCommissionData.agenetName);
+  this.spinner.hide();
         
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
+  this.spinner.hide();
+
       }
 
     }, err => {
       if (err.status == 400) {
         this.toastr.error(this.response.message, 'Message.');
+  this.spinner.hide();
+
       }
     });
   
@@ -792,11 +839,7 @@ EmployeeCommission(status) {
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
-      this.getAllBenificery((empData) => {
-        this.rows1 = empData;
-        // this.listCount= this.rows.length;
-      });
-      // this.getContractData();
+      this.getAllBenificery();
 
 
     }
@@ -816,17 +859,15 @@ editEmployeeCommission(status , row) {
     // on close
     if (data == true) {
 
-      this.getAllBenificery((empData) => {
-        this.rows1 = empData;
-        // this.listCount= this.rows.length;
-      });
+      this.getAllBenificery();
     }
   }, (reason) => {
     // on dismiss
   });
 }
 
-getAllBenificery(cb) {
+getAllBenificery() {
+  this.spinner.show();
     
   this.http
   .get(`${environment.apiUrl}/api/Contracts/GetAllContractBeneficiary/` + this.contractId)
@@ -835,18 +876,21 @@ getAllBenificery(cb) {
    
   if(this.response.success==true)
   {
-  this.empData =this.response.data;
-  cb(this.empData);
+  this.rows1 =this.response.data;
+  this.spinner.hide();
+
   }
   else{
     this.toastr.error(this.response.message, 'Message.');
+  this.spinner.hide();
+
   }
-    // this.spinner.hide();
   }, err => {
     if ( err.status == 400) {
 this.toastr.error(err.error.message, 'Message.');
+this.spinner.hide();
+
     }
-  //  this.spinner.hide();
   });
 }
 
@@ -876,10 +920,7 @@ deleteCommission(row) {
               this.toastr.error(this.response.message, 'Message.');
               // this.getAllEnquiryItems();
               // this.getEnquiryData(this.objEnquiry);
-              this.getAllBenificery((empData) => {
-                this.rows1 = empData;
-                // this.listCount= this.rows.length;
-              });
+              this.getAllBenificery();
 
               this.spinner.hide();
             }
@@ -911,7 +952,6 @@ Remarks() {
     // on close
     if (data == true) {
       this.getContractRemarkData();
-      // this.getContractData();
 
 
     }
@@ -925,21 +965,28 @@ Remarks() {
 
 
 getContractRemarkData() {
+  this.spinner.show();
+
   this.http.get(`${environment.apiUrl}/api/Contracts/GetContractRemarkById/` + this.contractId)
     .subscribe(
       res => {
         this.response = res;
         if (this.response.success == true) {
           this.contractRemarksData = this.response.data;
+  this.spinner.hide();
           
         }
         else {
           this.toastr.error(this.response.message, 'Message.');
+  this.spinner.hide();
+        
         }
 
       }, err => {
         if (err.status == 400) {
           this.toastr.error(this.response.message, 'Message.');
+  this.spinner.hide();
+        
         }
       });
 }
@@ -969,6 +1016,8 @@ LOCform() {
 
 
 getContractLOC() {
+  this.spinner.show();
+
   this.http.get(`${environment.apiUrl}/api/Contracts/GetContractLetterCreditById/` + this.contractId)
     .subscribe(
       res => {
@@ -979,17 +1028,22 @@ getContractLOC() {
 
           }
          
+          this.spinner.hide();
 
 
           
         }
         else {
           this.toastr.error(this.response.message, 'Message.');
+          this.spinner.hide();
+
         }
 
       }, err => {
         if (err.status == 400) {
           this.toastr.error(this.response.message, 'Message.');
+          this.spinner.hide();
+
         }
       });
 }
@@ -1007,7 +1061,6 @@ ProductionPlanform() {
         this.rows5 = Tna;
       });
     
-      // this.getContractData();
     }
 
   }, (reason) => {
@@ -1024,7 +1077,6 @@ addSaleInvoice(status) {
     // on close
     if (data == true) {
       this.getSaleInvoice();
-      // this.getContractData();
 
 
     }
@@ -1044,7 +1096,6 @@ editSaleInvoice(status, obj) {
     // on close
     if (data == true) {
       this.getSaleInvoice();
-    // this.getContractData();
 
     }
   }, (reason) => {
@@ -1069,7 +1120,6 @@ Note() {
         this.noteFilter = [...NotesData];
         // this.listCount= this.rows.length;
       });
-    // this.getContractData();
 
 
     }
@@ -1091,7 +1141,6 @@ ContractNotes(check, name) {
         this.noteFilter = [...NotesData];
         // this.listCount= this.rows.length;
       });
-    // this.getContractData();
 
     }
   }, (reason) => {
@@ -1112,6 +1161,8 @@ ContractNotes(check, name) {
 //   });
 // }
 getContractTnA(cb) {
+  this.spinner.show();
+
   this.http.get(`${environment.apiUrl}/api/Contracts/GetAllContractTimeAction/` + this.contractId)
     .subscribe(
       res => {
@@ -1119,14 +1170,20 @@ getContractTnA(cb) {
         if (this.response.success == true) {
           this.TnaData = this.response.data;
           cb(this.TnaData)
+  this.spinner.hide();
+        
         }
         else {
           this.toastr.error(this.response.message, 'Message.');
+  this.spinner.hide();
+        
         }
 
       }, err => {
         if (err.status == 400) {
           this.toastr.error(this.response.message, 'Message.');
+  this.spinner.hide();
+        
         }
       });
 }
@@ -1175,6 +1232,7 @@ TnaHistory(row) {
 }
 
 getAllInvoiceItems(cb) {
+  this.spinner.show();
 
   this.http
     .get(`${environment.apiUrl}/api/Contracts/GetAllSaleInvoiceItem/`+ this.contractId)
@@ -1186,14 +1244,20 @@ getAllInvoiceItems(cb) {
         this.invoiceItem = this.response.data
         this.invoiceItemFilter = [this.invoiceItem]; 
         cb(this.invoiceItem);
+  this.spinner.hide();
+
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
+  this.spinner.hide();
+
       }
       // this.spinner.hide();
     }, err => {
       if (err.status == 400) {
-        this.toastr.error(err.error.message, 'Message.');;
+        this.toastr.error(err.error.message, 'Message.');
+  this.spinner.hide();
+
       }
       //  this.spinner.hide();
     });
@@ -1205,14 +1269,7 @@ showhistorycontract() {
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
-    //   this.getSaleInvoice();
-    // // this.getContractData();
-    // this.getAllInvoiceItems((invoiceItem) => {
-    //   this.rows6 = invoiceItem;
-    //   this.invoiceItemFilter = [...invoiceItem];
-
-    // });
-
+ 
 
     }
   }, (reason) => {
@@ -1750,6 +1807,7 @@ this.spinner.hide();
 
 
           getAllReminder() {
+            this.spinner.show();
             this.http.get(`${environment.apiUrl}/api/Contracts/GetAllContractFollowUp/` + this.contractId)
               .subscribe(
                 res => {
@@ -1757,16 +1815,21 @@ this.spinner.hide();
 
                   if (this.response.success == true) {
                     this.reminderData = this.response.data;
+            this.spinner.hide();
                     
           
                   }
                   else {
                     this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
+                  
                   }
           
                 }, err => {
                   if (err.status == 400) {
                     this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
+                 
                   }
                 });
           }
