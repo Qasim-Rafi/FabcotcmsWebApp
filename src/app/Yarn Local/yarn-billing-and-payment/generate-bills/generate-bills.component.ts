@@ -17,7 +17,7 @@ import {NgxSpinnerService} from 'ngx-spinner'
   styleUrls: ['./generate-bills.component.css']
 })
 export class GenerateBillsComponent implements OnInit {
-amount:any;
+amount=0;
   constructor(    private service: ServiceService,
     private http: HttpClient,
     private toastr: ToastrService,
@@ -72,16 +72,18 @@ amount:any;
 
 
       onSelect(selecterow) {
-        this.amount=selecterow.selected.length !=0 ?selecterow.selected[0].amount:null;
+        this.amount = 0;
+        // this.amount=selecterow.selected.length !=0 ?selecterow.selected[0].amount:null;
         this.selectedids =selecterow;
 
         for(let i=0; i<this.selectedids.selected.length; i++ )
-        {      
+        {      this.amount = this.amount + this.selectedids.selected[i].amount
             this.contractIds[i] = this.selectedids.selected[i].id;
         }
       }
   
   generateBill() {
+    this.spinner.show();
   if(this.contractIds.length === 0  || this.selectedids.selected.length === 0  ){
     this.toastr.error("PLease select atleast one contract to generate bill" , 'Message')
   }
@@ -94,7 +96,7 @@ amount:any;
           "contractIds": this.contractIds,
            "fabcotBranchName": p.branch.name,
         }
-        this.spinner.show();
+        // this.spinner.show();
         this.http.
           post(`${environment.apiUrl}/api/BillingPayments/GenerateContractBill`, varr)
           .subscribe(
