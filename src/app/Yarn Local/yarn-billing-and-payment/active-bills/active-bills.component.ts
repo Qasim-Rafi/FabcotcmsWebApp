@@ -61,7 +61,7 @@ export class ActiveBillsComponent implements OnInit {
       this.router.navigate(['/yarn-billing-and-payment/open-bill'] , { queryParams: {id: obj.id} });
     };
     navigateEditContract(obj) {
-      this.router.navigate(['/yarn-local/yarn-active-contract-details'], { queryParams: {id: obj.contractId} });
+      this.router.navigate(['/FabCot/active-contract-details'], { queryParams: {id: obj.contractId} });
     };
   ngOnInit(): void {
     

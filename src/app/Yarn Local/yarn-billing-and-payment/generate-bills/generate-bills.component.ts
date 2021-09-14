@@ -62,12 +62,15 @@ amount:any;
         const val = event.target.value.toLowerCase();
         const temp = this.billFilter.filter(function (d) {
           return (d.autoContractNumber.toLowerCase().indexOf(val) !== -1 ||
-            // d.sellerName.toLowerCase().indexOf(val) !== -1 || d.buyerName.toLowerCase().indexOf(val) !== -1 || 
+            d.sellerName.toLowerCase().indexOf(val) !== -1 ||
+            //  d.buyerName.toLowerCase().indexOf(val) !== -1 || 
             
             !val);
         });
         this.rows = temp;
       }
+
+
       onSelect(selecterow) {
         this.amount=selecterow.selected.length !=0 ?selecterow.selected[0].amount:null;
         this.selectedids =selecterow;
