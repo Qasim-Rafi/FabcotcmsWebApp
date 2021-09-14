@@ -136,23 +136,23 @@
                     <td>{{i.commission}}</td>
                     <td>{{i.taxAmount}}</td>
 
-                    <td>{{i.totalAmount}}</td>
+                    <td>{{i.totalAmount  | number:'2.2-2'}}</td>
 
                 </tr>
             </table>
-
+  <!-- {{totalQuantity}} -->
             <!-- right side content -->
             <br>
             <div class="float-right">
                 <span class=" bold text-font1">
-                    Sub Total: <span class="text-font1 underline">{{rows.invoiceSubTotalAmount}}</span>
+                    Sub Total: <span class="text-font1 underline">{{totalAmount | number:'2.2-2'}}</span>
                 </span>
                 <br>
                 <span class=" bold text-font1">
-                    TAX : <span class="text-font1 underline">{{rows.invoiceTaxAmount}}</span>
+                    TAX : <span class="text-font1 underline">{{0.00}}</span>
                 </span><br>
                 <span class=" bold text-font1">
-                    TOTAL : <span class="bold text-font1 underline">{{rows.invoiceTotalAmount}}</span>
+                    TOTAL : <span class="bold text-font1 underline">{{totalAmount | number:'2.2-2'}}</span>
                 </span>
             </div>
             <!-- left side content -->
