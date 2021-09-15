@@ -9,6 +9,7 @@ import { ChangeBankAccountComponent } from './change-bank-account/change-bank-ac
 import pdfMake from "pdfmake/build/pdfmake";
 import { ToWords } from 'to-words';
 import {NgxSpinnerModule, NgxSpinnerService} from 'ngx-spinner'
+import { NgxNumToWordsService, SUPPORTED_LANGUAGE } from 'ngx-num-to-words';
 @Component({
   selector: 'app-open-active-bill',
   templateUrl: './open-active-bill.component.html',
@@ -31,12 +32,15 @@ export class OpenActiveBillComponent implements OnInit {
   image2 : any;
   totalQuantity = 0 ;
   quantity : any;
+  numberInWords!: string;
+lang : SUPPORTED_LANGUAGE = 'en';
   constructor(   private route: ActivatedRoute,
     private modalService: NgbModal,
     private http: HttpClient,
     private service: ServiceService,
     private toastr: ToastrService,
-    private spinner:NgxSpinnerService
+    private spinner:NgxSpinnerService,
+    private ngxNumToWordsService: NgxNumToWordsService
     ) { }
 
   ngOnInit(): void {
@@ -118,9 +122,10 @@ fetch(cb) {
 } 
 this.totalAmount1 =this.totalAmount.toFixed(2)
 this.totalAmount2 = parseFloat(this.totalAmount1)
-  const toWords = new ToWords();
-  this.words = toWords.convert(this.totalAmount2);
+  // const toWords = new ToWords();
+  // this.words = toWords.convert(this.totalAmount2);
 
+  this.words = this.ngxNumToWordsService.inWords(this.totalAmount2, this.lang);
 
 
 
@@ -161,209 +166,6 @@ this.spinner.hide();
       // on dismiss
     });
   }
-
-
-
-// print(){
-//   let docDefinition = {
-//     pageSize: 'A4',
-//     pageMargins: [ 30, 40, 40, 20 ],
-//     pageOrientation: 'landscape',
-      
-//           info: {
-//             title: 'Bill generated'
-//           },
-//           content: [
-//             {
-//               table:{headerRows: 1 , widths:['100%'],
-//             body: [
-//               [{text:'Fabcot International FZE' , style:'heading'}],] }
-//             },
-//             {
-//               layout:'noBorders',
-//               margin: [0 , 50 , 0 , 0],
-//               table:{headerRows:1 ,  widths:['5%' , '77%' , '7%' , '12%'],
-//             body:[ [
-//               {text: 'Seller :'} , {text: this.rows['sellerName'] , style:'leftAlign'},
-//             {text:'Bill # :'} ,{text:this.rows['billNumber']}
-          
-//           ]]
-//             }
-//             },
-//             {
-//               layout:'noBorders',
-//               table:{headerRows:1 ,  widths:['5%' , '75%' , '7%' , '15%'],
-//             body:[ [{text: 'Buyer :'} , {text: this.rows['buyerName'] , style:'leftAlign'},
-//             {text:'Bill Date :'} ,{text:this.rows['billDate']}
-          
-//           ]]
-//             }
-//             },
-//             {
-//               layout:'noBorders',
-//               table:{headerRows:1 ,  widths:['20%' , '80%' ],
-//             body:[ [{text: 'Fabcot Contract Number :'} , {text: this.rows['contractNumber'] , style:'leftAlign'}
-          
-//           ]]
-//             }
-//             },
-//             {
-//               layout:'noBorders',
-//               table:{headerRows:1 ,  widths:['15%' , '90%' ],
-//             body:[ [{text: 'Contract Date :'} , {text: this.rows['contractDate'] , style:'down2'}
-          
-//           ]]
-//             }
-//             },
-//             {
-//               layout:'noBorders',
-//               table:{headerRows:1 ,  widths:['7%' , '93%' ],
-//             body:[ [{text: 'Article :'} , {text: this.rows['contractArticleName'] , style:'leftAlign'}
-          
-//           ]]
-//             }
-//             },
-//             {
-//               margin: [0 , 20 , 0 , 0 ],
-//               table:{
-//                 headerRows : 1,
-//                 widths : ['20%' , '20%' , '20%' , '20%' , '20%'],
-//                 body:[
-//                   ['Sale Invoice#' , 'Invoice Date' , 'Invoice Amount' , 'Commission' , 'Total Amount'],
-                  
-//                   ...this.rows['contractSaleInvoices'].map(row => (
-//                     [row.saleInvoiceNo , row.saleInvoiceDate , row.amount , row.commission , row.totalAmount]
-//                   ))
-//                 ]
-//               }
-//             },
-//             {
-//               layout:'noBorders',
-//               table:{headerRows:1 ,  widths:['90%' , '20%' ],
-//             body:[ [{text: 'Sub Total :' , style:'left'} ,
-//              {text: this.rows['invoiceSubTotalAmount'] , style:'left2'}
-          
-//           ]]
-//             }
-//             },
-//             {
-//               layout:'noBorders',
-//               table:{headerRows:1 ,  widths:['90%' , '20%' ],
-//             body:[ [{text: 'TAX :' , style:'left3'} ,
-//              {text: this.rows['invoiceTaxAmount'] , style:'left4'}
-          
-//           ]]
-//             }
-//             },
-//             {
-//               layout:'noBorders',
-//               table:{headerRows:1 ,  widths:['90%' , '20%' ],
-//             body:[ [{text: 'Total :' , style:'left3'} ,
-//              {text: this.rows['invoiceTotalAmount'] , style:'left4'}
-          
-//           ]]
-//             }
-//             },
-//             {
-//               layout:'noBorders',
-//               table:{headerRows:1 ,  widths:['15%' , '100%' ],
-//             body:[ [{text: 'Amount in Words :' , style:'up' } ,
-//              {text: this.words , style:'up' }
-          
-//           ]]
-//             }
-//             },
-//             {
-//               layout:'noBorders',
-//               table:{headerRows:1 ,  widths:['15%' , '100%' ],
-//             body:[ [{text: 'Title of Account: '  } ,
-//              {text: this.rows['accountName'] }
-          
-//           ]]
-//             }
-//             },
-//             {
-//               layout:'noBorders',
-//               table:{headerRows:1 ,  widths:['15%' , '100%' ],
-//             body:[ [{text: 'Address :  :' , } ,
-//              {text: this.rows['bankAddress']  }
-          
-//           ]]
-//             }
-//             },
-//             {
-//               layout:'noBorders',
-//               table:{headerRows:1 ,  widths:['15%' , '100%' ],
-//             body:[ [{text: ' Bank Name :' , } ,
-//              {text: this.rows['bankName']  }
-          
-//           ]]
-//             }
-//             },
-//             {
-//               layout:'noBorders',
-//               table:{headerRows:1 ,  widths:['15%' , '100%' ],
-//             body:[ [{text: 'Bank Account Number:' , } ,
-//              {text: this.rows['accountNumber']  }
-          
-//           ]]
-//             }
-//             },
-//             {
-//               layout:'noBorders',
-//               table:{headerRows:1 ,  widths:['15%' , '100%' ],
-//             body:[ [{text: 'IBAN Number:' , } ,
-//              {text: this.rows['iban']  }
-          
-//           ]]
-//             }
-//             },
-//             {
-//               layout:'noBorders',
-//               table:{headerRows:1 ,  widths:['15%' , '100%' ],
-//             body:[ [{text: 'Swift Code:' , } ,
-//              {text: this.rows['swiftCode']  }
-          
-//           ]]
-//             }
-//             },
-//             {
-//               layout:'noBorders',
-//               table:{headerRows:1 ,  widths:['15%' , '100%' ],
-//             body:[ [{text: 'Bank Branch:' , } ,
-//              {text: this.rows['branchName']  }
-          
-//           ]]
-//             }
-//             },
-//             {
-//               layout:'noBorders',
-//               table:{headerRows:1 ,  widths:['15%' , '100%' ],
-//             body:[ [{text: 'Account Type:' , } , {text: this.rows['type']  }
-//           ]]
-//             }
-//             },
-//             {
-//               layout:'noBorders', table:{headerRows:1 ,  widths:['15%' , '100%' ],
-//             body:[ [{text: 'Bank Address:' , } ,{text: this.rows['bankAddress']  }
-//           ]]
-//             }
-//             }],
-//           styles:{
-//            heading:{fillColor: '#f3f3f4',fontSize: 20,
-//             bold: true,color: '#4d4b4b', alignment: 'center',margin : 4 },
-//           left:{  margin:[620,10,0,0]},
-//            left2:{ margin:[0,10,0,0]},
-//            left3:{margin:[630,0,0,0]},
-//         down:{margin:[0,15,0,0]},
-//         up:{ margin:[0 , -10,0,0]},
-//         down2:{margin:[0,3,0,0] }
-//           },
-
-//   };
-//   pdfMake.createPdf(docDefinition).print();
-
-// }
 
 
 print(){
@@ -438,17 +240,28 @@ print(){
              
 
               layout:'noBorders',
-              table:{headerRows:1 ,  widths:['18%' , '86%' ],
-            body:[ [{text: 'Article :' , margin: [57 , 4 , 0 , 0] , bold:true , style:'common'} , {text: this.rows['contractArticleName'] , margin: [0 , 4 , 0 , 0] , style:'common' }
+              table:{headerRows:1 ,  widths:['80%' ],
+            body:[ [{text: 'This refers to our contract for Weaving dispatches. Please make commission cheque in favour of M/S FABCOT INTERNATIONALS and oblige.' , margin: [20 , 4 , 0 , 0]  , style:'common'} 
           
           ]]
             }
             },
             {
+             
+
+              layout:'noBorders',
+              table:{headerRows:1 ,  widths:['100%' ],
+            body:[ [{text: 'Detail as under' , margin: [20 , 0 , 0 , 0]  , style:'common'} 
+          
+          ]]
+            }
+            },
+
+            {
               margin: [0 , 20 , 0 , 0 ],
               table:{
                 headerRows : 1,
-                widths : ['17%' , '10%' , '15%' , '10%' , '10%' , '10%' , '10%' , '10%' , '10%'],
+                widths : ['15%' , '10%' , '15%' , '8.75%' , '9.75%' , '12.25%' , '11.75%' , '6%' , '13%'],
                 body:[
 
                   [
@@ -456,13 +269,13 @@ print(){
                     {text:'Sale Invoice#' , style:'tableHeader' }
                   ,{text:'Sale Invoice Date' , style:'tableHeader'} ,
                   {text:'Quantity' , style:'tableHeader' }, 
-                  {text:'Rate' , style:'tableHeader' }, 
+                  {text:'Rate'  +'(' + this.rows.currencyName+')' , style:'tableHeader' }, 
 
-                  {text:'SI Amount' +'(' + this.rows.currencyCode+')'  , style:'tableHeader'} , 
+                  {text:'SI Amount' +'(' + this.rows.currencyName+')'  , style:'tableHeader'} , 
                   {text:'Commission' , style:'tableHeader'} , 
                   {text:'TAX' , style:'tableHeader' }, 
 
-                  {text:'Amount' +'(' + this.rows.currencyCode+')' , style:'tableHeader'}],
+                  {text:'Amount' +'(' + this.rows.currencyName+')' , style:'tableHeader'}],
                   
                   ...this.rows['contractSaleInvoices'].map(row => (
                     [
@@ -470,7 +283,7 @@ print(){
 
                       {text: row.saleInvoiceNo , style:'tableHeader2'} ,
                     {text:  row.saleInvoiceDateToDisplay , style:'tableHeader2'},
-                    {text: row.quantity , style:'tableHeader2'} ,
+                    {text: row.quantity + " " + row.quanityUOM  , style:'tableHeader2'} ,
                     {text: row.rate , style:'tableHeader2'} ,
                     
                      {text: row.amount
@@ -498,9 +311,9 @@ print(){
             table:{headerRows:1 ,  widths:['10%' , '20%' ,  '20%' , '20%' ],
           body:[ [
             {text: 'Quantity :' , margin:[0 , 30,0,0] , bold:true , style:'common' } ,
-           {text: ' ' ,margin:[-15 , 30,0,0] , decoration:'underline' , style:'common' },
-            {text: 'SI Amount:'  , margin:[0,30,0,0]  , bold:true , style:'common' } ,
-           {text:  ' '  , margin:[-40,30,0,0] , decoration:'underline' , style:'common'}
+           {text: this.rows['quantitySum'] + ' ' + this.rows['quanityUOM'] ,margin:[-10 , 30,0,0] , bold:true , style:'common' },
+            {text: 'SI Amount' + ' (' + this.rows['currencyName'] +   '):'  , margin:[0,30,0,0]  , bold:true , style:'common' } ,
+           {text:  this.rows['amountsum']  , margin:[-35,30,0,0] ,  bold:true , style:'common'}
         
         ]]
           }
@@ -513,7 +326,7 @@ print(){
               {text: 'Amount in Words :' , margin:[0 , 20,0,0] , bold:true , style:'common' } ,
              {text: this.words ,margin:[-30 , 20,0,0] , decoration:'underline' , style:'common' },
               {text: 'Sub Total :' , margin:[50,20,0,0]  , bold:true , style:'common' } ,
-             {text:   this.totalAmount2  , margin:[-60,20,0,0] , decoration:'underline' , style:'common'}
+             {text:   this.rows['currencyName']+ ' ' + this.totalAmount2.toFixed(2)  , margin:[-60,20,0,0] , decoration:'underline' , style:'common'}
           
           ]]
             }
@@ -534,7 +347,7 @@ print(){
               table:{headerRows:1 ,  widths:['90%' , '10%'  ],
             body:[ [
               {text: 'Total:' , margin:[455 , 5,0,0] , bold:true , style:'common' } ,
-             {text: this.totalAmount2 ,margin:[0 , 5,0,0]  , decoration:'underline' , style:'common' },
+             {text: this.rows['currencyName']+ ' '+  this.totalAmount2.toFixed(2) ,margin:[0 , 5,0,0]  , decoration:'underline' , style:'common' },
          
           
           ]]
@@ -561,9 +374,9 @@ print(){
               table:{headerRows:1 ,  widths:['20%' , '40%' ,  '30%' , '10%' ],
             body:[ [
               {text: 'Checked By:' , margin:[0 , 20,0,0] , style:'common' } ,
-             {text: '' ,margin:[-30 , 20,0,0] , decoration:'underline' , style:'common' },
+             {text: '-------------' ,margin:[-60 , 20,0,0]  , style:'common' },
               {text: 'Aurthorized Signatory:' , margin:[60,20,0,0]  , style:'common' } ,
-             {text:   ''  , margin:[-20,20,0,0] , decoration:'underline' , style:'common'}
+             {text:   '---------------'  , margin:[-20,20,0,0]  , style:'common'}
           
           ]]
             }
