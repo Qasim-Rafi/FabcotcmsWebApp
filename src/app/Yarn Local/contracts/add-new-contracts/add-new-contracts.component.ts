@@ -188,8 +188,8 @@ brandId : any;
     this.new.push({ id: this.new.length });
   }
   addArticle() {
-    // this.Article.push({ id: this.Article.length });
-    this.Article.push({ id: 0 });
+    this.Article.push({ id: this.Article.length });
+    // this.Article.push({ id: 0 });
 
   }
   add() {
