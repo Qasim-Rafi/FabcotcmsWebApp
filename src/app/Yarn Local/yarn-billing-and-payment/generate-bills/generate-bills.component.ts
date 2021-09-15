@@ -83,7 +83,6 @@ amount=0;
       }
   
   generateBill() {
-    this.spinner.show();
   if(this.contractIds.length === 0  || this.selectedids.selected.length === 0  ){
     this.toastr.error("PLease select atleast one contract to generate bill" , 'Message')
   }
@@ -106,19 +105,16 @@ amount=0;
               if (this.response.success == true) {
                 this.toastr.success(this.response.message, 'Message.');
                 this.router.navigate(['yarn-billing-and-payment/active-bills']);
-                this.spinner.hide();
     
               }
               else {
                 this.toastr.error(this.response.message, 'Message.');
-                this.spinner.hide();
               
               }
     
             }, err => {
               if (err.status == 400) {
                 this.toastr.error(this.response.message.exceptionMessage, 'Message.');
-                this.spinner.hide();
               
               }
             });
