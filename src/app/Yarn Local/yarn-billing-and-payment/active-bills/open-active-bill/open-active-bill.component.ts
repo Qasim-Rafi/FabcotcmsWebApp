@@ -366,9 +366,9 @@ print(){
               table:{headerRows:1 ,  widths:['20%' , '40%' ,  '30%' , '10%' ],
             body:[ [
               {text: 'Checked By:' , margin:[0 , 20,0,0] , style:'common' } ,
-             {text: '-------------' ,margin:[-60 , 20,0,0]  , style:'common' },
+             {text: ' --------------------' ,margin:[-60 , 20,0,0]  , style:'common' },
               {text: 'Aurthorized Signatory:' , margin:[60,20,0,0]  , style:'common' } ,
-             {text:   '---------------'  , margin:[-20,20,0,0]  , style:'common'}
+             {text:   '  ------------------------'  , margin:[-15,20,0,0]  , style:'common'}
           
           ]]
             }
