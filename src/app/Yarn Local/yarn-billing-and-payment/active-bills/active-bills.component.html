@@ -195,18 +195,16 @@
           [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="6" (select)="onSelect($event)"
           [selected]="selected" [selectionType]="SelectionType.checkbox" [sorts]="[{ prop: 'id', dir: 'desc' }]">
       
-          <ngx-datatable-column prop="selected" name="Select" [width]="20" [flexGrow]="0.03" [width]="30"
+          <!-- <ngx-datatable-column prop="selected" name="Select" [width]="20" [flexGrow]="0.03" [width]="30"
             [headerCheckboxable]="true" [checkboxable]="true">
             <ng-template let-row="row" ngx-datatable-cell-template>
-              <!-- <input type="checkbox"> -->
             </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="S.No" [width]="80" prop="sno" [flexGrow]="0.04">
+          </ngx-datatable-column> -->
+          <!-- <ngx-datatable-column name="S.No" [width]="80" prop="sno" [flexGrow]="0.04">
             <ng-template let-row="row" let-rowIndex="rowIndex" let-expanded="expanded" ngx-datatable-cell-template>
               {{rowIndex+1}}
-              <!-- {{row.nmbr}} -->
             </ng-template>
-          </ngx-datatable-column>
+          </ngx-datatable-column> -->
           <ngx-datatable-column name="Bill For" [width]="80" prop="sellerName" [flexGrow]="0.05">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
       <!-- {{row.sellerName}} -->
@@ -215,9 +213,9 @@
 
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Bill To" [width]="80" prop="buyerName" [flexGrow]="0.06">
+          <ngx-datatable-column name="Bill To" [width]="80" prop="buyerName" [flexGrow]="0.08">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-      {{row.buyerName}} {{row.sellerName}}
+            {{row.sellerName}}  <br>  {{row.buyerName}} 
             </ng-template>
           </ngx-datatable-column>
       
