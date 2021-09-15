@@ -169,6 +169,7 @@ this.spinner.hide();
 
 
 print(){
+
   let docDefinition = {
     pageSize: 'A4',
     pageMargins: [ 20, 10, 30, 10 ],
@@ -296,15 +297,6 @@ print(){
                 ]
               }
             },
-          //   {
-          //     layout:'noBorders',
-          //     table:{headerRows:1 ,  widths:['90%' , '20%' ],
-          //   body:[ [{text: 'Sub Total :'  , bold:true} ,
-          //    {text:   this.totalQuantity , margin:[0,60,0,0] , decoration:'underline'}
-          
-          // ]]
-          //   }
-          //   },
 
           {
             layout:'noBorders',
@@ -382,111 +374,6 @@ print(){
             }
             },
 
-          //   {
-          //     layout:'noBorders',
-          //     table:{headerRows:1 ,  widths:['100%'   ],
-          //   body:[ [
-          //     {text: 'For FABCOT INTERNATIONAL' , margin:[0 , 10,0,0] , bold:true , style:'common' } ,
-          // ]]
-          //   }
-          //   },
-          //   {
-          //     layout:'noBorders',
-          //     table:{headerRows:1 ,  widths:['90%' , '20%' ],
-          //   body:[ [{text: 'Total :' , margin:[642,5,0,0]  , bold:true} ,
-          //    {text: 
-              
-          //     this.rows.currencyCode =='USD'? this.totalAmount.toFixed(2) + " $" :this.rows.currencyCode =='PKR' ? this.totalAmount.toFixed(2)  + " Rs" :   this.rows.currencyCode =='EUR' ? this.totalAmount.toFixed(2)  + " €" : this.rows.currencyCode =='GBP' ? this.totalAmount.toFixed(2)  + " £" : ''
-          //     , margin: [0 , 5 , 0 , 0] , decoration:'underline'}
-          
-          // ]]
-          //   }
-          //   },
-          //   {
-          //     layout:'noBorders',
-          //     table:{headerRows:1 ,  widths:['15%' , '100%' ],
-          //   body:[ [{text: 'Amount in Words :' , margin:[0 , -70,0,0] , bold:true } ,
-          //    {text: this.words ,margin:[-10 , -70,0,0] , decoration:'underline' }
-          
-          // ]]
-          //   }
-          //   },
-          //   {
-          //     layout:'noBorders',
-          //     table:{headerRows:1 ,  widths:['15%' , '100%' ],
-          //   body:[ [{text: 'Title of Account: ' , margin:[0 , -50,0,0] , bold:true  } ,
-          //    {text: this.rows['accountName'] , margin:[0 , -50,0,0]  }
-          
-          // ]]
-          //   }
-          //   },
-          //   {
-          //     layout:'noBorders',
-          //     table:{headerRows:1 ,  widths:['15%' , '100%' ],
-          //   body:[ [{text: 'Address :' ,  margin:[25 , -30,0,0] } ,
-          //    {text: this.rows['bankAddress']  ,  margin:[0 , -30,0,0] }
-          
-          // ]]
-          //   }
-          //   },
-          //   {
-          //     layout:'noBorders',
-          //     table:{headerRows:1 ,  widths:['15%' , '100%' ],
-          //   body:[ [{text: ' Bank Name :' , margin:[9 , -13,0,0] } ,
-          //    {text: this.rows['bankName'] , margin:[0 , -13,0,0] }
-          
-          // ]]
-          //   }
-          //   },
-          //   {
-          //     layout:'noBorders',
-          //     table:{headerRows:1 ,  widths:['15%' , '100%' ],
-          //   body:[ [{text: 'Bank Account#:' , margin:[-7 , 7,0,0] } ,
-          //    {text: this.rows['accountNumber'] , margin:[0 , 7,0,0]  }
-          
-          // ]]
-          //   }
-          //   },
-          //   {
-          //     layout:'noBorders',
-          //     table:{headerRows:1 ,  widths:['15%' , '100%' ],
-          //   body:[ [{text: 'IBAN Number:' , margin:[0 , 7,0,0]  } ,
-          //    {text: this.rows['iban']  , margin:[0 , 7,0,0] }
-          
-          // ]]
-          //   }
-          //   },
-          //   {
-          //     layout:'noBorders',
-          //     table:{headerRows:1 ,  widths:['15%' , '100%' ],
-          //   body:[ [{text: 'Swift Code:' , margin:[13 , 7,0,0]  } ,
-          //    {text: this.rows['swiftCode'] , margin:[0 , 7,0,0]   }
-          
-          // ]]
-          //   }
-          //   },
-          //   {
-          //     layout:'noBorders',
-          //     table:{headerRows:1 ,  widths:['15%' , '100%' ],
-          //   body:[ [{text: 'Bank Branch:' , margin:[2 , 7,0,0]  } ,
-          //    {text: this.rows['branchName'] , margin:[0 , 7,0,0]   }
-          
-          // ]]
-          //   }
-          //   },
-          //   {
-          //     layout:'noBorders',
-          //     table:{headerRows:1 ,  widths:['15%' , '100%' ],
-          //   body:[ [{text: 'Account Type:' , margin:[2 , 7,0,0]  } , {text: this.rows['type'] , margin:[0 , 7,0,0]  }
-          // ]]
-          //   }
-          //   },
-          //   {
-          //     layout:'noBorders', table:{headerRows:1 ,  widths:['15%' , '100%' ],
-          //   body:[ [{text: 'Bank Address:' , margin:[2 , 7,0,0]  } ,{text: this.rows['bankAddress'] , margin:[0 , 7,0,0]   }
-          // ]]
-          //   }
-            // }
           ],
           styles:{
            heading:{fontSize: 12,
@@ -496,17 +383,11 @@ print(){
             bold: true, alignment: 'center' },
             tableHeader:{ fillColor: '#f3f3f4' , margin:4 , alignment: 'center' ,fontSize: 8},
             tableHeader2:{   margin:3 , alignment: 'center' , fontSize: 8},
-          // left:{  margin:[620,10,0,0]},
-          //  left2:{ margin:[0,10,0,0]},
-          //  left3:{margin:[630,0,0,0]},
-        // down:{margin:[0,15,0,0]},
-        // up:{ margin:[0 , -10,0,0]},
-        // down2:{margin:[0,3,0,0] }
+
           },
 
   };
   pdfMake.createPdf(docDefinition).print();
-
 }
 
 }
