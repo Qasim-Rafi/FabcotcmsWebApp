@@ -17,7 +17,7 @@ import {NgxSpinnerService} from 'ngx-spinner'
   styleUrls: ['./generate-bills.component.css']
 })
 export class GenerateBillsComponent implements OnInit {
-amount:any;
+amount=0;
   constructor(    private service: ServiceService,
     private http: HttpClient,
     private toastr: ToastrService,
@@ -62,18 +62,22 @@ amount:any;
         const val = event.target.value.toLowerCase();
         const temp = this.billFilter.filter(function (d) {
           return (d.autoContractNumber.toLowerCase().indexOf(val) !== -1 ||
-            // d.sellerName.toLowerCase().indexOf(val) !== -1 || d.buyerName.toLowerCase().indexOf(val) !== -1 || 
+            d.sellerName.toLowerCase().indexOf(val) !== -1 ||
+            //  d.buyerName.toLowerCase().indexOf(val) !== -1 || 
             
             !val);
         });
         this.rows = temp;
       }
+
+
       onSelect(selecterow) {
-        this.amount=selecterow.selected.length !=0 ?selecterow.selected[0].amount:null;
+        this.amount = 0;
+        // this.amount=selecterow.selected.length !=0 ?selecterow.selected[0].amount:null;
         this.selectedids =selecterow;
 
         for(let i=0; i<this.selectedids.selected.length; i++ )
-        {      
+        {      this.amount = this.amount + this.selectedids.selected[i].amount
             this.contractIds[i] = this.selectedids.selected[i].id;
         }
       }
@@ -91,7 +95,7 @@ amount:any;
           "contractIds": this.contractIds,
            "fabcotBranchName": p.branch.name,
         }
-        this.spinner.show();
+        // this.spinner.show();
         this.http.
           post(`${environment.apiUrl}/api/BillingPayments/GenerateContractBill`, varr)
           .subscribe(
@@ -101,19 +105,16 @@ amount:any;
               if (this.response.success == true) {
                 this.toastr.success(this.response.message, 'Message.');
                 this.router.navigate(['yarn-billing-and-payment/active-bills']);
-                this.spinner.hide();
     
               }
               else {
                 this.toastr.error(this.response.message, 'Message.');
-                this.spinner.hide();
               
               }
     
             }, err => {
               if (err.status == 400) {
                 this.toastr.error(this.response.message.exceptionMessage, 'Message.');
-                this.spinner.hide();
               
               }
             });

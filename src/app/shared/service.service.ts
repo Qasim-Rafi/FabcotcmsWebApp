@@ -10,6 +10,8 @@ const CSV_TYPE = 'application/json;charset=utf-8';
 const EXCEL_EXTENSION = '.xlsx';
 const CSV_EXTENSION = '.csv';
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+import {NgxSpinnerService} from 'ngx-spinner'
+
 @Injectable({
   providedIn: 'root'
 })
@@ -23,7 +25,9 @@ export class ServiceService {
   rootUrl: "/api/Auth/Login";
 
   constructor(private http: HttpClient,
-    private toastr: ToastrService,) { }
+    private toastr: ToastrService,
+    private spinner : NgxSpinnerService)
+     { }
 
   userAuthentication(data) {
     // var data = "username=" + username + "&password=" + password + "&grant_type=password";
@@ -266,6 +270,8 @@ getAgentType(){
   //  -------------Fetch function for all components --------------------------------//
 
   fetch(cb, apiUrl2) {
+    // this.spinner.show();
+
     let desc = this;
     desc.http
       .get(`${environment.apiUrl}` + apiUrl2)
@@ -278,15 +284,20 @@ getAgentType(){
 
           desc.data = this.response.data;
           cb(this.data);
+          // this.spinner.hide();
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
+          // this.spinner.hide();
+
           }
         }
        
       }, err => {
         if (err.status == 400) {
-          this.toastr.error(err.error.message, 'Message.');;
+          this.toastr.error(err.error.message, 'Message.');
+          this.spinner.hide();
+
         }
       });
   }

@@ -9,6 +9,7 @@ import { ChangeBankAccountComponent } from './change-bank-account/change-bank-ac
 import pdfMake from "pdfmake/build/pdfmake";
 import { ToWords } from 'to-words';
 import {NgxSpinnerModule, NgxSpinnerService} from 'ngx-spinner'
+import { NgxNumToWordsService, SUPPORTED_LANGUAGE } from 'ngx-num-to-words';
 @Component({
   selector: 'app-open-active-bill',
   templateUrl: './open-active-bill.component.html',
@@ -24,16 +25,39 @@ export class OpenActiveBillComponent implements OnInit {
   myDate = Date.now();
   words : string;
   words2 : string = "word";
-
+  totalAmount = 0;
+  totalAmount1 : any;
+  totalAmount2 : number;
+  image : any;
+  image2 : any;
+  totalQuantity = 0 ;
+  quantity : any;
+  numberInWords!: string;
+lang : SUPPORTED_LANGUAGE = 'en';
   constructor(   private route: ActivatedRoute,
     private modalService: NgbModal,
     private http: HttpClient,
     private service: ServiceService,
     private toastr: ToastrService,
-    private spinner:NgxSpinnerService
+    private spinner:NgxSpinnerService,
+    private ngxNumToWordsService: NgxNumToWordsService
     ) { }
 
   ngOnInit(): void {
+    this.http.get('/assets/fabcot.png', { responseType: 'blob' })
+    .subscribe(res => {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        var base64data = reader.result;                
+            console.log(base64data);
+            this.image2 = base64data;
+      }
+ 
+      reader.readAsDataURL(res); 
+      console.log(res);
+      this.image = res;
+     
+    });
     this.queryParems = this.route.snapshot.queryParams;
     this.bill_id = this.queryParems.id;
     this.fetch((data) => {
@@ -43,32 +67,84 @@ export class OpenActiveBillComponent implements OnInit {
 
   }
   
-  fetch(cb) {
+//   fetch(cb) {
     
-    this.http
-    .get(`${environment.apiUrl}/api/BillingPayments/GetContractBillById/` + this.bill_id)
-    .subscribe(res => {
-      this.response = res;
+//     this.http
+//     .get(`${environment.apiUrl}/api/BillingPayments/GetContractBillById/` + this.bill_id)
+//     .subscribe(res => {
+//       this.response = res;
      
-    if(this.response.success==true)
-    {
-    this.data =this.response.data;
-    const toWords = new ToWords();
-    this.words = toWords.convert(this.data.invoiceTotalAmount);
+//     if(this.response.success==true)
+//     {
+//     this.data =this.response.data;
+//     const toWords = new ToWords();
+//     this.words = toWords.convert(this.data.invoiceTotalAmount);
 
-    cb(this.data);
-    }
-    else{
-      this.toastr.error(this.response.message, 'Message.');
-    }
-      // this.spinner.hide();
-    }, err => {
-      if ( err.status == 400) {
- this.toastr.error(err.error.message, 'Message.');
-      }
-    //  this.spinner.hide();
-    });
+//     cb(this.data);
+//     }
+//     else{
+//       this.toastr.error(this.response.message, 'Message.');
+//     }
+//       // this.spinner.hide();
+//     }, err => {
+//       if ( err.status == 400) {
+//  this.toastr.error(err.error.message, 'Message.');
+//       }
+//     //  this.spinner.hide();
+//     });
+//   }
+
+fetch(cb) {
+  this.spinner.show();
+  this.totalAmount = 0
+  this.totalAmount1 = 0
+  this.totalQuantity = 0
+  this.http
+  .get(`${environment.apiUrl}/api/BillingPayments/GetContractBillById/` + this.bill_id)
+  .subscribe(res => {
+    this.response = res;
+   
+  if(this.response.success==true)
+  {
+  this.data =this.response.data;
+
+  for(let i = 0 ; i<this.response.data.contractSaleInvoices.length ; i++){
+    this.response.data.contractSaleInvoices[i].totalAmount = this.data.contractSaleInvoices[i].amount * this.data.contractSaleInvoices[i].commission
+    this.data.contractSaleInvoices[i].totalAmount = this.data.contractSaleInvoices[i].totalAmount/100
+    
   }
+  this.spinner.hide();
+
+  for(let j=0;j<this.response.data.contractSaleInvoices.length;j++){   
+    this.totalAmount=this.totalAmount + this.response.data.contractSaleInvoices[j].totalAmount ;
+
+   
+} 
+this.totalAmount1 =this.totalAmount.toFixed(2)
+this.totalAmount2 = parseFloat(this.totalAmount1)
+  // const toWords = new ToWords();
+  // this.words = toWords.convert(this.totalAmount2);
+
+  this.words = this.ngxNumToWordsService.inWords(this.totalAmount2, this.lang);
+
+
+
+  cb(this.data);
+  this.spinner.hide();
+  }
+  else{
+    this.toastr.error(this.response.message, 'Message.');
+ this.spinner.hide();
+  }
+    // this.spinner.hide();
+  }, err => {
+    if ( err.status == 400) {
+this.toastr.error(err.error.message, 'Message.');
+this.spinner.hide();      
+}
+  //  this.spinner.hide();
+  });
+}
 
   ChangeBankForm(rows) {
     const modalRef = this.modalService.open(ChangeBankAccountComponent , { centered: true });
@@ -92,297 +168,226 @@ export class OpenActiveBillComponent implements OnInit {
   }
 
 
-  // print() {
-  //   let docDefinition = {
-  //     pageSize: 'A4',     
-  //     info: {
-  //       title: 'Active Bills List'
-  //     },
-  //     content: [
-  //       {
-  //         text: 'Fabcot International FZE ',
-  //         style: 'heading',
-
-  //       },
-  //       {
-  //   text: 'Flexi Office ,RAKEZ Business ZONE F-Z RAK , United Arab Emirates.',
-  //   style: 'heading2'
-       
-  // },
-  //      {text: 'Seller:'  },
-  //      { text: this.rows['sellerName'], style:'text1'},
-  //     {  text:'Bill No.:' , style:'text2'},
-  //     { text: this.rows['billNumber'], style:'text3'},
-  //     {  text:'Bill Date:' , style:'text4' },
-  //     { text: this.rows['billDate'], style:'text5'},
-  //      {  text: 'Buyer:'  , style:'text6'},
-  //      { text: this.rows['buyerName'], style:'text1'},
-  //     {  text: 'Fabcot Contract Number :' , style:'text9' },
-  //     { text: this.rows['contractNumber'], style:'text10'},
-  //     {text: 'Contract Date :' , style:'text11'},
-  //     { text: this.rows['contractDate'], style:'text12'},
-  //     {text: 'Article :' , },
-  //     { text: this.rows['contractArticleName'], style:'text13'},
-  //     {
-  //       margin: [0 , 10 , 0 , 0],
-
-  //       table:{
-
-  //         headerRows:1,
-  //         widths: [75, 90, 130, 70, 120],
-
-  //         body:[
-  //           ['SaleInvoice #', 'SaleInvoice Date', 'Invoice Amount(PKR)', 'Commission', 'Total Amount(PKR)'],
-  //       // ...this.rows['contractSaleInvoices'].map((row=>
-  //       //   [row.saleInvoiceNo]
-  //       //   ))
-  //         ]
-  //       }
-  //     },
-  //     {  text: 'Sub Total :' , style:'text14' },
-  //     { text: this.rows['invoiceSubTotalAmount'], style:'text15'},
-  //     {text: 'Tax :' , style:'text16'},
-  //     { text: this.rows['invoiceTaxAmount'], style:'text15'},
-  //     {text: 'Total:' , style:'text18' },
-  //     { text: this.rows['invoiceTotalAmount'], style:'text15'},
-  //        ],
-  //     styles: {
-  //       heading: {
-  //         fontSize: 18,
-  //         alignment: 'center',
-  //         margin: [0, 0, 0, 0]
-  //       },
-        
-  //         heading2:{
-  //               fontSize: 10,
-  //               alignment: 'center',
-  //               // [ left , up , right  , down]
-  //               margin: [0 , -3 , 0 , 25]
-
-  //         },
-  //         text1 : {
-  //           margin:[38 ,-15, 0 ,0 ]
-  //         },
-  //         text2 : {margin:[380 ,0, 0 ,0 ]},
-  //         text3 : {margin:[425 ,-15, 0 ,0 ]},
-  //         text4 : {margin:[380 ,0, 0 ,0 ]},
-  //         text5 : {margin:[430 , -15, 0 ,0 ]},
-  //         text6 : {margin:[0 , -25, 0 ,0 ]},
-  //         text10 : {margin:[140 , -15, 0 ,0 ]},
-  //         text12 : {margin:[90 , -15, 0 ,0 ]},
-  //         text13 : {margin:[50 , -15, 0 ,0 ]},
-  //         text14 : {margin:[380 , 20, 0 ,0 ]},
-  //         text15 : {margin:[440 , -13, 0 ,0 ]},
-  //         text16 : {margin:[400 , 0, 0 ,0 ]},
-  //         text18 : {margin:[400 , 0, 0 ,0 ]},        
-  //     }
-  //   };
-
-  //   // const win = window.open('', "tempWinForPdf");
-  //   pdfMake.createPdf(docDefinition).print();
-
-  // }
-
 print(){
+
   let docDefinition = {
     pageSize: 'A4',
-    pageMargins: [ 30, 40, 40, 20 ],
-    pageOrientation: 'landscape',
+    pageMargins: [ 20, 10, 30, 10 ],
+    pageOrientation: 'letter',
       
           info: {
             title: 'Bill generated'
           },
           content: [
             {
+              "image" : this.image2,
+             fit : [100 , 100]
+          
+            },
+            {
+           
+              text:'Fabcot International FZE' , style:'heading' , margin: [0,-30,0,0]
+           
+            },
+            {
+              margin: [0 , 10 , 0 , 0],
+              layout:'noBorders',
               table:{headerRows: 1 , widths:['100%'],
             body: [
-              [{text:'Fabcot International FZE' , style:'heading'}],] }
+              [{text:'Aurangzeb Block Office, 133 New Garden Town, Lahore, Pakistan.' , style:'heading2'}],] }
             },
             {
               layout:'noBorders',
-              margin: [0 , 50 , 0 , 0],
-              table:{headerRows:1 ,  widths:['5%' , '77%' , '7%' , '12%'],
+             
+              table:{headerRows:1 ,  widths:['18%' , '67%' , '5%' , '12%'],
             body:[ [
-              {text: 'Seller :'} , {text: this.rows['sellerName'] , style:'leftAlign'},
-            {text:'Bill # :'} ,{text:this.rows['billNumber']}
+              {text: 'Seller :' , margin: [63 , 25 , 0 , 0] , bold:true , style:'common' } , {text: this.rows['sellerName'] ,  margin: [0 , 25 , 0 , 0] , style:'common'},
+            {text:'Bill # :' , margin: [0 , 25 , 0 , 0] , bold:true , style:'common'} ,{text:this.rows['billNumber'] , margin: [0 , 25 , 0 , 0] , style:'common'}
           
           ]]
             }
             },
             {
+              
               layout:'noBorders',
-              table:{headerRows:1 ,  widths:['5%' , '75%' , '7%' , '15%'],
-            body:[ [{text: 'Buyer :'} , {text: this.rows['buyerName'] , style:'leftAlign'},
-            {text:'Bill Date :'} ,{text:this.rows['billDate']}
+              table:{headerRows:1 ,  widths:['18%' , '65%' , '10%' , '15%'],
+            body:[ [{text: 'Buyer :' , margin: [63 , 4 , 0 , 0] , bold:true , style:'common'} , {text: this.rows['buyerName'] , margin: [0 , 4 , 0 , 0] , style:'common'},
+            {text:'Bill Date :' , margin: [0 , 4 , 0 , 0] , bold:true , style:'common'} ,{text:this.rows['billDate'] , margin: [-20 , 4 , 0 , 0] , style:'common' }
           
           ]]
             }
             },
             {
+             
+
               layout:'noBorders',
               table:{headerRows:1 ,  widths:['20%' , '80%' ],
-            body:[ [{text: 'Fabcot Contract Number :'} , {text: this.rows['contractNumber'] , style:'leftAlign'}
+            body:[ [{text: 'Fabcot Contract# :' , margin: [15 , 4 , 0 , 0] , bold:true , style:'common'} , {text: this.rows['contractNumber'] , margin: [-12 , 4 , 0 , 0]  , style:'common'}
           
           ]]
             }
             },
             {
+            
+
               layout:'noBorders',
-              table:{headerRows:1 ,  widths:['15%' , '90%' ],
-            body:[ [{text: 'Contract Date :'} , {text: this.rows['contractDate'] , style:'down2'}
+              table:{headerRows:1 ,  widths:['20%' , '80%' ],
+            body:[ [{text: 'Contract Date :' , margin: [30 , 4 , 0 , 0] , bold:true  , style:'common'} , {text: this.rows['contractDate'] , margin: [-12 , 4 , 0 , 0] , style:'common' }
           
           ]]
             }
             },
             {
+             
+
               layout:'noBorders',
-              table:{headerRows:1 ,  widths:['7%' , '93%' ],
-            body:[ [{text: 'Article :'} , {text: this.rows['contractArticleName'] , style:'leftAlign'}
+              table:{headerRows:1 ,  widths:['80%' ],
+            body:[ [{text: 'This refers to our contract for Weaving dispatches. Please make commission cheque in favour of M/S FABCOT INTERNATIONALS and oblige.' , margin: [20 , 4 , 0 , 0]  , style:'common'} 
           
           ]]
             }
             },
+            {
+             
+
+              layout:'noBorders',
+              table:{headerRows:1 ,  widths:['100%' ],
+            body:[ [{text: 'Detail as under' , margin: [20 , 0 , 0 , 0]  , style:'common'} 
+          
+          ]]
+            }
+            },
+
             {
               margin: [0 , 20 , 0 , 0 ],
               table:{
                 headerRows : 1,
-                widths : ['20%' , '20%' , '20%' , '20%' , '20%'],
+                widths : ['15%' , '10%' , '15%' , '8.75%' , '9.75%' , '12.25%' , '11.75%' , '6%' , '13%'],
                 body:[
-                  ['Sale Invoice#' , 'Invoice Date' , 'Invoice Amount' , 'Commission' , 'Total Amount'],
+
+                  [
+                    {text:'Description' , style:'tableHeader' },
+                    {text:'Sale Invoice#' , style:'tableHeader' }
+                  ,{text:'Sale Invoice Date' , style:'tableHeader'} ,
+                  {text:'Quantity' , style:'tableHeader' }, 
+                  {text:'Rate'  +'(' + this.rows.currencyName+')' , style:'tableHeader' }, 
+
+                  {text:'SI Amount' +'(' + this.rows.currencyName+')'  , style:'tableHeader'} , 
+                  {text:'Commission' , style:'tableHeader'} , 
+                  {text:'TAX' , style:'tableHeader' }, 
+
+                  {text:'Amount' +'(' + this.rows.currencyName+')' , style:'tableHeader'}],
                   
                   ...this.rows['contractSaleInvoices'].map(row => (
-                    [row.saleInvoiceNo , row.saleInvoiceDate , row.amount , row.commission , row.totalAmount]
+                    [
+                      {text: row.description , style:'tableHeader2'} ,
+
+                      {text: row.saleInvoiceNo , style:'tableHeader2'} ,
+                    {text:  row.saleInvoiceDateToDisplay , style:'tableHeader2'},
+                    {text: row.quantity + " " + row.quanityUOM  , style:'tableHeader2'} ,
+                    {text: row.rate , style:'tableHeader2'} ,
+                    
+                     {text: row.amount
+                         , style:'tableHeader2'} ,
+                      {text:row.commission+ '%' , style:'tableHeader2' }  ,
+                    {text: row.taxAmount , style:'tableHeader2'} ,
+
+                      {text: row.totalAmount.toFixed(2) , style:'tableHeader2'}]
                   ))
                 ]
               }
             },
+
+          {
+            layout:'noBorders',
+            table:{headerRows:1 ,  widths:['10%' , '20%' ,  '20%' , '20%' ],
+          body:[ [
+            {text: 'Quantity :' , margin:[0 , 30,0,0] , bold:true , style:'common' } ,
+           {text: this.rows['quantitySum'] + ' ' + this.rows['quanityUOM'] ,margin:[-10 , 30,0,0] , bold:true , style:'common' },
+            {text: 'SI Amount' + ' (' + this.rows['currencyName'] +   '):'  , margin:[0,30,0,0]  , bold:true , style:'common' } ,
+           {text:  this.rows['amountsum']  , margin:[-35,30,0,0] ,  bold:true , style:'common'}
+        
+        ]]
+          }
+          },
+
             {
               layout:'noBorders',
-              table:{headerRows:1 ,  widths:['90%' , '20%' ],
-            body:[ [{text: 'Sub Total :' , style:'left'} ,
-             {text: this.rows['invoiceSubTotalAmount'] , style:'left2'}
+              table:{headerRows:1 ,  widths:['20%' , '50%' ,  '30%' , '10%' ],
+            body:[ [
+              {text: 'Amount in Words :' , margin:[0 , 20,0,0] , bold:true , style:'common' } ,
+             {text: this.words ,margin:[-30 , 20,0,0] , decoration:'underline' , style:'common' },
+              {text: 'Sub Total :' , margin:[50,20,0,0]  , bold:true , style:'common' } ,
+             {text:   this.rows['currencyName']+ ' ' + this.totalAmount2.toFixed(2)  , margin:[-60,20,0,0] , decoration:'underline' , style:'common'}
           
           ]]
             }
             },
             {
               layout:'noBorders',
-              table:{headerRows:1 ,  widths:['90%' , '20%' ],
-            body:[ [{text: 'TAX :' , style:'left3'} ,
-             {text: this.rows['invoiceTaxAmount'] , style:'left4'}
+              table:{headerRows:1 ,  widths:['90%' , '10%'  ],
+            body:[ [
+              {text: 'TAX:' , margin:[455 , 5,0,0] , bold:true , style:'common' } ,
+             {text: "0.00" ,margin:[0 , 5,0,0] , decoration:'underline' , style:'common' },
+         
           
           ]]
             }
             },
             {
               layout:'noBorders',
-              table:{headerRows:1 ,  widths:['90%' , '20%' ],
-            body:[ [{text: 'Total :' , style:'left3'} ,
-             {text: this.rows['invoiceTotalAmount'] , style:'left4'}
+              table:{headerRows:1 ,  widths:['90%' , '10%'  ],
+            body:[ [
+              {text: 'Total:' , margin:[455 , 5,0,0] , bold:true , style:'common' } ,
+             {text: this.rows['currencyName']+ ' '+  this.totalAmount2.toFixed(2) ,margin:[0 , 5,0,0]  , decoration:'underline' , style:'common' },
+         
           
           ]]
             }
             },
             {
               layout:'noBorders',
-              table:{headerRows:1 ,  widths:['15%' , '100%' ],
-            body:[ [{text: 'Amount in Words :' , style:'up' } ,
-             {text: this.words , style:'up' }
-          
+              table:{headerRows:1 ,  widths:['100%'   ],
+            body:[ [
+              {text: 'Your prompt action in this regard would be highly appreciated' , margin:[0 , 50,0,0]  , style:'common' } ,
           ]]
             }
             },
             {
               layout:'noBorders',
-              table:{headerRows:1 ,  widths:['15%' , '100%' ],
-            body:[ [{text: 'Title of Account: '  } ,
-             {text: this.rows['accountName'] }
-          
+              table:{headerRows:1 ,  widths:['100%'   ],
+            body:[ [
+              {text: 'Thanking You' , margin:[0 , 5,0,0]  , style:'common' } ,
           ]]
             }
             },
             {
               layout:'noBorders',
-              table:{headerRows:1 ,  widths:['15%' , '100%' ],
-            body:[ [{text: 'Address :  :' , } ,
-             {text: this.rows['bankAddress']  }
+              table:{headerRows:1 ,  widths:['20%' , '40%' ,  '30%' , '10%' ],
+            body:[ [
+              {text: 'Checked By:' , margin:[0 , 20,0,0] , style:'common' } ,
+             {text: ' --------------------' ,margin:[-60 , 20,0,0]  , style:'common' },
+              {text: 'Aurthorized Signatory:' , margin:[60,20,0,0]  , style:'common' } ,
+             {text:   '  ------------------------'  , margin:[-15,20,0,0]  , style:'common'}
           
           ]]
             }
             },
-            {
-              layout:'noBorders',
-              table:{headerRows:1 ,  widths:['15%' , '100%' ],
-            body:[ [{text: ' Bank Name :' , } ,
-             {text: this.rows['bankName']  }
-          
-          ]]
-            }
-            },
-            {
-              layout:'noBorders',
-              table:{headerRows:1 ,  widths:['15%' , '100%' ],
-            body:[ [{text: 'Bank Account Number:' , } ,
-             {text: this.rows['accountNumber']  }
-          
-          ]]
-            }
-            },
-            {
-              layout:'noBorders',
-              table:{headerRows:1 ,  widths:['15%' , '100%' ],
-            body:[ [{text: 'IBAN Number:' , } ,
-             {text: this.rows['iban']  }
-          
-          ]]
-            }
-            },
-            {
-              layout:'noBorders',
-              table:{headerRows:1 ,  widths:['15%' , '100%' ],
-            body:[ [{text: 'Swift Code:' , } ,
-             {text: this.rows['swiftCode']  }
-          
-          ]]
-            }
-            },
-            {
-              layout:'noBorders',
-              table:{headerRows:1 ,  widths:['15%' , '100%' ],
-            body:[ [{text: 'Bank Branch:' , } ,
-             {text: this.rows['branchName']  }
-          
-          ]]
-            }
-            },
-            {
-              layout:'noBorders',
-              table:{headerRows:1 ,  widths:['15%' , '100%' ],
-            body:[ [{text: 'Account Type:' , } , {text: this.rows['type']  }
-          ]]
-            }
-            },
-            {
-              layout:'noBorders', table:{headerRows:1 ,  widths:['15%' , '100%' ],
-            body:[ [{text: 'Bank Address:' , } ,{text: this.rows['bankAddress']  }
-          ]]
-            }
-            }],
+
+          ],
           styles:{
-           heading:{fillColor: '#f3f3f4',fontSize: 20,
-            bold: true,color: '#4d4b4b', alignment: 'center',margin : 4 },
-          left:{  margin:[620,10,0,0]},
-           left2:{ margin:[0,10,0,0]},
-           left3:{margin:[630,0,0,0]},
-        down:{margin:[0,15,0,0]},
-        up:{ margin:[0 , -10,0,0]},
-        down2:{margin:[0,3,0,0] }
+           heading:{fontSize: 12,
+            bold: true, alignment: 'center',   },
+            common:{fontSize:9},
+            heading2:{fontSize: 9,
+            bold: true, alignment: 'center' },
+            tableHeader:{ fillColor: '#f3f3f4' , margin:4 , alignment: 'center' ,fontSize: 8},
+            tableHeader2:{   margin:3 , alignment: 'center' , fontSize: 8},
+
           },
 
   };
   pdfMake.createPdf(docDefinition).print();
-
 }
-
 
 }

@@ -1312,7 +1312,7 @@
                                     <dl class="row" *ngIf="loggedInDepartmentName =='Yarn Local'">
                                         <dt class="col-sm-6">Fabcot Commission:
                                         </dt>
-                                        <dd class="col-sm-6" *ngIf = "(contractCommissionData.fabCotCommisionUOMName == null && contractCommissionData.commissionAmountFabcot != '' ) || contractCommissionData.fabCotCommision !='' ">
+                                        <dd class="col-sm-6" *ngIf = "(contractCommissionData.fabCotCommisionUOMName == null && contractCommissionData.commissionAmountFabcot != '' ) ">
                                              {{contractCommissionData.fabCotCommision}} % &nbsp; 
                                            {{contractCostingData.rateCurrencyName}} {{contractCommissionData.commissionAmountFabcot}}  <span *ngIf = "contractCommissionData.fabcotSideCommAdditionalInfo != null"> {{contractCommissionData.fabcotSideCommAdditionalInfo}}</span>
                                         </dd>
@@ -1629,13 +1629,13 @@
                                     </ngx-datatable-column>
                                     <ngx-datatable-column name="Supplier Date" prop="supplierDate" [width]="80">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                            {{row.supplierDateDay}}-{{row.supplierDateMonth}}-{{row.supplierDateYear}}
+                                            {{row.supplierDateDay}} {{row.supplierDateMonth}}{{row.supplierDateYear}}
 
                                         </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column name="Buyer Date" prop="buyerDate" [width]="80">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                            {{row.buyerDateDay}}-{{row.buyerDateMonth}}-{{row.buyerDateYear}}
+                                            {{row.buyerDateDay}}{{row.buyerDateMonth}}{{row.buyerDateYear}}
 
                                         </ng-template>
                                     </ngx-datatable-column>

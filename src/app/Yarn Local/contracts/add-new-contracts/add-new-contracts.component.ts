@@ -189,6 +189,8 @@ brandId : any;
   }
   addArticle() {
     this.Article.push({ id: this.Article.length });
+    // this.Article.push({ id: 0 });
+
   }
   add() {
     this.new2.push({ id: this.new2.length });
