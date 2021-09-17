@@ -78,7 +78,7 @@ export class ActiveBillsComponent implements OnInit {
 
     const temp = this.billFilter.filter(function (d) {
       return (
-        d.billNumber.toLowerCase().indexOf(val) !== -1 ||
+        d.autoContractNumber.toLowerCase().indexOf(val) !== -1 ||
         !val);
     });
     this.rows = temp;

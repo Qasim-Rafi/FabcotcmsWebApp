@@ -57,23 +57,21 @@
 
                     <div class="form-group col-md-3 col-lg-3 col-xl-2 text-right">
                         <label for="inputEmail4">Contract #</label>
-                        <!-- <div class="input-group"> -->
                         <div class="text-right" >
-                            <h6 class="inputaddenquiryCity-group-addon text-lightgrey mt-2">{{loggedInDepartmentCode}}</h6>
+                            <h6 class="inputaddenquiryCity-group-addon text-lightgrey mt-2">
+                                {{loggedInDepartmentCode}}</h6>
                         </div>
                         
                     </div>
 
                     <div class="form-group col-md-2">
                         <label for="inputPassword4">Auto</label>
-                        <!-- <input type="password" class="form-control" id="inputPassword4"> -->
                         <input type="text" placeholder="Auto Contract no." [(ngModel)]="data.autoContractNo"
                             name="autoContractNo" #autoContractNo="ngModel" class="form-control text-w-4" readonly>
                     </div>
 
                     <div class="form-group col-md-3">
                         <label for="inputPassword4">(Manual)</label>
-                        <!-- <input type="password" class="form-control" id="inputPassword4"> -->
                         <input type="text" placeholder="Contract no." class="form-control text-w-4"
                             #contractNo="ngModel" [(ngModel)]="data.contractNo" name="contractNo">
                     </div>
@@ -229,7 +227,7 @@
                                             </div>
                     
                                             <div class="col-md-4 mrg-tsm">
-                                                <ng-select [(ngModel)]="data.rateUOMId" placeholder="Select UOM" name="rateUOMId">
+                                                <ng-select [(ngModel)]="data.rateUOMId" placeholder="Select UOM" name="rateUOMId"   >
                                                     <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
                                                     </ng-option>
                                                 </ng-select>
@@ -363,7 +361,7 @@
                                             <div class="col-md-4">
                                                 <div class="input-group">
                                                   
-                                                    <ng-select name="article" #articleId="ngModel" class="input-w px-0"
+                                                    <ng-select name="article" #articleId="ngModel" class="input-w px-0"   
                                                         [(ngModel)]="data5.articleId" placeholder="-- Select --">
                                                         <ng-option *ngFor="let i of article" [value]="i.id">{{ i.name }}
                                                         </ng-option>
@@ -419,10 +417,7 @@
                                                 <div class="col-md-4">
                                                     
                                                     <div class="input-group">
-                                                            <!-- [(ngModel)]="a.articleId" placeholder="Article">
-                                                            <ng-option *ngFor="let i of article" [value]="i.id">{{ i.name }}
-                                                            </ng-option>
-                                                        </ng-select> --> 
+                                                         
                                                      
                                                         <ng-select name="articleId_{{i}}" #articleId="ngModel" class="input-w px-0"
                                                             [(ngModel)]="a.articleId" placeholder="-- Select --">
@@ -569,14 +564,6 @@
                                                 </div>
                                             </div>
                     
-                                            <!-- <div class="col-md-3 mrg-tsm">
-                                                <ng-select name="selvedgeId" #selvedgeId="ngModel" [(ngModel)]="data.selvedgeId"
-                                                    placeholder="Selvedge">
-                                                    <ng-option *ngFor="let i of selvedge" [value]="i.id">{{ i.selvedgeName }}
-                                                    </ng-option>
-                                                </ng-select>
-                    
-                                            </div> -->
                     
                                         </div>
                                     </div>
@@ -756,7 +743,6 @@
                     </div>
                     <hr *ngIf = "loggedInDepartmentName != 'Yarn Export' 
                     && loggedInDepartmentName == 'Yarn Import' ">
-                    <!---------- Quantity ---------->
                     <div class="card shadow mb-4" *ngIf = "loggedInDepartmentName != 'Yarn Export'
                     && loggedInDepartmentName != 'Yarn Import'">
                         <div class="card-body">
@@ -902,8 +888,7 @@
                             <label for="inputEmail3" class="col-md-3 col-form-label control-label">Seller Payment
                                 Terms:</label>
 
-                            <!-- <div class="col-md-7">
-                                <div class="row"> -->
+                       
 
                                     <div class="col-md-7">
 
@@ -925,9 +910,7 @@
                                     </div>
 
 
-                                <!-- </div> -->
                             </div>
-                        <!-- </div> -->
 
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-md-3 col-form-label control-label">Buyer Payment
@@ -1011,7 +994,6 @@
 
                         <div class="form-group row">
                             <label class="col-md-3 col-form-label text_Navy">Supplier Delivery Date
-                              <!-- <span class="required-denote">*</span> -->
                             </label>
                             <div class="col-md-3">
                               <input  class="form-control"  
@@ -1053,7 +1035,6 @@
 
                         <div class="form-group row" *ngFor="let a of new; let i = index;">
                             <label class="col-md-3 col-form-label text_Navy">
-                                <!-- <span class="required-denote">*</span> -->
                               </label>
                               <div class="col-md-3">
                                 <input  class="form-control"  
@@ -1453,7 +1434,6 @@
 
                         <div class="form-group row">
                             <label class="col-md-3 col-form-label text_Navy">Supplier Delivery Date
-                              <!-- <span class="required-denote">*</span> -->
                             </label>
                             <div class="col-md-3">
                               <input  class="form-control"  
@@ -1918,7 +1898,6 @@
 
             <div class="form-group row" *ngFor="let a of new; let i = index;">
                 <label class="col-md-3 col-form-label text_Navy">
-                    <!-- <span class="required-denote">*</span> -->
                 </label>
                 <div class="col-md-3">
                     <input class="form-control" name="sellerDeliveryDateDay_{{i}}" placeholder="Day"
