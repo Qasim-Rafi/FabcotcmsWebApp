@@ -21,7 +21,7 @@ data:any = {};
 buyer: any={};
 
 @Input() contractId;
-@Input() invoiceId; 
+@Input() id; 
 @Input() statusCheck; 
 @ViewChild(NgForm) InvoiceForm;
 
@@ -35,7 +35,7 @@ buyer: any={};
 
   ngOnInit(): void {
     this.GetBuyersDropdown();
-    if (this.statusCheck == 'editInvoice') {
+    if (this.statusCheck == 'edit') {
       this.editSaleInvoice();
     }
     
@@ -96,14 +96,15 @@ this.spinner.show();
   }
   editSaleInvoice() {
     // this.spinner.show();
-    this.http.get(`${environment.apiUrl}/api/Contracts/GetContractLetterCreditById/` + this.invoiceId)
+    this.http.get(`${environment.apiUrl}/api/Contracts/GetContractLetterCreditById/` + this.id)
       .subscribe(
         res => {
           this.response = res;
           if (this.response.success == true && this.response.data != null) {
             this.data = this.response.data;
-         
-
+         this.data.lcOpenOn = this.dateformater.fromModel(this.data.lcOpenOn)
+          this.data.lcShipmentOn = this.dateformater.fromModel(this.data.lcShipmentOn)
+          this.data.lcExpiryDate = this.dateformater.fromModel(this.data.lcExpiryDate)
           }
           else if(this.response.success == false) {
          
@@ -130,7 +131,7 @@ this.spinner.show();
     }
  this.spinner.show();
     this.http.
-      put(`${environment.apiUrl}/api​/Contracts​/UpdateContractLetterCredit​/` + this.invoiceId, varr)
+      put(`${environment.apiUrl}/api/Contracts/UpdateContractLetterCredit/` + this.id, varr)
       .subscribe(
         res => {
  

@@ -620,7 +620,24 @@ if(this.loggedInDepartmentName == 'Yarn Export' || this.loggedInDepartmentName =
 //  ----------------- L/C pop up -----------------------
 
 
-lcForm(check){
+lcForm(x ,check){
+  const modalRef = this.modalService.open(LCInfoComponent, { centered: true });
+  modalRef.componentInstance.statusCheck = check;
+  modalRef.componentInstance.contractId = this.contractId ;
+  modalRef.componentInstance.id = x.id;
+
+        modalRef.result.then((data) => {
+       // on close
+        if(data ==true){
+          this.getContractLOC();
+
+       
+      }
+     }, (reason) => {
+       // on dismiss
+     });
+}
+lcForm2( check){
   const modalRef = this.modalService.open(LCInfoComponent, { centered: true });
   modalRef.componentInstance.statusCheck = check;
   modalRef.componentInstance.contractId = this.contractId ;
@@ -628,18 +645,13 @@ lcForm(check){
         modalRef.result.then((data) => {
        // on close
         if(data ==true){
-    //      this.fetch((data) => {
-    //       this.rows = data;
-    // this.saleinvoiceFilter = [...this.rows];
-      
-    //     });
+  this.getContractLOC();
        
       }
      }, (reason) => {
        // on dismiss
      });
 }
-
 
   fetch(cb) {
       // this.spinner.show();
