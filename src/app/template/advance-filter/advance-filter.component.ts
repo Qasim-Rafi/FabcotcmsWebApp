@@ -16,7 +16,8 @@ export class AdvanceFilterComponent implements OnInit {
   buyer: any={};
   seller: any={};
   article: any={};
-   
+   rows:any = [];
+   columns : any = {}
   constructor(
     private http: HttpClient,
     private service: ServiceService,
