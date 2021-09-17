@@ -65,4 +65,40 @@ export class AdvanceFilterComponent implements OnInit {
     })
   }
 
+//   addSaleInvoice(form:NgForm) {
+//     let varr = {
+//       "buyerId":this.data.buyerId,
+//       "lcNumber": this.data.lcNumber,
+//       "lcOpenOn": this.dateformater.toModel(this.data.lcOpenOn),
+//       "lcShipmentInfo": this.data.lcShipmentInfo,
+
+//       "remarks": this.data.remarks
+     
+//     }
+// this.spinner.show();
+//     this.http.
+//       post(`${environment.apiUrl}/api/Contracts/AddContractLetterCredit`, varr)
+//       .subscribe(
+//         res => {
+
+//           this.response = res;
+//           if (this.response.success == true) {
+//             this.toastr.success(this.response.message, 'Message.');
+//             this.activeModal.close(true);
+//           // localStorage.setItem('quantity',this.data.quantity);
+//          this.spinner.hide();
+//           }
+//           else {
+//             this.toastr.error(this.response.message, 'Message.');
+//          this.spinner.hide();
+//           }
+
+//         }, (err: HttpErrorResponse) => {
+//           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+//           this.toastr.error(messages.toString(),'Message.');
+//           this.spinner.hide();
+          
+//         });
+//   }
+
 }

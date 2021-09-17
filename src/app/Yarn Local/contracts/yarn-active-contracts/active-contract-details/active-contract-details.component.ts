@@ -901,6 +901,8 @@ lcForm2( check){
           this.response = res;
           if (this.response.success == true && this.response.data != null) {
             this.contractData = this.response.data;
+            this.contractData.createdDateTime = this.contractData.createdDateTime.slice(0 ,16)
+            console.log(this.contractData.createdDateTime)
             this.contractArticles = this.response.data.contractArticles;
             this.buyerName = this.contractData.buyerName
              this.contractNmbr = this.contractData.autoContractNumber

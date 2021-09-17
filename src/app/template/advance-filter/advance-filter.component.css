@@ -75,41 +75,6 @@
     margin-left: 3px;
     font-weight: 500;
   }
-    /* ---------------------------------------------- */
-  
-    /* .lined .nav-link {
-      border: none;
-      border-bottom: 3px solid transparent;
-    }
-    
-    .lined .nav-link:hover {
-      border: none;
-      border-bottom: 3px solid transparent;
-    }
-    
-    .lined .nav-link.active {
-      background: none;
-      color: #138f51 !important;
-      border-color: #138f51;
-    }
-  
-  
-    .servicetab ul li .nav-link {
-      color: #212529 !important; 
-      font-weight: bold;
-    }
-    .servicetab ul li .nav-link:hover {
-      color: #138f51 !important; 
-    }
-    .servicetab ul li .nav-link.active {
-      color: #138f51 !important; 
-    }
-  
-    .servicetab ul li img {
-      display: block;
-      margin: 0 auto;
-      padding: 0 0 10px 0;
-    } */
   
     .mid-text {
       font-size: 25px;
@@ -130,8 +95,7 @@
     overflow: hidden;
     font-size: 10px;
     background-color: #e9ecef;
-    /* border-radius: 0.25rem;
-    box-shadow: inset 0 0.1rem 0.1rem rgb(0 0 0 / 10%); */
+ 
   }
   
   .progress-bar{
