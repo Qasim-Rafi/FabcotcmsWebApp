@@ -145,7 +145,8 @@ this.spinner.show();
       "buyersideCommision": this.data.buyersideCommision,
       "buyersideCommisionUOMId": this.data.buyersideCommisionUOMId,
       "buyerSideCommAdditionalInfo": this.data.buyerSideCommAdditionalInfo,
-      "agentCommissions": this.test
+      // "agentCommissions" : this.test[0].agentId == null ? undefined : this.test
+      "agentCommissions": this.test[0].id == 0 ? this.test[0].hasOwnProperty('agentId') == false ? undefined : this.test : this.test[0].agentId == null ? undefined : this.test 
     }
 
     this.http.

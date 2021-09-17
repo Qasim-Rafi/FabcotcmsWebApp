@@ -1331,14 +1331,14 @@ getContractRemarkData() {
 getContractLOC() {
   if(this.loggedInDepartmentName == 'Yarn Export' || this.loggedInDepartmentName == 'Yarn Import' ||
   this.loggedInDepartmentName == 'Fabric Export'){
-  this.http.get(`${environment.apiUrl}/api/Contracts/GetContractLetterCreditById/` + this.contractId)
+  this.http.get(`${environment.apiUrl}/api/Contracts/GetAllContractLetterCredit/` + this.contractId)
     .subscribe(
       res => {
         this.response = res;
         if (this.response.success == true ) {
-          if(this.response.data != null){
+         
           this.contractLOCdata = this.response.data;
-          }
+          
         }
         else {
           this.toastr.error(this.response.message, 'Message.');
