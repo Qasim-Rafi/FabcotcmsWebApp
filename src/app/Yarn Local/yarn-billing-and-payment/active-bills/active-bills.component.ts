@@ -54,9 +54,7 @@ export class ActiveBillsComponent implements OnInit {
       this.router.navigate(['/yarn-billing-and-payment/payment-form'], { queryParams: { statusCheck: statusCheck 
          , id:obj.id , contractId:obj.contractId}  });
    };
-    // navigateOpenBill(obj) {
-    //   this.router.navigate(['/yarn-billing-and-payment/open-bill'], { queryParams: {id: obj.id} });
-    // };
+
     navigateOpenBill(obj) {
       this.router.navigate(['/yarn-billing-and-payment/open-bill'] , { queryParams: {id: obj.id} });
     };

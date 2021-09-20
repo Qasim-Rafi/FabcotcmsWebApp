@@ -100,22 +100,27 @@
 
         <div class="row mb-3">
 
-          <div class= "col-md-6 ">
-              <span class="date-Label">Date From &nbsp;</span>
-             <span class="text_Navy  date"> 23-Jan-2021 &nbsp;</span>
-             <span class="date-Label">To &nbsp;</span>
-             <span class="text_Navy  date">20-July-2021 &nbsp;</span>
-          </div>
+          <div class= "col-md-1 ">
+              <span class="date-Label text_Navy">From: &nbsp;</span>
+      
+       
+          </div>      
+          <div class="col-md-3">
+              <input  navigation="select" class="form-control  " ngbDatepicker #startDate="ngbDatepicker"
+              (click)="startDate.toggle()" placeholder="Start Date">
+          </div>   
 
-          <div class="col-md-6 mrg-tsm">
-            <button type="button" class="btn btn-light btn-sm float-right"  onclick="location.reload(true)"><i class="fas fa-sync-alt"></i></button>
-            <!-- <button type="button" class="btn btn-primary btn-sm float-right mr-1" >
-                <i class="fa fa-filter"></i>
-            </button> -->
-          </div>
-
-         
-
+          <div class= "col-md-1 ">
+            <span class="date-Label text_Navy"> To: &nbsp;</span>
+    
+     
+        </div>  
+        <div class="col-md-3">
+          <input  navigation="select" class="form-control  " ngbDatepicker #endDate="ngbDatepicker"
+          (click)="endDate.toggle()" placeholder="End Date">
+      </div>  
+      <div class="col-md-3">  <button type="button" class="btn btn-primary descBtn ml-sm-none ml-md-2" ><i class="fa fa-search"></i>Go!
+      </button></div> 
         </div>
      
         <div class="row mb-4 justify-content-center">
@@ -132,9 +137,7 @@
               </div> -->
           
               <div class="col-auto">
-                <button type="button" class="btn btn-primary btn-sm float-right" (click)= "print()">
-                  <i class="fa fa-print"></i> Bulk Print
-                </button>
+           
               </div>
             </div>
           </form>
