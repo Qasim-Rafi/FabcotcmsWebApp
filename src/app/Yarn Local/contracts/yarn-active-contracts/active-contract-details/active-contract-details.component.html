@@ -281,9 +281,9 @@
                                 role="tab" aria-controls="nav-Sale" aria-selected="false">Sale Invoice &nbsp;<span
                                     class="badge badge-pill badge-primary">{{saleInvoice.length}}</span></a>
 
-                                    <a *ngIf="contractData.status == 'OnHold'|| loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import'" class="nav-item nav-link " id="nav-Sale-tab" data-toggle="tab" href="#nav-Sale"
-                                    role="tab" aria-controls="nav-Sale" aria-selected="false">Bill & Payment &nbsp;<span
-                                        class="badge badge-pill badge-primary">{{saleInvoice.length}}</span></a>
+                                    <a *ngIf="contractData.status == 'OnHold'|| loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Yarn Local'" class="nav-item nav-link " id="nav-bill-tab" data-toggle="tab" href="#nav-bill"
+                                    role="tab" aria-controls="nav-bill" aria-selected="false">Bill & Payment &nbsp;<span
+                                        class="badge badge-pill badge-primary"></span></a>
 
                             <a class="nav-item nav-link " id="nav-Documents-tab" data-toggle="tab" href="#nav-Documents"
                                 role="tab" aria-controls="nav-Documents" aria-selected="false">Documents
@@ -2322,6 +2322,110 @@
                     </div>
                 </div>
                 <!-- </div> -->
+
+<!-- Billing and payment -->
+
+<div class="tab-pane fade show " id="nav-bill" role="tabpanel" aria-labelledby="nav-bill-tab">
+    <div class="col-md-12">
+        <div class="card shadow mb-4">
+            <div class="card-body">
+        <div class="row">
+            <div class="col-md-12 py-1">
+                <div class="row mb-2">
+                    <div class="col-sm-12 col-md-6 col-lg-8 text-muted">
+                        <h1 class="row wrapper page-header font-weight-light">
+                            <i class="fas fa-receipt mr-3"></i>
+                          Commission Bill
+
+                        </h1>
+                    </div>
+               
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="card-body BG"    >
+
+        
+
+            <div class="row">
+                <div class="col-md-6">
+                    <dl class="row">
+                        <dt class="col-sm-6">Bill No:
+                         
+                        </dt>
+                        <dd class="col-sm-6">  </dd>
+                    </dl>
+                    <dl class="row">
+                        <dt class="col-sm-6">Bill Amount:
+
+                        </dt>
+                        <dd class="col-sm-6">  </dd>
+                    </dl>
+                    <dl class="row">
+                        <dt class="col-sm-6">Bill Tax:</dt>
+                        <dd class="col-sm-6">   </dd>
+                    </dl>
+                    <dl class="row">
+                        <dt class="col-sm-6">Bill Status:</dt>
+                        <dd class="col-sm-6"> </dd>
+                    </dl>
+                    <dl class="row">
+                        <dt class="col-sm-6">Last Updated By:</dt>
+                        <dd class="col-sm-6"> </dd>
+                    </dl>
+                    <dl class="row">
+                        <dt class="col-sm-6">Remarks:</dt>
+                        <dd class="col-sm-6"> </dd>
+                    </dl>
+                </div>
+
+                <div class="col-md-6">
+                  
+                    <dl class="row">
+                        <dt class="col-sm-6">Bill Id:
+
+                        </dt>
+                        <dd class="col-sm-6">   </dd>
+                    </dl>
+                    <dl class="row">
+                        <dt class="col-sm-6">Bill Date:
+                        </dt>
+                        <dd class="col-sm-6">   </dd>
+                    </dl>
+                    <dl class="row">
+                        <dt class="col-sm-6">Tax No:</dt>
+                        <dd class="col-sm-6"> </dd>
+                    </dl>
+                    <dl class="row">
+                        <dt class="col-sm-6">Due Date:
+
+
+                        </dt>
+                        <dd class="col-sm-6">   </dd>
+                    </dl>
+                    <dl class="row">
+                        <dt class="col-sm-6">Last Updated On:</dt>
+                        <dd class="col-sm-6"> </dd>
+                    </dl>
+                  
+                </div>
+
+            </div>
+
+   
+
+        </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
                 <!---------- Notes/Activity Tab ---------->
 
                 <div class="tab-pane fade show " id="nav-Documents" role="tabpanel" aria-labelledby="nav-Documents-tab">

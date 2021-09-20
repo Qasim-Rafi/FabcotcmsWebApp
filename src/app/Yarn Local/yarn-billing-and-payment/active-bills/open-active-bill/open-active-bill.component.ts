@@ -172,7 +172,7 @@ print(){
 
   let docDefinition = {
     pageSize: 'A4',
-    pageMargins: [ 20, 10, 30, 10 ],
+    pageMargins: [ 20, 30, 30, 10 ],
     pageOrientation: 'letter',
       
           info: {
@@ -181,12 +181,12 @@ print(){
           content: [
             {
               "image" : this.image2,
-             fit : [100 , 100]
+             fit : [140 , 140]
           
             },
             {
            
-              text:'Fabcot International FZE' , style:'heading' , margin: [0,-30,0,0]
+              text:'FABCOT INTERNATIONAL' , style:'heading' , margin: [0,-30,0,0]
            
             },
             {
@@ -194,15 +194,15 @@ print(){
               layout:'noBorders',
               table:{headerRows: 1 , widths:['100%'],
             body: [
-              [{text:'Aurangzeb Block Office, 133 New Garden Town, Lahore, Pakistan.' , style:'heading2'}],] }
+              [{text:'Commission Bill' , style:'headingC'}],] }
             },
             {
               layout:'noBorders',
              
               table:{headerRows:1 ,  widths:['18%' , '67%' , '5%' , '12%'],
             body:[ [
-              {text: 'Seller :' , margin: [63 , 25 , 0 , 0] , bold:true , style:'common' } , {text: this.rows['sellerName'] ,  margin: [0 , 25 , 0 , 0] , style:'common'},
-            {text:'Bill # :' , margin: [0 , 25 , 0 , 0] , bold:true , style:'common'} ,{text:this.rows['billNumber'] , margin: [0 , 25 , 0 , 0] , style:'common'}
+              {text: 'Seller :' , margin: [63 , 30 , 0 , 0] , bold:true , style:'common' } , {text: this.rows['sellerName'] ,  margin: [0 , 30 , 0 , 0] , style:'common'},
+            {text:'Bill # :' , margin: [0 , 30 , 0 , 0] , bold:true , style:'common'} ,{text:this.rows['billNumber'] , margin: [0 , 30 , 0 , 0] , style:'common'}
           
           ]]
             }
@@ -211,8 +211,8 @@ print(){
               
               layout:'noBorders',
               table:{headerRows:1 ,  widths:['18%' , '65%' , '10%' , '15%'],
-            body:[ [{text: 'Buyer :' , margin: [63 , 4 , 0 , 0] , bold:true , style:'common'} , {text: this.rows['buyerName'] , margin: [0 , 4 , 0 , 0] , style:'common'},
-            {text:'Bill Date :' , margin: [0 , 4 , 0 , 0] , bold:true , style:'common'} ,{text:this.rows['billDate'] , margin: [-20 , 4 , 0 , 0] , style:'common' }
+            body:[ [{text: 'Buyer :' , margin: [63 , 4 , 0 , 0] , bold:true , style:'common'} , {text: this.rows['buyerName'] , margin: [0 , 4 , 0 , 0] , bold:true  , style:'common'},
+            {text:'Bill Date :' , margin: [0 , 4 , 0 , 0] , bold:true , style:'common'} ,{text:this.rows['billDate'] , margin: [-20 , 4 , 0 , 0] , bold:true  , style:'common' }
           
           ]]
             }
@@ -222,7 +222,7 @@ print(){
 
               layout:'noBorders',
               table:{headerRows:1 ,  widths:['20%' , '80%' ],
-            body:[ [{text: 'Fabcot Contract# :' , margin: [15 , 4 , 0 , 0] , bold:true , style:'common'} , {text: this.rows['contractNumber'] , margin: [-12 , 4 , 0 , 0]  , style:'common'}
+            body:[ [{text: 'Fabcot Contract# :' , margin: [15 , 4 , 0 , 0] , bold:true , style:'common'} , {text: this.rows['contractNumber'] , margin: [-12 , 4 , 0 , 0]  , bold:true  , decoration:'underline' , style:'common'}
           
           ]]
             }
@@ -232,7 +232,7 @@ print(){
 
               layout:'noBorders',
               table:{headerRows:1 ,  widths:['20%' , '80%' ],
-            body:[ [{text: 'Contract Date :' , margin: [30 , 4 , 0 , 0] , bold:true  , style:'common'} , {text: this.rows['contractDate'] , margin: [-12 , 4 , 0 , 0] , style:'common' }
+            body:[ [{text: 'Contract Date :' , margin: [30 , 4 , 0 , 0] , bold:true  , style:'common'} , {text: this.rows['contractDate'] , margin: [-12 , 4 , 0 , 0] , bold:true , decoration:'underline' , style:'common' }
           
           ]]
             }
@@ -242,7 +242,7 @@ print(){
 
               layout:'noBorders',
               table:{headerRows:1 ,  widths:['80%' ],
-            body:[ [{text: 'This refers to our contract for Weaving dispatches. Please make commission cheque in favour of M/S FABCOT INTERNATIONALS and oblige.' , margin: [20 , 4 , 0 , 0]  , style:'common'} 
+            body:[ [{text: 'This refers to our contract for Weaving dispatches. Please make commission cheque in favour of M/S FABCOT INTERNATIONAL and oblige.' , margin: [20 , 10 , 0 , 0]  , style:'common'} 
           
           ]]
             }
@@ -262,7 +262,7 @@ print(){
               margin: [0 , 20 , 0 , 0 ],
               table:{
                 headerRows : 1,
-                widths : ['15%' , '10%' , '15%' , '8.75%' , '9.75%' , '12.25%' , '11.75%' , '6%' , '13%'],
+                widths : ['15%' , '10%' , '15%' , '8.75%' , '9.75%' , '12.75%' , '11.75%' , '6%' , '13%'],
                 body:[
 
                   [
@@ -316,9 +316,9 @@ print(){
               table:{headerRows:1 ,  widths:['20%' , '50%' ,  '30%' , '10%' ],
             body:[ [
               {text: 'Amount in Words :' , margin:[0 , 20,0,0] , bold:true , style:'common' } ,
-             {text: this.words ,margin:[-30 , 20,0,0] , decoration:'underline' , style:'common' },
+             {text: this.words ,margin:[-30 , 20,0,0] , bold:true , decoration:'underline' , style:'common' },
               {text: 'Sub Total :' , margin:[50,20,0,0]  , bold:true , style:'common' } ,
-             {text:   this.rows['currencyName']+ ' ' + this.totalAmount2.toFixed(2)  , margin:[-60,20,0,0] , decoration:'underline' , style:'common'}
+             {text:   this.rows['currencyName']+ ' ' + this.totalAmount2.toFixed(2)  , margin:[-60,20,0,0] , decoration:'underline'  , style:'common'}
           
           ]]
             }
@@ -339,7 +339,7 @@ print(){
               table:{headerRows:1 ,  widths:['90%' , '10%'  ],
             body:[ [
               {text: 'Total:' , margin:[455 , 5,0,0] , bold:true , style:'common' } ,
-             {text: this.rows['currencyName']+ ' '+  this.totalAmount2.toFixed(2) ,margin:[0 , 5,0,0]  , decoration:'underline' , style:'common' },
+             {text: this.rows['currencyName']+ ' '+  this.totalAmount2.toFixed(2) ,margin:[-10 , 5,0,0]  , decoration:'underline' , bold:true , style:'common' },
          
           
           ]]
@@ -366,9 +366,9 @@ print(){
               table:{headerRows:1 ,  widths:['20%' , '40%' ,  '30%' , '10%' ],
             body:[ [
               {text: 'Checked By:' , margin:[0 , 20,0,0] , style:'common' } ,
-             {text: ' --------------------' ,margin:[-60 , 20,0,0]  , style:'common' },
+             {text: ' ------------------------------' ,margin:[-60 , 20,0,0]  , style:'common' },
               {text: 'Aurthorized Signatory:' , margin:[60,20,0,0]  , style:'common' } ,
-             {text:   '  ------------------------'  , margin:[-15,20,0,0]  , style:'common'}
+             {text:   '  --------------------------'  , margin:[-15,20,0,0]  , style:'common'}
           
           ]]
             }
@@ -376,12 +376,14 @@ print(){
 
           ],
           styles:{
-           heading:{fontSize: 12,
+           heading:{fontSize: 18 ,
             bold: true, alignment: 'center',   },
+            headingC:{fontSize: 12 ,
+              alignment: 'center',   },
             common:{fontSize:9},
             heading2:{fontSize: 9,
             bold: true, alignment: 'center' },
-            tableHeader:{ fillColor: '#f3f3f4' , margin:4 , alignment: 'center' ,fontSize: 8},
+            tableHeader:{ fillColor: '#f3f3f4' , bold:true , margin:4 , alignment: 'center' ,fontSize: 8},
             tableHeader2:{   margin:3 , alignment: 'center' , fontSize: 8},
 
           },

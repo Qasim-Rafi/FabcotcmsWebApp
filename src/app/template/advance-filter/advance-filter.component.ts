@@ -1,23 +1,31 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+// import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { ServiceService } from 'src/app/shared/service.service';
-
+import { Component, Inject, Input, OnInit, ViewChild } from '@angular/core';
+import { GlobalConstants } from 'src/app/Common/global-constants';
+import { Dateformater } from 'src/app/shared/dateformater';
+import { environment } from 'src/environments/environment';
+import {FormsModule , NgForm, ReactiveFormsModule}  from '@angular/forms'
 @Component({
   selector: 'app-advance-filter',
   templateUrl: './advance-filter.component.html',
   styleUrls: ['./advance-filter.component.css']
 })
 export class AdvanceFilterComponent implements OnInit {
-  data:any ={};
+  dateformater: Dateformater = new Dateformater();  
+
+  data:any =[];
   response: any;
   buyer: any={};
   seller: any={};
   article: any={};
    rows:any = [];
    columns : any = {}
+   @ViewChild(NgForm) filterForm;
+
+
   constructor(
     private http: HttpClient,
     private service: ServiceService,
@@ -65,40 +73,39 @@ export class AdvanceFilterComponent implements OnInit {
     })
   }
 
-//   addSaleInvoice(form:NgForm) {
-//     let varr = {
-//       "buyerId":this.data.buyerId,
-//       "lcNumber": this.data.lcNumber,
-//       "lcOpenOn": this.dateformater.toModel(this.data.lcOpenOn),
-//       "lcShipmentInfo": this.data.lcShipmentInfo,
-
-//       "remarks": this.data.remarks
+ getSearch() {
+    let varr = {
+      "buyerId": this.data.buyerId,
+      "sellerId": this.data.sellerId,
+      "poNumber": this.data.poNumber,
+      "autoContractNumber":this.data.autoContractNumber,
+      "contractDate": this.dateformater.toModel(this.data.contractDate),
+      "sellerContractNo": this.data.sellerContractNo
      
-//     }
-// this.spinner.show();
-//     this.http.
-//       post(`${environment.apiUrl}/api/Contracts/AddContractLetterCredit`, varr)
-//       .subscribe(
-//         res => {
+    }
+this.spinner.show();
+    this.http.
+      post(`${environment.apiUrl}/api/Contracts/ContractAdvanceSearchFilter`, varr)
+      .subscribe(
+        res => {
 
-//           this.response = res;
-//           if (this.response.success == true) {
-//             this.toastr.success(this.response.message, 'Message.');
-//             this.activeModal.close(true);
-//           // localStorage.setItem('quantity',this.data.quantity);
-//          this.spinner.hide();
-//           }
-//           else {
-//             this.toastr.error(this.response.message, 'Message.');
-//          this.spinner.hide();
-//           }
+          this.response = res;
+          if (this.response.success == true) {
+            this.toastr.success(this.response.message, 'Message.');
+            this.data = this.response.data; 
+         this.spinner.hide();
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+         this.spinner.hide();
+          }
 
-//         }, (err: HttpErrorResponse) => {
-//           const messages = this.service.extractErrorMessagesFromErrorResponse(err);
-//           this.toastr.error(messages.toString(),'Message.');
-//           this.spinner.hide();
+        }, (err: HttpErrorResponse) => {
+          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+          this.toastr.error(messages.toString(),'Message.');
+          this.spinner.hide();
           
-//         });
-//   }
+        });
+  }
 
 }
