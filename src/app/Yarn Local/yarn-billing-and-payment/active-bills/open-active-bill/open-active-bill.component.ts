@@ -31,6 +31,8 @@ export class OpenActiveBillComponent implements OnInit {
   image : any;
   image2 : any;
   totalQuantity = 0 ;
+  selectedids: any ={};
+
   quantity : any;
   numberInWords!: string;
 lang : SUPPORTED_LANGUAGE = 'en';
@@ -66,33 +68,7 @@ lang : SUPPORTED_LANGUAGE = 'en';
     });
 
   }
-  
-//   fetch(cb) {
-    
-//     this.http
-//     .get(`${environment.apiUrl}/api/BillingPayments/GetContractBillById/` + this.bill_id)
-//     .subscribe(res => {
-//       this.response = res;
-     
-//     if(this.response.success==true)
-//     {
-//     this.data =this.response.data;
-//     const toWords = new ToWords();
-//     this.words = toWords.convert(this.data.invoiceTotalAmount);
-
-//     cb(this.data);
-//     }
-//     else{
-//       this.toastr.error(this.response.message, 'Message.');
-//     }
-//       // this.spinner.hide();
-//     }, err => {
-//       if ( err.status == 400) {
-//  this.toastr.error(err.error.message, 'Message.');
-//       }
-//     //  this.spinner.hide();
-//     });
-//   }
+ 
 
 fetch(cb) {
   this.spinner.show();
@@ -166,6 +142,7 @@ this.spinner.hide();
       // on dismiss
     });
   }
+
 
 
 print(){

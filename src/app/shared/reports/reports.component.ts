@@ -36,6 +36,7 @@ export class ReportsComponent implements OnInit {
   paymentReport: any = [];
   lCReport: any = [];
   url: any;
+  contractWise : any = []
   constructor(
 
     private route: ActivatedRoute,
@@ -57,8 +58,9 @@ export class ReportsComponent implements OnInit {
     // else  if(this.menuName.menuName == "LCReport"){
     //   this.filterPopUform();
     //   }
-    this.GetReportData();
-
+    // this.GetReportData();
+    this.fetch();
+this.fetchContractInvise();
   }
   GetReportData() {
     if (this.menuName.menuName == 'OpenContractReport') {
@@ -72,7 +74,7 @@ export class ReportsComponent implements OnInit {
       this.billingReportInvoiceWise.startDate = this.dateformater.toModel(this.billingReportInvoiceWise.startDate);
       this.billingReportInvoiceWise.endDate = this.dateformater.toModel(this.billingReportInvoiceWise.endDate);
 
-      this.url = '/api/Contracts/GetBillingInvoiceWise/'+this.billingReportInvoiceWise.startDate+'/'+this.billingReportInvoiceWise.endDate;
+      this.url = '/api/Reports/AllBillingReportInvoiceWise'+this.billingReportInvoiceWise.startDate+'/'+this.billingReportInvoiceWise.endDate;
 
     }
     else if (this.menuName.menuName == 'CancleContarctReport') {
@@ -174,4 +176,66 @@ export class ReportsComponent implements OnInit {
       // on dismiss
     });
   }
+  fetch() {
+    this.spinner.show();
+    this.http
+    .get(`${environment.apiUrl}/api/Reports/AllBillingReportInvoiceWise`)
+    .subscribe(res => {
+      this.response = res;
+     
+    if(this.response.success==true)
+    {
+    this.billingReportInvoiceWise=this.response.data;
+ 
+
+    // cb(this.billingReportInvoiceWise);
+    this.spinner.hide();
+
+    }
+    else{
+      this.toastr.error(this.response.message, 'Message.');
+      this.spinner.hide();
+    
+    }
+
+    }, err => {
+      if ( err.status == 400) {
+  this.toastr.error(err.error.message, 'Message.');
+  this.spinner.hide();
+
+      }
+    });
+  }
+
+  fetchContractInvise() {
+    this.spinner.show();
+    this.http
+    .get(`${environment.apiUrl}/api/Reports/AllBillingReportContractWise`)
+    .subscribe(res => {
+      this.response = res;
+     
+    if(this.response.success==true)
+    {
+    this.contractWise=this.response.data;
+ 
+
+    // cb(this.billingReportInvoiceWise);
+    this.spinner.hide();
+
+    }
+    else{
+      this.toastr.error(this.response.message, 'Message.');
+      this.spinner.hide();
+    
+    }
+
+    }, err => {
+      if ( err.status == 400) {
+  this.toastr.error(err.error.message, 'Message.');
+  this.spinner.hide();
+
+      }
+    });
+  }
+
 }
