@@ -35,6 +35,9 @@ export class OpenActiveBillComponent implements OnInit {
 
   quantity : any;
   numberInWords!: string;
+  nmbr = [];
+  printData = []
+
 lang : SUPPORTED_LANGUAGE = 'en';
   constructor(   private route: ActivatedRoute,
     private modalService: NgbModal,
@@ -61,12 +64,13 @@ lang : SUPPORTED_LANGUAGE = 'en';
      
     });
     this.queryParems = this.route.snapshot.queryParams;
+    
     this.bill_id = this.queryParems.id;
+    console.log(this.nmbr)
     this.fetch((data) => {
       this.rows = data;
   
     });
-
   }
  
 
@@ -98,8 +102,7 @@ fetch(cb) {
 } 
 this.totalAmount1 =this.totalAmount.toFixed(2)
 this.totalAmount2 = parseFloat(this.totalAmount1)
-  // const toWords = new ToWords();
-  // this.words = toWords.convert(this.totalAmount2);
+
 
   this.words = this.ngxNumToWordsService.inWords(this.totalAmount2, this.lang);
 
@@ -112,13 +115,11 @@ this.totalAmount2 = parseFloat(this.totalAmount1)
     this.toastr.error(this.response.message, 'Message.');
  this.spinner.hide();
   }
-    // this.spinner.hide();
   }, err => {
     if ( err.status == 400) {
 this.toastr.error(err.error.message, 'Message.');
 this.spinner.hide();      
 }
-  //  this.spinner.hide();
   });
 }
 
@@ -368,5 +369,6 @@ print(){
   };
   pdfMake.createPdf(docDefinition).print();
 }
+
 
 }

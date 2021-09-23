@@ -45,10 +45,7 @@
             </div>
 
 
-            <!-- <span class=" float-right text-font">
-                HOME TEXTILE
-            </span> -->
-
+     
 
             <div class="row mb-3">
                 <div class="col-md-8">
@@ -65,7 +62,6 @@
 
             <div class="clearfix">
 
-                <!------- right side content ------->
                 <div class="float-right">
                     <span class="text-font1">
                         Bill No.: <span class="weight">{{rows.billNumber}}</span>
@@ -76,7 +72,6 @@
                     </span>
                 </div>
 
-                <!----- left side content ----->
                 <div class="float-left">
                     <span class="text-font1" >
                         Seller: <span class="bold text-font1">{{rows.sellerName}}</span>
@@ -107,7 +102,6 @@
 
             </div>
 
-            <!-- Simple Table -->
             <table class="table">
                 <tr>
                     <th>Description</th>
@@ -140,8 +134,7 @@
 
                 </tr>
             </table>
-  <!-- {{totalQuantity}} -->
-            <!-- right side content -->
+ 
             <br>
             <div class="float-right">
                 <span class=" bold text-font1">
@@ -155,48 +148,11 @@
                     TOTAL : <span class="bold text-font1 underline">{{rows.currencyName}}  {{totalAmount | number:'2.2-2'}}</span>
                 </span>
             </div>
-            <!-- left side content -->
             <span class=" float-left text-font1">
                 Amount In Words:<span class="bold text-font1 underline">&nbsp;&nbsp; {{words}}</span>
             </span>
             <br>
-            <!-- <span>Our Bank detail as under for FTT</span>
-            <br>
-            <span class=" float-left ">
-                Title of Account:<span >&nbsp;&nbsp;{{rows.accountName}}</span>
-            </span>
-            <br>
-
-            <span class=" float-left ">
-                Address:<span> &nbsp;&nbsp;{{rows.bankAddress}} </span>
-            </span>
-            <br>
-
-            <span class=" float-left ">
-                Bank Name:<span> &nbsp;&nbsp;{{rows.bankName}}</span>
-            </span>
-            <br>
-            <span class=" float-left ">
-                Bank Account Number:<span> &nbsp;&nbsp;{{rows.accountNumber}}</span>
-            </span><br>
-            <span class=" float-left ">
-                IBAN Number:<span> &nbsp;&nbsp;{{rows.iban}}</span>
-            </span><br>
-            <span class=" float-left ">
-                Swift Code:<span>&nbsp;&nbsp;{{rows.swiftCode}}</span>
-            </span><br>
-            <span class=" float-left ">
-                Bank Branch:<span> &nbsp;&nbsp;{{rows.branchName}}</span>
-            </span><br>
-            <span class=" float-left ">
-                Account Type:<span> &nbsp;&nbsp;{{rows.type}}</span>
-            </span><br>
-            <span class=" float-left ">
-                Bank Address:<span>&nbsp;&nbsp;{{rows.bankAddress}}</span>
-            </span>
-            <br> -->
-            <!-- End button -->
-            <!-- <button (click)="ChangeBankForm(rows)" type="button" class="btn btn-light">Change Bank Account</button> -->
+   
             <br><br>
             <span class=" float-left text-font1">
                 For<span class="bold text-font1">&nbsp;FABCOT INTERNATIONAL ®</span>
@@ -206,3 +162,17 @@
         </div>
     </div>
 </div>
+
+
+
+
+<!-- <div *ngFor = "let x of printData" >
+<p>{{x.sellerName}}</p>
+<p style="page-break-after: always;">&nbsp;</p>
+<br>
+<hr>
+</div> -->
+
+
+
+

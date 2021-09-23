@@ -824,29 +824,32 @@
                
                 <span class="text-muted text2"></span>
               </div>
-            <div class="col-sm-3 col-md-2">
-              <div class="col-md-8" (clickOutside)="startDate.close()">
+            <!-- <div class="col-sm-6 col-md-4"> -->
+              <div class="col-md-2" (clickOutside)="startDate.close()">
       
                 <input navigation="select" class="form-control  " ngbDatepicker #startDate="ngbDatepicker"
                   (click)="startDate.toggle()" placeholder="Credit Note date" name="startDate"
                   [(ngModel)]="billingReportInvoiceWise.startDate" #startDate="ngModel" />
               </div>
-              </div>
+              <!-- </div> -->
               
                 <span class="text-muted text2">To</span>
 
-              <div class="col-sm-3 col-md-2">
-                <div class="col-md-8" (clickOutside)="endDate.close()">
+              <!-- <div class="col-sm-6 col-md-4"> -->
+                <div class="col-md-2" (clickOutside)="endDate.close()">
                   <input navigation="select" class="form-control  " ngbDatepicker #endDate="ngbDatepicker"
                     (click)="endDate.toggle()" placeholder="Credit Note date" name="endDate"
                     [(ngModel)]="billingReportInvoiceWise.endDate" #endDate="ngModel" />
                 </div>
-              </div>
-              
-                <button type="button" class="btn btn-primary descBtn ml-sm-none ml-md-2" (click)="GetReportData()"><i class="fa fa-search"></i>Go!
+              <!-- </div> -->
+              <div class="col-md-2">
+                <button type="button" class="btn btn-primary descBtn ml-sm-none ml-md-2" (click)="fetch()"><i class="fa fa-search"></i>Go!
                 </button>
+              </div>
+                <div class="col-md-2">
                 <button type="button" class="btn btn-outline-secondary descBtn ml-sm-none ml-md-2"> <i class="far fa-calendar"></i>&nbsp;All Dates
                 </button>
+              </div>
               <!-- </div> -->
        
          
@@ -969,7 +972,7 @@
               </ngx-datatable-column>
               <ngx-datatable-column name="Commission Amount" [width]="50">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.details }}
+                  {{ row.commissionAmount }}
                 </ng-template>
               </ngx-datatable-column>
           </ngx-datatable>

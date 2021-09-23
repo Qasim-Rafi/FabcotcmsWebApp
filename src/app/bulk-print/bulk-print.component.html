@@ -1,0 +1,210 @@
+
+<!-- <p *ngFor = "let x of printData">{{x.sellerName}}</p> -->
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "line-spin-fade" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+<!-- 
+<div class="content-header">
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-8">
+            <h2 class="row wrapper page-header font-weight-light">
+                <b>Bill {{rows.billNumber}}</b>
+                <div class="ml-2 descr">
+                    Billing detail of Bill <b>{{rows.billNumber}}</b> against Contract <b>{{rows.contractNumber}}</b>
+                </div>
+            </h2>
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-lg-4">
+            <ol class="breadcrumb flt-RnL">
+                <li class="breadcrumb-item"><a href="#">Billing and Payment</a></li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    Active Bills
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    Bill
+                </li>
+            </ol>
+        </div>
+    </div>
+</div> -->
+
+
+
+<div class="card ibox-content" *ngFor = "let x of printData">
+    <div class="panel blank-panel">
+        <div class="panel-heading">
+
+
+            <div class="row ">
+                <div class="col-md-3">
+                  <img src="/assets/fabcot.png"  class="image">
+                </div>
+                <!-- <div class="col-md-6"> -->
+                    <p class="font clr"><strong>Fabcot International FZE ®</strong>
+                    </p>
+                <!-- </div> -->
+            </div>
+
+
+     
+            
+            <div class="row ">
+                <div class="col-md-7">
+                    <p class="text-font1 float-right ">Commission Bill
+                    </p>
+                </div>
+            
+            </div>
+            
+<br>
+<br>
+
+            <div class="clearfix">
+
+                <div class="float-right">
+                    <span class="text-font1">
+                        Bill No.: <span class="weight">{{x.billNumber}}</span>
+                    </span>
+                    <br>
+                    <span class="text-font1">
+                        Bill Dt.: <span class="bold text-font1">{{x.billDate}}</span>
+                    </span>
+                </div>
+
+                <div class="float-left">
+                    <span class="text-font1" >
+                        Seller: <span class="bold text-font1">{{x.sellerName}}</span>
+                    </span>
+                <br>
+                    <span class="text-font1" >
+                        Buyer: <span class="bold text-font1">{{x.buyerName}}</span>
+                    </span>
+                    <br>
+
+                    <span class="text-font1">
+                        Fabcot Contract No: <span class="bold text-font1"> {{x.contractNumber}}</span>
+                    </span>
+                    <br>
+                    <span class="text-font1">
+                        Supplier Contract No: <span class="bold text-font1"> {{x.contractNumber}}</span>
+                    </span>
+                    <br>
+                    <span class="text-font1">
+                        Contract Date: <span class="bold text-font1">{{x.contractDate}}</span>
+                    </span>
+                    <br>
+                 <br>
+                    <span class="text-font1">
+                     <p>This refers to our contract for Weaving dispatches. Please make commission cheque in favour of  <strong>M/S FABCOT INTERNATIONAL </strong> and oblige <br> Details as under: </p>
+
+                    </span>
+
+                </div>
+
+            </div>
+          
+            <br>
+            <table class="table">
+                <tr>
+                    <th>Description</th>
+                    <th>Sale Invoice #</th>
+                    <th>Sale Invoice Date</th>
+                    <th>Quantity</th>
+                    <th>Rate({{x.currencyName}})</th>
+                    <th>SI Amount({{x.currencyName}})</th>
+                    <th>Commission</th>
+                    <th>TAX</th>
+                    <th>Bill Amount({{x.currencyName}})</th>
+
+
+
+
+                </tr>
+                <tr *ngFor="let i of x.contractSaleInvoices">
+                    <td>{{i.description}}</td>
+                   
+                    <td>{{i.saleInvoiceNo}}</td>
+                    <td>{{i.saleInvoiceDateToDisplay}}</td>
+                    <td>{{i.quantity}}{{i.quanityUOM}}</td>
+                    <td>{{i.rate}}</td>
+
+                    <td>{{i.amount}}</td>
+                    <td>{{i.commission}}% </td>
+                    <td>{{i.taxAmount}}</td>
+
+                    <td>{{(i.amount * i.commission) /100 | number:'2.2-2'}}</td>
+
+                </tr>
+            </table>
+            <br>
+            <br>
+            <div class="float-right" >
+                <span class=" bold text-font1">
+                    Sub Total: <span class="text-font1 underline">{{x.currencyName}} 
+                       
+                        </span>
+                </span>
+                <br>
+                <span class=" bold text-font1">
+                    TAX : <span class="text-font1 underline">{{x.currencyName}}  {{0.00}}</span>
+                </span><br>
+                <span class=" bold text-font1">
+                    TOTAL : <span class="bold text-font1 underline">{{x.currencyName}}  
+                        {{x.totalAmount | number:'2.2-2'}}
+                    </span>
+                </span>
+            </div>
+            <span class=" float-left text-font1">
+                Quantity:<span class="bold text-font1 underline">&nbsp;&nbsp;
+                     {{x.quantitySum}} &nbsp; {{x.quanityUOM}}
+                    </span>
+                    
+            </span>
+            <span class="  text-font1 sum">
+
+                SI Amount ( {{x.currencyName}}):<span class="bold text-font1 underline">&nbsp;&nbsp;
+                     {{x.amountsum}} 
+                    </span>
+                    
+            </span>
+            <br>
+            <br>
+            <br>
+            <br>
+            <span class=" float-left text-font1">
+                Amount In Words:<span class="bold text-font1 underline">&nbsp;&nbsp;
+                     {{x.words}}
+                    </span>
+            </span>
+            <br>
+   
+            <br><br>
+            <span class=" float-left text-font1">
+                Your prompt action in this regard would be highly appreciated.
+            </span>
+            <br><br><br><br>
+            <span class=" float-left text-font1">
+                For<span class="bold text-font1">&nbsp;FABCOT INTERNATIONAL ®</span>
+            </span>
+            <br><br><br><br>
+
+            <br><br><br><br><br><br>
+            <span class=" float-left text-font1">
+                Checked by: ---------------- 
+            </span>
+           
+            <span class=" float-right text-font1">
+                Authorized Signatory: ---------------- 
+            </span>
+            <br><br>
+
+        </div>
+        <p style="page-break-after: always;">&nbsp;</p>
+        <br>
+        <hr>
+
+    </div>
+
+  
+
+
+</div>
