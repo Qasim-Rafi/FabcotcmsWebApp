@@ -8,6 +8,7 @@ import { ActiveContractsComponent } from './contracts/active-contracts/active-co
 import { ArchivedContractsComponent } from './contracts/archived-contracts/archived-contracts.component';
 import { ReportsComponent } from './shared/reports/reports.component';
 import { AdvanceFilterComponent } from './template/advance-filter/advance-filter.component';
+import { BulkPrintComponent } from './bulk-print/bulk-print.component';
 
 
 const configurationModule = () => import('./configuration/configuration.module')
@@ -20,7 +21,11 @@ const routes: Routes = [
 
   {path:'login', redirectTo:'login', pathMatch:'full'},
    {path:'', component:LoginComponent},
-
+   {
+    path:'bulkPrint',
+    component:BulkPrintComponent
+  },
+  
  {
    path:'', component:TemplateComponent,
    children:[

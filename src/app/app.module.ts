@@ -65,6 +65,7 @@ import { ArticleRevisePopupComponent } from './shared/MODLES/article-revise-popu
 import { ReportsComponent } from './shared/reports/reports.component';
 import { FilterPopUpComponent } from './shared/reports/filter-pop-up/filter-pop-up.component';
 import { AdvanceFilterComponent } from './template/advance-filter/advance-filter.component';
+import { BulkPrintComponent } from './bulk-print/bulk-print.component';
 
 
 
@@ -111,6 +112,7 @@ const appRoutes: Routes = []
     ReportsComponent,
     FilterPopUpComponent,
     AdvanceFilterComponent,
+    BulkPrintComponent,
    
 
   
