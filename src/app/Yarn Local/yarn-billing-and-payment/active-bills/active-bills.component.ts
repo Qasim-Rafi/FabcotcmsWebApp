@@ -14,6 +14,7 @@ import pdfMake from "pdfmake/build/pdfmake";
 import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
 import {NgxSpinnerService} from 'ngx-spinner'
 import { NgxNumToWordsService, SUPPORTED_LANGUAGE } from 'ngx-num-to-words';
+import { Dateformater } from 'src/app/shared/dateformater';
 
 @Component({
   selector: 'app-active-bills',
@@ -21,6 +22,8 @@ import { NgxNumToWordsService, SUPPORTED_LANGUAGE } from 'ngx-num-to-words';
   styleUrls: ['./active-bills.component.css']
 })
 export class ActiveBillsComponent implements OnInit {
+  dateformater: Dateformater = new Dateformater();  
+
   selected: any = [];
 
   columns: any = [];
@@ -29,7 +32,8 @@ export class ActiveBillsComponent implements OnInit {
   
   copyData: any = [];
   listCount: number;
-  rows: any = [{nmbr: 1}];
+  // rows: any = [{nmbr: 1}];
+  rows: any = [];
   dashboardAmnt: any = [];
 
   data: any = [];
@@ -50,6 +54,7 @@ totalAmount1 : any;
 totalAmount2 : number;
 arrayNew  = [];
 printData = [] 
+data2:any = []
 status  ;
   url = '/api/BillingPayments/GetAllContractBill'
   lang : SUPPORTED_LANGUAGE = 'en';
@@ -92,7 +97,7 @@ status  ;
     });
     this.fetch((data) => {
       this.dashboardAmnt = data
-      this.rows = data.activeBills;
+      this.rows = data.objList;
       this.billFilter = [...this.rows];
       this.listCount = this.rows.length;
     });
@@ -111,9 +116,11 @@ status  ;
 
 
   fetch(cb) {
+    this.data2.toDate = this.dateformater.toModel(this.data2.toDate)
+    this.data2.FromDate = this.dateformater.toModel(this.data2.FromDate)
     this.spinner.show();
     this.http
-    .get(`${environment.apiUrl}/api/BillingPayments/GetAllContractBill`)
+    .get(`${environment.apiUrl}/api/BillingPayments/GetAllContractBill/`+ this.data2.toDate + '/' + this.data2.FromDate)
     .subscribe(res => {
       this.response = res;
      
@@ -143,7 +150,38 @@ status  ;
 
 
 
+  fetch2() {
+    this.data2.toDate = this.dateformater.toModel(this.data2.toDate)
+    this.data2.FromDate = this.dateformater.toModel(this.data2.FromDate)
+    this.spinner.show();
+    this.http
+    .get(`${environment.apiUrl}/api/BillingPayments/GetAllContractBill/`+ this.data2.toDate + '/' + this.data2.FromDate)
+    .subscribe(res => {
+      this.response = res;
+     
+    if(this.response.success==true)
+    {
+    this.data=this.response.data;
+    this.rows = this.data.objList;
+    this.data2.toDate =  this.data2.toDate
+    this.data2.FromDate =this.data2.FromDate
+    this.spinner.hide();
 
+    }
+    else{
+      this.toastr.error(this.response.message, 'Message.');
+      this.spinner.hide();
+    
+    }
+
+    }, err => {
+      if ( err.status == 400) {
+  this.toastr.error(err.error.message, 'Message.');
+  this.spinner.hide();
+
+      }
+    });
+  }
 
   onSelect(selecterow) {
 
