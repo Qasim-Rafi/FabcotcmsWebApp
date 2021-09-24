@@ -206,6 +206,16 @@ print(){
             }
             },
             {
+             
+
+              layout:'noBorders',
+              table:{headerRows:1 ,  widths:['20%' , '80%' ],
+            body:[ [{text: 'Supplier Contract# :' , margin: [15 , 4 , 0 , 0] , bold:true , style:'common'} , {text: this.rows['supplierContractNumber'] , margin: [-12 , 4 , 0 , 0]  , bold:true  , decoration:'underline' , style:'common'}
+          
+          ]]
+            }
+            },
+            {
             
 
               layout:'noBorders',
