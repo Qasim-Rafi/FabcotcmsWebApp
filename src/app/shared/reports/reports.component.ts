@@ -6,6 +6,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
 import { Dateformater } from '../dateformater';
+import { ServiceService } from '../service.service';
 import { FilterPopUpComponent } from './filter-pop-up/filter-pop-up.component';
 
 @Component({
@@ -44,6 +45,7 @@ export class ReportsComponent implements OnInit {
     private http: HttpClient,
     private toastr: ToastrService,
     private spinner: NgxSpinnerService,
+    private service: ServiceService,
 
     private router: Router,
 
@@ -54,106 +56,11 @@ export class ReportsComponent implements OnInit {
     this.menuName = this.route.snapshot.queryParams;
     this.billingReportInvoiceWise.startDate = this.dateformater.toModel(this.billingReportInvoiceWise.startDate)
     this.billingReportInvoiceWise.endDate = this.dateformater.toModel(this.billingReportInvoiceWise.endDate)
-    // if(this.menuName.menuName == "CommissionReport"){
-    // this.filterPopUform();
-    // }
-    // else  if(this.menuName.menuName == "LCReport"){
-    //   this.filterPopUform();
-    //   }
-    // this.GetReportData();
+
     this.fetch();
-// this.fetchContractInvise();
+this.fetchContractInvise();
   }
-  // GetReportData() {
-  //   if (this.menuName.menuName == 'OpenContractReport') {
-  //     this.url = '/api/Contracts/GetAllContract'
-  //   }
-  //   else if (this.menuName.menuName == 'AllContractReport') {
-  //     this.url = '/api/Contracts/GetAllContract'
-
-  //   }
-  //   else if (this.menuName.menuName == 'BillingReportInvoiceWise') {
-  //     this.billingReportInvoiceWise.startDate = this.dateformater.toModel(this.billingReportInvoiceWise.startDate);
-  //     this.billingReportInvoiceWise.endDate = this.dateformater.toModel(this.billingReportInvoiceWise.endDate);
-
-  //     this.url = '/api/Reports/AllBillingReportInvoiceWise'+this.billingReportInvoiceWise.startDate+'/'+this.billingReportInvoiceWise.endDate;
-
-  //   }
-  //   else if (this.menuName.menuName == 'CancleContarctReport') {
-  //     this.url = '/api/Contracts/GetAllContract'
-
-  //   }
-  //   this.spinner.show();
-  //   this.http.get(`${environment.apiUrl}` + this.url)
-  //     .subscribe(
-  //       res => {
-  //         this.response = res;
-  //         if (this.response.success == true) {
-
-  //           if (this.menuName.menuName == 'OpenContractReport') {
-  //             this.openContractReport = this.response.data.list;
-  //           }
-  //           else if (this.menuName.menuName == 'AllContractReport') {
-  //             this.allContractReport = this.response.data.list;
-  //           }
-  //           else if (this.menuName.menuName == 'AgentBookingStatus') {
-  //             this.agentBookingStatus = this.response.data.list;
-  //           }
-  //           else if (this.menuName.menuName == 'CancleContarctReport') {
-  //             this.cancleContarctReport = this.response.data.list;
-  //           }
-  //           else if (this.menuName.menuName == 'BillingReportInvoiceWise') {
-  //             this.billingReportInvoiceWise = this.response.data.list;
-  //           }
-  //           else if (this.menuName.menuName == 'DispatchReport') {
-  //             this.dispatchReport = this.response.data.list;
-  //           }
-  //           else if (this.menuName.menuName == 'BillingReportContractWise') {
-  //             this.billingReportContractWise = this.response.data.list;
-  //           }
-  //           else if (this.menuName.menuName == 'PaymentReport') {
-  //             this.paymentReport = this.response.data.list;
-  //           }
-  //           else if (this.menuName.menuName == 'TaxChallanReport') {
-  //             this.taxChallanReport = this.response.data.list;
-  //           }
-  //           else if (this.menuName.menuName == 'CommissionReport') {
-  //             this.commissionReport = this.response.data.list;
-
-  //           }
-  //           else if (this.menuName.menuName == 'DbcrNoteSummary') {
-  //             this.dbcrNoteSummary = this.response.data.list;
-  //           }
-  //           else if (this.menuName.menuName == 'ExternalAgentReport') {
-  //             this.externalAgentReport = this.response.data.list;
-  //           }
-  //           else if (this.menuName.menuName == 'LCReport') {
-  //             this.lCReport = this.response.data.list;
-  //           }
-  //           else if (this.menuName.menuName == 'KickbackReport') {
-  //             this.kickbackReport = this.response.data.list;
-  //           }
-  //           //this.data = this.response.data;
-  //           this.spinner.hide();
-  //         }
-
-  //         else {
-  //           this.toastr.error(this.response.message, 'Message.');
-  //           this.spinner.hide();
-
-  //         }
-
-  //       }, err => {
-  //         if (err.status == 400) {
-  //           this.toastr.error(this.response.message, 'Message.');
-  //           this.spinner.hide();
-
-  //         }
-  //       });
-  //   this.spinner.hide();
-
-  // }
-
+ 
   searchFilter(event) {
     const val = event.target.value.toLowerCase();
     // filter our data
@@ -191,8 +98,7 @@ export class ReportsComponent implements OnInit {
     if(this.response.success==true)
     {
     this.billingReportInvoiceWise=this.response.data;
-    this.billingReportInvoiceWise.startDate = this.dateformater.toModel(this.billingReportInvoiceWise.startDate)
-    this.billingReportInvoiceWise.endDate = this.dateformater.toModel(this.billingReportInvoiceWise.endDate)
+
     this.spinner.hide();
 
     }
@@ -210,36 +116,76 @@ export class ReportsComponent implements OnInit {
       }
     });
   }
+  invoiceExcelFile(){
+    const filtered = this.billingReportInvoiceWise.map(row => ({
+      BillFor: row.billFor,
+      Article: row.articleName,
+      ContractNumber: row.contractNo,
+      CotractDate: row.contractDate ,
+      BillDate: row.billDate,
+      BillNumber: row.billNo,
+      Buyer: row.buyerName ,
+      Seller: row.sellerName,
+      Rate: row.rate,
+      CommPer: row.fabcotCommission ,
+      InvoiceNumber: row.invoiceNo,
+      Quantity: row.quantity + row.quantityUOMName,
+      CommAmount: row.commissionAmount ,
+    }));
 
-  // fetchContractInvise() {
-  //   this.spinner.show();
-  //   this.http
-  //   .get(`${environment.apiUrl}/api/Reports/AllBillingReportContractWise`)
-  //   .subscribe(res => {
-  //     this.response = res;
+    this.service.exportAsExcelFile(filtered, 'Bill Report(Invoice Wise)');
+
+  }
+  fetchContractInvise() {
+    this.contractWise.startDate = this.dateformater.toModel(this.contractWise.startDate)
+    this.contractWise.endDate = this.dateformater.toModel(this.contractWise.endDate)
+    this.spinner.show();
+    this.http
+    .get(`${environment.apiUrl}/api/Reports/AllBillingReportContractWise/`+   this.contractWise.startDate + '/' +this.contractWise.endDate)
+    .subscribe(res => {
+      this.response = res;
      
-  //   if(this.response.success==true)
-  //   {
-  //   this.contractWise=this.response.data;
+    if(this.response.success==true)
+    {
+    this.contractWise=this.response.data;
  
 
-  //   // cb(this.billingReportInvoiceWise);
-  //   this.spinner.hide();
+    // cb(this.billingReportInvoiceWise);
+    this.spinner.hide();
 
-  //   }
-  //   else{
-  //     this.toastr.error(this.response.message, 'Message.');
-  //     this.spinner.hide();
+    }
+    else{
+      this.toastr.error(this.response.message, 'Message.');
+      this.spinner.hide();
     
-  //   }
+    }
 
-  //   }, err => {
-  //     if ( err.status == 400) {
-  // this.toastr.error(err.error.message, 'Message.');
-  // this.spinner.hide();
+    }, err => {
+      if ( err.status == 400) {
+  this.toastr.error(err.error.message, 'Message.');
+  this.spinner.hide();
 
-  //     }
-  //   });
-  // }
+      }
+    });
+  }
+  contractExcelFile(){
+    const filtered = this.contractWise.map(row => ({
+      BillFor: row.billFor,
+      Article: row.articleName,
+      ContractNumber: row.contractNo,
+      CotractDate: row.contractDate ,
+      BillDate: row.billDate,
+      BillNumber: row.billNo,
+      Buyer: row.buyerName ,
+      Seller: row.sellerName,
+      Rate: row.rate,
+      CommPer: row.fabcotCommission ,
+      InvoiceNumber: row.invoiceNo,
+      Quantity: row.quantity + row.quantityUOMName,
+      CommAmount: row.commissionAmount ,
+    }));
 
+    this.service.exportAsExcelFile(filtered, 'Bill Report(Contract Wise)');
+
+  }
 }
