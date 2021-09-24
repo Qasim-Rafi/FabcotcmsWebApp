@@ -41,6 +41,7 @@ this.fetch2()
   }
 
   fetch2(){
+    this.spinner.show();
     this.http
   .get(`${environment.apiUrl}/api/BillingPayments/BulkPrint/`+ this.nmbr)
   .subscribe(res => {
@@ -49,35 +50,27 @@ this.fetch2()
   if(this.response.success==true)
   {
   this.printData=this.response.data;
-  // this.length = this.response.data[0].contractSaleInvoices.length;
-  // console.log(this.length)
-  // for(let i = 0 ; i<this.length ; i++){
-  //   this.printData[i].contractSaleInvoices[i].totalAmount = this.printData[i].contractSaleInvoices[i].amount * this.printData[i].contractSaleInvoices[i].commission
-  //   this.printData[i].contractSaleInvoices[i].totalAmount = this.printData[i].contractSaleInvoices[i].totalAmount/100
-    
-  // }
+  for(let i=0; i<this.printData.length; i++){
+  this.printData[i].accountName = this.ngxNumToWordsService.inWords(this.printData[i].totalCalculation, this.lang);
+  }
   this.spinner.hide();
 
-//   for(let j=0;j<this.printData.contractSaleInvoices.length;j++){   
-//     this.totalAmount=this.totalAmount + this.printData.contractSaleInvoices[j].totalAmount ;
-   
-// } 
-// console.log(this.printData)
-this.totalAmount1 =this.totalAmount.toFixed(2)
-this.totalAmount2 = parseFloat(this.totalAmount1)
+// this.totalAmount1 =this.totalAmount.toFixed(2)
+// this.totalAmount2 = parseFloat(this.totalAmount1)
 
 
-  this.words = this.ngxNumToWordsService.inWords(this.totalAmount2, this.lang);
 
   }
   else{
     this.toastr.error(this.response.message, 'Message.');
+    this.spinner.hide();
   
   }
 
   }, err => {
     if ( err.status == 400) {
 this.toastr.error(err.error.message, 'Message.');
+this.spinner.hide();
 
     }
   });

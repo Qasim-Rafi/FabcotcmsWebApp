@@ -52,6 +52,8 @@ export class ReportsComponent implements OnInit {
 
   ngOnInit(): void {
     this.menuName = this.route.snapshot.queryParams;
+    this.billingReportInvoiceWise.startDate = this.dateformater.toModel(this.billingReportInvoiceWise.startDate)
+    this.billingReportInvoiceWise.endDate = this.dateformater.toModel(this.billingReportInvoiceWise.endDate)
     // if(this.menuName.menuName == "CommissionReport"){
     // this.filterPopUform();
     // }
@@ -180,7 +182,7 @@ export class ReportsComponent implements OnInit {
     this.billingReportInvoiceWise.startDate = this.dateformater.toModel(this.billingReportInvoiceWise.startDate)
     this.billingReportInvoiceWise.endDate = this.dateformater.toModel(this.billingReportInvoiceWise.endDate)
 
-    // this.spinner.show();
+    this.spinner.show();
     this.http
     .get(`${environment.apiUrl}/api/Reports/AllBillingReportInvoiceWise/`+   this.billingReportInvoiceWise.startDate + '/' +this.billingReportInvoiceWise.endDate      )
     .subscribe(res => {
@@ -189,22 +191,21 @@ export class ReportsComponent implements OnInit {
     if(this.response.success==true)
     {
     this.billingReportInvoiceWise=this.response.data;
- 
-
-    // cb(this.billingReportInvoiceWise);
-    // this.spinner.hide();
+    this.billingReportInvoiceWise.startDate = this.dateformater.toModel(this.billingReportInvoiceWise.startDate)
+    this.billingReportInvoiceWise.endDate = this.dateformater.toModel(this.billingReportInvoiceWise.endDate)
+    this.spinner.hide();
 
     }
     else{
       this.toastr.error(this.response.message, 'Message.');
-      // this.spinner.hide();
+      this.spinner.hide();
     
     }
 
     }, err => {
       if ( err.status == 400) {
   this.toastr.error(err.error.message, 'Message.');
-  // this.spinner.hide();
+  this.spinner.hide();
 
       }
     });

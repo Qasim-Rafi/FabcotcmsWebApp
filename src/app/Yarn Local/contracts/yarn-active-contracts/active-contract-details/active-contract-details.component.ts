@@ -610,6 +610,7 @@ if(this.loggedInDepartmentName == 'Yarn Export' || this.loggedInDepartmentName =
             this.rows = data;
       this.saleinvoiceFilter = [...this.rows];
           });
+          this.getContractData();
          
         }
        }, (reason) => {

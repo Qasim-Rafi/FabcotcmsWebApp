@@ -131,7 +131,7 @@
                     <td>{{i.commission}}% </td>
                     <td>{{i.taxAmount}}</td>
 
-                    <td>{{(i.amount * i.commission) /100 | number:'2.2-2'}}</td>
+                    <td>{{i.totalAmount}}</td>
 
                 </tr>
             </table>
@@ -139,7 +139,7 @@
             <br>
             <div class="float-right" >
                 <span class=" bold text-font1">
-                    Sub Total: <span class="text-font1 underline">{{x.currencyName}} 
+                    Sub Total: <span class="text-font1 underline">{{x.currencyName}} {{x.totalCalculation}}
                        
                         </span>
                 </span>
@@ -149,7 +149,7 @@
                 </span><br>
                 <span class=" bold text-font1">
                     TOTAL : <span class="bold text-font1 underline">{{x.currencyName}}  
-                        {{x.totalAmount | number:'2.2-2'}}
+                        {{x.totalCalculation | number:'2.2-2'}}
                     </span>
                 </span>
             </div>
@@ -172,7 +172,7 @@
             <br>
             <span class=" float-left text-font1">
                 Amount In Words:<span class="bold text-font1 underline">&nbsp;&nbsp;
-                     {{x.words}}
+                     {{x.accountName  }}
                     </span>
             </span>
             <br>

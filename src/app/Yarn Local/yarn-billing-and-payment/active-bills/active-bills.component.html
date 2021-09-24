@@ -107,7 +107,9 @@
           </div>      
           <div class="col-md-3">
               <input  navigation="select" class="form-control  " ngbDatepicker #startDate="ngbDatepicker"
-              (click)="startDate.toggle()" placeholder="Start Date">
+              (click)="startDate.toggle()"  
+              name="toDate" [(ngModel)] = "data2.toDate"  #toDate="ngModel"
+              placeholder="Start Date">
           </div>   
 
           <div class= "col-md-1 ">
@@ -117,9 +119,9 @@
         </div>  
         <div class="col-md-3">
           <input  navigation="select" class="form-control  " ngbDatepicker #endDate="ngbDatepicker"
-          (click)="endDate.toggle()" placeholder="End Date">
+          (click)="endDate.toggle()"   name="FromDate" [(ngModel)] = "data2.FromDate"  #FromDate="ngModel" placeholder="End Date">
       </div>  
-      <div class="col-md-3">  <button type="button" class="btn btn-primary descBtn ml-sm-none ml-md-2" ><i class="fa fa-search"></i>Go!
+      <div class="col-md-3">  <button type="button" class="btn btn-primary descBtn ml-sm-none ml-md-2" (click) = "fetch2()" ><i class="fa fa-search"></i>Go!
       </button></div> 
         </div>
      
@@ -253,7 +255,7 @@
           </ngx-datatable-column>
           <ngx-datatable-column name="Bill Date" [width]="80" prop="billDate" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{row.billDate}}
+              {{row.billGeneratedDateTime}}
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="No. Sale Inv" [width]="80" prop="numberOfSaleInvoices" [flexGrow]="0.06">
