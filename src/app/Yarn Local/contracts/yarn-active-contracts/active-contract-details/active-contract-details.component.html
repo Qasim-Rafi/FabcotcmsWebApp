@@ -4,6 +4,7 @@
 <div class="content-header">
     <div class="row">
         <div class="col-sm-12 col-md-6 col-lg-8">
+           
             <h2 class="row wrapper page-header font-weight-light"> Contract Details
                 <div class="ml-2 descr"> Show all the details of business contract</div>
                 <span class="ml-3 font-weight-light">{{contractData.buyerName}} </span>
@@ -308,6 +309,8 @@
 
                 <div class="tab-pane fade show active" id="nav-Details" role="tabpanel"
                     aria-labelledby="nav-Details-tab">
+
+
 
                     <div class="row">
                     
@@ -1382,18 +1385,7 @@
                                 </div>
                             </div>
                     
-                            <!-- </div> -->
-                    
-                            <!-- -------Employee Commission Tab 8----------- -->
-                            <!-- <div class="form-row border-top">
-                                <div class="col-md-12 pt-2r pb-3">
-                    
-                                    <div class="col-md-12">
-                                        <span class="badge badge-primary"> Employee Commission</span>
-                                    </div>
-                    
-                                </div>
-                            </div> -->
+                  
                               <hr>
                               <div class="card shadow mb-4">
                                 <div class="card-body">
@@ -1403,20 +1395,6 @@
                             </div>
 
 
-                            <!-- <div class="tab-pane fade show " id="nav-employee" role="tabpanel"
-                                                    aria-labelledby="nav-employee-tab"> -->
-                    
-                            <!-- <div class="row">
-                                                        <div class="col-md-12 mb-2 py-1">
-                    
-                                                            <div class="col-sm-12 text-muted">
-                                                                <h4 class="font-weight-light">
-                                                                    Employee Commission
-                                                                </h4>
-                                                            </div>
-                    
-                                                        </div>
-                                                    </div> -->
                     
                             <div class="row">
                                 <div class="col-md-12 mb-2">
@@ -1474,38 +1452,14 @@
                     
                                 </div>
                               </div>
-                            <!-- </div> -->
-                    
-                            <!-- -------Tab 9----------- -->
-                            <!-- <div class="form-row border-top">
-                                <div class="col-md-12 pt-2r pb-3">
-                    
-                                    <div class="col-md-12">
-                                        <span class="badge badge-primary">Remarks / Other Conditions</span>
-                                    </div>
-                    
-                                </div>
-                            </div> -->
+                      
                                    <hr>
                                    <div class="card shadow mb-4">
                                     <div class="card-body">
                             <div class="pb-2">
                                 <span class="badge badge-primary">Remarks / Other Conditions</span>
                             </div>
-                            <!-- <div class="tab-pane fade show " id="nav-remarks" role="tabpanel"
-                                                    aria-labelledby="nav-remarks-tab"> -->
-                    
-                            <!-- <div class="row">
-                                                        <div class="col-md-12 mb-2 py-1">
-                    
-                                                            <div class="col-sm-12 text-muted">
-                                                                <h4 class="font-weight-light">
-                                                                    Remarks / Other Conditions
-                                                                </h4>
-                                                            </div>
-                    
-                                                        </div>
-                                                    </div> -->
+                     
                     
                             <div class="row">
                                 <div class="col-md-6">
@@ -1902,16 +1856,7 @@
 
             </div>
 
-            <!-- <div class="row">
-                <div class="col-md-12 mb-3">
-                    <button class="btn btn-outline-primary" (click)="editSaleInvoice('editInvoice',x)"> <i class="far fa-edit"></i>
-                        Edit Invoice
-                    </button>
-                    <button class="btn btn-outline-danger ml-3 " (click)="deleteSaleInvoice(x)"> <i class="far fa-trash-alt"></i>
-                        Delete</button>
-            
-                </div>
-            </div> -->
+        
 
             <div class="row">
                 <div class="col-md-6">
@@ -2047,16 +1992,8 @@
 
                             </div>
                           
-                            <!-- <div class="row">
-                                <div class="col-md-12 mb-3">
-                                    <button class="btn btn-outline-primary" (click)="editSaleInvoice('editInvoice',x)"> <i class="far fa-edit"></i>
-                                        Edit Invoice
-                                    </button>
-                                    <button class="btn btn-outline-danger ml-3 " (click)="deleteSaleInvoice(x)"> <i class="far fa-trash-alt"></i>
-                                        Delete</button>
-                            
-                                </div>
-                            </div> -->
+                          
+                       
 
                             <div class="row pt-4">
                                 <div class="col-md-12">
@@ -2068,34 +2005,7 @@
                                                 </div>
                                                 <div class="col-sm-6 customFontS"></div>
                                             </div>
-                                            <!-- <dl class="row">
-                                                                        <dt class="col-sm-6">Sale Invoice No.:
-                                
-                                                                        </dt>
-                                                                        <dd class="col-sm-6">{{x.saleInvoiceNo}}</dd>
-                                                                    </dl> -->
-                                            <!-- <dl class="row"  *ngIf="loggedInDepartmentName=='Yarn Export'">
-                                                                        <dt class="col-sm-6">Article:</dt>
-                                                                        <dd class="col-sm-6">{{x.contractArticleName}}</dd>
-                                                                    </dl> -->
-                                            <!-- <dl class="row" *ngIf="loggedInDepartmentName!='Yarn Export'">
-                                                                        <dt class="col-sm-6" >Quantity:</dt>
-                                                                        <dd class="col-sm-6">{{x.quantity}}&nbsp;{{x.unit}}</dd>
-                                                                    </dl> -->
-                                
-                                            <!-- <dl class="row" *ngIf="loggedInDepartmentName=='Yarn Export'">
-                                                                        <dt class="col-sm-6" >Article Quantity:</dt>
-                                                                        <dd class="col-sm-6">{{x.contractArticleQuantity}}</dd>
-                                                                    </dl> -->
-                                            <!-- <dl class="row">
-                                                                        <dt class="col-sm-6">Invoice Amount:</dt>
-                                                                        <dd class="col-sm-6 text_Navy">{{contractCostingData.rateCurrencyName}}&nbsp;{{x.amount}}</dd>
-                                                                    </dl> -->
-                                            <!-- <dl class="row" *ngIf="loggedInDepartmentName=='Yarn Export'">
-                                                                        <dt class="col-sm-6" >Article Rate:</dt>
-                                                                        <dd class="col-sm-6">{{x.contractArticleRate}}</dd>
-                                                                    </dl> -->
-                                
+                                     
                                 
                                             <div class="row" *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
                                                 <div class="col-sm-6 customFontStyle">Buyer Payment:</div>
@@ -2120,23 +2030,7 @@
                                             </div>
                                 
                                 
-                                            <!-- <dl class="row" *ngIf="loggedInDepartmentName=='Yarn Export'">
-                                                                        <dt class="col-sm-6" >Article Unit:
-                                                                        </dt>
-                                                                        <dd class="col-sm-6" >{{x.unit}}</dd>
-                                                                    </dl> -->
-                                            <!-- <dl class="row"  *ngIf="loggedInDepartmentName!='Yarn Export'">
-                                                                        <dt class="col-sm-6">Unit Rate:
-                                                                        </dt>
-                                                                        <dd class="col-sm-6 text_Navy" >{{contractCostingData.rate}} <b *ngIf="contractCostingData.rateUOMName !=null">
-                                                                            / </b>
-                                                                        {{contractCostingData.rateUOMName}}</dd>
-                                                                    </dl> -->
-                                
-                                            <!-- <dl class="row">
-                                                                        <dt class="col-sm-6">Tax Amount:</dt>
-                                                                        <dd class="col-sm-6">{{x.taxPercentage}}</dd>
-                                                                    </dl> -->
+                                     
                                 
                                 
                                 
@@ -2426,7 +2320,6 @@
 </div>
 
 
-                <!---------- Notes/Activity Tab ---------->
 
                 <div class="tab-pane fade show " id="nav-Documents" role="tabpanel" aria-labelledby="nav-Documents-tab">
                     <div class="col-md-12">
@@ -2596,8 +2489,12 @@
 
 
             </div>
+     
         </div>
-
+      
     </div>
+
+
+
 
 </section>

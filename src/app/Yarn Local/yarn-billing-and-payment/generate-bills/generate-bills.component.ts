@@ -47,13 +47,46 @@ amount=0;
    
     
       ngOnInit(): void {
-        this.service.fetch((data)=>{
-      this.billFilter = [...data];
+      //   this.service.fetch((data)=>{
+      // this.billFilter = [...data];
 
-            this.rows = data;
-        } , this.url)
+      //       this.rows = data;
+      //   } , this.url)
+    this.fetch();    
+     
+    }
+
+      fetch() {
+   
+        this.spinner.show();
+        this.http
+        .get(`${environment.apiUrl}/api/BillingPayments/GetAllContractForBillGeneration`)
+        .subscribe(res => {
+          this.response = res;
+         
+        if(this.response.success==true)
+        {
+        this.rows=this.response.data;
+        this.billFilter = [...this.rows];
+    
+        this.spinner.hide();
+    
+        }
+        else{
+          this.toastr.error(this.response.message, 'Message.');
+          this.spinner.hide();
         
+        }
+    
+        }, err => {
+          if ( err.status == 400) {
+      this.toastr.error(err.error.message, 'Message.');
+      this.spinner.hide();
+    
+          }
+        });
       }
+
       navigateEditContract(obj) {
         this.router.navigate(['/FabCot/active-contract-details'], { queryParams: {id: obj.id} });
       };

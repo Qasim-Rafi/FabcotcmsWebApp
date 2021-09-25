@@ -52,7 +52,7 @@ image  :any;
 totalAmount = 0;
 totalAmount1 : any;
 totalAmount2 : number;
-arrayNew  = [];
+arrayNew: any  = [];
 printData = [] 
 data2:any = []
 status  ;
@@ -187,9 +187,6 @@ status  ;
 
     this.selectedids =selecterow;
 
-    for(let i=0; i<=this.selectedids.selected.length; i++){
-      this.arrayNew.push(this.selectedids.selected[i].id) 
-    }
   
     
   }
@@ -198,12 +195,16 @@ status  ;
 
 
 print(){
-  const item = [...new Set(this.arrayNew)];
+  
+  for(let i=0; i<this.selectedids.selected.length; i++){
+    this.arrayNew[i] = this.selectedids.selected[i].id;
+  }
 
-  if(item.length === 0  || this.selectedids.selected.length === 0  ){
+  if(this.arrayNew.length === 0  || this.selectedids.selected.length === 0  ){
     this.toastr.error("PLease select atleast one bill to generate print" , 'Message')
   }
   else{
+    const item = [...new Set(this.arrayNew)];
 
 this.router.navigate([]).then((result) => {
   window.open('/bulkPrint?nmbr=' + item, '_blank');
