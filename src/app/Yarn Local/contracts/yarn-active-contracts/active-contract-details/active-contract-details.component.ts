@@ -231,6 +231,10 @@ comm = "Commission:";
 
   }
 
+  goTo(){
+    this.router.navigate(['/FabCot/active-contract-details?id='+ this.contractId]);
+  }
+
   addArticle() {
     this.contractArticles.push({ id: this.contractArticles.length });
     let last = this.contractArticles[this.contractArticles.length-1];
@@ -1934,7 +1938,7 @@ addProd() {
           res=> { 
       
             this.response = res;
-            if (this.response.success == true && this.response.data != null){
+            if (this.response.success == true ){
               this.toastr.success(this.response.message, 'Message.');
               this.getContractData();
               this.spinner.hide();

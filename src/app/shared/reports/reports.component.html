@@ -909,68 +909,68 @@
             [sorts]="[{ prop: 'id,name', dir: 'desc' }]" [columns]="columns" [rows]="billingReportInvoiceWise" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
             [rowHeight]="'auto'" [limit]="10">
       
-            <ngx-datatable-column name="Bill For" prop="name" [width]="30">
+            <ngx-datatable-column name="Bill For" prop="billFor" [width]="30">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 {{ row.billFor }}
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Article" [width]="60">
+            <ngx-datatable-column name="Article" prop="articleName" [width]="60">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 {{ row.articleName }}
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Contract#" [width]="50">
+            <ngx-datatable-column name="Contract#" prop="contractNo" [width]="50">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.contractNo }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Contract Date" [width]="50">
+              <ngx-datatable-column name="Contract Date" prop="contractDate" [width]="50">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.contractDate }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Bill Date" [width]="50">
+              <ngx-datatable-column name="Bill Date" prop="billDate" [width]="50">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.billDate }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Bill#" [width]="40">
+              <ngx-datatable-column name="Bill#" prop="billNo" [width]="40">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.billNo }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Seller" [width]="80">
+              <ngx-datatable-column name="Seller"  prop="sellerName"[width]="80">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.sellerName }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Buyer" [width]="80">
+              <ngx-datatable-column name="Buyer" prop="buyerName" [width]="80">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.buyerName }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Rate" [width]="30">
+              <ngx-datatable-column name="Rate" prop="rate" [width]="30">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.rate }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Comm%" [width]="30">
+              <ngx-datatable-column name="Comm%" prop="fabcotCommission" [width]="30">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                  
                  <span *ngIf = "row.fabcotCommission != ''">{{ row.fabcotCommission }}%</span> 
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Inv#" [width]="50">
+              <ngx-datatable-column name="Inv#" prop="invoiceNo" [width]="50">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.invoiceNo }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Qty" [width]="30">
+              <ngx-datatable-column name="Qty"  prop="quantity" [width]="30">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.quantity }}  {{ row.quantityUOMName }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Comm Amount" [width]="50">
+              <ngx-datatable-column name="Comm Amount" prop="commissionAmount" [width]="50">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.commissionAmount }}
                 </ng-template>
@@ -1331,52 +1331,52 @@
             [sorts]="[{ prop: 'id,name', dir: 'desc' }]" [columns]="columns" [rows]="contractWise" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
             [rowHeight]="'auto'" [limit]="10">
       
-            <ngx-datatable-column name="Bill For" prop="name" [width]="30">
+            <ngx-datatable-column name="Bill For" prop="billFor" [width]="30">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 {{ row.billFor }}
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Article" [width]="60">
+            <ngx-datatable-column name="Article" prop="articleName" [width]="60">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 {{ row.articleName }}
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Contract#" [width]="30">
+            <ngx-datatable-column name="Contract#" prop="contractNo" [width]="30">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.contractNo }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Contract Date" [width]="50">
+              <ngx-datatable-column name="Contract Date" prop="contractDate" [width]="50">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.contractDate }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Bill Date" [width]="50">
+              <ngx-datatable-column name="Bill Date" prop="billDate" [width]="50">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.billDate }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Bill#" [width]="30">
+              <ngx-datatable-column name="Bill#" prop="billNo" [width]="30">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.billNo }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Seller" [width]="60">
+              <ngx-datatable-column name="Seller" prop="sellerName" [width]="60">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.sellerName }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Buyer" [width]="60">
+              <ngx-datatable-column name="Buyer" prop="buyerName" [width]="60">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.buyerName }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Rate" [width]="30">
+              <ngx-datatable-column name="Rate" prop="rate" [width]="30">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.rate }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Comm%" [width]="30">
+              <ngx-datatable-column name="Comm%"  prop="fabcotCommission" [width]="30">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                  
                  <span *ngIf = "row.fabcotCommission != ''">{{ row.fabcotCommission }}%</span> 
@@ -1387,12 +1387,12 @@
                   {{ row.invoiceNo }}
                 </ng-template>
               </ngx-datatable-column> -->
-              <ngx-datatable-column name="Qty" [width]="30">
+              <ngx-datatable-column name="Qty" prop="quantity" [width]="30">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.quantity }}  {{ row.quantityUOMName }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Comm Amount" [width]="40">
+              <ngx-datatable-column name="Comm Amount" prop="commissionAmount" [width]="40">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.commissionAmount }}
                 </ng-template>

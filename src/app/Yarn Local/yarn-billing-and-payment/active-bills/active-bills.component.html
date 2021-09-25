@@ -197,12 +197,15 @@
 
 <!--Start panel body -->     
 <div class="card shadow mb-4">
-  <div class="card-body"> 
+  <div class="card-body "> 
       <div class="panel-body">
            
       
         <ngx-datatable class="bootstrap datatable-row-wrapper" [columns]="columns" [rows]="rows" [columnMode]="'flex'"
-          [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="6" (select)="onSelect($event)"
+        
+          [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" 
+        
+          (select)="onSelect($event)"
           [selected]="selected" [selectionType]="SelectionType.checkbox" [sorts]="[{ prop: 'id', dir: 'desc' }]" (select)="onSelect($event)">
       
           <!-- <ngx-datatable-column prop="selected" name="Select" [width]="20" [flexGrow]="0.03" [width]="30"
@@ -276,11 +279,11 @@
             </ng-template>
           </ngx-datatable-column>
       
-          <ngx-datatable-column name="Due Date" [width]="80" prop="dueDate" [flexGrow]="0.06">
+          <!-- <ngx-datatable-column name="Due Date" [width]="80" prop="dueDate" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
               {{row.dueDate}}
             </ng-template>
-          </ngx-datatable-column>
+          </ngx-datatable-column> -->
       
           <ngx-datatable-column name="Action" [width]="80" prop="action" [flexGrow]="0.07">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
@@ -296,7 +299,11 @@
           </ngx-datatable-column>
       
         </ngx-datatable>
+        <p class="col-md-12  totalAmnt">Total Amount : <span>  &nbsp;  &nbsp; {{dashboardAmnt.totalBillAmount}} </span></p>
       </div>
+      
+       
+      
   </div>
 </div>
 

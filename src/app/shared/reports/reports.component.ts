@@ -128,8 +128,9 @@ this.fetchContractInvise();
       Seller: row.sellerName,
       Rate: row.rate,
       CommPer: row.fabcotCommission + '%' ,
-      InvoiceNumber: row.invoiceNo,
-      Quantity: row.quantity + row.quantityUOMName,
+      Quantity: row.quantity,
+      QtyUOM:row.quantityUOMName,
+
       CommAmount: row.commissionAmount ,
     }));
 
@@ -180,8 +181,8 @@ this.fetchContractInvise();
       Seller: row.sellerName,
       Rate: row.rate,
       CommPer: row.fabcotCommission + '%' ,
-      InvoiceNumber: row.invoiceNo,
-      Quantity: row.quantity + row.quantityUOMName,
+      Quantity: row.quantity,
+      QtyUOM:row.quantityUOMName,
       CommAmount: row.commissionAmount ,
     }));
 
