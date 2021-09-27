@@ -1,12 +1,12 @@
 .font{
-    font-size: 25px !important;
-    font-weight: 500;
+    font-size: 35px !important;
+    font-weight: 300;
     text-align: center;
-    margin-left: 150px;
-    margin-top: 30px;
+    margin-left: 100px;
+    margin-top: 20px;
 }
 .sum{
-    margin-left: 300px;
+    margin-left: 200px;
 }
 .text-font{
 font-weight: 600;
@@ -16,7 +16,7 @@ font-size: 17px;
 .text-font1{
     font-weight: 600;
     color: rgb(95, 93, 93);
-    font-size: 14px;
+    font-size: 20px;
     }
 .weight{
 font-weight: 600;
@@ -29,12 +29,19 @@ color: #1ab394;
     font-weight: 700;
     }
 
-    table, th, td {
+    table, th {
         margin-top: 40px;
         border: 1px solid grey;
         color: rgb(95, 93, 93);
+        font-size: 18px;
       }
 
+      table,  td {
+        margin-top: 40px;
+        border: 1px solid grey;
+        color: rgb(95, 93, 93);
+        font-size: 15px;
+      }
       .underline{
         text-decoration-line: underline;
         text-decoration-style: solid;
@@ -46,6 +53,15 @@ color: #1ab394;
 }
 .image{
   
-   width: 150px;
-   height: 80px;
+   width: 200px;
+   height: 100px;
+}
+.bottom{
+  margin-top: 60px;
+}
+.bottom2{
+  margin-top: -25px;
+}
+.margins{
+  margin: auto;
 }

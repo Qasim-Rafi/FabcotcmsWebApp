@@ -29,7 +29,7 @@
 
 
 
-<div class="card ibox-content" *ngFor = "let x of printData">
+<div class="card ibox-content margins" *ngFor = "let x of printData">
     <div class="panel blank-panel">
         <div class="panel-heading">
 
@@ -39,7 +39,7 @@
                   <img src="/assets/fabcot.png"  class="image">
                 </div>
                 <!-- <div class="col-md-6"> -->
-                    <p class="font clr"><strong>Fabcot International </strong>
+                    <p class="font clr"><strong>FABCOT INTERNATIONAL </strong>
                     </p>
                 <!-- </div> -->
             </div>
@@ -60,7 +60,7 @@
 
             <div class="clearfix">
 
-                <div class="float-right">
+                <div class="float-right ">
                     <span class="text-font1">
                         Bill No.: <span class="weight">{{x.billNumber}}</span>
                     </span>
@@ -70,26 +70,26 @@
                     </span>
                 </div>
 
-                <div class="float-left">
+                <div class="float-left bottom2">
                     <span class="text-font1" >
-                        Seller: <span class="bold text-font1">{{x.sellerName}}</span>
+                        &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;   Seller: &nbsp;  <span class="bold text-font1">{{x.sellerName}}</span>
                     </span>
                 <br>
                     <span class="text-font1" >
-                        Buyer: <span class="bold text-font1">{{x.buyerName}}</span>
+                        &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;   &nbsp;  Buyer: &nbsp;  <span class="bold text-font1">{{x.buyerName}}</span>
                     </span>
                     <br>
 
                     <span class="text-font1">
-                        Fabcot Contract No: <span class="bold text-font1"> {{x.contractNumber}}</span>
+                        &nbsp;    Fabcot Contract No: &nbsp;  <span class="bold text-font1"> {{x.contractNumber}}</span>
                     </span>
                     <br>
                     <span class="text-font1">
-                        Supplier Contract No: <span class="bold text-font1"> {{x.supplierContractNumber }}</span>
+                        Supplier Contract No: &nbsp;  <span class="bold text-font1"> {{x.supplierContractNumber }}</span>
                     </span>
                     <br>
                     <span class="text-font1">
-                        Contract Date: <span class="bold text-font1">{{x.contractDate}}</span>
+                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;     Contract Date: &nbsp;  <span class="bold text-font1">{{x.contractDate}}</span>
                     </span>
                     <br>
                  <br>
@@ -102,7 +102,6 @@
 
             </div>
           
-            <br>
             <table class="table">
                 <tr>
                     <th>Description</th>
@@ -113,7 +112,7 @@
                     <th>SI Amount({{x.currencyName}})</th>
                     <th>Commission</th>
                     <th>TAX</th>
-                    <th>Bill Amount({{x.currencyName}})</th>
+                    <th>Amount({{x.currencyName}})</th>
 
 
 
@@ -137,22 +136,8 @@
             </table>
             <br>
             <br>
-            <div class="float-right" >
-                <span class=" bold text-font1">
-                    Sub Total: <span class="text-font1 underline">{{x.currencyName}} {{x.totalCalculation}}
-                       
-                        </span>
-                </span>
-                <br>
-                <span class=" bold text-font1">
-                    TAX : <span class="text-font1 underline">{{x.currencyName}}  {{0.00}}</span>
-                </span><br>
-                <span class=" bold text-font1">
-                    TOTAL : <span class="bold text-font1 underline">{{x.currencyName}}  
-                        {{x.totalCalculation | number:'2.2-2'}}
-                    </span>
-                </span>
-            </div>
+            
+         
             <span class=" float-left text-font1">
                 Quantity:<span class="bold text-font1 underline">&nbsp;&nbsp;
                      {{x.quantitySum}} &nbsp; {{x.quanityUOM}}
@@ -170,6 +155,22 @@
             <br>
             <br>
             <br>
+            <div class="float-right" >
+                <span class=" bold text-font1">
+                    Sub Total: <span class="text-font1 underline">{{x.currencyName}} {{x.totalCalculation}}
+                       
+                        </span>
+                </span>
+                <br>
+                <span class=" bold text-font1">
+                    &nbsp;&nbsp; &nbsp;&nbsp;    TAX : <span class="text-font1 underline">{{x.currencyName}}  {{0.00}}</span>
+                </span><br>
+                <span class=" bold text-font1">
+                    &nbsp;&nbsp;    TOTAL : <span class="bold text-font1 underline">{{x.currencyName}}  
+                        {{x.totalCalculation | number:'2.2-2'}}
+                    </span>
+                </span>
+            </div>
             <span class=" float-left text-font1">
                 Amount In Words:<span class="bold text-font1 underline">&nbsp;&nbsp;
                      {{x.accountName  }}
@@ -177,17 +178,21 @@
             </span>
             <br>
    
-            <br><br>
+            <br><br>  <br><br>  <br>
+            <br>
+            <br>
+          
             <span class=" float-left text-font1">
                 Your prompt action in this regard would be highly appreciated.
             </span>
             <br><br><br><br>
             <span class=" float-left text-font1">
-                For<span class="bold text-font1">&nbsp;FABCOT INTERNATIONAL ®</span>
+                <!-- <span class="bold text-font1"></span> -->
+                Thanking You
             </span>
             <br><br><br><br>
 
-            <br><br><br><br><br><br>
+            <br><br>
             <span class=" float-left text-font1">
                 Checked by: ---------------- 
             </span>
