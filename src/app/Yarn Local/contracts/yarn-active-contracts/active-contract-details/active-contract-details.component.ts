@@ -2991,8 +2991,24 @@ getImage(){
                         margin: [20 , -550 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '60%' ],
                       body: [
-                        [{text:'Seller Name:'  , style:'heading'} , {text: this.printData['sellerName'] ,margin:[-35,0,0,0] ,   style:'heading2'} ],] }
+                        [{text:'Seller Name:'  , style:'heading'} , {text: this.printData['sellerName'] ,margin:[-35,0,0,0] ,   style:'heading2'} , 
+                        // {text:'NTN:'  , style:'heading' ,margin:[-355,0,0,0]} , 
+                        // {text: '2828398237' ,margin:[-370,0,0,0] ,   style:'heading2'}, 
+                        // {text:'GST:'  , style:'heading' ,margin:[-400,0,0,0]} , 
+                        // {text: '2828398237' ,margin:[-420,0,0,0] ,   style:'heading2'}
+                      
+                      
+                      ],] }
                       },
+                      // {
+                      //   layout:'noBorders',
+                      //   margin: [0 , 0 , 0 , 0],
+                      //   table:{headerRows: 1 , widths:['70%' , '30%'],
+                      // body: [
+                      //   [{text: "NTN:" , style:'heading' , margin:[392, -1,0,-10] } , {text:'GST:' , style:'heading'}
+                      
+                      // ],] }
+                      // },
                      
                        {
                         layout:'noBorders',
@@ -3184,21 +3200,21 @@ getImage(){
                       // },
                       // },
 
-                      { 
-                        margin:[0,0,0,0],
-                        canvas: 
-                        [
+                    //   { 
+                    //     margin:[0,0,0,0],
+                    //     canvas: 
+                    //     [
                             
-                            {
-                              type: 'line',
-                              x1: 0, y1: 60,
-                              x2: 590, y2: 60,
-                              lineWidth: 1,
-                              // lineColor:'#535353'
+                    //         {
+                    //           type: 'line',
+                    //           x1: 0, y1: 60,
+                    //           x2: 590, y2: 60,
+                    //           lineWidth: 1,
+                    //           // lineColor:'#535353'
 
-                            }
-                        ]
-                     },
+                    //         }
+                    //     ]
+                    //  },
 
 
                        {

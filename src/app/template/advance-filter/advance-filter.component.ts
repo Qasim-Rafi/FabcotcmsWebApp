@@ -15,6 +15,7 @@ import {FormsModule , NgForm, ReactiveFormsModule}  from '@angular/forms'
 })
 export class AdvanceFilterComponent implements OnInit {
   dateformater: Dateformater = new Dateformater();  
+  data2:any =[];
 
   data:any =[];
   response: any;
@@ -72,15 +73,18 @@ export class AdvanceFilterComponent implements OnInit {
       }
     })
   }
-
+clear(){
+  this.data = [];
+  this.data2 = [];
+}
  getSearch() {
     let varr = {
-      "buyerId": this.data.buyerId,
-      "sellerId": this.data.sellerId,
-      "poNumber": this.data.poNumber,
-      "autoContractNumber":this.data.autoContractNumber,
-      "contractDate": this.dateformater.toModel(this.data.contractDate),
-      "sellerContractNo": this.data.sellerContractNo
+      "buyerId": this.data.buyerId == undefined ? 0 : this.data.buyerId ,
+      "sellerId": this.data.sellerId == undefined ? 0 : this.data.sellerId,
+      "poNumber": this.data.poNumber == undefined ? 'string' : this.data.poNumber,
+      "autoContractNumber":this.data.autoContractNumber == undefined? 'string' : this.data.autoContractNumber,
+      "contractDate": this.dateformater.toModel(this.data.contractDate) == null ? 'string' :  this.dateformater.toModel(this.data.contractDate),
+      "sellerContractNo": this.data.sellerContractNo == undefined ? 'string' : this.data.sellerContractNo
      
     }
 this.spinner.show();
@@ -92,7 +96,9 @@ this.spinner.show();
           this.response = res;
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
-            this.data = this.response.data; 
+            this.data2 = this.response.data; 
+      
+
          this.spinner.hide();
           }
           else {
