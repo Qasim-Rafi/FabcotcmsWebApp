@@ -260,7 +260,6 @@ this.router.navigate([]).then((result) => {
       NoOfSaleInv: row.numberOfSaleInvoices,
       BillAMount: row.billAmount,
       TaxAmount: row.taxAmount,
-      DueDate: row.dueDate,
     }));
 
     this.service.exportAsExcelFile(filtered, 'Active Bills');
@@ -277,7 +276,7 @@ this.router.navigate([]).then((result) => {
       NoOfSaleInv: row.numberOfSaleInvoices,
       BillAMount: row.billAmount,
       TaxAmount: row.taxAmount,
-      DueDate: row.dueDate, }));
+      }));
   
     this.service.exportAsCsvFile(filtered, 'Active Bills');
   
@@ -300,12 +299,12 @@ this.router.navigate([]).then((result) => {
           layout: 'lightHorizontalLines',
           table: {
             headerRows: 1,
-            widths: [40, 50, 50, 40, 70 , 60,80,70,70,60],
+            widths: [40, 50, 50, 40, 70 , 60,80,70,70],
             body: [
-              ['S No.', 'Bill For', 'Bill To', 'Bill#', 'Contract No' ,'Bill Date' , 'No. of Sale Inv','Bill Amount','Tax Amount','Due Date'],
+              ['S No.', 'Bill For', 'Bill To', 'Bill#', 'Contract No' ,'Bill Date' , 'No. of Sale Inv','Bill Amount','Tax Amount'],
               ...this.rows.map(row => (
                 [row.contractId, row.sellerName, row.buyerName,row.billNumber ,
-                  row.contractId , row.billDate,row.numberOfSaleInvoices,row.billAmount, row.taxAmount,row.dueDate]
+                  row.contractId , row.billDate,row.numberOfSaleInvoices,row.billAmount, row.taxAmount]
               ))
             ]
            
@@ -342,12 +341,12 @@ this.router.navigate([]).then((result) => {
           layout: 'lightHorizontalLines',
           table: {
             headerRows: 1,
-            widths: [40, 50, 50, 40, 70 , 60,80,70,70,60],
+            widths: [40, 50, 50, 40, 70 , 60,80,70,70],
             body: [
-              ['S No.', 'Bill For', 'Bill To', 'Bill#', 'Contract No' ,'Bill Date' , 'No. of Sale Inv','Bill Amount','Tax Amount','Due Date'],
+              ['S No.', 'Bill For', 'Bill To', 'Bill#', 'Contract No' ,'Bill Date' , 'No. of Sale Inv','Bill Amount','Tax Amount'],
               ...this.rows.map(row => (
                 [row.contractId, row.sellerName, row.buyerName,row.billNumber ,
-                  row.contractId , row.billDate,row.numberOfSaleInvoices,row.billAmount, row.taxAmount,row.dueDate]
+                  row.contractId , row.billDate,row.numberOfSaleInvoices,row.billAmount, row.taxAmount]
               ))
             ]
            

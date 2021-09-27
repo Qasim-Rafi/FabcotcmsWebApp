@@ -2995,17 +2995,18 @@ getImage(){
               {
                         layout:'noBorders',
                         margin: [20 , -550 , 0 , 0],
-                        table:{headerRows: 1 , widths:['20%' , '60%' ],
+                        table:{headerRows: 1 , widths:['20%' , '45%' , '10%' , '10%' , '5%', '10%'  ],
                       body: [
-                        [{text:'Seller Name:'  , style:'heading'} , {text: this.printData['sellerName'] ,margin:[-35,0,0,0] ,   style:'heading2'} , 
-                        // {text:'NTN:'  , style:'heading' ,margin:[-355,0,0,0]} , 
-                        // {text: '2828398237' ,margin:[-370,0,0,0] ,   style:'heading2'}, 
-                        // {text:'GST:'  , style:'heading' ,margin:[-400,0,0,0]} , 
-                        // {text: '2828398237' ,margin:[-420,0,0,0] ,   style:'heading2'}
+                        [{text:'Seller Name:'  , style:'heading'} , {text: this.printData['sellerName'] ,margin:[-30,0,0,0] ,   style:'heading2'} , 
+                        {text:this.printData['sellerNTNNumber'] ==''? '' : 'NTN:'  , style:'heading4' ,margin:[0,0,0,0]} , 
+                        {text: this.printData['sellerNTNNumber'], style:'heading5' ,margin:[-38,0,0,0] }, 
+                        {text:this.printData['sellerGSTNumber'] ==''? '' :'GST:'  , style:'heading4' ,margin:[-15,0,0,0]} , 
+                        {text: this.printData['sellerGSTNumber'], style:'heading5' ,margin:[-28,0,0,0] }, 
                       
                       
                       ],] }
                       },
+
                       // {
                       //   layout:'noBorders',
                       //   margin: [0 , 0 , 0 , 0],
@@ -3225,7 +3226,7 @@ getImage(){
 
                        {
                         layout:'noBorders',
-                        margin: [20 , 30 , 0 , 0],
+                        margin: [20 , 120 , 0 , 0],
                         table:{headerRows: 1 , widths:['100%'],
                       body: [
                         [{text:'Please get it signed & send back same for our record purpose'  ,  style:'heading'}],] }
@@ -3242,14 +3243,17 @@ getImage(){
                     styles:{
                      heading:{fontSize: 9,
                       bold: true,
-                      // color: '#4d4b4b'
+                     },
+                     heading4:{fontSize: 8,
+                      bold: true,
                      },
                       heading10:{fontSize: 10,
                         bold: true,
                         // color: '#4d4b4b' 
                       },
                       heading2:{fontSize: 9  , 
-                        // color:'#4d4b4b'
+                        },
+                        heading5:{fontSize: 8  , 
                         },
                         heading3:{fontSize: 7  , 
                           // color:'#4d4b4b'
@@ -3998,13 +4002,20 @@ getImage(){
                             }
                         ]
                      },
-                      {
-                        layout:'noBorders',
-                        margin: [20 , -560 , 0 , 0],
-                        table:{headerRows: 1 , widths:['20%' , '60%' ],
-                      body: [
-                        [{text:'Buyer Name:'  , style:'heading'} , {text: this.printData['buyerName'] ,margin:[-35,0,0,0] ,   style:'heading2'} ],] }
-                      },
+                     {
+                      layout:'noBorders',
+                      margin: [20 , -550 , 0 , 0],
+                      table:{headerRows: 1 , widths:['20%' , '45%' , '10%' , '10%' , '5%', '10%'  ],
+                    body: [
+                      [{text:'Buyer Name:'  , style:'heading'} , {text: this.printData['buyerName'] ,margin:[-30,0,0,0] ,   style:'heading2'} , 
+                      {text:this.printData['buyerNTNNumber'] ==''? '' : 'NTN:'  , style:'heading4' ,margin:[0,0,0,0]} , 
+                      {text: this.printData['buyerNTNNumber'], style:'heading5' ,margin:[-38,0,0,0] }, 
+                      {text:this.printData['buyerGSTNumber'] ==''? '' :'GST:'  , style:'heading4' ,margin:[-15,0,0,0]} , 
+                      {text: this.printData['buyerGSTNumber'], style:'heading5' ,margin:[-28,0,0,0] }, 
+                    
+                    
+                    ],] }
+                    },
                      
                        {
                         layout:'noBorders',
@@ -4187,25 +4198,24 @@ getImage(){
                         [{text:'Other Conditions:' , style:'heading'} , {text: this.contractRemarksData['otherConditionRemarks'] , margin:[-35,0,0,0] , style:'heading2'}],] }
                       },
                    
-                      { 
-                        margin:[0,0,0,0],
-                        canvas: 
-                        [
+                    //   { 
+                    //     margin:[0,0,0,0],
+                    //     canvas: 
+                    //     [
                             
-                            {
-                              type: 'line',
-                              x1: 0, y1: 60,
-                              x2: 590, y2: 60,
-                              lineWidth: 1,
-                              // lineColor:'#535353'
+                    //         {
+                    //           type: 'line',
+                    //           x1: 0, y1: 60,
+                    //           x2: 590, y2: 60,
+                    //           lineWidth: 1,
 
-                            }
-                        ]
-                     },
+                    //         }
+                    //     ]
+                    //  },
 
                        {
                         layout:'noBorders',
-                        margin: [20 , 30 , 0 , 0],
+                        margin: [20 , 120 , 0 , 0],
                         table:{headerRows: 1 , widths:['100%'],
                       body: [
                         [{text:'Please get it signed & send back same for our record purpose'  ,  style:'heading'}],] }
@@ -4227,6 +4237,11 @@ getImage(){
                        heading10:{fontSize: 10,
                          bold: true,
                          // color: '#4d4b4b' 
+                       },
+                       heading4:{fontSize: 8,
+                        bold: true,
+                       },
+                       heading5:{fontSize: 8,
                        },
                        heading2:{fontSize: 9  , 
                          // color:'#4d4b4b'
