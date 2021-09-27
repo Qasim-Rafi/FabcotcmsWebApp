@@ -143,6 +143,8 @@ max1:any;
  revisedindexData:any;
  value : any;
  value2 : any;
+ uom : any;
+
 comm = "Commission:";
   constructor(
     config: NgbProgressbarConfig,
@@ -602,6 +604,8 @@ if(this.loggedInDepartmentName == 'Yarn Export' || this.loggedInDepartmentName =
     modalRef.componentInstance.contractId = this.contractId ;
     modalRef.componentInstance.quantity = this.max ;
     modalRef.componentInstance.saleInvoiceQuantity = this.max1 ;
+    modalRef.componentInstance.uom = this.uom ;
+
 
 
   
@@ -713,6 +717,8 @@ lcForm2( check){
   modalRef.componentInstance.contractId = this.contractId;
   modalRef.componentInstance.invoiceId = row.id;
     modalRef.componentInstance.statusCheck = check;
+    modalRef.componentInstance.uom = this.uom;
+
     modalRef.result.then((data) => {
       // on close
       if(data ==true){
@@ -1138,7 +1144,7 @@ getContractCostingData() {
         if (this.response.success == true && this.response.data != null) {
           this.contractCostingData = this.response.data;
           this.max = this.response.data.quantity;
-
+      this.uom = this.contractCostingData.rateUOMName;
           if(this.contractCostingData.length=1){
             this.check=this.check+15;
           }
