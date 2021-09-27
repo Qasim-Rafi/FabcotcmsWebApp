@@ -8,6 +8,7 @@ import { GlobalConstants } from 'src/app/Common/global-constants';
 import { Dateformater } from 'src/app/shared/dateformater';
 import { environment } from 'src/environments/environment';
 import {FormsModule , NgForm, ReactiveFormsModule}  from '@angular/forms'
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-advance-filter',
   templateUrl: './advance-filter.component.html',
@@ -31,6 +32,7 @@ export class AdvanceFilterComponent implements OnInit {
     private http: HttpClient,
     private service: ServiceService,
     private spinner: NgxSpinnerService,
+    private router: Router,
 
     private toastr: ToastrService,
   ) { }
@@ -72,6 +74,10 @@ export class AdvanceFilterComponent implements OnInit {
         this.toastr.error(this.response.message, 'Message.');
       }
     })
+  }
+  navigate(obj){
+    this.router.navigate(['/FabCot/active-contract-details'], { queryParams: {id: obj.id} });
+
   }
 clear(){
   this.data = [];

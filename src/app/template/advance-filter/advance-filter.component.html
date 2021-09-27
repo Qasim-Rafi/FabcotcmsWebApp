@@ -242,7 +242,7 @@
           [rowHeight]="'auto'" [limit]="6">
 
    "
-          <ngx-datatable-column name="Action" [width]="80" prop="name" [flexGrow]="0.05">
+          <ngx-datatable-column name="Action" [width]="80" prop="name" [flexGrow]="0.02">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
               <div class="ibox-tools text-center">
                 <button type="button" class="btn editIconBack px-1 py-1" data-toggle="tooltip" data-placement="top" title=""
@@ -253,7 +253,7 @@
             </ng-template>
           </ngx-datatable-column>
         
-          <ngx-datatable-column name="Age" prop="age" [width] = "20"  [flexGrow]="0.04"  >
+          <ngx-datatable-column name="Age" prop="age" [width] = "20"  [flexGrow]="0.02"  >
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
               <span class="badge badge-primary">{{row.age}}</span>
              
@@ -262,20 +262,24 @@
 
        <ngx-datatable-column name="Details" [width] = "20" [flexGrow]="0.07"   prop="autoContractNumber">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{row.autoContractNumber}}
+      
+            <button class="btn btn-outline-secondary  btn-xs "  (click) = "navigate(row)"> 
+              {{row.contractNo}}
+              </button>
+              <br>
               B:{{row.buyerName}}
               S:{{row.sellerName}}
             </ng-template>
           </ngx-datatable-column>
 
-          <ngx-datatable-column name="Dated" prop="date" [width] = "20"  [flexGrow]="0.07"  prop="contractOn">
+          <ngx-datatable-column name="Dated" prop="date" [width] = "20"  [flexGrow]="0.04"  prop="contractOn">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
               {{row.date}}
               
             </ng-template>
           </ngx-datatable-column>
 
-          <ngx-datatable-column name="#PO" prop="poNumber" [width] = "20" [flexGrow]="0.05"   prop="poNumber">
+          <ngx-datatable-column name="#PO" prop="poNumber" [width] = "20" [flexGrow]="0.03"   prop="poNumber">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
               {{row.poNumber}}
             
@@ -289,7 +293,7 @@
             </ng-template>
           </ngx-datatable-column> -->
 
-          <ngx-datatable-column name="Article/Const." prop="articleName" [width] = "10"  [flexGrow]="0.07"  prop="articleName">
+          <ngx-datatable-column name="Article/Const." prop="articleName" [width] = "10"  [flexGrow]="0.06"  prop="articleName">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
               {{row.articleName}}
               
@@ -297,7 +301,7 @@
             </ng-template>
           </ngx-datatable-column>
 
-          <ngx-datatable-column name="Status" prop="status" [width] = "10"  [flexGrow]="0.05"  prop="articleName">
+          <ngx-datatable-column name="Status" prop="status" [width] = "10"  [flexGrow]="0.04"  prop="articleName">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
               <!-- {{row.status}} -->
               <span class="badge badge-primary">{{row.status}}</span>

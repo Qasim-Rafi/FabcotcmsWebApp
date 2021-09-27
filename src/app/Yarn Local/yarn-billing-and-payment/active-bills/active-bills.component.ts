@@ -95,12 +95,7 @@ status  ;
       this.image = res;
      
     });
-    this.fetch((data) => {
-      this.dashboardAmnt = data
-      this.rows = data.objList;
-      this.billFilter = [...this.rows];
-      this.listCount = this.rows.length;
-    });
+this.fetch();
   }
   
   search(event) {
@@ -115,7 +110,7 @@ status  ;
   }
 
 
-  fetch(cb) {
+  fetch() {
     this.data2.toDate = this.dateformater.toModel(this.data2.toDate)
     this.data2.FromDate = this.dateformater.toModel(this.data2.FromDate)
     this.spinner.show();
@@ -127,44 +122,11 @@ status  ;
     if(this.response.success==true)
     {
     this.data=this.response.data;
- 
-
-    cb(this.data);
-    this.spinner.hide();
-
-    }
-    else{
-      this.toastr.error(this.response.message, 'Message.');
-      this.spinner.hide();
-    
-    }
-
-    }, err => {
-      if ( err.status == 400) {
-  this.toastr.error(err.error.message, 'Message.');
-  this.spinner.hide();
-
-      }
-    });
-  }
-
-
-
-  fetch2() {
-    this.data2.toDate = this.dateformater.toModel(this.data2.toDate)
-    this.data2.FromDate = this.dateformater.toModel(this.data2.FromDate)
-    this.spinner.show();
-    this.http
-    .get(`${environment.apiUrl}/api/BillingPayments/GetAllContractBill/`+ this.data2.toDate + '/' + this.data2.FromDate)
-    .subscribe(res => {
-      this.response = res;
-     
-    if(this.response.success==true)
-    {
-    this.data=this.response.data;
+    this.dashboardAmnt = this.data
     this.rows = this.data.objList;
-    this.data2.toDate =  this.data2.toDate
-    this.data2.FromDate =this.data2.FromDate
+    this.listCount = this.rows.length;
+
+    // cb(this.data);
     this.spinner.hide();
 
     }
@@ -182,6 +144,41 @@ status  ;
       }
     });
   }
+
+
+
+  // fetch2() {
+  //   this.data2.toDate = this.dateformater.toModel(this.data2.toDate)
+  //   this.data2.FromDate = this.dateformater.toModel(this.data2.FromDate)
+  //   this.spinner.show();
+  //   this.http
+  //   .get(`${environment.apiUrl}/api/BillingPayments/GetAllContractBill/`+ this.data2.toDate + '/' + this.data2.FromDate)
+  //   .subscribe(res => {
+  //     this.response = res;
+     
+  //   if(this.response.success==true)
+  //   {
+  //   this.data=this.response.data;
+  //   this.rows = this.data.objList;
+  //   this.data2.toDate =  this.data2.toDate
+  //   this.data2.FromDate =this.data2.FromDate
+  //   this.spinner.hide();
+
+  //   }
+  //   else{
+  //     this.toastr.error(this.response.message, 'Message.');
+  //     this.spinner.hide();
+    
+  //   }
+
+  //   }, err => {
+  //     if ( err.status == 400) {
+  // this.toastr.error(err.error.message, 'Message.');
+  // this.spinner.hide();
+
+  //     }
+  //   });
+  // }
 
   onSelect(selecterow) {
 
