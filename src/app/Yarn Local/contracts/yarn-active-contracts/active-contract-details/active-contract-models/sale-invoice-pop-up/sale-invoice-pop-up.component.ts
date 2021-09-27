@@ -25,7 +25,7 @@ export class SaleInvoicePopUpComponent implements OnInit {
   @Input() statusCheck; 
   @Input() quantity; 
   @Input() saleInvoiceQuantity; 
-
+  @Input() uom;
   data:any ={};
   rate:any;
   condition:string="17"
@@ -59,7 +59,7 @@ this.GetArticleDropdown();
     if (this.statusCheck == 'editInvoice') {
       this.editSaleInvoice();
     }
-   
+   console.log(this.uom)
   }
 
   getContractCostingData() {
@@ -220,7 +220,8 @@ if(event==7){
       "quantity": this.data.quantity,
       "unit": this.data.unit.toString(),
       "taxPercentage": this.data.taxPercentage == null ?  this.condition :this.data.taxPercentage,
-      "contractArticleId":this.data.contractArticleId
+      "contractArticleId":this.data.contractArticleId,
+      "UnitofMeasurement" : this.uom
     }
 this.spinner.show();
           // this._document.defaultView.location.reload();
@@ -267,6 +268,7 @@ this.spinner.show();
             this.saleInvoiceDate=this.data.saleInvoiceDate;
             this.quantity=this.quantity
             this.saleInvoiceQuantity=this.saleInvoiceQuantity
+      this.uom = this.data.UnitofMeasurement
             // this.spinner.hide();
 
           }
@@ -305,6 +307,8 @@ this.spinner.show();
        "rate":  this.data.contractArticleRate,
        "commission": this.data.contractArticleCommission,
        "taxPercentage": this.data.taxPercentage == null ?  this.condition :this.data.taxPercentage,
+      "UnitofMeasurement" : this.uom
+
     }
  this.spinner.show();
     this.http.
