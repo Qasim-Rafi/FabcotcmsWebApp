@@ -25,6 +25,9 @@ export class AdvanceFilterComponent implements OnInit {
   article: any={};
    rows:any = [];
    columns : any = {}
+   billSearch : any = [];
+   billSearch2 : any = [];
+
    @ViewChild(NgForm) filterForm;
 
 
@@ -119,5 +122,40 @@ this.spinner.show();
           
         });
   }
+  getBill() {
+    let varr = {
+      "buyerId": this.billSearch.buyerId == undefined ? 0 : this.billSearch.buyerId ,
+      "sellerId": this.billSearch.sellerId == undefined ? 0 : this.billSearch.sellerId,
+      "billNumber": this.billSearch.billNumber == undefined ? 'string' : this.billSearch.billNumber,
+      "contractNo":this.billSearch.contractNo == undefined? 'string' : this.billSearch.contractNo,
+      "billDate": this.dateformater.toModel(this.billSearch.billDate) == null ? 'string' :  this.dateformater.toModel(this.billSearch.billDate),
+      "billAmount":  0 
+     
+    }
+this.spinner.show();
+    this.http.
+      post(`${environment.apiUrl}/api/Contracts/BillAdvanceSearchFilter`, varr)
+      .subscribe(
+        res => {
 
+          this.response = res;
+          if (this.response.success == true) {
+            this.toastr.success(this.response.message, 'Message.');
+            this.billSearch2 = this.response.data; 
+      
+
+         this.spinner.hide();
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+         this.spinner.hide();
+          }
+
+        }, (err: HttpErrorResponse) => {
+          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+          this.toastr.error(messages.toString(),'Message.');
+          this.spinner.hide();
+          
+        });
+  }
 }
