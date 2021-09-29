@@ -9,6 +9,8 @@ import { ArchivedContractsComponent } from './contracts/archived-contracts/archi
 import { ReportsComponent } from './shared/reports/reports.component';
 import { AdvanceFilterComponent } from './template/advance-filter/advance-filter.component';
 import { BulkPrintComponent } from './bulk-print/bulk-print.component';
+import { BillInvoicesComponent } from './accounts/bill-invoices/bill-invoices.component';
+import { SaleInvoiceBillComponent } from './accounts/sale-invoice-bill/sale-invoice-bill.component';
 
 
 const configurationModule = () => import('./configuration/configuration.module')
@@ -31,6 +33,9 @@ const routes: Routes = [
    children:[
     {path:'home', component:HomeComponent},
     {path:'filter', component:AdvanceFilterComponent},
+    {path:'accounts' , component:BillInvoicesComponent},
+    {path:'saleBill' , component:SaleInvoiceBillComponent},
+
    {
      path:'config',
    loadChildren:'./configuration/configuration.module#ConfigurationModule',

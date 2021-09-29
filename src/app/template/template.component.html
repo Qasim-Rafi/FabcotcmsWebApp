@@ -898,6 +898,48 @@
             </ul>
           </nav>
           <!-- /.sidebar-menu -->
+
+<!-- Account Department -->
+
+<nav class="mt-2" *ngIf="isAccounts || loggedInDepartmentName == 'accounts' ">
+  <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+    <!-- Add icons to the links using the .nav-icon class
+       with font-awesome or any other icon font library -->
+    <li class="nav-item">
+      <a routerLink="/home" class="nav-link" >
+        <i class="fa fa-home"></i>
+        <p>Home</p>
+      </a>
+    </li>
+   
+   
+
+    <!-- yarn billing -->
+  <li class="nav-item" [ngClass]="Billing ? 'menu-open' : ''">
+      <a (click)="menuOpen('Billing')" class="nav-link">
+        <i class="far fa-money-bill-alt"></i>
+        <p>Billing & Payment</p>
+        <i class="right fas fa-angle-left"></i>
+      </a>
+    
+      <ul class="nav nav-treeview sublist" [ngClass]="Billing ? 'UlClassOpenMenu' : 'UlClassCloseMenu'">
+        <li class="nav-item">
+          <a routerLink="/accounts" class="nav-link" routerLinkActive="active">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Bill Invoice</p>
+          </a>
+        </li>
+  
+      </ul>
+    </li>
+  
+
+  </ul>
+</nav>
+
+
+
+
           <!--Fabric Local-->
           <nav class="mt-2" *ngIf="isFabricLocal">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">

@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
   data2: any = {};
   sellers: any = {};
   buyers: any = {};
-
+  loggedInDepartmentId : any;
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
@@ -37,6 +37,8 @@ export class HomeComponent implements OnInit {
     // $('[data-widget="treeview"]').each(function() {
     //   AdminLte.Treeview._jQueryInterface.call($(this), 'init');
     // });
+    this.loggedInDepartmentId=localStorage.getItem('loggedInDepartmentId');
+
     this.contracts((data) => {
       this.rows = data;
 

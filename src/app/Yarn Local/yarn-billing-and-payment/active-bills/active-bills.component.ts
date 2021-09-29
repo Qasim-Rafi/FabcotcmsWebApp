@@ -98,17 +98,28 @@ status  ;
 this.fetch();
   }
   
+  // search(event) {
+  //   const val = event.target.value.toLowerCase();
+
+  //   const temp = this.billFilter.filter(function (d) {
+  //     return (
+  //       d.autoContractNumber.toLowerCase().indexOf(val) !== -1 ||
+  //       !val);
+  //   });
+  //   this.rows = temp;
+  // }
   search(event) {
     const val = event.target.value.toLowerCase();
-
     const temp = this.billFilter.filter(function (d) {
-      return (
-        d.autoContractNumber.toLowerCase().indexOf(val) !== -1 ||
+      return (d.autoContractNumber.toLowerCase().indexOf(val) !== -1 ||
+      d.billNumber.toLowerCase().indexOf(val) !== -1 ||
+        //  d.buyerName.toLowerCase().indexOf(val) !== -1 || 
+        
         !val);
     });
     this.rows = temp;
-  }
 
+  }
 
   fetch() {
     this.data2.toDate = this.dateformater.toModel(this.data2.toDate)
@@ -124,6 +135,8 @@ this.fetch();
     this.data=this.response.data;
     this.dashboardAmnt = this.data
     this.rows = this.data.objList;
+    this.billFilter = [...this.rows];
+
     this.listCount = this.rows.length;
 
     // cb(this.data);
@@ -181,11 +194,7 @@ this.fetch();
   // }
 
   onSelect(selecterow) {
-
     this.selectedids =selecterow;
-
-  
-    
   }
 
 
