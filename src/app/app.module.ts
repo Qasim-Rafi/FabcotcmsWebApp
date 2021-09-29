@@ -66,6 +66,8 @@ import { ReportsComponent } from './shared/reports/reports.component';
 import { FilterPopUpComponent } from './shared/reports/filter-pop-up/filter-pop-up.component';
 import { AdvanceFilterComponent } from './template/advance-filter/advance-filter.component';
 import { BulkPrintComponent } from './bulk-print/bulk-print.component';
+import { BillInvoicesComponent } from './accounts/bill-invoices/bill-invoices.component';
+import { SaleInvoiceBillComponent } from './accounts/sale-invoice-bill/sale-invoice-bill.component';
 
 
 
@@ -113,6 +115,8 @@ const appRoutes: Routes = []
     FilterPopUpComponent,
     AdvanceFilterComponent,
     BulkPrintComponent,
+    BillInvoicesComponent,
+    SaleInvoiceBillComponent,
    
 
   

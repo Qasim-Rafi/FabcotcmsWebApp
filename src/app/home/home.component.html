@@ -18,7 +18,7 @@
 
 
 <!-- Main content -->
-<section class="content">
+<section class="content" *ngIf = "loggedInDepartmentId !=8">
   <div class="container-fluid">
     <!-- Info boxes -->
     <div class="row">
@@ -273,12 +273,13 @@
 
 
 
+
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
   </aside>
   <!-- /.control-sidebar -->
-
+</section>
   <!-- Main Footer -->
   <!-- <footer class="main-footer">
     <strong>Copyright &copy; 2019 <a href="https://www.fabintel.com/">Fabcot-International</a>.</strong>

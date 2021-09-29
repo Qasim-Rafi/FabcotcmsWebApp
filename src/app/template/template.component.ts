@@ -21,6 +21,8 @@ export class TemplateComponent implements OnInit {
   loggedInDepartmentId: string;
   loggedInDepartmentName: string;
   isYarnLocal:boolean;
+  isAccounts:boolean;
+
   isHomeTextileandGarments:boolean;
   isFabricLocal:boolean;
   userrole:string;
@@ -102,9 +104,11 @@ this.isFabricLocal=false;
  this.isFabricLocal=false;
     } 
     else if(this.loggedInDepartmentId == '8'){
-      this.isYarnLocal = true;
+      this.isYarnLocal = false;
       this.isHomeTextileandGarments= false;
  this.isFabricLocal=false;
+ this.isAccounts = true;
+
     } 
     else if(this.loggedInDepartmentId == '9'){
       this.isYarnLocal = true;

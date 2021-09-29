@@ -1,0 +1,176 @@
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "line-spin-fade" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+
+<div class="content-header">
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-8">
+            <h2 class="row wrapper page-header font-weight-light">
+                <b>Bill {{rows.billNumber}}</b>
+                <div class="ml-2 descr">
+                    Billing detail of Bill <b>{{rows.billNumber}}</b> against Contract <b>{{rows.contractNumber}}</b>
+                </div>
+            </h2>
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-lg-4">
+            <ol class="breadcrumb flt-RnL">
+                <li class="breadcrumb-item"><a href="#">Billing and Payment</a></li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    Active Bills
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    Bill
+                </li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card ibox-content">
+    <div class="panel blank-panel">
+        <div class="panel-heading">
+
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <span class="text-muted">Supplier Side Bill
+                    </span>
+                </div>
+                <div class="col-md-6 mrg-tsm">
+                    <button type="button" class="btn btn-primary btn-md float-right" >
+                        <i class="fa fa-print"></i> Print Bill
+                    </button>
+                </div>
+            </div>
+
+
+          
+
+            <div class="row ">
+                <div class="col-md-3">
+                    <img src="/assets/fabcot.png" height="80px" width="200px">
+
+                </div>
+                <div class="col-md-4">
+                    <p class="font float-right clr"><strong>Fabcot International </strong>
+                    </p>
+                  
+                </div>
+                <!-- <div class="col-md-8">
+                    <span class="float-right">
+                        {{rows.fabcotBranchDescription}}
+                    </span>
+                </div> -->
+            </div>
+          
+       
+
+            <div class="clearfix">
+
+                <div class="float-right">
+                    <span class="text-font1">
+                        Bill No.: <span class="weight">{{rows.billNumber}}</span>
+                    </span>
+                    <br>
+                    <span class="text-font1">
+                        Bill Dt.: <span class="bold text-font1">{{rows.billDate}}</span>
+                    </span>
+                </div>
+
+                <div class="float-left">
+                    <span class="text-font1" >
+                        Seller: <span class="bold text-font1">{{rows.sellerName}}</span>
+                    </span>
+                <br>
+                    <span class="text-font1" >
+                        Buyer: <span class="bold text-font1">{{rows.buyerName}}</span>
+                    </span>
+                    <br>
+
+                    <span class="text-font1">
+                        Fabcot Contract No: <span class="bold text-font1"> {{rows.contractNumber}}</span>
+                    </span>
+                    <br>
+                    <span class="text-font1">
+                        Supplier Contract No: <span class="bold text-font1"> {{rows.supplierContractNumber }}</span>
+                    </span>
+                    <br>
+                    <span class="text-font1">
+                        Contract Date: <span class="bold text-font1">{{rows.contractDate}}</span>
+                    </span>
+                    <br>
+                    <span class="text-font1">
+                        Article: <span class="bold text-font1 ">{{rows.contractArticleName}}</span>
+                    </span>
+
+                </div>
+
+            </div>
+
+            <table class="table">
+                <tr>
+                    <th>Description</th>
+                    <th>Sale Invoice #</th>
+                    <th>Sale Invoice Date</th>
+                    <th>Quantity</th>
+                    <th>Rate({{rows.currencyName}})</th>
+                    <th>SI Amount({{rows.currencyName}})</th>
+                    <th>Commission</th>
+                    <th>TAX</th>
+                    <th>Bill Amount({{rows.currencyName}})</th>
+
+
+
+
+                </tr>
+                <tr *ngFor="let i of rows.contractSaleInvoices">
+                    <td>{{i.description}}</td>
+                   
+                    <td>{{i.saleInvoiceNo}}</td>
+                    <td>{{i.saleInvoiceDateToDisplay}}</td>
+                    <td>{{i.quantity}}{{i.quanityUOM}}</td>
+                    <td>{{i.rate}}</td>
+
+                    <td>{{i.amount}}</td>
+                    <td>{{i.commission}}% </td>
+                    <td>{{i.taxAmount}}</td>
+
+                    <td>{{i.totalAmount  | number:'2.2-2'}}</td>
+
+                </tr>
+            </table>
+ 
+            <br>
+            <div class="float-right">
+                <span class=" bold text-font1">
+                    Sub Total: <span class="text-font1 underline">{{rows.currencyName}} </span>
+                </span>
+                <br>
+                <span class=" bold text-font1">
+                    TAX : <span class="text-font1 underline">{{rows.currencyName}}  {{0.00}}</span>
+                </span><br>
+                <span class=" bold text-font1">
+                    TOTAL : <span class="bold text-font1 underline">{{rows.currencyName}}  </span>
+                </span>
+            </div>
+            <span class=" float-left text-font1">
+                Amount In Words:<span class="bold text-font1 underline"></span>
+            </span>
+            <br>
+   
+            <br><br>
+            <span class=" float-left text-font1">
+                For<span class="bold text-font1">&nbsp;FABCOT INTERNATIONAL ®</span>
+            </span>
+            <br><br><br><br><br>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
