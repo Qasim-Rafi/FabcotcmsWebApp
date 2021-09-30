@@ -47,24 +47,91 @@
 
           
 
-            <div class="row ">
-                <div class="col-md-3">
+            <div class="row  mb-4">
+                <div class="col-md-3 ">
                     <img src="/assets/fabcot.png" height="80px" width="200px">
 
                 </div>
-                <div class="col-md-4">
-                    <p class="font float-right clr"><strong>Fabcot International </strong>
+                <div class="col-md-6  mt-4">
+                    <p class="font  clr"><strong>Fabcot International </strong>
                     </p>
-                  
+
                 </div>
-                <!-- <div class="col-md-8">
-                    <span class="float-right">
-                        {{rows.fabcotBranchDescription}}
-                    </span>
-                </div> -->
+            
             </div>
-          
-       
+
+<div class="row justify-content-center">
+    <p class="address "><strong>133-Aurangzeb Block New Garden Town Lahore.
+    </strong>
+    </p>
+</div>
+<div class="row justify-content-center">
+    <p class="address2 "><strong>SALES TAX INVOICE
+
+    </strong>
+    </p>
+</div>
+<div class="row justify-content-center">
+    <p class="address3"><strong>PNTN No. P-1300724-6
+
+
+    </strong>
+    </p>
+</div>
+<div class="row justify-content-center">
+    <p class="address3"><strong>STRN: 3277876195292
+
+
+    </strong>
+    </p>
+</div>
+   
+<div class="row mb-3">
+    <div class="col-md-6 float-right">
+        <span class="text-font1">
+            Seller: 
+        </span>
+        <br>
+        <span class="text-font1">
+            Seller  Name: 
+        </span>
+        <br>
+        <span class="text-small bold">
+            Address: <span class=" text-small">Head Office, 1st Floor, Haji Adam Chamber, New Challi., Altaf Hussa..</span>
+        </span>
+        <br>
+        <span class="text-small bold">
+            Sales Tax Resgitration No.: <span class=" text-small"> 0101520201773</span>
+        </span>
+        <br>
+        <span class="text-small bold">
+            NTN No.:<span class=" text-small"> 0101520201773</span>
+        </span>
+    </div>
+    <div class="col-md-6 float-right">
+        <span class="text-font1">
+            Buyer: 
+        </span>
+        <br>
+        <span class="text-font1">
+            Buyer  Name: 
+        </span>
+        <br>
+        <span class="text-small bold">
+            Address: <span class=" text-small">Head Office, 1st Floor, Haji Adam Chamber, New Challi., Altaf Hussa..</span>
+        </span>
+        <br>
+        <span class="text-small bold">
+            Sales Tax Resgitration No.: <span class=" text-small"> 0101520201773</span>
+        </span>
+        <br>
+        <span class="text-small bold">
+            NTN No.:<span class=" text-small"> 0101520201773</span>
+        </span>
+    </div>
+</div>
+
+
 
             <div class="clearfix">
 
@@ -76,33 +143,32 @@
                     <span class="text-font1">
                         Bill Dt.: <span class="bold text-font1">{{rows.billDate}}</span>
                     </span>
+                    <br>
+                    <span class="text-font1">
+                        Invoice Date.:<span class="bold text-font1">{{rows.billDate}}</span>
+                    </span>
                 </div>
 
                 <div class="float-left">
-                    <span class="text-font1" >
+                    <!-- <span class="text-font1" >
                         Seller: <span class="bold text-font1">{{rows.sellerName}}</span>
                     </span>
                 <br>
                     <span class="text-font1" >
                         Buyer: <span class="bold text-font1">{{rows.buyerName}}</span>
                     </span>
-                    <br>
+                    <br> -->
 
                     <span class="text-font1">
                         Fabcot Contract No: <span class="bold text-font1"> {{rows.contractNumber}}</span>
                     </span>
                     <br>
-                    <span class="text-font1">
-                        Supplier Contract No: <span class="bold text-font1"> {{rows.supplierContractNumber }}</span>
-                    </span>
-                    <br>
+                  
                     <span class="text-font1">
                         Contract Date: <span class="bold text-font1">{{rows.contractDate}}</span>
                     </span>
                     <br>
-                    <span class="text-font1">
-                        Article: <span class="bold text-font1 ">{{rows.contractArticleName}}</span>
-                    </span>
+                  
 
                 </div>
 
@@ -115,10 +181,10 @@
                     <th>Sale Invoice Date</th>
                     <th>Quantity</th>
                     <th>Rate({{rows.currencyName}})</th>
-                    <th>SI Amount({{rows.currencyName}})</th>
-                    <th>Commission</th>
+                    <th>Commission %</th>
+                    <th>Amount Excl. Tax</th>
                     <th>TAX</th>
-                    <th>Bill Amount({{rows.currencyName}})</th>
+                    <th>Amount Incl. Tax</th>
 
 
 
@@ -138,6 +204,7 @@
 
                     <td>{{i.totalAmount  | number:'2.2-2'}}</td>
 
+
                 </tr>
             </table>
  
@@ -154,16 +221,22 @@
                     TOTAL : <span class="bold text-font1 underline">{{rows.currencyName}}  </span>
                 </span>
             </div>
-            <span class=" float-left text-font1">
+            <div class="float-left" >
+            <span class="text-font1">
+                Quantity:<span class="bold text-font1 "></span>
+            </span>
+            <br><br><br>
+            <span class=" text-font1">
                 Amount In Words:<span class="bold text-font1 underline"></span>
             </span>
-            <br>
-   
-            <br><br>
+            <br> <br><br><br>
             <span class=" float-left text-font1">
                 For<span class="bold text-font1">&nbsp;FABCOT INTERNATIONAL ®</span>
             </span>
-            <br><br><br><br><br>
+        </div>
+            <br><br>
+           
+           
 
         </div>
     </div>

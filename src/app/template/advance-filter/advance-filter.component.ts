@@ -86,6 +86,10 @@ clear(){
   this.data = [];
   this.data2 = [];
 }
+clear2(){
+  this.billSearch = [];
+  this.billSearch2= [];
+}
  getSearch() {
     let varr = {
       "buyerId": this.data.buyerId == undefined ? 0 : this.data.buyerId ,
@@ -103,11 +107,15 @@ this.spinner.show();
         res => {
 
           this.response = res;
-          if (this.response.success == true) {
+          if (this.response.success == true  && this.response.data.length != 0) {
             this.toastr.success(this.response.message, 'Message.');
             this.data2 = this.response.data; 
       
 
+         this.spinner.hide();
+          }
+          else if(this.data2.length == 0) {
+            this.toastr.error("No such Contract Exist", 'Message.');
          this.spinner.hide();
           }
           else {
@@ -123,6 +131,7 @@ this.spinner.show();
         });
   }
   getBill() {
+    this.billSearch2 = []
     let varr = {
       "buyerId": this.billSearch.buyerId == undefined ? 0 : this.billSearch.buyerId ,
       "sellerId": this.billSearch.sellerId == undefined ? 0 : this.billSearch.sellerId,
@@ -139,14 +148,18 @@ this.spinner.show();
         res => {
 
           this.response = res;
-          if (this.response.success == true) {
+          if (this.response.success == true && this.response.data.length != 0) {
             this.toastr.success(this.response.message, 'Message.');
             this.billSearch2 = this.response.data; 
       
 
          this.spinner.hide();
           }
-          else {
+          else if(this.billSearch2.length == 0) {
+            this.toastr.error("No such Contract Exist", 'Message.');
+         this.spinner.hide();
+          }
+          else{
             this.toastr.error(this.response.message, 'Message.');
          this.spinner.hide();
           }

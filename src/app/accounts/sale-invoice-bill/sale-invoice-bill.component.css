@@ -2,7 +2,7 @@
     font-size: 25px !important;
     font-weight: 500;
     text-align: center;
-    margin-right: 0px;
+    /* margin-right: 0px; */
 }
 
 .text-font{
@@ -15,6 +15,11 @@ font-size: 17px;
     color: rgb(95, 93, 93);
     font-size: 14px;
     }
+ .text-small{
+  font-weight: 600;
+  color: rgb(95, 93, 93);
+  font-size: 12px;
+ }   
 .weight{
 font-weight: 600;
 color: #1ab394;
@@ -42,6 +47,30 @@ color: #1ab394;
   text-align: center;
 }
 .address{
-    margin-left: 20px;
-    margin-bottom: 50px;
+  font-weight: 500;
+    color: rgb(95, 93, 93);
+    font-size: 12px;
+  margin-top: -38px;
+  margin-bottom: 40px;
 }
+.address2{
+  font-weight: 500;
+  color: rgb(95, 93, 93);
+  font-size: 16px;
+margin-top: -40px;
+margin-bottom: 40px;
+}
+.address3{
+  font-weight: 400;
+  color: rgb(95, 93, 93);
+  font-size: 12px;
+margin-top: -40px;
+margin-bottom: 40px;
+}
+/* .image{
+  background-image: url("/assets/fabcot.png");
+   height: 70px;
+   width: 150px;
+
+
+} */
