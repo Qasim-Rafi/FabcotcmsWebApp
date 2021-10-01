@@ -55,6 +55,7 @@ totalAmount2 : number;
 arrayNew: any  = [];
 printData = [] 
 data2:any = []
+item: any;
 status  ;
   url = '/api/BillingPayments/GetAllContractBill'
   lang : SUPPORTED_LANGUAGE = 'en';
@@ -210,10 +211,10 @@ print(){
     this.toastr.error("PLease select atleast one bill to generate print" , 'Message')
   }
   else{
-    const item = [...new Set(this.arrayNew)];
-
+     this.item = [...new Set(this.arrayNew)];
+localStorage.setItem('bulkPrint', this.item);
 this.router.navigate([]).then((result) => {
-  window.open('/bulkPrint?nmbr=' + item, '_blank');
+  window.open('/bulkPrint' , '_blank');
 });
 }
 }

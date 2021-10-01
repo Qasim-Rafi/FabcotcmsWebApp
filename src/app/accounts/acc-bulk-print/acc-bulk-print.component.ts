@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./acc-bulk-print.component.css']
 })
 export class AccBulkPrintComponent implements OnInit {
-
+  rows: any = []
   constructor() { }
 
   ngOnInit(): void {

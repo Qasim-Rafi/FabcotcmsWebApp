@@ -133,7 +133,6 @@ export class CreditComponent implements OnInit {
       "saleInvoiceId": this.saleInvoiceId,
       "saleInvoiceDate": this.data.saleInvoiceDate,
       "creditNoteNo": this.data.creditNoteNo,
-      // "creditNoteDate": this.data.creditNoteDate,
       "creditNoteDate": this.dateformater.toModel(this.data.creditNoteDate),
       "debitNoteNo": this.data.debitNoteNo,
       "debitNoteDate":this.dateformater.toModel(this.data.debitNoteDate),
