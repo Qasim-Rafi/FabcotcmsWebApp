@@ -129,7 +129,7 @@
       
       <ngx-datatable #myTable class="bootstrap" 
         [sorts]="[{ prop: 'id,name', dir: 'desc' }]" [columns]="columns" [rows]="openContractReport" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-        [rowHeight]="'auto'" [limit]="10">
+        [rowHeight]="'auto'" >
         <ngx-datatable-column prop="id" name="S. No." [width]="40">
           <ng-template let-row="row" let-rowIndex= "rowIndex"  ngx-datatable-cell-template>
             {{ rowIndex+1 }}
@@ -314,7 +314,7 @@
           
           <ngx-datatable #myTable class="bootstrap" 
             [sorts]="[{ prop: 'id,name', dir: 'desc' }]" [columns]="columns" [rows]="allContractReport" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-            [rowHeight]="'auto'" [limit]="10">
+            [rowHeight]="'auto'" >
             <ngx-datatable-column prop="id" name="S. No." [width]="40">
               <ng-template let-row="row" let-rowIndex= "rowIndex"  ngx-datatable-cell-template>
                 {{ rowIndex+1 }}
@@ -519,7 +519,7 @@
               
               <ngx-datatable #myTable class="bootstrap" 
                 [sorts]="[{ prop: 'id,name', dir: 'desc' }]" [columns]="columns" [rows]="agentBookingStatus" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-                [rowHeight]="'auto'" [limit]="10">
+                [rowHeight]="'auto'" >
                 <ngx-datatable-column prop="id" name="S. No." [width]="40">
                   <ng-template let-row="row" let-rowIndex= "rowIndex"  ngx-datatable-cell-template>
                     {{ rowIndex+1 }}
@@ -658,7 +658,7 @@
                   
                   <ngx-datatable #myTable class="bootstrap" 
                     [sorts]="[{ prop: 'id,name', dir: 'desc' }]" [columns]="columns" [rows]="cancleContarctReport" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-                    [rowHeight]="'auto'" [limit]="10">
+                    [rowHeight]="'auto'">
                     <ngx-datatable-column prop="id" name="S. No." [width]="40">
                       <ng-template let-row="row" let-rowIndex= "rowIndex"  ngx-datatable-cell-template>
                         {{ rowIndex+1 }}
@@ -907,7 +907,7 @@
           
           <ngx-datatable #myTable class="bootstrap" 
             [sorts]="[{ prop: 'id,name', dir: 'desc' }]" [columns]="columns" [rows]="billingReportInvoiceWise" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-            [rowHeight]="'auto'" [limit]="10">
+            [rowHeight]="'auto'">
       
             <ngx-datatable-column name="Bill For" prop="billFor" [width]="30">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
@@ -1093,7 +1093,7 @@
           
           <ngx-datatable #myTable class="bootstrap" 
             [sorts]="[{ prop: 'id,name', dir: 'desc' }]" [columns]="columns" [rows]="dispatchReport" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-            [rowHeight]="'auto'" [limit]="10">
+            [rowHeight]="'auto'" >
             <ngx-datatable-column prop="id" name="S. No." [width]="40">
               <ng-template let-row="row" let-rowIndex= "rowIndex"  ngx-datatable-cell-template>
                 {{ rowIndex+1 }}
@@ -1329,7 +1329,7 @@
           
           <ngx-datatable #myTable class="bootstrap" 
             [sorts]="[{ prop: 'id,name', dir: 'desc' }]" [columns]="columns" [rows]="contractWise" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-            [rowHeight]="'auto'" [limit]="10">
+            [rowHeight]="'auto'" >
       
             <ngx-datatable-column name="Bill For" prop="billFor" [width]="30">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
@@ -1509,7 +1509,7 @@
           
           <ngx-datatable #myTable class="bootstrap" 
             [sorts]="[{ prop: 'id,name', dir: 'desc' }]" [columns]="columns" [rows]="paymentReport" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-            [rowHeight]="'auto'" [limit]="10">
+            [rowHeight]="'auto'" >
             <ngx-datatable-column prop="id" name="S. No." [width]="40">
               <ng-template let-row="row" let-rowIndex= "rowIndex"  ngx-datatable-cell-template>
                 {{ rowIndex+1 }}
@@ -1672,7 +1672,7 @@
           
           <ngx-datatable #myTable class="bootstrap" 
             [sorts]="[{ prop: 'id,name', dir: 'desc' }]" [columns]="columns" [rows]="taxChallanReport" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-            [rowHeight]="'auto'" [limit]="10">
+            [rowHeight]="'auto'" >
             <ngx-datatable-column prop="id" name="S. No." [width]="40">
               <ng-template let-row="row" let-rowIndex= "rowIndex"  ngx-datatable-cell-template>
                 {{ rowIndex+1 }}
@@ -1831,7 +1831,7 @@
           
           <ngx-datatable #myTable class="bootstrap" 
             [sorts]="[{ prop: 'id,name', dir: 'desc' }]" [columns]="columns" [rows]="commissionReport" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-            [rowHeight]="'auto'" [limit]="10">
+            [rowHeight]="'auto'" >
             <ngx-datatable-column prop="id" name="S. No." [width]="40">
               <ng-template let-row="row" let-rowIndex= "rowIndex"  ngx-datatable-cell-template>
                 {{ rowIndex+1 }}
@@ -2027,7 +2027,7 @@
           
           <ngx-datatable #myTable class="bootstrap" 
             [sorts]="[{ prop: 'id,name', dir: 'desc' }]" [columns]="columns" [rows]="dbcrNoteSummary" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-            [rowHeight]="'auto'" [limit]="10">
+            [rowHeight]="'auto'">
             <ngx-datatable-column prop="id" name="S. No." [width]="40">
               <ng-template let-row="row" let-rowIndex= "rowIndex"  ngx-datatable-cell-template>
                 {{ rowIndex+1 }}
@@ -2202,7 +2202,7 @@
           
           <ngx-datatable #myTable class="bootstrap" 
             [sorts]="[{ prop: 'id,name', dir: 'desc' }]" [columns]="columns" [rows]="externalAgentReport" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-            [rowHeight]="'auto'" [limit]="10">
+            [rowHeight]="'auto'">
             <ngx-datatable-column prop="id" name="S. No." [width]="40">
               <ng-template let-row="row" let-rowIndex= "rowIndex"  ngx-datatable-cell-template>
                 {{ rowIndex+1 }}
@@ -2413,7 +2413,7 @@
           
           <ngx-datatable #myTable class="bootstrap" 
             [sorts]="[{ prop: 'id,name', dir: 'desc' }]" [columns]="columns" [rows]="lCReport" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-            [rowHeight]="'auto'" [limit]="10">
+            [rowHeight]="'auto'" >
             <ngx-datatable-column prop="id" name="S. No." [width]="40">
               <ng-template let-row="row" let-rowIndex= "rowIndex"  ngx-datatable-cell-template>
                 {{ rowIndex+1 }}
@@ -2618,7 +2618,7 @@
           
           <ngx-datatable #myTable class="bootstrap" 
             [sorts]="[{ prop: 'id,name', dir: 'desc' }]" [columns]="columns" [rows]="kickbackReport" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-            [rowHeight]="'auto'" [limit]="10">
+            [rowHeight]="'auto'" >
             <ngx-datatable-column prop="id" name="S. No." [width]="40">
               <ng-template let-row="row" let-rowIndex= "rowIndex"  ngx-datatable-cell-template>
                 {{ rowIndex+1 }}

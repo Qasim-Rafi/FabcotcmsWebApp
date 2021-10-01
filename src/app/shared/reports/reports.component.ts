@@ -126,6 +126,7 @@ this.fetchContractInvise();
       BillNumber: row.billNo,
       Buyer: row.buyerName ,
       Seller: row.sellerName,
+      InvoiceNumber:row.invoiceNo,
       Rate: row.rate,
       CommPer: row.fabcotCommission + '%' ,
       Quantity: row.quantity,
