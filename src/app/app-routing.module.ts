@@ -28,6 +28,7 @@ const routes: Routes = [
     path:'bulkPrint',
     component:BulkPrintComponent
   },
+  {path:'accBulk' , component:AccBulkPrintComponent},
   
  {
    path:'', component:TemplateComponent,
@@ -36,7 +37,6 @@ const routes: Routes = [
     {path:'filter', component:AdvanceFilterComponent},
     {path:'accounts' , component:BillInvoicesComponent},
     {path:'saleBill' , component:SaleInvoiceBillComponent},
-    {path:'accBulk' , component:AccBulkPrintComponent},
 
 
    {

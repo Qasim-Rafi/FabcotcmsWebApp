@@ -672,9 +672,10 @@ lcForm2( check){
     if(this.response.success==true && this.response.data != null)
     {
       this.saleInvoice =this.response.data;
-      this.saleInvoiceNo=this.response.data[0].saleInvoiceNo;
-      this.saleInvoiceDate=this.response.data[0].saleInvoiceDate;
-      this.saleInvoiceId=this.response.data[0].id;
+      // this.saleInvoiceNo=this.response.data[0].saleInvoiceNo;
+      // this.saleInvoiceDate=this.response.data[0].saleInvoiceDate;
+      // this.saleInvoiceId=this.response.data[0].id;
+  
   
     cb(this.saleInvoice);
   //  this.spinner.hide();
@@ -1784,7 +1785,7 @@ addCredit(x, check) {
   modalRef.componentInstance.statusCheck = check;
   modalRef.componentInstance.contractId = this.contractId ;
   modalRef.componentInstance.buyerName = this.buyerName ;
-  modalRef.componentInstance.saleInvoiceId = this.saleInvoiceId ;
+  modalRef.componentInstance.saleInvoiceId = x.id ;
   modalRef.componentInstance.saleInvoiceNo = x.saleInvoiceNo;
   modalRef.componentInstance.saleInvoiceDate = x.saleInvoiceDate;
 

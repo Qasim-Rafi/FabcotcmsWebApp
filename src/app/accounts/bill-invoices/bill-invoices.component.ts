@@ -24,5 +24,9 @@ selected: any = [];
   navigate(){
     this.router.navigate(['/saleBill']);
   }
+  print(){
+    this.router.navigate(['/accBulk']);
+
+  }
 
 }

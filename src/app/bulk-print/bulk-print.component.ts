@@ -13,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class BulkPrintComponent implements OnInit {
   queryParems: any = {};
-  nmbr = [];
+  id : any;
   response: any;
   printData: any = {};
   words : string;
@@ -23,6 +23,7 @@ export class BulkPrintComponent implements OnInit {
   totalAmount2 : number;
 lang : SUPPORTED_LANGUAGE = 'en';
 length : any;
+
   constructor( private route: ActivatedRoute,
     private http: HttpClient,
     private spinner:NgxSpinnerService,
@@ -32,9 +33,10 @@ length : any;
     ) { }
 
   ngOnInit(): void {
-    this.queryParems = this.route.snapshot.queryParams;
+    // this.queryParems = this.route.snapshot.queryParams;
     
-    this.nmbr = this.queryParems.nmbr;
+    // this.id = this.queryParems.id;
+    this.id = localStorage.getItem('bulkPrint');
 
 this.fetch2()
 
@@ -43,7 +45,7 @@ this.fetch2()
   fetch2(){
     this.spinner.show();
     this.http
-  .get(`${environment.apiUrl}/api/BillingPayments/BulkPrint/`+ this.nmbr)
+  .get(`${environment.apiUrl}/api/BillingPayments/BulkPrint/`+ this.id)
   .subscribe(res => {
     this.response = res;
    
@@ -54,7 +56,7 @@ this.fetch2()
   this.printData[i].accountName = this.ngxNumToWordsService.inWords(this.printData[i].totalCalculation, this.lang);
   }
   this.spinner.hide();
-
+ localStorage.removeItem('bulkPrint');
 // this.totalAmount1 =this.totalAmount.toFixed(2)
 // this.totalAmount2 = parseFloat(this.totalAmount1)
 
@@ -64,6 +66,7 @@ this.fetch2()
   else{
     this.toastr.error(this.response.message, 'Message.');
     this.spinner.hide();
+ localStorage.removeItem('bulkPrint');
   
   }
 
@@ -71,6 +74,7 @@ this.fetch2()
     if ( err.status == 400) {
 this.toastr.error(err.error.message, 'Message.');
 this.spinner.hide();
+localStorage.removeItem('bulkPrint');
 
     }
   });

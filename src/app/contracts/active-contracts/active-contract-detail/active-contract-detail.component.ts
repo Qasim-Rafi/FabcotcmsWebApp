@@ -114,8 +114,9 @@ quantitynmbr : number;
     this.getAllReminder();
 
     this.getSaleInvoice();
-    
-
+    this.getContractPartiesData();
+    this.getContractCommisionData();
+ this.getContractPaymentData();
     this.getContractTnA((Tna)=>{
       this.rows5 = Tna;
       this.TnaFilter = [...Tna];
@@ -1882,6 +1883,7 @@ this.spinner.hide();
             this.getPreview((data)=>{
               this.preview = data;
             });
+          
             let docDefinition = {
               pageSize: 'A4',
               pageOrientation: 'LETTER',
@@ -1942,11 +1944,11 @@ this.spinner.hide();
                     ]
                   }
                 },
-                { margin:[300 , 6 , 0 , 0],
+                { margin:[200 , 6 , 0 , 0],
                   text: this.contractCommissionData['buyerSideCommission'] == 0 ? " " : "Commission Payable to Fabcot (Buyer Side):"  , style:'propertyValue2',
                   
                 },
-                { margin:[500 , -11 , 0 , 0],
+                { margin:[700 , -11 , 0 , 0],
                   text: this.contractCommissionData['buyerSideCommission'] == 0 ?  " " : this.contractCommissionData['buyerSideCommission']  , style:'propertyValue3',
                   
                 },
@@ -2041,7 +2043,7 @@ this.spinner.hide();
                       ],
                   
                     ...this.rows2.map((row=>
-                      [{text:row.description , style:'propertyValue'}, {text:row.compositionPercentage + row.compositionFebricTypeName+row.compositionAdditionalInfo , style:'propertyValue'} ,
+                      [{text:row.description , style:'propertyValue'}, {text:row.compositionPercentage+ " " + row.compositionFebricTypeName+ " " +row.compositionAdditionalInfo , style:'propertyValue'} ,
                          {text:row.construction , style:'propertyValue'},{text:row.size , style:'propertyValue'}, {text:row.weight , style:'propertyValue'} , {text:row.colorName , style:'propertyValue'} ,
                          { text:row.itemQuantity + row.itemUOMUnit , style:'propertyValue'} ,
                       
@@ -2329,7 +2331,7 @@ this.spinner.hide();
                       ],
                   
                     ...this.rows2.map((row=>
-                      [{text:row.description , style:'propertyValue'}, {text:row.compositionPercentage + row.compositionFebricTypeName+row.compositionAdditionalInfo , style:'propertyValue'} ,
+                      [{text:row.description , style:'propertyValue'}, {text:row.compositionPercentage+" " + row.compositionFebricTypeName+ " "+row.compositionAdditionalInfo , style:'propertyValue'} ,
                          {text:row.construction , style:'propertyValue'},{text:row.size , style:'propertyValue'}, {text:row.weight , style:'propertyValue'} , {text:row.colorName , style:'propertyValue'} ,
                          { text:row.itemQuantity + row.itemUOMUnit , style:'propertyValue'} ,
                          
