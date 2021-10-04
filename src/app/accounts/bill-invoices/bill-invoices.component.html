@@ -119,7 +119,7 @@
           <div class="col-md-2">
               <input  navigation="select" class="form-control  " ngbDatepicker #startDate="ngbDatepicker"
               (click)="startDate.toggle()"  
-              placeholder="Start Date">
+              placeholder="Start Date" name="startDate" [(ngModel)] = "data2.startDate" #startDate = "ngModel">
           </div>   
 
          
@@ -132,12 +132,12 @@
 
       <div class="input-group col-md-2">
                     
-        <input  navigation="select" class="form-control  " ngbDatepicker #startDate="ngbDatepicker"
-        (click)="startDate.toggle()"  
+        <input  navigation="select" class="form-control  " ngbDatepicker #endDate="ngbDatepicker"
+        (click)="endDate.toggle()"   name="endDate" [(ngModel)] = "data2.endDate" #endDate = "ngModel"
         placeholder="End Date">
 
         <div class="input-group-append">
-            <button type="button" class="btn btn-primary"  ><i class="fa fa-search"></i>
+            <button type="button" class="btn btn-primary" (click) = "fetch()" ><i class="fa fa-search"></i> 
             </button>
           </div>
 
@@ -320,7 +320,7 @@
       
           <ngx-datatable-column name="Bill #" [width]="80" prop="billNumber" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{row.nmbr}}
+              {{row.billNumber}}
             </ng-template>
           </ngx-datatable-column>
       
@@ -331,7 +331,7 @@
           </ngx-datatable-column>
           <ngx-datatable-column name="Contract #" [width]="80" prop="autoContractNumber" [flexGrow]="0.08">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-           
+           {{row.autoContractNumber}}
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Bill Date" [width]="80" prop="billDate" [flexGrow]="0.06">
