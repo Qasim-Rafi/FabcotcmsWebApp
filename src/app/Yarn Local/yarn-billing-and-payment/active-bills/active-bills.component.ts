@@ -127,7 +127,7 @@ this.fetch();
     this.data2.FromDate = this.dateformater.toModel(this.data2.FromDate)
     this.spinner.show();
     this.http
-    .get(`${environment.apiUrl}/api/BillingPayments/GetAllContractBill/`+ this.data2.toDate + '/' + this.data2.FromDate)
+    .get(`${environment.apiUrl}/api/BillingPayments/GetAllContractBill/`+ null + '/' + null)
     .subscribe(res => {
       this.response = res;
      
