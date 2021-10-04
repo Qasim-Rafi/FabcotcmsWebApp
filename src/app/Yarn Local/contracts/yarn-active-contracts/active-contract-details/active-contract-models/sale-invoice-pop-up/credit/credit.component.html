@@ -61,7 +61,7 @@
           <div class="form-group row">
             <label for="itemQuantity" class="col-md-3 col-form-label text_Navy">Quantity</label>
             <div class="col-md-3">
-              <input type="number" min="0" id="itemQuantity" #itemQuantity="ngModel" name="quantity"
+              <input type="number" min="0" id="itemQuantity" (keyup)="getquantity($event)" #itemQuantity="ngModel" name="quantity"
                 [(ngModel)]="data.quantity" #quantity="ngModel" class="form-control" value="" placeholder="Quantity" />
             </div>
             <div class="col-md-5 mrg-tsm">
@@ -80,7 +80,7 @@
       
             <div class="col-md-3">
               <input type="number" min="0" #amount="ngModel" name="amount" [(ngModel)]="data.amount" class="form-control"
-                value="" placeholder="Amount" />
+                value="" placeholder="Amount" readonly />
             </div>
       
             <div class="col-md-5 mrg-tsm">

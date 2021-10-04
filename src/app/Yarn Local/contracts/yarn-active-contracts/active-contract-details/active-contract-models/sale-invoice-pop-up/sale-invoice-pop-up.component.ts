@@ -204,12 +204,12 @@ if(event==7){
 //   }
 
   addSaleInvoice(form:NgForm) {
-    // let sum=parseInt(this.quantitya)+parseInt(this.saleInvoiceQuantity);
-    // if(sum>this.quantity ){
-    //   this.toastr.error("Total Sale Invoice Quantity"+"["+sum+"]"+ "should be less than contract quantity"+"["+this.quantity+"]", 'Message.');
+    let sum=parseInt(this.quantitya)+parseInt(this.saleInvoiceQuantity);
+    if(sum>this.quantity ){
+      this.toastr.error("Total Sale Invoice Quantity"+"["+sum+"]"+ "should be less than contract quantity"+"["+this.quantity+"]", 'Message.');
 
-    // }
-    // else{
+    }
+    else{
     let varr = {
 
       "contractId": parseInt(this.contractId),
@@ -221,7 +221,8 @@ if(event==7){
       "unit": this.data.unit.toString(),
       "taxPercentage": this.data.taxPercentage == null ?  this.condition :this.data.taxPercentage,
       "contractArticleId":this.data.contractArticleId,
-      "UnitofMeasurement" : this.uom
+      "UnitofMeasurement" : this.uom,
+      "blDate": this.dateformater.toModel(this.data.blDate)
     }
 this.spinner.show();
           // this._document.defaultView.location.reload();
@@ -251,6 +252,7 @@ this.spinner.show();
         })
         ;
       }
+      }
   // }
 
 
@@ -268,6 +270,8 @@ this.spinner.show();
             this.saleInvoiceDate=this.data.saleInvoiceDate;
             this.quantity=this.quantity
             this.saleInvoiceQuantity=this.saleInvoiceQuantity
+     this.data.blDate = this.dateformater.fromModel(this.data.blDate)
+
       this.uom = this.data.UnitofMeasurement
             // this.spinner.hide();
 
@@ -290,11 +294,10 @@ this.spinner.show();
 
   
   updateSaleInvoice(form:NgForm) {
-    let sum=parseInt(this.quantitya)+parseInt(this.saleInvoiceQuantity);
-    if(sum>this.quantity ){
-      this.toastr.error("Total Sale Invoice Quantity"+"["+sum+"]"+ "should be less than contract quantity"+"["+this.quantity+"]", 'Message.');
-
-    }else{
+    // let sum=parseInt(this.data.quantity)+parseInt(this.saleInvoiceQuantity);
+    // if(sum>this.quantity ){
+    //   this.toastr.error("Total Sale Invoice Quantity"+"["+sum+"]"+ "should be less than contract quantity"+"["+this.quantity+"]", 'Message.');
+    // }else{
     let varr = {
      "contractId": this.contractId,
      "contractArticleId":this.data.contractArticleId,
@@ -307,7 +310,8 @@ this.spinner.show();
        "rate":  this.data.contractArticleRate,
        "commission": this.data.contractArticleCommission,
        "taxPercentage": this.data.taxPercentage == null ?  this.condition :this.data.taxPercentage,
-      "UnitofMeasurement" : this.uom
+      "UnitofMeasurement" : this.uom,
+      "blDate": this.dateformater.toModel(this.data.blDate)
 
     }
  this.spinner.show();
@@ -335,7 +339,7 @@ this.spinner.show();
           this.toastr.error(messages.toString(), 'Message.');
           console.log(messages);
         });
-  }}
+  }
   onSubmit(buttonType): void {
     if (buttonType === "addInvoice"){
   

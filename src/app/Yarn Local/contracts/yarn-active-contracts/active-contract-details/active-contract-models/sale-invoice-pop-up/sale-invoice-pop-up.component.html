@@ -164,6 +164,16 @@
                 [(ngModel)]="data.saleInvoiceRemarks" #saleInvoiceRemarks="ngModel"></textarea>
             </div>
           </div>
+
+          <div class="form-group row" *ngIf = "loggedInDepartmentName == 'Fabric Export'">
+            <label for="saleInvoiceDate" class="col-md-3 col-form-label text_Navy">BL Date</label>
+            <div class="col-md-8" (clickOutside)="blDate.close()">
+      
+              <input navigation="select" class="form-control  " ngbDatepicker #blDate="ngbDatepicker"
+                (click)="blDate.toggle()" placeholder="BL Date" name="blDate"
+                [(ngModel)]="data.blDate" />
+            </div>
+          </div>
       
         </div>
       </div>

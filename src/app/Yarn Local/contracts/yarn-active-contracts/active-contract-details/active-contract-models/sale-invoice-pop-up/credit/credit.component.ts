@@ -27,6 +27,13 @@ export class CreditComponent implements OnInit {
   response: any;
   @Input() saleInvoiceNo;
   @Input() saleInvoiceDate;
+  @Input() saleInvoiceQuantity;
+ @Input() quantity;
+  timeout: any = null;
+  loggedInDepartmentName:string;
+  quantitya:any;
+  calculatedcost:any;
+  rate:any;
 
 
   @ViewChild(NgForm) creditForm;
@@ -40,12 +47,14 @@ export class CreditComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this. GetCurrencyDropdown();
+    this.GetCurrencyDropdown();
+    this.loggedInDepartmentName = localStorage.getItem('loggedInDepartmentName');
+
     this.statusCheck = this.statusCheck
     this.saleInvoiceNo = this.saleInvoiceNo
     this.saleInvoiceDate=this.saleInvoiceDate
  this.saleInvoiceId=this.saleInvoiceId
-
+this.getContractCostingData();
     if(this.statusCheck == 'Edit')
     {
     this.getCredit();
@@ -100,6 +109,46 @@ export class CreditComponent implements OnInit {
     })
   }
 
+  getContractCostingData() {
+    this.http.get(`${environment.apiUrl}/api/Contracts/GetContractCostingById/` + this.contractId)
+      .subscribe(
+        res => {
+          this.response = res;
+          if (this.response.success == true) {
+            this.rate = this.response.data.rate;
+         
+          
+          }
+  
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+  
+        },(err: HttpErrorResponse) => {
+          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+          this.toastr.error(messages.toString(), 'Message.');
+          console.log(messages);
+        });
+  }
+
+
+  getquantity(event){
+    clearTimeout(this.timeout);
+    
+      if (event.keyCode != 13) {
+        if(this.loggedInDepartmentName=="Yarn Local"){
+          this.quantitya=event.target.value;
+          this.calculatedcost= this.quantitya*this.rate*10;
+          this.data.amount=this.calculatedcost;
+        }else{
+          this.quantitya=event.target.value;
+          this.calculatedcost= this.quantitya*this.rate;
+          this.data.amount=this.calculatedcost;
+        }
+      }
+    
+   }
+
   getCredit() {
     this.http.get(`${environment.apiUrl}/api/YarnContracts/GetInvoiceDebitCreditNoteById/` + this.saleInvoiceId)
       .subscribe(
@@ -127,7 +176,12 @@ export class CreditComponent implements OnInit {
 
 
   addCredit(form:NgForm) {
+    let sum=parseInt(this.quantitya)+parseInt(this.saleInvoiceQuantity);
+    if(sum>this.quantity ){
+      this.toastr.error("Total Sale Invoice Quantity"+"["+sum+"]"+ "should be less than contract quantity"+"["+this.quantity+"]", 'Message.');
 
+    }
+    else{
     let varr = {
 
       "saleInvoiceId": this.saleInvoiceId,
@@ -165,7 +219,7 @@ export class CreditComponent implements OnInit {
           this.toastr.error(messages.toString(),'Message.');
 
         });
-
+      }
   }
 
 

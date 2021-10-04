@@ -144,7 +144,7 @@ max1:any;
  value : any;
  value2 : any;
  uom : any;
-
+quantity : any;
 comm = "Commission:";
   constructor(
     config: NgbProgressbarConfig,
@@ -201,7 +201,7 @@ comm = "Commission:";
     this.getContractCommisionData();
  
     // this.getDispatches();
-
+  this.getContractLOC();
     this.getDeliveries();
     this.getAllInvoices();
     
@@ -719,6 +719,8 @@ lcForm2( check){
   modalRef.componentInstance.invoiceId = row.id;
     modalRef.componentInstance.statusCheck = check;
     modalRef.componentInstance.uom = this.uom;
+    modalRef.componentInstance.saleInvoiceQuantity = this.max1 ;
+    modalRef.componentInstance.quantity = this.max ;
 
     modalRef.result.then((data) => {
       // on close
@@ -824,10 +826,10 @@ lcForm2( check){
   
   
  
-  deleteCreditDebit(row) {
+  deleteDebit(row) {
     Swal.fire({
       title: GlobalConstants.deleteTitle, //'Are you sure?',
-      text: GlobalConstants.deleteMessage + ' ' +'Debit/Credit Note:'+ '"' + row.creditNoteNo + '"',
+      text: GlobalConstants.deleteMessage + ' ' +'Debit/Credit Note:'+ '"' + row.debitNoteNo + '"',
       icon: 'error',
       showCancelButton: true,
       confirmButtonColor: '#ed5565',
@@ -846,7 +848,7 @@ lcForm2( check){
               if (this.response.success == true) {
                 this.toastr.error(this.response.message, 'Message.');
                 // this.getCreditDebit();
-
+              this.getAllInvoices();
                 this.spinner.hide();
   
               }
@@ -869,7 +871,50 @@ lcForm2( check){
   
   }
 
+  deleteCredit(row) {
+    Swal.fire({
+      title: GlobalConstants.deleteTitle, //'Are you sure?',
+      text: GlobalConstants.deleteMessage + ' ' +'Debit/Credit Note:'+ '"' + row.creditNoteNo + '"',
+      icon: 'error',
+      showCancelButton: true,
+      confirmButtonColor: '#ed5565',
+      cancelButtonColor: '#dae0e5',
+      cancelButtonText: 'No',
+      confirmButtonText: 'Yes',
+      reverseButtons: true,
+      position: 'top',
+    }).then((result) => {
+      if (result.isConfirmed) {
+  this.spinner.show()
+        this.http.delete(`${environment.apiUrl}/api/YarnContracts/DeleteInvoiceDebitCreditNote/` + row.id)
+          .subscribe(
+            res => {
+              this.response = res;
+              if (this.response.success == true) {
+                this.toastr.error(this.response.message, 'Message.');
+                // this.getCreditDebit();
+              this.getAllInvoices();
+                this.spinner.hide();
+  
+              }
+              else {
+                this.toastr.error(this.response.message, 'Message.');
+                this.spinner.hide();
 
+              }
+  
+            },(err: HttpErrorResponse) => {
+              const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+              this.toastr.error(messages.toString(), 'Message.');
+              console.log(messages);
+              this.spinner.hide();
+
+            });
+  
+      }
+    })
+  
+  }
 
   approveContract()
   {
@@ -1788,6 +1833,9 @@ addCredit(x, check) {
   modalRef.componentInstance.saleInvoiceId = x.id ;
   modalRef.componentInstance.saleInvoiceNo = x.saleInvoiceNo;
   modalRef.componentInstance.saleInvoiceDate = x.saleInvoiceDate;
+  modalRef.componentInstance.saleInvoiceQuantity = x.quantity;
+  modalRef.componentInstance.quantity = this.max;
+
 
 
 
@@ -1795,9 +1843,12 @@ addCredit(x, check) {
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
-      this.getContractData();
+      // this.getContractData();
       // this.getDispatches();
-  
+      this.fetch((data) => {
+        this.rows = data;
+  this.saleinvoiceFilter = [...this.rows];
+      });
     }
     // this.getContractData();
 
