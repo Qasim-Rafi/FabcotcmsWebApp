@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
@@ -20,10 +20,12 @@ SelectionType = SelectionType;
 selected: any = [];
 data:any=[];
 data2:any=[];
+datatext:any={};
 response:any=[];
 dateformater: Dateformater = new Dateformater();  
 dashboardAmnt : any [];
-    
+ids:any;
+
 constructor(    private service: ServiceService,
   private http: HttpClient,
   private router: Router,
@@ -36,11 +38,13 @@ constructor(    private service: ServiceService,
   ngOnInit(): void {
     this.fetch();
   }
+  
   onSelect(selecterow) {
-    this.selected =selecterow;
+    this.selected =selecterow.selected;
   }
-  navigate(){
-    this.router.navigate(['/saleBill']);
+  saleinvoicebill(row){
+   
+    this.router.navigate(['/saleBill'], { queryParams: {contractId:row.contractId} });
   }
   print(){
     this.router.navigate(['/accBulk']);
@@ -80,4 +84,40 @@ constructor(    private service: ServiceService,
       }
     });
   }
+
+  genrateInvoices(){
+  
+    this.ids=this.selected.map(a => a.contractId);
+    let varr=  {
+      "taxPercentage": this.datatext.textValue,
+       "contractIds":this.ids
+    }
+    this.spinner.show();
+    this.http.
+    post(`${environment.apiUrl}/api/BillingPayments/GenerateInvices`,varr)
+    .subscribe(
+      res=> {   
+        this.response = res;
+        if (this.response.success == true){
+          this.toastr.success(this.response.message, 'Message.');
+          this.fetch();
+    this.spinner.hide();
+
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+    this.spinner.hide();
+
+            }
+
+      },(err: HttpErrorResponse) => {
+        const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+        this.toastr.error(messages.toString(), 'Message.');
+        console.log(messages);
+    this.spinner.hide();
+      });
+  }
+
+
+
 }

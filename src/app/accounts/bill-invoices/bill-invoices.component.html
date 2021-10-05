@@ -34,32 +34,66 @@
             <div class="col-md-12 mb-3">
         
                 <div class="row justify-content-center">
-    
-                    <button type="button" class="btn btn-primary btn-sm  mr-2" >
+                  <label>
+                    <input type="radio" disabled  name="options"/>
+                    <span><i class="fa fa-star"></i></span>
+                  </label>
+                    <!-- <button type="radio" name="options" class="btn btn-primary btn-sm  mr-2" >
                     <i class="fa fa-star"></i>
-                      </button>
+                      </button> -->
                       <br>
-                      <button type="button" class="btn btn-primary YE btn-sm  mr-2" >
+                      <label>
+                        <input type="radio" disabled name="options"/>
+                        <span>YE</span>
+                      </label>
+
+                      <label>
+                        <input type="radio" disabled name="options"/>
+                        <span>FE</span>
+                      </label>
+                      <label>
+                        <input type="radio" checked name="options"/>
+                        <span>YL</span>
+                      </label>
+                      <label>
+                        <input type="radio" disabled name="options"/>
+                        <span>YK</span>
+                      </label>
+                      <label>
+                        <input type="radio" disabled name="options"/>
+                        <span>FL</span>
+                      </label>
+                      <label>
+                        <input type="radio" disabled name="options"/>
+                        <span>HT</span>
+                      </label>
+
+                      <label>
+                        <input type="radio" disabled name="options"/>
+                        <span>CT</span>
+                      </label>
+
+                      <!-- <button type="radio" name="options" class="btn btn-primary YE btn-sm  mr-2" >
                      YE
                       </button>
-                      <button type="button" class="btn btn-primary FE btn-sm  mr-2" >
+                      <button type="radio" name="options" class="btn btn-primary FE btn-sm  mr-2" >
                           FE
                       </button>
-                      <button type="button" class="btn btn-primary YL btn-sm  mr-2" >
+                      <button type="radio" name="options" class="btn btn-primary YL btn-sm  mr-2" >
                         YL
                     </button>
-                    <button type="button" class="btn btn-primary YK btn-sm  mr-2" >
+                    <button type="radio" name="options" class="btn btn-primary YK btn-sm  mr-2" >
                         YK
                     </button>
-                    <button type="button" class="btn btn-primary FL btn-sm  mr-2" >
+                    <button type="radio" name="options" class="btn btn-primary FL btn-sm  mr-2" >
                        FL
                     </button>
-                    <button type="button" class="btn btn-primary HT btn-sm  mr-2" >
+                    <button type="radio" name="options" class="btn btn-primary HT btn-sm  mr-2" >
                         HT
                      </button>
-                     <button type="button" class="btn btn-primary CT btn-sm mr-2" >
+                     <button type="radio" name="options" class="btn btn-primary CT btn-sm mr-2" >
                         CT
-                     </button>
+                     </button> -->
                 </div>
             
               </div>
@@ -215,12 +249,12 @@
            ngxClipboard><span>Enter Tax rate(%)</span>
           </a>
           <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0" aria-controls="DataTables_Table_0"
-          ngxClipboard>  <input type="text" placeholder="0" class="form-control text-w-4"
+          ngxClipboard>  <input type="text" placeholder="0"  name="textValue" [(ngModel)]="datatext.textValue" class="form-control text-w-4"
           >
          </a>
           <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
           
-          aria-controls="DataTables_Table_0"> <button type="button" class="btn btn-primary"  ><i class="fa fa-arrow-alt-circle-right"></i>
+          aria-controls="DataTables_Table_0"> <button type="button" class="btn btn-primary " (click)="genrateInvoices()" ><i class="fa fa-arrow-alt-circle-right"></i>
             Apply Tax rate and Generate Sale Tax Invoices
         </button></a>
 
@@ -275,7 +309,6 @@
         
           [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" 
         
-          (select)="onSelect($event)"
           [selected]="selected" [selectionType]="SelectionType.checkbox" [sorts]="[{ prop: 'id', dir: 'desc' }]" (select)="onSelect($event)">
       
           <!-- <ngx-datatable-column prop="selected" name="Select" [width]="20" [flexGrow]="0.03" [width]="30"
@@ -289,7 +322,7 @@
             </ng-template>
           </ngx-datatable-column> -->
 
-          <ngx-datatable-column prop="selected"  [width]="20"   [flexGrow]="0.03"
+          <ngx-datatable-column prop="selected"  [width]="40"   [flexGrow]="0.03"
           [width]="30"
           [headerCheckboxable]="true"
           [checkboxable]="true"
@@ -298,17 +331,17 @@
             <ng-template let-row="row"    ngx-datatable-cell-template  >
             </ng-template>
           </ngx-datatable-column>
-
+<!-- 
           <ngx-datatable-column name="Bill ID" [width]="80" prop="sellerName" [flexGrow]="0.05">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
       
 
             </ng-template>
-          </ngx-datatable-column>
+          </ngx-datatable-column> -->
           
-          <ngx-datatable-column name="Department" [width]="80" prop="sellerName" [flexGrow]="0.05">
+          <ngx-datatable-column name="Department" [width]="80" prop="fabcotBranchName" [flexGrow]="0.05">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-      
+      {{row.fabcotBranchName}}
 
             </ng-template>
           </ngx-datatable-column>
@@ -326,7 +359,7 @@
       
           <ngx-datatable-column name="Inv Tax #" [width]="80" prop="autoContractNumber" [flexGrow]="0.08">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-        
+         {{row.billInvoiceNumber}}
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Contract #" [width]="80" prop="autoContractNumber" [flexGrow]="0.08">
@@ -366,7 +399,7 @@
                 <!-- <button type="button" class="btn editIconBack px-1 py-1"  title=""
                   data-original-title="open" ><i class="far fa-edit"></i></button> -->
                   
-                <button type="button" class="btn editIconBack px-1 py-1" data-toggle="tooltip" data-placement="top" title=""  (click) = "navigate()"
+                <button type="button" class="btn editIconBack px-1 py-1" data-toggle="tooltip" data-placement="top" title="Sale Invoice Bill"  (click)="saleinvoicebill(row)"
                 ><i class="fas fa-paper-plane" aria-hidden="true"></i></button>
               </div>
       
