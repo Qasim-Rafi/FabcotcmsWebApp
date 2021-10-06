@@ -25,7 +25,7 @@ response:any=[];
 dateformater: Dateformater = new Dateformater();  
 dashboardAmnt : any [];
 ids:any;
-
+temp: any = [];
 constructor(    private service: ServiceService,
   private http: HttpClient,
   private router: Router,
@@ -36,7 +36,10 @@ constructor(    private service: ServiceService,
   ) { }
 
   ngOnInit(): void {
-    this.fetch();
+    this.fetch((data) => {
+      this.temp = [...data]; 
+      this.rows = data;
+    });
   }
   
   onSelect(selecterow) {
@@ -46,8 +49,24 @@ constructor(    private service: ServiceService,
    
     this.router.navigate(['/saleBill'], { queryParams: {contractId:row.contractId} });
   }
- 
-  fetch() {
+  Filter(event) {
+    const val = event.target.value.toLowerCase();
+    // filter our data
+    const temp = this.temp.filter(function (d) {
+      return ( 
+        d.sellerName.toLowerCase().indexOf(val) !== -1 || 
+        d.billNumber.indexOf(val) !== -1 || 
+        d.billInvoiceNumber.toString().indexOf(val) !== -1 || 
+        d.autoContractNumber.toString().indexOf(val) !== -1 || 
+        d.billGeneratedDateTime.toString().indexOf(val) !== -1 || 
+        d.saleInvoiceNo.toString().indexOf(val) !== -1 || 
+        d.billAmount.toString().indexOf(val) !== -1 || 
+        d.taxAmount.toString().indexOf(val) !== -1 || 
+        !val );
+    });
+    this.rows = temp;
+  }
+  fetch(cb) {
     this.data2.toDate = this.dateformater.toModel(this.data2.toDate)
     this.data2.FromDate = this.dateformater.toModel(this.data2.FromDate)
     this.spinner.show();
@@ -63,7 +82,42 @@ constructor(    private service: ServiceService,
     this.rows = this.data.objList;
 
 
-    // cb(this.data);
+     cb(this.data.objList);
+    this.spinner.hide();
+
+    }
+    else{
+      this.toastr.error(this.response.message, 'Message.');
+      this.spinner.hide();
+    
+    }
+
+    }, err => {
+      if ( err.status == 400) {
+  this.toastr.error(err.error.message, 'Message.');
+  this.spinner.hide();
+
+      }
+    });
+  }
+
+  fetch1() {
+    this.data2.toDate = this.dateformater.toModel(this.data2.toDate)
+    this.data2.FromDate = this.dateformater.toModel(this.data2.FromDate)
+    this.spinner.show();
+    this.http
+    .get(`${environment.apiUrl}/api/BillingPayments/GetAllContractBillForInvoices/`+ this.data2.toDate + '/' + this.data2.FromDate)
+    .subscribe(res => {
+      this.response = res;
+     
+    if(this.response.success==true)
+    {
+    this.data=this.response.data;
+    this.dashboardAmnt = this.data
+    this.rows = this.data.objList;
+
+
+     //cb(this.data.objList);
     this.spinner.hide();
 
     }
@@ -97,7 +151,10 @@ constructor(    private service: ServiceService,
         this.response = res;
         if (this.response.success == true){
           this.toastr.success(this.response.message, 'Message.');
-          this.fetch();
+          this.fetch((data) => {
+            this.temp = [...data]; 
+            this.rows = data;
+          });
     this.spinner.hide();
 
         }

@@ -171,7 +171,7 @@
         placeholder="End Date">
 
         <div class="input-group-append">
-            <button type="button" class="btn btn-primary" (click) = "fetch()" ><i class="fa fa-search"></i> 
+            <button type="button" class="btn btn-primary" (click) = "fetch1()" ><i class="fa fa-search"></i> 
             </button>
           </div>
 
@@ -208,7 +208,7 @@
                 <div class="form-group row">
                   <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
                   <div class="col-sm-9">
-                    <input type="text" placeholder="Search..." class="input form-control form-control-sm"
+                    <input type="text" placeholder="Search..." class="input form-control form-control-sm" (keyup)="Filter($event)"
                  />
                   </div>
                 </div> 
@@ -345,9 +345,9 @@
 
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Bill To" [width]="80" prop="buyerName" [flexGrow]="0.08">
+          <ngx-datatable-column name="Bill To" [width]="80" prop="sellerName" [flexGrow]="0.08">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            {{row.sellerName}}  <br>  {{row.buyerName}} 
+            {{row.sellerName}}
             </ng-template>
           </ngx-datatable-column>
       
