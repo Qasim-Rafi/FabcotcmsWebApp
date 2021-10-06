@@ -1,5 +1,29 @@
 <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "line-spin-fade" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
 
+<div class="content-header">
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-8">
+            <h2 class="row wrapper page-header font-weight-light">
+                <b>Bill {{rows.billNumber}}</b>
+                <div class="ml-2 descr">
+                    Billing detail of Bill <b>{{rows.billNumber}}</b> against Contract <b>{{rows.contractNumber}}</b>
+                </div>
+            </h2>
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-lg-4">
+            <ol class="breadcrumb flt-RnL">
+                <li class="breadcrumb-item"><a href="#">Billing and Payment</a></li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    Active Bills
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    Bill
+                </li>
+            </ol>
+        </div>
+    </div>
+</div>
 
 
 
@@ -13,11 +37,7 @@
                     <span class="text-muted">Supplier Side Bill
                     </span>
                 </div>
-                <div class="col-md-6 mrg-tsm">
-                    <button type="button" class="btn btn-primary btn-md float-right" >
-                        <i class="fa fa-print"></i> Print Bill
-                    </button>
-                </div>
+              
             </div>
 
 
@@ -69,19 +89,19 @@
         </span>
         <br>
         <span class="text-font1">
-            Seller  Name: 
+           {{data.sellerName}}
         </span>
         <br>
         <span class="text-small bold">
-            Address: <span class=" text-small">Head Office, 1st Floor, Haji Adam Chamber, New Challi., Altaf Hussa..</span>
+            Address: <span class=" text-small">{{data.sellerBillingAddress}}</span>
         </span>
         <br>
         <span class="text-small bold">
-            Sales Tax Resgitration No.: <span class=" text-small"> 0101520201773</span>
+            Sales Tax Resgitration No.: <span class=" text-small"> {{data.sellerGST}}</span>
         </span>
         <br>
         <span class="text-small bold">
-            NTN No.:<span class=" text-small"> 0101520201773</span>
+            NTN No.:<span class=" text-small"> {{data.sellerNTN}}</span>
         </span>
     </div>
     <div class="col-md-6 float-right">
@@ -90,19 +110,19 @@
         </span>
         <br>
         <span class="text-font1">
-            Buyer  Name: 
+           {{data.buyerName}}
         </span>
         <br>
         <span class="text-small bold">
-            Address: <span class=" text-small">Head Office, 1st Floor, Haji Adam Chamber, New Challi., Altaf Hussa..</span>
+            Address: <span class=" text-small">{{data.buyerBillingAddress}}</span>
         </span>
         <br>
         <span class="text-small bold">
-            Sales Tax Resgitration No.: <span class=" text-small"> 0101520201773</span>
+            Sales Tax Resgitration No.: <span class=" text-small"> {{data.buyerGST}}</span>
         </span>
         <br>
         <span class="text-small bold">
-            NTN No.:<span class=" text-small"> 0101520201773</span>
+            NTN No.:<span class=" text-small">  {{data.buyerrNTN}}</span>
         </span>
     </div>
 </div>
@@ -113,15 +133,15 @@
 
                 <div class="float-right">
                     <span class="text-font1">
-                        Bill No.: <span class="weight">{{rows.billNumber}}</span>
+                        Bill No.: <span class="weight">{{data.billNumber}}</span>
                     </span>
                     <br>
                     <span class="text-font1">
-                        Bill Dt.: <span class="bold text-font1">{{rows.billDate}}</span>
+                        Bill Dt.: <span class="bold text-font1">{{data.billDate}}</span>
                     </span>
                     <br>
                     <span class="text-font1">
-                        Invoice Date.:<span class="bold text-font1">{{rows.billDate}}</span>
+                        Invoice Date.:<span class="bold text-font1">{{data.billInvoiceDate}}</span>
                     </span>
                 </div>
 
@@ -136,12 +156,12 @@
                     <br> -->
 
                     <span class="text-font1">
-                        Fabcot Contract No: <span class="bold text-font1"> {{rows.contractNumber}}</span>
+                        Fabcot Contract No: <span class="bold text-font1"> {{data.contractNumber}}</span>
                     </span>
                     <br>
                   
                     <span class="text-font1">
-                        Contract Date: <span class="bold text-font1">{{rows.contractDate}}</span>
+                        Contract Date: <span class="bold text-font1">{{data.contractDate}}</span>
                     </span>
                     <br>
                   
@@ -156,17 +176,17 @@
                     <th>Sale Invoice #</th>
                     <th>Sale Invoice Date</th>
                     <th>Quantity</th>
-                    <th>Rate({{rows.currencyName}})</th>
-                    <th>Commission %</th>
+                    <th>Rate({{data.currencyName}})</th>
+                    <th>Commission  ({{data.sellerCommission}})%</th>
                     <th>Amount Excl. Tax</th>
-                    <th>TAX</th>
+                    <th>Tax ({{data.invoiceTaxPercentage}})%</th>
                     <th>Amount Incl. Tax</th>
 
 
 
 
                 </tr>
-                <tr *ngFor="let i of rows.contractSaleInvoices">
+                <tr *ngFor="let i of data.contractSaleInvoices">
                     <td>{{i.description}}</td>
                    
                     <td>{{i.saleInvoiceNo}}</td>
@@ -174,8 +194,8 @@
                     <td>{{i.quantity}}{{i.quanityUOM}}</td>
                     <td>{{i.rate}}</td>
 
+                    <td>{{i.sellerCommissionAmount}} </td>
                     <td>{{i.amount}}</td>
-                    <td>{{i.commission}}% </td>
                     <td>{{i.taxAmount}}</td>
 
                     <td>{{i.totalAmount  | number:'2.2-2'}}</td>
@@ -187,23 +207,23 @@
             <br>
             <div class="float-right">
                 <span class=" bold text-font1">
-                    Sub Total: <span class="text-font1 underline">{{rows.currencyName}} </span>
+                    Sub Total: <span class="text-font1 underline">{{data.billAmount}} </span>
                 </span>
                 <br>
                 <span class=" bold text-font1">
-                    TAX : <span class="text-font1 underline">{{rows.currencyName}}  {{0.00}}</span>
+                    TAX : <span class="text-font1 underline">{{data.invoiceTaxAmountTotal}}</span>
                 </span><br>
                 <span class=" bold text-font1">
-                    TOTAL : <span class="bold text-font1 underline">{{rows.currencyName}}  </span>
+                    TOTAL : <span class="bold text-font1 underline">{{data.invoiceTotalAmount}}  </span>
                 </span>
             </div>
             <div class="float-left" >
             <span class="text-font1">
-                Quantity:<span class="bold text-font1 "></span>
+                Quantity:<span class="bold text-font1 "> {{data.quantitySum}}</span>
             </span>
             <br><br><br>
             <span class=" text-font1">
-                Amount In Words:<span class="bold text-font1 underline"></span>
+                Amount In Words:<span class="bold text-font1 underline text-capitalize">  {{amountInWorda}}</span>
             </span>
             <br> <br><br><br>
             <span class=" float-left text-font1">
