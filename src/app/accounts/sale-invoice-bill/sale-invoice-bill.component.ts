@@ -107,11 +107,32 @@ print(){
            
             },
             {
-              margin: [0 , 10 , 0 , 0],
+              margin: [0 , 3 , 0 , 0],
               layout:'noBorders',
               table:{headerRows: 1 , widths:['100%'],
             body: [
-              [{text:'Commission Bill' , style:'headingC'}],] }
+              [{text:'133-Aurangzeb Block New Garden Town Lahore' , style:'headingC'}],] }
+            },
+            {
+              margin: [0 , 3 , 0 , 0],
+              layout:'noBorders',
+              table:{headerRows: 1 , widths:['100%'],
+            body: [
+              [{text:'SALES TAX INVOICE' , style:'headingC'}],] }
+            },
+            {
+              margin: [0 , 3 , 0 , 0],
+              layout:'noBorders',
+              table:{headerRows: 1 , widths:['100%'],
+            body: [
+              [{text:'PNTN No. P-1300724-6' , style:'headingC'}],] }
+            },
+            {
+              margin: [0 , 3 , 0 , 0],
+              layout:'noBorders',
+              table:{headerRows: 1 , widths:['100%'],
+            body: [
+              [{text:'STRN: 3277876195292' , style:'headingC'}],] }
             },
           //   {
           //     layout:'noBorders',
@@ -137,13 +158,51 @@ print(){
              
 
               layout:'noBorders',
-              table:{headerRows:1 ,  widths:['25%' , '75%' , '5%' , '12%' ],
-            body:[ [{text: 'Fabcot Contract# :' , margin: [30 , 30 , 0 , 0] , bold:true , style:'common'} , {text: this.data['contractNumber'] , margin: [0 , 30 , 0 , 0]  , bold:true  , decoration:'underline' , style:'common'},
-            {text:'Bill # :' , margin: [0 , 30 , 0 , 0] , bold:true , style:'common'} ,{text:this.data['billNumber'] , margin: [0 , 30 , 0 , 0] , style:'common'}
+              table:{headerRows:1 ,  widths:['8%' , '50%' , '8%' , '50%'  ],
+            body:[ [{text: 'Seller :' , margin: [0 , 0 , 10 , 0] , bold:true , style:'headingF'} , {text: this.data['sellerName'] , margin: [0 , 0 , 10 , 0]  , bold:true , style:'headingF'},
+            {text:'Buyer :' , margin: [0 , 0 , 10 , 0] , bold:true , style:'headingF'} ,{text:this.data['buyerName'] , margin: [0 , 0 , 10 , 0] , style:'headingF'}
           
           ]]
             }
             },
+            {
+             
+
+              layout:'noBorders',
+              table:{headerRows:1 ,  widths:['8%' , '50%' , '8%' , '50%' ],
+            body:[ [{text: 'Address :' , margin: [0 , 0 , 0 , 0] , bold:true , style:'headingF'} , {text: this.data['sellerBillingAddress'] , margin: [0 , 0 , 0 , 0]  , bold:true  , style:'headingF'},
+            {text:'Address :' , margin: [0 , 0 , 0 , 0] , bold:true , style:'headingF'} ,{text:this.data['buyerBillingAddress'] , margin: [0 , 0 , 0 , 0] , style:'headingF'}
+          
+          ]]
+            }
+            },
+
+            {
+             
+
+              layout:'noBorders',
+              table:{headerRows:1 ,  widths:['8%' , '50%' , '8%' , '50%' ],
+            body:[ [{text: 'Sales Tax Resgitration No :' , margin: [0 , 0 , 0 , 0] , bold:false , style:'headingF'} , {text: this.data['sellerGST'] , margin: [0 , 0 , 0 , 0]  , bold:false  , style:'headingF'},
+            {text:'Sales Tax Resgitration No :' , margin: [0 , 0 , 0 , 0] , bold:false , style:'headingF'} ,{text:this.data['buyerGST'] , margin: [0 , 0 , 0 , 0] , style:'headingF'}
+          
+          ]]
+            }
+            },
+
+        
+
+            {
+             
+
+              layout:'noBorders',
+              table:{headerRows:1 ,  widths:['8%' , '50%' , '8%' , '50%' ],
+            body:[ [{text: 'NTN No :' , margin: [0 , 0 , 0 , 0] , bold:false , style:'headingF'} , {text: this.data['sellerNTN'] , margin: [0 , 0 , 0 , 0]  , bold:false  , style:'headingF'},
+            {text:'NTN No :' , margin: [0 , 0 , 0 , 0] , bold:false , style:'headingF'} ,{text:this.data['buyerrNTN'] , margin: [0 , 0 , 0 , 0] , style:'headingF'}
+          
+          ]]
+            }
+            },
+
           //   {
              
 
@@ -158,24 +217,50 @@ print(){
             
 
               layout:'noBorders',
-              table:{headerRows:1 ,  widths:['18%' , '67%' , '5%' , '12%' ],
-            body:[ [{text: 'Contract Date :' , margin: [15 , 4 , 0 , 0] , bold:true  , style:'common'} , {text: this.data['contractDate'] , margin: [-12 , 4 , 0 , 0] , bold:true , decoration:'underline' , style:'common' },
-            {text:'Bill Date :' , margin: [0 , 4 , 0 , 0] , bold:true , style:'common'} ,{text:this.data['billDate'] , margin: [-20 , 4 , 0 , 0] , bold:true  , style:'common' }
+              table:{headerRows:1 ,  widths:['25%' , '50%' , '10%' , '12%' ],
+            body:[ [{text: 'Contract Date :' , margin: [0 , 4 , 0 , 0] , bold:true  , style:'common'} , {text: this.data['contractDate'] , margin: [0 , 4 , 0 , 0] , bold:true , decoration:'underline' , style:'common' },
+            {text:'Bill Date :' , margin: [0 , 4 , 0 , 0] , bold:true , style:'common'} ,{text:this.data['billDate'] , margin: [0 , 4 , 0 , 0] , bold:true  , style:'common' }
           
           
           ]]
             }
             },
-            {
+
+          //   {
+            
+
+          //     layout:'noBorders',
+          //     table:{headerRows:1 ,  widths:['25%' , '50%' , '10%' , '12%' ],
+          //   body:[ [{text: 'Contract Date :' , margin: [0 , 4 , 0 , 0] , bold:true  , style:'common'} , {text: this.data['contractDate'] , margin: [0 , 4 , 0 , 0] , bold:true , decoration:'underline' , style:'common' },
+          //   {text:'Bill Date :' , margin: [0 , 4 , 0 , 0] , bold:true , style:'common'} ,{text:this.data['billDate'] , margin: [0 , 4 , 0 , 0] , bold:true  , style:'common' }
+          
+          
+          // ]]
+          //   }
+          //   },
+
+          //   {
+            
+
+          //     layout:'noBorders',
+          //     table:{headerRows:1 ,  widths:['25%' , '50%' , '10%' , '12%' ],
+          //   body:[ [{text: 'Contract Date :' , margin: [0 , 4 , 0 , 0] , bold:true  , style:'common'} , {text: this.data['contractDate'] , margin: [0 , 4 , 0 , 0] , bold:true , decoration:'underline' , style:'common' },
+          //   {text:'Bill Date :' , margin: [0 , 4 , 0 , 0] , bold:true , style:'common'} ,{text:this.data['billDate'] , margin: [0 , 4 , 0 , 0] , bold:true  , style:'common' }
+          
+          
+          // ]]
+          //   }
+          //   },
+          //   {
              
 
-              layout:'noBorders',
-              table:{headerRows:1 ,  widths:['80%' ],
-            body:[ [{text: 'This refers to our contract for Weaving dispatches. Please make commission cheque in favour of M/S FABCOT INTERNATIONAL and oblige.' , margin: [20 , 10 , 0 , 0]  , style:'common'} 
+          //     layout:'noBorders',
+          //     table:{headerRows:1 ,  widths:['80%' ],
+          //   body:[ [{text: 'This refers to our contract for Weaving dispatches. Please make commission cheque in favour of M/S FABCOT INTERNATIONAL and oblige.' , margin: [20 , 10 , 0 , 0]  , style:'common'} 
           
-          ]]
-            }
-            },
+          // ]]
+          //   }
+          //   },
             {
              
 
@@ -306,8 +391,10 @@ print(){
           styles:{
            heading:{fontSize: 18 ,
             bold: true, alignment: 'center',   },
-            headingC:{fontSize: 12 ,
+            headingC:{fontSize: 8 ,
               alignment: 'center',   },
+              headingF:{fontSize: 6 ,
+                   },
             common:{fontSize:9},
             heading2:{fontSize: 9,
             bold: true, alignment: 'center' },
@@ -315,6 +402,7 @@ print(){
             tableHeader2:{   margin:3 , alignment: 'center' , fontSize: 8},
 
           },
+          
 
   };
   pdfMake.createPdf(docDefinition).print();
