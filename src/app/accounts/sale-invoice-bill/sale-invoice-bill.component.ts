@@ -260,7 +260,7 @@ export class SaleInvoiceBillComponent implements OnInit {
           table: {
             headerRows: 1, widths: ['15%', '65%', '33%', '12%'],
             body: [[{ text: 'Contract Date :', margin: [0, 2, 0, 0], bold: true, style: 'headingF' }, { text: this.data['contractNumber'], margin: [-25, 4, 0, 0], style: 'headingF' },
-            { text: 'Bill No#:', margin: [15, 0, 0, 0], bold: true, style: 'headingF' }, { text: this.data['billNumber'], margin: [-125, 4, 0, 0], style: 'headingF' }
+            { text: 'Bill No#:', margin: [15, 2, 0, 0], bold: true, style: 'headingF' }, { text: this.data['billNumber'], margin: [-125, 4, 0, 0], style: 'headingF' }
 
 
 
@@ -275,7 +275,7 @@ export class SaleInvoiceBillComponent implements OnInit {
           layout: 'noBorders',
           table: {
             headerRows: 1, widths: ['90%', '15%'],
-            body: [[{ text: 'Invoice Date :', margin: [428, 0, 0, 0], bold: true, style: 'headingF' }, { text: this.data['billInvoiceDate'], margin: [-13, 4, 0, 0], style: 'headingF' },
+            body: [[{ text: 'Invoice Date :', margin: [428, 0, 0, 0], bold: true, style: 'headingF' }, { text: this.data['billInvoiceDate'], margin: [-13, 0, 0, 0], style: 'headingF' },
 
 
             ]]

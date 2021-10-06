@@ -44,14 +44,16 @@ lang : SUPPORTED_LANGUAGE = 'en';
     }
     this.spinner.show();
     this.http.
-      post(`${environment.apiUrl}/api/BillingPayments/BulkPrint`, varr)
+      post(`${environment.apiUrl}/api/BillingPayments/InvoiceBulkPrint`, varr)
       .subscribe(
         res => {
   
           this.response = res;
           if (this.response.success == true) {
     this.data=this.response.data;
-    this.amountInWorda=this.ngxNumToWordsService.inWords(this.data.invoiceTotalAmount, this.lang);
+    for(let i=0; i<this.data.length; i++){
+      this.amountInWorda= this.ngxNumToWordsService.inWords(this.data[i].invoiceTotalAmount, this.lang);
+      }
   
             this.toastr.success(this.response.message, 'Message.');
             this.spinner.hide();
