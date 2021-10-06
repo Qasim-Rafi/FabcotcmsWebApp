@@ -1,0 +1,50 @@
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "line-spin-fade" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+<div class="modal-header" >
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <div >
+    <h5 class="modal-title">
+      <i class="fa fa-unlink fa-fw"></i>
+      Bill Break Up
+    </h5>
+  
+  <div class="font text-muted text-center"><small>Bill break into Non-Taxable & Taxable portion</small></div>
+
+  </div>
+
+
+</div>
+
+<div class="modal-body BG p-0">
+  <form #addAgentForm="ngForm" novalidate>
+
+    <div class="row justify-content-center">
+      <div class="col-10 col-md-11 pt-3 pb-2">
+    
+  
+        <div class="form-group  row">
+            <label for="details" class="col-md-3 col-form-label text-grey">Non-Tax %age</label>
+            <div class="col-md-8">
+                <input appAutofocus  id="code" type="text" class="form-control"
+                placeholder="0%" name="name" [(ngModel)]="data.name" #code="ngModel"
+             >
+            </div>
+          </div>
+     
+    
+        
+      </div>
+    </div>
+
+    <div class="modal-footer NotBG" >
+
+      <button  class="btn button-save" type="submit">
+        Bill Break
+      </button>
+     
+
+    </div>
+
+  </form>
+</div>

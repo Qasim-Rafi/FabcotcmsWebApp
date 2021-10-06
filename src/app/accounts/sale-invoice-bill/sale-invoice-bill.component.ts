@@ -9,6 +9,7 @@ import pdfMake from "pdfmake/build/pdfmake";
 import { ToWords } from 'to-words';
 import { NgxSpinnerService } from 'ngx-spinner'
 import { NgxNumToWordsService, SUPPORTED_LANGUAGE } from 'ngx-num-to-words';
+import { BillBreakupComponent } from '../bill-breakup/bill-breakup.component';
 
 @Component({
   selector: 'app-sale-invoice-bill',
@@ -81,6 +82,18 @@ export class SaleInvoiceBillComponent implements OnInit {
 
         }
       });
+  }
+  billBreakup() {
+    const modalRef = this.modalService.open(BillBreakupComponent, { centered: true });
+    modalRef.result.then((data) => {
+
+      if (data == true) {
+      
+      }
+
+     
+    }, (reason) => {
+    });
   }
 
 
