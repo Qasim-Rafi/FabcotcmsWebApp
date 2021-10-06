@@ -1,47 +1,22 @@
 <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "line-spin-fade" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
 
-<div class="content-header">
-    <div class="row">
-        <div class="col-sm-12 col-md-6 col-lg-8">
-            <h2 class="row wrapper page-header font-weight-light">
-                <b>Bill {{rows.billNumber}}</b>
-                <div class="ml-2 descr">
-                    Billing detail of Bill <b>{{rows.billNumber}}</b> against Contract <b>{{rows.contractNumber}}</b>
-                </div>
-            </h2>
-        </div>
-
-        <div class="col-sm-12 col-md-6 col-lg-4">
-            <ol class="breadcrumb flt-RnL">
-                <li class="breadcrumb-item"><a href="#">Billing and Payment</a></li>
-                <li class="breadcrumb-item active" aria-current="page">
-                    Active Bills
-                </li>
-                <li class="breadcrumb-item active" aria-current="page">
-                    Bill
-                </li>
-            </ol>
-        </div>
-    </div>
-</div>
 
 
 
-<div class="card ibox-content">
+<div class="card ibox-content"  *ngFor = "let x of data" >
     <div class="panel blank-panel">
         <div class="panel-heading">
 
 
             <div class="row mb-3">
-                <div class="col-md-6">
+                <div class="col-md-8">
                     <span class="text-muted">Supplier Side Bill
                     </span>
                 </div>
-              
+            
             </div>
 
 
-          
 
             <div class="row  mb-4">
                 <div class="col-md-3 ">
@@ -89,19 +64,19 @@
         </span>
         <br>
         <span class="text-font1">
-           {{data.sellerName}}
+           {{x.sellerName}}
         </span>
         <br>
         <span class="text-small bold">
-            Address: <span class=" text-small">{{data.sellerBillingAddress}}</span>
+            Address: <span class=" text-small">{{x.sellerBillingAddress}}</span>
         </span>
         <br>
         <span class="text-small bold">
-            Sales Tax Resgitration No.: <span class=" text-small"> {{data.sellerGST}}</span>
+            Sales Tax Resgitration No.: <span class=" text-small"> {{x.sellerGST}}</span>
         </span>
         <br>
         <span class="text-small bold">
-            NTN No.:<span class=" text-small"> {{data.sellerNTN}}</span>
+            NTN No.:<span class=" text-small"> {{x.sellerNTN}}</span>
         </span>
     </div>
     <div class="col-md-6 float-right">
@@ -110,19 +85,19 @@
         </span>
         <br>
         <span class="text-font1">
-           {{data.buyerName}}
+           {{x.buyerName}}
         </span>
         <br>
         <span class="text-small bold">
-            Address: <span class=" text-small">{{data.buyerBillingAddress}}</span>
+            Address: <span class=" text-small">{{x.buyerBillingAddress}}</span>
         </span>
         <br>
         <span class="text-small bold">
-            Sales Tax Resgitration No.: <span class=" text-small"> {{data.buyerGST}}</span>
+            Sales Tax Resgitration No.: <span class=" text-small"> {{x.buyerGST}}</span>
         </span>
         <br>
         <span class="text-small bold">
-            NTN No.:<span class=" text-small">  {{data.buyerrNTN}}</span>
+            NTN No.:<span class=" text-small">  {{x.buyerrNTN}}</span>
         </span>
     </div>
 </div>
@@ -133,15 +108,15 @@
 
                 <div class="float-right">
                     <span class="text-font1">
-                        Bill No.: <span class="weight">{{data.billNumber}}</span>
+                        Sales Tax Invoice No. : <span class="weight">{{x.billNumber}}</span>
                     </span>
                     <br>
                     <span class="text-font1">
-                        Bill Dt.: <span class="bold text-font1">{{data.billDate}}</span>
+                        Bill No.: <span class="bold text-font1">{{x.billNumber}}</span>
                     </span>
                     <br>
                     <span class="text-font1">
-                        Invoice Date.:<span class="bold text-font1">{{data.billInvoiceDate}}</span>
+                        Invoice Date.:<span class="bold text-font1">{{x.billInvoiceDate}}</span>
                     </span>
                 </div>
 
@@ -156,12 +131,12 @@
                     <br> -->
 
                     <span class="text-font1">
-                        Fabcot Contract No: <span class="bold text-font1"> {{data.contractNumber}}</span>
+                        Fabcot Contract No: <span class="bold text-font1"> {{x.contractNumber}}</span>
                     </span>
                     <br>
                   
                     <span class="text-font1">
-                        Contract Date: <span class="bold text-font1">{{data.contractDate}}</span>
+                        Contract Date: <span class="bold text-font1">{{x.contractDate}}</span>
                     </span>
                     <br>
                   
@@ -176,17 +151,17 @@
                     <th>Sale Invoice #</th>
                     <th>Sale Invoice Date</th>
                     <th>Quantity</th>
-                    <th>Rate({{data.currencyName}})</th>
-                    <th>Commission  ({{data.sellerCommission}})%</th>
+                    <th>Rate({{x.currencyName}})</th>
+                    <th>Commission  ({{x.sellerCommission}})%</th>
                     <th>Amount Excl. Tax</th>
-                    <th>Tax ({{data.invoiceTaxPercentage}})%</th>
+                    <th>Tax ({{x.invoiceTaxPercentage}})%</th>
                     <th>Amount Incl. Tax</th>
 
 
 
 
                 </tr>
-                <tr *ngFor="let i of data.contractSaleInvoices">
+                <tr *ngFor="let i of x.contractSaleInvoices">
                     <td>{{i.description}}</td>
                    
                     <td>{{i.saleInvoiceNo}}</td>
@@ -207,19 +182,19 @@
             <br>
             <div class="float-right">
                 <span class=" bold text-font1">
-                    Sub Total: <span class="text-font1 underline">{{data.billAmount}} </span>
+                    Sub Total: <span class="text-font1 underline">{{x.billAmount}} </span>
                 </span>
                 <br>
                 <span class=" bold text-font1">
-                    TAX : <span class="text-font1 underline">{{data.invoiceTaxAmountTotal}}</span>
+                    TAX : <span class="text-font1 underline">{{x.invoiceTaxAmountTotal}}</span>
                 </span><br>
                 <span class=" bold text-font1">
-                    TOTAL : <span class="bold text-font1 underline">{{data.invoiceTotalAmount}}  </span>
+                    TOTAL : <span class="bold text-font1 underline">{{x.invoiceTotalAmount}}  </span>
                 </span>
             </div>
             <div class="float-left" >
             <span class="text-font1">
-                Quantity:<span class="bold text-font1 "> {{data.quantitySum}}</span>
+                Quantity:<span class="bold text-font1 "> {{x.quantitySum}}</span>
             </span>
             <br><br><br>
             <span class=" text-font1">
@@ -235,9 +210,6 @@
            
 
         </div>
-        <p style="page-break-after: always;">&nbsp;</p>
-        <br>
-        <hr>
     </div>
 </div>
 
