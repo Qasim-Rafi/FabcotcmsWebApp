@@ -46,10 +46,7 @@ constructor(    private service: ServiceService,
    
     this.router.navigate(['/saleBill'], { queryParams: {contractId:row.contractId} });
   }
-  print(){
-    this.router.navigate(['/accBulk']);
-
-  }
+ 
   fetch() {
     this.data2.toDate = this.dateformater.toModel(this.data2.toDate)
     this.data2.FromDate = this.dateformater.toModel(this.data2.FromDate)
@@ -118,6 +115,21 @@ constructor(    private service: ServiceService,
       });
   }
 
+  print(){
+  
+    this.ids=this.selected.map(a => a.contractId);
 
+  
+    if(this.ids.length === 0  || this.selected.length === 0  ){
+      this.toastr.error("PLease select atleast one bill to generate print" , 'Message')
+    }
+    else{
+       this.ids = [...new Set(this.ids)];
+  localStorage.setItem('bulkPrint', this.ids);
+  this.router.navigate([]).then((result) => {
+    window.open('/accBulk' , '_blank');
+  });
+  }
+  }
 
 }
