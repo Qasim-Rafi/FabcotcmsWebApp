@@ -33,19 +33,29 @@
 
 
             <div class="row mb-3">
-                <div class="col-md-6">
+                <div class="col-md-8">
                     <span class="text-muted">Supplier Side Bill
                     </span>
                 </div>
-                <div class="col-md-6 mrg-tsm">
+                <div class="col-md-2">
+
                     <button type="button" class="btn btn-primary btn-md float-right" (click) = "print()" >
                         <i class="fa fa-print"></i> Print Bill
                     </button>
+                   
+                </div>
+
+                <div class="col-md-2 ">
+
+                  
+            <button type="button" class="btn btn-primary bill btn-md float-right" (click) = "billBreakup()" >
+                <i class="fa fa-unlink"></i>  Bill Breakup
+            </button>
+                   
                 </div>
             </div>
 
 
-          
 
             <div class="row  mb-4">
                 <div class="col-md-3 ">

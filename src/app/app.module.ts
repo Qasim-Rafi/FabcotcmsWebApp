@@ -69,6 +69,7 @@ import { BulkPrintComponent } from './bulk-print/bulk-print.component';
 import { BillInvoicesComponent } from './accounts/bill-invoices/bill-invoices.component';
 import { SaleInvoiceBillComponent } from './accounts/sale-invoice-bill/sale-invoice-bill.component';
 import { AccBulkPrintComponent } from './accounts/acc-bulk-print/acc-bulk-print.component';
+import { BillBreakupComponent } from './accounts/bill-breakup/bill-breakup.component';
 
 
 
@@ -119,6 +120,7 @@ const appRoutes: Routes = []
     BillInvoicesComponent,
     SaleInvoiceBillComponent,
     AccBulkPrintComponent,
+    BillBreakupComponent,
    
 
   
