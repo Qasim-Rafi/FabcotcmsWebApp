@@ -244,7 +244,7 @@ export class SaleInvoiceBillComponent implements OnInit {
           table: {
             headerRows: 1, widths: ['15%', '60%', '30%', '12%'],
             body: [[{ text: 'Fabcot Contract No :', margin: [0, 4, 0, 0], bold: true, style: 'headingF' }, { text: this.data['contractNumber'], margin: [-10, 4, 0, 0], style: 'headingF' },
-            { text: 'Sales Tax Invoice No:', margin: [0, 4, 0, 0], bold: true, style: 'headingF' }, { text: " ", margin: [-85, 4, 0, 0], bold: true, style: 'headingF' },
+            { text: 'Sales Tax Invoice No:', margin: [0, 4, 0, 0], bold: true, style: 'headingF' }, { text: this.data['billInvoiceNumber'], margin: [-85, 4, 0, 0], bold: true, style: 'headingF' },
 
 
 
