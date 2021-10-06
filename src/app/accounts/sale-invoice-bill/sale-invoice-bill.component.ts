@@ -160,7 +160,7 @@ print(){
               layout:'noBorders',
               table:{headerRows:1 ,  widths:['8%' , '50%' , '8%' , '50%'  ],
             body:[ [{text: 'Seller :' , margin: [0 , 0 , 10 , 0] , bold:true , style:'headingF'} , {text: this.data['sellerName'] , margin: [0 , 0 , 10 , 0]  , bold:true , style:'headingF'},
-            {text:'Buyer :' , margin: [0 , 0 , 10 , 0] , bold:true , style:'headingF'} ,{text:this.data['buyerName'] , margin: [0 , 0 , 10 , 0] , style:'headingF'}
+            {text:'Buyer :'  , bold:true , style:'headingE'} ,{text:this.data['buyerName'] , style:'headingE'}
           
           ]]
             }
@@ -171,7 +171,7 @@ print(){
               layout:'noBorders',
               table:{headerRows:1 ,  widths:['8%' , '50%' , '8%' , '50%' ],
             body:[ [{text: 'Address :' , margin: [0 , 0 , 0 , 0] , bold:true , style:'headingF'} , {text: this.data['sellerBillingAddress'] , margin: [0 , 0 , 0 , 0]  , bold:true  , style:'headingF'},
-            {text:'Address :' , margin: [0 , 0 , 0 , 0] , bold:true , style:'headingF'} ,{text:this.data['buyerBillingAddress'] , margin: [0 , 0 , 0 , 0] , style:'headingF'}
+            {text:'Address :' , bold:true , style:'headingE'} ,{text:this.data['buyerBillingAddress'] , style:'headingE'}
           
           ]]
             }
@@ -183,7 +183,7 @@ print(){
               layout:'noBorders',
               table:{headerRows:1 ,  widths:['8%' , '50%' , '8%' , '50%' ],
             body:[ [{text: 'Sales Tax Resgitration No :' , margin: [0 , 0 , 0 , 0] , bold:false , style:'headingF'} , {text: this.data['sellerGST'] , margin: [0 , 0 , 0 , 0]  , bold:false  , style:'headingF'},
-            {text:'Sales Tax Resgitration No :' , margin: [0 , 0 , 0 , 0] , bold:false , style:'headingF'} ,{text:this.data['buyerGST'] , margin: [0 , 0 , 0 , 0] , style:'headingF'}
+            {text:'Sales Tax Resgitration No :' , bold:false , style:'headingE'} ,{text:this.data['buyerGST'], style:'headingE'}
           
           ]]
             }
@@ -197,7 +197,7 @@ print(){
               layout:'noBorders',
               table:{headerRows:1 ,  widths:['8%' , '50%' , '8%' , '50%' ],
             body:[ [{text: 'NTN No :' , margin: [0 , 0 , 0 , 0] , bold:false , style:'headingF'} , {text: this.data['sellerNTN'] , margin: [0 , 0 , 0 , 0]  , bold:false  , style:'headingF'},
-            {text:'NTN No :' , margin: [0 , 0 , 0 , 0] , bold:false , style:'headingF'} ,{text:this.data['buyerrNTN'] , margin: [0 , 0 , 0 , 0] , style:'headingF'}
+            {text:'NTN No :'  , bold:false , style:'headingE'} ,{text:this.data['buyerrNTN'], style:'headingE'}
           
           ]]
             }
@@ -217,61 +217,45 @@ print(){
             
 
               layout:'noBorders',
-              table:{headerRows:1 ,  widths:['25%' , '50%' , '10%' , '12%' ],
-            body:[ [{text: 'Contract Date :' , margin: [0 , 4 , 0 , 0] , bold:true  , style:'common'} , {text: this.data['contractDate'] , margin: [0 , 4 , 0 , 0] , bold:true , decoration:'underline' , style:'common' },
-            {text:'Bill Date :' , margin: [0 , 4 , 0 , 0] , bold:true , style:'common'} ,{text:this.data['billDate'] , margin: [0 , 4 , 0 , 0] , bold:true  , style:'common' }
+              table:{headerRows:1 ,  widths:['15%' , '75%' , '15%' , '12%'],
+            body:[ [{text: 'Fabcot Contract No :' , margin: [0 , 4 , 0 , 0] , bold:true  , style:'headingF'} , {text: this.data['contractNumber'] , margin: [-20 , 4 , 0 , 0] , bold:true , decoration:'underline' , style:'headingF' },
+            {text:'Bill No# :' , margin: [0 , 4 , 0 , 0] , bold:true , style:'headingF'} ,{text:this.data['billNumber'] , margin: [-40 , 4 , 0 , 0] , bold:true  , style:'headingF' },
+           
+
           
           
           ]]
             }
             },
 
-          //   {
-            
-
-          //     layout:'noBorders',
-          //     table:{headerRows:1 ,  widths:['25%' , '50%' , '10%' , '12%' ],
-          //   body:[ [{text: 'Contract Date :' , margin: [0 , 4 , 0 , 0] , bold:true  , style:'common'} , {text: this.data['contractDate'] , margin: [0 , 4 , 0 , 0] , bold:true , decoration:'underline' , style:'common' },
-          //   {text:'Bill Date :' , margin: [0 , 4 , 0 , 0] , bold:true , style:'common'} ,{text:this.data['billDate'] , margin: [0 , 4 , 0 , 0] , bold:true  , style:'common' }
-          
-          
-          // ]]
-          //   }
-          //   },
-
-          //   {
-            
-
-          //     layout:'noBorders',
-          //     table:{headerRows:1 ,  widths:['25%' , '50%' , '10%' , '12%' ],
-          //   body:[ [{text: 'Contract Date :' , margin: [0 , 4 , 0 , 0] , bold:true  , style:'common'} , {text: this.data['contractDate'] , margin: [0 , 4 , 0 , 0] , bold:true , decoration:'underline' , style:'common' },
-          //   {text:'Bill Date :' , margin: [0 , 4 , 0 , 0] , bold:true , style:'common'} ,{text:this.data['billDate'] , margin: [0 , 4 , 0 , 0] , bold:true  , style:'common' }
-          
-          
-          // ]]
-          //   }
-          //   },
-          //   {
-             
-
-          //     layout:'noBorders',
-          //     table:{headerRows:1 ,  widths:['80%' ],
-          //   body:[ [{text: 'This refers to our contract for Weaving dispatches. Please make commission cheque in favour of M/S FABCOT INTERNATIONAL and oblige.' , margin: [20 , 10 , 0 , 0]  , style:'common'} 
-          
-          // ]]
-          //   }
-          //   },
             {
-             
+            
 
               layout:'noBorders',
-              table:{headerRows:1 ,  widths:['100%' ],
-            body:[ [{text: 'Detail as under' , margin: [20 , 0 , 0 , 0]  , style:'common'} 
+              table:{headerRows:1 ,  widths:['15%' , '75%' , '15%' , '12%' ],
+            body:[ [{text: 'Contract Date :' , margin: [0 , 4 , 0 , 0] , bold:true  , style:'headingF'} , {text: this.data['contractNumber'] , margin: [-20 , 4 , 0 , 0] , bold:true , decoration:'underline' , style:'headingF' },
+            {text:'Bill No# :' , margin: [0 , 4 , 0 , 0] , bold:true , style:'headingF'} ,{text:this.data['billNumber'] , margin: [-40 , 4 , 0 , 0] , bold:true  , style:'headingF' }
+            
+
+          
           
           ]]
             }
             },
 
+            {
+            
+
+              layout:'noBorders',
+              table:{headerRows:1 ,  widths:['90%' , '15%'],
+            body:[ [{text: 'Invoice Date :' , margin: [0 , 4 , 0 , 0] , bold:true  , style:'headingF'} , {text: this.data['saleInvoiceDateToDisplay'] , margin: [-30 , 4 , 0 , 0] , bold:true , decoration:'underline' , style:'headingF' },
+
+          
+          ]]
+            }
+            },
+
+  
             {
               margin: [0 , 20 , 0 , 0 ],
               table:{
@@ -393,8 +377,10 @@ print(){
             bold: true, alignment: 'center',   },
             headingC:{fontSize: 8 ,
               alignment: 'center',   },
-              headingF:{fontSize: 6 ,
-                   },
+              headingF:{fontSize: 8 ,
+                },
+                headingE:{fontSize: 8 ,
+                  margin: [-40 ,0, 0,0]   },
             common:{fontSize:9},
             heading2:{fontSize: 9,
             bold: true, alignment: 'center' },
