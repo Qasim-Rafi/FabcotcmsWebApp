@@ -52,7 +52,7 @@ lang : SUPPORTED_LANGUAGE = 'en';
           if (this.response.success == true) {
     this.data=this.response.data;
     for(let i=0; i<this.data.length; i++){
-      this.data[i].address= this.ngxNumToWordsService.inWords(this.data[i].invoiceTotalAmount, this.lang);
+      this.data[i].accountName= this.ngxNumToWordsService.inWords(this.data[i].invoiceTotalAmount, this.lang);
       }
   
             this.toastr.success(this.response.message, 'Message.');
