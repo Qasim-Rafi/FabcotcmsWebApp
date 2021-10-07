@@ -32,18 +32,12 @@
   .add{
     width: 100%;
     display: inline;
+    transition: inline 5s ease-out;
     opacity: 1;
-    transition: opacity 1s linear;
-    -webkit-transition: opacity 1s linear;
-    -moz-transition: opacity 1s linear;
-    -o-transition: opacity 1s linear;
   }
   .remove{
     width: 0%;
     display: none;
+    transition: opacity 1s ease-out;
     opacity: 0;
-    transition: opacity 1s linear;
-    -webkit-transition: opacity 1s linear;
-    -moz-transition: opacity 1s linear;
-    -o-transition: opacity 1s linear;
   }
