@@ -1845,10 +1845,8 @@ addCredit(x, check) {
     if (data == true) {
       // this.getContractData();
       // this.getDispatches();
-      this.fetch((data) => {
-        this.rows = data;
-  this.saleinvoiceFilter = [...this.rows];
-      });
+      this.getAllInvoices();
+    
     }
     // this.getContractData();
 
