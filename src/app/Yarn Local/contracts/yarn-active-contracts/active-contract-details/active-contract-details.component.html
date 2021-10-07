@@ -395,6 +395,10 @@
                                                 On-Hold</div>
                                                 <div class="badge badge-info ml-1" *ngIf="contractData.status == 'BillAwaited'">
                                                     Bill Awaited</div>
+                                                    <div class="badge badge-info ml-1" *ngIf="contractData.status == 'billed'">
+                                                        Billed</div>
+                                                        <div class="badge badge-info ml-1" *ngIf="contractData.status == 'closed'">
+                                                            Closed/div>
                                             <!-- <button class="btn "><i class="fas fa-history "></i></button> -->
                                             <button class="btn btn-outline-secondary btn-xs ml-1"><i class="fas fa-history "></i></button>
                                             <button class=" btn btn-sm btn-danger p-1 btnsm-f ml-1" *ngIf="contractData.isApproved == false"
