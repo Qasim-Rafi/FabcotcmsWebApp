@@ -2035,19 +2035,74 @@ addProd() {
         });
       }
       
+      closeContract() {
+        
+      
+this.spinner.show();
+    
+        this.http.
+          put(`${environment.apiUrl}/api/Contracts/ContractClose/`, this.contractId)
+          .subscribe(
+            res => {
+    
+              this.response = res;
+              if (this.response.success == true) {
+                this.toastr.success(this.response.message, 'Message.');
+                 this.getContractData();
+                this.spinner.hide();
 
+              }
+              else {
+                this.toastr.error(this.response.message, 'Message.');
+              
+this.spinner.hide();
+}
+    
+            }, err => {
+              if (err.status == 400) {
+                this.toastr.error(this.response.message, 'Message.');
+this.spinner.hide();
+              
+              }
+            });
+
+      }
+
+      cancelContract() {
+        
+      
+        this.spinner.show();
+            
+                this.http.
+                  put(`${environment.apiUrl}/api/Contracts/ContractCancel/`, this.contractId)
+                  .subscribe(
+                    res => {
+            
+                      this.response = res;
+                      if (this.response.success == true) {
+                        this.toastr.success(this.response.message, 'Message.');
+                         this.getContractData();
+                        this.spinner.hide();
+        
+                      }
+                      else {
+                        this.toastr.error(this.response.message, 'Message.');
+                      
+        this.spinner.hide();
+        }
+            
+                    }, err => {
+                      if (err.status == 400) {
+                        this.toastr.error(this.response.message, 'Message.');
+        this.spinner.hide();
+                      
+                      }
+                    });
+        
+              }
 
       AddReminder() {
-            // this.data.contractUpDate = this.dateformater.toModel(this.data.contractUpDate);
-    
-            // if( this.data.contractUpDate == "undefined-undefined-undefined"){
-            //   this.data.contractUpDate = ""
-
-            // }
-            // if( this.data.contractUpDate == "0-NaN-NaN"){
-            //   this.data.contractUpDate = ""
-            // }
-
+        
             let varr = {
               "contractId": this.contractId,
               "contractUpDate": this.dateformater.toModel(this.data.contractUpDate)

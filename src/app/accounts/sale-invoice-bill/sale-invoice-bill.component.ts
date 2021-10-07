@@ -25,7 +25,7 @@ export class SaleInvoiceBillComponent implements OnInit {
   lang: SUPPORTED_LANGUAGE = 'en';
   image2: any;
   image: any;
-
+invNo : any
   amountInWorda: string;
   constructor(private route: ActivatedRoute,
     private modalService: NgbModal,
@@ -53,6 +53,8 @@ export class SaleInvoiceBillComponent implements OnInit {
       });
     this.queryParems = this.route.snapshot.queryParams;
     this.data = this.queryParems.contractId;
+    this.invNo = this.queryParems.invNo;
+
     this.getData();
   }
   getData() {
@@ -191,9 +193,9 @@ export class SaleInvoiceBillComponent implements OnInit {
 
           layout: 'noBorders',
           table: {
-            headerRows: 1, widths: ['8%', '50%', '8%', '50%'],
+            headerRows: 1, widths: ['8%', '50%', '8%', '40%'],
             body: [[{ text: 'Address :', margin: [0, 0, 0, 0], bold: true, style: 'headingF' }, { text: this.data['sellerBillingAddress'], margin: [-15, 0, 0, 0], style: 'headingF' },
-            { text: 'Address :', bold: true, style: 'headingE' }, { text: this.data['buyerBillingAddress'], style: 'headinG' }
+            { text: 'Address :', bold: true,   style: 'headingE' }, { text: this.data['buyerBillingAddress'], style: 'headinG' }
 
             ]]
           }
@@ -244,7 +246,7 @@ export class SaleInvoiceBillComponent implements OnInit {
           table: {
             headerRows: 1, widths: ['15%', '60%', '30%', '12%'],
             body: [[{ text: 'Fabcot Contract No :', margin: [0, 4, 0, 0], bold: true, style: 'headingF' }, { text: this.data['contractNumber'], margin: [-10, 4, 0, 0], style: 'headingF' },
-            { text: 'Sales Tax Invoice No:', margin: [0, 4, 0, 0], bold: true, style: 'headingF' }, { text: this.data['billInvoiceNumber'], margin: [-85, 4, 0, 0], bold: true, style: 'headingF' },
+            { text: 'Sales Tax Invoice No:', margin: [0, 4, 0, 0], bold: true, style: 'headingF' }, { text: this.invNo, margin: [-85, 4, 0, 0], bold: true, style: 'headingF' },
 
 
 
