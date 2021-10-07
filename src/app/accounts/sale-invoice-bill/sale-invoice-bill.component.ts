@@ -299,11 +299,11 @@ invNo : any
                 { text: 'Quantity', style: 'tableHeader' },
                 { text: 'Rate' + '(' + this.data.currencyName + ')', style: 'tableHeader' },
 
-                { text: 'SI Amount' + '(' + this.data.currencyName + ')', style: 'tableHeader' },
-                { text: 'Commission', style: 'tableHeader' },
-                { text: 'TAX', style: 'tableHeader' },
+                { text: 'Commission  %age', style: 'tableHeader' },
+                { text: 'Amount Excl. Tax', style: 'tableHeader' },
+                { text: 'TAX'  + '(' + this.data.invoiceTaxPercentage + ')', style: 'tableHeader' },
 
-                { text: 'Amount' + '(' + this.data.currencyName + ')', style: 'tableHeader' }],
+                { text: 'Amount Incl. Tax' , style: 'tableHeader' }],
 
               ...this.data['contractSaleInvoices'].map(row => (
                 [
@@ -315,10 +315,10 @@ invNo : any
                   { text: row.rate, style: 'tableHeader2' },
 
                   {
-                    text: row.sellerCommissionAmount
+                    text: row.commission
                     , style: 'tableHeader2'
                   },
-                  { text: row.amount, style: 'tableHeader2' },
+                  { text: row.sellerCommissionAmount, style: 'tableHeader2' },
                   { text: row.taxAmount, style: 'tableHeader2' },
 
                   { text: row.totalAmount, style: 'tableHeader2' }]
