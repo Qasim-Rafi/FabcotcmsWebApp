@@ -126,27 +126,29 @@
             <div class="row p-2">
             
             
+              <div class="form-group col-md-4">
+            
+                <label for="description">Auto Contract#:</label>
+                <input type="text" placeholder="Auto Contract Number" class="form-control" name="poNumber"
+                [(ngModel)]="openContractReport.poNumber" #poNumber="ngModel">
+          
+              </div>
             
                 <div class="form-group col-md-4">
-                  <label for="description">Seller Contract#:</label>
-                  <input type="text" placeholder="Seller Contract Number" class="form-control" name="sellerContractNo"
-                    [(ngModel)]="openContractReport.sellerContractNo" #sellerContractNo="ngModel">
+                  <label for="description">Start Date:</label>
+                  <input class="form-control" ngbDatepicker #reminderDate2="ngbDatepicker" (click)="reminderDate2.toggle()"
+                  placeholder="Contract start Date" name="contractUpDate" name="contractDate"
+                  [(ngModel)]="openContractReport.contractDate" #contractDate="ngModel" />
                 </div>
                 <div class="form-group col-md-4">
-                  <label for="description">PO Number:</label>
-                  <input type="text" placeholder="Buyer PO Number" class="form-control" name="poNumber"
-                    [(ngModel)]="openContractReport.poNumber" #poNumber="ngModel">
-            
-                </div>
-            
-                <div class="form-group col-md-4">
-            
-                  <label for="description">Contract Date:</label>
-                  <input class="form-control" ngbDatepicker #reminderDate="ngbDatepicker" (click)="reminderDate.toggle()"
-                    placeholder="Contract Date" name="contractUpDate" name="contractDate"
+                  <label for="description">End Date:</label>
+               
+                    <input class="form-control" ngbDatepicker #reminderDate3="ngbDatepicker" (click)="reminderDate3.toggle()"
+                    placeholder="Contract end Date" name="contractUpDate" name="contractDate"
                     [(ngModel)]="openContractReport.contractDate" #contractDate="ngModel" />
             
                 </div>
+            
             
             
             </div>
@@ -221,7 +223,9 @@
 
             <ngx-datatable #myTable class="bootstrap" [sorts]="[{ prop: 'id,name', dir: 'desc' }]" [columns]="columns"
               [rows]="openContractReport" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-              [rowHeight]="'auto'">
+              [rowHeight]="'auto'"
+              [scrollbarH]="true"
+              >
               <ngx-datatable-column prop="id" name="S. No." [width]="40">
                 <ng-template let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
                   {{ rowIndex+1 }}
@@ -348,12 +352,105 @@
             </button>
             <span class="text-muted text2">Dispatch</span>
           </div>
-          <div class="col-sm-6 col-md-12 mrg-tsm">
-            <button type="button" class="btn navy-bg btn-sm float-right">
-              <i class="fa fa-filter"></i> Filter
-            </button>
+
+        </div>
+
+
+        <form #filterForm="ngForm" novalidate>
+          <div  [ngClass]="status ? 'add' : 'remove'">
+          <div class="card"> 
+
+
+          <div class="row p-2">
+          
+              <div class="form-group col-md-4">
+                <label for="description">Buyer Name:</label>
+                <ng-select placeholder="Buyer Name" name="buyerId" [(ngModel)]="allContractReport.buyerId" #buyerId="ngModel">
+                  <ng-option *ngFor="let i of buyer" [value]="i.id">
+                    {{i.buyerName}}
+                  </ng-option>
+                </ng-select>
+              </div>
+          
+              <div class="form-group col-md-4 ">
+                <label for="description">Seller Name:</label>
+                <ng-select placeholder="Seller Name" name="sellerId" [(ngModel)]="allContractReport.sellerId"
+                  #sellerId="ngModel">
+                  <ng-option *ngFor="let i of seller" [value]="i.id">
+                    {{i.sellerName}}
+                  </ng-option>
+                </ng-select>
+          
+              </div>
+          
+              <div class="form-group col-md-4">
+                <label for="description">Auto Contract#:</label>
+                <input type="text" placeholder="Contract Number" name="autoContractNumber"
+                  [(ngModel)]="allContractReport.autoContractNumber" #autoContractNumber="ngModel" class="form-control text-w-4">
+              </div>
+          
+          
+          </div>
+
+          <div class="row p-2">
+          
+          
+            <div class="form-group col-md-4">
+          
+              <label for="description">Auto Contract#:</label>
+              <input type="text" placeholder="Auto Contract Number" class="form-control" name="poNumber"
+              [(ngModel)]="allContractReport.poNumber" #poNumber="ngModel">
+        
+            </div>
+          
+              <div class="form-group col-md-4">
+                <label for="description">Start Date:</label>
+                <input class="form-control" ngbDatepicker #reminderDate2="ngbDatepicker" (click)="reminderDate2.toggle()"
+                placeholder="Contract start Date" name="contractUpDate" name="contractDate"
+                [(ngModel)]="allContractReport.contractDate" #contractDate="ngModel" />
+              </div>
+              <div class="form-group col-md-4">
+                <label for="description">End Date:</label>
+             
+                  <input class="form-control" ngbDatepicker #reminderDate3="ngbDatepicker" (click)="reminderDate3.toggle()"
+                  placeholder="Contract end Date" name="contractUpDate" name="contractDate"
+                  [(ngModel)]="allContractReport.contractDate" #contractDate="ngModel" />
+          
+              </div>
+          
+          
+          
           </div>
         </div>
+      </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group row mt-3">
+                <div class="col-md-2 ml-8">
+                  <button class="btn btn-outline-secondary pull-left btn-xs "><i class="fas fa-sync"></i>
+                    Clear
+                  </button>
+
+                </div>
+
+                <div class="col-md-4 ">
+                  <button type="button" class="btn btn-primary btn-sm float-right">
+                    Search Contract
+                  </button>
+                </div>
+                <div class="col-md-6 mb-1">
+                <button type="button" class="btn btn-primary btn-sm ml-md-2 float-right"  (click)="clickEvent()"> Advance Filter <i class="fas fa-search fa-fw mr-2"></i></button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+
+
+        </form>
+
+
 
         <div class="row">
           <div class="col-md-12 mb-3">
@@ -397,33 +494,35 @@
 
             <ngx-datatable #myTable class="bootstrap" [sorts]="[{ prop: 'id,name', dir: 'desc' }]" [columns]="columns"
               [rows]="allContractReport" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-              [rowHeight]="'auto'">
-              <ngx-datatable-column prop="id" name="S. No." [width]="40">
+              [rowHeight]="'auto'"
+              [scrollbarH]="true"
+              >
+              <!-- <ngx-datatable-column prop="id" name="S. No." [width]="40">
                 <ng-template let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
                   {{ rowIndex+1 }}
                 </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Age" prop="contractAge" [width]="30">
+              </ngx-datatable-column> -->
+              <ngx-datatable-column name="Age" prop="contractAge" [width]="40">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   <span class="badge badge-primary">{{row.contractAge}}</span>
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Contract#" [width]="60" prop="autoContractNumber">
+              <ngx-datatable-column name="Contract#" [width]="80" prop="autoContractNumber">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{row.autoContractNumber}}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Buyer" [width]="50">
+              <ngx-datatable-column name="Buyer" [width]="90">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{row.buyerName}}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Seller" [width]="50">
+              <ngx-datatable-column name="Seller" [width]="90">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{row.sellerName}}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Date" [width]="50">
+              <ngx-datatable-column name="Date" [width]="60">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.contractOn }}
                 </ng-template>
@@ -433,12 +532,12 @@
                   {{ row.poNumber }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Article" [width]="40">
+              <ngx-datatable-column name="Article" [width]="60">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{row.articleName}}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Rate" [width]="30">
+              <ngx-datatable-column name="Rate" [width]="40">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.details }}
                 </ng-template>
@@ -930,7 +1029,7 @@
                 <div class="form-group row">
                   <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
                   <div class="col-sm-9">
-                    <input type="text" class="input form-control form-control-sm" />
+                    <input type="text" class="input form-control form-control-sm" (keyup)="billInvSearch($event)" />
                   </div>
                 </div>
 
@@ -964,7 +1063,9 @@
 
             <ngx-datatable #myTable class="bootstrap" [sorts]="[{ prop: 'id,name', dir: 'desc' }]" [columns]="columns"
               [rows]="billingReportInvoiceWise" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-              [rowHeight]="'auto'">
+              [rowHeight]="'auto'"
+              [scrollbarH]="true"
+              >
 
               <ngx-datatable-column name="Bill For" prop="billFor" [width]="30">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
@@ -1330,7 +1431,7 @@
                 <div class="form-group row">
                   <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
                   <div class="col-sm-9">
-                    <input type="text" class="input form-control form-control-sm" />
+                    <input type="text" class="input form-control form-control-sm" (keyup)="billContractSearch($event)"  />
                   </div>
                 </div>
 
