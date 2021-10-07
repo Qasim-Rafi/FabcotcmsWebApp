@@ -159,7 +159,7 @@
 
 
 
-s
+
                 </tr>
                 <tr *ngFor="let i of x.contractSaleInvoices">
                     <td>{{i.description}}</td>
@@ -174,7 +174,7 @@ s
                     <!-- <td>{{i.amount}}</td> -->
                     <td>{{i.taxAmount}}</td>
 
-                    <td>{{i.totalAmount  | number:'2.2-2'}}</td>
+                    <td>{{i.totalAmount  | number:'1.0-0'}}</td>
 
 
                 </tr>
@@ -183,7 +183,7 @@ s
             <br>
             <div class="float-right">
                 <span class=" bold text-font1">
-                    Sub Total: <span class="text-font1 underline">{{x.billAmount}} </span>
+                    Sub Total: <span class="text-font1 underline">{{x.billAmount | number:'1.0-0'}} </span>
                 </span>
                 <br>
                 <span class=" bold text-font1">

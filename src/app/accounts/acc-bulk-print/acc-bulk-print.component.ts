@@ -53,7 +53,8 @@ lang : SUPPORTED_LANGUAGE = 'en';
     this.data=this.response.data;
     for(let i=0; i<this.data.length; i++){
       this.data[i].accountName= this.ngxNumToWordsService.inWords(this.data[i].invoiceTotalAmount, this.lang);
-      }
+     
+    }
   
             this.toastr.success(this.response.message, 'Message.');
             this.spinner.hide();
