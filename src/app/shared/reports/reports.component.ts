@@ -16,7 +16,7 @@ import { FilterPopUpComponent } from './filter-pop-up/filter-pop-up.component';
 })
 export class ReportsComponent implements OnInit {
   dateformater: Dateformater = new Dateformater();  
-
+  data:any={};
   menuName: any = {};
   response: any;
   temp: any[];
