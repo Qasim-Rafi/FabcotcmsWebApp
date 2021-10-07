@@ -47,7 +47,7 @@ constructor(    private service: ServiceService,
   }
   saleinvoicebill(row){
    
-    this.router.navigate(['/saleBill'], { queryParams: {contractId:row.contractId} });
+    this.router.navigate(['/saleBill'], { queryParams: {contractId:row.contractId , invNo : row.billInvoiceNumber} });
   }
   Filter(event) {
     const val = event.target.value.toLowerCase();
