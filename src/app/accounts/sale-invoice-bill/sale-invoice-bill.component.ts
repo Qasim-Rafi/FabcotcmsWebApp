@@ -321,7 +321,7 @@ invNo : any
                   { text: row.sellerCommissionAmount, style: 'tableHeader2' },
                   { text: row.taxAmount, style: 'tableHeader2' },
 
-                  { text: row.totalAmount, style: 'tableHeader2' }]
+                  { text: Math.round(row.totalAmount), style: 'tableHeader2' }]
               ))
             ]
           }
@@ -348,7 +348,7 @@ invNo : any
               { text: 'Amount in Words :', margin: [0, 20, 0, 0], bold: true, style: 'common' },
               { text: this.amountInWorda, margin: [-30, 20, 0, 0], bold: true, decoration: 'underline', style: 'common' },
               { text: 'Sub Total :', margin: [50, 20, 0, 0], bold: true, style: 'common' },
-              { text: this.data['currencyName'] + ' ' + this.data.billAmount, margin: [-60, 20, 0, 0], decoration: 'underline', style: 'common' }
+              { text: this.data['currencyName'] + ' ' + Math.round(this.data.billAmount), margin: [-60, 20, 0, 0], decoration: 'underline', style: 'common' }
 
             ]]
           }
@@ -359,7 +359,7 @@ invNo : any
             headerRows: 1, widths: ['90%', '10%'],
             body: [[
               { text: 'TAX:', margin: [455, 5, 0, 0], bold: true, style: 'common' },
-              { text: "0.00", margin: [0, 5, 0, 0], decoration: 'underline', style: 'common' },
+              { text: this.data['invoiceTaxAmountTotal'], margin: [0, 5, 0, 0], decoration: 'underline', style: 'common' },
 
 
             ]]
