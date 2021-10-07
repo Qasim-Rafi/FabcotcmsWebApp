@@ -152,14 +152,14 @@
                     <th>Sale Invoice Date</th>
                     <th>Quantity</th>
                     <th>Rate({{x.currencyName}})</th>
-                    <th>Commission  ({{x.sellerCommission}})%</th>
+                    <th>Commission  age%</th>
                     <th>Amount Excl. Tax</th>
                     <th>Tax ({{x.invoiceTaxPercentage}})%</th>
                     <th>Amount Incl. Tax</th>
 
 
 
-
+s
                 </tr>
                 <tr *ngFor="let i of x.contractSaleInvoices">
                     <td>{{i.description}}</td>
@@ -168,9 +168,10 @@
                     <td>{{i.saleInvoiceDateToDisplay}}</td>
                     <td>{{i.quantity}}{{i.quanityUOM}}</td>
                     <td>{{i.rate}}</td>
+                    <td>{{i.commission}} </td>
 
                     <td>{{i.sellerCommissionAmount}} </td>
-                    <td>{{i.amount}}</td>
+                    <!-- <td>{{i.amount}}</td> -->
                     <td>{{i.taxAmount}}</td>
 
                     <td>{{i.totalAmount  | number:'2.2-2'}}</td>
