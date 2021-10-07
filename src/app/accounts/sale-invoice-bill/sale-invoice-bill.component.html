@@ -191,7 +191,7 @@
                     <th>Sale Invoice Date</th>
                     <th>Quantity</th>
                     <th>Rate({{data.currencyName}})</th>
-                    <th>Commission  ({{data.sellerCommission}})%</th>
+                    <th>Commission  %age</th>
                     <th>Amount Excl. Tax</th>
                     <th>Tax ({{data.invoiceTaxPercentage}})%</th>
                     <th>Amount Incl. Tax</th>
@@ -207,9 +207,10 @@
                     <td>{{i.saleInvoiceDateToDisplay}}</td>
                     <td>{{i.quantity}}{{i.quanityUOM}}</td>
                     <td>{{i.rate}}</td>
+                    <td>{{i.commission}} </td>
 
                     <td>{{i.sellerCommissionAmount}} </td>
-                    <td>{{i.amount}}</td>
+                    <!-- <td>{{i.amount}}</td> -->
                     <td>{{i.taxAmount}}</td>
 
                     <td>{{i.totalAmount  | number:'2.2-2'}}</td>
