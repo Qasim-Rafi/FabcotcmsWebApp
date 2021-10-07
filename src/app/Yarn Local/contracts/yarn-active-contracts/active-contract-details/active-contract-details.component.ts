@@ -3106,13 +3106,13 @@ getImage(){
               {
                         layout:'noBorders',
                         margin: [20 , -550 , 0 , 0],
-                        table:{headerRows: 1 , widths:['20%' , '45%' , '10%' , '10%' , '5%', '10%'  ],
+                        table:{headerRows: 1 , widths:['20%' , '45%' ],
                       body: [
                         [{text:'Seller Name:'  , style:'heading'} , {text: this.printData['sellerName'] ,margin:[-30,0,0,0] ,   style:'heading2'} , 
-                        {text:this.printData['sellerNTNNumber'] ==''? '' : 'NTN:'  , style:'heading4' ,margin:[0,0,0,0]} , 
-                        {text: this.printData['sellerNTNNumber'], style:'heading5' ,margin:[-38,0,0,0] }, 
-                        {text:this.printData['sellerGSTNumber'] ==''? '' :'GST:'  , style:'heading4' ,margin:[-15,0,0,0]} , 
-                        {text: this.printData['sellerGSTNumber'], style:'heading5' ,margin:[-28,0,0,0] }, 
+                        // {text:this.printData['sellerNTNNumber'] ==''? '' : 'NTN:'  , style:'heading4' ,margin:[0,0,0,0]} , 
+                        // {text: this.printData['sellerNTNNumber'], style:'heading5' ,margin:[-38,0,0,0] }, 
+                        // {text:this.printData['sellerGSTNumber'] ==''? '' :'GST:'  , style:'heading4' ,margin:[-15,0,0,0]} , 
+                        // {text: this.printData['sellerGSTNumber'], style:'heading5' ,margin:[-28,0,0,0] }, 
                       
                       
                       ],] }
@@ -3282,7 +3282,7 @@ getImage(){
                         margin: [20 , 2 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '40%'],
                       body: [
-                        [{text:'GST#:'  , style:'heading'} , {text: this.printData['buyerGSTNumber'] , margin:[-35,0,0,0] ,style:'heading2'}],] }
+                        [{text:'GST#:'  , style:'heading'} , {text: this.printData['sellerGSTNumber'] , margin:[-35,0,0,0] ,style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
@@ -4119,10 +4119,10 @@ getImage(){
                       table:{headerRows: 1 , widths:['20%' , '45%' , '10%' , '10%' , '5%', '10%'  ],
                     body: [
                       [{text:'Buyer Name:'  , style:'heading'} , {text: this.printData['buyerName'] ,margin:[-30,0,0,0] ,   style:'heading2'} , 
-                      {text:this.printData['buyerNTNNumber'] ==''? '' : 'NTN:'  , style:'heading4' ,margin:[0,0,0,0]} , 
-                      {text: this.printData['buyerNTNNumber'], style:'heading5' ,margin:[-38,0,0,0] }, 
-                      {text:this.printData['buyerGSTNumber'] ==''? '' :'GST:'  , style:'heading4' ,margin:[-15,0,0,0]} , 
-                      {text: this.printData['buyerGSTNumber'], style:'heading5' ,margin:[-28,0,0,0] }, 
+                      // {text:this.printData['buyerNTNNumber'] ==''? '' : 'NTN:'  , style:'heading4' ,margin:[0,0,0,0]} , 
+                      // {text: this.printData['buyerNTNNumber'], style:'heading5' ,margin:[-38,0,0,0] }, 
+                      // {text:this.printData['buyerGSTNumber'] ==''? '' :'GST:'  , style:'heading4' ,margin:[-15,0,0,0]} , 
+                      // {text: this.printData['buyerGSTNumber'], style:'heading5' ,margin:[-28,0,0,0] }, 
                     
                     
                     ],] }
@@ -4291,7 +4291,7 @@ getImage(){
                         margin: [20 , 2 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '40%'],
                       body: [
-                        [{text:'GST#:'  , style:'heading'} , {text: this.printData['sellerGSTNumber'] , margin:[-35,0,0,0] ,style:'heading2'}],] }
+                        [{text:'GST#:'  , style:'heading'} , {text: this.printData['buyerGSTNumber'] , margin:[-35,0,0,0] ,style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',

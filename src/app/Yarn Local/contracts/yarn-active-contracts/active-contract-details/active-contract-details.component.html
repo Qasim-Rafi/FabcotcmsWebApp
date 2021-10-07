@@ -847,7 +847,7 @@
                                         <dt class="col-sm-6" *ngIf = "loggedInDepartmentName != 'Yarn Export'  && loggedInDepartmentName != 'Yarn Import'">Construction:
                                         </dt>
                                         <dd class="col-sm-6" *ngIf = "loggedInDepartmentName != 'Yarn Export'
-                                        && loggedInDepartmentName != 'Yarn Import'">{{contractProductData.pecenetAge}} 
+                                        && loggedInDepartmentName != 'Yarn Import'"> <span *ngIf = "contractProductData.pecenetAge != null">   {{contractProductData.pecenetAge}} %  </span>
                                             {{contractProductData.febricType}}&nbsp;{{contractProductData.construction}}</dd>
                     
                                     </dl>
@@ -995,7 +995,7 @@
                                     && loggedInDepartmentName != 'Yarn Import'">
                                         <dt class="col-sm-6">Rate:
                                         </dt>
-                                        <dd class="col-sm-6">{{contractCostingData.rate}} <b *ngIf="contractCostingData.rateUOMName !=null">
+                                        <dd class="col-sm-6"><span *ngIf="contractCostingData.rateCurrencyName !=null"> {{contractCostingData.rateCurrencyName}} </span>   {{contractCostingData.rate}} <b *ngIf="contractCostingData.rateUOMName !=null">
                                                 / </b>
                                             {{contractCostingData.rateUOMName}}</dd>
                     
@@ -1010,8 +1010,8 @@
                     
                                     </dl>
 
-                                    <dl class="row" *ngIf = "loggedInDepartmentName != 'Yarn Export'
-                                    && loggedInDepartmentName != 'Yarn Import'">
+                                    <dl class="row" *ngIf = "loggedInDepartmentName == 'Fabric Local'
+                                     ">
                                         <dt class="col-sm-6">Project Cost Inc GST:
                                         </dt>
                                         <dd class="col-sm-6">{{contractCostingData.rateCurrencyName}}
