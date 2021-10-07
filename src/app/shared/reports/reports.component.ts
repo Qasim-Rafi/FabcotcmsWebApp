@@ -42,6 +42,8 @@ export class ReportsComponent implements OnInit {
   buyer : any = []
   seller : any = []
   article : any = []
+  invBill: any = [];
+  contractBill: any = [];
 
   constructor(
 
@@ -125,6 +127,24 @@ this.fetchContractInvise();
       // on dismiss
     });
   }
+
+  billInvSearch(event) {
+    const val = event.target.value.toLowerCase();
+    const temp = this.invBill.filter(function (d) {
+      return (d.contractNo.toLowerCase().indexOf(val) !== -1 || d.billNo.toLowerCase().indexOf(val) !==-1   || !val);
+    });
+    this.billingReportInvoiceWise = temp;
+  }
+
+  billContractSearch(event) {
+    const val = event.target.value.toLowerCase();
+    const temp = this.contractBill.filter(function (d) {
+      return (d.contractNo.toLowerCase().indexOf(val) !== -1 || d.billNo.toLowerCase().indexOf(val) !==-1   || !val);
+    });
+    this.contractWise = temp;
+  }
+
+
   fetch() {
     this.billingReportInvoiceWise.startDate = this.dateformater.toModel(this.billingReportInvoiceWise.startDate)
     this.billingReportInvoiceWise.endDate = this.dateformater.toModel(this.billingReportInvoiceWise.endDate)
@@ -138,7 +158,7 @@ this.fetchContractInvise();
     if(this.response.success==true)
     {
     this.billingReportInvoiceWise=this.response.data;
-
+    this.invBill = [...this.billingReportInvoiceWise]
     this.spinner.hide();
 
     }
@@ -190,7 +210,7 @@ this.fetchContractInvise();
     if(this.response.success==true)
     {
     this.contractWise=this.response.data;
- 
+   this.contractBill = [...this.contractWise]
 
     // cb(this.billingReportInvoiceWise);
     this.spinner.hide();
@@ -230,6 +250,115 @@ this.fetchContractInvise();
     this.service.exportAsExcelFile(filtered, 'Bill Report(Contract Wise)');
 
   }
+
+  allContractReports() {
+    this.contractWise.startDate = this.dateformater.toModel(this.contractWise.startDate)
+    this.contractWise.endDate = this.dateformater.toModel(this.contractWise.endDate)
+    this.spinner.show();
+    this.http
+    .get(`${environment.apiUrl}`)
+    .subscribe(res => {
+      this.response = res;
+     
+    if(this.response.success==true)
+    {
+    this.allContractReport=this.response.data;
+ 
+
+    // cb(this.billingReportInvoiceWise);
+    this.spinner.hide();
+
+    }
+    else{
+      this.toastr.error(this.response.message, 'Message.');
+      this.spinner.hide();
+    
+    }
+
+    }, err => {
+      if ( err.status == 400) {
+  this.toastr.error(err.error.message, 'Message.');
+  this.spinner.hide();
+
+      }
+    });
+  }
+  allcontractExcelFile(){
+    const filtered = this.contractWise.map(row => ({
+      BillFor: row.billFor,
+      Article: row.articleName,
+      ContractNumber: row.contractNo,
+      CotractDate: row.contractDate ,
+      BillDate: row.billDate,
+      BillNumber: row.billNo,
+      Buyer: row.buyerName ,
+      Seller: row.sellerName,
+      Rate: row.rate,
+      CommPer: row.fabcotCommission + '%' ,
+      Quantity: row.quantity,
+      QtyUOM:row.quantityUOMName,
+      CommAmount: row.commissionAmount ,
+    }));
+
+    this.service.exportAsExcelFile(filtered, 'Bill Report(Contract Wise)');
+
+  }
+
+
+  openContractReports() {
+    this.contractWise.startDate = this.dateformater.toModel(this.contractWise.startDate)
+    this.contractWise.endDate = this.dateformater.toModel(this.contractWise.endDate)
+    this.spinner.show();
+    this.http
+    .get(`${environment.apiUrl}`)
+    .subscribe(res => {
+      this.response = res;
+     
+    if(this.response.success==true)
+    {
+    this.openContractReport=this.response.data;
+ 
+
+    // cb(this.billingReportInvoiceWise);
+    this.spinner.hide();
+
+    }
+    else{
+      this.toastr.error(this.response.message, 'Message.');
+      this.spinner.hide();
+    
+    }
+
+    }, err => {
+      if ( err.status == 400) {
+  this.toastr.error(err.error.message, 'Message.');
+  this.spinner.hide();
+
+      }
+    });
+  }
+  openContractExcelFile(){
+    const filtered = this.contractWise.map(row => ({
+      BillFor: row.billFor,
+      Article: row.articleName,
+      ContractNumber: row.contractNo,
+      CotractDate: row.contractDate ,
+      BillDate: row.billDate,
+      BillNumber: row.billNo,
+      Buyer: row.buyerName ,
+      Seller: row.sellerName,
+      Rate: row.rate,
+      CommPer: row.fabcotCommission + '%' ,
+      Quantity: row.quantity,
+      QtyUOM:row.quantityUOMName,
+      CommAmount: row.commissionAmount ,
+    }));
+
+    this.service.exportAsExcelFile(filtered, 'Bill Report(Contract Wise)');
+
+  }
+
+
 
   clickEvent(){
     this.status = !this.status;       
