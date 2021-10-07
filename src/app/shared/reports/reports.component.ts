@@ -38,6 +38,10 @@ export class ReportsComponent implements OnInit {
   lCReport: any = [];
   url: any;
   contractWise : any = []
+  buyer : any = []
+  seller : any = []
+  article : any = []
+
   constructor(
 
     private route: ActivatedRoute,
@@ -58,9 +62,44 @@ export class ReportsComponent implements OnInit {
     this.billingReportInvoiceWise.endDate = this.dateformater.toModel(this.billingReportInvoiceWise.endDate)
 
     this.fetch();
+    this.GetBuyersDropdown();
+    this.GetSellersDropdown();
+    this.GetArticleDropdown();
 this.fetchContractInvise();
   }
- 
+  GetBuyersDropdown() {
+    this.service.getBuyers().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.buyer = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
+  GetArticleDropdown() {
+    this.service.getArticles().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.article = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
+  GetSellersDropdown() {
+    this.service.getSellers().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.seller = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
   searchFilter(event) {
     const val = event.target.value.toLowerCase();
     // filter our data

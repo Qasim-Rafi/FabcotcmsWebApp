@@ -66,25 +66,25 @@ this.getContractCostingData();
 
 
   this.GetUOMDropdown();
-   this.GetCreditDropdown();
+  //  this.GetCreditDropdown();
   }
 
   get activeModal() {
     return this._NgbActiveModal;
   }
 
-  GetCreditDropdown() {
-    this.http.get(`${environment.apiUrl}/api/YarnContracts/CreditPopUpFields/`+this.contractId).
-    subscribe(res => {
-      this.response = res;
-      if (this.response.success == true) {
-        this.count = this.response.data;
-      }
-      else {
-        this.toastr.error(this.response.message, 'Message.');
-      }
-    })
-  }
+  // GetCreditDropdown() {
+  //   this.http.get(`${environment.apiUrl}/api/YarnContracts/CreditPopUpFields/`+this.contractId).
+  //   subscribe(res => {
+  //     this.response = res;
+  //     if (this.response.success == true) {
+  //       this.count = this.response.data;
+  //     }
+  //     else {
+  //       this.toastr.error(this.response.message, 'Message.');
+  //     }
+  //   })
+  // }
  
   GetUOMDropdown() {
     this.service.getUOM().subscribe(res => {
@@ -176,12 +176,12 @@ this.getContractCostingData();
 
 
   addCredit(form:NgForm) {
-    let sum=parseInt(this.quantitya)+parseInt(this.saleInvoiceQuantity);
-    if(sum>this.quantity ){
-      this.toastr.error("Total Sale Invoice Quantity"+"["+sum+"]"+ "should be less than contract quantity"+"["+this.quantity+"]", 'Message.');
+    // let sum=parseInt(this.quantitya)+parseInt(this.saleInvoiceQuantity);
+    // if(sum>this.quantity ){
+    //   this.toastr.error("Total Sale Invoice Quantity"+"["+sum+"]"+ "should be less than contract quantity"+"["+this.quantity+"]", 'Message.');
 
-    }
-    else{
+    // }
+    // else{
     let varr = {
 
       "saleInvoiceId": this.saleInvoiceId,
@@ -219,7 +219,7 @@ this.getContractCostingData();
           this.toastr.error(messages.toString(),'Message.');
 
         });
-      }
+      // }
   }
 
 
