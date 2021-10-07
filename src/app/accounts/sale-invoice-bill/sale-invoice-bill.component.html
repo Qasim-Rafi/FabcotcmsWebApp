@@ -222,7 +222,7 @@
             <br>
             <div class="float-right">
                 <span class=" bold text-font1">
-                    Sub Total: <span class="text-font1 underline">{{data.billAmount}} </span>
+                    Sub Total: <span class="text-font1 underline">{{data.billAmount | number:'1.0-0'}} </span>
                 </span>
                 <br>
                 <span class=" bold text-font1">
@@ -234,7 +234,7 @@
             </div>
             <div class="float-left" >
             <span class="text-font1">
-                Quantity:<span class="bold text-font1 "> {{data.quantitySum}}</span>
+                Quantity:<span class="bold text-font1 "> {{data.quantitySum}}&nbsp; {{data.quanityUOM}}</span>
             </span>
             <br><br><br>
             <span class=" text-font1">
