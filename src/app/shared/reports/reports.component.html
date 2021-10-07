@@ -26,70 +26,71 @@
     <div class="panel blank-panel">
       <div class="panel-heading">
 
-        
+        <div class="row mb-2 p-2">
+
+          <div class="col-md-3">
+            <div class="widget style1 yellow-bg  shadow">
+              <div class="row">
+                <div class="col-md-4">
+                  <i class="fas fa-file-invoice-dollar fa-4x"></i>
+                </div>
+                <div class="col-md-8 text-right">
+                  <div> All Contracts </div>
+                  <!-- <h6 class="font-bold">{{dashboardAmnt.activeBillCount}}</h6> -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="widget style1 bg-secondary shadow">
+              <div class="row">
+                <div class="col-md-4">
+                  <i class="fas fa-wallet fa-4x"></i>
+                </div>
+                <div class="col-md-8 text-right">
+                  <div> Container</div>
+                  <!-- <h6 class="font-bold">{{dashboardAmnt.totalAmount}}</h6> -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="widget style1 bg-info shadow">
+              <div class="row">
+                <div class="col-md-4">
+                  <i class="fas fa-hand-holding-usd fa-4x"></i>
+                </div>
+                <div class="col-md-8 text-right">
+                  <div> Quantity </div>
+                  <!-- <h6 class="font-bold">{{dashboardAmnt.balanceAmount}}</h6> -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="widget style1 bg-success shadow">
+              <div class="row">
+                <div class="col-md-4">
+                  <i class="fa fa-calculator fa-4x"></i>
+                </div>
+                <div class="col-md-8 text-right">
+                  <div> Dispatch </div>
+                  <!-- <h6 class="font-bold">{{dashboardAmnt.taxAmount}}</h6> -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
 
           <form #filterForm="ngForm" novalidate>
+            <div  [ngClass]="status ? 'add' : 'remove'">
             <div class="card"> 
-              <div class="row mb-2 p-2">
-
-                <div class="col-md-3">
-                  <div class="widget style1 yellow-bg  shadow">
-                    <div class="row">
-                      <div class="col-md-4">
-                        <i class="fas fa-file-invoice-dollar fa-4x"></i>
-                      </div>
-                      <div class="col-md-8 text-right">
-                        <div> All Contracts </div>
-                        <!-- <h6 class="font-bold">{{dashboardAmnt.activeBillCount}}</h6> -->
-                      </div>
-                    </div>
-                  </div>
-                </div>
-      
-                <div class="col-md-3">
-                  <div class="widget style1 bg-secondary shadow">
-                    <div class="row">
-                      <div class="col-md-4">
-                        <i class="fas fa-wallet fa-4x"></i>
-                      </div>
-                      <div class="col-md-8 text-right">
-                        <div> Container</div>
-                        <!-- <h6 class="font-bold">{{dashboardAmnt.totalAmount}}</h6> -->
-                      </div>
-                    </div>
-                  </div>
-                </div>
-      
-                <div class="col-md-3">
-                  <div class="widget style1 bg-info shadow">
-                    <div class="row">
-                      <div class="col-md-4">
-                        <i class="fas fa-hand-holding-usd fa-4x"></i>
-                      </div>
-                      <div class="col-md-8 text-right">
-                        <div> Quantity </div>
-                        <!-- <h6 class="font-bold">{{dashboardAmnt.balanceAmount}}</h6> -->
-                      </div>
-                    </div>
-                  </div>
-                </div>
-      
-                <div class="col-md-3">
-                  <div class="widget style1 bg-success shadow">
-                    <div class="row">
-                      <div class="col-md-4">
-                        <i class="fa fa-calculator fa-4x"></i>
-                      </div>
-                      <div class="col-md-8 text-right">
-                        <div> Dispatch </div>
-                        <!-- <h6 class="font-bold">{{dashboardAmnt.taxAmount}}</h6> -->
-                      </div>
-                    </div>
-                  </div>
-                </div>
-      
-      
-              </div>
+ 
 
             <div class="row p-2">
             
@@ -150,13 +151,7 @@
             
             </div>
           </div>
-
-
-
-
-
-
-
+        </div>
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group row mt-3">
@@ -172,6 +167,10 @@
                       Search Contract
                     </button>
                   </div>
+                  <div class="col-md-4 ">
+                  <button type="button" class="btn btn-primary btn-sm ml-md-2"  (click)="clickEvent()"> Advance Filter <i class="fas fa-search fa-fw mr-2"></i></button>
+                  </div>
+
                 </div>
               </div>
             </div>

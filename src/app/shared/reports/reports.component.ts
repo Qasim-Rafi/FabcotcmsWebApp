@@ -15,6 +15,7 @@ import { FilterPopUpComponent } from './filter-pop-up/filter-pop-up.component';
   styleUrls: ['./reports.component.css']
 })
 export class ReportsComponent implements OnInit {
+  status: boolean = false;
   dateformater: Dateformater = new Dateformater();  
   data:any={};
   menuName: any = {};
@@ -229,4 +230,9 @@ this.fetchContractInvise();
     this.service.exportAsExcelFile(filtered, 'Bill Report(Contract Wise)');
 
   }
+
+  clickEvent(){
+    this.status = !this.status;       
+}
+
 }
