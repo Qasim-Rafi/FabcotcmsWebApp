@@ -1004,6 +1004,16 @@
                                             {{contractCostingData.contractCost}}</dd>
                     
                                     </dl>
+
+                                    <dl class="row" *ngIf = "loggedInDepartmentName != 'Yarn Export'
+                                    && loggedInDepartmentName != 'Yarn Import'">
+                                        <dt class="col-sm-6">Project Cost Inc GST:
+                                        </dt>
+                                        <dd class="col-sm-6">{{contractCostingData.rateCurrencyName}}
+                                            {{costingDataWithGstFL}}</dd>
+                    
+                                    </dl>
+
                                     <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName != 'Yarn Export'
                                     && loggedInDepartmentName != 'Yarn Import' ">
                                         <dt class="col-sm-6">&nbsp; &nbsp;

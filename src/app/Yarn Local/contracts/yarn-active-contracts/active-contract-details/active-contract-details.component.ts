@@ -47,7 +47,7 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 export class ActiveContractDetailsComponent implements OnInit {
 
   dateformater: Dateformater = new Dateformater();
- 
+ costingDataWithGstFL: any;
   reminderToggle : boolean = false
   rows: any = [];
   rows7: any = [];
@@ -1189,6 +1189,12 @@ getContractCostingData() {
         this.response = res;
         if (this.response.success == true && this.response.data != null) {
           this.contractCostingData = this.response.data;
+
+          // .......calculating with gst........
+          let value=(this.contractCostingData.contractCost * this.contractCostingData.gst) /100;
+            // this.costingDataWithGstFL=parseInt(this.contractCostingData.contractCost)
+          this.costingDataWithGstFL =parseInt(this.contractCostingData.contractCost) + value+".000";
+          // .......calculating with gst........
           this.max = this.response.data.quantity;
       this.uom = this.contractCostingData.rateUOMName;
           if(this.contractCostingData.length=1){
