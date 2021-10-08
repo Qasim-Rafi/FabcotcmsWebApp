@@ -146,7 +146,8 @@ max1:any;
  uom : any;
 quantity : any;
 comm = "Commission:";
-revised : any;
+revised = false;
+checkR: any;
   constructor(
     config: NgbProgressbarConfig,
     private router: Router,
@@ -328,34 +329,45 @@ revised : any;
   }
   revisedMethod(){
     if(this.loggedInDepartmentName =='Yarn Export' || this.loggedInDepartmentName =='Yarn Import'){
-    // this.http
-    // .put(`${environment.apiUrl}/api/Contracts/ReviseContract/`+ this.contractId,{})
-    //   .subscribe(res => {
-    //     this.response = res;
-
-    //     if (this.response.success == true) {
-    //       this.revisedContractData = this.response.data;
-    //       if(this.revisedContractData > 0){
-    //          this.isRevisedStart = true;
-    //       }
-    
-    //     }
-    //     else {
-    //       this.toastr.error(this.response.message, 'Message.');
-    //     }
-    //     // this.spinner.hide();
-    //   },(err: HttpErrorResponse) => {
-    //     const messages = this.service.extractErrorMessagesFromErrorResponse(err);
-    //     this.toastr.error(messages.toString(), 'Message.');
-    //     console.log(messages);
-    //   });
+  
     this.isRevisedStart = true;
+
+    this.spinner.show();
+        
+    this.http.
+      put(`${environment.apiUrl}/api/Contracts/ReviseContract/`+ this.contractId , {})
+      .subscribe(
+        res => {
+
+          this.response = res;
+          if (this.response.success == true) {
+           this.revised = true;
+           this.checkR = "REVISED"
+            this.toastr.success(this.response.message, 'Message.');
+             this.getContractData();
+            this.spinner.hide();
+
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          
+this.spinner.hide();
+}
+
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+this.spinner.hide();
+          
+          }
+        });
+
+
     }
   }
  
   reviseContract() {
         
-      
     this.spinner.show();
         
             this.http.
@@ -365,7 +377,8 @@ revised : any;
         
                   this.response = res;
                   if (this.response.success == true) {
-                    this.revised = this.response.data;
+                   this.revised = true;
+                   this.checkR = "REVISED"
                     this.toastr.success(this.response.message, 'Message.');
                      this.getContractData();
                     this.spinner.hide();
@@ -2335,6 +2348,7 @@ this.spinner.hide();
           }
 
   getPrintData(deptName){
+ 
     this.spinner.show();
   this.http.get(`${environment.apiUrl}/api/Reports/ContractIndentPrint/`+ this.contractId)
   .subscribe(
@@ -2448,12 +2462,13 @@ getImage(){
                        fit : [100 , 100]
                     
                       },
+                      
                       {
                         layout:'noBorders',
                         margin: [330 , -30 , 0 , 0],
-                        table:{headerRows: 1 , widths:['30%' , '90%'],
+                        table:{headerRows: 1 , widths:['100%'],
                       body: [
-                        [{text:'Contract No:'  , style:'heading'} , {text: this.contractData['autoContractNumber']  , margin:[-9,0,0,0] , style:'heading2'}],] }
+                        [{text:this.checkR  , style:'heading'} ],] }
                       },
                       {
                         layout:'noBorders',
@@ -2716,6 +2731,13 @@ getImage(){
                       {
                         layout:'noBorders',
                         margin: [330 , -30 , 0 , 0],
+                        table:{headerRows: 1 , widths:['100%'],
+                      body: [
+                        [{text:this.checkR  , style:'heading'} ],] }
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [330 , -30 , 0 , 0],
                         table:{headerRows: 1 , widths:['30%' , '90%'],
                       body: [
                         [{text:'Contract No:'  , style:'heading'} , {text: this.contractData['autoContractNumber'] , 
@@ -2974,6 +2996,13 @@ getImage(){
                         "image" : this.image2,
                        fit : [130 , 130] , margin:[420,5,0,0]
                     
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [330 , -30 , 0 , 0],
+                        table:{headerRows: 1 , widths:['100%'],
+                      body: [
+                        [{text:this.checkR  , style:'heading'} ],] }
                       },
                        {
                         layout:'noBorders',
@@ -3452,6 +3481,13 @@ getImage(){
                       },
                       {
                         layout:'noBorders',
+                        margin: [330 , -30 , 0 , 0],
+                        table:{headerRows: 1 , widths:['100%'],
+                      body: [
+                        [{text:this.checkR  , style:'heading'} ],] }
+                      },
+                      {
+                        layout:'noBorders',
                         margin: [320 , -40 , 0 , 0],
                         table:{headerRows: 1 , widths:['30%' , '90%'],
                       body: [
@@ -3740,6 +3776,13 @@ getImage(){
                       },
                       {
                         layout:'noBorders',
+                        margin: [330 , -30 , 0 , 0],
+                        table:{headerRows: 1 , widths:['100%'],
+                      body: [
+                        [{text:this.checkR  , style:'heading'} ],] }
+                      },
+                      {
+                        layout:'noBorders',
                         margin: [320 , -40 , 0 , 0],
                         table:{headerRows: 1 , widths:['30%' , '90%'],
                       body: [
@@ -4008,6 +4051,13 @@ getImage(){
                         "image" : this.image2,
                        fit : [130 , 130] , margin:[420,5,0,0]
                     
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [330 , -30 , 0 , 0],
+                        table:{headerRows: 1 , widths:['100%'],
+                      body: [
+                        [{text:this.checkR  , style:'heading'} ],] }
                       },
                        {
                         layout:'noBorders',
@@ -4853,6 +4903,13 @@ yarnExportInvoicesReportPrint(){
                         "image" : this.image2,
                        fit : [130 , 130]
                     
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [330 , -30 , 0 , 0],
+                        table:{headerRows: 1 , widths:['100%'],
+                      body: [
+                        [{text:this.checkR  , style:'heading'} ],] }
                       },
                       {
                         layout:'noBorders',
