@@ -66,6 +66,7 @@ invNo : any
 
         if (this.response.success == true) {
           this.data = this.response.data;
+          this.data.invoiceTaxAmountTotal=parseInt(this.data.invoiceTaxAmountTotal)
           this.amountInWorda = this.ngxNumToWordsService.inWords(this.data.invoiceTotalAmount, this.lang);
           console.log(this.data)
           this.spinner.hide();
@@ -319,7 +320,8 @@ invNo : any
                     , style: 'tableHeader2'
                   },
                   { text: row.sellerCommissionAmount, style: 'tableHeader2' },
-                  { text: row.taxAmount, style: 'tableHeader2' },
+             
+                  { text: Math.round(row.taxAmount), style: 'tableHeader2' },
 
                   { text: Math.round(row.totalAmount), style: 'tableHeader2' }]
               ))

@@ -170,9 +170,9 @@
 
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Price"  [width] = "20" [flexGrow]="0.04"  prop="articleName">
+          <ngx-datatable-column name="Price"  [width] = "20" [flexGrow]="0.04"  prop="price">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{row.price}}
+              {{row.currencyCode}} {{row.price}} / {{row.uomName}}
               
 
             </ng-template>
