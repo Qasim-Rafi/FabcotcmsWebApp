@@ -1418,7 +1418,7 @@
                                 </div>
                             </div>
                     
-                            <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows1" *ngIf="rows1.length != 0"
+                            <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="empData" *ngIf="empData.length != 0"
                                 [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [sorts]="[{prop: 'code', dir: 'asce'}]"
                                 [rowHeight]="'auto'" [limit]="6">
                     

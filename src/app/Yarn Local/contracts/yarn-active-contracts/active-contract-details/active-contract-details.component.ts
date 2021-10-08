@@ -210,12 +210,7 @@ comm = "Commission:";
         }
   
 
-    this.getAllBenificery((empData) => {
-      this.rows1 = empData;
-      if(this.rows1.length=1){
-        this.check=this.check+15;
-      }
-    });
+  this.getAllBenificery();
     if(this.loggedInDepartmentName == 'Yarn Export' || this.loggedInDepartmentName == 'Yarn Import' ){
 
     this.getAllNotes((NotesData) => {
@@ -1352,7 +1347,7 @@ searchDispatch(event) {
 
 
 
-getAllBenificery(cb) {
+getAllBenificery() {
     
   this.http
   .get(`${environment.apiUrl}/api/Contracts/GetAllContractBeneficiary/` + this.contractId)
@@ -1362,7 +1357,9 @@ getAllBenificery(cb) {
   if(this.response.success==true && this.response.data != null)
   {
   this.empData =this.response.data;
-  cb(this.empData);
+  if(this.empData.length !==null){
+    this.check=this.check+15;
+  }
   }
   else if(this.response.success == false) {
          
@@ -1401,12 +1398,7 @@ this.spinner.show();
               this.toastr.error(this.response.message, 'Message.');
               // this.getAllEnquiryItems();
               // this.getEnquiryData(this.objEnquiry);
-              this.getAllBenificery((empData) => {
-                this.rows1 = empData;
-                // this.listCount= this.rows.length;
-  this.spinner.hide();
-
-              });
+           this.getAllBenificery();
 
             }
             else {
@@ -1547,10 +1539,7 @@ this.spinner.show();
       // on close
       if (data == true) {
   
-        this.getAllBenificery((empData) => {
-          this.rows1 = empData;
-          // this.listCount= this.rows.length;
-        });
+     this.getAllBenificery();
       }
     }, (reason) => {
       // on dismiss
@@ -1567,10 +1556,7 @@ this.spinner.show();
       // on close
       if (data == true) {
   
-        this.getAllBenificery((empData) => {
-          this.rows1 = empData;
-          // this.listCount= this.rows.length;
-        });
+   this.getAllBenificery();
       }
     }, (reason) => {
       // on dismiss
