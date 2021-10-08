@@ -286,6 +286,13 @@
               {{row.dueDate}}
             </ng-template>
           </ngx-datatable-column> -->
+
+          <ngx-datatable-column name="Status" [width]="80" prop="billStatus" [flexGrow]="0.06">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              <span class="badge badge-primary"> {{row.billStatus}}</span>
+            </ng-template>
+          </ngx-datatable-column>
+
       
           <ngx-datatable-column name="Action" [width]="80" prop="action" [flexGrow]="0.07">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>

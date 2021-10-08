@@ -183,7 +183,12 @@
                         <i class="far fa-clone"></i>
                         Revised
                     </button>
- 
+                    <button *ngIf="loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import' " class="btn btn-info btn-sm border-rounded px-3 mr-1 mrg-btm"   (click)="reviseContract()">
+                        <i class="far fa-clone"></i>
+                       <!-- <span *ngIf = "revised != '' "> &nbsp; Revised</span> 
+                       <span *ngIf = "revised == ''">&nbsp; Revise</span>  -->
+
+                    </button>
                
                 <button class="btn btn-outline-primary btn-sm border-rounded px-3 mr-1 mrg-btm"
                     (click)="closeContract()">

@@ -146,6 +146,7 @@ max1:any;
  uom : any;
 quantity : any;
 comm = "Commission:";
+revised : any;
   constructor(
     config: NgbProgressbarConfig,
     private router: Router,
@@ -351,6 +352,41 @@ comm = "Commission:";
     this.isRevisedStart = true;
     }
   }
+ 
+  reviseContract() {
+        
+      
+    this.spinner.show();
+        
+            this.http.
+              put(`${environment.apiUrl}/api/Contracts/ReviseContract/`+ this.contractId , {})
+              .subscribe(
+                res => {
+        
+                  this.response = res;
+                  if (this.response.success == true) {
+                    this.revised = this.response.data;
+                    this.toastr.success(this.response.message, 'Message.');
+                     this.getContractData();
+                    this.spinner.hide();
+    
+                  }
+                  else {
+                    this.toastr.error(this.response.message, 'Message.');
+                  
+    this.spinner.hide();
+    }
+        
+                }, err => {
+                  if (err.status == 400) {
+                    this.toastr.error(this.response.message, 'Message.');
+    this.spinner.hide();
+                  
+                  }
+                });
+    
+          }
+
   salesInvoicereportLocalYarn(){
         this.http.get(`${environment.apiUrl}/api/YarnContracts/GetAllContractSaleInvoiceReport/`+ this.contractId)
       .subscribe(res => {
@@ -1000,7 +1036,7 @@ getContractPartiesData() {
 
 
 getDeliveryTimeLine() {
-  this.http.get(`${environment.apiUrl}​/api​/YarnContracts​/GetAllContractDeliverySchedule` )
+  this.http.get(`${environment.apiUrl}/api/YarnContracts/GetAllContractDeliverySchedule` )
     .subscribe(
       res => {
         this.response = res;
@@ -2033,7 +2069,7 @@ addProd() {
 this.spinner.show();
     
         this.http.
-          put(`${environment.apiUrl}/api/Contracts/ContractClose/`, this.contractId)
+          put(`${environment.apiUrl}/api/Contracts/ContractClose/`+ this.contractId , {})
           .subscribe(
             res => {
     
@@ -2060,38 +2096,37 @@ this.spinner.hide();
 
       }
 
-      cancelContract() {
-        
-      
-        this.spinner.show();
+ 
+
+              cancelContract()
+              {
+                let varr=  {}
+      this.spinner.show();
             
                 this.http.
-                  put(`${environment.apiUrl}/api/Contracts/ContractCancel/`, this.contractId)
-                  .subscribe(
-                    res => {
+                put(`${environment.apiUrl}/api/Contracts/ContractCancel/`+this.contractId,varr)
+                .subscribe(
+                  res=> { 
+              
+                    this.response = res;
+                    if (this.response.success == true){
+                      this.toastr.success(this.response.message, 'Message.');
+                   this.getContractData();
+      this.spinner.hide();
+    }
+                    else {
+                      this.toastr.error(this.response.message, 'Message.');
+      this.spinner.hide();
+    }
             
-                      this.response = res;
-                      if (this.response.success == true) {
-                        this.toastr.success(this.response.message, 'Message.');
-                         this.getContractData();
-                        this.spinner.hide();
-        
-                      }
-                      else {
-                        this.toastr.error(this.response.message, 'Message.');
-                      
-        this.spinner.hide();
-        }
-            
-                    }, err => {
-                      if (err.status == 400) {
-                        this.toastr.error(this.response.message, 'Message.');
-        this.spinner.hide();
-                      
-                      }
-                    });
-        
-              }
+                  }, (err: HttpErrorResponse) => {
+                    const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+                    this.toastr.error(messages.toString(), 'Message.');
+                    console.log(messages);
+      this.spinner.hide();
+    
+                  });
+              }    
 
       AddReminder() {
         
