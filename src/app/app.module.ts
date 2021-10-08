@@ -70,6 +70,7 @@ import { BillInvoicesComponent } from './accounts/bill-invoices/bill-invoices.co
 import { SaleInvoiceBillComponent } from './accounts/sale-invoice-bill/sale-invoice-bill.component';
 import { AccBulkPrintComponent } from './accounts/acc-bulk-print/acc-bulk-print.component';
 import { BillBreakupComponent } from './accounts/bill-breakup/bill-breakup.component';
+import { NgxScrollTopModule } from 'ngx-scrolltop';
 
 
 
@@ -181,6 +182,7 @@ const appRoutes: Routes = []
       confirmText: 'Yes',
 
     }),
+    NgxScrollTopModule,
   ],
 
   providers: [AuthGuard,

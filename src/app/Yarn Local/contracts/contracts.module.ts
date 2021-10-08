@@ -45,6 +45,7 @@ import { DebitComponent } from './yarn-active-contracts/active-contract-details/
 import { CreditComponent } from './yarn-active-contracts/active-contract-details/active-contract-models/sale-invoice-pop-up/credit/credit.component';
 import { LCInfoComponent } from './yarn-active-contracts/active-contract-details/active-contract-models/lcinfo/lcinfo.component';
 import { NgProgressModule } from 'ngx-progressbar';
+import { NgxScrollTopModule } from 'ngx-scrolltop';
 
 @NgModule({
   declarations: [AddNewContractsComponent,
@@ -83,7 +84,8 @@ LCInfoComponent,
     NgSelectModule,
     NgbModule,
     NgxDatatableModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxScrollTopModule,
   ]
 })
 export class ContractsModule { }

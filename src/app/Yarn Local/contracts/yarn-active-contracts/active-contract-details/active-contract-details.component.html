@@ -1,6 +1,14 @@
 <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="line-spin-fade" [fullScreen]="true">
     <p style="color: white"> Loading... </p>
 </ngx-spinner>
+<ngx-scrolltop
+  [backgroundColor]="'#212529'"
+  [symbolColor]="'#fafafa'"
+  [size]="35"
+  [mode]="'classic'"
+  position="right"
+  theme="bluegrey">
+</ngx-scrolltop>
 <div class="content-header">
     <div class="row">
         <div class="col-sm-12 col-md-6 col-lg-8">
@@ -1344,7 +1352,7 @@
                                         <dd class="col-sm-6" *ngIf = "contractCommissionData.fabCotCommision!= null && contractCommissionData.fabCotCommision!= ''">USD {{contractCommissionData.fabCotCommision}} %
                                             <b *ngIf="contractCommissionData.fabCotCommisionUOMName!=null">/ </b>
                     
-                                           [{{contractCostingData.rateCurrencyName}} {{contractCommissionData.commissionAmountFabcot}} ] <span *ngIf = "contractCommissionData.fabcotSideCommAdditionalInfo != null"> {{contractCommissionData.fabcotSideCommAdditionalInfo}}</span>
+                                           [{{contractCostingData.rateCurrencyName}} {{contractCommissionData.commissionAmountFabcot}}  <span *ngIf = "contractCommissionData.fabcotSideCommAdditionalInfo != null"> {{contractCommissionData.fabcotSideCommAdditionalInfo}}</span>]
                                         </dd>
                                     </dl>
                                     

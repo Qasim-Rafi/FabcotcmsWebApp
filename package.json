@@ -39,6 +39,7 @@
     "ngx-date-picker": "0.0.24",
     "ngx-num-to-words": "^1.0.0",
     "ngx-progressbar": "^6.1.1",
+    "ngx-scrolltop": "^2.4.0",
     "ngx-spinner": "^11.0.2",
     "ngx-toastr": "^13.2.0",
     "pdfmake": "^0.1.72",
