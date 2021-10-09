@@ -74,13 +74,13 @@
   left: -11px;
   width: 20px;
   height: 20px;
-  background: #ccc;
+  border: 2px solid cadetblue !important;
   cursor: pointer;
   border-radius: 2px;
 }
 
 .checkbox-container .check:hover {
-  background: #bbb;
+  background: #cccc;
 }
 
 .checkbox-container input:checked ~ .check {
