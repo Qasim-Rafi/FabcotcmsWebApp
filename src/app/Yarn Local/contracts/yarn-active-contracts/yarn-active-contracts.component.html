@@ -38,7 +38,7 @@
               &nbsp; <span class="badge badge-pill badge-primary">{{openCount}}</span> 
             </button>
             
-            <button type="button" class="btn btn-sm btn-white"  id="close"
+            <button type="button" class="btn btn-sm btn-white"  id="close" (click)="closeContract();"
               data-toggle="tooltip" title="Contract working closed &amp; waiting for billing"> <i
                 class="fa fa-check fa-fw"></i> Close &nbsp; <span
                 class="badge badge-pill badge-primary">{{closedCount}}</span>
