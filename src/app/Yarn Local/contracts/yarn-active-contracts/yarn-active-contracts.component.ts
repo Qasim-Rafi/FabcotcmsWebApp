@@ -28,7 +28,7 @@ export class YarnActiveContractsComponent implements OnInit {
   receivableCount: number;
   receivedCount: number;
   onHoldCount: number;
-
+ status : string =  "All" ;
 
   constructor(
     private router: Router,
@@ -71,32 +71,64 @@ export class YarnActiveContractsComponent implements OnInit {
     this.router.navigate(['/FabCot/add-new-contract']);
   };
 activeContract(){
-  console.log("Active Contracts");
+  this.status = null;
 }
 
 openContract(){
-  console.log("open Contracts");
+  this.status = "Open";
+  this.fetch((data) => {
+    this.temp = [...data]; 
+    this.rows = data;
+  });
+
 }
 
 
 bill_awaitedContract(){
-  console.log("bill_awaited Contracts")
+  this.status = "BillAwaited";
+    this.fetch((data) => {
+      this.temp = [...data]; 
+      this.rows = data;
+    });
 }
 
 billedContract(){
-  console.log("billed Contracts")
+  this.status = "Billed";
+  this.fetch((data) => {
+    this.temp = [...data]; 
+    this.rows = data;
+  });
 }
 
 receivableContract(){
-  console.log("receivable Contracts")
+  this.status = "Receivable";
+  this.fetch((data) => {
+    this.temp = [...data]; 
+    this.rows = data;
+  });
 }
 
 receivedContract(){
-  console.log("received Contracts")
+  this.status = "Received";
+  this.fetch((data) => {
+    this.temp = [...data]; 
+    this.rows = data;
+  });
+}
+closeContract(){
+  this.status = "Closed";
+  this.fetch((data) => {
+    this.temp = [...data]; 
+    this.rows = data;
+  });
 }
 
 on_HandContract(){
-  console.log("on_Hand Contracts")
+  this.status = "OnHold";
+  this.fetch((data) => {
+    this.temp = [...data]; 
+    this.rows = data;
+  });
 }
 
 
@@ -104,7 +136,7 @@ fetch(cb) {
   this.spinner.show();
 
   this.http
-    .get(`${environment.apiUrl}/api/Contracts/GetAllContract`)
+    .get(`${environment.apiUrl}/api/Contracts/GetAllContract/` + this.status)
     .subscribe(res => {
       this.response = res;
 
