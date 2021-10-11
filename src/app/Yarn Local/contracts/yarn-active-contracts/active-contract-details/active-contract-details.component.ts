@@ -2470,6 +2470,14 @@ getImage(){
                       body: [
                         [{text:this.checkR  , style:'heading'} ],] }
                       },
+
+                      {
+                        layout:'noBorders',
+                        margin: [330 , 0 , 0 , 0],
+                        table:{headerRows: 1 , widths:['40%' , '80%'],
+                      body: [
+                        [{text:'Contract No:'  , style:'heading'} , {text: this.contractData['autoContractNumber']  , margin:[-24,0,0,0] , style:'heading2'}],] }
+                      },
                       {
                         layout:'noBorders',
                         margin: [330 , 0 , 0 , 0],
@@ -2737,7 +2745,7 @@ getImage(){
                       },
                       {
                         layout:'noBorders',
-                        margin: [330 , -30 , 0 , 0],
+                        margin: [330 , 20 , 0 , 0],
                         table:{headerRows: 1 , widths:['30%' , '90%'],
                       body: [
                         [{text:'Contract No:'  , style:'heading'} , {text: this.contractData['autoContractNumber'] , 
