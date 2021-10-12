@@ -5,6 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { GlobalConstants } from 'src/app/Common/global-constants';
+import { ServiceService } from 'src/app/shared/service.service';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 
@@ -33,6 +34,7 @@ export class YarnActiveContractsComponent implements OnInit {
   constructor(
     private router: Router,
     private http: HttpClient,
+    private service: ServiceService,
     private toastr: ToastrService,
     private modalService: NgbModal,
     private spinner: NgxSpinnerService,
@@ -227,6 +229,29 @@ this.spinner.hide();
   })
 
 }
+// --------------------------Export as excel File ----------------------------//
 
+contractExcelFile() {
+
+  const filtered = this.rows.map(row => ({
+    SNo: row.id,
+    ContractAge: row.contractAge,
+    ContractNo: row.autoContractNumber,
+    BuyerName: row.buyerName,
+    SellerName: row.sellerName,
+    ArticleName: row.articleName,
+    Price: row.currencyCode +row.price+row.uomName,
+    Quantity: row.quantity,
+    PoNumber: row.poNumber,
+    ScNumber: row.scNumber,
+    DispatchQuantity: row.dispatchQuantity,
+    Status: row.status,
+    LastUpdateOn: row.updatedDateTime,
+    LastUpdateBy: row.createdByName
+  }));
+
+  this.service.exportAsExcelFile(filtered, 'Contract');
+
+}
 
 }
