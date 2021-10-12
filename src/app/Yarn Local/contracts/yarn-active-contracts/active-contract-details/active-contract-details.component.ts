@@ -45,7 +45,7 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
   styleUrls: ['./active-contract-details.component.css']
 })
 export class ActiveContractDetailsComponent implements OnInit {
-
+  ShowRevised:string;
   dateformater: Dateformater = new Dateformater();
  costingDataWithGstFL: any;
   reminderToggle : boolean = false
@@ -354,6 +354,38 @@ checkR: any;
 this.spinner.hide();
 }
 
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+this.spinner.hide();
+          
+          }
+        });
+
+
+    }
+  }
+
+  notRevisedMethod(){
+    if(this.loggedInDepartmentName =='Yarn Export' || this.loggedInDepartmentName =='Yarn Import'){
+    this.spinner.show();
+        
+    this.http.
+      put(`${environment.apiUrl}/api/Contracts/NotRevisedContract/`+ this.contractId , {})
+      .subscribe(
+        res => {
+
+          this.response = res;
+          if (this.response.success == true) {
+            this.toastr.success(this.response.message, 'Message.');
+             this.getContractData();
+            this.spinner.hide();
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          
+this.spinner.hide();
+}
         }, err => {
           if (err.status == 400) {
             this.toastr.error(this.response.message, 'Message.');
@@ -1002,6 +1034,7 @@ lcForm2( check){
           this.response = res;
           if (this.response.success == true && this.response.data != null) {
             this.contractData = this.response.data;
+            this.ShowRevised=this.contractData.revisedCount !=0? 'Revised': '';
             this.contractData.createdDateTime = this.contractData.createdDateTime.slice(0 ,16)
             this.contractArticles = this.response.data.contractArticles;
             this.buyerName = this.contractData.buyerName
@@ -2465,10 +2498,10 @@ getImage(){
                       
                       {
                         layout:'noBorders',
-                        margin: [330 , -30 , 0 , 0],
+                        margin: [390 , -30 , 0 , 0],
                         table:{headerRows: 1 , widths:['100%'],
                       body: [
-                        [{text:this.checkR  , style:'heading'} ],] }
+                        [{text:this.contractData['revisedCount'] !=0? 'Revised': '' , style:'headingR'} ],] }
                       },
 
                       {
@@ -2666,6 +2699,8 @@ getImage(){
                     styles:{
                      heading:{fontSize: 9,
                       bold: true,color: '#4d4b4b' },
+                      headingR:{fontSize: 12,
+                        bold: true,color: '#4d4b4b' },
                       heading2:{fontSize: 9  , color:'#4d4b4b'
                         },
                         heading4:{fontSize: 9  , color:'#4d4b4b',bold: true,
@@ -2738,10 +2773,10 @@ getImage(){
                       },
                       {
                         layout:'noBorders',
-                        margin: [330 , -30 , 0 , 0],
+                        margin: [390 , -30 , 0 , 0],
                         table:{headerRows: 1 , widths:['100%'],
                       body: [
-                        [{text:this.checkR  , style:'heading'} ],] }
+                        [{text:this.contractData['revisedCount'] !=0? 'Revised': '' , style:'headingR'} ],] }
                       },
                       {
                         layout:'noBorders',
@@ -2940,6 +2975,8 @@ getImage(){
                     styles:{
                      heading:{fontSize: 9,
                       bold: true,color: '#4d4b4b' },
+                      headingR:{fontSize: 12,
+                        bold: true,color: '#4d4b4b' },
                       heading2:{fontSize: 9  , color:'#4d4b4b'
                         },
                         heading4:{fontSize: 9  , color:'#4d4b4b', bold:true

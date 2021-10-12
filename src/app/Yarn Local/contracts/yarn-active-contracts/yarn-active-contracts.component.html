@@ -26,45 +26,98 @@
       <div class="row mb-3">
         <div class="col-md-12 text-center">
          
-          <div class="btn-group" role="group">
+          <!-- <div class="btn-group" role="group">
 
-            <button type="button" class="btn btn-sm btn-primary" (click)="activeContract();" id="all"
+            <button type="radio" name="exampleRadios" class="btn btn-sm form-check-input" (click)="activeContract();" id="all"
               data-toggle="tooltip" title="" data-original-title="All Contracts"> <i class="fa fa-bullseye fa-fw"></i>
               All &nbsp; <span class="badge badge-pill badge-primary">{{allCount}}</span> 
             </button>
 
-            <button type="button" class="btn btn-sm btn-white" (click)="openContract();" id="open"
+            <button type="radio" name="exampleRadios" class="btn btn-sm form-check-input" (click)="openContract();" id="open"
               data-toggle="tooltip" title="Contract open &amp; in-process"> <i class="far fa-folder-open"></i> Open
               &nbsp; <span class="badge badge-pill badge-primary">{{openCount}}</span> 
             </button>
             
-            <button type="button" class="btn btn-sm btn-white"  id="close" (click)="closeContract();"
+            <button type="radio" name="exampleRadios" class="btn btn-sm form-check-input"  id="close" (click)="closeContract();"
               data-toggle="tooltip" title="Contract working closed &amp; waiting for billing"> <i
                 class="fa fa-check fa-fw"></i> Close &nbsp; <span
                 class="badge badge-pill badge-primary">{{closedCount}}</span>
               </button>
-            <button type="button" class="btn btn-sm btn-white" (click)="bill_awaitedContract();" id="con-billawaited"
+            <button type="radio" name="exampleRadios" class="btn btn-sm btn-white" (click)="bill_awaitedContract();" id="con-billawaited"
               data-toggle="tooltip" title="Contract ready for billing"> <i class="far fa-clock"></i> Bill Awaited
               &nbsp; <span class="badge badge-pill badge-primary">{{billAwaitedCount}}</span> 
             </button>
-            <button type="button" class="btn btn-sm btn-white" (click)="billedContract();" id="con-billed"
+            <button type="radio" name="exampleRadios" class="btn btn-sm btn-white" (click)="billedContract();" id="con-billed"
               data-toggle="tooltip" title="Contract bill generated"> <i class="far fa-edit"></i>
               Billed &nbsp; <span class="badge badge-pill badge-primary">{{billedCount}}</span> 
             </button>
-            <button type="button" class="btn btn-sm btn-white" (click)="receivableContract();" id="con-receivable"
+            <button type="radio" name="exampleRadios" class="btn btn-sm btn-white" (click)="receivableContract();" id="con-receivable"
               data-toggle="tooltip" title="Some payment received against contract"> <i
                 class="far fa-money-bill-alt"></i>
               Receivable &nbsp; <span class="badge badge-pill badge-primary">{{receivableCount}}</span> 
             </button>
-            <button type="button" class="btn btn-sm btn-white" (click)="receivedContract();" id="con-received"
+            <button type="radio" name="exampleRadios" class="btn btn-sm btn-white" (click)="receivedContract();" id="con-received"
               data-toggle="tooltip" title="All payment received against contract"> <i class="fas fa-dollar-sign"></i>
               Received &nbsp; <span class="badge badge-pill badge-primary">{{receivedCount}}</span> 
             </button>
-            <button type="button" class="btn btn-sm btn-white" (click)="on_HandContract();" id="con-onhold"
+            <button type="radio" name="exampleRadios" class="btn btn-sm btn-white" (click)="on_HandContract();" id="con-onhold"
               data-toggle="tooltip" title="Contract currently on-hold or deferred"> <i class="far fa-hand-paper"></i>
               On-Hold &nbsp; <span class="badge badge-pill badge-primary">{{onHoldCount}}</span> 
             </button>
-          </div>
+          </div> -->
+
+          <div class="some">
+            <input type="radio" name="select" id="option-1" checked>
+            <input type="radio" name="select" id="option-2">
+            <input type="radio" name="select" id="option-3">
+            <input type="radio" name="select" id="option-4">
+            <input type="radio" name="select" id="option-5">
+            <input type="radio" name="select" id="option-6">
+            <input type="radio" name="select" id="option-7">
+            <input type="radio" name="select" id="option-8">
+
+              <label for="option-1" class="option option-1" (click)="activeContract();" id="all">
+                <div class="dot"></div>
+                 <span>All  </span>
+                 <span class="badge badge-pill badge-primary ml-2">  {{allCount}}</span>
+                 </label>
+              <label for="option-2" class="option option-2" (click)="openContract();" id="open">
+                <div class="mr-2"><i class="far fa-folder-open"></i></div>
+                 <span>Open</span>
+                 <span class="badge badge-pill badge-primary ml-2">  {{openCount}}</span>
+              </label>
+              <label for="option-3" class="option option-3" id="close" (click)="closeContract();">
+                <div class="mr-2"><i class="fa fa-check fa-fw"></i></div>
+                 <span>Close</span>
+                 <span class="badge badge-pill badge-primary ml-2">  {{closedCount}}</span>
+              </label>
+              <label for="option-4" class="option option-4" (click)="bill_awaitedContract();" id="con-billawaited">
+                <div class="mr-2"><i class="far fa-clock"></i></div>
+                 <span>Bill Awaited</span>
+                 <span class="badge badge-pill badge-primary ml-2">  {{billAwaitedCount}}</span>
+              </label>
+              <label for="option-5" class="option option-5" (click)="billedContract();" id="con-billed">
+                <div class="mr-2"><i class="far fa-edit"></i></div>
+                 <span>Billed</span>
+                 <span class="badge badge-pill badge-primary ml-2">  {{billedCount}}</span>
+              </label>
+              <label for="option-6" class="option option-6" (click)="receivableContract();" id="con-receivable">
+                <div class="mr-2"><i class="far fa-money-bill-alt"></i></div>
+                 <span>Receivable</span>
+                 <span class="badge badge-pill badge-primary ml-2">  {{receivableCount}}</span>
+
+              </label>
+              <label for="option-7" class="option option-7" (click)="receivedContract();" id="con-received">
+                <div class="mr-2"><i class="far fa-hand-paper"></i></div>
+                 <span>Received</span>
+                 <span class="badge badge-pill badge-primary ml-2">  {{receivedCount}}</span>
+              </label>
+              <label for="option-8" class="option option-8" (click)="on_HandContract();" id="con-onhold">
+                <div class="mr-2"><i class="far fa-hand-paper"></i></div>
+                 <span>On-Hold</span>
+                 <span class="badge badge-pill badge-primary ml-2">  {{onHoldCount}}</span>
+              </label>
+           </div>
          
         </div>
       </div>
@@ -78,7 +131,7 @@
       <div class="card shadow mb-4">
         <div class="card-body">
       <div class="row mb-3">
-        <div class="col-md-6 mrg-tsm">
+        <div class="col-md-4 mrg-tsm">
           <!-- refresh button -->
   
       <!-- <button type="button" class="btn btn-light btn-sm">
@@ -96,16 +149,43 @@
       </button>
     
     </div>
-        <div class="col-md-6 mrg-tsm ">
+        <div class="col-md-8 mrg-tsm ">
 
           <div class="form-group row">
             <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
-            <div class="col-sm-9">
+            <div class="col-sm-7">
               <input type="text" class="form-control" id="inputSearch" (keyup)="searchFilter($event)"
               placeholder="Search by Contract Number, Buyer and Seller Name"
               >
             </div>
+
+
+            <div class="html5buttons mrg-tsm">
+              <div class="dt-buttons btn-group btn-group-sm">
+                <!-- <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0"
+                  aria-controls="DataTables_Table_0"
+              (click)="copyArticleList()"
+                  ><span>Copy</span></a>
+                <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
+                  aria-controls="DataTables_Table_0"
+                  (click)="articleCsvFile()"
+                  ><span>CSV</span></a> -->
+                <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
+                  aria-controls="DataTables_Table_0" 
+                  (click)="contractExcelFile()"><span>Excel</span></a>
+                <!-- <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0"
+                  aria-controls="DataTables_Table_0"
+                  (click)="articlePdf()"
+                  ><span>PDF</span></a>
+                <a class="btn btn-default buttons-print bg-white" tabindex="0"
+                  aria-controls="DataTables_Table_0"
+                  (click)="printArticleList()"
+                  ><span>Print</span></a> -->
+              </div>
+            </div>
           </div>
+
+        
 
         </div>
       </div>
@@ -139,7 +219,7 @@
 
      
 
-          <ngx-datatable-column name="Age" prop="contractAge" [width] = "20"  [flexGrow]="0.03"  >
+          <ngx-datatable-column name="Age"  [resizeable]="true" prop="contractAge" [width] = "20"  [flexGrow]="0.03"  >
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
               <span class="badge badge-primary">{{row.contractAge}}</span>
              
@@ -204,7 +284,18 @@
               
 
             </ng-template>
-          </ngx-datatable-column> [flexGrow]="0.07" 
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="Status" [width] = "30"  [flexGrow]="0.04"  prop="status">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              <span class="badge badge-primary" *ngIf="row.status == 'Open' && row.status != 'Close'">{{row.status}}</span>
+              <span class="badge badge-success " *ngIf="row.status == 'Close' && row.status == 'Open'">{{row.status}}</span>
+              <span class="badge badge-warning " *ngIf="row.status != 'Open' && row.status != 'Close'">{{row.status}}</span>
+              
+
+            </ng-template>
+          </ngx-datatable-column>
+
         </ngx-datatable>
       </div>
         </div>

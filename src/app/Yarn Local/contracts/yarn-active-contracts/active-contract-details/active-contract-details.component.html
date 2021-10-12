@@ -17,6 +17,7 @@
                 <div class="ml-2 descr"> Show all the details of business contract</div>
                 <span class="ml-3 font-weight-light">{{contractData.buyerName}} </span>
                 <span class="text-muted">(Con # {{contractData.autoContractNumber}} )</span>
+                <span class="font-weight-bold float-right"><u>{{ShowRevised}}</u></span>
             </h2>
         </div>
 
@@ -186,7 +187,7 @@
                     <button *ngIf="loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import' " class="btn btn-info btn-sm border-rounded px-3 mr-1 mrg-btm"   (click)="reviseContract()">
                         <i class="far fa-clone"></i>
                        <span *ngIf = "revised"> &nbsp; Revised</span> 
-                       <span *ngIf = "!revised">&nbsp;Not Revised</span> 
+                       <span *ngIf = "!revised" (click)="notRevisedMethod()">&nbsp;Not Revised</span> 
 
                     </button>
                

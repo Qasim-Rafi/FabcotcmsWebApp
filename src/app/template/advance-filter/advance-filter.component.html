@@ -157,6 +157,12 @@
                       </ng-select>
               
                       </div>
+
+
+
+                      
+
+                    
   
   
               
@@ -165,6 +171,33 @@
   
                   </div>
                   </div>
+
+                  <div class="row">
+
+                    <div class="col-md-12">
+    
+                     <div class="form-group row">
+                        <label for="description" class="col-md-3 col-form-label ">Article</label>
+                  
+                        <div class="col-md-3">
+                        
+                          <ng-select  placeholder="Article" name="articleId" [(ngModel)] = "data.articleId"
+                          #articleId = "ngModel" >
+                            <ng-option *ngFor="let i of article" [value]="i.id">{{ i.name }}
+                            </ng-option>
+                  
+                          </ng-select>
+              
+                
+                        </div>
+    
+
+                  
+                      </div> 
+    
+                    </div>
+                    </div>
+
 <!-- 
                   <div class="row">
 
@@ -286,12 +319,12 @@
             </ng-template>
           </ngx-datatable-column>
 
-          <!-- <ngx-datatable-column name="#SC"  [width] = "20" [flexGrow]="0.05"  prop="scNumber">
+          <ngx-datatable-column name="#Bill No#"  [width] = "20" [flexGrow]="0.05"  prop="billNumber">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{row.scNumber}}
+              {{row.billNumber}}
              
             </ng-template>
-          </ngx-datatable-column> -->
+          </ngx-datatable-column>
 
           <ngx-datatable-column name="Article/Const." prop="articleName" [width] = "10"  [flexGrow]="0.06"  prop="articleName">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
@@ -493,12 +526,12 @@
               </ng-template>
             </ngx-datatable-column>
   
-            <!-- <ngx-datatable-column name="#SC"  [width] = "20" [flexGrow]="0.05"  prop="scNumber">
+            <ngx-datatable-column name="#Bill No#"  [width] = "20" [flexGrow]="0.05"  prop="billNumber">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                {{row.scNumber}}
+                {{row.billNumber}}
                
               </ng-template>
-            </ngx-datatable-column> -->
+            </ngx-datatable-column>
   
             <ngx-datatable-column name="Article/Const." prop="articleName" [width] = "10"  [flexGrow]="0.06"  prop="articleName">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>

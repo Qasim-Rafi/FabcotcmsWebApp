@@ -17,12 +17,11 @@ import { Router } from '@angular/router';
 export class AdvanceFilterComponent implements OnInit {
   dateformater: Dateformater = new Dateformater();  
   data2:any =[];
-
+  article: any = [];
   data:any =[];
   response: any;
   buyer: any={};
   seller: any={};
-  article: any={};
    rows:any = [];
    columns : any = {}
    billSearch : any = [];
@@ -44,12 +43,24 @@ export class AdvanceFilterComponent implements OnInit {
     this.GetBuyersDropdown();
     this.GetSellersDropdown();
     this.GetArticleDropdown();
+
   }
   GetBuyersDropdown() {
     this.service.getBuyers().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
         this.buyer = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
+  GetArticlesDropdown() {
+    this.service.getArticles().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.article = this.response.data;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -97,8 +108,8 @@ clear2(){
       "poNumber": this.data.poNumber == undefined ? 'string' : this.data.poNumber,
       "autoContractNumber":this.data.autoContractNumber == undefined? 'string' : this.data.autoContractNumber,
       "contractDate": this.dateformater.toModel(this.data.contractDate) == null ? 'string' :  this.dateformater.toModel(this.data.contractDate),
-      "sellerContractNo": this.data.sellerContractNo == undefined ? 'string' : this.data.sellerContractNo
-     
+      "sellerContractNo": this.data.sellerContractNo == undefined ? 'string' : this.data.sellerContractNo,
+     "article": this.data.articleId == undefined? '' : this.data.articleId
     }
 this.spinner.show();
     this.http.
