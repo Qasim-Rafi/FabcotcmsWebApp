@@ -22,6 +22,22 @@ body {
 .content-header {
   padding: 10px 0.4rem !important;
 }
+/* 
+dt {
+  font-weight: 800; 
+  text-align: right !important; 
+ color: #676a6c !important;
+ font-size: 14px !important;
+}
+dd{
+color: #676a6c !important;
+margin-bottom: .5rem  !important;
+margin-left: 0  !important;
+font-size: 12px  !important;
+font-weight: 600  !important;
+} */
+
+
 .innerBody {
   padding: 7px 30px 15px 30px !important;
 }

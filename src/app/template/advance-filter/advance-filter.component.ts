@@ -109,7 +109,7 @@ clear2(){
       "autoContractNumber":this.data.autoContractNumber == undefined? 'string' : this.data.autoContractNumber,
       "contractDate": this.dateformater.toModel(this.data.contractDate) == null ? 'string' :  this.dateformater.toModel(this.data.contractDate),
       "sellerContractNo": this.data.sellerContractNo == undefined ? 'string' : this.data.sellerContractNo,
-     "article": this.data.articleId == undefined? '' : this.data.articleId
+     "articleId": this.data.articleId == undefined? 0 : this.data.articleId
     }
 this.spinner.show();
     this.http.

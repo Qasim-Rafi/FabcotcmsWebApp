@@ -482,35 +482,35 @@
                             <div class="row ">
                                 <div class="col-md-6">
                                     <dl class="row">
-                                        <dt class="col-sm-6">Contract Owner:</dt>
+                                        <dt class="col-sm-4">Contract Owner:</dt>
                                         <dd class="col-sm-6 clr">
                                             <b> <span (click)="contractOwner()"> {{contractData.contractOwner}} </span> </b>
                                         </dd>
                                     </dl>
                                     <dl class="row">
-                                        <dt class="col-sm-6">Created By:</dt>
+                                        <dt class="col-sm-4">Created By:</dt>
                                         <dd class="col-sm-6">{{contractData.createdByName}}</dd>
                                     </dl>
                                     <dl class="row">
-                                        <dt class="col-sm-6"> Last Updated By:</dt>
+                                        <dt class="col-sm-4"> Last Updated By:</dt>
                                         <dd class="col-sm-6">{{contractData.updatedByName}}</dd>
                                     </dl>
                                 </div>
                     
                                 <div class="col-md-6">
                                     <dl class="row">
-                                        <dt class="col-sm-6">Contract No:</dt>
+                                        <dt class="col-sm-4">Contract No:</dt>
                                         <dd class="col-sm-6">{{contractData.autoContractNumber}}</dd>
                                     </dl>
                                     <dl class="row">
-                                        <dt class="col-sm-6">Created On:</dt>
+                                        <dt class="col-sm-4">Created On:</dt>
                                         <dd class="col-sm-6">
                                             <i class="far fa-calendar-alt"></i>
                                             {{contractData.createdDateTime}}
                                         </dd>
                                     </dl>
                                     <dl class="row">
-                                        <dt class="col-sm-6"> Last Updated On:</dt>
+                                        <dt class="col-sm-4"> Last Updated On:</dt>
                                         <dd class="col-sm-6">
                                             <i class="far fa-calendar-alt"></i>
                                             {{contractData.updatedDateTime}}
@@ -545,28 +545,28 @@
                                 <div class="col-md-6">
                     
                                     <dl class="row">
-                                        <dt class="col-sm-6">Purchase Order #:
+                                        <dt class="col-sm-4">Purchase Order #:
                                         </dt>
                                         <dd class="col-sm-6">{{contractPartiesData.poNumber}}</dd>
                                     </dl>
                                     <dl class="row">
-                                        <dt class="col-sm-6">Buyer Name:</dt>
+                                        <dt class="col-sm-4">Buyer Name:</dt>
                                         <dd class="col-sm-6">{{contractPartiesData.buyerName}}</dd>
                                     </dl>
                                     <dl class="row">
-                                        <dt class="col-sm-6"> Buyer POC:</dt>
+                                        <dt class="col-sm-4"> Buyer POC:</dt>
                                         <dd class="col-sm-6">{{contractPartiesData.buyerPOCName}}</dd>
                                     </dl>
                                     <dl class="row">
-                                        <dt class="col-sm-6"> Supplier Name:</dt>
+                                        <dt class="col-sm-4"> Supplier Name:</dt>
                                         <dd class="col-sm-6">{{contractPartiesData.sellerName}}</dd>
                                     </dl>
                                     <dl class="row">
-                                        <dt class="col-sm-6"> Supplier POC:</dt>
+                                        <dt class="col-sm-4"> Supplier POC:</dt>
                                         <dd class="col-sm-6"> {{contractPartiesData.sellerPOCName}}</dd>
                                     </dl>
                                     <dl class="row">
-                                        <dt class="col-sm-6">Supplier Contract #:
+                                        <dt class="col-sm-4">Supplier Contract #:
                                         </dt>
                                         <dd class="col-sm-6">{{contractPartiesData.sellerContract}}</dd>
                                     </dl>
@@ -575,14 +575,14 @@
                     
                                 <div class="col-md-6">
                                     <dl class="row">
-                                        <dt class="col-sm-6"> PO Date:</dt>
+                                        <dt class="col-sm-4"> PO Date:</dt>
                                         <dd class="col-sm-6">
                                             <i class="far fa-calendar-alt"></i>
                                             {{contractPartiesData.poDateToDisplay}}
                                         </dd>
                                     </dl>
                                     <dl class="row">
-                                        <dt class="col-sm-6">Approved On:
+                                        <dt class="col-sm-4">Approved On:
                                         </dt>
                                         <dd class="col-sm-6">
                                             <i class="far fa-calendar-alt"></i>
@@ -590,7 +590,7 @@
                                         </dd>
                                     </dl>
                                     <dl class="row">
-                                        <dt class="col-sm-6">Approved By:
+                                        <dt class="col-sm-4">Approved By:
                                         </dt>
                                         <dd class="col-sm-6">
                                             <i class="fas fa-user-tie"></i>
@@ -598,7 +598,7 @@
                                         </dd>
                                     </dl>
                                     <dl class="row" *ngIf = "loggedInDepartmentName == 'Yarn Export'  || loggedInDepartmentName == 'Yarn Import'">
-                                        <dt class="col-sm-6">LC Opener:
+                                        <dt class="col-sm-4">LC Opener:
                                         </dt>
                                         <dd class="col-sm-6">
                                            
@@ -629,12 +629,12 @@
                                 <div class="col-md-6">
                     
                                     <dl class="row">
-                                        <dt class="col-sm-6">Construction:
+                                        <dt class="col-sm-4">Construction:
                                         </dt>
                                         <dd class="col-sm-6">{{contractProductData.construction}}</dd>
                                     </dl>
                                     <dl class="row">
-                                        <dt class="col-sm-6">Brand Name:
+                                        <dt class="col-sm-4">Brand Name:
                                         </dt>
                                         <dd class="col-sm-6">{{contractProductData.brandName}}
                                             </dd>
@@ -668,7 +668,7 @@
                                 <div class="col-md-12">
                     
                                     <!-- <dl class="row">
-                                        <dt class="col-sm-6">Article:
+                                        <dt class="col-sm-4">Article:
                                         </dt>
                                         <dd class="col-sm-6"></dd>
                                     </dl> -->
@@ -858,7 +858,7 @@
                             <div class="row" >
                                 <div class="col-md-6">
                                     <dl class="row">
-                                        <dt class="col-sm-6" *ngIf = "loggedInDepartmentName != 'Yarn Export'  && loggedInDepartmentName != 'Yarn Import'">Construction:
+                                        <dt class="col-sm-4" *ngIf = "loggedInDepartmentName != 'Yarn Export'  && loggedInDepartmentName != 'Yarn Import'">Construction:
                                         </dt>
                                         <dd class="col-sm-6" *ngIf = "loggedInDepartmentName != 'Yarn Export'
                                         && loggedInDepartmentName != 'Yarn Import'"> <span *ngIf = "contractProductData.pecenetAge != null">   {{contractProductData.pecenetAge}} %  </span>
@@ -866,7 +866,7 @@
                     
                                     </dl>
                                     <dl class="row">
-                                        <dt class="col-sm-6" *ngIf = "loggedInDepartmentName != 'Yarn Export'
+                                        <dt class="col-sm-4" *ngIf = "loggedInDepartmentName != 'Yarn Export'
                                         && loggedInDepartmentName != 'Yarn Import'" >Article:
                                         </dt>
                                         <dd class="col-sm-6" *ngIf = "loggedInDepartmentName != 'Yarn Export'
@@ -875,35 +875,35 @@
 
                                     </dl>
                                     <dl class="row" *ngIf="loggedInDepartmentName == 'Fabric Export'">
-                                        <dt class="col-sm-6">Piece Length:
+                                        <dt class="col-sm-4">Piece Length:
                                         </dt>
                                         <dd class="col-sm-6">{{contractProductData.pieceLengthName}}</dd>
                                     </dl>
                                     <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
-                                        <dt class="col-sm-6">Buyer Side Piece Length:
+                                        <dt class="col-sm-4">Buyer Side Piece Length:
                                         </dt>
                                         <dd class="col-sm-6">{{contractProductData.pieceLengthName}}</dd>
                                     </dl>
                                     <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName == 'Fabric Export'">
-                                        <dt class="col-sm-6">Selvedge:
+                                        <dt class="col-sm-4">Selvedge:
                                         </dt>
                                         <dd class="col-sm-6">{{contractProductData.selvedgeName}}</dd>
                                     </dl>
                                    
                                     <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
-                                        <dt class="col-sm-6">Blending Ratio &nbsp; Warp:
+                                        <dt class="col-sm-4">Blending Ratio &nbsp; Warp:
                                         </dt>
                                         <dd class="col-sm-6">{{contractProductData.blendingRatioWarpName}}</dd>
                                     </dl>
                                     <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
-                                        <dt class="col-sm-6">&nbsp; &nbsp; Weft:
+                                        <dt class="col-sm-4">&nbsp; &nbsp; Weft:
                                         </dt>
                                         <dd class="col-sm-6">{{contractProductData.blendingRatioWeftName}}</dd>
                                     </dl>
                                 </div>
                                 <div class="col-md-6">
                                     <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName == 'Fabric Export'">
-                                        <dt class="col-sm-6">GSM:
+                                        <dt class="col-sm-4">GSM:
                                         </dt>
                                         <dd class="col-sm-6">{{contractProductData.gsm}}
                                        <span *ngIf = "contractProductData.tolerance != ''"> +/- {{contractProductData.tolerance}} % </span>
@@ -912,22 +912,22 @@
                     
                                     </dl>
                                     <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName == 'Fabric Export'">
-                                        <dt class="col-sm-6">Weave:
+                                        <dt class="col-sm-4">Weave:
                                         </dt>
                                         <dd class="col-sm-6">{{contractProductData.weaveName}}</dd>
                                     </dl>
                                     <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
-                                        <dt class="col-sm-6">Seller Side Piece Length:
+                                        <dt class="col-sm-4">Seller Side Piece Length:
                                         </dt>
                                         <dd class="col-sm-6">{{contractProductData.sellerPieceLengthName}}</dd>
                                     </dl>
                                     <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
-                                        <dt class="col-sm-6">Pick Insertion:
+                                        <dt class="col-sm-4">Pick Insertion:
                                         </dt>
                                         <dd class="col-sm-6">{{contractProductData.pickInsertionName}}</dd>
                                     </dl>
                                     <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
-                                        <dt class="col-sm-6">Width:
+                                        <dt class="col-sm-4">Width:
                                         </dt>
                                         <dd class="col-sm-6" *ngIf="contractProductData.width != null">{{contractProductData.width}} inch
                                         </dd>
@@ -969,21 +969,21 @@
                                 <div class="col-md-6">
                                     <dl class="row"  *ngIf = "loggedInDepartmentName == 'Yarn Export'
                                     || loggedInDepartmentName == 'Yarn Import'">
-                                        <dt class="col-sm-6">Currency:
+                                        <dt class="col-sm-4">Currency:
                                         </dt>
                                         <dd class="col-sm-6">{{contractCostingData.rateCurrencyName}}
                                           </dd>
                                     </dl>
                                     <dl class="row"  *ngIf = "loggedInDepartmentName == 'Yarn Export'
                                     || loggedInDepartmentName == 'Yarn Import'">
-                                        <dt class="col-sm-6">UOM:
+                                        <dt class="col-sm-4">UOM:
                                         </dt>
                                         <dd class="col-sm-6">  {{contractCostingData.rateUOMName}}
                                           </dd>
                                     </dl>
                                     <dl class="row"  *ngIf = "loggedInDepartmentName == 'Yarn Export'
                                     || loggedInDepartmentName == 'Yarn Import'">
-                                        <dt class="col-sm-6">Tolerance value:
+                                        <dt class="col-sm-4">Tolerance value:
                                         </dt>
                                         <dd class="col-sm-6"> {{contractCostingData.quantityToleranceValue}}
                                           </dd>
@@ -991,7 +991,7 @@
                     
                                     <dl class="row"  *ngIf = "loggedInDepartmentName != 'Yarn Export'
                                     && loggedInDepartmentName != 'Yarn Import'">
-                                        <dt class="col-sm-6">Quantity:
+                                        <dt class="col-sm-4">Quantity:
                                         </dt>
                                         <dd class="col-sm-6">{{contractCostingData.quantity}}
                                             {{contractCostingData.quantityUOMName}} <b
@@ -1000,14 +1000,14 @@
                                                 *ngIf="contractCostingData.quantityToleranceValue != ''"> % </b></dd>
                                     </dl>
                                     <!-- <dl class="row" *ngIf="loggedInDepartmentName=='Yarn Local' ||  loggedInDepartmentName != 'Yarn Export'">
-                                        <dt class="col-sm-6">Quantity:
+                                        <dt class="col-sm-4">Quantity:
                                         </dt>
                                         <dd class="col-sm-6">{{contractCostingData.quantity}}
                                             {{contractCostingData.quantityUOMName}}</dd>
                                     </dl> -->
                                     <dl class="row" *ngIf = "loggedInDepartmentName != 'Yarn Export'
                                     && loggedInDepartmentName != 'Yarn Import'">
-                                        <dt class="col-sm-6">Rate:
+                                        <dt class="col-sm-4">Rate:
                                         </dt>
                                         <dd class="col-sm-6"><span *ngIf="contractCostingData.rateCurrencyName !=null"> {{contractCostingData.rateCurrencyName}} </span>   {{contractCostingData.rate}} <b *ngIf="contractCostingData.rateUOMName !=null">
                                                 / </b>
@@ -1017,7 +1017,7 @@
                                     </dl>
                                     <dl class="row" *ngIf = "loggedInDepartmentName != 'Yarn Export'
                                     && loggedInDepartmentName != 'Yarn Import'">
-                                        <dt class="col-sm-6">Project Cost:
+                                        <dt class="col-sm-4">Project Cost:
                                         </dt>
                                         <dd class="col-sm-6">{{contractCostingData.rateCurrencyName}}
                                             {{contractCostingData.contractCost}}</dd>
@@ -1026,7 +1026,7 @@
 
                                     <dl class="row" *ngIf = "loggedInDepartmentName == 'Fabric Local'
                                      ">
-                                        <dt class="col-sm-6">Project Cost Inc GST:
+                                        <dt class="col-sm-4">Project Cost Inc GST:
                                         </dt>
                                         <dd class="col-sm-6">{{contractCostingData.rateCurrencyName}}
                                             {{costingDataWithGstFL}}</dd>
@@ -1035,7 +1035,7 @@
 
                                     <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName != 'Yarn Export'
                                     && loggedInDepartmentName != 'Yarn Import' ">
-                                        <dt class="col-sm-6">&nbsp; &nbsp;
+                                        <dt class="col-sm-4">&nbsp; &nbsp;
                                         </dt>
                                         <dd class="col-sm-6" *ngIf = " loggedInDepartmentName == '!Fabric Export'">{{contractCostingData.rateCurrencyName}}
                                             {{contractCostingData.totalCostGSt}} <b *ngIf="contractCostingData.totalCostGSt != null">
@@ -1049,18 +1049,18 @@
                                 <div class="col-md-6">
                     
                                     <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local' || (loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Local' &&  loggedInDepartmentName != 'Yarn Import' )">
-                                        <dt class="col-sm-6" *ngIf = "loggedInDepartmentName != 'Fabric Export'">GST:
+                                        <dt class="col-sm-4" *ngIf = "loggedInDepartmentName != 'Fabric Export'">GST:
                                         </dt>
                                         <dd class="col-sm-6" *ngIf="contractCostingData.gst != ''">{{contractCostingData.gst}}%</dd>
                                     </dl>
                                     <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local' ||( loggedInDepartmentName != 'Yarn Export'  && loggedInDepartmentName != 'Yarn Local'
                                     && loggedInDepartmentName != 'Yarn Import')">
-                                        <dt class="col-sm-6" *ngIf = "loggedInDepartmentName != 'Fabric Export'">W.I.Tax:
+                                        <dt class="col-sm-4" *ngIf = "loggedInDepartmentName != 'Fabric Export'">W.I.Tax:
                                         </dt>
                                         <dd class="col-sm-6" *ngIf="contractCostingData.witAx != ''">{{contractCostingData.witAx}}%</dd>
                                     </dl>
                                     <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local' || (loggedInDepartmentName != 'Yarn Export'  && loggedInDepartmentName != 'Yarn Local'  && loggedInDepartmentName != 'Yarn Import') ">
-                                        <dt class="col-sm-6">
+                                        <dt class="col-sm-4">
                                         </dt>
                                         <dd class="col-sm-6" *ngIf = "loggedInDepartmentName == '!Fabric Export'"><small>Subject to all taxes if applicable</small></dd>
                                     </dl>
@@ -1102,8 +1102,8 @@
                                 <div class="col-md-6">
                     
                                     <dl class="row" *ngIf = "(loggedInDepartmentName != 'Yarn Export'   && loggedInDepartmentName != 'Yarn Import') &&(loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Local' || loggedInDepartmentName == 'Fabric Local'  )">
-                                        <dt class="col-sm-6" *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Local'  "> Payment terms:</dt>
-                                        <dt class="col-sm-6" *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Local' ">Seller Payment terms:</dt>
+                                        <dt class="col-sm-4" *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Local'  "> Payment terms:</dt>
+                                        <dt class="col-sm-4" *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Local' ">Seller Payment terms:</dt>
                                         
 
                                         <dd class="col-sm-6">{{contractPaymentData.sellerPaymentTermName}}
@@ -1114,7 +1114,7 @@
                                     </dl>
                                     <dl class="row" *ngIf = "loggedInDepartmentName == 'Yarn Export'
                                     || loggedInDepartmentName == 'Yarn Import'">
-                                        <dt class="col-sm-6">Payment terms:</dt>
+                                        <dt class="col-sm-4">Payment terms:</dt>
                                         <dd class="col-sm-6">{{contractPaymentData.paymentTermName}}
                                             <b *ngIf="contractPaymentData.paymentTermDays != ''">
                                                 {{contractPaymentData.paymentTermDays}} Days </b>
@@ -1123,7 +1123,7 @@
                                     </dl>
                     
                                     <dl class="row" *ngIf = "loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName !='Fabric Export'  && loggedInDepartmentName != 'Yarn Import' ">
-                                        <dt class="col-sm-6"  >Buyer Payment terms:
+                                        <dt class="col-sm-4"  >Buyer Payment terms:
                                         </dt>
                                         <dd class="col-sm-6" >{{contractPaymentData.buyerPaymentTermName}}
                                             <b *ngIf="contractPaymentData.buyerPaymentTermDays !=null">
@@ -1133,14 +1133,14 @@
                                         <!-- <dd class="col-sm-6"></dd> -->
                                     </dl>
                                     <dl class="row">
-                                        <dt class="col-sm-6">Packing:
+                                        <dt class="col-sm-4">Packing:
                                         </dt>
                                         <dd class="col-sm-6">{{contractPaymentData.packingName}}
                                         </dd>
                                         <dd class="col-sm-6"></dd>
                                     </dl>
                                     <dl class="row">
-                                        <dt class="col-sm-6">Price / Delivery Terms:
+                                        <dt class="col-sm-4">Price / Delivery Terms:
                                         </dt>
                                         <dd class="col-sm-6">{{contractPaymentData.priceTermName}}
                                             {{contractPaymentData.destinationName}}
@@ -1152,12 +1152,12 @@
                                 <div class="col-md-6">
                     
                                     <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'">
-                                        <dt class="col-sm-6">Payment Mode:
+                                        <dt class="col-sm-4">Payment Mode:
                                         </dt>
                                         <dd class="col-sm-6">{{contractPaymentData.paymentMode}}</dd>
                                     </dl>
                                     <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Fabric Export'  || loggedInDepartmentName == 'Yarn Import'">
-                                        <dt class="col-sm-6">
+                                        <dt class="col-sm-4">
                                             Container:</dt>
                                         <dd class="col-sm-6"> {{contractPaymentData.count}}     {{contractPaymentData.containerName}}</dd>
                                     </dl>
@@ -1316,7 +1316,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'  ">
-                                        <dt class="col-sm-6">Kickback:
+                                        <dt class="col-sm-4">Kickback:
                                         </dt>
                                         <dd class="col-sm-6" *ngIf = "contractCommissionData.kickbackPercentage != null">{{contractCostingData.rateCurrencyName}} &nbsp; {{contractCommissionData.kickbackPercentage}} %
                                             <b *ngIf="contractCommissionData.kickbackUOMName!=null">/ </b>
@@ -1324,7 +1324,7 @@
                                         </dd>
                                     </dl>
                                     <dl class="row" *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Fabric Export'  || loggedInDepartmentName == 'Yarn Import' ">
-                                        <dt class="col-sm-6">Kickback:
+                                        <dt class="col-sm-4">Kickback:
                                         </dt>
                                         <dd class="col-sm-6" *ngIf = "contractCommissionData.kickbackPercentage != null">{{contractCostingData.rateCurrencyName}} &nbsp; {{contractCommissionData.kickbackPercentage}} %
                                             <b *ngIf="contractCommissionData.kickbackUOMName!=null">/ </b>
@@ -1332,7 +1332,7 @@
                                         </dd>
                                     </dl>
                                     <dl class="row" *ngIf="loggedInDepartmentName !='Yarn Export' && loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Local'  && loggedInDepartmentName != 'Yarn Import'">
-                                        <dt class="col-sm-6">Fabcot Commission:
+                                        <dt class="col-sm-4">Fabcot Commission:
                                         </dt>
                                         <dd class="col-sm-6" *ngIf = "contractCommissionData.fabCotCommision!= 0">PKR {{contractCommissionData.fabCotCommision}} %
                                             <b *ngIf="contractCommissionData.fabCotCommisionUOMName!=null">/ </b>
@@ -1341,7 +1341,7 @@
                                         </dd>
                                     </dl>
                                     <dl class="row" *ngIf="loggedInDepartmentName =='Yarn Local'">
-                                        <dt class="col-sm-6">Fabcot Commission:
+                                        <dt class="col-sm-4">Fabcot Commission:
                                         </dt>
                                         <dd class="col-sm-6" *ngIf = "(contractCommissionData.fabCotCommisionUOMName == null && contractCommissionData.commissionAmountFabcot != '' ) ">
                                              {{contractCommissionData.fabCotCommision}} % &nbsp; 
@@ -1353,7 +1353,7 @@
                                         </dd>
                                     </dl>
                                     <dl class="row" *ngIf="loggedInDepartmentName =='Yarn Export' || loggedInDepartmentName == 'Fabric Export'  || loggedInDepartmentName == 'Yarn Import'  ">
-                                        <dt class="col-sm-6">Fabcot Commission:
+                                        <dt class="col-sm-4">Fabcot Commission:
                                         </dt>
                                         <dd class="col-sm-6" *ngIf = "contractCommissionData.fabCotCommision!= null && contractCommissionData.fabCotCommision!= ''">USD {{contractCommissionData.fabCotCommision}} %
                                             <b *ngIf="contractCommissionData.fabCotCommisionUOMName!=null">/ </b>
@@ -1363,7 +1363,7 @@
                                     </dl>
                                     
                                     <dl class="row" *ngIf = "loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Fabric Export'   &&  loggedInDepartmentName != 'Yarn Local'  && loggedInDepartmentName != 'Yarn Import'">
-                                        <dt class="col-sm-6">Buyer side Commission:
+                                        <dt class="col-sm-4">Buyer side Commission:
                                         </dt>
                                         <dd class="col-sm-6" *ngIf = "contractCommissionData.buyersideCommision != null && contractCommissionData.buyersideCommision != '' ">
                                        
@@ -1375,7 +1375,7 @@
                                     </dl>
 
                                     <dl class="row" *ngIf = "loggedInDepartmentName == 'Yarn Local' ">
-                                        <dt class="col-sm-6">Buyer side Commission:
+                                        <dt class="col-sm-4">Buyer side Commission:
                                         </dt>
                                         <dd class="col-sm-6" *ngIf = "contractCommissionData.buyersideCommisionUOMName == null && contractCommissionData.commissionAmountBuyer != ''"> 
                                             {{contractCommissionData.buyersideCommision}} % &nbsp; 
@@ -1388,7 +1388,7 @@
                                          </dd>
                                     </dl>
                                      <dl class="row" *ngIf = "loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Local'  || loggedInDepartmentName == 'Yarn Import'">
-                                                                <dt class="col-sm-6" >Foreign Agent Comm:
+                                                                <dt class="col-sm-4" >Foreign Agent Comm:
                                                                 </dt>
                                                                 <dd class="col-sm-9 left" 
                                                                     *ngFor="let i of agent">
@@ -1494,32 +1494,32 @@
                                 <div class="col-md-6">
                     
                                     <dl class="row">
-                                        <dt class="col-sm-6">Remarks:
+                                        <dt class="col-sm-4">Remarks:
                     
                                         </dt>
                                         <dd class="col-sm-6">{{contractRemarksData.contractRemarks}}</dd>
                                     </dl>
                                     <dl class="row" *ngIf = "loggedInDepartmentName == 'Yarn Local'  ">
-                                        <dt class="col-sm-6">Buyer Remarks:
+                                        <dt class="col-sm-4">Buyer Remarks:
                     
                                         </dt>
                                         <dd class="col-sm-6">{{contractRemarksData.buyerRemarks}}</dd>
                                     </dl>
                                     <dl class="row">
-                                        <dt class="col-sm-6">Other Condition:
+                                        <dt class="col-sm-4">Other Condition:
                     
                                         </dt>
                                         <dd class="col-sm-6">{{contractRemarksData.otherConditionRemarks}}</dd>
                     
                                     </dl>
                                     <!-- <dl class="row">
-                                                                <dt class="col-sm-6">Other Condition:
+                                                                <dt class="col-sm-4">Other Condition:
                                                                 </dt>
                                                                 <dd class="col-sm-6"></dd>
                     
                                                             </dl> -->
                                     <dl class="row">
-                                        <dt class="col-sm-6">Preview Title:
+                                        <dt class="col-sm-4">Preview Title:
                                         </dt>
                                         <dd class="col-sm-6">{{contractRemarksData.title}}</dd>
                     
@@ -1890,52 +1890,52 @@
             <div class="row">
                 <div class="col-md-6">
                     <dl class="row">
-                        <dt class="col-sm-6">L/C No.:
+                        <dt class="col-sm-4">L/C No.:
                          
                         </dt>
                         <dd class="col-sm-6">    {{x.lcNumber}}</dd>
                     </dl>
                     <dl class="row">
-                        <dt class="col-sm-6">L/C Open by:
+                        <dt class="col-sm-4">L/C Open by:
 
                         </dt>
                         <dd class="col-sm-6">    {{x.buyerName}}</dd>
                     </dl>
                     <dl class="row">
-                        <dt class="col-sm-6">L/C Period:</dt>
+                        <dt class="col-sm-4">L/C Period:</dt>
                         <dd class="col-sm-6">    {{x.lcNumber}}</dd>
                     </dl>
                     <dl class="row">
-                        <dt class="col-sm-6">Remarks:</dt>
+                        <dt class="col-sm-4">Remarks:</dt>
                         <dd class="col-sm-6">   {{x.remarks}}</dd>
                     </dl>
                 </div>
 
                 <div class="col-md-6">
                     <dl class="row">
-                        <dt class="col-sm-6">L/C Opening Date:
+                        <dt class="col-sm-4">L/C Opening Date:
 
 
                         </dt>
                         <dd class="col-sm-6">    {{x.lcOpenOnToDisplay}}</dd>
                     </dl>
                     <dl class="row">
-                        <dt class="col-sm-6">Last Updated On:
+                        <dt class="col-sm-4">Last Updated On:
 
                         </dt>
                         <dd class="col-sm-6">   {{x.lcNumber}}</dd>
                     </dl>
                     <dl class="row">
-                        <dt class="col-sm-6">L/C BL Date:
+                        <dt class="col-sm-4">L/C BL Date:
                         </dt>
                         <dd class="col-sm-6">   {{x.lcNumber}}</dd>
                     </dl>
                     <dl class="row">
-                        <dt class="col-sm-6">L/C Shipment Date:</dt>
+                        <dt class="col-sm-4">L/C Shipment Date:</dt>
                         <dd class="col-sm-6">   {{x.lcShipmentOnToDisplay}}</dd>
                     </dl>
                     <dl class="row">
-                        <dt class="col-sm-6">L/C Expiry Date:
+                        <dt class="col-sm-4">L/C Expiry Date:
 
 
                         </dt>
@@ -2350,31 +2350,31 @@
             <div class="row">
                 <div class="col-md-6">
                     <dl class="row">
-                        <dt class="col-sm-6">Bill No:
+                        <dt class="col-sm-4">Bill No:
                          
                         </dt>
                         <dd class="col-sm-6">  </dd>
                     </dl>
                     <dl class="row">
-                        <dt class="col-sm-6">Bill Amount:
+                        <dt class="col-sm-4">Bill Amount:
 
                         </dt>
                         <dd class="col-sm-6">  </dd>
                     </dl>
                     <dl class="row">
-                        <dt class="col-sm-6">Bill Tax:</dt>
+                        <dt class="col-sm-4">Bill Tax:</dt>
                         <dd class="col-sm-6">   </dd>
                     </dl>
                     <dl class="row">
-                        <dt class="col-sm-6">Bill Status:</dt>
+                        <dt class="col-sm-4">Bill Status:</dt>
                         <dd class="col-sm-6"> </dd>
                     </dl>
                     <dl class="row">
-                        <dt class="col-sm-6">Last Updated By:</dt>
+                        <dt class="col-sm-4">Last Updated By:</dt>
                         <dd class="col-sm-6"> </dd>
                     </dl>
                     <dl class="row">
-                        <dt class="col-sm-6">Remarks:</dt>
+                        <dt class="col-sm-4">Remarks:</dt>
                         <dd class="col-sm-6"> </dd>
                     </dl>
                 </div>
@@ -2382,29 +2382,29 @@
                 <div class="col-md-6">
                   
                     <dl class="row">
-                        <dt class="col-sm-6">Bill Id:
+                        <dt class="col-sm-4">Bill Id:
 
                         </dt>
                         <dd class="col-sm-6">   </dd>
                     </dl>
                     <dl class="row">
-                        <dt class="col-sm-6">Bill Date:
+                        <dt class="col-sm-4">Bill Date:
                         </dt>
                         <dd class="col-sm-6">   </dd>
                     </dl>
                     <dl class="row">
-                        <dt class="col-sm-6">Tax No:</dt>
+                        <dt class="col-sm-4">Tax No:</dt>
                         <dd class="col-sm-6"> </dd>
                     </dl>
                     <dl class="row">
-                        <dt class="col-sm-6">Due Date:
+                        <dt class="col-sm-4">Due Date:
 
 
                         </dt>
                         <dd class="col-sm-6">   </dd>
                     </dl>
                     <dl class="row">
-                        <dt class="col-sm-6">Last Updated On:</dt>
+                        <dt class="col-sm-4">Last Updated On:</dt>
                         <dd class="col-sm-6"> </dd>
                     </dl>
                   

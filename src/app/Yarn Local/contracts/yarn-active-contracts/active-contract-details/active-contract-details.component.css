@@ -96,17 +96,17 @@ outline: #1ab394;
 
 
 dt {
-  /* font-weight: 500; */
-  /* text-align: right !important; */
+   font-weight: 800; 
+   text-align: right !important; 
   color: #676a6c !important;
   font-size: 14px !important;
 }
-.dd{
+dd{
 color: #676a6c !important;
 margin-bottom: .5rem  !important;
 margin-left: 0  !important;
 font-size: 12px  !important;
-font-weight: 500  !important;
+font-weight: 600  !important;
 }
 
 /* dd{

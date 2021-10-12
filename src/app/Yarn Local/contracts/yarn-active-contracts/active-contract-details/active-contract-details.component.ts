@@ -2686,7 +2686,7 @@ getImage(){
                         margin: [20 , 25 , 0 , 0],
                         table:{headerRows: 1 , widths:['70%'],
                       body: [
-                        [{text:'For FabCot International Enterprises'  , style:'heading'}],] }
+                        [{text:'For FabCot International'  , style:'heading'}],] }
                       },
                       {
                         layout:'noBorders',
@@ -2962,7 +2962,7 @@ getImage(){
                         margin: [20 , 25 , 0 , 0],
                         table:{headerRows: 1 , widths:['70%'],
                       body: [
-                        [{text:'For FabCot International Enterprises'  , style:'heading'}],] }
+                        [{text:'For FabCot International'  , style:'heading'}],] }
                       },
                       {
                         layout:'noBorders',
