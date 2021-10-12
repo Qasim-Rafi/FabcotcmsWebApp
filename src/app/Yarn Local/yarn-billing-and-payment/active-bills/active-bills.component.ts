@@ -34,7 +34,7 @@ export class ActiveBillsComponent implements OnInit {
   listCount: number;
   // rows: any = [{nmbr: 1}];
   rows: any = [];
-  dashboardAmnt: any = [];
+  dashboardAmnt: number;
 
   data: any = [];
   bulkData: any = [];
@@ -127,15 +127,15 @@ this.fetch();
     this.data2.FromDate = this.dateformater.toModel(this.data2.FromDate)
     this.spinner.show();
     this.http
-    .get(`${environment.apiUrl}/api/BillingPayments/GetAllContractBill/`+ null + '/' + null)
+    .get(`${environment.apiUrl}/api/BillingPayments/GetAllContractBill/`+ this.data2.toDate + '/' + this.data2.FromDate)
     .subscribe(res => {
       this.response = res;
      
     if(this.response.success==true)
     {
     this.data=this.response.data;
-    this.dashboardAmnt = this.data
     this.rows = this.data.objList;
+    this.dashboardAmnt = this.data.totalBillAmount;
     this.billFilter = [...this.rows];
 
     this.listCount = this.rows.length;

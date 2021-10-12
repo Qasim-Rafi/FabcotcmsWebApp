@@ -40,7 +40,7 @@
         </div>
         <div class="col-md-8 text-right">
           <div> Active Bills </div>
-          <h6 class="font-bold">{{dashboardAmnt.activeBillCount}}<p class="topbox-small-text">&nbsp;</p></h6>
+          <h6 class="font-bold">{{data.activeBillCount}}<p class="topbox-small-text">&nbsp;</p></h6>
         </div>
       </div>
     </div>
@@ -54,7 +54,7 @@
         </div>
         <div class="col-md-8 text-right">
           <div> Total Amount </div>
-          <h6 class="font-bold">{{dashboardAmnt.totalAmount}} <p class="topbox-small-text">Rs./$</p></h6>
+          <h6 class="font-bold">{{data.totalAmount}} <p class="topbox-small-text">Rs./$</p></h6>
         </div>
       </div>
     </div>
@@ -68,7 +68,7 @@
         </div>
         <div class="col-md-8 text-right">
           <div> Balance Amount </div>
-          <h6 class="font-bold">{{dashboardAmnt.balanceAmount}}<p class="topbox-small-text">Rs./$</p></h6>
+          <h6 class="font-bold">{{data.balanceAmount}}<p class="topbox-small-text">Rs./$</p></h6>
         </div>
       </div>
     </div>
@@ -82,7 +82,7 @@
         </div>
         <div class="col-md-8 text-right">
           <div> Tax Amount </div>
-          <h6 class="font-bold">{{dashboardAmnt.taxAmount}} <p class="topbox-small-text">Rs./$</p></h6>
+          <h6 class="font-bold">{{data.taxAmount}} <p class="topbox-small-text">Rs./$</p></h6>
         </div>
       </div>
     </div>
@@ -308,7 +308,7 @@
           </ngx-datatable-column>
       
         </ngx-datatable>
-        <p class="col-md-12  totalAmnt">Total Amount : <span>  &nbsp;  &nbsp; {{dashboardAmnt.totalBillAmount}} </span></p>
+        <p class="col-md-12  totalAmnt">Total Amount : <span>  &nbsp;  &nbsp; {{dashboardAmnt}} </span></p>
       </div>
       
        
