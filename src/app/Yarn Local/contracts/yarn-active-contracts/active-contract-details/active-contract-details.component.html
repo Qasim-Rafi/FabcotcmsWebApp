@@ -861,7 +861,7 @@
                                         <dt class="col-sm-4" *ngIf = "loggedInDepartmentName != 'Yarn Export'  && loggedInDepartmentName != 'Yarn Import'">Construction:
                                         </dt>
                                         <dd class="col-sm-6" *ngIf = "loggedInDepartmentName != 'Yarn Export'
-                                        && loggedInDepartmentName != 'Yarn Import'"> <span *ngIf = "contractProductData.pecenetAge != null">   {{contractProductData.pecenetAge}} %  </span>
+                                        && loggedInDepartmentName != 'Yarn Import'"> <span *ngIf = "contractProductData.pecenetAge != ''">   {{contractProductData.pecenetAge}} %  </span>
                                             {{contractProductData.febricType}}&nbsp;{{contractProductData.construction}}</dd>
                     
                                     </dl>
