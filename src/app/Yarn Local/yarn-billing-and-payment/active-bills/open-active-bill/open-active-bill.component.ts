@@ -87,6 +87,9 @@ fetch(cb) {
   if(this.response.success==true)
   {
   this.data =this.response.data;
+  // for(let z=0;z<this.response.data.contractSaleInvoices.length;z++){
+  //   this.response.data.contractSaleInvoices.find(item => item.id == itemUpdated.id).name = itemUpdated.name;
+  // }
 
   for(let i = 0 ; i<this.response.data.contractSaleInvoices.length ; i++){
     this.response.data.contractSaleInvoices[i].totalAmount = this.data.contractSaleInvoices[i].amount * this.data.contractSaleInvoices[i].commission
@@ -225,6 +228,17 @@ print(){
           ]]
             }
             },
+
+            {
+            
+
+              layout:'noBorders',
+              table:{headerRows:1 ,  widths:['20%' , '80%' ],
+            body:[ [{text: 'Article :' , margin: [30 , 4 , 0 , 0] , bold:true  , style:'common'} , {text: this.rows['contractArticleName'] , margin: [-12 , 4 , 0 , 0] , bold:true , decoration:'underline' , style:'common' }
+          
+          ]]
+            }
+            },
             {
              
 
@@ -250,25 +264,25 @@ print(){
               margin: [0 , 20 , 0 , 0 ],
               table:{
                 headerRows : 1,
-                widths : ['15%' , '10%' , '15%' , '8.75%' , '9.75%' , '12.75%' , '11.75%' , '6%' , '13%'],
+                widths : [ '15%' , '15%' , '20%' , '10%' , '15%'  , '12%' , '18%'],
                 body:[
 
                   [
-                    {text:'Description' , style:'tableHeader' },
+                    // {text:'Description' , style:'tableHeader' },
                     {text:'Sale Invoice#' , style:'tableHeader' }
                   ,{text:'Sale Invoice Date' , style:'tableHeader'} ,
                   {text:'Quantity' , style:'tableHeader' }, 
                   {text:'Rate'  +'(' + this.rows.currencyName+')' , style:'tableHeader' }, 
 
-                  {text:'SI Amount' +'(' + this.rows.currencyName+')'  , style:'tableHeader'} , 
+                  {text:'Inv Amount' +'(' + this.rows.currencyName+')'  , style:'tableHeader'} , 
                   {text:'Commission' , style:'tableHeader'} , 
-                  {text:'TAX' , style:'tableHeader' }, 
+                  // {text:'TAX' , style:'tableHeader' }, 
 
                   {text:'Amount' +'(' + this.rows.currencyName+')' , style:'tableHeader'}],
                   
                   ...this.rows['contractSaleInvoices'].map(row => (
                     [
-                      {text: row.description , style:'tableHeader2'} ,
+                      // {text: row.description , style:'tableHeader2'} ,
 
                       {text: row.saleInvoiceNo , style:'tableHeader2'} ,
                     {text:  row.saleInvoiceDateToDisplay , style:'tableHeader2'},
@@ -278,7 +292,7 @@ print(){
                      {text: row.amount
                          , style:'tableHeader2'} ,
                       {text:row.commission+ '%' , style:'tableHeader2' }  ,
-                    {text: row.taxAmount , style:'tableHeader2'} ,
+                    // {text: row.taxAmount , style:'tableHeader2'} ,
 
                       {text: row.totalAmount.toFixed(2) , style:'tableHeader2'}]
                   ))
@@ -288,11 +302,11 @@ print(){
 
           {
             layout:'noBorders',
-            table:{headerRows:1 ,  widths:['10%' , '20%' ,  '20%' , '20%' ],
+            table:{headerRows:1 ,  widths:['10%' , '20%' ,  '25%' , '25%' ],
           body:[ [
             {text: 'Quantity :' , margin:[0 , 30,0,0] , bold:true , style:'common' } ,
            {text: this.rows['quantitySum'] + ' ' + this.rows['quanityUOM'] ,margin:[-10 , 30,0,0] , bold:true , style:'common' },
-            {text: 'SI Amount' + ' (' + this.rows['currencyName'] +   '):'  , margin:[0,30,0,0]  , bold:true , style:'common' } ,
+            {text: 'Invoice Amount' + ' (' + this.rows['currencyName'] +   '):'  , margin:[0,30,0,0]  , bold:true , style:'common' } ,
            {text:  this.rows['amountsum']  , margin:[-35,30,0,0] ,  bold:true , style:'common'}
         
         ]]
