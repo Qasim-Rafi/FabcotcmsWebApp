@@ -1484,7 +1484,7 @@ this.spinner.show();
               // this.getAllEnquiryItems();
               // this.getEnquiryData(this.objEnquiry);
            this.getAllBenificery();
-
+           this.spinner.hide();
             }
             else {
               this.toastr.error(this.response.message, 'Message.');
@@ -1923,6 +1923,7 @@ addCredit(x, check) {
       // this.getContractData();
       // this.getDispatches();
       this.getAllInvoices();
+      this.getContractData();
     
     }
     // this.getContractData();

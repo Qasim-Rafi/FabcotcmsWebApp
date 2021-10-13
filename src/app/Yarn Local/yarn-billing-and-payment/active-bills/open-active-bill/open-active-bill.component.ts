@@ -286,7 +286,7 @@ print(){
 
                       {text: row.saleInvoiceNo , style:'tableHeader2'} ,
                     {text:  row.saleInvoiceDateToDisplay , style:'tableHeader2'},
-                    {text: row.quantity + " " + row.quanityUOM  , style:'tableHeader2'} ,
+                    {text:  row.quantity + " " + row.quanityUOM  , style:'tableHeader2'} ,
                     {text: row.rate , style:'tableHeader2'} ,
                     
                      {text: row.amount
