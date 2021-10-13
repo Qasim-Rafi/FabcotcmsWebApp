@@ -206,10 +206,9 @@
         <ngx-datatable class="bootstrap datatable-row-wrapper" [columns]="columns" [rows]="rows" [columnMode]="'flex'"
         
           [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" 
-        
           (select)="onSelect($event)"
           [selected]="selected" [selectionType]="SelectionType.checkbox" [sorts]="[{ prop: 'id', dir: 'desc' }]" (select)="onSelect($event)">
-      
+       
           <!-- <ngx-datatable-column prop="selected" name="Select" [width]="20" [flexGrow]="0.03" [width]="30"
             [headerCheckboxable]="true" [checkboxable]="true">
             <ng-template let-row="row" ngx-datatable-cell-template>
