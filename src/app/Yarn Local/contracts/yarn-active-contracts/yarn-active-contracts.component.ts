@@ -15,7 +15,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./yarn-active-contracts.component.css']
 })
 export class YarnActiveContractsComponent implements OnInit {
-
+ totalDisplayPrice:any;
   response: any;
   data: any = {};
   rows: any = [];
@@ -57,8 +57,15 @@ export class YarnActiveContractsComponent implements OnInit {
     const temp = this.temp.filter(function (d) {
       return (
         d.autoContractNumber.toLowerCase().indexOf(val) !== -1 ||
-        // d.buyerName.toLowerCase().indexOf(val) !== -1 ||
-        // d.sellerName.toLowerCase().indexOf(val) !== -1 ||
+        // d.contractOn.toLowerCase().indexOf(val) !== -1 ||
+        // d.articleName != null?d.articleName: "".toLowerCase().indexOf(val) !== -1 ||
+        // d.price.toString().indexOf(val) !== -1 ||
+        // d.quantity.toString().indexOf(val) !== -1 ||
+        d.buyerName.toLowerCase().indexOf(val) !== -1 ||
+        d.sellerName.toLowerCase().indexOf(val) !== -1 ||
+        // d.poNumber.toString().indexOf(val) !== -1 ||
+        // d.scNumber.toString().indexOf(val) !== -1 ||
+        // d.dispatchQuantity.toLowerCase().indexOf(val) !== -1 ||
          !val);
     });
     this.rows = temp;
@@ -144,6 +151,7 @@ fetch(cb) {
 
       if (this.response.success == true && this.response.data != null) {
 
+        this.totalDisplayPrice=this.response.data;
         this.data = this.response.data.list;
         this.allCount = this.response.data.allCount;
         this.openCount = this.response.data.openCount;
