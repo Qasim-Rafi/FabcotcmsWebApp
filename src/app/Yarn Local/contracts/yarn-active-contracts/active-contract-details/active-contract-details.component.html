@@ -298,7 +298,7 @@
 
                                     <a *ngIf="contractData.status == 'OnHold'|| loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Yarn Local'" class="nav-item nav-link " id="nav-bill-tab" data-toggle="tab" href="#nav-bill"
                                     role="tab" aria-controls="nav-bill" aria-selected="false">Bill & Payment &nbsp;<span
-                                        class="badge badge-pill badge-primary"></span></a>
+                                        class="badge badge-pill badge-primary" *ngIf = "contractData.contractBillInfo != {}"> 1</span></a>
 
                             <a class="nav-item nav-link " id="nav-Documents-tab" data-toggle="tab" href="#nav-Documents"
                                 role="tab" aria-controls="nav-Documents" aria-selected="false">Documents
@@ -410,9 +410,9 @@
                                                 <div class="badge badge-info ml-1" *ngIf="contractData.status == 'BillAwaited'">
                                                     Bill Awaited</div>
                                                     
-  <div class="badge badge-info ml-1" *ngIf="contractData.status == 'closed'">
+  <div class="badge badge-info ml-1" *ngIf="contractData.status == 'Closed'">
     Closed</div>
-    <div class="badge badge-info ml-1" *ngIf="contractData.status == 'billed'">
+    <div class="badge badge-info ml-1" *ngIf="contractData.status == 'Billed'">
         Billed</div>
                                             <!-- <button class="btn "><i class="fas fa-history "></i></button> -->
                                             <button class="btn btn-outline-secondary btn-xs ml-1"><i class="fas fa-history "></i></button>
@@ -2351,62 +2351,47 @@
                 <div class="col-md-6">
                     <dl class="row">
                         <dt class="col-sm-4">Bill No:
-                         
+                       
                         </dt>
-                        <dd class="col-sm-6">  </dd>
+                        <dd class="col-sm-6">  {{commissionBill.billNo}}  </dd>
                     </dl>
                     <dl class="row">
                         <dt class="col-sm-4">Bill Amount:
-
+                          
                         </dt>
-                        <dd class="col-sm-6">  </dd>
+                        <dd class="col-sm-6">{{commissionBill.amount}}  </dd>
                     </dl>
                     <dl class="row">
                         <dt class="col-sm-4">Bill Tax:</dt>
-                        <dd class="col-sm-6">   </dd>
+                        <dd class="col-sm-6"> 17%  </dd>
                     </dl>
-                    <dl class="row">
-                        <dt class="col-sm-4">Bill Status:</dt>
-                        <dd class="col-sm-6"> </dd>
-                    </dl>
-                    <dl class="row">
-                        <dt class="col-sm-4">Last Updated By:</dt>
-                        <dd class="col-sm-6"> </dd>
-                    </dl>
-                    <dl class="row">
-                        <dt class="col-sm-4">Remarks:</dt>
-                        <dd class="col-sm-6"> </dd>
-                    </dl>
+                  
+                  
+                  
                 </div>
 
                 <div class="col-md-6">
                   
-                    <dl class="row">
+                    <!-- <dl class="row">
                         <dt class="col-sm-4">Bill Id:
 
                         </dt>
                         <dd class="col-sm-6">   </dd>
+                    </dl> -->
+                    <dl class="row">
+                        <dt class="col-sm-4">Bill Status:</dt>
+                        <dd class="col-sm-6">  <span class="badge badge-primary">Billed</span> </dd>
                     </dl>
                     <dl class="row">
                         <dt class="col-sm-4">Bill Date:
                         </dt>
-                        <dd class="col-sm-6">   </dd>
+                        <dd class="col-sm-6">  {{commissionBill.billDate}} </dd>
                     </dl>
                     <dl class="row">
                         <dt class="col-sm-4">Tax No:</dt>
                         <dd class="col-sm-6"> </dd>
                     </dl>
-                    <dl class="row">
-                        <dt class="col-sm-4">Due Date:
-
-
-                        </dt>
-                        <dd class="col-sm-6">   </dd>
-                    </dl>
-                    <dl class="row">
-                        <dt class="col-sm-4">Last Updated On:</dt>
-                        <dd class="col-sm-6"> </dd>
-                    </dl>
+                 
                   
                 </div>
 

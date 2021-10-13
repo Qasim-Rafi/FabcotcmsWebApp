@@ -250,12 +250,18 @@
                                         {{row.saleInvoiceAmount}}
                                     </ng-template>
                                 </ngx-datatable-column>
-
-                                <ngx-datatable-column
-                               
-
-                                
-                              > 
+                                <ngx-datatable-column name="Tax%" [width]="80" prop="genericName">
+                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                        {{row.taxPercentage}}
+                                    </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column name="Amount After SaleTax" [width]="90" prop="genericName">
+                                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                        {{row.saleInvoiceAmountAfterTax}}
+                                    </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column > 
+                                   
                               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                                 <div>
                                     <label class="checkbox-container">
