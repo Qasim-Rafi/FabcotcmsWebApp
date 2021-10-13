@@ -61,8 +61,8 @@ export class YarnActiveContractsComponent implements OnInit {
         // d.articleName != null?d.articleName: "".toLowerCase().indexOf(val) !== -1 ||
         // d.price.toString().indexOf(val) !== -1 ||
         // d.quantity.toString().indexOf(val) !== -1 ||
-        d.buyerName.toLowerCase().indexOf(val) !== -1 ||
-        d.sellerName.toLowerCase().indexOf(val) !== -1 ||
+        // d.buyerName.toLowerCase().indexOf(val) !== -1 ||
+        // d.sellerName.toLowerCase().indexOf(val) !== -1 ||
         // d.poNumber.toString().indexOf(val) !== -1 ||
         // d.scNumber.toString().indexOf(val) !== -1 ||
         // d.dispatchQuantity.toLowerCase().indexOf(val) !== -1 ||
