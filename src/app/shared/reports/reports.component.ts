@@ -145,6 +145,7 @@ this.fetchContractInvise();
   }
 
 
+
   fetch() {
     this.billingReportInvoiceWise.startDate = this.dateformater.toModel(this.billingReportInvoiceWise.startDate)
     this.billingReportInvoiceWise.endDate = this.dateformater.toModel(this.billingReportInvoiceWise.endDate)

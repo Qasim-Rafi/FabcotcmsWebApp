@@ -106,6 +106,8 @@ printData : any = {}
   prodPlanData = [];
   dispatchData = [];
   deliveryData = [];
+  commissionBill: any = [];
+
   saleInvoiceNo:string
   contractKickbackData = [];
   saleinvoicecount: number;
@@ -1038,6 +1040,7 @@ lcForm2( check){
             this.contractData.createdDateTime = this.contractData.createdDateTime.slice(0 ,16)
             this.contractArticles = this.response.data.contractArticles;
             this.buyerName = this.contractData.buyerName
+            this.commissionBill = this.contractData.contractBillInfo
              this.contractNmbr = this.contractData.autoContractNumber
              this.sellerName = this.contractData.sellerName
              this.max1 = this.response.data.saleInvoiceQuantity;
@@ -5045,6 +5048,15 @@ yarnExportInvoicesReportPrint(){
                       body: [
                         [{text:'Packing:'  , style:'heading'} , {text: this.contractPaymentData['packingName'] , style:'heading2'}],] }
                       },
+                      {
+
+                        layout:'noBorders',
+                        margin: [70 , 7 , 0 , 0],
+                        table:{headerRows: 1 , widths:['20%' , '80%'],
+                      body: [
+                        [{text:'Construction:'  , style:'heading'} , {text: this.contractProductData['construction'] , style:'heading2'}],] }
+                      },
+                     
                       {
 
                         layout:'noBorders',
