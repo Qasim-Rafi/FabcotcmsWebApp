@@ -92,6 +92,10 @@
                            Contract Date: &nbsp;  <span class="bold text-font1">{{x.contractDate}}</span>
                     </span>
                     <br>
+                    <span class="text-font1">
+                           Article: &nbsp;  <span class="bold text-font1">{{x.contractArticleName}}</span>
+                    </span>
+                    <br>
                  <br>
                     <span class="text-font1">
                      <p>This refers to our contract for Weaving dispatches. Please make commission cheque in favour of  <strong>M/S FABCOT INTERNATIONAL </strong> and oblige <br> Details as under: </p>
@@ -104,7 +108,6 @@
           
             <table class="table">
                 <tr>
-                    <th>Description</th>
                     <th>Sale Invoice #</th>
                     <th>Sale Invoice Date</th>
                     <th>Quantity</th>
@@ -119,7 +122,6 @@
 
                 </tr>
                 <tr *ngFor="let i of x.contractSaleInvoices">
-                    <td>{{i.description}}</td>
                    
                     <td>{{i.saleInvoiceNo}}</td>
                     <td>{{i.saleInvoiceDateToDisplay}}</td>
@@ -130,7 +132,7 @@
                     <td>{{i.commission}}</td>
                     <td>{{i.taxAmount}}</td>
 
-                    <td>{{i.totalAmount}}</td>
+                    <td>{{i.billAmount}}</td>
 
                 </tr>
             </table>

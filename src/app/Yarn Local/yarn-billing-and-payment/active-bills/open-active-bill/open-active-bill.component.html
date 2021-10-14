@@ -127,10 +127,10 @@
                     <td>{{i.rate}}</td>
 
                     <td>{{i.amount}}</td>
-                    <td>{{i.commission}}% </td>
+                    <td>{{i.commission}} </td>
                     <!-- <td>{{i.taxAmount}}</td> -->
 
-                    <td>{{i.totalAmount  | number:'2.2-2'}}</td>
+                    <td>{{i.billAmount  | number:'2.2-2'}}</td>
 
                 </tr>
             </table>
@@ -138,14 +138,14 @@
             <br>
             <div class="float-right">
                 <span class=" bold text-font1">
-                    Sub Total: <span class="text-font1 underline">{{rows.currencyName}}  {{totalAmount | number:'2.2-2'}}</span>
+                    Sub Total: <span class="text-font1 underline">{{rows.currencyName}}  {{rows.totalCalculation | number:'2.2-2'}}</span>
                 </span>
                 <br>
                 <span class=" bold text-font1">
-                    TAX : <span class="text-font1 underline">{{rows.currencyName}}  {{0.00}}</span>
+                    TAX : <span class="text-font1 underline">{{rows.currencyName}}  {{rows.taxAmount}}</span>
                 </span><br>
                 <span class=" bold text-font1">
-                    TOTAL : <span class="bold text-font1 underline">{{rows.currencyName}}  {{totalAmount | number:'2.2-2'}}</span>
+                    TOTAL : <span class="bold text-font1 underline">{{rows.currencyName}}  {{rows.totalCalculation | number:'2.2-2'}}</span>
                 </span>
             </div>
             <span class=" float-left text-font1">

@@ -120,13 +120,13 @@ amount=0;
     this.toastr.error("PLease select atleast one contract to generate bill" , 'Message')
   }
   else{
-    const modalRef = this.modalService.open(BranchAddressComponent, { centered: true });
-    modalRef.result.then((p) => {
-      if (p != null) {
+    // const modalRef = this.modalService.open(BranchAddressComponent, { centered: true });
+    // modalRef.result.then((p) => {
+    //   if (p != null) {
         const item = [...new Set(this.contractIds)];
         let varr = {
           "contractIds": this.contractIds,
-           "fabcotBranchName": p.branch.name,
+           "fabcotBranchName": "Fabcot_Local",
         }
         // this.spinner.show();
         this.http.
@@ -151,9 +151,9 @@ amount=0;
               
               }
             });
-      }
-    }, (reason) => {
-    });
+    //   }
+    // }, (reason) => {
+    // });
       }  
       }
   SaleInvoiceForm(row) {
