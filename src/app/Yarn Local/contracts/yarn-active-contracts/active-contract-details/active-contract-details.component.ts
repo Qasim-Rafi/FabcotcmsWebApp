@@ -106,7 +106,7 @@ printData : any = {}
   prodPlanData = [];
   dispatchData = [];
   deliveryData = [];
-  commissionBill: any = [];
+  commissionBill:any = [];
 
   saleInvoiceNo:string
   contractKickbackData = [];
@@ -1031,7 +1031,7 @@ lcForm2( check){
 
   getContractData() {
     this.spinner.show();
-    this.http.get(`${environment.apiUrl}/api/Contracts/GetContractById/` + this.contractId)
+    this.http.get(`${environment.apiUrl}/api/Contracts/GetContractById/` + this.contractId )
       .subscribe(
         res => {
           this.response = res;
@@ -1046,12 +1046,12 @@ lcForm2( check){
              this.contractNmbr = this.contractData.autoContractNumber
              this.sellerName = this.contractData.sellerName
              this.max1 = this.response.data.saleInvoiceQuantity;
-             if(this.commissionBill['billNo'] != ''){
-               this.billCount = 1
-             }
-             else{
-               this.billCount = 0
-             }
+            //  if(this.commissionBill['billNo'] != ''){
+            //    this.billCount = 1
+            //  }
+            //  else{
+            //    this.billCount = 0
+            //  }
              this.spinner.hide();
 
           }
