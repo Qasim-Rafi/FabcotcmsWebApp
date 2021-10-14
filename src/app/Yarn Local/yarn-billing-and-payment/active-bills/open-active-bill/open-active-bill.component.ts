@@ -103,8 +103,8 @@ fetch(cb) {
 
    
 // } 
-this.totalAmount1 =this.totalAmount.toFixed(2)
-this.totalAmount2 = parseFloat(this.totalAmount1)
+// this.totalAmount1 =this.totalAmount.toFixed(2)
+// this.totalAmount2 = parseFloat(this.totalAmount1)
 
 
   this.words = this.ngxNumToWordsService.inWords(this.data['totalCalculation'], this.lang);
@@ -291,7 +291,7 @@ print(){
                     
                      {text: row.amount
                          , style:'tableHeader2'} ,
-                      {text:row.commission+ '%' , style:'tableHeader2' }  ,
+                      {text:row.commission+ ' ' + row.commissionUnit  , style:'tableHeader2' }  ,
                     // {text: row.taxAmount , style:'tableHeader2'} ,
 
                       {text: row.billAmount.toFixed(2) , style:'tableHeader2'}]
