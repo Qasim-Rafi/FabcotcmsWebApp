@@ -150,6 +150,7 @@ quantity : any;
 comm = "Commission:";
 revised = false;
 checkR: any;
+billCount : any;
   constructor(
     config: NgbProgressbarConfig,
     private router: Router,
@@ -1041,9 +1042,16 @@ lcForm2( check){
             this.contractArticles = this.response.data.contractArticles;
             this.buyerName = this.contractData.buyerName
             this.commissionBill = this.contractData.contractBillInfo
+          
              this.contractNmbr = this.contractData.autoContractNumber
              this.sellerName = this.contractData.sellerName
              this.max1 = this.response.data.saleInvoiceQuantity;
+             if(this.commissionBill['billNo'] != ''){
+               this.billCount = 1
+             }
+             else{
+               this.billCount = 0
+             }
              this.spinner.hide();
 
           }
