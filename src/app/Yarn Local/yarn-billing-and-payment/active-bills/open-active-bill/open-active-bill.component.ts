@@ -91,23 +91,23 @@ fetch(cb) {
   //   this.response.data.contractSaleInvoices.find(item => item.id == itemUpdated.id).name = itemUpdated.name;
   // }
 
-  for(let i = 0 ; i<this.response.data.contractSaleInvoices.length ; i++){
-    this.response.data.contractSaleInvoices[i].totalAmount = this.data.contractSaleInvoices[i].amount * this.data.contractSaleInvoices[i].commission
-    this.data.contractSaleInvoices[i].totalAmount = this.data.contractSaleInvoices[i].totalAmount/100
+  // for(let i = 0 ; i<this.response.data.contractSaleInvoices.length ; i++){
+  //   this.response.data.contractSaleInvoices[i].totalAmount = this.data.contractSaleInvoices[i].amount * this.data.contractSaleInvoices[i].commission
+  //   this.data.contractSaleInvoices[i].totalAmount = this.data.contractSaleInvoices[i].totalAmount/100
     
-  }
+  // }
   this.spinner.hide();
 
-  for(let j=0;j<this.response.data.contractSaleInvoices.length;j++){   
-    this.totalAmount=this.totalAmount + this.response.data.contractSaleInvoices[j].totalAmount ;
+//   for(let j=0;j<this.response.data.contractSaleInvoices.length;j++){   
+//     this.totalAmount=this.totalAmount + this.response.data.contractSaleInvoices[j].totalAmount ;
 
    
-} 
+// } 
 this.totalAmount1 =this.totalAmount.toFixed(2)
 this.totalAmount2 = parseFloat(this.totalAmount1)
 
 
-  this.words = this.ngxNumToWordsService.inWords(this.totalAmount2, this.lang);
+  this.words = this.ngxNumToWordsService.inWords(this.data['totalCalculation'], this.lang);
 
 
 
@@ -294,7 +294,7 @@ print(){
                       {text:row.commission+ '%' , style:'tableHeader2' }  ,
                     // {text: row.taxAmount , style:'tableHeader2'} ,
 
-                      {text: row.totalAmount.toFixed(2) , style:'tableHeader2'}]
+                      {text: row.billAmount.toFixed(2) , style:'tableHeader2'}]
                   ))
                 ]
               }
@@ -320,7 +320,7 @@ print(){
               {text: 'Amount in Words :' , margin:[0 , 20,0,0] , bold:true , style:'common' } ,
              {text: this.words ,margin:[-30 , 20,0,0] , bold:true , decoration:'underline' , style:'common' },
               {text: 'Sub Total :' , margin:[50,20,0,0]  , bold:true , style:'common' } ,
-             {text:   this.rows['currencyName']+ ' ' + this.totalAmount2.toFixed(2)  , margin:[-60,20,0,0] , decoration:'underline'  , style:'common'}
+             {text:   this.rows['currencyName']+ ' ' + this.rows['totalCalculation']  , margin:[-60,20,0,0] , decoration:'underline'  , style:'common'}
           
           ]]
             }
@@ -341,7 +341,7 @@ print(){
               table:{headerRows:1 ,  widths:['90%' , '10%'  ],
             body:[ [
               {text: 'Total:' , margin:[455 , 5,0,0] , bold:true , style:'common' } ,
-             {text: this.rows['currencyName']+ ' '+  this.totalAmount2.toFixed(2) ,margin:[-10 , 5,0,0]  , decoration:'underline' , bold:true , style:'common' },
+             {text: this.rows['currencyName']+ ' '+  this.rows['totalCalculation'] ,margin:[-10 , 5,0,0]  , decoration:'underline' , bold:true , style:'common' },
          
           
           ]]
