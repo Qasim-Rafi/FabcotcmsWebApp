@@ -182,7 +182,7 @@ print(){
              
               table:{headerRows:1 ,  widths:['18%' , '67%' , '5%' , '12%'],
             body:[ [
-              {text: 'Seller :' , margin: [63 , 30 , 0 , 0] , bold:true , style:'common' } , {text: this.rows['sellerName'] ,  margin: [0 , 30 , 0 , 0] , style:'common'},
+              {text: 'Seller :' , margin: [20 , 30 , 0 , 0] , bold:true , style:'common' } , {text: this.rows['sellerName'] ,  margin: [-43 , 30 , 0 , 0] , style:'common'},
             {text:'Bill # :' , margin: [0 , 30 , 0 , 0] , bold:true , style:'common'} ,{text:this.rows['billNumber'] , margin: [0 , 30 , 0 , 0] , style:'common'}
           
           ]]
@@ -192,7 +192,7 @@ print(){
               
               layout:'noBorders',
               table:{headerRows:1 ,  widths:['18%' , '65%' , '10%' , '15%'],
-            body:[ [{text: 'Buyer :' , margin: [63 , 4 , 0 , 0] , bold:true , style:'common'} , {text: this.rows['buyerName'] , margin: [0 , 4 , 0 , 0] , bold:true  , style:'common'},
+            body:[ [{text: 'Buyer :' , margin: [20 , 4 , 0 , 0] , bold:true , style:'common'} , {text: this.rows['buyerName'] , margin: [-43 , 4 , 0 , 0] , bold:true  , style:'common'},
             {text:'Bill Date :' , margin: [0 , 4 , 0 , 0] , bold:true , style:'common'} ,{text:this.rows['billDate'] , margin: [-20 , 4 , 0 , 0] , bold:true  , style:'common' }
           
           ]]
@@ -203,7 +203,7 @@ print(){
 
               layout:'noBorders',
               table:{headerRows:1 ,  widths:['20%' , '80%' ],
-            body:[ [{text: 'Fabcot Contract# :' , margin: [15 , 4 , 0 , 0] , bold:true , style:'common'} , {text: this.rows['contractNumber'] , margin: [-12 , 4 , 0 , 0]  , bold:true  , decoration:'underline' , style:'common'}
+            body:[ [{text: 'Fabcot Contract# :' , margin: [20 , 4 , 0 , 0] , bold:true , style:'common'} , {text: this.rows['contractNumber'] , margin: [-12 , 4 , 0 , 0]  , bold:true  , decoration:'underline' , style:'common'}
           
           ]]
             }
@@ -213,7 +213,7 @@ print(){
 
               layout:'noBorders',
               table:{headerRows:1 ,  widths:['20%' , '80%' ],
-            body:[ [{text: 'Supplier Contract# :' , margin: [15 , 4 , 0 , 0] , bold:true , style:'common'} , {text: this.rows['supplierContractNumber'] , margin: [-12 , 4 , 0 , 0]  , bold:true  , decoration:'underline' , style:'common'}
+            body:[ [{text: 'Supplier Contract# :' , margin: [20 , 4 , 0 , 0] , bold:true , style:'common'} , {text: this.rows['supplierContractNumber'] , margin: [-10 , 4 , 0 , 0]  , bold:true  , decoration:'underline' , style:'common'}
           
           ]]
             }
@@ -223,7 +223,7 @@ print(){
 
               layout:'noBorders',
               table:{headerRows:1 ,  widths:['20%' , '80%' ],
-            body:[ [{text: 'Contract Date :' , margin: [30 , 4 , 0 , 0] , bold:true  , style:'common'} , {text: this.rows['contractDate'] , margin: [-12 , 4 , 0 , 0] , bold:true , decoration:'underline' , style:'common' }
+            body:[ [{text: 'Contract Date :' , margin: [20 , 4 , 0 , 0] , bold:true  , style:'common'} , {text: this.rows['contractDate'] , margin: [-25 , 4 , 0 , 0] , bold:true , decoration:'underline' , style:'common' }
           
           ]]
             }
@@ -234,7 +234,7 @@ print(){
 
               layout:'noBorders',
               table:{headerRows:1 ,  widths:['20%' , '80%' ],
-            body:[ [{text: 'Article :' , margin: [30 , 4 , 0 , 0] , bold:true  , style:'common'} , {text: this.rows['contractArticleName'] , margin: [-12 , 4 , 0 , 0] , bold:true , decoration:'underline' , style:'common' }
+            body:[ [{text: 'Article :' , margin: [20 , 4 , 0 , 0] , bold:true  , style:'common'} , {text: this.rows['contractArticleName'] , margin: [-55 , 4 , 0 , 0] , bold:true , decoration:'underline' , style:'common' }
           
           ]]
             }
