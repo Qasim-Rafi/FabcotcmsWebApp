@@ -213,10 +213,13 @@ this.spinner.hide();
   
   amountCall(event){
  
-        this.amountGivenToCalculate=event.target.value;
-        this.result = this.amountGivenToCalculate +'.'+this.decimalSize;
+        this.amountGivenToCalculate=this.data.amount;
+        this.result = this.data.amount.toString() +'.'+this.decimalSize;
         this.data.taxChalan = 0;
-     
+        for(let i=0;i<=this.rows.length; i++){
+          this.rows[i].receivedAmount ='0.00';
+          this.rows[i].taxChallan ='0.00';
+        }
   }
 
   // texchalancalculation(value){
@@ -224,21 +227,32 @@ this.spinner.hide();
   //   this.calculatedTax= taxcal.toFixed(2);
   // }
   onBlurMethod(event){
-    if(event != undefined){
-      setTimeout(()=>{                           
-        this.isAmountDisabled =true;
-   }, 3000);
+    if(this.result ==event.target.value){
+
+      this.result =null;
+      this.result=event.target.value;
+    
+    }
+    for(let i=0;i<=this.rows.length; i++){
+      this.rows[i].receivedAmount ='0.00';
+      this.rows[i].taxChallan ='0.00';
+    }
+  //   if(event != undefined){
+  //     setTimeout(()=>{                           
+  //       this.isAmountDisabled =true;
+  //  }, 3000);
       
 
-    }
-    else{
-    this.isAmountDisabled =false;
+  //   }
+  //   else{
+  //   this.isAmountDisabled =false;
 
-    }
+  //   }
   }
   taxCalculated(event){
-    this.taxpercentage=event.target.value;
-    let taxcal  = this.amountGivenToCalculate * (event.target.value / (100- event.target.value));
+    this.taxpercentage=this.data.taxChalan;
+    let taxcal  = this.amountGivenToCalculate * (this.data.taxChalan / 100);
+    // (100- this.data.taxChalan)
     this.calculatedTax= taxcal.toFixed(2);
   }
   onSelect(event,row) {
@@ -249,18 +263,18 @@ this.spinner.hide();
       
       this.saleInvoiceIds.push(row.saleInvoiceId);
       if(row !=null){
+        // saleInvoiceAmountAfterTax
+        // saleInvoiceAmount
 
-
-
-          if(parseInt(this.result) >  parseInt(this.selected[0].saleInvoiceAmount)){
-            this.selected[0].receivedAmount=this.selected[0].saleInvoiceAmount;
+          if(parseInt(this.result) >  parseInt(this.selected[0].saleInvoiceAmountAfterTax)){
+            this.selected[0].receivedAmount=this.selected[0].saleInvoiceAmountAfterTax;
             
             if(this.calculatedTax !=null){
-              let taxis =this.selected[0].receivedAmount * (this.taxpercentage/(100-this.taxpercentage));
+              let taxis =this.selected[0].receivedAmount * (this.taxpercentage/100);
               this.selected[0].taxChallan =taxis.toFixed(2); 
               this.selected[0].receivedAmount=this.selected[0].receivedAmount - this.selected[0].taxChallan;
               this.selected[0].receivedAmount=this.selected[0].receivedAmount;
-              this.result= this.result-this.selected[0].saleInvoiceAmount;
+              this.result= this.result-this.selected[0].saleInvoiceAmountAfterTax;
               this.result =this.result.toFixed(2);
             }
             else{
@@ -268,10 +282,10 @@ this.spinner.hide();
             this.result =this.result.toFixed(2);
             }
           }
-          else if(parseInt(this.result) ==  parseInt(this.selected[0].saleInvoiceAmount)){
-            this.selected[0].receivedAmount=this.selected[0].saleInvoiceAmount;
+          else if(parseInt(this.result) ==  parseInt(this.selected[0].saleInvoiceAmountAfterTax)){
+            this.selected[0].receivedAmount=this.selected[0].saleInvoiceAmountAfterTax;
             if(this.calculatedTax !=undefined){
-              let taxis =this.result * (this.taxpercentage/(100-this.taxpercentage));
+              let taxis =this.result * (this.taxpercentage/100);
               this.selected[0].taxChallan =taxis.toFixed(2); 
               this.selected[0].receivedAmount= this.selected[0].receivedAmount -this.selected[0].taxChallan;
               this.selected[0].receivedAmount=this.selected[0].receivedAmount;
@@ -284,12 +298,15 @@ this.spinner.hide();
             }
            
           }
-          else if(parseInt(this.result) <  parseInt(this.selected[0].saleInvoiceAmount)){
+          else if(parseInt(this.result) <  parseInt(this.selected[0].saleInvoiceAmountAfterTax)){
              if( this.result =='0.' + this.decimalSize){
               this.toastr.error("Not Enough Amount", 'Message.');
              
             }
-             else{this.selected[0].receivedAmount =this.result;
+             else{
+               this.selected[0].receivedAmount =this.result;
+               let taxis = this.selected[0].receivedAmount * (this.data.taxChalan/100);
+               this.selected[0].taxChallan =taxis.toFixed(2); 
               this.result =this.result -this.selected[0].receivedAmount;
               this.toastr.error("Partial  Value", 'Message.');
                this.result =this.result;}

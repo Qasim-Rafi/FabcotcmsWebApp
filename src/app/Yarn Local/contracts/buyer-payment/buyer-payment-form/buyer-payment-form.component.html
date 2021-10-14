@@ -140,7 +140,7 @@
 
                                     <div class="col-md-3">
                                         <div class="input-group">
-                                            <input type="number" min="0" [readonly]="isAmountDisabled" placeholder="Comm%" #amount="ngModel" (change)="onBlurMethod(data.amount)" (keyup)="amountCall($event)"
+                                            <input type="number" min="0" placeholder="Amount" #amount="ngModel" (change)="onBlurMethod(data.amount)" (keyup)="amountCall($event)"
                                                 class="form-control" [(ngModel)]="data.amount" name="amount">
                                         </div>
                                     </div>
@@ -201,7 +201,7 @@
                         <div class="form-group row">
                             <label for="number" class="col-md-3 col-form-label  ">Tax Challan</label>
                             <div class="col-md-3">
-                                <input class="form-control" type="number" placeholder="Tax Challan Number" (keyup)="taxCalculated($event)"
+                                <input class="form-control" type="number" placeholder="Tax Challan %" (keyup)="taxCalculated($event)"
                                     [(ngModel)]="data.taxChalan" />
                             </div>
                             <label for="number" class="col-md-1 col-form-label  ">Rs:{{calculatedTax}}</label>
@@ -250,9 +250,9 @@
                                         {{row.saleInvoiceAmount}}
                                     </ng-template>
                                 </ngx-datatable-column>
-                                <ngx-datatable-column name="Tax%" [width]="80" prop="genericName">
+                                <ngx-datatable-column name="Tax Amount" [width]="80" prop="genericName">
                                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                        {{row.taxPercentage}}
+                                        {{row.taxAmount}}
                                     </ng-template>
                                 </ngx-datatable-column>
                                 <ngx-datatable-column name="Amount After SaleTax" [width]="90" prop="genericName">
