@@ -298,7 +298,7 @@
 
                                     <a *ngIf="contractData.status == 'OnHold'|| loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Yarn Local'" class="nav-item nav-link " id="nav-bill-tab" data-toggle="tab" href="#nav-bill"
                                     role="tab" aria-controls="nav-bill" aria-selected="false">Bill & Payment &nbsp;<span
-                                        class="badge badge-pill badge-primary" *ngIf = "contractData.contractBillInfo != {}"> 1</span></a>
+                                        class="badge badge-pill badge-primary" >{{commissionBill.length}} </span></a>
 
                             <a class="nav-item nav-link " id="nav-Documents-tab" data-toggle="tab" href="#nav-Documents"
                                 role="tab" aria-controls="nav-Documents" aria-selected="false">Documents
