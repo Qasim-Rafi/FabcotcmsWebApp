@@ -3617,11 +3617,43 @@ getImage(){
                       {
                         layout:'noBorders',
                         margin: [70 , 4 , 0 , 0],
-                        table:{headerRows: 1 , widths:['20%' , '80%'],
+                        table:{headerRows: 1 , widths:['20%' , '20%' , '13%' , '25%' , '8%' , '8%' , '8%' , '8%'],
                       body: [
-                        [{text:'Weave:'  , style:'heading'} , {text: this.printData['weaveName'] , style:'heading2'}],] }
-                      },
+
+                        [{text:'Weave:'  , style:'heading'} , {text: this.printData['weaveName'] , style:'heading2' , margin:[10,0,0,0]} ,
+                        {text: this.contractProductData['selvedgeName'] =='' ? " " :'Selvedge:' , style:'heading'} , 
+                        {text:this.contractProductData['selvedgeName'] =='' ? "" :  this.contractProductData['selvedgeName']  , style:'heading2' , margin:[-5,0,0,0]},
+                        {text: this.contractProductData['gsm'] ==''? '' : 'GSM:'    , style:'heading'} , {text:this.contractProductData['gsm'] ==''? '' : this.contractProductData['gsm']  , style:'heading2' , margin:[-12,0,0,0]}  ,
+                        {text: this.contractProductData['tolerance'] == null?  " " :   this.contractProductData['tolerance'] ==0? " ": "+/- " + this.contractProductData['tolerance'] + "%" , style:'heading2' , margin:[-1,0,0,0]},
+
+
+
+                        // [{text:'Weave:'  , style:'heading'} , {text: this.printData['weaveName'] , style:'heading2'} ,
+                        // {text: this.contractProductData['selvedgeName'] =='' ? " " :'Selvedge:'  , style:'heading'} , 
+                        // {text:this.contractProductData['selvedgeName'] =='' ? "" :  this.contractProductData['selvedgeName'] , style:'heading2'},
+                        // {text:this.contractProductData['gsm'] ==''? '' : 'GSM:'  , style:'heading'} , {text:this.contractProductData['gsm'] ==''? '' : this.contractProductData['gsm'] , style:'heading2'}  ,
+                        // {text: this.contractProductData['tolerance'] == null?  " " :   this.contractProductData['tolerance'] ==0? " ": "+/- " + this.contractProductData['tolerance'] + "%" , style:'heading2'},
                      
+                      ],] }
+                      },
+                      // {
+                      //   layout:'noBorders',
+                      //   margin: [70 , 4 , 0 , 0],
+                      //   table:{headerRows: 1 , widths:['20%' , '80%'],
+                      // body: [
+                      //   [{text: this.contractProductData['selvedgeName'] =='' ? " " :'Selvedge:'  , style:'heading'} , 
+                      //   {text:this.contractProductData['selvedgeName'] ='' ? "" : this.contractProductData['selvedgeName'] , style:'heading2'}],] }
+                      // },
+
+
+                      // {
+                      //   layout:'noBorders',
+                      //   margin: [70 , 4 , 0 , 0],
+                      //   table:{headerRows: 1 , widths:['20%' , '7%' , '7%'],
+                      // body: [
+                      //   [{text:this.contractProductData['gsm'] ==''? '' : 'GSM:'  , style:'heading'} , {text:this.contractProductData['gsm'] =''? '' : this.contractProductData['gsm'] , style:'heading2'}  ,
+                      //    {text: this.contractProductData['tolerance'] == null?  " " : this.contractProductData['tolerance'] ==0? " ": "+/- " + this.contractProductData['tolerance'] + "%" , style:'heading2'}],] }
+                      // },
                       {
 
                         layout:'noBorders',
@@ -3899,9 +3931,18 @@ getImage(){
                       {
                         layout:'noBorders',
                         margin: [70 , 4 , 0 , 0],
-                        table:{headerRows: 1 , widths:['20%' , '80%'],
+                        table:{headerRows: 1 , widths:['20%' , '20%' , '13%' , '25%' , '8%' , '8%' , '8%' , '8%'],
                       body: [
-                        [{text:'Weave:'  , style:'heading'} , {text: this.printData['weaveName'] , style:'heading2'}],] }
+                        [{text:'Weave:'  , style:'heading'} , {text: this.printData['weaveName'] , style:'heading2' , margin:[10,0,0,0]} ,
+                        {text: this.contractProductData['selvedgeName'] =='' ? " " :'Selvedge:' , style:'heading'} , 
+                        {text:this.contractProductData['selvedgeName'] =='' ? "" :  this.contractProductData['selvedgeName']  , style:'heading2' , margin:[-5,0,0,0]},
+                        {text: this.contractProductData['gsm'] ==''? '' : 'GSM:'    , style:'heading'} , {text:this.contractProductData['gsm'] ==''? '' : this.contractProductData['gsm']  , style:'heading2' , margin:[-12,0,0,0]}  ,
+                        {text: this.contractProductData['tolerance'] == null?  " " :   this.contractProductData['tolerance'] ==0? " ": "+/- " + this.contractProductData['tolerance'] + "%" , style:'heading2' , margin:[-1,0,0,0]},
+                      
+                      
+                      
+                      
+                      ],] }
                       },
                       {
 
