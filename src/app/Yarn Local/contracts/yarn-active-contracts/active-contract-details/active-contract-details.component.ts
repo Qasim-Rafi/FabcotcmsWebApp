@@ -3060,19 +3060,20 @@ getImage(){
                        fit : [130 , 130] , margin:[420,5,0,0]
                     
                       },
-                      {
-                        layout:'noBorders',
-                        margin: [330 , -30 , 0 , 0],
-                        table:{headerRows: 1 , widths:['100%'],
-                      body: [
-                        [{text:this.checkR  , style:'heading'} ],] }
-                      },
+                      // {
+                      //   layout:'noBorders',
+                      //   margin: [330 , -30 , 0 , 0],
+                      //   table:{headerRows: 1 , widths:['100%'],
+                      // body: [
+                      //   [{text:this.checkR  , style:'heading'} ],] }
+                      // },
                        {
                         layout:'noBorders',
                         margin: [20 , -50 , 0 , 0],
-                        table:{headerRows: 1 , widths:['100%' ],
+                        table:{headerRows: 1 , widths:['60%' , '40%' ],
                       body: [
-                        [{text:'FABCOT INTERNATIONAL'  , style:'heading10'} 
+                        [{text:'FABCOT INTERNATIONAL'  , style:'heading10'} ,
+                        {text:this.checkR  , style:'heading10'}
                       ],] }
                       },
                       {
@@ -4129,19 +4130,20 @@ getImage(){
                        fit : [130 , 130] , margin:[420,5,0,0]
                     
                       },
+                      // {
+                      //   layout:'noBorders',
+                      //   margin: [330 , -30 , 0 , 0],
+                      //   table:{headerRows: 1 , widths:['100%'],
+                      // body: [
+                      //   [{text:this.checkR  , style:'heading'} ],] }
+                      // },
                       {
                         layout:'noBorders',
-                        margin: [330 , -30 , 0 , 0],
-                        table:{headerRows: 1 , widths:['100%'],
-                      body: [
-                        [{text:this.checkR  , style:'heading'} ],] }
-                      },
-                       {
-                        layout:'noBorders',
                         margin: [20 , -50 , 0 , 0],
-                        table:{headerRows: 1 , widths:['100%' ],
+                        table:{headerRows: 1 , widths:['60%' , '40%' ],
                       body: [
-                        [{text:'FABCOT INTERNATIONAL'  , style:'heading10'} 
+                        [{text:'FABCOT INTERNATIONAL'  , style:'heading10'} ,
+                        {text:this.checkR  , style:'heading10'}
                       ],] }
                       },
                       {
@@ -4983,14 +4985,14 @@ yarnExportInvoicesReportPrint(){
                       },
                       {
                         layout:'noBorders',
-                        margin: [330 , -30 , 0 , 0],
+                        margin: [290 , -40 , 0 , 0],
                         table:{headerRows: 1 , widths:['100%'],
                       body: [
                         [{text:this.checkR  , style:'heading'} ],] }
                       },
                       {
                         layout:'noBorders',
-                        margin: [290 , -25 , 0 , 0],
+                        margin: [290 , 0 , 0 , 0],
                         table:{headerRows: 1 , widths:['30%' , '90%'],
                       body: [
                         [{text:'Contract No:'  , style:'heading'} , {text: this.contractData['autoContractNumber'] , style:'heading2'}],] }
