@@ -148,7 +148,7 @@ max1:any;
  uom : any;
 quantity : any;
 comm = "Commission:";
-revised = false;
+revised : any;
 checkR: any;
 billCount : any;
   constructor(
@@ -330,56 +330,60 @@ billCount : any;
 
       });
   }
-  revisedMethod(){
-    if(this.loggedInDepartmentName =='Yarn Export' || this.loggedInDepartmentName =='Yarn Import'){
+//   revisedMethod(){
+//     if(this.loggedInDepartmentName =='Yarn Export' || this.loggedInDepartmentName =='Yarn Import'){
   
-    this.isRevisedStart = true;
+//     this.isRevisedStart = true;
 
-    this.spinner.show();
+//     this.spinner.show();
         
-    this.http.
-      put(`${environment.apiUrl}/api/Contracts/ReviseContract/`+ this.contractId , {})
-      .subscribe(
-        res => {
+//     this.http.
+//       put(`${environment.apiUrl}/api/Contracts/ReviseContract/`+ this.contractId , {})
+//       .subscribe(
+//         res => {
 
-          this.response = res;
-          if (this.response.success == true) {
-           this.revised = true;
-           this.checkR = "REVISED"
-            this.toastr.success(this.response.message, 'Message.');
-             this.getContractData();
-            this.spinner.hide();
+//           this.response = res;
+//           if (this.response.success == true) {
+//            this.revised = true;
+//            this.checkR = "REVISED"
+//             this.toastr.success(this.response.message, 'Message.');
+//              this.getContractData();
+//             this.spinner.hide();
 
-          }
-          else {
-            this.toastr.error(this.response.message, 'Message.');
+//           }
+//           else {
+//             this.toastr.error(this.response.message, 'Message.');
           
-this.spinner.hide();
-}
+// this.spinner.hide();
+// }
 
-        }, err => {
-          if (err.status == 400) {
-            this.toastr.error(this.response.message, 'Message.');
-this.spinner.hide();
+//         }, err => {
+//           if (err.status == 400) {
+//             this.toastr.error(this.response.message, 'Message.');
+// this.spinner.hide();
           
-          }
-        });
+//           }
+//         });
 
 
-    }
-  }
+//     }
+//   }
 
   notRevisedMethod(){
-    if(this.loggedInDepartmentName =='Yarn Export' || this.loggedInDepartmentName =='Yarn Import'){
+
     this.spinner.show();
         
     this.http.
-      put(`${environment.apiUrl}/api/Contracts/NotRevisedContract/`+ this.contractId , {})
+      put(`${environment.apiUrl}/api/Contracts/NotReviseContract/`+ this.contractId , {})
       .subscribe(
         res => {
 
           this.response = res;
           if (this.response.success == true) {
+            this.revised = false;
+    this.isRevisedStart = false;
+
+            this.checkR = "";
             this.toastr.success(this.response.message, 'Message.');
              this.getContractData();
             this.spinner.hide();
@@ -397,8 +401,6 @@ this.spinner.hide();
           }
         });
 
-
-    }
   }
  
   reviseContract() {
@@ -413,6 +415,8 @@ this.spinner.hide();
                   this.response = res;
                   if (this.response.success == true) {
                    this.revised = true;
+    this.isRevisedStart = false;
+
                    this.checkR = "REVISED"
                     this.toastr.success(this.response.message, 'Message.');
                      this.getContractData();
@@ -1037,7 +1041,9 @@ lcForm2( check){
           this.response = res;
           if (this.response.success == true && this.response.data != null) {
             this.contractData = this.response.data;
-            this.ShowRevised=this.contractData.revisedCount !=0? 'Revised': '';
+            this.revised=this.contractData.revisedCount !=0? true : false ;
+            this.checkR=this.contractData.revisedCount !=0? "REVISED" : "" ;
+
             this.contractData.createdDateTime = this.contractData.createdDateTime.slice(0 ,16)
             this.contractArticles = this.response.data.contractArticles;
             this.buyerName = this.contractData.buyerName
