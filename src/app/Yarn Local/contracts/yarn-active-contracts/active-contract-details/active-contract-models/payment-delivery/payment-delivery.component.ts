@@ -185,7 +185,6 @@ this.spinner.show();
           this.response = res;
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
-            // this.getEnquiryData(this.objEnquiry);
             this.activeModal.close(true);
             this.getContractPaymentData();
 this.spinner.hide();
