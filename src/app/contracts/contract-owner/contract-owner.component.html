@@ -28,7 +28,7 @@
       </div>
 
    
-      <div class="faq-item shadow-sm" *ngFor="let i of owner">
+      <div class="faq-item shadow-sm "  *ngFor="let i of owner">
         <div class="row" (click) = "update(i)" >
 
 
@@ -38,7 +38,7 @@
 
 
             <div class="small mb-1"></div>
-            <h5>{{i.fullName}}</h5>
+            <h5 class="mouse">{{i.fullName}}</h5>
             <span><i class="fa fa-user"></i>&nbsp;{{i.role}}&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<i
                 class="fa fa-object-group"></i>&nbsp;&nbsp;  <b *ngIf = "loggedInDepartmentName =='Home Textile & Garment' "> Home Textile & Garment </b>
                 <b *ngIf = "loggedInDepartmentName =='Yarn Local' "> Yarn Local</b>
