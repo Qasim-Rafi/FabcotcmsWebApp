@@ -3211,7 +3211,7 @@ getImage(){
                             {
                               type: 'line',
                               x1: 90, y1: 90,
-                              x2:90, y2: 660,
+                              x2:90, y2: 630,
                               lineWidth: 1,
                               
                             }
@@ -3219,7 +3219,7 @@ getImage(){
                      },
               {
                         layout:'noBorders',
-                        margin: [20 , -550 , 0 , 0],
+                        margin: [20 , -510 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '45%' ],
                       body: [
                         [{text:'Seller Name:'  , style:'heading'} , {text: this.printData['sellerName'] ,margin:[-30,0,0,0] ,   style:'heading2'} , 
@@ -3451,7 +3451,7 @@ getImage(){
 
                        {
                         layout:'noBorders',
-                        margin: [20 , 120 , 0 , 0],
+                        margin: [20 , 160 , 0 , 0],
                         table:{headerRows: 1 , widths:['100%'],
                       body: [
                         [{text:'Please get it signed & send back same for our record purpose'  ,  style:'heading'}],] }
@@ -4208,7 +4208,7 @@ getImage(){
                         table:{headerRows: 1 , widths:['50%' , '50%'],
                       body: [
                         [{text:'Attn:  ' + this.contractPartiesData['sellerPOCName']  , style:'heading'} ,
-                        {text:'Contract No:  ' + this.contractData['createdDateTime']  , margin:[60, 0,0,0] , style:'heading'}
+                        {text:'Contract Date:  ' + this.contractData['createdDateTime']  , margin:[60, 0,0,0] , style:'heading'}
                       ],] }
                       },
                       { 
@@ -4257,7 +4257,7 @@ getImage(){
                             {
                               type: 'line',
                               x1: 90, y1: 90,
-                              x2:90, y2: 670,
+                              x2:90, y2: 630,
                               lineWidth: 1,
                               
                             }
@@ -4265,7 +4265,7 @@ getImage(){
                      },
                      {
                       layout:'noBorders',
-                      margin: [20 , -550 , 0 , 0],
+                      margin: [20 , -510 , 0 , 0],
                       table:{headerRows: 1 , widths:['20%' , '45%' , '10%' , '10%' , '5%', '10%'  ],
                     body: [
                       [{text:'Buyer Name:'  , style:'heading'} , {text: this.printData['buyerName'] ,margin:[-30,0,0,0] ,   style:'heading2'} , 
@@ -4476,7 +4476,7 @@ getImage(){
 
                        {
                         layout:'noBorders',
-                        margin: [20 , 120 , 0 , 0],
+                        margin: [20 , 160 , 0 , 0],
                         table:{headerRows: 1 , widths:['100%'],
                       body: [
                         [{text:'Please get it signed & send back same for our record purpose'  ,  style:'heading'}],] }
