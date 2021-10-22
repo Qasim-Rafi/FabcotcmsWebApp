@@ -39,44 +39,8 @@ length : any;
     this.id = localStorage.getItem('bulkPrint');
 
     this.bulkPrint();
-// this.fetch2()
 
   }
-
-//   fetch2(){
-//     this.spinner.show();
-//     this.http
-//   .get(`${environment.apiUrl}/api/BillingPayments/BulkPrint/`+ this.id)
-//   .subscribe(res => {
-//     this.response = res;
-   
-//   if(this.response.success==true)
-//   {
-//   this.printData=this.response.data;
-//   for(let i=0; i<this.printData.length; i++){
-//   this.printData[i].accountName = this.ngxNumToWordsService.inWords(this.printData[i].totalCalculation, this.lang);
-//   }
-//   this.spinner.hide();
-//  localStorage.removeItem('bulkPrint');
-//   }
-//   else{
-//     this.toastr.error(this.response.message, 'Message.');
-//     this.spinner.hide();
-//  localStorage.removeItem('bulkPrint');
-  
-//   }
-
-//   }, err => {
-//     if ( err.status == 400) {
-// this.toastr.error(err.error.message, 'Message.');
-// this.spinner.hide();
-// localStorage.removeItem('bulkPrint');
-
-//     }
-//   });
-// }
-
-
 
 bulkPrint() {
 
@@ -100,7 +64,7 @@ bulkPrint() {
     }
           this.toastr.success(this.response.message, 'Message.');
           this.spinner.hide();
- localStorage.removeItem('bulkPrint');
+//  localStorage.removeItem('bulkPrint');
 
         }
         else {

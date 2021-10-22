@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -36,8 +36,8 @@ export class OpenActiveBillComponent implements OnInit {
   quantity : any;
   numberInWords!: string;
   nmbr = [];
-  printData = []
-
+  printData: any = []
+id : any;
 lang : SUPPORTED_LANGUAGE = 'en';
   constructor(   private route: ActivatedRoute,
     private modalService: NgbModal,
@@ -66,7 +66,7 @@ lang : SUPPORTED_LANGUAGE = 'en';
     this.queryParems = this.route.snapshot.queryParams;
     
     this.bill_id = this.queryParems.id;
-    console.log(this.nmbr)
+this.printBill();
     this.fetch((data) => {
       this.rows = data;
   
@@ -147,9 +147,38 @@ this.spinner.hide();
     });
   }
 
+printBill(){
+  let varr = {
+    "ids":this.bill_id
+  }
 
+  
+  this.http.
+    post(`${environment.apiUrl}/api/BillingPayments/BulkPrint`, varr)
+    .subscribe(
+      res => {
 
-print(){
+        this.response = res;
+        if (this.response.success == true) {
+  this.printData=this.response.data[0];
+    this.printData.accountName = this.ngxNumToWordsService.inWords(this.printData.totalCalculation, this.lang);
+    
+
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+
+        }
+
+      }, (err: HttpErrorResponse) => {
+        const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+        this.toastr.error(messages.toString(), 'Message.');
+        console.log(messages);
+
+      });
+}
+
+print(rows){
 
   let docDefinition = {
     pageSize: 'A4',
@@ -182,8 +211,8 @@ print(){
              
               table:{headerRows:1 ,  widths:['18%' , '67%' , '5%' , '12%'],
             body:[ [
-              {text: 'Seller :' , margin: [20 , 30 , 0 , 0] , bold:true , style:'common' } , {text: this.rows['sellerName'] ,  margin: [-43 , 30 , 0 , 0] , style:'common'},
-            {text:'Bill # :' , margin: [0 , 30 , 0 , 0] , bold:true , style:'common'} ,{text:this.rows['billNumber'] , margin: [0 , 30 , 0 , 0] , style:'common'}
+              {text: 'Seller :' , margin: [20 , 30 , 0 , 0] , bold:true , style:'common' } , {text: this.printData['sellerName'] ,  margin: [-43 , 30 , 0 , 0] , style:'common'},
+            {text:'Bill # :' , margin: [0 , 30 , 0 , 0] , bold:true , style:'common'} ,{text:this.printData['billNumber'] , margin: [0 , 30 , 0 , 0] , style:'common'}
           
           ]]
             }
@@ -192,8 +221,8 @@ print(){
               
               layout:'noBorders',
               table:{headerRows:1 ,  widths:['18%' , '65%' , '10%' , '15%'],
-            body:[ [{text: 'Buyer :' , margin: [20 , 4 , 0 , 0] , bold:true , style:'common'} , {text: this.rows['buyerName'] , margin: [-43 , 4 , 0 , 0] , bold:true  , style:'common'},
-            {text:'Bill Date :' , margin: [0 , 4 , 0 , 0] , bold:true , style:'common'} ,{text:this.rows['billDate'] , margin: [-20 , 4 , 0 , 0] , bold:true  , style:'common' }
+            body:[ [{text: 'Buyer :' , margin: [20 , 4 , 0 , 0] , bold:true , style:'common'} , {text: this.printData['buyerName'] , margin: [-43 , 4 , 0 , 0] , bold:true  , style:'common'},
+            {text:'Bill Date :' , margin: [0 , 4 , 0 , 0] , bold:true , style:'common'} ,{text:this.printData['billDate'] , margin: [-20 , 4 , 0 , 0] , bold:true  , style:'common' }
           
           ]]
             }
@@ -203,7 +232,7 @@ print(){
 
               layout:'noBorders',
               table:{headerRows:1 ,  widths:['20%' , '80%' ],
-            body:[ [{text: 'Fabcot Contract# :' , margin: [20 , 4 , 0 , 0] , bold:true , style:'common'} , {text: this.rows['contractNumber'] , margin: [-12 , 4 , 0 , 0]  , bold:true  , decoration:'underline' , style:'common'}
+            body:[ [{text: 'Fabcot Contract# :' , margin: [20 , 4 , 0 , 0] , bold:true , style:'common'} , {text: this.printData['contractNumber'] , margin: [-12 , 4 , 0 , 0]  , bold:true  , decoration:'underline' , style:'common'}
           
           ]]
             }
@@ -213,7 +242,7 @@ print(){
 
               layout:'noBorders',
               table:{headerRows:1 ,  widths:['20%' , '80%' ],
-            body:[ [{text: 'Supplier Contract# :' , margin: [20 , 4 , 0 , 0] , bold:true , style:'common'} , {text: this.rows['supplierContractNumber'] , margin: [-10 , 4 , 0 , 0]  , bold:true  , decoration:'underline' , style:'common'}
+            body:[ [{text: 'Supplier Contract# :' , margin: [20 , 4 , 0 , 0] , bold:true , style:'common'} , {text: this.printData['supplierContractNumber'] , margin: [-10 , 4 , 0 , 0]  , bold:true  , decoration:'underline' , style:'common'}
           
           ]]
             }
@@ -223,7 +252,7 @@ print(){
 
               layout:'noBorders',
               table:{headerRows:1 ,  widths:['20%' , '80%' ],
-            body:[ [{text: 'Contract Date :' , margin: [20 , 4 , 0 , 0] , bold:true  , style:'common'} , {text: this.rows['contractDate'] , margin: [-25 , 4 , 0 , 0] , bold:true , decoration:'underline' , style:'common' }
+            body:[ [{text: 'Contract Date :' , margin: [20 , 4 , 0 , 0] , bold:true  , style:'common'} , {text: this.printData['contractDate'] , margin: [-25 , 4 , 0 , 0] , bold:true , decoration:'underline' , style:'common' }
           
           ]]
             }
@@ -234,7 +263,7 @@ print(){
 
               layout:'noBorders',
               table:{headerRows:1 ,  widths:['20%' , '80%' ],
-            body:[ [{text: 'Article :' , margin: [20 , 4 , 0 , 0] , bold:true  , style:'common'} , {text: this.rows['contractArticleName'] , margin: [-55 , 4 , 0 , 0] , bold:true , decoration:'underline' , style:'common' }
+            body:[ [{text: 'Article :' , margin: [20 , 4 , 0 , 0] , bold:true  , style:'common'} , {text: this.printData['contractArticleName'] , margin: [-55 , 4 , 0 , 0] , bold:true , decoration:'underline' , style:'common' }
           
           ]]
             }
@@ -272,15 +301,15 @@ print(){
                     {text:'Sale Invoice#' , style:'tableHeader' }
                   ,{text:'Sale Invoice Date' , style:'tableHeader'} ,
                   {text:'Quantity' , style:'tableHeader' }, 
-                  {text:'Rate'  +'(' + this.rows.currencyName+')' , style:'tableHeader' }, 
+                  {text:'Rate'  +'(' + this.printData.currencyName+')' , style:'tableHeader' }, 
 
-                  {text:'Inv Amount' +'(' + this.rows.currencyName+')'  , style:'tableHeader'} , 
+                  {text:'Inv Amount' +'(' + this.printData.currencyName+')'  , style:'tableHeader'} , 
                   {text:'Commission' , style:'tableHeader'} , 
                   // {text:'TAX' , style:'tableHeader' }, 
 
                   {text:'Amount' +'(' + this.rows.currencyName+')' , style:'tableHeader'}],
                   
-                  ...this.rows['contractSaleInvoices'].map(row => (
+                  ...this.printData['contractSaleInvoices'].map(row => (
                     [
                       // {text: row.description , style:'tableHeader2'} ,
 
@@ -294,7 +323,7 @@ print(){
                       {text:row.commission+ ' ' + row.commissionUnit  , style:'tableHeader2' }  ,
                     // {text: row.taxAmount , style:'tableHeader2'} ,
 
-                      {text: row.billAmount.toFixed(2) , style:'tableHeader2'}]
+                      {text: row.billAmount , style:'tableHeader2'}]
                   ))
                 ]
               }
@@ -305,9 +334,9 @@ print(){
             table:{headerRows:1 ,  widths:['10%' , '20%' ,  '25%' , '25%' ],
           body:[ [
             {text: 'Quantity :' , margin:[0 , 30,0,0] , bold:true , style:'common' } ,
-           {text: this.rows['quantitySum'] + ' ' + this.rows['quanityUOM'] ,margin:[-10 , 30,0,0] , bold:true , style:'common' },
-            {text: 'Invoice Amount' + ' (' + this.rows['currencyName'] +   '):'  , margin:[0,30,0,0]  , bold:true , style:'common' } ,
-           {text:  this.rows['amountsum']  , margin:[-35,30,0,0] ,  bold:true , style:'common'}
+           {text: this.printData['quantitySum']  ,margin:[-10 , 30,0,0] , bold:true , style:'common' },
+            {text: 'Invoice Amount' + ' (' + this.printData['currencyName'] +   '):'  , margin:[0,30,0,0]  , bold:true , style:'common' } ,
+           {text:  this.printData['amountsum']  , margin:[-35,30,0,0] ,  bold:true , style:'common'}
         
         ]]
           }
@@ -318,9 +347,9 @@ print(){
               table:{headerRows:1 ,  widths:['20%' , '50%' ,  '30%' , '10%' ],
             body:[ [
               {text: 'Amount in Words :' , margin:[0 , 20,0,0] , bold:true , style:'common' } ,
-             {text: this.words ,margin:[-30 , 20,0,0] , bold:true , decoration:'underline' , style:'common' },
+             {text: this.printData['accountName'] ,margin:[-30 , 20,0,0] , bold:true , decoration:'underline' , style:'common' },
               {text: 'Sub Total :' , margin:[50,20,0,0]  , bold:true , style:'common' } ,
-             {text:   this.rows['currencyName']+ ' ' + this.rows['totalCalculation']  , margin:[-60,20,0,0] , decoration:'underline'  , style:'common'}
+             {text:   this.printData['currencyName']+ ' ' + this.printData['totalCalculation']  , margin:[-60,20,0,0] , decoration:'underline'  , style:'common'}
           
           ]]
             }
@@ -341,7 +370,7 @@ print(){
               table:{headerRows:1 ,  widths:['90%' , '10%'  ],
             body:[ [
               {text: 'Total:' , margin:[455 , 5,0,0] , bold:true , style:'common' } ,
-             {text: this.rows['currencyName']+ ' '+  this.rows['totalCalculation'] ,margin:[-10 , 5,0,0]  , decoration:'underline' , bold:true , style:'common' },
+             {text: this.printData['currencyName']+ ' '+  this.printData['totalCalculation'],margin:[-10 , 5,0,0]  , decoration:'underline' , bold:true , style:'common' },
          
           
           ]]
