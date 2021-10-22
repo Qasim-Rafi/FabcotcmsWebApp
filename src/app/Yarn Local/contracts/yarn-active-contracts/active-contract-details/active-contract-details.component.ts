@@ -167,6 +167,7 @@ billCount : any;
 
 
   ngOnInit(): void {
+
     this.queryParems = this.route.snapshot.queryParams;
     this.contractId = this.queryParems.id;
     this.loggedInDepartmentName=localStorage.getItem('loggedInDepartmentName');
