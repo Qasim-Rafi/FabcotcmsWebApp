@@ -4,9 +4,9 @@
     <div class="row">
         <div class="col-sm-12 col-md-6 col-lg-8">
             <h2 class="row wrapper page-header font-weight-light">
-                <b>Bill {{rows.billNumber}}</b>
+                <b>Bill {{printData.billNumber}}</b>
                 <div class="ml-2 descr">
-                    Billing detail of Bill <b>{{rows.billNumber}}</b> against Contract <b>{{rows.contractNumber}}</b>
+                    Billing detail of Bill <b>{{printData.billNumber}}</b> against Contract <b>{{printData.contractNumber}}</b>
                 </div>
             </h2>
         </div>
@@ -38,7 +38,7 @@
                     </span>
                 </div>
                 <div class="col-md-6 mrg-tsm">
-                    <button type="button" class="btn btn-primary btn-md float-right" (click)="print(rows)">
+                    <button type="button" class="btn btn-primary btn-md float-right" (click)="print(printData)">
                         <i class="fa fa-print"></i> Print Bill
                     </button>
                 </div>
@@ -54,7 +54,7 @@
                 </div>
                 <div class="col-md-8">
                     <span class="float-right">
-                        {{rows.fabcotBranchDescription}}
+                        {{printData.fabcotBranchDescription}}
                     </span>
                 </div>
             </div>
@@ -64,38 +64,38 @@
 
                 <div class="float-right">
                     <span class="text-font1">
-                        Bill No.: <span class="weight">{{rows.billNumber}}</span>
+                        Bill No.: <span class="weight">{{printData.billNumber}}</span>
                     </span>
                     <br>
                     <span class="text-font1">
-                        Bill Dt.: <span class="bold text-font1">{{rows.billDate}}</span>
+                        Bill Dt.: <span class="bold text-font1">{{printData.billDate}}</span>
                     </span>
                 </div>
 
                 <div class="float-left">
                     <span class="text-font1" >
-                        Seller: <span class="bold text-font1">{{rows.sellerName}}</span>
+                        Seller: <span class="bold text-font1">{{printData.sellerName}}</span>
                     </span>
                 <br>
                     <span class="text-font1" >
-                        Buyer: <span class="bold text-font1">{{rows.buyerName}}</span>
+                        Buyer: <span class="bold text-font1">{{printData.buyerName}}</span>
                     </span>
                     <br>
 
                     <span class="text-font1">
-                        Fabcot Contract No: <span class="bold text-font1"> {{rows.contractNumber}}</span>
+                        Fabcot Contract No: <span class="bold text-font1"> {{printData.contractNumber}}</span>
                     </span>
                     <br>
                     <span class="text-font1">
-                        Supplier Contract No: <span class="bold text-font1"> {{rows.supplierContractNumber }}</span>
+                        Supplier Contract No: <span class="bold text-font1"> {{printData.supplierContractNumber }}</span>
                     </span>
                     <br>
                     <span class="text-font1">
-                        Contract Date: <span class="bold text-font1">{{rows.contractDate}}</span>
+                        Contract Date: <span class="bold text-font1">{{printData.contractDate}}</span>
                     </span>
                     <br>
                     <span class="text-font1">
-                        Article: <span class="bold text-font1 ">{{rows.contractArticleName}}</span>
+                        Article: <span class="bold text-font1 ">{{printData.contractArticleName}}</span>
                     </span>
 
                 </div>
@@ -108,17 +108,17 @@
                     <th>Sale Invoice #</th>
                     <th>Sale Invoice Date</th>
                     <th>Quantity</th>
-                    <th>Rate({{rows.currencyName}})</th>
-                    <th>Invoice Amount({{rows.currencyName}})</th>
+                    <th>Rate({{printData.currencyName}})</th>
+                    <th>Invoice Amount({{printData.currencyName}})</th>
                     <th>Commission</th>
                     <!-- <th>TAX</th> -->
-                    <th>Bill Amount({{rows.currencyName}})</th>
+                    <th>Bill Amount({{printData.currencyName}})</th>
 
 
 
 
                 </tr>
-                <tr *ngFor="let i of rows.contractSaleInvoices">
+                <tr *ngFor="let i of printData.contractSaleInvoices">
                     <!-- <td>{{i.description}}</td> -->
                    
                     <td>{{i.saleInvoiceNo}}</td>
@@ -138,18 +138,18 @@
             <br>
             <div class="float-right">
                 <span class=" bold text-font1">
-                    Sub Total: <span class="text-font1 underline">{{rows.currencyName}}  {{rows.totalCalculation | number:'2.2-2'}}</span>
+                    Sub Total: <span class="text-font1 underline">{{printData.currencyName}}  {{printData.totalCalculation | number:'2.2-2'}}</span>
                 </span>
                 <br>
                 <span class=" bold text-font1">
-                    TAX : <span class="text-font1 underline">{{rows.currencyName}}  {{rows.taxAmount}}</span>
+                    TAX : <span class="text-font1 underline">{{printData.currencyName}}  {{printData.taxAmount}}</span>
                 </span><br>
                 <span class=" bold text-font1">
-                    TOTAL : <span class="bold text-font1 underline">{{rows.currencyName}}  {{rows.totalCalculation | number:'2.2-2'}}</span>
+                    TOTAL : <span class="bold text-font1 underline">{{printData.currencyName}}  {{printData.totalCalculation | number:'2.2-2'}}</span>
                 </span>
             </div>
             <span class=" float-left text-font1">
-                Amount In Words:<span class="bold text-font1 underline">&nbsp;&nbsp; {{words}}</span>
+                Amount In Words:<span class="bold text-font1 underline">&nbsp;&nbsp; {{printData.accountName}}</span>
             </span>
             <br>
    

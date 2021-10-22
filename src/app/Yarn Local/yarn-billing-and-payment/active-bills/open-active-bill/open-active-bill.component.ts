@@ -67,64 +67,47 @@ lang : SUPPORTED_LANGUAGE = 'en';
     
     this.bill_id = this.queryParems.id;
 this.printBill();
-    this.fetch((data) => {
-      this.rows = data;
+    // this.fetch((data) => {
+    //   this.rows = data;
   
-    });
+    // });
   }
  
 
-fetch(cb) {
-  this.spinner.show();
-  this.totalAmount = 0
-  this.totalAmount1 = 0
-  this.totalQuantity = 0
-  this.http
-  .get(`${environment.apiUrl}/api/BillingPayments/GetContractBillById/` + this.bill_id)
-  .subscribe(res => {
-    this.response = res;
+// fetch(cb) {
+//   this.spinner.show();
+//   this.totalAmount = 0
+//   this.totalAmount1 = 0
+//   this.totalQuantity = 0
+//   this.http
+//   .get(`${environment.apiUrl}/api/BillingPayments/GetContractBillById/` + this.bill_id)
+//   .subscribe(res => {
+//     this.response = res;
    
-  if(this.response.success==true)
-  {
-  this.data =this.response.data;
-  // for(let z=0;z<this.response.data.contractSaleInvoices.length;z++){
-  //   this.response.data.contractSaleInvoices.find(item => item.id == itemUpdated.id).name = itemUpdated.name;
-  // }
+//   if(this.response.success==true)
+//   {
+//   this.data =this.response.data;
 
-  // for(let i = 0 ; i<this.response.data.contractSaleInvoices.length ; i++){
-  //   this.response.data.contractSaleInvoices[i].totalAmount = this.data.contractSaleInvoices[i].amount * this.data.contractSaleInvoices[i].commission
-  //   this.data.contractSaleInvoices[i].totalAmount = this.data.contractSaleInvoices[i].totalAmount/100
-    
-  // }
-  this.spinner.hide();
+//   this.spinner.hide();
 
-//   for(let j=0;j<this.response.data.contractSaleInvoices.length;j++){   
-//     this.totalAmount=this.totalAmount + this.response.data.contractSaleInvoices[j].totalAmount ;
-
-   
-// } 
-// this.totalAmount1 =this.totalAmount.toFixed(2)
-// this.totalAmount2 = parseFloat(this.totalAmount1)
-
-
-  this.words = this.ngxNumToWordsService.inWords(this.data['totalCalculation'], this.lang);
+//   this.words = this.ngxNumToWordsService.inWords(this.data['totalCalculation'], this.lang);
 
 
 
-  cb(this.data);
-  this.spinner.hide();
-  }
-  else{
-    this.toastr.error(this.response.message, 'Message.');
- this.spinner.hide();
-  }
-  }, err => {
-    if ( err.status == 400) {
-this.toastr.error(err.error.message, 'Message.');
-this.spinner.hide();      
-}
-  });
-}
+//   cb(this.data);
+//   this.spinner.hide();
+//   }
+//   else{
+//     this.toastr.error(this.response.message, 'Message.');
+//  this.spinner.hide();
+//   }
+//   }, err => {
+//     if ( err.status == 400) {
+// this.toastr.error(err.error.message, 'Message.');
+// this.spinner.hide();      
+// }
+//   });
+// }
 
   ChangeBankForm(rows) {
     const modalRef = this.modalService.open(ChangeBankAccountComponent , { centered: true });
@@ -132,10 +115,7 @@ this.spinner.hide();
 
     modalRef.result.then((data) => {
       // on close
-      this.fetch((data) => {
-        this.rows = data;
     
-      });
       
       if (data == true) {
         this.date = this.myDate;
@@ -151,7 +131,7 @@ printBill(){
   let varr = {
     "ids":this.bill_id
   }
-
+this.spinner.show();
   
   this.http.
     post(`${environment.apiUrl}/api/BillingPayments/BulkPrint`, varr)
@@ -162,11 +142,14 @@ printBill(){
         if (this.response.success == true) {
   this.printData=this.response.data[0];
     this.printData.accountName = this.ngxNumToWordsService.inWords(this.printData.totalCalculation, this.lang);
+    this.toastr.success(this.response.message, 'Message.');
     
+    this.spinner.hide();
 
         }
         else {
           this.toastr.error(this.response.message, 'Message.');
+          this.spinner.hide();
 
         }
 
@@ -174,6 +157,7 @@ printBill(){
         const messages = this.service.extractErrorMessagesFromErrorResponse(err);
         this.toastr.error(messages.toString(), 'Message.');
         console.log(messages);
+        this.spinner.hide();
 
       });
 }
