@@ -2121,7 +2121,7 @@
                                         <td *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import'">{{x.contractArticleName}}</td>
                                         <td *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import'">{{x.quantity}}</td>
                                         <td *ngIf="loggedInDepartmentName!='Yarn Export' && loggedInDepartmentName != 'Yarn Import'">{{x.quantity}}&nbsp;{{x.unit}}</td>
-                                        <td *ngIf="loggedInDepartmentName!='Yarn Export' && contractCostingData.rateUOMName !=null && loggedInDepartmentName != 'Yarn Import'">{{contractCostingData.rate}}</td>
+                                        <td *ngIf="loggedInDepartmentName!='Yarn Export' && contractCostingData.rateUOMName !=null && loggedInDepartmentName != 'Yarn Import'">{{contractCostingData.rate}} {{x.unit}}</td>
                                         <td *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import'">{{x.unit}}</td>
                                         <td *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import'">{{x.contractArticleRate}}</td>
                                         <td>{{x.taxPercentage}}</td>
