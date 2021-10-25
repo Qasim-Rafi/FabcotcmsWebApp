@@ -115,7 +115,7 @@
                         Weave Name: &nbsp;  <span class="bold text-font1">{{x.weaveName}}</span>
                  </span>
                  <br>
-                    <span class="text-font1">
+                    <span class="text-font1" *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export'">
                      <p>This refers to our contract for Weaving dispatches. Please make commission cheque in favour of  <strong>M/S FABCOT INTERNATIONAL </strong> and oblige <br> Details as under: </p>
 
                     </span>

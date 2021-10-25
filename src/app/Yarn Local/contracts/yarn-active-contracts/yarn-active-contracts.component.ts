@@ -186,6 +186,45 @@ this.spinner.hide();
 }
 
 
+cloneContract(obj){
+  let varr = {
+
+  }
+this.spinner.show();
+  
+   this.http.put(`${environment.apiUrl}/api/Contracts/CloneContract/`+obj.id , varr )
+        .subscribe(
+          res => {
+  
+            this.response = res;
+            if (this.response.success == true) {
+              this.data = this.response.data;
+              this.temp = [this.data];
+            this.toastr.success(this.response.message, 'Message.');
+            this.fetch((data) => {
+              this.temp = [...data]; 
+              this.rows = data;
+            });
+this.spinner.hide();
+
+             }
+            else {
+              this.toastr.error(this.response.message, 'Message.');
+this.spinner.hide();
+
+            }
+  
+          }, err => {
+            if (err.status == 400) {
+              this.toastr.error(this.response.message, 'Message.');
+              this.spinner.hide();
+
+            }
+
+          });
+
+
+}
 
 
 

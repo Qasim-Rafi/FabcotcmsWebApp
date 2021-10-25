@@ -38,6 +38,7 @@ export class OpenActiveBillComponent implements OnInit {
   nmbr = [];
   printData: any = []
 id : any;
+billAmount :  any;
 loggedInDepartmentName: string;
 lang : SUPPORTED_LANGUAGE = 'en';
   constructor(   private route: ActivatedRoute,
@@ -129,6 +130,9 @@ this.printBill();
     });
   }
 
+
+
+
 printBill(){
   let varr = {
     "ids":this.bill_id
@@ -143,7 +147,17 @@ this.spinner.show();
         this.response = res;
         if (this.response.success == true) {
   this.printData=this.response.data[0];
+  this.billAmount =this.printData.totalCalculation;
+  this.printData.totalCalculation=parseFloat(this.printData.totalCalculation.replace(/,/g, '')) 
     this.printData.updatedByName = this.ngxNumToWordsService.inWords(this.printData.totalCalculation, this.lang);
+  
+  //   let first = this.printData.updatedByName.substr(0,1).toProperCase();
+  //  this.printData.updatedByName =  first + this.printData.updatedByName.substr(1);
+  
+  this.printData.updatedByName =this.printData.updatedByName.split(' ')
+     .map(w => w[0].toUpperCase() + w.substr(1).toLowerCase())
+     .join(' ')
+     
     this.toastr.success(this.response.message, 'Message.');
     
     this.spinner.hide();
@@ -432,7 +446,7 @@ print2(rows){
             },
             {
            
-              text:'FABRIC EXPORT' , style:'headingC' , margin: [430,-20,0,0]
+              text:'FABRIC EXPORT' , style:'headingG' , margin: [430,-20,0,0]
            
             },
             {
@@ -455,7 +469,7 @@ print2(rows){
              
               table:{headerRows:1 ,  widths:['18%' , '67%' , '5%' , '12%'],
             body:[ [
-              {text: 'Seller :' , margin: [20 , 30 , 0 , 0] , bold:true , style:'common' } , {text: this.printData['sellerName'] ,  margin: [-43 , 30 , 0 , 0] , style:'common'},
+              {text: 'Seller :' , margin: [20 , 30 , 0 , 0] , bold:true , style:'common' } , {text: this.printData['sellerName'] , bold:true , margin: [-43 , 30 , 0 , 0] , style:'common'},
             {text:'Bill # :' , margin: [0 , 30 , 0 , 0] , bold:true , style:'common'} ,{text:this.printData['billNumber'] , margin: [0 , 30 , 0 , 0] , style:'common'}
           
           ]]
@@ -506,33 +520,26 @@ print2(rows){
             
 
               layout:'noBorders',
-              table:{headerRows:1 ,  widths:['20%' , '80%' ],
-            body:[ [{text: 'Article :' , margin: [20 , 4 , 0 , 0] , bold:true  , style:'common'} , {text: this.printData['contractArticleName'] , margin: [-55 , 4 , 0 , 0] , bold:true , decoration:'underline' , style:'common' }
+              table:{headerRows:1 ,  widths:['20%' , '35%' , '20%' , '30%' ],
+            body:[ [{text: 'Article :' , margin: [20 , 4 , 0 , 0] , bold:true  , style:'common'} , {text: this.printData['contractArticleName'] , margin: [-55 , 4 , 0 , 0] , bold:true , decoration:'underline' , style:'common' },
+            {text: 'Weave :' , margin: [-10 , 4 , 0 , 0] , bold:true  , style:'common'} ,
+            {text: this.printData['weaveName'] , margin: [-80 , 4 , 0 , 0] , bold:true , decoration:'underline' , style:'common' }
           
           ]]
             }
             },
             
-            {
+          //   {
             
 
-              layout:'noBorders',
-              table:{headerRows:1 ,  widths:['20%' , '80%' ],
-            body:[ [{text: 'Weave :' , margin: [20 , 4 , 0 , 0] , bold:true  , style:'common'} , {text: this.printData['weaveName'] , margin: [-55 , 4 , 0 , 0] , bold:true , decoration:'underline' , style:'common' }
+          //     layout:'noBorders',
+          //     table:{headerRows:1 ,  widths:['20%' , '80%' ],
+          //   body:[ [{text: 'Weave :' , margin: [20 , 4 , 0 , 0] , bold:true  , style:'common'} , {text: this.printData['weaveName'] , margin: [-55 , 4 , 0 , 0] , bold:true , decoration:'underline' , style:'common' }
           
-          ]]
-            }
-            },
-            {
-             
-
-              layout:'noBorders',
-              table:{headerRows:1 ,  widths:['80%' ],
-            body:[ [{text: 'This refers to our contract for Weaving dispatches. Please make commission cheque in favour of M/S FABCOT INTERNATIONAL and oblige.' , margin: [20 , 10 , 0 , 0]  , style:'common'} 
-          
-          ]]
-            }
-            },
+          // ]]
+          //   }
+          //   },
+         
             {
              
 
@@ -604,7 +611,7 @@ print2(rows){
               {text: 'Amount in Words :' , margin:[0 , 20,0,0] , bold:true , style:'common' } ,
              {text: this.printData['updatedByName'] ,margin:[-30 , 20,0,0] , bold:true , decoration:'underline' , style:'common' },
               {text: 'TOTAL :' , margin:[50,20,0,0]  , bold:true , style:'common' } ,
-             {text:   this.printData['currencyName']+ ' ' + this.printData['totalCalculation']  , margin:[-60,20,0,0] , decoration:'underline'  , style:'common'}
+             {text:   this.printData['currencyName']+ ' ' + this.billAmount , bold:true  , margin:[-70,20,0,0] , decoration:'underline'  , style:'common'}
           
           ]]
             }
@@ -724,7 +731,7 @@ print2(rows){
             layout:'noBorders',
             table:{headerRows:1 ,  widths:['100%'   ],
           body:[ [
-            {text: 'For FABCOT INTERNATIONAL' , margin:[0 , 5,0,0]  , bold: true , style:'common' } ,
+            {text: 'For FABCOT INTERNATIONAL' , margin:[0 , 30,0,0]  , bold: true , style:'common' } ,
         ]]
           }
           },
@@ -737,6 +744,8 @@ print2(rows){
             bold: true, alignment: 'center',   },
             headingC:{fontSize: 9 ,
               alignment: 'center',   },
+              headingG:{fontSize: 12 ,
+                alignment: 'center', bold:true  },
             common:{fontSize:9},
             heading2:{fontSize: 9,
             bold: true, alignment: 'center' },
