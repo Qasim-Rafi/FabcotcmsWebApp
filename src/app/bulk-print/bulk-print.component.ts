@@ -24,6 +24,7 @@ export class BulkPrintComponent implements OnInit {
   totalAmount2 : number;
 lang : SUPPORTED_LANGUAGE = 'en';
 length : any;
+loggedInDepartmentName: string;
 
   constructor( private route: ActivatedRoute,
     private http: HttpClient,
@@ -37,7 +38,7 @@ length : any;
   ngOnInit(): void {
 
     this.id = localStorage.getItem('bulkPrint');
-
+    this.loggedInDepartmentName=localStorage.getItem('loggedInDepartmentName');
     this.bulkPrint();
 
   }
@@ -60,11 +61,11 @@ bulkPrint() {
         if (this.response.success == true) {
   this.printData=this.response.data;
   for(let i=0; i<this.printData.length; i++){
-    this.printData[i].accountName = this.ngxNumToWordsService.inWords(this.printData[i].totalCalculation, this.lang);
+    this.printData[i].updatedByName = this.ngxNumToWordsService.inWords(this.printData[i].totalCalculation, this.lang);
     }
           this.toastr.success(this.response.message, 'Message.');
           this.spinner.hide();
-//  localStorage.removeItem('bulkPrint');
+ localStorage.removeItem('bulkPrint');
 
         }
         else {

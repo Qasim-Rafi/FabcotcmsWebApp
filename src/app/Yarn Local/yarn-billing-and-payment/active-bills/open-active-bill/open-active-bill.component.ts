@@ -38,6 +38,7 @@ export class OpenActiveBillComponent implements OnInit {
   nmbr = [];
   printData: any = []
 id : any;
+loggedInDepartmentName: string;
 lang : SUPPORTED_LANGUAGE = 'en';
   constructor(   private route: ActivatedRoute,
     private modalService: NgbModal,
@@ -63,6 +64,7 @@ lang : SUPPORTED_LANGUAGE = 'en';
       this.image = res;
      
     });
+    this.loggedInDepartmentName=localStorage.getItem('loggedInDepartmentName');
     this.queryParems = this.route.snapshot.queryParams;
     
     this.bill_id = this.queryParems.id;
@@ -141,7 +143,7 @@ this.spinner.show();
         this.response = res;
         if (this.response.success == true) {
   this.printData=this.response.data[0];
-    this.printData.accountName = this.ngxNumToWordsService.inWords(this.printData.totalCalculation, this.lang);
+    this.printData.updatedByName = this.ngxNumToWordsService.inWords(this.printData.totalCalculation, this.lang);
     this.toastr.success(this.response.message, 'Message.');
     
     this.spinner.hide();
@@ -277,7 +279,7 @@ print(rows){
               margin: [0 , 20 , 0 , 0 ],
               table:{
                 headerRows : 1,
-                widths : [ '15%' , '15%' , '20%' , '10%' , '15%'  , '12%' , '18%'],
+                widths : [ '15%' , '15%' , '20%' , '10%' , '15%'  , '12%' , '15%'],
                 body:[
 
                   [
@@ -291,7 +293,7 @@ print(rows){
                   {text:'Commission' , style:'tableHeader'} , 
                   // {text:'TAX' , style:'tableHeader' }, 
 
-                  {text:'Amount' +'(' + this.rows.currencyName+')' , style:'tableHeader'}],
+                  {text:'Amount' +'(' + this.printData.currencyName+')' , style:'tableHeader'}],
                   
                   ...this.printData['contractSaleInvoices'].map(row => (
                     [
@@ -331,7 +333,7 @@ print(rows){
               table:{headerRows:1 ,  widths:['20%' , '50%' ,  '30%' , '10%' ],
             body:[ [
               {text: 'Amount in Words :' , margin:[0 , 20,0,0] , bold:true , style:'common' } ,
-             {text: this.printData['accountName'] ,margin:[-30 , 20,0,0] , bold:true , decoration:'underline' , style:'common' },
+             {text: this.printData['updatedByName'] ,margin:[-30 , 20,0,0] , bold:true , decoration:'underline' , style:'common' },
               {text: 'Sub Total :' , margin:[50,20,0,0]  , bold:true , style:'common' } ,
              {text:   this.printData['currencyName']+ ' ' + this.printData['totalCalculation']  , margin:[-60,20,0,0] , decoration:'underline'  , style:'common'}
           
@@ -394,6 +396,346 @@ print(rows){
            heading:{fontSize: 18 ,
             bold: true, alignment: 'center',   },
             headingC:{fontSize: 12 ,
+              alignment: 'center',   },
+            common:{fontSize:9},
+            heading2:{fontSize: 9,
+            bold: true, alignment: 'center' },
+            tableHeader:{ fillColor: '#f3f3f4' , bold:true , margin:4 , alignment: 'center' ,fontSize: 8},
+            tableHeader2:{   margin:3 , alignment: 'center' , fontSize: 8},
+
+          },
+
+  };
+  pdfMake.createPdf(docDefinition).print();
+}
+
+print2(rows){
+
+  let docDefinition = {
+    pageSize: 'A4',
+    pageMargins: [ 20, 30, 30, 10 ],
+    pageOrientation: 'letter',
+      
+          info: {
+            title: 'Bill generated'
+          },
+          content: [
+            {
+              "image" : this.image2,
+             fit : [120 , 120]
+          
+            },
+            {
+           
+              text:'FABCOT INTERNATIONAL FZE ®' , style:'heading' , margin: [0,-40,0,0]
+           
+            },
+            {
+           
+              text:'FABRIC EXPORT' , style:'headingC' , margin: [430,-20,0,0]
+           
+            },
+            {
+              margin: [5 , 10 , 0 , 0],
+              layout:'noBorders',
+              table:{headerRows: 1 , widths:['100%'],
+            body: [
+              [{text:'Flexi Office, RAKEZ Business ZONE F-Z RAK , United Arab Emirates ' , style:'headingC'}
+            ],] }
+            },
+            {
+              margin: [5 , -4 , 0 , 0],
+              layout:'noBorders',
+              table:{headerRows: 1 , widths:['100%'],
+            body: [
+              [{text:'Email: adnan@fabcot.net, atif@fabcot.net' , style:'headingC'}],] }
+            },
+            {
+              layout:'noBorders',
+             
+              table:{headerRows:1 ,  widths:['18%' , '67%' , '5%' , '12%'],
+            body:[ [
+              {text: 'Seller :' , margin: [20 , 30 , 0 , 0] , bold:true , style:'common' } , {text: this.printData['sellerName'] ,  margin: [-43 , 30 , 0 , 0] , style:'common'},
+            {text:'Bill # :' , margin: [0 , 30 , 0 , 0] , bold:true , style:'common'} ,{text:this.printData['billNumber'] , margin: [0 , 30 , 0 , 0] , style:'common'}
+          
+          ]]
+            }
+            },
+            {
+              
+              layout:'noBorders',
+              table:{headerRows:1 ,  widths:['18%' , '65%' , '10%' , '15%'],
+            body:[ [{text: 'Buyer :' , margin: [20 , 4 , 0 , 0] , bold:true , style:'common'} , {text: this.printData['buyerName'] , margin: [-43 , 4 , 0 , 0] , bold:true  , style:'common'},
+            {text:'Bill Date :' , margin: [0 , 4 , 0 , 0] , bold:true , style:'common'} ,{text:this.printData['billDate'] , margin: [-20 , 4 , 0 , 0] , bold:true  , style:'common' }
+          
+          ]]
+            }
+            },
+            {
+             
+
+              layout:'noBorders',
+              table:{headerRows:1 ,  widths:['20%' , '80%' ],
+            body:[ [{text: 'Fabcot Contract# :' , margin: [20 , 4 , 0 , 0] , bold:true , style:'common'} , {text: this.printData['contractNumber'] , margin: [-12 , 4 , 0 , 0]  , bold:true  , decoration:'underline' , style:'common'}
+          
+          ]]
+            }
+            },
+            {
+             
+
+              layout:'noBorders',
+              table:{headerRows:1 ,  widths:['20%' , '80%' ],
+            body:[ [{text: 'Supplier Contract# :' , margin: [20 , 4 , 0 , 0] , bold:true , style:'common'} , {text: this.printData['supplierContractNumber'] , margin: [-10 , 4 , 0 , 0]  , bold:true  , decoration:'underline' , style:'common'}
+          
+          ]]
+            }
+            },
+            {
+            
+
+              layout:'noBorders',
+              table:{headerRows:1 ,  widths:['20%' , '80%' ],
+            body:[ [{text: 'Contract Date :' , margin: [20 , 4 , 0 , 0] , bold:true  , style:'common'} , {text: this.printData['contractDate'] , margin: [-25 , 4 , 0 , 0] , bold:true , decoration:'underline' , style:'common' }
+          
+          ]]
+            }
+            },
+
+            {
+            
+
+              layout:'noBorders',
+              table:{headerRows:1 ,  widths:['20%' , '80%' ],
+            body:[ [{text: 'Article :' , margin: [20 , 4 , 0 , 0] , bold:true  , style:'common'} , {text: this.printData['contractArticleName'] , margin: [-55 , 4 , 0 , 0] , bold:true , decoration:'underline' , style:'common' }
+          
+          ]]
+            }
+            },
+            
+            {
+            
+
+              layout:'noBorders',
+              table:{headerRows:1 ,  widths:['20%' , '80%' ],
+            body:[ [{text: 'Weave :' , margin: [20 , 4 , 0 , 0] , bold:true  , style:'common'} , {text: this.printData['weaveName'] , margin: [-55 , 4 , 0 , 0] , bold:true , decoration:'underline' , style:'common' }
+          
+          ]]
+            }
+            },
+            {
+             
+
+              layout:'noBorders',
+              table:{headerRows:1 ,  widths:['80%' ],
+            body:[ [{text: 'This refers to our contract for Weaving dispatches. Please make commission cheque in favour of M/S FABCOT INTERNATIONAL and oblige.' , margin: [20 , 10 , 0 , 0]  , style:'common'} 
+          
+          ]]
+            }
+            },
+            {
+             
+
+              layout:'noBorders',
+              table:{headerRows:1 ,  widths:['100%' ],
+            body:[ [{text: 'Detail as under' , margin: [20 , 0 , 0 , 0]  , style:'common'} 
+          
+          ]]
+            }
+            },
+
+            {
+              margin: [0 , 20 , 0 , 0 ],
+              table:{
+                headerRows : 1,
+                widths : [ '15%' , '15%' , '20%' , '10%' , '15%'  , '12%' , '15%'],
+                body:[
+
+                  [
+                    // {text:'Description' , style:'tableHeader' },
+                    {text:'Sale Invoice#' , style:'tableHeader' }
+                  ,{text:'Sale Invoice Date' , style:'tableHeader'} ,
+                  {text:'Quantity' , style:'tableHeader' }, 
+                  {text:'Rate'  +'(' + this.printData.currencyName+')' , style:'tableHeader' }, 
+
+                  {text:'Inv Amount' +'(' + this.printData.currencyName+')'  , style:'tableHeader'} , 
+                  {text:'Commission' , style:'tableHeader'} , 
+                  // {text:'TAX' , style:'tableHeader' }, 
+
+                  {text:'Amount' +'(' + this.printData.currencyName+')' , style:'tableHeader'}],
+                  
+                  ...this.printData['contractSaleInvoices'].map(row => (
+                    [
+                      // {text: row.description , style:'tableHeader2'} ,
+
+                      {text: row.saleInvoiceNo , style:'tableHeader2'} ,
+                    {text:  row.saleInvoiceDateToDisplay , style:'tableHeader2'},
+                    {text:  row.quantity + " " + row.quanityUOM  , style:'tableHeader2'} ,
+                    {text: row.rate , style:'tableHeader2'} ,
+                    
+                     {text: row.amount
+                         , style:'tableHeader2'} ,
+                      {text:row.commission+ ' ' + row.commissionUnit  , style:'tableHeader2' }  ,
+                    // {text: row.taxAmount , style:'tableHeader2'} ,
+
+                      {text: row.billAmount , style:'tableHeader2'}]
+                  ))
+                ]
+              }
+            },
+
+          {
+            layout:'noBorders',
+            table:{headerRows:1 ,  widths:['10%' , '20%' ,  '25%' , '25%' ],
+          body:[ [
+            {text: 'Quantity :' , margin:[0 , 30,0,0] , bold:true , style:'common' } ,
+           {text: this.printData['quantitySum']  ,margin:[-10 , 30,0,0] , bold:true , style:'common' },
+            {text: 'Invoice Amount' + ' (' + this.printData['currencyName'] +   '):'  , margin:[0,30,0,0]  , bold:true , style:'common' } ,
+           {text:  this.printData['amountsum']  , margin:[-35,30,0,0] ,  bold:true , style:'common'}
+        
+        ]]
+          }
+          },
+
+            {
+              layout:'noBorders',
+              table:{headerRows:1 ,  widths:['20%' , '50%' ,  '30%' , '10%' ],
+            body:[ [
+              {text: 'Amount in Words :' , margin:[0 , 20,0,0] , bold:true , style:'common' } ,
+             {text: this.printData['updatedByName'] ,margin:[-30 , 20,0,0] , bold:true , decoration:'underline' , style:'common' },
+              {text: 'TOTAL :' , margin:[50,20,0,0]  , bold:true , style:'common' } ,
+             {text:   this.printData['currencyName']+ ' ' + this.printData['totalCalculation']  , margin:[-60,20,0,0] , decoration:'underline'  , style:'common'}
+          
+          ]]
+            }
+            },
+          //   {
+          //     layout:'noBorders',
+          //     table:{headerRows:1 ,  widths:['90%' , '10%'  ],
+          //   body:[ [
+          //     {text: 'TAX:' , margin:[455 , 5,0,0] , bold:true , style:'common' } ,
+          //    {text: "0.00" ,margin:[0 , 5,0,0] , decoration:'underline' , style:'common' },
+         
+          
+          // ]]
+          //   }
+          //   },
+          //   {
+          //     layout:'noBorders',
+          //     table:{headerRows:1 ,  widths:['90%' , '10%'  ],
+          //   body:[ [
+          //     {text: 'Total:' , margin:[455 , 5,0,0] , bold:true , style:'common' } ,
+          //    {text: this.printData['currencyName']+ ' '+  this.printData['totalCalculation'],margin:[-10 , 5,0,0]  , decoration:'underline' , bold:true , style:'common' },
+         
+          
+          // ]]
+          //   }
+          //   },
+
+
+          {
+            layout:'noBorders',
+            table:{headerRows:1 ,  widths:['100%' ],
+          body:[ [
+            {text: 'Our Bank detail as under FTT:' , margin:[0 , 20,0,0] , bold:true , style:'common' } ,
+          
+        ]]
+          }
+          },
+          {
+            layout:'noBorders',
+            table:{headerRows:1 ,  widths:['20%' , '50%'  ],
+          body:[ [
+            {text: 'Title of Account :' , margin:[0 , 10,0,0] , bold:true , style:'common' } ,
+           {text: this.printData['accountName'] ,margin:[-20 , 10,0,0]  , style:'common' },
+         
+        
+        ]]
+          }
+          },
+
+          {
+            layout:'noBorders',
+            table:{headerRows:1 ,  widths:['20%' , '50%'  ],
+          body:[ [
+            {text: 'Address :' , margin:[0 , 0,0,0] , bold:true , style:'common' } ,
+           {text: this.printData['address'] ,margin:[-20 , 0,0,0]  , style:'common' },
+         
+        
+        ]]
+          }
+          },
+          {
+            layout:'noBorders',
+            table:{headerRows:1 ,  widths:['20%' , '50%'  ],
+          body:[ [
+            {text: 'Bank Name :' , margin:[0 , 0,0,0] , bold:true , style:'common' } ,
+           {text: this.printData['bankName'] ,margin:[-20 , 0,0,0]  , style:'common' },
+         
+        
+        ]]
+          }
+          },
+          {
+            layout:'noBorders',
+            table:{headerRows:1 ,  widths:['20%' , '50%'  ],
+          body:[ [
+            {text: 'IBAN Number:' , margin:[0 , 0,0,0] , bold:true , style:'common' } ,
+           {text: this.printData['iban'] ,margin:[-20 , 0,0,0]  , style:'common' },
+         
+        
+        ]]
+          }
+          },
+          {
+            layout:'noBorders',
+            table:{headerRows:1 ,  widths:['20%' , '50%'  ],
+          body:[ [
+            {text: 'Swift Code :' , margin:[0 , 0,0,0] , bold:true , style:'common' } ,
+           {text: this.printData['swiftCode'] ,margin:[-20 , 0,0,0]  , style:'common' },
+         
+        
+        ]]
+          }
+          },
+          {
+            layout:'noBorders',
+            table:{headerRows:1 ,  widths:['20%' , '50%'  ],
+          body:[ [
+            {text: 'Account Type:' , margin:[0 , 0,0,0] , bold:true , style:'common' } ,
+           {text: this.printData['type'] ,margin:[-20 , 0,0,0]  , style:'common' },
+         
+        
+        ]]
+          }
+          },
+          {
+            layout:'noBorders',
+            table:{headerRows:1 ,  widths:['20%' , '50%'  ],
+          body:[ [
+            {text: 'Bank Address :' , margin:[0 , 0,0,0] , bold:true , style:'common' } ,
+           {text: this.printData['bankAddress'] ,margin:[-20 , 0,0,0]  , style:'common' },
+         
+        
+        ]]
+          }
+          },
+          {
+            layout:'noBorders',
+            table:{headerRows:1 ,  widths:['100%'   ],
+          body:[ [
+            {text: 'For FABCOT INTERNATIONAL' , margin:[0 , 5,0,0]  , bold: true , style:'common' } ,
+        ]]
+          }
+          },
+
+
+
+          ],
+          styles:{
+           heading:{fontSize: 18 ,
+            bold: true, alignment: 'center',   },
+            headingC:{fontSize: 9 ,
               alignment: 'center',   },
             common:{fontSize:9},
             heading2:{fontSize: 9,

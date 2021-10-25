@@ -41,3 +41,12 @@ color: #1ab394;
   height: 70%;
   text-align: center;
 }
+.padLeft{
+  margin-left: 30px;
+  font-weight: 600;
+  line-height: 1.1;
+  color: rgb(95, 93, 93);
+  font-size: 13px;
+
+
+}
