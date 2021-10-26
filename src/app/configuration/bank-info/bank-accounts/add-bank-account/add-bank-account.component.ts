@@ -34,7 +34,7 @@ export class AddBankAccountComponent implements OnInit {
 
 
   getBanks() {
-    this.http.get(`${environment.apiUrl}/api/Lookups/Banks`)
+    this.http.get(`${environment.apiUrl}/api/Configs/GetAllBank`)
       .subscribe(
         res => {
           this.response = res;
