@@ -315,10 +315,14 @@ print(rows){
 
                       {text: row.saleInvoiceNo , style:'tableHeader2'} ,
                     {text:  row.saleInvoiceDateToDisplay , style:'tableHeader2'},
-                    {text:  row.quantity + " " + row.quanityUOM  , style:'tableHeader2'} ,
+                    {text: 
+                    
+                    row.debitQuantity == "0.00" ? row.quantity + " " + row.quanityUOM :
+                    row.quantity + " " + row.quanityUOM +'\n'+ "Db:("+row.actualQuantity+ "-" +row.debitQuantity+")"+row.quanityUOM
+                    , style:'tableHeader2'} ,
                     {text: row.rate , style:'tableHeader2'} ,
                     
-                     {text: row.amount
+                     {text: row.debitAmount == 0.00? row.amount : row.amount+'\n' +"Db:("+row.actualAmount+ "-" +row.debitAmount+")"
                          , style:'tableHeader2'} ,
                       {text:row.commission+ ' ' + row.commissionUnit  , style:'tableHeader2' }  ,
                     // {text: row.taxAmount , style:'tableHeader2'} ,

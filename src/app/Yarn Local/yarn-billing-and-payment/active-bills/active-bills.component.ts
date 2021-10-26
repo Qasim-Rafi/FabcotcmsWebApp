@@ -267,7 +267,7 @@ this.router.navigate([]).then((result) => {
       BillNo: row.billNumber,
       ContractNo: row.contractId,
       BillDate: row.billDate,
-      NoOfSaleInv: row.numberOfSaleInvoices,
+      NoOfSaleInv: row.saleInvoiceNo,
       BillAMount: row.billAmount,
       TaxAmount: row.taxAmount,
     }));
@@ -283,7 +283,7 @@ this.router.navigate([]).then((result) => {
       BillNo: row.billNumber,
       ContractNo: row.contractId,
       BillDate: row.billDate,
-      NoOfSaleInv: row.numberOfSaleInvoices,
+      NoOfSaleInv: row.saleInvoiceNo,
       BillAMount: row.billAmount,
       TaxAmount: row.taxAmount,
       }));
