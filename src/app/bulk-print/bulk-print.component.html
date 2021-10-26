@@ -49,6 +49,7 @@
                 </div>
                     <p class="font clr" ><strong>FABCOT INTERNATIONAL FZE® </strong>
                     </p>
+                  
                    
             </div>
 
@@ -70,12 +71,19 @@
                 </div>
             
             </div>
-<br>
-<br>
+            <br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export'">
+
+<br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export'">
 
             <div class="clearfix">
 
                 <div class="float-right ">
+                    <span class="font2" *ngIf = "loggedInDepartmentName == 'Fabric Export'">
+                        FABRIC EXPORT
+                    </span>
+            <br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export'">
+            <!-- <br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export'"> -->
+                    
                     <span class="text-font1">
                         Bill No.: <span class="weight">{{x.billNumber}}</span>
                     </span>
@@ -110,7 +118,7 @@
                     <span class="text-font1">
                            Article: &nbsp;  <span class="bold text-font1">{{x.contractArticleName}}</span>
                     </span>
-                    <br>
+                    &nbsp;  
                     <span class="text-font1" *ngIf = "loggedInDepartmentName == 'Fabric Export'">
                         Weave Name: &nbsp;  <span class="bold text-font1">{{x.weaveName}}</span>
                  </span>
@@ -250,6 +258,9 @@
                             Bank Address:<span> &nbsp;&nbsp;  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;  {{x.bankAddress}}  </span>
                         </span>
                         <br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export'">
+            <br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export'">
+            <br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export'">
+            <br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export'">
                       
                         <br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export'"><br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export'">
                         <span class=" text-font1 text-font1" *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export'">
