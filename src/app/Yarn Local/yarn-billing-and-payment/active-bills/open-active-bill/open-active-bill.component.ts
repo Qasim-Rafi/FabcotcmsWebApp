@@ -148,8 +148,8 @@ this.spinner.show();
         if (this.response.success == true) {
   this.printData=this.response.data[0];
   this.billAmount =this.printData.totalCalculation;
-  this.printData.totalCalculation=parseFloat(this.printData.totalCalculation.replace(/,/g, '')) 
-    this.printData.updatedByName = this.ngxNumToWordsService.inWords(this.printData.totalCalculation, this.lang);
+  // this.printData.totalCalculation=parseFloat(this.printData.totalCalculation.replace(/,/g, '')) 
+    this.printData.updatedByName = this.ngxNumToWordsService.inWords(this.printData.totalCalculation.replace(/,/g, ''), this.lang);
   
   //   let first = this.printData.updatedByName.substr(0,1).toProperCase();
   //  this.printData.updatedByName =  first + this.printData.updatedByName.substr(1);
