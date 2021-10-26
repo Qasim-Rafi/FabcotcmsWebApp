@@ -309,12 +309,12 @@ this.router.navigate([]).then((result) => {
           layout: 'lightHorizontalLines',
           table: {
             headerRows: 1,
-            widths: [40, 50, 50, 40, 70 , 60,80,70,70],
+            widths: [40, 50, 50, 40, 70 , 60,40,70,70],
             body: [
               ['S No.', 'Bill For', 'Bill To', 'Bill#', 'Contract No' ,'Bill Date' , 'No. of Sale Inv','Bill Amount','Tax Amount'],
               ...this.rows.map(row => (
                 [row.contractId, row.sellerName, row.buyerName,row.billNumber ,
-                  row.contractId , row.billDate,row.numberOfSaleInvoices,row.billAmount, row.taxAmount]
+                  row.contractId , row.billGeneratedDateTime,row.saleInvoiceNo,row.billAmount.toFixed(2), row.taxAmount]
               ))
             ]
            
@@ -337,7 +337,7 @@ this.router.navigate([]).then((result) => {
   ActiveBillsListPdf() {
 
     let docDefinition = {
-      pageSize: 'A3',
+      pageSize: 'A4',
       info: {
         title: 'Active Bills List'
       },
@@ -356,7 +356,7 @@ this.router.navigate([]).then((result) => {
               ['S No.', 'Bill For', 'Bill To', 'Bill#', 'Contract No' ,'Bill Date' , 'No. of Sale Inv','Bill Amount','Tax Amount'],
               ...this.rows.map(row => (
                 [row.contractId, row.sellerName, row.buyerName,row.billNumber ,
-                  row.contractId , row.billDate,row.numberOfSaleInvoices,row.billAmount, row.taxAmount]
+                  row.contractId , row.billGeneratedDateTime,row.saleInvoiceNo,row.billAmount.toFixed(2), row.taxAmount]
               ))
             ]
            
