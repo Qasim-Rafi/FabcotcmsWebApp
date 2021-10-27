@@ -295,38 +295,92 @@ this.router.navigate([]).then((result) => {
   printActiveBillsList() {
 
     let docDefinition = {
-      pageSize: 'A3',
+      pageSize: 'A4',
       info: {
         title: 'Active Bills List'
       },
       content: [
         {
-          text: 'Active Bills List',
-          style: 'heading',
+        table: {
+          headerRows: 1,
+          widths: ['100%'],
+          body: [
+            [{
+              style: 'heading',
+              text: 'Bill Report'
+            }],
+          ]
 
-        },
+        }
+      },
+
         {
-          layout: 'lightHorizontalLines',
+        margin:[-20,40,0,0],
           table: {
             headerRows: 1,
-            widths: [40, 50, 50, 40, 70 , 60,40,70,70],
+            widths: ['10%' , '20%' , '10%' , '15%' , '15%', '15%' , '15%' , '7%'],
             body: [
-              ['S No.', 'Bill For', 'Bill To', 'Bill#', 'Contract No' ,'Bill Date' , 'No. of Sale Inv','Bill Amount','Tax Amount'],
-              ...this.rows.map(row => (
-                [row.contractId, row.sellerName, row.buyerName,row.billNumber ,
-                  row.contractId , row.billGeneratedDateTime,row.saleInvoiceNo,row.billAmount.toFixed(2), row.taxAmount]
-              ))
-            ]
+              [{ text: 'Bill For', style: 'tableheader', }, { text: 'Bill To', style: 'tableheader' },
+              { text: 'Bill#', style: 'tableheader' }, { text: 'Contract#', style: 'tableheader' }
+                , { text: 'Bill Date', style: 'tableheader' }, { text: 'No of Sale Invoices', style: 'tableheader' },
+              { text: 'Bill Amount', style: 'tableheader' }, { text: 'Tax%', style: 'tableheader' }
+              ],
            
+              ...this.rows.map((row =>
+                [
+                  
+                  {text: 'Buyer \n Seller'  , style:'tableheader3'} ,
+                  {text: row.sellerName+ '\n' + row.buyerName , style:'tableheader3'} ,
+                  {text: row.billNumber , style:'tableheader3'} ,
+                  {text: row.autoContractNumber, style:'tableheader3' } ,
+
+                  {text: row.billGeneratedDateTime , style:'tableheader3'} ,
+                  {text: row.saleInvoiceNo , style:'tableheader3' } ,
+                  {text: row.billAmount  , style:'tableheader3'} ,
+                  {text: row.taxAmount+"%"  , style:'tableheader3'} ,
+                  
+            
+              ]
+              ))
+
+            ]
           }
-        }
+        },
+        {text: "Total Amount: " , bold: true , margin:[360 , 20,0,0] ,style:'totalAmount' },
+        {text: this.dashboardAmnt , bold: true , margin:[420 , -9,0,0] ,style:'totalAmount' }
+
+
+
+
       ],
       styles: {
         heading: {
+          fillColor: '#f3f3f4',
           fontSize: 18,
+          bold: true,
+          color: '#4d4b4b',
           alignment: 'center',
-          margin: [0, 15, 0, 30]
-        }
+          margin: 4
+        },
+             
+        tableheader3: {
+          fontSize: 8,
+         alignment:'center',
+        
+         },
+         tableheader: {
+          fillColor: '#f3f3f4',
+          fontSize: 10,
+          bold: true,
+          color: '#4d4b4b',
+          alignment: 'center',
+
+        },
+        totalAmount:{
+    fontSize:8
+        },
+         heading3:{fontSize: 6  , color:'#4d4b4b'
+        },
       }
     };
 
@@ -343,37 +397,92 @@ this.router.navigate([]).then((result) => {
       },
       content: [
         {
-          text: 'Active Bills List',
-          style: 'heading',
+        table: {
+          headerRows: 1,
+          widths: ['100%'],
+          body: [
+            [{
+              style: 'heading',
+              text: 'Bill Report'
+            }],
+          ]
 
-        },
+        }
+      },
+
         {
-          layout: 'lightHorizontalLines',
+        margin:[-20,40,0,0],
           table: {
             headerRows: 1,
-            widths: [40, 50, 50, 40, 70 , 60,80,70,70],
+            widths: ['10%' , '20%' , '10%' , '15%' , '15%', '15%' , '15%' , '7%'],
             body: [
-              ['S No.', 'Bill For', 'Bill To', 'Bill#', 'Contract No' ,'Bill Date' , 'No. of Sale Inv','Bill Amount','Tax Amount'],
-              ...this.rows.map(row => (
-                [row.contractId, row.sellerName, row.buyerName,row.billNumber ,
-                  row.contractId , row.billGeneratedDateTime,row.saleInvoiceNo,row.billAmount.toFixed(2), row.taxAmount]
-              ))
-            ]
+              [{ text: 'Bill For', style: 'tableheader', }, { text: 'Bill To', style: 'tableheader' },
+              { text: 'Bill#', style: 'tableheader' }, { text: 'Contract#', style: 'tableheader' }
+                , { text: 'Bill Date', style: 'tableheader' }, { text: 'No of Sale Invoices', style: 'tableheader' },
+              { text: 'Bill Amount', style: 'tableheader' }, { text: 'Tax%', style: 'tableheader' }
+              ],
            
+              ...this.rows.map((row =>
+                [
+                  
+                  {text: 'Buyer \n Seller'  , style:'tableheader3'} ,
+                  {text: row.sellerName+ '\n' + row.buyerName , style:'tableheader3'} ,
+                  {text: row.billNumber , style:'tableheader3'} ,
+                  {text: row.autoContractNumber, style:'tableheader3' } ,
+
+                  {text: row.billGeneratedDateTime , style:'tableheader3'} ,
+                  {text: row.saleInvoiceNo , style:'tableheader3' } ,
+                  {text: row.billAmount  , style:'tableheader3'} ,
+                  {text: row.taxAmount+"%"  , style:'tableheader3'} ,
+                  
+            
+              ]
+              ))
+
+            ]
           }
-        }
+        },
+        {text: "Total Amount: " , bold: true , margin:[360 , 20,0,0] ,style:'totalAmount' },
+        {text: this.dashboardAmnt , bold: true , margin:[420 , -9,0,0] ,style:'totalAmount' }
+
+
+
+
       ],
       styles: {
         heading: {
+          fillColor: '#f3f3f4',
           fontSize: 18,
+          bold: true,
+          color: '#4d4b4b',
           alignment: 'center',
-          margin: [0, 15, 0, 30]
-        }
+          margin: 4
+        },
+             
+        tableheader3: {
+          fontSize: 8,
+         alignment:'center',
+        
+         },
+         tableheader: {
+          fillColor: '#f3f3f4',
+          fontSize: 10,
+          bold: true,
+          color: '#4d4b4b',
+          alignment: 'center',
+
+        },
+        totalAmount:{
+    fontSize:8
+        },
+         heading3:{fontSize: 6  , color:'#4d4b4b'
+        },
       }
     };
 
+    // const win = window.open('', "tempWinForPdf");
+    pdfMake.createPdf(docDefinition).download('Active Bills List');
 
-    pdfMake.createPdf(docDefinition).download('ActiveBills.pdf');
   }
 
 
