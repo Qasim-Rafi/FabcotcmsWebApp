@@ -151,10 +151,14 @@
                    
                     <td>{{i.saleInvoiceNo}}</td>
                     <td>{{i.saleInvoiceDateToDisplay}}</td>
-                    <td>{{i.quantity}}{{i.quanityUOM}}</td>
+                    <td>{{i.quantity}}&nbsp;{{i.quanityUOM}} <br>
+                        <small class="text-danger" *ngIf="i.debitQuantity != '0.00' ">
+                            Db:({{i.actualQuantity}} - {{i.debitQuantity}})&nbsp;{{i.quanityUOM}}</small></td>
                     <td>{{i.rate}}</td>
 
-                    <td>{{i.amount}}</td>
+                    <td>{{i.amount}} <br>
+                        <small class="text-danger" *ngIf="i.debitAmount != 0.00">
+                            Db:({{i.actualAmount}} - {{i.debitAmount}})</small></td>
                     <td>{{i.commission}} &nbsp; {{i.commissionUnit}} </td>
                     <!-- <td>{{i.taxAmount}}</td> -->
 
