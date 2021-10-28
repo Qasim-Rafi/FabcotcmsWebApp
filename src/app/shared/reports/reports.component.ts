@@ -16,7 +16,7 @@ import { FilterPopUpComponent } from './filter-pop-up/filter-pop-up.component';
 })
 export class ReportsComponent implements OnInit {
   status: boolean = false;
-  dateformater: Dateformater = new Dateformater();  
+  dateformater: Dateformater = new Dateformater();
   data:any={};
   menuName: any = {};
   response: any;
@@ -44,6 +44,7 @@ export class ReportsComponent implements OnInit {
   article : any = []
   invBill: any = [];
   contractBill: any = [];
+  cancelContract:any =[];
 
   constructor(
 
@@ -64,11 +65,19 @@ export class ReportsComponent implements OnInit {
     this.billingReportInvoiceWise.startDate = this.dateformater.toModel(this.billingReportInvoiceWise.startDate)
     this.billingReportInvoiceWise.endDate = this.dateformater.toModel(this.billingReportInvoiceWise.endDate)
 
-    this.fetch();
+this.fetch();
+
+
+  this.fetchContractInvise();
+
+
+
+  this.GetCancelContract();
+
+
     this.GetBuyersDropdown();
     this.GetSellersDropdown();
     this.GetArticleDropdown();
-this.fetchContractInvise();
   }
   GetBuyersDropdown() {
     this.service.getBuyers().subscribe(res => {
@@ -116,7 +125,7 @@ this.fetchContractInvise();
   }
   filterPopUform() {
     const modalRef = this.modalService.open(FilterPopUpComponent, { centered: true });
-   
+
     modalRef.result.then((data) => {
       // on close
       if (data == true) {
@@ -155,7 +164,7 @@ this.fetchContractInvise();
     .get(`${environment.apiUrl}/api/Reports/AllBillingReportInvoiceWise/`+   this.billingReportInvoiceWise.startDate + '/' +this.billingReportInvoiceWise.endDate      )
     .subscribe(res => {
       this.response = res;
-     
+
     if(this.response.success==true)
     {
     this.billingReportInvoiceWise=this.response.data;
@@ -166,7 +175,7 @@ this.fetchContractInvise();
     else{
       this.toastr.error(this.response.message, 'Message.');
       this.spinner.hide();
-    
+
     }
 
     }, err => {
@@ -177,6 +186,51 @@ this.fetchContractInvise();
       }
     });
   }
+
+  GetCancelContract() {
+
+
+    this.spinner.show();
+    this.http
+    .get(`${environment.apiUrl}/api/Reports/GetAllCancelContractReport` )
+    .subscribe(res => {
+      this.response = res;
+
+    if(this.response.success==true)
+    {
+    this.cancelContract=this.response.data;
+    // this.cancelContract = [...this.billingReportInvoiceWise]
+    this.spinner.hide();
+
+    }
+    else{
+      this.toastr.error(this.response.message, 'Message.');
+      this.spinner.hide();
+
+    }
+
+    }, err => {
+      if ( err.status == 400) {
+  this.toastr.error(err.error.message, 'Message.');
+  this.spinner.hide();
+
+      }
+    });
+  }
+
+  // getOpenContractReport(){
+  //   let varr = {
+  //     "buyerId": ,
+  //     "sellarId":,
+  //     "autoContractNumber":,
+  //     "startContractDate":,
+  //     "endContractDate":
+  //   }
+  //   this.spinner.show();
+  //   this.http.post('environment.apiUrl')
+  // }
+
+
   invoiceExcelFile(){
     const filtered = this.billingReportInvoiceWise.map(row => ({
       BillFor: row.billFor,
@@ -207,7 +261,7 @@ this.fetchContractInvise();
     .get(`${environment.apiUrl}/api/Reports/AllBillingReportContractWise/`+   this.contractWise.startDate + '/' +this.contractWise.endDate)
     .subscribe(res => {
       this.response = res;
-     
+
     if(this.response.success==true)
     {
     this.contractWise=this.response.data;
@@ -220,7 +274,7 @@ this.fetchContractInvise();
     else{
       this.toastr.error(this.response.message, 'Message.');
       this.spinner.hide();
-    
+
     }
 
     }, err => {
@@ -260,11 +314,11 @@ this.fetchContractInvise();
     .get(`${environment.apiUrl}`)
     .subscribe(res => {
       this.response = res;
-     
+
     if(this.response.success==true)
     {
     this.allContractReport=this.response.data;
- 
+
 
     // cb(this.billingReportInvoiceWise);
     this.spinner.hide();
@@ -273,7 +327,7 @@ this.fetchContractInvise();
     else{
       this.toastr.error(this.response.message, 'Message.');
       this.spinner.hide();
-    
+
     }
 
     }, err => {
@@ -314,11 +368,11 @@ this.fetchContractInvise();
     .get(`${environment.apiUrl}`)
     .subscribe(res => {
       this.response = res;
-     
+
     if(this.response.success==true)
     {
     this.openContractReport=this.response.data;
- 
+
 
     // cb(this.billingReportInvoiceWise);
     this.spinner.hide();
@@ -327,7 +381,7 @@ this.fetchContractInvise();
     else{
       this.toastr.error(this.response.message, 'Message.');
       this.spinner.hide();
-    
+
     }
 
     }, err => {
@@ -362,7 +416,7 @@ this.fetchContractInvise();
 
 
   clickEvent(){
-    this.status = !this.status;       
+    this.status = !this.status;
 }
 
 }
