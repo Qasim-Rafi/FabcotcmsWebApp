@@ -135,6 +135,10 @@ this.fetch();
     {
     this.data=this.response.data;
     this.rows = this.data.objList;
+    for(let i = 0 ; i < this.rows.length ; i++){
+      this.rows[i].billGeneratedDateTime = this.rows[i].billGeneratedDateTime.slice(0 ,10)
+    }
+
     this.dashboardAmnt = this.data.totalBillAmount;
     this.billFilter = [...this.rows];
 
