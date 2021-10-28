@@ -55,7 +55,9 @@ export class CountryComponent implements OnInit {
   search(event) {
     const val = event.target.value.toLowerCase();
     const temp = this.countryFilter.filter(function (d) {
-      return (d.name.toLowerCase().indexOf(val) !== -1 || !val);
+      return (d.name.toLowerCase().indexOf(val) !== -1 ||
+      d.details.toLowerCase().indexOf(val) !== -1 ||
+      !val);
     });
     this.rows = temp;
     // this.data.name=null;
