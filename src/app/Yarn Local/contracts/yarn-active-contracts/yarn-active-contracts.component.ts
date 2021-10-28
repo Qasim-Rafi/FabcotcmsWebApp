@@ -57,6 +57,7 @@ export class YarnActiveContractsComponent implements OnInit {
     const temp = this.temp.filter(function (d) {
       return (
         d.autoContractNumber.toLowerCase().indexOf(val) !== -1 ||
+     
         // d.contractOn.toLowerCase().indexOf(val) !== -1 ||
         // d.articleName != null?d.articleName: "".toLowerCase().indexOf(val) !== -1 ||
         // d.price.toString().indexOf(val) !== -1 ||

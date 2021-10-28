@@ -158,3 +158,6 @@ border-radius: 6px;
 .bgd ul{
   margin: 20px 0 0 0 ;
 }
+section {
+overflow-x: hidden;
+}
