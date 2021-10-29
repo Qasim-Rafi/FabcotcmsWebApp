@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {  NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -45,6 +45,8 @@ export class ReportsComponent implements OnInit {
   invBill: any = [];
   contractBill: any = [];
   cancelContract:any =[];
+  OpenContract:any =[];
+  data3:any=[];
 
   constructor(
 
@@ -67,15 +69,18 @@ export class ReportsComponent implements OnInit {
 
 
 
-  
+
 
 if(this.menuName.menuName == 'CancleContarctReport'){
 
   this.GetCancelContract();
-} 
+}
 else if ( this.menuName.menuName == 'BillingReportInvoiceWise'){
   this.fetch();
 }
+// else if(this.menuName.menuName =='OpenContractReport'){
+//   this.getOpenContractReport();
+// }
 else if (this.menuName.menuName == 'BillingReportContractWise'){
   this.fetchContractInvise();
 }
@@ -119,7 +124,7 @@ else if (this.menuName.menuName == 'BillingReportContractWise'){
   }
   searchFilter(event) {
     const val = event.target.value.toLowerCase();
- 
+
     const temp = this.temp.filter(function (d) {
       return (
         d.autoContractNumber.toLowerCase().indexOf(val) !== -1 ||
@@ -223,17 +228,44 @@ else if (this.menuName.menuName == 'BillingReportContractWise'){
     });
   }
 
-  // getOpenContractReport(){
-  //   let varr = {
-  //     "buyerId": ,
-  //     "sellarId":,
-  //     "autoContractNumber":,
-  //     "startContractDate":,
-  //     "endContractDate":
-  //   }
-  //   this.spinner.show();
-  //   this.http.post('environment.apiUrl')
-  // }
+  getOpenContractReport(){
+    let varr = {
+      "buyerId":this.data3.buyerId ,
+      "sellarId":this.data3.sellarId,
+      "autoContractNumber":this.data3.autoContractNumber,
+      "startContractDate":this.data3.startContractDate,
+      "endContractDate":this.data3.endContractDate
+    }
+    this.spinner.show();
+    this.http.
+      post(`${environment.apiUrl}/api/Reports/OpenContractReport`, varr)
+      .subscribe(
+        res => {
+
+          this.response = res;
+          if (this.response.success == true  && this.response.data.length != 0) {
+            this.toastr.success(this.response.message, 'Message.');
+            this.OpenContract = this.response.data;
+
+
+         this.spinner.hide();
+          }
+          else if(this.OpenContract.length == 0) {
+            this.toastr.error("No such Contract Exist", 'Message.');
+         this.spinner.hide();
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+         this.spinner.hide();
+          }
+
+        }, (err: HttpErrorResponse) => {
+          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+          this.toastr.error(messages.toString(),'Message.');
+          this.spinner.hide();
+
+        });
+  }
 
 
   invoiceExcelFile(){
