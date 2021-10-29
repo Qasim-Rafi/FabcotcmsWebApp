@@ -65,15 +65,20 @@ export class ReportsComponent implements OnInit {
     this.billingReportInvoiceWise.startDate = this.dateformater.toModel(this.billingReportInvoiceWise.startDate)
     this.billingReportInvoiceWise.endDate = this.dateformater.toModel(this.billingReportInvoiceWise.endDate)
 
-this.fetch();
 
 
-  this.fetchContractInvise();
+  
 
-
+if(this.menuName.menuName == 'CancleContarctReport'){
 
   this.GetCancelContract();
-
+} 
+else if ( this.menuName.menuName == 'BillingReportInvoiceWise'){
+  this.fetch();
+}
+else if (this.menuName.menuName == 'BillingReportContractWise'){
+  this.fetchContractInvise();
+}
 
     this.GetBuyersDropdown();
     this.GetSellersDropdown();
@@ -114,7 +119,7 @@ this.fetch();
   }
   searchFilter(event) {
     const val = event.target.value.toLowerCase();
-    // filter our data
+ 
     const temp = this.temp.filter(function (d) {
       return (
         d.autoContractNumber.toLowerCase().indexOf(val) !== -1 ||
