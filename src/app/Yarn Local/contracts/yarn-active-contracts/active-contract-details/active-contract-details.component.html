@@ -1356,7 +1356,9 @@
                                         </dd>
                                         <dd class="col-sm-6" *ngIf = "contractCommissionData.fabCotCommisionUOMName != null">
                     
-                                           {{contractCommissionData.fabCotCommision}} per {{contractCommissionData.fabCotCommisionUOMName}} <span *ngIf = "contractCommissionData.fabcotSideCommAdditionalInfo != null"> {{contractCommissionData.fabcotSideCommAdditionalInfo}}</span>
+                                           {{contractCommissionData.fabCotCommision}} per {{contractCommissionData.fabCotCommisionUOMName}}
+                                           {{contractCommissionData.commissionAmountFabcot}}
+                                           <span *ngIf = "contractCommissionData.fabcotSideCommAdditionalInfo != null"> {{contractCommissionData.fabcotSideCommAdditionalInfo}}</span>
                                         </dd>
                                     </dl>
                                     <dl class="row" *ngIf="loggedInDepartmentName =='Yarn Export' || loggedInDepartmentName == 'Fabric Export'  || loggedInDepartmentName == 'Yarn Import'  ">
