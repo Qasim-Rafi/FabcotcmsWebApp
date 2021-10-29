@@ -79,7 +79,7 @@ else if ( this.menuName.menuName == 'BillingReportInvoiceWise'){
   this.fetch();
 }
 else if(this.menuName.menuName =='OpenContractReport'){
-  this.getOpenContractReport();
+  this.getOpenContractReport2();
 }
 else if (this.menuName.menuName == 'BillingReportContractWise'){
   this.fetchContractInvise();
@@ -229,6 +229,46 @@ else if (this.menuName.menuName == 'BillingReportContractWise'){
   }
 
   getOpenContractReport(){
+    this.rows = [];
+    let varr = {
+      "buyerId":this.data3.buyerId ==undefined ? 0 :this.data3.buyerId,
+      "sellarId":this.data3.sellarId == undefined?0 :this.data3.sellarId,
+      "autoContractNumber":this.data3.autoContractNumber == undefined ? 'string': this.data3.autoContractNumber,
+      "startContractDate":this.data3.startContractDate == undefined? '':this.dateformater.toModel(this.data3.startContractDate),
+      "endContractDate":this.data3.endContractDate == undefined?'':this.dateformater.toModel(this.data3.endContractDate)
+    }
+    this.spinner.show();
+    this.http.
+      post(`${environment.apiUrl}/api/Reports/OpenContractReport`, varr)
+      .subscribe(
+        res => {
+
+          this.response = res;
+          if (this.response.success == true  && this.response.data.length != 0) {
+            this.toastr.success(this.response.message, 'Message.');
+            this.rows = this.response.data;
+
+
+         this.spinner.hide();
+          }
+          else if(this.rows.length == 0) {
+            this.toastr.error("No such Contract Exist", 'Message.');
+         this.spinner.hide();
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+         this.spinner.hide();
+          }
+
+        }, (err: HttpErrorResponse) => {
+          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+          this.toastr.error(messages.toString(),'Message.');
+          this.spinner.hide();
+
+        });
+  }
+  getOpenContractReport2(){
+    this.rows = [];
     let varr = {
       "buyerId":this.data3.buyerId ==undefined ? 0 :this.data3.buyerId,
       "sellarId":this.data3.sellarId == undefined?0 :this.data3.sellarId,
@@ -266,7 +306,6 @@ else if (this.menuName.menuName == 'BillingReportContractWise'){
 
         });
   }
-
 
   invoiceExcelFile(){
     const filtered = this.billingReportInvoiceWise.map(row => ({
