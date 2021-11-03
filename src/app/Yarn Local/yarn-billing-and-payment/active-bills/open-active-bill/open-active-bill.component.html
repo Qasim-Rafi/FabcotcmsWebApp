@@ -54,9 +54,12 @@
                 <div class="col-md-8">
                     <!-- <p class="font float-right clr" *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export'"><strong>Fabcot International </strong>
                     </p> -->
-                    <p class="font float-right clr" ><strong>Fabcot International FZE® </strong>
+                    <p class="font float-right clr" *ngIf = "loggedInDepartmentName == 'Yarn Local'" ><strong>Fabcot International ® </strong>
+                    </p>
+                    <p class="font float-right clr"  *ngIf = "loggedInDepartmentName != 'Yarn Local'"><strong>Fabcot International FZE® </strong>
                     </p>
                 </div>
+                
              
                 <div class="col-md-8">
                     <span class="float-right" *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export'">
