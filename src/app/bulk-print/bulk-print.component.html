@@ -34,14 +34,21 @@
         <div class="panel-heading ">
 
 
-            <div class="row  " *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export'">
+            <div class="row  " *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Local' ">
                 <div class="col-md-3">
                   <img src="/assets/fabcot.png"  class="image">
                 </div>
                     <p class="font clr" ><strong>FABCOT INTERNATIONAL FZE® </strong>
                     </p>
-                   
+           </div>
+
+           <div class="row  " *ngIf = "loggedInDepartmentName == 'Yarn Local'">
+            <div class="col-md-3">
+              <img src="/assets/fabcot.png"  class="image">
             </div>
+                <p class="font clr" ><strong>FABCOT INTERNATIONAL ® </strong>
+                </p>
+       </div>
 
             <div class="row  bottom" *ngIf = "loggedInDepartmentName == 'Fabric Export' ||loggedInDepartmentName == 'Yarn Export'" >
                 <div class="col-md-3">
