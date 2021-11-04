@@ -40,7 +40,7 @@ import {ContractOwnerComponent} from '../../contract-owner/contract-owner.compon
 
 export class ActiveContractDetailComponent implements OnInit {
   dateformater: Dateformater = new Dateformater();
- 
+
   reminderToggle : boolean = false
   rows: any = [];
   rows1: any = [];
@@ -90,7 +90,7 @@ quantitynmbr : number;
   rows5: any = [];
   id: any = {};
   tnaId: any = {};
-  
+
   constructor(
     config: NgbProgressbarConfig,
     private router: Router,
@@ -106,7 +106,7 @@ quantitynmbr : number;
   ngOnInit(): void {
     this.queryParems = this.route.snapshot.queryParams;
     this.contractId = this.queryParems.id;
-   
+
     this.getPreview((data)=>{
       this.preview = data;
     });
@@ -134,9 +134,9 @@ this.getAllItems()
     this.getAllShipmentDates((shipmentData) => {
       this.rows4 = shipmentData;
       for(let i=0 ; i<this.rows4.length; i++){
-           
+
         this.rows4[i].buyerDate = this.rows4[i].buyerDate.split(' ').splice(1,2);
-             
+
            }
       this.shipmentFilter = [...shipmentData];
 
@@ -156,17 +156,17 @@ this.getAllItems()
     });
     this.rows5 = temp;
   }
-  
+
   searchItems(event) {
     const val = event.target.value.toLowerCase();
     const temp = this.ItemFilter.filter(function (d) {
       return (
-      d.description.toLowerCase().indexOf(val) !== -1 || 
+      d.description.toLowerCase().indexOf(val) !== -1 ||
       // d.construction.toLowerCase().indexOf(val) !== -1 ||
       // d.compositionPercentage.toLowerCase().indexOf(val) !== -1 ||
       // d.loomTypeId.toLowerCase().indexOf(val) !== -1 ||
       // d.size.toLowerCase().indexOf(val) !== -1 ||
-      // d.weight.toLowerCase().indexOf(val) !== -1 || 
+      // d.weight.toLowerCase().indexOf(val) !== -1 ||
       // d.itemQuantity.toLowerCase().indexOf(val) !== -1 ||
       // d.contractRate.toLowerCase().indexOf(val) !== -1 ||
       // d.contractCost.toLowerCase().indexOf(val) !== -1 ||
@@ -216,49 +216,49 @@ this.getAllItems()
       .get(`${environment.apiUrl}/api/Contracts/GetAllContractItem/`+ this.contractId)
       .subscribe(res => {
         this.response = res;
-        
+
 
         if (this.response.success == true) {
           this.rows2 = this.response.data
           if(this.response.data.compositionPercentage != "null"){
-            this.items['compositionPercentage'] = this.response.data.compositionPercentage  + "%" 
+            this.items['compositionPercentage'] = this.response.data.compositionPercentage  + "%"
           }
           if(this.response.data.compositionPercentage != "null"){
             this.rows2['compositionPercentage'] = this.response.data.compositionPercentage + "%"
           }
-     
+
           for(let i = 0 ; i<this.response.data.length ; i++){
 
             this.rows2[i].compositionPercentage = this.response.data[i].compositionPercentage + "%"
             if(this.rows2[i].contractUOMUnit == null ){
               this.rows2[i].contractUOMUnit = ''
             }
-          
+
             if(this.response.data[i].contractCurrencyCode == null ){
               this.rows2[i].contractCurrencyCode = ''
             }
             else if(this.rows2[i].contractCurrencyCode == 'PKR'){
-             
+
               this.pakCurrency = "RS"
               this.rows2[i].contractCost  = this.response.data[i].contractCost + "RS"
             }
             else if(this.rows2[i].contractCurrencyCode == 'USD'){
-             
+
               this.usdCurrency = "$"
               this.rows2[i].contractCost  = this.response.data[i].contractCost + "$"
             }
             else if(this.rows2[i].contractCurrencyCode == 'EUR'){
-             
+
               this.rows2[i].contractCost  = this.response.data[i].contractCost + "€"
             }
             else if(this.rows2[i].contractCurrencyCode == 'GBP'){
-             
+
               this.rows2[i].contractCost  = this.response.data[i].contractCost + "£"
             }
   this.spinner.hide();
 
           }
-          this.ItemFilter = [this.rows2]; 
+          this.ItemFilter = [this.rows2];
           // cb(this.items);
         }
         else {
@@ -284,25 +284,25 @@ this.getAllItems()
       .get(`${environment.apiUrl}/api/Contracts/GetContractPreviewById/`+ this.contractId)
       .subscribe(res => {
         this.response = res;
-        
+
 
         if (this.response.success == true) {
           this.preview = this.response.data
           cb(this.preview);
   this.spinner.hide();
-        
+
         }
         else {
           this.toastr.error(this.response.message, 'Message.');
   this.spinner.hide();
-        
+
         }
         // this.spinner.hide();
       }, err => {
         if (err.status == 400) {
           this.toastr.error(err.error.message, 'Message.');;
   this.spinner.hide();
-        
+
         }
         //  this.spinner.hide();
       });
@@ -315,11 +315,11 @@ this.getAllItems()
       .get(`${environment.apiUrl}/api/Contracts/GetAllContractNote/`+ this.contractId)
       .subscribe(res => {
         this.response = res;
-        
+
 
         if (this.response.success == true) {
           this.contractNote = this.response.data
-          this.noteFilter = [this.contractNote]; 
+          this.noteFilter = [this.contractNote];
           cb(this.contractNote);
   this.spinner.hide();
 
@@ -352,23 +352,23 @@ this.getAllItems()
 
         if (this.response.success == true) {
           this.shipment = this.response.data
-         
-          this.shipmentFilter = [this.shipment]; 
+
+          this.shipmentFilter = [this.shipment];
           cb(this.shipment);
   this.spinner.hide();
-        
+
         }
         else {
           this.toastr.error(this.response.message, 'Message.');
   this.spinner.hide();
-        
+
         }
         // this.spinner.hide();
       }, err => {
         if (err.status == 400) {
           this.toastr.error(err.error.message, 'Message.');;
   this.spinner.hide();
-        
+
         }
         //  this.spinner.hide();
       });
@@ -385,21 +385,21 @@ this.getAllItems()
           this.response = res;
           if (this.response.success == true) {
             this.invoiceData = this.response.data;
-            
+
             this.spinner.hide();
-  
+
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
   this.spinner.hide();
-            
+
           }
-  
+
         }, err => {
           if (err.status == 400) {
             this.toastr.error(this.response.message, 'Message.');
   this.spinner.hide();
-          
+
           }
         });
   }
@@ -421,7 +421,7 @@ this.getAllItems()
       position: 'top',
     }).then((result) => {
       if (result.isConfirmed) {
-  
+
  this.spinner.show();
         this.http.delete(`${environment.apiUrl}/api/Contracts/DeleteContractSaleInvoice/` + obj.id )
           .subscribe(
@@ -430,14 +430,14 @@ this.getAllItems()
               if (this.response.success == true) {
                 this.toastr.error(this.response.message, 'Message.');
                 this.getSaleInvoice();
-  
+
  this.spinner.hide();
               }
               else {
                 this.toastr.error(this.response.message, 'Message.');
                 this.spinner.hide();
               }
-  
+
             }, err => {
               if (err.status == 400) {
                 this.toastr.error(this.response.message, 'Message.');
@@ -446,9 +446,9 @@ this.getAllItems()
             });
       }
     })
-  
+
   }
-  
+
 
 
   deleteTnA(id) {
@@ -465,7 +465,7 @@ this.getAllItems()
       position: 'top',
     }).then((result) => {
       if (result.isConfirmed) {
-  
+
  this.spinner.show();
         this.http.delete(`${environment.apiUrl}/api/Contracts/DeleteContractTimeAction/` + id.id)
           .subscribe(
@@ -477,14 +477,14 @@ this.getAllItems()
                   this.rows5 = Tna;
                   // this.listCount= this.rows.length;
                 });
-  
+
  this.spinner.hide();
               }
               else {
                 this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
                 this.spinner.hide();
               }
-  
+
             }, err => {
               if (err.status == 400) {
                 this.toastr.error(this.response.message, 'Message.');
@@ -506,13 +506,13 @@ this.getAllItems()
     this.http.
     put(`${environment.apiUrl}/api/Contracts/ApproveContract/`+this.contractId,varr)
     .subscribe(
-      res=> { 
-  
+      res=> {
+
         this.response = res;
         if (this.response.success == true){
           this.toastr.success(this.response.message, 'Message.');
           this.getContractData()
-        
+
  this.spinner.hide();
         }
         else {
@@ -529,7 +529,7 @@ this.getAllItems()
   }
 
 
-  
+
 
   getContractData() {
     this.spinner.show();
@@ -540,13 +540,13 @@ this.getAllItems()
           if (this.response.success == true) {
             this.contractData = this.response.data;
             this.spinner.hide();
-  
+
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
             this.spinner.hide();
           }
-  
+
         }, err => {
           if (err.status == 400) {
             this.toastr.error(this.response.message, 'Message.');
@@ -554,14 +554,14 @@ this.getAllItems()
           }
         });
   }
-  
-  
-  
+
+
+
 PartiesForm() {
   const modalRef = this.modalService.open(PartiesComponent, { centered: true });
   modalRef.componentInstance.contractId = this.contractId;
   modalRef.result.then((data) => {
-  
+
     // on close
     if (data == true) {
       this.getContractPartiesData();
@@ -575,7 +575,7 @@ contractOwner() {
   const modalRef = this.modalService.open(ContractOwnerComponent, { centered: true });
   modalRef.componentInstance.contractId = this.contractId;
   modalRef.result.then((data) => {
-  
+
     // on close
     if (data == true) {
       this.getContractData();
@@ -595,20 +595,20 @@ getContractPartiesData() {
         if (this.response.success == true) {
           this.contractPartiesData = this.response.data;
   this.spinner.hide();
-          
+
 
         }
         else {
           this.toastr.error(this.response.message, 'Message.');
   this.spinner.hide();
-       
+
         }
 
       }, err => {
         if (err.status == 400) {
           this.toastr.error(this.response.message, 'Message.');
   this.spinner.hide();
-       
+
         }
       });
 }
@@ -645,19 +645,19 @@ getContractProductData() {
         if (this.response.success == true) {
           this.contractProductData = this.response.data;
   this.spinner.hide();
-          
+
         }
         else {
           this.toastr.error(this.response.message, 'Message.');
   this.spinner.hide();
-        
+
         }
 
       }, err => {
         if (err.status == 400) {
           this.toastr.error(this.response.message, 'Message.');
   this.spinner.hide();
-        
+
         }
       });
 }
@@ -671,7 +671,7 @@ QuantityCosting() {
     // on close
     if (data == true) {
       this.getContractCostingData();
-      
+
     }
   }, (reason) => {
     // on dismiss
@@ -691,19 +691,19 @@ getContractCostingData() {
           this.contractCostingData = this.response.data;
           this.quantitynmbr = this.response.data.quantity;
   this.spinner.hide();
-        
+
         }
         else {
           this.toastr.error(this.response.message, 'Message.');
   this.spinner.hide();
-        
+
         }
 
       }, err => {
         if (err.status == 400) {
           this.toastr.error(this.response.message, 'Message.');
   this.spinner.hide();
-        
+
         }
       });
 }
@@ -747,19 +747,19 @@ getContractPaymentData() {
           //   this.contractPaymentData.paymentTermInfo = ""
           // }
   this.spinner.hide();
-          
+
         }
         else {
           this.toastr.error(this.response.message, 'Message.');
   this.spinner.hide();
-        
+
         }
 
       }, err => {
         if (err.status == 400) {
           this.toastr.error(this.response.message, 'Message.');
   this.spinner.hide();
-        
+
         }
       });
 }
@@ -809,7 +809,7 @@ getContractCommisionData(){
         }
         // this.contractCommissionData.agenetName= parseInt(this.contractCommissionData.agenetName);
   this.spinner.hide();
-        
+
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -824,7 +824,7 @@ getContractCommisionData(){
 
       }
     });
-  
+
 }
 
 
@@ -869,12 +869,12 @@ editEmployeeCommission(status , row) {
 
 getAllBenificery() {
   this.spinner.show();
-    
+
   this.http
   .get(`${environment.apiUrl}/api/Contracts/GetAllContractBeneficiary/` + this.contractId)
   .subscribe(res => {
     this.response = res;
-   
+
   if(this.response.success==true)
   {
   this.rows1 =this.response.data;
@@ -975,19 +975,19 @@ getContractRemarkData() {
         if (this.response.success == true) {
           this.contractRemarksData = this.response.data;
   this.spinner.hide();
-          
+
         }
         else {
           this.toastr.error(this.response.message, 'Message.');
   this.spinner.hide();
-        
+
         }
 
       }, err => {
         if (err.status == 400) {
           this.toastr.error(this.response.message, 'Message.');
   this.spinner.hide();
-        
+
         }
       });
 }
@@ -1028,11 +1028,11 @@ getContractLOC() {
           this.contractLOCdata = this.response.data;
 
           }
-         
+
           this.spinner.hide();
 
 
-          
+
         }
         else {
           this.toastr.error(this.response.message, 'Message.');
@@ -1051,7 +1051,7 @@ getContractLOC() {
 
 
 ProductionPlanform() {
-  
+
   const modalRef = this.modalService.open(PRODUCTPLANComponent, { centered: true });
   modalRef.componentInstance.contractId = this.contractId;
 
@@ -1061,7 +1061,7 @@ ProductionPlanform() {
       this.getContractTnA((Tna)=>{
         this.rows5 = Tna;
       });
-    
+
     }
 
   }, (reason) => {
@@ -1172,19 +1172,19 @@ getContractTnA(cb) {
           this.TnaData = this.response.data;
           cb(this.TnaData)
   this.spinner.hide();
-        
+
         }
         else {
           this.toastr.error(this.response.message, 'Message.');
   this.spinner.hide();
-        
+
         }
 
       }, err => {
         if (err.status == 400) {
           this.toastr.error(this.response.message, 'Message.');
   this.spinner.hide();
-        
+
         }
       });
 }
@@ -1203,7 +1203,7 @@ EditTna(row) {
       this.getContractTnA((Tna)=>{
         this.rows5 = Tna;
         this.TnaFilter = [...Tna];
-  
+
       });
 
 
@@ -1222,7 +1222,7 @@ TnaHistory(row) {
       this.getContractTnA((Tna)=>{
         this.rows5 = Tna;
         this.TnaFilter = [...Tna];
-  
+
       });
 
 
@@ -1239,11 +1239,11 @@ getAllInvoiceItems(cb) {
     .get(`${environment.apiUrl}/api/Contracts/GetAllSaleInvoiceItem/`+ this.contractId)
     .subscribe(res => {
       this.response = res;
-      
+
 
       if (this.response.success == true) {
         this.invoiceItem = this.response.data
-        this.invoiceItemFilter = [this.invoiceItem]; 
+        this.invoiceItemFilter = [this.invoiceItem];
         cb(this.invoiceItem);
   this.spinner.hide();
 
@@ -1270,7 +1270,7 @@ showhistorycontract() {
   modalRef.result.then((data) => {
     // on close
     if (data == true) {
- 
+
 
     }
   }, (reason) => {
@@ -1352,7 +1352,7 @@ deleteInvoiceItem(id) {
               this.getAllInvoiceItems((invoiceItem) => {
                 this.rows6 = invoiceItem;
                 this.invoiceItemFilter = [...invoiceItem];
-          
+
               });
 
 
@@ -1388,14 +1388,14 @@ addItems(check, name) {
     if (data == true) {
       // this.getAllItems((itemsData) => {
       //   this.rows2 = itemsData;
-       
+
       // });
       this.getAllItems();
       this.getContractData();
       this.getPreview((data)=>{
         this.preview = data;
       });
-  
+
 
 
     }
@@ -1546,11 +1546,11 @@ addShipmentTimeline(check) {
       this.getAllShipmentDates((shipmentData) => {
         this.rows4 = shipmentData;
         this.shipmentFilter = [...shipmentData];
-  
+
       });
     // this.getContractData();
 
-  
+
 
 
     }
@@ -1574,7 +1574,7 @@ EditShipmentTimeline(check , row) {
       this.getAllShipmentDates((shipmentData) => {
         this.rows4 = shipmentData;
         this.shipmentFilter = [...shipmentData];
-  
+
       });
     // this.getContractData();
 
@@ -1639,7 +1639,7 @@ deleteContract(){
     cancelButtonColor: '#dae0e5',
     cancelButtonText: 'No',
     confirmButtonText: 'Yes',
-    reverseButtons: true, 
+    reverseButtons: true,
     position: 'top',
   }).then((result) => {
     if (result.isConfirmed) {
@@ -1648,19 +1648,19 @@ deleteContract(){
         delete(`${environment.apiUrl}/api/Contracts/DeleteContract/`+ this.queryParems.id )
         .subscribe(
           res => {
-  
+
             this.response = res;
             if (this.response.success == true) {
               this.toastr.error(this.response.message, 'Message.');
               this.router.navigate(['/contract/active-contract']);
-             
+
 this.spinner.hide();
             }
             else {
               this.toastr.error(this.response.message, 'Message.');
               this.spinner.hide();
             }
-  
+
           }, err => {
             if (err.status == 400) {
               this.toastr.error(this.response.message, 'Message.');
@@ -1683,31 +1683,31 @@ this.spinner.hide();
         modalRef.result.then((data) => {
           // on close
           if (data == true) {
-          
+
             this.getContractData();
-    
+
           }
         }, (reason) => {
           // on dismiss
         });
       }
-    
-    
+
+
       statusOpen()
-      { 
+      {
         this.spinner.show();
         let varr = {
-        
+
           "reason":"Open",
           "contractId": this.contractId,
           "status": "Open"
         }
-        
+
         this.http.
         put(`${environment.apiUrl}/api/Contracts/UpdateContractStatus`, varr)
         .subscribe(
-          res=> { 
-      
+          res=> {
+
             this.response = res;
             if (this.response.success == true){
               this.toastr.success(this.response.message, 'Message.');
@@ -1715,13 +1715,13 @@ this.spinner.hide();
 
               this.spinner.hide();
 
-           
+
             }
             else {
               this.toastr.error('Something went Worng', 'Message.');
               this.spinner.hide();
                 }
-    
+
           }, err => {
             if (err.status == 400) {
               this.toastr.error('Something went Worng', 'Message.');
@@ -1729,15 +1729,15 @@ this.spinner.hide();
             }
           });
       }
-    
 
-      
+
+
 
 
       AddReminder() {
         this.spinner.show();
             this.data.contractUpDate = this.dateformater.toModel(this.data.contractUpDate);
-    
+
             if( this.data.contractUpDate == "undefined-undefined-undefined"){
               this.data.contractUpDate = ""
 
@@ -1750,12 +1750,12 @@ this.spinner.hide();
               "contractId": this.contractId,
               "contractUpDate": this.data.contractUpDate
             }
-        
+
             this.http.
               post(`${environment.apiUrl}/api/Contracts/AddContractFollowUp`, varr)
               .subscribe(
                 res => {
-        
+
                   this.response = res;
                   if (this.response.success == true) {
                     this.toastr.success(this.response.message, 'Message.');
@@ -1766,14 +1766,14 @@ this.spinner.hide();
                     this.toastr.error(this.response.message, 'Message.');
                     this.spinner.hide();
                   }
-        
+
                 }, err => {
                   if (err.status == 400) {
                     this.toastr.error(this.response.message, 'Message.');
                     this.spinner.hide();
                   }
                 });
-    
+
           }
 
 
@@ -1781,12 +1781,12 @@ this.spinner.hide();
           {
             this.spinner.show();
             let varr=  {}
-        
+
             this.http.
             put(`${environment.apiUrl}/api/Contracts/ContractReadyForBill/`+this.contractId,varr)
             .subscribe(
-              res=> { 
-          
+              res=> {
+
                 this.response = res;
                 if (this.response.success == true){
                   this.toastr.success(this.response.message, 'Message.');
@@ -1797,7 +1797,7 @@ this.spinner.hide();
                   this.toastr.error(this.response.message, 'Message.');
                   this.spinner.hide();
                     }
-        
+
               }, (err: HttpErrorResponse) => {
                 const messages = this.service.extractErrorMessagesFromErrorResponse(err);
                 this.toastr.error(messages.toString(), 'Message.');
@@ -1817,24 +1817,24 @@ this.spinner.hide();
                   if (this.response.success == true) {
                     this.reminderData = this.response.data;
             this.spinner.hide();
-                    
-          
+
+
                   }
                   else {
                     this.toastr.error(this.response.message, 'Message.');
             this.spinner.hide();
-                  
+
                   }
-          
+
                 }, err => {
                   if (err.status == 400) {
                     this.toastr.error(this.response.message, 'Message.');
             this.spinner.hide();
-                 
+
                   }
                 });
           }
-          
+
           deleteReminder(objReminder) {
             Swal.fire({
               title: GlobalConstants.deleteTitle, //'Are you sure?',
@@ -1845,7 +1845,7 @@ this.spinner.hide();
               cancelButtonColor: '#dae0e5',
               cancelButtonText: 'No',
               confirmButtonText: 'Yes',
-              reverseButtons: true, 
+              reverseButtons: true,
               position: 'top',
             }).then((result) => {
               if (result.isConfirmed) {
@@ -1854,36 +1854,36 @@ this.spinner.hide();
                   delete(`${environment.apiUrl}/api/Contracts/DeleteContractFollowUp/`+ objReminder.id )
                   .subscribe(
                     res => {
-            
+
                       this.response = res;
                       if (this.response.success == true) {
                         this.toastr.error(this.response.message, 'Message.');
                     this.getAllReminder();
-                       
+
  this.spinner.hide();
                       }
                       else {
                         this.toastr.error(this.response.message, 'Message.');
                         this.spinner.hide();
                       }
-            
+
                     }, err => {
                       if (err.status == 400) {
                         this.toastr.error(this.response.message, 'Message.');
                         this.spinner.hide();
                       }
                     });
-        
+
               }
             })
-        
+
           }
-    
+
           print() {
             this.getPreview((data)=>{
               this.preview = data;
             });
-          
+
             let docDefinition = {
               pageSize: 'A4',
               pageOrientation: 'LETTER',
@@ -1893,7 +1893,7 @@ this.spinner.hide();
               },
               content: [
                 {
-                 
+
                   table: {
                     headerRows: 1,
                     widths: ['100%'],
@@ -1903,16 +1903,16 @@ this.spinner.hide();
                       text: 'FABCOT INTERNATIONAL'
                     }],
                       ]
-                   
+
                   }
-        
+
                 },
                 {
                   layout:'noBorders',
                   margin: [10 , 30 , 0 , 0],
                   table:{headerRows: 1 , widths:['20%' ],
                 body: [
-                  [{text:'FabCot International'  , style:'propertyValue'} 
+                  [{text:'FabCot International'  , style:'propertyValue'}
                     ],] }
                 },
                 {
@@ -1920,10 +1920,10 @@ this.spinner.hide();
                   margin: [10 , 0 , 0 , 0],
                   table:{headerRows: 1 , widths:['20%' ],
                 body: [
-                  [{text:'133 Aurangzeb Block'  , style:'propertyValue'} 
+                  [{text:'133 Aurangzeb Block'  , style:'propertyValue'}
                     ],] }
                 },
-        
+
                 {
                   layout:'noBorders',
                   margin: [10 , 0 , 0 , 0],
@@ -1933,54 +1933,54 @@ this.spinner.hide();
                 },
                 {
                   margin: [300 , -40 , 0 , 0],
-                 
+
                   table: {
                     headerRows: 1,
                     widths: ['50%','50%'],
                     body: [
                       [{text:'Indent Number' , style: 'tableheader'}, {text:'Indent Date' , style: 'tableheader'}],
                       [ {text:this.contractData['autoContractNumber']  , style:'propertyValue'  }  , {text:this.contractData['createdDateTime'] , style:'propertyValue' }]
-                    
+
                     ]
                   }
                 },
                 { margin:[200 , 6 , 0 , 0],
                   text: this.contractCommissionData['buyerSideCommission'] == 0 ? " " : "Commission Payable to Fabcot (Buyer Side):"  , style:'propertyValue2',
-                  
+
                 },
                 { margin:[700 , -11 , 0 , 0],
                   text: this.contractCommissionData['buyerSideCommission'] == 0 ?  " " : this.contractCommissionData['buyerSideCommission']  , style:'propertyValue3',
-                  
+
                 },
                 { margin:[300 , 0 , 0 , 0],
                   text: this.contractCommissionData['sellerSideCommission'] == 0 ? " " : "Commission Payable to Fabcot (Seller Side):"  , style:'propertyValue2',
-                  
+
                 },
                 { margin:[500 , -11 , 0 , 0],
                   text: this.contractCommissionData['sellerSideCommission'] == 0 ? " " : this.contractCommissionData['sellerSideCommission']  , style:'propertyValue3',
-                  
+
                 },
                 {
                   margin: [0 , 17 , 0 , 0],
-                 
+
                   table: {
                     headerRows: 1,
                     widths: ['30%'],
                     body: [
                       [{text:'Supplier ' , style: 'tableheader'}
-                    
+
                     ],
                    [{text:this.contractData['sellerName']   , style:'propertyValue'},
                   ],
                   [{ text:this.preview['sellerBillingAdress']   , style:'propertyValue'}]
-                    
+
                     ]
                   }
                 },
-            
+
                 {
                   margin: [300 , -75 , 0 , 0],
-                 
+
                   table: {
                     headerRows: 1,
                     widths: ['100%'],
@@ -1988,20 +1988,20 @@ this.spinner.hide();
                       [{text:'CUSTOMER' , style: 'tableheader'}],
                       [ {text:this.contractData['buyerName'] , style:'propertyValue'  } ],
                       [{ text:this.preview['buyerBillingAdress']   , style:'propertyValue'}]
-                    ] 
+                    ]
                   }
                 },
                 {
                   margin: [300 , 23 , 0 , 0],
-                 
+
                   table: {
                     headerRows: 1,
                     widths: ['100%'],
                     body: [
                       [{text:'FORWARDED/SHIPPING LINE' , style: 'tableheader'}]
-                     
-                    
-                    ] 
+
+
+                    ]
                   }
                 },
                 {
@@ -2020,9 +2020,9 @@ this.spinner.hide();
                       {text:this.rows4.map((row=>row.buyerDate[0] +"      ")) , style:'propertyValue'   } ,
                       {text:this.rows4[0].shipmentMode  , style:'propertyValue'   } ,
                       {text:this.contractPaymentData['paymentTermName'] + this.contractPaymentData['paymentTermDays'] + this.contractPaymentData['paymentTermInfo'] , style:'propertyValue'   }   ]
-                     
-                    
-                    ] 
+
+
+                    ]
                   }
                 },
                 {
@@ -2038,27 +2038,27 @@ this.spinner.hide();
                       {text:'GSM/Weight' , style: 'tableheader2'},
                       {text:'Color' , style: 'tableheader2'},
                       {text:'Quantity' , style: 'tableheader2'},
-                     
+
                       {text:'Amount' , style: 'tableheader2'},
                       ],
-                  
+
                     ...this.rows2.map((row=>
                       [{text:row.description , style:'propertyValue'}, {text:row.compositionPercentage+ " " + row.compositionFebricTypeName+ " " +row.compositionAdditionalInfo , style:'propertyValue'} ,
                          {text:row.construction , style:'propertyValue'},{text:row.size , style:'propertyValue'}, {text:row.weight , style:'propertyValue'} , {text:row.colorName , style:'propertyValue'} ,
                          { text:row.itemQuantity + row.itemUOMUnit , style:'propertyValue'} ,
-                      
+
                           {text:row.contractCost, style:'propertyValue'} ,
-                   
+
                         ]
                       )),
-                  
-                   
+
+
                     ]
 
                   }
                 },
                 {
-                 
+
                   table: {
                     headerRows: 1,
                     widths: ['72.55%' , '9%' , '9%'  ],
@@ -2067,25 +2067,25 @@ this.spinner.hide();
                       {text:this.preview['enquiryItemQuantityTotal'] , style: 'tableheader3'},
                       {text:this.preview['enquiryItemAmountTotal'] , style: 'tableheader3'},
                       ]
-                     
-                    
-                    ] 
+
+
+                    ]
                   }
                 },
                 { margin:[20 , 60 , 0 , 0],
-                  
+
                   text:'Terms & Conditions'   , style:'propertyValue4',
-                  
+
                 },
                 { margin:[20 , 5 , 0 , 0],
                   text:this.contractRemarksData['otherConditionRemarks']   , style:'propertyValue3',
-                  
+
                 },
                 { margin:[20 , 30 , 0 , 0],
                   text:'For Fabcot International'   , style:'propertyValue4',
-                  
+
                 },
-              
+
               ],
               styles: {
                 heading: {
@@ -2095,11 +2095,11 @@ this.spinner.hide();
                   color: '#4d4b4b',
                   alignment: 'center',
                   margin : 4,
-                
-                  
+
+
                  },
                 commonTable:{
-                  margin: [0 , 25 , 0 , 0]     
+                  margin: [0 , 25 , 0 , 0]
                 },
                 propertyName:{
                   alignment: 'center',
@@ -2108,30 +2108,30 @@ this.spinner.hide();
                    margin:2
                 },
                 propertyValue:{
-                  alignment: 'center',  
+                  alignment: 'center',
                   fontSize: 9,
                   margin:2
-        
+
                 },
                 propertyValue2:{
-                  alignment: 'left',  
+                  alignment: 'left',
                   fontSize: 10,
                   margin:2,
                   bold:true
-        
+
                 },
                 propertyValue3:{
-                  alignment: 'left',  
+                  alignment: 'left',
                   fontSize: 10,
                   margin:2,
-                 
+
                 },
                 propertyValue4:{
-                  alignment: 'left',  
+                  alignment: 'left',
                   fontSize: 10,
                   margin:2,
-                  
-                 
+
+
                 },
                 tableheader: {
                   fillColor: '#f3f3f4',
@@ -2140,7 +2140,7 @@ this.spinner.hide();
                   color: '#4d4b4b',
                   alignment: 'center',
                   margin:3
-                
+
                  },
                  tableheader2: {
                   fillColor: '#f3f3f4',
@@ -2149,7 +2149,7 @@ this.spinner.hide();
                   color: '#4d4b4b',
                   alignment: 'left',
                   margin:3
-                
+
                  },
                  tableheader3: {
                   fillColor: '#f3f3f4',
@@ -2158,15 +2158,15 @@ this.spinner.hide();
                   color: '#4d4b4b',
                   alignment: 'center',
                   margin:3
-                
+
                  }
               }
             };
             pdfMake.createPdf(docDefinition).print();
-        
+
           }
-          
-        
+
+
           printB2() {
             let docDefinition = {
               pageSize: 'A4',
@@ -2177,7 +2177,7 @@ this.spinner.hide();
               },
               content: [
                 {
-                 
+
                   table: {
                     headerRows: 1,
                     widths: ['100%'],
@@ -2187,16 +2187,16 @@ this.spinner.hide();
                       text: 'FABCOT INTERNATIONAL'
                     }],
                       ]
-                   
+
                   }
-        
+
                 },
                 {
                   layout:'noBorders',
                   margin: [10 , 30 , 0 , 0],
                   table:{headerRows: 1 , widths:['20%' ],
                 body: [
-                  [{text:'FabCot International'  , style:'propertyValue'} 
+                  [{text:'FabCot International'  , style:'propertyValue'}
                     ],] }
                 },
                 {
@@ -2204,10 +2204,10 @@ this.spinner.hide();
                   margin: [10 , 0 , 0 , 0],
                   table:{headerRows: 1 , widths:['20%' ],
                 body: [
-                  [{text:'133 Aurangzeb Block'  , style:'propertyValue'} 
+                  [{text:'133 Aurangzeb Block'  , style:'propertyValue'}
                     ],] }
                 },
-        
+
                 {
                   layout:'noBorders',
                   margin: [10 , 0 , 0 , 0],
@@ -2217,58 +2217,58 @@ this.spinner.hide();
                 },
                 {
                   margin: [300 , -40 , 0 , 0],
-                 
+
                   table: {
                     headerRows: 1,
                     widths: ['50%','50%'],
                     body: [
                       [{text:'Indent Number' , style: 'tableheader'}, {text:'Indent Date' , style: 'tableheader'}],
                       [ {text:this.contractData['autoContractNumber']  , style:'propertyValue'  }  , {text:this.contractData['createdDateTime'] , style:'propertyValue' }]
-                    
+
                     ]
                   }
                 },
                 { margin:[300 , 6 , 0 , 0],
                   text: this.contractCommissionData['buyerSideCommission'] == 0 ? " " : "Commission Payable to Fabcot (Buyer Side):"  , style:'propertyValue2',
 
-                  
+
                 },
                 { margin:[500 , -11 , 0 , 0],
                   text: this.contractCommissionData['buyerSideCommission'] == 0 ?  " " : this.contractCommissionData['buyerSideCommission']  , style:'propertyValue3',
 
-                  
+
                 },
                 { margin:[300 , 0 , 0 , 0],
                   text: this.contractCommissionData['sellerSideCommission'] == 0 ? " " : "Commission Payable to Fabcot (Seller Side):"  , style:'propertyValue2',
 
-                  
+
                 },
                 { margin:[500 , -11 , 0 , 0],
                   text: this.contractCommissionData['sellerSideCommission'] == 0 ? " " : this.contractCommissionData['sellerSideCommission']  , style:'propertyValue3',
 
-                  
+
                 },
                 {
                   margin: [0 , 17 , 0 , 0],
-                 
+
                   table: {
                     headerRows: 1,
                     widths: ['30%'],
                     body: [
                       [{text:'Supplier ' , style: 'tableheader'}
-                    
+
                     ],
                    [{text:this.contractData['sellerName']   , style:'propertyValue'},
                   ],
                   [{ text:this.preview['sellerBillingAdress']   , style:'propertyValue'}]
-                    
+
                     ]
                   }
                 },
-            
+
                 {
                   margin: [300 , -75 , 0 , 0],
-                 
+
                   table: {
                     headerRows: 1,
                     widths: ['100%'],
@@ -2276,20 +2276,20 @@ this.spinner.hide();
                       [{text:'CUSTOMER' , style: 'tableheader'}],
                       [ {text:this.contractData['buyerName'] , style:'propertyValue'  } ],
                       [{ text:this.preview['buyerBillingAdress']   , style:'propertyValue'}]
-                    ] 
+                    ]
                   }
                 },
                 {
                   margin: [300 , 23 , 0 , 0],
-                 
+
                   table: {
                     headerRows: 1,
                     widths: ['100%'],
                     body: [
                       [{text:'FORWARDED/SHIPPING LINE' , style: 'tableheader'}]
-                     
-                    
-                    ] 
+
+
+                    ]
                   }
                 },
                 {
@@ -2308,9 +2308,9 @@ this.spinner.hide();
                       {text:this.rows4.map((row=>row.buyerDate[0] +"      ")) , style:'propertyValue'   } ,
                       {text:this.rows4[0].shipmentMode  , style:'propertyValue'   } ,
                       {text:this.contractPaymentData['paymentTermName'] + this.contractPaymentData['paymentTermDays'] + this.contractPaymentData['paymentTermInfo'] , style:'propertyValue'   }   ]
-                     
-                    
-                    ] 
+
+
+                    ]
                   }
                 },
                 {
@@ -2326,56 +2326,56 @@ this.spinner.hide();
                       {text:'GSM/Weight' , style: 'tableheader2'},
                       {text:'Color' , style: 'tableheader2'},
                       {text:'Quantity' , style: 'tableheader2'},
-                      
+
                       {text:'Amount' , style: 'tableheader2'},
                       ],
-                  
+
                     ...this.rows2.map((row=>
                       [{text:row.description , style:'propertyValue'}, {text:row.compositionPercentage+" " + row.compositionFebricTypeName+ " "+row.compositionAdditionalInfo , style:'propertyValue'} ,
                          {text:row.construction , style:'propertyValue'},{text:row.size , style:'propertyValue'}, {text:row.weight , style:'propertyValue'} , {text:row.colorName , style:'propertyValue'} ,
                          { text:row.itemQuantity + row.itemUOMUnit , style:'propertyValue'} ,
-                         
-                          {text:row.contractCost, style:'propertyValue'} 
-                   
+
+                          {text:row.contractCost, style:'propertyValue'}
+
                         ]
                       )),
-                     
-                   
+
+
                     ]
 
                   }
                 },
                 {
-                 
+
                   table: {
                     headerRows: 1,
                     widths: ['72.55%' , '9%' , '8.75%' ],
                     body: [
                       [{text:'Total' , style: 'tableheader3'},
                       {text:this.preview['enquiryItemQuantityTotal'] , style: 'tableheader3'},
-                     
+
 
                       {text:this.preview['enquiryItemAmountTotal'] , style: 'tableheader3'},
                       ]
-                     
-                    
-                    ] 
+
+
+                    ]
                   }
                 },
                 { margin:[20 , 60 , 0 , 0],
-                  
+
                   text:'Terms & Conditions'   , style:'propertyValue4',
-                  
+
                 },
                 { margin:[20 , 5 , 0 , 0],
                   text:this.contractRemarksData['otherConditionRemarks']   , style:'propertyValue3',
-                  
+
                 },
                 { margin:[20 , 30 , 0 , 0],
                   text:'For Fabcot International'   , style:'propertyValue4',
-                  
+
                 },
-              
+
               ],
               styles: {
                 heading: {
@@ -2385,11 +2385,11 @@ this.spinner.hide();
                   color: '#4d4b4b',
                   alignment: 'center',
                   margin : 4,
-                
-                  
+
+
                  },
                 commonTable:{
-                  margin: [0 , 25 , 0 , 0]     
+                  margin: [0 , 25 , 0 , 0]
                 },
                 propertyName:{
                   alignment: 'center',
@@ -2398,30 +2398,30 @@ this.spinner.hide();
                    margin:2
                 },
                 propertyValue:{
-                  alignment: 'center',  
+                  alignment: 'center',
                   fontSize: 9,
                   margin:2
-        
+
                 },
                 propertyValue2:{
-                  alignment: 'left',  
+                  alignment: 'left',
                   fontSize: 10,
                   margin:2,
                   bold:true
-        
+
                 },
                 propertyValue3:{
-                  alignment: 'left',  
+                  alignment: 'left',
                   fontSize: 10,
                   margin:2,
-                 
+
                 },
                 propertyValue4:{
-                  alignment: 'left',  
+                  alignment: 'left',
                   fontSize: 10,
                   margin:2,
-                  
-                 
+
+
                 },
                 tableheader: {
                   fillColor: '#f3f3f4',
@@ -2430,7 +2430,7 @@ this.spinner.hide();
                   color: '#4d4b4b',
                   alignment: 'center',
                   margin:3
-                
+
                  },
                  tableheader2: {
                   fillColor: '#f3f3f4',
@@ -2439,7 +2439,7 @@ this.spinner.hide();
                   color: '#4d4b4b',
                   alignment: 'left',
                   margin:3
-                
+
                  },
                  tableheader3: {
                   fillColor: '#f3f3f4',
@@ -2448,14 +2448,14 @@ this.spinner.hide();
                   color: '#4d4b4b',
                   alignment: 'center',
                   margin:3
-                
+
                  }
               }
             };
             pdfMake.createPdf(docDefinition).print();
-        
+
           }
-                
+
           printS() {
             let docDefinition = {
               pageSize: 'A4',
@@ -2466,7 +2466,7 @@ this.spinner.hide();
               },
               content: [
                 {
-                 
+
                   table: {
                     headerRows: 1,
                     widths: ['100%'],
@@ -2476,27 +2476,27 @@ this.spinner.hide();
                       text: 'FABCOT INTERNATIONAL'
                     }],
                       ]
-                   
+
                   }
-        
+
                 },
                 {
                   layout:'noBorders',
                   margin: [10 , 30 , 0 , 0],
                   table:{headerRows: 1 , widths:['20%' ],
                 body: [
-                  [{text:'FabCot International'  , style:'propertyValue'} 
+                  [{text:'FabCot International'  , style:'propertyValue'}
                     ],] }
-                },   
+                },
                 {
                   layout:'noBorders',
                   margin: [10 , 0 , 0 , 0],
                   table:{headerRows: 1 , widths:['20%' ],
                 body: [
-                  [{text:'133 Aurangzeb Block'  , style:'propertyValue'} 
+                  [{text:'133 Aurangzeb Block'  , style:'propertyValue'}
                     ],] }
                 },
-        
+
                 {
                   layout:'noBorders',
                   margin: [10 , 0 , 0 , 0],
@@ -2506,56 +2506,56 @@ this.spinner.hide();
                 },
                 {
                   margin: [300 , -40 , 0 , 0],
-                 
+
                   table: {
                     headerRows: 1,
                     widths: ['50%','50%'],
                     body: [
                       [{text:'Indent Number' , style: 'tableheader'}, {text:'Indent Date' , style: 'tableheader'}],
                       [ {text:this.contractData['autoContractNumber']  , style:'propertyValue'  }  , {text:this.contractData['createdDateTime'] , style:'propertyValue' }]
-                    
+
                     ]
                   }
                 },
                 { margin:[300 , 6 , 0 , 0],
                   text:this.contractCommissionData['buyerSideCommission'] == 0 ? " " : "Commission Payable to Fabcot (Buyer Side):"  , style:'propertyValue2',
-                  
+
                 },
                 { margin:[500 , -11 , 0 , 0],
                   text: this.contractCommissionData['buyerSideCommission'] == 0 ?  " " : this.contractCommissionData['buyerSideCommission']  , style:'propertyValue3',
-                  
+
                 },
                 { margin:[300 , 0 , 0 , 0],
                   text: this.contractCommissionData['sellerSideCommission'] == 0 ? " " : "Commission Payable to Fabcot (Seller Side):"  , style:'propertyValue2',
 
-                  
+
                 },
                 { margin:[500 , -11 , 0 , 0],
                   text: this.contractCommissionData['sellerSideCommission'] == 0 ? " " : this.contractCommissionData['sellerSideCommission']  , style:'propertyValue3',
 
-                  
+
                 },
                 {
                   margin: [0 , 17 , 0 , 0],
-                 
+
                   table: {
                     headerRows: 1,
                     widths: ['30%'],
                     body: [
                       [{text:'Supplier ' , style: 'tableheader'}
-                    
+
                     ],
                    [{text:this.contractData['sellerName']   , style:'propertyValue'},
                   ],
                   [{ text:this.preview['sellerBillingAdress']   , style:'propertyValue'}]
-                    
+
                     ]
                   }
                 },
-            
+
                 {
                   margin: [300 , -75 , 0 , 0],
-                 
+
                   table: {
                     headerRows: 1,
                     widths: ['100%'],
@@ -2563,20 +2563,20 @@ this.spinner.hide();
                       [{text:'CUSTOMER' , style: 'tableheader'}],
                       [ {text:this.contractData['buyerName'] , style:'propertyValue'  } ],
                       [{ text:this.preview['buyerBillingAdress']   , style:'propertyValue'}]
-                    ] 
+                    ]
                   }
                 },
                 {
                   margin: [300 , 23 , 0 , 0],
-                 
+
                   table: {
                     headerRows: 1,
                     widths: ['100%'],
                     body: [
                       [{text:'FORWARDED/SHIPPING LINE' , style: 'tableheader'}]
-                     
-                    
-                    ] 
+
+
+                    ]
                   }
                 },
                 {
@@ -2595,9 +2595,9 @@ this.spinner.hide();
                       {text:this.rows4.map((row=>row.buyerDate[0] +"      ")) , style:'propertyValue'   } ,
                       {text:this.rows4[0].shipmentMode  , style:'propertyValue'   } ,
                       {text:this.contractPaymentData['paymentTermName'] + this.contractPaymentData['paymentTermDays'] + this.contractPaymentData['paymentTermInfo'] , style:'propertyValue'   }   ]
-                     
-                    
-                    ] 
+
+
+                    ]
                   }
                 },
                 {
@@ -2607,62 +2607,62 @@ this.spinner.hide();
                     widths: ['15%'  , '15%' , '12%' , '10%' , '10%','10%'],
                     body: [
                       [{text:'Item' , style: 'tableheader2'},
-                  
+
                       {text:'Sizes' , style: 'tableheader2'},
                       {text:'GSM/Weight' , style: 'tableheader2'},
                       {text:'Color' , style: 'tableheader2'},
                       {text:'Quantity' , style: 'tableheader2'},
-                     
+
                       {text:'Amount' , style: 'tableheader2'},
                       ],
-                  
+
                     ...this.rows2.map((row=>
-                      [{text:row.description , style:'propertyValue'},{text:row.size , style:'propertyValue'}, 
+                      [{text:row.description , style:'propertyValue'},{text:row.size , style:'propertyValue'},
                       {text:row.weight , style:'propertyValue'} ,
                        {text:row.colorName , style:'propertyValue'} ,
                          { text:row.itemQuantity + row.itemUOMUnit , style:'propertyValue'} ,
-                          // {text:row.contractRate+" " + row.contractCurrencyCode+" " + row.contractUOMUnit , style:'propertyValue'} , 
+                          // {text:row.contractRate+" " + row.contractCurrencyCode+" " + row.contractUOMUnit , style:'propertyValue'} ,
                           {text:row.contractCost, style:'propertyValue'} , {text:row.commission , style:'propertyValue'},
-                   
+
                         ]
                       )),
-                     
-                   
+
+
                     ]
 
                   }
                 },
                 {
-                 
+
                   table: {
                     headerRows: 1,
                     widths: ['72.55%' , '9%', '8.5%' ],
                     body: [
                       [{text:'Total' , style: 'tableheader3'},
                       {text:this.preview['enquiryItemQuantityTotal'] , style: 'tableheader3'},
-                     
+
 
                       {text:this.preview['enquiryItemAmountTotal'] , style: 'tableheader3'},
                     ]
-                     
-                    
-                    ] 
+
+
+                    ]
                   }
                 },
                 { margin:[20 , 60 , 0 , 0],
-                  
+
                   text:'Terms & Conditions'   , style:'propertyValue4',
-                  
+
                 },
                 { margin:[20 , 5 , 0 , 0],
                   text:this.contractRemarksData['otherConditionRemarks']   , style:'propertyValue3',
-                  
+
                 },
                 { margin:[20 , 30 , 0 , 0],
                   text:'For Fabcot International'   , style:'propertyValue4',
-                  
+
                 },
-              
+
               ],
               styles: {
                 heading: {
@@ -2672,11 +2672,11 @@ this.spinner.hide();
                   color: '#4d4b4b',
                   alignment: 'center',
                   margin : 4,
-                
-                  
+
+
                  },
                 commonTable:{
-                  margin: [0 , 25 , 0 , 0]     
+                  margin: [0 , 25 , 0 , 0]
                 },
                 propertyName:{
                   alignment: 'center',
@@ -2685,30 +2685,30 @@ this.spinner.hide();
                    margin:2
                 },
                 propertyValue:{
-                  alignment: 'center',  
+                  alignment: 'center',
                   fontSize: 9,
                   margin:2
-        
+
                 },
                 propertyValue2:{
-                  alignment: 'left',  
+                  alignment: 'left',
                   fontSize: 10,
                   margin:2,
                   bold:true
-        
+
                 },
                 propertyValue3:{
-                  alignment: 'left',  
+                  alignment: 'left',
                   fontSize: 10,
                   margin:2,
-                 
+
                 },
                 propertyValue4:{
-                  alignment: 'left',  
+                  alignment: 'left',
                   fontSize: 10,
                   margin:2,
-                  
-                 
+
+
                 },
                 tableheader: {
                   fillColor: '#f3f3f4',
@@ -2717,7 +2717,7 @@ this.spinner.hide();
                   color: '#4d4b4b',
                   alignment: 'center',
                   margin:3
-                
+
                  },
                  tableheader2: {
                   fillColor: '#f3f3f4',
@@ -2726,7 +2726,7 @@ this.spinner.hide();
                   color: '#4d4b4b',
                   alignment: 'left',
                   margin:3
-                
+
                  },
                  tableheader3: {
                   fillColor: '#f3f3f4',
@@ -2735,12 +2735,12 @@ this.spinner.hide();
                   color: '#4d4b4b',
                   alignment: 'center',
                   margin:3
-                
+
                  }
               }
             };
             pdfMake.createPdf(docDefinition).print();
-        
+
           }
-          
+
 }

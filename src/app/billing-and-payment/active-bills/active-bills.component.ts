@@ -13,7 +13,7 @@ import { ClipboardService } from 'ngx-clipboard';
 import pdfMake from "pdfmake/build/pdfmake";
 import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
 import { NgxSpinnerService } from 'ngx-spinner';
-
+import { Dateformater } from 'src/app/shared/dateformater';
 @Component({
   selector: 'app-active-bills',
   templateUrl: './active-bills.component.html',
@@ -21,11 +21,11 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class ActiveBillsComponent implements OnInit {
   selected: any = [];
-
+  dateformater: Dateformater = new Dateformater();
   columns: any = [];
   response: any = [];
   printResponse: any = [];
-  
+  data2:any = []
   copyData: any = [];
   listCount: number;
   rows: any = [];
@@ -52,7 +52,7 @@ export class ActiveBillsComponent implements OnInit {
     ) { }
 
     navigatePaymentForm(statusCheck , obj ) {
-      this.router.navigate(['/billing-and-payment/payment-form'], { queryParams: { statusCheck: statusCheck 
+      this.router.navigate(['/billing-and-payment/payment-form'], { queryParams: { statusCheck: statusCheck
          , id:obj.id , contractId:obj.contractId}  });
    };
     navigateOpenBill(obj) {
@@ -62,16 +62,16 @@ export class ActiveBillsComponent implements OnInit {
       this.router.navigate(['/contract/active-contract-details'], { queryParams: {id: obj.contractId} });
     };
   ngOnInit(): void {
-    
+
     this.fetch((data) => {
       this.dashboardAmnt = data
       this.rows = data.activeBills;
-   
+
       this.billFilter = [...this.rows];
       this.listCount = this.rows.length;
     });
   }
-  
+
   search(event) {
     const val = event.target.value.toLowerCase();
 
@@ -85,16 +85,16 @@ export class ActiveBillsComponent implements OnInit {
 
 
   fetch(cb) {
-    
+
     this.http
     .get(`${environment.apiUrl}/api/BillingPayments/GetAllContractBill`)
     .subscribe(res => {
       this.response = res;
-     
+
     if(this.response.success==true)
     {
     this.data=this.response.data;
- 
+
 
     cb(this.data);
     }
@@ -109,13 +109,54 @@ export class ActiveBillsComponent implements OnInit {
   }
 
 
+  fetchd() {
+    this.data2.toDate = this.dateformater.toModel(this.data2.toDate)
+    this.data2.FromDate = this.dateformater.toModel(this.data2.FromDate)
+    this.spinner.show();
+    this.http
+    .get(`${environment.apiUrl}/api/BillingPayments/GetAllContractBill/`+ this.data2.toDate + '/' + this.data2.FromDate)
+    .subscribe(res => {
+      this.response = res;
+
+    if(this.response.success==true)
+    {
+    this.data=this.response.data;
+    this.rows = this.data.objList;
+    for(let i = 0 ; i < this.rows.length ; i++){
+      this.rows[i].billGeneratedDateTime = this.rows[i].billGeneratedDateTime.slice(0 ,10)
+    }
+
+    this.dashboardAmnt = this.data.totalBillAmount;
+    this.billFilter = [...this.rows];
+
+    this.listCount = this.rows.length;
+
+    // cb(this.data);
+    this.spinner.hide();
+
+    }
+    else{
+      this.toastr.error(this.response.message, 'Message.');
+      this.spinner.hide();
+
+    }
+
+    }, err => {
+      if ( err.status == 400) {
+  this.toastr.error(err.error.message, 'Message.');
+  this.spinner.hide();
+
+      }
+    });
+  }
+
 onSelect({ selected }) {
   console.log('Select Event', selected, this.selected);
 
   for(let i=0; i<selected.length; i++ )
   {
       this.checkboxData[i] = selected[i].id;
-      
+
   }
   this.getData()
 }
@@ -123,22 +164,22 @@ onSelect({ selected }) {
 
 
   dateFilterForm() {
-    
+
     const modalRef = this.modalService.open(DateFilterComponent, { centered: true });
-  
-   
+
+
   }
   getData(){
-    this.ids = this.checkboxData.toString(); 
+    this.ids = this.checkboxData.toString();
 
     this.http.get(`${environment.apiUrl}/api/BillingPayments/BulkPrint/` + this.ids  )
     .subscribe(res => {
       this.printResponse = res;
-     
+
     if(this.printResponse.success==true)
     {
     this.bulkData =this.printResponse.data;
-  
+
     }
     else{
       this.toastr.error(this.printResponse.message, 'Message.');
@@ -156,13 +197,13 @@ onSelect({ selected }) {
   print(){
     let docDefinition = {
       pageSize: 'A3',
-        
+
             info: {
               title: 'Bill generated'
             },
             content: [
-               
-              
+
+
               {
                 table:{headerRows: 1 , widths:['100%'],
               body: [
@@ -174,7 +215,7 @@ onSelect({ selected }) {
                 table:{headerRows:1 ,  widths:['5%' , '77%' , '7%' , '12%'],
               body:[ [{text: 'Seller :'} , {text: this.bulkData['sellerName'] , style:'leftAlign'},
               {text:'Bill # :'} ,{text:this.bulkData['billNumber']}
-            
+
             ]]
               }
               },
@@ -183,7 +224,7 @@ onSelect({ selected }) {
                 table:{headerRows:1 ,  widths:['5%' , '75%' , '7%' , '15%'],
               body:[ [{text: 'Buyer :'} , {text: this.bulkData['buyerName'] , style:'leftAlign'},
               {text:'Bill Date :'} ,{text:this.bulkData['billDate']}
-            
+
             ]]
               }
               },
@@ -191,7 +232,7 @@ onSelect({ selected }) {
                 layout:'noBorders',
                 table:{headerRows:1 ,  widths:['20%' , '80%' ],
               body:[ [{text: 'Fabcot Contract Number :'} , {text: this.bulkData['contractNumber'] , style:'leftAlign'}
-            
+
             ]]
               }
               },
@@ -199,7 +240,7 @@ onSelect({ selected }) {
                 layout:'noBorders',
                 table:{headerRows:1 ,  widths:['15%' , '90%' ],
               body:[ [{text: 'Contract Date :'} , {text: this.bulkData['contractDate'] , style:'leftAlign'}
-            
+
             ]]
               }
               },
@@ -207,13 +248,13 @@ onSelect({ selected }) {
                 layout:'noBorders',
                 table:{headerRows:1 ,  widths:['7%' , '93%' ],
               body:[ [{text: 'Article :'} , {text: this.bulkData['contractArticleName'] , style:'leftAlign'}
-            
+
             ]]
               }
               },
-              
-  
-              
+
+
+
             ],
             styles:{
              heading:{
@@ -223,15 +264,15 @@ onSelect({ selected }) {
               color: '#4d4b4b',
               alignment: 'center',
               margin : 4
-  
+
              },
              leftAlign:{alignment: 'left'}
             },
-  
+
     };
-  
+
     pdfMake.createPdf(docDefinition).print();
-  
+
   }
 
 
@@ -240,7 +281,7 @@ onSelect({ selected }) {
     'Bill To'.padEnd(10) +'Bill #'.padEnd(10)+ 'Contract #'.padEnd(10)+
      'Bill Date'.padEnd(10)+ 'No. Sale Inv'.padEnd(10)+ 'Bill Amount'.padEnd(10)+ 'Tax Amount'.padEnd(10)+
      'Due Date \n');
-  
+
   for (let i = 0; i < this.rows.length; i++) {
     let tempData =  this.rows[i].contractId
       +''.padEnd(5)
@@ -265,7 +306,7 @@ onSelect({ selected }) {
     this.copyData.push(tempData);
   }
   this._clipboardService.copy(this.copyData)
-  
+
   Swal.fire({
     title: GlobalConstants.copySuccess,
     footer: 'Copied' + '\n' + this.listCount + '\n' + 'row/s to clipboard',
@@ -303,9 +344,9 @@ onSelect({ selected }) {
       BillAMount: row.billAmount,
       TaxAmount: row.taxAmount,
       DueDate: row.dueDate, }));
-  
+
     this.service.exportAsCsvFile(filtered, 'Active Bills');
-  
+
   }
 
   printActiveBillsList() {
@@ -333,7 +374,7 @@ onSelect({ selected }) {
                   row.contractId , row.billDate,row.numberOfSaleInvoices,row.billAmount, row.taxAmount,row.dueDate]
               ))
             ]
-           
+
           }
         }
       ],
@@ -375,7 +416,7 @@ onSelect({ selected }) {
                   row.contractId , row.billDate,row.numberOfSaleInvoices,row.billAmount, row.taxAmount,row.dueDate]
               ))
             ]
-           
+
           }
         }
       ],

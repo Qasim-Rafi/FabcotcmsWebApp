@@ -6,7 +6,7 @@
           <div class="ml-2 descr">Contract Bills. Awating for payments . Default last 90 days record displayed</div>
         </h2>
       </div>
-  
+
       <div class="col-sm-12 col-md-6 col-lg-4">
         <ol class="breadcrumb flt-RnL">
           <li class="breadcrumb-item"><a href="#">Billing & Payment</a></li>
@@ -19,10 +19,10 @@
 
 
 
-    
-        
-    
-      
+
+
+
+
 
   </div>
 
@@ -91,12 +91,38 @@
 
   <div class="card ibox-content">
     <div class="panel blank-panel">
-      
+
       <div class="panel-heading">
 
         <div class="row mb-3">
 
-          <div class= "col-md-6 ">
+
+          <div class= "col-md-1 ">
+            <span class="date-Label text_Navy">From: &nbsp;</span>
+
+
+        </div>
+        <div class="col-md-3">
+            <input  navigation="select" class="form-control  " ngbDatepicker #startDate="ngbDatepicker"
+            (click)="startDate.toggle()"
+            name="toDate" [(ngModel)] = "data2.toDate"  #toDate="ngModel"
+            placeholder="Start Date">
+        </div>
+
+        <div class= "col-md-1 ">
+          <span class="date-Label text_Navy"> To: &nbsp;</span>
+
+
+      </div>
+      <div class="col-md-3">
+        <input  navigation="select" class="form-control  " ngbDatepicker #endDate="ngbDatepicker"
+        (click)="endDate.toggle()"   name="FromDate" [(ngModel)] = "data2.FromDate"  #FromDate="ngModel" placeholder="End Date">
+    </div>
+    <div class="col-md-3">  <button type="button" class="btn btn-primary descBtn ml-sm-none ml-md-2" (click) = "fetchd()" ><i class="fa fa-search"></i>Go!
+    </button></div>
+
+
+          <!-- <div class= "col-md-6 ">
               <span class="date-Label">Date From &nbsp;</span>
              <span class="text_Navy  date"> 23-Jan-2021 &nbsp;</span>
              <span class="date-Label">To &nbsp;</span>
@@ -108,12 +134,12 @@
             <button type="button" class="btn btn-primary btn-sm float-right mr-1" (click)="dateFilterForm()">
                 <i class="fa fa-filter"></i>
             </button>
-          </div>
+          </div> -->
 
-         
+
 
         </div>
-     
+
         <div class="row mb-4 justify-content-center">
 
           <form>
@@ -126,7 +152,7 @@
                   </label>
                 </div>
               </div> -->
-          
+
               <div class="col-auto">
                 <button type="button" class="btn btn-primary btn-sm float-right" (click)= "print()">
                   <i class="fa fa-print"></i> Bulk Print
@@ -135,11 +161,11 @@
             </div>
           </form>
         </div>
-      
-  
+
+
         <div class="row">
           <div class="col-md-12 mb-3">
-        
+
             <div class="row justify-content-end">
 
               <div class="col-md-4 pr-0">
@@ -150,47 +176,47 @@
                     <input type="text" placeholder="Search..." class="input form-control form-control-sm"
                   (keyup)="search($event)"/>
                   </div>
-                </div> 
+                </div>
               </div>
-        
+
               <div class="html5buttons mrg-tsm">
                 <div class="dt-buttons btn-group btn-group-sm">
                   <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0" aria-controls="DataTables_Table_0"
                    (click)="copyBillsList()" ngxClipboard><span>Copy</span>
                   </a>
                   <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
-                  (click)="activeBillsCsvFile()" 
+                  (click)="activeBillsCsvFile()"
                   aria-controls="DataTables_Table_0"><span>CSV</span></a>
                   <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
-                  (click)="activeBillsExcelFile()"  
+                  (click)="activeBillsExcelFile()"
                   aria-controls="DataTables_Table_0"><span>Excel</span></a>
                   <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0"
-                  (click)="ActiveBillsListPdf()"  
+                  (click)="ActiveBillsListPdf()"
                   aria-controls="DataTables_Table_0"><span>PDF</span></a>
                   <a class="btn btn-default buttons-print bg-white" tabindex="0"
-                  (click)="printActiveBillsList()"  
+                  (click)="printActiveBillsList()"
                   aria-controls="DataTables_Table_0"><span>Print</span></a>
                 </div>
               </div>
-        
+
             </div>
-        
+
           </div>
         </div>
 
       </div>
 
 
-<!--Start panel body -->    
+<!--Start panel body -->
 <div class="card shadow mb-4">
-  <div class="card-body">  
+  <div class="card-body">
       <div class="panel-body">
-           
-      
+
+
         <ngx-datatable class="bootstrap datatable-row-wrapper" [columns]="columns" [rows]="rows" [columnMode]="'flex'"
           [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="6" (select)="onSelect($event)"
           [selected]="selected" [selectionType]="SelectionType.checkbox" [sorts]="[{ prop: 'id', dir: 'desc' }]">
-      
+
           <ngx-datatable-column prop="selected" name="Select" [width]="20" [flexGrow]="0.03" [width]="30"
             [headerCheckboxable]="true" [checkboxable]="true">
             <ng-template let-row="row" ngx-datatable-cell-template>
@@ -215,13 +241,13 @@
       {{row.buyerName}} {{row.sellerName}}
             </ng-template>
           </ngx-datatable-column>
-      
+
           <ngx-datatable-column name="Bill #" [width]="80" prop="billNumber" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
               {{row.billNumber}}
             </ng-template>
           </ngx-datatable-column>
-      
+
           <ngx-datatable-column name="Contract #" [width]="80" prop="autoContractNumber" [flexGrow]="0.08">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
               <button class="clr" (click)="navigateEditContract(row)">
@@ -245,32 +271,32 @@
               {{row.billAmount}}
             </ng-template>
           </ngx-datatable-column>
-      
+
           <ngx-datatable-column name="Tax Amount" [width]="80" prop="taxAmount" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
               {{row.taxAmount}}
             </ng-template>
           </ngx-datatable-column>
-      
+
           <ngx-datatable-column name="Due Date" [width]="80" prop="dueDate" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
               {{row.dueDate}}
             </ng-template>
           </ngx-datatable-column>
-      
+
           <ngx-datatable-column name="Action" [width]="80" prop="action" [flexGrow]="0.07">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-      
+
               <div class="ibox-tools text-center">
                 <button type="button" class="btn editIconBack px-1 py-1" data-toggle="tooltip" data-placement="top" title=""
                   data-original-title="Edit" (click)="navigateOpenBill(row)"><i class="far fa-edit"></i></button>
                 <button type="button" class="btn editIconBack px-1 py-1" data-toggle="tooltip" data-placement="top" title=""
                   (click)="navigatePaymentForm('addPayment' , row)"><i class="fas fa-money-check-alt"></i></button>
               </div>
-      
+
             </ng-template>
           </ngx-datatable-column>
-      
+
         </ngx-datatable>
       </div>
   </div>

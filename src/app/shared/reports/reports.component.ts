@@ -47,6 +47,10 @@ export class ReportsComponent implements OnInit {
   cancelContract:any =[];
   rows:any =[];
   data3:any=[];
+  data4:any=[];
+  allContract:any=[];
+  data5:any=[];
+  payment:any=[];
 
   constructor(
 
@@ -80,6 +84,12 @@ else if ( this.menuName.menuName == 'BillingReportInvoiceWise'){
 }
 else if(this.menuName.menuName =='OpenContractReport'){
   this.getOpenContractReport2();
+}
+else if(this.menuName.menuName =='AllContractReport'){
+  this.getAllContractReport2();
+}
+else if(this.menuName.menuName == 'PaymentReport'){
+  this.getPaymentReport();
 }
 else if (this.menuName.menuName == 'BillingReportContractWise'){
   this.fetchContractInvise();
@@ -306,6 +316,123 @@ else if (this.menuName.menuName == 'BillingReportContractWise'){
 
         });
   }
+
+  getPaymentReport(){
+    let varr = {
+      "buyerId":this.data5.buyerId ==undefined ? 0 :this.data5.buyerId,
+      "sellarId":this.data5.sellarId == undefined?0 :this.data5.sellarId,
+      "startContractDate":this.data5.startContractDate == undefined? '':this.dateformater.toModel(this.data5.startContractDate),
+      "endContractDate":this.data5.endContractDate == undefined?'':this.dateformater.toModel(this.data5.endContractDate)
+    }
+    this.spinner.show();
+    this.http.
+      post(`${environment.apiUrl}/api/Reports/Payment_Report`, varr)
+      .subscribe(
+        res => {
+
+          this.response = res;
+          if (this.response.success == true  && this.response.data.length != 0) {
+            this.toastr.success(this.response.message, 'Message.');
+            this.payment = this.response.data;
+
+
+         this.spinner.hide();
+          }
+          else if(this.payment.length == 0) {
+            this.toastr.error("No such Contract Exist", 'Message.');
+         this.spinner.hide();
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+         this.spinner.hide();
+          }
+
+        }, (err: HttpErrorResponse) => {
+          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+          this.toastr.error(messages.toString(),'Message.');
+          this.spinner.hide();
+
+        });
+  }
+
+getAllContractReport2(){
+  //this.allContract = [];
+  let varr = {
+    "buyerId":this.data4.buyerId ==undefined ? 0 :this.data4.buyerId,
+    "sellarId":this.data4.sellarId == undefined?0 :this.data4.sellarId,
+    "autoContractNumber":this.data4.autoContractNumber == undefined ? '': this.data4.autoContractNumber,
+    "startContractDate":this.data4.startContractDate == undefined? '':this.dateformater.toModel(this.data4.startContractDate),
+    "endContractDate":this.data4.endContractDate == undefined?'':this.dateformater.toModel(this.data4.endContractDate)
+  }
+  this.spinner.show();
+  this.http.
+    post(`${environment.apiUrl}/api/Reports/AllContractReport`, varr)
+    .subscribe(
+      res => {
+
+        this.response = res;
+        if (this.response.success == true  && this.response.data.length != 0) {
+          this.toastr.success(this.response.message, 'Message.');
+          this.allContract = this.response.data;
+
+
+       this.spinner.hide();
+        }
+        else if(this.allContract.length == 0) {
+          this.toastr.error("No such Contract Exist", 'Message.');
+       this.spinner.hide();
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+       this.spinner.hide();
+        }
+
+      }, (err: HttpErrorResponse) => {
+        const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+        this.toastr.error(messages.toString(),'Message.');
+        this.spinner.hide();
+
+      });
+}
+getAllContractReport(){
+  //this.allContract = [];
+  let varr = {
+    "buyerId":this.data4.buyerId ==undefined ? 0 :this.data4.buyerId,
+    "sellarId":this.data4.sellarId == undefined?0 :this.data4.sellarId,
+    "autoContractNumber":this.data4.autoContractNumber == undefined ? 'string': this.data4.autoContractNumber,
+    "startContractDate":this.data4.startContractDate == undefined? '':this.dateformater.toModel(this.data4.startContractDate),
+    "endContractDate":this.data4.endContractDate == undefined?'':this.dateformater.toModel(this.data4.endContractDate)
+  }
+  this.spinner.show();
+  this.http.
+    post(`${environment.apiUrl}/api/Reports/AllContractReport`, varr)
+    .subscribe(
+      res => {
+
+        this.response = res;
+        if (this.response.success == true  && this.response.data.length != 0) {
+          this.toastr.success(this.response.message, 'Message.');
+          this.allContract = this.response.data;
+
+
+       this.spinner.hide();
+        }
+        else if(this.allContract.length == 0) {
+          this.toastr.error("No such Contract Exist", 'Message.');
+       this.spinner.hide();
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+       this.spinner.hide();
+        }
+
+      }, (err: HttpErrorResponse) => {
+        const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+        this.toastr.error(messages.toString(),'Message.');
+        this.spinner.hide();
+
+      });
+}
 
   invoiceExcelFile(){
     const filtered = this.billingReportInvoiceWise.map(row => ({
