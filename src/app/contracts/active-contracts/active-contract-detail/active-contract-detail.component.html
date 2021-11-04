@@ -495,10 +495,25 @@ Contract Details </ol>
                                         </dl>
                                         <dl class="row">
                                             <dt class="col-sm-6">Created On:</dt>
-                                            <dd class="col-sm-6">
-                                                <i class="far fa-calendar-alt"></i>
+                                            <dd class="col-sm-6" (click)="toggleShow()" ngbTooltip="Click To Edit" style="color: blueviolet; cursor: pointer;">
+                                                <i class="far fa-calendar-alt" ></i>
                                                 {{contractData.createdDateTime}}
                                             </dd>
+                                            
+                                       
+                                        </dl>
+                                        <dl class="row" *ngIf="isShown">
+                                            <dt class="col-sm-6"></dt>
+                                            <div   class="col-sm-6 input-group date" (clickOutside)="createdDateTimePicker.close()">
+                                                <input type="text" class="form-control col-md-4 datetimepicker-input" (ngModelChange)="contractdatechange($event)" (click)="createdDateTimePicker.toggle()"
+                                                  placeholder="Date" #createdDateTimePicker="ngbDatepicker" #createdDateTime="ngModel" [(ngModel)]="data.createdDateTime"
+                                                  name="createdDateTime" ngbDatepicker required
+                                                >
+                                                  
+                                                <div class="input-group-append" (click)="createdDateTimePicker.toggle()">
+                                                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                </div>
+                                              </div>
                                         </dl>
                                         <dl class="row">
                                             <dt class="col-sm-6"> Last Updated On:</dt>
