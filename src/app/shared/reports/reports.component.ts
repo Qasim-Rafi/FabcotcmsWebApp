@@ -47,10 +47,15 @@ export class ReportsComponent implements OnInit {
   cancelContract:any =[];
   rows:any =[];
   data3:any=[];
+
   data4:any=[];
   allContract:any=[];
   data5:any=[];
   payment:any=[];
+
+
+  DbCrData:any=[];
+dbCount : any;
 
   constructor(
 
@@ -85,11 +90,16 @@ else if ( this.menuName.menuName == 'BillingReportInvoiceWise'){
 else if(this.menuName.menuName =='OpenContractReport'){
   this.getOpenContractReport2();
 }
+
 else if(this.menuName.menuName =='AllContractReport'){
   this.getAllContractReport2();
 }
 else if(this.menuName.menuName == 'PaymentReport'){
   this.getPaymentReport();
+}
+else if (this.menuName.menuName == 'DbcrNoteSummary'){
+  this.GetDbCrReport();
+
 }
 else if (this.menuName.menuName == 'BillingReportContractWise'){
   this.fetchContractInvise();
@@ -219,6 +229,38 @@ else if (this.menuName.menuName == 'BillingReportContractWise'){
     if(this.response.success==true)
     {
     this.cancelContract=this.response.data;
+    // this.cancelContract = [...this.billingReportInvoiceWise]
+    this.spinner.hide();
+
+    }
+    else{
+      this.toastr.error(this.response.message, 'Message.');
+      this.spinner.hide();
+
+    }
+
+    }, err => {
+      if ( err.status == 400) {
+  this.toastr.error(err.error.message, 'Message.');
+  this.spinner.hide();
+
+      }
+    });
+  }
+
+  GetDbCrReport() {
+
+
+    this.spinner.show();
+    this.http
+    .get(`${environment.apiUrl}/api/Reports/GetDebitCreditReport` )
+    .subscribe(res => {
+      this.response = res;
+
+    if(this.response.success==true)
+    {
+    this.DbCrData=this.response.data;
+    // this.dbCount =   this.DbCrData.c
     // this.cancelContract = [...this.billingReportInvoiceWise]
     this.spinner.hide();
 

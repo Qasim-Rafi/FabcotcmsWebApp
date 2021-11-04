@@ -41,6 +41,10 @@ import {ContractOwnerComponent} from '../../contract-owner/contract-owner.compon
 export class ActiveContractDetailComponent implements OnInit {
   dateformater: Dateformater = new Dateformater();
 
+
+
+  isShown: boolean = false
+
   reminderToggle : boolean = false
   rows: any = [];
   rows1: any = [];
@@ -51,7 +55,7 @@ export class ActiveContractDetailComponent implements OnInit {
   data:any = {};
   items:any = {};
   preview:any = {};
-
+  createdDateTimeField:any;
   // empData:any = {};
   shipment:any = {};
   contractNote:any = {};
@@ -148,7 +152,11 @@ this.getAllItems()
     });
 
   }
+  toggleShow() {
 
+    this.isShown = ! this.isShown;
+
+    }
   searchTna(event) {
     const val = event.target.value.toLowerCase();
     const temp = this.TnaFilter.filter(function (d) {
@@ -207,7 +215,47 @@ this.getAllItems()
     this.reminderToggle = !this.reminderToggle;
 
 }
+contractdatechange(event){
+  this.spinner.show();
+      this.data.createdDateTime = this.dateformater.toModel(event);
 
+      if( this.data.contractUpDate == "undefined-undefined-undefined"){
+        this.data.contractUpDate = ""
+
+      }
+      if( this.data.contractUpDate == "0-NaN-NaN"){
+        this.data.contractUpDate = ""
+      }
+
+      let varr = {
+        "contractId": this.contractId,
+        "date": this.data.createdDateTime
+      }
+
+      this.http.
+        put(`${environment.apiUrl}/api/Contracts/UpdateContractCreatedDate/`+this.contractId, varr)
+        .subscribe(
+          res => {
+
+            this.response = res;
+            if (this.response.success == true) {
+              this.toastr.success(this.response.message, 'Message.');
+              this.getContractData();
+              this.spinner.hide();
+            }
+            else {
+              this.toastr.error(this.response.message, 'Message.');
+              this.spinner.hide();
+            }
+
+          }, err => {
+            if (err.status == 400) {
+              this.toastr.error(this.response.message, 'Message.');
+              this.spinner.hide();
+            }
+          });
+
+    }
 
   getAllItems() {
     this.spinner.show();
@@ -2047,7 +2095,11 @@ this.spinner.hide();
                          {text:row.construction , style:'propertyValue'},{text:row.size , style:'propertyValue'}, {text:row.weight , style:'propertyValue'} , {text:row.colorName , style:'propertyValue'} ,
                          { text:row.itemQuantity + row.itemUOMUnit , style:'propertyValue'} ,
 
+
                           {text:row.contractCost, style:'propertyValue'} ,
+
+
+
 
                         ]
                       )),
