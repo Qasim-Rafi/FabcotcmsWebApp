@@ -49,6 +49,8 @@ export class ReportsComponent implements OnInit {
   data3:any=[];
   DbCrData:any=[];
 dbCount : any;
+data4: any = [];
+
   constructor(
 
     private route: ActivatedRoute,
@@ -81,6 +83,9 @@ else if ( this.menuName.menuName == 'BillingReportInvoiceWise'){
 }
 else if(this.menuName.menuName =='OpenContractReport'){
   this.getOpenContractReport2();
+}
+else if(this.menuName.menuName =='AllContractReport'){
+  this.getAllContractReport();
 }
 else if (this.menuName.menuName == 'DbcrNoteSummary'){
   this.GetDbCrReport();
@@ -342,6 +347,48 @@ else if (this.menuName.menuName == 'BillingReportContractWise'){
 
         });
   }
+
+  getAllContractReport(){
+    let varr = {
+      "buyerId":this.data4.buyerId ==undefined ? 0 :this.data4.buyerId,
+      "sellarId":this.data4.sellarId == undefined?0 :this.data4.sellarId,
+      "autoContractNumber":this.data4.autoContractNumber == undefined ? '': this.data4.autoContractNumber,
+      "startContractDate":this.data4.startContractDate == undefined? '':this.dateformater.toModel(this.data4.startContractDate),
+      "endContractDate":this.data4.endContractDate == undefined?'':this.dateformater.toModel(this.data4.endContractDate)
+    }
+    this.spinner.show();
+    this.http.
+      post(`${environment.apiUrl}/api/Reports/AllContractReport`, varr)
+      .subscribe(
+        res => {
+
+          this.response = res;
+          if (this.response.success == true  && this.response.data.length != 0) {
+            this.toastr.success(this.response.message, 'Message.');
+            this.allContractReport = this.response.data;
+
+
+         this.spinner.hide();
+          }
+          else if(this.allContractReport.length == 0) {
+            this.toastr.error("No such Contract Exist", 'Message.');
+         this.spinner.hide();
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+         this.spinner.hide();
+          }
+
+        }, (err: HttpErrorResponse) => {
+          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+          this.toastr.error(messages.toString(),'Message.');
+          this.spinner.hide();
+
+        });
+  }
+
+
+
 
   invoiceExcelFile(){
     const filtered = this.billingReportInvoiceWise.map(row => ({
