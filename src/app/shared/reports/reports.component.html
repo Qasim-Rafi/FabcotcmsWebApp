@@ -422,7 +422,7 @@
 
               <div class="form-group col-md-4">
                 <label for="description">Buyer Name:</label>
-                <ng-select placeholder="Buyer Name" name="buyerId" [(ngModel)]="allContractReport.buyerId" #buyerId="ngModel">
+                <ng-select placeholder="Buyer Name" name="buyerId" [(ngModel)]="data4.buyerId" #buyerId="ngModel">
                   <ng-option *ngFor="let i of buyer" [value]="i.id">
                     {{i.buyerName}}
                   </ng-option>
@@ -431,7 +431,7 @@
 
               <div class="form-group col-md-4 ">
                 <label for="description">Seller Name:</label>
-                <ng-select placeholder="Seller Name" name="sellerId" [(ngModel)]="allContractReport.sellerId"
+                <ng-select placeholder="Seller Name" name="sellerId" [(ngModel)]="data4.sellerId"
                   #sellerId="ngModel">
                   <ng-option *ngFor="let i of seller" [value]="i.id">
                     {{i.sellerName}}
@@ -443,7 +443,7 @@
               <div class="form-group col-md-4">
                 <label for="description">Auto Contract#:</label>
                 <input type="text" placeholder="Contract Number" name="autoContractNumber"
-                  [(ngModel)]="allContractReport.autoContractNumber" #autoContractNumber="ngModel" class="form-control text-w-4">
+                  [(ngModel)]="data4.autoContractNumber" #autoContractNumber="ngModel" class="form-control text-w-4">
               </div>
 
 
@@ -456,7 +456,7 @@
 
               <label for="description">Auto Contract#:</label>
               <input type="text" placeholder="Auto Contract Number" class="form-control" name="poNumber"
-              [(ngModel)]="allContractReport.poNumber" #poNumber="ngModel">
+              [(ngModel)]="data4.poNumber" #poNumber="ngModel">
 
             </div>
 
@@ -464,14 +464,14 @@
                 <label for="description">Start Date:</label>
                 <input class="form-control" ngbDatepicker #reminderDate2="ngbDatepicker" (click)="reminderDate2.toggle()"
                 placeholder="Contract start Date" name="contractUpDate" name="contractDate"
-                [(ngModel)]="allContractReport.contractDate" #contractDate="ngModel" />
+                [(ngModel)]="data4.contractDate" #contractDate="ngModel" />
               </div>
               <div class="form-group col-md-4">
                 <label for="description">End Date:</label>
 
                   <input class="form-control" ngbDatepicker #reminderDate3="ngbDatepicker" (click)="reminderDate3.toggle()"
                   placeholder="Contract end Date" name="contractUpDate" name="contractDate"
-                  [(ngModel)]="allContractReport.contractDate" #contractDate="ngModel" />
+                  [(ngModel)]="data4.contractDate" #contractDate="ngModel" />
 
               </div>
 
@@ -549,109 +549,108 @@
         <div class="card-body">
           <div class="panel-body">
 
-            <ngx-datatable #myTable class="bootstrap" [sorts]="[{ prop: 'id,name', dir: 'desc' }]" [columns]="columns"
-              [rows]="allContractReport" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-              [rowHeight]="'auto'"
-              [scrollbarH]="true"
-              [scrollbarV]="true"
-              >
-
-              <ngx-datatable-column name="Age" prop="contractAge" [width]="40">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  <span class="badge badge-primary">{{row.contractAge}}</span>
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Contract#" [width]="80" prop="autoContractNumber">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{row.autoContractNumber}}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Buyer" [width]="90">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{row.buyerName}}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Seller" [width]="90">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{row.sellerName}}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Date" [width]="80">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.contractOn }}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="PO#" [width]="40">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.poNumber }}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Article" [width]="80">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{row.articleName}}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Rate" [width]="50">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.details }}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Container" [width]="70">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.details }}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Qty Unit" [width]="60">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.quantity }}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Booked Qty" [width]="80">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.booking }}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Dispatched Qty" [width]="80">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.dispatch }}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Balance Qty" [width]="80">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.balance }}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Cost" [width]="50">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.cost }}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Seller Comm" [width]="60">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.sellerCommission }}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Buyer Comm" [width]="60">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.buyerCommission }}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Payment Term S|B" [width]="80">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.details }}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Status" [width]="40">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  <span class="badge badge-primary">{{row.status}}</span>
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Agent" [width]="60">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.details }}
-                </ng-template>
-              </ngx-datatable-column>
-            </ngx-datatable>
+            <ngx-datatable #myTable  class="bootstrap" [columns]="columns" [rows]="allContractReport"
+            [columnMode]="'for''"   [headerHeight]="50" [footerHeight]="50" [sorts]="[{ prop: 'id', dir: 'asce' }]"
+            [rowHeight]="'auto'"
+            [scrollbarH] = "true"
+         >
+  
+            <ngx-datatable-column name="Age" prop="age" [width] = "50"   >
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                <span class="badge badge-primary">{{row.age}}</span>
+               
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Contract#" [width]="70"  >
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                {{row.contractNo}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Buyer" [width]="70"   >
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                {{row.buyerName}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Seller" [width]="70"  >
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                {{row.sellerName}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Date" [width]="60" >
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                {{row.date}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="PO#" [width]="50" >
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                {{row.poNumber}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Article" [width]="70"  >
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                {{row.articleName}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Rate" [width]="50"   >
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                {{ row.rate }}{{row.rateUOMName}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Qty Unit" [width]="60"  >
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                {{row.balanceQty}}{{row.uomName}}
+              </ng-template>
+            </ngx-datatable-column>
+  
+            <ngx-datatable-column name="Booking Qty" [width]="60"  >
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                {{ row.booking }}
+              </ng-template>
+            </ngx-datatable-column>
+  
+            <ngx-datatable-column name="Dispatch Qty" [width]="60" >
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                {{ row.dispatch }}
+              </ng-template>
+            </ngx-datatable-column>
+  
+            <ngx-datatable-column name="Balance Qty" [width]="60" >
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                {{ row.balanceQty }}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Cost" [width]="60"  >
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                {{ row.balanceQty }}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Seller Comm" [width]="60" >
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                {{ row.balanceQty }}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Buyer Comm" [width]="60"  >
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                {{ row.balanceQty }}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Payment Term S|B" [width]="60" >
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                {{ row.balanceQty }}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Status" [width]="60"   >
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                {{ row.balanceQty }}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Agent" [width]="60"   >
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                {{ row.balanceQty }}
+              </ng-template>
+            </ngx-datatable-column>
+  
+          </ngx-datatable>
 
           </div>
         </div>
