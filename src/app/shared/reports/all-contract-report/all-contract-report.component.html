@@ -1,0 +1,295 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="line-spin-fade" [fullScreen]="true">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>
+  
+  <div class="content-header">
+  
+      <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-8">
+          <h2 class="row wrapper page-header font-weight-light"> All Contracts Reports
+            <div class="ml-2 descr"> By default It displays the open contracts of current Month i.e,
+              <strong>July-2021</strong>.</div>
+          </h2>
+        </div>
+  
+        <div class="col-sm-12 col-md-6 col-lg-4">
+          <ol class="breadcrumb flt-RnL">
+            <li class="breadcrumb-item"><a href="#">Reports</a></li>
+            <li class="breadcrumb-item active" aria-current="page">All Conctract Status</li>
+          </ol>
+        </div>
+  
+      </div>
+    </div>
+  
+    <div class="card ibox-content">
+      <div class="panel blank-panel">
+        <div class="panel-heading">
+  
+          <div class="row mb-3">
+            <div class="col-sm-6 col-md-3">
+              <button type="button" class="btn btn-primary descBtn ml-sm-none ml-md-2">0
+              </button>
+              <span class="text-muted text2">All Contracts</span>
+            </div>
+            <div class="col-sm-6 col-md-3">
+              <button type="button" class="btn yellow-bg descBtn ml-sm-none ml-md-2">0
+              </button>
+              <span class="text-muted text2">Container</span>
+            </div>
+            <div class="col-sm-6 col-md-3">
+              <button type="button" class="btn blue-bg descBtn ml-sm-none ml-md-2">0
+              </button>
+              <span class="text-muted text2">Quantity</span>
+            </div>
+            <div class="col-sm-6 col-md-3">
+              <button type="button" class="btn navy-bg descBtn ml-sm-none ml-md-2">0
+              </button>
+              <span class="text-muted text2">Dispatch</span>
+            </div>
+  
+          </div>
+  
+  
+          <form #filterForm="ngForm" novalidate>
+            <div  [ngClass]="status ? 'add' : 'remove'">
+            <div class="card">
+  
+  
+            <div class="row p-2">
+  
+                <div class="form-group col-md-4">
+                  <label for="description">Buyer Name:</label>
+                  <ng-select placeholder="Buyer Name" name="buyerId" [(ngModel)]="data3.buyerId" #buyerId="ngModel">
+                    <ng-option *ngFor="let i of buyer" [value]="i.id">
+                      {{i.buyerName}}
+                    </ng-option>
+                  </ng-select>
+                </div>
+  
+                <div class="form-group col-md-4 ">
+                  <label for="description">Seller Name:</label>
+                  <ng-select placeholder="Seller Name" name="sellerId" [(ngModel)]="data3.sellerId"
+                    #sellerId="ngModel">
+                    <ng-option *ngFor="let i of seller" [value]="i.id">
+                      {{i.sellerName}}
+                    </ng-option>
+                  </ng-select>
+  
+                </div>
+  
+                <div class="form-group col-md-4">
+                  <label for="description">Auto Contract#:</label>
+                  <input type="text" placeholder="Contract Number" name="autoContractNumber"
+                    [(ngModel)]="data3.autoContractNumber" #autoContractNumber="ngModel" class="form-control text-w-4">
+                </div>
+  
+  
+            </div>
+  
+            <div class="row p-2">
+  
+  
+              <div class="form-group col-md-4">
+  
+                <label for="description">Auto Contract#:</label>
+                <input type="text" placeholder="Auto Contract Number" class="form-control" name="poNumber"
+                [(ngModel)]="data3.poNumber" #poNumber="ngModel">
+  
+              </div>
+  
+                <div class="form-group col-md-4">
+                  <label for="description">Start Date:</label>
+                  <input class="form-control" ngbDatepicker #reminderDate2="ngbDatepicker" (click)="reminderDate2.toggle()"
+                  placeholder="Contract start Date" name="startContractDate" 
+                  [(ngModel)]="data3.startContractDate" #startContractDate="ngModel" />
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="description">End Date:</label>
+  
+                    <input class="form-control" ngbDatepicker #reminderDate3="ngbDatepicker" (click)="reminderDate3.toggle()"
+                    placeholder="Contract end Date" name="endContractDate" 
+                    [(ngModel)]="data3.endContractDate" #endContractDate="ngModel" />
+  
+                </div>
+  
+  
+  
+            </div>
+          </div>
+        </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group row mt-3">
+                  <div class="col-md-2 ml-8">
+                    <button class="btn btn-outline-secondary pull-left btn-xs "><i class="fas fa-sync"></i>
+                      Clear
+                    </button>
+  
+                  </div>
+  
+                  <div class="col-md-4 ">
+                    <button type="button" class="btn btn-primary btn-sm float-right" (click) = "getAllContractReport()">
+                      Search Contract
+                    </button>
+                  </div>
+                  <div class="col-md-6 mb-1">
+                  <button type="button" class="btn btn-primary btn-sm ml-md-2 float-right"  (click)="clickEvent()"> Advance Filter <i class="fas fa-search fa-fw mr-2"></i></button>
+                  </div>
+  
+                </div>
+              </div>
+            </div>
+  
+  
+  
+          </form>
+  
+  
+  
+          <div class="row">
+            <div class="col-md-12 mb-3">
+              <div class="row justify-content-end">
+                <div class="col-md-4 pr-0">
+  
+                  <div class="form-group row">
+                    <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="input form-control form-control-sm" />
+                    </div>
+                  </div>
+  
+               
+  
+                </div>
+  
+                <div class="html5buttons mrg-tsm">
+                  <div class="dt-buttons btn-group btn-group-sm">
+                    <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0"
+                      aria-controls="DataTables_Table_0"><span>Copy</span></a>
+                    <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
+                      aria-controls="DataTables_Table_0"><span>CSV</span></a>
+                    <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
+                      aria-controls="DataTables_Table_0"><span>Excel</span></a>
+                    <a class="btn btn-default buttons-print bg-white" tabindex="0"
+                      aria-controls="DataTables_Table_0"><span>Print</span></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="card shadow mb-4">
+          <div class="card-body">
+            <div class="panel-body">
+  
+              <ngx-datatable #myTable  class="bootstrap" [columns]="columns" [rows]="allContractReport"
+              [columnMode]="'force'"    [headerHeight]="50" [footerHeight]="50" [sorts]="[{ prop: 'id', dir: 'asce' }]"
+              [rowHeight]="'auto'"
+              [scrollbarH] = "true"
+           >
+    
+              <ngx-datatable-column name="Age" prop="age" [width] = "50"   >
+                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                  <span class="badge badge-primary">{{row.age}}</span>
+                 
+                </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="Contract#" [width]="70"  >
+                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                  {{row.contractNo}}
+                </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="Buyer" [width]="70"   >
+                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                  {{row.buyerName}}
+                </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="Seller" [width]="70"  >
+                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                  {{row.sellerName}}
+                </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="Date" [width]="60" >
+                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                  {{row.date}}
+                </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="PO#" [width]="50" >
+                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                  {{row.poNumber}}
+                </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="Article" [width]="70"  >
+                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                  {{row.articleName}}
+                </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="Rate" [width]="50"   >
+                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                  {{ row.rate }}{{row.rateUOMName}}
+                </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="Qty Unit" [width]="60"  >
+                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                  {{row.balanceQty}}{{row.uomName}}
+                </ng-template>
+              </ngx-datatable-column>
+    
+              <ngx-datatable-column name="Booking Qty" [width]="60"  >
+                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                  {{ row.booking }}
+                </ng-template>
+              </ngx-datatable-column>
+    
+              <ngx-datatable-column name="Dispatch Qty" [width]="60" >
+                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                  {{ row.dispatch }}
+                </ng-template>
+              </ngx-datatable-column>
+    
+              <ngx-datatable-column name="Balance Qty" [width]="60" >
+                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                  {{ row.balanceQty }}
+                </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="Cost" [width]="60"  >
+                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                  {{ row.balanceQty }}
+                </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="Seller Comm" [width]="60" >
+                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                  {{ row.balanceQty }}
+                </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="Buyer Comm" [width]="60"  >
+                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                  {{ row.balanceQty }}
+                </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="Payment Term S|B" [width]="60" >
+                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                  {{ row.balanceQty }}
+                </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="Status" [width]="60"   >
+                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                  {{ row.balanceQty }}
+                </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="Agent" [width]="60"   >
+                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                  {{ row.balanceQty }}
+                </ng-template>
+              </ngx-datatable-column>
+    
+            </ngx-datatable>
+  
+            </div>
+          </div>
+        </div>
+  
+      </div>
+    </div>

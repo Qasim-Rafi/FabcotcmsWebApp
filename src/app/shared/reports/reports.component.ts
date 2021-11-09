@@ -50,6 +50,9 @@ export class ReportsComponent implements OnInit {
   DbCrData:any=[];
 dbCount : any;
 data4: any = [];
+data5: any = [];
+data6: any = [];
+
 
   constructor(
 
@@ -84,7 +87,19 @@ else if ( this.menuName.menuName == 'BillingReportInvoiceWise'){
 else if(this.menuName.menuName =='OpenContractReport'){
   this.getOpenContractReport2();
 }
+else if(this.menuName.menuName =='PaymentReport'){
+  this.PaymentReport();
+}
+else if(this.menuName.menuName =='KickbackReport'){
+ this.kickbackContractReport();
+}
+else if(this.menuName.menuName =='AgentBookingStatus'){
+  this.agentBooking();
+ }
 
+// else if(this.menuName.menuName =='CommissionReport'){
+//   this.commisionReport();
+//  }
 else if (this.menuName.menuName == 'DbcrNoteSummary'){
   this.GetDbCrReport();
 }
@@ -140,13 +155,13 @@ else if (this.menuName.menuName == 'BillingReportContractWise'){
     });
     // this.rows = temp;
   }
-  filterPopUform() {
+  filterPopUform(menu) {
     const modalRef = this.modalService.open(FilterPopUpComponent, { centered: true });
-
-    modalRef.result.then((data) => {
+    modalRef.componentInstance.menu = menu;
+    modalRef.result.then((p) => {
       // on close
-      if (data == true) {
-
+      if (p != null) {
+  this.commisionReport(p)
 
       }
     }, (reason) => {
@@ -312,8 +327,8 @@ else if (this.menuName.menuName == 'BillingReportContractWise'){
       "buyerId":this.data3.buyerId ==undefined ? 0 :this.data3.buyerId,
       "sellarId":this.data3.sellarId == undefined?0 :this.data3.sellarId,
       "autoContractNumber":this.data3.autoContractNumber == undefined ? '': this.data3.autoContractNumber,
-      "startContractDate":this.data3.startContractDate == undefined? '': this.data3.startContractDate,
-      "endContractDate":this.data3.endContractDate == undefined?'':this.data3.endContractDate
+      "startContractDate":this.data3.startContractDate == undefined? '': this.dateformater.toModel(this.data3.startContractDate),
+      "endContractDate":this.data3.endContractDate == undefined?'':this.dateformater.toModel(this.data3.endContractDate)
     }
     this.spinner.show();
     this.http.
@@ -346,7 +361,229 @@ else if (this.menuName.menuName == 'BillingReportContractWise'){
         });
   }
 
+ agentBooking(){
+  
+    // let varr = {
+   
+    // }
+    this.spinner.show();
+    this.http.
+      post(`${environment.apiUrl}/api/Reports/AgentBookingReport`, {})
+      .subscribe(
+        res => {
 
+          this.response = res;
+          if (this.response.success == true  && this.response.data.length != 0) {
+            this.toastr.success(this.response.message, 'Message.');
+            this.agentBookingStatus = this.response.data;
+
+
+         this.spinner.hide();
+          }
+          else if(this.agentBookingStatus.length == 0) {
+            this.toastr.error("No such Contract Exist", 'Message.');
+         this.spinner.hide();
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+         this.spinner.hide();
+          }
+
+        }, (err: HttpErrorResponse) => {
+          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+          this.toastr.error(messages.toString(),'Message.');
+          this.spinner.hide();
+
+        });
+  }
+
+
+
+PaymentReport(){
+  let varr = {
+    "buyerId":this.data4.buyerId ==undefined ? 0 :this.data4.buyerId,
+    "sellerId":this.data4.sellerId == undefined?0 :this.data4.sellerId,
+    "startContractDate":this.data4.startContractDate == undefined? '': this.dateformater.toModel(this.data4.startContractDate),
+    "endContractDate":this.data4.endContractDate == undefined?'':this.dateformater.toModel(this.data4.endContractDate)
+  }
+  this.spinner.show();
+  this.http.
+    post(`${environment.apiUrl}/api/Reports/Payment_Report`, varr)
+    .subscribe(
+      res => {
+
+        this.response = res;
+        if (this.response.success == true  && this.response.data.length != 0) {
+          this.toastr.success(this.response.message, 'Message.');
+          this.paymentReport = this.response.data;
+
+
+       this.spinner.hide();
+        }
+        else if(this.paymentReport.length == 0) {
+          this.toastr.error("No such Contract Exist", 'Message.');
+       this.spinner.hide();
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+       this.spinner.hide();
+        }
+
+      }, (err: HttpErrorResponse) => {
+        const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+        this.toastr.error(messages.toString(),'Message.');
+        this.spinner.hide();
+
+      });
+}
+kickbackContractReport(){
+  let varr = {
+    "buyerId":this.data5.buyerId ==undefined ? 0 :this.data5.buyerId,
+    "sellerId":this.data5.sellerId == undefined?0 :this.data5.sellerId,
+    "autoContractNumber":this.data5.autoContractNumber == undefined ? '': this.data5.autoContractNumber,
+    "startContractDate":this.data5.startContractDate == undefined? '': this.dateformater.toModel(this.data5.startContractDate),
+    "endContractDate":this.data5.endContractDate == undefined?'':this.dateformater.toModel(this.data5.endContractDate)
+  }
+  this.spinner.show();
+  this.http.
+    post(`${environment.apiUrl}/api/Reports/KickbackContractReport`, varr)
+    .subscribe(
+      res => {
+
+        this.response = res;
+        if (this.response.success == true  && this.response.data.length != 0) {
+          this.toastr.success(this.response.message, 'Message.');
+          this.kickbackReport = this.response.data;
+
+
+       this.spinner.hide();
+        }
+        else if(this.kickbackReport.length == 0) {
+          this.toastr.error("No such Contract Exist", 'Message.');
+       this.spinner.hide();
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+       this.spinner.hide();
+        }
+
+      }, (err: HttpErrorResponse) => {
+        const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+        this.toastr.error(messages.toString(),'Message.');
+        this.spinner.hide();
+
+      });
+}
+kickbackContractReport2(){
+  this.kickbackReport = [];
+  let varr = {
+    "buyerId":this.data5.buyerId ==undefined ? 0 :this.data5.buyerId,
+    "sellerId":this.data5.sellerId == undefined?0 :this.data5.sellerId,
+    "autoContractNumber":this.data5.autoContractNumber == undefined ? '': this.data5.autoContractNumber,
+    "startContractDate":this.data5.startContractDate == undefined? '': this.dateformater.toModel(this.data5.startContractDate),
+    "endContractDate":this.data5.endContractDate == undefined?'':this.dateformater.toModel(this.data5.endContractDate)
+  }
+  this.spinner.show();
+  this.http.
+    post(`${environment.apiUrl}/api/Reports/KickbackContractReport`, varr)
+    .subscribe(
+      res => {
+
+        this.response = res;
+        if (this.response.success == true  && this.response.data.length != 0) {
+          this.toastr.success(this.response.message, 'Message.');
+          this.kickbackReport = this.response.data;
+
+
+       this.spinner.hide();
+        }
+        else if(this.kickbackReport.length == 0) {
+          this.toastr.error("No such Contract Exist", 'Message.');
+       this.spinner.hide();
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+       this.spinner.hide();
+        }
+
+      }, (err: HttpErrorResponse) => {
+        const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+        this.toastr.error(messages.toString(),'Message.');
+        this.spinner.hide();
+
+      });
+}
+commisionReport(varr){
+
+  this.spinner.show();
+  this.http.
+    post(`${environment.apiUrl}/api/Reports/Commission_Report`, varr)
+    .subscribe(
+      res => {
+
+        this.response = res;
+        if (this.response.success == true  && this.response.data.length != 0) {
+          this.toastr.success(this.response.message, 'Message.');
+          this.commissionReport = this.response.data;
+
+
+       this.spinner.hide();
+        }
+        else if(this.kickbackReport.length == 0) {
+          this.toastr.error("No such Contract Exist", 'Message.');
+       this.spinner.hide();
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+       this.spinner.hide();
+        }
+
+      }, (err: HttpErrorResponse) => {
+        const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+        this.toastr.error(messages.toString(),'Message.');
+        this.spinner.hide();
+
+      });
+}
+// PaymentReport2(){
+//   this.paymentReport = [];
+//   let varr = {
+//     "buyerId":this.data4.buyerId ==undefined ? 0 :this.data4.buyerId,
+//     "sellarId":this.data4.sellarId == undefined?0 :this.data4.sellarId,
+//     "startContractDate":this.data4.startContractDate == undefined? '': this.data4.startContractDate,
+//     "endContractDate":this.data4.endContractDate == undefined?'':this.data4.endContractDate
+//   }
+//   this.spinner.show();
+//   this.http.
+//     post(`${environment.apiUrl}/api/Reports/Payment_Report`, varr)
+//     .subscribe(
+//       res => {
+
+//         this.response = res;
+//         if (this.response.success == true  && this.response.data.length != 0) {
+//           this.toastr.success(this.response.message, 'Message.');
+//           this.paymentReport = this.response.data;
+
+
+//        this.spinner.hide();
+//         }
+//         else if(this.paymentReport.length == 0) {
+//           this.toastr.error("No such Contract Exist", 'Message.');
+//        this.spinner.hide();
+
+//         }
+//         else {
+//           this.toastr.error(this.response.message, 'Message.');
+//        this.spinner.hide();
+//         }
+
+//       }, (err: HttpErrorResponse) => {
+//         const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+//         this.toastr.error(messages.toString(),'Message.');
+//         this.spinner.hide();
+
+//       });
+// }
 
   invoiceExcelFile(){
     const filtered = this.billingReportInvoiceWise.map(row => ({
@@ -402,6 +639,10 @@ else if (this.menuName.menuName == 'BillingReportContractWise'){
       }
     });
   }
+
+  
+
+
   contractExcelFile(){
     const filtered = this.contractWise.map(row => ({
       BillFor: row.billFor,
@@ -423,92 +664,30 @@ else if (this.menuName.menuName == 'BillingReportContractWise'){
 
   }
 
-  allContractReports() {
-    this.contractWise.startDate = this.dateformater.toModel(this.contractWise.startDate)
-    this.contractWise.endDate = this.dateformater.toModel(this.contractWise.endDate)
-    this.spinner.show();
-    this.http
-    .get(`${environment.apiUrl}`)
-    .subscribe(res => {
-      this.response = res;
+  
+  // allcontractExcelFile(){
+  //   const filtered = this.contractWise.map(row => ({
+  //     BillFor: row.billFor,
+  //     Article: row.articleName,
+  //     ContractNumber: row.contractNo,
+  //     CotractDate: row.contractDate ,
+  //     BillDate: row.billDate,
+  //     BillNumber: row.billNo,
+  //     Buyer: row.buyerName ,
+  //     Seller: row.sellerName,
+  //     Rate: row.rate,
+  //     CommPer: row.fabcotCommission + '%' ,
+  //     Quantity: row.quantity,
+  //     QtyUOM:row.quantityUOMName,
+  //     CommAmount: row.commissionAmount ,
+  //   }));
 
-    if(this.response.success==true)
-    {
-    this.allContractReport=this.response.data;
+  //   this.service.exportAsExcelFile(filtered, 'Bill Report(Contract Wise)');
 
-
-    // cb(this.billingReportInvoiceWise);
-    this.spinner.hide();
-
-    }
-    else{
-      this.toastr.error(this.response.message, 'Message.');
-      this.spinner.hide();
-
-    }
-
-    }, err => {
-      if ( err.status == 400) {
-  this.toastr.error(err.error.message, 'Message.');
-  this.spinner.hide();
-
-      }
-    });
-  }
-  allcontractExcelFile(){
-    const filtered = this.contractWise.map(row => ({
-      BillFor: row.billFor,
-      Article: row.articleName,
-      ContractNumber: row.contractNo,
-      CotractDate: row.contractDate ,
-      BillDate: row.billDate,
-      BillNumber: row.billNo,
-      Buyer: row.buyerName ,
-      Seller: row.sellerName,
-      Rate: row.rate,
-      CommPer: row.fabcotCommission + '%' ,
-      Quantity: row.quantity,
-      QtyUOM:row.quantityUOMName,
-      CommAmount: row.commissionAmount ,
-    }));
-
-    this.service.exportAsExcelFile(filtered, 'Bill Report(Contract Wise)');
-
-  }
+  // }
 
 
-  openContractReports() {
-    this.contractWise.startDate = this.dateformater.toModel(this.contractWise.startDate)
-    this.contractWise.endDate = this.dateformater.toModel(this.contractWise.endDate)
-    this.spinner.show();
-    this.http
-    .get(`${environment.apiUrl}`)
-    .subscribe(res => {
-      this.response = res;
-
-    if(this.response.success==true)
-    {
-    this.openContractReport=this.response.data;
-
-
-    // cb(this.billingReportInvoiceWise);
-    this.spinner.hide();
-
-    }
-    else{
-      this.toastr.error(this.response.message, 'Message.');
-      this.spinner.hide();
-
-    }
-
-    }, err => {
-      if ( err.status == 400) {
-  this.toastr.error(err.error.message, 'Message.');
-  this.spinner.hide();
-
-      }
-    });
-  }
+ 
   openContractExcelFile(){
     const filtered = this.contractWise.map(row => ({
       BillFor: row.billFor,

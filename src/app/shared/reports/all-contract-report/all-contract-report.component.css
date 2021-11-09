@@ -1,0 +1,40 @@
+.add{
+    width: 100%;
+    display: inline;
+    transition: inline 5s ease-out;
+    opacity: 1;
+  }
+  .remove{
+    width: 0%;
+    display: none;
+    transition: opacity 1s ease-out;
+    opacity: 0;
+  }
+  .yellow-bg {
+    background-color: #f8ac59;
+    color: #ffffff;
+  }
+  .blue-bg {
+    background-color: #1c84c6;
+    color: #ffffff;
+  }
+  .navy-bg {
+    background-color: #23c6c8;
+    color: #ffffff;
+  }
+  .widget {
+    border-radius: 5px;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+  .text-right {
+    text-align: right !important;
+  }
+  .fa-4x {
+    font-size: 4em;
+  }
+  .lazur-bg {
+    background-color: #23c6c8;
+    color: #ffffff;
+  }

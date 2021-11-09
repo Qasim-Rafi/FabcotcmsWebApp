@@ -164,19 +164,19 @@ Swal.fire({
 })
   }
   reportsRoughtMethod(menuName){
-    this.router.navigate(['/reports'], { queryParams: { menuName: menuName } });
-    this.GetReportData();
-    if(menuName == "CommissionReport"){
-      // localStorage.removetem('lc');
-      // localStorage.setItem('comm', "CommissionReport");
-    this.filterPopUform("CommissionReport");
+    if(menuName == "AllContractReport" ){
+      this.router.navigate(['/allContractReport'], { queryParams: { menuName: menuName } });
     }
-    else  if(menuName == "LCReport"){
-      // localStorage.removetem('comm');
-      // localStorage.setItem('lc', "LCReport");
-      this.filterPopUform("LCReport");
-      }
+    else{
+    this.router.navigate(['/reports'], { queryParams: { menuName: menuName } });
   }
+  // if(menuName == "LCReport"){
+  //     this.filterPopUform("LCReport");
+  //     }
+  }
+  // AllContract(){
+  //   this.router.navigate(['/allContractReport']);
+  // }
   // ngAfterViewInit() {
   //   $('[data-widget="treeview"]').each(function() {
   //       AdminLte.Treeview._jQueryInterface.call($(this), 'init');
@@ -215,81 +215,81 @@ else if(menuName == 'Departments'){
 }
 
 
-GetReportData() {
-  this.spinner.show();
-  this.http.get(`${environment.apiUrl}/api/Contracts/GetAllContract`)
-    .subscribe(
-      res => {
-        this.response = res;
-        if (this.response.success == true) {
-          this.menuName = this.route.snapshot.queryParams;
-          if(this.menuName.menuName == 'OpenContractReport'){
-            this.openContractReport = this.response.data;
-          }
-          else if(this.menuName.menuName == 'AllContractReport'){
-            this.allContractReport = this.response.data;
-          }
-          else if(this.menuName.menuName == 'AgentBookingStatus'){
-            this.agentBookingStatus = this.response.data;
-          }
-          else if(this.menuName.menuName == 'CancleContarctReport'){
-            this.cancleContarctReport = this.response.data;
-          }
-          else if(this.menuName.menuName == 'BillingReportInvoiceWise'){
-            this.billingReportInvoiceWise = this.response.data;
-          }
-          else if(this.menuName.menuName == 'DispatchReport'){
-            this.dispatchReport = this.response.data;
-          }
-          else if(this.menuName.menuName == 'BillingReportContractWise'){
-            this.billingReportContractWise = this.response.data;
-          }
-          else if(this.menuName.menuName == 'PaymentReport'){
-            this.paymentReport = this.response.data;
-          }
-          else if(this.menuName.menuName == 'TaxChallanReport'){
-            this.taxChallanReport = this.response.data;
-          }
-          else if(this.menuName.menuName == 'CommissionReport'){
-            this.commissionReport = this.response.data;
-            localStorage.removeItem('newName');
-            localStorage.removetem('lc');
+// GetReportData() {
+//   this.spinner.show();
+//   this.http.get(`${environment.apiUrl}/api/Contracts/GetAllContract`)
+//     .subscribe(
+//       res => {
+//         this.response = res;
+//         if (this.response.success == true) {
+//           this.menuName = this.route.snapshot.queryParams;
+//           if(this.menuName.menuName == 'OpenContractReport'){
+//             this.openContractReport = this.response.data;
+//           }
+//           else if(this.menuName.menuName == 'AllContractReport'){
+//             this.allContractReport = this.response.data;
+//           }
+//           else if(this.menuName.menuName == 'AgentBookingStatus'){
+//             this.agentBookingStatus = this.response.data;
+//           }
+//           else if(this.menuName.menuName == 'CancleContarctReport'){
+//             this.cancleContarctReport = this.response.data;
+//           }
+//           else if(this.menuName.menuName == 'BillingReportInvoiceWise'){
+//             this.billingReportInvoiceWise = this.response.data;
+//           }
+//           else if(this.menuName.menuName == 'DispatchReport'){
+//             this.dispatchReport = this.response.data;
+//           }
+//           else if(this.menuName.menuName == 'BillingReportContractWise'){
+//             this.billingReportContractWise = this.response.data;
+//           }
+//           else if(this.menuName.menuName == 'PaymentReport'){
+//             this.paymentReport = this.response.data;
+//           }
+//           else if(this.menuName.menuName == 'TaxChallanReport'){
+//             this.taxChallanReport = this.response.data;
+//           }
+//           else if(this.menuName.menuName == 'CommissionReport'){
+//             this.commissionReport = this.response.data;
+//             localStorage.removeItem('newName');
+//             localStorage.removetem('lc');
 
 
-          }
-          else if(this.menuName.menuName == 'DbcrNoteSummary'){
-            this.dbcrNoteSummary = this.response.data;
-          }
-          else if(this.menuName.menuName == 'ExternalAgentReport'){
-            this.externalAgentReport = this.response.data;
-          }
-          else if(this.menuName.menuName == 'LCReport'){
-            this.lCReport = this.response.data;
-            localStorage.removetem('comm');
-          }
-          else if(this.menuName.menuName == 'KickbackReport'){
-            this.kickbackReport = this.response.data;
-          }
-          //this.data = this.response.data;
-          this.spinner.hide();
-        }
+//           }
+//           else if(this.menuName.menuName == 'DbcrNoteSummary'){
+//             this.dbcrNoteSummary = this.response.data;
+//           }
+//           else if(this.menuName.menuName == 'ExternalAgentReport'){
+//             this.externalAgentReport = this.response.data;
+//           }
+//           else if(this.menuName.menuName == 'LCReport'){
+//             this.lCReport = this.response.data;
+//             localStorage.removetem('comm');
+//           }
+//           else if(this.menuName.menuName == 'KickbackReport'){
+//             this.kickbackReport = this.response.data;
+//           }
+//           //this.data = this.response.data;
+//           this.spinner.hide();
+//         }
 
-        else {
-          this.toastr.error(this.response.message, 'Message.');
-          this.spinner.hide();
+//         else {
+//           this.toastr.error(this.response.message, 'Message.');
+//           this.spinner.hide();
 
-        }
+//         }
 
-      }, err => {
-        if (err.status == 400) {
-          this.toastr.error(this.response.message, 'Message.');
-          this.spinner.hide();
+//       }, err => {
+//         if (err.status == 400) {
+//           this.toastr.error(this.response.message, 'Message.');
+//           this.spinner.hide();
 
-        }
-      });
-      this.spinner.hide();
+//         }
+//       });
+//       this.spinner.hide();
 
-}
+// }
 filterPopUform(menu) {
   const modalRef = this.modalService.open(FilterPopUpComponent, { centered: true });
   modalRef.componentInstance.menu = menu;
