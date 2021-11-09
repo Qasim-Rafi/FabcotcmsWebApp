@@ -21,23 +21,14 @@ export class ReportsComponent implements OnInit {
   menuName: any = {};
   response: any;
   temp: any[];
-  // rows: any = [];
   columns: any = [];
   openContractReport: any = [];
   agentBookingStatus: any = [];
-  cancleContarctReport: any = [];
   billingReportInvoiceWise: any = [];
-  dispatchReport: any = [];
   billingReportContractWise: any = [];
-  taxChallanReport: any = [];
   commissionReport: any = [];
-  dbcrNoteSummary: any = [];
-  externalAgentReport: any = [];
   kickbackReport: any = [];
-  allContractReport: any = [];
   paymentReport: any = [];
-  lCReport: any = [];
-  url: any;
   contractWise : any = []
   buyer : any = []
   seller : any = []
@@ -52,8 +43,10 @@ dbCount : any;
 data4: any = [];
 data5: any = [];
 data6: any = [];
-
-
+dispatchReport : any =[]
+lCReport : any = []
+externalAgentReport: any = []
+taxChallanReport: any = []
   constructor(
 
     private route: ActivatedRoute,
@@ -72,10 +65,6 @@ data6: any = [];
     this.menuName = this.route.snapshot.queryParams;
     this.billingReportInvoiceWise.startDate = this.dateformater.toModel(this.billingReportInvoiceWise.startDate)
     this.billingReportInvoiceWise.endDate = this.dateformater.toModel(this.billingReportInvoiceWise.endDate)
-
-
-
-
 
 if(this.menuName.menuName == 'CancleContarctReport'){
 
@@ -97,9 +86,7 @@ else if(this.menuName.menuName =='AgentBookingStatus'){
   this.agentBooking();
  }
 
-// else if(this.menuName.menuName =='CommissionReport'){
-//   this.commisionReport();
-//  }
+
 else if (this.menuName.menuName == 'DbcrNoteSummary'){
   this.GetDbCrReport();
 }
@@ -153,19 +140,16 @@ else if (this.menuName.menuName == 'BillingReportContractWise'){
         d.buyerName.toLowerCase().indexOf(val) !== -1 ||
         !val);
     });
-    // this.rows = temp;
   }
   filterPopUform(menu) {
     const modalRef = this.modalService.open(FilterPopUpComponent, { centered: true });
     modalRef.componentInstance.menu = menu;
     modalRef.result.then((p) => {
-      // on close
       if (p != null) {
   this.commisionReport(p)
 
       }
     }, (reason) => {
-      // on dismiss
     });
   }
 
@@ -262,8 +246,7 @@ else if (this.menuName.menuName == 'BillingReportContractWise'){
     if(this.response.success==true)
     {
     this.DbCrData=this.response.data;
-    // this.dbCount =   this.DbCrData.c
-    // this.cancelContract = [...this.billingReportInvoiceWise]
+ 
     this.spinner.hide();
 
     }
@@ -362,10 +345,7 @@ else if (this.menuName.menuName == 'BillingReportContractWise'){
   }
 
  agentBooking(){
-  
-    // let varr = {
-   
-    // }
+
     this.spinner.show();
     this.http.
       post(`${environment.apiUrl}/api/Reports/AgentBookingReport`, {})
@@ -545,45 +525,37 @@ commisionReport(varr){
 
       });
 }
-// PaymentReport2(){
-//   this.paymentReport = [];
-//   let varr = {
-//     "buyerId":this.data4.buyerId ==undefined ? 0 :this.data4.buyerId,
-//     "sellarId":this.data4.sellarId == undefined?0 :this.data4.sellarId,
-//     "startContractDate":this.data4.startContractDate == undefined? '': this.data4.startContractDate,
-//     "endContractDate":this.data4.endContractDate == undefined?'':this.data4.endContractDate
-//   }
-//   this.spinner.show();
-//   this.http.
-//     post(`${environment.apiUrl}/api/Reports/Payment_Report`, varr)
-//     .subscribe(
-//       res => {
+fetchContractInvise() {
+  this.contractWise.startDate = this.dateformater.toModel(this.contractWise.startDate)
+  this.contractWise.endDate = this.dateformater.toModel(this.contractWise.endDate)
+  this.spinner.show();
+  this.http
+  .get(`${environment.apiUrl}/api/Reports/AllBillingReportContractWise/`+   this.contractWise.startDate + '/' +this.contractWise.endDate)
+  .subscribe(res => {
+    this.response = res;
 
-//         this.response = res;
-//         if (this.response.success == true  && this.response.data.length != 0) {
-//           this.toastr.success(this.response.message, 'Message.');
-//           this.paymentReport = this.response.data;
+  if(this.response.success==true)
+  {
+  this.contractWise=this.response.data;
+ this.contractBill = [...this.contractWise]
 
+  this.spinner.hide();
 
-//        this.spinner.hide();
-//         }
-//         else if(this.paymentReport.length == 0) {
-//           this.toastr.error("No such Contract Exist", 'Message.');
-//        this.spinner.hide();
+  }
+  else{
+    this.toastr.error(this.response.message, 'Message.');
+    this.spinner.hide();
 
-//         }
-//         else {
-//           this.toastr.error(this.response.message, 'Message.');
-//        this.spinner.hide();
-//         }
+  }
 
-//       }, (err: HttpErrorResponse) => {
-//         const messages = this.service.extractErrorMessagesFromErrorResponse(err);
-//         this.toastr.error(messages.toString(),'Message.');
-//         this.spinner.hide();
+  }, err => {
+    if ( err.status == 400) {
+this.toastr.error(err.error.message, 'Message.');
+this.spinner.hide();
 
-//       });
-// }
+    }
+  });
+}
 
   invoiceExcelFile(){
     const filtered = this.billingReportInvoiceWise.map(row => ({
@@ -607,40 +579,57 @@ commisionReport(varr){
     this.service.exportAsExcelFile(filtered, 'Bill Report(Invoice Wise)');
 
   }
-  fetchContractInvise() {
-    this.contractWise.startDate = this.dateformater.toModel(this.contractWise.startDate)
-    this.contractWise.endDate = this.dateformater.toModel(this.contractWise.endDate)
-    this.spinner.show();
-    this.http
-    .get(`${environment.apiUrl}/api/Reports/AllBillingReportContractWise/`+   this.contractWise.startDate + '/' +this.contractWise.endDate)
-    .subscribe(res => {
-      this.response = res;
-
-    if(this.response.success==true)
-    {
-    this.contractWise=this.response.data;
-   this.contractBill = [...this.contractWise]
-
-    // cb(this.billingReportInvoiceWise);
-    this.spinner.hide();
-
-    }
-    else{
-      this.toastr.error(this.response.message, 'Message.');
-      this.spinner.hide();
-
-    }
-
-    }, err => {
-      if ( err.status == 400) {
-  this.toastr.error(err.error.message, 'Message.');
-  this.spinner.hide();
-
-      }
-    });
-  }
-
+  openContractExcelFile(){
+    const filtered = this.rows.map(row => ({
+    Age:row.age,
+    ContractNo: row.contractNo,
+    Buyer: row.buyerName,
+    Seller: row.sellerName ,
+    Date: row.date,
+    PONumber: row.poNumber,
+    Article: row.articleName ,
+    Rate: row.rate,
+      RateUOM: row.rateUOMName ,
   
+      Quantity: row.balanceQty,
+      QtyUOM:row.uomName,
+      Booking: row.booking ,
+      
+      Dispatch: row.dispatch ,
+      Balance: row.balanceQty ,
+
+    }));
+
+    this.service.exportAsExcelFile(filtered, 'Open Contract Report');
+
+  }
+  cancleContractExcelFile(){
+    const filtered = this.cancelContract.map(row => ({
+    Age:row.age,
+    ContractNo: row.contractNo,
+    Buyer: row.buyerName,
+    Seller: row.sellerName ,
+    Date: row.date,
+    PONumber: row.poNumber,
+    Article: row.articleName ,
+    Rate: row.rate,
+      RateUOM: row.rateUOMName ,
+  Container : row.containerName,
+      Quantity: row.balanceQty,
+      QtyUOM:row.uomName,
+      Booking: row.booking ,
+      Cost:row.cost,
+      Dispatch: row.dispatch ,
+      Balance: row.balanceQty ,
+      SellerComm : row.sellerCommission,
+      BuyerComm : row.buyerCommission, 
+      Status:row.status
+
+    }));
+
+    this.service.exportAsExcelFile(filtered, 'Cancle Contract Report');
+
+  }
 
 
   contractExcelFile(){
@@ -663,53 +652,72 @@ commisionReport(varr){
     this.service.exportAsExcelFile(filtered, 'Bill Report(Contract Wise)');
 
   }
-
-  
-  // allcontractExcelFile(){
-  //   const filtered = this.contractWise.map(row => ({
-  //     BillFor: row.billFor,
-  //     Article: row.articleName,
-  //     ContractNumber: row.contractNo,
-  //     CotractDate: row.contractDate ,
-  //     BillDate: row.billDate,
-  //     BillNumber: row.billNo,
-  //     Buyer: row.buyerName ,
-  //     Seller: row.sellerName,
-  //     Rate: row.rate,
-  //     CommPer: row.fabcotCommission + '%' ,
-  //     Quantity: row.quantity,
-  //     QtyUOM:row.quantityUOMName,
-  //     CommAmount: row.commissionAmount ,
-  //   }));
-
-  //   this.service.exportAsExcelFile(filtered, 'Bill Report(Contract Wise)');
-
-  // }
-
-
- 
-  openContractExcelFile(){
-    const filtered = this.contractWise.map(row => ({
-      BillFor: row.billFor,
-      Article: row.articleName,
-      ContractNumber: row.contractNo,
-      CotractDate: row.contractDate ,
-      BillDate: row.billDate,
-      BillNumber: row.billNo,
-      Buyer: row.buyerName ,
+  paymentExcelFile(){
+    const filtered = this.paymentReport.map(row => ({
+      ContractNo: row.autoContractNo,
+      InvNo: row.saleInvoiceNo,
+      InvDate: row.saleInvoiceDateToDisplay ,
+      Buyer: row.buyerName,
       Seller: row.sellerName,
-      Rate: row.rate,
-      CommPer: row.fabcotCommission + '%' ,
-      Quantity: row.quantity,
-      QtyUOM:row.quantityUOMName,
-      CommAmount: row.commissionAmount ,
+      Quantity: row.quantity ,
+      InvoiceAmount: row.amount,
+      Received: row.received ,
+    
+      Balance: row.balance,
+      Aging:row.age,
+    
     }));
 
-    this.service.exportAsExcelFile(filtered, 'Bill Report(Contract Wise)');
+    this.service.exportAsExcelFile(filtered, 'PaymentReport');
 
   }
+  dbCrExcelFile(){
+    const filtered = this.DbCrData.map(row => ({
+      ContractNo: row.autoContractNumber,
+      InvNo: row.saleInvoiceNo,
+      InvDate: row.saleInvoiceDateToDisplay ,
+      Buyer: row.buyerName,
+      Seller: row.sellerName,
+      Date:row.date,
+      Note:row.dC_Note,
+      Article: row.article ,
+      
+      Quantity: row.quantity ,
+      Amount: row.amount,
+      Remarks: row.remarks,
+    
+    }));
 
+    this.service.exportAsExcelFile(filtered, 'DebitCreditExcelFile');
 
+  }
+  kickbackExcelFile(){
+    const filtered = this.kickbackReport.map(row => ({
+    Age:row.age,
+    ContractNo: row.contractNo,
+    Buyer: row.buyerName,
+    Seller: row.sellerName ,
+    Date: row.date,
+    PONumber: row.poNumber,
+    Article: row.articleName ,
+    Rate: row.rate,
+  Container : row.containerName,
+   
+      QtyUnit:row.uomName,
+      Booking: row.booking ,
+      Cost:row.cost,
+      Dispatch: row.dispatch ,
+      Balance: row.balanceQty ,
+      SellerComm : row.sellerCommission,
+      BuyerComm : row.buyerCommission, 
+      Agent:row.agent,
+      Status:row.status
+
+    }));
+
+    this.service.exportAsExcelFile(filtered, 'Contract Kickback Report');
+
+  }
 
   clickEvent(){
     this.status = !this.status;
