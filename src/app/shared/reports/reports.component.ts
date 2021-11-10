@@ -8,7 +8,9 @@ import { environment } from 'src/environments/environment';
 import { Dateformater } from '../dateformater';
 import { ServiceService } from '../service.service';
 import { FilterPopUpComponent } from './filter-pop-up/filter-pop-up.component';
-
+import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 @Component({
   selector: 'app-reports',
   templateUrl: './reports.component.html',
@@ -718,6 +720,140 @@ this.spinner.hide();
     this.service.exportAsExcelFile(filtered, 'Contract Kickback Report');
 
   }
+
+  openContractPdf() {
+
+    let docDefinition = {
+      pageSize: 'A4',
+      info: {
+        title: 'Open Contract List'
+      },
+      content: [
+        {
+          text: 'Open Contract List',
+          style: 'heading',
+
+        },
+        {
+          margin: [-20 , 5 , 0 , 0 ],
+          table:{
+            headerRows : 1,
+            widths : [30, 40, 60, 60 , 30 , 23 , 40 , 25 , 30 , 35 , 37 , 35
+            ],
+            body:[
+              [
+                {text:'Age' , style:'tableHeader' }
+              ,{text:'Contract#' , style:'tableHeader'} ,
+              {text:'Buyer' , style:'tableHeader' }, 
+              {text:'Seller' , style:'tableHeader' }, 
+
+              {text:'Date'  , style:'tableHeader'} , 
+              {text:'PO#' , style:'tableHeader'} , 
+              {text:'Article' , style:'tableHeader'},
+              
+              {text:'Rate'  , style:'tableHeader'} , 
+              {text:'Qty Unit' , style:'tableHeader'} , 
+              {text:'Booking' , style:'tableHeader'},
+              {text:'Dispatch'  , style:'tableHeader'} , 
+              {text:'Balance' , style:'tableHeader'} , 
+            ],
+              ...this.rows.map(row => (
+                [
+                  {text: row.age , style:'tableHeader2'} ,
+                {text:  row.contractNo , style:'tableHeader2'},
+                {text: row.buyerName, style:'tableHeader2'} ,
+                {text: row.sellerName , style:'tableHeader2'} ,
+                 {text: row.date, style:'tableHeader2'} ,
+                  {text:row.poNumber  , style:'tableHeader2' }  ,
+                  {text: row.articleName , style:'tableHeader2'},
+           
+                 {text: row.rate + " " + row.rateUOMName, style:'tableHeader2'} ,
+                  {text:row.uomName  , style:'tableHeader2' }  ,
+                  {text: row.booking , style:'tableHeader2'},
+              
+                   {text:row.dispatch  , style:'tableHeader2' }  ,
+                   {text:row.balanceQty  , style:'tableHeader2' }  ,
+                ]
+              ))
+            ]
+          }
+        },
+      ],
+      styles: {
+        heading: {
+          fontSize: 13,
+          alignment: 'center',
+          margin: [0, 15, 0, 30]
+        },
+        tableHeader:{ fillColor: '#f3f3f4' , bold:true , margin:4 , alignment: 'center' ,fontSize: 7},
+        tableHeader2:{   margin:3 , alignment: 'center' , fontSize: 6},
+      }
+
+    };
+    pdfMake.createPdf(docDefinition).print();
+  }
+
+  // agentBookingPdf() {
+
+  //   let docDefinition = {
+  //     pageSize: 'A4',
+  //     info: {
+  //       title: 'Agent Booking List'
+  //     },
+  //     content: [
+  //       {
+  //         text: 'Agent Booking List',
+  //         style: 'heading',
+
+  //       },
+  //       {
+  //         margin: [-20 , 5 , 0 , 0 ],
+  //         table:{
+  //           headerRows : 1,
+  //           widths : [30, 40, 60, 60 , 30 , 23 , 40 , 25 , 30 , 35 , 37 , 35
+  //           ],
+  //           body:[
+  //             [
+  //               {text:'Agent' , style:'tableHeader' }
+  //             ,{text:'Contracts' , style:'tableHeader'} ,
+  //             {text:'Commission' , style:'tableHeader' }, 
+  //             {text:'Quantity' , style:'tableHeader' }
+  //           ],
+  //             ...this.rows.map(row => (
+  //               [
+  //                 {text: row.age , style:'tableHeader2'} ,
+  //               {text:  row.contractNo , style:'tableHeader2'},
+  //               {text: row.buyerName, style:'tableHeader2'} ,
+  //               {text: row.sellerName , style:'tableHeader2'} ,
+  //                {text: row.date, style:'tableHeader2'} ,
+  //                 {text:row.poNumber  , style:'tableHeader2' }  ,
+  //                 {text: row.articleName , style:'tableHeader2'},
+           
+  //                {text: row.rate + " " + row.rateUOMName, style:'tableHeader2'} ,
+  //                 {text:row.uomName  , style:'tableHeader2' }  ,
+  //                 {text: row.booking , style:'tableHeader2'},
+              
+  //                  {text:row.dispatch  , style:'tableHeader2' }  ,
+  //                  {text:row.balanceQty  , style:'tableHeader2' }  ,
+  //               ]
+  //             ))
+  //           ]
+  //         }
+  //       },
+  //     ],
+  //     styles: {
+  //       heading: {
+  //         fontSize: 13,
+  //         alignment: 'center',
+  //         margin: [0, 15, 0, 30]
+  //       },
+  //       tableHeader:{ fillColor: '#f3f3f4' , bold:true , margin:4 , alignment: 'center' ,fontSize: 7},
+  //       tableHeader2:{   margin:3 , alignment: 'center' , fontSize: 6},
+  //     }
+
+  //   };
+  //   pdfMake.createPdf(docDefinition).print();
+  // }
 
   clickEvent(){
     this.status = !this.status;

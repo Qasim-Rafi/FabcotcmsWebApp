@@ -205,7 +205,7 @@ if(event==7){
 
   addSaleInvoice(form:NgForm) {
     let sum=parseInt(this.quantitya)+parseInt(this.saleInvoiceQuantity);
-    if(sum>this.quantity ){
+    if(sum>this.quantity && this.loggedInDepartmentName != 'Yarn Export' && this.loggedInDepartmentName != 'Yarn Import' ){
       this.toastr.error("Total Sale Invoice Quantity"+"["+sum+"]"+ "should be less than contract quantity"+"["+this.quantity+"]", 'Message.');
 
     }
