@@ -793,16 +793,68 @@ this.spinner.hide();
     pdfMake.createPdf(docDefinition).print();
   }
 
-  // agentBookingPdf() {
+  agentBookingPdf() {
+
+    let docDefinition = {
+      pageSize: 'A4',
+      info: {
+        title: 'Agent Booking List'
+      },
+      content: [
+        {
+          text: 'Agent Booking List',
+          style: 'heading',
+
+        },
+        {
+          margin: [40 , 5 , 0 , 0 ],
+          table:{
+            headerRows : 1,
+            widths : [70, 120, 120, 90 
+            ],
+            body:[
+              [
+                {text:'Agent' , style:'tableHeader' }
+              ,{text:'Contracts' , style:'tableHeader'} ,
+              {text:'Commission' , style:'tableHeader' }, 
+              {text:'Quantity' , style:'tableHeader' }
+            ],
+              ...this.agentBookingStatus.map(row => (
+                [
+                  {text: row.agentName , style:'tableHeader2'} ,
+                {text:  row.contracts , style:'tableHeader2'},
+                {text: row.commission, style:'tableHeader2'} ,
+                 {text: row.quantity, style:'tableHeader2'} ,
+             
+                ]
+              ))
+            ]
+          }
+        },
+      ],
+      styles: {
+        heading: {
+          fontSize: 13,
+          alignment: 'center',
+          margin: [0, 15, 0, 30]
+        },
+        tableHeader:{ fillColor: '#f3f3f4' , bold:true , margin:4 , alignment: 'center' ,fontSize: 8},
+        tableHeader2:{   margin:3 , alignment: 'center' , fontSize: 7},
+      }
+
+    };
+    pdfMake.createPdf(docDefinition).print();
+  }
+  // cancelContractPdf() {
 
   //   let docDefinition = {
   //     pageSize: 'A4',
   //     info: {
-  //       title: 'Agent Booking List'
+  //       title: 'Cancel Contract List'
   //     },
   //     content: [
   //       {
-  //         text: 'Agent Booking List',
+  //         text: 'Cancel Contract List',
   //         style: 'heading',
 
   //       },
@@ -810,14 +862,26 @@ this.spinner.hide();
   //         margin: [-20 , 5 , 0 , 0 ],
   //         table:{
   //           headerRows : 1,
-  //           widths : [30, 40, 60, 60 , 30 , 23 , 40 , 25 , 30 , 35 , 37 , 35
+  //           widths : [30, 40, 60, 60 , 30 , 23 , 40 , 25, 30 , 30 , 35 , 37 , 35 , 30
   //           ],
   //           body:[
   //             [
-  //               {text:'Agent' , style:'tableHeader' }
-  //             ,{text:'Contracts' , style:'tableHeader'} ,
-  //             {text:'Commission' , style:'tableHeader' }, 
-  //             {text:'Quantity' , style:'tableHeader' }
+  //               {text:'Age' , style:'tableHeader' }
+  //             ,{text:'Contract#' , style:'tableHeader'} ,
+  //             {text:'Buyer' , style:'tableHeader' }, 
+  //             {text:'Seller' , style:'tableHeader' }, 
+
+  //             {text:'Date'  , style:'tableHeader'} , 
+  //             {text:'PO#' , style:'tableHeader'} , 
+  //             {text:'Article' , style:'tableHeader'},
+              
+  //             {text:'Rate'  , style:'tableHeader'} , 
+  //             {text:'Container'  , style:'tableHeader'} , 
+  //             {text:'Qty Unit' , style:'tableHeader'} , 
+  //             {text:'Booking' , style:'tableHeader'},
+  //             {text:'Dispatch'  , style:'tableHeader'} , 
+  //             {text:'Balance' , style:'tableHeader'} , 
+  //             {text:'Cost' , style:'tableHeader'} , 
   //           ],
   //             ...this.rows.map(row => (
   //               [
@@ -830,6 +894,7 @@ this.spinner.hide();
   //                 {text: row.articleName , style:'tableHeader2'},
            
   //                {text: row.rate + " " + row.rateUOMName, style:'tableHeader2'} ,
+  //                {text:row.containerName  , style:'tableHeader'} ,
   //                 {text:row.uomName  , style:'tableHeader2' }  ,
   //                 {text: row.booking , style:'tableHeader2'},
               
@@ -854,7 +919,6 @@ this.spinner.hide();
   //   };
   //   pdfMake.createPdf(docDefinition).print();
   // }
-
   clickEvent(){
     this.status = !this.status;
 }

@@ -5060,7 +5060,8 @@ yarnExportInvoicesReportPrint(){
                         [{text:'Buyer Name:'  , style:'heading'} , {text: this.contractPartiesData['buyerName'], style:'heading5'}],] }
                       },
                       {
-                        margin: [70 , 10 , 0 , 10],
+                        margin: [60 , 10 , 0 , 10],
+                        layout: 'lightHorizontalLines',
                         table:{
                           headerRows:1,
                           widths: [ '20%' , '12%' , '10%' , '20%' , '25%' ],
@@ -5075,7 +5076,7 @@ yarnExportInvoicesReportPrint(){
                       [
                         // row.articleName  , row.contractArticleQuantity, row.contractArticleCommission,
                         // row.contractArticleRate 
-                             {text: row.articleName , style: 'tableheader3'} , 
+                             {text: row.articleName + '\n' + this.contractProductData['construction'] , style: 'tableheader3'} , 
                              {text: row.contractArticleQuantity , style: 'tableheader3'},
                              {text: row.contractArticleRate , style: 'tableheader3'},
 
@@ -5097,14 +5098,14 @@ yarnExportInvoicesReportPrint(){
                       body: [
                         [{text:'Packing:'  , style:'heading'} , {text: this.contractPaymentData['packingName'] , style:'heading2'}],] }
                       },
-                      {
+                      // {
 
-                        layout:'noBorders',
-                        margin: [70 , 7 , 0 , 0],
-                        table:{headerRows: 1 , widths:['20%' , '80%'],
-                      body: [
-                        [{text:'Construction:'  , style:'heading'} , {text: this.contractProductData['construction'] , style:'heading2'}],] }
-                      },
+                      //   layout:'noBorders',
+                      //   margin: [70 , 7 , 0 , 0],
+                      //   table:{headerRows: 1 , widths:['20%' , '80%'],
+                      // body: [
+                      //   [{text:'Construction:'  , style:'heading'} , {text: this.contractProductData['construction'] , style:'heading2'}],] }
+                      // },
                      
                       {
 
@@ -5219,7 +5220,7 @@ yarnExportInvoicesReportPrint(){
                          },
                          
                         tableheader2: {
-                          fillColor: '#f3f3f4',
+                          // fillColor: '#f3f3f4',
                           fontSize: 9,
                           bold: true,
                           color: '#4d4b4b',
