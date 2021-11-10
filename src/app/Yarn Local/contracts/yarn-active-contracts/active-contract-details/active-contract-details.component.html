@@ -697,13 +697,13 @@
                                                             (click)="revisedpopup(a,'Edit')">Revised</button>
                                                     </div>
 
-                                                    <div class=" modalBorder d-inline ">
+                                                    <!-- <div class=" modalBorder d-inline ">
                                                         <div class="h6 pdngLR text_Navy">{{i+1}}</div>
-                                                    </div>
+                                                    </div> -->
 
                                                     <div class="col-md-4 ml-0">
                                                         <div class="input-group">
-                                                            <label class="col-form-label">Article Name:</label>
+                                                            <label class="col-form-label"> <b class = "h6 pdngLR text_Navy">{{i+1}} -</b>  Article Name:</label>
                                                 
                                                             <ng-select [disabled]="a.isDeleted ==true || a.isRevised ==true" name="articleId_{{i}}" #articleId="ngModel"
                                                                 class="input-w px-0" [(ngModel)]="a.articleId" placeholder="-- Select --">
