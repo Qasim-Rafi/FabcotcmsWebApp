@@ -992,7 +992,7 @@
                                     || loggedInDepartmentName == 'Yarn Import'">
                                         <dt class="col-sm-4">Tolerance value:
                                         </dt>
-                                        <dd class="col-sm-6"> {{contractCostingData.quantityToleranceValue}}
+                                        <dd class="col-sm-6" *ngIf = "contractProductData.tolerance != ''"> +/- {{contractCostingData.quantityToleranceValue}} %
                                           </dd>
                                     </dl>
                     
