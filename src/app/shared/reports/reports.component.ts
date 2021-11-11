@@ -40,6 +40,8 @@ export class ReportsComponent implements OnInit {
   cancelContract:any =[];
   rows:any =[];
   data3:any=[];
+  data7:any=[];
+
   DbCrData:any=[];
 dbCount : any;
 data4: any = [];
@@ -70,7 +72,7 @@ taxChallanReport: any = []
 
 if(this.menuName.menuName == 'CancleContarctReport'){
 
-  this.GetCancelContract();
+  this.cancelContractReport();
 }
 else if ( this.menuName.menuName == 'BillingReportInvoiceWise'){
   this.fetch();
@@ -205,36 +207,36 @@ else if (this.menuName.menuName == 'BillingReportContractWise'){
     });
   }
 
-  GetCancelContract() {
+  // GetCancelContract() {
 
 
-    this.spinner.show();
-    this.http
-    .get(`${environment.apiUrl}/api/Reports/GetAllCancelContractReport` )
-    .subscribe(res => {
-      this.response = res;
+  //   this.spinner.show();
+  //   this.http
+  //   .get(`${environment.apiUrl}/api/Reports/GetAllCancelContractReport` )
+  //   .subscribe(res => {
+  //     this.response = res;
 
-    if(this.response.success==true)
-    {
-    this.cancelContract=this.response.data;
-    // this.cancelContract = [...this.billingReportInvoiceWise]
-    this.spinner.hide();
+  //   if(this.response.success==true)
+  //   {
+  //   this.cancelContract=this.response.data;
+    
+  //   this.spinner.hide();
 
-    }
-    else{
-      this.toastr.error(this.response.message, 'Message.');
-      this.spinner.hide();
+  //   }
+  //   else{
+  //     this.toastr.error(this.response.message, 'Message.');
+  //     this.spinner.hide();
 
-    }
+  //   }
 
-    }, err => {
-      if ( err.status == 400) {
-  this.toastr.error(err.error.message, 'Message.');
-  this.spinner.hide();
+  //   }, err => {
+  //     if ( err.status == 400) {
+  // this.toastr.error(err.error.message, 'Message.');
+  // this.spinner.hide();
 
-      }
-    });
-  }
+  //     }
+  //   });
+  // }
 
   GetDbCrReport() {
 
@@ -271,26 +273,27 @@ else if (this.menuName.menuName == 'BillingReportContractWise'){
     this.rows = [];
     let varr = {
       "buyerId":this.data3.buyerId ==undefined ? 0 :this.data3.buyerId,
-      "sellarId":this.data3.sellarId == undefined?0 :this.data3.sellarId,
+      "sellerId":this.data3.sellerId == undefined?0 :this.data3.sellerId,
       "autoContractNumber":this.data3.autoContractNumber == undefined ? 'string': this.data3.autoContractNumber,
       "startContractDate":this.data3.startContractDate == undefined? '':this.dateformater.toModel(this.data3.startContractDate),
-      "endContractDate":this.data3.endContractDate == undefined?'':this.dateformater.toModel(this.data3.endContractDate)
+      "endContractDate":this.data3.endContractDate == undefined?'':this.dateformater.toModel(this.data3.endContractDate),
+      "status" : "Open"
     }
     this.spinner.show();
     this.http.
-      post(`${environment.apiUrl}/api/Reports/OpenContractReport`, varr)
+      post(`${environment.apiUrl}/api/Reports/ContractReport`, varr)
       .subscribe(
         res => {
 
           this.response = res;
-          if (this.response.success == true  && this.response.data.length != 0) {
+          if (this.response.success == true  && this.response.data.obj.length != 0) {
             this.toastr.success(this.response.message, 'Message.');
             this.rows = this.response.data;
 
 
          this.spinner.hide();
           }
-          else if(this.rows.length == 0) {
+          else if(this.response.data.obj.length == 0) {
             this.toastr.error("No such Contract Exist", 'Message.');
          this.spinner.hide();
           }
@@ -307,29 +310,30 @@ else if (this.menuName.menuName == 'BillingReportContractWise'){
         });
   }
   getOpenContractReport2(){
-    this.rows = [];
+
     let varr = {
       "buyerId":this.data3.buyerId ==undefined ? 0 :this.data3.buyerId,
-      "sellarId":this.data3.sellarId == undefined?0 :this.data3.sellarId,
+      "sellerId":this.data3.sellerId == undefined?0 :this.data3.sellerId,
       "autoContractNumber":this.data3.autoContractNumber == undefined ? '': this.data3.autoContractNumber,
       "startContractDate":this.data3.startContractDate == undefined? '': this.dateformater.toModel(this.data3.startContractDate),
-      "endContractDate":this.data3.endContractDate == undefined?'':this.dateformater.toModel(this.data3.endContractDate)
+      "endContractDate":this.data3.endContractDate == undefined?'':this.dateformater.toModel(this.data3.endContractDate),
+      "status" : "Open"
     }
     this.spinner.show();
     this.http.
-      post(`${environment.apiUrl}/api/Reports/OpenContractReport`, varr)
+      post(`${environment.apiUrl}/api/Reports/ContractReport`, varr)
       .subscribe(
         res => {
 
           this.response = res;
-          if (this.response.success == true  && this.response.data.length != 0) {
+          if (this.response.success == true  && this.response.data.obj.length != 0) {
             this.toastr.success(this.response.message, 'Message.');
-            this.rows = this.response.data;
+            this.rows = this.response.data.obj;
 
 
          this.spinner.hide();
           }
-          else if(this.rows.length == 0) {
+          else if(this.response.data.obj.length == 0) {
             this.toastr.error("No such Contract Exist", 'Message.');
          this.spinner.hide();
           }
@@ -345,6 +349,48 @@ else if (this.menuName.menuName == 'BillingReportContractWise'){
 
         });
   }
+
+  cancelContractReport(){
+
+    let varr = {
+      "buyerId":this.data7.buyerId ==undefined ? 0 :this.data7.buyerId,
+      "sellerId":this.data7.sellerId == undefined?0 :this.data7.sellerId,
+      "autoContractNumber":this.data7.autoContractNumber == undefined ? '': this.data7.autoContractNumber,
+      "startContractDate":this.data7.startContractDate == undefined? '': this.dateformater.toModel(this.data7.startContractDate),
+      "endContractDate":this.data7.endContractDate == undefined?'':this.dateformater.toModel(this.data7.endContractDate),
+      "status" : "Cancel"
+    }
+    this.spinner.show();
+    this.http.
+      post(`${environment.apiUrl}/api/Reports/ContractReport`, varr)
+      .subscribe(
+        res => {
+
+          this.response = res;
+          if (this.response.success == true  && this.response.data.obj.length != 0) {
+            this.toastr.success(this.response.message, 'Message.');
+            this.cancelContract = this.response.data.obj;
+
+
+         this.spinner.hide();
+          }
+          else if(this.response.data.obj.length == 0) {
+            this.toastr.error("No such Contract Exist", 'Message.');
+         this.spinner.hide();
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+         this.spinner.hide();
+          }
+
+        }, (err: HttpErrorResponse) => {
+          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+          this.toastr.error(messages.toString(),'Message.');
+          this.spinner.hide();
+
+        });
+  }
+
 
  agentBooking(){
 

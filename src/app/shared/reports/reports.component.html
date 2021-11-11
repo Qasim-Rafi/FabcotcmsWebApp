@@ -534,12 +534,99 @@
             </button>
             <span class="text-muted text2">Dispatch</span>
           </div>
-          <div class="col-sm-6 col-md-12 mrg-tsm">
+          <!-- <div class="col-sm-6 col-md-12 mrg-tsm">
             <button type="button" class="btn navy-bg btn-sm float-right">
               <i class="fa fa-filter"></i> Filter
             </button>
+          </div> -->
+        </div>
+
+        <form #filterForm="ngForm" novalidate>
+          <div  [ngClass]="status ? 'add' : 'remove'">
+          <div class="card">
+
+
+          <div class="row p-2">
+
+              <div class="form-group col-md-4">
+                <label for="description">Buyer Name:</label>
+                <ng-select placeholder="Buyer Name" name="buyerId" [(ngModel)]="data7.buyerId" #buyerId="ngModel">
+                  <ng-option *ngFor="let i of buyer" [value]="i.id">
+                    {{i.buyerName}}
+                  </ng-option>
+                </ng-select>
+              </div>
+
+              <div class="form-group col-md-4 ">
+                <label for="description">Seller Name:</label>
+                <ng-select placeholder="Seller Name" name="sellerId" [(ngModel)]="data7.sellerId"
+                  #sellerId="ngModel">
+                  <ng-option *ngFor="let i of seller" [value]="i.id">
+                    {{i.sellerName}}
+                  </ng-option>
+                </ng-select>
+
+              </div>
+
+              <div class="form-group col-md-4">
+                <label for="description">Auto Contract#:</label>
+                <input type="text" placeholder="Contract Number" name="autoContractNumber"
+                  [(ngModel)]="data7.autoContractNumber" #autoContractNumber="ngModel" class="form-control text-w-4">
+              </div>
+
+
+          </div>
+
+          <div class="row p-2">
+
+              <div class="form-group col-md-4">
+                <label for="description">Start Date:</label>
+                <input class="form-control" ngbDatepicker #reminderDate2="ngbDatepicker" (click)="reminderDate2.toggle()"
+                placeholder="Contract start Date" name="contractUpDate" name="contractDate"
+                [(ngModel)]="data7.startContractDate" #contractDate="ngModel" />
+              </div>
+              <div class="form-group col-md-4">
+                <label for="description">End Date:</label>
+
+                  <input class="form-control" ngbDatepicker #reminderDate3="ngbDatepicker" (click)="reminderDate3.toggle()"
+                  placeholder="Contract end Date" name="contractUpDate" name="contractDate"
+                  [(ngModel)]="data7.endContractDate" #contractDate="ngModel" />
+
+              </div>
+
+
+
           </div>
         </div>
+      </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group row mt-3">
+                <div class="col-md-2 ml-8">
+                  <button class="btn btn-outline-secondary pull-left btn-xs "><i class="fas fa-sync"></i>
+                    Clear
+                  </button>
+
+                </div>
+
+                <div class="col-md-4 ">
+                  <button type="button" class="btn btn-primary btn-sm float-right" (click)="cancelContractReport()">
+                    Search Contract
+                  </button>
+                </div>
+                <div class="col-md-6 mb-1">
+                <button type="button" class="btn btn-primary btn-sm ml-md-2 float-right"  (click)="clickEvent()"> Advance Filter <i class="fas fa-search fa-fw mr-2"></i></button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+
+
+        </form>
+
+
 
         <div class="row">
           <div class="col-md-12 mb-3">
