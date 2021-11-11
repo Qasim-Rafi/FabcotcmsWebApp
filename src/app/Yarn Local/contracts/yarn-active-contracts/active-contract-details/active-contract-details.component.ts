@@ -206,7 +206,7 @@ billCount : any;
     this.getContractRemarkData();
     this.getContractCommisionData();
  
-    // this.getDispatches();
+    this.getDispatches();
   this.getContractLOC();
     this.getDeliveries();
     this.getAllInvoices();
@@ -1196,28 +1196,28 @@ getDocumentData() {
 }
 
 
-// getDispatches() {
-//   this.http.get(`${environment.apiUrl}/api/YarnContracts/GetAllDispatchRegister/`+ this.contractId)
-//     .subscribe(
-//       res => {
-//         this.response = res;
-//         if (this.response.success == true && this.response.data != null) {
-//           this.dispatchData = this.response.data;
+getDispatches() {
+  this.http.get(`${environment.apiUrl}/api/YarnContracts/GetAllDispatchRegister/`+ this.contractId)
+    .subscribe(
+      res => {
+        this.response = res;
+        if (this.response.success == true && this.response.data != null) {
+          this.dispatchData = this.response.data;
        
-//       this.dispatchFilter = [...this.dispatchData];
+      this.dispatchFilter = [...this.dispatchData];
 
-//         }
-//         else if(this.response.success == false) {
+        }
+        else if(this.response.success == false) {
          
-//           this.toastr.error(this.response.message, 'Message.');
-//         }
+          this.toastr.error(this.response.message, 'Message.');
+        }
 
-//       },(err: HttpErrorResponse) => {
-//         const messages = this.service.extractErrorMessagesFromErrorResponse(err);
-//         this.toastr.error(messages.toString(), 'Message.');
-//         console.log(messages);
-//       });
-// }
+      },(err: HttpErrorResponse) => {
+        const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+        this.toastr.error(messages.toString(), 'Message.');
+        console.log(messages);
+      });
+}
 
 getProdPlan() {
   if(this.loggedInDepartmentName == 'Yarn Export' || this.loggedInDepartmentName == 'Yarn Import'){
@@ -1900,22 +1900,22 @@ editDeliveries(row, check) {
     // on dismiss
   });
 }
-// addDispatch( check) {
-//   const modalRef = this.modalService.open(DispatchRegisterComponent, { centered: true });
-//   modalRef.componentInstance.statusCheck = check;
-//   modalRef.componentInstance.contractId = this.contractId ;
-//   modalRef.componentInstance.buyerName = this.buyerName ;
-//   modalRef.componentInstance.sellerName = this.sellerName ;
-//   modalRef.componentInstance.contractNmbr = this.contractNmbr ;
+addDispatch( check) {
+  const modalRef = this.modalService.open(DispatchRegisterComponent, { centered: true });
+  modalRef.componentInstance.statusCheck = check;
+  modalRef.componentInstance.contractId = this.contractId ;
+  modalRef.componentInstance.buyerName = this.buyerName ;
+  modalRef.componentInstance.sellerName = this.sellerName ;
+  modalRef.componentInstance.contractNmbr = this.contractNmbr ;
 
-//   modalRef.result.then((data) => {
-//     if (data == true) {
+  modalRef.result.then((data) => {
+    if (data == true) {
   
-//     }
+    }
 
-//   }, (reason) => {
-//   });
-// }
+  }, (reason) => {
+  });
+}
 
 addCredit(x, check) {
   const modalRef = this.modalService.open(CreditComponent, { centered: true });
@@ -1948,19 +1948,22 @@ addCredit(x, check) {
   });
 }
 
-// editDispatch( row ,check) {
-//   const modalRef = this.modalService.open(DispatchRegisterComponent, { centered: true });
-//   modalRef.componentInstance.statusCheck = check;
-//   modalRef.componentInstance.dispatchId = row.id ;
-//   modalRef.componentInstance.contractId = this.contractId ;
-//   modalRef.result.then((data) => {
-//     if (data == true) {
-  
-//     }
-//     this.getDispatches();
-//   }, (reason) => {
-//   });
-// }
+editDispatch( row ,check) {
+  const modalRef = this.modalService.open(DispatchRegisterComponent, { centered: true });
+  modalRef.componentInstance.statusCheck = check;
+  modalRef.componentInstance.dispatchId = row.id ;
+  modalRef.componentInstance.contractId = this.contractId ;
+  modalRef.componentInstance.buyerName = this.buyerName ;
+  modalRef.componentInstance.sellerName = this.sellerName ;
+  modalRef.componentInstance.contractNmbr = this.contractNmbr ;
+  modalRef.result.then((data) => {
+    if (data == true) {
+      this.getDispatches();
+    }
+    
+  }, (reason) => {
+  });
+}
 
 ContractNotes(check) {
   const modalRef = this.modalService.open(ContractNoteComponent, { centered: true });
@@ -2023,46 +2026,46 @@ addProd() {
 
 
 
-// deleteDispatch(id) {
-//   Swal.fire({
-//     title: GlobalConstants.deleteTitle, //'Are you sure?',
-//     text: GlobalConstants.deleteMessage,
-//     icon: 'error',
-//     showCancelButton: true,
-//     confirmButtonColor: '#ed5565',
-//     cancelButtonColor: '#dae0e5',
-//     cancelButtonText: 'No',
-//     confirmButtonText: 'Yes',
-//     reverseButtons: true,
-//     position: 'top',
-//   }).then((result) => {
-//     if (result.isConfirmed) {
-//       this.spinner.show();
+deleteDispatch(id) {
+  Swal.fire({
+    title: GlobalConstants.deleteTitle, //'Are you sure?',
+    text: GlobalConstants.deleteMessage,
+    icon: 'error',
+    showCancelButton: true,
+    confirmButtonColor: '#ed5565',
+    cancelButtonColor: '#dae0e5',
+    cancelButtonText: 'No',
+    confirmButtonText: 'Yes',
+    reverseButtons: true,
+    position: 'top',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.spinner.show();
 
-//       this.http.delete(`${environment.apiUrl}/api/YarnContracts/DeleteDispatchRegister/` + id.id)
-//         .subscribe(
-//           res => {
-//             this.response = res;
-//             if (this.response.success == true) {
-//               this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
-//               this.getDispatches();
-//               this.spinner.hide();
-//             }
-//             else {
-//               this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
-//   this.spinner.hide();
+      this.http.delete(`${environment.apiUrl}/api/YarnContracts/DeleteDispatchRegister/` + id.id)
+        .subscribe(
+          res => {
+            this.response = res;
+            if (this.response.success == true) {
+              this.toastr.error(GlobalConstants.deleteSuccess, 'Message.');
+              this.getDispatches();
+              this.spinner.hide();
+            }
+            else {
+              this.toastr.error(GlobalConstants.exceptionMessage, 'Message.');
+  this.spinner.hide();
            
-//             }
+            }
 
-//           }, err => {
-//             if (err.status == 400) {
-//               this.toastr.error(this.response.message, 'Message.');
-//   this.spinner.hide();
-// }
-//           });
-//     }
-//   })
-// }
+          }, err => {
+            if (err.status == 400) {
+              this.toastr.error(this.response.message, 'Message.');
+  this.spinner.hide();
+}
+          });
+    }
+  })
+}
 
 
 

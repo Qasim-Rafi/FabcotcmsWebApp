@@ -19,6 +19,9 @@ export class AllContractReportComponent implements OnInit {
   status: boolean = false;
   seller: any = [];
   article: any = [];
+totalContract :  any;
+totalQuantity :  any;
+totalDispatch :  any;
 
   allContractReport :  any = []
   constructor(   private route: ActivatedRoute,
@@ -89,8 +92,9 @@ export class AllContractReportComponent implements OnInit {
           if (this.response.success == true  && this.response.data.obj.length != 0) {
             this.toastr.success(this.response.message, 'Message.');
             this.allContractReport = this.response.data.obj;
-
-
+            this.totalContract = this.response.data.totalContract 
+            this.totalDispatch = this.response.data.totalDispatchAmount
+            this.totalQuantity = this.response.data.totalQuantity
          this.spinner.hide();
           }
           else if(this.response.data.obj.length == 0) {
