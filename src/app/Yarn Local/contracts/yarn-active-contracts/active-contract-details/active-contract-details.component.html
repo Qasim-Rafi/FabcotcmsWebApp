@@ -288,10 +288,10 @@
                                 aria-controls="nav-delivery" aria-selected="false">Delivery TL &nbsp;<span
                                     class="badge badge-pill badge-primary">{{deliveryData.length}}</span></a>
 
-                            <!-- <a class="nav-dispatches nav-link " *ngIf="loggedInDepartmentName=='Fabric Local'"
+                            <a class="nav-dispatches nav-link " *ngIf="loggedInDepartmentName=='Yarn Local'"
                                 id="nav-dispatches-tab" data-toggle="tab" href="#nav-dispatches" role="tab"
                                 aria-controls="nav-dispatches" aria-selected="false">Dispatches &nbsp;<span
-                                    class="badge badge-pill badge-primary">{{dispatchData.length}}</span></a> -->
+                                    class="badge badge-pill badge-primary">{{dispatchData.length}}</span></a>
 
                             <a class="nav-prodPlan nav-link " *ngIf="loggedInDepartmentName=='Fabric Local'  || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Fabric Export'"
                                 id="nav-prodPlan-tab" data-toggle="tab" href="#nav-prodPlan" role="tab"
@@ -1672,7 +1672,6 @@
                 </div>
 
                 <!---------- dispatches Dates Tab ---------->
-<!-- 
                 <div class="tab-pane fade show " id="nav-dispatches" role="tabpanel"
                     aria-labelledby="nav-dispatches-tab">
                     <div class="col-md-12">
@@ -1762,7 +1761,7 @@
                             </div>
                         </div>
                     </div>
-                </div> -->
+                </div> 
 
 
                 <!---------- Product Plan Tab ---------->

@@ -7,8 +7,8 @@
     <div class="row">
       <div class="col-sm-12 col-md-6 col-lg-8">
         <h2 class="row wrapper page-header font-weight-light"> Open Contracts
-          <div class="ml-2 descr"> By default It displays the open contracts of current Month i.e,
-            <strong>July-2021</strong>.</div>
+          <div class="ml-2 descr"> By default It displays the open contracts of past 3 months
+           </div>
         </h2>
       </div>
 
@@ -36,6 +36,7 @@
                 </div>
                 <div class="col-md-8 text-right">
                   <div> All Contracts </div>
+                <b>  {{totalContract}} </b>
                   <!-- <h6 class="font-bold">{{dashboardAmnt.activeBillCount}}</h6> -->
                 </div>
               </div>
@@ -64,6 +65,7 @@
                 </div>
                 <div class="col-md-8 text-right">
                   <div> Quantity </div>
+                  <b>  {{totalQuantity}} </b>
                   <!-- <h6 class="font-bold">{{dashboardAmnt.balanceAmount}}</h6> -->
                 </div>
               </div>
@@ -78,6 +80,7 @@
                 </div>
                 <div class="col-md-8 text-right">
                   <div> Dispatch </div>
+                  <b>  {{totalDispatch}} </b>
                   <!-- <h6 class="font-bold">{{dashboardAmnt.taxAmount}}</h6> -->
                 </div>
               </div>
@@ -515,7 +518,7 @@
 
         <div class="row mb-3">
           <div class="col-sm-6 col-md-3">
-            <button type="button" class="btn btn-primary descBtn ml-sm-none ml-md-2">Total: 0
+            <button type="button" class="btn btn-primary descBtn ml-sm-none ml-md-2">Total:     <b>  {{totalContract}} </b>
             </button>
             <span class="text-muted text2">All Contracts</span>
           </div>
@@ -525,12 +528,12 @@
             <span class="text-muted text2">Container</span>
           </div>
           <div class="col-sm-6 col-md-3">
-            <button type="button" class="btn blue-bg descBtn ml-sm-none ml-md-2">Total: 0
+            <button type="button" class="btn blue-bg descBtn ml-sm-none ml-md-2">Total:   <b>  {{totalQuantity}} </b>
             </button>
             <span class="text-muted text2">Quantity</span>
           </div>
           <div class="col-sm-6 col-md-3">
-            <button type="button" class="btn navy-bg descBtn ml-sm-none ml-md-2">Total: 0
+            <button type="button" class="btn navy-bg descBtn ml-sm-none ml-md-2">Total:   <b>  {{totalDispatch}} </b>
             </button>
             <span class="text-muted text2">Dispatch</span>
           </div>
@@ -2163,12 +2166,73 @@
             <span class="text-muted text2">Balance</span>
           </div>
 
-          <div class="col-sm-6 col-md-12 mrg-tsm">
-            <button type="button" class="btn navy-bg btn-sm float-right">
-              <i class="fa fa-filter"></i> Filter
-            </button>
-          </div>
         </div>
+
+        <form #filterForm="ngForm" novalidate>
+          <div  [ngClass]="status ? 'add' : 'remove'">
+          <div class="card">
+
+
+          <div class="row p-2">
+
+              <div class="form-group col-md-4">
+                <label for="description">Agent Name:</label>
+                <ng-select placeholder="Select an Agent" [(ngModel)]="data8.agentId" #agentId="ngModel" name="agentId">
+                  <ng-option *ngFor="let i of agents" [value]="i.id">
+                    {{i.name}}
+                  </ng-option>
+                </ng-select>
+              </div>
+
+              <div class="form-group col-md-4 ">
+                <label for="description">Seller Name:</label>
+                <ng-select placeholder="Seller Name" name="sellerId" [(ngModel)]="data8.sellerId"
+                  #sellerId="ngModel">
+                  <ng-option *ngFor="let i of seller" [value]="i.id">
+                    {{i.sellerName}}
+                  </ng-option>
+                </ng-select>
+
+              </div>
+
+              <div class="form-group col-md-4">
+                <label for="description">Auto Contract#:</label>
+                <input type="text" placeholder="Contract Number" name="autoContractNumber"
+                  [(ngModel)]="data8.autoContractNumber" #autoContractNumber="ngModel" class="form-control text-w-4">
+              </div>
+
+
+          </div>
+
+        </div>
+      </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group row mt-3">
+                <div class="col-md-2 ml-8">
+                  <button class="btn btn-outline-secondary pull-left btn-xs "><i class="fas fa-sync"></i>
+                    Clear
+                  </button>
+
+                </div>
+
+                <div class="col-md-4 ">
+                  <button type="button" class="btn btn-primary btn-sm float-right" (click)="externalAgentReport()">
+                    Search Contract
+                  </button>
+                </div>
+                <div class="col-md-6 mb-1">
+                <button type="button" class="btn btn-primary btn-sm ml-md-2 float-right"  (click)="clickEvent()"> Advance Filter <i class="fas fa-search fa-fw mr-2"></i></button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+
+
+        </form>
+
 
         <div class="row">
           <div class="col-md-12 mb-3">
@@ -2191,8 +2255,8 @@
 
               <div class="html5buttons mrg-tsm">
                 <div class="dt-buttons btn-group btn-group-sm">
-                  <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0"
-                    aria-controls="DataTables_Table_0"><span>Copy</span></a>
+                  <!-- <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0"
+                    aria-controls="DataTables_Table_0"><span>Copy</span></a> -->
                   <!-- <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
                     aria-controls="DataTables_Table_0"><span>CSV</span></a> -->
                   <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
@@ -2211,56 +2275,52 @@
           <div class="panel-body">
 
             <ngx-datatable #myTable class="bootstrap" [sorts]="[{ prop: 'id,name', dir: 'desc' }]" [columns]="columns"
-              [rows]="externalAgentReport" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+              [rows]="externalAgent" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
               [rowHeight]="'auto'">
-              <ngx-datatable-column prop="id" name="S. No." [width]="40">
-                <ng-template let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
-                  {{ rowIndex+1 }}
-                </ng-template>
-              </ngx-datatable-column>
+           
               <ngx-datatable-column name="Contract#" prop="name" [width]="30">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.name }}
+                  {{ row.contractNo }}
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="Contract Date" [width]="60">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.country }}
+                  {{ row.contractDate }}
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="Buyer" [width]="50">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.details }}
+                  {{ row.buyer }}
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="Seller" [width]="50">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.details }}
+                  {{ row.seller }}
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="Ext Agent" [width]="50">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.details }}
+                  {{ row.ext_Agents }}
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="Inv #" [width]="40">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.details }}
+                  {{ row.saleInvoiceNo }}
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="Inv Date" [width]="30">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.details }}
+                  {{ row.saleInvoiceDate }}
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="B/L Date" [width]="60">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.details }}
+                  {{ row.blDate }}
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="Payemnt Terms" [width]="50">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.details }}
+                  {{ row.paymentTerms }}
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="Matured On" [width]="50">
@@ -2270,28 +2330,28 @@
               </ngx-datatable-column>
               <ngx-datatable-column name="Article" [width]="50">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.details }}
+                  {{ row.article }}
                 </ng-template>
               </ngx-datatable-column>
 
               <ngx-datatable-column name="Rate" [width]="50">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.details }}
+                  {{ row.rate }}
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="Quantity" [width]="50">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.details }}
+                  {{ row.quantity }}
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="Comm %" [width]="50">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.details }}
+                  {{ row.commission }}
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="Comm Amount" [width]="50">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.details }}
+                  {{ row.commissionAmount }}
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="Paid" [width]="50">
@@ -2301,7 +2361,7 @@
               </ngx-datatable-column>
               <ngx-datatable-column name="Balance" [width]="50">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.details }}
+                  {{ row.balance }}
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="Paid Status" [width]="50">

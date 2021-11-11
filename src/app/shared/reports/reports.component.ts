@@ -41,7 +41,7 @@ export class ReportsComponent implements OnInit {
   rows:any =[];
   data3:any=[];
   data7:any=[];
-
+data8 : any=[]
   DbCrData:any=[];
 dbCount : any;
 data4: any = [];
@@ -49,8 +49,12 @@ data5: any = [];
 data6: any = [];
 dispatchReport : any =[]
 lCReport : any = []
-externalAgentReport: any = []
+externalAgent: any = []
 taxChallanReport: any = []
+agents :  any = []
+totalContract  = 0;
+totalQuantity =0;
+totalDispatch =0;
   constructor(
 
     private route: ActivatedRoute,
@@ -101,6 +105,7 @@ else if (this.menuName.menuName == 'BillingReportContractWise'){
     this.GetBuyersDropdown();
     this.GetSellersDropdown();
     this.GetArticleDropdown();
+    this.GetAgentDropdown();
   }
   GetBuyersDropdown() {
     this.service.getBuyers().subscribe(res => {
@@ -120,6 +125,18 @@ else if (this.menuName.menuName == 'BillingReportContractWise'){
         this.article = this.response.data;
       }
       else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
+  GetAgentDropdown() {
+    this.service.getAgents().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true && this.response.data != null) {
+        this.agents = this.response.data;
+      }
+      else if(this.response.success == false) {
+         
         this.toastr.error(this.response.message, 'Message.');
       }
     })
@@ -329,11 +346,52 @@ else if (this.menuName.menuName == 'BillingReportContractWise'){
           if (this.response.success == true  && this.response.data.obj.length != 0) {
             this.toastr.success(this.response.message, 'Message.');
             this.rows = this.response.data.obj;
+            this.totalContract = this.response.data.totalContract 
+            this.totalDispatch = this.response.data.totalDispatchAmount
+            this.totalQuantity = this.response.data.totalQuantity
 
 
          this.spinner.hide();
           }
           else if(this.response.data.obj.length == 0) {
+            this.toastr.error("No such Contract Exist", 'Message.');
+         this.spinner.hide();
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+         this.spinner.hide();
+          }
+
+        }, (err: HttpErrorResponse) => {
+          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+          this.toastr.error(messages.toString(),'Message.');
+          this.spinner.hide();
+
+        });
+  }
+  externalAgentReport(){
+
+    let varr = {
+      "agentId":this.data8.agentId ==undefined ? "" :this.data8.agentId.toString(),
+      "sellerId":this.data8.sellerId == undefined?0 :this.data8.sellerId,
+      "contractNo":this.data8.autoContractNumber == undefined ? '': this.data8.autoContractNumber,
+
+    }
+    this.spinner.show();
+    this.http.
+      post(`${environment.apiUrl}/api/Reports/External_Agent_Report`, varr)
+      .subscribe(
+        res => {
+
+          this.response = res;
+          if (this.response.success == true  && this.response.data.length != 0) {
+            this.toastr.success(this.response.message, 'Message.');
+            this.externalAgent = this.response.data;
+
+
+         this.spinner.hide();
+          }
+          else if(this.response.data.length == 0) {
             this.toastr.error("No such Contract Exist", 'Message.');
          this.spinner.hide();
           }
@@ -370,7 +428,9 @@ else if (this.menuName.menuName == 'BillingReportContractWise'){
           if (this.response.success == true  && this.response.data.obj.length != 0) {
             this.toastr.success(this.response.message, 'Message.');
             this.cancelContract = this.response.data.obj;
-
+            this.totalContract = this.response.data.totalContract 
+            this.totalDispatch = this.response.data.totalDispatchAmount
+            this.totalQuantity = this.response.data.totalQuantity
 
          this.spinner.hide();
           }

@@ -7,8 +7,8 @@
       <div class="row">
         <div class="col-sm-12 col-md-6 col-lg-8">
           <h2 class="row wrapper page-header font-weight-light"> All Contracts Reports
-            <div class="ml-2 descr"> By default It displays the open contracts of current Month i.e,
-              <strong>July-2021</strong>.</div>
+            <div class="ml-2 descr"> By default It displays the open contracts of past 3 months,
+            </div>
           </h2>
         </div>
   
@@ -28,7 +28,7 @@
   
           <div class="row mb-3">
             <div class="col-sm-6 col-md-3">
-              <button type="button" class="btn btn-primary descBtn ml-sm-none ml-md-2">0
+              <button type="button" class="btn btn-primary descBtn ml-sm-none ml-md-2">{{totalContract}}
               </button>
               <span class="text-muted text2">All Contracts</span>
             </div>
@@ -38,12 +38,12 @@
               <span class="text-muted text2">Container</span>
             </div>
             <div class="col-sm-6 col-md-3">
-              <button type="button" class="btn blue-bg descBtn ml-sm-none ml-md-2">0
+              <button type="button" class="btn blue-bg descBtn ml-sm-none ml-md-2">{{totalQuantity}}
               </button>
               <span class="text-muted text2">Quantity</span>
             </div>
             <div class="col-sm-6 col-md-3">
-              <button type="button" class="btn navy-bg descBtn ml-sm-none ml-md-2">0
+              <button type="button" class="btn navy-bg descBtn ml-sm-none ml-md-2">{{totalDispatch}}
               </button>
               <span class="text-muted text2">Dispatch</span>
             </div>
