@@ -77,22 +77,23 @@ export class AllContractReportComponent implements OnInit {
       "sellerId":this.data3.sellerId == undefined?0 :this.data3.sellerId,
       "autoContractNumber":this.data3.autoContractNumber == undefined ? '': this.data3.autoContractNumber,
       "startContractDate":this.data3.startContractDate == undefined? '': this.data3.startContractDate,
-      "endContractDate":this.data3.endContractDate == undefined?'':this.data3.endContractDate
+      "endContractDate":this.data3.endContractDate == undefined?'':this.data3.endContractDate,
+      "status" : "All"
     }
     this.http.
-      post(`${environment.apiUrl}/api/Reports/AllContractReport`, varr)
+      post(`${environment.apiUrl}/api/Reports/ContractReport`, varr)
       .subscribe(
         res => {
 
           this.response = res;
-          if (this.response.success == true  && this.response.data.length != 0) {
+          if (this.response.success == true  && this.response.data.obj.length != 0) {
             this.toastr.success(this.response.message, 'Message.');
-            this.allContractReport = this.response.data;
+            this.allContractReport = this.response.data.obj;
 
 
          this.spinner.hide();
           }
-          else if(this.allContractReport.length == 0) {
+          else if(this.response.data.obj.length == 0) {
             this.toastr.error("No such Contract Exist", 'Message.');
          this.spinner.hide();
           }
