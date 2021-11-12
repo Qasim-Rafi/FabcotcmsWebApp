@@ -9,6 +9,7 @@ import { Dateformater } from 'src/app/shared/dateformater';
 import { environment } from 'src/environments/environment';
 import {FormsModule , NgForm, ReactiveFormsModule}  from '@angular/forms'
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-advance-filter',
   templateUrl: './advance-filter.component.html',
@@ -93,6 +94,9 @@ export class AdvanceFilterComponent implements OnInit {
     this.router.navigate(['/FabCot/active-contract-details'], { queryParams: {id: obj.id} });
 
   }
+  navigateEditContract(obj) {
+    this.router.navigate(['/FabCot/active-contract-details'], { queryParams: {id: obj.id} });
+  };
 clear(){
   this.data = [];
   this.data2 = [];
@@ -101,6 +105,98 @@ clear2(){
   this.billSearch = [];
   this.billSearch2= [];
 }
+cloneContract(obj){
+  let varr = {
+
+  }
+this.spinner.show();
+  
+   this.http.put(`${environment.apiUrl}/api/Contracts/CloneContract/`+obj.id , varr )
+        .subscribe(
+          res => {
+  
+            this.response = res;
+            if (this.response.success == true) {
+              // this.data = this.response.data;
+              this.data = [];
+              this.data2 = [];
+              this.billSearch = [];
+              this.billSearch2= [];
+            this.toastr.success(this.response.message, 'Message.');
+         
+this.spinner.hide();
+
+             }
+            else {
+              this.toastr.error(this.response.message, 'Message.');
+this.spinner.hide();
+
+            }
+  
+          }, err => {
+            if (err.status == 400) {
+              this.toastr.error(this.response.message, 'Message.');
+              this.spinner.hide();
+
+            }
+
+          });
+
+
+}
+
+
+
+deleteContract(obj) {
+  Swal.fire({
+    title: GlobalConstants.deleteTitle, //'Are you sure?',
+    text: GlobalConstants.deleteMessage + ' ' + '"' + obj.autoContractNumber + '"',
+    icon: 'error',
+    showCancelButton: true,
+    confirmButtonColor: '#ed5565',
+    cancelButtonColor: '#dae0e5',
+    cancelButtonText: 'No',
+    confirmButtonText: 'Yes',
+    reverseButtons: true,
+    position: 'top',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.spinner.show();
+
+      this.http.delete(`${environment.apiUrl}/api/Contracts/DeleteContract/` + obj.id)
+        .subscribe(
+          res => {
+            this.response = res;
+            if (this.response.success == true) {
+              this.toastr.error(this.response.message, 'Message.');
+              // this.getAllEnquiryItems();
+              this.data = [];
+              this.data2 = [];
+              this.billSearch = [];
+              this.billSearch2= [];
+this.spinner.hide();
+              
+
+            }
+            else {
+              this.toastr.error(this.response.message, 'Message.');
+this.spinner.hide();
+
+            }
+
+          }, err => {
+            if (err.status == 400) {
+              this.toastr.error(this.response.message, 'Message.');
+this.spinner.hide();
+
+            }
+          });
+
+    }
+  })
+
+}
+
  getSearch() {
     let varr = {
       "buyerId": this.data.buyerId == undefined ? 0 : this.data.buyerId ,

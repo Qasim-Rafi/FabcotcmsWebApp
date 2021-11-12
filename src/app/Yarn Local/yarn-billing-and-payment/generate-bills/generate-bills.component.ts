@@ -39,7 +39,7 @@ amount=0;
       myDate = Date.now();
       columns: any = [];
       names: any = [];
-
+      loggedInDepartmentName: string;
       response: any;
       url = '/api/BillingPayments/GetAllContractForBillGeneration'
 
@@ -47,11 +47,7 @@ amount=0;
    
     
       ngOnInit(): void {
-      //   this.service.fetch((data)=>{
-      // this.billFilter = [...data];
-
-      //       this.rows = data;
-      //   } , this.url)
+        this.loggedInDepartmentName=localStorage.getItem('loggedInDepartmentName');
     this.fetch();    
      
     }

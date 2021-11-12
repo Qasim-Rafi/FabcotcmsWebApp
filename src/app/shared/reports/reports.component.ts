@@ -49,6 +49,7 @@ data5: any = [];
 data6: any = [];
 dispatchReport : any =[]
 openSearch : any = []
+cancelSearch : any = []
 externalAgent: any = []
 taxChallanReport: any = []
 agents :  any = []
@@ -201,6 +202,24 @@ else if (this.menuName.menuName == 'BillingReportContractWise'){
     this.rows = temp;
   }
 
+  cancelContractSearch(event) {
+    const val = event.target.value.toLowerCase();
+    const temp = this.cancelSearch.filter(function (d) {
+      return (d.contractNo.toLowerCase().indexOf(val) !== -1 || d.buyerName.toLowerCase().indexOf(val) !==-1   || 
+      d.sellerName.toLowerCase().indexOf(val) !==-1   ||
+      !val);
+    });
+    this.cancelContract = temp;
+  }
+  paymentSearch(event) {
+    const val = event.target.value.toLowerCase();
+    const temp = this.cancelSearch.filter(function (d) {
+      return (d.contractNo.toLowerCase().indexOf(val) !== -1 || d.buyerName.toLowerCase().indexOf(val) !==-1   || 
+      d.sellerName.toLowerCase().indexOf(val) !==-1   ||
+      !val);
+    });
+    this.cancelContract = temp;
+  }
   fetch() {
     this.billingReportInvoiceWise.startDate = this.dateformater.toModel(this.billingReportInvoiceWise.startDate)
     this.billingReportInvoiceWise.endDate = this.dateformater.toModel(this.billingReportInvoiceWise.endDate)
@@ -233,36 +252,7 @@ else if (this.menuName.menuName == 'BillingReportContractWise'){
     });
   }
 
-  // GetCancelContract() {
-
-
-  //   this.spinner.show();
-  //   this.http
-  //   .get(`${environment.apiUrl}/api/Reports/GetAllCancelContractReport` )
-  //   .subscribe(res => {
-  //     this.response = res;
-
-  //   if(this.response.success==true)
-  //   {
-  //   this.cancelContract=this.response.data;
-    
-  //   this.spinner.hide();
-
-  //   }
-  //   else{
-  //     this.toastr.error(this.response.message, 'Message.');
-  //     this.spinner.hide();
-
-  //   }
-
-  //   }, err => {
-  //     if ( err.status == 400) {
-  // this.toastr.error(err.error.message, 'Message.');
-  // this.spinner.hide();
-
-  //     }
-  //   });
-  // }
+ 
 
   GetDbCrReport() {
 
@@ -441,6 +431,7 @@ else if (this.menuName.menuName == 'BillingReportContractWise'){
           if (this.response.success == true  && this.response.data.obj.length != 0) {
             this.toastr.success(this.response.message, 'Message.');
             this.cancelContract = this.response.data.obj;
+            this.cancelSearch = [...this.cancelContract];
             this.totalContract = this.response.data.totalContract 
             this.totalDispatch = this.response.data.totalDispatchAmount
             this.totalQuantity = this.response.data.totalQuantity

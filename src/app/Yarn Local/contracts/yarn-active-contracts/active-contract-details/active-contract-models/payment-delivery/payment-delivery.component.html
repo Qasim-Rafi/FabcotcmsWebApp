@@ -54,7 +54,7 @@
             <div class="input-group">
               <input required type="number" min="0" class="form-control" placeholder="days" name="sellerPaymentTermDays"
                 [(ngModel)]="data.sellerPaymentTermDays" #sellerPaymentTermDays="ngModel"
-                [ngClass]="{'error': sellerPaymentTermDays.invalid && partiesForm.submitted }">
+            >
             </div>
           </div>
     
@@ -104,7 +104,7 @@
           <div class="col-md-4">
             <ng-select required name="buyerPaymentTermId" id="buyerPaymentTermId" placeholder="Payment Terms"
               [(ngModel)]="data.buyerPaymentTermId" #buyerPaymentTermId="ngModel"
-              [ngClass]="{'error': buyerPaymentTermId.invalid && partiesForm.submitted }">
+           >
               <ng-option *ngFor="let i of payment" [value]="i.id">
                 {{i.term}}
               </ng-option>
@@ -114,7 +114,7 @@
             <div class="input-group">
               <input required type="number" min="0" class="form-control" placeholder="days" name="buyerPaymentTermDays"
                 [(ngModel)]="data.buyerPaymentTermDays" #buyerPaymentTermDays="ngModel"
-                [ngClass]="{'error': buyerPaymentTermDays.invalid && partiesForm.submitted }">
+           >
             </div>
           </div>
     
@@ -145,7 +145,7 @@
     
           <div class="col-md-4">
             <ng-select required name="priceTermId" placeholder="-- Select --" [(ngModel)]="data.priceTermId"
-              #priceTermId="ngModel" [ngClass]="{'error': priceTermId.invalid && partiesForm.submitted }">
+              #priceTermId="ngModel" >
               <ng-option *ngFor="let i of price" [value]="i.id">
                 {{i.term}}
               </ng-option>
@@ -155,7 +155,7 @@
           <div class="col-md-4 mrg-tsm"
             *ngIf="loggedInDepartmentName == 'Fabric Local' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Import' ">
             <ng-select required name="destinationId" placeholder="-- Select --" [(ngModel)]="data.destinationId"
-              #destinationId="ngModel" [ngClass]="{'error': destinationId.invalid && partiesForm.submitted }">
+              #destinationId="ngModel" >
               <ng-option *ngFor="let i of city" [value]="i.id">
                 {{i.name}} <span class="text-secondary" style="font-size: 11px"></span>
               </ng-option>
@@ -175,7 +175,7 @@
     
           <div class="col-md-4 mrg-tsm">
             <ng-select required name="containerId" placeholder="Select Container" [(ngModel)]="data.containerId"
-              #containerId="ngModel" [ngClass]="{'error': containerId.invalid && partiesForm.submitted }">
+              #containerId="ngModel" >
               <ng-option *ngFor="let i of container" [value]="i.id">
                 {{i.containerName}} <span class="text-secondary" style="font-size: 11px"></span>
               </ng-option>

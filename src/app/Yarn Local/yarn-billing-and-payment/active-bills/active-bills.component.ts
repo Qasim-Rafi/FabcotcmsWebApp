@@ -57,6 +57,7 @@ printData = []
 data2:any = []
 item: any;
 status  ;
+loggedInDepartmentName: string;
   url = '/api/BillingPayments/GetAllContractBill'
   lang : SUPPORTED_LANGUAGE = 'en';
   constructor(    private service: ServiceService,
@@ -82,6 +83,7 @@ status  ;
       this.router.navigate(['/FabCot/active-contract-details'], { queryParams: {id: obj.contractId} });
     };
   ngOnInit(): void {
+    this.loggedInDepartmentName=localStorage.getItem('loggedInDepartmentName');
     this.http.get('/assets/fabcot.png', { responseType: 'blob' })
     .subscribe(res => {
       const reader = new FileReader();

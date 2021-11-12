@@ -104,6 +104,7 @@ data4: any = {}
 data5: any = {}
 articleArray: any = []
 brandId : any;
+
   // FabricLocal:boolean;
   sensorTypes: any;
   selectedAttributes: any;
@@ -1040,19 +1041,19 @@ brandId : any;
       "buyerRemarks": this.data.buyerRemarks,
       "otherConditionRemarks": this.data.otherConditionRemarks,
       "title": this.data.title,
-      "kickbackPercentage": this.data.kickbackPercentage,
+      "kickbackPercentage": this.data.kickbackPercentage == null ? 0 : this.data.kickbackPercentage  ,
       "kickbackUOMId": this.data.kickbackUOMId,
       "beneficiary": this.data.beneficiary,
-      "fabCotCommision": this.data.fabCotCommision,
+      "fabCotCommision": this.data.fabCotCommision == null ? 0 : this.data.fabCotComission,
       "fabCotCommisionUOMId": this.data.fabCotCommisionUOMId,
       "fabcotSideCommAdditionalInfo": this.data.fabcotSideCommAdditionalInfo,
-      "buyersideCommision": this.data.buyersideCommision,
+      "buyersideCommision": this.data.buyersideCommision == null ? 0 : this.data.buyersideCommision,
       "buyersideCommisionUOMId": this.data.buyersideCommisionUOMId,
       "buyerSideCommAdditionalInfo": this.data.buyerSideCommAdditionalInfo,
       "agentCommissions": this.commission,
       "fabricTypeId": this.data.fabricTypeId,
       "contractNumber": this.data.contractNumber,
-      "contractDate": this.data.contractDate,
+      "contractDate":this.dateformater.toModel(this.data.enquiryDate),
       "buyerPOCId": this.data.buyerPOCId,
       "sellerPOCId": this.data.sellerPOCId,
       "constructionAdditionalInfo": this.data.constructionAdditionalInfo,

@@ -5081,10 +5081,10 @@ yarnExportInvoicesReportPrint(){
                         // row.contractArticleRate 
                              {text: row.articleName + '\n' + this.contractProductData['construction'] , style: 'tableheader3'} , 
                              {text: row.contractArticleQuantity , style: 'tableheader3'},
-                             {text: row.contractArticleRate , style: 'tableheader3'},
+                             {text: row.contractArticleRate == null ? '' : this.contractCostingData['rateCurrencyName'] == 'USD' ?  "$ " + row.contractArticleRate : this.contractCostingData['rateCurrencyName'] == 'PKR' ? "RS " + row.contractArticleRate : this.contractCostingData['rateCurrencyName'] == 'EUR' ?  "€ " + row.contractArticleRate : this.contractCostingData['rateCurrencyName'] == 'GBP' ?  "GBP " + row.contractArticleRate : row.contractArticleRate , style: 'tableheader3'},
 
-                             {text: row.contractArticleCommission , style: 'tableheader3'},
-                             {text: row.contractArticleForignAgentCommission , style: 'tableheader3'}
+                             {text: row.contractArticleCommission == null ? '' : row.contractArticleCommission + "%" , style: 'tableheader3'},
+                             {text: row.contractArticleForignAgentCommission == null ? '' : row.contractArticleForignAgentCommission + "%"  , style: 'tableheader3'}
 
                         ]
                       ))
@@ -5149,23 +5149,23 @@ yarnExportInvoicesReportPrint(){
                       body: [
                           [{text:'Deliveries Date:'  , style:'heading'} , {text: this.deliveryData.map((row=>row.supplierDateDay)) , style:'heading2'}],] }
                       },
-                      {
-                        layout:'noBorders',
-                        margin: [70 , 7 , 0 , 0],
-                        table:{headerRows: 1 , widths:['20%' , '80%'],
-                      body: [
-                        [{text:'Commission:'  , style:'heading'} ,{text:   "Fabcot International FZE: " + this.contractCostingData['rateCurrencyName']  + " "  + this.contractCommissionData['fabCotCommision'] + "%" , style:'heading2'}],] }
-                      },
-                      {
-                        layout:'noBorders',
-                        margin: [165 , 0 , 0 , 3],
-                        table:{headerRows: 1 , widths:['100%'],
-                      body: [
-                        [
-                          {text: this.contractCommissionData['agentCommissions'] == '' ? " " : "Foreign Agent: " +  this.contractCommissionData['agentCommissions'].map((row=> row.agentName + " " + row.agentCommission + "%"))   , style : 'heading4'}
-                        ],
-                      ] }
-                      },
+                      // {
+                      //   layout:'noBorders',
+                      //   margin: [70 , 7 , 0 , 0],
+                      //   table:{headerRows: 1 , widths:['20%' , '80%'],
+                      // body: [
+                      //   [{text:'Commission:'  , style:'heading'} ,{text:   "Fabcot International FZE: " + this.contractCostingData['rateCurrencyName']  + " "  + this.contractCommissionData['fabCotCommision'] + "%" , style:'heading2'}],] }
+                      // },
+                      // {
+                      //   layout:'noBorders',
+                      //   margin: [165 , 0 , 0 , 3],
+                      //   table:{headerRows: 1 , widths:['100%'],
+                      // body: [
+                      //   [
+                      //     {text: this.contractCommissionData['agentCommissions'] == '' ? " " : "Foreign Agent: " +  this.contractCommissionData['agentCommissions'].map((row=> row.agentName + " " + row.agentCommission + "%"))   , style : 'heading4'}
+                      //   ],
+                      // ] }
+                      // },
                       {
                         layout:'noBorders',
                         margin: [70 , 7 , 0 , 0],

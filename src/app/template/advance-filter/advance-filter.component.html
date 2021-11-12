@@ -275,13 +275,32 @@
           [rowHeight]="'auto'" >
 
    
-          <ngx-datatable-column name="Action" [width]="80" prop="name" [flexGrow]="0.02">
+          <ngx-datatable-column name="Action" [width] = "100"  [flexGrow]="0.04"  >
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+
               <div class="ibox-tools text-center">
-                <button type="button" class="btn editIconBack px-1 py-1" data-toggle="tooltip" data-placement="top" title=""
-                  data-original-title="Edit" ><i
-                    class="far fa-edit"></i></button>
-            
+
+                <span  class="editIconBack1 px-1 py-1 "
+                (click)="navigateEditContract(row)"
+                >
+                  <i class="far fa-edit edit  "></i>
+                </span>
+
+                <span type="button" class="editIconBack1 px-1 py-1" (click) = "cloneContract(row)">
+                  <i class="far fa-copy"></i>
+                </span>
+                <span  class="editIconBack1 px-1 py-1" 
+               
+                >
+                  <i class="fa fa-th edit"></i>
+                </span>
+
+                <span  class="deleteIconBack1 px-1 py-1" 
+                (click)="deleteContract(row)"
+                >
+                  <i class="far fa-trash-alt edit"></i>
+                </span>
+
               </div>
             </ng-template>
           </ngx-datatable-column>
