@@ -48,13 +48,14 @@ data4: any = [];
 data5: any = [];
 data6: any = [];
 dispatchReport : any =[]
-lCReport : any = []
+openSearch : any = []
 externalAgent: any = []
 taxChallanReport: any = []
 agents :  any = []
 totalContract  = 0;
 totalQuantity =0;
 totalDispatch =0;
+lCReport : any = []
   constructor(
 
     private route: ActivatedRoute,
@@ -152,16 +153,16 @@ else if (this.menuName.menuName == 'BillingReportContractWise'){
       }
     })
   }
-  searchFilter(event) {
-    const val = event.target.value.toLowerCase();
+  // searchFilter(event) {
+  //   const val = event.target.value.toLowerCase();
 
-    const temp = this.temp.filter(function (d) {
-      return (
-        d.autoContractNumber.toLowerCase().indexOf(val) !== -1 ||
-        d.buyerName.toLowerCase().indexOf(val) !== -1 ||
-        !val);
-    });
-  }
+  //   const temp = this.temp.filter(function (d) {
+  //     return (
+  //       d.autoContractNumber.toLowerCase().indexOf(val) !== -1 ||
+  //       d.buyerName.toLowerCase().indexOf(val) !== -1 ||
+  //       !val);
+  //   });
+  // }
   filterPopUform(menu) {
     const modalRef = this.modalService.open(FilterPopUpComponent, { centered: true });
     modalRef.componentInstance.menu = menu;
@@ -190,7 +191,15 @@ else if (this.menuName.menuName == 'BillingReportContractWise'){
     this.contractWise = temp;
   }
 
-
+  openContractSearch(event) {
+    const val = event.target.value.toLowerCase();
+    const temp = this.openSearch.filter(function (d) {
+      return (d.contractNo.toLowerCase().indexOf(val) !== -1 || d.buyerName.toLowerCase().indexOf(val) !==-1   || 
+      d.sellerName.toLowerCase().indexOf(val) !==-1   ||
+      !val);
+    });
+    this.rows = temp;
+  }
 
   fetch() {
     this.billingReportInvoiceWise.startDate = this.dateformater.toModel(this.billingReportInvoiceWise.startDate)
@@ -306,7 +315,10 @@ else if (this.menuName.menuName == 'BillingReportContractWise'){
           if (this.response.success == true  && this.response.data.obj.length != 0) {
             this.toastr.success(this.response.message, 'Message.');
             this.rows = this.response.data;
-
+            this.openSearch = [...this.rows]
+            this.totalContract = this.response.data.totalContract 
+            this.totalDispatch = this.response.data.totalDispatchAmount
+            this.totalQuantity = this.response.data.totalQuantity
 
          this.spinner.hide();
           }
@@ -346,6 +358,7 @@ else if (this.menuName.menuName == 'BillingReportContractWise'){
           if (this.response.success == true  && this.response.data.obj.length != 0) {
             this.toastr.success(this.response.message, 'Message.');
             this.rows = this.response.data.obj;
+            this.openSearch = [...this.rows]
             this.totalContract = this.response.data.totalContract 
             this.totalDispatch = this.response.data.totalDispatchAmount
             this.totalQuantity = this.response.data.totalQuantity
