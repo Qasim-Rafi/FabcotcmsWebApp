@@ -169,7 +169,7 @@ export class PaymentDeliveryComponent implements OnInit {
       "packingId": this.data.packingId,
       "priceTermId": this.data.priceTermId,
       "destinationId": this.data.destinationId,
-      "count": this.data.count,
+      "count": this.data.count == "" ? 0 : this.data.count,
       "containerId": this.data.containerId
 
     

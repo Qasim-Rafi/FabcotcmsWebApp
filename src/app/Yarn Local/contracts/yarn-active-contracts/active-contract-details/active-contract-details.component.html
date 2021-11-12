@@ -741,7 +741,7 @@
                                                     <br> -->
 
                                                     <div class="col-md-1">
-                                                        <label class="col-form-label">Fab/C:</label>
+                                                        <label class="col-form-label">Fab/C(%):</label>
                                                         <div class="input-group">
                                                             <input type="number" [disabled]="a.isDeleted ==true || a.isRevised ==true" min="0" placeholder="Commission"
                                                                 #contractArticleCommission="ngModel" class="form-control" [(ngModel)]="a.contractArticleCommission"
@@ -750,7 +750,7 @@
                                                     </div>
 
                                                     <div class="col-md-1">
-                                                        <label class="col-form-label">Agent/C:</label>
+                                                        <label class="col-form-label">Agent/C(%):</label>
                                                 
                                                         <div class="input-group">
                                                 
@@ -1166,7 +1166,7 @@
                                     <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Fabric Export'  || loggedInDepartmentName == 'Yarn Import'">
                                         <dt class="col-sm-4">
                                             Container:</dt>
-                                        <dd class="col-sm-6"> {{contractPaymentData.count}}     {{contractPaymentData.containerName}}</dd>
+                                        <dd class="col-sm-6"> <b *ngIf = "contractPaymentData.count != 0"> {{contractPaymentData.count}}  </b>   {{contractPaymentData.containerName}}</dd>
                                     </dl>
                     
                                 </div>
@@ -1255,7 +1255,7 @@
                                         </ng-template>
                                     </ngx-datatable-column>
                     
-                                    <ngx-datatable-column name="Container" prop="poNumber" *ngIf="loggedInDepartmentName=='Fabric Local'">
+                                    <ngx-datatable-column name="Container" prop="poNumber" *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Fabric Export' ">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                                             {{row.containerName}}
                                         </ng-template>
@@ -2081,7 +2081,7 @@
                                                 </div>
                                                 <div class="col-sm-6 customFontS">{{x.saleInvoiceDate}}</div>
                                             </div>
-                                            <div class="row" *ngIf = "loggedInDepartmentName == 'Fabric Export'">
+                                            <div class="row" *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import' ">
                                                 <div class="col-sm-6 customFontStyle">BL Date:
                                 
                                 
@@ -2110,8 +2110,8 @@
                                         <th scope="col" *ngIf="loggedInDepartmentName!='Yarn Export' && loggedInDepartmentName != 'Yarn Import'">Unit Rate</th>
                                         <th scope="col" *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import'">Article Unit</th>
                                         <th scope="col" *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import'">Article Rate</th>
-                                        <th scope="col">Tax %</th>
-                                        <th scope="col">Invoice Amount</th>
+                                        <th scope="col" *ngIf="loggedInDepartmentName !='Yarn Export' &&  loggedInDepartmentName != 'Yarn Import'">Tax %</th>
+                                        <th scope="col" >Invoice Amount</th>
                                         <!-- <th scope="col">Handle</th> -->
                                       </tr>
                                     </thead>
@@ -2122,10 +2122,23 @@
                                         <td *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import'">{{x.contractArticleName}}</td>
                                         <td *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import'">{{x.quantity}}</td>
                                         <td *ngIf="loggedInDepartmentName!='Yarn Export' && loggedInDepartmentName != 'Yarn Import'">{{x.quantity}}&nbsp;{{x.unit}}</td>
-                                        <td *ngIf="loggedInDepartmentName!='Yarn Export' && contractCostingData.rateUOMName !=null && loggedInDepartmentName != 'Yarn Import'">{{contractCostingData.rate}} {{x.unit}}</td>
-                                        <td *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import'">{{x.unit}}</td>
-                                        <td *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import'">{{x.contractArticleRate}}</td>
-                                        <td>{{x.taxPercentage}}</td>
+                                        <td *ngIf="loggedInDepartmentName!='Yarn Export' && contractCostingData.rateUOMName !=null && loggedInDepartmentName != 'Yarn Import'">
+                                            <b *ngIf = "contractCostingData.rateCurrencyName == 'PKR'">RS</b>  
+                                            <b *ngIf = "contractCostingData.rateCurrencyName == 'USD'">$</b> 
+                                            <b *ngIf = "contractCostingData.rateCurrencyName == 'EUR'">€</b> 
+                                            <b *ngIf = "contractCostingData.rateCurrencyName == 'GBP'">GBP</b> 
+                                            {{contractCostingData.rate}} / {{x.unit}}</td>
+                                        <td *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
+                                            
+                               
+                                          {{x.unit}}</td>
+                                        <td *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
+                                            <b *ngIf = "contractCostingData.rateCurrencyName == 'PKR'">RS</b>  
+                                            <b *ngIf = "contractCostingData.rateCurrencyName == 'USD'">$</b> 
+                                            <b *ngIf = "contractCostingData.rateCurrencyName == 'EUR'">€</b> 
+                                            <b *ngIf = "contractCostingData.rateCurrencyName == 'GBP'">GBP</b> 
+                                            {{x.contractArticleRate}}</td>
+                                        <td *ngIf="loggedInDepartmentName !='Yarn Export' &&  loggedInDepartmentName != 'Yarn Import'">{{x.taxPercentage}}</td>
                                         <td>{{contractCostingData.rateCurrencyName}}&nbsp;{{x.amount}}</td>
                                       </tr>
                               

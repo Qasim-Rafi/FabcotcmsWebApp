@@ -215,75 +215,7 @@
         <div class="card-body"> -->
           <div class="panel-body">
 
-            <!-- <ngx-datatable #myTable class="bootstrap" [sorts]="[{ prop: 'id,name', dir: 'desc' }]" [columns]="columns"
-              [rows]="rows" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-              [rowHeight]="'auto'"
-              [scrollbarH]="true"
-              [scrollbarV]="true"
-              >
-
-               <ngx-datatable-column name="Age" prop="age" [width] = "20"  [flexGrow]="0.02"  >
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              <span class="badge badge-primary">{{row.age}}</span>
-             
-            </ng-template>
-          </ngx-datatable-column>
-              <ngx-datatable-column name="Contract#" [width]="50">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{row.contractNo}}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Buyer" [width]="40">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{row.buyerName}}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Seller" [width]="50">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{row.sellerName}}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Date" [width]="50">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{row.date}}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="PO#" [width]="30">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{row.poNumber}}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Article" [width]="40">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{row.articleName}}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Rate" [width]="30">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.rate }}{{row.rateUOMName}}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Qty Unit" [width]="50">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{row.balanceQty}}{{row.uomName}}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Booking" [width]="50">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.booking }}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Dispatch" [width]="50">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.dispatch }}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Balance" [width]="50">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.balanceQty }}
-                </ng-template>
-              </ngx-datatable-column>
-            </ngx-datatable> -->
+ 
 
             <ngx-datatable #myTable  class="bootstrap datatable-row-wrapper" [columns]="columns" [rows]="rows"
             [columnMode]="'force'"   [headerHeight]="50" [footerHeight]="50" [sorts]="[{ prop: 'id', dir: 'asce' }]"
@@ -327,7 +259,7 @@
             </ngx-datatable-column>
             <ngx-datatable-column name="Rate" [width]="30">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                {{ row.rate }} / {{row.rateUOMName}}
+                {{ row.rate }}  {{row.rateUOMName}}
               </ng-template>
             </ngx-datatable-column>
             <ngx-datatable-column name="Qty Unit" [width]="50">
@@ -639,7 +571,7 @@
                 <div class="form-group row">
                   <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
                   <div class="col-sm-9">
-                    <input type="text" class="input form-control form-control-sm" />
+                    <input type="text" class="input form-control form-control-sm" (keyup) = "cancelContractSearch($event)" />
                   </div>
                 </div>
 
