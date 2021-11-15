@@ -723,6 +723,23 @@
                   </li>
                 </ul>
               </li>
+
+              <li class="nav-item" [ngClass]="mapping ? 'menu-open' : ''">
+                <a (click)="menuOpen('mapping')"  class="nav-link">
+                  <i class="fas fa-file-contract"></i>
+                  <p>Mappings</p>
+                  <i class="right fas fa-angle-left"></i>
+                </a>
+                <ul class="nav nav-treeview sublist" [ngClass]="mapping ? 'UlClassOpenMenu' : 'UlClassCloseMenu'">
+                  <li class="nav-item">
+                    <a routerLink="/sellerMapping"  class="nav-link" >
+                      <p>Seller Mapping</p>
+                    </a>
+                  </li>
+                
+                </ul>
+              </li>
+
 <!--YARN CONFIGURATION-->
 
 

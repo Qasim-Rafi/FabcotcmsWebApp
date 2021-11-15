@@ -57,6 +57,8 @@ totalContract  = 0;
 totalQuantity =0;
 totalDispatch =0;
 lCReport : any = []
+contractTotal :  any
+invoiceTotal  : any
   constructor(
 
     private route: ActivatedRoute,
@@ -232,8 +234,9 @@ else if (this.menuName.menuName == 'BillingReportContractWise'){
 
     if(this.response.success==true)
     {
-    this.billingReportInvoiceWise=this.response.data;
+    this.billingReportInvoiceWise=this.response.data.getBillReport;
     this.invBill = [...this.billingReportInvoiceWise]
+    this.invoiceTotal  = this.response.data.totalcommisionamount;
     this.spinner.hide();
 
     }
@@ -648,7 +651,8 @@ fetchContractInvise() {
 
   if(this.response.success==true)
   {
-  this.contractWise=this.response.data;
+  this.contractWise=this.response.data.getBillReport;
+  this.contractTotal = this.response.data.totalcommisionamount
  this.contractBill = [...this.contractWise]
 
   this.spinner.hide();
@@ -994,7 +998,7 @@ this.spinner.hide();
           }
         },
         {text: "Total Comm Amount: " , bold: true , margin:[340 , 20,0,0] ,style:'totalAmount' },
-        {text: "13" , bold: true , margin:[420 , -9,0,0] ,style:'totalAmount' }
+        {text: this.invoiceTotal , bold: true , margin:[420 , -9,0,0] ,style:'totalAmount' }
       ],
       styles: {
         heading: {
@@ -1073,8 +1077,8 @@ this.spinner.hide();
             ]
           }
         },
-        {text: "Total Comm Amount: " , bold: true , margin:[320 , 20,0,0] ,style:'totalAmount' },
-        {text: "13" , bold: true , margin:[420 , -9,0,0] ,style:'totalAmount' }
+        {text: "Total Comm Amount: " , bold: true , margin:[340 , 20,0,0] ,style:'totalAmount' },
+        {text: this.contractTotal , bold: true , margin:[420 , -9,0,0] ,style:'totalAmount' }
       ],
       styles: {
         heading: {

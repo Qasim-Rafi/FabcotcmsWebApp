@@ -72,6 +72,7 @@ import { AccBulkPrintComponent } from './accounts/acc-bulk-print/acc-bulk-print.
 import { BillBreakupComponent } from './accounts/bill-breakup/bill-breakup.component';
 import { NgxScrollTopModule } from 'ngx-scrolltop';
 import { AllContractReportComponent } from './shared/reports/all-contract-report/all-contract-report.component';
+import { SellerMappingComponent } from './shared/mappings/seller-mapping/seller-mapping.component';
 
 
 
@@ -124,6 +125,7 @@ const appRoutes: Routes = []
     AccBulkPrintComponent,
     BillBreakupComponent,
     AllContractReportComponent,
+    SellerMappingComponent,
    
 
   
