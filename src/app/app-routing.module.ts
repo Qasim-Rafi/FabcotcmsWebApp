@@ -13,6 +13,7 @@ import { BillInvoicesComponent } from './accounts/bill-invoices/bill-invoices.co
 import { SaleInvoiceBillComponent } from './accounts/sale-invoice-bill/sale-invoice-bill.component';
 import { AccBulkPrintComponent } from './accounts/acc-bulk-print/acc-bulk-print.component';
 import { AllContractReportComponent } from './shared/reports/all-contract-report/all-contract-report.component';
+import { SellerMappingComponent } from './shared/mappings/seller-mapping/seller-mapping.component';
 
 
 const configurationModule = () => import('./configuration/configuration.module')
@@ -61,6 +62,11 @@ component:ActiveContractsComponent
   path:'reports',
 // loadChildren:'./contracts/contracts.module#ContractsModule'
 component:ReportsComponent
+},
+{
+  path:'sellerMapping',
+// loadChildren:'./contracts/contracts.module#ContractsModule'
+component:SellerMappingComponent
 },
 {
   path:'allContractReport',

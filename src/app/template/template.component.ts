@@ -30,6 +30,8 @@ export class TemplateComponent implements OnInit {
   Billing: boolean = false;
   Config: boolean = false;
   Report: boolean = false;
+  mapping: boolean = false;
+
   Departments: boolean = false;
   menuName:any={};
   response: any;
@@ -206,6 +208,10 @@ else if(menuName == 'Textile'){
 }
 else if(menuName == 'Report'){
   this.Report =!this.Report;
+  
+}
+else if(menuName == 'mapping'){
+  this.mapping =!this.mapping;
   
 }
 else if(menuName == 'Departments'){
