@@ -913,7 +913,7 @@
                                         <dt class="col-sm-4">GSM:
                                         </dt>
                                         <dd class="col-sm-6">{{contractProductData.gsm}}
-                                       <span *ngIf = "contractProductData.tolerance != ''"> +/- {{contractProductData.tolerance}} % </span>
+                                       <span *ngIf = "contractProductData.tolerance != '' && contractProductData.tolerance != 0"> +/- {{contractProductData.tolerance}} % </span>
 
                                         </dd>
                     
@@ -992,7 +992,7 @@
                                     || loggedInDepartmentName == 'Yarn Import'">
                                         <dt class="col-sm-4">Tolerance value:
                                         </dt>
-                                        <dd class="col-sm-6" *ngIf = "contractProductData.tolerance != ''"> +/- {{contractCostingData.quantityToleranceValue}} %
+                                        <dd class="col-sm-6" *ngIf = "contractCostingData.quantityToleranceValue != '' && contractCostingData.quantityToleranceValue != 0 "> +/- {{contractCostingData.quantityToleranceValue}} %
                                           </dd>
                                     </dl>
                     
@@ -1002,9 +1002,9 @@
                                         </dt>
                                         <dd class="col-sm-6">{{contractCostingData.quantity}}
                                             {{contractCostingData.quantityUOMName}} <b
-                                                *ngIf="contractCostingData.quantityToleranceValue !=''">+/- </b>
-                                            {{contractCostingData.quantityToleranceValue}} <b
-                                                *ngIf="contractCostingData.quantityToleranceValue != ''"> % </b></dd>
+                                                *ngIf="contractCostingData.quantityToleranceValue !='' && contractCostingData.quantityToleranceValue !=0">+/- 
+                                            {{contractCostingData.quantityToleranceValue}} </b> <b
+                                                *ngIf="contractCostingData.quantityToleranceValue != '' && contractCostingData.quantityToleranceValue !=0"> % </b></dd>
                                     </dl>
                                     <!-- <dl class="row" *ngIf="loggedInDepartmentName=='Yarn Local' ||  loggedInDepartmentName != 'Yarn Export'">
                                         <dt class="col-sm-4">Quantity:
@@ -2110,7 +2110,7 @@
                                         <th scope="col" *ngIf="loggedInDepartmentName!='Yarn Export' && loggedInDepartmentName != 'Yarn Import'">Unit Rate</th>
                                         <th scope="col" *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import'">Article Unit</th>
                                         <th scope="col" *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import'">Article Rate</th>
-                                        <th scope="col" *ngIf="loggedInDepartmentName !='Yarn Export' &&  loggedInDepartmentName != 'Yarn Import'">Tax %</th>
+                                        <th scope="col" *ngIf="loggedInDepartmentName !='Yarn Export' &&  loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Fabric Export' ">Tax %</th>
                                         <th scope="col" >Invoice Amount</th>
                                         <!-- <th scope="col">Handle</th> -->
                                       </tr>
@@ -2138,7 +2138,7 @@
                                             <b *ngIf = "contractCostingData.rateCurrencyName == 'EUR'">€</b> 
                                             <b *ngIf = "contractCostingData.rateCurrencyName == 'GBP'">GBP</b> 
                                             {{x.contractArticleRate}}</td>
-                                        <td *ngIf="loggedInDepartmentName !='Yarn Export' &&  loggedInDepartmentName != 'Yarn Import'">{{x.taxPercentage}}</td>
+                                        <td *ngIf="loggedInDepartmentName !='Yarn Export' &&  loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Fabric Export'">{{x.taxPercentage}}</td>
                                         <td>{{contractCostingData.rateCurrencyName}}&nbsp;{{x.amount}}</td>
                                       </tr>
                               

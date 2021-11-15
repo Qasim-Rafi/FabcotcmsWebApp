@@ -3684,7 +3684,7 @@ getImage(){
                       body: [
                         [{text:'Quantity:'  , style:'heading'} , {text:this.contractCostingData['quantity'] != null ?  this.contractCostingData['quantity'] + " " + this.contractCostingData['quantityUOMName'] : "", style:'heading2' , margin:[0,0,0,0]},
                         
-                        {text:"  " +this.contractCostingData['quantityToleranceValue'] !='' ?  "+/-" +this.contractCostingData['quantityToleranceValue'] + '%' : " " , margin:[-80,0,0,0] , style:'heading2'}],] }
+                        {text:"  " +this.contractCostingData['quantityToleranceValue'] !='' && this.contractCostingData['quantityToleranceValue'] !=0 ?  "+/-" +this.contractCostingData['quantityToleranceValue'] + '%' : " " , margin:[-80,0,0,0] , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
@@ -3994,7 +3994,7 @@ getImage(){
                         table:{headerRows: 1 , widths:['20%' , '35%' , '10%'],
                       body: [
                         [{text:'Quantity:'  , style:'heading'} , {text: this.contractCostingData['quantity'] + " " +  this.contractCostingData['quantityUOMName'] , style:'heading2' , margin:[0,0,0,0]},
-                        {text:"  " +this.contractCostingData['quantityToleranceValue'] !='' ?  "+/-" +this.contractCostingData['quantityToleranceValue'] + '%' : " " , margin:[-80,0,0,0] , style:'heading2'}],] }
+                        {text:"  " +this.contractCostingData['quantityToleranceValue'] !='' && this.contractCostingData['quantityToleranceValue'] !=0  ?  "+/-" +this.contractCostingData['quantityToleranceValue'] + '%' : " " , margin:[-80,0,0,0] , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
@@ -5113,10 +5113,10 @@ yarnExportInvoicesReportPrint(){
                       {
 
                         layout:'noBorders',
-                        margin: [70 , 7 , 0 , 0],
-                        table:{headerRows: 1 , widths:['20%' , '80%'],
-                      body: [
-                        [{text:'Brand Name:'  , style:'heading'} , {text: this.contractProductData['brandName'] , style:'heading2'}],] }
+                       
+                        table:{  headerRows: 1 , widths:['30%' , '80%'],
+                      body: [ this.contractProductData['brandName'] !='' ?
+                        [{text:this.contractProductData['brandName'] != ""   ?  'Brand Name:' : '' ,  margin: [70 , 5 , 0 , 0]    , style:'heading'} , {text: this.contractProductData['brandName'] != '' ? this.contractProductData['brandName'] : ''  , margin: [8 , 5 , 0 , 0] , style:'heading2'}]: ''  , ] }
                       },
                      
                       {
@@ -5212,6 +5212,12 @@ yarnExportInvoicesReportPrint(){
                       
                         heading3:{fontSize: 6  , color:'#4d4b4b'
                       },
+                      style1:{
+                      margin: [70,7,0,0]
+                      },
+                      style2:{
+                        margin: [0,0,0,0]
+                        },
                         tableheader: {
                           fillColor: '#f3f3f4',
                           fontSize: 8,

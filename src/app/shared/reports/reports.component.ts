@@ -830,7 +830,35 @@ this.spinner.hide();
     this.service.exportAsExcelFile(filtered, 'Contract Kickback Report');
 
   }
+  commsionExcelFile(){
+    const filtered = this.commissionReport.map(row => ({
+    ContractNo: row.contractNo,
+    ContractDate: row.contractDate,
+    BillNo: row.billNo,
+    BillFor: row.billFor,
+    BLDate: row.blDate,
 
+    Buyer: row.buyer,
+    Seller: row.seller ,
+    SaleInvNo: row.saleInvoiceNo,
+    SaleInvDate: row.saleInvoiceDate,
+
+    Article: row.article ,
+    Quantity: row.quantity,
+
+    Amount: row.amount,
+  Received : row.received,
+  Balance : row.balance,
+   
+      PaymentTerms:row.paymentTerms,
+      Commission: row.commission ,
+  
+
+    }));
+
+    this.service.exportAsExcelFile(filtered, 'Contract Kickback Report');
+
+  }
   openContractPdf() {
 
     let docDefinition = {
@@ -903,6 +931,168 @@ this.spinner.hide();
     pdfMake.createPdf(docDefinition).print();
   }
 
+
+
+  billingInvoicePdf() {
+
+    let docDefinition = {
+      pageSize: 'A4',
+      info: {
+        title: 'Billing Invoice List'
+      },
+      content: [
+        {
+          text: 'Billing Invoice  List',
+          style: 'heading',
+
+        },
+        {
+          margin: [-20 , 5 , 0 , 0 ],
+          table:{
+            headerRows : 1,
+            widths : [23, 45, 37, 39 , 39 , 20 , 45 , 45 , 24 , 33 , 30 , 35 , 33
+            ],
+            body:[
+              [
+                {text:'Bill For' , style:'tableHeader' }
+              ,{text:'Article' , style:'tableHeader'} ,
+              {text:'Contract#' , style:'tableHeader' }, 
+              {text:'Contract Date' , style:'tableHeader' }, 
+
+              {text:'Bill Date'  , style:'tableHeader'} , 
+              {text:'Bill#' , style:'tableHeader'} , 
+              {text:'Seller' , style:'tableHeader'},
+              
+              {text:'Buyer'  , style:'tableHeader'} , 
+              {text:'Rate' , style:'tableHeader'} , 
+              {text:'Comm%' , style:'tableHeader'},
+              {text:'Inv#'  , style:'tableHeader'} , 
+              {text:'Quantity' , style:'tableHeader'} , 
+              {text:'Comm Amount' , style:'tableHeader'} , 
+            ],
+              ...this.billingReportInvoiceWise.map(row => (
+                [
+                  {text: row.billFor , style:'tableHeader2'} ,
+                {text:  row.articleName , style:'tableHeader2'},
+                {text: row.contractNo, style:'tableHeader2'} ,
+                {text: row.contractDate , style:'tableHeader2'} ,
+                 {text: row.billDate, style:'tableHeader2'} ,
+                  {text:row.billNo  , style:'tableHeader2' }  ,
+                  {text: row.sellerName , style:'tableHeader2'},
+           
+                 {text: row.buyerName , style:'tableHeader2'} ,
+                  {text:row.rate  , style:'tableHeader2' }  ,
+                  {text: row.fabcotCommission , style:'tableHeader2'},
+              
+                   {text:row.invoiceNo  , style:'tableHeader2' }  ,
+                   {text:row.quantity + " " + row.quantityUOMName  , style:'tableHeader2' }  ,
+
+                   {text:row.commissionAmount  , style:'tableHeader2' }  ,
+                ]
+              ))
+            ]
+          }
+        },
+        {text: "Total Comm Amount: " , bold: true , margin:[340 , 20,0,0] ,style:'totalAmount' },
+        {text: "13" , bold: true , margin:[420 , -9,0,0] ,style:'totalAmount' }
+      ],
+      styles: {
+        heading: {
+          fontSize: 13,
+          alignment: 'center',
+          margin: [0, 15, 0, 30]
+        },
+        totalAmount:{
+          fontSize:8
+              },
+        tableHeader:{ fillColor: '#f3f3f4' , bold:true , margin:4 , alignment: 'center' ,fontSize: 7},
+        tableHeader2:{   margin:3 , alignment: 'center' , fontSize: 6},
+      }
+
+    };
+    pdfMake.createPdf(docDefinition).print();
+  }
+
+  billingContractPdf() {
+
+    let docDefinition = {
+      pageSize: 'A4',
+      info: {
+        title: 'Billing Contract Wise List'
+      },
+      content: [
+        {
+          text: 'Billing Contract Wise  List',
+          style: 'heading',
+
+        },
+        {
+          margin: [-20 , 5 , 0 , 0 ],
+          table:{
+            headerRows : 1,
+            widths : [23, 45, 37, 45 , 45 , 20 , 45 , 45 , 24 , 33  , 35 , 33
+            ],
+            body:[
+              [
+                {text:'Bill For' , style:'tableHeader' }
+              ,{text:'Article' , style:'tableHeader'} ,
+              {text:'Contract#' , style:'tableHeader' }, 
+              {text:'Contract Date' , style:'tableHeader' }, 
+
+              {text:'Bill Date'  , style:'tableHeader'} , 
+              {text:'Bill#' , style:'tableHeader'} , 
+              {text:'Seller' , style:'tableHeader'},
+              
+              {text:'Buyer'  , style:'tableHeader'} , 
+              {text:'Rate' , style:'tableHeader'} , 
+              {text:'Comm%' , style:'tableHeader'},
+              
+              {text:'Quantity' , style:'tableHeader'} , 
+              {text:'Comm Amount' , style:'tableHeader'} , 
+            ],
+              ...this.contractWise.map(row => (
+                [
+                  {text: row.billFor , style:'tableHeader2'} ,
+                {text:  row.articleName , style:'tableHeader2'},
+                {text: row.contractNo, style:'tableHeader2'} ,
+                {text: row.contractDate , style:'tableHeader2'} ,
+                 {text: row.billDate, style:'tableHeader2'} ,
+                  {text:row.billNo  , style:'tableHeader2' }  ,
+                  {text: row.sellerName , style:'tableHeader2'},
+           
+                 {text: row.buyerName , style:'tableHeader2'} ,
+                  {text:row.rate  , style:'tableHeader2' }  ,
+                  {text: row.fabcotCommission , style:'tableHeader2'},
+              
+               
+                   {text:row.quantity + " " + row.quantityUOMName  , style:'tableHeader2' }  ,
+
+                   {text:row.commissionAmount  , style:'tableHeader2' }  ,
+                ]
+              ))
+            ]
+          }
+        },
+        {text: "Total Comm Amount: " , bold: true , margin:[320 , 20,0,0] ,style:'totalAmount' },
+        {text: "13" , bold: true , margin:[420 , -9,0,0] ,style:'totalAmount' }
+      ],
+      styles: {
+        heading: {
+          fontSize: 13,
+          alignment: 'center',
+          margin: [0, 15, 0, 30]
+        },
+        totalAmount:{
+          fontSize:8
+              },
+        tableHeader:{ fillColor: '#f3f3f4' , bold:true , margin:4 , alignment: 'center' ,fontSize: 7},
+        tableHeader2:{   margin:3 , alignment: 'center' , fontSize: 6},
+      }
+
+    };
+    pdfMake.createPdf(docDefinition).print();
+  }
+
   agentBookingPdf() {
 
     let docDefinition = {
@@ -955,16 +1145,157 @@ this.spinner.hide();
     };
     pdfMake.createPdf(docDefinition).print();
   }
-  // cancelContractPdf() {
+  cancelContractPdf() {
+
+    let docDefinition = {
+      pageSize: 'A4',
+      info: {
+        title: 'Cancel Contract List'
+      },
+      content: [
+        {
+          text: 'Cancel Contract List',
+          style: 'heading',
+
+        },
+        {
+          margin: [-20 , 5 , 0 , 0 ],
+          table:{
+            headerRows : 1,
+            widths : [25, 35, 50, 50 , 40 , 23 , 40 , 25, 30 , 25 , 30 , 30 , 30 
+            ],
+            body:[
+              [
+                {text:'Age' , style:'tableHeader' }
+              ,{text:'Contract#' , style:'tableHeader'} ,
+              {text:'Buyer' , style:'tableHeader' }, 
+              {text:'Seller' , style:'tableHeader' }, 
+
+              {text:'Date'  , style:'tableHeader'} , 
+              {text:'PO#' , style:'tableHeader'} , 
+              {text:'Article' , style:'tableHeader'},
+              
+              {text:'Rate'  , style:'tableHeader'} , 
+              {text:'Container'  , style:'tableHeader'} , 
+              {text:'Qty Unit' , style:'tableHeader'} , 
+              {text:'Booking' , style:'tableHeader'},
+              {text:'Dispatch'  , style:'tableHeader'} , 
+              {text:'Balance' , style:'tableHeader'} , 
+            
+            ],
+              ...this.cancelContract.map(row => (
+                [
+                  {text: row.age , style:'tableHeader2'} ,
+                {text:  row.contractNo , style:'tableHeader2'},
+                {text: row.buyerName, style:'tableHeader2'} ,
+                {text: row.sellerName , style:'tableHeader2'} ,
+                 {text: row.date, style:'tableHeader2'} ,
+                  {text:row.poNumber  , style:'tableHeader2' }  ,
+                  {text: row.articleName , style:'tableHeader2'},
+           
+                 {text: row.rate + " " + row.rateUOMName, style:'tableHeader2'} ,
+                 {text:row.containerName  , style:'tableHeader'} ,
+                  {text: row.uomName = null ? '' : row.uomName  , style:'tableHeader2' }  ,
+                  {text: row.booking , style:'tableHeader2'},
+              
+                   {text:row.dispatch  , style:'tableHeader2' }  ,
+                   {text:row.balanceQty  , style:'tableHeader2' }  ,
+                ]
+              ))
+            ]
+          }
+        },
+      ],
+      styles: {
+        heading: {
+          fontSize: 13,
+          alignment: 'center',
+          margin: [0, 15, 0, 30]
+        },
+        tableHeader:{ fillColor: '#f3f3f4' , bold:true , margin:4 , alignment: 'center' ,fontSize: 7},
+        tableHeader2:{   margin:3 , alignment: 'center' , fontSize: 6},
+      }
+
+    };
+    pdfMake.createPdf(docDefinition).print();
+  }
+  paymentPdf() {
+
+    let docDefinition = {
+      pageSize: 'A4',
+      info: {
+        title: 'Payment Report List'
+      },
+      content: [
+        {
+          text: 'Payment Report List',
+          style: 'heading',
+
+        },
+        {
+          margin: [-10 , 5 , 0 , 0 ],
+          table:{
+            headerRows : 1,
+            widths : [40 , 27 , 45 , 40 , 40 , 40 , 45 , 45 , 40 , 40
+            ],
+            body:[
+              [
+                {text:'Contact#' , style:'tableHeader' }
+              ,{text:'Inv #' , style:'tableHeader'} ,
+              {text:'Inv Date' , style:'tableHeader' }, 
+              {text:'Buyer' , style:'tableHeader' },
+              {text:'Seller' , style:'tableHeader' }
+              ,{text:'Quantity' , style:'tableHeader'} ,
+              {text:'Inv Amount' , style:'tableHeader' }, 
+              {text:'Received' , style:'tableHeader' },
+              {text:'Balance' , style:'tableHeader' }
+              ,
+              {text:'Aging' , style:'tableHeader' }
+            ],
+              ...this.paymentReport.map(row => (
+                [
+                  {text: row.autoContractNo , style:'tableHeader2'} ,
+                {text:  row.saleInvoiceNo , style:'tableHeader2'},
+                {text: row.saleInvoiceDateToDisplay, style:'tableHeader2'} ,
+                 {text: row.buyerName, style:'tableHeader2'} ,
+                 {text: row.sellerName, style:'tableHeader2'} ,
+                 {text: row.quantity, style:'tableHeader2'} ,
+                 {text: row.amount, style:'tableHeader2'} ,
+                 {text: row.received, style:'tableHeader2'} ,
+                 {text: row.balance, style:'tableHeader2'} ,
+                 {text: row.age, style:'tableHeader2'} ,
+
+             
+                ]
+              ))
+            ]
+          }
+        },
+      ],
+      styles: {
+        heading: {
+          fontSize: 13,
+          alignment: 'center',
+          margin: [0, 15, 0, 30]
+        },
+        tableHeader:{ fillColor: '#f3f3f4' , bold:true , margin:4 , alignment: 'center' ,fontSize: 8},
+        tableHeader2:{   margin:3 , alignment: 'center' , fontSize: 7},
+      }
+
+    };
+    pdfMake.createPdf(docDefinition).print();
+  }
+  
+  // commissionPdf() {
 
   //   let docDefinition = {
   //     pageSize: 'A4',
   //     info: {
-  //       title: 'Cancel Contract List'
+  //       title: 'Commission Report'
   //     },
   //     content: [
   //       {
-  //         text: 'Cancel Contract List',
+  //         text: 'Commission Report',
   //         style: 'heading',
 
   //       },
@@ -972,44 +1303,48 @@ this.spinner.hide();
   //         margin: [-20 , 5 , 0 , 0 ],
   //         table:{
   //           headerRows : 1,
-  //           widths : [30, 40, 60, 60 , 30 , 23 , 40 , 25, 30 , 30 , 35 , 37 , 35 , 30
-  //           ],
+  //           widths : [ 35, 45, 40 , 30 , 45 , 40 , 40 , 30 , 35 , 30 , 30 , 35 , 30 , 30 , 30           ],
   //           body:[
   //             [
-  //               {text:'Age' , style:'tableHeader' }
+              
   //             ,{text:'Contract#' , style:'tableHeader'} ,
+  //             ,{text:'Contract Date' , style:'tableHeader'} ,
+  //             ,{text:'Bill#' , style:'tableHeader'} ,
+  //             ,{text:'Bill For' , style:'tableHeader'} ,
+  //             ,{text:'BL Date' , style:'tableHeader'} ,
+
   //             {text:'Buyer' , style:'tableHeader' }, 
   //             {text:'Seller' , style:'tableHeader' }, 
 
-  //             {text:'Date'  , style:'tableHeader'} , 
-  //             {text:'PO#' , style:'tableHeader'} , 
+  //             {text:'Sale Inv#'  , style:'tableHeader'} , 
   //             {text:'Article' , style:'tableHeader'},
               
-  //             {text:'Rate'  , style:'tableHeader'} , 
-  //             {text:'Container'  , style:'tableHeader'} , 
-  //             {text:'Qty Unit' , style:'tableHeader'} , 
-  //             {text:'Booking' , style:'tableHeader'},
-  //             {text:'Dispatch'  , style:'tableHeader'} , 
-  //             {text:'Balance' , style:'tableHeader'} , 
-  //             {text:'Cost' , style:'tableHeader'} , 
+  //             {text:'Quantity'  , style:'tableHeader'} , 
+  //             {text:'Amount' , style:'tableHeader'} , 
+  //             {text:'Received' , style:'tableHeader'},
+  //             {text:'Balance'  , style:'tableHeader'} , 
+  //             {text:'Payment Terms' , style:'tableHeader'} , 
+  //             {text:'Comm' , style:'tableHeader'} 
   //           ],
-  //             ...this.rows.map(row => (
+  //             ...this.commissionReport.map(row => (
   //               [
-  //                 {text: row.age , style:'tableHeader2'} ,
-  //               {text:  row.contractNo , style:'tableHeader2'},
-  //               {text: row.buyerName, style:'tableHeader2'} ,
-  //               {text: row.sellerName , style:'tableHeader2'} ,
-  //                {text: row.date, style:'tableHeader2'} ,
-  //                 {text:row.poNumber  , style:'tableHeader2' }  ,
-  //                 {text: row.articleName , style:'tableHeader2'},
+  //                 {text: row.contractNo , style:'tableHeader2'} ,
+  //                 {text: row.contractDate , style:'tableHeader2'} ,
+  //                 {text: row.billNo , style:'tableHeader2'} ,
+  //                 {text: row.billFor , style:'tableHeader2'} ,
+  //               {text:  row.blDate , style:'tableHeader2'},
+  //               {text: row.buyer, style:'tableHeader2'} ,
+  //               {text: row.seller , style:'tableHeader2'} ,
+  //                {text: row.saleInvoiceNo, style:'tableHeader2'} ,
+  //                 {text:row.article  , style:'tableHeader2' }  ,
+  //                 {text: row.quantity , style:'tableHeader2'},
            
-  //                {text: row.rate + " " + row.rateUOMName, style:'tableHeader2'} ,
-  //                {text:row.containerName  , style:'tableHeader'} ,
-  //                 {text:row.uomName  , style:'tableHeader2' }  ,
-  //                 {text: row.booking , style:'tableHeader2'},
+  //                {text: row.amount, style:'tableHeader2'} ,
+  //                 {text:row.received  , style:'tableHeader2' }  ,
+  //                 {text: row.balance , style:'tableHeader2'},
               
-  //                  {text:row.dispatch  , style:'tableHeader2' }  ,
-  //                  {text:row.balanceQty  , style:'tableHeader2' }  ,
+  //                  {text:row.paymentTerms  , style:'tableHeader2' }  ,
+  //                  {text:row.commission  , style:'tableHeader2' }  ,
   //               ]
   //             ))
   //           ]
@@ -1029,6 +1364,152 @@ this.spinner.hide();
   //   };
   //   pdfMake.createPdf(docDefinition).print();
   // }
+  dbCrReportPdf() {
+
+    let docDefinition = {
+      pageSize: 'A4',
+      info: {
+        title: 'Debit Credit Report '
+      },
+      content: [
+        {
+          text: 'Debit Credit Report ',
+          style: 'heading',
+
+        },
+        {
+          margin: [-10 , 5 , 0 , 0 ],
+          table:{
+            headerRows : 1,
+            widths : [43 , 45 , 45 , 40 , 40 , 40 , 45 , 45 , 40 , 40
+            ],
+            body:[
+              [
+                {text:'Contact#' , style:'tableHeader' }
+              ,{text:'Buyer' , style:'tableHeader'} ,
+              {text:'Supplier' , style:'tableHeader' }, 
+              {text:'Date' , style:'tableHeader' },
+              {text:'Inv#' , style:'tableHeader' }
+              ,{text:'D/C Note' , style:'tableHeader'} ,
+              {text:'Article' , style:'tableHeader' }, 
+              {text:'Quantity' , style:'tableHeader' },
+              {text:'Amount' , style:'tableHeader' }
+              ,
+              {text:'Remarks' , style:'tableHeader' }
+            ],
+              ...this.DbCrData.map(row => (
+                [
+                  {text: row.autoContractNumber , style:'tableHeader2'} ,
+                {text:  row.buyerName , style:'tableHeader2'},
+                {text: row.sellerName, style:'tableHeader2'} ,
+                 {text: row.date, style:'tableHeader2'} ,
+                 {text: row.saleInvoiceNo, style:'tableHeader2'} ,
+                 {text: row.dC_Note, style:'tableHeader2'} ,
+                 {text: row.article, style:'tableHeader2'} ,
+                 {text: row.quantity, style:'tableHeader2'} ,
+                 {text: row.amount, style:'tableHeader2'} ,
+                 {text: row.remarks, style:'tableHeader2'} ,
+
+             
+                ]
+              ))
+            ]
+          }
+        },
+      ],
+      styles: {
+        heading: {
+          fontSize: 13,
+          alignment: 'center',
+          margin: [0, 15, 0, 30]
+        },
+        tableHeader:{ fillColor: '#f3f3f4' , bold:true , margin:4 , alignment: 'center' ,fontSize: 8},
+        tableHeader2:{   margin:3 , alignment: 'center' , fontSize: 7},
+      }
+
+    };
+    pdfMake.createPdf(docDefinition).print();
+  }
+  agentPdf() {
+
+    let docDefinition = {
+      pageSize: 'A4',
+      info: {
+        title: 'External Agents Report'
+      },
+      content: [
+        {
+          text: 'External Agents Report',
+          style: 'heading',
+
+        },
+        {
+          margin: [-20 , 5 , 0 , 0 ],
+          table:{
+            headerRows : 1,
+            widths : [35, 40, 40, 40 , 30 , 30 , 40 , 35 , 35 , 30  , 30 , 30 , 30
+            ],
+            body:[
+              [
+                {text:'Contract#' , style:'tableHeader' }
+              ,{text:'Contract Date' , style:'tableHeader'} ,
+              {text:'Buyer' , style:'tableHeader' }, 
+              {text:'Seller' , style:'tableHeader' }, 
+
+              {text:'Ext Agent'  , style:'tableHeader'} , 
+              {text:'Inv#' , style:'tableHeader'} , 
+              {text:'Inv Date' , style:'tableHeader'},
+              
+              {text:'B/L Date'  , style:'tableHeader'} , 
+              {text:'Article'  , style:'tableHeader'} , 
+
+              {text:'Rate' , style:'tableHeader'} , 
+              
+              {text:'Quantity' , style:'tableHeader'} , 
+              {text:'Comm%' , style:'tableHeader'},
+
+              {text:'Comm Amount' , style:'tableHeader'} , 
+            ],
+              ...this.externalAgent.map(row => (
+                [
+                  {text: row.contractNo , style:'tableHeader2'} ,
+                {text:  row.contractDate , style:'tableHeader2'},
+                {text: row.buyer, style:'tableHeader2'} ,
+                {text: row.seller , style:'tableHeader2'} ,
+                 {text: row.ext_Agents, style:'tableHeader2'} ,
+                  {text:row.saleInvoiceNo  , style:'tableHeader2' }  ,
+                  {text: row.saleInvoiceDate , style:'tableHeader2'},
+           
+                 {text: row.blDate , style:'tableHeader2'} ,
+                  {text:row.article  , style:'tableHeader2' }  , 
+                  {text:row.rate  , style:'tableHeader2' }  , 
+                   {text:row.quantity   , style:'tableHeader2' }  ,
+                   {text:row.commission   , style:'tableHeader2' }  ,
+                   {text:row.commissionAmount  , style:'tableHeader2' }  ,
+                ]
+              ))
+            ]
+          }
+        },
+        // {text: "Total Comm Amount: " , bold: true , margin:[320 , 20,0,0] ,style:'totalAmount' },
+        // {text: "13" , bold: true , margin:[420 , -9,0,0] ,style:'totalAmount' }
+      ],
+      styles: {
+        heading: {
+          fontSize: 13,
+          alignment: 'center',
+          margin: [0, 15, 0, 30]
+        },
+        totalAmount:{
+          fontSize:8
+              },
+        tableHeader:{ fillColor: '#f3f3f4' , bold:true , margin:4 , alignment: 'center' ,fontSize: 7},
+        tableHeader2:{   margin:3 , alignment: 'center' , fontSize: 6},
+      }
+
+    };
+    pdfMake.createPdf(docDefinition).print();
+  }
   clickEvent(){
     this.status = !this.status;
 }
