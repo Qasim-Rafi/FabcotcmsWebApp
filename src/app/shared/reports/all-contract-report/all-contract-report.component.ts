@@ -5,7 +5,9 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
 import { ServiceService } from '../../service.service';
-
+import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 @Component({
   selector: 'app-all-contract-report',
   templateUrl: './all-contract-report.component.html',
@@ -113,6 +115,105 @@ totalDispatch :  any;
 
         });
   }
+  
+  allContractExcelFile(){
+    const filtered = this.allContractReport.map(row => ({
+    Age:row.age,
+    ContractNo: row.contractNo,
+    Buyer: row.buyerName,
+    Seller: row.sellerName ,
+    Date: row.date,
+    PONumber: row.poNumber,
+    Article: row.articleName ,
+    Rate: row.rate + row.rateUOMName ,
+     
+  
+      Quantity: row.balanceQty,
+      QtyUOM:row.uomName,
+      Booking: row.booking ,
+      
+      Dispatch: row.dispatch ,
+      Balance: row.balanceQty ,
+      
+
+    }));
+
+    this.service.exportAsExcelFile(filtered, 'All Contract Report');
+
+  }
+
+  allContractPdf() {
+
+    let docDefinition = {
+      pageSize: 'A4',
+      info: {
+        title: 'All Contract List'
+      },
+      content: [
+        {
+          text: 'All Contract List',
+          style: 'heading',
+
+        },
+        {
+          margin: [-20 , 5 , 0 , 0 ],
+          table:{
+            headerRows : 1,
+            widths : [30, 40, 60, 60 , 30 , 23 , 40 , 25 , 30 , 35 , 37 , 35
+            ],
+            body:[
+              [
+                {text:'Age' , style:'tableHeader' }
+              ,{text:'Contract#' , style:'tableHeader'} ,
+              {text:'Buyer' , style:'tableHeader' }, 
+              {text:'Seller' , style:'tableHeader' }, 
+
+              {text:'Date'  , style:'tableHeader'} , 
+              {text:'PO#' , style:'tableHeader'} , 
+              {text:'Article' , style:'tableHeader'},
+              
+              {text:'Rate'  , style:'tableHeader'} , 
+              {text:'Qty Unit' , style:'tableHeader'} , 
+              {text:'Booking' , style:'tableHeader'},
+              {text:'Dispatch'  , style:'tableHeader'} , 
+              {text:'Balance' , style:'tableHeader'} , 
+            ],
+              ...this.allContractReport.map(row => (
+                [
+                  {text: row.age , style:'tableHeader2'} ,
+                {text:  row.contractNo , style:'tableHeader2'},
+                {text: row.buyerName, style:'tableHeader2'} ,
+                {text: row.sellerName , style:'tableHeader2'} ,
+                 {text: row.date, style:'tableHeader2'} ,
+                  {text:row.poNumber  , style:'tableHeader2' }  ,
+                  {text: row.articleName , style:'tableHeader2'},
+           
+                 {text: row.rate + " " + row.rateUOMName, style:'tableHeader2'} ,
+                  {text:row.uomName  , style:'tableHeader2' }  ,
+                  {text: row.booking , style:'tableHeader2'},
+              
+                   {text:row.dispatch  , style:'tableHeader2' }  ,
+                   {text:row.balanceQty  , style:'tableHeader2' }  ,
+                ]
+              ))
+            ]
+          }
+        },
+      ],
+      styles: {
+        heading: {
+          fontSize: 13,
+          alignment: 'center',
+          margin: [0, 15, 0, 30]
+        },
+        tableHeader:{ fillColor: '#f3f3f4' , bold:true , margin:4 , alignment: 'center' ,fontSize: 7},
+        tableHeader2:{   margin:3 , alignment: 'center' , fontSize: 6},
+      }
+
+    };
+    pdfMake.createPdf(docDefinition).print();
+  }
+
   clickEvent(){
     this.status = !this.status;
 }
