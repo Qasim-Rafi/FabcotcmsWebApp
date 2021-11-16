@@ -762,7 +762,7 @@ this.spinner.hide();
       CommPer: row.fabcotCommission + '%' ,
       Quantity: row.quantity,
       QtyUOM:row.quantityUOMName,
-      CommAmount: row.commissionAmount ,
+      CommAmount: row.commissionAmount +' '+row.quantityUOMName ,
     }));
 
     this.service.exportAsExcelFile(filtered, 'Bill Report(Contract Wise)');
@@ -1066,7 +1066,7 @@ this.spinner.hide();
            
                  {text: row.buyerName , style:'tableHeader2'} ,
                   {text:row.rate  , style:'tableHeader2' }  ,
-                  {text: row.fabcotCommission , style:'tableHeader2'},
+                  {text: row.fabcotCommission +' '+ row.quantityUOMName , style:'tableHeader2'},
               
                
                    {text:row.quantity + " " + row.quantityUOMName  , style:'tableHeader2' }  ,
