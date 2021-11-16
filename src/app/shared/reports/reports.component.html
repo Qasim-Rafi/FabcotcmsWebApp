@@ -890,13 +890,13 @@
               </ngx-datatable-column>
               <ngx-datatable-column name="Rate" prop="rate" [width]="30">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.rate }}
+                  {{ row.rate }}  {{ row.uomName }}
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="Comm%" prop="fabcotCommission" [width]="30">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
 
-                  <span *ngIf="row.fabcotCommission != ''">{{ row.fabcotCommission }}%</span>
+                  <span *ngIf="row.fabcotCommission != ''">{{ row.fabcotCommission }} {{row.quantityUOMName}} </span>
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="Inv#" prop="invoiceNo" [width]="50">
@@ -915,7 +915,7 @@
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   <!-- {{ row.commissionAmount }} -->
 
-                  <small *ngIf="row.debitAmount == null ">   {{ row.commissionAmount }}  </small>
+                  <small *ngIf="row.debitAmount == null ">   {{ row.commissionAmount }} {{row.rateCurrencyName}} </small>
                   <small *ngIf = "row.debitAmount !=null">{{row.crdbCommission}} </small> <br>
 
 
