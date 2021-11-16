@@ -689,7 +689,7 @@ this.spinner.hide();
       Quantity: row.quantity,
       QtyUOM:row.quantityUOMName,
 
-      CommAmount: row.commissionAmount ,
+      CommAmount: row.commissionAmount + row.commissionUomName ,
     }));
 
     this.service.exportAsExcelFile(filtered, 'Bill Report(Invoice Wise)');
@@ -985,13 +985,13 @@ this.spinner.hide();
                   {text: row.sellerName , style:'tableHeader2'},
            
                  {text: row.buyerName , style:'tableHeader2'} ,
-                  {text:row.rate  , style:'tableHeader2' }  ,
-                  {text: row.fabcotCommission , style:'tableHeader2'},
+                  {text:row.rate +' '+ row.uomName , style:'tableHeader2' }  ,
+                  {text: row.fabcotCommission +'%' , style:'tableHeader2'},
               
                    {text:row.invoiceNo  , style:'tableHeader2' }  ,
                    {text:row.quantity + " " + row.quantityUOMName  , style:'tableHeader2' }  ,
 
-                   {text:row.commissionAmount  , style:'tableHeader2' }  ,
+                   {text:row.commissionAmount +''+ row.commissionUomName , style:'tableHeader2' }  ,
                 ]
               ))
             ]
