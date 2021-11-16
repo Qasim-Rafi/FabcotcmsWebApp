@@ -758,7 +758,7 @@ this.spinner.hide();
       BillNumber: row.billNo,
       Buyer: row.buyerName ,
       Seller: row.sellerName,
-      Rate: row.rate,
+      Rate: row.rate +''+ row.uomName,
       CommPer: row.fabcotCommission + '%' ,
       Quantity: row.quantity,
       QtyUOM:row.quantityUOMName,
@@ -1069,7 +1069,7 @@ this.spinner.hide();
                   {text: row.fabcotCommission +' '+ row.quantityUOMName , style:'tableHeader2'},
               
                
-                   {text:row.quantity + " " + row.quantityUOMName  , style:'tableHeader2' }  ,
+                   {text:row.quantity + " " + row.uomName  , style:'tableHeader2' }  ,
 
                    {text:row.commissionAmount +' '+ row.rateCurrencyName , style:'tableHeader2' }  ,
                 ]

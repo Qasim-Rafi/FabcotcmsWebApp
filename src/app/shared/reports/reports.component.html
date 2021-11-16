@@ -906,7 +906,7 @@
               </ngx-datatable-column>
               <ngx-datatable-column name="Qty" prop="quantity" [width]="30">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-               <small *ngIf="row.debitQuantity == null ">   {{ row.quantity }} {{ row.quantityUOMName }} </small>
+               <small *ngIf="row.debitQuantity == null ">   {{ row.quantity }} {{ row.uomName }} </small>
                <small *ngIf = "row.debitQuantity !=null">{{row.remainingQuantity}} </small> <br>
                <small class="text-danger" *ngIf="row.debitQuantity != null "> Db:[  {{row.quantity}} - {{row.debitQuantity}} ]  {{ row.quantityUOMName }} </small>
                 </ng-template>
