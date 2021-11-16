@@ -684,7 +684,7 @@ this.spinner.hide();
       Buyer: row.buyerName ,
       Seller: row.sellerName,
       InvoiceNumber:row.invoiceNo,
-      Rate: row.rate,
+      Rate: row.rate +row.uomName,
       CommPer: row.fabcotCommission + '%' ,
       Quantity: row.quantity,
       QtyUOM:row.quantityUOMName,
