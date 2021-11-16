@@ -236,7 +236,7 @@ else if (this.menuName.menuName == 'BillingReportContractWise'){
     {
     this.billingReportInvoiceWise=this.response.data.getBillReport;
     this.invBill = [...this.billingReportInvoiceWise]
-    this.invoiceTotal  = this.response.data.totalcommisionamount;
+    this.invoiceTotal  = this.response.data.totalcommisionamount +' '+ this.billingReportInvoiceWise[0].rateCurrencyName;
     this.spinner.hide();
 
     }
@@ -689,7 +689,7 @@ this.spinner.hide();
       Quantity: row.quantity,
       QtyUOM:row.quantityUOMName,
 
-      CommAmount: row.commissionAmount + row.commissionUomName ,
+      CommAmount: row.commissionAmount + row.rateCurrencyName ,
     }));
 
     this.service.exportAsExcelFile(filtered, 'Bill Report(Invoice Wise)');
@@ -991,7 +991,7 @@ this.spinner.hide();
                    {text:row.invoiceNo  , style:'tableHeader2' }  ,
                    {text:row.quantity + " " + row.quantityUOMName  , style:'tableHeader2' }  ,
 
-                   {text:row.commissionAmount +''+ row.commissionUomName , style:'tableHeader2' }  ,
+                   {text:row.commissionAmount +''+ row.rateCurrencyName , style:'tableHeader2' }  ,
                 ]
               ))
             ]

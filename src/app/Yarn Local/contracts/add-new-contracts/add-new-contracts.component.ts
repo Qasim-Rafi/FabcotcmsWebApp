@@ -1044,7 +1044,7 @@ brandId : any;
       "kickbackPercentage": this.data.kickbackPercentage == null ? 0 : this.data.kickbackPercentage  ,
       "kickbackUOMId": this.data.kickbackUOMId,
       "beneficiary": this.data.beneficiary,
-      "fabCotCommision": this.data.fabCotCommision == null ? 0 : this.data.fabCotComission,
+      "fabCotCommision": this.data.fabCotCommision == null ? 0 : this.data.fabCotCommision,
       "fabCotCommisionUOMId": this.data.fabCotCommisionUOMId,
       "fabcotSideCommAdditionalInfo": this.data.fabcotSideCommAdditionalInfo,
       "buyersideCommision": this.data.buyersideCommision == null ? 0 : this.data.buyersideCommision,
