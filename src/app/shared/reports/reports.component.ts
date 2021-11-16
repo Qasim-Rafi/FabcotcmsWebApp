@@ -652,7 +652,7 @@ fetchContractInvise() {
   if(this.response.success==true)
   {
   this.contractWise=this.response.data.getBillReport;
-  this.contractTotal = this.response.data.totalcommisionamount
+  this.contractTotal = this.response.data.totalcommisionamount +' ' + this.contractWise[0].rateCurrencyName
  this.contractBill = [...this.contractWise]
 
   this.spinner.hide();

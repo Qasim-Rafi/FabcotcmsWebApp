@@ -1299,7 +1299,7 @@
               </ngx-datatable-column>
               <ngx-datatable-column name="Rate" prop="rate" [width]="30">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.rate }}
+                 {{row.rateCurrencyName}} {{ row.rate }} / {{row.uomName}}
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="Comm%" prop="fabcotCommission" [width]="30">
@@ -1315,7 +1315,7 @@
               </ngx-datatable-column> -->
               <ngx-datatable-column name="Qty" prop="quantity" [width]="30">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.quantity }} {{ row.quantityUOMName }}
+                  {{ row.quantity }} {{ row.uomName }}
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="Comm Amount" prop="commissionAmount" [width]="40">
