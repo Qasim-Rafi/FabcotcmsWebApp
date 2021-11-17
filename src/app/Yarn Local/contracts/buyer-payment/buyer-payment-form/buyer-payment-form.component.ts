@@ -212,7 +212,19 @@ this.spinner.hide();
   }
   
   amountCall(event){
- 
+ let deptName =localStorage.getItem('loggedInDepartmentName');
+ if(deptName == 'Yarn Local'){
+
+  this.amountGivenToCalculate=this.data.amount;
+        this.result = this.data.amount.toString() +'.'+this.decimalSize;
+        this.data.taxChalan = 0;
+        for(let i=0;i<=this.rows.length; i++){
+          this.rows[i].receivedAmount ='0.00';
+          this.rows[i].taxChallan ='0.00';
+        }
+ }
+
+ else{
         this.amountGivenToCalculate=this.data.amount;
         this.result = this.data.amount.toString() +'.'+this.decimalSize;
         this.data.taxChalan = 0;
@@ -220,6 +232,7 @@ this.spinner.hide();
           this.rows[i].receivedAmount ='0.00';
           this.rows[i].taxChallan ='0.00';
         }
+      }
   }
 
   // texchalancalculation(value){
@@ -250,10 +263,20 @@ this.spinner.hide();
   //   }
   }
   taxCalculated(event){
+    let deptName =localStorage.getItem('loggedInDepartmentName');
+ if(deptName == 'Yarn Local'){
     this.taxpercentage=this.data.taxChalan;
-    let taxcal  = this.amountGivenToCalculate * (this.data.taxChalan / 100);
+   //this.amountGivenToCalculate= this.amountGivenToCalculate / 99
+    let taxcal  = this.amountGivenToCalculate * (this.data.taxChalan / 99);
     // (100- this.data.taxChalan)
     this.calculatedTax= taxcal.toFixed(2);
+ }
+ else{
+  this.taxpercentage=this.data.taxChalan;
+  let taxcal  = this.amountGivenToCalculate * (this.data.taxChalan / 100);
+  // (100- this.data.taxChalan)
+  this.calculatedTax= taxcal.toFixed(2);
+ }
   }
   onSelect(event,row) {
     let newrow =this.rows.filter(r=>r.saleInvoiceId ==row.saleInvoiceId)
