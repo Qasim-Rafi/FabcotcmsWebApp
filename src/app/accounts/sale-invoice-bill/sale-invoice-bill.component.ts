@@ -362,7 +362,10 @@ invNo : any
             headerRows: 1, widths: ['90%', '10%'],
             body: [[
               { text: 'TAX:', margin: [455, 5, 0, 0], bold: true, style: 'common' },
-              { text: parseFloat(this.data['invoiceTaxAmountTotal']).toFixed(2), margin: [0, 5, 0, 0], decoration: 'underline', style: 'common' },
+              { text:
+                //  parseFloat(this.data['invoiceTaxAmountTotal']).toFixed(2) 
+              Math.round(this.data['invoiceTaxAmountTotal'])
+              , margin: [0, 5, 0, 0], decoration: 'underline', style: 'common' },
 
               
             ]]
