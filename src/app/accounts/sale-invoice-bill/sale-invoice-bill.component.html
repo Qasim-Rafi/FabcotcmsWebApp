@@ -211,7 +211,7 @@
 
                     <td>{{i.sellerCommissionAmount}} </td>
                     <!-- <td>{{i.amount}}</td> -->
-                    <td>{{i.taxAmount | number:'2.2-2'}}</td>
+                    <td>{{i.taxAmount | number:'1.0-0'}}</td>
 
                     <td>{{i.totalAmount  | number:'2.2-2'}}</td>
 
@@ -226,7 +226,7 @@
                 </span>
                 <br>
                 <span class=" bold text-font1">
-                    TAX : <span class="text-font1 underline">{{data.invoiceTaxAmountTotal}}</span>
+                    TAX : <span class="text-font1 underline">{{data.invoiceTaxAmountTotal | number:'1.0-0'}}</span>
                 </span><br>
                 <span class=" bold text-font1">
                     TOTAL : <span class="bold text-font1 underline">{{data.invoiceTotalAmount}}  </span>
