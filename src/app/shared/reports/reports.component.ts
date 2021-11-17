@@ -713,7 +713,16 @@ this.spinner.hide();
       
       Dispatch: row.dispatch ,
       Balance: row.balanceQty ,
+      Cost: row.balanceQty ,
+      SellerComm:  row.sellerCommission + "[" + row.sellerCommissionAmount + "]" ,
+      BuyerComm: row.buyerCommission + "[" + row.buyerCommissionAmount + "]" ,
+      SellerPaymentTerm: row.sellerPaymentTerm ,
+      BuyerPaymentTerm: row.buyerPaymentTerm ,
 
+      Status: row.status ,
+      Agent: row.agent ,
+
+     
     }));
 
     this.service.exportAsExcelFile(filtered, 'Open Contract Report');
@@ -867,6 +876,7 @@ this.spinner.hide();
 
     let docDefinition = {
       pageSize: 'A4',
+      pageOrientation: 'Landscape',
       info: {
         title: 'Open Contract List'
       },
@@ -877,10 +887,10 @@ this.spinner.hide();
 
         },
         {
-          margin: [-20 , 5 , 0 , 0 ],
+          margin: [-10 , 5 , 0 , 0 ],
           table:{
             headerRows : 1,
-            widths : [30, 40, 60, 60 , 30 , 23 , 40 , 25 , 30 , 35 , 37 , 35
+            widths : [20, 60, 60, 40 , 25 , 30 , 35 , 30 , 30 , 30 , 40 , 40 , 30 , 30 , 30 , 30, 30 , 30
             ],
             body:[
               [
@@ -897,7 +907,14 @@ this.spinner.hide();
               {text:'Qty Unit' , style:'tableHeader'} , 
               {text:'Booking' , style:'tableHeader'},
               {text:'Dispatch'  , style:'tableHeader'} , 
-              {text:'Balance' , style:'tableHeader'} , 
+              {text:'Balance' , style:'tableHeader'} , {text:'Cost' , style:'tableHeader'} , 
+
+              {text:'SellerComm' , style:'tableHeader'} , 
+              {text:'BuyerComm' , style:'tableHeader'} , 
+              {text:'PaymentTerm(S|B)' , style:'tableHeader'} , 
+              {text:'Status' , style:'tableHeader'} , 
+              {text:'Agent' , style:'tableHeader'} , 
+
             ],
               ...this.rows.map(row => (
                 [
@@ -915,6 +932,13 @@ this.spinner.hide();
               
                    {text:row.dispatch  , style:'tableHeader2' }  ,
                    {text:row.balanceQty  , style:'tableHeader2' }  ,
+                   {text:row.cost  , style:'tableHeader2' }  ,
+                   {text: row.sellerCommission != '' ?  row.sellerCommission + '%' + "[" + row.sellerCommissionAmount + "]" : ''  , style:'tableHeader2' }  ,
+                   {text:row.buyerCommission != '' ?  row.buyerCommission + '%' + "[" + row.buyerCommissionAmount + "]"  : ''  , style:'tableHeader2' }  ,
+                   {text:row.sellerPaymentTerm +  '|' + row.buyerPaymentTerm  , style:'tableHeader2' }  ,
+                   {text:row.status  , style:'tableHeader2' }  ,
+                   {text:row.agent  , style:'tableHeader2' }  ,
+
                 ]
               ))
             ]
@@ -927,8 +951,8 @@ this.spinner.hide();
           alignment: 'center',
           margin: [0, 15, 0, 30]
         },
-        tableHeader:{ fillColor: '#f3f3f4' , bold:true , margin:4 , alignment: 'center' ,fontSize: 7},
-        tableHeader2:{   margin:3 , alignment: 'center' , fontSize: 6},
+        tableHeader:{ fillColor: '#f3f3f4' , bold:true , margin:4 , alignment: 'center' ,fontSize: 6},
+        tableHeader2:{   margin:3 , alignment: 'center' , fontSize: 5},
       }
 
     };
