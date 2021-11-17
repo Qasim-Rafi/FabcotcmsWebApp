@@ -66,7 +66,8 @@ invNo : any
 
         if (this.response.success == true) {
           this.data = this.response.data;
-          this.data.invoiceTaxAmountTotal=parseInt(this.data.invoiceTaxAmountTotal)
+          this.data.invoiceTaxAmountTotal=parseFloat(this.data.invoiceTaxAmountTotal).toFixed(2);
+          //this.data.invoiceTaxAmountTotal=this.data.invoiceTaxAmountTotal.toFixed(2)
           this.amountInWorda = this.ngxNumToWordsService.inWords(this.data.invoiceTotalAmount, this.lang);
           console.log(this.data)
           this.spinner.hide();
@@ -361,9 +362,9 @@ invNo : any
             headerRows: 1, widths: ['90%', '10%'],
             body: [[
               { text: 'TAX:', margin: [455, 5, 0, 0], bold: true, style: 'common' },
-              { text: Math.round(this.data['invoiceTaxAmountTotal']), margin: [0, 5, 0, 0], decoration: 'underline', style: 'common' },
+              { text: parseFloat(this.data['invoiceTaxAmountTotal']).toFixed(2), margin: [0, 5, 0, 0], decoration: 'underline', style: 'common' },
 
-
+              
             ]]
           }
         },
