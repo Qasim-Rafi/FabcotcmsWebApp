@@ -5140,7 +5140,9 @@ yarnExportInvoicesReportPrint(){
                         margin: [70 , 7 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
-                        [{text:'Container:'  , style:'heading'} , {text:  this.contractPaymentData['count'] + " " +this.contractPaymentData['containerName']   , style:'heading2'}],] }
+                        [{text:'Container:'  , style:'heading'} ,
+                         {text: this.contractPaymentData['count'] && this.contractPaymentData['containerName'] != null?
+                          this.contractPaymentData['count'] + " x " +this.contractPaymentData['containerName'] :this.contractPaymentData['count'] + " " +this.contractPaymentData['containerName']  , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
