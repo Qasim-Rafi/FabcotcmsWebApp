@@ -59,6 +59,10 @@ totalDispatch =0;
 lCReport : any = []
 contractTotal :  any
 invoiceTotal  : any
+paymentTotal : any;
+kickbackContract :  any;
+kickbackDispatch : any;
+kickbackQty : any
   constructor(
 
     private route: ActivatedRoute,
@@ -510,7 +514,8 @@ PaymentReport(){
         this.response = res;
         if (this.response.success == true  && this.response.data.length != 0) {
           this.toastr.success(this.response.message, 'Message.');
-          this.paymentReport = this.response.data;
+          this.paymentReport = this.response.data.objsaleinvoiceitem;
+        this.paymentTotal  =  this.response.data.totalAmount;
 
 
        this.spinner.hide();
@@ -548,8 +553,10 @@ kickbackContractReport(){
         this.response = res;
         if (this.response.success == true  && this.response.data.length != 0) {
           this.toastr.success(this.response.message, 'Message.');
-          this.kickbackReport = this.response.data;
-
+          this.kickbackReport = this.response.data.obj1;
+        this.kickbackContract =  this.response.data.totalContract
+         this.kickbackDispatch = this.response.data.totalDispatchAmount
+         this.kickbackQty = this.response.data.totalQuantity
 
        this.spinner.hide();
         }
@@ -1514,10 +1521,10 @@ this.spinner.hide();
            
                  {text: row.blDate , style:'tableHeader2'} ,
                   {text:row.article  , style:'tableHeader2' }  , 
-                  {text:row.rate  , style:'tableHeader2' }  , 
-                   {text:row.quantity   , style:'tableHeader2' }  ,
-                   {text:row.commission   , style:'tableHeader2' }  ,
-                   {text:row.commissionAmount  , style:'tableHeader2' }  ,
+                  {text:   row.rateCurrencyName+" "+row.rate +  '/' + row.rateUOMName , style:'tableHeader2' }  , 
+                   {text:row.quantity  + row.quantityUOMName   , style:'tableHeader2' }  ,
+                   {text: row.commission != '' ?   row.commission + '%'  : '' , style:'tableHeader2' }  ,
+                   {text:   row.rateCurrencyName + row.commissionAmount  , style:'tableHeader2' }  ,
                 ]
               ))
             ]
