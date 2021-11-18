@@ -978,7 +978,7 @@ this.spinner.hide();
           margin: [-20 , 5 , 0 , 0 ],
           table:{
             headerRows : 1,
-            widths : [23, 45, 37, 39 , 39 , 20 , 45 , 45 , 24 , 33 , 30 , 35 , 33
+            widths : [23, 40, 33, 39 , 39 , 20 , 45 , 45 , 30 , 33 , 30 , 35 , 40
             ],
             body:[
               [
@@ -1013,9 +1013,10 @@ this.spinner.hide();
                   {text: row.fabcotCommission +'%' , style:'tableHeader2'},
               
                    {text:row.invoiceNo  , style:'tableHeader2' }  ,
-                   {text:row.quantity + " " + row.quantityUOMName  , style:'tableHeader2' }  ,
+                   {text: row.debitQuantity = null ?  row.quantity + " " + row.quantityUOM :  row.remainingQuantity + '\n' +  row.quantity  + '-' + row.debitQuantity  + row.quantityUOM , style:'tableHeader2' }  ,
 
-                   {text:row.commissionAmount +''+ row.rateCurrencyName , style:'tableHeader2' }  ,
+                   {text: row.debitAmount = null ?  row.commissionAmount + " " + row.rateCurrencyName :  row.crdbCommission + " " + row.rateCurrencyName
+                    , style:'tableHeader2' }  ,
                 ]
               ))
             ]
@@ -1089,13 +1090,13 @@ this.spinner.hide();
                   {text: row.sellerName , style:'tableHeader2'},
            
                  {text: row.buyerName , style:'tableHeader2'} ,
-                  {text:row.rate  , style:'tableHeader2' }  ,
+                  {text:row.rate != '' ? row.rateCurrencyName == 'PKR' ?  row.rate +'Rs' : row.rateCurrencyName == 'USD' ? row.rate + '$' : row.rateCurrencyName == 'EUR' ? row.rate + '€': row.rateCurrencyName == 'GBP' ? row.rate + 'GBP' : row.rate + " " + row.rateCurrencyName : '' , style:'tableHeader2'  }  ,
                   {text: row.fabcotCommission +' '+ row.quantityUOMName , style:'tableHeader2'},
               
                
-                   {text:row.quantity + " " + row.uomName  , style:'tableHeader2' }  ,
+                   {text:row.quantity + " " + row.quantityUOM  , style:'tableHeader2' }  ,
 
-                   {text:row.commissionAmount +' '+ row.rateCurrencyName , style:'tableHeader2' }  ,
+                   {text: row.commissionAmount != '' ? row.rateCurrencyName == 'PKR' ?  row.commissionAmount +'Rs' : row.rateCurrencyName == 'USD' ? row.commissionAmount + '$' : row.rateCurrencyName == 'EUR' ? row.commissionAmount + '€': row.rateCurrencyName == 'GBP' ? row.commissionAmount + 'GBP' : row.commissionAmount + " " + row.rateCurrencyName : '' , style:'tableHeader2' }  ,
                 ]
               ))
             ]
@@ -1434,8 +1435,11 @@ this.spinner.hide();
                  {text: row.saleInvoiceNo, style:'tableHeader2'} ,
                  {text: row.dC_Note, style:'tableHeader2'} ,
                  {text: row.article, style:'tableHeader2'} ,
-                 {text: row.quantity, style:'tableHeader2'} ,
-                 {text: row.amount, style:'tableHeader2'} ,
+                 {text: row.quantity + row.quantityUOMName, style:'tableHeader2'} ,
+                 {text: 
+                  row.amount != '' ? row.rateCurrencyName == 'PKR' ?  row.amount +'Rs' : row.rateCurrencyName == 'USD' ? row.amount + '$' : row.rateCurrencyName == 'EUR' ? row.amount + '€': row.rateCurrencyName == 'GBP' ? row.amount + 'GBP' : row.amount + " " + row.rateCurrencyName : ''
+                  
+                  , style:'tableHeader2'} ,
                  {text: row.remarks, style:'tableHeader2'} ,
 
              

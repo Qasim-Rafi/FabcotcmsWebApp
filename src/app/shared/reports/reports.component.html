@@ -259,7 +259,10 @@
             </ngx-datatable-column>
             <ngx-datatable-column name="Rate" [width]="90">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                {{ row.rate }} /  {{row.rateUOMName}}
+                <b *ngIf = "row.rateCurrencyName == 'PKR'">RS</b>  
+                <b *ngIf = "row.rateCurrencyName == 'USD'">$</b> 
+                <b *ngIf = "row.rateCurrencyName == 'EUR'">€</b> 
+                <b *ngIf = "row.rateCurrencyName == 'GBP'">GBP</b>      {{ row.rate }} /  {{row.rateUOMName}}
               
 
               </ng-template>
@@ -275,6 +278,12 @@
                 {{ row.booking }}  {{row.quantityUOMName}}
               </ng-template>
             </ngx-datatable-column>
+            <ngx-datatable-column name="Container" [width]="90">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                {{ row.containerName }}  
+              </ng-template>
+            </ngx-datatable-column>
+  
   
             <ngx-datatable-column name="Dispatch" [width]="90">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
@@ -287,31 +296,46 @@
                 {{ row.balanceQty }}  {{row.quantityUOMName}}
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Cost" [width]="90">
+            <ngx-datatable-column name="Cost" [width]="120">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                {{ row.cost }}
+                <p *ngIf = "row.rateCurrencyName == 'PKR'">RS</p>  
+                <p *ngIf = "row.rateCurrencyName == 'USD'">$</p> 
+                <p *ngIf = "row.rateCurrencyName == 'EUR'">€</p> 
+                <p *ngIf = "row.rateCurrencyName == 'GBP'">GBP</p>    {{ row.cost }}
               </ng-template>
             </ngx-datatable-column>
             <ngx-datatable-column name="Seller Comm" [width]="90">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                <p *ngIf = "row.buyerCommission != '' "> {{row.sellerCommission}}%   [ {{ row.sellerCommissionAmount }} ]</p>    
+                <div *ngIf = "row.buyerCommission != '' "> {{row.sellerCommission}}%   [      <p *ngIf = "row.rateCurrencyName == 'PKR'">RS</p>  
+                  <p *ngIf = "row.rateCurrencyName == 'USD'">$</p> 
+                  <p *ngIf = "row.rateCurrencyName == 'EUR'">€</p> 
+                  <p *ngIf = "row.rateCurrencyName == 'GBP'">GBP</p>   {{ row.sellerCommissionAmount }} ]</div>    
 
               </ng-template>
             </ngx-datatable-column>
             <ngx-datatable-column name="Buyer Comm" [width]="90">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                <p *ngIf = "row.buyerCommission != '' "> {{row.buyerCommission}}%   [ {{ row.buyerCommissionAmount }} ]</p>    
+                <div *ngIf = "row.buyerCommission != '' "> {{row.buyerCommission}}%   [      <p *ngIf = "row.rateCurrencyName == 'PKR'">RS</p>  
+                  <p *ngIf = "row.rateCurrencyName == 'USD'">$</p> 
+                  <p *ngIf = "row.rateCurrencyName == 'EUR'">€</p> 
+                  <p *ngIf = "row.rateCurrencyName == 'GBP'">GBP</p>   {{ row.buyerCommissionAmount }} ]</div>    
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Payment Term S|B" [width]="90">
+            <ngx-datatable-column name="Seller Payment Term" [width]="90">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-             {{ row.sellerPaymentTerm }} | {{row.buyerPaymentTerm}}
+             {{ row.sellerPaymentTerm }}  
+
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Buyer Payment Term" [width]="90">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+             {{ row.buyerPaymentTerm }}  
 
               </ng-template>
             </ngx-datatable-column>
             <ngx-datatable-column name="Status" [width]="90">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                {{ row.status }}
+                <span class="badge badge-primary">{{row.status}}</span>
               </ng-template>
             </ngx-datatable-column>
             <ngx-datatable-column name="Agent" [width]="90">
@@ -636,116 +660,134 @@
         <div class="card-body">
           <div class="panel-body">
 
-            <ngx-datatable #myTable class="bootstrap" [sorts]="[{ prop: 'id,name', dir: 'desc' }]" [columns]="columns"
-              [rows]="cancelContract" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-              [rowHeight]="'auto'" [scrollbarH] = "true">
+            <ngx-datatable #myTable  class="bootstrap datatable-row-wrapper" [columns]="columns" [rows]="cancelContract"
+            [columnMode]="'force'"   [headerHeight]="50" [footerHeight]="50" [sorts]="[{ prop: 'id', dir: 'asce' }]"
+            [rowHeight]="'auto'" [scrollbarH] = "true" >
+  
+            <ngx-datatable-column name="Age" prop="age" [width] = "60"   >
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                <span class="badge badge-primary">{{row.age}}</span>
+               
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Contract#" [width]="120">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                {{row.contractNo}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Buyer" [width]="130">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                {{row.buyerName}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Seller" [width]="130">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                {{row.sellerName}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Date" [width]="100">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                {{row.date}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="PO#" [width]="60">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                {{row.poNumber}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Article" [width]="150">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                {{row.articleName}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Rate" [width]="90">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                <b *ngIf = "row.rateCurrencyName == 'PKR'">RS</b>  
+                <b *ngIf = "row.rateCurrencyName == 'USD'">$</b> 
+                <b *ngIf = "row.rateCurrencyName == 'EUR'">€</b> 
+                <b *ngIf = "row.rateCurrencyName == 'GBP'">GBP</b>      {{ row.rate }} /  {{row.rateUOMName}}
+              
 
-              <ngx-datatable-column name="Age" prop="name" [width]="60">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  <span class="badge badge-primary">{{row.age}}</span>
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Contract#" [width]="100">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{row.contractNo}}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Buyer" [width]="100">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{row.buyerName}}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Seller" [width]="100">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{row.sellerName}}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Date" [width]="80">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.date }}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="PO#" [width]="80">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.poNumber }}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Article" [width]="100">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{row.articleName}}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Rate" [width]="80">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.rate }}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Container" [width]="100">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.containerName }}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Qty Unit" [width]="70">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.uomName }}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Booking" [width]="70">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.booking }}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Dispatch" [width]="70">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.dispatch }}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Balance" [width]="70">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.balanceQty }}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Cost" [width]="60">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.cost }}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Seller Comm" [width]="100">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.sellerCommission }}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Buyer Comm" [width]="100">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.buyerCommission }}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Payment Term S|B" [width]="120">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.details }}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Status" [width]="60">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  <span class="badge badge-primary">{{row.status}}</span>
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Cancel By" [width]="80">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.details }}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Cancel On" [width]="80">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.details }}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Owner" [width]="80">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.details }}
-                </ng-template>
-              </ngx-datatable-column>
-            </ngx-datatable>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Qty Unit" [width]="90">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+               {{row.quantityUOMName}}
+              </ng-template>
+            </ngx-datatable-column>
+  
+            <ngx-datatable-column name="Booking" [width]="90">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                {{ row.booking }}  {{row.quantityUOMName}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Container" [width]="90">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                {{ row.containerName }}  
+              </ng-template>
+            </ngx-datatable-column>
+  
+  
+            <ngx-datatable-column name="Dispatch" [width]="90">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                {{ row.dispatch }}  {{row.quantityUOMName}}
+              </ng-template>
+            </ngx-datatable-column>
+  
+            <ngx-datatable-column name="Balance" [width]="90">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                {{ row.balanceQty }}  {{row.quantityUOMName}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Cost" [width]="120">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                <p *ngIf = "row.rateCurrencyName == 'PKR'">RS</p>  
+                <p *ngIf = "row.rateCurrencyName == 'USD'">$</p> 
+                <p *ngIf = "row.rateCurrencyName == 'EUR'">€</p> 
+                <p *ngIf = "row.rateCurrencyName == 'GBP'">GBP</p>    {{ row.cost }}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Seller Comm" [width]="90">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                <div *ngIf = "row.buyerCommission != '' "> {{row.sellerCommission}}%   [      <p *ngIf = "row.rateCurrencyName == 'PKR'">RS</p>  
+                  <p *ngIf = "row.rateCurrencyName == 'USD'">$</p> 
+                  <p *ngIf = "row.rateCurrencyName == 'EUR'">€</p> 
+                  <p *ngIf = "row.rateCurrencyName == 'GBP'">GBP</p>   {{ row.sellerCommissionAmount }} ]</div>    
+
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Buyer Comm" [width]="90">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                <div *ngIf = "row.buyerCommission != '' "> {{row.buyerCommission}}%   [      <p *ngIf = "row.rateCurrencyName == 'PKR'">RS</p>  
+                  <p *ngIf = "row.rateCurrencyName == 'USD'">$</p> 
+                  <p *ngIf = "row.rateCurrencyName == 'EUR'">€</p> 
+                  <p *ngIf = "row.rateCurrencyName == 'GBP'">GBP</p>   {{ row.buyerCommissionAmount }} ]</div>    
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Seller Payment Term" [width]="90">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+             {{ row.sellerPaymentTerm }}  
+
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Buyer Payment Term" [width]="90">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+             {{ row.buyerPaymentTerm }}  
+
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Status" [width]="90">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                <span class="badge badge-primary">{{row.status}}</span>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Agent" [width]="90">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                {{ row.agent }}
+              </ng-template>
+            </ngx-datatable-column>
+          </ngx-datatable>
+
 
           </div>
         </div>
@@ -921,7 +963,10 @@
               </ngx-datatable-column>
               <ngx-datatable-column name="Rate" prop="rate" [width]="30">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.rate }}  {{ row.uomName }}
+                  <b *ngIf = "row.rateCurrencyName == 'PKR'">RS</b>  
+                  <b *ngIf = "row.rateCurrencyName == 'USD'">$</b> 
+                  <b *ngIf = "row.rateCurrencyName == 'EUR'">€</b> 
+                  <b *ngIf = "row.rateCurrencyName == 'GBP'">GBP</b>     {{ row.rate }} /  {{ row.uomName }}
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="Comm%" prop="fabcotCommission" [width]="30">
@@ -937,17 +982,20 @@
               </ngx-datatable-column>
               <ngx-datatable-column name="Qty" prop="quantity" [width]="30">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-               <small *ngIf="row.debitQuantity == null ">   {{ row.quantity }} {{ row.uomName }} </small>
-               <small *ngIf = "row.debitQuantity !=null">{{row.remainingQuantity}} </small> <br>
-               <small class="text-danger" *ngIf="row.debitQuantity != null "> Db:[  {{row.quantity}} - {{row.debitQuantity}} ]  {{ row.quantityUOMName }} </small>
+               <div *ngIf="row.debitQuantity == null ">   {{ row.quantity }} {{ row.quantityUOM }} </div>
+               <div *ngIf = "row.debitQuantity !=null">{{row.remainingQuantity}} </div> <br>
+               <div class="text-danger" *ngIf="row.debitQuantity != null "> Db:[  {{row.quantity}} - {{row.debitQuantity}} ]  {{ row.quantityUOM }} </div>
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="Comm Amount" prop="commissionAmount" [width]="50">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   <!-- {{ row.commissionAmount }} -->
 
-                  <small *ngIf="row.debitAmount == null ">   {{ row.commissionAmount }} {{row.rateCurrencyName}} </small>
-                  <small *ngIf = "row.debitAmount !=null">{{row.crdbCommission}} </small> <br>
+                  <div *ngIf="row.debitAmount == null ">   {{ row.commissionAmount }}   </div>     <b *ngIf = "row.rateCurrencyName == 'PKR'">RS</b>  
+                    <b *ngIf = "row.rateCurrencyName == 'USD'">$</b> 
+                    <b *ngIf = "row.rateCurrencyName == 'EUR'">€</b> 
+                    <b *ngIf = "row.rateCurrencyName == 'GBP'">GBP</b>  
+                  <div *ngIf = "row.debitAmount !=null">{{row.crdbCommission}} </div> <br>
 
 
 
@@ -955,7 +1003,8 @@
               </ngx-datatable-column>
             </ngx-datatable>
 
-            <p class="col-md-12  totalAmnt">Total Comm Amount : <span>  &nbsp;  &nbsp;  {{invoiceTotal}} </span></p>
+            <p class="col-md-12  totalAmnt">Total Comm Amount : <span>  &nbsp;  &nbsp;  {{invoiceTotal}} 
+               </span></p>
 
           </div>
         </div>
@@ -1330,7 +1379,10 @@
               </ngx-datatable-column>
               <ngx-datatable-column name="Rate" prop="rate" [width]="30">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                 {{row.rateCurrencyName}} {{ row.rate }} / {{row.uomName}}
+                  <b *ngIf = "row.rateCurrencyName == 'PKR'">RS</b>  
+                  <b *ngIf = "row.rateCurrencyName == 'USD'">$</b> 
+                  <b *ngIf = "row.rateCurrencyName == 'EUR'">€</b> 
+                  <b *ngIf = "row.rateCurrencyName == 'GBP'">GBP</b>   {{ row.rate }} / {{row.uomName}}
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="Comm%" prop="fabcotCommission" [width]="30">
@@ -1346,12 +1398,15 @@
               </ngx-datatable-column> -->
               <ngx-datatable-column name="Qty" prop="quantity" [width]="30">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.quantity }} {{ row.uomName }}
+                  {{ row.quantity }} {{ row.quantityUOM }}
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="Comm Amount" prop="commissionAmount" [width]="40">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.commissionAmount }}
+                  {{ row.commissionAmount }}      <b *ngIf = "row.rateCurrencyName == 'PKR'">RS</b>  
+                  <b *ngIf = "row.rateCurrencyName == 'USD'">$</b> 
+                  <b *ngIf = "row.rateCurrencyName == 'EUR'">€</b> 
+                  <b *ngIf = "row.rateCurrencyName == 'GBP'">GBP</b>  
                 </ng-template>
               </ngx-datatable-column>
             </ngx-datatable>
@@ -2142,12 +2197,15 @@
               </ngx-datatable-column>
               <ngx-datatable-column name="Quantity" [width]="60">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.quantity }}
+                  {{ row.quantity }} {{row.quantityUOMName}}
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="Amount" [width]="50">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.amount }}
+                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                  <b *ngIf = "row.rateCurrencyName == 'PKR'">RS</b>  
+                <b *ngIf = "row.rateCurrencyName == 'USD'">$</b> 
+                <b *ngIf = "row.rateCurrencyName == 'EUR'">€</b> 
+                <b *ngIf = "row.rateCurrencyName == 'GBP'">GBP</b>       {{ row.amount }}
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="Remarks" [width]="50">
