@@ -64,6 +64,8 @@ kickbackContract :  any;
 kickbackDispatch : any;
 kickbackQty : any
 loggedInDepartmentName :  any;
+month : any;
+year : any ;
   constructor(
 
     private route: ActivatedRoute,
@@ -1062,8 +1064,13 @@ this.spinner.hide();
       },
       content: [
         {
-          text: 'Billing Invoice  List',
+          text: 'Billing Invoice  List' ,
           style: 'heading',
+
+        },
+        {
+          text:  this.month != null && this.year != null ? '(' + this.month + '-' +this.year + ')' : '',
+          style: 'heading2',
 
         },
         {
@@ -1121,7 +1128,12 @@ this.spinner.hide();
         heading: {
           fontSize: 13,
           alignment: 'center',
-          margin: [0, 15, 0, 30]
+          margin: [0, 10, 0, 5]
+        },
+        heading2: {
+          fontSize: 10,
+          alignment: 'center',
+          margin: [0, 3, 0, 10]
         },
         totalAmount:{
           fontSize:8

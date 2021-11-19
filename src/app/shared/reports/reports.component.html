@@ -853,10 +853,49 @@
           </div>
         </div>
         <div class="row mb-3">
-          <div class="col-sm-6 col-md-3">
+          <!-- <div class="col-sm-6 "> -->
 
-            <span class="text-muted text2"></span>
-          </div>
+
+            <div class="col-md-2">
+              <ng-select placeholder="Month" name="month" [(ngModel)] = "month"  
+                >
+                <ng-option value="Jan"> Jan</ng-option>
+                <ng-option value="Feb"> Feb</ng-option>
+                <ng-option value="Mar"> Mar</ng-option>
+                <ng-option value="Apr"> Apr</ng-option>
+                <ng-option value="May"> May</ng-option>
+                <ng-option value="Jun"> Jun</ng-option>
+                <ng-option value="Jul"> Jul</ng-option>
+                <ng-option value="Aug"> Aug</ng-option>
+                <ng-option value="Sep"> Sep</ng-option>
+                <ng-option value="Oct"> Oct</ng-option>
+                <ng-option value="Nov"> Nov</ng-option>
+                <ng-option value="Dec"> Dec</ng-option>
+              </ng-select>
+            </div>
+
+            <div class="col-md-2">
+              <ng-select placeholder="Year" name="year" [(ngModel)] = "year" >
+                <ng-option value="2016"> 2016</ng-option>
+                <ng-option value="2017"> 2017</ng-option>
+                <ng-option value="2018"> 2018</ng-option>
+                <ng-option value="2019"> 2019</ng-option>
+                <ng-option value="2020"> 2020</ng-option>
+                <ng-option value="2021"> 2021</ng-option>
+                <ng-option value="2022"> 2022</ng-option>
+                <ng-option value="2023"> 2023</ng-option>
+                <ng-option value="2024"> 2024</ng-option>
+                <ng-option value="2025"> 2025</ng-option>
+                <ng-option value="2020"> 2026</ng-option>
+                <ng-option value="2021"> 2027</ng-option>
+                <ng-option value="2022"> 2028</ng-option>
+                <ng-option value="2023"> 2029</ng-option>
+                <ng-option value="2024"> 3030</ng-option>
+                <ng-option value="2025"> 3031</ng-option>
+              </ng-select>
+            </div>
+
+          <!-- </div> -->
           <!-- <div class="col-sm-6 col-md-4"> -->
           <div class="col-md-2" (clickOutside)="startDate.close()">
 
@@ -880,11 +919,11 @@
                 class="fa fa-search"></i>Go!
             </button>
           </div>
-          <div class="col-md-2">
-            <button type="button" class="btn btn-outline-secondary descBtn ml-sm-none ml-md-2" (click)="fetch()"> <i
+          <!-- <div class="col-md-2"> -->
+            <button class="col-md-2" type="button" class="btn btn-outline-secondary descBtn ml-sm-none ml-md-2" (click)="fetch()"> <i
                 class="far fa-calendar"></i>&nbsp;All Dates
             </button>
-          </div>
+          <!-- </div> -->
           <!-- </div> -->
 
 
