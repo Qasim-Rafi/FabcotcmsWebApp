@@ -980,10 +980,10 @@
               </ngx-datatable-column>
               <ngx-datatable-column name="Rate" prop="rate" [width]="30">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  <b *ngIf = "row.rateCurrencyName == 'PKR'">RS</b>  
-                  <b *ngIf = "row.rateCurrencyName == 'USD'">$</b> 
-                  <b *ngIf = "row.rateCurrencyName == 'EUR'">€</b> 
-                  <b *ngIf = "row.rateCurrencyName == 'GBP'">GBP</b>     {{ row.rate }} /  {{ row.uomName }}
+                  <b *ngIf = "row.rateCurrencyName == 'PKR' && loggedInDepartmentName != 'Yarn Local' && loggedInDepartmentName != 'Fabric Local'">RS</b>  
+                  <b *ngIf = "row.rateCurrencyName == 'USD' && loggedInDepartmentName != 'Yarn Local' && loggedInDepartmentName != 'Fabric Local'">$</b> 
+                  <b *ngIf = "row.rateCurrencyName == 'EUR' && loggedInDepartmentName != 'Yarn Local' && loggedInDepartmentName != 'Fabric Local'">€</b> 
+                  <b *ngIf = "row.rateCurrencyName == 'GBP' && loggedInDepartmentName != 'Yarn Local' && loggedInDepartmentName != 'Fabric Local'">GBP</b>     {{ row.rate }} /  {{ row.uomName }}
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="Comm%" prop="fabcotCommission" [width]="30">
@@ -1014,10 +1014,10 @@
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   <!-- {{ row.commissionAmount }} -->
 
-                  <div *ngIf="row.debitAmount == null ">   {{ row.commissionAmount }}   </div>     <b *ngIf = "row.rateCurrencyName == 'PKR'">RS</b>  
-                    <b *ngIf = "row.rateCurrencyName == 'USD'">$</b> 
-                    <b *ngIf = "row.rateCurrencyName == 'EUR'">€</b> 
-                    <b *ngIf = "row.rateCurrencyName == 'GBP'">GBP</b>  
+                  <div *ngIf="row.debitAmount == null ">   {{ row.commissionAmount }}   </div>     <b *ngIf = "row.rateCurrencyName == 'PKR' && loggedInDepartmentName != 'Yarn Local' && loggedInDepartmentName != 'Fabric Local'">RS</b>  
+                    <b *ngIf = "row.rateCurrencyName == 'USD' && loggedInDepartmentName != 'Yarn Local' && loggedInDepartmentName != 'Fabric Local'">$</b> 
+                    <b *ngIf = "row.rateCurrencyName == 'EUR' && loggedInDepartmentName != 'Yarn Local' && loggedInDepartmentName != 'Fabric Local'">€</b> 
+                    <b *ngIf = "row.rateCurrencyName == 'GBP' && loggedInDepartmentName != 'Yarn Local' && loggedInDepartmentName != 'Fabric Local'">GBP</b>  
                   <div *ngIf = "row.debitAmount !=null">{{row.crdbCommission}} </div> <br>
 
 
@@ -1028,10 +1028,10 @@
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   <!-- {{ row.commissionAmount }} -->
 
-    {{ row.commissionAmount }}     <b *ngIf = "row.rateCurrencyName == 'PKR'">RS</b>  
-                    <b *ngIf = "row.rateCurrencyName == 'USD'">$</b> 
-                    <b *ngIf = "row.rateCurrencyName == 'EUR'">€</b> 
-                    <b *ngIf = "row.rateCurrencyName == 'GBP'">GBP</b>  
+    {{ row.commissionAmount }}     <b *ngIf = "row.rateCurrencyName == 'PKR' && loggedInDepartmentName != 'Yarn Local' && loggedInDepartmentName != 'Fabric Local'">RS</b>  
+                    <b *ngIf = "row.rateCurrencyName == 'USD' && loggedInDepartmentName != 'Yarn Local' && loggedInDepartmentName != 'Fabric Local'">$</b> 
+                    <b *ngIf = "row.rateCurrencyName == 'EUR' && loggedInDepartmentName != 'Yarn Local' && loggedInDepartmentName != 'Fabric Local'">€</b> 
+                    <b *ngIf = "row.rateCurrencyName == 'GBP' && loggedInDepartmentName != 'Yarn Local' && loggedInDepartmentName != 'Fabric Local'">GBP</b>  
               
 
 
@@ -1417,10 +1417,10 @@
               </ngx-datatable-column>
               <ngx-datatable-column name="Rate" prop="rate" [width]="30">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  <b *ngIf = "row.rateCurrencyName == 'PKR'">RS</b>  
-                  <b *ngIf = "row.rateCurrencyName == 'USD'">$</b> 
-                  <b *ngIf = "row.rateCurrencyName == 'EUR'">€</b> 
-                  <b *ngIf = "row.rateCurrencyName == 'GBP'">GBP</b>   {{ row.rate }} / {{row.uomName}}
+                  <b *ngIf = "row.rateCurrencyName == 'PKR' && loggedInDepartmentName != 'Yarn Local' && loggedInDepartmentName != 'Fabric Local'">RS</b>  
+                  <b *ngIf = "row.rateCurrencyName == 'USD' && loggedInDepartmentName != 'Yarn Local' && loggedInDepartmentName != 'Fabric Local'">$</b> 
+                  <b *ngIf = "row.rateCurrencyName == 'EUR' && loggedInDepartmentName != 'Yarn Local' && loggedInDepartmentName != 'Fabric Local'">€</b> 
+                  <b *ngIf = "row.rateCurrencyName == 'GBP' && loggedInDepartmentName != 'Yarn Local' && loggedInDepartmentName != 'Fabric Local'">GBP</b>   {{ row.rate }} / {{row.uomName}}
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="Comm%" prop="fabcotCommission" [width]="30">
@@ -1441,10 +1441,10 @@
               </ngx-datatable-column>
               <ngx-datatable-column name="Comm Amount" prop="commissionAmount" [width]="40">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.commissionAmount }}      <b *ngIf = "row.rateCurrencyName == 'PKR'">RS</b>  
-                  <b *ngIf = "row.rateCurrencyName == 'USD'">$</b> 
-                  <b *ngIf = "row.rateCurrencyName == 'EUR'">€</b> 
-                  <b *ngIf = "row.rateCurrencyName == 'GBP'">GBP</b>  
+                  {{ row.commissionAmount }}      <b *ngIf = "row.rateCurrencyName == 'PKR' && loggedInDepartmentName != 'Yarn Local' && loggedInDepartmentName != 'Fabric Local'">RS</b>  
+                  <b *ngIf = "row.rateCurrencyName == 'USD' && loggedInDepartmentName != 'Yarn Local' && loggedInDepartmentName != 'Fabric Local'">$</b> 
+                  <b *ngIf = "row.rateCurrencyName == 'EUR' && loggedInDepartmentName != 'Yarn Local' && loggedInDepartmentName != 'Fabric Local'">€</b> 
+                  <b *ngIf = "row.rateCurrencyName == 'GBP' && loggedInDepartmentName != 'Yarn Local' && loggedInDepartmentName != 'Fabric Local'">GBP</b>  
                 </ng-template>
               </ngx-datatable-column>
             </ngx-datatable>

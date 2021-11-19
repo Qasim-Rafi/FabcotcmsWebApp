@@ -205,3 +205,7 @@ font-weight: 600  !important;
     line-height: normal !important;
   } 
 }
+.dateClr{
+  color: rgb(11, 192, 147) !important;
+   cursor: pointer;
+}

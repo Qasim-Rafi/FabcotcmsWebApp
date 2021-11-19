@@ -41,7 +41,10 @@
                     <button type="button" *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export'" class="btn btn-primary btn-md float-right" (click)="print(printData)">
                         <i class="fa fa-print"></i> Print Bill
                     </button>
-                    <button type="button" *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export'" class="btn btn-primary btn-md float-right" (click)="print2(printData)">
+                    <button type="button" *ngIf = "loggedInDepartmentName == 'Fabric Export' " class="btn btn-primary btn-md float-right" (click)="print2(printData)">
+                        <i class="fa fa-print"></i> Print Bill
+                    </button>
+                    <button type="button" *ngIf = "loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import' " class="btn btn-primary btn-md float-right" (click)="print3(printData)">
                         <i class="fa fa-print"></i> Print Bill
                     </button>
                 </div>
@@ -89,6 +92,9 @@
                     <span class="text-font1" *ngIf = "loggedInDepartmentName == 'Yarn Export'">
                         YARN EXPORT
                     </span>
+                    <span class="text-font1" *ngIf = "loggedInDepartmentName == 'Yarn Import'">
+                        YARN IMPORT
+                    </span>
                     <br *ngIf = "loggedInDepartmentName == 'Yarn Export'">
                     <span class="text-font1">
                         Bill No.: <span class="weight">{{printData.billNumber}}</span>
@@ -104,9 +110,10 @@
                         Seller: <span class="bold text-font1">{{printData.sellerName}}</span>
                     </span>
                 <br>
-                    <span class="text-font1" >
+                    <span class="text-font1"  >
                         Buyer: <span class="bold text-font1">{{printData.buyerName}}</span>
                     </span>
+                    
                     <br>
 
                     <span class="text-font1">
@@ -121,7 +128,7 @@
                         Contract Date: <span class="bold text-font1">{{printData.contractDate}}</span>
                     </span>
                     <br>
-                    <span class="text-font1">
+                    <span class="text-font1" *ngIf = "loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import'">
                         Article: <span class="bold text-font1 ">{{printData.contractArticleName}}</span>
                     </span>
                     <span class="text-font1" *ngIf = "loggedInDepartmentName == 'Fabric Export'">
@@ -136,6 +143,8 @@
                     <!-- <th>Description</th> -->
                     <th>Sale Invoice #</th>
                     <th>Sale Invoice Date</th>
+                    <th *ngIf = "loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'">Article</th>
+
                     <th>Quantity</th>
                     <th>Rate({{printData.currencyName}})</th>
                     <th>Invoice Amount({{printData.currencyName}})</th>
@@ -152,6 +161,8 @@
                    
                     <td>{{i.saleInvoiceNo}}</td>
                     <td>{{i.saleInvoiceDateToDisplay}}</td>
+                    <td *ngIf = "loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'">{{i.articleName}}</td>
+
                     <td>{{i.quantity}}&nbsp;{{i.quanityUOM}} <br>
                      <small class="text-danger" *ngIf="i.debitQuantity != '0.00' ">
                          Db:({{i.actualQuantity}} - {{i.debitQuantity}})&nbsp;{{i.quanityUOM}}</small>
@@ -172,13 +183,13 @@
  
             <br *ngIf = "loggedInDepartmentName != 'Fabric Export' ">
             <div class="float-right">
-                <span class=" bold text-font1" *ngIf = "loggedInDepartmentName != 'Fabric Export' ">
+                <span class=" bold text-font1" *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import' ">
                     Sub Total: <span class="text-font1 underline">{{printData.currencyName}}  {{printData.totalCalculation }}</span>
                 </span>
                 <br *ngIf = "loggedInDepartmentName != 'Fabric Export' ">
-                <span class=" bold text-font1" *ngIf = "loggedInDepartmentName != 'Fabric Export' ">
+                <span class=" bold text-font1" *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import' ">
                     TAX : <span class="text-font1 underline">{{printData.currencyName}}  {{printData.taxAmount}}</span>
-                </span><br *ngIf = "loggedInDepartmentName != 'Fabric Export' ">
+                </span><br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Yarn Export'">
                 <span class=" bold text-font1">
                     TOTAL : <span class="bold text-font1 underline">{{printData.currencyName}}  {{printData.totalCalculation}}</span>
                 </span>
@@ -232,28 +243,28 @@
                     <!-- <span class=" float-left ">
                         Bank Account Number:<span> &nbsp;&nbsp;</span>
                     </span><br> -->
-                    <span class=" float-left padLeft " *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export'">
+                    <span class=" float-left padLeft " *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
                         IBAN Number:<span> &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;  {{printData.iban}}  </span>
                     </span><br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export'">
-                    <span class=" float-left padLeft " *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export'">
+                    <span class=" float-left padLeft " *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
                         Swift Code:<span>  &nbsp;   &nbsp;&nbsp; &nbsp;&nbsp;  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;   {{printData.swiftCode}} </span>
-                    </span><br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export'">
+                    </span><br *ngIf = "loggedInDepartmentName == 'Fabric Export'">
                     <!-- <span class=" float-left padLeft " *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export'">
                         Bank Branch:<span> &nbsp; &nbsp;&nbsp;  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;   {{printData.}} </span>
                     </span><br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export'"> -->
-                    <span class=" float-left  padLeft" *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export'">
+                    <span class=" float-left  padLeft" *ngIf = "loggedInDepartmentName == 'Fabric Export' ">
                         Account Type:<span>&nbsp; &nbsp;  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;   {{printData.type}} </span>
-                    </span><br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export'">
-                    <span class=" float-left padLeft " *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export'">
+                    </span><br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import' ">
+                    <span class=" float-left padLeft " *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
                         Bank Address:<span> &nbsp;&nbsp;  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;  {{printData.bankAddress}}  </span>
                     </span>
-                    <br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export'">
+                    <br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
                   
-                    <br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export'"><br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export'">
-                    <span class=" float-left text-font1" *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export'">
+                    <br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'"><br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
+                    <span class=" float-left text-font1" *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
                         For<span class="bold text-font1">&nbsp;FABCOT INTERNATIONAL ®</span>
                     </span>
-                    <br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export'"><br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export'"><br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export'"><br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export'"><br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export'">
+                    <br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'"><br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'"><br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'"><br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'"><br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
 
 
 

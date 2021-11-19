@@ -253,7 +253,11 @@
                     <i class="fas fa-print"></i>
                     Seller
                 </button>
-                <button class="btn btn-outline-primary border-rounded btn-sm px-3 mr-1" *ngIf = "loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'" (click)="getPrintData('supplier')">
+                <button class="btn btn-outline-primary border-rounded btn-sm px-3 mr-1" *ngIf = "loggedInDepartmentName == 'Yarn Export' " (click)="getPrintData('supplier')">
+                    <i class="fas fa-print"></i>
+                  Supplier
+                </button>
+                <button class="btn btn-outline-primary border-rounded btn-sm px-3 mr-1" *ngIf = "loggedInDepartmentName == 'Yarn Import'" (click)="getPrintData('supplier2')">
                     <i class="fas fa-print"></i>
                   Supplier
                 </button>
@@ -511,11 +515,25 @@
                                     </dl>
                                     <dl class="row">
                                         <dt class="col-sm-4">Created On:</dt>
-                                        <dd class="col-sm-6">
-                                            <i class="far fa-calendar-alt"></i>
+                                        <dd class="col-sm-6 dateClr" (click)="toggleShow()" ngbTooltip="Click To Edit" >
+                                            <i class="far fa-calendar-alt" ></i>
                                             {{contractData.createdDateTime}}
                                         </dd>
                                     </dl>
+                                    <dl class="row" *ngIf="isShown">
+                                        <!-- <dt class="col-sm-6"></dt> -->
+                                        <div   class="col-sm-8 input-group date" (clickOutside)="createdDateTimePicker.close()">
+                                            <input type="text" class="form-control datetimepicker-input" (ngModelChange)="contractdatechange($event)" (click)="createdDateTimePicker.toggle()"
+                                              placeholder="Date" #createdDateTimePicker="ngbDatepicker" #createdDateTime="ngModel" [(ngModel)]="data.createdDateTime"
+                                              name="createdDateTime" ngbDatepicker required
+                                            >
+                                              
+                                            <div class="input-group-append" (click)="createdDateTimePicker.toggle()">
+                                              <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            </div>
+                                          </div>
+                                    </dl>
+
                                     <dl class="row">
                                         <dt class="col-sm-4"> Last Updated On:</dt>
                                         <dd class="col-sm-6">
@@ -1325,7 +1343,7 @@
                                     <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local'  ">
                                         <dt class="col-sm-4">Kickback:
                                         </dt>
-                                        <dd class="col-sm-6" *ngIf = "contractCommissionData.kickbackPercentage != null">{{contractCostingData.rateCurrencyName}} &nbsp; {{contractCommissionData.kickbackPercentage}} %
+                                        <dd class="col-sm-6" *ngIf = "contractCommissionData.kickbackPercentage != null && contractCommissionData.kickbackPercentage != 0  ">{{contractCostingData.rateCurrencyName}} &nbsp; {{contractCommissionData.kickbackPercentage}} %
                                             <b *ngIf="contractCommissionData.kickbackUOMName!=null">/ </b>
                                           [{{contractCostingData.rateCurrencyName}}  {{contractCommissionData.commissionAmountKickback}} ]
                                         </dd>
@@ -1333,7 +1351,7 @@
                                     <dl class="row" *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Fabric Export'  || loggedInDepartmentName == 'Yarn Import' ">
                                         <dt class="col-sm-4">Kickback:
                                         </dt>
-                                        <dd class="col-sm-6" *ngIf = "contractCommissionData.kickbackPercentage != null">{{contractCostingData.rateCurrencyName}} &nbsp; {{contractCommissionData.kickbackPercentage}} %
+                                        <dd class="col-sm-6" *ngIf = "contractCommissionData.kickbackPercentage != null && contractCommissionData.kickbackPercentage != 0 ">{{contractCostingData.rateCurrencyName}} &nbsp; {{contractCommissionData.kickbackPercentage}} %
                                             <b *ngIf="contractCommissionData.kickbackUOMName!=null">/ </b>
                                           [{{contractCostingData.rateCurrencyName}}  {{contractCommissionData.commissionAmountKickback}} ]
                                         </dd>
@@ -1364,7 +1382,7 @@
                                     <dl class="row" *ngIf="loggedInDepartmentName =='Yarn Export' || loggedInDepartmentName == 'Fabric Export'  || loggedInDepartmentName == 'Yarn Import'  ">
                                         <dt class="col-sm-4">Fabcot Commission:
                                         </dt>
-                                        <dd class="col-sm-6" *ngIf = "contractCommissionData.fabCotCommision!= null && contractCommissionData.fabCotCommision!= ''">USD {{contractCommissionData.fabCotCommision}} %
+                                        <dd class="col-sm-6" *ngIf = "contractCommissionData.fabCotCommision!= null && contractCommissionData.fabCotCommision!= '' && contractCommissionData.fabCotCommision!= 0">USD {{contractCommissionData.fabCotCommision}} %
                                             <b *ngIf="contractCommissionData.fabCotCommisionUOMName!=null">/ </b>
                     
                                            [{{contractCostingData.rateCurrencyName}} {{contractCommissionData.commissionAmountFabcot}}  <span *ngIf = "contractCommissionData.fabcotSideCommAdditionalInfo != null"> {{contractCommissionData.fabcotSideCommAdditionalInfo}}</span>]
@@ -1374,7 +1392,7 @@
                                     <dl class="row" *ngIf = "loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Fabric Export'   &&  loggedInDepartmentName != 'Yarn Local'  && loggedInDepartmentName != 'Yarn Import'">
                                         <dt class="col-sm-4">Buyer side Commission:
                                         </dt>
-                                        <dd class="col-sm-6" *ngIf = "contractCommissionData.buyersideCommision != null && contractCommissionData.buyersideCommision != '' ">
+                                        <dd class="col-sm-6" *ngIf = "contractCommissionData.buyersideCommision != null && contractCommissionData.buyersideCommision != '' && contractCommissionData.buyersideCommision != 0 ">
                                        
                                             {{contractCostingData.rateCurrencyName}} {{contractCommissionData.buyersideCommision}}  %
                                             <b *ngIf="contractCommissionData.commissionAmountBuyer!=null">/ </b>
@@ -1386,7 +1404,7 @@
                                     <dl class="row" *ngIf = "loggedInDepartmentName == 'Yarn Local' ">
                                         <dt class="col-sm-4">Buyer side Commission:
                                         </dt>
-                                        <dd class="col-sm-6" *ngIf = "contractCommissionData.buyersideCommisionUOMName == null && contractCommissionData.commissionAmountBuyer != ''"> 
+                                        <dd class="col-sm-6" *ngIf = "contractCommissionData.buyersideCommisionUOMName == null && contractCommissionData.commissionAmountBuyer != '' && contractCommissionData.buyersideCommision != 0"> 
                                             {{contractCommissionData.buyersideCommision}} % &nbsp; 
                                            {{contractCostingData.rateCurrencyName}} {{contractCommissionData.commissionAmountBuyer}}  <span *ngIf = "contractCommissionData.buyerSideCommAdditionalInfo != null"> {{contractCommissionData.buyerSideCommAdditionalInfo}}</span>
                                         </dd>
