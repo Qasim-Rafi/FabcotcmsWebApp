@@ -196,7 +196,7 @@
             </div>
             <div class=" float-left text-font1">
                 <span class=" bold text-font1">
-                    Quantity: <span class="text-font1 underline">  {{printData.quantitySum}}</span>
+                    Quantity: <span class="text-font1 underline">  {{printData.quantitySum}} {{printData.quanityUOM}}</span>
                 </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <span class=" bold text-font1">
                     SI Amount: <span class="text-font1 underline">{{printData.currencyName}} &nbsp; {{printData.amountsum}}</span>
@@ -245,7 +245,7 @@
                     </span><br> -->
                     <span class=" float-left padLeft " *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
                         IBAN Number:<span> &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;  {{printData.iban}}  </span>
-                    </span><br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export'">
+                    </span><br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import' ">
                     <span class=" float-left padLeft " *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
                         Swift Code:<span>  &nbsp;   &nbsp;&nbsp; &nbsp;&nbsp;  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;   {{printData.swiftCode}} </span>
                     </span><br *ngIf = "loggedInDepartmentName == 'Fabric Export'">
