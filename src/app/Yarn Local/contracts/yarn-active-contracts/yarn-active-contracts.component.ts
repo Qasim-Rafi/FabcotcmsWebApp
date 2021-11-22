@@ -80,65 +80,125 @@ export class YarnActiveContractsComponent implements OnInit {
   navigateAddContract() {
     this.router.navigate(['/FabCot/add-new-contract']);
   };
-activeContract(){
-  this.status = null;
-}
+// activeContract(){
+//   this.status = null;
+// }
 
-openContract(){
+// openContract(){
+//   this.status = "Open";
+//   this.fetch((data) => {
+//     this.temp = [...data]; 
+//     this.rows = data;
+//   });
+
+// }
+
+
+// bill_awaitedContract(){
+//   this.status = "BillAwaited";
+//     this.fetch((data) => {
+//       this.temp = [...data]; 
+//       this.rows = data;
+//     });
+// }
+
+// billedContract(){
+//   this.status = "Billed";
+//   this.fetch((data) => {
+//     this.temp = [...data]; 
+//     this.rows = data;
+//   });
+// }
+
+// receivableContract(){
+//   this.status = "Receivable";
+//   this.fetch((data) => {
+//     this.temp = [...data]; 
+//     this.rows = data;
+//   });
+// }
+
+// receivedContract(){
+//   this.status = "Received";
+//   this.fetch((data) => {
+//     this.temp = [...data]; 
+//     this.rows = data;
+//   });
+// }
+// closeContract(){
+//   this.status = "Closed";
+//   this.fetch((data) => {
+//     this.temp = [...data]; 
+//     this.rows = data;
+//   });
+// }
+
+// on_HandContract(){
+//   this.status = "OnHold";
+//   this.fetch((data) => {
+//     this.temp = [...data]; 
+//     this.rows = data;
+//   });
+// }
+
+contractStatus(check){
+if ( check == 'All'){
+  this.status = null;
+  this.fetch((data) => {
+    this.temp = [...data]; 
+    this.rows = data;
+  });
+}
+else if ( check == 'Open'){
   this.status = "Open";
   this.fetch((data) => {
     this.temp = [...data]; 
     this.rows = data;
   });
-
 }
-
-
-bill_awaitedContract(){
-  this.status = "BillAwaited";
-    this.fetch((data) => {
-      this.temp = [...data]; 
-      this.rows = data;
-    });
-}
-
-billedContract(){
-  this.status = "Billed";
-  this.fetch((data) => {
-    this.temp = [...data]; 
-    this.rows = data;
-  });
-}
-
-receivableContract(){
-  this.status = "Receivable";
-  this.fetch((data) => {
-    this.temp = [...data]; 
-    this.rows = data;
-  });
-}
-
-receivedContract(){
-  this.status = "Received";
-  this.fetch((data) => {
-    this.temp = [...data]; 
-    this.rows = data;
-  });
-}
-closeContract(){
+else if ( check == 'Closed'){
   this.status = "Closed";
   this.fetch((data) => {
     this.temp = [...data]; 
     this.rows = data;
   });
 }
-
-on_HandContract(){
+else if ( check == 'BillAwaited'){
+  this.status = "BillAwaited";
+  this.fetch((data) => {
+    this.temp = [...data]; 
+    this.rows = data;
+  });
+}
+else if ( check == 'Billed'){
+  this.status = "Billed";
+  this.fetch((data) => {
+    this.temp = [...data]; 
+    this.rows = data;
+  });
+}
+else if ( check == 'Receivable'){
+  this.status = "Receivable";
+  this.fetch((data) => {
+    this.temp = [...data]; 
+    this.rows = data;
+  });
+}
+else if ( check == 'OnHold'){
   this.status = "OnHold";
   this.fetch((data) => {
     this.temp = [...data]; 
     this.rows = data;
   });
+}
+
+else{
+  this.status = null
+  this.fetch((data) => {
+    this.temp = [...data]; 
+    this.rows = data;
+  });
+}
 }
 
 

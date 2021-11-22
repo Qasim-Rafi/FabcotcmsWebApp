@@ -1029,6 +1029,7 @@ brandId : any;
       "quantityUOMId": this.data.quantityUOMId,
       "toleranceValue": this.data.toleranceValue,
       "brandId": this.data.brandId,
+      "pecenetAge" : this.data.pecenetAge,
       "rate": this.data.rate,
       "contractArticles" : this.loggedInDepartmentName == 'Yarn Export' ?  this.articleArray : this.loggedInDepartmentName == 'Yarn Import' ? this.articleArray : null,
       "currencyId": this.data.currencyId,

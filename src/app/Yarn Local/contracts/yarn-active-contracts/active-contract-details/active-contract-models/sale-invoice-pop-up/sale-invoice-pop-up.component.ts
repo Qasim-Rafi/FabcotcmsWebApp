@@ -39,6 +39,8 @@ articledata:any=[];
 articles:any=[];
 @ViewChild(NgForm) InvoiceForm;
   saleInvoiceDate: any;
+  active : boolean = false;
+
   constructor(
     private _NgbActiveModal: NgbActiveModal,
     private spinner: NgxSpinnerService,
@@ -205,6 +207,9 @@ if(event==7){
 
   addSaleInvoice(form:NgForm) {
     let sum=parseInt(this.quantitya)+parseInt(this.saleInvoiceQuantity);
+    if(this.data.fobValue == undefined){
+      this.data.fobValue = ''
+    }
     if(sum>this.quantity && this.loggedInDepartmentName != 'Yarn Export' && this.loggedInDepartmentName != 'Yarn Import' ){
       this.toastr.error("Total Sale Invoice Quantity"+"["+sum+"]"+ "should be less than contract quantity"+"["+this.quantity+"]", 'Message.');
 
@@ -222,10 +227,12 @@ if(event==7){
       "taxPercentage": this.data.taxPercentage == null ?  this.condition :this.data.taxPercentage,
       "contractArticleId":this.data.contractArticleId,
       "UnitofMeasurement" : this.uom,
-      "blDate": this.dateformater.toModel(this.data.blDate)
+      "blDate": this.dateformater.toModel(this.data.blDate),
+      "isFob" : this.data.isFob == true ? true : false,
+      "fobValue" : this.data.fobValue != ''  ? this.data.fobValue : 0
     }
+    this.response = varr
 this.spinner.show();
-          // this._document.defaultView.location.reload();
     this.http.
       post(`${environment.apiUrl}/api/YarnContracts/AddContractSaleInvoice`, varr)
       .subscribe(
@@ -233,7 +240,6 @@ this.spinner.show();
 
           this.response = res;
           if (this.response.success == true) {
-    // this._document.defaultView.location.reload();
             this.toastr.success(this.response.message, 'Message.');
             this.activeModal.close(true);
           localStorage.setItem('quantity',this.data.quantity);
@@ -255,7 +261,23 @@ this.spinner.show();
       }
   // }
 
-
+  checkValue(event){
+    console.log(event.target.checked)
+    this.data.isFob = event.target.checked
+    
+   if (this.data.isFob == true){
+     this.data.amount = ''
+   }
+   else{
+     this.data.fobValue = 0
+    // this.data.amount = this.articledata.contractArticleCommission * this.data.quantity;
+   }
+    
+  }
+  getFob(event){
+    // console.log(event.target.value)
+    this.data.amount = ( event.target.value * this.articledata.contractArticleCommission ) /100
+  }
 
   editSaleInvoice() {
     // this.spinner.show();
@@ -265,6 +287,9 @@ this.spinner.show();
           this.response = res;
           if (this.response.success == true && this.response.data != null) {
             this.data = this.response.data;
+        
+           this.active = this.data.isFob;
+
             this.saleInvoiceNo=this.data.saleInvoiceNo;
             this.data.saleInvoiceDate = this.dateformater.fromModel(this.data.saleInvoiceDate);
             this.saleInvoiceDate=this.data.saleInvoiceDate;
@@ -272,7 +297,13 @@ this.spinner.show();
             this.saleInvoiceQuantity=this.saleInvoiceQuantity
      this.data.blDate = this.dateformater.fromModel(this.data.blDate)
 
-      this.uom = this.data.UnitofMeasurement
+      this.uom = this.data.UnitofMeasurement;
+      this.articledata.contractArticleCommission=this.data.contractArticleCommission;
+
+           
+           
+      
+
             // this.spinner.hide();
 
           }
@@ -294,6 +325,9 @@ this.spinner.show();
 
   
   updateSaleInvoice(form:NgForm) {
+    if(this.data.fobValue == undefined){
+      this.data.fobValue = ''
+    }
     // let sum=parseInt(this.data.quantity)+parseInt(this.saleInvoiceQuantity);
     // if(sum>this.quantity ){
     //   this.toastr.error("Total Sale Invoice Quantity"+"["+sum+"]"+ "should be less than contract quantity"+"["+this.quantity+"]", 'Message.');
@@ -311,7 +345,9 @@ this.spinner.show();
        "commission": this.data.contractArticleCommission,
        "taxPercentage": this.data.taxPercentage == null ?  this.condition :this.data.taxPercentage,
       "UnitofMeasurement" : this.uom,
-      "blDate": this.dateformater.toModel(this.data.blDate)
+      "blDate": this.dateformater.toModel(this.data.blDate),
+      "isFob" : this.data.isFob == true ? true : false,
+      "fobValue" : this.data.fobValue != ''  ? this.data.fobValue : 0
 
     }
  this.spinner.show();

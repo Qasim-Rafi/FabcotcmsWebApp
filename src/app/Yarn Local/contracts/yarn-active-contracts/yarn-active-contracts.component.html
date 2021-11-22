@@ -77,43 +77,43 @@
             <input type="radio" name="select" id="option-7">
             <input type="radio" name="select" id="option-8">
 
-              <label for="option-1" class="option option-1" (click)="activeContract();" id="all">
+              <label for="option-1" class="option option-1" (click)="contractStatus('All');" id="all">
                 <div class="dot"></div>
                  <span>All  </span>
                  <span class="badge badge-pill badge-primary ml-2">  {{allCount}}</span>
                  </label>
-              <label for="option-2" class="option option-2" (click)="openContract();" id="open">
+              <label for="option-2" class="option option-2" (click)="contractStatus('Open');" id="open">
                 <div class="mr-2"><i class="far fa-folder-open"></i></div>
                  <span>Open</span>
                  <span class="badge badge-pill badge-primary ml-2">  {{openCount}}</span>
               </label>
-              <label for="option-3" class="option option-3" id="close" (click)="closeContract();">
+              <label for="option-3" class="option option-3" id="close" (click)="contractStatus('Closed');">
                 <div class="mr-2"><i class="fa fa-check fa-fw"></i></div>
                  <span>Close</span>
                  <span class="badge badge-pill badge-primary ml-2">  {{closedCount}}</span>
               </label>
-              <label for="option-4" class="option option-4" (click)="bill_awaitedContract();" id="con-billawaited">
+              <label for="option-4" class="option option-4" (click)="contractStatus('BillAwaited');" id="con-billawaited">
                 <div class="mr-2"><i class="far fa-clock"></i></div>
                  <span>Bill Awaited</span>
                  <span class="badge badge-pill badge-primary ml-2">  {{billAwaitedCount}}</span>
               </label>
-              <label for="option-5" class="option option-5" (click)="billedContract();" id="con-billed">
+              <label for="option-5" class="option option-5" (click)="contractStatus('Billed');" id="con-billed">
                 <div class="mr-2"><i class="far fa-edit"></i></div>
                  <span>Billed</span>
                  <span class="badge badge-pill badge-primary ml-2">  {{billedCount}}</span>
               </label>
-              <label for="option-6" class="option option-6" (click)="receivableContract();" id="con-receivable">
+              <label for="option-6" class="option option-6" (click)="contractStatus('Receivable');" id="con-receivable">
                 <div class="mr-2"><i class="far fa-money-bill-alt"></i></div>
                  <span>Receivable</span>
                  <span class="badge badge-pill badge-primary ml-2">  {{receivableCount}}</span>
 
               </label>
-              <label for="option-7" class="option option-7" (click)="receivedContract();" id="con-received">
+              <label for="option-7" class="option option-7" (click)="contractStatus('Received');" id="con-received">
                 <div class="mr-2"><i class="far fa-hand-paper"></i></div>
                  <span>Received</span>
                  <span class="badge badge-pill badge-primary ml-2">  {{receivedCount}}</span>
               </label>
-              <label for="option-8" class="option option-8" (click)="on_HandContract();" id="con-onhold">
+              <label for="option-8" class="option option-8" (click)="contractStatus('OnHold');" id="con-onhold">
                 <div class="mr-2"><i class="far fa-hand-paper"></i></div>
                  <span>On-Hold</span>
                  <span class="badge badge-pill badge-primary ml-2">  {{onHoldCount}}</span>
