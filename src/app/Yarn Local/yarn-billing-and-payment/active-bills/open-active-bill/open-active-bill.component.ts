@@ -800,7 +800,7 @@ print3(rows){
               layout:'noBorders',
               table:{headerRows: 1 , widths:['100%'],
             body: [
-              [{text:this.loggedInDepartmentName == 'Yarn Import'?'faisal@fabcot.net':'Email: adnan@fabcot.net, atif@fabcot.net' , style:'headingC'}],] }
+              [{text:this.loggedInDepartmentName == 'Yarn Import'?'faisal@fabcot.net':'Email: Sohail@fabcot.net, Asif@fabcot.net' , style:'headingC'}],] }
             },
             {
               layout:'noBorders',

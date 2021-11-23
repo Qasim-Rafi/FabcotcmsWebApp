@@ -70,10 +70,18 @@
                 </div>
             
             </div>
-            <div class="row " *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
+            <div class="row " *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export'">
                 <div class="col-md-8">
                  
-                    <p class="text-font1 float-right ">  Email: adnan@fabcot.net , atif@fabcot.net
+                    <p class="text-font1 float-right ">  Email: Asif@fabcot.net , Sohail@fabcot.net
+                    </p>
+                </div>
+            
+            </div>
+            <div class="row " *ngIf = " loggedInDepartmentName == 'Yarn Import'">
+                <div class="col-md-8">
+                 
+                    <p class="text-font1 float-right ">  Email: faisal@fabcot.net
                     </p>
                 </div>
             
@@ -193,7 +201,7 @@
                     </span>
                     
             </span>
-            <span class="  text-font1 sum">
+            <span class="  text-font1 sum" *ngIf = "loggedInDepartmentName != 'Yarn Import'">
 
                 SI Amount ( {{x.currencyName}}):<span class="bold text-font1 underline">&nbsp;&nbsp;
                      {{x.amountsum}} 
