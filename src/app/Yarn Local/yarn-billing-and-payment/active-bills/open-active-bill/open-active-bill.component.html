@@ -167,16 +167,16 @@
                      <small class="text-danger" *ngIf="i.debitQuantity != '0.00' ">
                          Db:({{i.actualQuantity}} - {{i.debitQuantity}})&nbsp;{{i.quanityUOM}}</small>
                     </td>
-                    <td>{{i.rate}}</td>
+                    <td>{{i.rate}} <span *ngIf = "i.quanityUOM != null"> /  {{i.quanityUOM}} </span></td>
 
-                    <td>{{i.amount}} <br>
+                    <td> <span *ngIf = "loggedInDepartmentName == 'Yarn Import' && printData.currencyName == 'USD' "> $ &nbsp;</span> {{i.amount}} <br>
                     <small class="text-danger" *ngIf="i.debitAmount != 0.00">
                         Db:({{i.actualAmount}} - {{i.debitAmount}})</small>
                     </td>
                     <td>{{i.commission}} &nbsp; {{i.commissionUnit}} </td>
                     <!-- <td>{{i.taxAmount}}</td> -->
 
-                    <td>{{i.billAmount}}</td>
+                    <td>  <span *ngIf = "loggedInDepartmentName == 'Yarn Import' && printData.currencyName == 'USD'">$ &nbsp;</span> {{i.billAmount}}</td>
 
                 </tr>
             </table>
