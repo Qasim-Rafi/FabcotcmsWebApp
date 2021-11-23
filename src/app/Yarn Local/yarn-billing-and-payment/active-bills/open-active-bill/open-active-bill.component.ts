@@ -907,14 +907,14 @@ print3(rows){
                     {text:  row.saleInvoiceDateToDisplay , style:'tableHeader2'},
                     {text: row.articleName , style:'tableHeader2'},
 
-                    {text:  row.quantity   , style:'tableHeader2'} ,
-                    {text: row.rate , style:'tableHeader2'} ,
+                    {text:  row.quantity + " " + row.quanityUOM   , style:'tableHeader2'} ,
+                    {text: row.rate + "/" + row.quanityUOM , style:'tableHeader2'} ,
                     
-                     {text: row.amount
+                     {text: "$ " + row.amount
                          , style:'tableHeader2'} ,
                       {text:row.commission+ ' ' + row.commissionUnit  , style:'tableHeader2' }  ,
 
-                      {text: row.billAmount , style:'tableHeader2'}]
+                      {text: "$ " + row.billAmount , style:'tableHeader2'}]
                   ))
                 ]
               }
@@ -925,7 +925,7 @@ print3(rows){
             table:{headerRows:1 ,  widths:['10%' , '20%' ,  '25%' , '25%' ],
           body:[ [
             {text: 'Quantity :' , margin:[0 , 30,0,0] , bold:true , style:'common' } ,
-           {text: this.printData['quantitySum']  ,margin:[-10 , 30,0,0] , bold:true , style:'common' },
+           {text: this.printData['quantitySum'] + " " + this.printData['quanityUOM']  ,margin:[-10 , 30,0,0] , bold:true , style:'common' },
             {text: 'Invoice Amount' + ' (' + this.printData['currencyName'] +   '):'  , margin:[0,30,0,0]  , bold:true , style:'common' } ,
            {text:  this.printData['amountsum']  , margin:[-35,30,0,0] ,  bold:true , style:'common'}
         
