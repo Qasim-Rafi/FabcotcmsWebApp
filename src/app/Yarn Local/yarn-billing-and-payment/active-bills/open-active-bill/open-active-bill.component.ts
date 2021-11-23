@@ -800,7 +800,7 @@ print3(rows){
               layout:'noBorders',
               table:{headerRows: 1 , widths:['100%'],
             body: [
-              [{text:'Email: adnan@fabcot.net, atif@fabcot.net' , style:'headingC'}],] }
+              [{text:this.loggedInDepartmentName == 'Yarn Import'?'faisal@fabcot.net':'Email: adnan@fabcot.net, atif@fabcot.net' , style:'headingC'}],] }
             },
             {
               layout:'noBorders',
@@ -926,8 +926,8 @@ print3(rows){
           body:[ [
             {text: 'Quantity :' , margin:[0 , 30,0,0] , bold:true , style:'common' } ,
            {text: this.printData['quantitySum'] + " " + this.printData['quanityUOM']  ,margin:[-10 , 30,0,0] , bold:true , style:'common' },
-            {text: 'Invoice Amount' + ' (' + this.printData['currencyName'] +   '):'  , margin:[0,30,0,0]  , bold:true , style:'common' } ,
-           {text:  this.printData['amountsum']  , margin:[-35,30,0,0] ,  bold:true , style:'common'}
+            {text: this.loggedInDepartmentName =='Yarn Import'? '':'Invoice Amount' + ' (' + this.printData['currencyName'] +   '):'  , margin:[0,30,0,0]  , bold:true , style:'common' } ,
+           {text:  this.loggedInDepartmentName =='Yarn Import'? '':this.printData['amountsum']  , margin:[-35,30,0,0] ,  bold:true , style:'common'}
         
         ]]
           }

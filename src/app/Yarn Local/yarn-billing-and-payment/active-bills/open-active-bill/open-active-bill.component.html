@@ -72,10 +72,16 @@
                        Flexi Office, RAKEZ Business ZONE F-Z RAK, United Arab Emirates.
                     </span>
                 </div>
-                <div class="col-md-7" *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
+                <div class="col-md-7" *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export'">
                    
                     <span class="float-right" >
                         Email: adnan@fabcot.net , atif@fabcot.net
+                    </span>
+                </div>
+                <div class="col-md-7" *ngIf = "loggedInDepartmentName == 'Yarn Import'">
+                   
+                    <span class="float-right" >
+                        Email: faisal@fabcot.net
                     </span>
                 </div>
             </div>
@@ -198,7 +204,7 @@
                 <span class=" bold text-font1">
                     Quantity: <span class="text-font1 underline">  {{printData.quantitySum}} {{printData.quanityUOM}}</span>
                 </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <span class=" bold text-font1">
+                <span class=" bold text-font1" *ngIf = "loggedInDepartmentName != 'Yarn Import'">
                     SI Amount: <span class="text-font1 underline">{{printData.currencyName}} &nbsp; {{printData.amountsum}}</span>
                 </span>
             </div>
