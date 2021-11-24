@@ -413,7 +413,7 @@
                 <div class="form-group row">
                   <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
                   <div class="col-sm-9">
-                    <input type="text" class="input form-control form-control-sm" />
+                    <input type="text" class="input form-control form-control-sm" (keyup) = agentBookingSearch($event) />
                   </div>
                 </div>
 
@@ -853,54 +853,17 @@
           </div>
         </div>
         <div class="row mb-3">
-          <!-- <div class="col-sm-6 "> -->
+           <div class="col-sm-1 "> 
 
 
-            <div class="col-md-2">
-              <ng-select placeholder="Month" name="month" [(ngModel)] = "month"  
-                >
-                <ng-option value="Jan"> Jan</ng-option>
-                <ng-option value="Feb"> Feb</ng-option>
-                <ng-option value="Mar"> Mar</ng-option>
-                <ng-option value="Apr"> Apr</ng-option>
-                <ng-option value="May"> May</ng-option>
-                <ng-option value="Jun"> Jun</ng-option>
-                <ng-option value="Jul"> Jul</ng-option>
-                <ng-option value="Aug"> Aug</ng-option>
-                <ng-option value="Sep"> Sep</ng-option>
-                <ng-option value="Oct"> Oct</ng-option>
-                <ng-option value="Nov"> Nov</ng-option>
-                <ng-option value="Dec"> Dec</ng-option>
-              </ng-select>
-            </div>
+         
 
-            <div class="col-md-2">
-              <ng-select placeholder="Year" name="year" [(ngModel)] = "year" >
-                <ng-option value="2016"> 2016</ng-option>
-                <ng-option value="2017"> 2017</ng-option>
-                <ng-option value="2018"> 2018</ng-option>
-                <ng-option value="2019"> 2019</ng-option>
-                <ng-option value="2020"> 2020</ng-option>
-                <ng-option value="2021"> 2021</ng-option>
-                <ng-option value="2022"> 2022</ng-option>
-                <ng-option value="2023"> 2023</ng-option>
-                <ng-option value="2024"> 2024</ng-option>
-                <ng-option value="2025"> 2025</ng-option>
-                <ng-option value="2020"> 2026</ng-option>
-                <ng-option value="2021"> 2027</ng-option>
-                <ng-option value="2022"> 2028</ng-option>
-                <ng-option value="2023"> 2029</ng-option>
-                <ng-option value="2024"> 3030</ng-option>
-                <ng-option value="2025"> 3031</ng-option>
-              </ng-select>
-            </div>
-
-          <!-- </div> -->
+           </div>
           <!-- <div class="col-sm-6 col-md-4"> -->
-          <div class="col-md-2" (clickOutside)="startDate.close()">
+          <div class="col-md-3" (clickOutside)="startDate.close()">
 
             <input navigation="select" class="form-control  " ngbDatepicker #startDate="ngbDatepicker"
-              (click)="startDate.toggle()" placeholder="Credit Note date" name="startDate"
+              (click)="startDate.toggle()" placeholder="Start date" name="startDate"
               [(ngModel)]="billingReportInvoiceWise.startDate" #startDate="ngModel" />
           </div>
           <!-- </div> -->
@@ -908,9 +871,9 @@
           <span class="text-muted text2">To</span>
 
           <!-- <div class="col-sm-6 col-md-4"> -->
-          <div class="col-md-2" (clickOutside)="endDate.close()">
+          <div class="col-md-3" (clickOutside)="endDate.close()">
             <input navigation="select" class="form-control  " ngbDatepicker #endDate="ngbDatepicker"
-              (click)="endDate.toggle()" placeholder="Credit Note date" name="endDate"
+              (click)="endDate.toggle()" placeholder="End date" name="endDate"
               [(ngModel)]="billingReportInvoiceWise.endDate" #endDate="ngModel" />
           </div>
           <!-- </div> -->
@@ -928,6 +891,47 @@
 
 
 
+        </div>
+        <div class="row mb-3" >
+          <div class="col-md-1"></div>
+          <div class="col-md-3">
+            <ng-select placeholder="Month" name="month" [(ngModel)] = "month"  
+              >
+              <ng-option value="Jan"> Jan</ng-option>
+              <ng-option value="Feb"> Feb</ng-option>
+              <ng-option value="Mar"> Mar</ng-option>
+              <ng-option value="Apr"> Apr</ng-option>
+              <ng-option value="May"> May</ng-option>
+              <ng-option value="Jun"> Jun</ng-option>
+              <ng-option value="Jul"> Jul</ng-option>
+              <ng-option value="Aug"> Aug</ng-option>
+              <ng-option value="Sep"> Sep</ng-option>
+              <ng-option value="Oct"> Oct</ng-option>
+              <ng-option value="Nov"> Nov</ng-option>
+              <ng-option value="Dec"> Dec</ng-option>
+            </ng-select>
+          </div>
+
+          <div class="col-md-3">
+            <ng-select placeholder="Year" name="year" [(ngModel)] = "year" >
+              <ng-option value="2016"> 2016</ng-option>
+              <ng-option value="2017"> 2017</ng-option>
+              <ng-option value="2018"> 2018</ng-option>
+              <ng-option value="2019"> 2019</ng-option>
+              <ng-option value="2020"> 2020</ng-option>
+              <ng-option value="2021"> 2021</ng-option>
+              <ng-option value="2022"> 2022</ng-option>
+              <ng-option value="2023"> 2023</ng-option>
+              <ng-option value="2024"> 2024</ng-option>
+              <ng-option value="2025"> 2025</ng-option>
+              <ng-option value="2020"> 2026</ng-option>
+              <ng-option value="2021"> 2027</ng-option>
+              <ng-option value="2022"> 2028</ng-option>
+              <ng-option value="2023"> 2029</ng-option>
+              <ng-option value="2024"> 3030</ng-option>
+              <ng-option value="2025"> 3031</ng-option>
+            </ng-select>
+          </div>
         </div>
         <div class="row">
           <div class="col-md-12 mb-3">
@@ -1138,14 +1142,107 @@
           <!-- <div class="col-sm-6 col-md-3"> -->
           <button type="button" class="btn yellow-bg descBtn ml-sm-none ml-md-2">0
           </button>
-          <span class="text-muted text2">Bueyr Comm</span>
+          <span class="text-muted text2">Buyer Comm</span>
           <!-- </div> -->
           <div class="col-sm-6 col-md-12 mrg-tsm">
-            <button type="button" class="btn navy-bg btn-sm float-right">
-              <i class="fa fa-filter"></i> Filter
-            </button>
+         
           </div>
         </div>
+
+        <form #filterForm="ngForm" novalidate>
+          <div  [ngClass]="status ? 'add' : 'remove'">
+          <div class="card">
+
+
+          <div class="row p-2">
+
+              <div class="form-group col-md-4">
+                <label for="description">Buyer Name:</label>
+                <ng-select placeholder="Buyer Name" name="buyerId" [(ngModel)]="data9.buyerId" #buyerId="ngModel">
+                  <ng-option *ngFor="let i of buyer" [value]="i.id">
+                    {{i.buyerName}}
+                  </ng-option>
+                </ng-select>
+              </div>
+
+              <div class="form-group col-md-4 ">
+                <label for="description">Seller Name:</label>
+                <ng-select placeholder="Seller Name" name="sellerId" [(ngModel)]="data9.sellerId"
+                  #sellerId="ngModel">
+                  <ng-option *ngFor="let i of seller" [value]="i.id">
+                    {{i.sellerName}}
+                  </ng-option>
+                </ng-select>
+
+              </div>
+           
+              <div class="form-group col-md-4">
+                <label for="description">Auto Contract#:</label>
+                <input type="text" placeholder="Contract Number" name="autoContractNumber"
+                  [(ngModel)]="data9.autoContractNumber" #autoContractNumber="ngModel" class="form-control text-w-4">
+              </div>
+
+
+          </div>
+
+          <div class="row p-2">
+
+              <div class="form-group col-md-4">
+                <label for="description">Start Date:</label>
+                <input class="form-control" ngbDatepicker #reminderDate2="ngbDatepicker" (click)="reminderDate2.toggle()"
+                placeholder="Contract start Date" name="contractUpDate" name="contractDate"
+                [(ngModel)]="data9.startContractDate" #contractDate="ngModel" />
+              </div>
+              <div class="form-group col-md-4">
+                <label for="description">End Date:</label>
+
+                  <input class="form-control" ngbDatepicker #reminderDate3="ngbDatepicker" (click)="reminderDate3.toggle()"
+                  placeholder="Contract end Date" name="contractUpDate" name="contractDate"
+                  [(ngModel)]="data9.endContractDate" #contractDate="ngModel" />
+
+              </div>
+
+              <div class="form-group col-md-4 ">
+                <label for="description">Article Name:</label>
+                <ng-select [(ngModel)]="data9.articleId" placeholder="All" name="articleId" #articleId="ngModel"
+                >
+                <ng-option *ngFor="let i of article" [value]="i.id">{{ i.name }}
+                </ng-option>
+                </ng-select>
+              
+              </div>
+
+          </div>
+        </div>
+      </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group row mt-3">
+                <div class="col-md-2 ml-8">
+                  <button class="btn btn-outline-secondary pull-left btn-xs "><i class="fas fa-sync"></i>
+                    Clear
+                  </button>
+
+                </div>
+
+                <div class="col-md-4 ">
+                  <button type="button" class="btn btn-primary btn-sm float-right" (click)="getdispatchReport()">
+                    Search Contract
+                  </button>
+                </div>
+                <div class="col-md-6 mb-1">
+                <button type="button" class="btn btn-primary btn-sm ml-md-2 float-right"  (click)="clickEvent()"> Advance Filter <i class="fas fa-search fa-fw mr-2"></i></button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+
+
+        </form>
+
+
 
         <div class="row">
           <div class="col-md-12 mb-3">
@@ -1155,7 +1252,7 @@
                 <div class="form-group row">
                   <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
                   <div class="col-sm-9">
-                    <input type="text" class="input form-control form-control-sm" />
+                    <input type="text" class="input form-control form-control-sm" (keyup) = "dispatchSearch($event)" />
                   </div>
                 </div>
 
@@ -1187,111 +1284,134 @@
         <div class="card-body">
           <div class="panel-body">
 
-            <ngx-datatable #myTable class="bootstrap" [sorts]="[{ prop: 'id,name', dir: 'desc' }]" [columns]="columns"
-              [rows]="dispatchReport" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-              [rowHeight]="'auto'">
-              <ngx-datatable-column prop="id" name="S. No." [width]="40">
-                <ng-template let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
-                  {{ rowIndex+1 }}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Contract#" prop="name" [width]="30">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.name }}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Contract Date" [width]="60">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.country }}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Inv#" [width]="50">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.details }}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Inv Date" [width]="50">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.details }}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="B/L Date" [width]="50">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.details }}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="PayTerm" [width]="40">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.details }}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Matured On" [width]="40">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.details }}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Buyer" [width]="30">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.details }}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Seller" [width]="60">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.details }}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Article" [width]="50">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.details }}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Rate" [width]="50">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.details }}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Quantity" [width]="50">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.details }}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Inv Amount" [width]="50">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.details }}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Seller Comm" [width]="50">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.details }}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Seller Bill" [width]="50">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.details }}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Buyer Comm" [width]="50">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.details }}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Buyer Bill" [width]="50">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.details }}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Status" [width]="50">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.details }}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Matured Aging" [width]="50">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.details }}
-                </ng-template>
-              </ngx-datatable-column>
+            <ngx-datatable #myTable  class="bootstrap datatable-row-wrapper" [columns]="columns" [rows]="dispatchReport"
+            [columnMode]="'force'"   [headerHeight]="50" [footerHeight]="50" [sorts]="[{ prop: 'id', dir: 'asce' }]"
+            [rowHeight]="'auto'" [scrollbarH] = "true" >
+  
+           
+            <ngx-datatable-column name="Contract#" [width]="120">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                {{row.contractNo}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Contract Date" [width]="120">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                {{row.contractDate}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Inv#" [width]="120">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                {{row.invoiceNo}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Invoice Date" [width]="120">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                {{row.invoiceDate}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="B/L Date" [width]="120">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                {{row.billDate}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Pay Term" [width]="60">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                {{row.paymentTerm}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Matured On" [width]="60">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+             {{row.maturedOn}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Buyer" [width]="130">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                {{row.buyerName}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Seller" [width]="130">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                {{row.sellerName}}
+              </ng-template>
+            </ngx-datatable-column>
+        
+     
+            <ngx-datatable-column name="Article" [width]="150">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                {{row.articleName}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Rate" [width]="90">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                <b *ngIf = "row.rateCurrencyName == 'PKR'">RS</b>  
+                <b *ngIf = "row.rateCurrencyName == 'USD'">$</b> 
+                <b *ngIf = "row.rateCurrencyName == 'EUR'">€</b> 
+                <b *ngIf = "row.rateCurrencyName == 'GBP'">GBP</b>      {{ row.rate }} /  {{row.uomName}}
+              
 
-            </ngx-datatable>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Quantity" [width]="90">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              {{row.quantity}}  {{row.quantityUOMName}}
+              </ng-template>
+            </ngx-datatable-column>
+  
+            <ngx-datatable-column name="Inv Amount'" [width]="90">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                <p *ngIf = "row.rateCurrencyName == 'PKR'">RS</p>  
+                <p *ngIf = "row.rateCurrencyName == 'USD'">$</p> 
+                <p *ngIf = "row.rateCurrencyName == 'EUR'">€</p> 
+                <p *ngIf = "row.rateCurrencyName == 'GBP'">GBP</p>   {{row.quantityUOMName}}
+              </ng-template>
+            </ngx-datatable-column>
+        
+  
+        
+       
+            <ngx-datatable-column name="Seller Comm" [width]="90">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                <div *ngIf = "row.sellerCommission != '' "> {{row.sellerCommission}}%   [      <p *ngIf = "row.rateCurrencyName == 'PKR'">RS</p>  
+                  <p *ngIf = "row.rateCurrencyName == 'USD'">$</p> 
+                  <p *ngIf = "row.rateCurrencyName == 'EUR'">€</p> 
+                  <p *ngIf = "row.rateCurrencyName == 'GBP'">GBP</p>   {{ row.sellerCommissionAmount }} ]</div>    
+
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Seller Bill" [width]="90">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                      <p *ngIf = "row.rateCurrencyName == 'PKR'">RS</p>  
+                <p *ngIf = "row.rateCurrencyName == 'USD'">$</p> 
+                <p *ngIf = "row.rateCurrencyName == 'EUR'">€</p> 
+                <p *ngIf = "row.rateCurrencyName == 'GBP'">GBP</p>   {{ row.sellerBill }}     
+
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Buyer Comm" [width]="90">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                <div *ngIf = "row.buyerCommission != '' "> {{row.buyerCommission}}%   [      <p *ngIf = "row.rateCurrencyName == 'PKR'">RS</p>  
+                  <p *ngIf = "row.rateCurrencyName == 'USD'">$</p> 
+                  <p *ngIf = "row.rateCurrencyName == 'EUR'">€</p> 
+                  <p *ngIf = "row.rateCurrencyName == 'GBP'">GBP</p>   {{ row.buyerCommissionAmount }} ]</div>    
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Buyer Bill" [width]="90">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                <p *ngIf = "row.rateCurrencyName == 'PKR'">RS</p>  
+                <p *ngIf = "row.rateCurrencyName == 'USD'">$</p> 
+                <p *ngIf = "row.rateCurrencyName == 'EUR'">€</p> 
+                <p *ngIf = "row.rateCurrencyName == 'GBP'">GBP</p>   {{ row.buyerBill }}   
+
+              </ng-template>
+            </ngx-datatable-column>
+          
+         
+            <ngx-datatable-column name="Matured Aging" [width]="90">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                {{ row.maturedAging }}
+              </ng-template>
+            </ngx-datatable-column>
+          </ngx-datatable>
 
           </div>
         </div>
@@ -2213,7 +2333,7 @@
                 <div class="form-group row">
                   <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
                   <div class="col-sm-9">
-                    <input type="text" class="input form-control form-control-sm" />
+                    <input type="text" class="input form-control form-control-sm" (keyup) = "dbCrSearch($event)" />
                   </div>
                 </div>
 
@@ -2433,7 +2553,7 @@
                 <div class="form-group row">
                   <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
                   <div class="col-sm-9">
-                    <input type="text" class="input form-control form-control-sm" />
+                    <input type="text" class="input form-control form-control-sm" (keyup) = "externalAgentSearch($event)" />
                   </div>
                 </div>
 
@@ -2913,7 +3033,7 @@
                 <div class="form-group row">
                   <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
                   <div class="col-sm-9">
-                    <input type="text" class="input form-control form-control-sm" />
+                    <input type="text" class="input form-control form-control-sm" (keyup) = "kickbackSearch($event)" />
                   </div>
                 </div>
 
