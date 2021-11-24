@@ -66,6 +66,14 @@ kickbackQty : any
 loggedInDepartmentName :  any;
 month : any;
 year : any ;
+paySearch : any = []
+dbCrSearch2 : any = []
+searchAgent : any = []
+kickbackSearch2 : any = []
+data9: any = [];
+searchDispatch : any = []
+bookingAgent : any = []
+
   constructor(
 
     private route: ActivatedRoute,
@@ -112,6 +120,9 @@ else if (this.menuName.menuName == 'DbcrNoteSummary'){
 }
 else if (this.menuName.menuName == 'BillingReportContractWise'){
   this.fetchContractInvise();
+}
+else if (this.menuName.menuName == 'DispatchReport'){
+  this.getdispatchReport();
 }
 
     this.GetBuyersDropdown();
@@ -164,16 +175,7 @@ else if (this.menuName.menuName == 'BillingReportContractWise'){
       }
     })
   }
-  // searchFilter(event) {
-  //   const val = event.target.value.toLowerCase();
 
-  //   const temp = this.temp.filter(function (d) {
-  //     return (
-  //       d.autoContractNumber.toLowerCase().indexOf(val) !== -1 ||
-  //       d.buyerName.toLowerCase().indexOf(val) !== -1 ||
-  //       !val);
-  //   });
-  // }
   filterPopUform(menu) {
     const modalRef = this.modalService.open(FilterPopUpComponent, { centered: true });
     modalRef.componentInstance.menu = menu;
@@ -189,17 +191,30 @@ else if (this.menuName.menuName == 'BillingReportContractWise'){
   billInvSearch(event) {
     const val = event.target.value.toLowerCase();
     const temp = this.invBill.filter(function (d) {
-      return (d.contractNo.toLowerCase().indexOf(val) !== -1 || d.billNo.toLowerCase().indexOf(val) !==-1   || !val);
+      return (d.contractNo.toLowerCase().indexOf(val) !== -1   || !val);
     });
     this.billingReportInvoiceWise = temp;
   }
-
+  agentBookingSearch(event) {
+    const val = event.target.value.toLowerCase();
+    const temp = this.bookingAgent.filter(function (d) {
+      return (d.agentName.toLowerCase().indexOf(val) !== -1   || !val);
+    });
+    this.agentBookingStatus = temp;
+  }
   billContractSearch(event) {
     const val = event.target.value.toLowerCase();
     const temp = this.contractBill.filter(function (d) {
-      return (d.contractNo.toLowerCase().indexOf(val) !== -1 || d.billNo.toLowerCase().indexOf(val) !==-1   || !val);
+      return (d.contractNo.toLowerCase().indexOf(val) !== -1   || !val);
     });
     this.contractWise = temp;
+  }
+  dispatchSearch(event) {
+    const val = event.target.value.toLowerCase();
+    const temp = this.searchDispatch.filter(function (d) {
+      return (d.contractNo.toLowerCase().indexOf(val) !== -1   || !val);
+    });
+    this.dispatchReport = temp;
   }
 
   openContractSearch(event) {
@@ -223,12 +238,35 @@ else if (this.menuName.menuName == 'BillingReportContractWise'){
   }
   paymentSearch(event) {
     const val = event.target.value.toLowerCase();
-    const temp = this.cancelSearch.filter(function (d) {
-      return (d.contractNo.toLowerCase().indexOf(val) !== -1 || d.buyerName.toLowerCase().indexOf(val) !==-1   || 
-      d.sellerName.toLowerCase().indexOf(val) !==-1   ||
+    const temp = this.paySearch.filter(function (d) {
+      return (d.autoContractNo.toLowerCase().indexOf(val) !== -1  ||
       !val);
     });
-    this.cancelContract = temp;
+    this.paymentReport = temp;
+  }
+  dbCrSearch(event) {
+    const val = event.target.value.toLowerCase();
+    const temp = this.dbCrSearch2.filter(function (d) {
+      return (d.autoContractNumber.toLowerCase().indexOf(val) !== -1  ||
+      !val);
+    });
+    this.DbCrData = temp;
+  }
+  externalAgentSearch(event) {
+    const val = event.target.value.toLowerCase();
+    const temp = this.searchAgent.filter(function (d) {
+      return (d.contractNo.toLowerCase().indexOf(val) !== -1  ||
+      !val);
+    });
+    this.externalAgent = temp;
+  }
+  kickbackSearch(event) {
+    const val = event.target.value.toLowerCase();
+    const temp = this.kickbackSearch2.filter(function (d) {
+      return (d.contractNo.toLowerCase().indexOf(val) !== -1  ||
+      !val);
+    });
+    this.kickbackReport = temp;
   }
   fetch() {
     this.billingReportInvoiceWise.startDate = this.dateformater.toModel(this.billingReportInvoiceWise.startDate)
@@ -278,7 +316,7 @@ else if (this.menuName.menuName == 'BillingReportContractWise'){
     if(this.response.success==true)
     {
     this.DbCrData=this.response.data;
- 
+ this.dbCrSearch2 = [...this.DbCrData]
     this.spinner.hide();
 
     }
@@ -316,7 +354,7 @@ else if (this.menuName.menuName == 'BillingReportContractWise'){
           this.response = res;
           if (this.response.success == true  && this.response.data.obj.length != 0) {
             this.toastr.success(this.response.message, 'Message.');
-            this.rows = this.response.data;
+            this.rows = this.response.data.obj;
             this.openSearch = [...this.rows]
             this.totalContract = this.response.data.totalContract 
             this.totalDispatch = this.response.data.totalDispatchAmount
@@ -384,6 +422,51 @@ else if (this.menuName.menuName == 'BillingReportContractWise'){
 
         });
   }
+  getdispatchReport(){
+
+    let varr = {
+      "buyerId":this.data9.buyerId ==undefined ? 0 :this.data9.buyerId,
+      "sellerId":this.data9.sellerId == undefined?0 :this.data9.sellerId,
+      "contractNo":this.data9.autoContractNumber == undefined ? '': this.data9.autoContractNumber,
+      "startInvoiceDate":this.data9.startContractDate == undefined? '': this.dateformater.toModel(this.data9.startContractDate),
+      "endInvoiceDate":this.data9.endContractDate == undefined?'':this.dateformater.toModel(this.data9.endContractDate),
+      "articleId":this.data9.articleId ==undefined ? 0 :this.data9.articleId,
+    }
+    this.spinner.show();
+    this.http.
+      post(`${environment.apiUrl}/api/Reports/GetDispatchReport`, varr)
+      .subscribe(
+        res => {
+
+          this.response = res;
+          if (this.response.success == true  && this.response.data.length != 0) {
+            this.toastr.success(this.response.message, 'Message.');
+            this.dispatchReport = this.response.data;
+            this.searchDispatch = [...this.dispatchReport]
+            // this.openSearch = [...this.rows]
+            // this.totalContract = this.response.data.totalContract 
+            // this.totalDispatch = this.response.data.totalDispatchAmount
+            // this.totalQuantity = this.response.data.totalQuantity
+
+
+         this.spinner.hide();
+          }
+          else if(this.response.data.obj.length == 0) {
+            this.toastr.error("No such Contract Exist", 'Message.');
+         this.spinner.hide();
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+         this.spinner.hide();
+          }
+
+        }, (err: HttpErrorResponse) => {
+          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+          this.toastr.error(messages.toString(),'Message.');
+          this.spinner.hide();
+
+        });
+  }
   externalAgentReport(){
 
     let varr = {
@@ -402,7 +485,7 @@ else if (this.menuName.menuName == 'BillingReportContractWise'){
           if (this.response.success == true  && this.response.data.length != 0) {
             this.toastr.success(this.response.message, 'Message.');
             this.externalAgent = this.response.data;
-
+         this.searchAgent = [...this.externalAgent]
 
          this.spinner.hide();
           }
@@ -480,7 +563,7 @@ else if (this.menuName.menuName == 'BillingReportContractWise'){
           if (this.response.success == true  && this.response.data.length != 0) {
             this.toastr.success(this.response.message, 'Message.');
             this.agentBookingStatus = this.response.data;
-
+         this.bookingAgent = [...this.agentBookingStatus]
 
          this.spinner.hide();
           }
@@ -520,6 +603,7 @@ PaymentReport(){
         if (this.response.success == true  && this.response.data.length != 0) {
           this.toastr.success(this.response.message, 'Message.');
           this.paymentReport = this.response.data.objsaleinvoiceitem;
+          this.paySearch = [...this.paymentReport]
         this.paymentTotal  =  this.response.data.totalAmount;
 
 
@@ -559,6 +643,7 @@ kickbackContractReport(){
         if (this.response.success == true  && this.response.data.length != 0) {
           this.toastr.success(this.response.message, 'Message.');
           this.kickbackReport = this.response.data.obj1;
+          this.kickbackSearch2 = [...this.kickbackReport]
         this.kickbackContract =  this.response.data.totalContract
          this.kickbackDispatch = this.response.data.totalDispatchAmount
          this.kickbackQty = this.response.data.totalQuantity
@@ -667,7 +752,7 @@ this.spinner.hide();
 
   this.contractWise=this.response.data.getBillReport;
   this.contractTotal = this.response.data.totalcommisionamount +' ' + this.contractWise[0].rateCurrencyName
-//  this.contractBill = [...this.contractWise]
+ this.contractBill = [...this.contractWise]
 
 
 

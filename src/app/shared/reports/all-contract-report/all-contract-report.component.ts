@@ -24,6 +24,7 @@ export class AllContractReportComponent implements OnInit {
 totalContract :  any;
 totalQuantity :  any;
 totalDispatch :  any;
+search: any = [];
 
   allContractReport :  any = []
   constructor(   private route: ActivatedRoute,
@@ -73,7 +74,15 @@ totalDispatch :  any;
       }
     })
   }
-
+  Search(event) {
+    const val = event.target.value.toLowerCase();
+    const temp = this.search.filter(function (d) {
+      return (d.contractNo.toLowerCase().indexOf(val) !== -1 || d.buyerName.toLowerCase().indexOf(val) !==-1   || 
+      d.sellerName.toLowerCase().indexOf(val) !==-1   ||
+      !val);
+    });
+    this.allContractReport = temp;
+  }
 
   getAllContractReport(){
     this.spinner.show();
@@ -94,9 +103,11 @@ totalDispatch :  any;
           if (this.response.success == true  && this.response.data.obj.length != 0) {
             this.toastr.success(this.response.message, 'Message.');
             this.allContractReport = this.response.data.obj;
+            
             this.totalContract = this.response.data.totalContract 
             this.totalDispatch = this.response.data.totalDispatchAmount
             this.totalQuantity = this.response.data.totalQuantity
+            this.search = [...this.allContractReport]
          this.spinner.hide();
           }
           else if(this.response.data.obj.length == 0) {
