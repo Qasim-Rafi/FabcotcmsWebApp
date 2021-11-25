@@ -341,7 +341,7 @@
           
           <ngx-datatable-column name="Department" [width]="80" prop="fabcotBranchName" [flexGrow]="0.05">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-      {{row.fabcotBranchName}}
+      {{row.invoiceDepartment}}
 
             </ng-template>
           </ngx-datatable-column>
@@ -357,7 +357,7 @@
             </ng-template>
           </ngx-datatable-column>
       
-          <ngx-datatable-column name="Inv Tax #" [width]="80" prop="autoContractNumber" [flexGrow]="0.08">
+          <ngx-datatable-column name="Inv Tax #" [width]="80" prop="billInvoiceNumber" [flexGrow]="0.08">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
          {{row.billInvoiceNumber}}
             </ng-template>
