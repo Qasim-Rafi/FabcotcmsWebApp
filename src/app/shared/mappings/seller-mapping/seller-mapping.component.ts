@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
+import { AddEditMappingsComponent } from './add-edit-mappings/add-edit-mappings.component';
 
 @Component({
   selector: 'app-seller-mapping',
@@ -12,27 +14,78 @@ export class SellerMappingComponent implements OnInit {
   response : any;
   seller : any = [];
   sellerFilter: any[];
+  departmentId:any=[];
+  service: any;
+deptId :  any;
+columns :  any;
+searchSeller : any;
   constructor(private http: HttpClient,
     private toastr: ToastrService,
-  
+    private modalService: NgbModal
   ) { }
 
   ngOnInit(): void {
-    this.getSellers();
+    // this.getSellers();
+    this.GetDeparmentDropdown();
   }
-  updateFilter(event) {
+
+ 
+ search(event) {
     const val = event.target.value.toLowerCase();
-
-    const temp = this.sellerFilter.filter(function (d) {
-      return (d.sellerCode.toLowerCase().indexOf(val) !== -1 ||
-
-        d.sellerName.toLowerCase().indexOf(val) !== -1 || !val);
+    const temp = this.searchSeller.filter(function (d) {
+      return (d.sellerName.toLowerCase().indexOf(val) !== -1   || !val);
     });
     this.seller = temp;
-
   }
-  getSellers() {
-    this.http.get(`${environment.apiUrl}/api/Sellers/GetSellers`)
+  editCode(row) {
+    const modalRef = this.modalService.open(AddEditMappingsComponent, { centered: true });
+    modalRef.componentInstance.mapping = row;
+    modalRef.componentInstance.id = row.id;
+  
+    modalRef.result.then((data) => {
+      // on close
+      if (data == true) {
+    this.getSellers(this.deptId)
+     
+
+      }
+
+    }, (reason) => {
+      // on dismiss
+    });
+  }
+
+
+
+  GetDeparmentDropdown() {
+    this.http.get(`${environment.apiUrl}/api/Lookups/Departments`)
+      .subscribe(
+        res => {
+
+          this.response = res;
+          if (this.response.success == true) {
+
+            this.departmentId = this.response.data;
+
+          }
+          else {
+           this.toastr.error(this.response.message, 'Message.');
+          }
+
+        }, err => {
+          if (err.status == 400) {
+           this.toastr.error(this.response.message, 'Message.');
+          }
+        });
+  }
+  getDeptId(event){
+    // console.log(event)
+    this.deptId = event
+    this.getSellers(this.deptId)
+  }
+
+  getSellers(id) {
+    this.http.get(`${environment.apiUrl}/api/Sellers/GetSellerAccountMappingsById/` + id )
       .subscribe(
         res => {
 
@@ -40,11 +93,7 @@ export class SellerMappingComponent implements OnInit {
           if (this.response.success == true) {
 
             this.seller = this.response.data;
-            // console.log(this.seller)
-            // this.sellerFilter = [...this.seller];
-            // this.sellerCount = this.response.data.length;
-            // this.getTotalPOCs();
-
+            this.searchSeller = [...this.seller]
 
           }
           else {

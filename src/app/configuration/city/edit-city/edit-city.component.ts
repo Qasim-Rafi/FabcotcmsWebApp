@@ -80,12 +80,7 @@ export class EditCityComponent implements OnInit {
   //ADD CITIES
 
   addCity(form:NgForm) {
-      // if (form.status == "INVALID") {
-
-      //   this.toastr.error("Invalid Form", 'Message.');
-      // }
-
-      // else{
+    
     let varr = {
       "name": this.data.name,
       "details": this.data.details,
