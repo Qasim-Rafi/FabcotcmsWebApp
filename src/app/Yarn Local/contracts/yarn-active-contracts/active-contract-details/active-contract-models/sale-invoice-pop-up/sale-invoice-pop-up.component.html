@@ -117,7 +117,7 @@
       
       
       
-          <div class="form-group row"  *ngIf = "loggedInDepartmentName != 'Yarn Export'" >
+          <div class="form-group row"  *ngIf = "loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import'" >
             <label for="amount" class="col-md-3 col-form-label text_Navy">Amount</label>
             <div class="col-md-8">
       
@@ -125,8 +125,8 @@
                 [(ngModel)]="data.amount" #amount="ngModel" />
             </div>
           </div>
-      
-          <div class="form-group row"  *ngIf = "loggedInDepartmentName == 'Yarn Export' &&  statusCheck == 'addInvoice' && active == false" >
+       
+          <div class="form-group row"  *ngIf = "(loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import') &&  statusCheck == 'addInvoice' && active == false" >
             <label for="amount" class="col-md-3 col-form-label text_Navy">Amount</label>
             <div class="col-md-8">
       
@@ -134,7 +134,7 @@
                 [(ngModel)]="data.amount" #amount="ngModel" />
             </div>
           </div>
-          <div class="form-group row"  *ngIf = "loggedInDepartmentName == 'Yarn Export' &&  statusCheck == 'editInvoice' && data.isFob == false" >
+          <div class="form-group row"  *ngIf = "(loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import') &&  statusCheck == 'editInvoice' && data.isFob == false" >
             <label for="amount" class="col-md-3 col-form-label text_Navy">Amount</label>
             <div class="col-md-8">
       
@@ -171,7 +171,7 @@
               </div>
             </div>
           </div>
-          <div class="form-group row" *ngIf = " loggedInDepartmentName == 'Yarn Export' && data.isFob == true  ">
+          <div class="form-group row" *ngIf = " (loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import') && data.isFob == true  ">
             <label for="saleInvoiceDate"  class="col-md-3 col-form-label text_Navy">FOB Value</label>
             <div class="col-md-8" >
       
@@ -180,7 +180,7 @@
             </div>
           </div>
          
-          <div class="form-group row">
+          <div class="form-group row" *ngIf = "loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
             <label for="active" class="col-md-3 col-form-label text-grey"></label>
             <div class="col-md-8">
               <div class="form-check form-check-inline">
