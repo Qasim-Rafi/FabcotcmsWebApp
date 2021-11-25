@@ -800,26 +800,24 @@ this.spinner.hide();
     ContractNo: row.contractNo,
     Buyer: row.buyerName,
     Seller: row.sellerName ,
-    Date: row.date,
+    Date: row.rateCurrencyName + row.date,
     PONumber: row.poNumber,
     Article: row.articleName ,
     Rate: row.rate,
       RateUOM: row.rateUOMName ,
   
-      Quantity: row.balanceQty,
-      QtyUOM:row.uomName,
-      Booking: row.booking ,
+      BalanceQty: row.balanceQty,
+      QtyUOM:row.quantityUOMName,
+      BookingQty: row.booking ,
       
-      Dispatch: row.dispatch ,
-      Balance: row.balanceQty ,
+      DispatchQty: row.dispatch ,
       Cost: row.balanceQty ,
       SellerComm:  row.sellerCommission + "[" + row.sellerCommissionAmount + "]" ,
       BuyerComm: row.buyerCommission + "[" + row.buyerCommissionAmount + "]" ,
-      SellerPaymentTerm: row.sellerPaymentTerm ,
-      BuyerPaymentTerm: row.buyerPaymentTerm ,
+    PaymentTermSellerAndBuyer : row.sellerPaymentTerm + " | " + row.buyerPaymentTerm, 
+    Agent: row.agent ,
 
-      Status: row.status ,
-      Agent: row.agent ,
+      Status: row.status 
 
      
     }));
@@ -986,10 +984,10 @@ this.spinner.hide();
 
         },
         {
-          margin: [-10 , 5 , 0 , 0 ],
+          margin: [-30 , 5 , 0 , 0 ],
           table:{
             headerRows : 1,
-            widths : [20, 60, 60, 40 , 25 , 30 , 35 , 30 , 30 , 30 , 40 , 40 , 30 , 30 , 30 , 30, 30 , 30
+            widths : [20, 50, 50, 40 , 30 , 25 , 35 , 30 , 30 , 30 , 40 , 40 , 30 , 30 , 30 , 30 , 30 , 30, 30 
             ],
             body:[
               [
@@ -997,22 +995,21 @@ this.spinner.hide();
               ,{text:'Contract#' , style:'tableHeader'} ,
               {text:'Buyer' , style:'tableHeader' }, 
               {text:'Seller' , style:'tableHeader' }, 
-
               {text:'Date'  , style:'tableHeader'} , 
               {text:'PO#' , style:'tableHeader'} , 
               {text:'Article' , style:'tableHeader'},
-              
               {text:'Rate'  , style:'tableHeader'} , 
               {text:'Qty Unit' , style:'tableHeader'} , 
               {text:'Booking' , style:'tableHeader'},
               {text:'Dispatch'  , style:'tableHeader'} , 
-              {text:'Balance' , style:'tableHeader'} , {text:'Cost' , style:'tableHeader'} , 
-
+              {text:'Balance' , style:'tableHeader'} , 
+              {text:'Cost' , style:'tableHeader'} , 
               {text:'SellerComm' , style:'tableHeader'} , 
-              {text:'BuyerComm' , style:'tableHeader'} , 
+              {text:'SellerComm Amount' , style:'tableHeader'} , 
+              {text:'BuyerComm' , style:'tableHeader'} ,
+              {text:'BuyerComm Amount' , style:'tableHeader'} , 
               {text:'PaymentTerm(S|B)' , style:'tableHeader'} , 
-              {text:'Status' , style:'tableHeader'} , 
-              {text:'Agent' , style:'tableHeader'} , 
+              {text:'Agent' , style:'tableHeader'} 
 
             ],
               ...this.rows.map(row => (
@@ -1026,17 +1023,19 @@ this.spinner.hide();
                   {text: row.articleName , style:'tableHeader2'},
            
                  {text: row.rate + " " + row.rateUOMName, style:'tableHeader2'} ,
-                  {text:row.uomName  , style:'tableHeader2' }  ,
+                  {text:row.quantityUOMName  , style:'tableHeader2' }  ,
                   {text: row.booking , style:'tableHeader2'},
               
                    {text:row.dispatch  , style:'tableHeader2' }  ,
                    {text:row.balanceQty  , style:'tableHeader2' }  ,
-                   {text:row.cost  , style:'tableHeader2' }  ,
-                   {text: row.sellerCommission != '' ?  row.sellerCommission + '%' + "[" + row.sellerCommissionAmount + "]" : ''  , style:'tableHeader2' }  ,
-                   {text:row.buyerCommission != '' ?  row.buyerCommission + '%' + "[" + row.buyerCommissionAmount + "]"  : ''  , style:'tableHeader2' }  ,
-                   {text:row.sellerPaymentTerm +  '|' + row.buyerPaymentTerm  , style:'tableHeader2' }  ,
-                   {text:row.status  , style:'tableHeader2' }  ,
-                   {text:row.agent  , style:'tableHeader2' }  ,
+                   {text: row.rateCurrencyName == 'PKR' ? "Rs." + row.cost : row.rateCurrencyName == 'USD' ? "$ " + row.cost : row.rateCurrencyName == 'EUR' ? "€ " + row.cost : row.rateCurrencyName == 'GBP' ? "GBP " + row.cost : row.cost, style:'tableHeader2'} ,
+                   {text:row.sellerCommission != "" ? row.sellerCommission + "%" : ""   , style:'tableHeader2' }  ,
+                   {text:   row.sellerCommissionAmount != '' ?   row.rateCurrencyName == 'PKR' ? "Rs." + "[" + row.sellerCommissionAmount + "]" : row.rateCurrencyName == 'USD' ? "$ " + "[" + row.sellerCommissionAmount + "]" : row.rateCurrencyName == 'EUR' ? "€ " + "[" + row.sellerCommissionAmount + "]" : row.rateCurrencyName == 'GBP' ? "GBP " + "[" + row.sellerCommissionAmount + "]" :  row.sellerCommissionAmount  : row.sellerCommissionAmount , style:'tableHeader2'} ,
+
+                   {text:row.buyerCommission != "" ? row.buyerCommission + "%" : ""   , style:'tableHeader2' }  ,
+                   {text: row.buyerCommissionAmount != '' ?  row.rateCurrencyName == 'PKR' ? "Rs." + "[" + row.buyerCommissionAmount + "]" : row.rateCurrencyName == 'USD' ? "$ " + "[" + row.buyerCommissionAmount + "]" : row.rateCurrencyName == 'EUR' ? "€ " + "[" + row.buyerCommissionAmount + "]" : row.rateCurrencyName == 'GBP' ? "GBP " + "[" + row.buyerCommissionAmount + "]" :  row.buyerCommissionAmount  :  row.buyerCommissionAmount  , style:'tableHeader2'} ,
+                   {text: row.sellerPaymentTerm + " | " + row.buyerPaymentTerm , style:'tableHeader2'},
+                   {text:row.agent  , style:'tableHeader2' }  
 
                 ]
               ))
@@ -1366,6 +1365,7 @@ this.spinner.hide();
 
     let docDefinition = {
       pageSize: 'A4',
+      pageOrientation: 'Landscape',
       info: {
         title: 'Cancel Contract List'
       },
@@ -1376,10 +1376,10 @@ this.spinner.hide();
 
         },
         {
-          margin: [-20 , 5 , 0 , 0 ],
+          margin: [-30 , 5 , 0 , 0 ],
           table:{
             headerRows : 1,
-            widths : [25, 35, 50, 50 , 40 , 23 , 40 , 25, 30 , 25 , 30 , 30 , 30 
+            widths : [20, 30, 35, 35 , 30 , 23 , 30 , 25, 20 , 25 , 25 , 25 , 25 , 29 , 32 , 29 , 32 , 40 , 23 , 33 , 33 
             ],
             body:[
               [
@@ -1393,11 +1393,19 @@ this.spinner.hide();
               {text:'Article' , style:'tableHeader'},
               
               {text:'Rate'  , style:'tableHeader'} , 
-              {text:'Container'  , style:'tableHeader'} , 
               {text:'Qty Unit' , style:'tableHeader'} , 
               {text:'Booking' , style:'tableHeader'},
               {text:'Dispatch'  , style:'tableHeader'} , 
               {text:'Balance' , style:'tableHeader'} , 
+              {text:'Cost' , style:'tableHeader'} , 
+              {text:'Seller Comm' , style:'tableHeader'} , 
+              {text:'SellerComm Amount' , style:'tableHeader'} , 
+              {text:'Buyer Comm' , style:'tableHeader'} ,
+              {text:'BuyerComm Amount' , style:'tableHeader'} , 
+              {text:'PaymentTerm(S|B)' , style:'tableHeader'} , 
+              {text:'Agent' , style:'tableHeader'} ,
+              {text:'Canceled By' , style:'tableHeader'} ,
+              {text:'Canceled On' , style:'tableHeader'} 
             
             ],
               ...this.cancelContract.map(row => (
@@ -1417,6 +1425,19 @@ this.spinner.hide();
               
                    {text:row.dispatch  , style:'tableHeader2' }  ,
                    {text:row.balanceQty  , style:'tableHeader2' }  ,
+                   {text: row.rateCurrencyName == 'PKR' ? "Rs." + row.cost : row.rateCurrencyName == 'USD' ? "$ " + row.cost : row.rateCurrencyName == 'EUR' ? "€ " + row.cost : row.rateCurrencyName == 'GBP' ? "GBP " + row.cost : row.cost, style:'tableHeader2'} ,
+                   {text:row.sellerCommission != "" ? row.sellerCommission + "%" : ""   , style:'tableHeader2' }  ,
+                   {text:   row.sellerCommissionAmount != '' ?   row.rateCurrencyName == 'PKR' ? "Rs." + "[" + row.sellerCommissionAmount + "]" : row.rateCurrencyName == 'USD' ? "$ " + "[" + row.sellerCommissionAmount + "]" : row.rateCurrencyName == 'EUR' ? "€ " + "[" + row.sellerCommissionAmount + "]" : row.rateCurrencyName == 'GBP' ? "GBP " + "[" + row.sellerCommissionAmount + "]" :  row.sellerCommissionAmount  : row.sellerCommissionAmount , style:'tableHeader2'} ,
+
+                   {text:row.buyerCommission != "" ? row.buyerCommission + "%" : ""   , style:'tableHeader2' }  ,
+                   {text: row.buyerCommissionAmount != '' ?  row.rateCurrencyName == 'PKR' ? "Rs." + "[" + row.buyerCommissionAmount + "]" : row.rateCurrencyName == 'USD' ? "$ " + "[" + row.buyerCommissionAmount + "]" : row.rateCurrencyName == 'EUR' ? "€ " + "[" + row.buyerCommissionAmount + "]" : row.rateCurrencyName == 'GBP' ? "GBP " + "[" + row.buyerCommissionAmount + "]" :  row.buyerCommissionAmount  :  row.buyerCommissionAmount  , style:'tableHeader2'} ,
+                   {text: row.sellerPaymentTerm + " | " + row.buyerPaymentTerm , style:'tableHeader2'},
+                   {text:row.agent  , style:'tableHeader2' }  ,
+                   {text:row.contractOwner  , style:'tableHeader2' } , 
+                   {text:row.updatedBy  , style:'tableHeader2' }  ,
+                   {text:row.updatedOn  , style:'tableHeader2' }  
+
+
                 ]
               ))
             ]
@@ -1429,7 +1450,7 @@ this.spinner.hide();
           alignment: 'center',
           margin: [0, 15, 0, 30]
         },
-        tableHeader:{ fillColor: '#f3f3f4' , bold:true , margin:4 , alignment: 'center' ,fontSize: 7},
+        tableHeader:{ fillColor: '#f3f3f4' , bold:true , margin:4 , alignment: 'left' ,fontSize: 7},
         tableHeader2:{   margin:3 , alignment: 'center' , fontSize: 6},
       }
 

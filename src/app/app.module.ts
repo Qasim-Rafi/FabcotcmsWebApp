@@ -73,6 +73,7 @@ import { BillBreakupComponent } from './accounts/bill-breakup/bill-breakup.compo
 import { NgxScrollTopModule } from 'ngx-scrolltop';
 import { AllContractReportComponent } from './shared/reports/all-contract-report/all-contract-report.component';
 import { SellerMappingComponent } from './shared/mappings/seller-mapping/seller-mapping.component';
+import { AddEditMappingsComponent } from './shared/mappings/seller-mapping/add-edit-mappings/add-edit-mappings.component';
 
 
 
@@ -126,6 +127,7 @@ const appRoutes: Routes = []
     BillBreakupComponent,
     AllContractReportComponent,
     SellerMappingComponent,
+    AddEditMappingsComponent,
    
 
   

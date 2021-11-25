@@ -148,6 +148,15 @@ search: any = [];
       
       Dispatch: row.dispatch ,
       Balance: row.balanceQty ,
+      Cost: row.cost ,
+      SellerComm: row.sellerCommission ,
+      SellerCommAmount: row.sellerCommissionAmount ,
+      BuyerComm: row.buyerCommission ,
+      BuyerCommAmount: row.buyerCommissionAmount ,
+      PaymentTermSellerBuyer : row.sellerPaymentTerm + " | " + row.buyerPaymentTerm ,
+
+      Agent : row.agent ,
+
       
 
     }));

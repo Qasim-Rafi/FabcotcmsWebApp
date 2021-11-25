@@ -39,29 +39,36 @@
 
 
                 <div class="row">
-                    <div class="col-md-12 autoAdjustSearch">
+                    <div class="col-md-8 autoAdjustSearch">
                       <div class="input-group col-md-offset-3">
-                        <input placeholder="Search Supplier " type="text" class="input form-control winput"
-                        (keyup)="updateFilter($event)"  />
+                        <input placeholder="Search Seller " type="text" class="input form-control winput"
+                        (keyup)="search($event)"  />
                         <span class="group-btn">
                           <button type="button" class="btn btn-primary autoAdjustBtn ml-1">
                             <i class="fa fa-search"></i> Search
                           </button>
                         </span>
-                
+<!--                 
                         <button type="button" class="btn btn-primary float-right mrg-sm1" data-toggle="modal"
                           data-target="#exampleModalScrollable" >
                           <i  aria-hidden="true"></i> Save
-                        </button>
+                        </button> -->
                       </div>
                     </div>
+                    <div class="col-md-4">
+                        <ng-select  placeholder="Select Department" name="departmentId" (change)="getDeptId($event)">
+                          <ng-option *ngFor="let i of departmentId" [value]="i.id">{{ i.name }}</ng-option>
+                        </ng-select>
+                    </div>
+
+
        
       </div>
 <br>
 <hr>
 
 
-
+<!-- 
       <div class="faq-item shadow-sm" *ngFor="let obj of seller ; let x = index">
         <div class="row">
       
@@ -74,7 +81,7 @@
           </div>
       
           <div class="col-md-6 col-xl-7">
-            <a class="faq-question">{{ obj.sellerCode }} - {{ obj.sellerName }}</a>
+            <a class="faq-question">{{ obj.sellerName }}</a>
           </div>
   
       
@@ -82,8 +89,7 @@
             style="border-left: 1px solid #d0d0d0" data-original-title="Total Contracts">
             
             <div>
-                <input  id="code" type="text" class="form-control"
-                placeholder="code" name="name">
+                <b>{{obj.accountCode}}</b>
             </div>
           </div>
       
@@ -92,6 +98,47 @@
 
       
     
+      </div> -->
+
+
+
+
+      <div  class="panel-body">
+      
+        <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="seller"
+          [sorts]="[{ prop: 'id,sellerName', dir: 'asce' }]" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+          [rowHeight]="'auto'" [limit]="10">
+       
+          <ngx-datatable-column name="Seller Name" prop="sellerName" [width]="200">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              {{ row.sellerName }}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Code" [width]="80">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+             
+             {{ row.accountCode }}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Action" [width]="80">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+  
+  
+              <div class="ibox-tools text-center">
+                <button type="button" class="btn editIconBack px-1 py-1" data-toggle="tooltip" data-placement="top" title=""
+                  data-original-title="Edit" (click)="editCode(row)"><i class="far fa-edit"></i></button>
+  
+               
+                </div>
+  
+            </ng-template>
+          </ngx-datatable-column>
+        </ngx-datatable>
+      
       </div>
+
+
+
+
     </div>
     </div>
