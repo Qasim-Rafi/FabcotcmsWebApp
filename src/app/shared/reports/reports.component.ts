@@ -1061,6 +1061,9 @@ this.spinner.hide();
 
   billingInvoicePdf() {
 
+this.fetch();
+
+
     let docDefinition = {
       pageSize: 'A4',
       info: {
@@ -1179,7 +1182,7 @@ this.spinner.hide();
               {text:'Comm%' , style:'tableHeader'},
               {text:'Inv#'  , style:'tableHeader'} , 
               {text:'Quantity' , style:'tableHeader'} , 
-              {text:'Comm Amount' , style:'tableHeader'} , 
+              {text:'Comm Amount' , style:'tableHeader'} 
             ],
               ...this.billingReportInvoiceWise.map(row => (
                 [
@@ -1192,14 +1195,14 @@ this.spinner.hide();
                   {text: row.sellerName , style:'tableHeader2'},
            
                  {text: row.buyerName , style:'tableHeader2'} ,
-                  {text: row.rate != '' ? row.rateCurrencyName == 'PKR' ?'Rs' + row.rate + '/' + row.uomName : row.rateCurrencyName == 'USD' ? '$' + row.rate + '/' +row.uomName : row.rateCurrencyName == 'EUR' ? '€' + row.rate + '/' +row.uomName : row.rateCurrencyName == 'GBP' ? 'GBP' + row.rate + '/' +row.uomName : row.rateCurrencyName + row.rate + " /" + row.uomName : '' , style:'tableHeader2' }  ,
+                  {text: row.rate != '' ? row.rateCurrencyName == 'PKR' ?'Rs ' + row.rate + '/' + row.uomName : row.rateCurrencyName == 'USD' ? '$ ' + row.rate + '/' +row.uomName : row.rateCurrencyName == 'EUR' ? '€ ' + row.rate + '/' +row.uomName : row.rateCurrencyName == 'GBP' ? 'GBP ' + row.rate + '/' +row.uomName : row.rateCurrencyName + row.rate + " /" + row.uomName : '' , style:'tableHeader2' }  ,
                   {text: row.fabcotCommission +'%' , style:'tableHeader2'},
               
                    {text:row.invoiceNo  , style:'tableHeader2' }  ,
-                   {text: row.quantity + row.quantityUOM , style:'tableHeader2' }  ,
+                   {text:   row.quantity + ' ' + row.quantityUOM  , style:'tableHeader2' }  ,
 
-                   {text:row.commissionAmount != '' ? row.rateCurrencyName == 'PKR' ?  row.commissionAmount +'Rs' : row.rateCurrencyName == 'USD' ? row.commissionAmount + '$' : row.rateCurrencyName == 'EUR' ? row.commissionAmount + '€': row.rateCurrencyName == 'GBP' ? row.commissionAmount + 'GBP' : row.commissionAmount + " " + row.rateCurrencyName : '' 
-                    , style:'tableHeader2' }  ,
+                   {text:row.commissionAmount != '' ? row.rateCurrencyName == 'PKR' ?  row.commissionAmount +' Rs' : row.rateCurrencyName == 'USD' ? row.commissionAmount + ' $' : row.rateCurrencyName == 'EUR' ? row.commissionAmount + ' €': row.rateCurrencyName == 'GBP' ? row.commissionAmount + ' GBP' : row.commissionAmount + " " + row.rateCurrencyName : '' 
+                    , style:'tableHeader2' }  
                 ]
               ))
             ]

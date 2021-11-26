@@ -306,7 +306,7 @@
             </ngx-datatable-column>
             <ngx-datatable-column name="Seller Comm" [width]="90">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                <div *ngIf = "row.buyerCommission != '' "> {{row.sellerCommission}}%   [      <p *ngIf = "row.rateCurrencyName == 'PKR'">RS</p>  
+                <div *ngIf = "row.sellerCommission != '' "> {{row.sellerCommission}}%   [      <p *ngIf = "row.rateCurrencyName == 'PKR'">RS</p>  
                   <p *ngIf = "row.rateCurrencyName == 'USD'">$</p> 
                   <p *ngIf = "row.rateCurrencyName == 'EUR'">€</p> 
                   <p *ngIf = "row.rateCurrencyName == 'GBP'">GBP</p>   {{ row.sellerCommissionAmount }} ]</div>    
@@ -807,7 +807,7 @@
             </ngx-datatable-column>
             <ngx-datatable-column name="Seller Comm" [width]="90">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                <div *ngIf = "row.buyerCommission != '' "> {{row.sellerCommission}}%   [      <p *ngIf = "row.rateCurrencyName == 'PKR'">RS</p>  
+                <div *ngIf = "row.sellerCommission != '' "> {{row.sellerCommission}}%   [      <p *ngIf = "row.rateCurrencyName == 'PKR'">RS</p>  
                   <p *ngIf = "row.rateCurrencyName == 'USD'">$</p> 
                   <p *ngIf = "row.rateCurrencyName == 'EUR'">€</p> 
                   <p *ngIf = "row.rateCurrencyName == 'GBP'">GBP</p>   {{ row.sellerCommissionAmount }} ]</div>    
@@ -1018,10 +1018,10 @@
                     aria-controls="DataTables_Table_0"><span>CSV</span></a> -->
                   <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
                     aria-controls="DataTables_Table_0" (click)="invoiceExcelFile()"><span>Excel</span></a>
-                  <a class="btn btn-default buttons-print bg-white" tabindex="0" *ngIf = "loggedInDepartmentName == 'Yarn Local'"
+                  <a class="btn btn-default buttons-print bg-white" tabindex="0" 
+                    aria-controls="DataTables_Table_0" (click) = "billingInvoicePdf2()" *ngIf = "loggedInDepartmentName != 'Yarn Local'"><span>Print</span></a>
+                    <a class="btn btn-default buttons-print bg-white" tabindex="0" *ngIf = "loggedInDepartmentName == 'Yarn Local'" 
                     aria-controls="DataTables_Table_0" (click) = "billingInvoicePdf()"><span>Print</span></a>
-                    <a class="btn btn-default buttons-print bg-white" tabindex="0" *ngIf = "loggedInDepartmentName != 'Yarn Local'"
-                    aria-controls="DataTables_Table_0" (click) = "billingInvoicePdf2()"><span>Print</span></a>
                 </div>
               </div>
             </div>
@@ -1098,19 +1098,26 @@
                   {{ row.invoiceNo }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Qty" prop="quantity" [width]="30" *ngIf = "loggedInDepartmentName == 'Yarn Local'">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              <ngx-datatable-column name="Qty" prop="quantity" [width]="30" *ngIf = "loggedInDepartmentName == 'Yarn Local'" >
+                <ng-template let-row="row" let-expanded="expanded"  ngx-datatable-cell-template>
                <div *ngIf="row.debitQuantity == null ">   {{ row.quantity }} {{ row.quantityUOM }} </div>
                <div *ngIf = "row.debitQuantity !=null">{{row.remainingQuantity}} </div> <br>
                <div class="text-danger" *ngIf="row.debitQuantity != null "> Db:[  {{row.quantity}} - {{row.debitQuantity}} ]  {{ row.quantityUOM }} </div>
                 </ng-template>
+             
               </ngx-datatable-column>
-              <ngx-datatable-column name="Qty" prop="quantity" [width]="30" *ngIf = "loggedInDepartmentName != 'Yarn Local'">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                {{ row.quantity }} {{ row.quantityUOM }} 
-              
-                </ng-template>
+
+              <ngx-datatable-column name="Qty" prop="quantity" [width]="30" *ngIf = "loggedInDepartmentName != 'Yarn Local'" >
+                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template *ngIf = "loggedInDepartmentName != 'Yarn Local'">
+                  {{ row.quantity }} {{ row.quantityUOM }} 
+                
+                  </ng-template>
+             
               </ngx-datatable-column>
+
+
+        
+            
               <ngx-datatable-column name="Comm Amount" prop="commissionAmount" [width]="50" *ngIf = "loggedInDepartmentName == 'Yarn Local'">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   <!-- {{ row.commissionAmount }} -->
