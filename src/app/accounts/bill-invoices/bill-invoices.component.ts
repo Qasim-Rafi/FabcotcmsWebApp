@@ -26,6 +26,7 @@ dateformater: Dateformater = new Dateformater();
 dashboardAmnt : any [];
 ids:any;
 temp: any = [];
+deptName : any;
 constructor(    private service: ServiceService,
   private http: HttpClient,
   private router: Router,
@@ -135,7 +136,9 @@ constructor(    private service: ServiceService,
       }
     });
   }
-
+  getdept(event){
+    this.deptName = event.target.value
+  }
   genrateInvoices(){
   
     this.ids=this.selected.map(a => a.contractId);
