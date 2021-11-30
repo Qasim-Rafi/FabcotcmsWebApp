@@ -145,7 +145,6 @@ this.fetch();
     this.billFilter = [...this.rows];
 
     this.listCount = this.rows.length;
-
     // cb(this.data);
     this.spinner.hide();
 

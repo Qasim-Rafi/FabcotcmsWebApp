@@ -153,7 +153,7 @@ search: any = [];
       SellerCommAmount: row.sellerCommissionAmount ,
       BuyerComm: row.buyerCommission ,
       BuyerCommAmount: row.buyerCommissionAmount ,
-      PaymentTermSellerBuyer : row.sellerPaymentTerm + " | " + row.buyerPaymentTerm ,
+      PaymentTermSellerBuyer : row.paymentTerm ,
 
       Agent : row.agent ,
 
@@ -237,7 +237,7 @@ search: any = [];
                   //  {text:   row.buyerCommission != "" ? row.buyerCommission + "%" +    row.rateCurrencyName == 'PKR' ? "Rs." + "["  + row.buyerCommissionAmount + "]" : row.rateCurrencyName == 'USD' ? "$ " + "["  + row.buyerCommissionAmount + "]" : row.rateCurrencyName == 'EUR' ? "€ " + "["  + row.buyerCommissionAmount + "]" : row.rateCurrencyName == 'GBP' ? "GBP "+ "["  + row.buyerCommissionAmount + "]": row.cost : row.buyerCommission , style:'tableHeader2' } 
                    
                    
-                   {text: row.sellerPaymentTerm + " | " + row.buyerPaymentTerm , style:'tableHeader2'},
+                   {text: row.paymentTerm , style:'tableHeader2'},
                    {text: row.agent , style:'tableHeader2'},
 
 

@@ -28,6 +28,8 @@ export class TemplateComponent implements OnInit {
   userrole:string;
   Contract: boolean = false;
   Billing: boolean = false;
+  Billing2 : boolean = false;
+
   Config: boolean = false;
   Report: boolean = false;
   mapping: boolean = false;
@@ -191,6 +193,9 @@ Swal.fire({
     else if(menuName == 'Billing'){
        this.Billing =!this.Billing;
     }
+    else if(menuName == 'Billing2'){
+      this.Billing2 =!this.Billing2;
+   }
     else if(menuName == 'Config'){
       this.Config =!this.Config;
    }
