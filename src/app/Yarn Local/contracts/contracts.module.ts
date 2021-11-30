@@ -47,6 +47,7 @@ import { LCInfoComponent } from './yarn-active-contracts/active-contract-details
 import { NgProgressModule } from 'ngx-progressbar';
 import { NgxScrollTopModule } from 'ngx-scrolltop';
 import { SummaryComponent } from './Modals/summary/summary.component';
+import { AgGridModule } from 'ag-grid-angular';
 
 @NgModule({
   declarations: [AddNewContractsComponent,
@@ -88,6 +89,7 @@ SummaryComponent,
     NgxDatatableModule,
     ReactiveFormsModule,
     NgxScrollTopModule,
+    AgGridModule.withComponents([])
   ]
 })
 export class ContractsModule { }

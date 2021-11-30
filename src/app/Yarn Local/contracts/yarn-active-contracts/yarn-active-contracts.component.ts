@@ -49,7 +49,14 @@ export class YarnActiveContractsComponent implements OnInit {
   }
 
 
-
+  // columnDefs = [
+  //   { headerName: 'BuyerName', field: 'buyerName', sortable: true,  
+  //   filter: true   },
+  //   { headerName: 'SellerName', field: 'sellerName' ,sortable: true,  
+  //   filter: true  },
+  //   { headerName: 'ContractOn', field: 'contractOn',sortable: true,  
+  //   filter: true   }
+  // ];
 
   searchFilter(event) {
     const val = event.target.value.toLowerCase();
