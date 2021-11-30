@@ -907,7 +907,7 @@
   <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
     <!-- Add icons to the links using the .nav-icon class
        with font-awesome or any other icon font library -->
-    <li class="nav-item">
+    <li class="nav-item"  >
       <a routerLink="/home" class="nav-link" >
         <i class="fa fa-home"></i>
         <p>Home</p>
@@ -917,18 +917,18 @@
    
 
     <!-- billing -->
-  <li class="nav-item" [ngClass]="Billing ? 'menu-open' : ''">
-      <a (click)="menuOpen('Billing')" class="nav-link">
+  <li class="nav-item" [ngClass]="Billing2 ? 'menu-open' : ''">
+      <a (click)="menuOpen('Billing2')" class="nav-link">
         <i class="far fa-money-bill-alt"></i>
-        <p>Billing & Payment</p>
+        <p>Billing Invoices</p>
         <i class="right fas fa-angle-left"></i>
       </a>
     
-      <ul class="nav nav-treeview sublist" [ngClass]="Billing ? 'UlClassOpenMenu' : 'UlClassCloseMenu'">
+      <ul class="nav nav-treeview sublist" [ngClass]="Billing2 ? 'UlClassOpenMenu' : 'UlClassCloseMenu'">
         <li class="nav-item">
           <a routerLink="/accounts" class="nav-link" routerLinkActive="active">
             <i class="far fa-circle nav-icon"></i>
-            <p>Bill Invoice</p>
+            <p>Bill Invoice </p>
           </a>
         </li>
   
@@ -937,7 +937,7 @@
 
       </ul>
     </li>
-    <li class="nav-item" [ngClass]="mapping ? 'menu-open' : ''">
+    <li class="nav-item" [ngClass]="mapping ? 'menu-open' : ''"  >
       <a (click)="menuOpen('mapping')"  class="nav-link">
         <i class="fas fa-file-contract"></i>
         <p>Mappings</p>

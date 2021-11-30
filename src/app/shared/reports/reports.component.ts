@@ -806,15 +806,15 @@ this.spinner.hide();
     Rate: row.rate,
       RateUOM: row.rateUOMName ,
   
-      BalanceQty: row.balanceQty,
+      BalanceQty: row.balanceQty + row.quantityUOMName,
       QtyUOM:row.quantityUOMName,
-      BookingQty: row.booking ,
+      BookingQty: row.booking + row.quantityUOMName ,
       
-      DispatchQty: row.dispatch ,
+      DispatchQty: row.dispatch + row.quantityUOMName ,
       Cost: row.balanceQty ,
       SellerComm:  row.sellerCommission + "[" + row.sellerCommissionAmount + "]" ,
       BuyerComm: row.buyerCommission + "[" + row.buyerCommissionAmount + "]" ,
-    PaymentTermSellerAndBuyer : row.sellerPaymentTerm + " | " + row.buyerPaymentTerm, 
+    PaymentTermSellerAndBuyer : row.paymentTerm, 
     Agent: row.agent ,
 
       Status: row.status 
@@ -843,6 +843,7 @@ this.spinner.hide();
       Cost:row.cost,
       Dispatch: row.dispatch ,
       Balance: row.balanceQty ,
+      PaymentTermSellerAndBuyer : row.paymentTerm,
       SellerComm : row.sellerCommission,
       BuyerComm : row.buyerCommission, 
       Status:row.status
@@ -924,7 +925,7 @@ this.spinner.hide();
     Article: row.articleName ,
     Rate: row.rate,
   Container : row.containerName,
-   
+   PaymenTerms:row.paymentTerm,
       QtyUnit:row.uomName,
       Booking: row.booking ,
       Cost:row.cost,
@@ -952,7 +953,7 @@ this.spinner.hide();
     Seller: row.seller ,
     SaleInvNo: row.saleInvoiceNo,
     SaleInvDate: row.saleInvoiceDate,
-
+    paymentTerms: row.paymentTerm,
     Article: row.article ,
     Quantity: row.quantity,
 
@@ -1024,17 +1025,17 @@ this.spinner.hide();
            
                  {text: row.rate + " " + row.rateUOMName, style:'tableHeader2'} ,
                   {text:row.quantityUOMName  , style:'tableHeader2' }  ,
-                  {text: row.booking , style:'tableHeader2'},
+                  {text: row.booking + " " + row.quantityUOMName , style:'tableHeader2'},
               
-                   {text:row.dispatch  , style:'tableHeader2' }  ,
-                   {text:row.balanceQty  , style:'tableHeader2' }  ,
+                   {text:row.dispatch + " " + row.quantityUOMName , style:'tableHeader2' }  ,
+                   {text:row.balanceQty + " " + row.quantityUOMName  , style:'tableHeader2' }  ,
                    {text: row.rateCurrencyName == 'PKR' ? "Rs." + row.cost : row.rateCurrencyName == 'USD' ? "$ " + row.cost : row.rateCurrencyName == 'EUR' ? "€ " + row.cost : row.rateCurrencyName == 'GBP' ? "GBP " + row.cost : row.cost, style:'tableHeader2'} ,
                    {text:row.sellerCommission != "" ? row.sellerCommission + "%" : ""   , style:'tableHeader2' }  ,
                    {text:   row.sellerCommissionAmount != '' ?   row.rateCurrencyName == 'PKR' ? "Rs." + "[" + row.sellerCommissionAmount + "]" : row.rateCurrencyName == 'USD' ? "$ " + "[" + row.sellerCommissionAmount + "]" : row.rateCurrencyName == 'EUR' ? "€ " + "[" + row.sellerCommissionAmount + "]" : row.rateCurrencyName == 'GBP' ? "GBP " + "[" + row.sellerCommissionAmount + "]" :  row.sellerCommissionAmount  : row.sellerCommissionAmount , style:'tableHeader2'} ,
 
                    {text:row.buyerCommission != "" ? row.buyerCommission + "%" : ""   , style:'tableHeader2' }  ,
                    {text: row.buyerCommissionAmount != '' ?  row.rateCurrencyName == 'PKR' ? "Rs." + "[" + row.buyerCommissionAmount + "]" : row.rateCurrencyName == 'USD' ? "$ " + "[" + row.buyerCommissionAmount + "]" : row.rateCurrencyName == 'EUR' ? "€ " + "[" + row.buyerCommissionAmount + "]" : row.rateCurrencyName == 'GBP' ? "GBP " + "[" + row.buyerCommissionAmount + "]" :  row.buyerCommissionAmount  :  row.buyerCommissionAmount  , style:'tableHeader2'} ,
-                   {text: row.sellerPaymentTerm + " | " + row.buyerPaymentTerm , style:'tableHeader2'},
+                   {text: row.paymentTerm , style:'tableHeader2'},
                    {text:row.agent  , style:'tableHeader2' }  
 
                 ]
@@ -1434,7 +1435,7 @@ this.fetch();
 
                    {text:row.buyerCommission != "" ? row.buyerCommission + "%" : ""   , style:'tableHeader2' }  ,
                    {text: row.buyerCommissionAmount != '' ?  row.rateCurrencyName == 'PKR' ? "Rs." + "[" + row.buyerCommissionAmount + "]" : row.rateCurrencyName == 'USD' ? "$ " + "[" + row.buyerCommissionAmount + "]" : row.rateCurrencyName == 'EUR' ? "€ " + "[" + row.buyerCommissionAmount + "]" : row.rateCurrencyName == 'GBP' ? "GBP " + "[" + row.buyerCommissionAmount + "]" :  row.buyerCommissionAmount  :  row.buyerCommissionAmount  , style:'tableHeader2'} ,
-                   {text: row.sellerPaymentTerm + " | " + row.buyerPaymentTerm , style:'tableHeader2'},
+                   {text: row.paymentTerm , style:'tableHeader2'},
                    {text:row.agent  , style:'tableHeader2' }  ,
                    {text:row.contractOwner  , style:'tableHeader2' } , 
                    {text:row.updatedBy  , style:'tableHeader2' }  ,
@@ -1691,7 +1692,7 @@ this.fetch();
           margin: [-20 , 5 , 0 , 0 ],
           table:{
             headerRows : 1,
-            widths : [35, 40, 40, 40 , 30 , 30 , 40 , 35 , 35 , 30  , 30 , 30 , 30
+            widths : [35, 40, 40, 40 , 30 , 30 , 40 , 35 , 35 , 30  , 30 , 30 , 30 , 30
             ],
             body:[
               [
@@ -1703,7 +1704,7 @@ this.fetch();
               {text:'Ext Agent'  , style:'tableHeader'} , 
               {text:'Inv#' , style:'tableHeader'} , 
               {text:'Inv Date' , style:'tableHeader'},
-              
+              {text:'Payment Terms' , style : 'tableHeader'},
               {text:'B/L Date'  , style:'tableHeader'} , 
               {text:'Article'  , style:'tableHeader'} , 
 
@@ -1723,7 +1724,7 @@ this.fetch();
                  {text: row.ext_Agents, style:'tableHeader2'} ,
                   {text:row.saleInvoiceNo  , style:'tableHeader2' }  ,
                   {text: row.saleInvoiceDate , style:'tableHeader2'},
-           
+                  {text:row.paymentTerm , style:'tableHeader2'},
                  {text: row.blDate , style:'tableHeader2'} ,
                   {text:row.article  , style:'tableHeader2' }  , 
                   {text:   row.rateCurrencyName+" "+row.rate +  '/' + row.rateUOMName , style:'tableHeader2' }  , 

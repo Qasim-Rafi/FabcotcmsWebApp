@@ -329,7 +329,7 @@
             </ngx-datatable-column> -->
             <ngx-datatable-column name="Payment Term S|B" [width]="90">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                {{ row.sellerPaymentTerm }}  |    {{ row.buyerPaymentTerm }}  
+                {{ row.paymentTerm }}  
 
               </ng-template>
             </ngx-datatable-column>
@@ -830,7 +830,7 @@
             </ngx-datatable-column> -->
             <ngx-datatable-column name="Payment Term S|B" [width]="90">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                {{ row.sellerPaymentTerm }}  |   {{ row.buyerPaymentTerm }}  
+                {{ row.paymentTerm }}  
 
               </ng-template>
             </ngx-datatable-column>
@@ -1330,8 +1330,8 @@
 
               <div class="html5buttons mrg-tsm">
                 <div class="dt-buttons btn-group btn-group-sm">
-                  <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0"
-                    aria-controls="DataTables_Table_0"><span>Copy</span></a>
+                  <!-- <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0"
+                    aria-controls="DataTables_Table_0"><span>Copy</span></a> -->
                   <!-- <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
                     aria-controls="DataTables_Table_0"><span>CSV</span></a> -->
                   <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
@@ -2340,7 +2340,7 @@
               </ngx-datatable-column>
               <ngx-datatable-column name="Payment Terms" [width]="60">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.paymentTerms }}
+                  {{ row.paymentTerm }}
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="Comm" [width]="100">
@@ -2696,7 +2696,7 @@
               </ngx-datatable-column>
               <ngx-datatable-column name="Payemnt Terms" [width]="120">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.paymentTerms }}
+                  {{ row.paymentTerm }}
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="Matured On" [width]="120">
@@ -3223,6 +3223,7 @@
             <ngx-datatable-column name="Payment Term S|B" [width]="120">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 <!-- {{ row.details }} -->
+                {{row.paymentTerm}}
               </ng-template>
             </ngx-datatable-column>
             <ngx-datatable-column name="Status" [width]="60">
