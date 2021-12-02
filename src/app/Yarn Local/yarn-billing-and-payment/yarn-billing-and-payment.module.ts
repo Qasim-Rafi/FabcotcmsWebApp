@@ -20,6 +20,11 @@ import { EditCommissionComponent } from './edit-commission/edit-commission.compo
 import {ExternalAgentCommissionComponent} from '../yarn-billing-and-payment/external-agent-commission/external-agent-commission.component'
 import {NewCommissionPaymentComponent} from '../yarn-billing-and-payment/new-commission-payment/new-commission-payment.component'
 import {NgxSpinnerModule} from 'ngx-spinner';
+
+import { GridModule, PDFModule, ExcelModule } from '@progress/kendo-angular-grid';
+import { ChartsModule } from '@progress/kendo-angular-charts';
+import { InputsModule } from '@progress/kendo-angular-inputs';
+
 @NgModule({
   declarations: [
     BranchAddressComponent,
@@ -45,7 +50,12 @@ NewCommissionPaymentComponent
     NgSelectModule,
     ReactiveFormsModule,
     NgxDatatableModule,
-    NgbDatepickerModule
+    NgbDatepickerModule,
+    GridModule,
+    ChartsModule,
+    InputsModule,
+    PDFModule,
+    ExcelModule
   ]
 })
 export class YarnBillingAndPaymentModule { }

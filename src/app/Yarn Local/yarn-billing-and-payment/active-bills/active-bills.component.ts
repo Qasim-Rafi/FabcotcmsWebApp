@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClient } from '@angular/common/http';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
@@ -15,7 +15,8 @@ import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
 import {NgxSpinnerService} from 'ngx-spinner'
 import { NgxNumToWordsService, SUPPORTED_LANGUAGE } from 'ngx-num-to-words';
 import { Dateformater } from 'src/app/shared/dateformater';
-
+import { process } from '@progress/kendo-data-query';
+import { DataBindingDirective } from '@progress/kendo-angular-grid';
 @Component({
   selector: 'app-active-bills',
   templateUrl: './active-bills.component.html',
@@ -58,8 +59,10 @@ data2:any = []
 item: any;
 status  ;
 loggedInDepartmentName: string;
+public mySelection: string[] = [];
   url = '/api/BillingPayments/GetAllContractBill'
   lang : SUPPORTED_LANGUAGE = 'en';
+  @ViewChild(DataBindingDirective) dataBinding: DataBindingDirective;
   constructor(    private service: ServiceService,
     private http: HttpClient,
     private _clipboardService: ClipboardService,
@@ -123,7 +126,42 @@ this.fetch();
     this.rows = temp;
 
   }
+  public onFilter(inputValue: string): void {
+    this.rows = process(this.billFilter, {
+        filter: {
+            logic: "or",
+            filters: [
+                {
+                    field: 'buyerName',
+                    operator: 'contains',
+                    value: inputValue
+                },
+                {
+                    field: 'sellerName',
+                    operator: 'contains',
+                    value: inputValue
+                },
+                {
+                    field: 'budget',
+                    operator: 'contains',
+                    value: inputValue
+                },
+                {
+                    field: 'phone',
+                    operator: 'contains',
+                    value: inputValue
+                },
+                {
+                    field: 'address',
+                    operator: 'contains',
+                    value: inputValue
+                }
+            ],
+        }
+    }).data;
 
+    this.dataBinding.skip = 0;
+}
   fetch() {
     this.data2.toDate = this.dateformater.toModel(this.data2.toDate)
     this.data2.FromDate = this.dateformater.toModel(this.data2.FromDate)
