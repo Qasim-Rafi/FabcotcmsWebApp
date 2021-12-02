@@ -70,9 +70,13 @@ constructor(    private service: ServiceService,
   fetch(cb) {
     this.data2.toDate = this.dateformater.toModel(this.data2.toDate)
     this.data2.FromDate = this.dateformater.toModel(this.data2.FromDate)
+   
+    if(this.deptName == undefined){
+      this.deptName = 3;
+    }
     this.spinner.show();
     this.http
-    .get(`${environment.apiUrl}/api/BillingPayments/GetAllContractBillForInvoices/`+ this.data2.toDate + '/' + this.data2.FromDate)
+    .get(`${environment.apiUrl}/api/BillingPayments/GetAllContractBillForInvoices/`+ this.deptName+ '/'   + this.data2.toDate + '/' + this.data2.FromDate)
     .subscribe(res => {
       this.response = res;
      
@@ -138,6 +142,11 @@ constructor(    private service: ServiceService,
   }
   getdept(event){
     this.deptName = event.target.value
+   this.deptName =  parseInt(this.deptName);
+    this.fetch((data) => {
+      this.temp = [...data]; 
+      this.rows = data;
+    });
   }
   genrateInvoices(){
   

@@ -21,6 +21,7 @@ import {ExternalAgentCommissionComponent} from '../yarn-billing-and-payment/exte
 import {NewCommissionPaymentComponent} from '../yarn-billing-and-payment/new-commission-payment/new-commission-payment.component'
 import {NgxSpinnerModule} from 'ngx-spinner';
 
+
 import { GridModule, PDFModule, ExcelModule } from '@progress/kendo-angular-grid';
 import { ChartsModule } from '@progress/kendo-angular-charts';
 import { InputsModule } from '@progress/kendo-angular-inputs';
@@ -51,11 +52,13 @@ NewCommissionPaymentComponent
     ReactiveFormsModule,
     NgxDatatableModule,
     NgbDatepickerModule,
+
     GridModule,
     ChartsModule,
     InputsModule,
     PDFModule,
     ExcelModule
-  ]
+ 
+]
 })
 export class YarnBillingAndPaymentModule { }
