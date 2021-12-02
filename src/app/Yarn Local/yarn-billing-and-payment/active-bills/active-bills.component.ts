@@ -245,12 +245,13 @@ this.fetch();
 
 
 print(){
+  this.selectedids = this.mySelection
   
-  for(let i=0; i<this.selectedids.selected.length; i++){
-    this.arrayNew[i] = this.selectedids.selected[i].id;
+  for(let i=0; i<this.selectedids.length; i++){
+    this.arrayNew[i] = this.selectedids[i];
   }
 
-  if(this.arrayNew.length === 0  || this.selectedids.selected.length === 0  ){
+  if(this.arrayNew.length === 0  || this.selectedids.length === 0  ){
     this.toastr.error("PLease select atleast one bill to generate print" , 'Message')
   }
   else{

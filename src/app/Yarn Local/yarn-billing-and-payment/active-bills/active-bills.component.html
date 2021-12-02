@@ -195,23 +195,14 @@
   <div class="card-body "> 
       <div class="panel-body">
            
-      
+<!--       
         <ngx-datatable class="bootstrap datatable-row-wrapper" [columns]="columns" [rows]="rows" [columnMode]="'flex'"
         
           [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" 
           (select)="onSelect($event)"
           [selected]="selected" [selectionType]="SelectionType.checkbox" [sorts]="[{ prop: 'id', dir: 'desc' }]" (select)="onSelect($event)">
        
-          <!-- <ngx-datatable-column prop="selected" name="Select" [width]="20" [flexGrow]="0.03" [width]="30"
-            [headerCheckboxable]="true" [checkboxable]="true">
-            <ng-template let-row="row" ngx-datatable-cell-template>
-            </ng-template>
-          </ngx-datatable-column> -->
-          <!-- <ngx-datatable-column name="S.No" [width]="80" prop="sno" [flexGrow]="0.04">
-            <ng-template let-row="row" let-rowIndex="rowIndex" let-expanded="expanded" ngx-datatable-cell-template>
-              {{rowIndex+1}}
-            </ng-template>
-          </ngx-datatable-column> -->
+     
 
           <ngx-datatable-column prop="selected"  [width]="20"   [flexGrow]="0.03"
           [width]="30"
@@ -225,7 +216,6 @@
 
           <ngx-datatable-column name="Bill For" [width]="80" prop="sellerName" [flexGrow]="0.05">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-      <!-- {{row.sellerName}} -->
             <p *ngIf = "row.sellerName !=null">Seller </p>
             <p *ngIf = "row.buyerName !=null">Buyer </p>
 
@@ -273,11 +263,7 @@
             </ng-template>
           </ngx-datatable-column>
       
-          <!-- <ngx-datatable-column name="Due Date" [width]="80" prop="dueDate" [flexGrow]="0.06">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{row.dueDate}}
-            </ng-template>
-          </ngx-datatable-column> -->
+      
 
           <ngx-datatable-column name="Status" [width]="80" prop="billStatus" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
@@ -299,7 +285,176 @@
             </ng-template>
           </ngx-datatable-column>
       
-        </ngx-datatable>
+        </ngx-datatable> -->
+
+        <kendo-grid
+        [kendoGridBinding]="rows"
+        kendoGridSelectBy="id"
+        [selectedKeys]="mySelection"
+        [pageSize]="20"
+        [pageable]="true"
+        [sortable]="true"
+        [groupable]="true"
+        [reorderable]="true"
+        [resizable]="true"
+        [height]="500"
+        [columnMenu]="{ filter: true }"
+        >
+        <ng-template kendoGridToolbarTemplate>
+            <input placeholder="Search in all columns..." #newItem kendoTextBox (input)="onFilter(newItem.value)"/>
+            <kendo-grid-spacer></kendo-grid-spacer>
+            <!-- <button kendoGridExcelCommand type="button" icon="file-excel">Export to Excel</button>
+            <button kendoGridPDFCommand icon="file-pdf">Export to PDF</button> -->
+        </ng-template>
+        <kendo-grid-checkbox-column [width]="35" [headerClass]="{'text-center': true}"  [class]="{'text-center': true}" [resizable]="false" [columnMenu]="false" [showSelectAll]="true"></kendo-grid-checkbox-column>
+        
+        <!-- <kendo-grid-column-group title="Employee" [columnMenu]="false"> -->
+            <kendo-grid-column field="sellerName" title="Bill For" [width]="120">
+                <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                    <!-- <div class="customer-photo" [ngStyle]="{'background-image' : photoURL(dataItem)}"></div> -->
+                    <p *ngIf = "dataItem.sellerName !=null">Seller </p>
+                    <p *ngIf = "dataItem.buyerName !=null">Buyer </p>
+                </ng-template>
+            </kendo-grid-column>
+        
+            <kendo-grid-column field="buyerName" title="Bill To" [width]="120">
+              <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                {{dataItem.sellerName}}  <br>  {{dataItem.buyerName}}
+              </ng-template>
+              
+            </kendo-grid-column>
+            <kendo-grid-column field="billNumber" title="Bill #" [width]="120">
+              <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                {{dataItem.billNumber}}
+              </ng-template>
+              
+            </kendo-grid-column>
+            <kendo-grid-column field="autoContractNumber" title="Contract #" [width]="120">
+              <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                <button class="clr" (click) = "navigateEditContract(dataItem)" >
+                  {{dataItem.autoContractNumber}}
+                </button>
+              </ng-template>
+              
+            </kendo-grid-column>
+            <kendo-grid-column field="billGeneratedDateTime" title="Bill Date" [width]="120">
+              <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                {{dataItem.billGeneratedDateTime}}
+              </ng-template>
+              
+            </kendo-grid-column>
+            <kendo-grid-column field="saleInvoiceNo" title="No.Sale Inv" [width]="120">
+              <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                {{dataItem.saleInvoiceNo}}
+              </ng-template>
+              
+            </kendo-grid-column>
+            <kendo-grid-column field="billAmount" title="Bill Amount" [width]="120">
+              <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                {{dataItem.billAmount}}
+              </ng-template>
+              
+            </kendo-grid-column>
+            <kendo-grid-column field="taxAmount" title="Tax Amount" *ngIf = "loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Fabric Export' " [width]="120">
+              <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                {{dataItem.taxAmount}}%
+              </ng-template>
+              
+            </kendo-grid-column>
+            <kendo-grid-column field="billStatus" title="Status" [width]="120">
+              <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                <span class="badge badge-primary"> {{dataItem.billStatus}}</span>
+              </ng-template>
+              
+            </kendo-grid-column>
+            <kendo-grid-column field="action" title="Action" [width]="120">
+              <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                <div class="ibox-tools text-center">
+                  <button type="button" class="btn editIconBack px-1 py-1" data-toggle="tooltip" data-placement="top" title=""
+                    data-original-title="open" (click)="navigateOpenBill(dataItem)"><i class="far fa-edit"></i></button>
+                  <button type="button" class="btn editIconBack px-1 py-1" data-toggle="tooltip" data-placement="top" title=""
+                    (click)="navigatePaymentForm('addPayment' , dataItem)"><i class="fas fa-money-check-alt"></i></button>
+                </div>
+              </ng-template>
+              
+            </kendo-grid-column>
+    
+            <!-- <kendo-grid-column field="country" title="Country" [width]="100" [class]="{'text-center': true}" [resizable]="false">
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    <img class="flag" [src]="flagURL(dataItem)" width="30">
+                </ng-template>
+            </kendo-grid-column> -->
+        
+            <!-- <kendo-grid-column field="is_online" title="Status" [width]="100" [class]="{'text-center': true}" [resizable]="false" filter="boolean">
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    <span *ngIf="dataItem.is_online === true" class="badge badge-success">Online</span>
+                    <span *ngIf="dataItem.is_online === false" class="badge badge-danger">Offline</span>
+                </ng-template>
+            </kendo-grid-column> -->
+        
+        <!-- </kendo-grid-column-group> -->
+        <!-- <kendo-grid-column-group title="Performance" [columnMenu]="false">
+            <kendo-grid-column
+                field="rating"
+                title="Rating"
+                [width]="110"
+                [resizable]="false"
+                filter="numeric"
+            >
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    <kendo-rating
+                        [value]="dataItem.rating"
+                        [max]="5"
+                    ></kendo-rating>
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column
+                field="target"
+                title="Engagement"
+                [width]="230"
+                [resizable]="false"
+                filter="numeric"
+            >
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    <kendo-sparkline type="bar"
+                        [data]="dataItem.target"
+                        [tooltip]="{visible: false}"
+                        [transitions]="true"
+                        [seriesDefaults]="{labels: {background: 'none', visible: true, format: '{0}%'}}"
+                    >
+                        <kendo-chart-area opacity="0" [width]="200"></kendo-chart-area>
+                        <kendo-chart-value-axis>
+                            <kendo-chart-value-axis-item [min]="0" [max]="130">
+                            </kendo-chart-value-axis-item>
+                        </kendo-chart-value-axis>
+                    </kendo-sparkline>
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column
+                field="budget"
+                title="Budget"
+                [width]="100"
+                filter="numeric"
+            >
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    <span [ngClass]="{'red text-bold': dataItem.budget < 0}">{{ dataItem.budget | currency }}</span>
+                </ng-template>
+            </kendo-grid-column>
+        </kendo-grid-column-group>
+        <kendo-grid-column-group title="Contacts" [columnMenu]="false">
+            <kendo-grid-column field="phone" title="Phone" [width]="130">
+            </kendo-grid-column>
+            <kendo-grid-column field="address" title="Address" [width]="200">
+            </kendo-grid-column>
+        </kendo-grid-column-group> -->
+<!--         
+        <kendo-grid-pdf fileName="Employees.pdf" [repeatHeaders]="true"></kendo-grid-pdf>
+        <kendo-grid-excel fileName="Employees.xlsx"></kendo-grid-excel> -->
+        </kendo-grid>
+
+
+
+
         <p class="col-md-12  totalAmnt">Total Amount : <span>  &nbsp;  &nbsp; {{dashboardAmnt}} </span></p>
       </div>
       
@@ -309,115 +464,7 @@
 </div>
 
 
-<kendo-grid
-[kendoGridBinding]="rows"
-kendoGridSelectBy="id"
-[selectedKeys]="mySelection"
-[pageSize]="20"
-[pageable]="true"
-[sortable]="true"
-[groupable]="true"
-[reorderable]="true"
-[resizable]="true"
-[height]="500"
-[columnMenu]="{ filter: true }"
->
-<ng-template kendoGridToolbarTemplate>
-    <input placeholder="Search in all columns..." #newItem kendoTextBox (input)="onFilter(newItem.value)"/>
-    <kendo-grid-spacer></kendo-grid-spacer>
-    <button kendoGridExcelCommand type="button" icon="file-excel">Export to Excel</button>
-    <button kendoGridPDFCommand icon="file-pdf">Export to PDF</button>
-</ng-template>
-<kendo-grid-checkbox-column [width]="45" [headerClass]="{'text-center': true}"  [class]="{'text-center': true}" [resizable]="false" [columnMenu]="false" [showSelectAll]="true"></kendo-grid-checkbox-column>
 
-<!-- <kendo-grid-column-group title="Employee" [columnMenu]="false"> -->
-    <kendo-grid-column field="sellerName" title="Bill For" [width]="220">
-        <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
-            <!-- <div class="customer-photo" [ngStyle]="{'background-image' : photoURL(dataItem)}"></div> -->
-            <p *ngIf = "dataItem.sellerName !=null">Seller </p>
-            <p *ngIf = "dataItem.buyerName !=null">Buyer </p>
-        </ng-template>
-    </kendo-grid-column>
-
-    <kendo-grid-column field="buyerName" title="Bill for" [width]="220">
-      <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
-        {{dataItem.sellerName}}  <br>  {{dataItem.buyerName}}
-      </ng-template>
-      
-    </kendo-grid-column>
-
-    <!-- <kendo-grid-column field="country" title="Country" [width]="100" [class]="{'text-center': true}" [resizable]="false">
-        <ng-template kendoGridCellTemplate let-dataItem>
-            <img class="flag" [src]="flagURL(dataItem)" width="30">
-        </ng-template>
-    </kendo-grid-column> -->
-
-    <!-- <kendo-grid-column field="is_online" title="Status" [width]="100" [class]="{'text-center': true}" [resizable]="false" filter="boolean">
-        <ng-template kendoGridCellTemplate let-dataItem>
-            <span *ngIf="dataItem.is_online === true" class="badge badge-success">Online</span>
-            <span *ngIf="dataItem.is_online === false" class="badge badge-danger">Offline</span>
-        </ng-template>
-    </kendo-grid-column> -->
-
-<!-- </kendo-grid-column-group> -->
-<!-- <kendo-grid-column-group title="Performance" [columnMenu]="false">
-    <kendo-grid-column
-        field="rating"
-        title="Rating"
-        [width]="110"
-        [resizable]="false"
-        filter="numeric"
-    >
-        <ng-template kendoGridCellTemplate let-dataItem>
-            <kendo-rating
-                [value]="dataItem.rating"
-                [max]="5"
-            ></kendo-rating>
-        </ng-template>
-    </kendo-grid-column>
-    <kendo-grid-column
-        field="target"
-        title="Engagement"
-        [width]="230"
-        [resizable]="false"
-        filter="numeric"
-    >
-        <ng-template kendoGridCellTemplate let-dataItem>
-            <kendo-sparkline type="bar"
-                [data]="dataItem.target"
-                [tooltip]="{visible: false}"
-                [transitions]="true"
-                [seriesDefaults]="{labels: {background: 'none', visible: true, format: '{0}%'}}"
-            >
-                <kendo-chart-area opacity="0" [width]="200"></kendo-chart-area>
-                <kendo-chart-value-axis>
-                    <kendo-chart-value-axis-item [min]="0" [max]="130">
-                    </kendo-chart-value-axis-item>
-                </kendo-chart-value-axis>
-            </kendo-sparkline>
-        </ng-template>
-    </kendo-grid-column>
-    <kendo-grid-column
-        field="budget"
-        title="Budget"
-        [width]="100"
-        filter="numeric"
-    >
-        <ng-template kendoGridCellTemplate let-dataItem>
-            <span [ngClass]="{'red text-bold': dataItem.budget < 0}">{{ dataItem.budget | currency }}</span>
-        </ng-template>
-    </kendo-grid-column>
-</kendo-grid-column-group>
-<kendo-grid-column-group title="Contacts" [columnMenu]="false">
-    <kendo-grid-column field="phone" title="Phone" [width]="130">
-    </kendo-grid-column>
-    <kendo-grid-column field="address" title="Address" [width]="200">
-    </kendo-grid-column>
-</kendo-grid-column-group> -->
-
-<kendo-grid-pdf fileName="Employees.pdf" [repeatHeaders]="true"></kendo-grid-pdf>
-<kendo-grid-excel fileName="Employees.xlsx"></kendo-grid-excel>
-</kendo-grid>
 
     </div>
     </div>
