@@ -11,7 +11,7 @@
       </div>
   
       <div class="col-sm-12 col-md-6 col-lg-4">
-        <ol class="breadcrumb flt-RnL">
+        <ol class="breadcrumb ">
           <li class="breadcrumb-item"><a href="#">Billing & Payment</a></li>
           <li class="breadcrumb-item active" aria-current="page">
             Active Bills
@@ -33,7 +33,7 @@
 <div class="row mb-4">
 
   <div class="col-md-3">
-    <div class="widget style1 yellow-bg  shadow">
+    <div class="widget style1 yellow-bg  ">
       <div class="row">
         <div class="col-md-4">
           <i class="fas fa-file-invoice-dollar fa-4x"></i>
@@ -127,8 +127,8 @@
      
         <div class="row mb-4 justify-content-center">
           <div class="col-auto">
-            <button type="button" class="btn btn-primary btn-sm float-right" (click)= "print()" 
-          
+            <button type="button" class="btn btn-primary btn-sm float-right"  
+           (click) = "getSelectedRowData()"
             >
               <i class="fa fa-print"></i> Bulk Print
             </button>
@@ -151,7 +151,7 @@
         
             <div class="row justify-content-end">
 
-              <div class="col-md-4 pr-0">
+              <div class="col-md-4 ">
 
                 <div class="form-group row">
                   <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
@@ -202,7 +202,8 @@
           (select)="onSelect($event)"
           [selected]="selected" [selectionType]="SelectionType.checkbox" [sorts]="[{ prop: 'id', dir: 'desc' }]" (select)="onSelect($event)">
        
-     
+
+        
 
           <ngx-datatable-column prop="selected"  [width]="20"   [flexGrow]="0.03"
           [width]="30"
@@ -262,7 +263,6 @@
               {{row.taxAmount}}%
             </ng-template>
           </ngx-datatable-column>
-      
       
 
           <ngx-datatable-column name="Status" [width]="80" prop="billStatus" [flexGrow]="0.06">

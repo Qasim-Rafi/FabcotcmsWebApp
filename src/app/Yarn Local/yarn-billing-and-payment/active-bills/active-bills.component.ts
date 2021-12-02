@@ -17,6 +17,7 @@ import { NgxNumToWordsService, SUPPORTED_LANGUAGE } from 'ngx-num-to-words';
 import { Dateformater } from 'src/app/shared/dateformater';
 import { process } from '@progress/kendo-data-query';
 import { DataBindingDirective } from '@progress/kendo-angular-grid';
+
 @Component({
   selector: 'app-active-bills',
   templateUrl: './active-bills.component.html',
@@ -58,6 +59,10 @@ printData = []
 data2:any = []
 item: any;
 status  ;
+gridApi :  any;
+objList : any;
+ defaultColDef : any;
+ rowSelection : any ;
 loggedInDepartmentName: string;
 public mySelection: string[] = [];
   url = '/api/BillingPayments/GetAllContractBill'
@@ -72,13 +77,19 @@ public mySelection: string[] = [];
     private spinner: NgxSpinnerService,
     private ngxNumToWordsService: NgxNumToWordsService
 
-    ) { }
+    ) {  this.defaultColDef = {
+      flex: 1,
+      minWidth: 100,
+      resizable: true,
+     
+    };
+    this.rowSelection = 'multiple';}
 
     navigatePaymentForm(statusCheck , obj ) {
       this.router.navigate(['/yarn-billing-and-payment/payment-form'], { queryParams: { statusCheck: statusCheck 
          , id:obj.id , contractId:obj.contractId}  });
    };
-
+  
     navigateOpenBill(obj) {
       this.router.navigate(['/yarn-billing-and-payment/open-bill'] , { queryParams: {id: obj.id} });
     };
@@ -126,6 +137,7 @@ this.fetch();
     this.rows = temp;
 
   }
+
   public onFilter(inputValue: string): void {
     this.rows = process(this.billFilter, {
         filter: {
@@ -201,7 +213,69 @@ this.fetch();
       }
     });
   }
+  getSelectedRowData() {
+    let selectedNodes = this.gridApi.getSelectedNodes();
+    let selectedData = selectedNodes.map(node => node.data.id);
+    // alert(`Selected Nodes:\n${JSON.stringify(selectedData)}`);
+    console.log(selectedData)
+    if(selectedData.length === 0 ){
+      this.toastr.error("PLease select atleast one bill to generate print" , 'Message')
+    }
+    else{
+       this.item = [...new Set(selectedData)];
+  localStorage.setItem('bulkPrint', this.item);
+  this.router.navigate([]).then((result) => {
+    window.open('/bulkPrint' , '_blank');
+  });
+  }
 
+  }
+  // onRowSelected(event) {
+  //   var rowCount = event.data.id;
+  //   console.log(rowCount)
+  // }
+
+  onGridReady(params) {
+    this.gridApi = params.api;
+    this.data2.toDate = this.dateformater.toModel(this.data2.toDate)
+    this.data2.FromDate = this.dateformater.toModel(this.data2.FromDate)
+    this.http
+      .get(
+        `${environment.apiUrl}/api/BillingPayments/GetAllContractBill/`+ this.data2.toDate + '/' + this.data2.FromDate
+      )
+      .subscribe(res => {
+        this.response = res;
+       
+      if(this.response.success==true)
+      {
+      this.data=this.response.data;
+      this.rows = this.data.objList;
+      for(let i = 0 ; i < this.rows.length ; i++){
+        this.rows[i].billGeneratedDateTime = this.rows[i].billGeneratedDateTime.slice(0 ,10)
+      }
+  
+      this.dashboardAmnt = this.data.totalBillAmount;
+      this.billFilter = [...this.rows];
+  
+      this.listCount = this.rows.length;
+      // cb(this.data);
+      this.spinner.hide();
+  
+      }
+      else{
+        this.toastr.error(this.response.message, 'Message.');
+        this.spinner.hide();
+      
+      }
+  
+      }, err => {
+        if ( err.status == 400) {
+    this.toastr.error(err.error.message, 'Message.');
+    this.spinner.hide();
+  
+        }
+      });
+  }
 
 
   // fetch2() {
