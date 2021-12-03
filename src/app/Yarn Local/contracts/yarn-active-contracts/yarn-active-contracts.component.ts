@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -8,6 +8,8 @@ import { GlobalConstants } from 'src/app/Common/global-constants';
 import { ServiceService } from 'src/app/shared/service.service';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
+import { process } from '@progress/kendo-data-query';
+import { DataBindingDirective } from '@progress/kendo-angular-grid';
 
 @Component({
   selector: 'app-yarn-active-contracts',
@@ -30,7 +32,7 @@ export class YarnActiveContractsComponent implements OnInit {
   receivedCount: number;
   onHoldCount: number;
  status : string =  "All" ;
-
+ @ViewChild(DataBindingDirective) dataBinding: DataBindingDirective;
   constructor(
     private router: Router,
     private http: HttpClient,
@@ -64,16 +66,7 @@ export class YarnActiveContractsComponent implements OnInit {
     const temp = this.temp.filter(function (d) {
       return (
         d.autoContractNumber.toLowerCase().indexOf(val) !== -1 ||
-     
-        // d.contractOn.toLowerCase().indexOf(val) !== -1 ||
-        // d.articleName != null?d.articleName: "".toLowerCase().indexOf(val) !== -1 ||
-        // d.price.toString().indexOf(val) !== -1 ||
-        // d.quantity.toString().indexOf(val) !== -1 ||
-        // d.buyerName.toLowerCase().indexOf(val) !== -1 ||
-        // d.sellerName.toLowerCase().indexOf(val) !== -1 ||
-        // d.poNumber.toString().indexOf(val) !== -1 ||
-        // d.scNumber.toString().indexOf(val) !== -1 ||
-        // d.dispatchQuantity.toLowerCase().indexOf(val) !== -1 ||
+
          !val);
     });
     this.rows = temp;
@@ -87,66 +80,6 @@ export class YarnActiveContractsComponent implements OnInit {
   navigateAddContract() {
     this.router.navigate(['/FabCot/add-new-contract']);
   };
-// activeContract(){
-//   this.status = null;
-// }
-
-// openContract(){
-//   this.status = "Open";
-//   this.fetch((data) => {
-//     this.temp = [...data]; 
-//     this.rows = data;
-//   });
-
-// }
-
-
-// bill_awaitedContract(){
-//   this.status = "BillAwaited";
-//     this.fetch((data) => {
-//       this.temp = [...data]; 
-//       this.rows = data;
-//     });
-// }
-
-// billedContract(){
-//   this.status = "Billed";
-//   this.fetch((data) => {
-//     this.temp = [...data]; 
-//     this.rows = data;
-//   });
-// }
-
-// receivableContract(){
-//   this.status = "Receivable";
-//   this.fetch((data) => {
-//     this.temp = [...data]; 
-//     this.rows = data;
-//   });
-// }
-
-// receivedContract(){
-//   this.status = "Received";
-//   this.fetch((data) => {
-//     this.temp = [...data]; 
-//     this.rows = data;
-//   });
-// }
-// closeContract(){
-//   this.status = "Closed";
-//   this.fetch((data) => {
-//     this.temp = [...data]; 
-//     this.rows = data;
-//   });
-// }
-
-// on_HandContract(){
-//   this.status = "OnHold";
-//   this.fetch((data) => {
-//     this.temp = [...data]; 
-//     this.rows = data;
-//   });
-// }
 
 contractStatus(check){
 if ( check == 'All'){
@@ -207,7 +140,56 @@ else{
   });
 }
 }
+public onFilter(inputValue: string): void {
+  this.rows = process(this.temp, {
+      filter: {
+          logic: "or",
+          filters: [
+              {
+                  field: 'contractAge',
+                  operator: 'contains',
+                  value: inputValue
+              },
+              {
+                  field: 'autoContractNumber',
+                  operator: 'contains',
+                  value: inputValue
+              },
+              {
+                  field: 'contractOn',
+                  operator: 'contains',
+                  value: inputValue
+              },
+              {
+                  field: 'articleName',
+                  operator: 'contains',
+                  value: inputValue
+              },
+           
+              {
+                  field: 'buyerName',
+                  operator: 'contains',
+                  value: inputValue
+              }
+              ,
+              {
+                  field: 'sellerName',
+                  operator: 'contains',
+                  value: inputValue
+              }
+              ,
+              {
+                  field: 'price',
+                  operator: 'contains',
+                  value: inputValue
+              }
+          
+          ],
+      }
+  }).data;
 
+  this.dataBinding.skip = 0;
+}
 
 fetch(cb) {
   this.spinner.show();

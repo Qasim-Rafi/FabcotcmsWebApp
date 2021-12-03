@@ -48,7 +48,9 @@ import { NgProgressModule } from 'ngx-progressbar';
 import { NgxScrollTopModule } from 'ngx-scrolltop';
 import { SummaryComponent } from './Modals/summary/summary.component';
 import { AgGridModule } from 'ag-grid-angular';
-
+import { GridModule, PDFModule, ExcelModule } from '@progress/kendo-angular-grid';
+import { ChartsModule } from '@progress/kendo-angular-charts';
+import { InputsModule } from '@progress/kendo-angular-inputs';
 @NgModule({
   declarations: [AddNewContractsComponent,
     EditDispatchComponent,
@@ -89,6 +91,11 @@ SummaryComponent,
     NgxDatatableModule,
     ReactiveFormsModule,
     NgxScrollTopModule,
+    InputsModule,
+    ChartsModule,
+    GridModule,
+    PDFModule,
+    ExcelModule,
     AgGridModule.withComponents([])
   ]
 })

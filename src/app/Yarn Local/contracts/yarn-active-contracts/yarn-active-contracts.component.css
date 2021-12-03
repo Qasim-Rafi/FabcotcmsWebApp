@@ -149,3 +149,8 @@ input[type="radio"]{
 {
   color: #fff;
 }
+
+input.k-textbox {
+  padding: 4px 8px;
+  width: -webkit-fill-available;
+}
