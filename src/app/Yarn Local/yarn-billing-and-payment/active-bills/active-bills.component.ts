@@ -154,17 +154,36 @@ this.fetch();
                     value: inputValue
                 },
                 {
-                    field: 'budget',
+                    field: 'billNumber',
                     operator: 'contains',
                     value: inputValue
                 },
                 {
-                    field: 'phone',
+                    field: 'autoContractNumber',
                     operator: 'contains',
                     value: inputValue
                 },
+             
                 {
-                    field: 'address',
+                    field: 'billGeneratedDateTime',
+                    operator: 'contains',
+                    value: inputValue
+                }
+                ,
+                {
+                    field: 'taxAmount',
+                    operator: 'contains',
+                    value: inputValue
+                }
+                ,
+                {
+                    field: 'billAmount',
+                    operator: 'contains',
+                    value: inputValue
+                }
+                ,
+                {
+                    field: 'saleInvoiceNo',
                     operator: 'contains',
                     value: inputValue
                 }

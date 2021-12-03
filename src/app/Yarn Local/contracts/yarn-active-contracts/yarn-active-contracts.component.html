@@ -143,61 +143,26 @@
           <i class="fa fa-filter"></i>
       </button> -->
       <!-- add new commision button -->
+
       <div class="row">
-      <button type="button" class="btn btn-primary btn-sm mr-1 col-md-3"
-      (click)="navigateAddContract()"
-      >
-          <i class="fa fa-plus"></i> Add new Contract
-      </button>
-      <div class="col-md-4"><label >TotalQuantity : {{totalDisplayPrice.totalQuantity}}</label></div>
-      <!-- <div><label>TotalDispatch :  {{totalDisplayPrice.totalDispatch}}</label></div> -->
-      <div class="col-md-4"><label>TotalBalance : {{totalDisplayPrice.totalBalance}}</label></div>
-      </div>
-    </div>
-        <div class="col-md-6 mrg-tsm ">
-
-          <div class="form-group row">
-            <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
-            <div class="col-sm-7">
-              <input type="text" class="form-control" id="inputSearch" (keyup)="searchFilter($event)"
-              placeholder="Search by Contract Number, Buyer and Seller Name"
-              >
-            </div>
-
-
-            <div class="html5buttons mrg-tsm">
-              <div class="dt-buttons btn-group btn-group-sm">
-                <!-- <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0"
-                  aria-controls="DataTables_Table_0"
-              (click)="copyArticleList()"
-                  ><span>Copy</span></a>
-                <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
-                  aria-controls="DataTables_Table_0"
-                  (click)="articleCsvFile()"
-                  ><span>CSV</span></a> -->
-                <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
-                  aria-controls="DataTables_Table_0" 
-                  (click)="contractExcelFile()"><span>Excel</span></a>
-                <!-- <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0"
-                  aria-controls="DataTables_Table_0"
-                  (click)="articlePdf()"
-                  ><span>PDF</span></a>
-                <a class="btn btn-default buttons-print bg-white" tabindex="0"
-                  aria-controls="DataTables_Table_0"
-                  (click)="printArticleList()"
-                  ><span>Print</span></a> -->
-              </div>
-            </div>
-          </div>
-
-        
-
+        <button type="button" class="btn btn-primary btn-sm mr-1 col-md-3"
+        (click)="navigateAddContract()"
+        >
+            <i class="fa fa-plus"></i> Add new Contract
+        </button>
+        <div class="col-md-4"><label >TotalQuantity : {{totalDisplayPrice.totalQuantity}}</label></div>
+        <div class="col-md-4"><label>TotalBalance : {{totalDisplayPrice.totalBalance}}</label></div>
         </div>
+
+
+   
+    </div>
+     
       </div>
 
       
       <div class="panel-body">
-
+<!-- 
         <ngx-datatable #myTable class="bootstrap datatable-row-wrapper" [columns]="columns" [rows]="rows" [columnMode]="'force'"
         [headerHeight]="50" [footerHeight]="50" [limit]="4" [scrollbarH]="true" [sorts]="[{ prop: 'autoContractNumber', dir: 'desc' }]" [rowHeight]="'auto'"
        >
@@ -310,7 +275,140 @@
             </ng-template>
           </ngx-datatable-column>
 
-        </ngx-datatable>
+        </ngx-datatable> -->
+
+        <kendo-grid
+        [kendoGridBinding]="rows"
+        kendoGridSelectBy="id"
+        [pageSize]="20"
+        [pageable]="true"
+        [sortable]="true"
+        [reorderable]="true"
+        [resizable]="true"
+        [height]="800"
+        [columnMenu]="{ filter: true }"
+        >
+        <ng-template kendoGridToolbarTemplate>
+          <input placeholder="Search in all columns..." #newItem kendoTextBox (input)="onFilter(newItem.value)"/>
+  
+
+
+
+      
+            <kendo-grid-spacer></kendo-grid-spacer>
+            <div class="row">
+              <div class="col-md-12 mb-3">
+                <div class="row justify-content-end">
+                  <div class="html5buttons mrg-tsm">
+                    <div class="dt-buttons btn-group btn-group-sm">
+                      <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
+                      (click)="contractExcelFile()"  
+                      aria-controls="DataTables_Table_0"><span>Excel</span></a>
+                    </div>
+                  </div>
+            
+                </div>
+            
+              </div>
+            </div>
+        </ng-template>
+        <kendo-grid-checkbox-column [width]="35" [headerClass]="{'text-center': true}"  [class]="{'text-center': true}" [resizable]="false" [columnMenu]="false" [showSelectAll]="true"></kendo-grid-checkbox-column>
+        
+            <kendo-grid-column field="Action" title="Action" [width]="120">
+                <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                  <div class="ibox-tools text-center">
+
+                    <span  class="editIconBack1 px-1 py-1 "
+                    (click)="navigateEditContract(dataItem)"
+                    >
+                      <i class="far fa-edit edit  "></i>
+                    </span>
+    
+                    <span type="button" class="editIconBack1 px-1 py-1" (click) = "cloneContract(dataItem)">
+                      <i class="far fa-copy"></i>
+                    </span>
+                    <span  class="editIconBack1 px-1 py-1" 
+                   
+                    >
+                      <i class="fa fa-th edit"></i>
+                    </span>
+    
+                    <span  class="deleteIconBack1 px-1 py-1" 
+                    (click)="deleteContract(dataItem)"
+                    >
+                      <i class="far fa-trash-alt edit"></i>
+                    </span>
+    
+                  </div>
+                </ng-template>
+            </kendo-grid-column>
+        
+            <kendo-grid-column field="contractAge" title="Age" [width]="80">
+              <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                <span class="badge badge-primary">{{dataItem.contractAge}}</span>
+              </ng-template>
+              
+            </kendo-grid-column>
+            <kendo-grid-column field="autoContractNumber" title="Details" [width]="180">
+              <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                <p class="text-left">  <strong> {{dataItem.autoContractNumber}} </strong>  
+                  <br>
+                  B: &nbsp;{{dataItem.buyerName}}  <br>
+                  S: &nbsp; {{dataItem.sellerName}} </p> 
+              </ng-template>
+              
+            </kendo-grid-column>
+            <kendo-grid-column field="contractOn" title="Dated" [width]="100">
+              <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                
+                  {{dataItem.contractOn}}
+              </ng-template>
+              
+            </kendo-grid-column>
+            <kendo-grid-column field="articleName" title="Article/Cons." [width]="120">
+              <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                {{dataItem.articleName}}
+              </ng-template>
+              
+            </kendo-grid-column>
+            <kendo-grid-column field="price" title="Price" [width]="120">
+              <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                {{dataItem.currencyCode}} {{dataItem.price}} / {{dataItem.uomName}}
+              </ng-template>
+              
+            </kendo-grid-column>
+            <kendo-grid-column field="quantity" title="Qty" [width]="120">
+              <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                {{dataItem.quantity}}
+              </ng-template>
+              
+            </kendo-grid-column>
+            <kendo-grid-column field="poNumber" title="PO#" [width]="120">
+              <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                {{dataItem.poNumber}}
+              </ng-template>
+              
+            </kendo-grid-column>
+            <kendo-grid-column field="scNumber" title="SC#" [width]="120">
+              <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                {{dataItem.scNumber}}
+              </ng-template>
+              
+            </kendo-grid-column>
+            <kendo-grid-column field="dispatchQuantity" title="Dispatch(Inv)" [width]="120">
+              <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                {{dataItem.dispatchQuantity}}
+              </ng-template>
+              
+            </kendo-grid-column>
+
+
+
+         
+        </kendo-grid>
+
+
+
       </div>
 
       

@@ -149,11 +149,15 @@ constructor(    private service: ServiceService,
     });
   }
   genrateInvoices(){
-  
+ if(this.datatext.textValue == 0){
+  this.toastr.error("PLease enter valid tax%" , 'Message')
+ }
+ else{
     this.ids=this.selected.map(a => a.contractId);
     let varr=  {
       "taxPercentage": this.datatext.textValue,
-       "contractIds":this.ids
+       "contractIds":this.ids,
+       "departmentId":this.deptName
     }
     this.spinner.show();
     this.http.
@@ -163,6 +167,7 @@ constructor(    private service: ServiceService,
         this.response = res;
         if (this.response.success == true){
           this.toastr.success(this.response.message, 'Message.');
+          this.datatext.textValue = ''
           this.fetch((data) => {
             this.temp = [...data]; 
             this.rows = data;
@@ -182,6 +187,7 @@ constructor(    private service: ServiceService,
         console.log(messages);
     this.spinner.hide();
       });
+    }
   }
 
   print(){

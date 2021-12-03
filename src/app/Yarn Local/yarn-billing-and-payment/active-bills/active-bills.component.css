@@ -75,3 +75,8 @@ overflow-x: hidden;
 div {
   overflow-x: hidden;
   }
+
+  input.k-textbox {
+    padding: 4px 8px;
+    width: -webkit-fill-available;
+}

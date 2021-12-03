@@ -10,14 +10,6 @@
         </h2>
       </div>
   
-      <div class="col-sm-12 col-md-6 col-lg-4">
-        <ol class="breadcrumb ">
-          <li class="breadcrumb-item"><a href="#">Billing & Payment</a></li>
-          <li class="breadcrumb-item active" aria-current="page">
-            Active Bills
-          </li>
-        </ol>
-      </div>
     </div>
 
 
@@ -30,7 +22,7 @@
   </div>
 
 <!--Start Info boxes -->
-<div class="row mb-4">
+<div class="row mb-1">
 
   <div class="col-md-3">
     <div class="widget style1 yellow-bg  ">
@@ -98,7 +90,7 @@
       
       <div class="panel-heading">
 
-        <div class="row mb-3">
+        <div class="row mb-1">
 
           <div class= "col-md-1 ">
               <span class="date-Label text_Navy">From: &nbsp;</span>
@@ -144,49 +136,6 @@
             </div>
           </form>
         </div>
-      
-  
-        <div class="row">
-          <div class="col-md-12 mb-3">
-        
-            <div class="row justify-content-end">
-
-              <div class="col-md-4 ">
-
-                <div class="form-group row">
-                  <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
-                  <div class="col-sm-9">
-                    <input type="text" placeholder="Search..." class="input form-control form-control-sm"
-                  (keyup)="search($event)"/>
-                  </div>
-                </div> 
-              </div>
-        
-              <div class="html5buttons mrg-tsm">
-                <div class="dt-buttons btn-group btn-group-sm">
-                  <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0" aria-controls="DataTables_Table_0"
-                   (click)="copyBillsList()" ngxClipboard><span>Copy</span>
-                  </a>
-                  <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
-                  (click)="activeBillsCsvFile()" 
-                  aria-controls="DataTables_Table_0"><span>CSV</span></a>
-                  <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
-                  (click)="activeBillsExcelFile()"  
-                  aria-controls="DataTables_Table_0"><span>Excel</span></a>
-                  <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0"
-                  (click)="ActiveBillsListPdf()"  
-                  aria-controls="DataTables_Table_0"><span>PDF</span></a>
-                  <a class="btn btn-default buttons-print bg-white" tabindex="0"
-                  (click)="printActiveBillsList()"  
-                  aria-controls="DataTables_Table_0"><span>Print</span></a>
-                </div>
-              </div>
-        
-            </div>
-        
-          </div>
-        </div>
-
       </div>
 
 
@@ -194,99 +143,6 @@
 <div class="card shadow mb-4">
   <div class="card-body "> 
       <div class="panel-body">
-           
-<!--       
-        <ngx-datatable class="bootstrap datatable-row-wrapper" [columns]="columns" [rows]="rows" [columnMode]="'flex'"
-        
-          [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" 
-          (select)="onSelect($event)"
-          [selected]="selected" [selectionType]="SelectionType.checkbox" [sorts]="[{ prop: 'id', dir: 'desc' }]" (select)="onSelect($event)">
-       
-
-        
-
-          <ngx-datatable-column prop="selected"  [width]="20"   [flexGrow]="0.03"
-          [width]="30"
-          [headerCheckboxable]="true"
-          [checkboxable]="true"
-          
-          >
-            <ng-template let-row="row"    ngx-datatable-cell-template  >
-            </ng-template>
-          </ngx-datatable-column>
-
-          <ngx-datatable-column name="Bill For" [width]="80" prop="sellerName" [flexGrow]="0.05">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            <p *ngIf = "row.sellerName !=null">Seller </p>
-            <p *ngIf = "row.buyerName !=null">Buyer </p>
-
-            </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="Bill To" [width]="80" prop="buyerName" [flexGrow]="0.08">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            {{row.sellerName}}  <br>  {{row.buyerName}} 
-            </ng-template>
-          </ngx-datatable-column>
-      
-          <ngx-datatable-column name="Bill #" [width]="80" prop="billNumber" [flexGrow]="0.06">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{row.billNumber}}
-            </ng-template>
-          </ngx-datatable-column>
-      
-          <ngx-datatable-column name="Contract #" [width]="80" prop="autoContractNumber" [flexGrow]="0.08">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              <button class="clr" (click) = "navigateEditContract(row)" >
-                {{row.autoContractNumber}}
-              </button>
-            </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="Bill Date" [width]="80" prop="billDate" [flexGrow]="0.06">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{row.billGeneratedDateTime}}
-            </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="No. Sale Inv" [width]="80" prop="numberOfSaleInvoices" [flexGrow]="0.06">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{row.saleInvoiceNo}}
-
-            </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="Bill Amount" [width]="80" prop="billAmount" [flexGrow]="0.06">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{row.billAmount}}
-            </ng-template>
-          </ngx-datatable-column>
-      
-          <ngx-datatable-column *ngIf = "loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Fabric Export' "  name="Tax%" [width]="80" prop="taxAmount" [flexGrow]="0.06">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{row.taxAmount}}%
-            </ng-template>
-          </ngx-datatable-column>
-      
-
-          <ngx-datatable-column name="Status" [width]="80" prop="billStatus" [flexGrow]="0.06">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              <span class="badge badge-primary"> {{row.billStatus}}</span>
-            </ng-template>
-          </ngx-datatable-column>
-
-      
-          <ngx-datatable-column name="Action" [width]="80" prop="action" [flexGrow]="0.07">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-      
-              <div class="ibox-tools text-center">
-                <button type="button" class="btn editIconBack px-1 py-1" data-toggle="tooltip" data-placement="top" title=""
-                  data-original-title="open" (click)="navigateOpenBill(row)"><i class="far fa-edit"></i></button>
-                <button type="button" class="btn editIconBack px-1 py-1" data-toggle="tooltip" data-placement="top" title=""
-                  (click)="navigatePaymentForm('addPayment' , row)"><i class="fas fa-money-check-alt"></i></button>
-              </div>
-      
-            </ng-template>
-          </ngx-datatable-column>
-      
-        </ngx-datatable> -->
-
         <kendo-grid
         [kendoGridBinding]="rows"
         kendoGridSelectBy="id"
@@ -294,24 +150,46 @@
         [pageSize]="20"
         [pageable]="true"
         [sortable]="true"
-        [groupable]="true"
         [reorderable]="true"
         [resizable]="true"
-        [height]="500"
+        [height]="800"
         [columnMenu]="{ filter: true }"
         >
         <ng-template kendoGridToolbarTemplate>
             <input placeholder="Search in all columns..." #newItem kendoTextBox (input)="onFilter(newItem.value)"/>
             <kendo-grid-spacer></kendo-grid-spacer>
-            <!-- <button kendoGridExcelCommand type="button" icon="file-excel">Export to Excel</button>
-            <button kendoGridPDFCommand icon="file-pdf">Export to PDF</button> -->
+            <div class="row">
+              <div class="col-md-12 mb-3">
+                <div class="row justify-content-end">
+                  <div class="html5buttons mrg-tsm">
+                    <div class="dt-buttons btn-group btn-group-sm">
+                      <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0" aria-controls="DataTables_Table_0"
+                       (click)="copyBillsList()" ngxClipboard><span>Copy</span>
+                      </a>
+                      <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
+                      (click)="activeBillsCsvFile()" 
+                      aria-controls="DataTables_Table_0"><span>CSV</span></a>
+                      <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
+                      (click)="activeBillsExcelFile()"  
+                      aria-controls="DataTables_Table_0"><span>Excel</span></a>
+                      <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0"
+                      (click)="ActiveBillsListPdf()"  
+                      aria-controls="DataTables_Table_0"><span>PDF</span></a>
+                      <a class="btn btn-default buttons-print bg-white" tabindex="0"
+                      (click)="printActiveBillsList()"  
+                      aria-controls="DataTables_Table_0"><span>Print</span></a>
+                    </div>
+                  </div>
+            
+                </div>
+            
+              </div>
+            </div>
         </ng-template>
         <kendo-grid-checkbox-column [width]="35" [headerClass]="{'text-center': true}"  [class]="{'text-center': true}" [resizable]="false" [columnMenu]="false" [showSelectAll]="true"></kendo-grid-checkbox-column>
         
-        <!-- <kendo-grid-column-group title="Employee" [columnMenu]="false"> -->
             <kendo-grid-column field="sellerName" title="Bill For" [width]="120">
                 <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
-                    <!-- <div class="customer-photo" [ngStyle]="{'background-image' : photoURL(dataItem)}"></div> -->
                     <p *ngIf = "dataItem.sellerName !=null">Seller </p>
                     <p *ngIf = "dataItem.buyerName !=null">Buyer </p>
                 </ng-template>
@@ -378,94 +256,11 @@
               </ng-template>
               
             </kendo-grid-column>
-    
-            <!-- <kendo-grid-column field="country" title="Country" [width]="100" [class]="{'text-center': true}" [resizable]="false">
-                <ng-template kendoGridCellTemplate let-dataItem>
-                    <img class="flag" [src]="flagURL(dataItem)" width="30">
-                </ng-template>
-            </kendo-grid-column> -->
-        
-            <!-- <kendo-grid-column field="is_online" title="Status" [width]="100" [class]="{'text-center': true}" [resizable]="false" filter="boolean">
-                <ng-template kendoGridCellTemplate let-dataItem>
-                    <span *ngIf="dataItem.is_online === true" class="badge badge-success">Online</span>
-                    <span *ngIf="dataItem.is_online === false" class="badge badge-danger">Offline</span>
-                </ng-template>
-            </kendo-grid-column> -->
-        
-        <!-- </kendo-grid-column-group> -->
-        <!-- <kendo-grid-column-group title="Performance" [columnMenu]="false">
-            <kendo-grid-column
-                field="rating"
-                title="Rating"
-                [width]="110"
-                [resizable]="false"
-                filter="numeric"
-            >
-                <ng-template kendoGridCellTemplate let-dataItem>
-                    <kendo-rating
-                        [value]="dataItem.rating"
-                        [max]="5"
-                    ></kendo-rating>
-                </ng-template>
-            </kendo-grid-column>
-            <kendo-grid-column
-                field="target"
-                title="Engagement"
-                [width]="230"
-                [resizable]="false"
-                filter="numeric"
-            >
-                <ng-template kendoGridCellTemplate let-dataItem>
-                    <kendo-sparkline type="bar"
-                        [data]="dataItem.target"
-                        [tooltip]="{visible: false}"
-                        [transitions]="true"
-                        [seriesDefaults]="{labels: {background: 'none', visible: true, format: '{0}%'}}"
-                    >
-                        <kendo-chart-area opacity="0" [width]="200"></kendo-chart-area>
-                        <kendo-chart-value-axis>
-                            <kendo-chart-value-axis-item [min]="0" [max]="130">
-                            </kendo-chart-value-axis-item>
-                        </kendo-chart-value-axis>
-                    </kendo-sparkline>
-                </ng-template>
-            </kendo-grid-column>
-            <kendo-grid-column
-                field="budget"
-                title="Budget"
-                [width]="100"
-                filter="numeric"
-            >
-                <ng-template kendoGridCellTemplate let-dataItem>
-                    <span [ngClass]="{'red text-bold': dataItem.budget < 0}">{{ dataItem.budget | currency }}</span>
-                </ng-template>
-            </kendo-grid-column>
-        </kendo-grid-column-group>
-        <kendo-grid-column-group title="Contacts" [columnMenu]="false">
-            <kendo-grid-column field="phone" title="Phone" [width]="130">
-            </kendo-grid-column>
-            <kendo-grid-column field="address" title="Address" [width]="200">
-            </kendo-grid-column>
-        </kendo-grid-column-group> -->
-<!--         
-        <kendo-grid-pdf fileName="Employees.pdf" [repeatHeaders]="true"></kendo-grid-pdf>
-        <kendo-grid-excel fileName="Employees.xlsx"></kendo-grid-excel> -->
         </kendo-grid>
-
-
-
-
         <p class="col-md-12  totalAmnt">Total Amount : <span>  &nbsp;  &nbsp; {{dashboardAmnt}} </span></p>
       </div>
-      
-       
-      
   </div>
 </div>
-
-
-
-
     </div>
     </div>
 
