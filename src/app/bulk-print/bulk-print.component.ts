@@ -24,6 +24,7 @@ export class BulkPrintComponent implements OnInit {
   totalAmount2 : number;
 lang : SUPPORTED_LANGUAGE = 'en';
 length : any;
+expordtcountrycondition:any;
 loggedInDepartmentName: string;
 billAmount = [];
   constructor( private route: ActivatedRoute,
@@ -60,6 +61,7 @@ bulkPrint() {
         this.response = res;
         if (this.response.success == true) {
   this.printData=this.response.data;
+  this.expordtcountrycondition =this.response.data.countryId;
   for(let i=0; i<this.printData.length; i++){
     //this.billAmount.push(this.printData[i].totalCalculation);
     

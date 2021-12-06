@@ -340,7 +340,7 @@ else if (this.menuName.menuName == 'DispatchReport'){
     let varr = {
       "buyerId":this.data3.buyerId ==undefined ? 0 :this.data3.buyerId,
       "sellerId":this.data3.sellerId == undefined?0 :this.data3.sellerId,
-      "autoContractNumber":this.data3.autoContractNumber == undefined ? 'string': this.data3.autoContractNumber,
+      "autoContractNumber":this.data3.autoContractNumber == undefined ? '': this.data3.autoContractNumber,
       "startContractDate":this.data3.startContractDate == undefined? '':this.dateformater.toModel(this.data3.startContractDate),
       "endContractDate":this.data3.endContractDate == undefined?'':this.dateformater.toModel(this.data3.endContractDate),
       "status" : "Open"

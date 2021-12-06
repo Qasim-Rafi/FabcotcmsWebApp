@@ -64,7 +64,7 @@ objList : any;
  defaultColDef : any;
  rowSelection : any ;
 loggedInDepartmentName: string;
-public mySelection: string[] = [];
+public mySelection: string[] = this.rows;
   url = '/api/BillingPayments/GetAllContractBill'
   lang : SUPPORTED_LANGUAGE = 'en';
   @ViewChild(DataBindingDirective) dataBinding: DataBindingDirective;
@@ -233,8 +233,9 @@ this.fetch();
     });
   }
   getSelectedRowData() {
-    let selectedNodes = this.gridApi.getSelectedNodes();
-    let selectedData = selectedNodes.map(node => node.data.id);
+    //let selectedNodes = this.gridApi.getSelectedNodes();
+    let selectedData = this.mySelection
+    
     // alert(`Selected Nodes:\n${JSON.stringify(selectedData)}`);
     console.log(selectedData)
     if(selectedData.length === 0 ){

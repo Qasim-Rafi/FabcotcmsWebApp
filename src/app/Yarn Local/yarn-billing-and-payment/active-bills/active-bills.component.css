@@ -72,9 +72,9 @@ overflow-x: hidden;
   font-weight: bold;
 }
 
-div {
+/* div {
   overflow-x: hidden;
-  }
+  } */
 
   input.k-textbox {
     padding: 4px 8px;

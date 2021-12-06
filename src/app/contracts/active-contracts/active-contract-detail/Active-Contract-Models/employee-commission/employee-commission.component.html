@@ -47,7 +47,7 @@
               [(ngModel)]="data.beneficiaryCriteriaId" #beneficiaryCriteriaId="ngModel"
               [ngClass]="{'error': beneficiaryCriteriaId.invalid && CityForm.submitted }">
               <ng-option *ngFor="let i of criteria" [value]="i.id">
-                {{i.criteriaName}}
+                {{i.remarks}}
               </ng-option>
             </ng-select>
           </div>

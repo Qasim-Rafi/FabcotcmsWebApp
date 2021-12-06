@@ -32,7 +32,7 @@ export class OpenActiveBillComponent implements OnInit {
   image2 : any;
   totalQuantity = 0 ;
   selectedids: any ={};
-
+expordtcountrycondition:any;
   quantity : any;
   numberInWords!: string;
   nmbr = [];
@@ -147,6 +147,7 @@ this.spinner.show();
         this.response = res;
         if (this.response.success == true) {
   this.printData=this.response.data[0];
+  this.expordtcountrycondition =this.response.data.countryId;
   this.billAmount =this.printData.totalCalculation;
   // this.printData.totalCalculation=parseFloat(this.printData.totalCalculation.replace(/,/g, '')) 
     this.printData.updatedByName = this.ngxNumToWordsService.inWords(this.printData.totalCalculation.replace(/,/g, ''), this.lang);

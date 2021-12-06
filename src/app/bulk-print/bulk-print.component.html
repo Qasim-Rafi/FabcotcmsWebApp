@@ -73,8 +73,8 @@
             <div class="row " *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export'">
                 <div class="col-md-8">
                  
-                    <p class="text-font1 float-right ">  Email: Asif@fabcot.net , Sohail@fabcot.net
-                    </p>
+                    <p class="text-font1 float-right " *ngIf = "expordtcountrycondition == '23'">  Email: Sohail@fabcot.net</p>
+                    <p class="text-font1 float-right " *ngIf = "expordtcountrycondition != '23'">  Email: Asif@fabcot.net</p>
                 </div>
             
             </div>
