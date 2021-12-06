@@ -127,7 +127,7 @@ export class EmployeeCommissionComponent implements OnInit {
     let varr = {
       "contractId": this.contractId,
       "userId": this.data.userId,
-      "beneficiaryCriteriaId": this.data.beneficiaryCriteriaId,
+      "commossionRatioId": this.data.beneficiaryCriteriaId,
       "criteriaDetail": this.data.criteriaDetail,
     }
 
