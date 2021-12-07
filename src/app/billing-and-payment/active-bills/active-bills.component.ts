@@ -65,7 +65,7 @@ export class ActiveBillsComponent implements OnInit {
     
     this.fetch((data) => {
       this.dashboardAmnt = data
-      this.rows = data.activeBills;
+      this.rows = data.objList;
    
       this.billFilter = [...this.rows];
       this.listCount = this.rows.length;

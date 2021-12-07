@@ -156,6 +156,7 @@ brandId : any;
     this.GetWeftDropdown("start");
     this.GetBuyersDropdown("start");
     this.GetSellerDropdown("start");
+    this.GetSellerDropdownbydepartment("start")
     // this.getSellersPOC();
     this.getPieceLength("start");
     this.GetContainerDropdown("start");
@@ -330,6 +331,27 @@ brandId : any;
     })
   }
   GetSellerDropdown(type: string) {
+    this.service.getSellerLookup().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+
+        this.seller = this.response.data;
+        // this.newSeller = this.response.data
+
+
+
+        if (type == "other") {
+          // this.seller.id = this.newSeller;
+          this.data.sellerId = this.newSeller
+        }
+
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
+  GetSellerDropdownbydepartment(type: string) {
     this.service.getSellerLookup().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
