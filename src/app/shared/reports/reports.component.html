@@ -51,7 +51,7 @@
                 </div>
                 <div class="col-md-8 text-right">
                   <h6> Container</h6>
-                  <h6 class="font-bold" > <p class="topbox-small-text">&nbsp;</p></h6>
+                  <h6 class="font-bold" >{{totalContainer}} <p class="topbox-small-text">&nbsp;</p></h6>
 
                 </div>
               </div>
@@ -280,7 +280,7 @@
             </ngx-datatable-column>
             <ngx-datatable-column name="Container" [width]="90">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                {{ row.containerName }}  
+                {{row.containerCount}} {{ row.containerName }}  
               </ng-template>
             </ngx-datatable-column>
   

@@ -73,7 +73,7 @@ kickbackSearch2 : any = []
 data9: any = [];
 searchDispatch : any = []
 bookingAgent : any = []
-
+totalContainer:any;
   constructor(
 
     private route: ActivatedRoute,
@@ -359,7 +359,7 @@ else if (this.menuName.menuName == 'DispatchReport'){
             this.totalContract = this.response.data.totalContract 
             this.totalDispatch = this.response.data.totalDispatchAmount
             this.totalQuantity = this.response.data.totalQuantity
-
+            this.totalContainer =this.response.data.totalContainers
          this.spinner.hide();
           }
           else if(this.response.data.obj.length == 0) {
@@ -402,7 +402,7 @@ else if (this.menuName.menuName == 'DispatchReport'){
             this.totalContract = this.response.data.totalContract 
             this.totalDispatch = this.response.data.totalDispatchAmount
             this.totalQuantity = this.response.data.totalQuantity
-
+            this.totalContainer =this.response.data.totalContainers
 
          this.spinner.hide();
           }

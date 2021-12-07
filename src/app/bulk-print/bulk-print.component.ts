@@ -62,6 +62,7 @@ bulkPrint() {
         if (this.response.success == true) {
   this.printData=this.response.data;
   this.expordtcountrycondition =this.response.data.countryId;
+  this.expordtcountrycondition =this.response.data.owneName;
   for(let i=0; i<this.printData.length; i++){
     //this.billAmount.push(this.printData[i].totalCalculation);
     

@@ -155,10 +155,10 @@
         [height]="800"
         [pageable]="true"
         [filterable]="true"
-        [columnMenu]="{ filter: true }"
+      
         >
         <ng-template kendoGridToolbarTemplate>
-            <input placeholder="Search in all columns..." #newItem kendoTextBox (input)="onFilter(newItem.value)"/>
+            <input placeholder="Search in all columns..." class="col-md-3 form-control" #newItem kendoTextBox (input)="onFilter(newItem.value)"/>
             <kendo-grid-spacer></kendo-grid-spacer>
             <div class="row">
               <div class="col-md-12 mb-3">
@@ -190,7 +190,7 @@
         </ng-template>
         <kendo-grid-checkbox-column [width]="35" [headerClass]="{'text-center': true}"  [class]="{'text-center': true}" [resizable]="false" [columnMenu]="false" [showSelectAll]="true"></kendo-grid-checkbox-column>
         
-            <kendo-grid-column field="sellerName" title="Bill For" [width]="120">
+            <kendo-grid-column field="sellerName" title="Bill For" [width]="120" >
                 <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
                     <p *ngIf = "dataItem.sellerName !=null">Seller </p>
                     <p *ngIf = "dataItem.buyerName !=null">Buyer </p>
