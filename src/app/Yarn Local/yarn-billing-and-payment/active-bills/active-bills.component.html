@@ -153,6 +153,8 @@
         [reorderable]="true"
         [resizable]="true"
         [height]="800"
+        [pageable]="true"
+        [filterable]="true"
         [columnMenu]="{ filter: true }"
         >
         <ng-template kendoGridToolbarTemplate>
@@ -245,7 +247,7 @@
               </ng-template>
               
             </kendo-grid-column>
-            <kendo-grid-column field="action" title="Action" [width]="120">
+            <kendo-grid-column field="action" title="Action" [width]="120"  [filterable]="false">
               <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
                 <div class="ibox-tools text-center">
                   <button type="button" class="btn editIconBack px-1 py-1" data-toggle="tooltip" data-placement="top" title=""

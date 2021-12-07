@@ -15,7 +15,7 @@ import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
 import {NgxSpinnerService} from 'ngx-spinner'
 import { NgxNumToWordsService, SUPPORTED_LANGUAGE } from 'ngx-num-to-words';
 import { Dateformater } from 'src/app/shared/dateformater';
-import { process } from '@progress/kendo-data-query';
+import { process,State  } from '@progress/kendo-data-query';
 import { DataBindingDirective } from '@progress/kendo-angular-grid';
 
 @Component({
@@ -144,12 +144,12 @@ this.fetch();
             logic: "or",
             filters: [
                 {
-                    field: 'buyerName',
+                    field: 'buyerName,sellerName',
                     operator: 'contains',
                     value: inputValue
                 },
                 {
-                    field: 'sellerName',
+                    field: 'sellerName,buyerName',
                     operator: 'contains',
                     value: inputValue
                 },
@@ -193,6 +193,7 @@ this.fetch();
 
     this.dataBinding.skip = 0;
 }
+
   fetch() {
     this.data2.toDate = this.dateformater.toModel(this.data2.toDate)
     this.data2.FromDate = this.dateformater.toModel(this.data2.FromDate)

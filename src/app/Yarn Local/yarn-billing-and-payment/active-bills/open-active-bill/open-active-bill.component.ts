@@ -147,7 +147,7 @@ this.spinner.show();
         this.response = res;
         if (this.response.success == true) {
   this.printData=this.response.data[0];
-  this.expordtcountrycondition =this.response.data.countryId;
+  this.expordtcountrycondition =this.response.data[0].owneName;
   this.billAmount =this.printData.totalCalculation;
   // this.printData.totalCalculation=parseFloat(this.printData.totalCalculation.replace(/,/g, '')) 
     this.printData.updatedByName = this.ngxNumToWordsService.inWords(this.printData.totalCalculation.replace(/,/g, ''), this.lang);
