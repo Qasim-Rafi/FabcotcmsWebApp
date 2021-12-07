@@ -331,7 +331,7 @@ brandId : any;
     })
   }
   GetSellerDropdown(type: string) {
-    this.service.getSellerLookup().subscribe(res => {
+    this.service.GetSellerDropdownbydepartment().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
 
