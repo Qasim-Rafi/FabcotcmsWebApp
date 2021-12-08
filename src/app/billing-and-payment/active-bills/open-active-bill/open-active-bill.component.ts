@@ -242,7 +242,7 @@ print(){
             body:[ [{text: 'TAX :' ,margin:[647,5,0,0] , bold:true} ,
              {text: 
              
-             this.rows.currencyCode =='USD'? this.rows['invoiceTaxAmount']+ " $" :this.rows.currencyCode =='PKR' ? this.rows['invoiceTaxAmount'] + " Rs" :   this.rows.currencyCode =='EUR' ? this.rows['invoiceTaxAmount'] + " €" : this.rows.currencyCode =='GBP' ? this.rows['invoiceTaxAmount'] + " £" : ''
+             this.rows.currencyCode =='USD'? "0.00"+ " $" :this.rows.currencyCode =='PKR' ? "0.00" + " Rs" :   this.rows.currencyCode =='EUR' ? "0.00" + " €" : this.rows.currencyCode =='GBP' ? "0.00" + " £" : ''
              , margin: [0 , 5 , 0 , 0]  , decoration:'underline'}
           
           ]]
