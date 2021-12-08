@@ -72,7 +72,7 @@
                                     Supplier Name:
                                 </label>
                                 <div class="col-md-7">
-                                    <ng-select name="sellerId" #sellerId="ngModel" class="input-w px-0" [(ngModel)]="commData.sellerId"
+                                    <ng-select name="sellerId" #sellerId="ngModel" class="input-w px-0" (change)="sellerNameChange($event)" [(ngModel)]="commData.sellerId"
                                         placeholder="-- Select --">
                                         <ng-option *ngFor="let i of seller" [value]="i.id">{{ i.sellerName }}
                                         </ng-option>
@@ -279,7 +279,7 @@
                 
                                         <div class="col-md-3">
                                             <div class="input-group">
-                                                <input type="text" class="form-control text-w-40" name="amount" #amount="ngModel"
+                                                <input type="text" class="form-control text-w-40" name="amount" #amount="ngModel" (change)="onBlurMethod(commData.amount)" (keyup)="amountCall($event)"
                                                     [(ngModel)]="commData.amount" placeholder="Amount">
                                             </div>
                                         </div>
@@ -323,7 +323,7 @@
                 
                                         <div class="col-md-3">
                                             <div class="input-group">
-                                                <input type="text" class="form-control text-w-40" name="amount" #amount="ngModel"
+                                                <input type="number" class="form-control text-w-40" name="amount" #amount="ngModel" (change)="onBlurMethod(extCommData.amount)" (keyup)="amountCall($event)"
                                                     [(ngModel)]="extCommData.amount" placeholder="Amount">
                                             </div>
                                         </div>
@@ -497,14 +497,14 @@
                                     <span class="badge badge-primary">Sale Invoices</span>
                                 </div>
                             </div>
-                
+                 
                             <!-- <div class="form-group row">
                                             <button class="btn btn-primary float-left">
                                                 Sale Invoices
                                             </button>
                                         </div> -->
                 
-                            <!-- table -->
+                            <!-- table -->{{result}}
                             <div class="panel-body">
                                 <ngx-datatable class="bootstrap datatable-row-wrapper" [columns]="columns" [rows]="rows"
                                     [columnMode]="'flex'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="6">
@@ -514,52 +514,62 @@
                 
                                         </ng-template>
                                     </ngx-datatable-column>
-                                    <ngx-datatable-column name="Inv #" [width]="80" prop="invNum" [flexGrow]="0.05">
+                                    <ngx-datatable-column name="Inv #" [width]="80" prop="saleInvoiceNo" [flexGrow]="0.05">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                
+                                            {{row.saleInvoiceNo}}
                                         </ng-template>
                                     </ngx-datatable-column>
-                                    <ngx-datatable-column name="Contract#" [width]="80" prop="contract" [flexGrow]="0.06">
+                                    <ngx-datatable-column name="Contract#" [width]="80" prop="contractId" [flexGrow]="0.06">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                            {{row.contractId}}
                 
                                         </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column name="Bill#" [width]="80" prop="bill" [flexGrow]="0.06">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                            {{row.saleInvoiceNo}}
                 
                                         </ng-template>
                                     </ngx-datatable-column>
                 
-                                    <ngx-datatable-column name="Date" [width]="80" prop="date" [flexGrow]="0.06">
+                                    <ngx-datatable-column name="Date" [width]="80" prop="saleInvoiceDateToDisplay" [flexGrow]="0.06">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                            {{row.saleInvoiceDateToDisplay}}
                 
                                         </ng-template>
                                     </ngx-datatable-column>
                 
-                                    <ngx-datatable-column name="Inv Amount" [width]="80" prop="amount" [flexGrow]="0.06">
+                                    <ngx-datatable-column name="Inv Amount" [width]="80" prop="saleInvoiceAmount" [flexGrow]="0.06">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                            {{row.saleInvoiceAmount}}
                 
                                         </ng-template>
                                     </ngx-datatable-column>
-                                    <ngx-datatable-column name="Received" [width]="80" prop="rec" [flexGrow]="0.06">
+                                    <ngx-datatable-column name="Received" [width]="80" prop="receivedAmount" [flexGrow]="0.06">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                            {{row.receivedAmount}}
                 
                                         </ng-template>
                                     </ngx-datatable-column>
-                                    <ngx-datatable-column name="Balance" [width]="80" prop="blnc" [flexGrow]="0.06">
+                                    <ngx-datatable-column name="Balance" [width]="80" prop="balanceAmount" [flexGrow]="0.06">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                
+                                            {{row.balanceAmount}}
                                         </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column name="Action" [width]="80" prop="action" [flexGrow]="0.06">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                
+                                            <div>
+                                                <label class="checkbox-container">
+                                                <input type="checkbox" (change)="onSelect($event,row)">
+                                                <span class="check"></span>
+                                              </label>
+                                            </div>
                                         </ng-template>
                                     </ngx-datatable-column>
                 
                                     <ngx-datatable-column name="Paid Amount" [width]="80" prop="paid" [flexGrow]="0.06">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                
+                                            {{row.paid}}
                                         </ng-template>
                                     </ngx-datatable-column>
                 
@@ -570,16 +580,16 @@
                                 <div class="form-group row">
                 
                                     <div class="col-md-3 font-weight-bold">
-                                        <p>Paid Amount:</p>
+                                        <p>Paid Amount:</p> 
                                     </div>
                                     <div class="col-md-3  font-weight-bold">
-                                        <p>Blnc Amount:</p>
+                                        <p>Blnc Amount:</p> {{commData.amount}}
                                     </div>
                                     <div class="col-md-3  font-weight-bold">
-                                        <p>Outstanding Balance:</p>
+                                        <p>Outstanding Balance:</p> {{blncamount}}
                                     </div>
                                     <div class="col-md-3  font-weight-bold">
-                                        <p>Selected Inv:</p>
+                                        <p>Selected Inv:</p> {{invoicenoselected +1}}
                                     </div>
                 
                                 </div>
@@ -626,7 +636,7 @@
                                         <div class="col-md-6 offset-md-3">
                                             <button class="btn button-save" *ngIf="statusCheck.statusCheck =='add'"
                                                 (click)="addCommissionPayment()">
-                                                <i class="fas fa-check"></i> Save & Next</button>
+                                                <i class="fas fa-check"></i> Save Received Payment Record</button>
                                             <button class="btn btn-secondary ml-4" *ngIf="statusCheck.statusCheck =='new2'">
                                                 <i class="fas fa-times">
                                                 </i> Close
@@ -664,55 +674,74 @@
                             <!-- table -->
                             <div class="panel-body">
                                 <ngx-datatable class="bootstrap datatable-row-wrapper" [columns]="columns" [rows]="rows"
-                                    [columnMode]="'flex'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="6">
+                                    [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="6">
                 
                                     <ngx-datatable-column name="Sno" [width]="80" prop="sno" [flexGrow]="0.03">
                                         <ng-template let-row="row" ngx-datatable-cell-template>
-                
+                                            {{row.sno}}
                                         </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column name="Inv #" [width]="80" prop="invNum" [flexGrow]="0.05">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                
+                                            {{row.invNum}}
                                         </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column name="Contract#" [width]="80" prop="contract" [flexGrow]="0.06">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                
+                                            {{row.contract}}
                                         </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column name="Date" [width]="80" prop="date" [flexGrow]="0.06">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                
+                                            {{row.date}}
                                         </ng-template>
                                     </ngx-datatable-column>
                 
                                     <ngx-datatable-column name="Inv Amount" [width]="80" prop="amount" [flexGrow]="0.06">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                
+                                            {{row.amount}}
                                         </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column name="Received" [width]="80" prop="rec" [flexGrow]="0.06">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                
+                                            {{row.rec}}
                                         </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column name="Balance" [width]="80" prop="blnc" [flexGrow]="0.06">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                
+                                            {{row.blnc}}
                                         </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column name="Action" [width]="80" prop="action" [flexGrow]="0.06">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                
+                                            {{row.action}}
                                         </ng-template>
                                     </ngx-datatable-column>
                 
-                                    <ngx-datatable-column name="Paid Amount" [width]="80" prop="paid" [flexGrow]="0.06">
+                                    <!-- <ngx-datatable-column name="Paid Amount" [width]="80" prop="paid" [flexGrow]="0.06">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 
                                         </ng-template>
-                                    </ngx-datatable-column>
+                                    </ngx-datatable-column> -->
+
+
+
+                                      <!-- <ngx-datatable-column name="Paid Amount" [width]="80" prop="paid" [flexGrow]="0.06">
+                                     
+
+                                        <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                                            <span title="Double click to edit" (dblclick)="editing[rowIndex + '-name'] = true"
+                                                *ngIf="!editing[rowIndex + '-name']">
+                                                {{ value }}
+                                            </span>
+                                            <input autofocus (blur)="updateValue($event, 'name', rowIndex)" *ngIf="editing[rowIndex + '-name']" type="text"
+                                                [value]="value" />
+                                        </ng-template>
+
+
+
+                                    </ngx-datatable-column> -->
+                                 
                 
                                 </ngx-datatable>
                             </div>
@@ -745,7 +774,7 @@
                                     </div> -->
 
                                     <div class="row">
-                                        <div class="col-md-12 mb-3">
+                                        <div class="col-md-12 mb-3 text-center">
                                             <span class="badge badge-primary">Remarks/Other Conditions</span>
                                         </div>
                                     </div>
@@ -775,8 +804,7 @@
                                     <div class="row">
                                         <div class="col-md-6 offset-md-3">
                                             <button class="btn button-save" (click)="addExtCommissionPayment()">
-                                                <i class="fas fa-check"></i> Save &
-                                                Next</button>
+                                                <i class="fas fa-check"></i> Save Received Payment Record</button>
                 
                                         </div>
                                     </div>

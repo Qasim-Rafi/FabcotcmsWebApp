@@ -21,11 +21,14 @@ import {NgxSpinnerService, Spinner} from 'ngx-spinner'
 export class NewCommissionPaymentComponent implements OnInit {
   dateformater: Dateformater = new Dateformater();
   response: any;
-
+  blncamount:any;
+  invoicenoselected:any;
+  selected = [];
+  saleInvoiceIds =[];
   paymentAdddata: any = {};
 commData : any = [];
-extCommData : any = [];
-
+extCommData : any = {};
+amountGivenToCalculate:any;
   statusCheck:any={};
   rows: any = [];
   columns: any = [];
@@ -35,8 +38,10 @@ extCommData : any = [];
   bankAcc : any = []
   agent : any = []
   buyer: any = [];
-  
-
+  sellerNameId:any;
+  editing = {};
+  decimalSize:any;
+  result:any;
   constructor(
 
     private route: ActivatedRoute,
@@ -52,14 +57,26 @@ extCommData : any = [];
 
   ngOnInit(): void {
     this.statusCheck = this.route.snapshot.queryParams;
+    this.getbyidgernalsettings();
     this.GetBankAccDropdown();
      this.GetCurrencyDropdown();
      this.GetPaymentModeDropdown();
      this.GetSellerDropdown();
      this.GetAgentDropdown();
      this.GetBuyersDropdown();
+    //  this.rows = [
+    //   { sno: '1', invNum: '1122', contract: '555222', date: '2021-25-10', amount: '55002', rec: '0.00', blnc: '55002',action:true,paid:'0' },
+    //   { name: 'Dany', gender: 'Male', company: 'KFC' },
+    //   { name: 'Molly', gender: 'Female', company: 'Burger King' },
+    // ];
   }
-  
+  // updateValue(event, cell, rowIndex) {
+  //   console.log('inline editing rowIndex', rowIndex)
+  //   this.editing[rowIndex + '-' + cell] = false;
+  //   this.rows[rowIndex][cell] = event.target.value;
+  //   this.rows = [...this.rows];
+  //   console.log('UPDATED!', this.rows[rowIndex][cell]);
+  // }
   GetBuyersDropdown() {
     this.service.getBuyers().subscribe(res => {
       this.response = res;
@@ -134,6 +151,163 @@ extCommData : any = [];
       }
     })
   }
+  onSelect(event,row) {
+       this.blncamount=row.balanceAmount;
+       this.invoicenoselected=this.rows.findIndex(x=>x.contractId ==row.contractId)
+       if(event.currentTarget.checked == true){
+       this.saleInvoiceIds.push(row.saleInvoiceId);
+       let newrow =this.rows.filter(r=>r.saleInvoiceId ==row.saleInvoiceId)
+       this.selected = newrow;  
+
+        if(this.result == row.saleInvoiceAmount){
+            this.selected[0].paid = this.result;
+            this.selected[0].receivedAmount = this.selected[0].paid;
+            this.result = this.selected[0].paid - this.result;
+            if(this.result == ""){
+              this.result='0.'+this.decimalSize;
+            }
+            // '0.'+this.decimalSize;
+            this.selected[0].balanceAmount = "0.00";
+
+        }
+        else if(this.result < row.saleInvoiceAmount){
+          if(this.result== "0."+this.decimalSize){
+            this.toastr.error('Not Enuf Amount', 'Message.');
+          }
+          else{
+            //this.result =this.result+this.decimalSize;
+          this.selected[0].paid = this.result;
+          this.selected[0].receivedAmount = this.selected[0].paid;
+          this.selected[0].balanceAmount = this.selected[0].balanceAmount - this.result;
+          this.toastr.error('Partial Commission', 'Message.');
+          this.result = this.selected[0].receivedAmount -this.result;
+          }
+        }
+        else if(this.result > row.saleInvoiceAmount){
+          this.selected[0].paid = row.saleInvoiceAmount;
+          this.selected[0].receivedAmount = this.selected[0].paid;
+          this.result = this.result-this.selected[0].paid ;
+          this.result =this.result.toFixed(2)
+          this.selected[0].balanceAmount = "0.00";
+        }
+        this.result =this.result.toFixed(2);
+      this.selected.push(...this.selected);
+      this.rows = [...this.rows]
+        }
+      else if(event.currentTarget.checked == false){
+        let newrow =this.rows.filter(r=>r.saleInvoiceId ==row.saleInvoiceId)
+        this.selected = newrow; 
+        this.result=parseInt(this.result)+parseInt(this.selected[0].receivedAmount);
+        this.result =this.result+'.'+this.decimalSize;
+        this.selected[0].paid= '0.'+this.decimalSize;
+        this.selected[0].receivedAmount='0.'+this.decimalSize
+        this.selected[0].balanceAmount =   this.selected[0].balanceAmount;
+        this.selected.push(...this.selected);
+        this.rows = [...this.rows]
+        this.saleInvoiceIds.forEach((element,index)=>{
+          if(element==row.saleInvoiceId) this.saleInvoiceIds.splice(index,1);
+         
+       });
+      }
+
+  }
+
+  amountCall(event){
+    let deptName =localStorage.getItem('loggedInDepartmentName');
+    if(deptName == 'Yarn Local'){
+   
+     this.amountGivenToCalculate=this.commData.amount;
+           this.result = this.commData.amount.toString() +'.'+this.decimalSize;
+           this.extCommData.taxChalan = 0;
+           for(let i=0;i<=this.rows.length; i++){
+             this.rows[i].receivedAmount ='0.00';
+             this.rows[i].taxChallan ='0.00';
+           }
+    }
+   
+    else{
+           this.amountGivenToCalculate=this.commData.amount;
+           this.result = this.commData.amount.toString();
+           this.extCommData.taxChalan = 0;
+           for(let i=0;i<=this.rows.length; i++){
+             this.rows[i].receivedAmount ='0.00';
+             this.rows[i].taxChallan ='0.00';
+           }
+         }
+     }
+  onBlurMethod(event){
+    if(this.result ==event){
+
+      this.result =null;
+      this.result=event;
+    
+    }
+    for(let i=0;i<=this.rows.length; i++){
+      this.rows[i].receivedAmount ='0.00';
+      this.rows[i].taxChallan ='0.00';
+    }
+  //   if(event != undefined){
+  //     setTimeout(()=>{                           
+  //       this.isAmountDisabled =true;
+  //  }, 3000);
+      
+
+  //   }
+  //   else{
+  //   this.isAmountDisabled =false;
+
+  //   }
+  }
+
+  getbyidgernalsettings() {
+
+    this.http.get(`${environment.apiUrl}/api/Configs/GetGeneralSettingById/` + 0)
+      .subscribe(
+        res => {
+          this.response = res;
+          if (this.response.success == true) {
+            if( this.response.data !=null){
+              this.decimalSize = this.response.data.amountDecimalPoints;
+              this.decimalSize=String().padStart(this.response.data.amountDecimalPoints, '0'); 
+
+            }
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(err.error.message, 'Message.');
+          }
+        });
+
+  }
+
+  sellerNameChange(event){
+    this.sellerNameId=event;
+
+
+
+    this.http.get(`${environment.apiUrl}/api/Contracts/GetContractByBuyerSellerId/0/`+ this.sellerNameId).
+    subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.rows = this.response.data;
+        for(let i=0;i<=this.rows.length; i++){
+          this.rows[i].paid ='0.'+this.decimalSize;
+          this.rows[i].balanceAmount =this.rows[i].saleInvoiceAmount;
+
+        }
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+         
+  }
+
+
   addCommissionPayment() {
       let varr = {
         "buyerId": this.commData.buyerId,
