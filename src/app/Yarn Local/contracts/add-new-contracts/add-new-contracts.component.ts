@@ -156,7 +156,7 @@ brandId : any;
     this.GetWeftDropdown("start");
     this.GetBuyersDropdown("start");
     this.GetSellerDropdown("start");
-    this.GetSellerDropdownbydepartment("start")
+    //this.GetSellerDropdownbydepartment("start")
     // this.getSellersPOC();
     this.getPieceLength("start");
     this.GetContainerDropdown("start");
