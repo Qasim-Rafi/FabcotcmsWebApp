@@ -155,7 +155,7 @@
   
               <div class="form-group col-md-4">
   
-                <label for="description">Auto Contract#:</label>
+                <label for="description">Po Number#:</label>
                 <input type="text" placeholder="Auto Contract Number" class="form-control" name="poNumber"
                 [(ngModel)]="data3.poNumber" #poNumber="ngModel">
   
@@ -185,7 +185,7 @@
               <div class="col-md-12">
                 <div class="form-group row mt-3">
                   <div class="col-md-2 ml-8">
-                    <button class="btn btn-outline-secondary pull-left btn-xs "><i class="fas fa-sync"></i>
+                    <button class="btn btn-outline-secondary pull-left btn-xs " (click)="clearfunction()"><i class="fas fa-sync"></i>
                       Clear
                     </button>
   

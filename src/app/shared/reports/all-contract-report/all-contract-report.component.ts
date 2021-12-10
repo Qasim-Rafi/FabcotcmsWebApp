@@ -1,5 +1,5 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
@@ -7,6 +7,8 @@ import { environment } from 'src/environments/environment';
 import { ServiceService } from '../../service.service';
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
+import { Dateformater } from '../../dateformater';
+import { NgForm } from '@angular/forms';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 @Component({
   selector: 'app-all-contract-report',
@@ -25,7 +27,8 @@ totalContract :  any;
 totalQuantity :  any;
 totalDispatch :  any;
 search: any = [];
-
+@ViewChild(NgForm) filterForm;
+dateformater: Dateformater = new Dateformater();
   allContractReport :  any = []
   constructor(   private route: ActivatedRoute,
     private http: HttpClient,
@@ -83,15 +86,17 @@ search: any = [];
     });
     this.allContractReport = temp;
   }
-
+  clearfunction(){
+    this.filterForm.reset();
+  }
   getAllContractReport(){
     this.spinner.show();
     let varr = {
       "buyerId":this.data3.buyerId ==undefined ? 0 :this.data3.buyerId,
       "sellerId":this.data3.sellerId == undefined?0 :this.data3.sellerId,
       "autoContractNumber":this.data3.autoContractNumber == undefined ? '': this.data3.autoContractNumber,
-      "startContractDate":this.data3.startContractDate == undefined? '': this.data3.startContractDate,
-      "endContractDate":this.data3.endContractDate == undefined?'':this.data3.endContractDate,
+      "startContractDate":this.data3.startContractDate == undefined? '': this.dateformater.toModel(this.data3.startContractDate),
+      "endContractDate":this.data3.endContractDate == undefined?'':this.dateformater.toModel(this.data3.endContractDate),
       "status" : "All"
     }
     this.http.
