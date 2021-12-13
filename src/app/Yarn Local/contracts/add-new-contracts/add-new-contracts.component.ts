@@ -104,7 +104,7 @@ data4: any = {}
 data5: any = {}
 articleArray: any = []
 brandId : any;
-
+@ViewChild(NgForm) contractForm;
   // FabricLocal:boolean;
   sensorTypes: any;
   selectedAttributes: any;
