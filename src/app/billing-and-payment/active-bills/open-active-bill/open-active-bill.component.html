@@ -150,7 +150,8 @@
                 </span>
                 <br>
                 <span class=" bold text-font1">
-                    TAX : <span class="text-font1 underline"  >{{rows.invoiceTaxAmount}} </span>
+                    <!-- {{rows.invoiceTaxAmount}}  -->
+                    TAX : <span class="text-font1 underline"  >0.00</span>
                     <span >
                         <span *ngIf = "rows.currencyCode == 'USD'">$</span>
 <span *ngIf = "rows.currencyCode == 'PKR'">RS</span>
