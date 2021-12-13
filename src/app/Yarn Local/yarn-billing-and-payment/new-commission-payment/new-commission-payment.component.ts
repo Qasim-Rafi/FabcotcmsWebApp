@@ -31,6 +31,7 @@ extCommData : any = {};
 amountGivenToCalculate:any;
   statusCheck:any={};
   rows: any = [];
+  rowsFilter: any = [];
   columns: any = [];
   seller: any = [];
   paymentMode : any = []
@@ -159,7 +160,7 @@ amountGivenToCalculate:any;
        let newrow =this.rows.filter(r=>r.saleInvoiceId ==row.saleInvoiceId)
        this.selected = newrow;  
 
-        if(this.result == row.saleInvoiceAmount){
+        if(parseInt(this.result) == parseInt(row.saleInvoiceAmount)){
             this.selected[0].paid = this.result;
             this.selected[0].receivedAmount = this.selected[0].paid;
             this.result = this.selected[0].paid - this.result;
@@ -196,12 +197,13 @@ amountGivenToCalculate:any;
         }
       else if(event.currentTarget.checked == false){
         let newrow =this.rows.filter(r=>r.saleInvoiceId ==row.saleInvoiceId)
+        let filterdata =this.rowsFilter.filter(x=>x.saleInvoiceId ==row.saleInvoiceId)
         this.selected = newrow; 
         this.result=parseInt(this.result)+parseInt(this.selected[0].receivedAmount);
         this.result =this.result+'.'+this.decimalSize;
         this.selected[0].paid= '0.'+this.decimalSize;
         this.selected[0].receivedAmount='0.'+this.decimalSize
-        this.selected[0].balanceAmount =   this.selected[0].balanceAmount;
+        this.selected[0].balanceAmount =   filterdata[0].balanceAmount;
         this.selected.push(...this.selected);
         this.rows = [...this.rows]
         this.saleInvoiceIds.forEach((element,index)=>{
@@ -220,8 +222,8 @@ amountGivenToCalculate:any;
            this.result = this.commData.amount.toString() +'.'+this.decimalSize;
            this.extCommData.taxChalan = 0;
            for(let i=0;i<=this.rows.length; i++){
-             this.rows[i].receivedAmount ='0.00';
-             this.rows[i].taxChallan ='0.00';
+             this.rows[i].receivedAmount ='0.'+this.decimalSize;
+
            }
     }
    
@@ -230,8 +232,8 @@ amountGivenToCalculate:any;
            this.result = this.commData.amount.toString();
            this.extCommData.taxChalan = 0;
            for(let i=0;i<=this.rows.length; i++){
-             this.rows[i].receivedAmount ='0.00';
-             this.rows[i].taxChallan ='0.00';
+             this.rows[i].receivedAmount ='0.'+this.decimalSize;
+
            }
          }
      }
@@ -243,8 +245,8 @@ amountGivenToCalculate:any;
     
     }
     for(let i=0;i<=this.rows.length; i++){
-      this.rows[i].receivedAmount ='0.00';
-      this.rows[i].taxChallan ='0.00';
+      this.rows[i].receivedAmount ='0.'+this.decimalSize;
+
     }
   //   if(event != undefined){
   //     setTimeout(()=>{                           
@@ -260,8 +262,8 @@ amountGivenToCalculate:any;
   }
 
   getbyidgernalsettings() {
-
-    this.http.get(`${environment.apiUrl}/api/Configs/GetGeneralSettingById/` + 0)
+   let deptId=localStorage.getItem('loggedInDepartmentId')
+    this.http.get(`${environment.apiUrl}/api/Configs/GetGeneralSettingById/` + deptId)
       .subscribe(
         res => {
           this.response = res;
@@ -294,6 +296,7 @@ amountGivenToCalculate:any;
       this.response = res;
       if (this.response.success == true) {
         this.rows = this.response.data;
+        this.rowsFilter =this.response.data;
         for(let i=0;i<=this.rows.length; i++){
           this.rows[i].paid ='0.'+this.decimalSize;
           this.rows[i].balanceAmount =this.rows[i].saleInvoiceAmount;
