@@ -89,7 +89,7 @@ amountGivenToCalculate:any;
     })
   }
   GetSellerDropdown() {
-    this.service.getSellerLookup().subscribe(res => {
+    this.service.getcommisionpaynentSellerLookup().subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
 
@@ -310,7 +310,7 @@ amountGivenToCalculate:any;
 
   addCommissionPayment() {
       let varr = {
-        "buyerId": this.commData.buyerId,
+        "buyerId": null,
         "sellerId": this.commData.sellerId,
         "isBuyerCommission": this.commData.isBuyerCommission,
         "paymentDate": this.dateformater.toModel(this.commData.paymentDate),
@@ -320,15 +320,16 @@ amountGivenToCalculate:any;
         "paymentMode": this.commData.paymentMode,
         "additionalDetail":this.commData.additionalDetail,
         "fromBankAccountId": this.commData.fromBankAccountId,
-        "toBankAccountId": this.commData.toBankAccountId,
+        "toBankId": this.commData.toBankAccountId,
         "depositInBank":this.commData.depositInBank,
         "depositDate": this.dateformater.toModel(this.commData.depositDate),
         "paymentRemarks":this.commData.paymentRemarks,
-        "active": true
+        "active": true,
+        "saleInvoiceIds": this.saleInvoiceIds
       }
 this.spinner.show();
     this.http.
-      post(`${environment.apiUrl}/api/BillingPayments/AddBillingCommissionPayment`, varr)
+      post(`${environment.apiUrl}/api/YarnContracts/AddBuyerToSellerPayment`, varr)
       .subscribe(
         res => {
 

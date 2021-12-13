@@ -92,7 +92,7 @@ export class AddNewContractsComponent implements OnInit {
   PayementTerm: any = [];
   commission: any = [];
   newPrice: any;
-  @ViewChild(NgForm) contractForm;
+  @ViewChild(NgForm) Form;
   objEnquiry = 0;
   dateformater: Dateformater = new Dateformater();
   selected: any;
@@ -1012,135 +1012,135 @@ brandId : any;
           this.spinner.hide();
         });
   }
-  addContract() {
-    let departmentId = parseInt(localStorage.getItem('loggedInDepartmentId'))
-    // statusCheck = check;
+  addContract(form: NgForm) {
+    // let departmentId = parseInt(localStorage.getItem('loggedInDepartmentId'))
+    // // statusCheck = check;
 
-    if (this.data2.agentId != null) {
-      this.commission.push({ ['agentId']: this.data2.agentId, ["agentCommission"]: this.data2.agentCommission })
+    // if (this.data2.agentId != null) {
+    //   this.commission.push({ ['agentId']: this.data2.agentId, ["agentCommission"]: this.data2.agentCommission })
 
-    }
-    for (let i = 0; i < this.data1.length; i++) {
+    // }
+    // for (let i = 0; i < this.data1.length; i++) {
 
-      this.commission.push({ ['agentId']: this.data1[i].agentId, ["agentCommission"]: this.data1[i].agentCommission })
-    }
-    if (this.data5.contractArticleName != '') {
-      this.articleArray.push({ ['articleId']: this.data5.articleId , ['contractArticleQuantity']: this.data5.contractArticleQuantity , ['contractArticleRate']: this.data5.contractArticleRate , ['contractArticleCommission']: this.data5.contractArticleCommission
-      , ['contractArticleForignAgentCommission']: this.data5.contractArticleForignAgentCommission
-    })
+    //   this.commission.push({ ['agentId']: this.data1[i].agentId, ["agentCommission"]: this.data1[i].agentCommission })
+    // }
+    // if (this.data5.contractArticleName != '') {
+    //   this.articleArray.push({ ['articleId']: this.data5.articleId , ['contractArticleQuantity']: this.data5.contractArticleQuantity , ['contractArticleRate']: this.data5.contractArticleRate , ['contractArticleCommission']: this.data5.contractArticleCommission
+    //   , ['contractArticleForignAgentCommission']: this.data5.contractArticleForignAgentCommission
+    // })
 
-    }
-    for (let i = 0; i < this.Article.length; i++) {
+    // }
+    // for (let i = 0; i < this.Article.length; i++) {
 
       
-      this.articleArray.push({ ['articleId']: this.Article[i].articleId , ['contractArticleQuantity']: this.Article[i].contractArticleQuantity , ['contractArticleRate']: this.Article[i].contractArticleRate , ['contractArticleCommission']: this.Article[i].contractArticleCommission
-       , ['contractArticleForignAgentCommission']: this.Article[i].contractArticleForignAgentCommission})
-    }
+    //   this.articleArray.push({ ['articleId']: this.Article[i].articleId , ['contractArticleQuantity']: this.Article[i].contractArticleQuantity , ['contractArticleRate']: this.Article[i].contractArticleRate , ['contractArticleCommission']: this.Article[i].contractArticleCommission
+    //    , ['contractArticleForignAgentCommission']: this.Article[i].contractArticleForignAgentCommission})
+    // }
  
 
-    let varr = {
-      // "enquiryDate": this.dateformater.toModel(this.data.enquiryDate),
-      "autoContractNo": this.data.autoContractNo,
-      "contractNo": this.data.contractNo,
-      "poNumber": this.data.poNumber,
-      "sellerId": this.data.sellerId,
-      "buyerId": this.data.buyerId,
-      "articleId": this.data.articleId,
-      "construction": this.data.construction,
-      "quantity": this.data.quantity,
-      "quantityUOMId": this.data.quantityUOMId,
-      "toleranceValue": this.data.toleranceValue,
-      "brandId": this.data.brandId,
-      "pecenetAge" : this.data.pecenetAge,
-      "rate": this.data.rate,
-      "contractArticles" : this.loggedInDepartmentName == 'Yarn Export' ?  this.articleArray : this.loggedInDepartmentName == 'Yarn Import' ? this.articleArray : null,
-      "currencyId": this.data.currencyId,
-      "rateUOMId": this.data.rateUOMId,
-      "sellerPaymentTerm": this.data.sellerPaymentTerm,
-      "buyerPaymentTerm": this.data.buyerPaymentTerm,
-      "packingId": this.data.packingId,
-      "priceautoContractNoTermId": this.data.priceTermId,
-      "contractRemarks": this.data.contractRemarks,
-      "buyerRemarks": this.data.buyerRemarks,
-      "otherConditionRemarks": this.data.otherConditionRemarks,
-      "title": this.data.title,
-      "kickbackPercentage": this.data.kickbackPercentage == null ? 0 : this.data.kickbackPercentage  ,
-      "kickbackUOMId": this.data.kickbackUOMId,
-      "beneficiary": this.data.beneficiary,
-      "fabCotCommision": this.data.fabCotCommision == null ? 0 : this.data.fabCotCommision,
-      "fabCotCommisionUOMId": this.data.fabCotCommisionUOMId,
-      "fabcotSideCommAdditionalInfo": this.data.fabcotSideCommAdditionalInfo,
-      "buyersideCommision": this.data.buyersideCommision == null ? 0 : this.data.buyersideCommision,
-      "buyersideCommisionUOMId": this.data.buyersideCommisionUOMId,
-      "buyerSideCommAdditionalInfo": this.data.buyerSideCommAdditionalInfo,
-      "agentCommissions": this.commission,
-      "fabricTypeId": this.data.fabricTypeId,
-      "contractNumber": this.data.contractNumber,
-      "contractDate":this.dateformater.toModel(this.data.enquiryDate),
-      "buyerPOCId": this.data.buyerPOCId,
-      "sellerPOCId": this.data.sellerPOCId,
-      "constructionAdditionalInfo": this.data.constructionAdditionalInfo,
-      "gsm": this.data.gsm,
-      "tolerance": this.data.tolerance,
-      "weaveId": this.data.weaveId,
-      "selvedgeId": this.data.selvedgeId,
-      "pieceLengthId": this.data.pieceLengthId,
-      "SellerPieceLengthId" : this.data.SellerPieceLengthId,
-      "pickInsertionId": this.data.pickInsertionId,
-      "widthInInch": this.data.widthInInch,
-      "blendingRatioWarpId": this.data.blendingRatioWarpId,
-      "blendingRatioWeftId": this.data.blendingRatioWeftId,
-      "buyerSidePaymentTermInfo": this.data.buyerSidePaymentTermInfo,
-      "sellerPaymentTermInfo": this.data.sellerPaymentTermInfo,
-      "gst": this.data.gst,
-      "wiTax": this.data.wiTax,
-      "priceTermId": this.data.priceTermId,
-      "sellerPaymentTermId": this.data.sellerPaymentTermId,
-      "paymentTermId":this.data.paymentTermId,
-      "buyerPaymentTermId": this.data.buyerPaymentTermId,
-      "paymentMode": this.data.paymentMode,
-      "sellerPaymentTermDays": this.data.sellerPaymentTermDays == null ?  0 : this.data.sellerPaymentTermDays,
-       "paymentTermDays":this.data.paymentTermDays ==null ?0 :this.data.paymentTermDays,
-      "paymentTermInfo":this.data.paymentTermInfo,
-      "buyerPaymentTermDays": this.data.buyerPaymentTermDays,
-      "destinationId": this.data.destinationId,
-      "containerId": this.data.containerId,
-      "count": this.data.count,
-      "contractDeliveryDates":[{
-      "sellerDeliveryDateDay":this.data.sellerDeliveryDateDay == undefined? "" : this.data.sellerDeliveryDateDay,
-      "sellerDeliveryDateMonth":this.data.sellerDeliveryDateMonth == undefined? "" :  this.data.sellerDeliveryDateMonth,
-      "sellerDeliveryDateYear":this.data.sellerDeliveryDateYear == undefined? "" :  this.data.sellerDeliveryDateYear,
-      "buyerDeliveryDateDay":this.data.buyerDeliveryDateDay == undefined? "" : this.data.buyerDeliveryDateDay,
-      "buyerDeliveryDateMonth":this.data.buyerDeliveryDateMonth == undefined? "" :  this.data.buyerDeliveryDateMonth,
-      "buyerDeliveryDateYear":this.data.buyerDeliveryDateYear == undefined? "" : this.data.buyerDeliveryDateYear,
-      }
-    ]
-    }
-    this.spinner.show();
-    this.http.
-      post(`${environment.apiUrl}/api/Contracts/AddContract?` + 'enquiryId=' + this.objEnquiry + '&' + 'departmentId=' + departmentId, varr)
-      .subscribe(
-        res => {
+    // let varr = {
+    //   // "enquiryDate": this.dateformater.toModel(this.data.enquiryDate),
+    //   "autoContractNo": this.data.autoContractNo,
+    //   "contractNo": this.data.contractNo,
+    //   "poNumber": this.data.poNumber,
+    //   "sellerId": this.data.sellerId,
+    //   "buyerId": this.data.buyerId,
+    //   "articleId": this.data.articleId,
+    //   "construction": this.data.construction,
+    //   "quantity": this.data.quantity,
+    //   "quantityUOMId": this.data.quantityUOMId,
+    //   "toleranceValue": this.data.toleranceValue,
+    //   "brandId": this.data.brandId,
+    //   "pecenetAge" : this.data.pecenetAge,
+    //   "rate": this.data.rate,
+    //   "contractArticles" : this.loggedInDepartmentName == 'Yarn Export' ?  this.articleArray : this.loggedInDepartmentName == 'Yarn Import' ? this.articleArray : null,
+    //   "currencyId": this.data.currencyId,
+    //   "rateUOMId": this.data.rateUOMId,
+    //   "sellerPaymentTerm": this.data.sellerPaymentTerm,
+    //   "buyerPaymentTerm": this.data.buyerPaymentTerm,
+    //   "packingId": this.data.packingId,
+    //   "priceautoContractNoTermId": this.data.priceTermId,
+    //   "contractRemarks": this.data.contractRemarks,
+    //   "buyerRemarks": this.data.buyerRemarks,
+    //   "otherConditionRemarks": this.data.otherConditionRemarks,
+    //   "title": this.data.title,
+    //   "kickbackPercentage": this.data.kickbackPercentage == null ? 0 : this.data.kickbackPercentage  ,
+    //   "kickbackUOMId": this.data.kickbackUOMId,
+    //   "beneficiary": this.data.beneficiary,
+    //   "fabCotCommision": this.data.fabCotCommision == null ? 0 : this.data.fabCotCommision,
+    //   "fabCotCommisionUOMId": this.data.fabCotCommisionUOMId,
+    //   "fabcotSideCommAdditionalInfo": this.data.fabcotSideCommAdditionalInfo,
+    //   "buyersideCommision": this.data.buyersideCommision == null ? 0 : this.data.buyersideCommision,
+    //   "buyersideCommisionUOMId": this.data.buyersideCommisionUOMId,
+    //   "buyerSideCommAdditionalInfo": this.data.buyerSideCommAdditionalInfo,
+    //   "agentCommissions": this.commission,
+    //   "fabricTypeId": this.data.fabricTypeId,
+    //   "contractNumber": this.data.contractNumber,
+    //   "contractDate":this.dateformater.toModel(this.data.enquiryDate),
+    //   "buyerPOCId": this.data.buyerPOCId,
+    //   "sellerPOCId": this.data.sellerPOCId,
+    //   "constructionAdditionalInfo": this.data.constructionAdditionalInfo,
+    //   "gsm": this.data.gsm,
+    //   "tolerance": this.data.tolerance,
+    //   "weaveId": this.data.weaveId,
+    //   "selvedgeId": this.data.selvedgeId,
+    //   "pieceLengthId": this.data.pieceLengthId,
+    //   "SellerPieceLengthId" : this.data.SellerPieceLengthId,
+    //   "pickInsertionId": this.data.pickInsertionId,
+    //   "widthInInch": this.data.widthInInch,
+    //   "blendingRatioWarpId": this.data.blendingRatioWarpId,
+    //   "blendingRatioWeftId": this.data.blendingRatioWeftId,
+    //   "buyerSidePaymentTermInfo": this.data.buyerSidePaymentTermInfo,
+    //   "sellerPaymentTermInfo": this.data.sellerPaymentTermInfo,
+    //   "gst": this.data.gst,
+    //   "wiTax": this.data.wiTax,
+    //   "priceTermId": this.data.priceTermId,
+    //   "sellerPaymentTermId": this.data.sellerPaymentTermId,
+    //   "paymentTermId":this.data.paymentTermId,
+    //   "buyerPaymentTermId": this.data.buyerPaymentTermId,
+    //   "paymentMode": this.data.paymentMode,
+    //   "sellerPaymentTermDays": this.data.sellerPaymentTermDays == null ?  0 : this.data.sellerPaymentTermDays,
+    //    "paymentTermDays":this.data.paymentTermDays ==null ?0 :this.data.paymentTermDays,
+    //   "paymentTermInfo":this.data.paymentTermInfo,
+    //   "buyerPaymentTermDays": this.data.buyerPaymentTermDays,
+    //   "destinationId": this.data.destinationId,
+    //   "containerId": this.data.containerId,
+    //   "count": this.data.count,
+    //   "contractDeliveryDates":[{
+    //   "sellerDeliveryDateDay":this.data.sellerDeliveryDateDay == undefined? "" : this.data.sellerDeliveryDateDay,
+    //   "sellerDeliveryDateMonth":this.data.sellerDeliveryDateMonth == undefined? "" :  this.data.sellerDeliveryDateMonth,
+    //   "sellerDeliveryDateYear":this.data.sellerDeliveryDateYear == undefined? "" :  this.data.sellerDeliveryDateYear,
+    //   "buyerDeliveryDateDay":this.data.buyerDeliveryDateDay == undefined? "" : this.data.buyerDeliveryDateDay,
+    //   "buyerDeliveryDateMonth":this.data.buyerDeliveryDateMonth == undefined? "" :  this.data.buyerDeliveryDateMonth,
+    //   "buyerDeliveryDateYear":this.data.buyerDeliveryDateYear == undefined? "" : this.data.buyerDeliveryDateYear,
+    //   }
+    // ]
+    // }
+    // this.spinner.show();
+    // this.http.
+    //   post(`${environment.apiUrl}/api/Contracts/AddContract?` + 'enquiryId=' + this.objEnquiry + '&' + 'departmentId=' + departmentId, varr)
+    //   .subscribe(
+    //     res => {
 
-          this.response = res;
-          if (this.response.success == true) {
-            this.toastr.success(this.response.message, 'Message.');
-            this.contractForm.reset();
-            this.router.navigate(['/FabCot/active-contract-details'], { queryParams: { id: this.response.data } });
-            // this.router.navigate(['/enquiry/active-enquiries']);
-            this.spinner.hide();
-          }
-          else {
-            this.toastr.error(this.response.message, 'Message.');
-            this.spinner.hide();
-          }
+    //       this.response = res;
+    //       if (this.response.success == true) {
+    //         this.toastr.success(this.response.message, 'Message.');
+    //         this.contractForm.reset();
+    //         this.router.navigate(['/FabCot/active-contract-details'], { queryParams: { id: this.response.data } });
+    //         // this.router.navigate(['/enquiry/active-enquiries']);
+    //         this.spinner.hide();
+    //       }
+    //       else {
+    //         this.toastr.error(this.response.message, 'Message.');
+    //         this.spinner.hide();
+    //       }
 
-        }, (err: HttpErrorResponse) => {
-          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
-          this.toastr.error(messages.toString(), 'Message.');
-          console.log(messages);
-          this.spinner.hide();
-        });
+    //     }, (err: HttpErrorResponse) => {
+    //       const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+    //       this.toastr.error(messages.toString(), 'Message.');
+    //       console.log(messages);
+    //       this.spinner.hide();
+    //     });
   }
 
 }

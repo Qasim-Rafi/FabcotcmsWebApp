@@ -132,5 +132,70 @@
   <!-- </div> -->
 
 
-
+  <!-- <div class="card shadow mb-4">
+    <div class="card-body "> 
+        <div class="panel-body">
+          <kendo-grid
+          [kendoGridBinding]="rows"
+          kendoGridSelectBy="id"
+          [selectedKeys]="mySelection"
+          [pageSize]="20"
+          [pageable]="true"
+          [sortable]="true"
+          [reorderable]="true"
+          [resizable]="true"
+          [height]="800"
+          [pageable]="true"
+          [filterable]="true"
+          
+          >
+          <ng-template kendoGridToolbarTemplate>
+              <input placeholder="Search in all columns..." class="col-md-3 form-control" #newItem kendoTextBox (input)="onFilter(newItem.value)"/>
+              <kendo-grid-spacer></kendo-grid-spacer>
+          
+          </ng-template>
+          <kendo-grid-checkbox-column [width]="35" [headerClass]="{'text-center': true}"  
+          [class]="{'text-center': true}" [resizable]="false" [columnMenu]="false" [showSelectAll]="true"> 
+         
+        </kendo-grid-checkbox-column>
+          
+       
+              <kendo-grid-column field="contractDate" title="Contract Date" [width]="120">
+                <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                  {{dataItem.contractDate}}
+                </ng-template>
+                
+              </kendo-grid-column>
+          
+              <kendo-grid-column field="autoContractNumber" title="Countract No#" [width]="120">
+                <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                 
+                  <button  class="clr"  (click)="navigateEditContract(dataItem)">
+                    {{dataItem.autoContractNumber}}</button>
+                    <button type="button" class="btn editIconBack px-1 py-1" data-toggle="tooltip" data-placement="top" title=""
+                  data-original-title="Sale Invoices" (click)="SaleInvoiceForm(dataItem)"><i
+                    class="far fa-newspaper"></i></button>
+                </ng-template>
+                
+              </kendo-grid-column>
+              <kendo-grid-column field="buyerName" title="Buyer" [width]="120">
+                <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                  {{dataItem.buyerName}}
+                </ng-template>
+                
+              </kendo-grid-column>
+         
+              <kendo-grid-column field="sellerName" title="Seller" [width]="120">
+                <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                  {{dataItem.sellerName}}
+                  
+                </ng-template>
+                
+              </kendo-grid-column>
+           
+          </kendo-grid>
+       
+        </div>
+    </div>
+  </div> -->
  

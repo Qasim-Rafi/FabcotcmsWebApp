@@ -3746,7 +3746,7 @@ toggleShow() {
                         margin: [340 , -13 , 0 , 0],
                         table:{headerRows: 1 , widths:['30%' , '70%'],
                       body: [
-                        [{text:'Container:'  , style:'heading3'} , {text: this.contractPaymentData['count'] + " " + this.contractPaymentData['containerName'], margin:[-20,0,0,0] , style:'heading3'}],] }
+                        [{text:this.contractPaymentData['count'] ==''?'':'Container:'  , style:'heading3'} , {text: this.contractPaymentData['count'] + " " + this.contractPaymentData['containerName'], margin:[-20,0,0,0] , style:'heading3'}],] }
                       },
                      
                       {
@@ -4056,7 +4056,7 @@ toggleShow() {
                         margin: [340 , -13 , 0 , 0],
                         table:{headerRows: 1 , widths:['30%' , '70%'],
                       body: [
-                        [{text:'Container:'  , style:'heading3'} , {text: this.contractPaymentData['count'] + " " +this.contractPaymentData['containerName'] , margin:[-20,0,0,0]  , style:'heading3'}],] }
+                        [{text:this.contractPaymentData['count'] ==''?'':'Container:'  , style:'heading3'} , {text: this.contractPaymentData['count'] + " " +this.contractPaymentData['containerName'] , margin:[-20,0,0,0]  , style:'heading3'}],] }
                       },
                      
                       {

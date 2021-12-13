@@ -286,7 +286,7 @@
         [reorderable]="true"
         [resizable]="true"
         [height]="800"
-        [columnMenu]="{ filter: true }"
+        [filterable]="true"
         >
         <ng-template kendoGridToolbarTemplate>
           <input placeholder="Search in all columns..." #newItem kendoTextBox (input)="onFilter(newItem.value)"/>
@@ -314,7 +314,7 @@
         </ng-template>
         <kendo-grid-checkbox-column [width]="35" [headerClass]="{'text-center': true}"  [class]="{'text-center': true}" [resizable]="false" [columnMenu]="false" [showSelectAll]="true"></kendo-grid-checkbox-column>
         
-            <kendo-grid-column field="Action" title="Action" [width]="120">
+            <kendo-grid-column field="Action" title="Action" [width]="120" [filterable]="false">
                 <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
                   <div class="ibox-tools text-center">
 

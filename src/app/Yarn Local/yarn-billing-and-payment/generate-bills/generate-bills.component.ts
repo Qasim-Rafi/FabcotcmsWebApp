@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { ToastrService } from 'ngx-toastr';
@@ -11,6 +11,9 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { BranchAddressComponent } from '../generate-bills/branch-address/branch-address.component';
 import { SaleInvoiceFormComponent } from '../generate-bills/sale-invoice-form/sale-invoice-form.component';
 import {NgxSpinnerService} from 'ngx-spinner'
+import { process,State  } from '@progress/kendo-data-query';
+import { DataBindingDirective } from '@progress/kendo-angular-grid';
+import { RowArgs } from "@progress/kendo-angular-grid";
 @Component({
   selector: 'app-generate-bills',
   templateUrl: './generate-bills.component.html',
@@ -18,6 +21,7 @@ import {NgxSpinnerService} from 'ngx-spinner'
 })
 export class GenerateBillsComponent implements OnInit {
 amount=0;
+@ViewChild(DataBindingDirective) dataBinding: DataBindingDirective;
   constructor(    private service: ServiceService,
     private http: HttpClient,
     private toastr: ToastrService,
@@ -25,14 +29,19 @@ amount=0;
     private router: Router,
     private spinner : NgxSpinnerService
 
-    ) { }
+    ) {  this.defaultColDef = {
+      flex: 1,
+      minWidth: 100,
+      resizable: true,
+     
+    };
+    this.rowSelection = 'multiple';}
       contractIds: any = [];
       data: any = {};
       billFilter: any = {};
-
       rows: any = [];
       selectedids: any ={};
-
+      
       checkboxData: any = [];
       SelectionType = SelectionType;
       date: number;
@@ -42,8 +51,9 @@ amount=0;
       loggedInDepartmentName: string;
       response: any;
       url = '/api/BillingPayments/GetAllContractForBillGeneration'
-
-      
+      defaultColDef : any;
+      rowSelection : any ;
+      public mySelection: string[] = this.rows;
    
     
       ngOnInit(): void {
@@ -86,7 +96,44 @@ amount=0;
       navigateEditContract(obj) {
         this.router.navigate(['/FabCot/active-contract-details'], { queryParams: {id: obj.id} });
       };
+      public onFilter(inputValue: string): void {
+        this.rows = process(this.billFilter, {
+            filter: {
+                logic: "or",
+                filters: [
+                    {
+                        field: 'contractDate',
+                        operator: 'contains',
+                        value: inputValue
+                    },
+                    {
+                        field: 'autoContractNumber',
+                        operator: 'contains',
+                        value: inputValue
+                    },
+                    {
+                        field: 'buyerName',
+                        operator: 'contains',
+                        value: inputValue
+                    },
+                    {
+                        field: 'autoContractNumber',
+                        operator: 'contains',
+                        value: inputValue
+                    },
+                 
+                    {
+                        field: 'sellerName',
+                        operator: 'contains',
+                        value: inputValue
+                    }
+              
+                ],
+            }
+        }).data;
     
+        this.dataBinding.skip = 0;
+    }
       search(event) {
         const val = event.target.value.toLowerCase();
         const temp = this.billFilter.filter(function (d) {
@@ -98,7 +145,9 @@ amount=0;
         });
         this.rows = temp;
       }
-
+      public isRowSelected(e: RowArgs){
+      this.mySelection.indexOf(e.dataItem.amount);
+    }
 
       onSelect(selecterow) {
         this.amount = 0;
@@ -111,6 +160,16 @@ amount=0;
         }
       }
   
+      selectedcheckbox(selecterow) {
+        this.amount = 0;
+        // this.amount=selecterow.selected.length !=0 ?selecterow.selected[0].amount:null;
+        this.selectedids =selecterow;
+
+        for(let i=0; i<this.selectedids.selected.length; i++ )
+        {      this.amount = this.amount + this.selectedids.selected[i].amount
+            this.contractIds[i] = this.selectedids.selected[i].id;
+        }
+      }
   generateBill() {
   if(this.contractIds.length === 0  || this.selectedids.selected.length === 0  ){
     this.toastr.error("PLease select atleast one contract to generate bill" , 'Message')
@@ -124,7 +183,7 @@ amount=0;
           "contractIds": this.contractIds,
            "fabcotBranchName": "Fabcot_Local",
         }
-        // this.spinner.show();
+        this.spinner.show();
         this.http.
           post(`${environment.apiUrl}/api/BillingPayments/GenerateContractBill`, varr)
           .subscribe(
@@ -150,7 +209,7 @@ amount=0;
     //   }
     // }, (reason) => {
     // });
-      }  
+       }  
       }
   SaleInvoiceForm(row) {
     const modalRef = this.modalService.open(SaleInvoiceFormComponent , { centered: true });

@@ -142,6 +142,9 @@ export class ServiceService {
   getSellerLookup() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/Sellers`);
   }
+  getcommisionpaynentSellerLookup() {
+    return this.http.get(`${environment.apiUrl}/api/Lookups/GetCommisionPaymentsSellers`);
+  }
   GetSellerDropdownbydepartment() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/GetSellersAllbydepartment`);
   }

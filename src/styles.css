@@ -30,6 +30,25 @@ body {
   text-overflow: ellipsis;
   white-space: normal !important;
 }
+.required-denote {
+  /* margin-left: 5px; */
+  font-size: 15px;
+  color: #f10b0b;
+ font-weight: bold;
+}
+
+.error{
+  border: 1px solid #e03a37 !important;
+  /* background-image: url('./assets/error.png');
+  background-repeat: no-repeat;
+  background-position: center right 20px; */
+}
+.not-error{
+  border: 1px solid #6495ED !important;
+  /* background-image: url('./assets/not-error.png');
+  background-repeat: no-repeat;
+  background-position: center right 20px; */
+}
 /* 
 dt {
   font-weight: 800; 
@@ -477,10 +496,10 @@ title {
 .active-enqury-pdg {
   padding: 28px !important;
 }
-.required-denote {
+/* .required-denote {
   margin-left: 5px;
   color: #f62d51;
-}
+} */
 .agents-pdg {
   padding: 20px !important;
 }
