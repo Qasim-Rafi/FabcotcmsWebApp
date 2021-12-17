@@ -541,19 +541,19 @@
                 
                                     <ngx-datatable-column name="Inv Amount" [width]="80" prop="saleInvoiceAmount" [flexGrow]="0.06">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                            {{row.saleInvoiceAmount}}
+                                            {{row.commissionSaleInvoiceAmount}} {{row.rateUOMName}}
                 
                                         </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column name="Received" [width]="80" prop="receivedAmount" [flexGrow]="0.06">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                            {{row.receivedAmount}}
+                                            {{row.receivedAmount}} {{row.rateUOMName}}
                 
                                         </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column name="Balance" [width]="80" prop="balanceAmount" [flexGrow]="0.06">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                            {{row.balanceAmount}}
+                                            {{row.balanceAmount}} {{row.rateUOMName}}
                                         </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column name="Action" [width]="80" prop="action" [flexGrow]="0.06">
@@ -569,7 +569,7 @@
                 
                                     <ngx-datatable-column name="Paid Amount" [width]="80" prop="paid" [flexGrow]="0.06">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                            {{row.paid}}
+                                            {{row.paid}} {{row.rateUOMName}}
                                         </ng-template>
                                     </ngx-datatable-column>
                 

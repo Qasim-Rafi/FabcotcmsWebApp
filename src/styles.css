@@ -22,6 +22,16 @@ body {
   color: #212529;
   text-align: left;
 }
+.k-dropdown-operator .k-dropdown-wrap .k-select {
+  width: 0px !important;
+  height: 0px !important;
+  display: none !important;
+
+}
+.k-filtercell .k-filtercell-wrapper > .k-textbox {
+  width: 110% !important;
+  min-width: 0;
+}
 .content-header {
   padding: 10px 0.4rem !important;
 }

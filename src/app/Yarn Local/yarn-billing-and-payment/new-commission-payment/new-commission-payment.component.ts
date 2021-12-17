@@ -160,7 +160,7 @@ amountGivenToCalculate:any;
        let newrow =this.rows.filter(r=>r.saleInvoiceId ==row.saleInvoiceId)
        this.selected = newrow;  
 
-        if(parseInt(this.result) == parseInt(row.saleInvoiceAmount)){
+        if(parseInt(this.result) == parseInt(row.commissionSaleInvoiceAmount)){
             this.selected[0].paid = this.result;
             this.selected[0].receivedAmount = this.selected[0].paid;
             this.result = this.selected[0].paid - this.result;
@@ -171,7 +171,7 @@ amountGivenToCalculate:any;
             this.selected[0].balanceAmount = "0.00";
 
         }
-        else if(this.result < row.saleInvoiceAmount){
+        else if(this.result < row.commissionSaleInvoiceAmount){
           if(this.result== "0."+this.decimalSize){
             this.toastr.error('Not Enuf Amount', 'Message.');
           }
@@ -184,8 +184,8 @@ amountGivenToCalculate:any;
           this.result = this.selected[0].receivedAmount -this.result;
           }
         }
-        else if(this.result > row.saleInvoiceAmount){
-          this.selected[0].paid = row.saleInvoiceAmount;
+        else if(this.result > row.commissionSaleInvoiceAmount){
+          this.selected[0].paid = row.commissionSaleInvoiceAmount;
           this.selected[0].receivedAmount = this.selected[0].paid;
           this.result = this.result-this.selected[0].paid ;
           this.result =this.result.toFixed(2)
@@ -299,7 +299,7 @@ amountGivenToCalculate:any;
         this.rowsFilter =this.response.data;
         for(let i=0;i<=this.rows.length; i++){
           this.rows[i].paid ='0.'+this.decimalSize;
-          this.rows[i].balanceAmount =this.rows[i].saleInvoiceAmount;
+          //this.rows[i].balanceAmount =this.rows[i].saleInvoiceAmount;
 
         }
       }
@@ -332,7 +332,7 @@ amountGivenToCalculate:any;
       }
 this.spinner.show();
     this.http.
-      post(`${environment.apiUrl}/api/YarnContracts/AddBuyerToSellerPayment`, varr)
+      post(`${environment.apiUrl}/api/YarnContracts/AddBuyerToSellerPaymentCommision`, varr)
       .subscribe(
         res => {
 

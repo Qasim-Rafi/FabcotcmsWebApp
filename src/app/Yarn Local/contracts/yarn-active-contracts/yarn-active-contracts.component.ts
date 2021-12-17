@@ -32,6 +32,7 @@ export class YarnActiveContractsComponent implements OnInit {
   receivedCount: number;
   onHoldCount: number;
  status : string =  "All" ;
+ loggedInDepartmentName: string;
  @ViewChild(DataBindingDirective) dataBinding: DataBindingDirective;
   constructor(
     private router: Router,
@@ -44,6 +45,7 @@ export class YarnActiveContractsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.loggedInDepartmentName=localStorage.getItem('loggedInDepartmentName');
     this.fetch((data) => {
       this.temp = [...data]; 
       this.rows = data;
@@ -235,7 +237,43 @@ this.spinner.hide();
     });
 }
 
+cloneContractChildExportyarn(clonedata){
+  let varr = {
 
+  }
+this.spinner.show();
+  
+   this.http.put(`${environment.apiUrl}/api/Contracts/CloneContractChild/`+clonedata.id , varr )
+        .subscribe(
+          res => {
+  
+            this.response = res;
+            if (this.response.success == true) {
+              this.data = this.response.data;
+              this.temp = [this.data];
+            this.toastr.success(this.response.message, 'Message.');
+            this.fetch((data) => {
+              this.temp = [...data]; 
+              this.rows = data;
+            });
+this.spinner.hide();
+
+             }
+            else {
+              this.toastr.error(this.response.message, 'Message.');
+this.spinner.hide();
+
+            }
+  
+          }, err => {
+            if (err.status == 400) {
+              this.toastr.error(this.response.message, 'Message.');
+              this.spinner.hide();
+
+            }
+
+          });
+}
 cloneContract(obj){
   let varr = {
 

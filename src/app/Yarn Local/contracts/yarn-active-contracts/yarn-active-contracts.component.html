@@ -289,7 +289,7 @@
         [filterable]="true"
         >
         <ng-template kendoGridToolbarTemplate>
-          <input placeholder="Search in all columns..." #newItem kendoTextBox (input)="onFilter(newItem.value)"/>
+          <input placeholder="Search in all columns..." class="form-control col-md-4" #newItem kendoTextBox (input)="onFilter(newItem.value)"/>
   
 
 
@@ -350,11 +350,22 @@
               
             </kendo-grid-column>
             <kendo-grid-column field="autoContractNumber" title="Details" [width]="180">
-              <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
-                <p class="text-left">  <strong> {{dataItem.autoContractNumber}} </strong>  
+              <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex" >
+                <p class="text-left">  <strong> {{dataItem.autoContractNumber}} </strong> 
+                  <span *ngIf = "loggedInDepartmentName == 'Yarn Export'" type="button" placement="right" ngbTooltip="Create Child Contract" class="editIconBack1 px-1 py-1" (click) = "cloneContractChildExportyarn(dataItem)">
+                    <i class="far fa-copy"></i>
+                  </span> 
                   <br>
                   B: &nbsp;{{dataItem.buyerName}}  <br>
                   S: &nbsp; {{dataItem.sellerName}} </p> 
+                  <!-- <p class="text-left" *ngIf = "loggedInDepartmentName == 'Yarn Export'"> <strong> {{dataItem.autoContractNumber}} 
+                    <span  class="editIconBack1 px-1 py-1 "
+                    (click)="navigateEditContract(dataItem)"
+                    >
+                      <i class="far fa-edit edit  "></i>
+                    </span>
+                  </strong>
+                   </p> -->
               </ng-template>
               
             </kendo-grid-column>
