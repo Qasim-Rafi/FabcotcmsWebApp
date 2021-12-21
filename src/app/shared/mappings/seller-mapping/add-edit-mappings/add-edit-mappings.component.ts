@@ -36,6 +36,8 @@ export class AddEditMappingsComponent implements OnInit {
     let varr = {
       "sellerId": this.mapping.sellerId,
       "accountCode": this.mapping.accountCode,
+      "party_Coa": this.mapping.party_Coa,
+      "sale_Tax_Coa": this.mapping.sale_Tax_Coa,
 
     }
 this.spinner.show();
@@ -69,7 +71,7 @@ this.spinner.show();
  
 this.spinner.show();
     this.http.
-      post(`${environment.apiUrl}/api/Sellers/AddSellerAccountMappings/` + this.mapping.sellerId + '/' + this.mapping.accountCode  , {})
+      post(`${environment.apiUrl}/api/Sellers/AddSellerAccountMappings/` + this.mapping.sellerId + '/' + this.mapping.accountCode +'/'+ this.mapping.party_Coa +'/'+ this.mapping.sale_Tax_Coa, {})
       .subscribe(
         res => {
         

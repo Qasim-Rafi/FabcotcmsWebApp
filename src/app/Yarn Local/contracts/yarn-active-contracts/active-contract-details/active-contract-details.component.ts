@@ -3664,10 +3664,10 @@ toggleShow() {
                       {
                       
                         layout:'noBorders',
-                        margin: [70 , 4 , 0 , 0],
+                        margin: this.contractProductData.pecenetAge || this.contractProductData.febricType || this.contractProductData.construction !=''? [70 , 4 , 0 , 0]:[0 , -15 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%' ],
                       body: [
-                        [{text:this.contractProductData['pecenetAge'] !=0 ?'Blend:' :'' , style:'heading'} , {text:this.contractProductData['pecenetAge'] !='' ? this.contractProductData['pecenetAge']+ '%'+ ' ' + this.contractProductData['febricType']+ ' ' +this.contractProductData['construction']  : this.contractProductData['febricType']+ ' ' +this.contractProductData['construction']  , style:'heading2'},
+                        [{text:this.contractProductData['pecenetAge'] || this.contractProductData['febricType'] || this.contractProductData['construction'] !='' ?'Blend:' :'' , style:'heading'} , {text:this.contractProductData['pecenetAge'] !='' ? this.contractProductData['pecenetAge']+ '%'+ ' ' + this.contractProductData['febricType']+ ' ' +this.contractProductData['construction']  : this.contractProductData['febricType']+ ' ' +this.contractProductData['construction']  , style:'heading2'},
                        
                       
                       ],] }
@@ -3684,7 +3684,7 @@ toggleShow() {
                      
                       {
                         layout:'noBorders',
-                        margin: [70 , 4 , 0 , 0],
+                        margin: this.contractProductData.weaveName !=''? [70 , 4 , 0 , 0]:[0 , -5 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%' ],
                       body: [
 
@@ -3712,8 +3712,8 @@ toggleShow() {
 
                       {
                         layout:'noBorders',
-                        margin: [70 , 4 , 0 , 0],
-                        table:{headerRows: 1 , widths:['20%' , '7%' , '7%'],
+                        margin: this.contractProductData.gsm !=''? [70 , 4 , 0 , 0]:[0 , -15 , 0 , 0],
+                        table:{headerRows: 1 , widths:this.contractProductData.gsm !=''?['20%' , '10%' , '8%']:['0%' , '0%' , '0%'],
                       body: [
                         [{text:this.contractProductData['gsm'] ==''? '' : 'GSM:'  , style:'heading'} , {text:this.contractProductData['gsm'] =''? '' : this.contractProductData['gsm'] , style:'heading2'}  ,
                          {text: this.contractProductData['tolerance'] == null?  " " : this.contractProductData['tolerance'] ==0? " ": "+/- " + this.contractProductData['tolerance'] + "%" , style:'heading2'}],] }
@@ -3975,10 +3975,10 @@ toggleShow() {
                     
                       {
                         layout:'noBorders',
-                        margin: [70 , 4 , 0 , 0],
+                        margin: this.contractProductData.pecenetAge || this.contractProductData.febricType || this.contractProductData.construction !=''? [70 , 4 , 0 , 0]:[0 , -15 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
-                        [{text:this.contractProductData['pecenetAge'] !=''?'Blend:':''  , style:'heading'} , {text:this.contractProductData['pecenetAge'] !='' ? this.contractProductData['pecenetAge']+ '%'+ ' ' + this.contractProductData['febricType']+ ' ' +this.contractProductData['construction']  : this.contractProductData['febricType']+ ' ' +this.contractProductData['construction']  , style:'heading2'},
+                        [{text:this.contractProductData['pecenetAge'] || this.contractProductData['febricType'] || this.contractProductData['construction'] !='' ?'Blend:' :''  , style:'heading'} , {text:this.contractProductData['pecenetAge'] !='' ? this.contractProductData['pecenetAge']+ '%'+ ' ' + this.contractProductData['febricType']+ ' ' +this.contractProductData['construction']  : this.contractProductData['febricType']+ ' ' +this.contractProductData['construction']  , style:'heading2'},
                        
                       
                       ],] }
@@ -3994,7 +3994,7 @@ toggleShow() {
                      
                       {
                         layout:'noBorders',
-                        margin: [70 , 4 , 0 , 0],
+                        margin: this.contractProductData.weaveName !=''? [70 , 4 , 0 , 0]:[0 , -5 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%' ],
                       body: [
                         [{text:this.contractProductData['weaveName'] !=''?'Weave:':''  , style:'heading'} , {text: this.contractProductData['weaveName'] , style:'heading2' } ,
@@ -4021,7 +4021,7 @@ toggleShow() {
 
                       {
                         layout:'noBorders',
-                        margin: [70 , 4 , 0 , 0],
+                        margin: this.contractProductData.gsm !=''? [70 , 4 , 0 , 0]:[0 , -15 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '7%' , '7%'],
                       body: [
                         [{text:this.contractProductData['gsm'] ==''? '' : 'GSM:'  , style:'heading'} , {text:this.contractProductData['gsm'] =''? '' : this.contractProductData['gsm'] , style:'heading2'}  ,

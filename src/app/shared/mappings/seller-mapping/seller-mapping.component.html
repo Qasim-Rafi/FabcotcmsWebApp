@@ -120,6 +120,18 @@
              {{ row.accountCode }}
             </ng-template>
           </ngx-datatable-column>
+          <ngx-datatable-column name="Party_Coa" [width]="80">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+             
+             {{ row.PartyCoa }}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Sale_Tax_Coa" [width]="80">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+             
+             {{ row.SaleTexCoa }}
+            </ng-template>
+          </ngx-datatable-column>
           <ngx-datatable-column name="Action" [width]="80">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
   
