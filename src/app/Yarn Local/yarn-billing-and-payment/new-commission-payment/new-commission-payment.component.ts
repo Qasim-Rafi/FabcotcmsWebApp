@@ -43,6 +43,7 @@ amountGivenToCalculate:any;
   editing = {};
   decimalSize:any;
   result:any;
+  Paidamount:any;
   constructor(
 
     private route: ActivatedRoute,
@@ -297,11 +298,20 @@ amountGivenToCalculate:any;
       if (this.response.success == true) {
         this.rows = this.response.data;
         this.rowsFilter =this.response.data;
-        for(let i=0;i<=this.rows.length; i++){
-          this.rows[i].paid ='0.'+this.decimalSize;
-          //this.rows[i].balanceAmount =this.rows[i].saleInvoiceAmount;
+         for(let i=0;i<=this.rows.length; i++){
+           if(this.rows[i].paidCheck ==true){
 
-        }
+            let am = this.rows[i].paid ;
+             let pp =this.Paidamount.push(am) 
+             this.Paidamount +=pp
+           }
+        //   //this.rows[i].balanceAmount =this.rows[i].saleInvoiceAmount;
+
+         }
+        // for(let i=0; i<this.selectedids.selected.length; i++ )
+        // {      this.Paidamount = this.amount + this.selectedids.selected[i].amount
+        //     this.contractIds[i] = this.selectedids.selected[i].id;
+        // }
       }
       else {
         this.toastr.error(this.response.message, 'Message.');

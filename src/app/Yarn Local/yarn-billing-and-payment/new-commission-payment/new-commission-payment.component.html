@@ -557,10 +557,10 @@
                                         </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column name="Action" [width]="80" prop="action" [flexGrow]="0.06">
-                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template let-rowIndex="rowIndex">
                                             <div>
                                                 <label class="checkbox-container">
-                                                <input type="checkbox" (change)="onSelect($event,row)">
+                                                <input type="checkbox" name="paidCheck_{{rowIndex}}" [(ngModel)]="row.paidCheck" (change)="onSelect($event,row)">
                                                 <span class="check"></span>
                                               </label>
                                             </div>
@@ -580,7 +580,7 @@
                                 <div class="form-group row">
                 
                                     <div class="col-md-3 font-weight-bold">
-                                        <p>Paid Amount:</p> 
+                                        <p>Paid Amount:  {{Paidamount}}</p> 
                                     </div>
                                     <div class="col-md-3  font-weight-bold">
                                         <p>Blnc Amount:</p> {{commData.amount}}

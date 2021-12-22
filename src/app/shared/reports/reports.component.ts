@@ -441,7 +441,7 @@ else if (this.menuName.menuName == 'DispatchReport'){
           this.response = res;
           if (this.response.success == true  && this.response.data.length != 0) {
             this.toastr.success(this.response.message, 'Message.');
-            this.dispatchReport = this.response.data;
+            this.dispatchReport = this.response.data.list;
             this.searchDispatch = [...this.dispatchReport]
             // this.openSearch = [...this.rows]
             // this.totalContract = this.response.data.totalContract 
