@@ -492,7 +492,7 @@
                                         <div class="input-group" *ngIf="!brand">
                                             <ng-select name="brandId" #brandId="ngModel" class="input-w px-0" [(ngModel)]="data.brandId"
                                                 placeholder="Select Brand Name"
-                                                [ngClass]="{'error': brandId.invalid && brandId.touched,'not-error': brandId.valid && brandId.touched}" required>
+                                                >
                                                 <ng-option *ngFor="let i of data4" [value]="i.id">{{ i.brandName }}
                                                 </ng-option>
                                             </ng-select>

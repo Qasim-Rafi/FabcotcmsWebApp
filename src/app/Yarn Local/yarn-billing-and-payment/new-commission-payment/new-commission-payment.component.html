@@ -560,7 +560,7 @@
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template let-rowIndex="rowIndex">
                                             <div>
                                                 <label class="checkbox-container">
-                                                <input type="checkbox" name="paidCheck_{{rowIndex}}" [(ngModel)]="row.paidCheck" (change)="onSelect($event,row)">
+                                                <input type="checkbox" (change)="onSelect($event,row)">
                                                 <span class="check"></span>
                                               </label>
                                             </div>

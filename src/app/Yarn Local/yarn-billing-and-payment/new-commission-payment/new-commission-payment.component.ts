@@ -161,7 +161,31 @@ amountGivenToCalculate:any;
        let newrow =this.rows.filter(r=>r.saleInvoiceId ==row.saleInvoiceId)
        this.selected = newrow;  
 
+       if(this.selected[0].receivedAmount != null){
+
+         if(parseInt(this.result) == parseInt(row.receivedAmount)){
+          this.selected[0].paid = this.result;
+          this.selected[0].receivedAmount = this.selected[0].paid;
+          this.result = this.selected[0].paid - this.result;
+          if(this.result == ""){
+            this.result='0.'+this.decimalSize;
+          }
+          this.selected[0].balanceAmount = "0.00";
+         }
+         else if(parseInt(this.result) > parseInt(row.receivedAmount)){
+          let remainingamount =  row.commissionSaleInvoiceAmount -row.receivedAmount;
+          this.selected[0].paid =parseFloat(row.receivedAmount) + parseFloat(remainingamount.toFixed(2));
+          this.selected[0].paid =this.selected[0].paid.toFixed(2);
+          this.selected[0].balanceAmount = "0.00";
+         this.result= parseFloat(this.result) - parseFloat(remainingamount.toFixed(2));
+         //this.result =this.result+'.'+this.decimalSize;
+         }
+
+       }
+       else if(this.selected[0].receivedAmount == null){
+
         if(parseInt(this.result) == parseInt(row.commissionSaleInvoiceAmount)){
+        
             this.selected[0].paid = this.result;
             this.selected[0].receivedAmount = this.selected[0].paid;
             this.result = this.selected[0].paid - this.result;
@@ -172,7 +196,7 @@ amountGivenToCalculate:any;
             this.selected[0].balanceAmount = "0.00";
 
         }
-        else if(this.result < row.commissionSaleInvoiceAmount){
+        else if(parseInt(this.result) < parseInt(row.commissionSaleInvoiceAmount)){
           if(this.result== "0."+this.decimalSize){
             this.toastr.error('Not Enuf Amount', 'Message.');
           }
@@ -185,7 +209,7 @@ amountGivenToCalculate:any;
           this.result = this.selected[0].receivedAmount -this.result;
           }
         }
-        else if(this.result > row.commissionSaleInvoiceAmount){
+        else if(parseInt(this.result) > parseInt(row.commissionSaleInvoiceAmount)){
           this.selected[0].paid = row.commissionSaleInvoiceAmount;
           this.selected[0].receivedAmount = this.selected[0].paid;
           this.result = this.result-this.selected[0].paid ;
@@ -212,7 +236,18 @@ amountGivenToCalculate:any;
          
        });
       }
+    }
+    else if(event.currentTarget.checked == false){
+      let newrow =this.rows.filter(r=>r.saleInvoiceId ==row.saleInvoiceId)
+      let filterdata =this.rowsFilter.filter(x=>x.saleInvoiceId ==row.saleInvoiceId)
+      this.selected = newrow; 
+      this.selected[0].paid = filterdata[0].paid;
+      let remainingamount =  row.commissionSaleInvoiceAmount -row.receivedAmount;
+      this.result =this.result+remainingamount;
+      this.result =this.result+'.'+this.decimalSize;
+      this.selected[0].balanceAmount = filterdata[0].paid;
 
+    }
   }
 
   amountCall(event){
@@ -221,21 +256,21 @@ amountGivenToCalculate:any;
    
      this.amountGivenToCalculate=this.commData.amount;
            this.result = this.commData.amount.toString() +'.'+this.decimalSize;
-           this.extCommData.taxChalan = 0;
-           for(let i=0;i<=this.rows.length; i++){
-             this.rows[i].receivedAmount ='0.'+this.decimalSize;
+          //  this.extCommData.taxChalan = 0;
+          //  for(let i=0;i<=this.rows.length; i++){
+          //    this.rows[i].receivedAmount ='0.'+this.decimalSize;
 
-           }
+          //  }
     }
    
     else{
            this.amountGivenToCalculate=this.commData.amount;
            this.result = this.commData.amount.toString();
-           this.extCommData.taxChalan = 0;
-           for(let i=0;i<=this.rows.length; i++){
-             this.rows[i].receivedAmount ='0.'+this.decimalSize;
+          //  this.extCommData.taxChalan = 0;
+          //  for(let i=0;i<=this.rows.length; i++){
+          //    this.rows[i].receivedAmount ='0.'+this.decimalSize;
 
-           }
+          //  }
          }
      }
   onBlurMethod(event){
@@ -245,10 +280,10 @@ amountGivenToCalculate:any;
       this.result=event;
     
     }
-    for(let i=0;i<=this.rows.length; i++){
-      this.rows[i].receivedAmount ='0.'+this.decimalSize;
+    // for(let i=0;i<=this.rows.length; i++){
+    //   this.rows[i].receivedAmount ='0.'+this.decimalSize;
 
-    }
+    // }
   //   if(event != undefined){
   //     setTimeout(()=>{                           
   //       this.isAmountDisabled =true;
@@ -308,9 +343,9 @@ amountGivenToCalculate:any;
         //   //this.rows[i].balanceAmount =this.rows[i].saleInvoiceAmount;
 
          }
-        // for(let i=0; i<this.selectedids.selected.length; i++ )
-        // {      this.Paidamount = this.amount + this.selectedids.selected[i].amount
-        //     this.contractIds[i] = this.selectedids.selected[i].id;
+        // for(let i=0; i<this.rows.length; i++ )
+        // {      this.rows[i].balanceAmount = this.rows[i].balanceAmount
+          
         // }
       }
       else {
@@ -322,6 +357,14 @@ amountGivenToCalculate:any;
 
 
   addCommissionPayment() {
+    let ids=[]
+    ids=this.saleInvoiceIds;
+    this.saleInvoiceIds = [] ;
+    for(let i = 0 ; i < ids.length ; i++){
+    
+      let found= this.rows.filter(x=>x.saleInvoiceId ==ids[i])
+      this.saleInvoiceIds.push({"saleInvoiceId": found[0].saleInvoiceId, "invoiceAmount": found[0].paid}) 
+    }
       let varr = {
         "buyerId": null,
         "sellerId": this.commData.sellerId,
@@ -338,7 +381,7 @@ amountGivenToCalculate:any;
         "depositDate": this.dateformater.toModel(this.commData.depositDate),
         "paymentRemarks":this.commData.paymentRemarks,
         "active": true,
-        "saleInvoiceIds": this.saleInvoiceIds
+        "SaleInvoicePaymentDetails": this.saleInvoiceIds
       }
 this.spinner.show();
     this.http.

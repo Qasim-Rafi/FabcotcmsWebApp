@@ -484,7 +484,7 @@ else if (this.menuName.menuName == 'DispatchReport'){
           this.response = res;
           if (this.response.success == true  && this.response.data.length != 0) {
             this.toastr.success(this.response.message, 'Message.');
-            this.externalAgent = this.response.data;
+            this.externalAgent = this.response.data.obj;
          this.searchAgent = [...this.externalAgent]
 
          this.spinner.hide();
