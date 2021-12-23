@@ -22,6 +22,8 @@ export class NewCommissionPaymentComponent implements OnInit {
   dateformater: Dateformater = new Dateformater();
   response: any;
   blncamount:any;
+  Oblanc:any=[];
+  Pblanc:any=[];
   invoicenoselected:any;
   selected = [];
   saleInvoiceIds =[];
@@ -154,7 +156,7 @@ amountGivenToCalculate:any;
     })
   }
   onSelect(event,row) {
-       this.blncamount=row.balanceAmount;
+      // this.blncamount=row.balanceAmount;
        this.invoicenoselected=this.rows.findIndex(x=>x.contractId ==row.contractId)
        if(event.currentTarget.checked == true){
        this.saleInvoiceIds.push(row.saleInvoiceId);
@@ -333,20 +335,27 @@ amountGivenToCalculate:any;
       if (this.response.success == true) {
         this.rows = this.response.data;
         this.rowsFilter =this.response.data;
-         for(let i=0;i<=this.rows.length; i++){
-           if(this.rows[i].paidCheck ==true){
+        //  for(let i=0;i<=this.rows.length; i++){
+        //    if(this.rows[i].paidCheck ==true){
 
-            let am = this.rows[i].paid ;
-             let pp =this.Paidamount.push(am) 
-             this.Paidamount +=pp
-           }
-        //   //this.rows[i].balanceAmount =this.rows[i].saleInvoiceAmount;
+        //     let am = this.rows[i].paid ;
+        //      let pp =this.Paidamount.push(am) 
+        //      this.Paidamount +=pp
+        //    }
+        // //   //this.rows[i].balanceAmount =this.rows[i].saleInvoiceAmount;
 
-         }
-        // for(let i=0; i<this.rows.length; i++ )
-        // {      this.rows[i].balanceAmount = this.rows[i].balanceAmount
+        //  }
+        for(let i=0; i<this.rows.length; i++ )
+        {     
+       
+          this.Oblanc.push(parseFloat(this.rows[i].commissionSaleInvoiceAmount));
+          this.Pblanc.push(parseFloat(this.rows[i].paid));
           
-        // }
+        }
+        const Osum = this.Oblanc.reduce((partial_sum, a) => partial_sum + a, 0);
+        const Psum = this.Pblanc.reduce((partial_sum, a) => partial_sum + a, 0);
+          this.blncamount =Osum;
+          this.Paidamount =Psum;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');

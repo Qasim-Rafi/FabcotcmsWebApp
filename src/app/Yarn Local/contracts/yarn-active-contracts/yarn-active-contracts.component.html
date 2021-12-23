@@ -282,10 +282,13 @@
         kendoGridSelectBy="id"
         [pageSize]="20"
         [pageable]="true"
-        [sortable]="true"
+        [sortable]=" {
+          allowUnsort: false
+        }"
         [reorderable]="true"
         [resizable]="true"
         [height]="800"
+        
         [filterable]="true"
         >
         <ng-template kendoGridToolbarTemplate>
@@ -343,13 +346,13 @@
                 </ng-template>
             </kendo-grid-column>
         
-            <kendo-grid-column field="contractAge" title="Age" [width]="80">
+            <kendo-grid-column field="contractAge" title="Age" [width]="80" [sortable]="true">
               <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
                 <span class="badge badge-primary">{{dataItem.contractAge}}</span>
               </ng-template>
               
             </kendo-grid-column>
-            <kendo-grid-column field="autoContractNumber" title="Details" [width]="180">
+            <kendo-grid-column field="autoContractNumber" title="Details" [width]="180" [sortable]="true">
               <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex" >
                 <p class="text-left">  <strong> {{dataItem.autoContractNumber}} </strong> 
                   <span *ngIf = "loggedInDepartmentName == 'Yarn Export'" type="button" placement="right" ngbTooltip="Create Child Contract" class="editIconBack1 px-1 py-1" (click) = "cloneContractChildExportyarn(dataItem)">

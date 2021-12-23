@@ -32,6 +32,13 @@ body {
   width: 110% !important;
   min-width: 0;
 }
+.k-i-sort-asc-sm:before {
+  content: "\e004" !important;
+  }
+       
+  .k-i-sort-desc-sm:before {
+  content: "\e006" !important;
+  }
 .content-header {
   padding: 10px 0.4rem !important;
 }

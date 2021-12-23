@@ -510,9 +510,10 @@
                                     [columnMode]="'flex'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" >
                 
                                     <ngx-datatable-column name="Sno" [width]="80" prop="sno" [flexGrow]="0.03">
-                                        <ng-template let-row="row" ngx-datatable-cell-template>
-                
-                                        </ng-template>
+                                        <ng-template let-rowIndex="rowIndex" let-row="row" let-expanded="expanded"
+                                        ngx-datatable-cell-template>
+                                        {{rowIndex + 1}}
+                                    </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column name="Inv #" [width]="80" prop="saleInvoiceNo" [flexGrow]="0.05">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
@@ -580,7 +581,7 @@
                                 <div class="form-group row">
                 
                                     <div class="col-md-3 font-weight-bold">
-                                        <p>Paid Amount:  {{Paidamount}}</p> 
+                                        <p>Paid Amount:  </p> {{Paidamount}}
                                     </div>
                                     <div class="col-md-3  font-weight-bold">
                                         <p>Blnc Amount:</p> {{commData.amount}}

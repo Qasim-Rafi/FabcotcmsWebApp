@@ -18,6 +18,8 @@ import { DataBindingDirective } from '@progress/kendo-angular-grid';
 })
 export class YarnActiveContractsComponent implements OnInit {
  totalDisplayPrice:any;
+ public multiple = false;
+ public allowUnsort = true;
   response: any;
   data: any = {};
   rows: any = [];
