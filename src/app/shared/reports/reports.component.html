@@ -1427,7 +1427,7 @@
                 <p *ngIf = "row.rateCurrencyName == 'PKR'">RS</p>  
                 <p *ngIf = "row.rateCurrencyName == 'USD'">$</p> 
                 <p *ngIf = "row.rateCurrencyName == 'EUR'">€</p> 
-                <p *ngIf = "row.rateCurrencyName == 'GBP'">GBP</p>   {{row.quantityUOMName}}
+                <p *ngIf = "row.rateCurrencyName == 'GBP'">GBP</p>  {{row.invoiceAmount}} {{row.quantityUOMName}}
               </ng-template>
             </ngx-datatable-column>
         

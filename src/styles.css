@@ -12,6 +12,7 @@
 @import "~ag-grid-community/dist/styles/ag-grid.css";
 @import "~ag-grid-community/dist/styles/ag-theme-balham.css";
 
+@import url("https://use.fontawesome.com/releases/v5.14.0/css/all.css"); 
 body {
   font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
@@ -42,6 +43,18 @@ body {
 .content-header {
   padding: 10px 0.4rem !important;
 }
+.customiconforgrid:before{
+  font-family: "Font Awesome 5 Free";
+  content: "\f0dc";
+  font-weight: 600;
+  position:absolute;
+  right:10px;
+  cursor: pointer;
+}
+.customiconforgrid {
+  position:relative;
+}    
+
  .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
   overflow: hidden;
   text-overflow: ellipsis;

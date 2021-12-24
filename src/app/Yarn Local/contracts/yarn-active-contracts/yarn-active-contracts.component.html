@@ -288,11 +288,11 @@
         [reorderable]="true"
         [resizable]="true"
         [height]="800"
-        
+
         [filterable]="true"
         >
         <ng-template kendoGridToolbarTemplate>
-          <input placeholder="Search in all columns..." class="form-control col-md-4" #newItem kendoTextBox (input)="onFilter(newItem.value)"/>
+          <input placeholder="Search in all columns..." class="form-control col-md-4 customiconforgrid" #newItem kendoTextBox (input)="onFilter(newItem.value)"/>
   
 
 
@@ -346,14 +346,14 @@
                 </ng-template>
             </kendo-grid-column>
         
-            <kendo-grid-column field="contractAge" title="Age" [width]="80" [sortable]="true">
+            <kendo-grid-column field="contractAge" title="Age" [width]="80" [sortable]="true" [headerClass]="'customiconforgrid'">
               <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
                 <span class="badge badge-primary">{{dataItem.contractAge}}</span>
               </ng-template>
               
             </kendo-grid-column>
-            <kendo-grid-column field="autoContractNumber" title="Details" [width]="180" [sortable]="true">
-              <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex" >
+            <kendo-grid-column field="autoContractNumber" title="Details" [width]="180" [sortable]="true" [headerClass]="'customiconforgrid'">
+              <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex"  >
                 <p class="text-left">  <strong> {{dataItem.autoContractNumber}} </strong> 
                   <span *ngIf = "loggedInDepartmentName == 'Yarn Export'" type="button" placement="right" ngbTooltip="Create Child Contract" class="editIconBack1 px-1 py-1" (click) = "cloneContractChildExportyarn(dataItem)">
                     <i class="far fa-copy"></i>
@@ -372,44 +372,44 @@
               </ng-template>
               
             </kendo-grid-column>
-            <kendo-grid-column field="contractOn" title="Dated" [width]="100">
+            <kendo-grid-column field="contractOn" title="Dated" [width]="100"         [headerClass]="'customiconforgrid'">
               <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
                 
                   {{dataItem.contractOn}}
               </ng-template>
               
             </kendo-grid-column>
-            <kendo-grid-column field="articleName" title="Article/Cons." [width]="120">
+            <kendo-grid-column field="articleName" title="Article/Cons." [width]="120"         [headerClass]="'customiconforgrid'">
               <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
                 {{dataItem.articleName}}
               </ng-template>
               
             </kendo-grid-column>
-            <kendo-grid-column field="price" title="Price" [width]="120">
+            <kendo-grid-column field="price" title="Price" [width]="120"        [headerClass]="'customiconforgrid'">
               <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
                 {{dataItem.currencyCode}} {{dataItem.price}} / {{dataItem.uomName}}
               </ng-template>
               
             </kendo-grid-column>
-            <kendo-grid-column field="quantity" title="Qty" [width]="120">
+            <kendo-grid-column field="quantity" title="Qty" [width]="120"        [headerClass]="'customiconforgrid'">
               <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
                 {{dataItem.quantity}}
               </ng-template>
               
             </kendo-grid-column>
-            <kendo-grid-column field="poNumber" title="PO#" [width]="120">
+            <kendo-grid-column field="poNumber" title="PO#" [width]="120"        [headerClass]="'customiconforgrid'">
               <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
                 {{dataItem.poNumber}}
               </ng-template>
               
             </kendo-grid-column>
-            <kendo-grid-column field="scNumber" title="SC#" [width]="120">
+            <kendo-grid-column field="scNumber" title="SC#" [width]="120"        [headerClass]="'customiconforgrid'">
               <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
                 {{dataItem.scNumber}}
               </ng-template>
               
             </kendo-grid-column>
-            <kendo-grid-column field="dispatchQuantity" title="Dispatch(Inv)" [width]="120">
+            <kendo-grid-column field="dispatchQuantity" title="Dispatch(Inv)" [width]="120"        [headerClass]="'customiconforgrid'">
               <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
                 {{dataItem.dispatchQuantity}}
               </ng-template>
