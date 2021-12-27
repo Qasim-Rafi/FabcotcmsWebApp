@@ -28,13 +28,14 @@
 
       <div class="col-10 col-md-11 pt-3 pb-2">
         <label class="col-md-1 col-form-label text-grey"></label>
-        <label class="col-md-1 col-form-label text-grey">Buyer</label>
-        <label class="col-md-5 col-form-label text-grey">Seller</label>
+      
+       
         <div class="form-group row col-md-12">
           <div class="col-md-1">
           
           </div>
           <div class="col-md-5">
+            <label class="text-grey">Buyer</label>
             <ng-select [(ngModel)]="data.buyerId" placeholder="All Buyers" name="buyerId"
               #buyerId="ngModel">
               <ng-option *ngFor="let i of buyer" [value]="i.id">
@@ -43,6 +44,7 @@
             </ng-select>
           </div>
           <div class="col-md-5">
+            <label class="text-grey">Seller</label>
             <ng-select [(ngModel)]="data.sellerId" placeholder="All Sellers" name="sellerId" #sellerId="ngModel"
              >
              <ng-option *ngFor="let i of seller" [value]="i.id">
@@ -52,19 +54,21 @@
           </div>
         </div>
         <div *ngIf="menu=='CommissionReport'">
-        <label class="col-md-4 col-form-label text-grey">Invoice Starting Date</label>
-        <label class="col-md-5 col-form-label text-grey">Invoice Ending Date</label>
+        
+        
         <div class="form-group row col-md-12">
           <div class="col-md-1">
           
           </div>
           <div class="col-md-5">
+            <label class="text-grey">Invoice Starting Date</label>
             <input navigation="select" class="form-control" name="startInvoiceDate" [(ngModel)]="data.startInvoiceDate"
               #startInvoiceDate="ngModel" ngbDatepicker #validity1="ngbDatepicker" (click)="validity1.toggle()"
               placeholder="Invoice Start Date" />
           </div>
 
           <div class="col-md-5">
+            <label class="text-grey">Invoice Ending Date</label>
             <input navigation="select" class="form-control" name="endInvoiceDate" [(ngModel)]="data.endInvoiceDate"
               #endInvoiceDate="ngModel" ngbDatepicker #validity2="ngbDatepicker" (click)="validity2.toggle()"
               placeholder="Invoice End Date" />
@@ -72,19 +76,21 @@
         </div>
       </div>
       <div *ngIf="menu=='LCReport'">
-        <label class="col-md-4 col-form-label text-grey">Contract Starting Date</label>
-        <label class="col-md-5 col-form-label text-grey">Contract Ending Date</label>
+        
+   
         <div class="form-group row col-md-12">
           <div class="col-md-1">
           
           </div>
           <div class="col-md-5">
+            <label class="text-grey">Contract Starting Date</label>
             <input navigation="select" class="form-control" name="dateTime" [(ngModel)]="Bendata.dateTime"
               #dateTime="ngModel" ngbDatepicker #validity1="ngbDatepicker" (click)="validity1.toggle()"
               placeholder="Invoice Start Date" />
           </div>
 
           <div class="col-md-5">
+            <label class="text-grey">Contract Ending Date</label>
             <input navigation="select" class="form-control" name="dateTime" [(ngModel)]="Bendata.dateTime"
               #dateTime="ngModel" ngbDatepicker #validity2="ngbDatepicker" (click)="validity2.toggle()"
               placeholder="Invoice End Date" />
@@ -92,19 +98,21 @@
         </div>
       </div>
         <div *ngIf="menu=='CommissionReport'">
-        <label class="col-md-4 col-form-label text-grey">Bill Starting Date</label>
-        <label class="col-md-5 col-form-label text-grey">Bill Ending Date</label>
+      
+     
         <div class="form-group row col-md-12">
           <div class="col-md-1">
           
           </div>
           <div class="col-md-5">
+            <label class=" text-grey">Bill Starting Date</label>
             <input navigation="select" class="form-control" name="startBillDate" [(ngModel)]="data.startBillDate"
               #startBillDate="ngModel" ngbDatepicker #validity3="ngbDatepicker" (click)="validity3.toggle()"
               placeholder="Payment Start Date" />
           </div>
 
           <div class="col-md-5">
+            <label class=" text-grey">Bill Ending Date</label>
             <input navigation="select" class="form-control" name="endIBillDate" [(ngModel)]="data.endIBillDate"
               #endIBillDate="ngModel" ngbDatepicker #validity4="ngbDatepicker" (click)="validity4.toggle()"
               placeholder="Payment End Date" />
@@ -113,18 +121,20 @@
       </div>
       <div *ngIf="menu=='CommissionReport'">
         <label class="col-md-1 col-form-label text-grey"></label>
-        <label class="col-md-1 col-form-label text-grey">Contract#</label>
-        <label class="col-md-5 col-form-label text-grey">Bill#</label>
+       
+   
         <div class="form-group row col-md-12">
           <div class="col-md-1">
           
           </div>
           <div class="col-md-5">
+            <label class="text-grey">Contract#</label>
             <input class="form-control" name="contractNo" [(ngModel)]="data.contractNo" #contractNo="ngModel"
               placeholder="Contract#" />
           </div>
 
           <div class="col-md-5">
+            <label class=" text-grey">Bill#</label>
             <input class="form-control" name="billNo" [(ngModel)]="data.billNo" #billNo="ngModel"
               placeholder="Bill Number" />
           </div>
@@ -133,31 +143,34 @@
         </div>
         <div *ngIf="menu=='LCReport'">
           <label class="col-md-1 col-form-label text-grey"></label>
-          <label class="col-md-1 col-form-label text-grey">Contract#</label>
-          <label class="col-md-5 col-form-label text-grey">LC Status</label>
+    
           <div class="form-group row col-md-12">
             <div class="col-md-1">
             
             </div>
             <div class="col-md-5">
+              <label class="text-grey">Contract#</label>
               <input class="form-control" name="remarks" [(ngModel)]="Bendata.remarks" #remarks="ngModel"
                 placeholder="Contract #" />
             </div>
   
             <div class="col-md-5">
+              
+          <label class="text-grey">LC Status</label>
               <input class="form-control" name="remarks" [(ngModel)]="Bendata.remarks" #remarks="ngModel"
                 placeholder="LC Status" />
             </div>
           </div>
           </div>
       <div *ngIf="menu=='CommissionReport'">
-        <label class="col-md-3 col-form-label text-grey">Sale Invoice#</label>
-        <label class="col-md-5 col-form-label text-grey">Article</label>
+    
+       
         <div class="form-group row col-md-12">
           <div class="col-md-1">
           
           </div>
           <div class="col-md-5">
+            <label class=" text-grey">Sale Invoice#</label>
             <input class="form-control" name="saleInvoiceNo" [(ngModel)]="data.saleInvoiceNo" #saleInvoiceNo="ngModel"
               placeholder="BillNumber" />
           </div>
@@ -168,6 +181,7 @@
           </div> -->
           
           <div class="col-md-5">
+            <label class="text-grey">Article</label>
             <ng-select [(ngModel)]="data.articleId" placeholder="All" name="articleId" #articleId="ngModel"
             >
             <ng-option *ngFor="let i of article" [value]="i.id">{{ i.name }}
@@ -176,6 +190,40 @@
           </div>
         </div>
         </div>
+
+        <div *ngIf="menu=='CommissionReport'">
+    
+       
+          <div class="form-group row col-md-12">
+            <div class="col-md-1">
+            
+            </div>
+            <div class="col-md-5">
+              <label class="text-grey">Maturity Status</label>
+              <ng-select [(ngModel)]="data.maturityStatus" placeholder="All" name="maturityStatus" #maturityStatus="ngModel"
+              >
+              <ng-option value="null" selected>All</ng-option>
+              <ng-option value="Matured">Matured</ng-option>
+              <ng-option value="NotMatured">UnMatured</ng-option>
+              </ng-select>
+            </div>
+  
+            <!-- <div class="col-md-5">
+              <input class="form-control" name="remarks" [(ngModel)]="data.remarks" #remarks="ngModel"
+                placeholder="Date" />
+            </div> -->
+            
+            <div class="col-md-5">
+              <label class="text-grey">Payment Status</label>
+              <ng-select [(ngModel)]="data.paymentStatus" placeholder="All" name="paymentStatus" #paymentStatus="ngModel"
+              >
+              <ng-option value="null" selected>All</ng-option>
+              <ng-option value="Received">Received</ng-option>
+              <ng-option value="NotReceived">Not Received</ng-option>
+              </ng-select>
+            </div>
+          </div>
+          </div>
       <!-- <div *ngIf="menu=='CommissionReport'">
         
         <label class="col-md-1 col-form-label text-grey"></label>
@@ -219,19 +267,21 @@
         </div> -->
 
         <div *ngIf="menu=='LCReport'">
-          <label class="col-md-3 col-form-label text-grey">LC Starting Date</label>
-          <label class="col-md-5 col-form-label text-grey">LC Ending Date</label>
+        
+      
           <div class="form-group row col-md-12">
             <div class="col-md-1">
             
             </div>
             <div class="col-md-5">
+              <label class=" text-grey">LC Starting Date</label>
               <input navigation="select" class="form-control" name="dateTime" [(ngModel)]="Bendata.dateTime"
                 #dateTime="ngModel" ngbDatepicker #validity1="ngbDatepicker" (click)="validity1.toggle()"
                 placeholder="LC Start Date" />
             </div>
   
             <div class="col-md-5">
+              <label class=" text-grey">LC Ending Date</label>
               <input navigation="select" class="form-control" name="dateTime" [(ngModel)]="Bendata.dateTime"
                 #dateTime="ngModel" ngbDatepicker #validity2="ngbDatepicker" (click)="validity2.toggle()"
                 placeholder="LC End Date" />

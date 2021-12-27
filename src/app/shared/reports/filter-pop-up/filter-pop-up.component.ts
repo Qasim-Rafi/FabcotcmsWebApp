@@ -46,6 +46,8 @@ export class FilterPopUpComponent implements OnInit {
   ) { this.router.routeReuseStrategy.shouldReuseRoute = () => false; }
 
   ngOnInit(): void {
+    this.data.paymentStatus =null;
+    this.data.maturityStatus =null;
     this.menuName = this.route.snapshot.queryParams;
  this.variable=this.menuName.menuName;
  this.menuName=null;
@@ -104,6 +106,8 @@ export class FilterPopUpComponent implements OnInit {
        "billNo":this.data.billNo == undefined ? '': this.data.billNo,
        "saleInvoiceNo":this.data.saleInvoiceNo == undefined ? '': this.data.saleInvoiceNo,
        "articleId":this.data.articleId ==undefined ? 0 :this.data.articleId,
+       "maturityStatus":this.data.maturityStatus,
+       "paymentStatus":this.data.paymentStatus,
 
 
     }

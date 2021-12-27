@@ -86,7 +86,9 @@ totalContainer:any;
     private router: Router,
 
 
-  ) { this.router.routeReuseStrategy.shouldReuseRoute = () => false; }
+  ) { this.router.routeReuseStrategy.shouldReuseRoute = () => false; 
+    let body = document.getElementsByTagName('body')[0];
+    body.classList.add('sidebar-collapse');   }
 
   ngOnInit(): void {
     this.menuName = this.route.snapshot.queryParams;
