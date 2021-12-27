@@ -1518,25 +1518,25 @@
                      
                     
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                     
                                     <dl class="row">
-                                        <dt class="col-sm-4">Remarks:
+                                        <dt class="col-sm-2">Remarks:
                     
                                         </dt>
-                                        <dd class="col-sm-6">{{contractRemarksData.contractRemarks}}</dd>
+                                        <dd class="col-sm-10" [innerHTML]="contractRemarksData.contractRemarks.replace('.', '<br>')">{{contractRemarksData.contractRemarks}}</dd>
                                     </dl>
                                     <dl class="row" *ngIf = "loggedInDepartmentName == 'Yarn Local'  ">
-                                        <dt class="col-sm-4">Buyer Remarks:
+                                        <dt class="col-sm-2">Buyer Remarks:
                     
                                         </dt>
-                                        <dd class="col-sm-6">{{contractRemarksData.buyerRemarks}}</dd>
+                                        <dd class="col-sm-12"><p [innerHTML]="contractRemarksData.buyerRemarks.replace('.', '<br>')">{{contractRemarksData.buyerRemarks}}</p></dd>
                                     </dl>
                                     <dl class="row">
-                                        <dt class="col-sm-4">Other Condition:
+                                        <dt class="col-sm-2">Other Condition:
                     
                                         </dt>
-                                        <dd class="col-sm-6">{{contractRemarksData.otherConditionRemarks}}</dd>
+                                        <dd class="col-sm-10"><p [innerHTML]="contractRemarksData.otherConditionRemarks.replace('/(?:\r\n|\r|\n)/g', '<br>'')">{{contractRemarksData.otherConditionRemarks}}</p></dd>
                     
                                     </dl>
                                     <!-- <dl class="row">
@@ -1546,9 +1546,9 @@
                     
                                                             </dl> -->
                                     <dl class="row">
-                                        <dt class="col-sm-4">Preview Title:
+                                        <dt class="col-sm-2">Preview Title:
                                         </dt>
-                                        <dd class="col-sm-6">{{contractRemarksData.title}}</dd>
+                                        <dd class="col-sm-10"><p [innerHTML]="contractRemarksData.title.replace('.', '<br>')">{{contractRemarksData.title}}</p></dd>
                     
                                     </dl>
                     
