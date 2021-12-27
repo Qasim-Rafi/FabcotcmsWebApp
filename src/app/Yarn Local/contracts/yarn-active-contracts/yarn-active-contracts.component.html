@@ -24,7 +24,7 @@
   <div class=" panel blank-panel">
     <div class="panel-heading">
       
-      <div class="row mb-3">
+      <div class="row mb-1">
         <div class="col-md-12 text-center">
          
           <!-- <div class="btn-group" role="group">
@@ -131,18 +131,8 @@
       </div> -->
      
         <div class="card-body">
-      <div class="row mb-3">
+      <div class="row mb-1">
         <div class="col-md-6 mrg-tsm">
-          <!-- refresh button -->
-  
-      <!-- <button type="button" class="btn btn-light btn-sm">
-          <i class="fas fa-sync-alt"></i>
-          </button> -->
-     <!-- Filter Button -->
-          <!-- <button type="button" class="btn btn-primary btn-sm mr-1" >
-          <i class="fa fa-filter"></i>
-      </button> -->
-      <!-- add new commision button -->
 
       <div class="row">
         <button type="button" class="btn btn-primary btn-sm mr-1 col-md-3"
@@ -162,120 +152,6 @@
 
       
       <div class="panel-body">
-<!-- 
-        <ngx-datatable #myTable class="bootstrap datatable-row-wrapper" [columns]="columns" [rows]="rows" [columnMode]="'force'"
-        [headerHeight]="50" [footerHeight]="50" [limit]="4" [scrollbarH]="true" [sorts]="[{ prop: 'autoContractNumber', dir: 'desc' }]" [rowHeight]="'auto'"
-       >
-          <ngx-datatable-column name="Action" [width] = "100"  [flexGrow]="0.04"  >
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-
-              <div class="ibox-tools text-center">
-
-                <span  class="editIconBack1 px-1 py-1 "
-                (click)="navigateEditContract(row)"
-                >
-                  <i class="far fa-edit edit  "></i>
-                </span>
-
-                <span type="button" class="editIconBack1 px-1 py-1" (click) = "cloneContract(row)">
-                  <i class="far fa-copy"></i>
-                </span>
-                <span  class="editIconBack1 px-1 py-1" 
-               
-                >
-                  <i class="fa fa-th edit"></i>
-                </span>
-
-                <span  class="deleteIconBack1 px-1 py-1" 
-                (click)="deleteContract(row)"
-                >
-                  <i class="far fa-trash-alt edit"></i>
-                </span>
-
-              </div>
-            </ng-template>
-          </ngx-datatable-column>
-
-     
-
-          <ngx-datatable-column name="Age"  [resizeable]="true" prop="contractAge" [width] = "100"  [flexGrow]="0.03"  >
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              <span class="badge badge-primary">{{row.contractAge}}</span>
-             
-            </ng-template>
-          </ngx-datatable-column>
-
-          <ngx-datatable-column name="Details"  [flexGrow]="0.09"  [width] = "300"  prop="autoContractNumber" >
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template style="text-align: start !important">
-             <p class="text-left">  <strong> {{row.autoContractNumber}} </strong>  
-             <br>
-             B: &nbsp;{{row.buyerName}}  <br>
-             S: &nbsp; {{row.sellerName}} </p> 
-            </ng-template>
-          </ngx-datatable-column>
-
-          <ngx-datatable-column name="Dated"   [flexGrow]="0.04"  prop="contractOn">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{row.contractOn}}
-              
-            </ng-template>
-          </ngx-datatable-column>
-
-     
-          <ngx-datatable-column name="Article/Const."   [flexGrow]="0.07"  prop="articleName">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{row.articleName}}
-              
-
-            </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="Price" [flexGrow]="0.04"  prop="price">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{row.currencyCode}} {{row.price}} / {{row.uomName}}
-              
-
-            </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="Qty."  [flexGrow]="0.04"  prop="articleName">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{row.quantity}}
-              
-
-            </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="#PO"  [flexGrow]="0.04"   prop="poNumber">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{row.poNumber}}
-            
-            </ng-template>
-          </ngx-datatable-column>
-
-          <ngx-datatable-column name="#SC"   [flexGrow]="0.03"  prop="scNumber">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{row.scNumber}}
-             
-            </ng-template>
-          </ngx-datatable-column>
-
-          <ngx-datatable-column name="Dispatch(Inv)"   [flexGrow]="0.04"  prop="articleName">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{row.dispatchQuantity}}
-              
-
-            </ng-template>
-          </ngx-datatable-column>
-
-          <ngx-datatable-column name="Status"  [flexGrow]="0.04"  prop="status">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              <span class="badge badge-primary" *ngIf="row.status == 'Open' && row.status != 'Close'">{{row.status}}</span>
-              <span class="badge badge-success " *ngIf="row.status == 'Close' && row.status == 'Open'">{{row.status}}</span>
-              <span class="badge badge-warning " *ngIf="row.status != 'Open' && row.status != 'Close'">{{row.status}}</span>
-              
-
-            </ng-template>
-          </ngx-datatable-column>
-
-        </ngx-datatable> -->
 
         <kendo-grid
         [kendoGridBinding]="rows"
@@ -300,7 +176,7 @@
       
             <kendo-grid-spacer></kendo-grid-spacer>
             <div class="row">
-              <div class="col-md-12 mb-3">
+              <div class="col-md-12 mb-1">
                 <div class="row justify-content-end">
                   <div class="html5buttons mrg-tsm">
                     <div class="dt-buttons btn-group btn-group-sm">

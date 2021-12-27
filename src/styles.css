@@ -41,7 +41,7 @@ body {
   content: "\e006" !important;
   }
 .content-header {
-  padding: 10px 0.4rem !important;
+  padding: 0px 1.4rem !important;
 }
 .customiconforgrid:before{
   font-family: "Font Awesome 5 Free";
