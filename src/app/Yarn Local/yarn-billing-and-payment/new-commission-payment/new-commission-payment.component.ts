@@ -365,7 +365,8 @@ amountGivenToCalculate:any;
   }
 
 
-  addCommissionPayment() {
+  addCommissionPayment(dataamount) {
+    if(dataamount != null){
     let ids=[]
     ids=this.saleInvoiceIds;
     this.saleInvoiceIds = [] ;
@@ -419,6 +420,10 @@ this.spinner.hide();
 this.spinner.hide();
 
         });
+      }
+      else{
+        this.toastr.error("Enter the Amount !", 'Message.');
+      }
   }
   addExtCommissionPayment() {
     let varr = {

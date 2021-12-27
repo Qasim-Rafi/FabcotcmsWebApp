@@ -324,7 +324,7 @@
                                         <div class="col-md-3">
                                             <div class="input-group">
                                                 <input type="number" class="form-control text-w-40" name="amount" #amount="ngModel" (change)="onBlurMethod(extCommData.amount)" (keyup)="amountCall($event)"
-                                                    [(ngModel)]="extCommData.amount" placeholder="Amount">
+                                                    [(ngModel)]="extCommData.amount" placeholder="Amount" required>
                                             </div>
                                         </div>
                 
@@ -636,7 +636,7 @@
                                     <div class="row">
                                         <div class="col-md-6 offset-md-3">
                                             <button class="btn button-save" *ngIf="statusCheck.statusCheck =='add'"
-                                                (click)="addCommissionPayment()">
+                                             (click)="addCommissionPayment(commData.amount)">
                                                 <i class="fas fa-check"></i> Save Received Payment Record</button>
                                             <button class="btn btn-secondary ml-4" *ngIf="statusCheck.statusCheck =='new2'">
                                                 <i class="fas fa-times">
@@ -804,7 +804,7 @@
                 
                                     <div class="row">
                                         <div class="col-md-6 offset-md-3">
-                                            <button class="btn button-save" (click)="addExtCommissionPayment()">
+                                            <button class="btn button-save"  (click)="addExtCommissionPayment()">
                                                 <i class="fas fa-check"></i> Save Received Payment Record</button>
                 
                                         </div>

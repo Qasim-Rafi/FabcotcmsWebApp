@@ -91,6 +91,9 @@ totalContainer:any;
     body.classList.add('sidebar-collapse');   }
 
   ngOnInit(): void {
+    this.data4.saleInvoiceType =null;
+    this.data8.maturityStatus=null;
+      this.data8.paymentStatus=null;
     this.menuName = this.route.snapshot.queryParams;
     this.billingReportInvoiceWise.startDate = this.dateformater.toModel(this.billingReportInvoiceWise.startDate)
     this.billingReportInvoiceWise.endDate = this.dateformater.toModel(this.billingReportInvoiceWise.endDate)
@@ -433,6 +436,8 @@ else if (this.menuName.menuName == 'DispatchReport'){
       "startInvoiceDate":this.data9.startContractDate == undefined? '': this.dateformater.toModel(this.data9.startContractDate),
       "endInvoiceDate":this.data9.endContractDate == undefined?'':this.dateformater.toModel(this.data9.endContractDate),
       "articleId":this.data9.articleId ==undefined ? 0 :this.data9.articleId,
+      "maturityStatus":this.data.maturityStatus,
+      "paymentStatus":this.data.paymentStatus,
     }
     this.spinner.show();
     this.http.
@@ -475,6 +480,8 @@ else if (this.menuName.menuName == 'DispatchReport'){
       "agentId":this.data8.agentId ==undefined ? "" :this.data8.agentId.toString(),
       "sellerId":this.data8.sellerId == undefined?0 :this.data8.sellerId,
       "contractNo":this.data8.autoContractNumber == undefined ? '': this.data8.autoContractNumber,
+      "maturityStatus":this.data8.maturityStatus,
+      "paymentStatus":this.data8.paymentStatus,
 
     }
     this.spinner.show();
@@ -593,7 +600,8 @@ PaymentReport(){
     "buyerId":this.data4.buyerId ==undefined ? 0 :this.data4.buyerId,
     "sellerId":this.data4.sellerId == undefined?0 :this.data4.sellerId,
     "startContractDate":this.data4.startContractDate == undefined? '': this.dateformater.toModel(this.data4.startContractDate),
-    "endContractDate":this.data4.endContractDate == undefined?'':this.dateformater.toModel(this.data4.endContractDate)
+    "endContractDate":this.data4.endContractDate == undefined?'':this.dateformater.toModel(this.data4.endContractDate),
+    "saleInvoiceType": this.data4.saleInvoiceType
   }
   this.spinner.show();
   this.http.

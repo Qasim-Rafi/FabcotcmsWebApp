@@ -1278,6 +1278,30 @@
               </div>
 
           </div>
+          <div class="row p-2">
+
+            <div class="form-group col-md-4 ">
+              <label class="text-grey">Maturity Status</label>
+              <ng-select [(ngModel)]="data9.maturityStatus" placeholder="All" name="maturityStatus" #maturityStatus="ngModel"
+              >
+              <ng-option value="null" selected>All</ng-option>
+              <ng-option value="Matured">Matured</ng-option>
+              <ng-option value="NotMatured">UnMatured</ng-option>
+              </ng-select>
+            
+            </div>
+            <div class="form-group col-md-4 ">
+              <label class="text-grey">Payment Status</label>
+              <ng-select [(ngModel)]="data9.paymentStatus" placeholder="All" name="paymentStatus" #paymentStatus="ngModel"
+              >
+              <ng-option value="null" selected>All</ng-option>
+              <ng-option value="Received">Received</ng-option>
+              <ng-option value="NotReceived">Not Received</ng-option>
+            </ng-select>
+            
+            </div>
+
+        </div>
         </div>
       </div>
           <div class="row">
@@ -1436,10 +1460,12 @@
        
             <ngx-datatable-column name="Seller Comm" [width]="90">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                <div *ngIf = "row.sellerCommission != '' "> {{row.sellerCommission}}%   [      <p *ngIf = "row.rateCurrencyName == 'PKR'">RS</p>  
-                  <p *ngIf = "row.rateCurrencyName == 'USD'">$</p> 
-                  <p *ngIf = "row.rateCurrencyName == 'EUR'">€</p> 
-                  <p *ngIf = "row.rateCurrencyName == 'GBP'">GBP</p>   {{ row.sellerCommissionAmount }} ]</div>    
+                <div *ngIf = "row.sellerCommission != '' "> 
+                  {{row.sellerCommission}}%         
+                  <p *ngIf = "row.rateCurrencyName == 'PKR'">RS  {{ row.sellerCommissionAmount }}</p>  
+                  <p *ngIf = "row.rateCurrencyName == 'USD'">$  {{ row.sellerCommissionAmount }}</p> 
+                  <p *ngIf = "row.rateCurrencyName == 'EUR'">€  {{ row.sellerCommissionAmount }}</p> 
+                  <p *ngIf = "row.rateCurrencyName == 'GBP'">GBP  {{ row.sellerCommissionAmount }}</p> </div>    
 
               </ng-template>
             </ngx-datatable-column>
@@ -1453,24 +1479,24 @@
 
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Buyer Comm" [width]="90">
+            <!-- <ngx-datatable-column name="Buyer Comm" [width]="90">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                <div *ngIf = "row.buyerCommission != '' "> {{row.buyerCommission}}%   [      <p *ngIf = "row.rateCurrencyName == 'PKR'">RS</p>  
-                  <p *ngIf = "row.rateCurrencyName == 'USD'">$</p> 
-                  <p *ngIf = "row.rateCurrencyName == 'EUR'">€</p> 
-                  <p *ngIf = "row.rateCurrencyName == 'GBP'">GBP</p>   {{ row.buyerCommissionAmount }} ]</div>    
+                <div *ngIf = "row.buyerCommission != '' "> 
+                  {{row.buyerCommission}}% 
+                  <p *ngIf = "row.rateCurrencyName == 'PKR'">RS {{ row.buyerCommissionAmount }}</p>  
+                  <p *ngIf = "row.rateCurrencyName == 'USD'">$ {{ row.buyerCommissionAmount }}</p> 
+                  <p *ngIf = "row.rateCurrencyName == 'EUR'">€ {{ row.buyerCommissionAmount }}</p> 
+                  <p *ngIf = "row.rateCurrencyName == 'GBP'">GBP {{ row.buyerCommissionAmount }}</p>
+                </div>    
               </ng-template>
-            </ngx-datatable-column>
-            <ngx-datatable-column name="Buyer Bill" [width]="90">
+            </ngx-datatable-column> -->
+            <!-- <ngx-datatable-column name="Buyer Bill" [width]="90">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                <!-- <p *ngIf = "row.rateCurrencyName == 'PKR'">RS</p>  
-                <p *ngIf = "row.rateCurrencyName == 'USD'">$</p> 
-                <p *ngIf = "row.rateCurrencyName == 'EUR'">€</p> 
-                <p *ngIf = "row.rateCurrencyName == 'GBP'">GBP</p>    -->
+             
                 {{ row.buyerBill }}   
 
               </ng-template>
-            </ngx-datatable-column>
+            </ngx-datatable-column> -->
           
          
             <ngx-datatable-column name="Matured Aging" [width]="90">
@@ -1753,6 +1779,19 @@
                   <ng-option *ngFor="let i of seller" [value]="i.id">
                     {{i.sellerName}}
                   </ng-option>
+                </ng-select>
+
+              </div>
+
+              <div class="form-group col-md-4 ">
+                <label for="description">Sale Invoice Type:</label>
+                <ng-select placeholder="Sale Invoice Type" name="saleInvoiceType" [(ngModel)]="data4.saleInvoiceType"
+                  #saleInvoiceType="ngModel">
+                  <ng-option value="null" selected>All</ng-option>
+                  <ng-option value="UnPaid">UnPaid</ng-option>
+                  <ng-option value="Partially Paid">Partially Paid</ng-option>
+                  <ng-option value="Unpaid / Partially Paid">Unpaid / Partially Paid</ng-option>
+                  <ng-option value="Fully Paid">Fully Paid</ng-option>
                 </ng-select>
 
               </div>
@@ -2581,6 +2620,29 @@
 
 
           </div>
+          <div class="row p-2">
+
+            <div class="form-group col-md-4">
+              <label class="text-grey">Maturity Status</label>
+              <ng-select [(ngModel)]="data8.maturityStatus" placeholder="All" name="maturityStatus" #maturityStatus="ngModel"
+              >
+              <ng-option value="null" selected>All</ng-option>
+              <ng-option value="Matured">Matured</ng-option>
+              <ng-option value="NotMatured">UnMatured</ng-option>
+              </ng-select>
+            </div>
+
+            <div class="form-group col-md-4">
+              <label class="text-grey">Payment Status</label>
+              <ng-select [(ngModel)]="data8.paymentStatus" placeholder="All" name="paymentStatus" #paymentStatus="ngModel"
+              >
+              <ng-option value="null" selected>All</ng-option>
+              <ng-option value="Received">Received</ng-option>
+              <ng-option value="NotReceived">Not Received</ng-option>
+              </ng-select>
+            </div>
+
+        </div>
 
         </div>
       </div>
