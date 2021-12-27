@@ -56,13 +56,13 @@ constructor(    private service: ServiceService,
     const temp = this.temp.filter(function (d) {
       return ( 
         d.sellerName.toLowerCase().indexOf(val) !== -1 || 
-        d.billNumber.indexOf(val) !== -1 || 
-        d.billInvoiceNumber.toString().indexOf(val) !== -1 || 
-        d.autoContractNumber.toString().indexOf(val) !== -1 || 
+        d.billNumber!= null?d.billNumber.indexOf(val) !== -1 :'' || 
+        d.billInvoiceNumber != null?d.billInvoiceNumber.toString().indexOf(val) !== -1 : ''|| 
+        d.autoContractNumber !=null?d.autoContractNumber.toLowerCase().indexOf(val) !== -1 :''|| 
         d.billGeneratedDateTime.toString().indexOf(val) !== -1 || 
-        d.saleInvoiceNo.toString().indexOf(val) !== -1 || 
-        d.billAmount.toString().indexOf(val) !== -1 || 
-        d.taxAmount.toString().indexOf(val) !== -1 || 
+        d.saleInvoiceNo!= null? d.saleInvoiceNo.toString().indexOf(val) !== -1 :'' || 
+        d.billAmount != null?  d.billAmount.toString().indexOf(val) !== -1 :'' || 
+        d.taxAmount !=null? d.taxAmount.toString().indexOf(val) !== -1 :'' || 
         !val );
     });
     this.rows = temp;
