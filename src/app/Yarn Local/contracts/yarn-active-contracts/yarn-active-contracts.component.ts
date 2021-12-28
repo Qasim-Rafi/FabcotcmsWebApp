@@ -44,7 +44,10 @@ export class YarnActiveContractsComponent implements OnInit {
     private modalService: NgbModal,
     private spinner: NgxSpinnerService,
  
-  ) { }
+  ) {let footer = document.getElementsByTagName('footer')[0];
+  footer.classList.add('d-none');
+  let body = document.getElementsByTagName('body')[0];
+  body.classList.add('sidebar-collapse'); }
 
   ngOnInit(): void {
     this.loggedInDepartmentName=localStorage.getItem('loggedInDepartmentName');

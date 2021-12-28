@@ -61,7 +61,10 @@ outline: #1ab394;
     background: linear-gradient(45deg, #05abe0 0%,#8200f4 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#05abe0', endColorstr='#8200f4',GradientType=1 );
   }
-  
+  .form-control:disabled {
+    background-color: #f8f9fa !important;
+    opacity: 1;
+}
   .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
     color: #ffffff;
     background-color: #1ab394;

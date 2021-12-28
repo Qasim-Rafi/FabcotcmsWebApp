@@ -5,9 +5,9 @@
 
     <div class="row">
       <div class="col-sm-12 col-md-6 col-lg-8">
-        <h2 class="row wrapper page-header font-weight-light">Active Bills
+        <h5 class="row wrapper page-header font-weight-light">Active Bills
           <div class="ml-2 descr">Contract Bills. Awating for payments . Default last 90 days record displayed</div>
-        </h2>
+        </h5>
       </div>
   
     </div>
@@ -90,12 +90,10 @@
       
       <div class="panel-heading">
 
-        <div class="row mb-1">
+        <div class="row mb-1 p-2">
 
           <div class= "col-md-1 ">
-              <span class="date-Label text_Navy">From: &nbsp;</span>
-      
-       
+              <span class="date-Label text_Navy">From:</span>
           </div>      
           <div class="col-md-3">
               <input  navigation="select" class="form-control"  ngbDatepicker #startDate="ngbDatepicker"
@@ -105,7 +103,7 @@
           </div>   
 
           <div class= "col-md-1 ">
-            <span class="date-Label text_Navy"> To: &nbsp;</span>
+            <span class="date-Label text_Navy"> To: </span>
     
      
         </div>  
@@ -113,11 +111,14 @@
           <input  navigation="select" class="form-control  " ngbDatepicker #endDate="ngbDatepicker"
           (click)="endDate.toggle()"   name="FromDate" [(ngModel)] = "data2.FromDate"  #FromDate="ngModel" placeholder="End Date">
       </div>  
-      <div class="col-md-3">  <button type="button" class="btn btn-primary descBtn ml-sm-none ml-md-2" (click) = "fetch()" ><i class="fa fa-search"></i>Go!
+      <div class="col-md-2">  <button type="button" class="btn btn-primary" (click) = "fetch()" ><i class="fa fa-search"></i>Go!
       </button></div> 
-        </div>
+      <div class="col-md-2"> <button type="button" class="btn btn-primary btn-sm float-right" (click)="getSelectedRowData()">
+          <i class="fa fa-print"></i> Bulk Print
+        </button></div>
+      </div>
      
-        <div class="row mb-4 justify-content-center">
+        <!-- <div class="row mb-4 justify-content-center">
           <div class="col-auto">
             <button type="button" class="btn btn-primary btn-sm float-right"  
            (click) = "getSelectedRowData()"
@@ -135,13 +136,13 @@
               </div>
             </div>
           </form>
-        </div>
+        </div> -->
       </div>
 
 
 <!--Start panel body -->     
-<div class="card shadow mb-4">
-  <div class="card-body "> 
+<div class="card shadow">
+ 
       <div class="panel-body">
         <kendo-grid
         [kendoGridBinding]="rows"
@@ -152,13 +153,15 @@
         [sortable]="true"
         [reorderable]="true"
         [resizable]="true"
-        [height]="800"
+        [height]="450"
         [pageable]="true"
         [filterable]="true"
       
         >
         <ng-template kendoGridToolbarTemplate>
-            <input placeholder="Search in all columns..." class="col-md-3 form-control" #newItem kendoTextBox (input)="onFilter(newItem.value)"/>
+          <!-- <p class="col-md-3  totalAmnt">Total Amount : <span>  &nbsp;  &nbsp; {{dashboardAmnt}} </span></p> -->
+          <input placeholder="Search in all columns..." class="col-md-3 form-control" #newItem kendoTextBox (input)="onFilter(newItem.value)"/>
+          <h5> <span class="col-md-12 badge badge-info">Total Amount : {{dashboardAmnt}}</span></h5>
             <kendo-grid-spacer></kendo-grid-spacer>
             <div class="row">
               <div class="col-md-12 mb-3">
@@ -259,9 +262,9 @@
               
             </kendo-grid-column>
         </kendo-grid>
-        <p class="col-md-12  totalAmnt">Total Amount : <span>  &nbsp;  &nbsp; {{dashboardAmnt}} </span></p>
+       
       </div>
-  </div>
+  
 </div>
     </div>
     </div>

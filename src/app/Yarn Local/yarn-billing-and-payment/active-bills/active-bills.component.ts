@@ -83,7 +83,11 @@ public mySelection: string[] = this.rows;
       resizable: true,
      
     };
-    this.rowSelection = 'multiple';}
+    this.rowSelection = 'multiple';
+    {let footer = document.getElementsByTagName('footer')[0];
+    footer.classList.add('d-none');
+    let body = document.getElementsByTagName('body')[0];
+    body.classList.add('sidebar-collapse'); }}
 
     navigatePaymentForm(statusCheck , obj ) {
       this.router.navigate(['/yarn-billing-and-payment/payment-form'], { queryParams: { statusCheck: statusCheck 

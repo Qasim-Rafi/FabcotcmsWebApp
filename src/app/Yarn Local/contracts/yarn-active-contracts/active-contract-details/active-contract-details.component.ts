@@ -1712,6 +1712,9 @@ getContractRemarkData() {
         this.response = res;
         if (this.response.success == true && this.response.data != null) {
           this.contractRemarksData = this.response.data;
+          this.contractRemarksData.otherConditionRemarks.replace(/\./g,'.<br/>');
+          this.contractRemarksData.contractRemarks.replace(/\./g,'.<br/>');
+          this.contractRemarksData.title.replace(/\./g,'.<br/>');
           
         }
         else if(this.response.success == false) {

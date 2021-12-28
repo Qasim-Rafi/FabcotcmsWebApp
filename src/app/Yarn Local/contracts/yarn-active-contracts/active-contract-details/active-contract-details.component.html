@@ -1524,19 +1524,29 @@
                                         <dt class="col-sm-2">Remarks:
                     
                                         </dt>
-                                        <dd class="col-sm-10">{{contractRemarksData.contractRemarks}}</dd>
+                                        <dd class="col-sm-10" >
+                                            <textarea style="resize: none;border-color: aliceblue;" disabled [(ngModel)]="contractRemarksData.contractRemarks" class="form-control" rows="3"
+                                            name="contractRemarks"></textarea>
+                                            </dd>
                                     </dl>
                                     <dl class="row" *ngIf = "loggedInDepartmentName == 'Yarn Local'  ">
                                         <dt class="col-sm-2">Buyer Remarks:
                     
                                         </dt>
-                                        <dd class="col-sm-12">{{contractRemarksData.buyerRemarks}}</dd>
+                                        <dd class="col-sm-12">
+                                         
+                                            <textarea  style="resize: none;border-color: aliceblue;" disabled [(ngModel)]="contractRemarksData.buyerRemarks" class="form-control" rows="3"
+                                            name="buyerRemarks"></textarea>
+                                            
+                                            </dd>
                                     </dl>
                                     <dl class="row">
                                         <dt class="col-sm-2">Other Condition:
                     
                                         </dt>
-                                        <dd class="col-sm-10">{{contractRemarksData.otherConditionRemarks}}</dd>
+                                        <dd class="col-sm-10">  
+                                             <textarea style="resize: none;border-color: aliceblue;" disabled [(ngModel)]="contractRemarksData.otherConditionRemarks" class="form-control" rows="3"
+                                            name="otherConditionRemarks"></textarea></dd>
                     
                                     </dl>
                                     <!-- <dl class="row">
@@ -1548,7 +1558,10 @@
                                     <dl class="row">
                                         <dt class="col-sm-2">Preview Title:
                                         </dt>
-                                        <dd class="col-sm-10">{{contractRemarksData.title}}</dd>
+                                        <dd class="col-sm-10">
+                                            <textarea  style="resize: none;border-color: aliceblue;" disabled [(ngModel)]="contractRemarksData.title" class="form-control" rows="3"
+                                            name="title"></textarea>
+                                            </dd>
                     
                                     </dl>
                     

@@ -40,6 +40,21 @@ body {
   .k-i-sort-desc-sm:before {
   content: "\e006" !important;
   }
+  .k-grid td {
+    padding: 2px 5px !important;
+ 
+
+    font-weight: normal !important;
+    text-align: center !important;
+
+    font-size: 13px !important;
+}
+
+.k-toolbar {
+  padding: 1px 3px !important;
+  color: #424242;
+  background-color: #e3dcdc !important;
+}
 .content-header {
   padding: 0px 1.4rem !important;
 }
@@ -95,9 +110,9 @@ font-weight: 600  !important;
 } */
 
 
-.innerBody {
+/* .innerBody {
   padding: 7px 30px 15px 30px !important;
-}
+} */
 .ngx-datatable .datatable-body-cell,
 .ngx-datatable .datatable-header-cell {
   /* line-height: 2.1 !important; */
@@ -296,7 +311,7 @@ h5 {
 }
 
 .innerBody {
-  padding: 2px 1px 15px 10px !important;
+  padding: 2px 9px 2px 5px !important;
 }
 
 .noHover:hover {
@@ -479,7 +494,7 @@ h5 {
 .ibox-content {
   background-color: #ffffff;
   color: inherit;
-  padding: 5px 7px 7px 7px;
+  padding: 0px 7px 0px 0px;
   border-color: #e7eaec;
   border-image: none;
   border-style: solid solid none;
