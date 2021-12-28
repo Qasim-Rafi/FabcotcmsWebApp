@@ -74,6 +74,7 @@ import { NgxScrollTopModule } from 'ngx-scrolltop';
 import { AllContractReportComponent } from './shared/reports/all-contract-report/all-contract-report.component';
 import { SellerMappingComponent } from './shared/mappings/seller-mapping/seller-mapping.component';
 import { AddEditMappingsComponent } from './shared/mappings/seller-mapping/add-edit-mappings/add-edit-mappings.component';
+import { AgentContractListComponent } from './shared/agent-contract-list/agent-contract-list.component';
 
 
 
@@ -128,6 +129,7 @@ const appRoutes: Routes = []
     AllContractReportComponent,
     SellerMappingComponent,
     AddEditMappingsComponent,
+    AgentContractListComponent,
    
 
   

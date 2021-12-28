@@ -458,7 +458,9 @@
               </ngx-datatable-column>
               <ngx-datatable-column name="Contracts" [width]="60">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.contracts }}
+                  <button type="button" class="btn btn-primary"  placement="right" ngbTooltip="Click To See Contract" (click)="seeContractMethod(row)">{{ row.contracts }}
+                  </button>
+                  
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="Commission" [width]="50">

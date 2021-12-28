@@ -10,6 +10,7 @@ import { ServiceService } from '../service.service';
 import { FilterPopUpComponent } from './filter-pop-up/filter-pop-up.component';
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
+import { AgentContractListComponent } from '../agent-contract-list/agent-contract-list.component';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 @Component({
   selector: 'app-reports',
@@ -180,7 +181,18 @@ else if (this.menuName.menuName == 'DispatchReport'){
       }
     })
   }
+  seeContractMethod(data){
+    const modalRef = this.modalService.open(AgentContractListComponent, { centered: true,size:"sm" });
+    modalRef.componentInstance.dataR = data;
+    modalRef.result.then((p) => {
+      if (p != null) {
 
+
+      }
+    }, (reason) => {
+    });
+
+  }
   filterPopUform(menu) {
     const modalRef = this.modalService.open(FilterPopUpComponent, { centered: true });
     modalRef.componentInstance.menu = menu;
