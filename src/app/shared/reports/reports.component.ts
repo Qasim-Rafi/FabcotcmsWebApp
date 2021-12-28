@@ -130,6 +130,9 @@ else if (this.menuName.menuName == 'BillingReportContractWise'){
 else if (this.menuName.menuName == 'DispatchReport'){
   this.getdispatchReport();
 }
+else if (this.menuName.menuName == 'ExternalAgentReport'){
+  //this.externalAgentReport();
+}
 
     this.GetBuyersDropdown();
     this.GetSellersDropdown();
