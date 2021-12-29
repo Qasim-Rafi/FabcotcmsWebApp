@@ -5144,7 +5144,7 @@ yarnExportInvoicesReportPrint(){
                              {text: row.contractArticleRate == null ? '' : this.contractCostingData['rateCurrencyName'] == 'USD' ?  "$ " + row.contractArticleRate : this.contractCostingData['rateCurrencyName'] == 'PKR' ? "RS " + row.contractArticleRate : this.contractCostingData['rateCurrencyName'] == 'EUR' ?  "€ " + row.contractArticleRate : this.contractCostingData['rateCurrencyName'] == 'GBP' ?  "GBP " + row.contractArticleRate : row.contractArticleRate , style: 'tableheader3'},
 
                              {text: row.contractArticleCommission == null ? '' : row.contractArticleCommission + "%" , style: 'tableheader3'},
-                             {text: row.contractArticleForignAgentCommission == null ? '' : row.contractArticleForignAgentCommission + "%"  , style: 'tableheader3'}
+                             {text: row.contractArticleForignAgentCommission == null ? '' : row.contractArticleForignAgentCommission + "%" +'\n'+ row.forignAgentName , style: 'tableheader3'}
 
                         ]
                       ))

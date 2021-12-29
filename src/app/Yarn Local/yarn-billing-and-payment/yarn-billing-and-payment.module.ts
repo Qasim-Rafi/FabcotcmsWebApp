@@ -25,6 +25,7 @@ import {NgxSpinnerModule} from 'ngx-spinner';
 import { GridModule, PDFModule, ExcelModule } from '@progress/kendo-angular-grid';
 import { ChartsModule } from '@progress/kendo-angular-charts';
 import { InputsModule } from '@progress/kendo-angular-inputs';
+import { ExternalAgentFormComponent } from './external-agent-commission/external-agent-form/external-agent-form.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ PaymentFormComponent,
 CommissionPaymentComponent,
 EditCommissionComponent,
 ExternalAgentCommissionComponent,
-NewCommissionPaymentComponent
+NewCommissionPaymentComponent,
+ExternalAgentFormComponent
 
   ],
   imports: [

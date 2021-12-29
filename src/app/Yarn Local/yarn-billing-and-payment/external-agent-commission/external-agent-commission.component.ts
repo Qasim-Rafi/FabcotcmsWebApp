@@ -39,7 +39,7 @@ export class ExternalAgentCommissionComponent implements OnInit {
       }))
     }
     addNewCommsion2(statusCheck ) {
-      this.router.navigate(['/yarn-billing-and-payment/new-commission'], { queryParams: { statusCheck: statusCheck  }  });
+      this.router.navigate(['/yarn-billing-and-payment/external-agent/external-agent-form'], { queryParams: { statusCheck: statusCheck  }  });
    };
    search(event) {
     const val = event.target.value.toLowerCase();
