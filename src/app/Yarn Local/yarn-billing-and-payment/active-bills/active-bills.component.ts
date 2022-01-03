@@ -84,10 +84,11 @@ public mySelection: string[] = this.rows;
      
     };
     this.rowSelection = 'multiple';
-    {let footer = document.getElementsByTagName('footer')[0];
-    footer.classList.add('d-none');
+    { } this.router.routeReuseStrategy.shouldReuseRoute = () => false; 
     let body = document.getElementsByTagName('body')[0];
-    body.classList.add('sidebar-collapse'); }}
+    body.classList.add('sidebar-collapse'); 
+    let footer = document.getElementsByTagName('footer')[0];
+    footer.classList.add('d-none'); }
 
     navigatePaymentForm(statusCheck , obj ) {
       this.router.navigate(['/yarn-billing-and-payment/payment-form'], { queryParams: { statusCheck: statusCheck 

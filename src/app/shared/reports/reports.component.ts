@@ -91,7 +91,8 @@ totalContainer:any;
     let body = document.getElementsByTagName('body')[0];
     body.classList.add('sidebar-collapse'); 
     let footer = document.getElementsByTagName('footer')[0];
-    footer.classList.add('d-none');  }
+    footer.classList.add('d-none'); 
+   }
 
   ngOnInit(): void {
     this.data4.saleInvoiceType =null;
