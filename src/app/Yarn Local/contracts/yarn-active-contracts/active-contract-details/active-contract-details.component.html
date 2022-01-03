@@ -341,19 +341,59 @@
                     
                         <div class="col-md-12">
                     
-                            <div class="card bg-light shadow mb-4">
+                            <div class="card  shadow mb-4">
                                 <div class="pb-2 mt-2 ml-2">
                             <div class="row my-3">
                     
-                                <div class="col-md-8">
+                                <div class="col-md-2">
                                     <div class="h2 ">
                                         <span><i class="fas fa-flag mr-3 text-secondary"></i>
                                             <span class="text-right text_Navy">{{contractData.autoContractNumber}}
                                             </span></span>
                                     </div>
                                 </div>
+                                <div class="col-md-4">
+                                    <div class="row">
                     
-                                <div class="col-md-4 text-right">
+                    
+                                        <h6 class="col-md-4">Status &amp; Stage:</h6>
+                                        <div class="col-md-8">
+                    
+                                            <span class="badge badge-primary" *ngIf="contractData.active == true">Active</span>
+                                         <div class="badge badge-info ml-1" *ngIf="contractData.status == 'Open'">OPEN
+                                             <span class="badge badge-secondary" *ngIf="contractData.active == false">Inactive</span>
+                                       </div>
+                                            <div class="badge badge-warning ml-1" *ngIf="contractData.status == 'OnHold'">
+                                                On-Hold</div>
+                                                <div class="badge badge-info ml-1" *ngIf="contractData.status == 'BillAwaited'">
+                                                    Bill Awaited</div>
+                                                    
+  <div class="badge badge-info ml-1" *ngIf="contractData.status == 'Closed'">
+    Closed</div>
+    <div class="badge badge-info ml-1" *ngIf="contractData.status == 'Billed'">
+        Billed</div>
+                                            <!-- <button class="btn "><i class="fas fa-history "></i></button> -->
+                                            <button class="btn btn-outline-secondary btn-xs ml-1"><i class="fas fa-history "></i></button>
+                                            <button class=" btn btn-sm btn-danger p-1 btnsm-f ml-1" *ngIf="contractData.isApproved == false"
+                                                (click)="approveContract()">Click
+                                                to Approve</button>
+                                            <button class="  btn btn-sm btn-primary p-1 btnsm-f ml-1"
+                                                *ngIf="contractData.isApproved == true">Approved</button>
+                                                <div class="mid-text" *ngIf="contractData.status =='isApproved'">60%</div>
+                    
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <span>Contract On:</span> &nbsp;
+                                    <span class="text_Navy font-weight-bold">
+                    
+                                        <i class="far fa-clock "></i>
+                                        <span> {{contractData.createdDateTime}}</span>
+                    
+                                    </span>
+                                </div>
+                                <div class="col-md-2 text-right">
                     
                     
                                     <button class="btn btn-primary btn-sm" [ngClass]="{ noDisplay : reminderToggle==true }"
@@ -404,50 +444,7 @@
                                 </div>
                             </div>
                     
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="row">
-                    
-                    
-                                        <div class="col-md-4 text-right">Status &amp; Stage:</div>
-                                        <div class="col-md-8">
-                    
-                                            <span class="badge badge-primary" *ngIf="contractData.active == true">Active</span>
-                                            <span class="badge badge-secondary" *ngIf="contractData.active == false">Inactive</span>
-                                            <div class="badge badge-info ml-1" *ngIf="contractData.status == 'Open'">OPEN
-                                            </div>
-                                            <div class="badge badge-warning ml-1" *ngIf="contractData.status == 'OnHold'">
-                                                On-Hold</div>
-                                                <div class="badge badge-info ml-1" *ngIf="contractData.status == 'BillAwaited'">
-                                                    Bill Awaited</div>
-                                                    
-  <div class="badge badge-info ml-1" *ngIf="contractData.status == 'Closed'">
-    Closed</div>
-    <div class="badge badge-info ml-1" *ngIf="contractData.status == 'Billed'">
-        Billed</div>
-                                            <!-- <button class="btn "><i class="fas fa-history "></i></button> -->
-                                            <button class="btn btn-outline-secondary btn-xs ml-1"><i class="fas fa-history "></i></button>
-                                            <button class=" btn btn-sm btn-danger p-1 btnsm-f ml-1" *ngIf="contractData.isApproved == false"
-                                                (click)="approveContract()">Click
-                                                to Approve</button>
-                                            <button class="  btn btn-sm btn-primary p-1 btnsm-f ml-1"
-                                                *ngIf="contractData.isApproved == true">Approved</button>
-                                                <div class="mid-text" *ngIf="contractData.status =='isApproved'">60%</div>
-                    
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <span>Contract On:</span> &nbsp;
-                                    <span class="text_Navy font-weight-bold">
-                    
-                                        <i class="far fa-clock "></i>
-                                        <span> {{contractData.createdDateTime}}</span>
-                    
-                                    </span>
-                                </div>
-                    
-                            </div>
+                        
                                 </div>
                             </div>
                            
