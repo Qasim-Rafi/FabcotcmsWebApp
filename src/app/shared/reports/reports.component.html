@@ -895,64 +895,61 @@
     <div class="panel blank-panel">
       <div class="panel-heading">
 
-        <div class="row mb-3">
-          <div class="col-sm-6 col-md-3">
-            <button type="button" class="btn btn-primary descBtn ml-sm-none ml-md-2">{{billingReportInvoiceWise.length}}
+        <div class="row mb-2 mt-2">
+          <div class="col-md-1">
+            <button type="button" class="btn btn-primary">{{billingReportInvoiceWise.length}} Bills
             </button>
-            <span class="text-muted text2">Bills</span>
+
           </div>
 
-        </div>
-        <div class="row mb-3">
-          <div class="col-sm-6 col-md-3">
+            <span class="text-muted text2">Select Date</span>
+            <div class="col-md-2" (clickOutside)="startDate.close()">
 
-            <span class="text-muted text2"></span>
-          </div>
-          <div class="col-sm-6 col-md-6">
-            <span class="text-muted text2">Select Date Range</span>
-          </div>
-        </div>
-        <div class="row mb-3">
-           <div class="col-sm-1 "> 
-
-
+              <input navigation="select" class="form-control  " ngbDatepicker #startDate="ngbDatepicker"
+                (click)="startDate.toggle()" placeholder="Start date" name="startDate"
+                [(ngModel)]="billingReportInvoiceWise.startDate" #startDate="ngModel" />
+            </div>
+            <span class="text-muted text2">To</span>
+            <div class="col-md-2" (clickOutside)="endDate.close()">
+              <input navigation="select" class="form-control  " ngbDatepicker #endDate="ngbDatepicker"
+                (click)="endDate.toggle()" placeholder="End date" name="endDate"
+                [(ngModel)]="billingReportInvoiceWise.endDate" #endDate="ngModel" />
+            </div>
+            <button type="button" class="btn btn-primary btn-sm" (click)="fetch()"><i class="fa fa-search"></i>Go!
+            </button>
          
-
-           </div>
-          <!-- <div class="col-sm-6 col-md-4"> -->
-          <div class="col-md-3" (clickOutside)="startDate.close()">
-
-            <input navigation="select" class="form-control  " ngbDatepicker #startDate="ngbDatepicker"
-              (click)="startDate.toggle()" placeholder="Start date" name="startDate"
-              [(ngModel)]="billingReportInvoiceWise.startDate" #startDate="ngModel" />
-          </div>
-          <!-- </div> -->
-
-          <span class="text-muted text2">To</span>
-
-          <!-- <div class="col-sm-6 col-md-4"> -->
-          <div class="col-md-3" (clickOutside)="endDate.close()">
-            <input navigation="select" class="form-control  " ngbDatepicker #endDate="ngbDatepicker"
-              (click)="endDate.toggle()" placeholder="End date" name="endDate"
-              [(ngModel)]="billingReportInvoiceWise.endDate" #endDate="ngModel" />
-          </div>
-          <!-- </div> -->
-          <div class="col-md-2">
-            <button type="button" class="btn btn-primary descBtn ml-sm-none ml-md-2" (click)="fetch()"><i
-                class="fa fa-search"></i>Go!
+              <button type="button" class="btn btn-outline-secondary btn-sm ml-1"
+              (click)="fetch()"> <i class="far fa-calendar"></i>&nbsp;All Dates
             </button>
+  
+          <div class="col-md-3">
+
+            <div class="form-group row">
+              <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
+              <div class="col-sm-9">
+                <input type="text" class="input form-control form-control-sm" (keyup)="billInvSearch($event)" />
+              </div>
+            </div>
+
           </div>
-          <!-- <div class="col-md-2"> -->
-            <button class="col-md-2" type="button" class="btn btn-outline-secondary descBtn ml-sm-none ml-md-2" (click)="fetch()"> <i
-                class="far fa-calendar"></i>&nbsp;All Dates
-            </button>
-          <!-- </div> -->
-          <!-- </div> -->
-
-
-
+          <div class="html5buttons mrg-tsm">
+            <div class="dt-buttons btn-group btn-group-sm">
+              <!-- <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0"
+                aria-controls="DataTables_Table_0"><span>Copy</span></a> -->
+              <!-- <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
+                aria-controls="DataTables_Table_0"><span>CSV</span></a> -->
+              <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
+                aria-controls="DataTables_Table_0" (click)="invoiceExcelFile()"><span>Excel</span></a>
+              <a class="btn btn-default buttons-print bg-white" tabindex="0" 
+                aria-controls="DataTables_Table_0" (click) = "billingInvoicePdf2()" *ngIf = "loggedInDepartmentName != 'Yarn Local'"><span>Print</span></a>
+                <a class="btn btn-default buttons-print bg-white" tabindex="0" *ngIf = "loggedInDepartmentName == 'Yarn Local'" 
+                aria-controls="DataTables_Table_0" (click) = "billingInvoicePdf()"><span>Print</span></a>
+            </div>
+          </div>
         </div>
-        <div class="row mb-3" *ngIf = "loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import' " >
+    
+ 
+        <!-- <div class="row mb-3" *ngIf = "loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import' " >
           <div class="col-md-1"></div>
           <div class="col-md-3">
             <ng-select placeholder="Month" name="month" [(ngModel)] = "month"  
@@ -992,96 +989,62 @@
               <ng-option value="2025"> 3031</ng-option>
             </ng-select>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12 mb-3">
-            <div class="row justify-content-end">
-              <div class="col-md-4 pr-0">
+        </div> -->
 
-                <div class="form-group row">
-                  <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="input form-control form-control-sm" (keyup)="billInvSearch($event)" />
-                  </div>
-                </div>
-
-                <!-- <div class="input-group col-md-offset-3">
-                    <input type="text" placeholder="Search by City Name or Country" class="input form-control w-50"
-                      (keyup)="search($event)" />
-                  </div> -->
-
-              </div>
-
-              <div class="html5buttons mrg-tsm">
-                <div class="dt-buttons btn-group btn-group-sm">
-                  <!-- <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0"
-                    aria-controls="DataTables_Table_0"><span>Copy</span></a> -->
-                  <!-- <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
-                    aria-controls="DataTables_Table_0"><span>CSV</span></a> -->
-                  <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
-                    aria-controls="DataTables_Table_0" (click)="invoiceExcelFile()"><span>Excel</span></a>
-                  <a class="btn btn-default buttons-print bg-white" tabindex="0" 
-                    aria-controls="DataTables_Table_0" (click) = "billingInvoicePdf2()" *ngIf = "loggedInDepartmentName != 'Yarn Local'"><span>Print</span></a>
-                    <a class="btn btn-default buttons-print bg-white" tabindex="0" *ngIf = "loggedInDepartmentName == 'Yarn Local'" 
-                    aria-controls="DataTables_Table_0" (click) = "billingInvoicePdf()"><span>Print</span></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
 
       <div class="card shadow mb-4">
         <div class="card-body">
           <div class="panel-body">
 
-            <ngx-datatable #myTable class="bootstrap" [sorts]="[{ prop: 'id,name', dir: 'desc' }]" [columns]="columns"
+            <ngx-datatable #myTable class="bootstrap"   [sorts]="[{ prop: 'id,name', dir: 'desc' }]" [columns]="columns"
               [rows]="billingReportInvoiceWise" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
               [rowHeight]="'auto'"
               [scrollbarH]="true"
+              
               >
 
-              <ngx-datatable-column name="Bill For" prop="billFor" [width]="30">
+              <ngx-datatable-column name="Bill For" prop="billFor">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.billFor }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Article" prop="articleName" [width]="60">
+              <ngx-datatable-column name="Article" prop="articleName">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.articleName }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Contract#" prop="contractNo" [width]="50">
+              <ngx-datatable-column name="Contract#" prop="contractNo" >
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.contractNo }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Contract Date" prop="contractDate" [width]="50">
+              <ngx-datatable-column name="Contract Date" prop="contractDate" >
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.contractDate }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Bill Date" prop="billDate" [width]="50">
+              <ngx-datatable-column name="Bill Date" prop="billDate" >
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.billDate }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Bill#" prop="billNo" [width]="40">
+              <ngx-datatable-column name="Bill#" prop="billNo">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.billNo }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Seller" prop="sellerName" [width]="80">
+              <ngx-datatable-column name="Seller" prop="sellerName" >
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.sellerName }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Buyer" prop="buyerName" [width]="80">
+              <ngx-datatable-column name="Buyer" prop="buyerName" >
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.buyerName }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Rate" prop="rate" [width]="30">
+              <ngx-datatable-column name="Rate" prop="rate">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   <b *ngIf = "row.rateCurrencyName == 'PKR' && loggedInDepartmentName != 'Yarn Local' && loggedInDepartmentName != 'Fabric Local'">RS</b>  
                   <b *ngIf = "row.rateCurrencyName == 'USD' && loggedInDepartmentName != 'Yarn Local' && loggedInDepartmentName != 'Fabric Local'">$</b> 
@@ -1089,18 +1052,18 @@
                   <b *ngIf = "row.rateCurrencyName == 'GBP' && loggedInDepartmentName != 'Yarn Local' && loggedInDepartmentName != 'Fabric Local'">GBP</b>     {{ row.rate }} /  {{ row.uomName }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Comm%" prop="fabcotCommission" [width]="30">
+              <ngx-datatable-column name="Comm%" prop="fabcotCommission">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
 
                   <span *ngIf="row.fabcotCommission != ''">{{ row.fabcotCommission }} {{row.quantityUOMName}} </span>
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Inv#" prop="invoiceNo" [width]="50">
+              <ngx-datatable-column name="Inv#" prop="invoiceNo">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.invoiceNo }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Qty" prop="quantity" [width]="30" *ngIf = "loggedInDepartmentName == 'Yarn Local'" >
+              <ngx-datatable-column name="Qty" prop="quantity" *ngIf = "loggedInDepartmentName == 'Yarn Local'" >
                 <ng-template let-row="row" let-expanded="expanded"  ngx-datatable-cell-template>
                <div *ngIf="row.debitQuantity == null ">   {{ row.quantity }} {{ row.quantityUOM }} </div>
                <div *ngIf = "row.debitQuantity !=null">{{row.remainingQuantity}} </div> <br>
@@ -1109,7 +1072,7 @@
              
               </ngx-datatable-column>
 
-              <ngx-datatable-column name="Qty" prop="quantity" [width]="30" *ngIf = "loggedInDepartmentName != 'Yarn Local'" >
+              <ngx-datatable-column name="Qty" prop="quantity"  *ngIf = "loggedInDepartmentName != 'Yarn Local'" >
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template *ngIf = "loggedInDepartmentName != 'Yarn Local'">
                   {{ row.quantity }} {{ row.quantityUOM }} 
                 
@@ -1120,7 +1083,7 @@
 
         
             
-              <ngx-datatable-column name="Comm Amount" prop="commissionAmount" [width]="50" *ngIf = "loggedInDepartmentName == 'Yarn Local'">
+              <ngx-datatable-column name="Comm Amount" prop="commissionAmount"  *ngIf = "loggedInDepartmentName == 'Yarn Local'">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   <!-- {{ row.commissionAmount }} -->
 
@@ -1134,7 +1097,7 @@
 
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Comm Amount" prop="commissionAmount" [width]="50" *ngIf = "loggedInDepartmentName != 'Yarn Local'">
+              <ngx-datatable-column name="Comm Amount" prop="commissionAmount"  *ngIf = "loggedInDepartmentName != 'Yarn Local'">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   <!-- {{ row.commissionAmount }} -->
 

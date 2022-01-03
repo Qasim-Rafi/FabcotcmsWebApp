@@ -512,7 +512,7 @@
                                     </dl>
                                     <dl class="row">
                                         <dt class="col-sm-4">Created On:</dt>
-                                        <dd class="col-sm-6 dateClr" (click)="toggleShow()" ngbTooltip="Click To Edit" >
+                                        <dd class="col-sm-6 dateClr"  (click)="toggleShow()" ngbTooltip="Click To Edit" >
                                             <i class="far fa-calendar-alt" ></i>
                                             {{contractData.createdDateTime}}
                                         </dd>
@@ -633,7 +633,7 @@
                     
                             <div class="row">
                                 <div class="col-md-12">
-                                    <button class="btn btn-outline-primary btn-sm float-right mr-3 mb-2" (click)="editParties(contractData)">
+                                    <button class="btn btn-outline-primary btn-sm float-right mr-3 mb-2" [disabled]="isnotEditAble" (click)="editParties(contractData)">
                                         <i class="far fa-edit"></i></button>
                                 </div>
                             </div>
@@ -960,7 +960,7 @@
                             <div class="row" *ngIf = "loggedInDepartmentName != 'Yarn Export'
                             && loggedInDepartmentName != 'Yarn Import'">
                                 <div class="col-md-12">
-                                    <button class="btn btn-outline-primary btn-sm float-right mr-3 mb-2"
+                                    <button class="btn btn-outline-primary btn-sm float-right mr-3 mb-2" [disabled]="isnotEditAble"
                                         (click)="editProductAndSpec(contractProductData)"> <i class="far fa-edit"></i></button>
                                 </div>
                             </div>
@@ -1093,7 +1093,7 @@
                     
                             <div class="row">
                                 <div class="col-md-12">
-                                    <button class="btn btn-outline-primary btn-sm float-right mr-3 mb-2" (click)="editQuantity(contractCostingData)">
+                                    <button class="btn btn-outline-primary btn-sm float-right mr-3 mb-2" [disabled]="isnotEditAble" (click)="editQuantity(contractCostingData)">
                                         <i class="far fa-edit"></i></button>
                                 </div>
                             </div>
@@ -1189,7 +1189,7 @@
                     
                             <div class="row">
                                 <div class="col-md-12">
-                                    <button class="btn btn-outline-primary btn-sm float-right mr-3 mb-2"
+                                    <button class="btn btn-outline-primary btn-sm float-right mr-3 mb-2" [disabled]="isnotEditAble"
                                         (click)="editPaymentAndDelivery(contractPaymentData)">
                                         <i class="far fa-edit"></i></button>
                                 </div>
@@ -1286,11 +1286,11 @@
                     
                                             <div class="ibox-tools text-center">
                     
-                                                <button type="button" class="btn editIconBack" (click)="editDeliveries(row, 'Edit')">
+                                                <button type="button" class="btn editIconBack" [disabled]="isnotEditAble" (click)="editDeliveries(row, 'Edit')">
                                                     <i class="far fa-edit "></i>
                                                 </button>
                     
-                                                <button type="button" class="btn deleteIconBack" (click)="deleteDeliveries(row)">
+                                                <button type="button" class="btn deleteIconBack" [disabled]="isnotEditAble" (click)="deleteDeliveries(row)">
                                                     <i class="far fa-trash-alt"></i>
                                                 </button>
                     
@@ -1431,7 +1431,7 @@
                     
                                 </div>
                                 <div class="col-md-12">
-                                    <button class="btn btn-outline-primary btn-sm float-right mr-3 mb-2" (click)="editKickbackComm()">
+                                    <button class="btn btn-outline-primary btn-sm float-right mr-3 mb-2" [disabled]="isnotEditAble" (click)="editKickbackComm()">
                                         <i class="far fa-edit"></i></button>
                                 </div>
                             </div>
@@ -1489,12 +1489,12 @@
                                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                                         <div class="ibox-tools text-center">
                     
-                                            <button type="button" class="btn editIconBack"
+                                            <button type="button" class="btn editIconBack" [disabled]="isnotEditAble"
                                                 (click)="editEmployeeComm('editCommission' , row)">
                                                 <i class="far fa-edit "></i>
                                             </button>
                     
-                                            <button type="button" class="btn deleteIconBack" (click)="deleteCommission(row)">
+                                            <button type="button" class="btn deleteIconBack" [disabled]="isnotEditAble" (click)="deleteCommission(row)">
                                                 <i class="far fa-trash-alt"></i>
                                             </button>
                     
@@ -1566,7 +1566,7 @@
                     
                                 </div>
                                 <div class="col-md-12">
-                                    <button class="btn btn-outline-primary btn-sm float-right mr-3 mb-2" (click)="editRemarks(contractRemarksData)">
+                                    <button class="btn btn-outline-primary btn-sm float-right mr-3 mb-2" [disabled]="isnotEditAble" (click)="editRemarks(contractRemarksData)">
                                         <i class="far fa-edit"></i></button>
                                 </div>
                     
@@ -1607,7 +1607,7 @@
                                         </h1>
                                     </div>
                                     <div class="col-sm-12 col-md-6 col-lg-4 text-right">
-                                        <button class="btn btn-outline-primary btn-sm" (click)="addDeliveryTL('Add')">
+                                        <button class="btn btn-outline-primary btn-sm" [disabled]="isnotEditAble" (click)="addDeliveryTL('Add')">
                                             <i class="fas fa-plus"></i>
                                             Add Deliveries </button>
                                     </div>
@@ -1676,11 +1676,11 @@
 
 
                                             <div class="ibox-tools text-center">
-                                                <button type="button" class="btn editIconBack"
+                                                <button type="button" class="btn editIconBack" [disabled]="isnotEditAble"
                                                     (click)="editDeliveries(row, 'Edit')"><i
                                                         class="far fa-edit"></i></button>
 
-                                                <button type="button" class="btn deleteIconBack" data-toggle="tooltip"
+                                                <button type="button" class="btn deleteIconBack" data-toggle="tooltip" [disabled]="isnotEditAble"
                                                     data-placement="top" title="" data-original-title="Delete"
                                                     (click)="deleteDeliveries(row)"> <i
                                                         class="far fa-trash-alt"></i></button>
@@ -2016,11 +2016,11 @@
                                     <div class="col-sm-12 col-md-6 col-lg-5 text-right">
 
                                         <button *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import'" class="btn btn-outline-primary btn-sm  mr-2"
-                                        (click)="salesInvoicereportLocalYarn()">
+                                        [disabled]="isnotEditAble" (click)="salesInvoicereportLocalYarn()">
                                         <i class="fa fa-file"></i>
                                        Sale Invoice Report </button>
 
-                                        <button class="btn btn-outline-primary btn-sm"
+                                        <button class="btn btn-outline-primary btn-sm" [disabled]="isnotEditAble"
                                             (click)="addinvoiceForm('addInvoice')">
                                             <i class="fas fa-plus"></i>
                                             Add Sale Invoice </button>
@@ -2041,16 +2041,16 @@
                                 </div>
 
                                 <div class="col-md-6 text-right" >
-                                    <button *ngIf = "loggedInDepartmentName == 'Yarn Local'" class="btn btn-outline-info btn-sm" (click)="addCredit(x,'Credit')"> <i class="fas fa-sticky-note"></i>
+                                    <button [disabled]="isnotEditAble" *ngIf = "loggedInDepartmentName == 'Yarn Local'" class="btn btn-outline-info btn-sm" (click)="addCredit(x,'Credit')"> <i class="fas fa-sticky-note"></i>
                                         Credit Note
                                     </button>
-                                    <button  *ngIf = "loggedInDepartmentName == 'Yarn Local'" class="btn btn-outline-warning btn-sm ml-3 " (click)="addCredit(x,'Debit')">
+                                    <button [disabled]="isnotEditAble"  *ngIf = "loggedInDepartmentName == 'Yarn Local'" class="btn btn-outline-warning btn-sm ml-3 " (click)="addCredit(x,'Debit')">
                                         <i class="fas fa-sticky-note"></i>
                                         Debit Note</button>
-                                    <button class="btn btn-outline-primary btn-sm ml-3 " (click)="editinvoice(x,'editInvoice')" >
+                                    <button [disabled]="isnotEditAble" class="btn btn-outline-primary btn-sm ml-3 " (click)="editinvoice(x,'editInvoice')" >
                                         <i class="fas fa-sticky-note"></i>
                                         Edit</button>
-                                    <button class="btn btn-outline-danger btn-sm ml-3 " (click)="deleteinvoice(x)">
+                                    <button [disabled]="isnotEditAble" class="btn btn-outline-danger btn-sm ml-3 " (click)="deleteinvoice(x)">
                                         <i class="fas fa-sticky-note"></i>
                                         Delete</button>
                                 </div>
@@ -2188,7 +2188,7 @@
                                       </div>
 
                                       <div class="col-md-4 text-right">
-                                        <button class="btn btn-outline-primary btn-sm" (click)="editpopup(rows)"> <i
+                                        <button class="btn btn-outline-primary btn-sm" [disabled]="isnotEditAble" (click)="editpopup(rows)"> <i
                                                 class="fas fa-edit"></i> Edit
                                         </button>
     

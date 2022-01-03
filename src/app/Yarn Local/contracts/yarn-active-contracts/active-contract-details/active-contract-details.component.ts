@@ -45,6 +45,7 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
   styleUrls: ['./active-contract-details.component.css']
 })
 export class ActiveContractDetailsComponent implements OnInit {
+  isnotEditAble:boolean=false;
   ShowRevised:string;
   dateformater: Dateformater = new Dateformater();
  costingDataWithGstFL: any;
@@ -1043,6 +1044,10 @@ lcForm2( check){
           this.response = res;
           if (this.response.success == true && this.response.data != null) {
             this.contractData = this.response.data;
+            if(this.contractData.status == "Closed"){
+
+              this.isnotEditAble =true
+            }
             this.revised=this.contractData.revisedCount !=0? true : false ;
             this.checkR=this.contractData.revisedCount !=0? "REVISED" : "" ;
 

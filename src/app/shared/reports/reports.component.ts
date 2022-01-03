@@ -453,8 +453,8 @@ else if (this.menuName.menuName == 'ExternalAgentReport'){
       "startInvoiceDate":this.data9.startContractDate == undefined? '': this.dateformater.toModel(this.data9.startContractDate),
       "endInvoiceDate":this.data9.endContractDate == undefined?'':this.dateformater.toModel(this.data9.endContractDate),
       "articleId":this.data9.articleId ==undefined ? 0 :this.data9.articleId,
-      "maturityStatus":this.data.maturityStatus,
-      "paymentStatus":this.data.paymentStatus,
+      "maturityStatus":this.data9.maturityStatus,
+      "paymentStatus":this.data9.paymentStatus,
     }
     this.spinner.show();
     this.http.
