@@ -32,7 +32,7 @@
             <div class="widget style1 yellow-bg  shadow">
               <div class="row">
                 <div class="col-md-4">
-                  <i class="fas fa-file-invoice-dollar fa-4x"></i>
+                  <i class="fas fa-file-invoice-dollar fa-3x"></i>
                 </div>
                 <div class="col-md-8 text-right">
                   <h6> All Contracts </h6>
@@ -47,7 +47,7 @@
             <div class="widget style1 bg-secondary shadow">
               <div class="row">
                 <div class="col-md-4">
-                  <i class="fas fa-wallet fa-4x"></i>
+                  <i class="fas fa-wallet fa-3x"></i>
                 </div>
                 <div class="col-md-8 text-right">
                   <h6> Container</h6>
@@ -62,7 +62,7 @@
             <div class="widget style1 bg-info shadow">
               <div class="row">
                 <div class="col-md-4">
-                  <i class="fas fa-hand-holding-usd fa-4x"></i>
+                  <i class="fas fa-hand-holding-usd fa-3x"></i>
                 </div>
                 <div class="col-md-8 text-right">
                   <h6> Quantity </h6>
@@ -77,7 +77,7 @@
             <div class="widget style1 bg-success shadow">
               <div class="row">
                 <div class="col-md-4">
-                  <i class="fa fa-calculator fa-4x"></i>
+                  <i class="fa fa-calculator fa-3x"></i>
                 </div>
                 <div class="col-md-8 text-right">
                   <h6> Dispatch </h6>
@@ -146,8 +146,6 @@
 
 
             </div>
-          </div>
-        </div>
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group row mt-3">
@@ -163,13 +161,14 @@
                       Search Contract
                     </button>
                   </div>
-                  <div class="col-md-6 mb-1">
-                  <button type="button" class="btn btn-primary btn-sm ml-md-2 float-right"  (click)="clickEvent()"> Advance Filter <i class="fas fa-search fa-fw mr-2"></i></button>
-                  </div>
+                
 
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+           
 
 
 
@@ -206,6 +205,9 @@
                     aria-controls="DataTables_Table_0" (click) = "openContractPdf()"><span>Print</span></a>
                 </div>
               </div>
+              <div class="col-md-2 mb-1">
+                <button type="button" class="btn btn-primary btn-sm ml-md-2 float-right"  (click)="clickEvent()"> Advance Filter <i class="fas fa-search fa-fw mr-2"></i></button>
+                </div>
             </div>
           </div>
         </div>
@@ -217,9 +219,9 @@
 
  
 
-            <ngx-datatable #myTable  class="bootstrap datatable-row-wrapper" [columns]="columns" [rows]="rows"
+            <ngx-datatable #myTable class="bootstrap datatable-row-wrapper" [columns]="columns" [rows]="rows"
             [columnMode]="'force'"   [headerHeight]="50" [footerHeight]="50" [sorts]="[{ prop: 'id', dir: 'asce' }]"
-            [rowHeight]="'auto'" [scrollbarH] = "true" >
+            [rowHeight]="'auto'" [scrollbarH] = "true">
   
             <ngx-datatable-column name="Age" prop="age" [width] = "40"   >
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
@@ -538,7 +540,7 @@
             <div class="widget style1 yellow-bg  shadow">
               <div class="row">
                 <div class="col-md-4">
-                  <i class="fas fa-file-invoice-dollar fa-4x"></i>
+                  <i class="fas fa-file-invoice-dollar fa-3x"></i>
                 </div>
                 <div class="col-md-8 text-right">
                   <h6>Total:</h6>
@@ -552,7 +554,7 @@
             <div class="widget style1 bg-secondary shadow">
               <div class="row">
                 <div class="col-md-4">
-                  <i class="fas fa-wallet fa-4x"></i>
+                  <i class="fas fa-wallet fa-3x"></i>
                 </div>
                 <div class="col-md-8 text-right">
                   <h6> Container </h6>
@@ -565,7 +567,7 @@
             <div class="widget style1 bg-info shadow">
               <div class="row">
                 <div class="col-md-4">
-                  <i class="fas fa-hand-holding-usd fa-4x"></i>
+                  <i class="fas fa-hand-holding-usd fa-3x"></i>
                 </div>
                 <div class="col-md-8 text-right">
                   <h6>Quantity </h6>
@@ -579,7 +581,7 @@
             <div class="widget style1 bg-success shadow">
               <div class="row">
                 <div class="col-md-4">
-                  <i class="fa fa-calculator fa-4x"></i>
+                  <i class="fa fa-calculator fa-3x"></i>
                 </div>
                 <div class="col-md-8 text-right">
                   <h6> Dispatch </h6>
@@ -1675,29 +1677,6 @@
     <div class="panel blank-panel">
       <div class="panel-heading">
 
-        <div class="row mb-3">
-          <div class="col-sm-6 col-md-3">
-            <button type="button" class="btn btn-primary descBtn ml-sm-none ml-md-2">0
-            </button>
-            <span class="text-muted text2">Invoice</span>
-          </div>
-          <div class="col-sm-6 col-md-3">
-            <button type="button" class="btn yellow-bg descBtn ml-sm-none ml-md-2">{{paymentTotal | number:'2.2-2' }}
-            </button>
-            <span class="text-muted text2">Amount</span>
-          </div>
-          <div class="col-sm-6 col-md-3">
-            <button type="button" class="btn blue-bg descBtn ml-sm-none ml-md-2">0
-            </button>
-            <span class="text-muted text2">Received</span>
-          </div>
-          <div class="col-sm-6 col-md-3">
-            <button type="button" class="btn navy-bg descBtn ml-sm-none ml-md-2">0
-            </button>
-            <span class="text-muted text2">Balance</span>
-          </div>
-    
-        </div>
 
 
         <form #filterForm="ngForm" novalidate>
@@ -1764,30 +1743,22 @@
 
 
           </div>
-        </div>
-      </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="form-group row mt-3">
-                <div class="col-md-2 ml-8">
-                  <button class="btn btn-outline-secondary pull-left btn-xs "><i class="fas fa-sync"></i>
-                    Clear
-                  </button>
+          <div class="row mb-2">
+            <div class="col-md-2 ml-8">
+              <button class="btn btn-outline-secondary pull-left btn-xs "><i class="fas fa-sync"></i>
+                Clear
+              </button>
 
-                </div>
-
-                <div class="col-md-4 ">
-                  <button type="button" class="btn btn-primary btn-sm float-right" (click)="PaymentReport()">
-                    Search Contract
-                  </button>
-                </div>
-                <div class="col-md-6 mb-1">
-                <button type="button" class="btn btn-primary btn-sm ml-md-2 float-right"  (click)="clickEvent()"> Advance Filter <i class="fas fa-search fa-fw mr-2"></i></button>
-                </div>
-
-              </div>
+            </div>
+            <div class="col-md-4 ">
+              <button type="button" class="btn btn-primary btn-sm float-right" (click)="PaymentReport()">
+                Search Contract
+              </button>
             </div>
           </div>
+        </div>
+      </div>
+  
 
 
 
@@ -1795,43 +1766,53 @@
 
 
 
+        <div class="row mb-3">
+          <div class="col-md-1">
+            <button type="button" class="btn btn-primary btn-sm">Invoice: 0
+            </button>
 
+          </div>
+          <div class="col-md-1">
+            <button type="button" class="btn yellow-bg btn-sm">Amount: {{paymentTotal | number:'2.2-2' }}
+            </button>
+          </div>
+          <div class="col-md-1">
+            <button type="button" class="btn blue-bg btn-sm">Received: 0
+            </button>
+          </div>
+          <div class="col-md-1">
+            <button type="button" class="btn navy-bg btn-sm">Balance: 0
+            </button>
+          </div>
+          <div class="col-md-3">
 
-
-        <div class="row">
-          <div class="col-md-12 mb-3">
-            <div class="row justify-content-end">
-              <div class="col-md-4 pr-0">
-
-                <div class="form-group row">
-                  <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="input form-control form-control-sm" />
-                  </div>
-                </div>
-
-                <!-- <div class="input-group col-md-offset-3">
-                    <input type="text" placeholder="Search by City Name or Country" class="input form-control w-50"
-                      (keyup)="search($event)" />
-                  </div> -->
-
-              </div>
-
-              <div class="html5buttons mrg-tsm">
-                <div class="dt-buttons btn-group btn-group-sm">
-                  <!-- <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0"
-                    aria-controls="DataTables_Table_0"><span>Copy</span></a> -->
-                  <!-- <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
-                    aria-controls="DataTables_Table_0"><span>CSV</span></a> -->
-                  <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
-                    aria-controls="DataTables_Table_0" (click) = "paymentExcelFile()"><span>Excel</span></a>
-                  <a class="btn btn-default buttons-print bg-white" tabindex="0"
-                    aria-controls="DataTables_Table_0" (click) = "paymentPdf()"><span>Print</span></a>
-                </div>
+            <div class="form-group row">
+              <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
+              <div class="col-sm-9">
+                <input type="text" class="input form-control form-control-sm" />
               </div>
             </div>
+
           </div>
+          <div class="html5buttons mrg-tsm">
+            <div class="dt-buttons btn-group btn-group-sm">
+              <!-- <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0"
+                aria-controls="DataTables_Table_0"><span>Copy</span></a> -->
+              <!-- <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
+                aria-controls="DataTables_Table_0"><span>CSV</span></a> -->
+              <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
+                aria-controls="DataTables_Table_0" (click) = "paymentExcelFile()"><span>Excel</span></a>
+              <a class="btn btn-default buttons-print bg-white" tabindex="0"
+                aria-controls="DataTables_Table_0" (click) = "paymentPdf()"><span>Print</span></a>
+            </div>
+          </div>
+          <div class="col-md-2 ">
+            <button type="button" class="btn btn-primary btn-sm float-right"  (click)="clickEvent()"> Advance Filter <i class="fas fa-search fa-fw mr-2"></i></button>
+            </div>
+
         </div>
+
+
       </div>
 
       <div class="card shadow mb-4">

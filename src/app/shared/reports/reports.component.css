@@ -27,7 +27,13 @@
     color: #ffffff;
   }
 
-
+  .widget{
+    border-radius: 5px;
+    padding: 15px 20px;
+    margin-bottom: 0px !important;
+    margin-top: 0px !important;
+    height: 75px !important;
+}
 
   .add{
     width: 100%;

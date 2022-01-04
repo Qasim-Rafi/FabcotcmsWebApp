@@ -1,5 +1,5 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
@@ -27,6 +27,13 @@ totalContract :  any;
 totalQuantity :  any;
 totalDispatch :  any;
 search: any = [];
+screenHeight:any;
+screenWidth:any;
+@HostListener('window:resize', ['$event'])
+onResize(event?) {
+   this.screenHeight = window.innerHeight;
+   this.screenWidth = window.innerWidth;
+}
 @ViewChild(NgForm) filterForm;
 dateformater: Dateformater = new Dateformater();
   allContractReport :  any = []
@@ -36,7 +43,16 @@ dateformater: Dateformater = new Dateformater();
     private spinner: NgxSpinnerService,
     private service: ServiceService,
 
-    private router: Router,) { }
+    private router: Router,) {
+      this.onResize(); 
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false; 
+    let body = document.getElementsByTagName('body')[0];
+    body.classList.add('sidebar-collapse'); 
+    let footer = document.getElementsByTagName('footer')[0];
+    footer.classList.add('d-none'); 
+    
+    let zoom = document.getElementById('zoom').style.minHeight =this.screenWidth;}
+     
 
   ngOnInit(): void {
     this.getAllContractReport();
