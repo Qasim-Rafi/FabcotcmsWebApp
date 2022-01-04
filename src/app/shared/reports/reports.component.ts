@@ -1,5 +1,5 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {  NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -75,6 +75,13 @@ data9: any = [];
 searchDispatch : any = []
 bookingAgent : any = []
 totalContainer:any;
+screenHeight:any;
+screenWidth:any;
+@HostListener('window:resize', ['$event'])
+onResize(event?) {
+   this.screenHeight = window.innerHeight;
+   this.screenWidth = window.innerWidth;
+}
   constructor(
 
     private route: ActivatedRoute,
@@ -87,11 +94,14 @@ totalContainer:any;
     private router: Router,
 
 
-  ) { this.router.routeReuseStrategy.shouldReuseRoute = () => false; 
+  ) {this.onResize(); 
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false; 
     let body = document.getElementsByTagName('body')[0];
     body.classList.add('sidebar-collapse'); 
     let footer = document.getElementsByTagName('footer')[0];
     footer.classList.add('d-none'); 
+    if(this.menuName.menuName !='OpenContractReport'){
+    let zoom = document.getElementById('zoom').style.minHeight =this.screenWidth;}
    }
 
   ngOnInit(): void {

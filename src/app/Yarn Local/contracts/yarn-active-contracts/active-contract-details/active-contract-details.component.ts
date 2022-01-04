@@ -1,5 +1,5 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
@@ -153,6 +153,13 @@ revised : any;
 checkR: any;
 billCount : any;
 isShown: boolean = false
+screenHeight:any;
+screenWidth:any;
+@HostListener('window:resize', ['$event'])
+onResize(event?) {
+   this.screenHeight = window.innerHeight;
+   this.screenWidth = window.innerWidth;
+}
   constructor(
     config: NgbProgressbarConfig,
     private router: Router,
@@ -165,6 +172,13 @@ isShown: boolean = false
   ) { 
     config.striped = true;
     config.animated = true;
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false; 
+    let body = document.getElementsByTagName('body')[0];
+    body.classList.add('sidebar-collapse'); 
+    let footer = document.getElementsByTagName('footer')[0];
+    footer.classList.add('d-none'); 
+    
+    let zoom = document.getElementById('zoom').style.minHeight =this.screenWidth;
   }
 
 
