@@ -1431,6 +1431,27 @@
 
               </ng-template>
             </ngx-datatable-column>
+            <ngx-datatable-column name="Buyer comm" >
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+
+                  {{ row.buyerCommissionAmount }}     
+
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Buyer Bill" >
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+ 
+                  {{ row.buyerBill }}     
+
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Status" >
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+
+                  {{ row.status }}     
+
+              </ng-template>
+            </ngx-datatable-column>
             <!-- <ngx-datatable-column name="Buyer Comm" [width]="90">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 <div *ngIf = "row.buyerCommission != '' "> 
@@ -3226,7 +3247,7 @@
             </ngx-datatable-column>
             <ngx-datatable-column name="Kickback Info" [width]="80">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                <!-- {{ row.kickbackCommission }} -->
+                {{ row.kickbackCommissioninfo }}
               </ng-template>
             </ngx-datatable-column>
             <ngx-datatable-column name="Status" [width]="60">
