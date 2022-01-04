@@ -1268,6 +1268,16 @@
             </ng-select>
             
             </div>
+            <div class="form-group col-md-4 ">
+              <label class="text-grey">Seller Bill Status</label>
+              <ng-select [(ngModel)]="data9.sellerBill" placeholder="All" (change)="sellerbillstatus($event)" name="sellerBill" #sellerBill="ngModel"
+              >
+              <ng-option value="null" selected>All</ng-option>
+              <ng-option value="Pending">Pending</ng-option>
+              <ng-option value="Received">Received</ng-option>
+            </ng-select>
+            
+            </div>
 
         </div>
         </div>

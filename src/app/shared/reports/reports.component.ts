@@ -73,6 +73,7 @@ searchAgent : any = []
 kickbackSearch2 : any = []
 data9: any = [];
 searchDispatch : any = []
+searchDispatchfilter : any = []
 bookingAgent : any = []
 totalContainer:any;
 screenHeight:any;
@@ -478,6 +479,7 @@ else if (this.menuName.menuName == 'ExternalAgentReport'){
             this.toastr.success(this.response.message, 'Message.');
             this.dispatchReport = this.response.data.list;
             this.searchDispatch = [...this.dispatchReport]
+            this.searchDispatchfilter = [...this.dispatchReport]
             // this.openSearch = [...this.rows]
             // this.totalContract = this.response.data.totalContract 
             // this.totalDispatch = this.response.data.totalDispatchAmount
@@ -501,6 +503,19 @@ else if (this.menuName.menuName == 'ExternalAgentReport'){
           this.spinner.hide();
 
         });
+  }
+  sellerbillstatus(value){
+    if(value == 'Pending'){
+      let pdata=this.dispatchReport.filter(x=>x.sellerBill == 'Pending');
+      this.dispatchReport =[...pdata]
+    }
+    else if(value == 'Received'){
+      let Rdata=this.searchDispatchfilter.filter(x=>x.sellerBill != 'Pending');
+      this.dispatchReport =[...Rdata]
+    }
+    else{
+      this.dispatchReport =[...this.searchDispatch]
+    }
   }
   externalAgentReport(){
 
