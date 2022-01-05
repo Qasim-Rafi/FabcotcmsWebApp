@@ -721,12 +721,12 @@
                 {{row.contractNo}}
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Buyer" >
+            <ngx-datatable-column name="Buyer" [width]="320">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 {{row.buyerName}}
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Seller" >
+            <ngx-datatable-column name="Seller" [width]="320">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 {{row.sellerName}}
               </ng-template>
@@ -1028,12 +1028,12 @@
                   {{ row.billNo }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Seller" prop="sellerName" >
+              <ngx-datatable-column name="Seller" prop="sellerName" [width]="320">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.sellerName }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Buyer" prop="buyerName" >
+              <ngx-datatable-column name="Buyer" prop="buyerName" [width]="320">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.buyerName }}
                 </ng-template>
@@ -1362,12 +1362,12 @@
              {{row.maturedOn}}
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Buyer" >
+            <ngx-datatable-column name="Buyer" [width]="320">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 {{row.buyerName}}
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Seller">
+            <ngx-datatable-column name="Seller" [width]="320">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 {{row.sellerName}}
               </ng-template>
@@ -1379,7 +1379,7 @@
                 {{row.articleName}}
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Rate" [width]="90">
+            <ngx-datatable-column name="Rate" >
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 <b *ngIf = "row.rateCurrencyName == 'PKR'">RS</b>  
                 <b *ngIf = "row.rateCurrencyName == 'USD'">$</b> 
@@ -1602,12 +1602,12 @@
                   {{ row.billNo }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Seller" prop="sellerName" [width]="60">
+              <ngx-datatable-column name="Seller" prop="sellerName" [width]="320">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.sellerName }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Buyer" prop="buyerName" [width]="60">
+              <ngx-datatable-column name="Buyer" prop="buyerName" [width]="320">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.buyerName }}
                 </ng-template>
@@ -1842,12 +1842,12 @@
                   {{ row.saleInvoiceDateToDisplay }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Buyer" [width]="40">
+              <ngx-datatable-column name="Buyer" [width]="320">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.buyerName }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Seller" [width]="50">
+              <ngx-datatable-column name="Seller" [width]="320">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.sellerName }}
                 </ng-template>
@@ -2004,12 +2004,12 @@
                   {{ row.country }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Buyer" [width]="40">
+              <ngx-datatable-column name="Buyer" [width]="320">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.details }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Seller" [width]="50">
+              <ngx-datatable-column name="Seller" [width]="320">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.details }}
                 </ng-template>
@@ -2268,12 +2268,12 @@
                 </ng-template>
               </ngx-datatable-column>
           
-              <ngx-datatable-column name="Buyer" [width]="80">
+              <ngx-datatable-column name="Buyer" [width]="320">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.buyer }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Seller" [width]="100">
+              <ngx-datatable-column name="Seller" [width]="320">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{row.seller}}
                 </ng-template>
@@ -2674,12 +2674,12 @@
                   {{ row.contractDate }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Buyer" [width]="140">
+              <ngx-datatable-column name="Buyer" [width]="320">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.buyer }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Seller" [width]="140">
+              <ngx-datatable-column name="Seller" [width]="320">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.seller }}
                 </ng-template>
@@ -2885,12 +2885,12 @@
                   {{ row.details }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Buyer" [width]="50">
+              <ngx-datatable-column name="Buyer" [width]="320">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.details }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Seller" [width]="50">
+              <ngx-datatable-column name="Seller" [width]="320">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.details }}
                 </ng-template>
@@ -3158,12 +3158,12 @@
                 {{row.contractNo}}
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Buyer" [width]="100">
+            <ngx-datatable-column name="Buyer" [width]="320">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 {{row.buyerName}}
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Seller" [width]="100">
+            <ngx-datatable-column name="Seller" [width]="320">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 {{row.sellerName}}
               </ng-template>
