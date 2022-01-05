@@ -510,29 +510,6 @@
     <div class="panel blank-panel">
       <div class="panel-heading">
 
-        <!-- <div class="row mb-3">
-          <div class="col-sm-6 col-md-3">
-            <button type="button" class="btn btn-primary descBtn ml-sm-none ml-md-2">Total:     <b>  {{totalContract}} </b>
-            </button>
-            <span class="text-muted text2">All Contracts</span>
-          </div>
-          <div class="col-sm-6 col-md-3">
-            <button type="button" class="btn yellow-bg descBtn ml-sm-none ml-md-2">Total: 0
-            </button>
-            <span class="text-muted text2">Container</span>
-          </div>
-          <div class="col-sm-6 col-md-3">
-            <button type="button" class="btn blue-bg descBtn ml-sm-none ml-md-2">Total:   <b>  {{totalQuantity}} </b>
-            </button>
-            <span class="text-muted text2">Quantity</span>
-          </div>
-          <div class="col-sm-6 col-md-3">
-            <button type="button" class="btn navy-bg descBtn ml-sm-none ml-md-2">Total:   <b>  {{totalDispatch}} </b>
-            </button>
-            <span class="text-muted text2">Dispatch</span>
-          </div>
-        
-        </div> -->
 
         <div class="row mb-4">
 
@@ -652,8 +629,6 @@
 
 
           </div>
-        </div>
-      </div>
           <div class="row">
             <div class="col-md-12">
               <div class="form-group row mt-3">
@@ -669,13 +644,14 @@
                     Search Contract
                   </button>
                 </div>
-                <div class="col-md-6 mb-1">
-                <button type="button" class="btn btn-primary btn-sm ml-md-2 float-right"  (click)="clickEvent()"> Advance Filter <i class="fas fa-search fa-fw mr-2"></i></button>
-                </div>
+              
 
               </div>
             </div>
           </div>
+        </div>
+      </div>
+         
 
 
 
@@ -714,6 +690,9 @@
                     aria-controls="DataTables_Table_0" (click) = "cancelContractPdf()" ><span>Print</span></a>
                 </div>
               </div>
+              <div class="col-md-2 mb-1">
+                <button type="button" class="btn btn-primary btn-sm ml-md-2 float-right"  (click)="clickEvent()"> Advance Filter <i class="fas fa-search fa-fw mr-2"></i></button>
+                </div>
             </div>
           </div>
         </div>
@@ -725,45 +704,45 @@
 
             <ngx-datatable #myTable  class="bootstrap datatable-row-wrapper" [columns]="columns" [rows]="cancelContract"
             [columnMode]="'force'"   [headerHeight]="50" [footerHeight]="50" [sorts]="[{ prop: 'id', dir: 'asce' }]"
-            [rowHeight]="'auto'" [scrollbarH] = "true" >
+            [rowHeight]="'auto'" [scrollbarH] = "true" [limit]="7">
   
-            <ngx-datatable-column name="Age" prop="age" [width] = "60"   >
+            <ngx-datatable-column name="Age" prop="age"   >
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 <span class="badge badge-primary">{{row.age}}</span>
                
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Contract#" [width]="120">
+            <ngx-datatable-column name="Contract#" >
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 {{row.contractNo}}
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Buyer" [width]="130">
+            <ngx-datatable-column name="Buyer" >
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 {{row.buyerName}}
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Seller" [width]="130">
+            <ngx-datatable-column name="Seller" >
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 {{row.sellerName}}
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Date" [width]="100">
+            <ngx-datatable-column name="Date" >
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 {{row.date}}
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="PO#" [width]="60">
+            <ngx-datatable-column name="PO#" >
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 {{row.poNumber}}
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Article" [width]="150">
+            <ngx-datatable-column name="Article" >
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 {{row.articleName}}
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Rate" [width]="90">
+            <ngx-datatable-column name="Rate" >
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 <b *ngIf = "row.rateCurrencyName == 'PKR'">RS</b>  
                 <b *ngIf = "row.rateCurrencyName == 'USD'">$</b> 
@@ -773,18 +752,18 @@
 
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Container" [width]="90">
+            <ngx-datatable-column name="Container" >
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 {{ row.containerName }}  
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Qty Unit" [width]="90">
+            <ngx-datatable-column name="Qty Unit" >
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                {{row.quantityUOMName}}
               </ng-template>
             </ngx-datatable-column>
   
-            <ngx-datatable-column name="Booking" [width]="90">
+            <ngx-datatable-column name="Booking" >
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 {{ row.booking }}  {{row.quantityUOMName}}
               </ng-template>
@@ -792,18 +771,18 @@
          
   
   
-            <ngx-datatable-column name="Dispatch" [width]="90">
+            <ngx-datatable-column name="Dispatch" >
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 {{ row.dispatch }}  {{row.quantityUOMName}}
               </ng-template>
             </ngx-datatable-column>
   
-            <ngx-datatable-column name="Balance" [width]="90">
+            <ngx-datatable-column name="Balance" >
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 {{ row.balanceQty }}  {{row.quantityUOMName}}
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Cost" [width]="120">
+            <ngx-datatable-column name="Cost" >
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 <p *ngIf = "row.rateCurrencyName == 'PKR'">RS</p>  
                 <p *ngIf = "row.rateCurrencyName == 'USD'">$</p> 
@@ -811,7 +790,7 @@
                 <p *ngIf = "row.rateCurrencyName == 'GBP'">GBP</p>    {{ row.cost }}
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Seller Comm" [width]="90">
+            <ngx-datatable-column name="Seller Comm">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 <div *ngIf = "row.sellerCommission != '' "> {{row.sellerCommission}}%   [      <p *ngIf = "row.rateCurrencyName == 'PKR'">RS</p>  
                   <p *ngIf = "row.rateCurrencyName == 'USD'">$</p> 
@@ -820,7 +799,7 @@
 
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Buyer Comm" [width]="90">
+            <ngx-datatable-column name="Buyer Comm" >
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 <div *ngIf = "row.buyerCommission != '' "> {{row.buyerCommission}}%   [      <p *ngIf = "row.rateCurrencyName == 'PKR'">RS</p>  
                   <p *ngIf = "row.rateCurrencyName == 'USD'">$</p> 
@@ -834,23 +813,23 @@
 
               </ng-template>
             </ngx-datatable-column> -->
-            <ngx-datatable-column name="Payment Term S|B" [width]="90">
+            <ngx-datatable-column name="Payment Term S|B" >
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 {{ row.paymentTerm }}  
 
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Status" [width]="90">
+            <ngx-datatable-column name="Status" >
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 <span class="badge badge-primary">{{row.status}}</span>
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Canceled By" [width]="90">
+            <ngx-datatable-column name="Canceled By" >
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 {{ row.updatedBy }}
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Canceled On" [width]="90">
+            <ngx-datatable-column name="Canceled On" >
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 {{ row.updatedOn }}
               </ng-template>
@@ -860,7 +839,7 @@
                 {{ row.agent }}
               </ng-template>
             </ngx-datatable-column> -->
-            <ngx-datatable-column name="Contract Owner" [width]="90">
+            <ngx-datatable-column name="Contract Owner" >
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 {{ row.contractOwner }}
               </ng-template>
@@ -927,9 +906,9 @@
               (click)="fetch()"> <i class="far fa-calendar"></i>&nbsp;All Dates
             </button>
   
-          <div class="col-md-3">
+          <div class="">
 
-            <div class="form-group row">
+            <div class="form-group row ml-2">
               <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
               <div class="col-sm-9">
                 <input type="text" class="input form-control form-control-sm" (keyup)="billInvSearch($event)" />
@@ -951,6 +930,9 @@
                 aria-controls="DataTables_Table_0" (click) = "billingInvoicePdf()"><span>Print</span></a>
             </div>
           </div>
+         
+          <button type="button" class="btn btn-primary btn-sm">Total Comm Amount: {{invoiceTotal}} 
+          </button>
         </div>
     
  
@@ -998,14 +980,16 @@
 
       </div>
 
-      <div class="card shadow mb-4">
-        <div class="card-body">
+      <div class="card shadow">
+      
           <div class="panel-body">
 
-            <ngx-datatable #myTable class="bootstrap"   [sorts]="[{ prop: 'id,name', dir: 'desc' }]" [columns]="columns"
+            <ngx-datatable #myTable class="bootstrap fixed-footer"   [sorts]="[{ prop: 'id,name', dir: 'desc' }]" [columns]="columns"
               [rows]="billingReportInvoiceWise" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
               [rowHeight]="'auto'"
               [scrollbarH]="true"
+             
+              
               
               >
 
@@ -1116,14 +1100,16 @@
 
                 </ng-template>
               </ngx-datatable-column>
+          
 
             </ngx-datatable>
-
-            <p class="col-md-12  totalAmnt">Total Comm Amount : <span>  &nbsp;  &nbsp;  {{invoiceTotal}} 
-               </span></p>
+            
+          
 
           </div>
-        </div>
+
+          
+       
       </div>
 
     </div>
@@ -1515,7 +1501,7 @@
 
         <div class="row mb-2 mt-2">
           <div class="col-md-1">
-            <button type="button" class="btn btn-primary ">{{contractWise.length}} Bills
+            <button type="button" class="btn btn-primary btn-sm">{{contractWise.length}} Bills
             </button>
           </div>
           <div class="">
@@ -1538,8 +1524,8 @@
         <button type="button" class="btn btn-outline-secondary btn-sm ml-1"
         (click)="fetchContractInvise()"> <i class="far fa-calendar"></i>&nbsp;All Dates
       </button>
-      <div class="col-md-3">
-      <div class="form-group row">
+      <div class="">
+      <div class="form-group row ml-2">
         <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
         <div class="col-sm-9">
           <input type="text" class="input form-control form-control-sm" (keyup)="billContractSearch($event)"  />
@@ -1558,17 +1544,20 @@
           aria-controls="DataTables_Table_0" (click) = "billingContractPdf()"><span>Print</span></a>
       </div>
     </div>
+    
+    <button type="button" class="btn btn-primary btn-sm">Total Comm Amount: {{contractTotal}}
+    </button>
         </div>
    
 
       </div>
 
-      <div class="card shadow mb-4">
-        <div class="">
+      <div class="card shadow">
+        
           <div class="panel-body">
 
             <ngx-datatable #myTable class="bootstrap" [sorts]="[{ prop: 'id,name', dir: 'desc' }]" [columns]="columns"
-              [rows]="contractWise" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="5"
+              [rows]="contractWise" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="7"
              
               [scrollbarH]="true">
 
@@ -1645,9 +1634,8 @@
                 </ng-template>
               </ngx-datatable-column>
             </ngx-datatable>
-            <p class="col-md-12  totalAmnt">Total Comm Amount : <span>  &nbsp;  &nbsp; {{contractTotal}}  </span></p>
           </div>
-        </div>
+      
       </div>
 
     </div>

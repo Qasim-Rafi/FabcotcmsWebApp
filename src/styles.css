@@ -232,7 +232,7 @@ font-weight: 600  !important;
 .datatable-body-cell:first-child {
   border: none !important;
 }
-
+/* .datatable-row-detail { width: 100vw !important; } */
 
 .ngx-datatable.bootstrap .datatable-body .datatable-body-row {
   background-color: white !important;
@@ -241,7 +241,9 @@ font-weight: 600  !important;
   background-color: rgba(0, 0, 0, 0.05) !important;
 }
 
-
+.layout-footer-fixed .wrapper .content-wrapper {
+  padding-bottom: calc(0.5rem + 0px) !important;
+}
 
 .ngx-datatable.bootstrap .datatable-footer {
   background: #4f575f;
@@ -743,6 +745,7 @@ cursor: pointer;
   }
 
 }
+
 html, body { height: 100vh; width: 100vw; margin-top: -8px !important; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 

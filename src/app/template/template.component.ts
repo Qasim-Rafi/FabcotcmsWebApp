@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { environment } from 'src/environments/environment';
@@ -56,6 +56,13 @@ export class TemplateComponent implements OnInit {
   Bank: boolean = false;
   Enqurie: boolean = false;
   Textile: boolean = false;
+  screenHeight:any;
+screenWidth:any;
+@HostListener('window:resize', ['$event'])
+onResize(event?) {
+   this.screenHeight = window.innerHeight;
+   this.screenWidth = window.innerWidth;
+}
   constructor( private router: Router,
     private http: HttpClient,
     private toastr: ToastrService,
@@ -64,7 +71,8 @@ export class TemplateComponent implements OnInit {
     private modalService: NgbModal,
 
 
-    ) { }
+    ) {this.onResize(); 
+     }
 
   ngOnInit(): void {
 

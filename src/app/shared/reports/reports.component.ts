@@ -76,13 +76,7 @@ searchDispatch : any = []
 searchDispatchfilter : any = []
 bookingAgent : any = []
 totalContainer:any;
-screenHeight:any;
-screenWidth:any;
-@HostListener('window:resize', ['$event'])
-onResize(event?) {
-   this.screenHeight = window.innerHeight;
-   this.screenWidth = window.innerWidth;
-}
+
   constructor(
 
     private route: ActivatedRoute,
@@ -95,14 +89,14 @@ onResize(event?) {
     private router: Router,
 
 
-  ) {this.onResize(); 
+  ) { 
     this.router.routeReuseStrategy.shouldReuseRoute = () => false; 
     let body = document.getElementsByTagName('body')[0];
     body.classList.add('sidebar-collapse'); 
     let footer = document.getElementsByTagName('footer')[0];
     footer.classList.add('d-none'); 
     if(this.menuName.menuName !='OpenContractReport'){
-    let zoom = document.getElementById('zoom').style.minHeight =this.screenWidth;}
+    }
    }
 
   ngOnInit(): void {

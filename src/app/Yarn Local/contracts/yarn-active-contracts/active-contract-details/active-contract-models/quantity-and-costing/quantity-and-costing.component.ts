@@ -91,7 +91,7 @@ export class QuantityAndCostingComponent implements OnInit {
   }
   addContractCosting() {
     let varr = {
-      "contractId": this.data.contractId,
+      "contractId": this.contractId,
       "quantity": this.data.quantity.replace("," , ""),
       "quantityUOMId": this.data.quantityUOMId,
 
