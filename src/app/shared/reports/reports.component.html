@@ -220,46 +220,50 @@
  
 
             <ngx-datatable #myTable class="bootstrap datatable-row-wrapper" [columns]="columns" [rows]="rows"
-            [columnMode]="'force'"   [headerHeight]="50" [footerHeight]="50" [sorts]="[{ prop: 'id', dir: 'asce' }]"
-            [rowHeight]="'auto'" [scrollbarH] = "true">
+            [columnMode]="'force'"   [headerHeight]="50" [sorts]="[{ prop: 'id', dir: 'asce' }]"
+            [footerHeight]="30"
+              [rowHeight]="50"
+              [scrollbarH]="true"
+              [scrollbarV]="true"
+             style="height: 500px;">
   
-            <ngx-datatable-column name="Age" prop="age" [width] = "40"   >
+            <ngx-datatable-column name="Age" prop="age"  >
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 <span class="badge badge-primary">{{row.age}}</span>
                
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Contract#" [width]="120">
+            <ngx-datatable-column name="Contract#">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 {{row.contractNo}}
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Buyer" [width]="130">
+            <ngx-datatable-column name="Buyer"  [width]="320" >
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 {{row.buyerName}}
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Seller" [width]="130">
+            <ngx-datatable-column name="Seller"  [width]="320" >
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 {{row.sellerName}}
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Date" [width]="100">
+            <ngx-datatable-column name="Date" >
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 {{row.date}}
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="PO#" [width]="60">
+            <ngx-datatable-column name="PO#" >
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 {{row.poNumber}}
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Article" [width]="150">
+            <ngx-datatable-column name="Article" >
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 {{row.articleName}}
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Rate" [width]="90">
+            <ngx-datatable-column name="Rate">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 <b *ngIf = "row.rateCurrencyName == 'PKR'">RS</b>  
                 <b *ngIf = "row.rateCurrencyName == 'USD'">$</b> 
@@ -269,18 +273,18 @@
 
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Container" [width]="90">
+            <ngx-datatable-column name="Container" >
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 {{row.containerCount}} {{ row.containerName }}  
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Qty Unit" [width]="90">
+            <ngx-datatable-column name="Qty Unit" >
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                {{row.quantityUOMName}}
               </ng-template>
             </ngx-datatable-column>
   
-            <ngx-datatable-column name="Booking" [width]="90">
+            <ngx-datatable-column name="Booking">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 {{ row.booking }}  {{row.quantityUOMName}}
               </ng-template>
@@ -288,18 +292,18 @@
            
   
   
-            <ngx-datatable-column name="Dispatch" [width]="90">
+            <ngx-datatable-column name="Dispatch" >
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 {{ row.dispatch }}  {{row.quantityUOMName}}
               </ng-template>
             </ngx-datatable-column>
   
-            <ngx-datatable-column name="Balance" [width]="90">
+            <ngx-datatable-column name="Balance" >
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 {{ row.balanceQty }}  {{row.quantityUOMName}}
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Cost" [width]="120">
+            <ngx-datatable-column name="Cost">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 <p *ngIf = "row.rateCurrencyName == 'PKR'">RS</p>  
                 <p *ngIf = "row.rateCurrencyName == 'USD'">$</p> 
@@ -307,7 +311,7 @@
                 <p *ngIf = "row.rateCurrencyName == 'GBP'">GBP</p>    {{ row.cost }}
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Seller Comm" [width]="90">
+            <ngx-datatable-column name="Seller Comm" >
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 <div *ngIf = "row.sellerCommission != '' "> {{row.sellerCommission}}%   [      <p *ngIf = "row.rateCurrencyName == 'PKR'">RS</p>  
                   <p *ngIf = "row.rateCurrencyName == 'USD'">$</p> 
@@ -316,7 +320,7 @@
 
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Buyer Comm" [width]="90">
+            <ngx-datatable-column name="Buyer Comm" >
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 <div *ngIf = "row.buyerCommission != '' "> {{row.buyerCommission}}%   [      <p *ngIf = "row.rateCurrencyName == 'PKR'">RS</p>  
                   <p *ngIf = "row.rateCurrencyName == 'USD'">$</p> 
@@ -330,18 +334,18 @@
 
               </ng-template>
             </ngx-datatable-column> -->
-            <ngx-datatable-column name="Payment Term S|B" [width]="90">
+            <ngx-datatable-column name="Payment Term S|B" >
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 {{ row.paymentTerm }}  
 
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Status" [width]="90">
+            <ngx-datatable-column name="Status" >
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 <span class="badge badge-primary">{{row.status}}</span>
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Agent" [width]="90">
+            <ngx-datatable-column name="Agent" >
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 {{ row.agent }}
               </ng-template>
@@ -391,14 +395,14 @@
 
         <div class="row mb-3">
           <div class="col-sm-6 col-md-3">
-            <button type="button" class="btn btn-primary descBtn ml-sm-none ml-md-2">0
+            <button type="button" class="btn btn-primary btn-sm">0 Contacts
             </button>
-            <span class="text-muted text2">Contacts</span>
+      
           </div>
           <div class="col-sm-6 col-md-3">
-            <button type="button" class="btn btn-primary descBtn ml-sm-none ml-md-2">0
+            <button type="button" class="btn btn-primary btn-sm">0 Users
             </button>
-            <span class="text-muted text2">Users</span>
+        
           </div>
           <!-- <div class="col-sm-6 col-md-12 mrg-tsm">
             <button type="button" class="btn navy-bg btn-sm float-right">
@@ -881,7 +885,7 @@
 
         <div class="row mb-2 mt-2">
           <div class="col-md-1">
-            <button type="button" class="btn btn-primary">{{billingReportInvoiceWise.length}} Bills
+            <button type="button" class="btn btn-primary btn-sm">{{billingReportInvoiceWise.length}} Bills
             </button>
 
           </div>
@@ -985,10 +989,11 @@
           <div class="panel-body">
 
             <ngx-datatable #myTable class="bootstrap fixed-footer"   [sorts]="[{ prop: 'id,name', dir: 'desc' }]" [columns]="columns"
-              [rows]="billingReportInvoiceWise" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-              [rowHeight]="'auto'"
+              [rows]="billingReportInvoiceWise" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="30"
+              [rowHeight]="50"
               [scrollbarH]="true"
-             
+              [scrollbarV]="true"
+             style="height: 500px;"
               
               
               >
@@ -1262,23 +1267,23 @@
 
         <div class="row mb-2 mt-2 p-1">
           <div class="col-md-1">
-            <button type="button" class="btn btn-primary">0 Contracts
+            <button type="button" class="btn btn-primary btn-sm">0 Contracts
             </button>
           </div>
           <div class="col-md-1">
-            <button type="button" class="btn blue-bg">0 Invoices
+            <button type="button" class="btn blue-bg btn-sm">0 Invoices
             </button>
           </div>
           <div class="col-md-1">
-          <button type="button" class="btn yellow-bg">0 Invoice Amount
+          <button type="button" class="btn yellow-bg btn-sm">0 Invoice Amount
           </button>
           </div>
           <div class="col-md-1">
-          <button type="button" class="btn blue-bg">0 Seller Comm
+          <button type="button" class="btn blue-bg btn-sm">0 Seller Comm
           </button>
           </div>
           <div class="col-md-1">
-          <button type="button" class="btn yellow-bg ">0 Buyer Comm
+          <button type="button" class="btn yellow-bg btn-sm ">0 Buyer Comm
           </button>
           </div>
           <div class="col-md-3 pr-0">
@@ -1314,8 +1319,12 @@
           <div class="p-2">
 
             <ngx-datatable #myTable  class="bootstrap datatable-row-wrapper" [columns]="columns" [rows]="dispatchReport"
-            [columnMode]="'force'"   [headerHeight]="50" [footerHeight]="50" [sorts]="[{ prop: 'id', dir: 'asce' }]"
-            [rowHeight]="'auto'" [scrollbarH] = "true" >
+            [columnMode]="'force'"   [headerHeight]="50"  [sorts]="[{ prop: 'id', dir: 'asce' }]"
+            [footerHeight]="30"
+            [rowHeight]="50"
+            [scrollbarH]="true"
+            [scrollbarV]="true"
+           style="height: 500px;" >
   
            
             <ngx-datatable-column name="Contract#">
@@ -1557,9 +1566,11 @@
           <div class="panel-body">
 
             <ngx-datatable #myTable class="bootstrap" [sorts]="[{ prop: 'id,name', dir: 'desc' }]" [columns]="columns"
-              [rows]="contractWise" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="7"
-             
-              [scrollbarH]="true">
+              [rows]="contractWise" [columnMode]="'force'" [headerHeight]="50"[footerHeight]="30"
+              [rowHeight]="50"
+              [scrollbarH]="true"
+              [scrollbarV]="true"
+             style="height: 500px;">
 
               <!-- <ngx-datatable-column name="Bill For" prop="billFor" [width]="30">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
@@ -1808,8 +1819,14 @@
           <div class="panel-body">
 
             <ngx-datatable #myTable class="bootstrap" [sorts]="[{ prop: 'id,name', dir: 'desc' }]" [columns]="columns"
-              [rows]="paymentReport" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-              [rowHeight]="'auto'">
+              [rows]="paymentReport"
+               [columnMode]="'force'" 
+               [headerHeight]="50"
+               [footerHeight]="30"
+            [rowHeight]="50"
+            [scrollbarH]="true"
+            [scrollbarV]="true"
+           style="height: 500px;">
               <ngx-datatable-column name="Contact#" prop="name" [width]="30">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.autoContractNo }}
@@ -1903,24 +1920,24 @@
 
         <div class="row mb-3">
           <div class="col-sm-6 col-md-3">
-            <button type="button" class="btn btn-primary descBtn ml-sm-none ml-md-2">0
+            <button type="button" class="btn btn-primary btn-sm">0 Invoice
             </button>
-            <span class="text-muted text2">Invoice</span>
+          
           </div>
           <div class="col-sm-6 col-md-3">
-            <button type="button" class="btn yellow-bg descBtn ml-sm-none ml-md-2">0
+            <button type="button" class="btn yellow-bg btn-sm">0 Amount
             </button>
-            <span class="text-muted text2">Amount</span>
+            
           </div>
           <div class="col-sm-6 col-md-3">
-            <button type="button" class="btn blue-bg descBtn ml-sm-none ml-md-2">0
+            <button type="button" class="btn blue-bg btn-sm">0 Received
             </button>
-            <span class="text-muted text2">Received</span>
+       
           </div>
           <div class="col-sm-6 col-md-3">
-            <button type="button" class="btn navy-bg descBtn ml-sm-none ml-md-2">0
+            <button type="button" class="btn navy-bg btn-sm">0 Balance
             </button>
-            <span class="text-muted text2">Balance</span>
+          
           </div>
           <div class="col-sm-6 col-md-12 mrg-tsm">
             <button type="button" class="btn navy-bg btn-sm float-right">
@@ -2051,24 +2068,24 @@
 
         <div class="row mb-3">
           <div class="col-sm-3 col-md-3">
-            <button type="button" class="btn btn-primary descBtn ml-sm-none ml-md-2">0
+            <button type="button" class="btn btn-primary btn-sm">0 Invoices
             </button>
-            <span class="text-muted text2">Invoices</span>
+   
           </div>
           <div class="col-sm-3 col-md-3">
-            <button type="button" class="btn blue-bg  descBtn ml-sm-none ml-md-2">0
+            <button type="button" class="btn blue-bg btn-sm">0 Billed
             </button>
-            <span class="text-muted text2">Billed</span>
+          
           </div>
           <div class="col-sm-3 col-md-3">
-            <button type="button" class="btn yellow-bg  descBtn ml-sm-none ml-md-2">0
+            <button type="button" class="btn yellow-bg btn-sm">0 Received
             </button>
-            <span class="text-muted text2">Received </span>
+     
           </div>
           <div class="col-sm-3 col-md-3">
-            <button type="button" class="btn blue-bg descBtn ml-sm-none ml-md-2">0
+            <button type="button" class="btn blue-bg btn-sm">0 Balance
             </button>
-            <span class="text-muted text2">Balance</span>
+      
           </div>
 
           <div class="col-sm-6 col-md-12 mrg-tsm">
@@ -2221,8 +2238,14 @@
             </ngx-datatable> -->
 
             <ngx-datatable #myTable class="bootstrap" [sorts]="[{ prop: 'id,name', dir: 'desc' }]" [columns]="columns"
-              [rows]="commissionReport" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-              [rowHeight]="'auto'" [scrollbarH] = "true">
+              [rows]="commissionReport" 
+              [columnMode]="'force'"
+               [headerHeight]="50"
+               [footerHeight]="30"
+               [rowHeight]="50"
+               [scrollbarH]="true"
+               [scrollbarV]="true"
+              style="height: 500px;">
 
               <ngx-datatable-column name="Contract#" prop="name" [width]="60">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
@@ -2344,7 +2367,7 @@
 
         <div class="row mb-3">
           <div class="col-sm-3 col-md-3">
-            <button type="button" class="btn btn-primary descBtn ml-sm-none ml-md-2">{{DbCrData.length}}
+            <button type="button" class="btn btn-primary btn-sm">{{DbCrData.length}}
             </button>
             <span class="text-muted text2">D/C Notes</span>
           </div>
@@ -2482,22 +2505,22 @@
 
         <div class="row mb-3">
           <div class="col-sm-3 col-md-3">
-            <button type="button" class="btn btn-primary descBtn ml-sm-none ml-md-2">0
+            <button type="button" class="btn btn-primary btn-sm">0
             </button>
             <span class="text-muted text2">Contract</span>
           </div>
           <div class="col-sm-3 col-md-3">
-            <button type="button" class="btn blue-bg  descBtn ml-sm-none ml-md-2">0
+            <button type="button" class="btn blue-bg  btn-sm">0
             </button>
             <span class="text-muted text2">Amount</span>
           </div>
           <div class="col-sm-3 col-md-3">
-            <button type="button" class="btn yellow-bg  descBtn ml-sm-none ml-md-2">0
+            <button type="button" class="btn yellow-bg  btn-sm">0
             </button>
             <span class="text-muted text2">Paid </span>
           </div>
           <div class="col-sm-3 col-md-3">
-            <button type="button" class="btn blue-bg descBtn ml-sm-none ml-md-2">0
+            <button type="button" class="btn blue-bg btn-sm">0
             </button>
             <span class="text-muted text2">Balance</span>
           </div>
@@ -2634,8 +2657,12 @@
           <div class="panel-body">
 
             <ngx-datatable #myTable class="bootstrap" [sorts]="[{ prop: 'id,name', dir: 'desc' }]" [columns]="columns"
-              [rows]="externalAgent" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-              [rowHeight]="'auto'" [scrollbarH] = "true">
+              [rows]="externalAgent" [columnMode]="'force'" [headerHeight]="50"
+              [footerHeight]="30"
+              [rowHeight]="50"
+              [scrollbarH]="true"
+              [scrollbarV]="true"
+             style="height: 500px;">
            
               <ngx-datatable-column name="Contract#" prop="name" [width]="120">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
@@ -2775,17 +2802,17 @@
 
         <div class="row mb-3">
           <div class="col-sm-3 col-md-3">
-            <button type="button" class="btn blue-bg descBtn ml-sm-none ml-md-2">0
+            <button type="button" class="btn blue-bg btn-sm">0
             </button>
             <span class="text-muted text2">Total Contract</span>
           </div>
           <div class="col-sm-3 col-md-3">
-            <button type="button" class="btn btn-primary  descBtn ml-sm-none ml-md-2">0
+            <button type="button" class="btn btn-primary  btn-sm">0
             </button>
             <span class="text-muted text2">LC Received</span>
           </div>
           <div class="col-sm-3 col-md-3">
-            <button type="button" class="btn btn-danger  descBtn ml-sm-none ml-md-2">0
+            <button type="button" class="btn btn-danger  btn-sm">0
             </button>
             <span class="text-muted text2">LC Not Received </span>
           </div>
@@ -2965,22 +2992,22 @@
 
         <div class="row mb-3">
           <div class="col-sm-3 col-md-3">
-            <button type="button" class="btn btn-primary descBtn ml-sm-none ml-md-2">Total: {{kickbackContract}}
+            <button type="button" class="btn btn-primary btn-sm">Total: {{kickbackContract}}
             </button>
             <span class="text-muted text2">All Contract</span>
           </div>
           <div class="col-sm-3 col-md-3">
-            <button type="button" class="btn yellow-bg  descBtn ml-sm-none ml-md-2">Total: 0
+            <button type="button" class="btn yellow-bg  btn-sm">Total: 0
             </button>
             <span class="text-muted text2">Contanier</span>
           </div>
           <div class="col-sm-3 col-md-3">
-            <button type="button" class="btn blue-bg  descBtn ml-sm-none ml-md-2">Total: {{kickbackQty}}
+            <button type="button" class="btn blue-bg btn-sm">Total: {{kickbackQty}}
             </button>
             <span class="text-muted text2">Quantity </span>
           </div>
           <div class="col-sm-3 col-md-3">
-            <button type="button" class="btn btn-primary  descBtn ml-sm-none ml-md-2">Total: {{kickbackDispatch}}
+            <button type="button" class="btn btn-primary  btn-sm">Total: {{kickbackDispatch}}
             </button>
             <span class="text-muted text2">Dispatch </span>
           </div>
@@ -3114,8 +3141,12 @@
           <div class="panel-body">
 
             <ngx-datatable #myTable class="bootstrap" [sorts]="[{ prop: 'id,name', dir: 'desc' }]" [columns]="columns"
-            [rows]="kickbackReport" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-            [rowHeight]="'auto'" [scrollbarH] = "true">
+            [rows]="kickbackReport" [columnMode]="'force'" [headerHeight]="50"
+            [footerHeight]="30"
+            [rowHeight]="50"
+            [scrollbarH]="true"
+            [scrollbarV]="true"
+           style="height: 500px;">
 
             <ngx-datatable-column name="Age" prop="name" [width]="60">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>

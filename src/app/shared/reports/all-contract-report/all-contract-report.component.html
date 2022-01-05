@@ -250,10 +250,12 @@
             
   
               <ngx-datatable #myTable  class="bootstrap" [columns]="columns" [rows]="allContractReport"
-              [columnMode]="'force'"    [headerHeight]="50" [footerHeight]="50" [sorts]="[{ prop: 'id', dir: 'asce' }]"
-              [rowHeight]="'auto'"
-               [scrollbarH]="true"
-               [limit]="4"
+              [columnMode]="'force'"    [headerHeight]="50"  [sorts]="[{ prop: 'id', dir: 'asce' }]"
+              [footerHeight]="30"
+              [rowHeight]="50"
+              [scrollbarH]="true"
+              [scrollbarV]="true"
+             style="height: 500px;"
           
      
            >
