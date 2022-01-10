@@ -26,6 +26,7 @@ export class SaleInvoicePopUpComponent implements OnInit {
   @Input() quantity; 
   @Input() saleInvoiceQuantity; 
   @Input() uom;
+  @Input() saleInvoiceQuantityTo;
   data:any ={};
   rate:any;
   condition:string="17"
@@ -206,6 +207,7 @@ if(event==7){
 //   }
 
   addSaleInvoice(form:NgForm) {
+    this.quantity =parseFloat(this.quantity) +this.saleInvoiceQuantityTo
     let sum=parseInt(this.quantitya)+parseInt(this.saleInvoiceQuantity);
     if(this.data.fobValue == undefined){
       this.data.fobValue = ''

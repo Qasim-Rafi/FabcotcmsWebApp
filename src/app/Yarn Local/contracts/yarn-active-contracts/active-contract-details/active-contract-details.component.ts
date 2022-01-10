@@ -155,6 +155,7 @@ billCount : any;
 isShown: boolean = false
 screenHeight:any;
 screenWidth:any;
+saleQuantityT:any;
 @HostListener('window:resize', ['$event'])
 onResize(event?) {
    this.screenHeight = window.innerHeight;
@@ -704,6 +705,7 @@ if(this.loggedInDepartmentName == 'Yarn Export' || this.loggedInDepartmentName =
     modalRef.componentInstance.contractId = this.contractId ;
     modalRef.componentInstance.quantity = this.max ;
     modalRef.componentInstance.saleInvoiceQuantity = this.max1 ;
+    modalRef.componentInstance.saleInvoiceQuantityTo = this.saleQuantityT ;
     modalRef.componentInstance.uom = this.uom ;
 
 
@@ -1073,6 +1075,7 @@ lcForm2( check){
              this.contractNmbr = this.contractData.autoContractNumber
              this.sellerName = this.contractData.sellerName
              this.max1 = this.response.data.saleInvoiceQuantity;
+             this.saleQuantityT =this.response.data.tolerancevalueclaculated;
             //  if(this.commissionBill['billNo'] != ''){
             //    this.billCount = 1
             //  }
