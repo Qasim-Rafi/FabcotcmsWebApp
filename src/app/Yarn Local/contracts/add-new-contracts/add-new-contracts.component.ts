@@ -1041,7 +1041,7 @@ brandId : any;
     let varr = {
       // "enquiryDate": this.dateformater.toModel(this.data.enquiryDate),
       "autoContractNo": this.data.autoContractNo,
-      "contractNo": this.data.contractNo,
+      "manualContractNumber": this.data.contractNo,
       "poNumber": this.data.poNumber,
       "sellerId": this.data.sellerId,
       "buyerId": this.data.buyerId,
