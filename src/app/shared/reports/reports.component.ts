@@ -219,7 +219,7 @@ else if (this.menuName.menuName == 'ExternalAgentReport'){
   billInvSearch(event) {
     const val = event.target.value.toLowerCase();
     const temp = this.invBill.filter(function (d) {
-      return (d.contractNo.toLowerCase().indexOf(val) !== -1   || !val);
+      return (d.contractNo.toLowerCase().indexOf(val) !== -1   || d.contractOwners.toLowerCase().indexOf(val) !== -1 || !val );
     });
     this.billingReportInvoiceWise = temp;
   }

@@ -1075,7 +1075,11 @@
               </ngx-datatable-column>
 
 
-        
+              <ngx-datatable-column name="Contract Owners" prop="contractOwners" *ngIf = "loggedInDepartmentName == 'Yarn Export'">
+                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                  {{ row.contractOwners }}
+                </ng-template>
+              </ngx-datatable-column>
             
               <ngx-datatable-column name="Comm Amount" prop="commissionAmount"  *ngIf = "loggedInDepartmentName == 'Yarn Local'">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
