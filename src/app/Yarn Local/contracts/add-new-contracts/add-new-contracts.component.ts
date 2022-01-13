@@ -121,7 +121,7 @@ brandId : any;
   ngOnInit(): void {
     this.loggedInDepartmentName = localStorage.getItem('loggedInDepartmentName');
     this.loggedInDepartmentCode = localStorage.getItem('loggedInDepartmentCode');
-    if (this.loggedInDepartmentName == 'Yarn Local') {
+    if (this.loggedInDepartmentName == 'Yarn Local' || this.loggedInDepartmentName =='Yarn Local Karachi') {
       this.data.currencyId = 1,
         this.data.quantityUOMId = 8,
       this.data.rateUOMId = 7,
