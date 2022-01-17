@@ -268,7 +268,7 @@
               </ngx-datatable-column>
               <ngx-datatable-column name="Contract#">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{row.contractNo}}
+                  {{row.contractNo}}  <small *ngIf="loggedInDepartmentName =='Yarn Local Karachi'">({{row.manualContractNumber}})</small>
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="Buyer"    >

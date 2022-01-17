@@ -219,7 +219,8 @@ else if (this.menuName.menuName == 'ExternalAgentReport'){
   billInvSearch(event) {
     const val = event.target.value.toLowerCase();
     const temp = this.invBill.filter(function (d) {
-      return (d.contractNo.toLowerCase().indexOf(val) !== -1   || d.contractOwners.toLowerCase().indexOf(val) !== -1 || !val );
+      return (d.contractNo.toLowerCase().indexOf(val) !== -1   || d.contractOwners.toLowerCase().indexOf(val) !== -1 ||
+      d.manualContractNumber.toLowerCase().indexOf(val) !==-1   || !val );
     });
     this.billingReportInvoiceWise = temp;
   }
@@ -233,14 +234,14 @@ else if (this.menuName.menuName == 'ExternalAgentReport'){
   billContractSearch(event) {
     const val = event.target.value.toLowerCase();
     const temp = this.contractBill.filter(function (d) {
-      return (d.contractNo.toLowerCase().indexOf(val) !== -1   || !val);
+      return (d.contractNo.toLowerCase().indexOf(val) !== -1   || d.manualContractNumber.toLowerCase().indexOf(val) !==-1   || !val);
     });
     this.contractWise = temp;
   }
   dispatchSearch(event) {
     const val = event.target.value.toLowerCase();
     const temp = this.searchDispatch.filter(function (d) {
-      return (d.contractNo.toLowerCase().indexOf(val) !== -1   || !val);
+      return (d.contractNo.toLowerCase().indexOf(val) !== -1   ||d.manualContractNumber.toLowerCase().indexOf(val) !==-1   || !val);
     });
     this.dispatchReport = temp;
   }
@@ -249,7 +250,7 @@ else if (this.menuName.menuName == 'ExternalAgentReport'){
     const val = event.target.value.toLowerCase();
     const temp = this.openSearch.filter(function (d) {
       return (d.contractNo.toLowerCase().indexOf(val) !== -1 || d.buyerName.toLowerCase().indexOf(val) !==-1   || 
-      d.sellerName.toLowerCase().indexOf(val) !==-1   ||
+      d.sellerName.toLowerCase().indexOf(val) !==-1   ||  d.manualContractNumber.toLowerCase().indexOf(val) !==-1   ||
       !val);
     });
     this.rows = temp;
@@ -259,7 +260,7 @@ else if (this.menuName.menuName == 'ExternalAgentReport'){
     const val = event.target.value.toLowerCase();
     const temp = this.cancelSearch.filter(function (d) {
       return (d.contractNo.toLowerCase().indexOf(val) !== -1 || d.buyerName.toLowerCase().indexOf(val) !==-1   || 
-      d.sellerName.toLowerCase().indexOf(val) !==-1   ||
+      d.sellerName.toLowerCase().indexOf(val) !==-1   || d.manualContractNumber.toLowerCase().indexOf(val) !==-1   ||
       !val);
     });
     this.cancelContract = temp;
@@ -275,7 +276,7 @@ else if (this.menuName.menuName == 'ExternalAgentReport'){
   dbCrSearch(event) {
     const val = event.target.value.toLowerCase();
     const temp = this.dbCrSearch2.filter(function (d) {
-      return (d.autoContractNumber.toLowerCase().indexOf(val) !== -1  ||
+      return (d.autoContractNumber.toLowerCase().indexOf(val) !== -1  || d.manualContractNumber.toLowerCase().indexOf(val) !==-1   ||
       !val);
     });
     this.DbCrData = temp;
@@ -283,7 +284,7 @@ else if (this.menuName.menuName == 'ExternalAgentReport'){
   externalAgentSearch(event) {
     const val = event.target.value.toLowerCase();
     const temp = this.searchAgent.filter(function (d) {
-      return (d.contractNo.toLowerCase().indexOf(val) !== -1  ||
+      return (d.contractNo.toLowerCase().indexOf(val) !== -1  || d.manualContractNumber.toLowerCase().indexOf(val) !==-1   ||
       !val);
     });
     this.externalAgent = temp;
@@ -291,7 +292,7 @@ else if (this.menuName.menuName == 'ExternalAgentReport'){
   kickbackSearch(event) {
     const val = event.target.value.toLowerCase();
     const temp = this.kickbackSearch2.filter(function (d) {
-      return (d.contractNo.toLowerCase().indexOf(val) !== -1  ||
+      return (d.contractNo.toLowerCase().indexOf(val) !== -1  || d.manualContractNumber.toLowerCase().indexOf(val) !==-1   ||
       !val);
     });
     this.kickbackReport = temp;

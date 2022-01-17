@@ -37,6 +37,7 @@ onResize(event?) {
 @ViewChild(NgForm) filterForm;
 dateformater: Dateformater = new Dateformater();
   allContractReport :  any = []
+  loggedInDepartmentName :  any;
   constructor(   private route: ActivatedRoute,
     private http: HttpClient,
     private toastr: ToastrService,
@@ -55,6 +56,7 @@ dateformater: Dateformater = new Dateformater();
      
 
   ngOnInit(): void {
+    this.loggedInDepartmentName=localStorage.getItem('loggedInDepartmentName');
     this.getAllContractReport();
     this.GetBuyersDropdown();
     this.GetSellersDropdown();
@@ -97,7 +99,7 @@ dateformater: Dateformater = new Dateformater();
     const val = event.target.value.toLowerCase();
     const temp = this.search.filter(function (d) {
       return (d.contractNo.toLowerCase().indexOf(val) !== -1 || d.buyerName.toLowerCase().indexOf(val) !==-1   || 
-      d.sellerName.toLowerCase().indexOf(val) !==-1   ||
+      d.sellerName.toLowerCase().indexOf(val) !==-1   || d.manualContractNumber.toLowerCase().indexOf(val) !==-1   ||
       !val);
     });
     this.allContractReport = temp;
