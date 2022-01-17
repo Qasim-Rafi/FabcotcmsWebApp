@@ -327,8 +327,8 @@ amountGivenToCalculate:any;
     this.sellerNameId=event;
 
 
-
-    this.http.get(`${environment.apiUrl}/api/Contracts/GetExternalAgentPaymentById/`+ this.sellerNameId).
+ 
+    this.http.get(`${environment.apiUrl}/api/Contracts/GetExternalAgentPaymentById/`+ this.commData.agentId  +'/'+ this.sellerNameId).
     subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
