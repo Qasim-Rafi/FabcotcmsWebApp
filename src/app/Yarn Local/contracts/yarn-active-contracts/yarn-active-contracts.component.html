@@ -237,7 +237,7 @@
             </kendo-grid-column>
             <kendo-grid-column field="autoContractNumber" title="Details" [width]="180" [sortable]="true" [headerClass]="'customiconforgrid'">
               <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex"  >
-                <p class="text-left">  <strong> {{dataItem.autoContractNumber}} </strong> 
+                <p class="text-left">  <strong> {{dataItem.autoContractNumber}} <small *ngIf="loggedInDepartmentName =='Yarn Local Karachi'">({{dataItem.manualContractNumber}})</small></strong> 
                   <span *ngIf = "loggedInDepartmentName == 'Yarn Export'" type="button" placement="right" ngbTooltip="Create Child Contract" class="editIconBack1 px-1 py-1" (click) = "cloneContractChildExportyarn(dataItem)">
                     <i class="far fa-copy"></i>
                   </span> 

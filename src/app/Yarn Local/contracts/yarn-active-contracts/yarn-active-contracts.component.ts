@@ -207,7 +207,6 @@ fetch(cb) {
       this.response = res;
 
       if (this.response.success == true && this.response.data != null) {
-
         this.totalDisplayPrice=this.response.data;
         this.data = this.response.data.list;
         this.allCount = this.response.data.allCount;

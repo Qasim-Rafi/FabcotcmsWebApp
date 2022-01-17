@@ -2611,7 +2611,7 @@ toggleShow() {
                         margin: [330 , 0 , 0 , 0],
                         table:{headerRows: 1 , widths:['40%' , '80%'],
                       body: [
-                        [{text:'Contract No:'  , style:'heading'} , {text: this.contractData['autoContractNumber']  , margin:[-24,0,0,0] , style:'heading2'}],] }
+                        [{text:'Contract No:'  , style:'heading'} , {text: this.loggedInDepartmentName == 'Yarn Local Karachi'?this.contractData['manualContractNumber']:this.contractData['autoContractNumber']  , margin:[-24,0,0,0] , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
@@ -2885,7 +2885,7 @@ toggleShow() {
                         margin: [330 , 20 , 0 , 0],
                         table:{headerRows: 1 , widths:['30%' , '90%'],
                       body: [
-                        [{text:'Contract No:'  , style:'heading'} , {text: this.contractData['autoContractNumber'] , 
+                        [{text:'Contract No:'  , style:'heading'} , {text: this.loggedInDepartmentName =='Yarn Local Karachi'?this.contractData['manualContractNumber'] :this.contractData['autoContractNumber'] , 
                          margin:[-9,0,0,0] ,style:'heading2'}],] }
                       },
                       {
