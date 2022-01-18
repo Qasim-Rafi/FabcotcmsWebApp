@@ -71,7 +71,7 @@
                                     Agent Name:
                                 </label>
                                 <div class="col-md-7">
-                                    <ng-select name="agentId" #agentId="ngModel" class="input-w px-0"  [(ngModel)]="commData.agentId"
+                                    <ng-select name="agentId" #agentId="ngModel" class="input-w px-0" (change)="getseller($event)" [(ngModel)]="commData.agentId"
                                         placeholder="-- Select --">
                                         <ng-option *ngFor="let i of agent" [value]="i.id">{{ i.name }}
                                         </ng-option>
@@ -92,7 +92,7 @@
                                 <div class="col-md-7">
                                     <ng-select name="sellerId" #sellerId="ngModel" class="input-w px-0" (change)="sellerNameChange($event)" [(ngModel)]="commData.sellerId"
                                         placeholder="-- Select --">
-                                        <ng-option *ngFor="let i of seller" [value]="i.id">{{ i.sellerName }}
+                                        <ng-option *ngFor="let i of seller" [value]="i.suplierId">{{ i.suplierName }}
                                         </ng-option>
                                     </ng-select>
                 

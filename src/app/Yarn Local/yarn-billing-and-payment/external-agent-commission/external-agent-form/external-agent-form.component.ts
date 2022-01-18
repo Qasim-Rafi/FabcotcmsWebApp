@@ -63,7 +63,7 @@ amountGivenToCalculate:any;
     this.GetBankAccDropdown();
      this.GetCurrencyDropdown();
      this.GetPaymentModeDropdown();
-     this.GetSellerDropdown();
+     //this.GetSellerDropdown();
      this.GetAgentDropdown();
      this.GetBuyersDropdown();
     //  this.rows = [
@@ -91,18 +91,18 @@ amountGivenToCalculate:any;
       }
     })
   }
-  GetSellerDropdown() {
-    this.service.getcommisionpaynentSellerLookup().subscribe(res => {
-      this.response = res;
-      if (this.response.success == true) {
+  // GetSellerDropdown() {
+  //   this.service.getcommisionpaynentSellerLookup().subscribe(res => {
+  //     this.response = res;
+  //     if (this.response.success == true) {
 
-        this.seller = this.response.data;
-      }
-      else {
-        this.toastr.error(this.response.message, 'Message.');
-      }
-    })
-  }
+  //       this.seller = this.response.data;
+  //     }
+  //     else {
+  //       this.toastr.error(this.response.message, 'Message.');
+  //     }
+  //   })
+  // }
   GetPaymentModeDropdown() {
     this.http.get(`${environment.apiUrl}/api/Lookups/PaymentModes`).
     subscribe(res => {
@@ -162,7 +162,7 @@ amountGivenToCalculate:any;
        let newrow =this.rows.filter(r=>r.saleInvoiceId ==row.saleInvoiceId)
        this.selected = newrow;  
 
-       if(this.selected[0].receivedAmount != null){
+       if(this.selected[0].receivedAmount != "0."+this.decimalSize){
 
          if(parseInt(this.result) == parseInt(row.receivedAmount)){
           this.selected[0].paid = this.result;
@@ -183,7 +183,7 @@ amountGivenToCalculate:any;
          }
 
        }
-       else if(this.selected[0].receivedAmount == null){
+       else if(this.selected[0].receivedAmount == "0."+this.decimalSize){
 
         if(parseInt(this.result) == parseInt(row.commissionSaleInvoiceAmount)){
         
@@ -243,10 +243,12 @@ amountGivenToCalculate:any;
       let filterdata =this.rowsFilter.filter(x=>x.saleInvoiceId ==row.saleInvoiceId)
       this.selected = newrow; 
       this.selected[0].paid = filterdata[0].paid;
-      let remainingamount =  row.commissionSaleInvoiceAmount -row.receivedAmount;
-      this.result =this.result+remainingamount;
-      this.result =this.result+'.'+this.decimalSize;
+      let remainingamount =  row.commissionSaleInvoiceAmount;
+      this.result =remainingamount;
+      // this.result =this.result+'.'+this.decimalSize;
       this.selected[0].balanceAmount = filterdata[0].paid;
+      this.selected[0].paid = '0.'+this.decimalSize
+      this.selected[0].receivedAmount = '0.'+this.decimalSize
 
     }
   }
@@ -322,7 +324,28 @@ amountGivenToCalculate:any;
         });
 
   }
+  getseller(event){
 
+    this.http.get(`${environment.apiUrl}/api/Contracts/GetExternalAgentSuppllierByAgentId/` + event)
+    .subscribe(
+      res => {
+        this.response = res;
+        if (this.response.success == true) {
+          if( this.response.data !=null){
+            this.seller = this.response.data;
+
+          }
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+
+      }, err => {
+        if (err.status == 400) {
+          this.toastr.error(err.error.message, 'Message.');
+        }
+      });
+  }
   sellerNameChange(event){
     this.sellerNameId=event;
 
