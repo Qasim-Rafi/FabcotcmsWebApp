@@ -363,7 +363,9 @@ amountGivenToCalculate:any;
     })
          
   }
-
+  navigateEditContract(obj) {
+    this.router.navigate(['/FabCot/active-contract-details'], { queryParams: {id: obj.contractId} });
+  };
 
   addCommissionPayment(dataamount) {
     if(dataamount != null){

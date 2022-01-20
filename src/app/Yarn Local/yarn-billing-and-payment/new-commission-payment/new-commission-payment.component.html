@@ -522,7 +522,7 @@
                                     </ngx-datatable-column>
                                     <ngx-datatable-column name="Contract#" [width]="80" prop="contractId" [flexGrow]="0.06">
                                         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                            {{row.autoContractNumber}}
+                                            <button class="clr" (click) = "navigateEditContract(row)" >  {{row.autoContractNumber}}</button> 
                 
                                         </ng-template>
                                     </ngx-datatable-column>
