@@ -152,7 +152,9 @@ dateformater: Dateformater = new Dateformater();
 
         });
   }
-  
+  navigateEditContract(obj) {
+    this.router.navigate(['/FabCot/active-contract-details'], { queryParams: {id: obj.contractId} });
+  };
   allContractExcelFile(){
     const filtered = this.allContractReport.map(row => ({
     Age:row.age,

@@ -235,7 +235,7 @@
             </ngx-datatable-column>
             <ngx-datatable-column name="Contract#">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                {{row.contractNo}} <small *ngIf="loggedInDepartmentName =='Yarn Local Karachi'">({{row.manualContractNumber}})</small>
+                <button class="clr" (click) = "navigateEditContract(row)" >  {{row.contractNo}}</button> <small *ngIf="loggedInDepartmentName =='Yarn Local Karachi'">({{row.manualContractNumber}})</small>
               </ng-template>
             </ngx-datatable-column>
             <ngx-datatable-column name="Buyer"  [width]="320" >
@@ -718,7 +718,7 @@
             </ngx-datatable-column>
             <ngx-datatable-column name="Contract#" >
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                {{row.contractNo}}<small *ngIf="loggedInDepartmentName =='Yarn Local Karachi'">({{row.manualContractNumber}})</small>
+                <button class="clr" (click) = "navigateEditContract(row)" >  {{row.contractNo}}</button><small *ngIf="loggedInDepartmentName =='Yarn Local Karachi'">({{row.manualContractNumber}})</small>
               </ng-template>
             </ngx-datatable-column>
             <ngx-datatable-column name="Buyer" [width]="320">
@@ -1010,7 +1010,7 @@
               </ngx-datatable-column>
               <ngx-datatable-column name="Contract#" prop="contractNo" >
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.contractNo }} <small *ngIf="loggedInDepartmentName =='Yarn Local Karachi'">({{row.manualContractNumber}})</small>
+                  <button class="clr" (click) = "navigateEditContract(row)" >  {{row.contractNo}}</button> <small *ngIf="loggedInDepartmentName =='Yarn Local Karachi'">({{row.manualContractNumber}})</small>
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="Contract Date" prop="contractDate" >
@@ -1333,7 +1333,7 @@
            
             <ngx-datatable-column name="Contract#">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                {{row.contractNo}} <small *ngIf="loggedInDepartmentName =='Yarn Local Karachi'">({{row.manualContractNumber}})</small>
+                <button class="clr" (click) = "navigateEditContract(row)" >  {{row.contractNo}}</button> <small *ngIf="loggedInDepartmentName =='Yarn Local Karachi'">({{row.manualContractNumber}})</small>
               </ng-template>
             </ngx-datatable-column>
             <ngx-datatable-column name="Contract Date">
@@ -1588,7 +1588,7 @@
               </ngx-datatable-column>
               <ngx-datatable-column name="Contract#" prop="contractNo" [width]="30">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.contractNo }} <small *ngIf="loggedInDepartmentName =='Yarn Local Karachi'">({{row.manualContractNumber}})</small>
+                  <button class="clr" (click) = "navigateEditContract(row)" >  {{row.contractNo}}</button> <small *ngIf="loggedInDepartmentName =='Yarn Local Karachi'">({{row.manualContractNumber}})</small>
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="Contract Date" prop="contractDate" [width]="50">
@@ -1833,7 +1833,7 @@
            style="height: 500px;">
               <ngx-datatable-column name="Contact#" prop="name" [width]="30">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.autoContractNo }}
+                  <button class="clr" (click) = "navigateEditContract(row)" >  {{row.autoContractNo}}</button>
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="Inv #" prop="name" [width]="30">
@@ -2253,7 +2253,7 @@
 
               <ngx-datatable-column name="Contract#" prop="name" [width]="60">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                {{row.contractNo}}<small *ngIf="loggedInDepartmentName =='Yarn Local Karachi'">({{row.manualContractNumber}})</small>
+                  <button class="clr" (click) = "navigateEditContract(row)" >  {{row.contractNo}}</button><small *ngIf="loggedInDepartmentName =='Yarn Local Karachi'">({{row.manualContractNumber}})</small>
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="Contract Date" [width]="100">
@@ -2670,7 +2670,7 @@
            
               <ngx-datatable-column name="Contract#" prop="name" [width]="120">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.contractNo }}<small *ngIf="loggedInDepartmentName =='Yarn Local Karachi'">({{row.manualContractNumber}})</small>
+                  <button class="clr" (click) = "navigateEditContract(row)" >  {{row.contractNo}}</button><small *ngIf="loggedInDepartmentName =='Yarn Local Karachi'">({{row.manualContractNumber}})</small>
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="Contract Date" [width]="120">
@@ -3159,7 +3159,7 @@
             </ngx-datatable-column>
             <ngx-datatable-column name="Contract#" [width]="100">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                {{row.contractNo}}<small *ngIf="loggedInDepartmentName =='Yarn Local Karachi'">({{row.manualContractNumber}})</small>
+                <button class="clr" (click) = "navigateEditContract(row)" >  {{row.contractNo}}</button><small *ngIf="loggedInDepartmentName =='Yarn Local Karachi'">({{row.manualContractNumber}})</small>
               </ng-template>
             </ngx-datatable-column>
             <ngx-datatable-column name="Buyer" [width]="320">

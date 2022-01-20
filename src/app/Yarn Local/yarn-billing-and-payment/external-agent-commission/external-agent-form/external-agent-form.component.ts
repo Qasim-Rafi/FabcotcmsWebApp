@@ -154,6 +154,10 @@ amountGivenToCalculate:any;
       }
     })
   }
+
+  navigateEditContract(obj) {
+    this.router.navigate(['/FabCot/active-contract-details'], { queryParams: {id: obj.contractId} });
+  };
   onSelect(event,row) {
       // this.blncamount=row.balanceAmount;
        this.invoicenoselected=this.rows.findIndex(x=>x.contractId ==row.contractId)

@@ -204,6 +204,10 @@ else if (this.menuName.menuName == 'ExternalAgentReport'){
     });
 
   }
+
+  navigateEditContract(obj) {
+    this.router.navigate(['/FabCot/active-contract-details'], { queryParams: {id: obj.contractId} });
+  };
   filterPopUform(menu) {
     const modalRef = this.modalService.open(FilterPopUpComponent, { centered: true });
     modalRef.componentInstance.menu = menu;
