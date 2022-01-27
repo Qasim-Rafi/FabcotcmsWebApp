@@ -274,7 +274,8 @@ amountGivenToCalculate:any;
       //this.blncamount =Osum;
       this.Paidamount =Psum;
         }
-        this.result =this.result.toFixed(2);
+        this.commData.amount=this.result
+        this.result =parseFloat(this.result).toFixed(2);
       this.selected.push(...this.selected);
       this.rows = [...this.rows]
         }
