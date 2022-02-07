@@ -44,6 +44,7 @@ amountGivenToCalculate:any;
   sellerNameId:any;
   editing = {};
   decimalSize:any;
+  decimalcount:any;
   result:any;
   Paidamount:any;
   constructor(
@@ -214,22 +215,21 @@ amountGivenToCalculate:any;
             this.selected[0].paid = this.result;
             this.selected[0].receivedAmount = this.selected[0].paid;
             this.result = this.selected[0].paid - this.result;
-            if(this.result == ""){
+            if(this.result == 0){
               this.result='0.'+this.decimalSize;
             }
             // '0.'+this.decimalSize;
             this.selected[0].balanceAmount = "0.00";
-            for(let i=0; i<this.rows.length; i++ )
-    {     
-   
-      //this.Oblanc.push(parseFloat(this.rows[i].commissionSaleInvoiceAmount));
-      this.Pblanc.push(parseFloat(this.rows[i].paid));
-      
-    }
-    //const Osum = this.Oblanc.reduce((partial_sum, a) => partial_sum + a, 0);
-    const Psum = this.Pblanc.reduce((partial_sum, a) => partial_sum + a, 0);
-      //this.blncamount =Osum;
-      this.Paidamount =Psum;
+          // for (let i = 0; i < this.rows.length; i++) {
+
+          //   //this.Oblanc.push(parseFloat(this.rows[i].commissionSaleInvoiceAmount));
+          //   this.Pblanc.push(parseFloat(this.rows[i].paid));
+
+          // }
+          // //const Osum = this.Oblanc.reduce((partial_sum, a) => partial_sum + a, 0);
+          // const Psum = this.Pblanc.reduce((partial_sum, a) => partial_sum + a, 0);
+          // //this.blncamount =Osum;
+          this.Paidamount = parseFloat(this.selected[0].paid) +  parseFloat(this.Paidamount);
 
         }
         else if(parseInt(this.result) < parseInt(row.commissionSaleInvoiceAmount)){
@@ -240,20 +240,11 @@ amountGivenToCalculate:any;
             //this.result =this.result+this.decimalSize;
           this.selected[0].paid = this.result;
           this.selected[0].receivedAmount = this.selected[0].paid;
-          this.selected[0].balanceAmount = this.selected[0].balanceAmount - this.result;
+          let remaingblance= row.commissionSaleInvoiceAmount - this.result;
+          this.selected[0].balanceAmount =remaingblance.toFixed(this.decimalSize);
           this.toastr.error('Partial Commission', 'Message.');
           this.result = this.selected[0].receivedAmount -this.result;
-          for(let i=0; i<this.rows.length; i++ )
-    {     
-   
-      //this.Oblanc.push(parseFloat(this.rows[i].commissionSaleInvoiceAmount));
-      this.Pblanc.push(parseFloat(this.rows[i].paid));
-      
-    }
-    //const Osum = this.Oblanc.reduce((partial_sum, a) => partial_sum + a, 0);
-    const Psum = this.Pblanc.reduce((partial_sum, a) => partial_sum + a, 0);
-      //this.blncamount =Osum;
-      this.Paidamount =Psum;
+          this.Paidamount = parseFloat(this.selected[0].paid) +  parseFloat(this.Paidamount);
           }
         }
         else if(parseInt(this.result) > parseInt(row.commissionSaleInvoiceAmount)){
@@ -262,20 +253,10 @@ amountGivenToCalculate:any;
           this.result = this.result-this.selected[0].paid ;
           this.result =this.result.toFixed(2)
           this.selected[0].balanceAmount = "0.00";
-          for(let i=0; i<this.rows.length; i++ )
-    {     
-   
-      //this.Oblanc.push(parseFloat(this.rows[i].commissionSaleInvoiceAmount));
-      this.Pblanc.push(parseFloat(this.rows[i].paid));
-      
-    }
-    //const Osum = this.Oblanc.reduce((partial_sum, a) => partial_sum + a, 0);
-    const Psum = this.Pblanc.reduce((partial_sum, a) => partial_sum + a, 0);
-      //this.blncamount =Osum;
-      this.Paidamount =Psum;
+          this.Paidamount = parseFloat(this.selected[0].paid) +  parseFloat(this.Paidamount);
         }
-        this.commData.amount=this.result
-        this.result =parseFloat(this.result).toFixed(2);
+        //this.commData.amount=this.result
+        this.result =parseFloat(this.result).toFixed(this.decimalcount);
       this.selected.push(...this.selected);
       this.rows = [...this.rows]
         }
@@ -303,29 +284,40 @@ amountGivenToCalculate:any;
       this.selected[0].paid = filterdata[0].paid;
       if(this.result =="0."+this.decimalSize){
         this.result =parseFloat(this.result)+ parseFloat(row.commissionSaleInvoiceAmount);
+        this.Paidamount =  parseFloat(this.Paidamount) -parseFloat(this.selected[0].paid) ;
+        this.Paidamount =this.Paidamount.toFixed(this.decimalcount);
         this.selected[0].paid=  "0."+this.decimalSize;
         this.selected[0].balanceAmount = filterdata[0].paid;
         this.selected[0].receivedAmount='0.'+this.decimalSize
       }
       else{
       let remainingamount =  row.commissionSaleInvoiceAmount -row.receivedAmount;
-      this.result =this.result+remainingamount;
-      this.result =this.result+'.'+this.decimalSize;
-      this.selected[0].balanceAmount = filterdata[0].paid;
+      if(this.result != 0){
+        this.result =parseFloat(this.result)+ parseFloat(row.commissionSaleInvoiceAmount);
+        this.result =this.result.toFixed(this.decimalcount);
+        this.Paidamount =  parseFloat(this.Paidamount) - parseFloat(this.selected[0].paid);
+        this.Paidamount =this.Paidamount.toFixed(this.decimalcount);
+        this.selected[0].paid=  "0."+this.decimalSize;
+        this.selected[0].balanceAmount = filterdata[0].paid;
+        this.selected[0].receivedAmount='0.'+this.decimalSize
+      }
+      // this.result =this.result+remainingamount;
+      // this.result =this.result+'.'+this.decimalSize;
+      // this.selected[0].balanceAmount = filterdata[0].paid;
       
       }
     }
-    for(let i=0; i<this.rows.length; i++ )
-    {     
+    // for(let i=0; i<this.rows.length; i++ )
+    // {     
    
-      //this.Oblanc.push(parseFloat(this.rows[i].commissionSaleInvoiceAmount));
-      this.Pblanc.push(parseFloat(this.rows[i].paid));
+    //   //this.Oblanc.push(parseFloat(this.rows[i].commissionSaleInvoiceAmount));
+    //   this.Pblanc.push(parseFloat(this.rows[i].paid));
       
-    }
-    //const Osum = this.Oblanc.reduce((partial_sum, a) => partial_sum + a, 0);
-    const Psum = this.Pblanc.reduce((partial_sum, a) => partial_sum + a, 0);
-      //this.blncamount =Osum;
-      this.Paidamount =Psum;
+    // }
+    // //const Osum = this.Oblanc.reduce((partial_sum, a) => partial_sum + a, 0);
+    // const Psum = this.Pblanc.reduce((partial_sum, a) => partial_sum + a, 0);
+    //   //this.blncamount =Osum;
+    //   this.Paidamount =Psum;
   }
 
   amountCall(event){
@@ -383,7 +375,7 @@ amountGivenToCalculate:any;
           this.response = res;
           if (this.response.success == true) {
             if( this.response.data !=null){
-              this.decimalSize = this.response.data.amountDecimalPoints;
+              this.decimalcount = this.response.data.amountDecimalPoints;
               this.decimalSize=String().padStart(this.response.data.amountDecimalPoints, '0'); 
 
             }
