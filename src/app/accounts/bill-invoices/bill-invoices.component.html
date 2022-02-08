@@ -148,9 +148,9 @@
 </div>
 
           <div class="col-md-2">
-              <input  navigation="select" class="form-control  " ngbDatepicker #startDate="ngbDatepicker"
-              (click)="startDate.toggle()"  
-              placeholder="Start Date" name="startDate" [(ngModel)] = "data2.startDate" #startDate = "ngModel">
+              <input  navigation="select" class="form-control  " ngbDatepicker #toDate="ngbDatepicker"
+              (click)="toDate.toggle()"  
+              placeholder="Start Date" name="toDate" [(ngModel)] = "data2.toDate" #toDate = "ngModel">
           </div>   
 
          
@@ -163,8 +163,8 @@
 
       <div class="input-group col-md-2">
                     
-        <input  navigation="select" class="form-control  " ngbDatepicker #endDate="ngbDatepicker"
-        (click)="endDate.toggle()"   name="endDate" [(ngModel)] = "data2.endDate" #endDate = "ngModel"
+        <input  navigation="select" class="form-control  " ngbDatepicker #FromDate="ngbDatepicker"
+        (click)="FromDate.toggle()"   name="FromDate" [(ngModel)] = "data2.FromDate" #FromDate = "ngModel"
         placeholder="End Date">
 
         <div class="input-group-append">
