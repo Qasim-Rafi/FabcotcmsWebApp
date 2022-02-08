@@ -274,7 +274,9 @@ print(rows){
 
               layout:'noBorders',
               table:{headerRows:1 ,  widths:['80%' ],
-            body:[ [{text: 'This refers to our contract for Weaving dispatches. Please make commission cheque in favour of M/S FABCOT INTERNATIONAL and oblige.' , margin: [20 , 10 , 0 , 0]  , style:'common'} 
+            body:[ [{text: this.loggedInDepartmentName == 'Fabric Local'?
+            'This refers to our contract for Fabric dispatches. Please make commission cheque in favour of M/S FABCOT INTERNATIONAL and oblige.':
+            'This refers to our contract for Weaving dispatches. Please make commission cheque in favour of M/S FABCOT INTERNATIONAL and oblige.' , margin: [20 , 10 , 0 , 0]  , style:'common'} 
           
           ]]
             }
