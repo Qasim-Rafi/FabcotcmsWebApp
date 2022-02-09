@@ -1313,7 +1313,7 @@ getContractCostingData() {
             // this.costingDataWithGstFL=parseInt(this.contractCostingData.contractCost)
           this.costingDataWithGstFL =parseInt(this.contractCostingData.contractCost) + value+".000";
           // .......calculating with gst........
-          this.max = this.response.data.quantity;
+          this.max = this.response.data.quantityWithTolerance;
       this.uom = this.contractCostingData.rateUOMName;
           if(this.contractCostingData.length=1){
             this.check=this.check+15;
