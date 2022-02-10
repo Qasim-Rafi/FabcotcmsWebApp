@@ -122,6 +122,7 @@ constructor(    private service: ServiceService,
     {
     this.data=this.response.data;
     this.dashboardAmnt = this.data
+    this.temp = [...this.data.objList]; 
     this.rows = this.data.objList;
 
 
