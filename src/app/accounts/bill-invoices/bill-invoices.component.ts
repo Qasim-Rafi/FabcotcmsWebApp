@@ -55,14 +55,14 @@ constructor(    private service: ServiceService,
     // filter our data
     const temp = this.temp.filter(function (d) {
       return ( 
-        d.sellerName.toLowerCase().indexOf(val) !== -1 || 
-        d.billNumber!= null?d.billNumber.indexOf(val) !== -1 :'' || 
-        d.billInvoiceNumber != null?d.billInvoiceNumber.toString().indexOf(val) !== -1 : ''|| 
-        d.autoContractNumber !=null?d.autoContractNumber.toLowerCase().indexOf(val) !== -1 :''|| 
-        d.billGeneratedDateTime.toString().indexOf(val) !== -1 || 
-        d.saleInvoiceNo!= null? d.saleInvoiceNo.toString().indexOf(val) !== -1 :'' || 
-        d.billAmount != null?  d.billAmount.toString().indexOf(val) !== -1 :'' || 
-        d.taxAmount !=null? d.taxAmount.toString().indexOf(val) !== -1 :'' || 
+       // d.sellerName != null && d.sellerName != "" ? d.sellerName.toLowerCase().indexOf(val) !== -1:'' || 
+        d.billNumber!= null && d.billNumber!= ""?d.billNumber.indexOf(val) !== -1 :'' || 
+        d.billInvoiceNumber != null && d.billInvoiceNumber != ""?d.billInvoiceNumber.toString().indexOf(val) !== -1 : ''|| 
+         d.autoContractNumber !=null && d.autoContractNumber !=""?d.autoContractNumber.toLowerCase().indexOf(val) !== -1 :''|| 
+        // d.billGeneratedDateTime.toString().indexOf(val) !== -1 || 
+        // d.saleInvoiceNo != null && d.saleInvoiceNo!= ""? d.saleInvoiceNo.toString().indexOf(val) !== -1 :'' || 
+         d.billAmount != null && d.billAmount != ""?  d.billAmount.toString().indexOf(val) !== -1 :'' || 
+        // d.taxAmount !=null && d.taxAmount !=""? d.taxAmount.toString().indexOf(val) !== -1 :'' || 
         !val );
     });
     this.rows = temp;
