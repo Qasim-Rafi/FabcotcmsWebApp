@@ -1196,7 +1196,12 @@ this.fetch();
     pdfMake.createPdf(docDefinition).print();
   }
   billingInvoicePdf2() {
-
+    // for(let i=0;i<=this.billingReportInvoiceWise.length; i++){
+    //   this.invoiceTotal += this.billingReportInvoiceWise[i].totalCommisson
+     
+    // }
+    this.invoiceTotal =this.billingReportInvoiceWise.reduce((accumulator, current) => accumulator + current.totalCommisson, 0);
+    this.invoiceTotal =this.invoiceTotal.toFixed(3); 
     let docDefinition = {
       pageSize: 'A4',
       info: {

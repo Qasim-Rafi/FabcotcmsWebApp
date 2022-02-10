@@ -212,7 +212,7 @@ amountGivenToCalculate:any;
        }
        else if(this.selected[0].receivedAmount == "0."+this.decimalSize){
 
-        if(parseInt(this.result) == parseInt(row.commissionSaleInvoiceAmount)){
+        if(parseFloat(this.result) == parseFloat(row.commissionSaleInvoiceAmount)){
         
             this.selected[0].paid = this.result;
             this.selected[0].receivedAmount = this.selected[0].paid;
@@ -225,9 +225,9 @@ amountGivenToCalculate:any;
             this.Paidamount = parseFloat(this.selected[0].paid) +  parseFloat(this.Paidamount);
 
         }
-        else if(parseInt(this.result) < parseInt(row.commissionSaleInvoiceAmount)){
+        else if(parseFloat(this.result) < parseFloat(row.commissionSaleInvoiceAmount)){
           if(this.result== "0."+this.decimalSize){
-            this.toastr.error('Not Enuf Amount', 'Message.');
+            this.toastr.error('Not Enough Amount', 'Message.');
           }
           else{
             //this.result =this.result+this.decimalSize;
@@ -240,7 +240,7 @@ amountGivenToCalculate:any;
           }
           
         }
-        else if(parseInt(this.result) > parseInt(row.commissionSaleInvoiceAmount)){
+        else if(parseFloat(this.result) > parseFloat(row.commissionSaleInvoiceAmount)){
           this.selected[0].paid = row.commissionSaleInvoiceAmount;
           this.selected[0].receivedAmount = this.selected[0].paid;
           this.result = this.result-this.selected[0].paid ;
