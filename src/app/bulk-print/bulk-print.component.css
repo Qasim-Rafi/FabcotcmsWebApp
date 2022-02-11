@@ -65,7 +65,7 @@ color: #1ab394;
    margin: 8px;
 }
 .bottom{
-  margin-top: 60px;
+  margin-top: 60px !important;
 }
 .bottom2{
   margin-top: -25px;
@@ -82,10 +82,10 @@ color: #1ab394;
 
 
 }
-.bottom{
+/* .bottom{
   
-  margin-top: -20px;
-}
+  margin-top: -10px;
+} */
 .bottom2{
   
   margin-bottom: -7px;
@@ -93,4 +93,11 @@ color: #1ab394;
 .textBold{
 
 }
+/* BR.pageEnd {page-break-after: always}
+/* @media all {
+  .page-break { display: none; }
+} */
 
+/* @media print {
+  .page-break { page-break-inside: avoid;}
+} */ 
