@@ -82,6 +82,9 @@ color: #1ab394;
 
 
 }
+.breakclass{
+  page-break-after: always !important;
+}
 /* .bottom{
   
   margin-top: -10px;

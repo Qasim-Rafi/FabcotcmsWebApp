@@ -29,9 +29,9 @@
 
 
 
-<div class="card ibox-content margins" *ngFor = "let x of printData" style="page-break-after: always;">
+<div class="card ibox-content margins" *ngFor = "let x of printData" [ngClass]="{'breakclass': loggedInDepartmentName === 'Yarn Export'}">
     
-    <div class="panel blank-panel p-2" >
+    <div class="panel blank-panel p-2 mt-2" >
         <div class="panel-heading ">
 
 
