@@ -245,7 +245,7 @@ amountGivenToCalculate:any;
           this.selected[0].paid = this.result;
           this.selected[0].receivedAmount = this.selected[0].paid;
           let remaingblance= row.commissionSaleInvoiceAmount - this.result;
-          this.selected[0].balanceAmount =remaingblance.toFixed(this.decimalSize);
+          this.selected[0].balanceAmount =parseFloat(remaingblance.toFixed(this.decimalSize));
           this.toastr.error('Partial Commission', 'Message.');
           this.result = this.selected[0].receivedAmount -this.result;
           this.Paidamount = parseFloat(this.selected[0].paid) +  parseFloat(this.Paidamount);
