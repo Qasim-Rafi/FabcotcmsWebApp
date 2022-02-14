@@ -157,6 +157,7 @@ amountGivenToCalculate:any;
     })
   }
   onSelect(event,row) {
+    if(this.result != undefined){
       // this.blncamount=row.balanceAmount;
       if(event.currentTarget.checked == true){
         row.invoiceChecked = true;
@@ -237,7 +238,9 @@ amountGivenToCalculate:any;
         }
         else if(parseFloat(this.result) < parseFloat(row.commissionSaleInvoiceAmount)){
           if(this.result== "0."+this.decimalSize){
+            event.currentTarget.checked =false
             this.toastr.error('Not Enough Amount', 'Message.');
+            event.currentTarget.checked =false
           }
           else{
            
@@ -283,7 +286,7 @@ amountGivenToCalculate:any;
        });
       }
     }
-    else if(event.currentTarget.checked == false){
+    else if(event.currentTarget.checked == false && this.result != NaN){
       row.invoiceChecked = false;
       let countrow=this.rows.filter(x=>x.invoiceChecked ==true)
       countrow -1;
@@ -301,7 +304,7 @@ amountGivenToCalculate:any;
         this.selected[0].balanceAmount = filterdata[0].paid;
         this.selected[0].receivedAmount='0.'+this.decimalSize
       }
-      else{
+      else if(this.result != NaN){
       let remainingamount =  row.commissionSaleInvoiceAmount -row.receivedAmount;
       if(this.result != 0){
         row.invoiceChecked = false;
@@ -322,7 +325,15 @@ amountGivenToCalculate:any;
       // this.selected[0].balanceAmount = filterdata[0].paid;
       
       }
+      else{
+        event.currentTarget.checked =false
+       }
     }
+  }
+  else{
+    this.toastr.error('Please Enter Amount', 'Message.');
+    event.currentTarget.checked =false
+  }
     // for(let i=0; i<this.rows.length; i++ )
     // {     
    

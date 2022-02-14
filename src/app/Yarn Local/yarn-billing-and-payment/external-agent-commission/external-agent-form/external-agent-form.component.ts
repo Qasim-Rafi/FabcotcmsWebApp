@@ -161,6 +161,7 @@ amountGivenToCalculate:any;
   };
   onSelect(event,row) {
       // this.blncamount=row.balanceAmount;
+      if(this.result != undefined){
        this.invoicenoselected=this.rows.findIndex(x=>x.contractId ==row.contractId)
        if(event.currentTarget.checked == true){
         row.invoiceChecked = true;
@@ -231,7 +232,9 @@ amountGivenToCalculate:any;
         }
         else if(parseFloat(this.result) < parseFloat(row.commissionSaleInvoiceAmount)){
           if(this.result== "0."+this.decimalSize){
+            event.currentTarget.checked =false
             this.toastr.error('Not Enough Amount', 'Message.');
+            event.currentTarget.checked =false
           }
           else{
             //this.result =this.result+this.decimalSize;
@@ -276,7 +279,7 @@ amountGivenToCalculate:any;
        });
       }
     }
-    else if(event.currentTarget.checked == false){
+    else if(event.currentTarget.checked == false && this.result != NaN){
       let newrow =this.rows.filter(r=>r.saleInvoiceId ==row.saleInvoiceId)
       let filterdata =this.rowsFilter.filter(x=>x.saleInvoiceId ==row.saleInvoiceId)
       this.selected = newrow; 
@@ -287,14 +290,14 @@ amountGivenToCalculate:any;
         countrow -1;
         this.invoicenoselected =countrow.length
         this.blncamount = parseFloat(this.blncamount) + parseFloat(row.paid)
-        this.result =parseFloat(this.result)+ parseFloat(row.commissionSaleInvoiceAmount);
+        this.result =parseFloat(this.result)+ parseFloat(this.selected[0].paid);
         this.Paidamount =  parseFloat(this.Paidamount) -parseFloat(this.selected[0].paid) ;
         this.Paidamount =this.Paidamount.toFixed(this.decimalcount);
         this.selected[0].paid=  "0."+this.decimalSize;
         this.selected[0].balanceAmount = filterdata[0].paid;
         this.selected[0].receivedAmount='0.'+this.decimalSize
       }
-      else{
+      else if(this.result != NaN){
       let remainingamount =  row.commissionSaleInvoiceAmount -row.receivedAmount;
       if(this.result != 0){
         row.invoiceChecked = false;
@@ -302,7 +305,7 @@ amountGivenToCalculate:any;
         countrow -1;
         this.invoicenoselected =countrow.length
         this.blncamount = parseFloat(this.blncamount) + parseFloat(row.commissionSaleInvoiceAmount)
-        this.result =parseFloat(this.result)+ parseFloat(row.commissionSaleInvoiceAmount);
+        this.result =parseFloat(this.result)+ parseFloat(this.selected[0].paid);
         this.result =this.result.toFixed(this.decimalcount);
         this.Paidamount =  parseFloat(this.Paidamount) - parseFloat(this.selected[0].paid);
         this.Paidamount =this.Paidamount.toFixed(this.decimalcount);
@@ -315,8 +318,15 @@ amountGivenToCalculate:any;
       // this.selected[0].balanceAmount = filterdata[0].paid;
       
       }
-
+   else{
+    event.currentTarget.checked =false
+   }
     }
+  }
+  else{
+    this.toastr.error('Please Enter Amount', 'Message.');
+    event.currentTarget.checked =false
+  }
     //this.blncamount=this.result
   }
 
