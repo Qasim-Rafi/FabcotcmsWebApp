@@ -494,7 +494,7 @@ amountGivenToCalculate:any;
       }
 this.spinner.show();
     this.http.
-      post(`${environment.apiUrl}/api/YarnContracts/AddBuyerToSellerPaymentCommision`, varr)
+      post(`${environment.apiUrl}/api/YarnContracts/AddBuyerToSellerPaymentCommisionExternalAgent`, varr)
       .subscribe(
         res => {
 

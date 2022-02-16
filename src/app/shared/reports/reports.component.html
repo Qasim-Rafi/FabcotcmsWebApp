@@ -2289,7 +2289,7 @@
               </ngx-datatable-column>
               <ngx-datatable-column name="Invoice Date" [width]="80">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  <!-- {{ row.blDate }} -->
+                  {{ row.saleInvoiceDate }}
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="BL Date" [width]="80">
@@ -2710,7 +2710,7 @@
               </ngx-datatable-column>
               <ngx-datatable-column name="Payemnt Terms" [width]="120">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.paymentTerm }}
+                  {{ row.paymentTerms }}
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="Matured On" [width]="120">
@@ -2747,12 +2747,15 @@
                   <b *ngIf = "row.rateCurrencyName == 'PKR'">RS</b>  
                 <b *ngIf = "row.rateCurrencyName == 'USD'">$</b> 
                 <b *ngIf = "row.rateCurrencyName == 'EUR'">€</b> 
-                <b *ngIf = "row.rateCurrencyName == 'GBP'">GBP</b>     {{ row.commissionAmount }}
+                <b *ngIf = "row.rateCurrencyName == 'GBP'">GBP</b>     {{ row.totalCommissionAmount }}
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="Paid" [width]="120">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  <!-- {{ row.details }} -->
+                  <b *ngIf = "row.rateCurrencyName == 'PKR' && row.paid != null">RS {{ row.paid }}</b>  
+                  <b *ngIf = "row.rateCurrencyName == 'USD' && row.paid != null">$ {{ row.paid }}</b> 
+                  <b *ngIf = "row.rateCurrencyName == 'EUR' && row.paid != null">€ {{ row.paid }}</b> 
+                  <b *ngIf = "row.rateCurrencyName == 'GBP' && row.paid != null">GBP {{ row.paid }}</b> 
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="Balance" [width]="120">
@@ -2762,12 +2765,12 @@
               </ngx-datatable-column>
               <ngx-datatable-column name="Paid Status" [width]="120">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  <!-- {{ row.details }} -->
+                  <span class="badge badge-info"> {{ row.paidStatus }}</span>
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="Maturity Status" [width]="120">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  <!-- {{ row.details }} -->
+                  <span class="badge badge-info"> {{ row.maturedStatus }}</span>
                 </ng-template>
               </ngx-datatable-column>
 
