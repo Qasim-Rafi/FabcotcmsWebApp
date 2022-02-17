@@ -1474,10 +1474,12 @@
                                                 *ngIf="loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Local' ||loggedInDepartmentName=='Yarn Local Karachi' || loggedInDepartmentName == 'Yarn Import'">
                                                 <dt class="col-sm-4">Foreign Agent Comm:
                                                 </dt>
-                                                <dd class="col-sm-6 left" *ngFor="let i of agent">
-                                                    {{i.agentName}}: {{i.agentCommission}}%
+                                                
+                                                <ul class="list-group list-group-flush" *ngFor="let i of agent">
+                                                    <li class="list-group-item ml-2">{{i.agentName}}: {{i.agentCommission}}%</li>
+                                                    <!-- {{i.agentName}}: {{i.agentCommission}}% -->
 
-                                                </dd>
+                                                </ul>
 
 
 

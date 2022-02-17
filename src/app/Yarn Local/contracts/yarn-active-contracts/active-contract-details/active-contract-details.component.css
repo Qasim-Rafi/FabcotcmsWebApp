@@ -96,7 +96,12 @@ outline: #1ab394;
   font-weight: 500;
 }
 /* -------------------------------------- */
-
+.list-group {
+ 
+  background-color: #424242 !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+}
 
 dt {
    font-weight: 800; 
