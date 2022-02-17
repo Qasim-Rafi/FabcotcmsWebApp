@@ -1367,7 +1367,7 @@
                                                 <dt class="col-sm-4">Kickback:
                                                 </dt>
                                                 <dd class="col-sm-6"
-                                                    *ngIf="contractCommissionData.kickbackPercentage != null && contractCommissionData.kickbackPercentage != 0 ">
+                                                    *ngIf="contractCommissionData.kickbackPercentage != null ">
                                                     {{contractCostingData.rateCurrencyName}} &nbsp;
                                                     {{contractCommissionData.kickbackPercentage}} %
                                                     <b *ngIf="contractCommissionData.kickbackUOMName!=null">/ </b>
@@ -1418,7 +1418,7 @@
                                                 <dt class="col-sm-4">Fabcot Commission:
                                                 </dt>
                                                 <dd class="col-sm-6"
-                                                    *ngIf="contractCommissionData.fabCotCommision!= null && contractCommissionData.fabCotCommision!= '' && contractCommissionData.fabCotCommision!= 0">
+                                                    *ngIf="contractCommissionData.fabCotCommision!= null && contractCommissionData.fabCotCommision!= ''">
                                                     USD {{contractCommissionData.fabCotCommision}} %
                                                     <b *ngIf="contractCommissionData.fabCotCommisionUOMName!=null">/
                                                     </b>

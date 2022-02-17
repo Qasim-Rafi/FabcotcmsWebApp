@@ -4134,7 +4134,7 @@ toggleShow() {
                         margin: [70 , 4 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
-                        [{text:this.contractCommissionData['fabCotCommision'] ==0 ?" ": 'Commission:'  , style:'heading'} ,{text:this.contractCommissionData['fabCotCommision'] ==0 ? " " :  "Fabcot International FZE: " + this.contractCostingData['rateCurrencyName']  + " "  + this.contractCommissionData['fabCotCommision'] + "%" , style:'heading2'}],] }
+                        [{text:this.contractCommissionData['fabCotCommision'] ==null ?" ": 'Commission:'  , style:'heading'} ,{text:this.contractCommissionData['fabCotCommision'] ==null ? " " :  "Fabcot International FZE: " + this.contractCostingData['rateCurrencyName']  + " "  + this.contractCommissionData['fabCotCommision'] + "%" , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
