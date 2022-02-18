@@ -1,5 +1,5 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {  NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -12,6 +12,9 @@ import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import { AgentContractListComponent } from '../agent-contract-list/agent-contract-list.component';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
+import { process,State  } from '@progress/kendo-data-query';
+import { DataBindingDirective } from '@progress/kendo-angular-grid';
 @Component({
   selector: 'app-reports',
   templateUrl: './reports.component.html',
@@ -30,6 +33,7 @@ export class ReportsComponent implements OnInit {
   billingReportInvoiceWise: any = [];
   billingReportContractWise: any = [];
   commissionReport: any = [];
+  commissionReportFilter:any=[];
   kickbackReport: any = [];
   paymentReport: any = [];
   contractWise : any = []
@@ -76,7 +80,7 @@ searchDispatch : any = []
 searchDispatchfilter : any = []
 bookingAgent : any = []
 totalContainer:any;
-
+@ViewChild(DataBindingDirective) dataBinding: DataBindingDirective;
   constructor(
 
     private route: ActivatedRoute,
@@ -219,7 +223,86 @@ else if (this.menuName.menuName == 'ExternalAgentReport'){
     }, (reason) => {
     });
   }
+  public onFilter(inputValue: string): void {
+    this.rows = process(this.invBill, {
+        filter: {
+            logic: "or",
+            filters: [
+                {
+                    field: 'articleName',
+                    operator: 'contains',
+                    value: inputValue
+                },
+                {
+                    field: 'contractNo',
+                    operator: 'contains',
+                    value: inputValue
+                },
+                {
+                    field: 'contractDate',
+                    operator: 'contains',
+                    value: inputValue
+                },
+                {
+                    field: 'billDate',
+                    operator: 'contains',
+                    value: inputValue
+                },
+             
+                {
+                    field: 'billNo',
+                    operator: 'contains',
+                    value: inputValue
+                }
+                ,
+                {
+                    field: 'sellerName',
+                    operator: 'contains',
+                    value: inputValue
+                }
+                ,
+                {
+                    field: 'buyerName',
+                    operator: 'contains',
+                    value: inputValue
+                }
+                ,
+                {
+                    field: 'rate',
+                    operator: 'contains',
+                    value: inputValue
+                },
+                {
+                  field: 'fabcotCommission',
+                  operator: 'contains',
+                  value: inputValue
+              },
+              {
+                field: 'invoiceNo',
+                operator: 'contains',
+                value: inputValue
+            },
+            {
+              field: 'quantity',
+              operator: 'contains',
+              value: inputValue
+          },
+          {
+            field: 'contractOwners',
+            operator: 'contains',
+            value: inputValue
+        },
+        {
+          field: 'commissionAmount',
+          operator: 'contains',
+          value: inputValue
+      },
+            ],
+        }
+    }).data;
 
+    this.dataBinding.skip = 0;
+}
   billInvSearch(event) {
     const val = event.target.value.toLowerCase();
     const temp = this.invBill.filter(function (d) {
@@ -232,6 +315,14 @@ else if (this.menuName.menuName == 'ExternalAgentReport'){
     const val = event.target.value.toLowerCase();
     const temp = this.bookingAgent.filter(function (d) {
       return (d.agentName.toLowerCase().indexOf(val) !== -1   || !val);
+    });
+    this.agentBookingStatus = temp;
+  }
+
+  CommissionReportsearch(event) {
+    const val = event.target.value.toLowerCase();
+    const temp = this.commissionReportFilter.filter(function (d) {
+      return (d.contractNo.toLowerCase().indexOf(val) !== -1   || !val);
     });
     this.agentBookingStatus = temp;
   }
@@ -769,7 +860,7 @@ commisionReport(varr){
         if (this.response.success == true  && this.response.data.length != 0) {
           this.toastr.success(this.response.message, 'Message.');
           this.commissionReport = this.response.data;
-
+          this.commissionReportFilter = [...this.commissionReport]
 
        this.spinner.hide();
         }
@@ -1204,6 +1295,7 @@ this.fetch();
     this.invoiceTotal =this.invoiceTotal.toFixed(3); 
     let docDefinition = {
       pageSize: 'A4',
+     
       info: {
         title: 'Billing Invoice List'
       },
@@ -1222,7 +1314,7 @@ this.fetch();
           margin: [-20 , 5 , 0 , 0 ],
           table:{
             headerRows : 1,
-            widths : [23, 40, 33, 39 , 39 , 20 , 45 , 45 , 30 , 33 , 30 , 35 , 40
+            widths : [23, 40, 39, 34 , 34 , 20 , 43 , 45 , 30 , 33 , 30 , 35 , 40
             ],
             body:[
               [
@@ -1271,14 +1363,14 @@ this.fetch();
       ],
       styles: {
         heading: {
-          fontSize: 13,
+          fontSize: 12,
           alignment: 'center',
-          margin: [0, 10, 0, 5]
+          margin: [0, 9, 0, 4]
         },
         heading2: {
           fontSize: 10,
           alignment: 'center',
-          margin: [0, 3, 0, 10]
+          margin: [0, 2, 0, 9]
         },
         totalAmount:{
           fontSize:8

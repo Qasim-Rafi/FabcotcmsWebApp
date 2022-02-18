@@ -143,7 +143,7 @@ brandId : any;
       this.data.currencyId = 2;
     }
     else if(this.loggedInDepartmentName=='Fabric Export'){
-      this.data.otherConditionRemarks="(1) Subject to sample and quality approval.\n(2) Goods will be exported therefore any pencil or chalk marks will not be accepted.\n(3) Fabric should be A-graded export mended.\n(4) Fabric should be under 4 point American inspection system and not more than 12 demerit points per 100 sq. yard.";
+      this.data.otherConditionRemarks="(1) Subject to sample and quality approval.(2) Goods will be exported therefore any pencil or chalk marks will not be accepted.(3) Fabric should be A-graded export mended.(4) Fabric should be under 4 point American inspection system and not more than 12 demerit points per 100 sq. yard.";
       this.data.title="We are pleased to confirm the contract of fabric as per following terms :";
        this.data.currencyId = 2;
     }
