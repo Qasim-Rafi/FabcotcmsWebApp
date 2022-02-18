@@ -3653,7 +3653,7 @@ toggleShow() {
                         margin: [340 , 0 , 0 , 0],
                         table:{headerRows: 1 , widths:['40%' , '80%'],
                       body: [
-                        [{text:this.contractPartiesData['poNumber'] =='' ? "" :  'Purchase No:'  , style:'heading'} , {text:this.contractPartiesData['poNumber']== '' ? this.contractPartiesData['poNumber'] : '' , style:'heading2' , margin:[-23 , 0, 0,0]}],] }
+                        [{text:this.contractPartiesData['poNumber'] =='' ? "" :  'Purchase No:'  , style:'heading'} , {text:this.contractPartiesData['poNumber']== '' ? "" : this.contractPartiesData['poNumber'] , style:'heading2' , margin:[-15 , 0, 0,0]}],] }
                       },
                       {
                         layout:'noBorders',
@@ -3965,7 +3965,7 @@ toggleShow() {
                         margin: [340 , 0 , 0 , 0],
                        table:{headerRows: 1 , widths:['45%' , '75%'],
                       body: [
-                        [{text:this.contractPartiesData['poNumber'] =='' ? "" :  'Purchase No:'  , style:'heading'} , {text:this.contractPartiesData['poNumber']== '' ? this.contractPartiesData['poNumber'] : '' , style:'heading2' , margin:[-23 , 0, 0,0]}],] }
+                        [{text:this.contractPartiesData['poNumber'] =='' ? "" :  'Purchase No:'  , style:'heading'} , {text:this.contractPartiesData['poNumber']== '' ? "": this.contractPartiesData['poNumber']  , style:'heading2' , margin:[-15 , 0, 0,0]}],] }
                       },
                       {
                         layout:'noBorders',
