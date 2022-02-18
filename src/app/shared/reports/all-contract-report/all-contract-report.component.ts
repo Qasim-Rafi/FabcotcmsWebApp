@@ -98,8 +98,8 @@ dateformater: Dateformater = new Dateformater();
   Search(event) {
     const val = event.target.value.toLowerCase();
     const temp = this.search.filter(function (d) {
-      return (d.contractNo.toLowerCase().indexOf(val) !== -1 || d.buyerName.toLowerCase().indexOf(val) !==-1   || 
-      d.sellerName.toLowerCase().indexOf(val) !==-1   || d.manualContractNumber.toLowerCase().indexOf(val) !==-1   ||
+      return (d.contractNo.toLowerCase().indexOf(val) !== -1 
+      || d.manualContractNumber.toLowerCase().indexOf(val) !==-1   ||
       !val);
     });
     this.allContractReport = temp;
