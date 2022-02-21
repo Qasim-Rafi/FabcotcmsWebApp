@@ -1314,12 +1314,12 @@ this.fetch();
           margin: [-20 , 5 , 0 , 0 ],
           table:{
             headerRows : 1,
-            widths : [23, 40, 39, 34 , 34 , 20 , 43 , 45 , 30 , 33 , 30 , 35 , 40
+            widths : [ 50, 39, 34 , 34 , 20 , 50 , 50 , 30 , 33 , 30 , 35 , 40
             ],
             body:[
               [
-                {text:'Bill For' , style:'tableHeader' }
-              ,{text:'Article' , style:'tableHeader'} ,
+                
+              {text:'Article' , style:'tableHeader'} ,
               {text:'Contract#' , style:'tableHeader' }, 
               {text:'Contract Date' , style:'tableHeader' }, 
 
@@ -1336,7 +1336,7 @@ this.fetch();
             ],
               ...this.billingReportInvoiceWise.map(row => (
                 [
-                  {text: row.billFor , style:'tableHeader2'} ,
+                
                 {text:  row.articleName , style:'tableHeader2'},
                 {text: row.contractNo, style:'tableHeader2'} ,
                 {text: row.contractDate , style:'tableHeader2'} ,

@@ -1045,7 +1045,7 @@
               </ng-template> -->
               <!-- <kendo-grid-checkbox-column [width]="35" [headerClass]="{'text-center': true}"  [class]="{'text-center': true}" [resizable]="false" [columnMenu]="false" [showSelectAll]="true"></kendo-grid-checkbox-column> -->
               
-                  <kendo-grid-column field="articleName" title="Article" [width]="120" [headerClass]="'customiconforgrid'">
+                  <kendo-grid-column field="articleName" title="Article" [width]="220" [headerClass]="'customiconforgrid'">
                       <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
                         {{dataItem.articleName}} 
                       </ng-template>
@@ -1061,14 +1061,14 @@
 
 
                   
-                  <kendo-grid-column field="contractDate" title="Contract Date" [width]="120" [headerClass]="'customiconforgrid'">
+                  <kendo-grid-column field="contractDate" title="Contract Date" [width]="100" [headerClass]="'customiconforgrid'">
                     <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
                       {{dataItem.contractDate}}
                     </ng-template>
                     
                   </kendo-grid-column>
 
-                  <kendo-grid-column field="billDate" title="Bill Date" [width]="120" [headerClass]="'customiconforgrid'">
+                  <kendo-grid-column field="billDate" title="Bill Date" [width]="100" [headerClass]="'customiconforgrid'">
                     <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
                       {{dataItem.billDate}}
                     </ng-template>
@@ -1082,19 +1082,19 @@
                     </ng-template>
                     
                   </kendo-grid-column> -->
-                  <kendo-grid-column field="billNo" title="Bill#" [width]="120" [headerClass]="'customiconforgrid'">
+                  <kendo-grid-column field="billNo" title="Bill#" [width]="70" [headerClass]="'customiconforgrid'">
                     <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
                       {{dataItem.billNo}}
                     </ng-template>
                     
                   </kendo-grid-column>
-                  <kendo-grid-column field="sellerName" title="Seller" [width]="120" [headerClass]="'customiconforgrid'">
+                  <kendo-grid-column field="sellerName" title="Seller" [width]="220" [headerClass]="'customiconforgrid'">
                     <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
                       {{dataItem.sellerName}}
                     </ng-template>
                     
                   </kendo-grid-column>
-                  <kendo-grid-column field="buyerName" title="Buyer" [width]="120" [headerClass]="'customiconforgrid'">
+                  <kendo-grid-column field="buyerName" title="Buyer" [width]="220" [headerClass]="'customiconforgrid'">
                     <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
                       {{dataItem.buyerName}}
                     </ng-template>
@@ -1109,7 +1109,7 @@
                     </ng-template>
                     
                   </kendo-grid-column>
-                  <kendo-grid-column field="fabcotCommission" title="Comm%" [width]="120" [headerClass]="'customiconforgrid'">
+                  <kendo-grid-column field="fabcotCommission" title="Comm%" [width]="80" [headerClass]="'customiconforgrid'">
                     <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
                       <!-- <span class="badge badge-primary"> {{dataItem.billStatus}}</span> -->
                       <span *ngIf="dataItem.fabcotCommission != ''">{{ dataItem.fabcotCommission }} {{dataItem.quantityUOMName}} </span>
@@ -2957,17 +2957,17 @@
                   {{ rowIndex+1 }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Age" prop="name" [width]="30">
+              <ngx-datatable-column name="Age" prop="name" >
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.name }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Contract#" [width]="60">
+              <ngx-datatable-column name="Contract#" >
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.country }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="SC" [width]="50">
+              <ngx-datatable-column name="SC">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.details }}
                 </ng-template>
@@ -2982,63 +2982,63 @@
                   {{ row.details }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Date" [width]="40">
+              <ngx-datatable-column name="Date">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.details }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="PO#" [width]="30">
+              <ngx-datatable-column name="PO#" >
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.details }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Article" [width]="60">
+              <ngx-datatable-column name="Article" >
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.details }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Rate" [width]="50">
+              <ngx-datatable-column name="Rate">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.details }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Container" [width]="50">
+              <ngx-datatable-column name="Container" >
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.details }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Booking" [width]="50">
+              <ngx-datatable-column name="Booking" >
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.details }}
                 </ng-template>
               </ngx-datatable-column>
 
-              <ngx-datatable-column name="Disptach" [width]="50">
+              <ngx-datatable-column name="Disptach" >
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.details }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Balance" [width]="50">
+              <ngx-datatable-column name="Balance" >
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.details }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Cost" [width]="50">
+              <ngx-datatable-column name="Cost">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.details }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Status" [width]="50">
+              <ngx-datatable-column name="Status">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.details }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Agent" [width]="50">
+              <ngx-datatable-column name="Agent">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.details }}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="LC" [width]="50">
+              <ngx-datatable-column name="LC">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.details }}
                 </ng-template>
