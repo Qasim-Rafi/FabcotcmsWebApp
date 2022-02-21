@@ -1070,8 +1070,9 @@ lcForm2( check){
             this.contractData.createdDateTime = this.contractData.createdDateTime.slice(0 ,16)
             this.contractArticles = this.response.data.contractArticles;
             this.buyerName = this.contractData.buyerName
+            if(this.contractData.contractBillInfo != null){
             this.commissionBill = this.contractData.contractBillInfo
-          
+            }
              this.contractNmbr = this.contractData.autoContractNumber
              this.sellerName = this.contractData.sellerName
              this.max1 = this.response.data.saleInvoiceQuantity;
