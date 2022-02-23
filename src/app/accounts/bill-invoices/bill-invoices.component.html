@@ -295,7 +295,7 @@
         [height]="450"
         [pageable]="true"
         [filterable]="true"
-      
+       
         >
         <!-- <ng-template kendoGridToolbarTemplate>
          
@@ -332,13 +332,13 @@
         </ng-template> -->
         <kendo-grid-checkbox-column [width]="35" [headerClass]="{'text-center': true}"  [class]="{'text-center': true}" [resizable]="false" [columnMenu]="false" [showSelectAll]="true" (click)="onSelect($event)"></kendo-grid-checkbox-column>
         
-            <kendo-grid-column field="invoiceDepartment" title="Department" [width]="120" [headerClass]="'customiconforgrid'">
+            <kendo-grid-column field="invoiceDepartment" title="Department"  [width]="120" [headerClass]="'customiconforgrid'">
                 <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
                     {{dataItem.invoiceDepartment}}
                 </ng-template>
             </kendo-grid-column>
         
-            <kendo-grid-column field="sellerName" title="Bill To" [width]="250" [headerClass]="'customiconforgrid'">
+            <kendo-grid-column field="sellerName" title="Bill To" [width]="250" [filterStyle]="{'padding': '25px'}" [headerClass]="'customiconforgrid'">
               <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
                 {{dataItem.sellerName}} 
               </ng-template>

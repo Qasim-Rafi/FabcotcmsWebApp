@@ -48,6 +48,13 @@ body {
   overflow: hidden;
   font-weight: 500 !important;
 }
+
+.k-checkbox {
+  border-color: rgba(0, 0, 0, 0.08);
+  color: black !important;
+  background-color: #ddc2c2;
+  
+}
 .k-filtercell .k-filtercell-wrapper > .k-textbox {
   width: 110% !important;
   min-width: 0;
