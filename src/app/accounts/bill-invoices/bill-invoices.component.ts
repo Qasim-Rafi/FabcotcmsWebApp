@@ -1,5 +1,5 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -7,6 +7,9 @@ import { ToastrService } from 'ngx-toastr';
 import { Dateformater } from 'src/app/shared/dateformater';
 import { ServiceService } from 'src/app/shared/service.service';
 import { environment } from 'src/environments/environment';
+import { process,State  } from '@progress/kendo-data-query';
+import { DataBindingDirective } from '@progress/kendo-angular-grid';
+import { SUPPORTED_LANGUAGE } from 'ngx-num-to-words';
 
 @Component({
   selector: 'app-bill-invoices',
@@ -27,6 +30,9 @@ dashboardAmnt : any [];
 ids:any;
 temp: any = [];
 deptName : any;
+public mySelection: string[] = this.rows;
+lang : SUPPORTED_LANGUAGE = 'en';
+@ViewChild(DataBindingDirective) dataBinding: DataBindingDirective;
 constructor(    private service: ServiceService,
   private http: HttpClient,
   private router: Router,
@@ -50,6 +56,57 @@ constructor(    private service: ServiceService,
    
     this.router.navigate(['/saleBill'], { queryParams: {contractId:row.contractId , invNo : row.billInvoiceNumber} });
   }
+  public onFilter(inputValue: string): void {
+    this.rows = process(this.temp, {
+        filter: {
+            logic: "or",
+            filters: [
+                {
+                    field: 'sellerName',
+                    operator: 'contains',
+                    value: inputValue
+                },
+           
+                {
+                    field: 'billNumber',
+                    operator: 'contains',
+                    value: inputValue
+                },
+                {
+                    field: 'autoContractNumber',
+                    operator: 'contains',
+                    value: inputValue
+                },
+             
+                {
+                    field: 'billGeneratedDateTime',
+                    operator: 'contains',
+                    value: inputValue
+                }
+                ,
+                {
+                    field: 'taxAmount',
+                    operator: 'contains',
+                    value: inputValue
+                }
+                ,
+                {
+                    field: 'billAmount',
+                    operator: 'contains',
+                    value: inputValue
+                }
+                ,
+                {
+                    field: 'saleInvoiceNo',
+                    operator: 'contains',
+                    value: inputValue
+                }
+            ],
+        }
+    }).data;
+
+    this.dataBinding.skip = 0;
+}
   Filter(event) {
     const val = event.target.value.toLowerCase();
     // filter our data
@@ -157,7 +214,7 @@ constructor(    private service: ServiceService,
   this.toastr.error("PLease enter valid tax%" , 'Message')
  }
  else{
-    this.ids=this.selected.map(a => a.contractId);
+    this.ids=this.mySelection;
     let varr=  {
       "taxPercentage": this.datatext.textValue,
        "contractIds":this.ids,
@@ -196,10 +253,10 @@ constructor(    private service: ServiceService,
 
   print(){
   
-    this.ids=this.selected.map(a => a.contractId);
+    this.ids=this.mySelection;
 
   
-    if(this.ids.length === 0  || this.selected.length === 0  ){
+    if(this.ids.length === 0  || this.mySelection.length === 0  ){
       this.toastr.error("PLease select atleast one bill to generate print" , 'Message')
     }
     else{

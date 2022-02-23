@@ -29,9 +29,9 @@
       
       <div class="panel-heading">
 
-        <div class="row mb-2">
+        <div class="row mb-1 mt-1">
 
-            <div class="col-md-12 mb-3">
+            <div class="col-md-12">
         
                 <div class="row justify-content-center">
                  
@@ -195,67 +195,27 @@
         </div>
       
   
-        <div class="row">
-          <div class="col-md-12 mb-3">
-        
-            <div class="row justify-content-end">
-
-              <div class="col-md-4 pr-0">
-
-                <div class="form-group row">
-                  <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
-                  <div class="col-sm-9">
-                    <input type="text" placeholder="Search..." class="input form-control form-control-sm" (keyup)="Filter($event)"
-                 />
-                  </div>
-                </div> 
-              </div>
-        
-              <div class="html5buttons mrg-tsm">
-                <div class="dt-buttons btn-group btn-group-sm">
-                  <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0" aria-controls="DataTables_Table_0"
-                   ngxClipboard><span>Copy</span>
-                  </a>
-                  <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
-                  
-                  aria-controls="DataTables_Table_0"><span>CSV</span></a>
-                  <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
-                
-                  aria-controls="DataTables_Table_0"><span>Excel</span></a>
-                  <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0"
-                
-                  aria-controls="DataTables_Table_0"><span>PDF</span></a>
-                  <a class="btn btn-default buttons-print bg-white" tabindex="0"
-                
-                  aria-controls="DataTables_Table_0"><span>Print</span></a>
-                </div>
-              </div>
-        
-            </div>
-        
-          </div>
-        </div>
 
 
         <div class="row">
 
-<div class="col-md-12">
+<div class="col-md-9">
     <div class="html5buttons mrg-tsm">
         <div class="dt-buttons btn-group btn-group-sm">
-          <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0" aria-controls="DataTables_Table_0"
+          <a class="btn btn-default buttons-copy buttons-html5 bg-white col-md-2" tabindex="0" aria-controls="DataTables_Table_0"
            ngxClipboard><span>Enter Tax rate(%)</span>
           </a>
-          <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0" aria-controls="DataTables_Table_0"
+          <a class="btn btn-default buttons-copy buttons-html5 bg-white col-md-2" tabindex="0" aria-controls="DataTables_Table_0"
           ngxClipboard>  <input type="text" placeholder="0"  name="textValue" [(ngModel)]="datatext.textValue" class="form-control text-w-4"
           >
          </a>
-          <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
+          <a class="btn btn-default buttons-csv buttons-html5 bg-white col-md-8" tabindex="0"
           
           aria-controls="DataTables_Table_0"> <button type="button" class="btn btn-primary " (click)="genrateInvoices()" ><i class="fa fa-arrow-alt-circle-right"></i>
             Apply Tax rate and Generate Sale Tax Invoices
         </button></a>
 
-        <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
+        <a class="btn btn-default buttons-csv buttons-html5 bg-white col-md-2" tabindex="0"
           
         aria-controls="DataTables_Table_0">    <button type="button" class="btn btn-primary clr btn-sm float-right" (click) = "print()" >
             <i class="fa fa-print"></i> Bulk Print
@@ -263,9 +223,31 @@
        
         </div>
       </div>
+
+    
 </div>
 
-
+<div class="col-md-3">
+  <div class="html5buttons mrg-tsm">
+    <div class="dt-buttons btn-group btn-group-sm">
+      <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0" aria-controls="DataTables_Table_0"
+       ngxClipboard><span>Copy</span>
+      </a>
+      <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
+      
+      aria-controls="DataTables_Table_0"><span>CSV</span></a>
+      <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
+    
+      aria-controls="DataTables_Table_0"><span>Excel</span></a>
+      <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0"
+    
+      aria-controls="DataTables_Table_0"><span>PDF</span></a>
+      <a class="btn btn-default buttons-print bg-white" tabindex="0"
+    
+      aria-controls="DataTables_Table_0"><span>Print</span></a>
+    </div>
+  </div>
+</div>
 
 
 <!--            
@@ -301,93 +283,131 @@
   <div class="card-body "> 
       <div class="panel-body">
            
+        <kendo-grid
+        [kendoGridBinding]="rows"
+        kendoGridSelectBy="contractId"
+        [selectedKeys]="mySelection"
+        [pageSize]="200000"
+        [pageable]="false"
+        [sortable]="true"
+        [reorderable]="true"
+        [resizable]="true"
+        [height]="450"
+        [pageable]="true"
+        [filterable]="true"
       
-        <ngx-datatable class="bootstrap datatable-row-wrapper" [columns]="columns" [rows]="rows" [columnMode]="'flex'"
-        
-          [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" 
-        
-          [selected]="selected" [selectionType]="SelectionType.checkbox" [sorts]="[{ prop: 'id', dir: 'desc' }]" (select)="onSelect($event)">
-      
-
-          <ngx-datatable-column prop="selected"  [width]="40"   [flexGrow]="0.03"
-          [width]="30"
-          [headerCheckboxable]="true"
-          [checkboxable]="true"
-          
-          >
-            <ng-template let-row="row"    ngx-datatable-cell-template  >
-            </ng-template>
-          </ngx-datatable-column>
-
-          
-          <ngx-datatable-column name="Department" [width]="120" prop="fabcotBranchName" [flexGrow]="0.05">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-      {{row.invoiceDepartment}}
-
-            </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="Bill To" [width]="80" prop="sellerName" [flexGrow]="0.08">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            {{row.sellerName}}
-            </ng-template>
-          </ngx-datatable-column>
-      
-          <ngx-datatable-column name="Bill #" [width]="80" prop="billNumber" [flexGrow]="0.06">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{row.billNumber}}
-            </ng-template>
-          </ngx-datatable-column>
-      
-          <ngx-datatable-column name="Inv Tax #" [width]="80" prop="billInvoiceNumber" [flexGrow]="0.08">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-         {{row.billInvoiceNumber}}
-            </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="Contract #" [width]="80" prop="autoContractNumber" [flexGrow]="0.08">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-           {{row.autoContractNumber}}
-            </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="Bill Date" [width]="80" prop="billDate" [flexGrow]="0.06">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{row.billGeneratedDateTime}}
-            </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="No. Sale Inv" [width]="80" prop="numberOfSaleInvoices" [flexGrow]="0.06">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{row.saleInvoiceNo}}
-
-            </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="Bill Amount" [width]="80" prop="billAmount" [flexGrow]="0.06">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{row.billAmount}}
-            </ng-template>
-          </ngx-datatable-column>
-      
-          <ngx-datatable-column name="Tax Amount" [width]="80" prop="taxAmount" [flexGrow]="0.06">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{row.taxAmount}}
-            </ng-template>
-          </ngx-datatable-column>
-      
-   
-      
-          <ngx-datatable-column name="Action" [width]="80" prop="action" [flexGrow]="0.07">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-      
-              <div class="ibox-tools text-center">
-                <!-- <button type="button" class="btn editIconBack px-1 py-1"  title=""
-                  data-original-title="open" ><i class="far fa-edit"></i></button> -->
-                  
-                <button type="button" class="btn editIconBack px-1 py-1" data-toggle="tooltip" data-placement="top" title="Sale Invoice Bill"  (click)="saleinvoicebill(row)"
-                ><i class="fas fa-paper-plane" aria-hidden="true"></i></button>
+        >
+        <!-- <ng-template kendoGridToolbarTemplate>
+         
+          <input placeholder="Search in all columns..." class="col-md-3 form-control" #newItem kendoTextBox (input)="onFilter(newItem.value)"/>
+          <h5> <span class="col-md-12 badge badge-info">Total Amount : {{dashboardAmnt}}</span></h5>
+            <kendo-grid-spacer></kendo-grid-spacer>
+            <div class="row">
+              <div class="col-md-12 mb-3">
+                <div class="row justify-content-end">
+                  <div class="html5buttons mrg-tsm">
+                    <div class="dt-buttons btn-group btn-group-sm">
+                      <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0" aria-controls="DataTables_Table_0"
+                       (click)="copyBillsList()" ngxClipboard><span>Copy</span>
+                      </a>
+                      <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
+                      (click)="activeBillsCsvFile()" 
+                      aria-controls="DataTables_Table_0"><span>CSV</span></a>
+                      <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
+                      (click)="activeBillsExcelFile()"  
+                      aria-controls="DataTables_Table_0"><span>Excel</span></a>
+                      <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0"
+                      (click)="ActiveBillsListPdf()"  
+                      aria-controls="DataTables_Table_0"><span>PDF</span></a>
+                      <a class="btn btn-default buttons-print bg-white" tabindex="0"
+                      (click)="printActiveBillsList()"  
+                      aria-controls="DataTables_Table_0"><span>Print</span></a>
+                    </div>
+                  </div>
+            
+                </div>
+            
               </div>
-      
-            </ng-template>
-          </ngx-datatable-column>
-      
-        </ngx-datatable>
+            </div>
+        </ng-template> -->
+        <kendo-grid-checkbox-column [width]="35" [headerClass]="{'text-center': true}"  [class]="{'text-center': true}" [resizable]="false" [columnMenu]="false" [showSelectAll]="true" (click)="onSelect($event)"></kendo-grid-checkbox-column>
+        
+            <kendo-grid-column field="invoiceDepartment" title="Department" [width]="120" [headerClass]="'customiconforgrid'">
+                <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                    {{dataItem.invoiceDepartment}}
+                </ng-template>
+            </kendo-grid-column>
+        
+            <kendo-grid-column field="sellerName" title="Bill To" [width]="250" [headerClass]="'customiconforgrid'">
+              <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                {{dataItem.sellerName}} 
+              </ng-template>
+              
+            </kendo-grid-column>
+            <kendo-grid-column field="billNumber" title="Bill #" [width]="100" [headerClass]="'customiconforgrid'">
+              <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                {{dataItem.billNumber}}
+              </ng-template>
+              
+            </kendo-grid-column>
+            <kendo-grid-column field="autoContractNumber" title="Contract #" [width]="120" [headerClass]="'customiconforgrid'">
+              <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                <button  >
+                  {{dataItem.autoContractNumber}}
+                </button>
+              </ng-template>
+              
+            </kendo-grid-column>
+            <kendo-grid-column field="billGeneratedDateTime" title="Bill Date" [width]="120" [headerClass]="'customiconforgrid'">
+              <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                {{dataItem.billGeneratedDateTime}}
+              </ng-template>
+              
+            </kendo-grid-column>
+            <kendo-grid-column field="saleInvoiceNo" title="No.Sale Inv" [width]="100" [headerClass]="'customiconforgrid'">
+              <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                {{dataItem.saleInvoiceNo}}
+              </ng-template>
+              
+            </kendo-grid-column>
+            <kendo-grid-column field="billAmount" title="Bill Amount" [width]="120" [headerClass]="'customiconforgrid'">
+              <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                {{dataItem.billAmount}}
+              </ng-template>
+              
+            </kendo-grid-column>
+            <kendo-grid-column [headerClass]="'customiconforgrid'" field="taxAmount" title="Tax Amount" [width]="120">
+              <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                {{dataItem.taxAmount}}%
+              </ng-template>
+              
+            </kendo-grid-column>
+            
+            <kendo-grid-column field="action" title="Action" [width]="100"  [filterable]="false">
+              <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                <div class="ibox-tools text-center">
+                  <button type="button" class="btn editIconBack px-1 py-1" data-toggle="tooltip" data-placement="top" title=""
+                    data-original-title="open" (click)="saleinvoicebill(dataItem)"><i class="far fa-edit"></i></button>
+                  
+                </div>
+              </ng-template>
+              
+            </kendo-grid-column>
+        </kendo-grid>
+       
+
+
+
+
+
+
+
+
+
+
+
+
+
        
       </div>
       

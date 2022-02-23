@@ -29,6 +29,25 @@ body {
   display: none !important;
 
 }
+
+.k-grid-header, .k-grouping-header, .k-grid-add-row, .k-grid-footer {
+  color: #fbf0f0 !important;
+  background-color: #494e53  !important;
+}
+.k-pager-wrap {
+  border-color: rgba(0, 0, 0, 0.08);
+  color: #ffffff !important;
+  background-color: #494e53  !important;
+}
+.k-column-title {
+  min-width: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  -ms-flex-negative: 1;
+  flex-shrink: 1;
+  overflow: hidden;
+  font-weight: 500 !important;
+}
 .k-filtercell .k-filtercell-wrapper > .k-textbox {
   width: 110% !important;
   min-width: 0;
