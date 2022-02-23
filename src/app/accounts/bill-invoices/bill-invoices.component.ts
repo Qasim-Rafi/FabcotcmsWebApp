@@ -72,6 +72,12 @@ constructor(    private service: ServiceService,
                     operator: 'contains',
                     value: inputValue
                 },
+
+                {
+                  field: 'billInvoiceNumber',
+                  operator: 'contains',
+                  value: inputValue
+              },
                 {
                     field: 'autoContractNumber',
                     operator: 'contains',

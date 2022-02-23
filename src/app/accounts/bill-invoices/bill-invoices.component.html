@@ -350,6 +350,14 @@
               </ng-template>
               
             </kendo-grid-column>
+
+            <kendo-grid-column field="billInvoiceNumber" title="Inv-Tax#" [width]="100" [headerClass]="'customiconforgrid'">
+              <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                {{dataItem.billInvoiceNumber}}
+              </ng-template>
+              
+            </kendo-grid-column>
+
             <kendo-grid-column field="autoContractNumber" title="Contract #" [width]="120" [headerClass]="'customiconforgrid'">
               <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
                 <button  >
