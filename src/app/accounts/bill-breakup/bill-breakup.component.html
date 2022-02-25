@@ -26,8 +26,8 @@
         <div class="form-group  row">
             <label for="details" class="col-md-3 col-form-label text-grey">Non-Tax %age</label>
             <div class="col-md-8">
-                <input appAutofocus  id="code" type="text" class="form-control"
-                placeholder="0%" name="name" [(ngModel)]="data.name" #code="ngModel"
+                <input appAutofocus type="text" class="form-control"
+                placeholder="0%" name="precentage" [(ngModel)]="data.precentage" #precentage="ngModel"
              >
             </div>
           </div>
@@ -39,7 +39,7 @@
 
     <div class="modal-footer NotBG" >
 
-      <button  class="btn button-save" type="submit">
+      <button  class="btn button-save" (click)="billBreakupMethod()" type="button">
         Bill Break
       </button>
      

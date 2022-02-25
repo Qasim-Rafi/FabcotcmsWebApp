@@ -56,6 +56,10 @@ constructor(    private service: ServiceService,
    
     this.router.navigate(['/saleBill'], { queryParams: {contractId:row.contractId , invNo : row.billInvoiceNumber} });
   }
+  saleinvoiceBreakbill(row,billname){
+   
+    this.router.navigate(['/saleBill'], { queryParams: {contractId:row.contractId , invNo : row.billInvoiceNumber,billname} });
+  }
   public onFilter(inputValue: string): void {
     this.rows = process(this.temp, {
         filter: {
