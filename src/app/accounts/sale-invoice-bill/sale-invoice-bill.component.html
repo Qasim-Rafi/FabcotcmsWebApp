@@ -209,11 +209,11 @@
                     <td>{{i.rate}}</td>
                     <td>{{i.commission}} </td>
 
-                    <td>{{i.sellerCommissionAmount}} </td>
+                    <td>{{i.sellerCommissionAmount | number:'1.0-0'}} </td>
                     <!-- <td>{{i.amount}}</td> -->
                     <td>{{i.taxAmount | number:'1.0-0'}}</td>
 
-                    <td>{{i.totalAmount  | number:'2.2-2'}}</td>
+                    <td>{{i.totalAmount  | number:'1.0-0'}}</td>
 
 
                 </tr>

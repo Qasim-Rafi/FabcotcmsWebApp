@@ -394,7 +394,7 @@
             <kendo-grid-column field="action" title="Action" [width]="100"  [filterable]="false">
               <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
                 <div class="ibox-tools text-center">
-                  <button type="button" *ngIf="dataItem.nonTaxPercentage == 0" class="btn editIconBack px-1 py-1" data-toggle="tooltip" data-placement="top" title=""
+                  <button type="button"  class="btn editIconBack px-1 py-1" data-toggle="tooltip" data-placement="top" title=""
                     data-original-title="open" (click)="saleinvoicebill(dataItem)"><i class="far fa-edit"></i></button>
                     <button type="button" *ngIf="dataItem.nonTaxPercentage != 0" class="btn editIconBack px-1 py-1" placement="left" ngbTooltip="C bill"
                     data-original-title="open" (click)="saleinvoiceBreakbill(dataItem,'Cbill')"><i class="fa fa-paperclip"></i></button>
