@@ -233,8 +233,8 @@ fetch(cb) {
   this.dateData.ToDate = this.dateformater.toModel(this.dateData.ToDate)
   this.dateData.FromDate = this.dateformater.toModel(this.dateData.FromDate)
      if(this.dateData.ToDate == null || this.dateData.ToDate == undefined || this.dateData.ToDate =="undefined-undefined-undefined"){
-       this.dateData.ToDate="";
-      this.dateData.FromDate="";
+       this.dateData.ToDate="string";
+      this.dateData.FromDate="string";
      }
      else{
        this.isFiltred =true;
