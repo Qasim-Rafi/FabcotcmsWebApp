@@ -1,0 +1,47 @@
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "line-spin-fade" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <h5 class="modal-title">
+    <i class="fa fa-anchor fa-fw"></i>
+    Date Filter
+  </h5>
+
+</div>
+
+<div class="modal-body BG p-0">
+  <form #addAgentForm="ngForm" novalidate >
+
+    <div class="row justify-content-center">
+      <div class="col-10 col-md-11 pt-3 pb-2">
+    
+        <div class="form-group row">
+            <label for="description">Start Date:</label>
+            <input class="form-control" ngbDatepicker #reminderDate2="ngbDatepicker" (click)="reminderDate2.toggle()"
+            placeholder="Contract start Date" name="ToDate" 
+            [(ngModel)]="data.ToDate" #ToDate="ngModel" />
+        </div>
+    
+        <div class="form-group row">
+            <label for="description">End Date:</label>
+
+            <input class="form-control" ngbDatepicker #reminderDate3="ngbDatepicker" (click)="reminderDate3.toggle()"
+            placeholder="Contract end Date" name="FromDate" 
+            [(ngModel)]="data.FromDate" #FromDate="ngModel" />
+        </div>
+    
+        
+    
+      </div>
+    </div>
+
+    <div class="modal-footer NotBG">
+      <button type="button" class="btn btn-outline-secondary noHover" data-dismiss="modal"
+        (click)="activeModal.close()">Close</button>
+      <button class="btn button-save" type="submit" (click)="getContracts()">
+        Filter
+      </button>
+    </div>
+  </form>
+</div>

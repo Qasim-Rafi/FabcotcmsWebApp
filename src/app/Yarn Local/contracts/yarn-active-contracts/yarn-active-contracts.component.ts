@@ -10,6 +10,8 @@ import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 import { process } from '@progress/kendo-data-query';
 import { DataBindingDirective } from '@progress/kendo-angular-grid';
+import { ActiveContractDateFilterComponent } from 'src/app/shared/active-contract-date-filter/active-contract-date-filter.component';
+import { Dateformater } from 'src/app/shared/dateformater';
 
 @Component({
   selector: 'app-yarn-active-contracts',
@@ -23,6 +25,7 @@ export class YarnActiveContractsComponent implements OnInit {
   response: any;
   data: any = {};
   rows: any = [];
+  dateData: any = {};
   columns: any = [];
   temp: any[];
   allCount: number;
@@ -33,9 +36,11 @@ export class YarnActiveContractsComponent implements OnInit {
   receivableCount: number;
   receivedCount: number;
   onHoldCount: number;
+  isFiltred:boolean =false;
  status : string =  "All" ;
  loggedInDepartmentName: string;
  @ViewChild(DataBindingDirective) dataBinding: DataBindingDirective;
+ dateformater: Dateformater = new Dateformater();
   constructor(
     private router: Router,
     private http: HttpClient,
@@ -79,7 +84,25 @@ export class YarnActiveContractsComponent implements OnInit {
     this.rows = temp;
   }
 
+  dateFilter() {
+    const modalRef = this.modalService.open(ActiveContractDateFilterComponent, { centered: false,size:"sm" });
+  // modalRef.componentInstance.contractId = this.contractId;
+  // modalRef.componentInstance.invoiceId = row.id;
 
+    modalRef.result.then((data) => {
+      // on close
+      if(data != null){
+        this.dateData =data
+        this.fetch((data) => {
+          this.temp = [...data]; 
+          this.rows = data;
+        });
+      }
+    }, (reason) => {
+      // on dismiss
+    });
+  }
+  
   navigateEditContract(obj) {
     this.router.navigate(['/FabCot/active-contract-details'], { queryParams: {id: obj.id} });
   };
@@ -197,12 +220,31 @@ public onFilter(inputValue: string): void {
 
   this.dataBinding.skip = 0;
 }
+resetfilter(){
+  this.isFiltred =false;
+  this.fetch((data) => {
+    this.temp = [...data]; 
+    this.rows = data;
+  });
 
+}
 fetch(cb) {
   this.spinner.show();
-
+  this.dateData.ToDate = this.dateformater.toModel(this.dateData.ToDate)
+  this.dateData.FromDate = this.dateformater.toModel(this.dateData.FromDate)
+     if(this.dateData.ToDate == null || this.dateData.ToDate == undefined || this.dateData.ToDate =="undefined-undefined-undefined"){
+       this.dateData.ToDate="";
+      this.dateData.FromDate="";
+     }
+     else{
+       this.isFiltred =true;
+     }
+     if(this.status == null){
+      this.status ="All";
+     }
+  
   this.http
-    .get(`${environment.apiUrl}/api/Contracts/GetAllContract/` + this.status)
+    .get(`${environment.apiUrl}/api/Contracts/GetAllContract/`+ this.status +'/'+ true+'/'+this.dateData.ToDate +'/'+ this.dateData.FromDate)
     .subscribe(res => {
       this.response = res;
 
