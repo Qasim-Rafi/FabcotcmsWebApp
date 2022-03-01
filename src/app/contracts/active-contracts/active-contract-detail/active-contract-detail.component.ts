@@ -731,7 +731,7 @@ getContractCostingData() {
     .subscribe(
       res => {
         this.response = res;
-        if (this.response.success == true) {
+        if (this.response.success == true && this.response.data != null) {
           this.contractCostingData = this.response.data;
           this.quantitynmbr = this.response.data.quantity;
   this.spinner.hide();

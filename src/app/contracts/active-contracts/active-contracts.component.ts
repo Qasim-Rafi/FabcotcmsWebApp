@@ -102,9 +102,11 @@ on_HandContract(){
 
 fetch(cb) {
   this.spinner.show();
+let tdate=null;
+let fDate=null;
 
   this.http
-    .get(`${environment.apiUrl}/api/Contracts/GetAllContract`)
+    .get(`${environment.apiUrl}/api/Contracts/GetAllContract/All/true/`+tdate+'/'+fDate)
     .subscribe(res => {
       this.response = res;
 
