@@ -181,8 +181,8 @@
             <i class="fa fa-plus"></i> Add Contract
           </button>
           
-         <h5> <span class="col-md-12 badge badge-success">TotalQuantity : {{totalDisplayPrice.totalQuantity}}</span></h5>
-         <h5> <span class="col-md-12 badge badge-success">TotalBalance : {{totalDisplayPrice.totalBalance}}</span></h5>
+         <h5 *ngIf="isFiltred ==false"> <span class="col-md-12 badge badge-success">TotalQuantity : {{totalDisplayPrice.totalQuantity}}</span></h5>
+         <h5 *ngIf="isFiltred ==false"> <span class="col-md-12 badge badge-success">TotalBalance : {{totalDisplayPrice.totalBalance}}</span></h5>
            <kendo-grid-spacer></kendo-grid-spacer>
           <input placeholder="Search in all columns..." class="form-control col-md-3 justify-content-end customiconforgrid" #newItem kendoTextBox (input)="onFilter(newItem.value)"/>
 
