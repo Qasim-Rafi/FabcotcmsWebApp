@@ -209,7 +209,7 @@ dateformater: Dateformater = new Dateformater();
           margin: [-30 , 5 , 0 , 0 ],
           table:{
             headerRows : 1,
-            widths : [23, 35, 45, 45 , 30 , 23 , 40 , 25 , 30 , 35 , 37 , 35 , 30, 35 , 40 , 40 , 27, 27 
+            widths : [23, 35, 45, 45 , 30 , 23 , 40 , 25 , 30 , 35 , 37 , 35 , 30, 35 , 40 , 40 , 40, 40 
             ],
             body:[
               [
