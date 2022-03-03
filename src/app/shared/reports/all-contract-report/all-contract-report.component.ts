@@ -100,6 +100,7 @@ dateformater: Dateformater = new Dateformater();
     const temp = this.search.filter(function (d) {
       return (d.contractNo.toLowerCase().indexOf(val) !== -1 
       || d.manualContractNumber.toLowerCase().indexOf(val) !==-1   ||
+      d.status.toLowerCase().indexOf(val) !==-1   ||
       !val);
     });
     this.allContractReport = temp;
