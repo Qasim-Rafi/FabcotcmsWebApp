@@ -180,7 +180,7 @@ dateformater: Dateformater = new Dateformater();
       BuyerComm: row.buyerCommission ,
       BuyerCommAmount: row.buyerCommissionAmount ,
       PaymentTermSellerBuyer : row.paymentTerm ,
-
+      Status :row.status,
       Agent : row.agent ,
 
       
@@ -209,7 +209,7 @@ dateformater: Dateformater = new Dateformater();
           margin: [-30 , 5 , 0 , 0 ],
           table:{
             headerRows : 1,
-            widths : [23, 35, 45, 45 , 30 , 23 , 40 , 25 , 30 , 35 , 37 , 35 , 30, 35 , 40, 35 , 40 , 40 , 27 
+            widths : [15, 35, 45, 45 , 30 , 23 , 40 , 25 , 30 , 35 , 37 , 35 , 25, 25 , 40, 35 , 40 , 40 , 27, 27 
             ],
             body:[
               [
@@ -233,6 +233,7 @@ dateformater: Dateformater = new Dateformater();
               {text:'Buyer Comm' , style:'tableHeader'} , 
               {text:'Buyer Comm Amount'  , style:'tableHeader'} , 
               {text:'Payment Term S|B'  , style:'tableHeader'} , 
+              {text:'Status'  , style:'tableHeader'} , 
               {text:'Agent' , style:'tableHeader'} , 
 
             ],
@@ -264,6 +265,7 @@ dateformater: Dateformater = new Dateformater();
                    
                    
                    {text: row.paymentTerm , style:'tableHeader2'},
+                   {text: row.status , style:'tableHeader2'},
                    {text: row.agent , style:'tableHeader2'},
 
 
