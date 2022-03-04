@@ -239,6 +239,7 @@ constructor(    private service: ServiceService,
         if (this.response.success == true){
           this.toastr.success(this.response.message, 'Message.');
           this.datatext.textValue = ''
+          this.fetch1();
           this.fetch((data) => {
             this.temp = [...data]; 
             this.rows = data;
