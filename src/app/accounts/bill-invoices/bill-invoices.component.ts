@@ -219,6 +219,11 @@ constructor(    private service: ServiceService,
       this.rows = data;
     });
   }
+
+
+  public state: State = {
+    skip: 0,
+};
   genrateInvoices(){
  if(this.datatext.textValue == 0){
   this.toastr.error("PLease enter valid tax%" , 'Message')
@@ -239,12 +244,16 @@ constructor(    private service: ServiceService,
         if (this.response.success == true){
           this.toastr.success(this.response.message, 'Message.');
           this.datatext.textValue = ''
-          this.fetch1();
-          this.fetch((data) => {
-            this.temp = [...data]; 
-            this.rows = data;
-          });
-    this.spinner.hide();
+          this.ngOnInit();
+          this.rows = process(this.temp,this.state)
+          // this.dataBinding.rebind()
+          // this.dataBinding.ngOnInit()
+          // this.fetch1();
+          // this.fetch((data) => {
+          //   this.temp = [...data]; 
+          //   this.rows = data;
+          // });
+    //this.spinner.hide();
 
         }
         else {
