@@ -336,7 +336,7 @@ this.getDataBreakup();
           margin: [0, 20, 0, 0],
           table: {
             headerRows: 1,
-            widths: ['15%', '10%', '15%', '8.75%', '9.75%', '12.75%', '11.75%', '6%', '13%'],
+            widths: ['15%', '8.5%', '15%', '8.75%', '9.75%', '11.75%', '11.75%', '9%', '13%'],
             body: [
 
               [
@@ -688,7 +688,7 @@ this.getDataBreakup();
           margin: [0, 20, 0, 0],
           table: {
             headerRows: 1,
-            widths: ['15%', '10%', '15%', '8.75%', '9.75%', '12.75%', '11.75%', '6%', '13%'],
+            widths: ['15%', '9%', '15%', '8.75%', '9.65%', '12.75%', '11.75%', '7.15%', '13%'],
             body: [
 
               [
@@ -838,8 +838,8 @@ this.getDataBreakup();
           fontSize: 9,
           bold: true, alignment: 'center'
         },
-        tableHeader: { fillColor: '#f3f3f4', bold: true, margin: 4, alignment: 'center', fontSize: 8 },
-        tableHeader2: { margin: 3, alignment: 'center', fontSize: 8 },
+        tableHeader: { fillColor: '#f3f3f4', bold: true, margin: 4, alignment: 'center', fontSize: 7 },
+        tableHeader2: { margin: 3, alignment: 'center', fontSize: 6 },
 
       },
 
