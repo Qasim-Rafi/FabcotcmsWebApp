@@ -29,7 +29,12 @@ amount=0;
     private router: Router,
     private spinner : NgxSpinnerService
 
-    ) {  this.defaultColDef = {
+    ) {  
+      let body = document.getElementsByTagName('body')[0];
+      body.classList.add('sidebar-collapse'); 
+      let footer = document.getElementsByTagName('footer')[0];
+      footer.classList.add('d-none'); 
+      this.defaultColDef = {
       flex: 1,
       minWidth: 100,
       resizable: true,

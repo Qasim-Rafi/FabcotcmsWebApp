@@ -358,13 +358,19 @@ h5 {
   background-color: #1ab394 !important;
   border-color: #1ab394 !important;
 }
-
+.ngx-datatable::-webkit-scrollbar-track{
+  border-radius: 8px !important;
+  background-color: yellow !important;
+}
 .btn-outline-primary {
   color: #1ab394 !important;
   border-color: #1ab394 !important;
 }
 
-
+.ngx-datatable.bootstrap .datatable-footer .datatable-pager ul li:not(.disabled).active a, .ngx-datatable.bootstrap .datatable-footer .datatable-pager ul li:not(.disabled):hover a {
+  background-color: #361414 !important;
+  font-weight: bold;
+}
 .btn-outline-primary:hover {
   color: #ffffff !important;
   background-color: #1ab394 !important;
