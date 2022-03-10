@@ -127,7 +127,8 @@
                     <br>
 
                     <span class="text-font1">
-                        Fabcot Contract No: <span class="bold text-font1"> {{printData.contractNumber}}</span>
+                        Fabcot Contract No: <span class="bold text-font1"> {{printData.contractNumber}}
+                             <label *ngIf = "loggedInDepartmentName == 'Yarn Local Karachi'">({{printData.manulNumber}})</label></span>
                     </span>
                     <br>
                     <span class="text-font1">

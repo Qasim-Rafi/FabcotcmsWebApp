@@ -215,7 +215,7 @@
             <kendo-grid-column field="autoContractNumber" title="Contract #" [width]="120" [headerClass]="'customiconforgrid'">
               <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
                 <button class="clr" (click) = "navigateEditContract(dataItem)" >
-                  {{dataItem.autoContractNumber}}
+                  {{dataItem.autoContractNumber}} ({{dataItem.manualContractNumber}})
                 </button>
               </ng-template>
               

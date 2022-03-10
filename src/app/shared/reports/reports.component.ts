@@ -941,6 +941,7 @@ this.spinner.hide();
     const filtered = this.rows.map(row => ({
     Age:row.age,
     ContractNo: row.contractNo,
+  
     Buyer: row.buyerName,
     Seller: row.sellerName ,
     Date: row.date,
@@ -1003,6 +1004,7 @@ this.spinner.hide();
       BillFor: row.billFor,
       Article: row.articleName,
       ContractNumber: row.contractNo,
+      ManualContractNumber: row.manualContractNumber,
       CotractDate: row.contractDate ,
       BillDate: row.billDate,
       BillNumber: row.billNo,
@@ -1399,13 +1401,14 @@ this.fetch();
           margin: [-20 , 5 , 0 , 0 ],
           table:{
             headerRows : 1,
-            widths : [23, 45, 37, 45 , 45 , 20 , 45 , 45 , 24 , 33  , 35 , 33
+            widths : [23, 45, 37,45 , 45 , 20 , 45 , 45 , 24 , 33  , 35 , 33
             ],
             body:[
               [
                 {text:'Bill For' , style:'tableHeader' }
               ,{text:'Article' , style:'tableHeader'} ,
               {text:'Contract#' , style:'tableHeader' }, 
+              //{text:'Manual#' , style:'tableHeader' }, 
               {text:'Contract Date' , style:'tableHeader' }, 
 
               {text:'Bill Date'  , style:'tableHeader'} , 
@@ -1423,6 +1426,8 @@ this.fetch();
                 [
                   {text: row.billFor , style:'tableHeader2'} ,
                 {text:  row.articleName , style:'tableHeader2'},
+                {text: row.contractNo, style:'tableHeader2'} ,
+                //{text: row.manualContractNumber, style:'tableHeader2'} ,
                 {text: row.contractNo, style:'tableHeader2'} ,
                 {text: row.contractDate , style:'tableHeader2'} ,
                  {text: row.billDate, style:'tableHeader2'} ,

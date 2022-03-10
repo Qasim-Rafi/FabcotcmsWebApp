@@ -233,7 +233,9 @@ print(rows){
 
               layout:'noBorders',
               table:{headerRows:1 ,  widths:['20%' , '80%' ],
-            body:[ [{text: 'Fabcot Contract# :' , margin: [20 , 4 , 0 , 0] , bold:true , style:'common'} , {text: this.printData['contractNumber'] , margin: [-12 , 4 , 0 , 0]  , bold:true  , decoration:'underline' , style:'common'}
+            body:[ [{text: 'Fabcot Contract# :' , margin: [20 , 4 , 0 , 0] , bold:true , style:'common'} , 
+            {text: this.loggedInDepartmentName == 'Yarn Local Karachi'? this.printData['contractNumber'] +' ('+this.printData['manulNumber'] +')' :this.printData['contractNumber']
+             , margin: [-12 , 4 , 0 , 0]  , bold:true  , decoration:'underline' , style:'common'}
           
           ]]
             }
