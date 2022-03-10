@@ -29,10 +29,10 @@
 
 
 
-<div class="card ibox-content margins" *ngFor = "let x of printData" [ngClass]="{'breakclass': loggedInDepartmentName === 'Yarn Export'}">
+<div class="card ibox-content margins" *ngFor = "let x of printData" >
     
     <div class="panel blank-panel p-2 mt-2" >
-        <div class="panel-heading ">
+        <div class="panel-heading "  [ngClass]="{'breakclass': loggedInDepartmentName == 'Yarn Export'}">
 
 
             <div class="row  " *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Local' ">
@@ -325,7 +325,7 @@
             <br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import'"><br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import'">
 
         </div>
-        <p style="page-break-after: always; margin-bottom: 50px;">&nbsp;</p>
+        <p *ngIf="loggedInDepartmentName != 'Yarn Export'" style="page-break-after: always">&nbsp;</p>
         <br>
         <hr>
         
