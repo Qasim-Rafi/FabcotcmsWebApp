@@ -31,7 +31,7 @@
 
 <div class="card ibox-content margins" *ngFor = "let x of printData" >
     
-    <div class="panel blank-panel p-2 mt-2" >
+    <div class="panel blank-panel p-2 mt-1" >
         <div class="panel-heading "  [ngClass]="{'breakclass': loggedInDepartmentName == 'Yarn Export'}">
 
 
@@ -193,7 +193,7 @@
                 </tr>
             </table>
             <br>
-            <br>
+            
             
          
             <span class=" float-left text-font1">
@@ -244,7 +244,11 @@
             </span>
             <br>
    
-            <br><br>  <br> <br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import'">   <br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import'">
+            <br>
+            <br *ngIf = "loggedInDepartmentName != 'Yarn Export'">  
+            <br *ngIf = "loggedInDepartmentName != 'Yarn Export'"> 
+            <br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import'">  
+             <br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import'">
             <br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import'">
             <br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import'">
 
