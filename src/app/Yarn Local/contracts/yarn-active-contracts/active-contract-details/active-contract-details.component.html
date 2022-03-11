@@ -231,6 +231,16 @@
                         Contract Closed
                     </button>
                 </div>
+                <div class="col-md-8 " *ngIf="contractData.status =='Billed'">
+                    <button class="btn btn-info border-rounded px-3 mr-2 text-white" (click)="cancelBill()">
+                        <i class="fas fa-level-down-alt"></i>
+                        Cancel Bill
+                    </button>
+                    <!-- <button class="btn btn-warning border-rounded px-3 mr-2 text-white">
+                        <i class="fas fa-level-down-alt"></i>
+                        Contract Closed
+                    </button> -->
+                </div>
                 <div class="col-md-4 text-right ">
                     <button class="btn btn-outline-primary border-rounded btn-sm px-3 mr-1"
                         *ngIf="loggedInDepartmentName == 'Yarn Local' || loggedInDepartmentName =='Yarn Local Karachi'"

@@ -2138,6 +2138,47 @@ deleteDispatch(id) {
             }
           });
       }
+
+
+      cancelBill()
+      { 
+        let varr = {
+        
+          "reason":"Bill Cancel",
+          "contractId": this.contractId,
+          "status": "Open"
+        }
+  this.spinner.show();
+        
+        this.http.
+        put(`${environment.apiUrl}/api/Contracts/UpdateContractStatusCancelBill`, varr)
+        .subscribe(
+          res=> { 
+      
+            this.response = res;
+            if (this.response.success == true ){
+              this.toastr.success(this.response.message, 'Message.');
+              this.getContractData();
+              this.spinner.hide();
+
+
+           
+            }
+            else if(this.response.success == false) {
+         
+              this.toastr.error(this.response.message, 'Message.');
+            }
+    
+          }, err => {
+            if (err.status == 400) {
+              this.toastr.error('Something went Worng', 'Message.');
+  this.spinner.hide();
+           
+            }
+          });
+      }
+
+
     
       statusform(status,action,component) {
         const modalRef = this.modalService.open(StatusComponent, { centered: true });
