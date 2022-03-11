@@ -73,7 +73,7 @@ this.GetArticleDropdown();
           if (this.response.success == true) {
             this.rate = this.response.data.rate;
          
-          
+            
           }
   
           else {
@@ -302,8 +302,8 @@ this.spinner.show();
       this.uom = this.data.UnitofMeasurement;
       this.articledata.contractArticleCommission=this.data.contractArticleCommission;
 
-           
-           
+      //this.getquantity(this.quantity)
+      this.data.amount=this.rate * this.data.quantity;
       
 
             // this.spinner.hide();
@@ -343,7 +343,7 @@ this.spinner.show();
        "amount":parseInt(this.data.amount),
        "quantity": this.data.quantity,
        "unit": this.data.unit,
-       "rate":  this.data.contractArticleRate,
+       "rate":  this.data.contractArticleRate == undefined || this.data.contractArticleRate == null ?this.rate :this.data.contractArticleRate,
        "commission": this.data.contractArticleCommission,
        "taxPercentage": this.data.taxPercentage == null ?  this.condition :this.data.taxPercentage,
       "UnitofMeasurement" : this.uom,
