@@ -72,7 +72,7 @@
   
           <div class="form-group  col-md-4">
             <div class="col-md-12">
-              <ng-select  placeholder="Company Name" name="year" [(ngModel)]="data.year" #year="ngModel">
+              <ng-select  placeholder="Year" name="year" [(ngModel)]="data.year" #year="ngModel">
                 <ng-option *ngFor="let car of years" [value]="car.id">{{car.name}}</ng-option>
               </ng-select>
   
@@ -81,7 +81,7 @@
   
           <div class="form-group  col-md-4">
             <div class="col-md-12">
-              <ng-select  placeholder="Company Name" name="month" [(ngModel)]="data.month" #month="ngModel">
+              <ng-select  placeholder="Month" name="month" [(ngModel)]="data.month" #month="ngModel">
                 <ng-option *ngFor="let car of months" [value]="car.id">{{car.name}}</ng-option>
               </ng-select>
   

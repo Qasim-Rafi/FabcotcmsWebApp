@@ -245,7 +245,7 @@ this.ngOnInit()
    if( event ==1){
      this.calculate();
     this.LineChartData =[
-      { data: this.forecast,label: 'NYCF',fill: false , lineTension: 0,backgroundColor:'red',borderColor:['red'] },
+      { data: this.forecast,label: 'NYCF',fill: false , lineTension: 0,backgroundColor: ['red'],borderColor: ['red'] },
       { data: this.data, label: 'NYCF-Forecast',fill: false , lineTension: 0 ,backgroundColor:'blue',borderColor:['blue']},
     ]
     this.LineChartData1 =[
@@ -348,7 +348,7 @@ this.ngOnInit()
 
   //lineChartData = this.LineChartData;
   public lineChartData: ChartDataSets[] = [
-    { data: this.data, label: 'Series 1',fill: false , lineTension: 0,backgroundColor:'blue',borderColor:'blue'},
+    { data: this.data, label: 'Series 1',fill: false , lineTension: 0,borderColor: ['#4b94bf'],backgroundColor: ['rgba(255,0,0,0.3)']},
      { data: this.forecast, label: 'Series 2',fill: false , lineTension: 0,backgroundColor:'red',borderColor:'red'},
     // { data: this.data, label: 'Series 3',fill: false , lineTension: 0},
     // { data: this.data, label: 'Series 4',fill: false , lineTension: 0},
@@ -447,24 +447,16 @@ this.ngOnInit()
     }
   };
 
-  // public lineChartColors: Color[] = [
-  //    {
-  //      borderColor: this.colors,
-  //     backgroundColor: this.colors,
-  //   pointBackgroundColor: this.colors,
-  //  pointBorderColor: this.colors,
-  //  pointHoverBackgroundColor: this.colors,
-  //  pointHoverBorderColor: this.colors
-  //    },
-  //    {
-  //     borderColor: this.colors,
-  //    backgroundColor: this.colors,
-  //  pointBackgroundColor: this.colors,
-  // pointBorderColor: this.colors,
-  // pointHoverBackgroundColor: this.colors,
-  // pointHoverBorderColor: this.colors
-  //   },
-  // ];
+  public lineChartColors: Color[] = [
+    {
+      borderColor: '#4b94bf',
+    backgroundColor: 'rgba(255,0,0,0.3)',
+    },
+    {
+      borderColor: 'red',
+      backgroundColor: 'red',
+    },
+  ];
   public lineChartLegend = true;
   public lineChartType:ChartType  = 'line';
    public lineChartPlugins = [{
