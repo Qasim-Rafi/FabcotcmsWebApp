@@ -259,11 +259,19 @@
   <section class="con">
   
    <div class="row"> 
-  <div class="col-md-8"><h5 class="card-title">Forecast  {{(year)}}</h5> </div>   
+  <div class="col-md-4"><h5 class="card-title">Forecast  {{(year)}}</h5> </div>   
   <div class="col-md-4"> 
     <ng-select [(ngModel)]="selectedCar" (change)="changedata($event)">
     <ng-option *ngFor="let car of cars" [value]="car.id">{{car.name}}</ng-option>
-  </ng-select> </div>   
+  </ng-select> </div>  
+  <div class="col-md-4">
+  
+      <ng-select  placeholder="Month" name="month" [(ngModel)]="data.month" #month="ngModel">
+        <ng-option *ngFor="let car of months" [value]="car.id">{{car.name}}</ng-option>
+      </ng-select>
+
+    
+  </div> 
   </div>
       
   

@@ -70,7 +70,15 @@
     <label for="name" class="col-md-3 col-form-label control-label text_Navy">Year/Month<span
       class="required-denote">*</span></label>
   
-          <div class="form-group  col-md-4">
+      <div class="form-group  col-md-3">
+        <div class="col-md-12">
+          <ng-select  placeholder="Day" name="day" [(ngModel)]="data.day" #day="ngModel">
+            <ng-option *ngFor="let car of days" [value]="car.id">{{car.day}}</ng-option>
+          </ng-select>
+
+        </div>
+      </div>
+          <div class="form-group  col-md-3">
             <div class="col-md-12">
               <ng-select  placeholder="Year" name="year" [(ngModel)]="data.year" #year="ngModel">
                 <ng-option *ngFor="let car of years" [value]="car.id">{{car.name}}</ng-option>
@@ -79,7 +87,7 @@
             </div>
           </div>
   
-          <div class="form-group  col-md-4">
+          <div class="form-group  col-md-3">
             <div class="col-md-12">
               <ng-select  placeholder="Month" name="month" [(ngModel)]="data.month" #month="ngModel">
                 <ng-option *ngFor="let car of months" [value]="car.id">{{car.name}}</ng-option>

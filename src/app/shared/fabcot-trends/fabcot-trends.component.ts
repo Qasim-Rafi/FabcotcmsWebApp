@@ -18,7 +18,7 @@ import { AddEditForecastComponent } from './add-edit-forecast/add-edit-forecast.
 })
 export class FabcotTrendsComponent implements OnInit {
 
-
+  daysInCurrentMonth:any;
   public primaryXAxis: Object;
   public chartData: Object[];
   public primaryYAxis: Object;
@@ -41,6 +41,7 @@ token='eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJOYW1lSWRlbnRpZmllciI6IjM4IiwiTmFt
   colors:any=[];
   selectedCar: number;
   actualdata:any;
+  labelfordays:any;
 year:any;
   cars = [
       // { id: 1, name: 'NYCF' },
@@ -52,6 +53,20 @@ year:any;
   yearMatch:boolean=false;
 data:any =[];
 forecast:any=[];
+months = [
+  { id: 1,name: 'Jan' },
+  { id: 2, name: 'Feb' },
+  { id: 3,name: 'Mar' },
+  { id: 4,name: 'Apr' },
+  { id: 5, name: 'May' },
+  { id: 6, name: 'Jun' },
+  { id: 7, name: 'Jul' },
+  { id: 8, name: 'Aug' },
+  { id: 9, name: 'Sep'  },
+  { id: 10,name: 'Oct' },
+  { id: 11, name: 'Nov' },
+  { id: 12, name: 'Dec' },
+];
 data1:any =[];
 data2:any =[65, 59, 80, 59, 80, 78, 80, 59, 80, 81, 56, 58];
 data3:any =[65, 59, 80, 31, 56, 78, 80, 59, 80, 81, 56, 58];
@@ -75,6 +90,15 @@ LineChartData1: ChartDataSets[]=[];
 
   ngOnInit() {
     //localStorage.setItem('token',this.token)
+//     const date = new Date();
+// const currentYear = date.getFullYear();
+// const currentMonth = date.getMonth() + 1; // 
+
+// this.daysInCurrentMonth = this.getDaysInMonth(currentYear, currentMonth);
+//  for(let i=0;i<this.daysInCurrentMonth;i++){
+//   this.labelfordays.push([i+1])
+//  }
+//  console.log(this.labelfordays)
     this.tooltip = {
       enable: true
   }
@@ -157,7 +181,9 @@ LineChartData1: ChartDataSets[]=[];
         }
       });
   }
-
+  getDaysInMonth(year, month) {
+    return new Date(year, month, 0).getDate();
+  }
   fetch(cb) {
     this.http
     .get(`${environment.apiUrl}/api/BillingPayments/FabcotTrendsDataAll`)
@@ -241,7 +267,8 @@ this.ngOnInit()
 
 
   changedata(event){
-    
+    let name =this.cars.filter(x=>x.id ==event)
+    this.rows=this.temp.filter(x=>x.fabcotCompanyName ==name[0].name);
    if( event ==1){
      this.calculate();
     this.LineChartData =[
@@ -345,7 +372,6 @@ this.ngOnInit()
   }
 //....................................................................................1.........................................
 
-
   //lineChartData = this.LineChartData;
   public lineChartData: ChartDataSets[] = [
     { data: this.data, label: 'Series 1',fill: false , lineTension: 0,borderColor: ['#4b94bf'],backgroundColor: ['rgba(255,0,0,0.3)']},
@@ -354,8 +380,10 @@ this.ngOnInit()
     // { data: this.data, label: 'Series 4',fill: false , lineTension: 0},
     // { data: this.data, label: 'Series 5',fill: false , lineTension: 0},
   ];
+
   // , 'Aug', 'Sep', 'Oct', 'Nov','Dec'
-  public lineChartLabels: Label[] = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov','Dec'];
+  public lineChartLabels: Label[] = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11','12','13','14','15'
+  ,'16' ,'17' ,'18','19','20','21','22','23','24','25','26','27','28','29','30']   
   public lineChartOptions: ChartOptions = {
     responsive: true,
     animation: {
@@ -638,7 +666,8 @@ lineChartData1 = this.LineChartData1;
 // public lineChartData1: ChartDataSets[] = [
 //   { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A',fill: false , lineTension: 0, },
 // ];
-public lineChartLabels1: Label[] = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov','Dec'];
+public lineChartLabels1: Label[] = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11','12','13','14','15'
+,'16' ,'17' ,'18','19','20','21','22','23','24','25','26','27','28','29','30'];
 public lineChartOptions1: ChartOptions = {
   responsive: true,
   // legend: {
