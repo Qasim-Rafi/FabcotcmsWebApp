@@ -245,7 +245,8 @@ this.ngOnInit()
    if( event ==1){
      this.calculate();
     this.LineChartData =[
-      { data: this.data, label: 'NYCF',fill: false , lineTension: 0 },
+      { data: this.forecast,label: 'NYCF',fill: false , lineTension: 0,backgroundColor:'red',borderColor:['red'] },
+      { data: this.data, label: 'NYCF-Forecast',fill: false , lineTension: 0 ,backgroundColor:'blue',borderColor:['blue']},
     ]
     this.LineChartData1 =[
       { data: this.forecast, label: 'NYCF',fill: false , lineTension: 0},
@@ -259,7 +260,8 @@ this.ngOnInit()
     this.calculate();
     let companyNameifNoData=this.cars.filter(x=>x.id == event)
     this.LineChartData =[
-      { data: companydata, label: filterCompanyData.length != 0?filterCompanyData[0].companyName:companyNameifNoData[0].name,fill: false , lineTension: 0},
+      { data: companydata, label: filterCompanyData.length != 0?filterCompanyData[0].companyName:companyNameifNoData[0].name,fill: false , lineTension: 0,backgroundColor:'red',borderColor:['red']},
+      { data: companydata, label: filterCompanyData.length != 0?filterCompanyData[0].companyName:companyNameifNoData[0].name +'-Forecast',fill: false , lineTension: 0,backgroundColor:'blue',borderColor:['blue']},
     ]
     this.LineChartData1 =[
       { data: companydata, label: filterCompanyData.length != 0?filterCompanyData[0].companyName:companyNameifNoData[0].name,fill: false , lineTension: 0},
@@ -344,14 +346,14 @@ this.ngOnInit()
 //....................................................................................1.........................................
 
 
-  lineChartData = this.LineChartData;
-  // public lineChartData: ChartDataSets[] = [
-  //   { data: this.data, label: 'Series 1',fill: false , lineTension: 0},
-  //   // { data: this.data1, label: 'Series 2',fill: false , lineTension: 0},
-  //   // { data: this.data, label: 'Series 3',fill: false , lineTension: 0},
-  //   // { data: this.data, label: 'Series 4',fill: false , lineTension: 0},
-  //   // { data: this.data, label: 'Series 5',fill: false , lineTension: 0},
-  // ];
+  //lineChartData = this.LineChartData;
+  public lineChartData: ChartDataSets[] = [
+    { data: this.data, label: 'Series 1',fill: false , lineTension: 0,backgroundColor:'blue',borderColor:'blue'},
+     { data: this.forecast, label: 'Series 2',fill: false , lineTension: 0,backgroundColor:'red',borderColor:'red'},
+    // { data: this.data, label: 'Series 3',fill: false , lineTension: 0},
+    // { data: this.data, label: 'Series 4',fill: false , lineTension: 0},
+    // { data: this.data, label: 'Series 5',fill: false , lineTension: 0},
+  ];
   // , 'Aug', 'Sep', 'Oct', 'Nov','Dec'
   public lineChartLabels: Label[] = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov','Dec'];
   public lineChartOptions: ChartOptions = {
@@ -445,41 +447,49 @@ this.ngOnInit()
     }
   };
 
-  public lineChartColors: Color[] = [
-     {
-       borderColor: this.colors,
-      backgroundColor: this.colors,
-    pointBackgroundColor: this.colors,
-   pointBorderColor: this.colors,
-   pointHoverBackgroundColor: this.colors,
-   pointHoverBorderColor: this.colors
-     },
-  ];
+  // public lineChartColors: Color[] = [
+  //    {
+  //      borderColor: this.colors,
+  //     backgroundColor: this.colors,
+  //   pointBackgroundColor: this.colors,
+  //  pointBorderColor: this.colors,
+  //  pointHoverBackgroundColor: this.colors,
+  //  pointHoverBorderColor: this.colors
+  //    },
+  //    {
+  //     borderColor: this.colors,
+  //    backgroundColor: this.colors,
+  //  pointBackgroundColor: this.colors,
+  // pointBorderColor: this.colors,
+  // pointHoverBackgroundColor: this.colors,
+  // pointHoverBorderColor: this.colors
+  //   },
+  // ];
   public lineChartLegend = true;
   public lineChartType:ChartType  = 'line';
    public lineChartPlugins = [{
      
-    beforeRender: (x, options) => {
-      //this.yearMatch =false;
-      const c = x.chart;
-      const dataset = x.data.datasets[0];
-      const yScale = x.scales['y-axis-0'];
-      const xScale = x.scales['x-axis-0'];
-      const yPos = yScale.getPixelForValue(0);
-      const xPos = xScale.getPixelForValue(0);
+    // beforeRender: (x, options) => {
+    //   //this.yearMatch =false;
+    //   const c = x.chart;
+    //   const dataset = x.data.datasets[0];
+    //   const yScale = x.scales['y-axis-0'];
+    //   const xScale = x.scales['x-axis-0'];
+    //   const yPos = yScale.getPixelForValue(0);
+    //   const xPos = xScale.getPixelForValue(0);
   
-      const gradientFill = c.ctx.createLinearGradient(0, 0, 0, c.height);
-      gradientFill.addColorStop(0, 'red');
-      gradientFill.addColorStop(yPos / c.height, 'red');
-      //gradientFill.addColorStop(xPos / c.height, 'green');
-      // gradientFill.addColorStop(yPos / c.height, 'blue');
-      // gradientFill.addColorStop(yPos / c.height, 'blue');
-      //gradientFill.addColorStop(yPos / c.height, 'blue');
-      gradientFill.addColorStop(1, 'red');
+    //   const gradientFill = c.ctx.createLinearGradient(0, 0, 0, c.height);
+    //   gradientFill.addColorStop(0, 'red');
+    //   gradientFill.addColorStop(yPos / c.height, 'red');
+    //   //gradientFill.addColorStop(xPos / c.height, 'green');
+    //   // gradientFill.addColorStop(yPos / c.height, 'blue');
+    //   // gradientFill.addColorStop(yPos / c.height, 'blue');
+    //   //gradientFill.addColorStop(yPos / c.height, 'blue');
+    //   gradientFill.addColorStop(1, 'red');
   
-      const model = x.data.datasets[0]._meta[Object.keys(dataset._meta)[0]].dataset._model;
-      model.borderColor = gradientFill;
-    },
+    //   const model = x.data.datasets[0]._meta[Object.keys(dataset._meta)[0]].dataset._model;
+    //   model.borderColor = gradientFill;
+    // },
    
     //{
     
