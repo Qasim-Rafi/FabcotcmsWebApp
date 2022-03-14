@@ -13,19 +13,20 @@ import { NgForm } from '@angular/forms';
 export class AddEditTrendFormComponent implements OnInit {
 
   @Input() FormData;
+  @Input() companyName;
   response: any;
   data: any = {};
   company:any=[];
   years =[
-    { id: 1,name: '2022' },
-    { id: 2, name: '2023' },
-    { id: 3,name: '2024' },
-    { id: 4,name: '2025' },
-    { id: 5, name: '2026' },
-    { id: 6, name: '2027' },
-    { id: 7, name: '2028' },
-    { id: 8, name: '2029' },
-    { id: 9, name: '2030'  },
+    { id: 1,name1: '2022' },
+    { id: 2, name1: '2023' },
+    { id: 3,name1: '2024' },
+    { id: 4,name1: '2025' },
+    { id: 5, name1: '2026' },
+    { id: 6, name1: '2027' },
+    { id: 7, name1: '2028' },
+    { id: 8, name1: '2029' },
+    { id: 9, name1: '2030'  },
 
   ];
   days =[
@@ -99,6 +100,10 @@ export class AddEditTrendFormComponent implements OnInit {
         this.response = res;
         if (this.response.success == true) {
           this.company = this.response.data;
+          if(this.companyName !=undefined){
+
+            this.data.fabcotCompanyId =this.companyName
+          }
         }
         else {
           this.toastr.error(this.response.message, 'Message.');
@@ -118,10 +123,12 @@ export class AddEditTrendFormComponent implements OnInit {
         this.response = res;
         if (this.response.success == true) {
           this.data = this.response.data;
-         let y= this.years.filter(x=>x.name ==this.data.year);
+         let y= this.years.filter(x=>x.name1 ==this.data.year);
          this.data.year =y[0].id
          let m= this.months.filter(x=>x.name ==this.data.month);
          this.data.month =m[0].id
+         let d= this.days.filter(x=>x.day ==this.data.day);
+         this.data.day =d[0].id
         }
         else {
           this.toastr.error(this.response.message, 'Message.');
@@ -142,9 +149,11 @@ export class AddEditTrendFormComponent implements OnInit {
     else{
 
       let y= this.years.filter(x=>x.id ==this.data.year);
-      this.data.year =y[0].name
+      this.data.year =y[0].name1
       let m= this.months.filter(x=>x.id ==this.data.month);
       this.data.month =m[0].name
+      let d= this.days.filter(x=>x.id ==this.data.day);
+      this.data.day =d[0].day
 
   let varr = {
     "fabcotCompanyId": this.data.fabcotCompanyId,
@@ -184,14 +193,17 @@ export class AddEditTrendFormComponent implements OnInit {
   Update(form:NgForm) {
     
     let y= this.years.filter(x=>x.id ==this.data.year);
-      this.data.year =y[0].name
+      this.data.year =y[0].name1
       let m= this.months.filter(x=>x.id ==this.data.month);
       this.data.month =m[0].name
+      let d= this.days.filter(x=>x.id ==this.data.day);
+      this.data.day =d[0].day
 
   let varr = {
     "fabcotCompanyId": this.data.fabcotCompanyId,
     "month": this.data.month,
     "year": this.data.year,
+    "day": this.data.day,
     "averageValue": this.data.averageValue,
     "mixValue": this.data.mixValue,
     "minValue": this.data.minValue,

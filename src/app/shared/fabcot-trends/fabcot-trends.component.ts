@@ -40,6 +40,7 @@ token='eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJOYW1lSWRlbnRpZmllciI6IjM4IiwiTmFt
   response: any;
   colors:any=[];
   selectedCar: number;
+  month:number;
   actualdata:any;
   labelfordays:any;
 year:any;
@@ -52,6 +53,7 @@ year:any;
   ];
   yearMatch:boolean=false;
 data:any =[];
+data12:any={};
 forecast:any=[];
 months = [
   { id: 1,name: 'Jan' },
@@ -89,6 +91,10 @@ LineChartData1: ChartDataSets[]=[];
   }
 
   ngOnInit() {
+
+    var date  = new Date();
+    var month  = date.getMonth() +1;
+    this.month =month
     //localStorage.setItem('token',this.token)
 //     const date = new Date();
 // const currentYear = date.getFullYear();
@@ -235,6 +241,7 @@ this.ngOnInit()
     const modalRef = this.modalService.open(AddEditTrendFormComponent, { centered: true });
     modalRef.componentInstance.statusCheck = check;
     modalRef.componentInstance.FormName = name;
+    modalRef.componentInstance.companyName = this.selectedCar;
     modalRef.result.then((data) => {
       // on close
       if (data == true) {

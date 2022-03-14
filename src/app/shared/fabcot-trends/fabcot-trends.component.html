@@ -266,7 +266,7 @@
   </ng-select> </div>  
   <div class="col-md-4">
   
-      <ng-select  placeholder="Month" name="month" [(ngModel)]="data.month" #month="ngModel">
+      <ng-select  placeholder="Month" [(ngModel)]="month">
         <ng-option *ngFor="let car of months" [value]="car.id">{{car.name}}</ng-option>
       </ng-select>
 
@@ -374,9 +374,9 @@
   
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="Month | Year" [width]="80">
+      <ngx-datatable-column name="Day | Month | Year" [width]="80">
         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-          {{ row.month }} | {{ row.year }}
+          {{ row.day }} | {{ row.month }} | {{ row.year }}
         </ng-template>
       </ngx-datatable-column>
       <ngx-datatable-column name="Action" [width]="80">
