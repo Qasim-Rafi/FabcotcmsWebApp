@@ -1,0 +1,107 @@
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <div *ngIf="statusCheck == 'Add'">
+      <h5 class="modal-title">
+        <i class="fa fa-plus fa-fw"></i>
+        Add Values
+      </h5>
+    </div>
+    <div *ngIf="statusCheck == 'Edit'">
+      <h5 class="modal-title">
+        <i class="far fa-edit fa-fw"></i>
+        Edit Values
+      </h5>
+    </div>
+  </div>
+  
+  
+  <div class="modal-body BG p-0">
+  
+    <form #CityForm="ngForm" novalidate>
+  
+      <div class="row justify-content-center">
+        <div class="col-10 col-md-11 pt-3 pb-2">
+      
+          <div class="form-group row">
+            <label for="name" class="col-md-3 col-form-label control-label text_Navy">Company Name<span
+                class="required-denote">*</span></label>
+            <div class="col-md-8">
+              <input appAutofocus required type="text" class="form-control"
+                placeholder="Company Name" name="name" [(ngModel)]="data.name" #name="ngModel"
+                [ngClass]="{ error: name.invalid && CityForm.submitted}" />
+            </div>
+          </div>
+  
+          <!-- <div class="form-group row">
+            <label for="name" class="col-md-3 col-form-label control-label text_Navy">Lowest Value<span
+                class="required-denote">*</span></label>
+            <div class="col-md-8">
+              <input appAutofocus required id="name" maxlength="80" minlength="3" type="text" class="form-control"
+                placeholder="Lowest Value" name="name" [(ngModel)]="data.name" #name="ngModel"
+                [ngClass]="{ error: name.invalid && CityForm.submitted}" />
+            </div>
+          </div>
+  
+          <div class="form-group row">
+            <label for="name" class="col-md-3 col-form-label control-label text_Navy">value<span
+                class="required-denote">*</span></label>
+            <div class="col-md-8">
+              <input appAutofocus required id="name" maxlength="80" minlength="3" type="text" class="form-control"
+                placeholder="value" name="name" [(ngModel)]="data.name" #name="ngModel"
+                [ngClass]="{ error: name.invalid && CityForm.submitted}" />
+            </div>
+          </div>
+  
+          <div class="form-group row">
+            <label for="name" class="col-md-3 col-form-label control-label text_Navy">Date<span
+                class="required-denote">*</span></label>
+                <div class="input-group date col-md-8" (clickOutside)="validity.close()">
+  
+                  <input navigation="select" placeholder="Date" class="form-control "
+                      id="enquiryDate" name="enquiryDate" required [(ngModel)]="data.enquiryDate"
+                      #enquiryDate="ngModel" ngbDatepicker #validity="ngbDatepicker"
+                      (click)="validity.toggle()" />
+  
+                  <div class="input-group-append" (click)="validity.toggle()">
+                      <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                  </div>
+              </div>
+          </div> -->
+      
+  
+          
+          <!-- <div class="form-group row">
+            <label class="col-md-3 col-form-label text-grey">Country Name<span class="required-denote">*</span></label>
+            <div class="col-md-8">
+              <ng-select required [(ngModel)]="data.countryId" placeholder="-- Select --" name="countryId"
+                #countryId="ngModel" [ngClass]="{ error: countryId.invalid && CityForm.submitted}">
+                <ng-option *ngFor="let i of country" [value]="i.id">{{ i.name }}
+                  <span class="text-muted" style="font-size: 11px">( {{ i.details }} )</span>
+                </ng-option>
+              </ng-select>
+            </div>
+          </div> -->
+      
+     
+      
+    
+      
+        </div>
+      </div>
+  
+  
+      <div class="modal-footer NotBG">
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" (click)="activeModal.close()">Close</button>
+        <button *ngIf="statusCheck == 'Add'" class="btn button-save btn-outline-primary" type="submit" (click)="onSubmit('add')">
+          Save Values
+        </button>
+  
+        <button *ngIf="statusCheck == 'Edit'" class="btn button-save btn-outline-primary" type="submit" (click)="onSubmit('Update')">
+          Update Values
+        </button>
+      </div>
+    </form>
+  </div>

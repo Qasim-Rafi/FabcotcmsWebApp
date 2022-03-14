@@ -1,0 +1,124 @@
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <div *ngIf="statusCheck == 'Add'">
+      <h5 class="modal-title">
+        <i class="fa fa-plus fa-fw"></i>
+        Add Values
+      </h5>
+    </div>
+    <div *ngIf="statusCheck == 'Edit'">
+      <h5 class="modal-title">
+        <i class="far fa-edit fa-fw"></i>
+        Edit Values
+      </h5>
+    </div>
+  </div>
+  
+  
+  <div class="modal-body BG p-0">
+  
+    <form #CityForm="ngForm" novalidate>
+  
+      <div class="row justify-content-center">
+        <div class="col-10 col-md-11 pt-3 pb-2">
+          
+          <div class="form-group row">
+            <label for="name" class="col-md-3 col-form-label control-label text_Navy">Company Name<span
+                class="required-denote">*</span></label>
+            <div class="col-md-8">
+              <ng-select  placeholder="Company Name" name="fabcotCompanyId" [(ngModel)]="data.fabcotCompanyId" #fabcotCompanyId="ngModel">
+                <ng-option *ngFor="let car of company" [value]="car.id">{{car.name}}</ng-option>
+              </ng-select>
+  
+            </div>
+          </div>
+  
+  
+          <div class="form-group row">
+            <label for="name" class="col-md-3 col-form-label control-label text_Navy">Highest Value<span
+                class="required-denote">*</span></label>
+            <div class="col-md-8">
+              <input appAutofocus required  type="text" class="form-control"
+                placeholder="Highest Value" name="mixValue" [(ngModel)]="data.mixValue" #mixValue="ngModel"
+                [ngClass]="{ error: mixValue.invalid && CityForm.submitted}" />
+            </div>
+          </div>
+  
+          <div class="form-group row">
+            <label for="name" class="col-md-3 col-form-label control-label text_Navy">Lowest Value<span
+                class="required-denote">*</span></label>
+            <div class="col-md-8">
+              <input appAutofocus required  type="text" class="form-control"
+                placeholder="Lowest Value" name="minValue" [(ngModel)]="data.minValue" #minValue="ngModel"
+                [ngClass]="{ error: minValue.invalid && CityForm.submitted}" />
+            </div>
+          </div>
+  
+          <div class="form-group row">
+            <label for="name" class="col-md-3 col-form-label control-label text_Navy">Average value<span
+                class="required-denote">*</span></label>
+            <div class="col-md-8">
+              <input appAutofocus required  type="text" class="form-control"
+                placeholder="Average value" name="averageValue" [(ngModel)]="data.averageValue" #averageValue="ngModel"
+                [ngClass]="{ error: averageValue.invalid && CityForm.submitted}" />
+            </div>
+          </div>
+   <div class="row"> 
+    <label for="name" class="col-md-3 col-form-label control-label text_Navy">Year/Month<span
+      class="required-denote">*</span></label>
+  
+          <div class="form-group  col-md-4">
+            <div class="col-md-12">
+              <ng-select  placeholder="Company Name" name="year" [(ngModel)]="data.year" #year="ngModel">
+                <ng-option *ngFor="let car of years" [value]="car.id">{{car.name}}</ng-option>
+              </ng-select>
+  
+            </div>
+          </div>
+  
+          <div class="form-group  col-md-4">
+            <div class="col-md-12">
+              <ng-select  placeholder="Company Name" name="month" [(ngModel)]="data.month" #month="ngModel">
+                <ng-option *ngFor="let car of months" [value]="car.id">{{car.name}}</ng-option>
+              </ng-select>
+  
+            </div>
+          </div>
+      
+        </div>
+          
+          <!-- <div class="form-group row">
+            <label class="col-md-3 col-form-label text-grey">Country Name<span class="required-denote">*</span></label>
+            <div class="col-md-8">
+              <ng-select required [(ngModel)]="data.countryId" placeholder="-- Select --" name="countryId"
+                #countryId="ngModel" [ngClass]="{ error: countryId.invalid && CityForm.submitted}">
+                <ng-option *ngFor="let i of country" [value]="i.id">{{ i.name }}
+                  <span class="text-muted" style="font-size: 11px">( {{ i.details }} )</span>
+                </ng-option>
+              </ng-select>
+            </div>
+          </div> -->
+      
+     
+      
+    
+      
+        </div>
+      </div>
+  
+  
+      <div class="modal-footer NotBG">
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" (click)="activeModal.close()">Close</button>
+        <button *ngIf="statusCheck == 'Add'" class="btn button-save btn-outline-primary" type="submit" (click)="onSubmit('add')">
+          Save Values
+        </button>
+  
+        <button *ngIf="statusCheck == 'Edit'" class="btn button-save btn-outline-primary" type="submit" (click)="onSubmit('Update')">
+          Update Values
+        </button>
+      </div>
+    </form>
+  </div>

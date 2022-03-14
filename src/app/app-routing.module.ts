@@ -14,6 +14,7 @@ import { SaleInvoiceBillComponent } from './accounts/sale-invoice-bill/sale-invo
 import { AccBulkPrintComponent } from './accounts/acc-bulk-print/acc-bulk-print.component';
 import { AllContractReportComponent } from './shared/reports/all-contract-report/all-contract-report.component';
 import { SellerMappingComponent } from './shared/mappings/seller-mapping/seller-mapping.component';
+import { FabcotTrendsComponent } from './shared/fabcot-trends/fabcot-trends.component';
 
 
 const configurationModule = () => import('./configuration/configuration.module')
@@ -23,7 +24,7 @@ const businessEnquryModule = () => import('./business-enqury/business-enqury.mod
   // const CloudDocumentationModule = () => import('./cloud-documentation/cloud-documentation.module')
   // .then(x => x.CloudDocumentationModule);
 const routes: Routes = [
-
+  {path:'fabcot-trends' , component:FabcotTrendsComponent},
   {path:'login', redirectTo:'login', pathMatch:'full'},
    {path:'', component:LoginComponent},
    {
