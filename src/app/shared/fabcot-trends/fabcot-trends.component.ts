@@ -277,6 +277,8 @@ this.ngOnInit()
 
 
   changedata(event){
+
+    this.getdata(event);
     let name =this.cars.filter(x=>x.id ==event)
     this.rows=this.temp.filter(x=>x.fabcotCompanyName ==name[0].name);
    if( event ==1){
@@ -293,12 +295,14 @@ this.ngOnInit()
     let filterCompanyData =this.actualdata.filter(x=>x.companyId ==event)
     
     let companydata=filterCompanyData.length != 0? filterCompanyData[0].values.map(Number):[0]
-
+    let companydataForcast=filterCompanyData.length != 0? filterCompanyData[0].valuesForcast.map(Number):[0]
     this.calculate();
+    let Cname ="-Forecast"
+   
     let companyNameifNoData=this.cars.filter(x=>x.id == event)
     this.LineChartData =[
       { data: companydata, label: filterCompanyData.length != 0?filterCompanyData[0].companyName:companyNameifNoData[0].name,fill: false , lineTension: 0,backgroundColor:'red',borderColor:['red']},
-      { data: companydata, label: filterCompanyData.length != 0?filterCompanyData[0].companyName:companyNameifNoData[0].name +'-Forecast',fill: false , lineTension: 0,backgroundColor:'blue',borderColor:['blue']},
+      { data: companydataForcast, label: filterCompanyData.length != 0?filterCompanyData[0].companyName+Cname:companyNameifNoData[0].name +Cname,fill: false , lineTension: 0,backgroundColor:'blue',borderColor:['blue']},
     ]
     this.LineChartData1 =[
       { data: companydata, label: filterCompanyData.length != 0?filterCompanyData[0].companyName:companyNameifNoData[0].name,fill: false , lineTension: 0},
@@ -404,10 +408,10 @@ this.ngOnInit()
         this.forecast =valuesNon
         // values.slice(0,values.length-1)
         this.data11 =values1.slice(0,values.length-1)
-        this.selectedCar =1;
+        //this.selectedCar =1;
         this.lineChartLabels =this.days
         this.lineChartLabels1 =this.days
-        this.changedata(1)
+        this.changedata(this.selectedCar)
         // setTimeout(() => {
         //   this.LineChartData =[
         //     { data: this.data, label: 'NYCF',fill: false , lineTension: 0},
