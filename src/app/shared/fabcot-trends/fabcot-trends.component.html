@@ -257,7 +257,9 @@
        </div>
   </nav>
   <section class="con">
-  
+  <div class="row">
+    <div class="col-md-12">
+
    <div class="row"> 
   <div class="col-md-4"><h5 class="card-title">Forecast  {{(year)}}</h5> </div>   
   <div class="col-md-4"> 
@@ -278,8 +280,8 @@
       <div class="card p-2 mt-2 shadow">
   <div class="row"> 
     <div class="col-md-12">
-    <div style="display: block;">
-      <canvas id="myCanvas" #myCanvas baseChart width="99%" height="15vh"
+    <div class="charcan" style="display: block;">
+      <canvas id="myCanvas" #myCanvas baseChart width="99%" height="20vh"
         [datasets]="LineChartData"
         [labels]="lineChartLabels"
         [options]="lineChartOptions"
@@ -294,8 +296,12 @@
   </div>
   
       </div>
+
+    </div>
+  </div>
   
   
+
       <div class="row"> 
         <div class="col-md-8"><h5 class="card-title">Trends  {{(year)}}</h5> </div>  
       </div>
@@ -304,8 +310,8 @@
   
   <div class="row"> 
     <div class="col-md-12">
-    <div style="display: block;">
-      <canvas baseChart width="90%" height="15vh"
+    <div  style="display: block;">
+      <canvas baseChart width="90%" height="20vh"
         [datasets]="LineChartData1"
         [labels]="lineChartLabels1"
         [options]="lineChartOptions1"
@@ -351,17 +357,17 @@
           {{ rowIndex+1 }}
         </ng-template>
       </ngx-datatable-column> -->
-      <ngx-datatable-column name="Company Name" prop="fabcotCompanyName" [width]="80">
+      <ngx-datatable-column name="Company Name" prop="fabcotCompanyName" >
         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
           {{ row.fabcotCompanyName }}
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="Highest Value" [width]="80">
+      <ngx-datatable-column name="Highest Value" >
         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
           {{ row.mixValue }}
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="Lowest Value" [width]="80">
+      <ngx-datatable-column name="Lowest Value" >
         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
           {{ row.minValue }}
         </ng-template>
@@ -374,12 +380,12 @@
   
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="Day | Month | Year" [width]="80">
+      <ngx-datatable-column name="Day | Month | Year" >
         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
           {{ row.day }} | {{ row.month }} | {{ row.year }}
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="Action" [width]="80">
+      <ngx-datatable-column name="Action">
         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
   
   

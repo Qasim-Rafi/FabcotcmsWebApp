@@ -91,7 +91,8 @@ LineChartData1: ChartDataSets[]=[];
   }
 
   ngOnInit() {
-
+    this.getLookUpCompany();
+this.selectedCar =1
     var date  = new Date();
     var month  = date.getMonth() +1;
     this.month =month
@@ -139,7 +140,6 @@ LineChartData1: ChartDataSets[]=[];
   };
   this.title = 'Sales Analysis';
 
-    this.getLookUpCompany();
     // this.fetch((data) => {
     //   this.temp = [...data]; 
     //   this.rows = data;
@@ -377,7 +377,7 @@ this.ngOnInit()
   getdata(event){
 
     this.http
-    .get(`${environment.apiUrl}/api/BillingPayments/GetFabcotForcastData/`+ event)
+    .get(`${environment.apiUrl}/api/BillingPayments/GetFabcotForcastData/`+ event+'/'+this.selectedCar)
     .subscribe(res => {
       this.response = res;
 
@@ -431,6 +431,7 @@ this.ngOnInit()
   ,'16' ,'17' ,'18','19','20','21','22','23','24','25','26','27','28','29','30']   
   public lineChartOptions: ChartOptions = {
     responsive: true,
+    maintainAspectRatio: false,
     animation: {
       animateScale: true,
       animateRotate: true,
@@ -715,6 +716,7 @@ public lineChartLabels1: Label[] = ['1', '2', '3', '4', '5', '6', '7', '8', '9',
 ,'16' ,'17' ,'18','19','20','21','22','23','24','25','26','27','28','29','30'];
 public lineChartOptions1: ChartOptions = {
   responsive: true,
+  maintainAspectRatio: false,
   // legend: {
   //   display: false,
   // },

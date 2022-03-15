@@ -81,6 +81,10 @@
     background-color: #007bff !important;
     border-color: #007BFE !important;
 }
+.chart {
+  position: relative;
+  min-height: unset;
+}
 .con{
     margin-top: 15px;
     margin-left: 20px;
@@ -193,4 +197,51 @@
   /* background-color: #1483ff !important; */
   background-color: #cce5ff !important;
   color: #000000;
+}
+
+.chartjs-size-monitor, .chartjs-size-monitor-expand, .chartjs-size-monitor-shrink {
+  position: absolute;
+  direction: ltr;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto !important;
+  pointer-events: none;
+  visibility: hidden;
+  z-index: -1;
+}
+canvas {
+  height: 400px !important;
+  width: 100% !important;
+}
+@media only screen and (max-width: 575px) {
+
+  canvas {
+    height: 230px !important;
+    width: 100% !important;
+  }
+
+  /* .winput {
+    width: 40% !important;
+  }
+
+  .modal-dialog {
+    max-width: 100% !important;
+    margin: 2.0rem !important;
+  } */
+}
+
+.charcan{
+  width: auto;
+  overflow-x: scroll;
+}
+
+@media screen and (max-width: 767px){
+
+.card:not(.highlight-card) {
+    height:auto !important;
+    margin: 8px 0;
+    overflow: scroll !important;
+}
 }
