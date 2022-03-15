@@ -140,11 +140,12 @@ LineChartData1: ChartDataSets[]=[];
   this.title = 'Sales Analysis';
 
     this.getLookUpCompany();
-    this.fetch((data) => {
-      this.temp = [...data]; 
-      this.rows = data;
-    });
-    this.getdata();
+    // this.fetch((data) => {
+    //   this.temp = [...data]; 
+    //   this.rows = data;
+    // });
+    this.getdata('Mar');
+    this.datamethod('Mar');
     
     this.changedata(1)
     var currentTime = new Date();
@@ -337,9 +338,46 @@ this.ngOnInit()
   
 
   }
-  getdata(){
+  datamethod(event){
     this.http
-    .get(`${environment.apiUrl}/api/BillingPayments/GetFabcotForcastData`)
+    .get(`${environment.apiUrl}/api/BillingPayments/FabcotTrendsDataAll/`+event)
+    .subscribe(res => {
+      this.response = res;
+     
+    if(this.response.success==true)
+    {
+     this.data=this.response.data;
+     this.temp=this.data;
+     this.rows = this.data;
+
+
+     //cb(this.data);
+    //this.spinner.hide();
+
+    }
+    else{
+      this.toastr.error(this.response.message, 'Message.');
+      //this.spinner.hide();
+    
+    }
+
+    }, err => {
+      if ( err.status == 400) {
+  this.toastr.error(err.error.message, 'Message.');
+
+
+      }
+    });
+  }
+  datapara(event){
+   let m= this.months.filter(x=>x.id ==event)
+    this.getdata(m[0].name);
+    this.datamethod(m[0].name)
+  }
+  getdata(event){
+
+    this.http
+    .get(`${environment.apiUrl}/api/BillingPayments/GetFabcotForcastData/`+ event)
     .subscribe(res => {
       this.response = res;
 
