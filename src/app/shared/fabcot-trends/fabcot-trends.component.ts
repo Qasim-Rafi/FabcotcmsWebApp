@@ -9,6 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddEditTrendFormComponent } from './add-edit-trend-form/add-edit-trend-form.component';
 import { AddEditForecastComponent } from './add-edit-forecast/add-edit-forecast.component';
+import { align } from '@progress/kendo-drawing';
 //import { IPointRenderEventArgs } from '@syncfusion/ej2-angular-charts';
 
 @Component({
@@ -53,6 +54,7 @@ year:any;
   ];
   yearMatch:boolean=false;
 data:any =[];
+days:any =[];
 data12:any={};
 forecast:any=[];
 months = [
@@ -81,7 +83,7 @@ data41:any =[65, 59, 80, 59, 80, 78, 80, 59, 80, 59, 80];
 data51:any =[65, 59, 80, 31, 56, 78, 80, 59, 80, 81, 56];
 LineChartData: ChartDataSets[]=[];
 LineChartData1: ChartDataSets[]=[];
-
+lineChartLabel: Label[] = [];
   constructor(
     private http: HttpClient,
     private modalService: NgbModal,
@@ -383,13 +385,28 @@ this.ngOnInit()
 
       if (this.response.success == true) {
    this.actualdata =this.response.data
-        let values =this.response.data[0].values.map(Number)
+   var a = new Date();
+   var r = a.getDate();
+   var dt = new Date();
+   var month = dt.getMonth()+1;
+   var year = dt.getFullYear();
+  var daysInMonth = new Date(year, month, 0).getDate();
+  var valuetadd =daysInMonth -r;
+        let values =this.response.data[0].valuesForcast.map(Number);
+        let valuesNon =this.response.data[0].values.map(Number);
+        let valueD = this.response.data[0].days.map(String);
+        let valueD2 = this.response.data[0].days.map(Number);
         let values1 =this.response.data[0] != undefined? this.response.data[0].values.map(Number):0
+        this.days =valueD
         this.data = values;
         this.data1 = values1;
-        this.forecast =values.slice(0,values.length-1)
+        var test =values.length-valuetadd
+        this.forecast =valuesNon
+        // values.slice(0,values.length-1)
         this.data11 =values1.slice(0,values.length-1)
         this.selectedCar =1;
+        this.lineChartLabels =this.days
+        this.lineChartLabels1 =this.days
         this.changedata(1)
         // setTimeout(() => {
         //   this.LineChartData =[
@@ -397,9 +414,7 @@ this.ngOnInit()
         //   ]
         // }, 100);
     
-// this.LineChartData =[
-//   { data: this.data, label: 'Series A',fill: false , lineTension: 0},
-// ]
+
         //cb(this.data);
         //this.spinner.hide();
       }
@@ -425,10 +440,12 @@ this.ngOnInit()
     // { data: this.data, label: 'Series 4',fill: false , lineTension: 0},
     // { data: this.data, label: 'Series 5',fill: false , lineTension: 0},
   ];
-
+  //lineChartLabels =this.lineChartLabel
   // , 'Aug', 'Sep', 'Oct', 'Nov','Dec'
-  public lineChartLabels: Label[] = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11','12','13','14','15'
-  ,'16' ,'17' ,'18','19','20','21','22','23','24','25','26','27','28','29','30']   
+   public lineChartLabels: Label[] = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11','12','13','14','15'
+   ,'16' ,'17' ,'18','19','20','21','22','23','24','25','26','27','28','29','30']   
+  // ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11','12','13','14','15'
+  //  ,'16' ,'17' ,'18','19','20','21','22','23','24','25','26','27','28','29','30']   
   public lineChartOptions: ChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
@@ -481,6 +498,7 @@ this.ngOnInit()
             min: 0
           }
       }]
+   
     },
     plugins: {
       color: "black",
