@@ -182,7 +182,7 @@ this.getDataBreakup();
           table: {
             headerRows: 1, widths: ['100%'],
             body: [
-              [{ text: 'SALES TAX INVOICE', style: 'headingC' }],]
+              [{ text:this.billName == "Cbill"? 'SALES TAX INVOICE':'QUANTITY CLAIM TAX INVOICE', style: 'headingC' }],]
           }
         },
         {
@@ -293,7 +293,7 @@ this.getDataBreakup();
           table: {
             headerRows: 1, widths: ['15%', '60%', '30%', '12%'],
             body: [[{ text: 'Fabcot Contract No :', margin: [0, 4, 0, 0], bold: true, style: 'headingF' }, { text: this.data['contractNumber'], margin: [-10, 4, 0, 0], style: 'headingF' },
-            { text: 'Sales Tax Invoice No:', margin: [0, 4, 0, 0], bold: true, style: 'headingF' }, { text: this.invNo, margin: [-85, 4, 0, 0], bold: true, style: 'headingF' },
+            { text:this.billName == "Cbill"? 'Sales Tax Invoice No:':'', margin: [0, 4, 0, 0], bold: true, style: 'headingF' }, { text:this.billName == "Cbill"? this.invNo:'', margin: [-85, 4, 0, 0], bold: true, style: 'headingF' },
 
 
 
