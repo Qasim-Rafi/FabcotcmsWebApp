@@ -61,7 +61,7 @@ invNo : any
         this.bNameDisplay ='SALES TAX INVOICE';
       }
       else if(this.billName == "Qbill"){
-        this.bNameDisplay='QUANTITY CLAIM TAX INVOICE';
+        this.bNameDisplay='QUALITY CLAIM BILL';
       }
       else{
         this.bNameDisplay ='SALES TAX INVOICE';
@@ -186,7 +186,7 @@ this.getDataBreakup();
           table: {
             headerRows: 1, widths: ['100%'],
             body: [
-              [{ text:this.billName == "Cbill"? 'SALES TAX INVOICE':'QUANTITY CLAIM TAX INVOICE', style: 'headingC' }],]
+              [{ text:this.bNameDisplay, style: 'headingC' }],]
           }
         },
         {
@@ -297,7 +297,7 @@ this.getDataBreakup();
           table: {
             headerRows: 1, widths: ['15%', '60%', '30%', '12%'],
             body: [[{ text: 'Fabcot Contract No :', margin: [0, 4, 0, 0], bold: true, style: 'headingF' }, { text: this.data['contractNumber'], margin: [-10, 4, 0, 0], style: 'headingF' },
-            { text:this.billName == "Cbill"? 'Sales Tax Invoice No:':'', margin: [0, 4, 0, 0], bold: true, style: 'headingF' }, { text:this.billName == "Cbill"? this.invNo:'', margin: [-85, 4, 0, 0], bold: true, style: 'headingF' },
+            { text:this.billName == "Cbill" || this.billName == "CFbill"? 'Sales Tax Invoice No:':'', margin: [0, 4, 0, 0], bold: true, style: 'headingF' }, { text:this.billName == "Cbill" || this.billName == "CFbill"? this.invNo:'', margin: [-85, 4, 0, 0], bold: true, style: 'headingF' },
 
 
 
