@@ -52,9 +52,9 @@ constructor(    private service: ServiceService,
   onSelect(selecterow) {
     this.selected =selecterow.selected;
   }
-  saleinvoicebill(row){
+  saleinvoicebill(row,billname){
    
-    this.router.navigate(['/saleBill'], { queryParams: {contractId:row.contractId , invNo : row.billInvoiceNumber} });
+    this.router.navigate(['/saleBill'], { queryParams: {contractId:row.contractId , invNo : row.billInvoiceNumber,billname} });
   }
   saleinvoiceBreakbill(row,billname){
    

@@ -57,17 +57,21 @@ invNo : any
     this.data = this.queryParems.contractId;
     this.invNo = this.queryParems.invNo;
     this.billName =this.queryParems.billname;
-      if(this.billName == "Cbill"){
+      if(this.billName == "Cbill" || this.billName == "CFbill"){
         this.bNameDisplay ='SALES TAX INVOICE';
       }
-      else{
+      else if(this.billName == "Qbill"){
         this.bNameDisplay='QUANTITY CLAIM TAX INVOICE';
+      }
+      else{
+        this.bNameDisplay ='SALES TAX INVOICE';
       }
     if (this.billName == "Cbill" || this.billName == "Qbill") {
 this.getDataBreakup();
     }
     else {
       this.getData();
+      
     }
   }
   getData() {
