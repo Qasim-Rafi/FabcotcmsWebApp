@@ -251,8 +251,11 @@ amountGivenToCalculate:any;
           this.selected[0].balanceAmount =parseFloat(remaingblance.toFixed(this.decimalSize));
           this.toastr.error('Partial Commission', 'Message.');
           this.result = this.selected[0].receivedAmount -this.result;
+          
+         
           this.Paidamount = parseFloat(this.selected[0].paid) +  parseFloat(this.Paidamount);
-          this.blncamount = parseFloat(this.blncamount) - parseFloat(this.selected[0].paid)
+          this.blncamount = parseFloat(this.blncamount) - parseFloat(this.selected[0].paid);
+          this.blncamount= this.blncamount.toFixed(3)
           }
         }
         else if(parseFloat(this.result) > parseFloat(row.commissionSaleInvoiceAmount)){
@@ -261,8 +264,11 @@ amountGivenToCalculate:any;
           this.result = this.result-this.selected[0].paid ;
           this.result =this.result.toFixed(2)
           this.selected[0].balanceAmount = "0.00";
+         
+       
           this.Paidamount = parseFloat(this.selected[0].paid) +  parseFloat(this.Paidamount);
           this.blncamount = parseFloat(this.blncamount) - parseFloat(this.selected[0].paid)
+          this.blncamount= this.blncamount.toFixed(3)
         }
         //this.commData.amount=this.result
         this.result =parseFloat(this.result).toFixed(this.decimalcount);
@@ -370,6 +376,18 @@ amountGivenToCalculate:any;
           //  }
          }
      }
+
+
+     refreshcomponent(){
+      //this.router.navigate(['/yarn-billing-and-payment/new-commission'], { queryParams: { statusCheck: 'add'  }  });
+
+      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        this.router.navigate(['/yarn-billing-and-payment/new-commission'], { queryParams: { statusCheck: 'add'  }  });
+    }); 
+     }
+
+
+
   onBlurMethod(event){
     if(this.result ==event){
 
@@ -451,6 +469,7 @@ amountGivenToCalculate:any;
         const Psum = this.Pblanc.reduce((partial_sum, a) => partial_sum + a, 0);
           this.blncamount =Osum;
           this.Paidamount =Psum;
+          this.blncamount= this.blncamount.toFixed(3)
       }
       else {
         this.toastr.error(this.response.message, 'Message.');

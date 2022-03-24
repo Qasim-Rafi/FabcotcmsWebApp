@@ -34,6 +34,9 @@
         <h4 class="card-title" *ngIf = "statusCheck.statusCheck == 'addNew'">Commission Payment Form:</h4>
 
         <div class="card-tools">
+            <button type="button" class="btn btn-tool" (click)="refreshcomponent()">
+                <i class="fas fa-sync-alt"></i>
+            </button>
 
             <button type="button" class="btn btn-tool" data-card-widget="collapse">
                 <i class="fas fa-minus"></i>
