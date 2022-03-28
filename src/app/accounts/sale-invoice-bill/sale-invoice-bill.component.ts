@@ -86,6 +86,9 @@ this.getDataBreakup();
           this.data.invoiceTaxAmountTotal=parseFloat(this.data.invoiceTaxAmountTotal).toFixed(2);
           //this.data.invoiceTaxAmountTotal=this.data.invoiceTaxAmountTotal.toFixed(2)
           this.amountInWorda = this.ngxNumToWordsService.inWords(this.data.invoiceTotalAmount, this.lang);
+
+          // this.data.billAmount.toLocaleString('en-US');
+          // this.data.invoiceTotalAmount.toLocaleString('en-US')
           console.log(this.data)
           this.spinner.hide();
 
@@ -116,6 +119,8 @@ this.getDataBreakup();
           this.data.invoiceTaxAmountTotal=parseFloat(this.data.invoiceTaxAmountTotal).toFixed(2);
           //this.data.invoiceTaxAmountTotal=this.data.invoiceTaxAmountTotal.toFixed(2)
           this.amountInWorda = this.ngxNumToWordsService.inWords(this.data.invoiceTotalAmount, this.lang);
+          // this.data.billAmount.toLocaleString('en-US');
+          // this.data.invoiceTotalAmount.toLocaleString('en-US')
           console.log(this.data)
           this.spinner.hide();
 
@@ -148,10 +153,18 @@ this.getDataBreakup();
     }, (reason) => {
     });
   }
-
+   formatNumber (num) {
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
+}
 
   print() {
-
+    this.data.billAmount=Math.round(this.data.billAmount);
+    this.data.billAmount=parseFloat(this.data.billAmount);
+    this.data.billAmount=this.formatNumber(this.data.billAmount)
+    this.data.invoiceTotalAmount=this.formatNumber(this.data.invoiceTotalAmount)
+    this.data.invoiceTotalAmount.toLocaleString('en-US')
+    this.data.invoiceTaxAmountTotal= Math.round(this.data.invoiceTaxAmountTotal)
+    this.data.invoiceTaxAmountTotal=this.formatNumber(this.data.invoiceTaxAmountTotal)
     let docDefinition = {
       pageSize: 'A4',
       pageMargins: [20, 30, 30, 10],
@@ -384,8 +397,8 @@ this.getDataBreakup();
           table: {
             headerRows: 1, widths: ['10%', '20%'],
             body: [[
-              { text: 'Quantity :', margin: [0, 30, 0, 0], bold: true, style: 'common' },
-              { text: this.data['quantitySum'] + ' ' + this.data['quanityUOM'], margin: [-10, 30, 0, 0], bold: true, style: 'common' },
+              { text: 'Quantity :', margin: [0, 20, 0, 0], bold: true, style: 'common' },
+              { text: this.data['quantitySum'] + ' ' + this.data['quanityUOM'], margin: [-10, 20, 0, 0], bold: true, style: 'common' },
 
 
             ]]
@@ -400,7 +413,7 @@ this.getDataBreakup();
               { text: 'Amount in Words :', margin: [0, 20, 0, 0], bold: true, style: 'common' },
               { text: this.amountInWorda, margin: [-30, 20, 0, 0], bold: true, decoration: 'underline', style: 'common' },
               { text: 'Sub Total :', margin: [50, 20, 0, 0], bold: true, style: 'common' },
-              { text: this.data['currencyName'] + ' ' + Math.round(this.data.billAmount), margin: [-60, 20, 0, 0], decoration: 'underline', style: 'common' }
+              { text: this.data['currencyName'] + ' ' + this.data.billAmount, margin: [-60, 20, 0, 0], decoration: 'underline', style: 'common' }
 
             ]]
           }
@@ -413,7 +426,7 @@ this.getDataBreakup();
               { text: 'TAX:', margin: [455, 5, 0, 0], bold: true, style: 'common' },
               { text:
                 //  parseFloat(this.data['invoiceTaxAmountTotal']).toFixed(2) 
-              Math.round(this.data['invoiceTaxAmountTotal'])
+              this.data.invoiceTaxAmountTotal
               , margin: [0, 5, 0, 0], decoration: 'underline', style: 'common' },
 
               
@@ -437,7 +450,7 @@ this.getDataBreakup();
           table: {
             headerRows: 1, widths: ['100%'],
             body: [[
-              { text: 'Your prompt action in this regard would be highly appreciated', margin: [0, 50, 0, 0], style: 'common' },
+              { text: 'Your prompt action in this regard would be highly appreciated', margin: [0, -25, 0, 0], style: 'common' },
             ]]
           }
         },
@@ -446,7 +459,7 @@ this.getDataBreakup();
           table: {
             headerRows: 1, widths: ['100%'],
             body: [[
-              { text: 'Thanking You', margin: [0, 5, 0, 0], style: 'common' },
+              { text: 'Thanking You', margin: [0, -5, 0, 0], style: 'common' },
             ]]
           }
         },
@@ -455,9 +468,9 @@ this.getDataBreakup();
           table: {
             headerRows: 1, widths: ['20%', '40%', '30%', '10%'],
             body: [[
-              { text: 'Checked By:', margin: [0, 20, 0, 0], style: 'common' },
+              { text: 'Checked By:', margin: [0, 10, 0, 0], style: 'common' },
               { text: ' ------------------------------', margin: [-60, 20, 0, 0], style: 'common' },
-              { text: 'Aurthorized Signatory:', margin: [60, 20, 0, 0], style: 'common' },
+              { text: 'Aurthorized Signatory:', margin: [60, 10, 0, 0], style: 'common' },
               { text: '  --------------------------', margin: [-15, 20, 0, 0], style: 'common' }
 
             ]]

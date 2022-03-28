@@ -51,6 +51,7 @@ lang : SUPPORTED_LANGUAGE = 'en';
           this.response = res;
           if (this.response.success == true) {
     this.data=this.response.data;
+    console.log(this.data)
     for(let i=0; i<this.data.length; i++){
       this.data[i].accountName= this.ngxNumToWordsService.inWords(this.data[i].invoiceTotalAmount, this.lang);
      

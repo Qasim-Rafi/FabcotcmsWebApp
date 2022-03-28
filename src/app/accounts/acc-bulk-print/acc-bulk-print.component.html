@@ -190,21 +190,42 @@
                     TAX : <span class="text-font1 underline">{{x.invoiceTaxAmountTotal | number:'1.0-0'}}</span>
                 </span><br>
                 <span class=" bold text-font1">
-                    TOTAL : <span class="bold text-font1 underline">{{x.invoiceTotalAmount}}  </span>
+                    TOTAL : <span class="bold text-font1 underline">{{x.invoiceTotalAmount | number:'1.0-0'}}  </span>
                 </span>
             </div>
             <div class="float-left" >
             <span class="text-font1">
-                Quantity:<span class="bold text-font1 "> {{x.quantitySum}} &nbsp; {{data.quanityUOM}}</span>
+                Quantity:<span class="bold text-font1 "> {{x.quantitySum}} &nbsp; {{x.quanityUOM}}</span>
             </span>
             <br><br><br>
             <span class=" text-font1">
                 Amount In Words:<span class="bold text-font1 underline text-capitalize">  {{x.accountName}}</span>
             </span>
-            <br> <br><br><br>
-            <span class=" float-left text-font1">
-                For<span class="bold text-font1">&nbsp;FABCOT INTERNATIONAL ®</span>
+            <br> <br>
+            <!-- <span class=" text-font1">
+                Amount In Words:<span class="bold text-font1 underline text-capitalize">  {{x.accountName}}</span>
             </span>
+            <br> <br> -->
+            <span class=" text-font1">
+                Your prompt action in this regard would be highly appreciated
+            </span>
+            <br> <br>
+            <span class=" text-font1">
+                Thanking You
+            </span>
+            <br> <br>
+          
+            <div class="float-right">
+            <span class=" text-font1">
+                Aurthorized Signatory: ----------------
+            </span>
+        </div>
+        <div class="float-left">
+            <span class=" text-font1">
+                Checked By: ----------------
+            </span>
+            </div>
+            <br> <br>
         </div>
             <br><br>
            
