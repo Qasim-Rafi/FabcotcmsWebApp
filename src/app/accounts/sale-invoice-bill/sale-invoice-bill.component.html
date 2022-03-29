@@ -194,7 +194,8 @@
                     <th>Commission  %age</th>
                     <th>Amount Excl. Tax</th>
                     <th>Tax ({{data.invoiceTaxPercentage}})%</th>
-                    <th>Amount Incl. Tax</th>
+                    <th *ngIf="billName != 'Qbill'">Amount Incl. Tax</th>
+                    <th *ngIf="billName == 'Qbill'">Amount Excl. Tax</th>
 
 
 

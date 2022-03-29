@@ -367,7 +367,7 @@ this.getDataBreakup();
                 { text: 'Amount Excl. Tax', style: 'tableHeader' },
                 { text: 'TAX'  + '(' + this.data.invoiceTaxPercentage + ')', style: 'tableHeader' },
 
-                { text: 'Amount Incl. Tax' , style: 'tableHeader' }],
+                { text: this.billName == 'Qbill'? 'Amount Excl. Tax' : 'Amount Incl. Tax' , style: 'tableHeader' }],
 
               ...this.data['contractSaleInvoices'].map(row => (
                 [
