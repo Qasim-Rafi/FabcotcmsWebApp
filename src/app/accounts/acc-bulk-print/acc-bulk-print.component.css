@@ -33,8 +33,9 @@ color: rgb(98, 172, 241);
 
   table, th, td {
       margin-top: 40px;
-      border: 1px solid grey;
+      border: 1px solid #0e0d0d;
       color: rgb(95, 93, 93);
+      font-weight: bold;
     }
 
     .underline{
@@ -74,3 +75,7 @@ background-image: url("/assets/fabcot.png");
 
 
 } */
+
+.breakclass{
+  page-break-after: always !important;
+}
