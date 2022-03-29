@@ -77,9 +77,13 @@ import { AddEditMappingsComponent } from './shared/mappings/seller-mapping/add-e
 import { AgentContractListComponent } from './shared/agent-contract-list/agent-contract-list.component';
 
 import { GridModule, PDFModule, ExcelModule } from '@progress/kendo-angular-grid';
-import { ChartsModule } from '@progress/kendo-angular-charts';
+//import { ChartsModule } from '@progress/kendo-angular-charts';
 import { InputsModule } from '@progress/kendo-angular-inputs';
-
+import { ActiveContractDateFilterComponent } from './shared/active-contract-date-filter/active-contract-date-filter.component';
+import { FabcotTrendsComponent } from './shared/fabcot-trends/fabcot-trends.component';
+import { AddEditForecastComponent } from './shared/fabcot-trends/add-edit-forecast/add-edit-forecast.component';
+import { AddEditTrendFormComponent } from './shared/fabcot-trends/add-edit-trend-form/add-edit-trend-form.component';
+import { ChartsModule } from 'ng2-charts';
 
 const appRoutes: Routes = [] 
 
@@ -133,6 +137,10 @@ const appRoutes: Routes = []
     SellerMappingComponent,
     AddEditMappingsComponent,
     AgentContractListComponent,
+    ActiveContractDateFilterComponent,
+    FabcotTrendsComponent,
+    AddEditForecastComponent,
+    AddEditTrendFormComponent,
    
 
   
@@ -198,7 +206,8 @@ const appRoutes: Routes = []
     ChartsModule,
     InputsModule,
     PDFModule,
-    ExcelModule
+    ExcelModule,
+    ChartsModule
   ],
 
   providers: [AuthGuard,
