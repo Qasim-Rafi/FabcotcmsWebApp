@@ -505,7 +505,7 @@
                                                 </div>
                                                 <div class="col-md-2 mrg-tsm">
                                                     <div class="input-group-append">
-                                                        <button class="btn btn-outline-danger " type="submit"
+                                                        <button class="btn btn-outline-danger " type="button"
                                                             (click)="removeArticle(i)">
                                                             <i class="fas fa-minus fa-xs"></i></button>
                                                     </div>
@@ -1158,7 +1158,7 @@
                                         </ng-select>
                                     </div>
                                     <div class="input-group-append">
-                                        <button class="btn btn-outline-danger " type="submit" (click)="remove(i)">
+                                        <button class="btn btn-outline-danger " type="button" (click)="remove(i)">
                                             <i class="fas fa-minus fa-xs"></i></button>
                                     </div>
                                 </div>
@@ -1166,7 +1166,7 @@
                                 <div class="row">
                                     <div class="col-md-3"></div>
                                     <div class="col-md-7">
-                                        <button class="btn btn-outline-primary btn-sm" (click)="addMore()"> Add Another
+                                        <button type="button" class="btn btn-outline-primary btn-sm" (click)="addMore()"> Add Another
                                             Delivery Date</button>
                                     </div>
                                 </div>
@@ -1266,7 +1266,7 @@
                                         </ng-select>
                                     </div>
                                     <div class="input-group-append">
-                                        <button class="btn btn-outline-danger " type="submit" (click)="remove2(i)">
+                                        <button class="btn btn-outline-danger " type="button" (click)="remove2(i)">
                                             <i class="fas fa-minus fa-xs"></i></button>
                                     </div>
 
@@ -1275,7 +1275,7 @@
                                 <div class="row">
                                     <div class="col-md-3"></div>
                                     <div class="col-md-7">
-                                        <button class="btn btn-outline-primary btn-sm" (click)="add()"> Add Another
+                                        <button type="button" class="btn btn-outline-primary btn-sm" (click)="add()"> Add Another
                                             Delivery
                                             Date</button>
                                     </div>
@@ -1630,16 +1630,16 @@
                                         </ng-select>
                                     </div>
                                     <div class="input-group-append">
-                                        <button class="btn btn-outline-danger " type="submit" (click)="remove(i)">
-                                            <i class="fas fa-minus fa-xs"></i></button>
+                                        <a class="btn btn-outline-danger " type="button" (click)="remove(i)">
+                                            <i class="fas fa-minus fa-xs"></i></a>
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-md-3"></div>
                                     <div class="col-md-7">
-                                        <button class="btn btn-outline-primary btn-sm" (click)="addMore()"> Add Another
-                                            Delivery Date</button>
+                                        <a class="btn btn-outline-primary btn-sm" type="button" (click)="addMore()"> Add Another
+                                            Delivery Date</a>
                                     </div>
                                 </div>
 
@@ -1738,8 +1738,8 @@
                                         </ng-select>
                                     </div>
                                     <div class="input-group-append">
-                                        <button class="btn btn-outline-danger " type="submit" (click)="remove2(i)">
-                                            <i class="fas fa-minus fa-xs"></i></button>
+                                        <a class="btn btn-outline-danger " type="button" (click)="remove2(i)">
+                                            <i class="fas fa-minus fa-xs"></i></a>
                                     </div>
 
                                 </div>
@@ -1747,9 +1747,9 @@
                                 <div class="row">
                                     <div class="col-md-3"></div>
                                     <div class="col-md-7">
-                                        <button class="btn btn-outline-primary btn-sm" (click)="add()"> Add Another
+                                        <a class="btn btn-outline-primary btn-sm" type="button" (click)="add()"> Add Another
                                             Delivery
-                                            Date</button>
+                                            Date</a>
                                     </div>
                                 </div>
 
@@ -2082,7 +2082,7 @@
                                         </ng-select>
                                     </div>
                                     <div class="input-group-append">
-                                        <button class="btn btn-outline-danger " type="submit" (click)="remove(i)">
+                                        <button class="btn btn-outline-danger " type="button" (click)="remove(i)">
                                             <i class="fas fa-minus fa-xs"></i></button>
                                     </div>
                                 </div>
@@ -2090,7 +2090,7 @@
                                 <div class="row">
                                     <div class="col-md-3"></div>
                                     <div class="col-md-7">
-                                        <button class="btn btn-outline-primary btn-sm" (click)="addMore()"> Add Another
+                                        <button class="btn btn-outline-primary btn-sm"  type="button" (click)="addMore()"> Add Another
                                             Delivery Date</button>
                                     </div>
                                 </div>
@@ -2323,7 +2323,7 @@
 
                                                     <div class="col-md-12"><button
                                                             class="btn btn-outline-danger mt-2 float-right"
-                                                            type="submit" (click)="removefield(i)">
+                                                            type="button" (click)="removefield(i)">
                                                             <i class="fas fa-minus fa-xs"></i></button>
                                                     </div>
                                                 </div>
@@ -2338,7 +2338,7 @@
                                         <div class="col-md-3"></div>
                                         <div class="col-md-7"
                                             *ngIf="loggedInDepartmentName=='Yarn Local' || loggedInDepartmentName=='Fabric Export' || loggedInDepartmentName=='Yarn Local Karachi'">
-                                            <button class="btn btn-outline-primary btn-sm" type="submit"
+                                            <button class="btn btn-outline-primary btn-sm" type="button"
                                                 (click)="addfield()">
                                                 <i class="fas fa-plus"></i>
                                                 Add Agent
@@ -2517,7 +2517,7 @@
 
                                                         <div class="col-md-12"><button
                                                                 class="btn btn-outline-danger mt-2 float-right"
-                                                                type="submit" (click)="removefield(i)">
+                                                                type="button" (click)="removefield(i)">
                                                                 <i class="fas fa-minus fa-xs"></i></button>
                                                         </div>
                                                     </div>
@@ -2531,7 +2531,7 @@
                                         <div class="row">
                                             <div class="col-md-3"></div>
                                             <div class="col-md-7">
-                                                <button class="btn btn-outline-primary btn-sm" type="submit"
+                                                <button class="btn btn-outline-primary btn-sm" type="button"
                                                     (click)="addfield()">
                                                     <i class="fas fa-plus"></i>
                                                     Add Another Agent
