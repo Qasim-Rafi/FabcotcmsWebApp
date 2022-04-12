@@ -82,7 +82,7 @@ export class AddNewContractsComponent implements OnInit {
   data2: any = [];
   condition1: string = "We are please to confirm here the booking as per following term and conditions."
   condition: string = "+17% GST AS PER GOVT POLICY";
-  fabricCondition:string="(1)Fabric should be A-grad and export mended therefore any pencil or chalk marks will not be accepted.\n(2) Subject to quality approval and 05 mtrs sample to be sent on the start of production for approval.\n(3) Count variation is not acceptable.\n(4) One yarn source will be preferred in entire quantity but in case of problem, maximun two yarn sources are allowed.\n(5) Any sub-standard / rejected goods will be replaced by seller.\n(6) Partial shipment allowed.\n(7) Maximum 2 cutting faults allowed with allowance of 01 mtr against each cutting fault.\n(8) Tag Flag for each cut-able fault."
+  fabricCondition:string="(1)Fabric should be A-grad and export mended therefore any pencil or chalk marks will not be accepted.\r\n(2) Subject to quality approval and 05 mtrs sample to be sent on the start of production for approval.\r\n(3) Count variation is not acceptable.\r\n(4) One yarn source will be preferred in entire quantity but in case of problem, maximun two yarn sources are allowed.\r\n(5) Any sub-standard / rejected goods will be replaced by seller.\r\n(6) Partial shipment allowed.\r\n(7) Maximum 2 cutting faults allowed with allowance of 01 mtr against each cutting fault.\r\n(8) Tag Flag for each cut-able fault."
   exportCondition:string="1- Please mention the loading port on sale contract"
   exportTitle="We are pleased to confirm the contract of  Yarn as per following terms :"
   title:string="We are pleased to confirm the following contract for A Grade Air jet Fabric"
@@ -143,7 +143,7 @@ brandId : any;
       this.data.currencyId = 2;
     }
     else if(this.loggedInDepartmentName=='Fabric Export'){
-      this.data.otherConditionRemarks="(1) Subject to sample and quality approval.(2) Goods will be exported therefore any pencil or chalk marks will not be accepted.(3) Fabric should be A-graded export mended.(4) Fabric should be under 4 point American inspection system and not more than 12 demerit points per 100 sq. yard.";
+      this.data.otherConditionRemarks="(1) Subject to sample and quality approval.\r\n(2) Goods will be exported therefore any pencil or chalk marks will not be accepted. \r\n(3) Fabric should be A-graded export mended.\r\n(4) Fabric should be under 4 point American inspection system and not more than 12 demerit points per 100 sq. yard.";
       this.data.title="We are pleased to confirm the contract of fabric as per following terms :";
        this.data.currencyId = 2;
     }
