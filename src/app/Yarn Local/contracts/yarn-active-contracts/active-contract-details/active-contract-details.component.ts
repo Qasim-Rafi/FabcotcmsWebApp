@@ -3695,7 +3695,7 @@ toggleShow() {
                         margin: [340 , 0 , 0 , 0],
                         table:{headerRows: 1 , widths:['40%' , '80%'],
                       body: [
-                        [{text:this.contractPartiesData['poNumber'] =='' ? "" :  'Purchase No:'  , style:'heading'} , {text:this.contractPartiesData['poNumber']== '' ? "" : this.contractPartiesData['poNumber'] , style:'heading2' , margin:[-15 , 0, 0,0]}],] }
+                        [{text:this.contractPartiesData['poNumber'] =='' || this.contractPartiesData['poNumber'] == null ? "" :  'Purchase No:'  , style:'heading'} , {text:this.contractPartiesData['poNumber']== ''|| this.contractPartiesData['poNumber'] == null ? "" : this.contractPartiesData['poNumber'] , style:'heading2' , margin:[-15 , 0, 0,0]}],] }
                       },
                       {
                         layout:'noBorders',
@@ -3882,11 +3882,13 @@ toggleShow() {
                       // ] }
                       // },
                       {
+
+                        
                         layout:'noBorders',
-                        margin: [70 , 4 , 0 , 0],
-                        table:{headerRows: 1 , widths:['20%' , '80%'],
+                        margin:this.contractRemarksData['contractRemarks'] == null || this.contractRemarksData['contractRemarks'] == ''?[0 , -10 , 0 , 0]: [70 , 4 , 0 , 0],
+                        table:{headerRows: 1 , widths:this.contractRemarksData['contractRemarks'] == null || this.contractRemarksData['contractRemarks'] == ''?['0%' , '0%']:['20%' , '80%'],
                       body: [
-                        [{text:'Remarks:'  , style:'heading'} , {text: this.contractRemarksData['contractRemarks'] , style:'heading2'}],] }
+                        [{text:this.contractRemarksData['contractRemarks'] == null || this.contractRemarksData['contractRemarks'] == ''?"" :'Remarks:'  , style:'heading'} , {text: this.contractRemarksData['contractRemarks'] , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
@@ -4007,7 +4009,7 @@ toggleShow() {
                         margin: [340 , 0 , 0 , 0],
                        table:{headerRows: 1 , widths:['45%' , '75%'],
                       body: [
-                        [{text:this.contractPartiesData['poNumber'] =='' ? "" :  'Purchase No:'  , style:'heading'} , {text:this.contractPartiesData['poNumber']== '' ? "": this.contractPartiesData['poNumber']  , style:'heading2' , margin:[-15 , 0, 0,0]}],] }
+                        [{text:this.contractPartiesData['poNumber'] =='' || this.contractPartiesData['poNumber'] == null ? "" :  'Purchase No:'  , style:'heading'} , {text:this.contractPartiesData['poNumber']== '' ? "": this.contractPartiesData['poNumber']  , style:'heading2' , margin:[-15 , 0, 0,0]}],] }
                       },
                       {
                         layout:'noBorders',
@@ -4190,11 +4192,12 @@ toggleShow() {
                       },
                       
                       {
+                        
                         layout:'noBorders',
-                        margin: [70 , 0 , 0 , 0],
-                        table:{headerRows: 1 , widths:['20%' , '80%'],
+                        margin:this.contractRemarksData['contractRemarks'] == null || this.contractRemarksData['contractRemarks'] == ''?[0 , -10 , 0 , 0]: [70 , 4 , 0 , 0],
+                        table:{headerRows: 1 , widths:this.contractRemarksData['contractRemarks'] == null || this.contractRemarksData['contractRemarks'] == ''?['0%' , '0%']:['20%' , '80%'],
                       body: [
-                        [{text:'Remarks:'  , style:'heading'} , {text: this.contractRemarksData['contractRemarks'] , style:'heading2'}],] }
+                        [{text:this.contractRemarksData['contractRemarks'] == null || this.contractRemarksData['contractRemarks'] == ''?"" :'Remarks:' , style:'heading'} , {text: this.contractRemarksData['contractRemarks'] , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
