@@ -5190,6 +5190,13 @@ yarnExportInvoicesReportPrint(){
                         [{text:'Buyer Name:'  , style:'heading'} , {text: this.contractPartiesData['buyerName'], style:'heading5'}],] }
                       },
                       {
+                        layout:'noBorders',
+                        margin: [70 , 7 , 0 , 0],
+                        table:{headerRows: 1 , widths:['20%' , '80%'],
+                      body: [
+                        [{text:'LC Opner:'  , style:'heading'} , {text: this.contractPartiesData['lcOpner'], style:'heading5'}],] }
+                      },
+                      {
                         margin: [70 , 10 , 0 , 10],
                        
                         table:{
@@ -5207,7 +5214,7 @@ yarnExportInvoicesReportPrint(){
                         // row.articleName  , row.contractArticleQuantity, row.contractArticleCommission,
                         // row.contractArticleRate 
                              {text: row.articleName + '\n' + this.contractProductData['construction'] , style: 'tableheader3'} , 
-                             {text:   this.contractCostingData['quantityToleranceValue'] != '' &&  this.contractCostingData['quantityToleranceValue'] != 0 ? row.contractArticleQuantity + '\n' +  "+/-" + this.contractCostingData['quantityToleranceValue'] + '%' : row.contractArticleQuantity  , style: 'tableheader3'},
+                             {text:   this.contractCostingData['quantityToleranceValue'] != '' &&  this.contractCostingData['quantityToleranceValue'] != 0 ? row.contractArticleQuantity + '\n' +  "+/-" + this.contractCostingData['quantityToleranceValue'] + '%' +' '+ row.uomUnit : row.contractArticleQuantity  , style: 'tableheader3'},
                              {text: row.contractArticleRate == null ? '' : this.contractCostingData['rateCurrencyName'] == 'USD' ?  "$ " + row.contractArticleRate : this.contractCostingData['rateCurrencyName'] == 'PKR' ? "RS " + row.contractArticleRate : this.contractCostingData['rateCurrencyName'] == 'EUR' ?  "€ " + row.contractArticleRate : this.contractCostingData['rateCurrencyName'] == 'GBP' ?  "GBP " + row.contractArticleRate : row.contractArticleRate , style: 'tableheader3'},
 
                              {text: row.contractArticleCommission == null ? '' : row.contractArticleCommission + "%" , style: 'tableheader3'},
