@@ -56,7 +56,7 @@ constructor(    private service: ServiceService,
    
    // this.router.navigate(['/saleBill'], { queryParams: {contractId:row.contractId , invNo : row.billInvoiceNumber,billname} });
    const url = this.router.serializeUrl(
-    this.router.createUrlTree(['/saleBill'],{ queryParams: {contractId:row.contractId , invNo : row.billInvoiceNumber,billname}})
+    this.router.createUrlTree(['/saleBill'],{ queryParams: {contractId:row.contractId, billNumber:row.billNumber, invNo : row.billInvoiceNumber,billname}})
   );
   window.open(url, '_blank');
     // this.router.navigate(['/saleBill'],{ queryParams: {contractId:row.contractId , invNo : row.billInvoiceNumber,billname} }).then((result) => {
@@ -68,7 +68,7 @@ constructor(    private service: ServiceService,
     //this.router.navigate(['/saleBill'], { queryParams: {contractId:row.contractId , invNo : row.billInvoiceNumber,billname} });
 
     const url = this.router.serializeUrl(
-      this.router.createUrlTree(['/saleBill'],{ queryParams: {contractId:row.contractId , invNo : row.billInvoiceNumber,billname} })
+      this.router.createUrlTree(['/saleBill'],{ queryParams: {contractId:row.contractId , billNumber:row.billNumber ,invNo : row.billInvoiceNumber,billname} })
     );
     window.open(url, '_blank');
   }

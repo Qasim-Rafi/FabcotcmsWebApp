@@ -77,7 +77,7 @@ this.getDataBreakup();
   getData() {
     this.spinner.show();
     this.http
-      .get(`${environment.apiUrl}/api/BillingPayments/GetContractInvoiceBillById/` + this.queryParems.contractId)
+      .get(`${environment.apiUrl}/api/BillingPayments/GetContractInvoiceBillById/` + this.queryParems.contractId +'/'+this.queryParems.billNumber)
       .subscribe(res => {
         this.response = res;
 
