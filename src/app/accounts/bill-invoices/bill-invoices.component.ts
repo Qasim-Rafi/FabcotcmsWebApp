@@ -54,11 +54,23 @@ constructor(    private service: ServiceService,
   }
   saleinvoicebill(row,billname){
    
-    this.router.navigate(['/saleBill'], { queryParams: {contractId:row.contractId , invNo : row.billInvoiceNumber,billname} });
+   // this.router.navigate(['/saleBill'], { queryParams: {contractId:row.contractId , invNo : row.billInvoiceNumber,billname} });
+   const url = this.router.serializeUrl(
+    this.router.createUrlTree(['/saleBill'],{ queryParams: {contractId:row.contractId , invNo : row.billInvoiceNumber,billname}})
+  );
+  window.open(url, '_blank');
+    // this.router.navigate(['/saleBill'],{ queryParams: {contractId:row.contractId , invNo : row.billInvoiceNumber,billname} }).then((result) => {
+    //   window.open('_blank');
+    // });
   }
   saleinvoiceBreakbill(row,billname){
    
-    this.router.navigate(['/saleBill'], { queryParams: {contractId:row.contractId , invNo : row.billInvoiceNumber,billname} });
+    //this.router.navigate(['/saleBill'], { queryParams: {contractId:row.contractId , invNo : row.billInvoiceNumber,billname} });
+
+    const url = this.router.serializeUrl(
+      this.router.createUrlTree(['/saleBill'],{ queryParams: {contractId:row.contractId , invNo : row.billInvoiceNumber,billname} })
+    );
+    window.open(url, '_blank');
   }
   public onFilter(inputValue: string): void {
     this.rows = process(this.temp, {
