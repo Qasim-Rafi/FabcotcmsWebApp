@@ -28,6 +28,7 @@ response:any=[];
 dateformater: Dateformater = new Dateformater();  
 dashboardAmnt : any [];
 ids:any;
+idsUpdates:any;
 temp: any = [];
 deptName : any;
 public mySelection: string[] = this.rows;
@@ -242,9 +243,17 @@ constructor(    private service: ServiceService,
  }
  else{
     this.ids=this.mySelection;
+    this.idsUpdates=this.ids
+    for(let i=0;i<=this.idsUpdates.length; i++){
+            var d= this.rows.filter(x=>x.id == this.idsUpdates[i]);
+            if(d.length >0 ){
+
+              this.idsUpdates[i] = d[0].contractId +'-'+ d[0].billNumber
+            }
+    }
     let varr=  {
       "taxPercentage": this.datatext.textValue,
-       "contractIds":this.ids,
+       "contractIds":this.idsUpdates,
        "departmentId":this.deptName
     }
     this.spinner.show();
@@ -256,7 +265,7 @@ constructor(    private service: ServiceService,
         if (this.response.success == true){
           this.toastr.success(this.response.message, 'Message.');
           this.datatext.textValue = ''
-          this.ngOnInit();
+          this.getafterGenrated();
           this.rows = process(this.temp,this.state)
           // this.dataBinding.rebind()
           // this.dataBinding.ngOnInit()
@@ -282,7 +291,46 @@ constructor(    private service: ServiceService,
       });
     }
   }
+getafterGenrated(){
 
+    // this.data2.toDate = this.dateformater.toModel(this.data2.toDate)
+    // this.data2.FromDate = this.dateformater.toModel(this.data2.FromDate)
+    if(this.deptName == undefined){
+      this.deptName = 3;
+    }
+    this.spinner.show();
+    this.http
+    .get(`${environment.apiUrl}/api/BillingPayments/GetAllContractBillForInvoices/`+this.deptName+'/'+ this.data2.toDate + '/' + this.data2.FromDate)
+    .subscribe(res => {
+      this.response = res;
+     
+    if(this.response.success==true)
+    {
+    this.data=this.response.data;
+    this.dashboardAmnt = this.data
+    this.temp = [...this.data.objList]; 
+    this.rows = this.data.objList;
+
+
+     //cb(this.data.objList);
+    this.spinner.hide();
+
+    }
+    else{
+      this.toastr.error(this.response.message, 'Message.');
+      this.spinner.hide();
+    
+    }
+
+    }, err => {
+      if ( err.status == 400) {
+  this.toastr.error(err.error.message, 'Message.');
+  this.spinner.hide();
+
+      }
+    });
+  
+}
   print(){
   
     this.ids=this.mySelection;
