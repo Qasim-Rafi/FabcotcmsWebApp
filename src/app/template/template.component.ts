@@ -127,6 +127,11 @@ this.isFabricLocal=false;
       this.isHomeTextileandGarments= false;
  this.isFabricLocal=false;
     } 
+    else if(this.loggedInDepartmentId == '10'){
+      this.isYarnLocal = true;
+      this.isHomeTextileandGarments= false;
+ this.isFabricLocal=false;
+    } 
    
   //   $('li.dropdown.mega-dropdown a').on('click', function (event) {
   //     $(this).parent().toggleClass("open");
