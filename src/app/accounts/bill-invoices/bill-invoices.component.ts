@@ -334,14 +334,21 @@ getafterGenrated(){
   print(){
   
     this.ids=this.mySelection;
-
+    this.idsUpdates=this.ids
   
     if(this.ids.length === 0  || this.mySelection.length === 0  ){
       this.toastr.error("PLease select atleast one bill to generate print" , 'Message')
     }
     else{
-       this.ids = [...new Set(this.ids)];
-  localStorage.setItem('bulkPrint', this.ids);
+      for(let i=0;i<=this.idsUpdates.length; i++){
+        var d= this.rows.filter(x=>x.id == this.idsUpdates[i]);
+        if(d.length >0 ){
+
+          this.idsUpdates[i] = d[0].contractId
+        }
+}
+       this.idsUpdates = [...new Set(this.idsUpdates)];
+  localStorage.setItem('bulkPrint', this.idsUpdates);
   this.router.navigate([]).then((result) => {
     window.open('/accBulk' , '_blank');
   });
