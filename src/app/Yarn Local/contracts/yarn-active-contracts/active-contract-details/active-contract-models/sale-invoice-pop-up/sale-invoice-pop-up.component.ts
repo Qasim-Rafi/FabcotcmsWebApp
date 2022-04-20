@@ -217,6 +217,8 @@ if(event==7){
 
     }
     else{
+      this.data.quantity=this.data.quantity.trim()
+
     let varr = {
 
       "contractId": parseInt(this.contractId),
@@ -330,6 +332,7 @@ this.spinner.show();
     if(this.data.fobValue == undefined){
       this.data.fobValue = ''
     }
+      this.data.quantity=this.data.quantity.trim()
     // let sum=parseInt(this.data.quantity)+parseInt(this.saleInvoiceQuantity);
     // if(sum>this.quantity ){
     //   this.toastr.error("Total Sale Invoice Quantity"+"["+sum+"]"+ "should be less than contract quantity"+"["+this.quantity+"]", 'Message.');

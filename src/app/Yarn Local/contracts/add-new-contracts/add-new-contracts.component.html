@@ -2454,6 +2454,52 @@
                                         </div>
 
 
+                                        <div class="form-group row"
+                                        *ngIf="loggedInDepartmentName == 'Comber noil'">
+                                        <label for="code" class="col-md-3 col-form-label control-label">Commission Buyer
+                                            Side:</label>
+
+                                        <div class="col-md-7">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="input-group">
+                                                        <input type="number" min="0" placeholder="Comm%"
+                                                            #buyersideCommision="ngModel" class="form-control"
+                                                            [(ngModel)]="data.buyersideCommision"
+                                                            name="buyersideCommision">
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text" id="basic-addon2">per</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4 mrg-tsm">
+                                                    <ng-select name="buyersideCommisionUOMId "
+                                                        #buyersideCommisionUOMId="ngModel"
+                                                        [(ngModel)]="data.buyersideCommisionUOMId"
+                                                        placeholder="-- Unit UOM --">
+                                                        <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
+                                                        </ng-option>
+                                                    </ng-select>
+                                                </div>
+
+
+                                                <div class="col-md-4 mrg-tsm"
+                                                   >
+
+                                                    <input type="text" placeholder="Additional Info"
+                                                        class="form-control"
+                                                        [(ngModel)]="data.buyerSideCommAdditionalInfo"
+                                                        name="buyerSideCommAdditionalInfo"
+                                                        #buyerSideCommAdditionalInfo="ngModel">
+                                                </div>
+                                            </div>
+                                            <small id="passwordHelpBlock" class="form-text text-lightgrey">
+                                                Kickback in %age, If UOM not selected
+                                            </small>
+                                        </div>
+                                    </div>
+
 
                                         <div class="form-group row">
                                             <label for="code" class="col-md-3 col-form-label control-label">Foreign
