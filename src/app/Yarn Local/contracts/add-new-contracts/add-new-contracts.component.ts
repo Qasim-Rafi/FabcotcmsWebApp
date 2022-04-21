@@ -147,7 +147,13 @@ brandId : any;
       this.data.title="We are pleased to confirm the contract of fabric as per following terms :";
        this.data.currencyId = 2;
     }
-
+    else if(this.loggedInDepartmentName=='Comber noil'){
+      this.data.otherConditionRemarks=this.condition;
+      this.data.title="We are pleased to confirm the contract of fabric as per following terms :";
+      this.data.currencyId = 1;
+      this.data.quantityUOMId = 8;
+    // this.data.rateUOMId = 7,
+    }
     let olddate = new Date();
     let latest_date = this.datepipe.transform(olddate, 'yyyy-MM-dd');
     this.data.enquiryDate = this.dateformater.fromModel(latest_date);

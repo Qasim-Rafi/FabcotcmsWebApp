@@ -275,10 +275,21 @@
                         Seller
                     </button>
                     <button class="btn btn-outline-primary border-rounded btn-sm px-3 mr-1"
-                        *ngIf="loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Comber noil' " (click)="getPrintData('supplier')">
+                    *ngIf="loggedInDepartmentName == 'Comber noil' " (click)="getPrintData('ComberBuyer')">
+                    <i class="fas fa-print"></i>
+                    Buyer
+                </button>
+                <button class="btn btn-outline-primary border-rounded btn-sm px-3 mr-1"
+                *ngIf="loggedInDepartmentName == 'Comber noil' " (click)="getPrintData('Combersupplier')">
+                <i class="fas fa-print"></i>
+                Supplier
+            </button>
+                    <button class="btn btn-outline-primary border-rounded btn-sm px-3 mr-1"
+                        *ngIf="loggedInDepartmentName == 'Yarn Export'" (click)="getPrintData('supplier')">
                         <i class="fas fa-print"></i>
                         Supplier
                     </button>
+                    
                     <button class="btn btn-outline-primary border-rounded btn-sm px-3 mr-1"
                         *ngIf="loggedInDepartmentName == 'Yarn Import'" (click)="getPrintData('supplier2')">
                         <i class="fas fa-print"></i>
