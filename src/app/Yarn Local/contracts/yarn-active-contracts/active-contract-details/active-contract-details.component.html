@@ -1460,25 +1460,10 @@
                                                 </dd>
                                             </dl>
 
-                                            <dl class="row"
-                                            *ngIf="loggedInDepartmentName == 'Comber noil'">
-                                            <dt class="col-sm-4">Buyer side Commission:
-                                            </dt>
-                                            <dd class="col-sm-6">
-
-                                                {{contractCostingData.rateCurrencyName}}
-                                                {{contractCommissionData.buyersideCommision}} %
-                                                <b *ngIf="contractCommissionData.commissionAmountBuyer!=null">/ </b>
-
-                                                [{{contractCostingData.rateCurrencyName}}
-                                                {{contractCommissionData.commissionAmountBuyer}} ] <span
-                                                    *ngIf="contractCommissionData.buyerSideCommAdditionalInfo != null">
-                                                    {{contractCommissionData.buyerSideCommAdditionalInfo}}</span>
-                                            </dd>
-                                        </dl>
+                    
 
                                             <dl class="row"
-                                                *ngIf="loggedInDepartmentName == 'Yarn Local' ||loggedInDepartmentName=='Yarn Local Karachi'">
+                                                *ngIf="loggedInDepartmentName == 'Yarn Local' ||loggedInDepartmentName=='Yarn Local Karachi' || loggedInDepartmentName == 'Comber noil'">
                                                 <dt class="col-sm-4">Buyer side Commission:
                                                 </dt>
                                                 <dd class="col-sm-6"
