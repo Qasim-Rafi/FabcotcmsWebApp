@@ -146,8 +146,10 @@ this.selectedCar =1
     //   this.temp = [...data]; 
     //   this.rows = data;
     // });
-    this.getdata('Mar');
-    this.datamethod('Mar');
+    let m= this.months.filter(x=>x.id ==this.month)
+    this.getdata(m[0].name);
+    // this.getdata('Mar');
+    this.datamethod(m[0].name);
     
     this.changedata(1)
     var currentTime = new Date();
@@ -381,9 +383,9 @@ this.ngOnInit()
     this.datamethod(m[0].name)
   }
   getdata(event){
-
+    let m= this.months.filter(x=>x.id ==this.month)
     this.http
-    .get(`${environment.apiUrl}/api/BillingPayments/GetFabcotForcastData/`+ this.month+'/'+this.selectedCar)
+    .get(`${environment.apiUrl}/api/BillingPayments/GetFabcotForcastData/`+ event +'/'+this.selectedCar)
     .subscribe(res => {
       this.response = res;
 
