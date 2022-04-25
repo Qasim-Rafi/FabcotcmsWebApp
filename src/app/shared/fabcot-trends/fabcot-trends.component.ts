@@ -383,7 +383,7 @@ this.ngOnInit()
   getdata(event){
 
     this.http
-    .get(`${environment.apiUrl}/api/BillingPayments/GetFabcotForcastData/`+ event+'/'+this.selectedCar)
+    .get(`${environment.apiUrl}/api/BillingPayments/GetFabcotForcastData/`+ this.month+'/'+this.selectedCar)
     .subscribe(res => {
       this.response = res;
 
