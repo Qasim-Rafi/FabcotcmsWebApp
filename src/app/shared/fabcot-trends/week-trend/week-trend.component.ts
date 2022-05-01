@@ -7,18 +7,16 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import Swal from 'sweetalert2'
 import { ToastrService } from 'ngx-toastr';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { AddEditTrendFormComponent } from './add-edit-trend-form/add-edit-trend-form.component';
-import { AddEditForecastComponent } from './add-edit-forecast/add-edit-forecast.component';
-import { align } from '@progress/kendo-drawing';
-//import { IPointRenderEventArgs } from '@syncfusion/ej2-angular-charts';
+import { AddEditTrendFormComponent } from '../add-edit-trend-form/add-edit-trend-form.component';
+import { AddEditForecastComponent } from '../add-edit-forecast/add-edit-forecast.component';
 
 @Component({
-  selector: 'app-fabcot-trends',
-  templateUrl: './fabcot-trends.component.html',
-  styleUrls: ['./fabcot-trends.component.css']
+  selector: 'app-week-trend',
+  templateUrl: './week-trend.component.html',
+  styleUrls: ['./week-trend.component.css']
 })
-export class FabcotTrendsComponent implements OnInit {
-  currDiv: string = 'A';
+export class WeekTrendComponent implements OnInit {
+
   daysInCurrentMonth:any;
   public primaryXAxis: Object;
   public chartData: Object[];
@@ -27,10 +25,8 @@ export class FabcotTrendsComponent implements OnInit {
   public tooltip: Object;
   public title: string;
   public marker: Object;
-   minticks :any=[] ;
-    maxticksXX:any=[]; 
-   stepvaluesize:any=[] ;
- minvaluetest:any=125
+
+
 
 token='eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJOYW1lSWRlbnRpZmllciI6IjM4IiwiTmFtZSI6Inlhcm5leHBvcnQgc2FtYW4iLCJEZXB0SWRlbnRpZmllciI6IjEiLCJyb2xlIjoiU3VwZXJBZG1pbiIsIm5iZiI6MTY0NzIzNTg0OSwiZXhwIjoxNjQ3NjY3ODQ5LCJpYXQiOjE2NDcyMzU4NDl9.gokRtzhx8p5fb_qJFDphCsjYYh7rcthrbiPnR2E7gEPkQxyOIh5TKgRS-LJnp0sl-QI82Zr-7ScJjK9UiKSuQA'
 
@@ -46,6 +42,7 @@ token='eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJOYW1lSWRlbnRpZmllciI6IjM4IiwiTmFt
   month:number;
   actualdata:any;
   labelfordays:any;
+  startDate:any;
 year:any;
   cars = [
       // { id: 1, name: 'NYCF' },
@@ -58,20 +55,21 @@ year:any;
 data:any =[];
 days:any =[];
 data12:any={};
+currentDate:any;
 forecast:any=[];
 months = [
-  { id: 1,name: 'Jan' },
-  { id: 2, name: 'Feb' },
-  { id: 3,name: 'Mar' },
-  { id: 4,name: 'Apr' },
-  { id: 5, name: 'May' },
-  { id: 6, name: 'Jun' },
-  { id: 7, name: 'Jul' },
-  { id: 8, name: 'Aug' },
-  { id: 9, name: 'Sep'  },
-  { id: 10,name: 'Oct' },
-  { id: 11, name: 'Nov' },
-  { id: 12, name: 'Dec' },
+  { id: 1,name: 'First Week' },
+  { id: 2, name: 'Second Week' },
+  { id: 3,name: 'Third Week' },
+  { id: 4,name: 'Fourth Week' },
+   { id: 5, name: 'Fifth Week' },
+  // { id: 6, name: 'Jun' },
+  // { id: 7, name: 'Jul' },
+  // { id: 8, name: 'Aug' },
+  // { id: 9, name: 'Sep'  },
+  // { id: 10,name: 'Oct' },
+  // { id: 11, name: 'Nov' },
+  // { id: 12, name: 'Dec' },
 ];
 data1:any =[];
 data2:any =[65, 59, 80, 59, 80, 78, 80, 59, 80, 81, 56, 58];
@@ -99,7 +97,14 @@ lineChartLabel: Label[] = [];
 this.selectedCar =1
     var date  = new Date();
     var month  = date.getMonth() +1;
-    this.month =month
+
+    var d = new Date();
+   this.startDate = d.getDate();
+    var day = d.getDay();
+    
+    var weekOfMonth = Math.ceil((this.startDate + 6 - day)/7);
+    this.month =weekOfMonth
+
     //localStorage.setItem('token',this.token)
 //     const date = new Date();
 // const currentYear = date.getFullYear();
@@ -169,6 +174,27 @@ this.selectedCar =1
     // gradient.addColorStop(0, 'rgba(229, 239, 255, 1)')
     // gradient.addColorStop(1, '#FFFFFF')
   }
+  // const monthWeek = (s) => {
+  //   const [y, m, d] = s.split('-'); // parse date string
+  //   const date = new Date(y, m - 1, d); // create date object
+  //   date.setDate(d - ((date.getDay() + 6) % 7)); // adjust date to previous Monday
+  //   return Math.ceil(date.getDate() / 7); // return week number of the month
+  // };
+  
+  // console.log(monthWeek('2020-04-04'));
+  // 5
+
+  getISOWeekInMonth(date) {
+    var d = new Date(+date);
+    // if (isNaN(d)) 
+    // return;
+    // Move to previous Monday
+    d.setDate(d.getDate() - d.getDay() + 1);
+    // Week number is ceil date/7
+    return {month: +d.getMonth()+1,
+            week: Math.ceil(d.getDate()/7)};
+
+}
 //   public pointRender(args: IPointRenderEventArgs): void {
 //     let seriesColor: string[] = ['red'];
 //     //  args.fill = seriesColor[args.point.index];
@@ -387,16 +413,12 @@ this.ngOnInit()
   getdata(event){
     let m= this.months.filter(x=>x.id ==this.month)
     this.http
-    .get(`${environment.apiUrl}/api/BillingPayments/GetFabcotForcastData/`+ event +'/'+this.selectedCar +'/'+ "Month")
+    .get(`${environment.apiUrl}/api/BillingPayments/GetFabcotForcastData/`+ event +'/'+this.selectedCar +'/'+ "Week")
     .subscribe(res => {
       this.response = res;
 
       if (this.response.success == true) {
    this.actualdata =this.response.data
-  //  this.minticks =this.response.data[0].minValue;
-  //  this.maxticksXX =this.response.data[0].maxValue;
-  //  this.stepvaluesize =this.response.data[0].stepSize;
-
    var a = new Date();
    var r = a.getDate();
    var dt = new Date();
@@ -506,17 +528,8 @@ this.ngOnInit()
     scales : {
       yAxes: [{
          ticks: {
-          //  suggestedMin:2700,
-          //  suggestedMax:2950,
-          //  maxTicksLimit:10,
-           min:2785,
-           max : 2935,
-          stepSize:13,
-
-          // min: this.ticks[this.ticks.length - 1],
-          // max: this.ticks[0],
-            
-       
+            max : 200,
+            min: 0
           }
       }]
    
@@ -860,7 +873,5 @@ public chartClicked1(e:any):void  {
   )
  }
 }
-ShowDiv(divVal: string) {
-  this.currDiv = divVal;
-}
+
 }

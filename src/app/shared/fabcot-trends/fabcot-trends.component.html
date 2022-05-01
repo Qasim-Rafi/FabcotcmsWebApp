@@ -251,17 +251,37 @@
       <img src="../../../assets/fabcot-white.png" width="150" height="32" class="d-inline-block align-top" alt="">
       
     </a>
+    <div class="row col-md-4">
+      <!-- <button type="button" class="btn btn-primary col-md-6" (click)="ShowDiv('A')">Month</button>
+      <button type="button" class="btn btn-primary col-md-5 mr-1" (click)="ShowDiv('B')">Year</button> -->
+
+     
+        <div class="toggle_radio">
+          <input type="radio" checked class="toggle_option" id="first_toggle" name="toggle_option" (click)="ShowDiv('A')">
+          <input type="radio"  class="toggle_option" id="second_toggle" name="toggle_option" (click)="ShowDiv('B')">
+          <input type="radio" class="toggle_option" id="third_toggle" name="toggle_option"  (click)="ShowDiv('C')">
+          <label for="first_toggle"><p>Week</p></label>
+          <label for="second_toggle" ><p>Month</p></label>
+          <label for="third_toggle" ><p>Year</p></label>
+          <div class="toggle_option_slider">
+          </div>
+        </div>
+
+
+
+
+       </div>
     <div class="row col-md-3">
       <button type="button" class="btn btn-primary col-md-5 mr-1" (click)="add('Add','Form')">Add Values</button>
       <button type="button" class="btn btn-primary col-md-6" (click)="addfor('Add','Form')">Add Company</button>
        </div>
   </nav>
-  <section class="con">
+  <section class="con" *ngIf="currDiv == 'B'">
   <div class="row">
     <div class="col-md-12">
 
    <div class="row"> 
-  <div class="col-md-4"><h5 class="card-title">Forecast  {{(year)}}</h5> </div>   
+  <div class="col-md-4"><h5 class="card-title font-weight-bold">Monthly Forecast  {{(year)}}</h5> </div>   
   <div class="col-md-4"> 
     <ng-select [(ngModel)]="selectedCar" (change)="changedata($event)">
     <ng-option *ngFor="let car of cars" [value]="car.id">{{car.name}}</ng-option>
@@ -303,7 +323,7 @@
   
 
       <div class="row"> 
-        <div class="col-md-8"><h5 class="card-title">Trends  {{(year)}}</h5> </div>  
+        <div class="col-md-8"><h5 class="card-title font-weight-bold">Monthly Trends  {{(year)}}</h5> </div>  
       </div>
       <!-- <h5 class="card-title">Trends  {{(year)}}</h5> -->
       <div class="card p-2 mt-2 shadow">
@@ -408,4 +428,11 @@
   
   
   </section>
+
+  <div *ngIf="currDiv == 'C'">
+  <app-year-trends></app-year-trends>
+  </div>
+  <div *ngIf="currDiv == 'A'">
+    <app-week-trend></app-week-trend>
+    </div>
   <router-outlet></router-outlet>

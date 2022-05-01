@@ -336,7 +336,7 @@
 
               </ng-template>
             </ngx-datatable-column> -->
-            <ngx-datatable-column name="Payment Term S|B" >
+            <ngx-datatable-column name="Payment Term S|B"  prop="paymentTerm" >
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 {{ row.paymentTerm }}  
 
@@ -1004,6 +1004,7 @@
               [pageable]="true"
               [filterable]="true"
               
+             
               >
               <!-- [selectedKeys]="mySelection" -->
               <!-- <ng-template kendoGridToolbarTemplate>

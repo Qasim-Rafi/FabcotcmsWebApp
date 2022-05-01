@@ -84,6 +84,9 @@ import { FabcotTrendsComponent } from './shared/fabcot-trends/fabcot-trends.comp
 import { AddEditForecastComponent } from './shared/fabcot-trends/add-edit-forecast/add-edit-forecast.component';
 import { AddEditTrendFormComponent } from './shared/fabcot-trends/add-edit-trend-form/add-edit-trend-form.component';
 import { ChartsModule } from 'ng2-charts';
+import { YearTrendsComponent } from './shared/fabcot-trends/year-trends/year-trends.component';
+
+import { WeekTrendComponent } from './shared/fabcot-trends/week-trend/week-trend.component';
 
 const appRoutes: Routes = [] 
 
@@ -141,6 +144,8 @@ const appRoutes: Routes = []
     FabcotTrendsComponent,
     AddEditForecastComponent,
     AddEditTrendFormComponent,
+    YearTrendsComponent,
+    WeekTrendComponent,
    
 
   

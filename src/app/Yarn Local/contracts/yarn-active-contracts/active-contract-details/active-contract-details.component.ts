@@ -5784,7 +5784,7 @@ yarnExportInvoicesReportPrint(){
                      
                       {
                         layout:'noBorders',
-                        margin: [70 , 25 , 0 , 0],
+                        margin: [10 , 25 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
                         [{text:'Supplier Name:'  , style:'heading'} , {text: this.contractPartiesData['sellerName'] , style:'heading5'}],] }
@@ -5792,20 +5792,20 @@ yarnExportInvoicesReportPrint(){
                    
                       {
                         layout:'noBorders',
-                        margin: [70 , 7 , 0 , 0],
+                        margin: [10 , 7 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
                         [{text:'Buyer Name:'  , style:'heading'} , {text: this.contractPartiesData['buyerName'], style:'heading5'}],] }
                       },
                       {
                         layout:'noBorders',
-                        margin: [70 , 7 , 0 , 0],
+                        margin: [10 , 7 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
                         [{text:'LC Opner:'  , style:'heading'} , {text: this.contractPartiesData['lcOpner'], style:'heading5'}],] }
                       },
                       {
-                        margin: [70 , 10 , 0 , 10],
+                        margin: [10 , 10 , 0 , 10],
                        
                         table:{
                           headerRows:1,
@@ -5838,7 +5838,7 @@ yarnExportInvoicesReportPrint(){
                       {
 
                         layout:'noBorders',
-                        margin: [70 , 7 , 0 , 0],
+                        margin: [10 , 7 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
                         [{text:'Packing:'  , style:'heading'} , {text: this.contractPaymentData['packingName'] , style:'heading2'}],] }
@@ -5863,7 +5863,7 @@ yarnExportInvoicesReportPrint(){
                      
                       {
                         layout:'noBorders',
-                        margin: [70 , 7 , 0 , 0],
+                        margin: [10 , 7 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
                         [{text:'Payment Term:'  , style:'heading'} ,
@@ -5871,7 +5871,7 @@ yarnExportInvoicesReportPrint(){
                       },
                       {
                         layout:'noBorders',
-                        margin: [70 , 7 , 0 , 0],
+                        margin: [10 , 7 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
                         [{text:'Delivery Term:'  , style:'heading'} , {text: this.contractPaymentData['priceTermName'] +" " +this.contractPaymentData['destinationName'] , style:'heading2'}],] }
@@ -5879,7 +5879,7 @@ yarnExportInvoicesReportPrint(){
                       {
 
                         layout:'noBorders',
-                        margin: [70 , 7 , 0 , 0],
+                        margin: [10 , 7 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
                         [{text:'Container:'  , style:'heading'} ,
@@ -5888,7 +5888,7 @@ yarnExportInvoicesReportPrint(){
                       },
                       {
                         layout:'noBorders',
-                        margin: [70 , 7 , 0 , 0],
+                        margin: [10 , 7 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
                           [{text:'Deliveries Date:'  , style:'heading'} , {text: this.deliveryData.map((row=>row.supplierDateDay)) , style:'heading2'}],] }
@@ -5912,35 +5912,49 @@ yarnExportInvoicesReportPrint(){
                       // },
                       {
                         layout:'noBorders',
-                        margin: [70 , 7 , 0 , 0],
+                        margin: [10 , 7 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
                         [{text:'Remarks:'  , style:'heading'} , {text: this.contractRemarksData['contractRemarks'] , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
-                        margin: [70 , 7 , 0 , 0],
+                        margin: [10 , 7 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '50%'],
                       body: [
                         [{text:'Other Conditions:' , style:'heading'} , {text: this.contractRemarksData['otherConditionRemarks'] , style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
-                        margin: [20 , 25 , 0 , 0],
+                        margin: [10 , 35 , 0 , 0],
                         table:{headerRows: 1 , widths:['30%'],
                       body: [
                         [{text:'Thanks And Regards:'  , style:'heading'}],] }
                       },
                       {
                         layout:'noBorders',
-                        margin: [20 , 25 , 0 , 0],
+                        margin: [10 , 80 , 0 , 0],
+                        table:{headerRows: 1 , widths:['30%'],
+                      body: [
+                        [{text:'----------------'  , style:'heading'}],] }
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [10 , 25 , 0 , 0],
+                        table:{headerRows: 1 , widths:['30%'],
+                      body: [
+                        [{text:'Manager Marketing'  , style:'heading'}],] }
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [10 , 25 , 0 , 0],
                         table:{headerRows: 1 , widths:['70%'],
                       body: [
                         [{text:'For FabCot International Enterprises'  , style:'heading'}],] }
                       },
                       {
                         layout:'noBorders',
-                        margin: [20 , 120 , 0 , 0],
+                        margin: [10 , 120 , 0 , 0],
                         table:{headerRows: 1 , widths:[ '100%'],
                       body: [
                         [ {text:'NOTE: This is a system generated Contract and does not require any signature.'  , style:'tableheader' }],] }

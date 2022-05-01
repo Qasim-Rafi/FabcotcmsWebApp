@@ -7,17 +7,17 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import Swal from 'sweetalert2'
 import { ToastrService } from 'ngx-toastr';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { AddEditTrendFormComponent } from './add-edit-trend-form/add-edit-trend-form.component';
-import { AddEditForecastComponent } from './add-edit-forecast/add-edit-forecast.component';
-import { align } from '@progress/kendo-drawing';
-//import { IPointRenderEventArgs } from '@syncfusion/ej2-angular-charts';
+import { AddEditTrendFormComponent } from '../add-edit-trend-form/add-edit-trend-form.component';
+import { AddEditForecastComponent } from '../add-edit-forecast/add-edit-forecast.component';
+// import { AddEditTrendFormComponent } from './add-edit-trend-form/add-edit-trend-form.component';
+// import { AddEditForecastComponent } from './add-edit-forecast/add-edit-forecast.component';
 
 @Component({
-  selector: 'app-fabcot-trends',
-  templateUrl: './fabcot-trends.component.html',
-  styleUrls: ['./fabcot-trends.component.css']
+  selector: 'app-year-trends',
+  templateUrl: './year-trends.component.html',
+  styleUrls: ['./year-trends.component.css']
 })
-export class FabcotTrendsComponent implements OnInit {
+export class YearTrendsComponent implements OnInit {
   currDiv: string = 'A';
   daysInCurrentMonth:any;
   public primaryXAxis: Object;
@@ -27,10 +27,8 @@ export class FabcotTrendsComponent implements OnInit {
   public tooltip: Object;
   public title: string;
   public marker: Object;
-   minticks :any=[] ;
-    maxticksXX:any=[]; 
-   stepvaluesize:any=[] ;
- minvaluetest:any=125
+
+
 
 token='eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJOYW1lSWRlbnRpZmllciI6IjM4IiwiTmFtZSI6Inlhcm5leHBvcnQgc2FtYW4iLCJEZXB0SWRlbnRpZmllciI6IjEiLCJyb2xlIjoiU3VwZXJBZG1pbiIsIm5iZiI6MTY0NzIzNTg0OSwiZXhwIjoxNjQ3NjY3ODQ5LCJpYXQiOjE2NDcyMzU4NDl9.gokRtzhx8p5fb_qJFDphCsjYYh7rcthrbiPnR2E7gEPkQxyOIh5TKgRS-LJnp0sl-QI82Zr-7ScJjK9UiKSuQA'
 
@@ -60,18 +58,10 @@ days:any =[];
 data12:any={};
 forecast:any=[];
 months = [
-  { id: 1,name: 'Jan' },
-  { id: 2, name: 'Feb' },
-  { id: 3,name: 'Mar' },
-  { id: 4,name: 'Apr' },
-  { id: 5, name: 'May' },
-  { id: 6, name: 'Jun' },
-  { id: 7, name: 'Jul' },
-  { id: 8, name: 'Aug' },
-  { id: 9, name: 'Sep'  },
-  { id: 10,name: 'Oct' },
-  { id: 11, name: 'Nov' },
-  { id: 12, name: 'Dec' },
+  { id: 1,name: '2020' },
+  { id: 2, name: '2021' },
+  { id: 3,name: '2022' },
+  { id: 4,name: '2023' },
 ];
 data1:any =[];
 data2:any =[65, 59, 80, 59, 80, 78, 80, 59, 80, 81, 56, 58];
@@ -97,9 +87,9 @@ lineChartLabel: Label[] = [];
   ngOnInit() {
     this.getLookUpCompany();
 this.selectedCar =1
-    var date  = new Date();
-    var month  = date.getMonth() +1;
-    this.month =month
+    var date  = new Date().getFullYear();
+    // var month  = date.getMonth() +1;
+    this.month =date
     //localStorage.setItem('token',this.token)
 //     const date = new Date();
 // const currentYear = date.getFullYear();
@@ -387,16 +377,12 @@ this.ngOnInit()
   getdata(event){
     let m= this.months.filter(x=>x.id ==this.month)
     this.http
-    .get(`${environment.apiUrl}/api/BillingPayments/GetFabcotForcastData/`+ event +'/'+this.selectedCar +'/'+ "Month")
+    .get(`${environment.apiUrl}/api/BillingPayments/GetFabcotForcastData/`+ event +'/'+this.selectedCar +'/'+ "Year")
     .subscribe(res => {
       this.response = res;
 
       if (this.response.success == true) {
    this.actualdata =this.response.data
-  //  this.minticks =this.response.data[0].minValue;
-  //  this.maxticksXX =this.response.data[0].maxValue;
-  //  this.stepvaluesize =this.response.data[0].stepSize;
-
    var a = new Date();
    var r = a.getDate();
    var dt = new Date();
@@ -506,17 +492,8 @@ this.ngOnInit()
     scales : {
       yAxes: [{
          ticks: {
-          //  suggestedMin:2700,
-          //  suggestedMax:2950,
-          //  maxTicksLimit:10,
-           min:2785,
-           max : 2935,
-          stepSize:13,
-
-          // min: this.ticks[this.ticks.length - 1],
-          // max: this.ticks[0],
-            
-       
+            max : 200,
+            min: 0
           }
       }]
    
@@ -860,7 +837,5 @@ public chartClicked1(e:any):void  {
   )
  }
 }
-ShowDiv(divVal: string) {
-  this.currDiv = divVal;
-}
+
 }

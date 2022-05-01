@@ -1,0 +1,152 @@
+<section class="con">
+    <div class="row">
+      <div class="col-md-12">
+  
+     <div class="row"> 
+    <div class="col-md-4"><h5 class="card-title font-weight-bold">Weekly Forecast  {{(year)}}</h5> </div>   
+    <div class="col-md-4"> 
+      <ng-select [(ngModel)]="selectedCar" (change)="changedata($event)">
+      <ng-option *ngFor="let car of cars" [value]="car.id">{{car.name}}</ng-option>
+    </ng-select> </div>  
+    <div class="col-md-4">
+    
+        <ng-select  placeholder="Month"(change)="datapara($event)" [(ngModel)]="month">
+          <ng-option *ngFor="let car of months" [value]="car.id">{{car.name}}</ng-option>
+        </ng-select>
+  
+      
+    </div> 
+    </div>
+        
+    
+        <div class="card p-2 mt-2 shadow">
+    <div class="row"> 
+      <div class="col-md-12">
+      <div class="charcan" style="display: block;">
+        <canvas id="myCanvas" #myCanvas baseChart width="99%" height="20vh"
+          [datasets]="LineChartData"
+          [labels]="lineChartLabels"
+          [options]="lineChartOptions"
+          [colors]="lineChartColors"
+          [legend]="lineChartLegend"
+          [chartType]="lineChartType"
+          [plugins]="lineChartPlugins"
+          (chartClick)="chartClicked($event)">
+        </canvas>
+      </div>
+    </div>
+    </div>
+    
+        </div>
+  
+      </div>
+    </div>
+    
+    
+  
+        <div class="row"> 
+          <div class="col-md-8"><h5 class="card-title font-weight-bold">Weekly Trends  {{(year)}}</h5> </div>  
+        </div>
+        <!-- <h5 class="card-title">Trends  {{(year)}}</h5> -->
+        <div class="card p-2 mt-2 shadow">
+    
+    <div class="row"> 
+      <div class="col-md-12">
+      <div  style="display: block;">
+        <canvas baseChart width="90%" height="20vh"
+          [datasets]="LineChartData1"
+          [labels]="lineChartLabels1"
+          [options]="lineChartOptions1"
+          [colors]="lineChartColors1"
+          [legend]="lineChartLegend1"
+          [chartType]="lineChartType1"
+          [plugins]="lineChartPlugins1"
+          (chartClick)="chartClicked1($event)">
+        </canvas>
+      </div>
+    </div>
+    </div>
+    
+    
+    <!-- <div class="row"> 
+      <div class="col-md-12">
+        <div style="display: block;">
+          <ejs-chart id="chart-container" [primaryXAxis]='primaryXAxis' [primaryYAxis]='primaryYAxis' (pointRender)='pointRender($event)'
+    [legendSettings]='legendSettings' [tooltip]='tooltip' [title]='title'>
+        <e-series-collection>
+            <e-series [dataSource]='chartData' type='Line' width=3 xName='month' yName='sales' name='Sales' [marker]='marker'></e-series>
+        </e-series-collection>
+    </ejs-chart>
+        </div>
+      </div>
+    
+    </div> -->
+     
+    </div>
+    
+    
+    
+    
+    <div class="card shadow mb-4">
+      <div class="card-body"> 
+    <div  class="panel-body">
+      
+      <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="rows"
+        [sorts]="[{ prop: 'id', dir: 'desc' }]" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+        [rowHeight]="'auto'" [limit]="10">
+        <!-- <ngx-datatable-column prop="id" name="S. No." [width]="20">
+          <ng-template let-row="row" let-rowIndex= "rowIndex"  ngx-datatable-cell-template>
+            {{ rowIndex+1 }}
+          </ng-template>
+        </ngx-datatable-column> -->
+        <ngx-datatable-column name="Company Name" prop="fabcotCompanyName" >
+          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+            {{ row.fabcotCompanyName }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Highest Value" >
+          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+            {{ row.mixValue }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Lowest Value" >
+          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+            {{ row.minValue }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Average Value" id="active" prop="status" [flexGrow]="0.06">
+          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+            {{ row.averageValue }}
+            <span class="badge badge-primary" *ngIf="row.active==true">Active</span>
+            <span class="badge badge-secondary" *ngIf="row.active==false">Inactive</span>
+    
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Day | Month | Year" >
+          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+            {{ row.day }} | {{ row.month }} | {{ row.year }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Action">
+          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+    
+    
+            <div class="ibox-tools text-center">
+              <button type="button" class="btn editIconBack px-1 py-1" data-toggle="tooltip" data-placement="top" title="Edit"
+                data-original-title="Edit" (click)="edit(row, 'Edit','cityForm')"><i class="fa fa-edit"></i></button>
+    
+              <!-- <button type="button" class="btn deleteIconBack px-1 py-1" data-toggle="tooltip" data-placement="top" title=""
+                data-original-title="Delete" (click)="deleteCity(row)"> <i class="far fa-trash-alt"></i></button> -->
+            </div>
+    
+          </ng-template>
+        </ngx-datatable-column>
+      </ngx-datatable>
+    
+    </div>
+      </div>
+    </div>
+    
+    
+    
+    </section>
