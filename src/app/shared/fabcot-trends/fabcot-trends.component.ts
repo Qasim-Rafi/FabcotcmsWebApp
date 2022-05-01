@@ -387,7 +387,7 @@ this.ngOnInit()
   getdata(event){
     let m= this.months.filter(x=>x.id ==this.month)
     this.http
-    .get(`${environment.apiUrl}/api/BillingPayments/GetFabcotForcastData/`+ event +'/'+this.selectedCar +'/'+ "Month")
+    .get(`${environment.apiUrl}/api/BillingPayments/GetFabcotForcastData/`+ event +'/'+this.selectedCar)
     .subscribe(res => {
       this.response = res;
 
