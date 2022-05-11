@@ -303,9 +303,15 @@ this.spinner.show();
 
       this.uom = this.data.UnitofMeasurement;
       this.articledata.contractArticleCommission=this.data.contractArticleCommission;
+if(this.loggedInDepartmentName == 'Yarn Export'){
+  this.data.amount=this.data.contractArticleRate * this.data.contractArticleQuantity;
+  
+}
+else{
 
+  this.data.amount=this.rate * this.data.quantity;
+}
       //this.getquantity(this.quantity)
-      this.data.amount=this.rate * this.data.quantity;
       
 
             // this.spinner.hide();
