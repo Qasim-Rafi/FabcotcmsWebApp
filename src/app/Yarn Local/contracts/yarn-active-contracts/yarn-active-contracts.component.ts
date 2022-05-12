@@ -221,17 +221,29 @@ public onFilter(inputValue: string): void {
   this.dataBinding.skip = 0;
 }
 resetfilter(){
-  this.isFiltred =false;
-  this.fetch((data) => {
-    this.temp = [...data]; 
-    this.rows = data;
+  // this.isFiltred =false;
+  // this.dateData.ToDate =null;
+  // this.dateData.FromDate=null;
+  // this.fetch((data) => {
+  //   this.temp = [...data]; 
+  //   this.rows = data;
+  // });
+  let currentUrl = this.router.url;
+  this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+      this.router.navigate(['/FabCot/active-contract']);
   });
-
+ 
+}
+datafunction(tdate,fdate){
+  this.dateData.ToDate = this.dateformater.toModel(this.dateData.ToDate)
+  this.dateData.FromDate = this.dateformater.toModel(this.dateData.FromDate)
 }
 fetch(cb) {
   this.spinner.show();
+  if(typeof this.dateData.ToDate != 'string'){
   this.dateData.ToDate = this.dateformater.toModel(this.dateData.ToDate)
   this.dateData.FromDate = this.dateformater.toModel(this.dateData.FromDate)
+}
      if(this.dateData.ToDate == null || this.dateData.ToDate == undefined || this.dateData.ToDate =="undefined-undefined-undefined"){
        this.dateData.ToDate= "null";
       this.dateData.FromDate="null";
@@ -267,8 +279,8 @@ this.spinner.hide();
       else {
         if(this.response.data == null){
           
+          this.toastr.error(this.response.message, 'Message.');
         }
-        this.toastr.error(this.response.message, 'Message.');
 this.spinner.hide();
 
       }
