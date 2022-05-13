@@ -256,7 +256,7 @@ fetch(cb) {
      }
   
   this.http
-    .get(`${environment.apiUrl}/api/Contracts/GetAllContract/`+ this.status +'/'+ true+'/'+this.dateData.ToDate +'/'+ this.dateData.FromDate)
+    .get(`${environment.apiUrl}/api/Contracts/GetAllContract/`+ this.status +'/'+ true+'/'+this.dateData.ToDate +'/'+ this.dateData.FromDate +'/'+ this.isFiltred)
     .subscribe(res => {
       this.response = res;
 
