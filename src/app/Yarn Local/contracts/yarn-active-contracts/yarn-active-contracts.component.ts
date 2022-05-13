@@ -92,6 +92,7 @@ export class YarnActiveContractsComponent implements OnInit {
     modalRef.result.then((data) => {
       // on close
       if(data != null){
+        this.isFiltred =true;
         this.dateData =data
         this.fetch((data) => {
           this.temp = [...data]; 
@@ -249,9 +250,12 @@ fetch(cb) {
       this.dateData.FromDate="null";
       this.isFiltred =false;
      }
-     else{
-       this.isFiltred =true;
-     }
+    //  else{
+    //    this.isFiltred =true;
+    //  }
+    //  if(this.dateData.ToDate == "null"){
+    //   this.isFiltred =true;
+    //  }
      if(this.status == null){
       this.status ="All";
      }
