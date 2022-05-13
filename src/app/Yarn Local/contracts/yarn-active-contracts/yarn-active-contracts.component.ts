@@ -92,6 +92,12 @@ export class YarnActiveContractsComponent implements OnInit {
     modalRef.result.then((data) => {
       // on close
       if(data != null){
+        if(this.loggedInDepartmentName =='Yarn Local Karachi'){
+          let TDate = this.dateformater.toModel(data.ToDate)
+          let FDate = this.dateformater.toModel(data.FromDate)
+          localStorage.setItem('ToDate',TDate);
+          localStorage.setItem('FromDate',FDate)
+        }
         this.isFiltred =true;
         this.dateData =data
         this.fetch((data) => {
@@ -187,6 +193,11 @@ public onFilter(inputValue: string): void {
                   value: inputValue
               },
               {
+                field: 'manualContractNumber',
+                operator: 'contains',
+                value: inputValue
+            },
+              {
                   field: 'contractOn',
                   operator: 'contains',
                   value: inputValue
@@ -231,6 +242,11 @@ resetfilter(){
   this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
       this.router.navigate(['/FabCot/active-contract']);
   });
+  if(this.loggedInDepartmentName =='Yarn Local Karachi'){
+    this.dateData.ToDate= localStorage.removeItem('ToDate')
+    this.dateData.FromDate= localStorage.removeItem('FromDate')
+    this.isFiltred =false;
+  }
   this.isFiltred =false;
    this.dateData.ToDate =null;
    this.dateData.FromDate=null;
@@ -241,6 +257,11 @@ datafunction(tdate,fdate){
 }
 fetch(cb) {
   this.spinner.show();
+  if(this.loggedInDepartmentName =='Yarn Local Karachi'){
+    this.dateData.ToDate= localStorage.getItem('ToDate')
+    this.dateData.FromDate= localStorage.getItem('FromDate')
+    this.isFiltred =true;
+  }
   if(typeof this.dateData.ToDate != 'string'){
   this.dateData.ToDate = this.dateformater.toModel(this.dateData.ToDate)
   this.dateData.FromDate = this.dateformater.toModel(this.dateData.FromDate)

@@ -161,7 +161,7 @@
           </div>
           <div class="text-center" *ngIf="isFiltred ==true"> 
   
-            Data Filtered
+            Data Filtered  To {{dateData.ToDate}} From {{dateData.FromDate}}
             </div>
         
         <kendo-grid
@@ -265,6 +265,13 @@
                     </span>
                   </strong>
                    </p> -->
+              </ng-template>
+              
+            </kendo-grid-column>
+            <kendo-grid-column *ngIf="loggedInDepartmentName =='Yarn Local Karachi'" field="manualContractNumber" title="MC-No" [width]="80"   [headerClass]="'customiconforgrid'">
+              <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                
+                  {{dataItem.manualContractNumber}}
               </ng-template>
               
             </kendo-grid-column>
