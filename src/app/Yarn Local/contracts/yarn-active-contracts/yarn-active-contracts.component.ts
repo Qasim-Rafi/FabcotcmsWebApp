@@ -221,9 +221,7 @@ public onFilter(inputValue: string): void {
   this.dataBinding.skip = 0;
 }
 resetfilter(){
-  // this.isFiltred =false;
-  // this.dateData.ToDate =null;
-  // this.dateData.FromDate=null;
+  
   // this.fetch((data) => {
   //   this.temp = [...data]; 
   //   this.rows = data;
@@ -232,7 +230,9 @@ resetfilter(){
   this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
       this.router.navigate(['/FabCot/active-contract']);
   });
- 
+  this.isFiltred =false;
+   this.dateData.ToDate =null;
+   this.dateData.FromDate=null;
 }
 datafunction(tdate,fdate){
   this.dateData.ToDate = this.dateformater.toModel(this.dateData.ToDate)
@@ -247,6 +247,7 @@ fetch(cb) {
      if(this.dateData.ToDate == null || this.dateData.ToDate == undefined || this.dateData.ToDate =="undefined-undefined-undefined"){
        this.dateData.ToDate= "null";
       this.dateData.FromDate="null";
+      this.isFiltred =false;
      }
      else{
        this.isFiltred =true;
