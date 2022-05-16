@@ -208,7 +208,7 @@ if(event==7){
 
   addSaleInvoice(form:NgForm) {
     this.quantity =parseFloat(this.quantity) +this.saleInvoiceQuantityTo
-    let sum=parseInt(this.quantitya)+parseInt(this.saleInvoiceQuantity);
+    let sum=this.quantitya == undefined?this.data.quantity:parseInt(this.quantitya)+parseInt(this.saleInvoiceQuantity);
     if(this.data.fobValue == undefined){
       this.data.fobValue = ''
     }
@@ -217,6 +217,7 @@ if(event==7){
 
     }
     else{
+      this.data.quantity=this.data.quantity.toString()
       this.data.quantity=this.data.quantity.trim()
 
     let varr = {
