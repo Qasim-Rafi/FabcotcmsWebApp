@@ -282,7 +282,7 @@ this.ngOnInit()
 
   changedata(event){
 
-    this.getdata(event);
+    //this.getdata(event);
     let name =this.cars.filter(x=>x.id ==event)
     this.rows=this.temp.filter(x=>x.fabcotCompanyName ==name[0].name);
    if( event ==1){
@@ -385,17 +385,19 @@ this.ngOnInit()
     this.datamethod(m[0].name)
   }
   getdata(event){
+    var currentTime = new Date();
+    this.year = currentTime.getFullYear()
     let m= this.months.filter(x=>x.id ==this.month)
     this.http
-    .get(`${environment.apiUrl}/api/BillingPayments/GetFabcotForcastData/`+ event +'/'+this.selectedCar)
+    .get(`${environment.apiUrl}/api/BillingPayments/GetFabcotForcastData/`+ event +'/'+this.selectedCar +'/'+ this.year)
     .subscribe(res => {
       this.response = res;
 
       if (this.response.success == true) {
    this.actualdata =this.response.data
-  //  this.minticks =this.response.data[0].minValue;
-  //  this.maxticksXX =this.response.data[0].maxValue;
-  //  this.stepvaluesize =this.response.data[0].stepSize;
+   this.minticks =this.response.data[0].minValue;
+   this.maxticksXX =this.response.data[0].maxValue;
+   this.stepvaluesize =this.response.data[0].stepSize;
 
    var a = new Date();
    var r = a.getDate();
@@ -417,6 +419,13 @@ this.ngOnInit()
         // values.slice(0,values.length-1)
         this.data11 =values1.slice(0,values.length-1)
         //this.selectedCar =1;
+        this.lineChartOptions.scales.yAxes[0].ticks.suggestedMin = this.minticks;
+        this.lineChartOptions.scales.yAxes[0].ticks.suggestedMax = this.maxticksXX;
+        this.lineChartOptions.scales.yAxes[0].ticks.stepSize = this.stepvaluesize;
+
+        this.lineChartOptions1.scales.yAxes[0].ticks.suggestedMin = this.minticks;
+        this.lineChartOptions1.scales.yAxes[0].ticks.suggestedMax = this.maxticksXX;
+        this.lineChartOptions1.scales.yAxes[0].ticks.stepSize = this.stepvaluesize;
         this.lineChartLabels =this.days
         this.lineChartLabels1 =this.days
         this.changedata(this.selectedCar)
@@ -505,14 +514,23 @@ this.ngOnInit()
     },
     scales : {
       yAxes: [{
+        
          ticks: {
-          //  suggestedMin:2700,
-          //  suggestedMax:2950,
-          //  maxTicksLimit:10,
-           min:2785,
-           max : 2935,
-          stepSize:13,
-
+          //  min:0,
+          //  max:500,
+            // suggestedMin:this.minticks == null ||this.minticks == undefined ?2700:this.minticks,
+            // suggestedMax:this.maxticksXX == null ||this.maxticksXX == undefined ? 2950 :this.maxticksXX,
+            //maxTicksLimit:10,
+            //min: ,
+            
+            // beginAtZero:false,
+            // suggestedMin:0,
+            // suggestedMax:500,
+            //max : this.maxticksXX == null ||this.maxticksXX == undefined ? 3000 :this.maxticksXX,
+         // stepSize:50,
+ //  this.minticks =this.response.data[0].minValue;
+  //  this.maxticksXX =this.response.data[0].maxValue;
+  //  this.stepvaluesize =this.response.data[0].stepSize;
           // min: this.ticks[this.ticks.length - 1],
           // max: this.ticks[0],
             
@@ -799,8 +817,8 @@ public lineChartOptions1: ChartOptions = {
   scales : {
     yAxes: [{
        ticks: {
-          max : 200,
-          min: 0
+          // max : 200,
+          // min: 0
         }
     }]
   },

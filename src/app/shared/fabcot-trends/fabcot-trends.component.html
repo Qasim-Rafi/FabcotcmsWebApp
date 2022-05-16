@@ -288,7 +288,7 @@
   </ng-select> </div>  
   <div class="col-md-4">
   
-      <ng-select  placeholder="Month"(change)="datapara($event)" [(ngModel)]="month">
+      <ng-select  placeholder="Month" (change)="datapara($event)" [(ngModel)]="month">
         <ng-option *ngFor="let car of months" [value]="car.id">{{car.name}}</ng-option>
       </ng-select>
 

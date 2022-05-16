@@ -106,7 +106,7 @@ let tdate=null;
 let fDate=null;
 
   this.http
-    .get(`${environment.apiUrl}/api/Contracts/GetAllContract/All/true/`+tdate+'/'+fDate)
+    .get(`${environment.apiUrl}/api/Contracts/GetAllContract/All/true/`+tdate+'/'+fDate+'/'+false)
     .subscribe(res => {
       this.response = res;
 
