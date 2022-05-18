@@ -695,7 +695,7 @@
                                                 </dt>
                                                 <dd class="col-sm-6">{{contractProductData.construction}}</dd>
                                             </dl>
-                                            <dl class="row">
+                                            <dl class="row" *ngIf="loggedInDepartmentName != 'Comber noil'">
                                                 <dt class="col-sm-4">Brand Name:
                                                 </dt>
                                                 <dd class="col-sm-6">{{contractProductData.brandName}}
@@ -1398,7 +1398,7 @@
                                                 </dd>
                                             </dl>
                                             <dl class="row"
-                                                *ngIf="loggedInDepartmentName !='Yarn Export' && loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Local' && loggedInDepartmentName!='Yarn Local Karachi' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Comber noil'">
+                                                *ngIf="loggedInDepartmentName !='Yarn Export' && loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Local' && loggedInDepartmentName!='Yarn Local Karachi' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName == 'Comber noil'">
                                                 <dt class="col-sm-4">Fabcot Commission:
                                                 </dt>
                                                 <dd class="col-sm-6" *ngIf="contractCommissionData.fabCotCommision!= 0">
@@ -1436,7 +1436,7 @@
                                                 </dd>
                                             </dl>
                                             <dl class="row"
-                                                *ngIf="loggedInDepartmentName =='Yarn Export' || loggedInDepartmentName == 'Fabric Export'  || loggedInDepartmentName == 'Yarn Import'  || loggedInDepartmentName == 'Comber noil'">
+                                                *ngIf="loggedInDepartmentName =='Yarn Export' || loggedInDepartmentName == 'Fabric Export'  || loggedInDepartmentName == 'Yarn Import'  || loggedInDepartmentName != 'Comber noil'">
                                                 <dt class="col-sm-4">Fabcot Commission:
                                                 </dt>
                                                 <dd class="col-sm-6"

@@ -75,7 +75,9 @@ export class QuantityAndCostingComponent implements OnInit {
           this.response = res;
           if (this.response.success == true && this.response.data != null) {
             this.data = this.response.data;
-           
+            if( this.data.rateUOMId == null && this.data.quantityUOMId == null){
+              this.toastr.error("Quantity or Rate UMOs Are Missing", 'Message.');
+            }
             
           }
           else if(this.response.success == false) {
@@ -90,6 +92,8 @@ export class QuantityAndCostingComponent implements OnInit {
         });
   }
   addContractCosting() {
+
+    if( this.data.rateUOMId != null && this.data.quantityUOMId != null){
     let varr = {
       "contractId": this.contractId,
       "quantity": this.data.quantity.replace("," , ""),
@@ -136,6 +140,10 @@ this.spinner.hide();
 this.spinner.hide();
 
         });
+      }
+      else{
+        this.toastr.error("Quantity or Rate UMOs Are Missing", 'Message.');
+      }
   }
 
 }

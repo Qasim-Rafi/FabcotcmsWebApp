@@ -121,7 +121,7 @@ brandId : any;
   ngOnInit(): void {
     this.loggedInDepartmentName = localStorage.getItem('loggedInDepartmentName');
     this.loggedInDepartmentCode = localStorage.getItem('loggedInDepartmentCode');
-    if (this.loggedInDepartmentName == 'Yarn Local' || this.loggedInDepartmentName =='Yarn Local Karachi') {
+    if (this.loggedInDepartmentName == 'Yarn Local') {
       this.data.currencyId = 1,
         this.data.quantityUOMId = 8,
       this.data.rateUOMId = 7,
@@ -182,7 +182,13 @@ brandId : any;
     this.getFabricType("start");
     this.GetAgentDropdown();
     this.getAutoEnquiryNo();
-    this.selected = this.uomList[0].name;
+    
+    if (this.loggedInDepartmentName =='Yarn Local Karachi') {
+      this.data.currencyId = 1,
+      
+      this.data.otherConditionRemarks=this.condition;
+      this.data.title =this.condition1;
+    }
 
   }
 
@@ -436,6 +442,11 @@ brandId : any;
       this.response = res;
       if (this.response.success == true) {
         this.uomList = this.response.data;
+        this.selected = this.uomList[0].name;
+        if (this.loggedInDepartmentName =='Yarn Local Karachi') {
+        this.data.quantityUOMId =this.uomList[0].name;
+      this.data.rateUOMId = this.uomList[0].name;
+        }
       }
       else {
         this.toastr.error(this.response.message, 'Message.');

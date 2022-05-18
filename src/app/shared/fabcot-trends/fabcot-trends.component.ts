@@ -395,6 +395,7 @@ this.ngOnInit()
 
       if (this.response.success == true) {
    this.actualdata =this.response.data
+
    this.minticks =this.response.data[0].minValue;
    this.maxticksXX =this.response.data[0].maxValue;
    this.stepvaluesize =this.response.data[0].stepSize;
@@ -418,14 +419,20 @@ this.ngOnInit()
         this.forecast =valuesNon
         // values.slice(0,values.length-1)
         this.data11 =values1.slice(0,values.length-1)
-        //this.selectedCar =1;
-        this.lineChartOptions.scales.yAxes[0].ticks.suggestedMin = this.minticks;
-        this.lineChartOptions.scales.yAxes[0].ticks.suggestedMax = this.maxticksXX;
-        this.lineChartOptions.scales.yAxes[0].ticks.stepSize = this.stepvaluesize;
+        //this.selectedCar =1;this.response.data[0].values
+        this.lineChartOptions.scales.yAxes[0].ticks.suggestedMin =  Math.floor(
+          Math.min(...this.response.data[0].values)
+        );
+        this.lineChartOptions.scales.yAxes[0].ticks.suggestedMax =  Math.ceil(
+          Math.max(...this.response.data[0].values));
+        this.lineChartOptions.scales.yAxes[0].ticks.stepSize = 10;
+          // this.lineChartOptions.scales.yAxes[0].ticks.maxTicksLimit = 5;
+          // this.lineChartOptions.scales.yAxes[0].ticks.autoSkip = true;
+         //this.lineChartOptions.scales.yAxes[0].ticks.precision = 0;
 
         this.lineChartOptions1.scales.yAxes[0].ticks.suggestedMin = this.minticks;
         this.lineChartOptions1.scales.yAxes[0].ticks.suggestedMax = this.maxticksXX;
-        this.lineChartOptions1.scales.yAxes[0].ticks.stepSize = this.stepvaluesize;
+        this.lineChartOptions1.scales.yAxes[0].ticks.stepSize = 10;
         this.lineChartLabels =this.days
         this.lineChartLabels1 =this.days
         this.changedata(this.selectedCar)
@@ -516,16 +523,18 @@ this.ngOnInit()
       yAxes: [{
         
          ticks: {
+          
+          //steps: 20,
           //  min:0,
           //  max:500,
             // suggestedMin:this.minticks == null ||this.minticks == undefined ?2700:this.minticks,
             // suggestedMax:this.maxticksXX == null ||this.maxticksXX == undefined ? 2950 :this.maxticksXX,
-            //maxTicksLimit:10,
+            //maxTicksLimit:50,
             //min: ,
             
             // beginAtZero:false,
-            // suggestedMin:0,
-            // suggestedMax:500,
+            // suggestedMin:2700,
+            // suggestedMax:2950,
             //max : this.maxticksXX == null ||this.maxticksXX == undefined ? 3000 :this.maxticksXX,
          // stepSize:50,
  //  this.minticks =this.response.data[0].minValue;
