@@ -245,7 +245,9 @@
         </svg>
       </a>
   </div> -->
-  
+  <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="line-spin-fade" [fullScreen]="true">
+    <p style="color: white"> Loading... </p>
+</ngx-spinner>
   <nav class="navbar navbar-light l-bg-orange-dark">
     <a class="navbar-brand" href="#">
       <img src="../../../assets/fabcot-white.png" width="150" height="32" class="d-inline-block align-top" alt="">
@@ -283,7 +285,7 @@
    <div class="row"> 
   <div class="col-md-4"><h5 class="card-title font-weight-bold">Monthly Forecast  {{(year)}}</h5> </div>   
   <div class="col-md-4"> 
-    <ng-select [(ngModel)]="selectedCar" (change)="changedata($event)">
+    <ng-select [(ngModel)]="selectedCar" (change)="getdata(1233)">
     <ng-option *ngFor="let car of cars" [value]="car.id">{{car.name}}</ng-option>
   </ng-select> </div>  
   <div class="col-md-4">
@@ -300,7 +302,7 @@
       <div class="card p-2 mt-2 shadow">
   <div class="row"> 
     <div class="col-md-12">
-    <div class="charcan" style="display: block;">
+    <div class="charcan" style="display: block;" *ngIf="LineChartData.length > 0">
       <canvas id="myCanvas" #myCanvas baseChart width="99%" height="20vh"
         [datasets]="LineChartData"
         [labels]="lineChartLabels"
@@ -330,8 +332,8 @@
   
   <div class="row"> 
     <div class="col-md-12">
-    <div  style="display: block;">
-      <canvas baseChart width="90%" height="20vh"
+    <div  style="display: block;" *ngIf="LineChartData.length > 0">
+      <canvas baseChart #myCanvas1 width="90%" height="20vh"
         [datasets]="LineChartData1"
         [labels]="lineChartLabels1"
         [options]="lineChartOptions1"
@@ -429,9 +431,9 @@
   
   </section>
 
-  <div *ngIf="currDiv == 'C'">
+  <!-- <div *ngIf="currDiv == 'C'">
   <app-year-trends></app-year-trends>
-  </div>
+  </div> -->
   <div *ngIf="currDiv == 'A'">
     <app-week-trend></app-week-trend>
     </div>

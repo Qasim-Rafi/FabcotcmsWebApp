@@ -10,15 +10,19 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddEditTrendFormComponent } from './add-edit-trend-form/add-edit-trend-form.component';
 import { AddEditForecastComponent } from './add-edit-forecast/add-edit-forecast.component';
 import { align } from '@progress/kendo-drawing';
+import { NgxSpinnerService } from 'ngx-spinner';
 //import { IPointRenderEventArgs } from '@syncfusion/ej2-angular-charts';
-
+import { BaseChartDirective } from 'ng2-charts';
 @Component({
   selector: 'app-fabcot-trends',
   templateUrl: './fabcot-trends.component.html',
   styleUrls: ['./fabcot-trends.component.css']
 })
 export class FabcotTrendsComponent implements OnInit {
+  @ViewChild(BaseChartDirective) chart: BaseChartDirective;
   currDiv: string = 'A';
+  @ViewChild("myCanvas")
+    chart1: BaseChartDirective;
   daysInCurrentMonth:any;
   public primaryXAxis: Object;
   public chartData: Object[];
@@ -27,9 +31,9 @@ export class FabcotTrendsComponent implements OnInit {
   public tooltip: Object;
   public title: string;
   public marker: Object;
-   minticks :any=[] ;
-    maxticksXX:any=[]; 
-   stepvaluesize:any=[] ;
+   minticks :number ;
+    maxticksXX:number; 
+   stepvaluesize:number ;
  minvaluetest:any=125
 
 token='eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJOYW1lSWRlbnRpZmllciI6IjM4IiwiTmFtZSI6Inlhcm5leHBvcnQgc2FtYW4iLCJEZXB0SWRlbnRpZmllciI6IjEiLCJyb2xlIjoiU3VwZXJBZG1pbiIsIm5iZiI6MTY0NzIzNTg0OSwiZXhwIjoxNjQ3NjY3ODQ5LCJpYXQiOjE2NDcyMzU4NDl9.gokRtzhx8p5fb_qJFDphCsjYYh7rcthrbiPnR2E7gEPkQxyOIh5TKgRS-LJnp0sl-QI82Zr-7ScJjK9UiKSuQA'
@@ -88,6 +92,7 @@ LineChartData1: ChartDataSets[]=[];
 lineChartLabel: Label[] = [];
   constructor(
     private http: HttpClient,
+    private spinner: NgxSpinnerService,
     private modalService: NgbModal,
     private toastr: ToastrService,
   ) { 
@@ -100,16 +105,7 @@ this.selectedCar =1
     var date  = new Date();
     var month  = date.getMonth() +1;
     this.month =month
-    //localStorage.setItem('token',this.token)
-//     const date = new Date();
-// const currentYear = date.getFullYear();
-// const currentMonth = date.getMonth() + 1; // 
 
-// this.daysInCurrentMonth = this.getDaysInMonth(currentYear, currentMonth);
-//  for(let i=0;i<this.daysInCurrentMonth;i++){
-//   this.labelfordays.push([i+1])
-//  }
-//  console.log(this.labelfordays)
     this.tooltip = {
       enable: true
   }
@@ -153,7 +149,7 @@ this.selectedCar =1
     // this.getdata('Mar');
     this.datamethod(m[0].name);
     
-    this.changedata(1)
+    //this.changedata(1)
     var currentTime = new Date();
      this.year = currentTime.getFullYear()
     // const gradient = this.canvas.nativeElement.getContext('2d').createLinearGradient(0, 0, 0, 600);
@@ -385,6 +381,14 @@ this.ngOnInit()
     this.datamethod(m[0].name)
   }
   getdata(event){
+    this.spinner.show();
+
+   if(typeof event != 'string' ){
+    this.selectedCar =event == 1233?this.selectedCar:event;
+    let m= this.months.filter(x=>x.id ==this.month)
+    event =m[0].name
+   }
+
     var currentTime = new Date();
     this.year = currentTime.getFullYear()
     let m= this.months.filter(x=>x.id ==this.month)
@@ -393,12 +397,19 @@ this.ngOnInit()
     .subscribe(res => {
       this.response = res;
 
-      if (this.response.success == true) {
+      if (this.response.success == true && this.response.data.length !=0) {
    this.actualdata =this.response.data
+if(this.response.data.length != 0 && this.response.data != undefined){
+  this.minticks =this.response.data == null || this.response.data[0].minValue == undefined?0:parseInt(this.response.data[0].minValue);
+  this.maxticksXX =this.response.data == null || this.response.data[0].maxValue == undefined?100:parseInt(this.response.data[0].maxValue);
+  let companyNameifNoData=this.response.data.filter(x=>x.companyId == this.selectedCar)
+  if(companyNameifNoData[0].stepSize != null ||companyNameifNoData[0].stepSize !=undefined){
 
-   this.minticks =this.response.data[0].minValue;
-   this.maxticksXX =this.response.data[0].maxValue;
-   this.stepvaluesize =this.response.data[0].stepSize;
+    this.stepvaluesize =parseInt(companyNameifNoData[0].stepSize)
+    //parseInt(companyNameifNoData[0].stepSize);
+  }
+}
+
 
    var a = new Date();
    var r = a.getDate();
@@ -407,67 +418,149 @@ this.ngOnInit()
    var year = dt.getFullYear();
   var daysInMonth = new Date(year, month, 0).getDate();
   var valuetadd =daysInMonth -r;
-        let values =this.response.data[0].valuesForcast.map(Number);
+
+  let values =this.response.data[0].valuesForcast.map(Number);
+  this.data = values.length == 0?this.response.data[0].values.map(Number):values;
         let valuesNon =this.response.data[0].values.map(Number);
-        let valueD = this.response.data[0].days.map(String);
-        let valueD2 = this.response.data[0].days.map(Number);
-        let values1 =this.response.data[0] != undefined? this.response.data[0].values.map(Number):0
-        this.days =valueD
-        this.data = values;
-        this.data1 = values1;
-        var test =values.length-valuetadd
         this.forecast =valuesNon
+        let valueD = this.response.data[0].days.map(String);
+        this.days =valueD
+        let values1 =this.response.data[0] != undefined? this.response.data[0].values.map(Number):0
+        this.data1 = values1;
+
+
+        let valueD2 = this.response.data[0].days.map(Number);
+        var test =values.length-valuetadd
         // values.slice(0,values.length-1)
         this.data11 =values1.slice(0,values.length-1)
         //this.selectedCar =1;this.response.data[0].values
-        this.lineChartOptions.scales.yAxes[0].ticks.suggestedMin =  Math.floor(
-          Math.min(...this.response.data[0].values)
-        );
-        this.lineChartOptions.scales.yAxes[0].ticks.suggestedMax =  Math.ceil(
-          Math.max(...this.response.data[0].values));
-        this.lineChartOptions.scales.yAxes[0].ticks.stepSize = 10;
+        if(this.response.data.length != 0 || this.response.data[0].minValue != undefined){
+
+        
+        // this.lineChartOptions.scales.yAxes[0].ticks.suggestedMin = this.minticks 
+        // //  Math.floor(
+        // //   Math.min(...this.response.data[0].values)
+        // //);
+        // this.lineChartOptions.scales.yAxes[0].ticks.suggestedMax = this.maxticksXX
+        // //  Math.ceil(
+        // //   Math.max(...this.response.data[0].values));
+        //   //this.stepvaluesize = parseInt(this.stepvaluesize)
+        // this.lineChartOptions.scales.yAxes[0].ticks.stepSize = this.stepvaluesize
+        //this.lineChartOptions.scales.yAxes[0].ticks ={};
+        //this.lineChartOptions.scales.yAxes[0].ticks={'suggestedMin':this.minticks ,'suggestedMax':this.maxticksXX,'stepSize':this.stepvaluesize}
+    
+      //   this.lineChartOptions.scales.yAxes.push({
+      //     // 'suggestedMin':this.minticks ,,'maxTicksLimit':13
+      //     ticks: {
+      //       'stepSize':10
+      //     }
+      // });
+      //this.lineChartOptions.scales.yAxes[0].ticks.stepSize = this.stepvaluesize
+        }
+    //     setTimeout(function () {
+    //       this.chartConfig.chart.update();
+
+    // }, 0);
+           
+        // this.lineChartOptions1.scales.yAxes[0].ticks.suggestedMin =  Math.floor(
+        //   Math.min(...this.response.data[0].values)
+        // );
+        // this.lineChartOptions1.scales.yAxes[0].ticks.suggestedMax =  Math.ceil(
+        //   Math.max(...this.response.data[0].values));
+        //this.lineChartOptions1.scales.yAxes[0].ticks.stepSize = this.stepvaluesize
           // this.lineChartOptions.scales.yAxes[0].ticks.maxTicksLimit = 5;
           // this.lineChartOptions.scales.yAxes[0].ticks.autoSkip = true;
          //this.lineChartOptions.scales.yAxes[0].ticks.precision = 0;
 
-        this.lineChartOptions1.scales.yAxes[0].ticks.suggestedMin = this.minticks;
-        this.lineChartOptions1.scales.yAxes[0].ticks.suggestedMax = this.maxticksXX;
-        this.lineChartOptions1.scales.yAxes[0].ticks.stepSize = 10;
+         this.lineChartOptions.scales.yAxes[0].ticks.min = this.minticks;
+         this.lineChartOptions.scales.yAxes[0].ticks.max = this.maxticksXX;
+         this.lineChartOptions.scales.yAxes[0].ticks.stepSize = this.stepvaluesize;
+
+         this.lineChartOptions1.scales.yAxes[0].ticks.min = this.minticks;
+         this.lineChartOptions1.scales.yAxes[0].ticks.max = this.maxticksXX;
+         this.lineChartOptions1.scales.yAxes[0].ticks.stepSize = this.stepvaluesize;
+         this.chart.chart.update()
         this.lineChartLabels =this.days
         this.lineChartLabels1 =this.days
-        this.changedata(this.selectedCar)
+        //this.changedata(this.selectedCar)
         // setTimeout(() => {
         //   this.LineChartData =[
         //     { data: this.data, label: 'NYCF',fill: false , lineTension: 0},
         //   ]
         // }, 100);
-    
+        // this.LineChartData =[
+        //   //{ data: this.forecast,label: 'NYCF',fill: false , lineTension: 0,backgroundColor: ['red'],borderColor: ['red'] },
+        //   { data: this.data, label: 'NYCF-Forecast',fill: false , lineTension: 0 ,backgroundColor:'blue',borderColor:['blue']},
+        // ]
+        // this.LineChartData1 =[
+        //   { data: this.forecast, label: 'NYCF',fill: false , lineTension: 0},
+        // ]
 
+        if(this.actualdata !=undefined && this.actualdata !=null){
+          let filterCompanyData =this.actualdata.filter(x=>x.companyId ==this.selectedCar)
+          
+          let companydata=filterCompanyData.length != 0? filterCompanyData[0].values.map(Number):[0]
+          let companydataForcast=filterCompanyData.length != 0? filterCompanyData[0].valuesForcast.map(Number):[0]
+          this.calculate();
+          let Cname ="-Forecast"
+         
+          let companyNameifNoData=this.cars.filter(x=>x.id == this.selectedCar)
+          this.LineChartData =[
+            //{ data: this.data, label: 'Series 1',fill: false , lineTension: 0,borderColor: ['#4b94bf'],backgroundColor: ['rgba(255,0,0,0.3)']},
+             { data: companydata, label: filterCompanyData.length != 0?filterCompanyData[0].companyName:companyNameifNoData[0].name,fill: false , lineTension: 0,backgroundColor:'red',borderColor:['red']},
+             { data:  this.data.length == 0?this.data11:this.data, label: filterCompanyData.length != 0?filterCompanyData[0].companyName+Cname:companyNameifNoData[0].name +Cname,fill: false , lineTension: 0,backgroundColor:'blue',borderColor:['blue']},
+          ]
+          this.LineChartData1 =[
+            { data: this.data.length == 0?this.data11:this.data, label: filterCompanyData.length != 0?filterCompanyData[0].companyName:companyNameifNoData[0].name,fill: false , lineTension: 0},
+          ]
+        }
+        this.spinner.hide();
         //cb(this.data);
         //this.spinner.hide();
+        if(this.chart !== undefined){
+          this.chart.ngOnDestroy();
+          this.chart.chart = this.chart.getChartBuilder(this.chart.ctx);
+   }
+//    if(this.chart1 !== undefined){
+//     this.chart1.ngOnDestroy();
+//     this.chart1.chart = this.chart1.getChartBuilder(this.chart1.ctx);
+// }
       }
       else {
         //this.toastr.error(this.response.message, 'Message.');
-        //this.spinner.hide();
+        this.LineChartData =[
+          { data: [ 0 ], label: 'Series 1',fill: false , lineTension: 0,borderColor: ['#4b94bf'],backgroundColor: ['rgba(255,0,0,0.3)']},
+          // { data: companydata, label: filterCompanyData.length != 0?filterCompanyData[0].companyName:companyNameifNoData[0].name,fill: false , lineTension: 0,backgroundColor:'red',borderColor:['red']},
+          // { data: companydataForcast, label: filterCompanyData.length != 0?filterCompanyData[0].companyName+Cname:companyNameifNoData[0].name +Cname,fill: false , lineTension: 0,backgroundColor:'blue',borderColor:['blue']},
+        ]
+        this.LineChartData1 =[
+          { data: [ 0 ], label: 'Series 1',fill: false , lineTension: 0,borderColor: ['#4b94bf'],backgroundColor: ['rgba(255,0,0,0.3)']},
+          // { data: companydata, label: filterCompanyData.length != 0?filterCompanyData[0].companyName:companyNameifNoData[0].name,fill: false , lineTension: 0,backgroundColor:'red',borderColor:['red']},
+          // { data: companydataForcast, label: filterCompanyData.length != 0?filterCompanyData[0].companyName+Cname:companyNameifNoData[0].name +Cname,fill: false , lineTension: 0,backgroundColor:'blue',borderColor:['blue']},
+        ]
+        this.spinner.hide();
+        
       }
     }, err => {
       if (err.status == 400) {
         //this.toastr.error(err.error.message, 'Message.');
-        //this.spinner.hide();
+        this.spinner.hide();
       }
-      //this.spinner.hide();
+      this.spinner.hide();
     });
+    this.spinner.hide();
+
   }
 //....................................................................................1.........................................
 
-  //lineChartData = this.LineChartData;
-  public lineChartData: ChartDataSets[] = [
-    { data: this.data, label: 'Series 1',fill: false , lineTension: 0,borderColor: ['#4b94bf'],backgroundColor: ['rgba(255,0,0,0.3)']},
-     { data: this.forecast, label: 'Series 2',fill: false , lineTension: 0,backgroundColor:'red',borderColor:'red'},
-    // { data: this.data, label: 'Series 3',fill: false , lineTension: 0},
-    // { data: this.data, label: 'Series 4',fill: false , lineTension: 0},
-    // { data: this.data, label: 'Series 5',fill: false , lineTension: 0},
-  ];
+  lineChartData = this.LineChartData;
+  // public lineChartData: ChartDataSets[] = [
+  //   { data: [ 65, 59, 80, 81, 56, 55, 40 ], label: 'Series 1',fill: false , lineTension: 0,borderColor: ['#4b94bf'],backgroundColor: ['rgba(255,0,0,0.3)']},
+  //   // { data: this.forecast, label: 'Series 2',fill: false , lineTension: 0,backgroundColor:'red',borderColor:'red'},
+  //   // { data: this.data, label: 'Series 3',fill: false , lineTension: 0},
+  //   // { data: this.data, label: 'Series 4',fill: false , lineTension: 0},
+  //   // { data: this.data, label: 'Series 5',fill: false , lineTension: 0},
+  // ];
   //lineChartLabels =this.lineChartLabel
   // , 'Aug', 'Sep', 'Oct', 'Nov','Dec'
    public lineChartLabels: Label[] = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11','12','13','14','15'
@@ -520,15 +613,29 @@ this.ngOnInit()
       
     },
     scales : {
-      yAxes: [{
-        
+      yAxes: [
+        {
+          // scaleLabel: {
+          //   display: true,
+          //   labelString: 'Value'
+          // },
          ticks: {
-          
+           // min:0
+           stepSize: 23,
+           min:2800,
+           max:2950,
+          //  callback: function(value, index, values) {
+          //    if (value.toString().startsWith('2800')) {
+          //      return value.to();
+          //     }
+          //     return null;
+          //   },
+            //suggestedMax:2950,
+           
+          //stepSize:13,
           //steps: 20,
-          //  min:0,
-          //  max:500,
-            // suggestedMin:this.minticks == null ||this.minticks == undefined ?2700:this.minticks,
-            // suggestedMax:this.maxticksXX == null ||this.maxticksXX == undefined ? 2950 :this.maxticksXX,
+            //  suggestedMin:2800,
+            //  suggestedMax:2950
             //maxTicksLimit:50,
             //min: ,
             
@@ -545,7 +652,8 @@ this.ngOnInit()
             
        
           }
-      }]
+      }
+    ]
    
     },
     plugins: {
@@ -826,6 +934,10 @@ public lineChartOptions1: ChartOptions = {
   scales : {
     yAxes: [{
        ticks: {
+        stepSize: 23,
+        min:2800,
+        max:2950,
+        //stepSize:this.stepvaluesize
           // max : 200,
           // min: 0
         }
