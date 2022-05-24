@@ -289,7 +289,7 @@ this.getDataBreakup();
           table: {
             headerRows: 1, widths: ['8%', '50%', '8%', '50%'],
             body: [[{ text: 'NTN No :', margin: [0, 0, 0, 0], bold: true, style: 'headingF' }, { text: this.data['sellerNTN'], margin: [-13, 0, 0, 0], bold: false, style: 'headingF' },
-            { text: 'NTN No :', bold: true, style: 'headingE' }, { text: this.data['buyerrNTN'], margin:[-50,0,0,0] ,  style: 'headingF' }
+            { text: 'NTN No :', bold: true, style: 'headingE' }, { text: this.data['buyerNTN'], margin:[-50,0,0,0] ,  style: 'headingF' }
 
             ]]
           }
