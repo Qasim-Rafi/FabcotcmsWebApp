@@ -1123,6 +1123,7 @@ brandId : any;
       "destinationId": this.data.destinationId,
       "containerId": this.data.containerId,
       "count": this.data.count,
+      "isComberImport":false,
       "contractDeliveryDates":[{
       "sellerDeliveryDateDay":this.data.sellerDeliveryDateDay == undefined? "" : this.data.sellerDeliveryDateDay,
       "sellerDeliveryDateMonth":this.data.sellerDeliveryDateMonth == undefined? "" :  this.data.sellerDeliveryDateMonth,
@@ -1143,6 +1144,7 @@ brandId : any;
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
             this.contractForm.reset();
+            
             this.router.navigate(['/FabCot/active-contract-details'], { queryParams: { id: this.response.data } });
             // this.router.navigate(['/enquiry/active-enquiries']);
             this.spinner.hide();
