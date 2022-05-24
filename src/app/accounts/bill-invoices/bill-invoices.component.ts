@@ -226,6 +226,7 @@ constructor(    private service: ServiceService,
   }
   getdept(event){
     this.deptName = event.target.value
+    localStorage.setItem('department',this.deptName)
    this.deptName =  parseInt(this.deptName);
     this.fetch((data) => {
       this.temp = [...data]; 

@@ -180,6 +180,12 @@ Swal.fire({
   }
 })
   }
+
+  nodeloaclcombernoil(nameM){
+    this.router.navigate(['/FabCot/add-new-contract'], { queryParams: { menuName: nameM } });
+  }
+
+
   reportsRoughtMethod(menuName){
     if(menuName == "AllContractReport" ){
       this.router.navigate(['/allContractReport'], { queryParams: { menuName: menuName } });

@@ -120,7 +120,7 @@ export class AddEnquiryComponent implements OnInit {
 
 
   getAutoEnquiryNo() {
-    this.http.get(`${environment.apiUrl}/api/Enquiries/GetNextEnquiryNumber`)
+    this.http.get(`${environment.apiUrl}/api/Enquiries/GetNextEnquiryNumber/`+false)
       .subscribe(
         res => {
 

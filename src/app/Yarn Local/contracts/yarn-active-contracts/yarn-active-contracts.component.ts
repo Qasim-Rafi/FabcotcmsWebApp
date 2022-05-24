@@ -111,7 +111,16 @@ export class YarnActiveContractsComponent implements OnInit {
   }
   
   navigateEditContract(obj) {
-    this.router.navigate(['/FabCot/active-contract-details'], { queryParams: {id: obj.id} });
+    let st=obj.autoContractNumber.substring(0, 4)
+    if(st == "CMNI"){
+      this.router.navigate(['/FabCot/active-contract-details-combernoil-local'], { queryParams: {id: obj.id} });
+    }
+    else if(st =="CMNE"){
+      this.router.navigate(['/FabCot/active-contract-details'], { queryParams: {id: obj.id} });
+    }
+    else{
+      this.router.navigate(['/FabCot/active-contract-details'], { queryParams: {id: obj.id} });
+    }
   };
   
   navigateAddContract() {

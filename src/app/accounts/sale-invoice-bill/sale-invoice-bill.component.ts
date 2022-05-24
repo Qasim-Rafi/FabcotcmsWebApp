@@ -27,6 +27,7 @@ export class SaleInvoiceBillComponent implements OnInit {
   image: any;
   billName:any;
   bNameDisplay:any;
+  loggedInDepartmentName: string;
 invNo : any
   amountInWorda: string;
   constructor(private route: ActivatedRoute,
@@ -53,6 +54,7 @@ invNo : any
         this.image = res;
 
       });
+      this.loggedInDepartmentName=localStorage.getItem('department');
     this.queryParems = this.route.snapshot.queryParams;
     this.data = this.queryParems.contractId;
     this.invNo = this.queryParems.invNo;

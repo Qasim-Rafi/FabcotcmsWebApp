@@ -8,43 +8,41 @@ import { Dateformater } from 'src/app/shared/dateformater';
 import { ServiceService } from 'src/app/shared/service.service';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
-import { DispatchRegisterComponent } from './active-contract-models/dispatch-register/dispatch-register.component';
-import { DeliveryTLComponent } from './active-contract-models/deliveryTL/deliveryTL.component';
-import { SaleInvoicePopUpComponent } from './active-contract-models/sale-invoice-pop-up/sale-invoice-pop-up.component';
-import { ProductionStatusComponent } from './active-contract-models/production-status/production-status.component';
-import {PartiesComponent} from './active-contract-models/parties/parties.component'
-import {ProductAndSpecificationComponent} from './active-contract-models/product-and-specification/product-and-specification.component'
-import {QuantityAndCostingComponent} from './active-contract-models/quantity-and-costing/quantity-and-costing.component'
-import {PaymentDeliveryComponent} from './active-contract-models/payment-delivery/payment-delivery.component'
-import { DeliveryTimeLineComponent } from './active-contract-models/delivery-time-line/delivery-time-line.component';
-import { RemarksComponent } from './active-contract-models/remarks/remarks.component';
-import { EmployeeCommissionComponent } from './active-contract-models/employee-commission/employee-commission.component';
-import { CommisionKickbackComponent } from './active-contract-models/commision-kickback/commision-kickback.component';
+import { DispatchRegisterComponent } from '../active-contract-details/active-contract-models/dispatch-register/dispatch-register.component';
+import { DeliveryTLComponent } from '../active-contract-details/active-contract-models/deliveryTL/deliveryTL.component';
+import { SaleInvoicePopUpComponent } from '../active-contract-details/active-contract-models/sale-invoice-pop-up/sale-invoice-pop-up.component';
+import { ProductionStatusComponent } from '../active-contract-details/active-contract-models/production-status/production-status.component';
+import {PartiesComponent} from '../active-contract-details/active-contract-models/parties/parties.component'
+import {ProductAndSpecificationComponent} from '../active-contract-details/active-contract-models/product-and-specification/product-and-specification.component'
+import {QuantityAndCostingComponent} from '../active-contract-details/active-contract-models/quantity-and-costing/quantity-and-costing.component'
+import {PaymentDeliveryComponent} from '../active-contract-details/active-contract-models/payment-delivery/payment-delivery.component'
+import { DeliveryTimeLineComponent } from '../active-contract-details/active-contract-models/delivery-time-line/delivery-time-line.component';
+import { RemarksComponent } from '../active-contract-details/active-contract-models/remarks/remarks.component';
+import { EmployeeCommissionComponent } from '../active-contract-details/active-contract-models/employee-commission/employee-commission.component';
+import { CommisionKickbackComponent } from '../active-contract-details/active-contract-models/commision-kickback/commision-kickback.component';
 import { NgxSpinnerService } from 'ngx-spinner';
 import pdfMake from "pdfmake/build/pdfmake";
 import { createBuilderStatusReporter } from 'typescript';
-import { ContractNoteComponent } from './active-contract-models/contract-note/contract-note.component';
+import { ContractNoteComponent } from '../active-contract-details/active-contract-models/contract-note/contract-note.component';
 import { AddNewInvComponent } from '../../sale-invoice/add-new-inv/add-new-inv.component';
-import { EditIvnoicePopupComponent } from './active-contract-models/edit-ivnoice-popup/edit-ivnoice-popup.component';
+import { EditIvnoicePopupComponent } from '../active-contract-details/active-contract-models/edit-ivnoice-popup/edit-ivnoice-popup.component';
 import { StatusComponent } from 'src/app/shared/MODLES/status/status.component';
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import { style } from '@angular/animations';
-import { CreditComponent } from './active-contract-models/sale-invoice-pop-up/credit/credit.component';
-import { DebitComponent } from './active-contract-models/sale-invoice-pop-up/debit/debit.component';
+import { CreditComponent } from '../active-contract-details/active-contract-models/sale-invoice-pop-up/credit/credit.component';
+import { DebitComponent } from '../active-contract-details/active-contract-models/sale-invoice-pop-up/debit/debit.component';
 import {ContractOwnerComponent} from 'src/app/contracts/contract-owner/contract-owner.component'
-import { LCInfoComponent } from './active-contract-models/lcinfo/lcinfo.component';
-import { DocumentUploadPopUpComponent } from './active-contract-models/document-upload-pop-up/document-upload-pop-up.component';
+import { LCInfoComponent } from '../active-contract-details/active-contract-models/lcinfo/lcinfo.component';
+import { DocumentUploadPopUpComponent } from '../active-contract-details/active-contract-models/document-upload-pop-up/document-upload-pop-up.component';
 import { ArticleRevisePopupComponent } from 'src/app/shared/MODLES/article-revise-popup/article-revise-popup.component';
 import {NgbProgressbarConfig} from '@ng-bootstrap/ng-bootstrap';
 
-
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
 @Component({
-  selector: 'app-active-contract-details',
-  templateUrl: './active-contract-details.component.html',
-  styleUrls: ['./active-contract-details.component.css']
+  selector: 'app-active-contract-details-combernoil-local',
+  templateUrl: './active-contract-details-combernoil-local.component.html',
+  styleUrls: ['./active-contract-details-combernoil-local.component.css']
 })
-export class ActiveContractDetailsComponent implements OnInit {
+export class ActiveContractDetailsCombernoilLocalComponent implements OnInit {
   isnotEditAble:boolean=false;
   ShowRevised:string;
   dateformater: Dateformater = new Dateformater();
@@ -188,7 +186,7 @@ onResize(event?) {
     this.queryParems = this.route.snapshot.queryParams;
     this.contractId = this.queryParems.id;
     this.loggedInDepartmentName=localStorage.getItem('loggedInDepartmentName');
-   
+    this.loggedInDepartmentName="Yarn Local"
     this.http.get('/assets/fabcot.png', { responseType: 'blob' })
     .subscribe(res => {
       const reader = new FileReader();
@@ -5588,6 +5586,7 @@ yarnExportInvoicesReportPrint(){
                       body: [
                         [{text:'Delivery Term:'  , style:'heading'} , {text: this.contractPaymentData['priceTermName'] +" " +this.contractPaymentData['destinationName'] , style:'heading2'}],] }
                       },
+
                       {
                         layout:'noBorders',
                         margin: [10 , 10 , 0 , 0],
@@ -5916,6 +5915,7 @@ yarnExportInvoicesReportPrint(){
                         body: [
                           [{text:'Delivery Term:'  , style:'heading'} , {text: this.contractPaymentData['priceTermName'] +" " +this.contractPaymentData['destinationName'] , style:'heading2'}],] }
                         },
+
                         {
                           layout:'noBorders',
                           margin: [10 , 10 , 0 , 0],

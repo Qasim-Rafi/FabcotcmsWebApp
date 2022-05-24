@@ -29,14 +29,12 @@ import { AddContainerComponent } from '../../yarn-configuration/product/containe
 import { EditCityComponent } from 'src/app/configuration/city/edit-city/edit-city.component';
 import { AddTypeComponent } from '../../yarn-configuration/product/fabric-type/add-type/add-type.component';
 
-
 @Component({
-  selector: 'app-add-new-contracts',
-  templateUrl: './add-new-contracts.component.html',
-  styleUrls: ['./add-new-contracts.component.css']
+  selector: 'app-local-comber-noil',
+  templateUrl: './local-comber-noil.component.html',
+  styleUrls: ['./local-comber-noil.component.css']
 })
-export class AddNewContractsComponent implements OnInit {
-
+export class LocalComberNoilComponent implements OnInit {
   response: any;
   data: any = {};
   buyer: any = [];
@@ -120,6 +118,7 @@ brandId : any;
 
   ngOnInit(): void {
     this.loggedInDepartmentName = localStorage.getItem('loggedInDepartmentName');
+    this.loggedInDepartmentName = "Yarn Local";
     this.loggedInDepartmentCode = localStorage.getItem('loggedInDepartmentCode');
     if (this.loggedInDepartmentName == 'Yarn Local') {
       this.data.currencyId = 1,
@@ -443,10 +442,10 @@ brandId : any;
       if (this.response.success == true) {
         this.uomList = this.response.data;
         this.selected = this.uomList[0].name;
-        if (this.loggedInDepartmentName =='Yarn Local Karachi') {
-        this.data.quantityUOMId =this.uomList[0].name;
-      this.data.rateUOMId = this.uomList[0].name;
-        }
+       
+        this.data.quantityUOMId =this.uomList[0].id;
+      this.data.rateUOMId = this.uomList[0].id;
+        
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -527,7 +526,7 @@ brandId : any;
     })
   }
   getAutoEnquiryNo() {
-    this.http.get(`${environment.apiUrl}/api/Enquiries/GetNextEnquiryNumber/`+false)
+    this.http.get(`${environment.apiUrl}/api/Enquiries/GetNextEnquiryNumber/`+true)
       .subscribe(
         res => {
 
@@ -1130,6 +1129,7 @@ brandId : any;
       "buyerDeliveryDateDay":this.data.buyerDeliveryDateDay == undefined? "" : this.data.buyerDeliveryDateDay,
       "buyerDeliveryDateMonth":this.data.buyerDeliveryDateMonth == undefined? "" :  this.data.buyerDeliveryDateMonth,
       "buyerDeliveryDateYear":this.data.buyerDeliveryDateYear == undefined? "" : this.data.buyerDeliveryDateYear,
+      "isComberImport":true
       }
     ]
     }
