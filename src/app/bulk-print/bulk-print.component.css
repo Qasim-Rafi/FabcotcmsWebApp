@@ -104,3 +104,16 @@ color: #1ab394;
 /* @media print {
   .page-break { page-break-inside: avoid;}
 } */ 
+.panel{
+  zoom: 80% !important ;
+}
+@media print {
+  .panel{
+    zoom: 80% !important ;
+  }
+  body {
+    zoom: 80% !important;
+    transform: scale(.7) !important;
+  }
+}
+
