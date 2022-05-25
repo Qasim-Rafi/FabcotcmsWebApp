@@ -312,7 +312,7 @@ this.getDataBreakup();
           table: {
             headerRows: 1, widths: ['15%', '60%', '30%', '12%'],
             body: [[{ text: 'Fabcot Contract No :', margin: [0, 4, 0, 0], bold: true, style: 'headingF' }, { text: this.data['contractNumber'], margin: [-10, 4, 0, 0], style: 'headingF' },
-            { text:this.billName == "Cbill" || this.billName == "CFbill"? 'Sales Tax Invoice No:':'', margin: [0, 4, 0, 0], bold: true, style: 'headingF' }, { text:this.billName == "Cbill" || this.billName == "CFbill"? this.invNo:'', margin: [-85, 4, 0, 0], bold: true, style: 'headingF' },
+            { text:this.billName == "Cbill" || this.billName == "CFbill"? 'Sales Tax Invoice No:':'', margin: [0, 4, 0, 0], bold: true, style: 'headingF' }, { text:this.billName == "Cbill" || this.billName == "CFbill"? this.data['billInvoiceNumber']:'', margin: [-85, 4, 0, 0], bold: true, style: 'headingF' },
 
 
 

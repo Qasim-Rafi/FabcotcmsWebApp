@@ -355,8 +355,7 @@ getafterGenrated(){
   this.router.navigate([]).then((result) => {
     window.open('/accBulk' , '_blank');
   });
-  this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
-    this.router.navigate(['/accounts']); });
+  this.mySelection =[];
   }
   }
 

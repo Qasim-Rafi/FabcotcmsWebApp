@@ -147,11 +147,10 @@
 
                 <div class="float-right">
                     <span class="text-font1" *ngIf="billName != 'Qbill'">
-                        Sales Tax Invoice No. : <span class="weight">{{invNo}}</span>
-                    </span>
-                    <span class="text-font1" *ngIf="loggedInDepartmentName == '4'">
+                        <!-- Sales Tax Invoice No. : <span class="weight">{{invNo}}</span> -->
                         Sales Tax Invoice No. : <span class="weight">{{data.billInvoiceNumber}}</span>
                     </span>
+                    
                     <br>
                     <span class="text-font1">
                         Bill No.: <span class="bold text-font1">{{data.billNumber}}</span>
