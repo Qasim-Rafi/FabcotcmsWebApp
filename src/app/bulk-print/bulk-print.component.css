@@ -108,9 +108,47 @@ color: #1ab394;
   zoom: 80% !important ;
 }
 @media print {
+  @-moz-document url-prefix() {
+ 
+    table{
+      border:2px solid black !important;     
+  }
+  table td,th{
+      border:2px solid black !important;              
+  }
+  .breakclass{
+    page-break-after: always !important;
+  }
+  .card {
+    position: relative;
+    display: -ms-flexbox;
+    display: block !important;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #ffffff;
+    background-clip: border-box;
+    border: 0 solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+  }
+  .panel{
+    zoom: 90% !important ;
+  }
+ 
+}
   .panel{
     zoom: 80% !important ;
   }
+  table{
+    border:2px solid black !important;     
+}
+table td,th{
+    border:2px solid black !important;              
+}
+.breakclass{
+  page-break-after: always !important;
+}
   body {
     zoom: 80% !important;
     transform: scale(.7) !important;

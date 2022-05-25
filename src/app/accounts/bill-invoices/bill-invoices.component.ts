@@ -333,7 +333,8 @@ getafterGenrated(){
   
 }
   print(){
-  
+    this.ids =[];
+    this.idsUpdates= [];
     this.ids=this.mySelection;
     this.idsUpdates=this.ids
   
@@ -350,9 +351,12 @@ getafterGenrated(){
 }
        this.idsUpdates = [...new Set(this.idsUpdates)];
   localStorage.setItem('bulkPrint', this.idsUpdates);
+ 
   this.router.navigate([]).then((result) => {
     window.open('/accBulk' , '_blank');
   });
+  this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+    this.router.navigate(['/accounts']); });
   }
   }
 

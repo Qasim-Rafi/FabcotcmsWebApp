@@ -60,7 +60,7 @@ lang : SUPPORTED_LANGUAGE = 'en';
             this.toastr.success(this.response.message, 'Message.');
             this.spinner.hide();
    localStorage.removeItem('bulkPrint');
-  
+  console.log(this.id)
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
