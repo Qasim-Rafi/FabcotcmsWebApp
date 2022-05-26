@@ -5526,17 +5526,17 @@ yarnExportInvoicesReportPrint(){
                              {text:'Amount Incl Gst' , style: 'tableheader2'},
       
                           ],
-                    ...this.contractData['contractArticles'].map((row=>
+                    ...this.contractData['contractDeliverySchedule'].map((row=>
                       [
                         // row.articleName  , row.contractArticleQuantity, row.contractArticleCommission,
                         // row.contractArticleRate 
-                             {text: row.articleName, style: 'tableheader3'} , 
-                             {text:   this.contractCostingData['quantityToleranceValue'] != '' &&  this.contractCostingData['quantityToleranceValue'] != 0 ? row.contractArticleQuantity + '\n' +  "+/-" + this.contractCostingData['quantityToleranceValue'] + '%' +' '+ row.uomUnit : row.contractArticleQuantity  , style: 'tableheader3'},
-                             {text: row.contractArticleRate == null ? '' : this.contractCostingData['rateCurrencyName'] == 'USD' ?  "$ " + row.contractArticleRate : this.contractCostingData['rateCurrencyName'] == 'PKR' ? "RS " + row.contractArticleRate : this.contractCostingData['rateCurrencyName'] == 'EUR' ?  "€ " + row.contractArticleRate : this.contractCostingData['rateCurrencyName'] == 'GBP' ?  "GBP " + row.contractArticleRate : row.contractArticleRate , style: 'tableheader3'},
+                             {text: this.contractData.contractProductSpecification.articleName, style: 'tableheader3'} , 
+                             {text:   this.contractCostingData['quantityToleranceValue'] != '' &&  this.contractCostingData['quantityToleranceValue'] != 0 ? this.contractCostingData.quantity + '\n' +  "+/-" + this.contractCostingData['quantityToleranceValue'] + '%' +' '+ row.quantityUOMName : this.contractCostingData.quantity  , style: 'tableheader3'},
+                             {text: this.contractCostingData.rate == null ? '' : this.contractCostingData['rateCurrencyName'] == 'USD' ?  "$ " + this.contractCostingData.rate : this.contractCostingData['rateCurrencyName'] == 'PKR' ? "RS " + this.contractCostingData.rate : this.contractCostingData['rateCurrencyName'] == 'EUR' ?  "€ " + this.contractCostingData.rate : this.contractCostingData['rateCurrencyName'] == 'GBP' ?  "GBP " + this.contractCostingData.rate : this.contractCostingData.rate , style: 'tableheader3'},
 
-                             {text: row.amountExclGSt , style: 'tableheader3'},
-                             {text: row.amountGSt , style: 'tableheader3'},
-                             {text: row.amountInclGSt , style: 'tableheader3'}
+                             {text:'PKR' +'' + this.contractData.contractCosting.amountExclGSt , style: 'tableheader3'},
+                             {text: 'PKR' +'' + this.contractData.contractCosting.amountGSt , style: 'tableheader3'},
+                             {text: 'PKR' +'' + this.contractData.contractCosting.amountInclGSt, style: 'tableheader3'}
 
                         ]
                       ))
@@ -5855,18 +5855,16 @@ yarnExportInvoicesReportPrint(){
                                {text:'Amount Incl Gst' , style: 'tableheader2'},
         
                             ],
-                      ...this.contractData['contractArticles'].map((row=>
+                      ...this.contractData['contractDeliverySchedule'].map((row=>
                         [
                           // row.articleName  , row.contractArticleQuantity, row.contractArticleCommission,
                           // row.contractArticleRate 
-                               {text: row.articleName, style: 'tableheader3'} , 
-                               {text:   this.contractCostingData['quantityToleranceValue'] != '' &&  this.contractCostingData['quantityToleranceValue'] != 0 ? row.contractArticleQuantity + '\n' +  "+/-" + this.contractCostingData['quantityToleranceValue'] + '%' +' '+ row.uomUnit : row.contractArticleQuantity  , style: 'tableheader3'},
-                               {text: row.contractArticleRate == null ? '' : this.contractCostingData['rateCurrencyName'] == 'USD' ?  "$ " + row.contractArticleRate : this.contractCostingData['rateCurrencyName'] == 'PKR' ? "RS " + row.contractArticleRate : this.contractCostingData['rateCurrencyName'] == 'EUR' ?  "€ " + row.contractArticleRate : this.contractCostingData['rateCurrencyName'] == 'GBP' ?  "GBP " + row.contractArticleRate : row.contractArticleRate , style: 'tableheader3'},
-  
-                               {text: row.amountExclGSt , style: 'tableheader3'},
-                               {text: row.amountGSt , style: 'tableheader3'},
-                               {text: row.amountInclGSt , style: 'tableheader3'}
-  
+                               {text: this.contractData.contractProductSpecification.articleName, style: 'tableheader3'} , 
+                               {text:   this.contractCostingData['quantityToleranceValue'] != '' &&  this.contractCostingData['quantityToleranceValue'] != 0 ? this.contractCostingData.quantity + '\n' +  "+/-" + this.contractCostingData['quantityToleranceValue'] + '%' +' '+ row.quantityUOMName : this.contractCostingData.quantity  , style: 'tableheader3'},
+                               {text: this.contractCostingData.rate == null ? '' : this.contractCostingData['rateCurrencyName'] == 'USD' ?  "$ " + this.contractCostingData.rate : this.contractCostingData['rateCurrencyName'] == 'PKR' ? "RS " + this.contractCostingData.rate : this.contractCostingData['rateCurrencyName'] == 'EUR' ?  "€ " + this.contractCostingData.rate : this.contractCostingData['rateCurrencyName'] == 'GBP' ?  "GBP " + this.contractCostingData.rate : this.contractCostingData.rate , style: 'tableheader3'},
+                               {text:'PKR' +'' + this.contractData.contractCosting.amountExclGSt , style: 'tableheader3'},
+                               {text: 'PKR'+'' + this.contractData.contractCosting.amountGSt , style: 'tableheader3'},
+                               {text: 'PKR' +'' + this.contractData.contractCosting.amountInclGSt, style: 'tableheader3'}
                           ]
                         ))
                     

@@ -107,7 +107,7 @@
       
         <ngx-datatable #myTable class="bootstrap" [columns]="columns" [rows]="seller"
           [sorts]="[{ prop: 'id,sellerName', dir: 'asce' }]" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-          [rowHeight]="'auto'" [limit]="10">
+          [rowHeight]="'auto'" >
        
           <ngx-datatable-column name="Seller Name" prop="sellerName" [width]="200">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
@@ -123,13 +123,13 @@
           <ngx-datatable-column name="Party_Coa" [width]="80">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
              
-             {{ row.PartyCoa }}
+             {{ row.partyCoa }}
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Sale_Tax_Coa" [width]="80">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
              
-             {{ row.SaleTexCoa }}
+             {{ row.saleTexCoa }}
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Action" [width]="80">
