@@ -5577,7 +5577,7 @@ yarnExportInvoicesReportPrint(){
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
                         [{text:'Payment Term:'  , style:'heading'} ,
-                         {text: this.contractPaymentData['paymentTermDays'] == 0?this.contractPaymentData['paymentTermName'] :this.contractPaymentData['paymentTermDays'] + "  "+this.contractPaymentData['paymentTermName'] , style:'heading2'}],] }
+                         {text: this.contractPaymentData['buyerPaymentTermName'], style:'heading2'}],] }
                       },
                       {
                         layout:'noBorders',
@@ -5904,7 +5904,7 @@ yarnExportInvoicesReportPrint(){
                           table:{headerRows: 1 , widths:['20%' , '80%'],
                         body: [
                           [{text:'Payment Term:'  , style:'heading'} ,
-                           {text: this.contractPaymentData['paymentTermDays'] == 0?this.contractPaymentData['paymentTermName'] :this.contractPaymentData['paymentTermDays'] + "  "+this.contractPaymentData['paymentTermName'] , style:'heading2'}],] }
+                           {text: this.contractPaymentData['sellerPaymentTermName']  , style:'heading2'}],] }
                         },
                         {
                           layout:'noBorders',
