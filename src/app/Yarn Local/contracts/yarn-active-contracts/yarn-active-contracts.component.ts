@@ -112,10 +112,10 @@ export class YarnActiveContractsComponent implements OnInit {
   
   navigateEditContract(obj) {
     let st=obj.autoContractNumber.substring(0, 4)
-    if(st == "CMNL"){
+    if(st == "CTWL"){
       this.router.navigate(['/FabCot/active-contract-details-combernoil-local'], { queryParams: {id: obj.id} });
     }
-    else if(st =="CMNE"){
+    else if(st =="CTWE"){
       this.router.navigate(['/FabCot/active-contract-details'], { queryParams: {id: obj.id} });
     }
     else{
