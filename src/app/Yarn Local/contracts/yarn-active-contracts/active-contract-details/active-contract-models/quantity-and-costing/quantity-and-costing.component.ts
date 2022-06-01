@@ -75,7 +75,8 @@ export class QuantityAndCostingComponent implements OnInit {
           this.response = res;
           if (this.response.success == true && this.response.data != null) {
             this.data = this.response.data;
-            if( this.data.rateUOMId == null && this.data.quantityUOMId == null){
+            if( this.data.rateUOMId == null && this.data.quantityUOMId == null ||
+              this.data.quantityUOMId == null &&  this.data.rateCurrencyId){
               this.toastr.error("Quantity or Rate UMOs Are Missing", 'Message.');
             }
             
@@ -142,7 +143,59 @@ this.spinner.hide();
         });
       }
       else{
-        this.toastr.error("Quantity or Rate UMOs Are Missing", 'Message.');
+        if(this.loggedInDepartmentName == "Yarn Export")
+        {
+          let varr = {
+            "contractId": this.contractId,
+            "quantity": this.data.quantity.replace("," , ""),
+            "quantityUOMId": this.data.quantityUOMId,
+      
+            "quantityToleranceValue": this.data.quantityToleranceValue,
+            "rate": this.data.rate,
+            "rateCurrencyId": this.data.rateCurrencyId,
+            
+            "rateUOMId": this.data.rateUOMId,
+            "contractCost":this.data.contractCost == "" ? 0 : this.data.contractCost,
+            "totalCostGSt":this.data.totalCostGSt == ""?  null :this.data.totalCostGSt  ,
+            "gst": this.data.gst,
+            "witAx": this.data.witAx
+            
+          }
+      this.spinner.show();
+          this.http.
+            post(`${environment.apiUrl}/api/Contracts/AddContractCosting`, varr)
+            .subscribe(
+              res => {
+      
+                this.response = res;
+                if (this.response.success == true) {
+                  this.toastr.success(this.response.message, 'Message.');
+                  // this.getEnquiryData(this.objEnquiry);
+                  this.activeModal.close(true);
+                  this.getContractCostingData();
+                  localStorage.setItem('rate',this.data.quantity);
+      this.spinner.hide();
+      
+      
+              }
+                else {
+                  this.toastr.error(this.response.message, 'Message.');
+      this.spinner.hide();
+      
+                }
+      
+              },(err: HttpErrorResponse) => {
+                const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+                this.toastr.error(messages.toString(), 'Message.');
+                console.log(messages);
+      this.spinner.hide();
+      
+              });
+        }
+        else{
+
+          this.toastr.error("Quantity or Rate UMOs Are Missing", 'Message.');
+        }
       }
   }
 
