@@ -30,10 +30,10 @@
       <div class="panel-heading">
         <div class="row mb-3">
           <div class= "col-md-6 ">
-              <span class="date-Label">Date From &nbsp;</span>
+              <!-- <span class="date-Label">Date From &nbsp;</span>
              <span class="text_Navy  date"> 23-Jan-2021 &nbsp;</span>
              <span class="date-Label">To &nbsp;</span>
-             <span class="text_Navy  date">20-July-2021 &nbsp;</span>
+             <span class="text_Navy  date">20-July-2021 &nbsp;</span> -->
           </div>
           <div class="col-md-6 mrg-tsm">
                 <!-- refresh button -->
@@ -99,11 +99,16 @@
         <div class="card-body"> 
       <div class="panel-body">
         
-        <ngx-datatable class="bootstrap datatable-row-wrapper" [columns]="columns" [rows]="rows" [columnMode]="'flex'"
-          [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="6" [sorts]="[{ prop: 'id', dir: 'desc' }]">
+        <ngx-datatable #myTable class="bootstrap datatable-row-wrapper" [columns]="columns" [rows]="rows"
+        [columnMode]="'force'"   [headerHeight]="50" [sorts]="[{ prop: 'id', dir: 'asce' }]"
+        [footerHeight]="30"
+          [rowHeight]="50"
+          [scrollbarH]="true"
+          [scrollbarV]="true"
+         style="height: 500px;">
       
          
-          <ngx-datatable-column name="action" [width]="80" prop="sno" [flexGrow]="0.04">
+          <!-- <ngx-datatable-column name="action" [width]="80" prop="sno">
             <ng-template let-row="row" let-rowIndex="rowIndex" let-expanded="expanded" ngx-datatable-cell-template>
               <div class="ibox-tools text-center">
                 <button type="button" class="btn editIconBack px-1 py-1" data-toggle="tooltip" data-placement="top" title=""
@@ -112,66 +117,71 @@
                  (click) = "deletePayment(row)"  ><i class="fas fa-trash"></i></button>
               </div>
             </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="ComPay ID" [width]="80" prop="" [flexGrow]="0.05">
+          </ngx-datatable-column> -->
+          <ngx-datatable-column name="ComPay ID"  prop="comPayId" >
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-
+              {{row.comPayId}}
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Buyer" [width]="80" prop="buyerName" [flexGrow]="0.06">
+          <ngx-datatable-column name="Buyer"  prop="buyer" >
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-           {{row.buyerName}}
-            </ng-template>
-          </ngx-datatable-column>
-      
-          <ngx-datatable-column name="Seller" [width]="80" prop="sellerName" [flexGrow]="0.06">
-            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{row.sellerName}}
+           {{row.buyer}}
             </ng-template>
           </ngx-datatable-column>
       
-          <ngx-datatable-column name="Pay Date" [width]="80" prop="paymentDate" [flexGrow]="0.08">
+          <ngx-datatable-column name="Seller"  prop="sellerName" >
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-             {{row.paymentDate}}
+              {{row.seller}}
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Pay No" [width]="80" prop="payNo" [flexGrow]="0.06">
+      
+          <ngx-datatable-column name="Pay Date" prop="payDate" >
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+             {{row.payDate}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Pay No"  prop="payNo" >
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
               {{row.payNo}}
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Amount" [width]="80" prop="amount" [flexGrow]="0.06">
+          <ngx-datatable-column name="Amount"  prop="amount" >
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
               {{row.amount}}
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Pay Mode" [width]="80" prop="paymentMode" [flexGrow]="0.06">
+          <ngx-datatable-column name="Pay Mode"  prop="payMode" >
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{row.paymentMode}}
+              {{row.payMode}}
             </ng-template>
           </ngx-datatable-column>
       
-          <ngx-datatable-column name="From Bank" [width]="80" prop="fromBankAccountName" [flexGrow]="0.06">
+          <ngx-datatable-column name="From Bank"  prop="fromBank" >
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-          {{row.fromBankAccountName}}
+          {{row.fromBank}}
             </ng-template>
           </ngx-datatable-column>
       
-          <ngx-datatable-column name="To Bank" [width]="80" prop="toBankAccountName" [flexGrow]="0.06">
+          <ngx-datatable-column name="To Bank"  prop="toBank" >
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-              {{row.toBankAccountName}}
+              {{row.toBank}}
           
             </ng-template>
           </ngx-datatable-column>
       
-          <ngx-datatable-column name="Deposite On" [width]="80" prop="depositDate" [flexGrow]="0.07">
+          <ngx-datatable-column name="Deposite On"  prop="depositeOn" [flexGrow]="0.07">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-         {{row.depositDate}}
+         {{row.depositeOn}}
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Remarks" [width]="80" prop="paymentRemarks" [flexGrow]="0.07">
+          <ngx-datatable-column name="Remarks"  prop="remarks" [flexGrow]="0.07">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-        {{row.paymentRemarks}}
+        {{row.remarks}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="SI-No's"  prop="saleInvoiceNos" [flexGrow]="0.07">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+        {{row.saleInvoiceNos}}
             </ng-template>
           </ngx-datatable-column>
         </ngx-datatable>

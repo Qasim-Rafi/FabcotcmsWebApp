@@ -10,6 +10,9 @@ import { environment } from 'src/environments/environment';
 import { process,State  } from '@progress/kendo-data-query';
 import { DataBindingDirective } from '@progress/kendo-angular-grid';
 import { SUPPORTED_LANGUAGE } from 'ngx-num-to-words';
+import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
   selector: 'app-bill-invoices',
@@ -346,7 +349,7 @@ getafterGenrated(){
         var d= this.rows.filter(x=>x.id == this.idsUpdates[i]);
         if(d.length >0 ){
 
-          this.idsUpdates[i] = d[0].contractId
+          this.idsUpdates[i] = d[0].contractId +'-'+ parseInt( d[0].billNumber)
         }
 }
        this.idsUpdates = [...new Set(this.idsUpdates)];
@@ -356,7 +359,97 @@ getafterGenrated(){
     window.open('/accBulk' , '_blank');
   });
   this.mySelection =[];
+  this.idsUpdates=[];
   }
   }
+
+
+
+  ExcelFile(){
+    const filtered = this.rows.map(row => ({
+      InvoiceDepartment:row.invoiceDepartment,
+      SellerName: row.sellerName,
+      BillNumber: row.billNumber,
+      BillInvoiceNumber: row.billInvoiceNumber ,
+      AutoContractNumber: row.autoContractNumber,
+      BillGeneratedDateTime: row.billGeneratedDateTime,
+      SaleInvoiceNo: row.saleInvoiceNo ,
+      BillAmount: row.billAmount ,
+    
+      TaxAmount: row.taxAmount +'%',
+    }));
+
+    this.service.exportAsExcelFile(filtered, 'Accounts Execl Report');
+
+  }
+  Pdf() {
+
+    let docDefinition = {
+      pageSize: 'A4',
+      pageOrientation: 'Landscape',
+      info: {
+        title: 'Accounts Execl Report'
+      },
+      content: [
+        {
+          text: 'Accounts PDF Report',
+          style: 'heading',
+
+        },
+        {
+          margin: [-30 , 5 , 0 , 0 ],
+          table:{
+            headerRows : 1,
+            widths : [80, 100, 100, 100 , 100 , 100 , 100 , 80 , 80  
+            ],
+            body:[
+              [
+                {text:'InvoiceDepartment' , style:'tableHeader' }
+              ,{text:'SellerName' , style:'tableHeader'} ,
+              {text:'BillNumber' , style:'tableHeader' }, 
+              {text:'BillInvoiceNumber' , style:'tableHeader' }, 
+
+              {text:'AutoContractNumber'  , style:'tableHeader'} , 
+              {text:'BillGeneratedDateTime' , style:'tableHeader'} , 
+              {text:'SaleInvoiceNo' , style:'tableHeader'},
+              
+              {text:'BillAmount'  , style:'tableHeader'} , 
+              {text:'TaxAmount' , style:'tableHeader'} , 
+            ],
+              ...this.rows.map(row => (
+                [
+                  {text: row.invoiceDepartment , style:'tableHeader2'} ,
+                {text:  row.sellerName , style:'tableHeader2'},
+                {text: row.billNumber, style:'tableHeader2'} ,
+                {text: row.billInvoiceNumber , style:'tableHeader2'} ,
+                 {text: row.autoContractNumber, style:'tableHeader2'} ,
+                  {text:row.billGeneratedDateTime  , style:'tableHeader2' }  ,
+                  {text: row.saleInvoiceNo , style:'tableHeader2'},
+           
+                 {text: row.billAmount, style:'tableHeader2'} ,
+                  {text:row.taxAmount  + "%" , style:'tableHeader2' }  ,
+
+
+
+                ]
+              ))
+            ]
+          }
+        },
+      ],
+      styles: {
+        heading: {
+          fontSize: 13,
+          alignment: 'center',
+          margin: [0, 15, 0, 30]
+        },
+        tableHeader:{ fillColor: '#f3f3f4' , bold:true , margin:4 , alignment: 'center' ,fontSize: 7},
+        tableHeader2:{   margin:3 , alignment: 'center' , fontSize: 6},
+      }
+
+    };
+    pdfMake.createPdf(docDefinition).print();
+  }
+
 
 }

@@ -15,7 +15,7 @@ export class CommisionKickbackComponent implements OnInit {
   @Input() contractId;
   // data:any =[];
   data : any = [
-    // { id: 0}
+     { id: 0}
   ];
   commission:any={};
   agents:any={};
@@ -43,7 +43,7 @@ export class CommisionKickbackComponent implements OnInit {
   }
 
   addMore() {
-    this.data.push({id: this.data.length});
+    this.data.push({ id: 0 });
   }
   remove(i: number) {
     this.data.splice(i, 1);
@@ -84,7 +84,9 @@ export class CommisionKickbackComponent implements OnInit {
         this.response = res;
         if (this.response.success == true) {
           this.commission = this.response.data;
-          // this.commission.agenetName= parseInt(this.commission.agenetName);
+          if(this.response.data.agentCommissions.length != 0){
+            this.data = this.response.data.agentCommissions;
+            }
           
         }
         else {
@@ -124,8 +126,8 @@ export class CommisionKickbackComponent implements OnInit {
       "buyerSideCommission": this.commission.buyerSideCommission,
       "buyerSideCommissionUOMId": this.commission.buyerSideCommissionUOMId,
       "buyerAdditionalInfo": this.commission.buyerAdditionalInfo,
-      // "agentId": this.commission.agentId,
-      // "agentCommissions": this.data,
+       //"agentId": this.commission.agentId,
+       "agentCommissions":this.data[0].id == 0 ? this.data[0].hasOwnProperty('agentId') == false ? undefined : this.data : this.data[0].agentId == null ? undefined : this.data 
     }
 
     this.http.

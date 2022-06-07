@@ -53,8 +53,9 @@ constructor(    private service: ServiceService,
   search(event) {
     const val = event.target.value.toLowerCase();
     const temp = this.paymentFilter.filter(function (d) {
-      return (d.sellerName.toLowerCase().indexOf(val) !== -1 ||  
+      return (d.buyer.toLowerCase().indexOf(val) !== -1 ||  
       d.payNo.toLowerCase().indexOf(val) !== -1 ||  
+      d.saleInvoiceNos.toLowerCase().indexOf(val) !== -1 ||  
       !val);
     });
     this.rows = temp;
@@ -80,7 +81,7 @@ constructor(    private service: ServiceService,
   fetch(cb) {
     
     this.http
-    .get(`${environment.apiUrl}/api/BillingPayments/GetAllBillingCommissionPayment`)
+    .get(`${environment.apiUrl}/api/BillingPayments/GetAllBuyerToSellerPayment`)
     .subscribe(res => {
       this.response = res;
      
@@ -148,16 +149,18 @@ constructor(    private service: ServiceService,
   }
   commCsvFile(){
     const filtered = this.rows.map(row => ({
-      ComPayID: row.id,
+      ComPayID: row.comPayId,
       // BillFor: row.sellerName,
-      Seller: row.sellerName,
-      payDate: row.paymentDate,
+      Seller: row.seller,
+      Buyer: row.buyer,
+      payDate: row.payDate,
       PayNo: row.payNo,
       Amount: row.amount,
-      payMode: row.paymentMode,
-      FromBankAccount: row.fromBankAccountName,
-      ToBankAccount: row.toBankAccountName,
-      DepositeDate: row.depositDate, }));
+      payMode: row.payMode,
+      FromBankAccount: row.fromBank,
+      ToBankAccount: row.toBank,
+      DepositeDate: row.depositeOn, 
+      SaleInvoiceNos: row.saleInvoiceNos, }));
   
     this.service.exportAsCsvFile(filtered, 'Commission Payment');
   
