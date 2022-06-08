@@ -27,7 +27,7 @@ export class AdvanceFilterComponent implements OnInit {
    columns : any = {}
    billSearch : any = [];
    billSearch2 : any = [];
-
+   loggedInDepartmentName: string;
    @ViewChild(NgForm) filterForm;
 
 
@@ -41,6 +41,7 @@ export class AdvanceFilterComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.loggedInDepartmentName=localStorage.getItem('loggedInDepartmentName');
     this.GetBuyersDropdown();
     this.GetSellersDropdown();
     this.GetArticleDropdown();
@@ -89,9 +90,15 @@ export class AdvanceFilterComponent implements OnInit {
         this.toastr.error(this.response.message, 'Message.');
       }
     })
-  }
+  }  
   navigate(obj){
-    this.router.navigate(['/FabCot/active-contract-details'], { queryParams: {id: obj.id} });
+    if(this.loggedInDepartmentName == "Home Textile & Garment"){
+      this.router.navigate(['/contract/active-contract-details'], { queryParams: {id: obj.id} });
+    }
+    else{
+
+      this.router.navigate(['/FabCot/active-contract-details'], { queryParams: {id: obj.id} });
+    }
 
   }
   navigateEditContract(obj) {
