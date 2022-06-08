@@ -6,36 +6,36 @@
 }
 
 .text-font{
-font-weight: 600;
-color: grey;
+font-weight: 800;
+color: #22302d;
 font-size: 17px;
 }
 .text-font1{
-  font-weight: 600;
-  color: rgb(95, 93, 93);
+  font-weight: 800;
+  color: #22302d;
   font-size: 14px;
   }
 .text-small{
-font-weight: 600;
-color: rgb(95, 93, 93);
+font-weight: 800;
+color: #22302d;
 font-size: 12px;
 }   
 .weight{
-font-weight: 600;
-color: #1ab394;
+font-weight: 800;
+color: #22302d;
 }
 .clr{
 color: rgb(98, 172, 241);
 }
 .bold{
-  font-weight: 700;
+  font-weight: 800;
   }
 
   table, th, td {
       margin-top: 40px;
-      border: 1px solid #0e0d0d;
-      color: rgb(95, 93, 93);
-      font-weight: bold;
+      border: 2px solid #0e0d0d;
+      color: #22302d;
+      font-weight: 900;
     }
 
     .underline{
@@ -48,22 +48,22 @@ height: 70%;
 text-align: center;
 }
 .address{
-font-weight: 500;
-  color: rgb(95, 93, 93);
+font-weight: 800;
+  color: #22302d;
   font-size: 12px;
 margin-top: -38px;
 margin-bottom: 40px;
 }
 .address2{
-font-weight: 500;
-color: rgb(95, 93, 93);
+font-weight: 800;
+color: #22302d;
 font-size: 16px;
 margin-top: -40px;
 margin-bottom: 40px;
 }
 .address3{
-font-weight: 400;
-color: rgb(95, 93, 93);
+font-weight: 600;
+color: #22302d;
 font-size: 12px;
 margin-top: -40px;
 margin-bottom: 40px;

@@ -67,15 +67,15 @@
            {{x.sellerName}}
         </span>
         <br>
-        <span class="text-small bold">
+        <span class="text-small ">
             Address: <span class=" text-small">{{x.sellerBillingAddress}}</span>
         </span>
         <br>
-        <span class="text-small bold">
+        <span class="text-small ">
             Sales Tax Resgitration No.: <span class=" text-small"> {{x.sellerGST}}</span>
         </span>
         <br>
-        <span class="text-small bold">
+        <span class="text-small ">
             NTN No.:<span class=" text-small"> {{x.sellerNTN}}</span>
         </span>
     </div>
@@ -88,15 +88,15 @@
            {{x.buyerName}}
         </span>
         <br>
-        <span class="text-small bold">
+        <span class="text-small ">
             Address: <span class=" text-small">{{x.buyerBillingAddress}}</span>
         </span>
         <br>
-        <span class="text-small bold">
+        <span class="text-small ">
             Sales Tax Resgitration No.: <span class=" text-small"> {{x.buyerGST}}</span>
         </span>
         <br>
-        <span class="text-small bold">
+        <span class="text-small ">
             NTN No.:<span class=" text-small">  {{x.buyerNTN}}</span>
         </span>
     </div>
@@ -112,31 +112,31 @@
                     </span>
                     <br>
                     <span class="text-font1">
-                        Bill No.: <span class="bold text-font1">{{x.billNumber}}</span>
+                        Bill No.: <span class=" text-font1">{{x.billNumber}}</span>
                     </span>
                     <br>
                     <span class="text-font1">
-                        Invoice Date.:<span class="bold text-font1">{{x.billInvoiceDate}}</span>
+                        Invoice Date.:<span class=" text-font1">{{x.billInvoiceDate}}</span>
                     </span>
                 </div>
 
                 <div class="float-left">
                     <!-- <span class="text-font1" >
-                        Seller: <span class="bold text-font1">{{rows.sellerName}}</span>
+                        Seller: <span class=" text-font1">{{rows.sellerName}}</span>
                     </span>
                 <br>
                     <span class="text-font1" >
-                        Buyer: <span class="bold text-font1">{{rows.buyerName}}</span>
+                        Buyer: <span class=" text-font1">{{rows.buyerName}}</span>
                     </span>
                     <br> -->
 
                     <span class="text-font1">
-                        Fabcot Contract No: <span class="bold text-font1"> {{x.contractNumber}}</span>
+                        Fabcot Contract No: <span class=" text-font1"> {{x.contractNumber}}</span>
                     </span>
                     <br>
                   
                     <span class="text-font1">
-                        Contract Date: <span class="bold text-font1">{{x.contractDate}}</span>
+                        Contract Date: <span class=" text-font1">{{x.contractDate}}</span>
                     </span>
                     <br>
                   
@@ -182,37 +182,37 @@
             <br>
            
             <div class="float-right">
-                <span class=" bold  text-font1">
+                <span class="   text-font1">
                     Sub Total: <span class="text-font1  underline">{{x.billAmount | number:'1.0-0'}} </span>
                 </span>
                 <br>
-                <span class=" bold  text-font1">
+                <span class="   text-font1">
                     TAX : <span class="text-font1  underline">{{x.invoiceTaxAmountTotal | number:'1.0-0'}}</span>
                 </span><br>
-                <span class=" bold  text-font1">
-                    TOTAL : <span class="bold text-font1  underline">{{x.invoiceTotalAmount | number:'1.0-0'}}  </span>
+                <span class="   text-font1">
+                    TOTAL : <span class=" text-font1  underline">{{x.invoiceTotalAmount | number:'1.0-0'}}  </span>
                 </span>
                 
             </div>
 
             <div class="float-right" style="margin-top: 133px; margin-right: -93;">
-                <span class="bold text-font1">
+                <span class=" text-font1">
                     Aurthorized Signatory: ----------------
                 </span>
                </div>
          
             <div class="float-left" >
             <span class="text-font1">
-                Quantity:<span class="bold text-font1 "> {{x.quantitySum}} &nbsp; {{x.quanityUOM}}</span>
+                Quantity:<span class=" text-font1 "> {{x.quantitySum}} &nbsp; {{x.quanityUOM}}</span>
             </span>
             <br>
             <span class=" text-font1">
-                Amount In Words:<span class="bold text-font1 underline text-capitalize">  {{x.accountName}}</span>
+                Amount In Words:<span class=" text-font1 underline text-capitalize">  {{x.accountName}}</span>
             </span>
             <br>
             <br>
             <!-- <span class=" text-font1">
-                Amount In Words:<span class="bold text-font1 underline text-capitalize">  {{x.accountName}}</span>
+                Amount In Words:<span class=" text-font1 underline text-capitalize">  {{x.accountName}}</span>
             </span>
             <br> <br> -->
             <span class=" text-font1">
@@ -220,7 +220,7 @@
             </span>
             <br>
             <br> 
-            <span class=" bold text-font1">
+            <span class="  text-font1">
                 Thanking You
             </span>
             <br>
@@ -228,7 +228,7 @@
           
             <div class="">
             
-                <span class="bold  text-font1">
+                <span class="  text-font1">
                     Checked By: ----------------
                     
                 </span>
