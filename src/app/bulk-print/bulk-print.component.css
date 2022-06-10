@@ -42,7 +42,7 @@ color: #26302e !important;
         margin-top: 40px;
         border: 1px solid grey;
         color: #181717;
-        font-size: 18px;
+        font-size: 18px !important;
       }
 
       table,  td {
@@ -50,6 +50,7 @@ color: #26302e !important;
         border: 1px solid grey;
         color: #181717;
         font-size: 15px;
+        font-weight: 700;
       }
       .underline{
         text-decoration-line: underline;
