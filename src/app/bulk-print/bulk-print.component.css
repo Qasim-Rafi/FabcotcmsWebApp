@@ -17,13 +17,15 @@
 }
 .text-font{
 font-weight: 400;
-color: grey;
+color: #181717;
 font-size: 17px;
 }
 .text-font1{
     font-weight: 800;
-    color: rgb(95, 93, 93);
+   
     font-size: 18px;
+    color: #181717;
+
     }
 .weight{
 font-weight: 800 !important;
@@ -39,14 +41,14 @@ color: #26302e !important;
     table, th {
         margin-top: 40px;
         border: 1px solid grey;
-        color: rgb(95, 93, 93);
+        color: #181717;
         font-size: 18px;
       }
 
       table,  td {
         margin-top: 40px;
         border: 1px solid grey;
-        color: rgb(95, 93, 93);
+        color: #181717;
         font-size: 15px;
       }
       .underline{
@@ -79,7 +81,7 @@ color: #26302e !important;
   margin-left: 30px;
   /* font-weight: 600; */
   line-height: 1.2;
-  color: rgb(95, 93, 93);
+  color: #181717;
   /* font-size: 13px; */
 
 
