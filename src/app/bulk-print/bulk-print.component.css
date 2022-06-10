@@ -107,7 +107,7 @@ color: #26302e !important;
   .page-break { page-break-inside: avoid;}
 } */ 
 .panel{
-  zoom: 80% !important ;
+  zoom: 83% !important ;
 }
 @media print {
   @-moz-document url-prefix() {
