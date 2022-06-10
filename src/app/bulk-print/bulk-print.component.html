@@ -64,25 +64,25 @@
      
             
             <div class="row " *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import' ">
-                <div class="col-md-10">
-                    <p class="text-font1 float-right  bottom2 ">  Flexi Office, RAKEZ Business ZONE F-Z RAK, United Arab Emirates.
+                <div class="col-md-8">
+                    <p class="textsideaddress float-right  bottom2 ">  Flexi Office, RAKEZ Business ZONE F-Z RAK, United Arab Emirates.
                     </p>
                
                 </div>
             
             </div>
             <div class="row " *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export'">
-                <div class="col-md-8">
+                <div class="col-md-7">
                 
-                    <p class="text-font1 float-right " *ngIf = "x.owneName != 'asif manzoor'">  Email: Sohail@fabcot.net</p>
-                    <p class="text-font1 float-right " *ngIf = "x.owneName == 'asif manzoor'">  Email: Asif@fabcot.net</p>
+                    <p class="textsideaddress float-right " *ngIf = "x.owneName != 'asif manzoor'">  Email: Sohail@fabcot.net</p>
+                    <p class="textsideaddress float-right " *ngIf = "x.owneName == 'asif manzoor'">  Email: Asif@fabcot.net</p>
                 </div>
             
             </div>
             <div class="row " *ngIf = " loggedInDepartmentName == 'Yarn Import'">
                 <div class="col-md-8">
                  
-                    <p class="text-font1 float-right ">  Email: faisal@fabcot.net
+                    <p class="textsideaddress float-right ">  Email: faisal@fabcot.net
                     </p>
                 </div>
             
