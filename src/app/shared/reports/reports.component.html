@@ -1113,7 +1113,7 @@
                   <kendo-grid-column field="fabcotCommission" title="Comm%" [width]="80" [headerClass]="'customiconforgrid'">
                     <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
                       <!-- <span class="badge badge-primary"> {{dataItem.billStatus}}</span> -->
-                      <span *ngIf="dataItem.fabcotCommission != ''">{{ dataItem.fabcotCommission }} {{dataItem.quantityUOMName}} </span>
+                      <span >{{ dataItem.fabcotCommission }} {{dataItem.quantityUOMName}} </span>
                     </ng-template>
                     
                   </kendo-grid-column>
