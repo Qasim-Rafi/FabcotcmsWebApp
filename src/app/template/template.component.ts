@@ -57,6 +57,7 @@ export class TemplateComponent implements OnInit {
   Enqurie: boolean = false;
   Textile: boolean = false;
   screenHeight:any;
+  user ={ 'depart': "YarnLocal"}
 screenWidth:any;
 @HostListener('window:resize', ['$event'])
 onResize(event?) {
@@ -81,6 +82,9 @@ onResize(event?) {
     this.userName=localStorage.getItem('loggedInUserName');
     this.loggedInDepartmentName=localStorage.getItem('loggedInDepartmentName');
     this.loggedInUserId= localStorage.getItem('loggedInUserId')
+
+this.user.depart = this.loggedInDepartmentName;
+
     if(this.loggedInDepartmentId == '1'){
       this.isYarnLocal = true;
       this.isHomeTextileandGarments= false;
@@ -244,7 +248,17 @@ else if(menuName == 'Departments'){
 }
 }
 
-
+AdminDepartMethod(depart,departID){
+  this.loggedInDepartmentName=localStorage.getItem('loggedInDepartmentName');
+  this.loggedInDepartmentId=localStorage.getItem('loggedInDepartmentId');
+  if(this.loggedInDepartmentName != depart){
+    localStorage.removeItem('loggedInDepartmentName')
+    localStorage.removeItem('loggedInDepartmentId')
+    localStorage.setItem('loggedInDepartmentName',depart)
+    localStorage.setItem('loggedInDepartmentId',departID)
+    window.location.reload();
+  }
+}
 // GetReportData() {
 //   this.spinner.show();
 //   this.http.get(`${environment.apiUrl}/api/Contracts/GetAllContract`)

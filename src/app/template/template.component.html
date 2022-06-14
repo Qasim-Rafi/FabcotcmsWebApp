@@ -1,4 +1,70 @@
 <div class="wrapper">
+
+
+  <div *ngIf="this.loggedInUserId == '183'" class="grow" style="background-color: #424242; color: white;">
+    <h6>Departments</h6> 
+    
+    <div class="wrapper1233">
+      <div class="title">Select your option</div>
+      <div class="box">
+        <input type="radio" name="select" value="Yarn Local" [ngModel]="user.depart" id="option-1" checked >
+        <input type="radio" name="select" value="Yarn Export" [ngModel]="user.depart" id="option-2">
+        <input type="radio" name="select" value="Fabric Export" [ngModel]="user.depart" id="option-3">
+        <input type="radio" name="select" value="Yarn Local Karachi" [ngModel]="user.depart" id="option-4">
+        <input type="radio" name="select" value="Fabric Local" [ngModel]="user.depart" id="option-5">
+        <input type="radio" name="select" value="Home Textile & Garment" [ngModel]="user.depart" id="option-6">
+        <input type="radio" name="select" value="Yarn Import" [ngModel]="user.depart" id="option-7">
+        <input type="radio" name="select" value="Accounts" [ngModel]="user.depart" id="option-8">
+        <input type="radio" name="select" value="Cotton" [ngModel]="user.depart" id="option-9">
+        <input type="radio" name="select" value="Comber noil" [ngModel]="user.depart" id="option-10">
+
+        <label for="option-1" class="option-1" (click)="AdminDepartMethod('Yarn Local','3')">
+          <div class="dot"></div>
+          <div class="text">Yarn Local</div>
+        </label>
+        <label for="option-2" class="option-2" (click)="AdminDepartMethod('Yarn Export','1')">
+          <div class="dot"></div>
+          <div class="text">Yarn Export</div>
+        </label>
+        <label for="option-3" class="option-3" (click)="AdminDepartMethod('Fabric Export','2')">
+          <div class="dot"></div>
+          <div class="text">Fabric Export</div>
+        </label>
+        <label for="option-4" class="option-4" (click)="AdminDepartMethod('Yarn Local Karachi','4')">
+          <div class="dot"></div>
+          <div class="text">YLK</div>
+        </label>
+        <label for="option-5" class="option-5" (click)="AdminDepartMethod('Fabric Local','5')">
+          <div class="dot"></div>
+          <div class="text">Fabric Local</div>
+        </label>
+        <label for="option-6" class="option-6" (click)="AdminDepartMethod('Home Textile & Garment','6')">
+          <div class="dot"></div>
+          <div class="text">HT</div>
+        </label>
+        <label for="option-7" class="option-7" (click)="AdminDepartMethod('Yarn Import','9')">
+          <div class="dot"></div>
+          <div class="text">Yarn Import</div>
+        </label>
+        <label for="option-8" class="option-8" (click)="AdminDepartMethod('Accounts','8')">
+          <div class="dot"></div>
+          <div class="text">Accounts</div>
+        </label>
+        <label for="option-9" class="option-9" (click)="AdminDepartMethod('Cotton','7')">
+          <div class="dot"></div>
+          <div class="text">Cotton</div>
+        </label>
+        <label for="option-10" class="option-10" (click)="AdminDepartMethod('Comber noil','10')">
+          <div class="dot"></div>
+          <div class="text">Comber noil</div>
+        </label>
+      </div>
+    </div>
+
+
+
+  </div>
+
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light shadow">
       <!-- Left navbar links -->

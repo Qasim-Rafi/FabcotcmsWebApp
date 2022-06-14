@@ -79,3 +79,144 @@ span{
 
 
 
+.grow {
+   padding: 2px;
+   border-radius: 10px;
+   height: 33px;
+   width: 16%;
+   margin: -31px 0% 5px 45%;
+   float: left;
+   position: absolute;
+   transition: height 0.5s;
+   -webkit-transition: height 0.5s;
+   text-align: center;
+   overflow: hidden;
+   transition: 1.5s;
+   z-index: 9999;
+ }
+ .grow:hover {
+   height: 530px;
+   
+ }
+
+
+ /* ........................................... */
+
+ .wrapper1233{
+   width: 200px;
+   background: #fff;
+   border-radius: 10px;
+   box-shadow: 5px 5px 30px rgba(0,0,0,0.2);
+ }
+ .wrapper1233 .title{
+   color: #fff;
+   line-height: 35px;
+   text-align: center;
+   background: #333;
+   font-size: 15px;
+   font-weight: 500;
+   border-radius: 10px 10px 0 0;
+ }
+ .wrapper1233 .box{
+   padding: 1px 10px;
+   background: #fff;
+   border-radius: 10px;
+ }
+ .wrapper1233 .box label{
+   display: flex;
+   height: 35px;
+   width: 100%;
+   align-items: center;
+   border: 1px solid lightgrey;
+   border-radius: 50px;
+   margin: 10px 0;
+   padding-left: 20px;
+   cursor: default;
+   transition: all 0.3s ease;
+ }
+ #option-1:checked ~ .option-1,
+ #option-2:checked ~ .option-2,
+ #option-3:checked ~ .option-3,
+ #option-4:checked ~ .option-4,
+ #option-5:checked ~ .option-5,
+ #option-6:checked ~ .option-6,
+ #option-7:checked ~ .option-7,
+ #option-8:checked ~ .option-8,
+ #option-9:checked ~ .option-9,
+ #option-10:checked ~ .option-10{
+   background: #333;
+   border-color: #333;
+ }
+ .wrapper1233 .box label .dot{
+   height: 20px;
+   width: 20px;
+   background: #d9d9d9;
+   border-radius: 50%;
+   position: relative;
+   transition: all 0.3s ease;
+ }
+ #option-1:checked ~ .option-1 .dot,
+ #option-2:checked ~ .option-2 .dot,
+ #option-3:checked ~ .option-3 .dot,
+ #option-4:checked ~ .option-4 .dot
+ #option-5:checked ~ .option-5 .dot,
+ #option-6:checked ~ .option-6 .dot,
+ #option-7:checked ~ .option-7 .dot,
+ #option-8:checked ~ .option-8 .dot,
+ #option-9:checked ~ .option-9 .dot,
+ #option-10:checked ~ .option-10 .dot{
+   background: #fff;
+ }
+ .box label .dot::before{
+   position: absolute;
+   content: "";
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%) scale(2);
+   width: 9px;
+   height: 9px;
+   border-radius: 50%;
+   transition: all 0.3s ease;
+ }
+ #option-1:checked ~ .option-1 .dot::before,
+ #option-2:checked ~ .option-2 .dot::before,
+ #option-3:checked ~ .option-3 .dot::before,
+ #option-4:checked ~ .option-4 .dot::before,
+ #option-5:checked ~ .option-5 .dot::before,
+ #option-6:checked ~ .option-6 .dot::before,
+ #option-7:checked ~ .option-7 .dot::before,
+ #option-8:checked ~ .option-8 .dot::before,
+ #option-9:checked ~ .option-9 .dot::before,
+ #option-10:checked ~ .option-10 .dot::before,{
+   background: #333;
+   transform: translate(-50%, -50%) scale(1);
+ }
+ .wrapper1233 .box label .text{
+   color: #333;
+   font-size: 18px;
+   font-weight: 400;
+   padding-left: 10px;
+   transition: color 0.3s ease;
+ }
+ #option-1:checked ~ .option-1 .text,
+ #option-2:checked ~ .option-2 .text,
+ #option-3:checked ~ .option-3 .text,
+ #option-4:checked ~ .option-4 .text,
+ #option-5:checked ~ .option-5 .text,
+ #option-6:checked ~ .option-6 .text,
+ #option-7:checked ~ .option-7 .text,
+ #option-8:checked ~ .option-8 .text,
+ #option-9:checked ~ .option-9 .text,
+ #option-10:checked ~ .option-10 .text{
+   color: #fff;
+ }
+ .wrapper1233 .box input[type="radio"]{
+   display: none;
+ }
+
+
+
+ 
+ 
+ 
+ 
