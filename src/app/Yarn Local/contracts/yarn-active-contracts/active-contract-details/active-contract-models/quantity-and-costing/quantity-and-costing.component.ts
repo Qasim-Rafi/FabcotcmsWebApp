@@ -95,7 +95,7 @@ export class QuantityAndCostingComponent implements OnInit {
   addContractCosting() {
 
     if( this.data.rateUOMId != null && this.data.quantityUOMId != null){
-      if(this.data.quantit == undefined){
+      if(this.data.quantity == undefined){
         this.data.quantity ="0"
       }
     let varr = {
@@ -148,7 +148,7 @@ this.spinner.hide();
       else{
         if(this.loggedInDepartmentName == "Yarn Export")
         {
-          if(this.data.quantit == undefined){
+          if(this.data.quantity == undefined){
             this.data.quantity ="0"
           }
        
