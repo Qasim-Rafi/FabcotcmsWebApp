@@ -95,9 +95,16 @@ export class QuantityAndCostingComponent implements OnInit {
   addContractCosting() {
 
     if( this.data.rateUOMId != null && this.data.quantityUOMId != null){
+      if(this.data.quantit != undefined){
+        this.data.quantity 
+      }
+      else{
+
+        this.data.quantity ="0"
+      }
     let varr = {
       "contractId": this.contractId,
-      "quantity": this.data.quantity.replace("," , ""),
+      "quantity":  this.data.quantity.replace("," , "") ,
       "quantityUOMId": this.data.quantityUOMId,
 
       "quantityToleranceValue": this.data.quantityToleranceValue,
@@ -145,6 +152,13 @@ this.spinner.hide();
       else{
         if(this.loggedInDepartmentName == "Yarn Export")
         {
+          if(this.data.quantit != undefined){
+            this.data.quantity 
+          }
+          else{
+    
+            this.data.quantity ="0"
+          }
           let varr = {
             "contractId": this.contractId,
             "quantity": this.data.quantity.replace("," , ""),
