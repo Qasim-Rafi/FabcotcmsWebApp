@@ -2599,9 +2599,9 @@ toggleShow() {
 
             this.getContractData();
 this.isShownMC = ! this.isShownMC;
-this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
-  this.router.navigate(['/active-contract-details']);
-});
+// this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+//   this.router.navigate(['/active-contract-details']);
+// });
             this.spinner.hide();
           }
           else {
