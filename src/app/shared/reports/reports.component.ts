@@ -894,7 +894,8 @@ fetchContractInvise() {
 this.spinner.hide();
 
   this.contractWise=this.response.data.getBillReport;
-  this.contractTotal = this.response.data.totalcommisionamount +' ' + this.contractWise[0].rateCurrencyName
+  this.contractTotal = this.response.data.totalcommisionamount +' ' + this.contractWise[0].rateCurrencyName;
+  this.contractTotal= parseFloat(this.contractTotal).toLocaleString()
  this.contractBill = [...this.contractWise]
 
 
@@ -1015,6 +1016,7 @@ this.spinner.hide();
       Quantity: row.quantity,
       QtyUOM:row.quantityUOMName,
       CommAmount: row.commissionAmount +' '+row.rateCurrencyName ,
+      TotalComAmount:this.contractTotal
     }));
 
     this.service.exportAsExcelFile(filtered, 'Bill Report(Contract Wise)');
@@ -1426,9 +1428,9 @@ this.fetch();
                 [
                   {text: row.billFor , style:'tableHeader2'} ,
                 {text:  row.articleName , style:'tableHeader2'},
-                {text: row.contractNo, style:'tableHeader2'} ,
+                {text: row.contractNo +'('+ row.manualContractNumber +')', style:'tableHeader2'} ,
                 //{text: row.manualContractNumber, style:'tableHeader2'} ,
-                {text: row.contractNo, style:'tableHeader2'} ,
+                //{text: row.contractNo, style:'tableHeader2'} ,
                 {text: row.contractDate , style:'tableHeader2'} ,
                  {text: row.billDate, style:'tableHeader2'} ,
                   {text:row.billNo  , style:'tableHeader2' }  ,

@@ -51,6 +51,7 @@ export class ActiveContractDetailsComponent implements OnInit {
  costingDataWithGstFL: any;
   reminderToggle : boolean = false
   rows: any = [];
+  dataMC:any={};
   rows7: any = [];
 printData : any = {}
   rows1: any = [];
@@ -153,6 +154,7 @@ revised : any;
 checkR: any;
 billCount : any;
 isShown: boolean = false
+isShownMC: boolean = false
 screenHeight:any;
 screenWidth:any;
 saleQuantityT:any;
@@ -2575,6 +2577,45 @@ toggleShow() {
   
   }
 
+  toggleShowtoupdateMC() {
+
+    this.isShownMC = ! this.isShownMC;
+    
+    }
+    updateMC(){
+      this.spinner.show();
+      let varr = {
+        "contractId": this.contractId,
+        "manualContractNumber": this.dataMC.manualCNumber
+      }
+      this.http.
+      put(`${environment.apiUrl}/api/Contracts/UpdateMunalContractNumber/`+this.contractId, varr)
+      .subscribe(
+        res => {
+
+          this.response = res;
+          if (this.response.success == true) {
+            this.toastr.success(this.response.message, 'Message.');
+
+            this.getContractData();
+this.isShownMC = ! this.isShownMC;
+this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+  this.router.navigate(['/active-contract-details']);
+});
+            this.spinner.hide();
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
+          }
+
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+            this.spinner.hide();
+          }
+        });
+    }
   contractdatechange(event){
     this.spinner.show();
         this.data.createdDateTime = this.dateformater.toModel(event);

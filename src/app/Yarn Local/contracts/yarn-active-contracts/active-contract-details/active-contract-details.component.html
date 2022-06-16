@@ -388,11 +388,23 @@
                                         </div>
 
                                         <div class="col-md-2" *ngIf="loggedInDepartmentName =='Yarn Local Karachi'">
-                                            <div class="h2 ">
+                                            <div class="h2 " (click)="toggleShowtoupdateMC()" style="cursor:pointer;">
                                                 <span><i class="fas fa-flag mr-3 text-secondary"></i>
-                                                    <span class="text-right text_Navy">{{contractData.manualContractNumber}}</span>
+                                                    <span class="text-right text_Navy" ngbTooltip="Click To Edit">{{contractData.manualContractNumber}}</span>
                                                 </span>
                                             </div>
+                                            <!-- <div class="col" *ngIf="isShownMC">
+                                                <input type="text" class="form-control"  #manualContractNumber="ngModel"
+                                                  [(ngModel)]="dataMC.manualContractNumber" name="manualContractNumber" />
+                                    
+                                              </div> -->
+                                              <div class="input-group" *ngIf="isShownMC">
+                                                <input type="text" class="form-control" #manualCNumber="ngModel"
+                                                [(ngModel)]="dataMC.manualCNumber" name="manualCNumber" >
+                                                <div class="input-group-append">
+                                                  <button class="btn btn-outline-secondary" (click)="updateMC()" type="button">Update</button>
+                                                </div>
+                                              </div>
                                             <div class="col-md-12" *ngIf="loggedInDepartmentName =='Yarn Local Karachi'">
                                                 <div class="h6 ">
                                                     <span>(SCN# :
