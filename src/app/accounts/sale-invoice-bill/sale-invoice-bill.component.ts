@@ -295,16 +295,16 @@ this.getDataBreakup();
           }
         },
 
-        //   {
+          {
 
 
-        //     layout:'noBorders',
-        //     table:{headerRows:1 ,  widths:['20%' , '80%' ],
-        //   body:[ [{text: 'Supplier Contract# :' , margin: [15 , 4 , 0 , 0] , bold:true , style:'common'} , {text: this.rows['supplierContractNumber'] , margin: [-12 , 4 , 0 , 0]  , bold:true  , decoration:'underline' , style:'common'}
+            layout:'noBorders',
+            table:{headerRows:1 ,  widths:['15%' , '60%' ],
+          body:[ [{text: 'Supplier Contract# :' , margin: [0 , 0 , 0 , 0] , bold:true , style:'headingF'} , {text: this.data['supplierContractNumber'] , margin: [-13 , 0 , 0 , 0]  , bold:false , style:'headingF'}
 
-        // ]]
-        //   }
-        //   },
+        ]]
+          }
+          },
         {
 
 
@@ -642,6 +642,19 @@ this.getDataBreakup();
             headerRows: 1, widths: ['8%', '50%', '8%', '50%'],
             body: [[{ text: 'NTN No :', margin: [0, 0, 0, 0], bold: true, style: 'headingF' }, { text: this.data['sellerNTN'], margin: [-13, 0, 0, 0], bold: false, style: 'headingF' },
             { text: 'NTN No :', bold: true, style: 'headingE' }, { text: this.data['buyerrNTN'], margin:[-50,0,0,0] ,  style: 'headingF' }
+
+            ]]
+          }
+        },
+
+        {
+
+
+          layout: 'noBorders',
+          table: {
+            headerRows: 1, widths: ['15%', '60%'],
+            body: [[{ text: 'Supplier Contract#', margin: [0, 0, 0, 0], bold: true, style: 'headingF' }, { text: this.data['supplierContractNumber'], margin: [-13, 0, 0, 0], bold: false, style: 'headingF' },
+           
 
             ]]
           }

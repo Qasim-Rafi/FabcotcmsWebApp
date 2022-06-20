@@ -187,7 +187,7 @@ span{
  #option-7:checked ~ .option-7 .dot::before,
  #option-8:checked ~ .option-8 .dot::before,
  #option-9:checked ~ .option-9 .dot::before,
- #option-10:checked ~ .option-10 .dot::before,{
+ #option-10:checked ~ .option-10 .dot::before{
    background: #333;
    transform: translate(-50%, -50%) scale(1);
  }
