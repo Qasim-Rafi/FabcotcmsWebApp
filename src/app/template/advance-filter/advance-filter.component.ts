@@ -104,6 +104,10 @@ export class AdvanceFilterComponent implements OnInit {
   navigateEditContract(obj) {
     this.router.navigate(['/FabCot/active-contract-details'], { queryParams: {id: obj.id} });
   };
+
+  navigateTobill(obj) {
+    this.router.navigate(['/yarn-billing-and-payment/open-bill'], { queryParams: {id: obj.billId} });
+  };
 clear(){
   this.data = [];
   this.data2 = [];
