@@ -549,7 +549,9 @@
   
             <ngx-datatable-column name="#Bill No#"  [width] = "20" [flexGrow]="0.05"  prop="billNumber">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                {{row.billNumber}}
+                <button class="btn btn-outline-secondary  btn-xs " *ngIf="row.billNumber" (click) = "navigateTobill(row)"> 
+                  {{row.billNumber}}
+                  </button>
                
               </ng-template>
             </ngx-datatable-column>
