@@ -3609,26 +3609,26 @@ this.isShownMC = ! this.isShownMC;
                       // },
                       // },
 
-                    //   { 
-                    //     margin:[0,0,0,0],
-                    //     canvas: 
-                    //     [
+                      { 
+                        margin:[0,15,0,0],
+                        canvas: 
+                        [
                             
-                    //         {
-                    //           type: 'line',
-                    //           x1: 0, y1: 60,
-                    //           x2: 590, y2: 60,
-                    //           lineWidth: 1,
-                    //           // lineColor:'#535353'
+                            {
+                              type: 'line',
+                              x1: 0, y1: 60,
+                              x2: 590, y2: 60,
+                              lineWidth: 1,
+                              // lineColor:'#535353'
 
-                    //         }
-                    //     ]
-                    //  },
+                            }
+                        ]
+                     },
 
 
                        {
                         layout:'noBorders',
-                        margin: [20 , 160 , 0 , 0],
+                        margin: [20 , 80 , 0 , 0],
                         table:{headerRows: 1 , widths:['100%'],
                       body: [
                         [{text:'Please get it signed & send back same for our record purpose'  ,  style:'heading'}],] }
@@ -4658,24 +4658,24 @@ this.isShownMC = ! this.isShownMC;
                         [{text:'Other Conditions:' , style:'heading'} , {text: this.contractRemarksData['otherConditionRemarks'] , margin:[-35,0,0,0] , style:'heading2'}],] }
                       },
                    
-                    //   { 
-                    //     margin:[0,0,0,0],
-                    //     canvas: 
-                    //     [
+                      { 
+                        margin:[0,0,0,0],
+                        canvas: 
+                        [
                             
-                    //         {
-                    //           type: 'line',
-                    //           x1: 0, y1: 60,
-                    //           x2: 590, y2: 60,
-                    //           lineWidth: 1,
+                            {
+                              type: 'line',
+                              x1: 0, y1: 60,
+                              x2: 590, y2: 60,
+                              lineWidth: 1,
 
-                    //         }
-                    //     ]
-                    //  },
+                            }
+                        ]
+                     },
 
                        {
                         layout:'noBorders',
-                        margin: [20 , 160 , 0 , 0],
+                        margin: [20 , 80 , 0 , 0],
                         table:{headerRows: 1 , widths:['100%'],
                       body: [
                         [{text:'Please get it signed & send back same for our record purpose'  ,  style:'heading'}],] }
