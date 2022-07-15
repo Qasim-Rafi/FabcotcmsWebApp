@@ -135,7 +135,8 @@ this.printBill();
 
 printBill(){
   let varr = {
-    "ids":this.bill_id
+    "ids":this.bill_id,
+    // "billtype": this.queryParems.billSource
   }
 this.spinner.show();
   

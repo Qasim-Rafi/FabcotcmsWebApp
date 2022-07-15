@@ -208,7 +208,8 @@
             </kendo-grid-column>
             <kendo-grid-column field="billNumber" title="Bill #" [width]="120" [headerClass]="'customiconforgrid'">
               <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
-                {{dataItem.billNumber}}
+                {{dataItem.billNumber}} 
+                <!-- <span *ngIf = "loggedInDepartmentName == 'Comber noil'"> ({{dataItem.billSource}})</span> -->
               </ng-template>
               
             </kendo-grid-column>

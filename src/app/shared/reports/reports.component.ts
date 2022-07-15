@@ -364,6 +364,7 @@ else if (this.menuName.menuName == 'ExternalAgentReport'){
     const val = event.target.value.toLowerCase();
     const temp = this.paySearch.filter(function (d) {
       return (d.autoContractNo.toLowerCase().indexOf(val) !== -1  ||
+      d.saleInvoiceNo.toLowerCase().indexOf(val) !==-1   ||
       !val);
     });
     this.paymentReport = temp;
@@ -894,6 +895,7 @@ fetchContractInvise() {
 this.spinner.hide();
 
   this.contractWise=this.response.data.getBillReport;
+  this.contractWise=this.contractWise.sort((a, b) => parseInt(b.price) - parseInt(a.price));
   this.contractTotal = this.response.data.totalcommisionamount +' ' + this.contractWise[0].rateCurrencyName;
   this.contractTotal= parseFloat(this.contractTotal).toLocaleString()
  this.contractBill = [...this.contractWise]
@@ -1001,11 +1003,29 @@ this.spinner.hide();
 
 
   contractExcelFile(){
+
+    // this.contractWise.push({
+    //   "BillFor":'',
+    //   "Article":'',
+    //   "ContractNumber":'',
+    //   "CotractDate":'',
+    //   "BillDate":'',
+    //   "BillNumber":'',
+    //   "Buyer":'',
+    //   "Seller":'',
+    //   "Rate":'',
+    //   "CommPer":'',
+    //   "Quantity":'',
+    //   "QtyUOM":'TotalComAmount',
+    //   "CommAmount":this.contractTotal ,
+    // })
+
+    this.contractWise=this.contractWise.sort((a, b) => parseInt(a.billNo) - parseInt(b.billNo));
     const filtered = this.contractWise.map(row => ({
       BillFor: row.billFor,
       Article: row.articleName,
-      ContractNumber: row.contractNo,
-      ManualContractNumber: row.manualContractNumber,
+      ContractNumber: row.contractNo +'('+row.manualContractNumber+')',
+      // ManualContractNumber: row.manualContractNumber,
       CotractDate: row.contractDate ,
       BillDate: row.billDate,
       BillNumber: row.billNo,
@@ -1016,9 +1036,23 @@ this.spinner.hide();
       Quantity: row.quantity,
       QtyUOM:row.quantityUOMName,
       CommAmount: row.commissionAmount +' '+row.rateCurrencyName ,
-      TotalComAmount:this.contractTotal
+  
     }));
-
+    filtered.push({
+      "BillFor":'',
+      "Article":'',
+      "ContractNumber":'',
+      "CotractDate":'',
+      "BillDate":'',
+      "BillNumber":'',
+      "Buyer":'',
+      "Seller":'',
+      "Rate":'',
+      "CommPer":'',
+      "Quantity":'',
+      "QtyUOM":'TotalComAmount',
+      "CommAmount":this.contractTotal +' '+'PKR',
+    })
     this.service.exportAsExcelFile(filtered, 'Bill Report(Contract Wise)');
 
   }
