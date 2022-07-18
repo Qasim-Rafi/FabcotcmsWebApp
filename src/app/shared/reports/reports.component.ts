@@ -15,6 +15,7 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 import { process,State  } from '@progress/kendo-data-query';
 import { DataBindingDirective } from '@progress/kendo-angular-grid';
+import { DatePipe } from '@angular/common'
 @Component({
   selector: 'app-reports',
   templateUrl: './reports.component.html',
@@ -89,7 +90,7 @@ totalContainer:any;
     private toastr: ToastrService,
     private spinner: NgxSpinnerService,
     private service: ServiceService,
-
+    public datepipe: DatePipe,
     private router: Router,
 
 
@@ -1026,8 +1027,8 @@ this.spinner.hide();
       Article: row.articleName,
       ContractNumber: row.contractNo +'('+row.manualContractNumber+')',
       // ManualContractNumber: row.manualContractNumber,
-      CotractDate: row.contractDate ,
-      BillDate: row.billDate,
+      CotractDate: row.contractDate = this.datepipe.transform(row.contractDate, 'dd-MM-yyyy'),
+      BillDate: row.billDate = this.datepipe.transform(row.billDate, 'dd-MM-yyyy'),
       BillNumber: row.billNo,
       Buyer: row.buyerName ,
       Seller: row.sellerName,
@@ -1035,7 +1036,7 @@ this.spinner.hide();
       CommPer: row.fabcotCommission + '%' ,
       Quantity: row.quantity,
       QtyUOM:row.quantityUOMName,
-      CommAmount: row.commissionAmount +' '+row.rateCurrencyName ,
+      CommAmount: row.commissionAmount  ,
   
     }));
     filtered.push({
