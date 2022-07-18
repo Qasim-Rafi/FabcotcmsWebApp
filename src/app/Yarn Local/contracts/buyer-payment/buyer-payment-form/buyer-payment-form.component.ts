@@ -16,6 +16,8 @@ export class BuyerPaymentFormComponent implements OnInit {
   dateformater: Dateformater = new Dateformater();
   result:any
   selected = [];
+  Oblanc:any=[];
+  Pblanc:any=[];
   SelectionType = SelectionType;
   data: any ={};
   decimalSize:any;
@@ -36,6 +38,9 @@ export class BuyerPaymentFormComponent implements OnInit {
   calculatedTax:any;
   isAmountDisabled:boolean =false;
   saleInvoiceIds =[];
+  Paidamount:any;
+  blncamount:any;
+  invoicenoselected:any;
   taxpercentage:any;
   buyerPaymentUrl = '/api/Configs/GetAllArticle'
   constructor(
@@ -202,6 +207,20 @@ this.spinner.hide();
       this.response = res;
       if (this.response.success == true) {
         this.rows = this.response.data;
+
+
+        for(let i=0; i<this.rows.length; i++ )
+        {     
+          this.rows[i]['invoiceChecked']=false;
+          this.Oblanc.push(parseFloat(this.rows[i].saleInvoiceAmountAfterTax));
+          this.Pblanc.push(parseFloat(this.rows[i].paid));
+          
+        }
+        const Osum = this.Oblanc.reduce((partial_sum, a) => partial_sum + a, 0);
+        const Psum = this.Pblanc.reduce((partial_sum, a) => partial_sum + a, 0);
+          this.blncamount =Osum;
+          this.Paidamount =Psum;
+          this.blncamount= this.blncamount.toFixed(3)
     
       }
       else {
@@ -299,11 +318,16 @@ this.spinner.hide();
               this.selected[0].receivedAmount=this.selected[0].receivedAmount;
               this.result= this.result-this.selected[0].saleInvoiceAmountAfterTax;
               this.result =this.result.toFixed(2);
+              this.Pblanc.push(parseFloat(this.selected[0].receivedAmount)+ parseFloat(this.selected[0].taxChallan));
             }
             else{
             this.result= this.result-this.selected[0].receivedAmount;
             this.result =this.result.toFixed(2);
+            this.Pblanc.push(parseFloat(this.selected[0].receivedAmount)+ parseFloat(this.selected[0].taxChallan));
             }
+            const Psum = this.Pblanc.reduce((partial_sum, a) => partial_sum + a, 0);
+      //this.blncamount =Osum;
+      this.Paidamount =Psum;
           }
           else if(parseInt(this.result) ==  parseInt(this.selected[0].saleInvoiceAmountAfterTax)){
             this.selected[0].receivedAmount=this.selected[0].saleInvoiceAmountAfterTax;
@@ -314,12 +338,16 @@ this.spinner.hide();
               this.selected[0].receivedAmount=this.selected[0].receivedAmount;
               this.result=  '0.' + this.decimalSize;
               // this.result =this.result.toFixed(2);
+              this.Pblanc.push(parseFloat(this.selected[0].receivedAmount)+ parseFloat(this.selected[0].taxChallan));
             }
             else{
               this.result= this.result-this.selected[0].receivedAmount;
               this.result =this.result.toFixed(2);
+              this.Pblanc.push(parseFloat(this.selected[0].receivedAmount)+ parseFloat(this.selected[0].taxChallan));
             }
-           
+            const Psum = this.Pblanc.reduce((partial_sum, a) => partial_sum + a, 0);
+            //this.blncamount =Osum;
+            this.Paidamount =Psum;
           }
           else if(parseInt(this.result) <  parseInt(this.selected[0].saleInvoiceAmountAfterTax)){
              if( this.result =='0.' + this.decimalSize){
@@ -332,7 +360,13 @@ this.spinner.hide();
                this.selected[0].taxChallan =taxis.toFixed(2); 
               this.result =this.result -this.selected[0].receivedAmount;
               this.toastr.error("Partial  Value", 'Message.');
-               this.result =this.result;}
+               this.result =this.result;
+
+               this.Pblanc.push(parseFloat(this.selected[0].receivedAmount) + parseFloat(this.selected[0].taxChallan));
+               const Psum = this.Pblanc.reduce((partial_sum, a) => partial_sum + a, 0);
+               //this.blncamount =Osum;
+               this.Paidamount =Psum;
+              }
          
           }
           // else if(parseInt(this.result) <  parseInt(this.selected[0].saleInvoiceAmount)){
@@ -424,7 +458,11 @@ this.spinner.hide();
       if( this.saleInvoiceIds.length > 1){
         let newrow =this.rows.filter(r=>r.saleInvoiceId ==row.saleInvoiceId)
         this.selected = newrow; 
-        this.result=parseInt(this.result) +parseInt(this.selected[0].receivedAmount);
+        this.result=parseFloat(this.result) +parseFloat(this.selected[0].receivedAmount);
+        if(this.selected[0].taxChallan != "" && this.selected[0].taxChallan != null){
+          this.result = this.result +parseFloat(this.selected[0].taxChallan)
+
+        }
         this.result =this.result+'.'+this.decimalSize;
         // this.result=row.receivedAmount 
         this.selected[0].receivedAmount= '0.'+this.decimalSize;
@@ -436,7 +474,10 @@ this.spinner.hide();
       else if(this.saleInvoiceIds.length = 1){
         let newrow =this.rows.filter(r=>r.saleInvoiceId ==row.saleInvoiceId)
         this.selected = newrow; 
-        this.result=parseInt(this.result) +parseInt(this.selected[0].receivedAmount);
+        this.result=parseFloat(this.result) +parseFloat(this.selected[0].receivedAmount);
+        if(this.selected[0].taxChallan != "" && this.selected[0].taxChallan != null){
+          this.result = this.result +parseFloat(this.selected[0].taxChallan)
+        }
         this.result =this.result+'.'+this.decimalSize;
         // this.result=row.receivedAmount 
         this.selected[0].receivedAmount= '0.'+this.decimalSize;
