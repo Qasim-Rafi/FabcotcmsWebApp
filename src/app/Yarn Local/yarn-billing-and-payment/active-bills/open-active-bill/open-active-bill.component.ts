@@ -40,6 +40,7 @@ expordtcountrycondition:any;
 id : any;
 billAmount :  any;
 loggedInDepartmentName: string;
+buyerids : any;
 lang : SUPPORTED_LANGUAGE = 'en';
   constructor(   private route: ActivatedRoute,
     private modalService: NgbModal,
@@ -69,6 +70,7 @@ lang : SUPPORTED_LANGUAGE = 'en';
     this.queryParems = this.route.snapshot.queryParams;
     
     this.bill_id = this.queryParems.id;
+    this.buyerids = this.queryParems.idbuyer;
 this.printBill();
     // this.fetch((data) => {
     //   this.rows = data;
@@ -136,7 +138,7 @@ this.printBill();
 printBill(){
   let varr = {
     "ids":this.bill_id,
-    // "billtype": this.queryParems.billSource
+    "idsBuyer":this.buyerids,
   }
 this.spinner.show();
   

@@ -47,8 +47,14 @@
             <div class="col-md-3">
               <img src="/assets/fabcot.png"  class="image">
             </div>
-                <p class="font clr" ><strong>FABCOT INTERNATIONAL ® </strong>
+            
+                <p class="font clr" >
+                    
+                    <strong>FABCOT INTERNATIONAL ® </strong><br>
+                    <strong style="color: black; font-size: 23px;" *ngIf="x.billSource">({{x.billSource}} Bill) </strong>
+                    <strong style="color: black; font-size: 23px;" *ngIf="!x.billSource">(Seller Bill) </strong>
                 </p>
+      
        </div>
 
             <div class="row  bottom" *ngIf = "loggedInDepartmentName == 'Fabric Export' ||loggedInDepartmentName == 'Yarn Export'" >
@@ -106,7 +112,7 @@
             <br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
             <!-- <br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export'"> -->
                     
-                    <span class="text-font1">
+                    <span class="text-font1 mt-3">
                         Bill No.: <span class="weight">{{x.billNumber}}</span>
                     </span>
                     <br>

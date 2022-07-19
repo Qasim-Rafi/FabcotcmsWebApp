@@ -97,8 +97,16 @@ public mySelection: string[] = this.rows;
    };
   
     navigateOpenBill(obj) {
-      this.router.navigate(['/yarn-billing-and-payment/open-bill'] , { queryParams: {id: obj.id} });
-      // ,billtype:obj.billSource
+
+      
+        let foundID = this.rows.filter(x=>x.id == obj.id)
+        if(foundID != undefined && foundID[0].billSource == "Buyer" ){
+          var idBuyer =foundID[0].id;
+          obj.id= null
+        }
+     
+
+      this.router.navigate(['/yarn-billing-and-payment/open-bill'] , { queryParams: {id: obj.id,idbuyer:idBuyer} });
     };
     navigateEditContract(obj) {
       this.router.navigate(['/FabCot/active-contract-details'], { queryParams: {id: obj.contractId} });
@@ -251,20 +259,20 @@ this.fetch();
     }
     else{
        this.item = [...new Set(selectedData)];
-      //  for(let i=0; i<this.item.length; i++){
-      //    let foundID = this.rows.filter(x=>x.id == this.item[i])
-      //    if(foundID != undefined && foundID[0].billSource == "Buyer" ){
-      //      this.itemBID.push(foundID[0].id)
-      //     //  this.item.splice(i, 1);
-      //    }
+       for(let i=0; i<this.item.length; i++){
+         let foundID = this.rows.filter(x=>x.id == this.item[i])
+         if(foundID != undefined && foundID[0].billSource == "Buyer" ){
+           this.itemBID.push(foundID[0].id)
+          //  this.item.splice(i, 1);
+         }
 
-      //  }
-      //  if(this.itemBID != undefined){
-      //  this.item = this.item.filter(val => !this.itemBID.includes(val));
-      //  }
+       }
+       if(this.itemBID != undefined){
+       this.item = this.item.filter(val => !this.itemBID.includes(val));
+       }
   localStorage.setItem('bulkPrint', this.item);
-  //localStorage.setItem('BPbuyerId', this.itemBID);
-  //this.itemBID=[];
+  localStorage.setItem('BPbuyerId', this.itemBID);
+  this.itemBID=[];
   this.router.navigate([]).then((result) => {
     window.open('/bulkPrint' , '_blank');
   });

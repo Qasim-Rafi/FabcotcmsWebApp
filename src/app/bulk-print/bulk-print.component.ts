@@ -40,7 +40,7 @@ billAmount = [];
   ngOnInit(): void {
 
     this.id = localStorage.getItem('bulkPrint');
-    // this.buyerids = localStorage.getItem('BPbuyerId');
+    this.buyerids = localStorage.getItem('BPbuyerId');
     this.loggedInDepartmentName=localStorage.getItem('loggedInDepartmentName');
     this.bulkPrint();
 
@@ -52,7 +52,7 @@ bulkPrint() {
 
   let varr = {
     "ids":this.id,
-    // "idsBuyer":this.buyerids
+    "idsBuyer":this.buyerids
 
   }
   this.spinner.show();
@@ -81,14 +81,14 @@ bulkPrint() {
           this.toastr.success(this.response.message, 'Message.');
           this.spinner.hide();
  localStorage.removeItem('bulkPrint');
-//  localStorage.removeItem('BPbuyerId');
+ localStorage.removeItem('BPbuyerId');
 
         }
         else {
           this.toastr.error(this.response.message, 'Message.');
           this.spinner.hide();
  localStorage.removeItem('bulkPrint');
-//  localStorage.removeItem('BPbuyerId');
+ localStorage.removeItem('BPbuyerId');
 
         }
 
@@ -98,7 +98,7 @@ bulkPrint() {
         console.log(messages);
         this.spinner.hide();
  localStorage.removeItem('bulkPrint');
-//  localStorage.removeItem('BPbuyerId');
+ localStorage.removeItem('BPbuyerId');
 
       });
 
