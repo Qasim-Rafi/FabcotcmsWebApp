@@ -502,7 +502,7 @@ this.spinner.show();
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
             // this.paymentForm.reset();
-            this.router.navigate(['yarn-billing-and-payment/commission-payment']);
+            this.router.navigate(['yarn-billing-and-payment/external-agent']);
 this.spinner.hide();
       
           }

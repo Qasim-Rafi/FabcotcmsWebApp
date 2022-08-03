@@ -900,7 +900,24 @@ Contract Details </ol>
                                             </dt>
                                             <dd class="col-sm-6"
                                                 *ngFor="let i of contractCommissionData.agentCommissions">
-                                                {{i.agentName}}: {{i.agentCommission}}%</dd>
+                                                {{i.agentName}}: {{i.agentCommission}}%
+                                            
+                                            
+                                                <div class="form-check form-check-inline offset-md-3 pl-1">
+                                                    <input class="form-check-input check-btn" id="dataactive" (change)="paidmethod()" type="checkbox" name="dataactive"
+                                                      [(ngModel)]="dataactive" />
+                                                    <label for="dataactive" class="form-check-label checkboxDanger1">IsPaid</label>
+                                                  </div>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            </dd>
+
+
+
+                                              
 
                                         </dl>
 

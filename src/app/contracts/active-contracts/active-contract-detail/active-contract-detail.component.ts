@@ -40,6 +40,7 @@ import {ContractOwnerComponent} from '../../contract-owner/contract-owner.compon
 
 export class ActiveContractDetailComponent implements OnInit {
   dateformater: Dateformater = new Dateformater();
+  dataactive: boolean;
   isShown: boolean = false
   reminderToggle : boolean = false
   rows: any = [];
@@ -385,7 +386,42 @@ contractdatechange(event){
   }
 
 
+  paidmethod(){
+    this.spinner.show();
+    let varr = {
+        
+      "isAgentCommissionPaid":this.dataactive,
+      "contractId": this.contractId,
 
+    }
+    this.http
+      .put(`${environment.apiUrl}/api/Contracts/UpdateContractCommissionAgentCommissionPaidCheck/`+this.contractCommissionData.id,varr)
+      .subscribe(res => {
+        this.response = res;
+        
+
+        if (this.response.success == true) {
+          // this.contractNote = this.response.data
+          // this.noteFilter = [this.contractNote]; 
+          // cb(this.contractNote);
+  this.spinner.hide();
+
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+          this.spinner.hide();
+
+        }
+        // this.spinner.hide();
+      }, err => {
+        if (err.status == 400) {
+          this.toastr.error(err.error.message, 'Message.');;
+          this.spinner.hide();
+
+        }
+        //  this.spinner.hide();
+      });
+  }
   getAllShipmentDates(cb) {
     this.spinner.show();
 
@@ -839,6 +875,8 @@ getContractCommisionData(){
       this.response = res;
       if (this.response.success == true) {
         this.contractCommissionData = this.response.data;
+
+        this.dataactive =this.contractCommissionData.isAgentCommissionPaid;
         if(this.response.data.buyerSideCommission != 'null'){
           this.contractCommissionData['buyerSideCommission'] = this.response.data.buyerSideCommission + "%"
         }
