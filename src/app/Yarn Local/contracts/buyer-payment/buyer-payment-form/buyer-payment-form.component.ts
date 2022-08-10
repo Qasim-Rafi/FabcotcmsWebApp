@@ -211,6 +211,10 @@ this.spinner.hide();
 
         for(let i=0; i<this.rows.length; i++ )
         {     
+          this.rows[i].saleInvoiceAmountAfterTax=parseFloat(this.rows[i].saleInvoiceAmountAfterTax)
+          this.rows[i].saleInvoiceAmountAfterTax = Math.round(this.rows[i].saleInvoiceAmountAfterTax)
+          this.rows[i].saleInvoiceAmountAfterTax =  this.rows[i].saleInvoiceAmountAfterTax +'.'+this.decimalSize
+          this.rows[i].saleInvoiceAmountAfterTax = this.rows[i].saleInvoiceAmountAfterTax.toString();
           this.rows[i]['invoiceChecked']=false;
           this.Oblanc.push(parseFloat(this.rows[i].saleInvoiceAmountAfterTax));
           this.Pblanc.push(parseFloat(this.rows[i].paid));
