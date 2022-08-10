@@ -464,6 +464,8 @@ this.spinner.hide();
 
         }
         this.result =this.result+'.'+this.decimalSize;
+        this.Paidamount =  parseFloat(this.Paidamount) -parseFloat(this.selected[0].receivedAmount) ;
+        this.Paidamount =this.Paidamount.toFixed(3);
         // this.result=row.receivedAmount 
         this.selected[0].receivedAmount= '0.'+this.decimalSize;
         this.selected[0].taxChallan= '0.'+this.decimalSize;
@@ -480,6 +482,8 @@ this.spinner.hide();
         }
         this.result =this.result+'.'+this.decimalSize;
         // this.result=row.receivedAmount 
+        this.Paidamount =  parseFloat(this.Paidamount) -parseFloat(this.selected[0].receivedAmount) ;
+        this.Paidamount =this.Paidamount.toFixed(3);
         this.selected[0].receivedAmount= '0.'+this.decimalSize;
         this.selected[0].taxChallan= '0.'+this.decimalSize;
       }

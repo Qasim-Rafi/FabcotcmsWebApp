@@ -804,6 +804,9 @@ lcForm2( check){
 
         if (this.response.success == true && this.response.data != null) {
           this.saleInvoice = this.response.data
+if(this.saleInvoice[0].billInvoiceNumber != 0){
+          this.isnotEditAble = true
+}
           // this.deliveryFilter = [...this.deliveryData]
         }
         else if(this.response.success == false) {
