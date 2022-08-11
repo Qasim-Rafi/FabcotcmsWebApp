@@ -23,8 +23,8 @@ export class PartiesComponent implements OnInit {
   buyerPOC: any=[];
   seller: any={};
   sellerPOC: any=[];
-
-
+  buyerPOCIdget:any;
+  sellerPOCIdget:any;
   
   constructor(
     private _NgbActiveModal: NgbActiveModal,
@@ -62,7 +62,8 @@ export class PartiesComponent implements OnInit {
             // this.data.certificateIds = this.data.certificateIds == "" ? this.data.certificateIds = null : this.data.certificateIds;
             this.data.poDate = this.dateformater.fromModel(this.data.poDate);
             this.data.contractDate = this.dateformater.fromModel(this.data.contractDate);
-    
+    this.data.buyerPOCIdget =this.data.buyerPOCId;
+    this.data.sellerPOCIdget =this.data.sellerPOCId;
     this.getBuyerPOC(this.data.buyerId)
     this.getSellersPOC(this.data.sellerId)
 
@@ -124,7 +125,8 @@ export class PartiesComponent implements OnInit {
           this.data.sellerPOCId = null
         }
         else {
-          this.data.sellerPOCId = this.sellerPOC[0].id
+          let s=this.data.sellerPOCId.filter(x=>x.id == this.data.sellerPOCIdget)
+          this.data.sellerPOCId = s[0].id
         }
         // this.data.beneficiaryCriteriaId = 2; 
 
@@ -146,7 +148,8 @@ export class PartiesComponent implements OnInit {
           this.data.buyerPOCId = null
         }
         else {
-          this.data.buyerPOCId = this.buyerPOC[0].id
+          let b=this.data.buyerPOCId.filter(x=>x.id == this.data.buyerPOCIdget)
+           this.data.buyerPOCId = b[0].id
         }
         // this.data.beneficiaryCriteriaId = 2; 
 
