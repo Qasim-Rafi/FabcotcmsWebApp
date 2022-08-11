@@ -87,6 +87,7 @@ import { ChartsModule } from 'ng2-charts';
 import { YearTrendsComponent } from './shared/fabcot-trends/year-trends/year-trends.component';
 
 import { WeekTrendComponent } from './shared/fabcot-trends/week-trend/week-trend.component';
+import { FagentprintComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/fagentprint/fagentprint.component';
 
 const appRoutes: Routes = [] 
 
@@ -146,6 +147,7 @@ const appRoutes: Routes = []
     AddEditTrendFormComponent,
     YearTrendsComponent,
     WeekTrendComponent,
+    FagentprintComponent,
    
 
   

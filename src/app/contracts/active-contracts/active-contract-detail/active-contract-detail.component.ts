@@ -32,6 +32,7 @@ import { TnaLogHistoryComponent } from './Active-Contract-Models/tna-log-history
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import pdfMake from "pdfmake/build/pdfmake";
 import {ContractOwnerComponent} from '../../contract-owner/contract-owner.component'
+import { FagentprintComponent } from './Active-Contract-Models/fagentprint/fagentprint.component';
 @Component({
   selector: 'app-active-contract-detail',
   templateUrl: './active-contract-detail.component.html',
@@ -1960,7 +1961,26 @@ this.spinner.hide();
             })
         
           }
-    
+          printAgentCommission(){
+
+
+            const modalRef = this.modalService.open(FagentprintComponent, { centered: true,size:"lg",windowClass : "myCustomModalClass" });
+            modalRef.componentInstance.ContractId = this.contractId;
+            modalRef.result.then((data) => {
+              // on close
+              if (data == true) {
+
+              }
+            }, (reason) => {
+              // on dismiss
+            });
+
+
+
+          }
+
+
+
           print() {
             this.getPreview((data)=>{
               this.preview = data;

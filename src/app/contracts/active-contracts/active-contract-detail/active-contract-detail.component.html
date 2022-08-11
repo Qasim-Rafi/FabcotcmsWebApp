@@ -156,14 +156,14 @@ Contract Details </ol>
         <!-- /.row -->
         <div class="buttonOuter">
         <div class="row py-3 justify-content-end">
-            <div class="col-md-8 " *ngIf="contractData.status =='OnHold'">
+            <div class="col-md-7 " *ngIf="contractData.status =='OnHold'">
                 <button class="btn btn-warning border-rounded px-3 mr-2 text-white" (click)="statusOpen()">
                     <i class="fas fa-level-down-alt"></i>
                     Contract is currently On-Hold, Click to make it Active
                 </button>
             </div>
           
-            <div class="col-md-8 " *ngIf="contractData.status == 'Open' || contractData.status == 'BillAwaited' ">
+            <div class="col-md-7 " *ngIf="contractData.status == 'Open' || contractData.status == 'BillAwaited' ">
                 <button class="btn btn-danger btn-sm border-rounded px-3 mr-1 mrg-md" (click)="deleteContract()">
                     <i class="far fa-trash-alt"></i>
                     Delete
@@ -192,7 +192,7 @@ Contract Details </ol>
                     Ready For Bill
                 </button> -->
             </div>
-            <div class="col-md-8 " *ngIf="contractData.status =='BillAwaited'">
+            <div class="col-md-7 " *ngIf="contractData.status =='BillAwaited'">
                
                 <button class="btn btn-info border-rounded px-3 mr-2 text-white" (click)="statusOpen()">
                     <i class="fas fa-level-down-alt"></i>
@@ -205,7 +205,7 @@ Contract Details </ol>
                
                
             </div>
-            <div class="col-md-8 " *ngIf="contractData.status =='Closed'">
+            <div class="col-md-7 " *ngIf="contractData.status =='Closed'">
                 <button class="btn btn-info border-rounded px-3 mr-2 text-white" (click)="statusOpen()">
                     <i class="fas fa-level-down-alt"></i>
                     Re-Open Contract
@@ -215,7 +215,16 @@ Contract Details </ol>
                     This contract was closed click here to Re-Open
                 </label>               
             </div>
-            <div class="col-md-4 t-right mrg-tsm">
+            <div class="col-md-5 t-right mrg-tsm">
+
+                <button class="btn btn-outline-primary border-rounded btn-sm px-3 mr-1 mrg-md"
+                (click) = "printAgentCommission()"
+                >
+                    <i class="fas fa-print"></i>
+                    Agent
+                </button>
+
+
                 <button class="btn btn-outline-primary border-rounded btn-sm px-3 mr-1 mrg-md"
                 (click) = "print()"
                 >
