@@ -210,8 +210,9 @@ print(){
              
 
               layout:'noBorders',
-              table:{headerRows:1 ,  widths:['15%' , '90%' ],
-            body:[ [{text: 'Fabcot Contract# :' , margin: [0 , 7 , 0 , 0] , bold:true} , {text: this.rows['contractNumber'] , margin: [-9 , 7 , 0 , 0] }
+              table:{headerRows:1 ,  widths:['15%' , '90%' , '15%' , '18%' ],
+            body:[ [{text: 'Fabcot Contract# :' , margin: [0 , 7 , 0 , 0] , bold:true} , {text: this.rows['contractNumber'] , margin: [-9 , 7 , 0 , 0] },
+           
           
           ]]
             }
@@ -232,6 +233,16 @@ print(){
               layout:'noBorders',
               table:{headerRows:1 ,  widths:['14%' , '86%' ],
             body:[ [{text: 'Article :' , margin: [57 , 7 , 0 , 0] , bold:true} , {text: this.rows['contractArticleName'] , margin: [0 , 7 , 0 , 0] }
+          
+          ]]
+            }
+            },
+            {
+             
+
+              layout:'noBorders',
+              table:{headerRows:1 ,  widths:['20%' , '86%' ],
+            body:[ [{text: 'Agent Name  :' , margin: [50 , 7 , 0 , 0] , bold:true} , {text: this.rows['agentName'] , margin: [0 , 7 , 0 , 0] }
           
           ]]
             }
