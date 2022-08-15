@@ -922,7 +922,7 @@ this.spinner.hide();
   invoiceExcelFile(){
     const filtered = this.billingReportInvoiceWise.map(row => ({
       BillFor: row.billFor,
-      Article: row.articleName,
+      Article: row.articleName + row.construction,
       ContractNumber: row.contractNo,
       CotractDate: row.contractDate ,
       BillDate: row.billDate,
@@ -1376,7 +1376,7 @@ this.fetch();
               ...this.billingReportInvoiceWise.map(row => (
                 [
                 
-                {text:  row.articleName , style:'tableHeader2'},
+                {text:  row.articleName + row.construction , style:'tableHeader2'},
                 {text: row.contractNo, style:'tableHeader2'} ,
                 {text: row.contractDate , style:'tableHeader2'} ,
                  {text: row.billDate, style:'tableHeader2'} ,

@@ -1048,7 +1048,7 @@
               
                   <kendo-grid-column field="articleName" title="Article" [width]="220" [headerClass]="'customiconforgrid'">
                       <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
-                        {{dataItem.articleName}} 
+                        {{dataItem.articleName}}  {{dataItem.construction}}
                       </ng-template>
                   </kendo-grid-column>
               
