@@ -42,7 +42,7 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="itemQuantity" class="col-md-3 col-form-label text_Navy"> UOM
+                    <label for="itemQuantity" class="col-md-3 col-form-label text_Navy">Qty UOM
         
                     </label>
                     <div class="col-md-6">
@@ -54,6 +54,24 @@
                         </ng-select>
                     </div>
                 </div>
+
+
+                <div class="form-group row">
+                    <label for="itemQuantity" class="col-md-3 col-form-label text_Navy">Rate UOM
+        
+                    </label>
+                    <div class="col-md-6">
+                        <ng-select [(ngModel)]="data.rateUOMId" placeholder="-- Select --" name="rateUOMId"
+                        #rateUOMId="ngModel">
+                        <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
+                        </ng-option>
+                    </ng-select>
+                    </div>
+                </div>
+
+
+
+
                 <div class="form-group row">
                     <label for="itemQuantity" class="col-md-3 col-form-label text_Navy"> Tolerance Value
         

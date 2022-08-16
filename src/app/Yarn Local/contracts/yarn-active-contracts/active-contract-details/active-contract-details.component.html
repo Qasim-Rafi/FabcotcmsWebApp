@@ -1045,9 +1045,16 @@
                                                 <dd class="col-sm-6">{{contractCostingData.rateCurrencyName}}
                                                 </dd>
                                             </dl>
+
+                                            <dl class="row" *ngIf="loggedInDepartmentName == 'Yarn Export' ">
+                                                        <dt class="col-sm-4">Rate UMO:
+                                                        </dt>
+                                                        <dd class="col-sm-6">{{contractCostingData.rateUOMName}}
+                                                        </dd>
+                                                    </dl>
                                             <dl class="row" *ngIf="loggedInDepartmentName == 'Yarn Export'
                                     || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Comber noil'">
-                                                <dt class="col-sm-4">UOM:
+                                                <dt class="col-sm-4">Qty UOM:
                                                 </dt>
                                                 <dd class="col-sm-6"> {{contractCostingData.quantityUOMName}}
                                                 </dd>
