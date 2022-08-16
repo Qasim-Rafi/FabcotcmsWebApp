@@ -792,7 +792,7 @@ print3(rows){
             },
             {
            
-              text:'FABRIC EXPORT' , style:'headingG' , margin: [430,-20,0,0]
+              text:this.loggedInDepartmentName , style:'headingG' , margin: [430,-20,0,0]
            
             },
             {
