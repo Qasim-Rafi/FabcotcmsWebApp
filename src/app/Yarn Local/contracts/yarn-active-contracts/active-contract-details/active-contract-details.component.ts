@@ -109,7 +109,7 @@ printData : any = {}
   dispatchData = [];
   deliveryData = [];
   commissionBill:any = [];
-
+lengthcheckfordevelery:any
   saleInvoiceNo:string
   contractKickbackData = [];
   saleinvoicecount: number;
@@ -627,6 +627,8 @@ this.spinner.hide();
 
         if (this.response.success == true && this.response.data != null) {
           this.deliveryData = this.response.data;
+
+          this.lengthcheckfordevelery =this.deliveryData.length;
           if(this.deliveryData[0].buyerDateDay == null){
             this.deliveryData[0].buyerDateDay = '';
           }
@@ -3486,8 +3488,8 @@ this.isShownMC = ! this.isShownMC;
                       },
                       {
                         layout:'noBorders',
-                        margin: [20 , 2 , 0 , 0],
-                        table:{headerRows: 1 , widths:['21%' , '20%' , '10%' , '20%' , '10%' , '20%'],
+                        margin: [22 , 2 , 0 , 0],
+                        table:{headerRows: 1 , widths:['21%' , '20%' , '10%' , '20%' , '10%' , '10%','5%','5%'],
                       body: [
                         [
                           {text:'Rate:'  , style:'heading'} , {text: this.contractCostingData['rateUOMName'] == "Meters" ?  
@@ -3497,7 +3499,10 @@ this.isShownMC = ! this.isShownMC;
                           
                            ,
                           
-                           style:'heading2' , margin:[-35,0,0,0]}, {text: "GST:"  , margin:[-30,0,0,0] , style:'heading'} , {text: this.printData['gst'] != null ? this.contractCostingData['gst'] + "%" : " "  , margin:[-60,0,0,0] , style:'heading2'} , {text: "W.Tax:"  , margin:[-110,0,0,0] , style:'heading'} , {text: "As applicable by Government Law"  , margin:[-140,0,0,0] , style:'heading2'}],
+                           style:'heading2' , margin:[-35,0,0,0]},
+                            {text: "GST:"  , margin:[-30,0,0,0] , style:'heading'} , {text: this.printData['gst'] != null ? this.contractCostingData['gst'] + "%" : " "  , margin:[-60,0,0,0] , style:'heading2'} , 
+                            {text: "AI.Tax:" , margin:[-120,0,0,0] , style:'heading'} , {text: this.contractCostingData['adIncomeTaxFL'] != null ? this.contractCostingData['adIncomeTaxFL'] + "%" : "0"  , margin:[-140,0,0,0] , style:'heading2'} ,
+                           {text: "W.Tax:"  , margin:[-140,0,0,0] , style:'heading'} , {text: "As applicable by Government Law"  , margin:[-140,0,0,0] , style:'heading2'}],
                         ] }
                       },
                       {
@@ -4545,8 +4550,8 @@ this.isShownMC = ! this.isShownMC;
                     
                       {
                         layout:'noBorders',
-                        margin: [20 , 2 , 0 , 0],
-                        table:{headerRows: 1 , widths:['21%' , '20%' , '10%' , '20%' , '10%' , '20%'],
+                        margin: [22 , 2 , 0 , 0],
+                        table:{headerRows: 1 , widths:['21%' , '20%' , '10%' , '20%' , '10%' , '10%','5%','5%'],
                       body: [
                         [
                           {text:'Rate:'  , style:'heading'} , {text: this.contractCostingData['rateUOMName'] == "Meters" ?  
@@ -4556,7 +4561,10 @@ this.isShownMC = ! this.isShownMC;
                           
                            ,
                           
-                           style:'heading2' , margin:[-35,0,0,0]}, {text: "GST:"  , margin:[-30,0,0,0] , style:'heading'} , {text: this.printData['gst'] != null ? this.contractCostingData['gst'] + "%" : " "  , margin:[-60,0,0,0] , style:'heading2'} , {text: "W.Tax:"  , margin:[-110,0,0,0] , style:'heading'} , {text: "As applicable by Government Law"  , margin:[-140,0,0,0] , style:'heading2'}],
+                           style:'heading2' , margin:[-35,0,0,0]},
+                            {text: "GST:"  , margin:[-25,0,0,0] , style:'heading'} , {text: this.printData['gst'] != null ? this.contractCostingData['gst'] + "%" : " "  , margin:[-60,0,0,0] , style:'heading2'} ,
+                            {text: "AI.Tax:" , margin:[-120,0,0,0] , style:'heading'} , {text: this.contractCostingData['adIncomeTaxFL'] != null ? this.contractCostingData['adIncomeTaxFL'] + "%" : "0"  , margin:[-140,0,0,0] , style:'heading2'} ,
+                             {text: "W.Tax:"  , margin:[-140,0,0,0] , style:'heading'} , {text: "As applicable by Government Law"  , margin:[-140,0,0,0] , style:'heading2'}],
                         ] }
                       },
                       {
@@ -6284,7 +6292,7 @@ yarnExportInvoicesReportPrint(){
                         margin: [70 , 7 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
-                          [{text:'Deliveries Date:'  , style:'heading'} , {text: this.deliveryData.map((row=>row.supplierDateDay)) , style:'heading2'}],] }
+                          [{text:'Deliveries Date:'  , style:'heading'} , {text: this.deliveryData.map((row=>row.supplierDateDay +''+ row.quantity  +''+ row.quantityUOMName  +' ')) , style:'heading2'}],] }
                       },
                       // {
                       //   layout:'noBorders',

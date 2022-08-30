@@ -1139,6 +1139,15 @@
                                                 <dd class="col-sm-6" *ngIf="contractCostingData.gst != ''">
                                                     {{contractCostingData.gst}}%</dd>
                                             </dl>
+
+                                            <dl class="row"
+                                                *ngIf="loggedInDepartmentName=='Fabric Local'">
+                                                <dt class="col-sm-4">
+                                                    Ad Income Tax:
+                                                </dt>
+                                                <dd class="col-sm-6" *ngIf="contractCostingData.gst != ''">
+                                                    {{contractCostingData.adIncomeTaxFL}}%</dd>
+                                            </dl>
                                             <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local' ||( loggedInDepartmentName != 'Yarn Export'  && loggedInDepartmentName != 'Yarn Local' && loggedInDepartmentName!='Yarn Local Karachi'
                                     && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Comber noil')">
                                                 <dt class="col-sm-4" *ngIf="loggedInDepartmentName != 'Fabric Export'">
@@ -2319,7 +2328,7 @@
                                                 </td>
                                                 <td
                                                     *ngIf="loggedInDepartmentName !='Yarn Export' &&  loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Comber noil'">
-                                                    {{x.taxPercentage}}</td>
+                                                    {{x.taxPercentage}}  ({{x.adIncomeTaxFL}})</td>
                                                 <td>{{contractCostingData.rateCurrencyName}}&nbsp;{{x.amount}}</td>
                                             </tr>
 

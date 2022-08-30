@@ -111,6 +111,7 @@ export class QuantityAndCostingComponent implements OnInit {
       "contractCost":this.data.contractCost == "" ? 0 : this.data.contractCost,
       "totalCostGSt":this.data.totalCostGSt == ""?  null :this.data.totalCostGSt  ,
       "gst": this.data.gst,
+      "aDIncomeTaxFL":this.data.aDIncomeTaxFL,
       "witAx": this.data.witAx
       
     }
@@ -165,6 +166,7 @@ this.spinner.hide();
             "contractCost":this.data.contractCost == "" ? 0 : this.data.contractCost,
             "totalCostGSt":this.data.totalCostGSt == ""?  null :this.data.totalCostGSt  ,
             "gst": this.data.gst,
+            
             "witAx": this.data.witAx
             
           }

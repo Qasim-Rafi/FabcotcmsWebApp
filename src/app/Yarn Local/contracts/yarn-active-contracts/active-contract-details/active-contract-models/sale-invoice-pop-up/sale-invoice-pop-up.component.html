@@ -171,6 +171,22 @@
               </div>
             </div>
           </div>
+
+
+          <div class="form-group row" *ngIf="loggedInDepartmentName=='Fabric Local'">
+            <label for="taxPercentage" class="col-md-3 col-form-label">AD IncomeTax %</label>
+            <div class="col-md-8">
+              <div class="input-group">
+                <div class="input-group-append">
+                </div>
+                <input type="text" placeholder="AD Invoice tax %" class="form-control" [(ngModel)]="data.adIncomeTaxFL"
+                  name="adIncomeTaxFL" #adIncomeTaxFL="ngModel">
+                <div class="input-group-append">
+                  <span class="input-group-text" id="basic-addon2">%</span>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="form-group row" *ngIf = " (loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import') && data.isFob == true  ">
             <label for="saleInvoiceDate"  class="col-md-3 col-form-label text_Navy">FOB Value</label>
             <div class="col-md-8" >

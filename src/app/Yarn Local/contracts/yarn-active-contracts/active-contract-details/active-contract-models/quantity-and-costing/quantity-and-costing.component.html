@@ -215,6 +215,20 @@
                     </div>
                 </div>
         
+
+                <div class="form-group row" *ngIf="loggedInDepartmentName == 'Fabric Local'">
+                    <label for="itemQuantity" class="col-md-3 col-form-label "> Ad Income Tax </label>
+
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" value="" placeholder="Advance Income Tax" name="aDIncomeTaxFL"
+                                    #aDIncomeTaxFL="ngModel" [(ngModel)]="data.aDIncomeTaxFL" />
+                            </div>
+                        </div>
+                    </div>
+                
+                </div>
                 
                 <div class="form-group row">
                     <label for="itemQuantity" class="col-md-3 col-form-label "> Total Cost </label>
