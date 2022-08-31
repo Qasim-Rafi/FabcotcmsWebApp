@@ -781,8 +781,12 @@ lcForm2( check){
       // this.saleInvoiceNo=this.response.data[0].saleInvoiceNo;
       // this.saleInvoiceDate=this.response.data[0].saleInvoiceDate;
       // this.saleInvoiceId=this.response.data[0].id;
-  
-  
+      if(this.loggedInDepartmentName =='Fabric Local' && this.contractCostingData.adIncomeTaxFL != null){
+      for(let i=0; i<this.saleInvoice.length; i++){
+        let am= parseFloat(this.saleInvoice[i].quantity)  * parseFloat(this.contractCostingData.rate);
+        this.saleInvoice[i].amount =am
+      }   
+    }    
     cb(this.saleInvoice);
   //  this.spinner.hide();
    }
@@ -806,6 +810,12 @@ lcForm2( check){
 
         if (this.response.success == true && this.response.data != null) {
           this.saleInvoice = this.response.data
+          if(this.loggedInDepartmentName =='Fabric Local' && this.contractCostingData.adIncomeTaxFL != null){
+            for(let i=0; i<this.saleInvoice.length; i++){
+              let am= parseFloat(this.saleInvoice[i].quantity)  * parseFloat(this.contractCostingData.rate);
+              this.saleInvoice[i].amount =am
+            }   
+          } 
 if(this.saleInvoice[0].billInvoiceNumber != 0){
           this.isnotEditAble = true
 }
