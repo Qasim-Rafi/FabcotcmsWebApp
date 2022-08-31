@@ -1319,7 +1319,11 @@ getContractCostingData() {
           // .......calculating with gst........
           let value=(this.contractCostingData.contractCost * this.contractCostingData.gst) /100;
             // this.costingDataWithGstFL=parseInt(this.contractCostingData.contractCost)
-          this.costingDataWithGstFL =parseInt(this.contractCostingData.contractCost) + value+".000";
+          
+          this.costingDataWithGstFL =parseInt(this.contractCostingData.contractCost) + value+".00";
+          if(this.loggedInDepartmentName == 'Fabric Local' && this.contractCostingData.adIncomeTaxFL !=null){
+            this.costingDataWithGstFL =parseFloat(this.costingDataWithGstFL) + (parseFloat(this.costingDataWithGstFL) * parseFloat(this.contractCostingData.adIncomeTaxFL)) /100;
+          }
           // .......calculating with gst........
           this.max = this.response.data.quantityWithTolerance;
       this.uom = this.contractCostingData.rateUOMName;
