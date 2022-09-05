@@ -816,8 +816,10 @@ lcForm2( check){
               this.saleInvoice[i].amount =am
             }   
           } 
-if(this.saleInvoice[0].billInvoiceNumber != 0){
+if(this.saleInvoice[0].billInvoiceNumber != 0 ){
+  if(this.loggedInDepartmentName !='Fabric Local'){
           this.isnotEditAble = true
+  }
 }
           // this.deliveryFilter = [...this.deliveryData]
         }
@@ -1077,10 +1079,13 @@ if(this.saleInvoice[0].billInvoiceNumber != 0){
           this.response = res;
           if (this.response.success == true && this.response.data != null) {
             this.contractData = this.response.data;
+            
             if(this.contractData.status == "Closed"){
-
+              if(this.loggedInDepartmentName !='Fabric Local'){
               this.isnotEditAble =true
+              }
             }
+
             this.revised=this.contractData.revisedCount !=0? true : false ;
             this.checkR=this.contractData.revisedCount !=0? "REVISED" : "" ;
 

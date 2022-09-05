@@ -60,7 +60,7 @@ constructor(    private service: ServiceService,
    
    // this.router.navigate(['/saleBill'], { queryParams: {contractId:row.contractId , invNo : row.billInvoiceNumber,billname} });
    const url = this.router.serializeUrl(
-    this.router.createUrlTree(['/saleBill'],{ queryParams: {contractId:row.contractId, billNumber:row.billNumber, invNo : row.billInvoiceNumber,billname}})
+    this.router.createUrlTree(['/saleBill'],{ queryParams: {contractId:row.contractId, billNumber:row.billNumber, invNo : row.billInvoiceNumber,billname ,billfor:row.billSource}})
   );
   window.open(url, '_blank');
     // this.router.navigate(['/saleBill'],{ queryParams: {contractId:row.contractId , invNo : row.billInvoiceNumber,billname} }).then((result) => {
@@ -252,7 +252,7 @@ constructor(    private service: ServiceService,
             var d= this.rows.filter(x=>x.id == this.idsUpdates[i]);
             if(d.length >0 ){
 
-              this.idsUpdates[i] = d[0].contractId +'-'+ d[0].billNumber
+              this.idsUpdates[i] = d[0].contractId +'-'+ d[0].billNumber +'-'+d[0].billSource
             }
     }
     let varr=  {

@@ -346,7 +346,7 @@
             </kendo-grid-column>
             <kendo-grid-column field="billNumber" title="Bill #" [width]="100" [headerClass]="'customiconforgrid'">
               <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
-                {{dataItem.billNumber}}
+                {{dataItem.billNumber}} ({{dataItem.billSource}})
               </ng-template>
               
             </kendo-grid-column>
