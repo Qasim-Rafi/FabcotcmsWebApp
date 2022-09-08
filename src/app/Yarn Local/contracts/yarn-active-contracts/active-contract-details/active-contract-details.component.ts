@@ -5567,7 +5567,14 @@ yarnExportInvoicesReportPrint(){
                         margin: [10 , 10 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
-                        [{text:'Supplier Name:'  , style:'heading'} , {text: this.contractPartiesData['sellerName'] , style:'heading5'}],] }
+                        [{text:'Supplier Name:'  , style:'heading'} , {text: this.contractPartiesData['sellerName'], style:'heading5'}],] }
+                      },
+                      {
+                        layout:'noBorders',
+                        margin: [10 , 10 , 0 , 0],
+                        table:{headerRows: 1 , widths:['20%' , '80%'],
+                      body: [
+                        [{text:'Supplier GST&NTN:'  , style:'heading'} , {text: this.printData['sellerGSTNumber'] , style:'heading5'}],] }
                       },
                    
                       {
@@ -5576,6 +5583,14 @@ yarnExportInvoicesReportPrint(){
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
                         [{text:'Buyer Name:'  , style:'heading'} , {text: this.contractPartiesData['buyerName'], style:'heading5'}],] }
+                      },
+
+                      {
+                        layout:'noBorders',
+                        margin: [10 , 10 , 0 , 0],
+                        table:{headerRows: 1 , widths:['20%' , '80%'],
+                      body: [
+                        [{text:'Buyer GST&NTN:'  , style:'heading'} , {text: this.printData['buyerGSTNumber'], style:'heading5'}],] }
                       },
                       // {
                       //   layout:'noBorders',
@@ -5895,7 +5910,15 @@ yarnExportInvoicesReportPrint(){
                           margin: [10 , 10 , 0 , 0],
                           table:{headerRows: 1 , widths:['20%' , '80%'],
                         body: [
-                          [{text:'Supplier Name:'  , style:'heading'} , {text: this.contractPartiesData['sellerName'] , style:'heading5'}],] }
+                          [{text:'Supplier Name:'  , style:'heading'} , {text: this.contractPartiesData['sellerName'] +'('+ this.printData.sellerGSTNumber  +')', style:'heading5'}],] }
+                        },
+
+                        {
+                          layout:'noBorders',
+                          margin: [10 , 10 , 0 , 0],
+                          table:{headerRows: 1 , widths:['20%' , '80%'],
+                        body: [
+                          [{text:'Supplier GST&NTN:'  , style:'heading'} , {text: this.printData['sellerGSTNumber'] , style:'heading5'}],] }
                         },
                      
                         {
@@ -5903,7 +5926,15 @@ yarnExportInvoicesReportPrint(){
                           margin: [10 , 10 , 0 , 0],
                           table:{headerRows: 1 , widths:['20%' , '80%'],
                         body: [
-                          [{text:'Buyer Name:'  , style:'heading'} , {text: this.contractPartiesData['buyerName'], style:'heading5'}],] }
+                          [{text:'Buyer Name:'  , style:'heading'} , {text: this.contractPartiesData['buyerName'] , style:'heading5'}],] }
+                        },
+
+                        {
+                          layout:'noBorders',
+                          margin: [10 , 10 , 0 , 0],
+                          table:{headerRows: 1 , widths:['20%' , '80%'],
+                        body: [
+                          [{text:'Buyer GST&NTN:'  , style:'heading'} , {text: this.printData['buyerGSTNumber'] , style:'heading5'}],] }
                         },
                         // {
                         //   layout:'noBorders',
