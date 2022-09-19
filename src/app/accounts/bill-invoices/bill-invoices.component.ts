@@ -192,6 +192,11 @@ constructor(    private service: ServiceService,
   fetch1() {
     this.data2.toDate = this.dateformater.toModel(this.data2.toDate)
     this.data2.FromDate = this.dateformater.toModel(this.data2.FromDate)
+
+    if(this.data2.toDate == "undefined-undefined-undefined"){
+      this.data2.toDate ="null";
+      this.data2.FromDate ="null";
+    }
     if(this.deptName == undefined){
       this.deptName = 3;
     }
