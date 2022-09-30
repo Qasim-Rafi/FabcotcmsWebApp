@@ -208,6 +208,8 @@ constructor(    private service: ServiceService,
      
     if(this.response.success==true)
     {
+      this.data2.toDate = this.dateformater.fromModel(this.data2.toDate)
+      this.data2.FromDate = this.dateformater.fromModel(this.data2.FromDate)
     this.data=this.response.data;
     this.dashboardAmnt = this.data
     this.temp = [...this.data.objList]; 
@@ -274,16 +276,16 @@ constructor(    private service: ServiceService,
         if (this.response.success == true){
           this.toastr.success(this.response.message, 'Message.');
           this.datatext.textValue = ''
-          this.getafterGenrated();
-          this.rows = process(this.temp,this.state)
-          // this.dataBinding.rebind()
-          // this.dataBinding.ngOnInit()
-          // this.fetch1();
-          // this.fetch((data) => {
-          //   this.temp = [...data]; 
-          //   this.rows = data;
-          // });
-    //this.spinner.hide();
+           this.getafterGenrated();
+           this.rows = process(this.temp,this.state)
+    //    //   this.dataBinding.rebind()
+    //      // this.dataBinding.ngOnInit()
+    ////this.fetch1();
+    //     //  this.fetch((data) => {
+    //     //    this.temp = [...data]; 
+    //      //   this.rows = data;
+    //      // });
+    // //this.spinner.hide();
 
         }
         else {
@@ -302,8 +304,11 @@ constructor(    private service: ServiceService,
   }
 getafterGenrated(){
 
-    // this.data2.toDate = this.dateformater.toModel(this.data2.toDate)
-    // this.data2.FromDate = this.dateformater.toModel(this.data2.FromDate)
+  if(this.data2.toDate != null || this.data2.toDate != undefined){
+    this.data2.toDate = this.dateformater.toModel(this.data2.toDate)
+    this.data2.FromDate = this.dateformater.toModel(this.data2.FromDate)
+  }
+  
     if(this.deptName == undefined){
       this.deptName = 3;
     }
@@ -315,6 +320,8 @@ getafterGenrated(){
      
     if(this.response.success==true)
     {
+      this.data2.toDate = this.dateformater.fromModel(this.data2.toDate)
+      this.data2.FromDate = this.dateformater.fromModel(this.data2.FromDate)
     this.data=this.response.data;
     this.dashboardAmnt = this.data
     this.temp = [...this.data.objList]; 
