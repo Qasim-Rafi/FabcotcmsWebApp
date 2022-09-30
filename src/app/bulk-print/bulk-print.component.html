@@ -35,7 +35,7 @@
         <div class="panel-heading "  [ngClass]="{'breakclass': loggedInDepartmentName == 'Yarn Export'}">
 
 
-            <div class="row  " *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Local' ">
+            <div class="row  " *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Local' && loggedInDepartmentName != 'Comber noil' ">
                 <div class="col-md-3">
                   <img src="/assets/fabcot.png"  class="image">
                 </div>
@@ -43,7 +43,7 @@
                     </p>
            </div>
 
-           <div class="row  " *ngIf = "loggedInDepartmentName == 'Yarn Local'">
+           <div class="row  " *ngIf = "loggedInDepartmentName == 'Yarn Local' || loggedInDepartmentName == 'Comber noil'">
             <div class="col-md-3">
               <img src="/assets/fabcot.png"  class="image">
             </div>
@@ -51,12 +51,14 @@
                 <p class="font clr" >
                     
                     <strong>FABCOT INTERNATIONAL ® </strong><br>
-                    <strong style="color: black; font-size: 23px;" *ngIf="x.billSource">({{x.billSource}} Bill) </strong>
-                    <strong style="color: black; font-size: 23px;" *ngIf="!x.billSource">(Seller Bill) </strong>
+                    <strong style="color: black; font-size: 23px;" *ngIf="x.billSource && loggedInDepartmentName == 'Comber noil'">Commission Bill For ({{x.billSource}}) </strong>
+                    <strong style="color: black; font-size: 23px;" *ngIf="!x.billSource && loggedInDepartmentName == 'Comber noil'">Commission Bill For (Seller) </strong>
+                    <strong style="color: black; font-size: 23px;" *ngIf="x.billSource && loggedInDepartmentName != 'Comber noil'">({{x.billSource}} Bill) </strong>
+                    <strong style="color: black; font-size: 23px;" *ngIf="!x.billSource && loggedInDepartmentName != 'Comber noil'">(Seller Bill) </strong>
                 </p>
       
        </div>
-
+       
             <div class="row  bottom" *ngIf = "loggedInDepartmentName == 'Fabric Export' ||loggedInDepartmentName == 'Yarn Export'" >
                 <div class="col-md-3">
                   <img src="/assets/fabcot.png"  class="image">
