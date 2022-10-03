@@ -17,6 +17,7 @@ export class AccBulkPrintComponent implements OnInit {
   id : any;
   response: any;
   data : any = {}
+  buyerids : any;
 amountInWorda:string;
 lang : SUPPORTED_LANGUAGE = 'en';
 
@@ -31,7 +32,7 @@ lang : SUPPORTED_LANGUAGE = 'en';
 
   ngOnInit(): void {
     this.id = localStorage.getItem('bulkPrint');
-
+    this.buyerids = localStorage.getItem('BPbuyerId');
     this.bulkPrint();
   }
   bulkPrint() {
@@ -39,8 +40,8 @@ lang : SUPPORTED_LANGUAGE = 'en';
 
 
     let varr = {
-      "ids":this.id
-  
+      "ids":this.id,
+      "idsBuyer":this.buyerids
     }
     this.spinner.show();
     this.http.

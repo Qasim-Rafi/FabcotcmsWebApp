@@ -27,6 +27,8 @@ selected: any = [];
 data:any=[];
 data2:any=[];
 datatext:any={};
+itemBID: any=[];
+itemSID: any=[];
 response:any=[];
 dateformater: Dateformater = new Dateformater();  
 dashboardAmnt : any [];
@@ -276,6 +278,7 @@ constructor(    private service: ServiceService,
         if (this.response.success == true){
           this.toastr.success(this.response.message, 'Message.');
           this.datatext.textValue = ''
+          this.idsUpdates =[];
            this.getafterGenrated();
            this.rows = process(this.temp,this.state)
     //    //   this.dataBinding.rebind()
@@ -360,16 +363,24 @@ getafterGenrated(){
       for(let i=0;i<=this.idsUpdates.length; i++){
         var d= this.rows.filter(x=>x.id == this.idsUpdates[i]);
         if(d.length >0 ){
-
-          this.idsUpdates[i] = d[0].contractId +'-'+ parseInt( d[0].billNumber)
+          if(d != undefined && d[0].billSource == "Seller" ){
+          this.itemSID.push( d[0].contractId +'-'+ parseInt( d[0].billNumber));
+          // this.idsUpdates = [...new Set(this.idsUpdates)];
+          }
+          if(d != undefined && d[0].billSource == "Buyer" ){
+            this.itemBID.push(d[0].contractId +'-'+ parseInt( d[0].billNumber))
+           //  this.item.splice(i, 1);
+          }
         }
 }
-       this.idsUpdates = [...new Set(this.idsUpdates)];
-  localStorage.setItem('bulkPrint', this.idsUpdates);
- 
+       
+  localStorage.setItem('bulkPrint', this.itemSID);
+  localStorage.setItem('BPbuyerId', this.itemBID);
   this.router.navigate([]).then((result) => {
     window.open('/accBulk' , '_blank');
   });
+  this.itemSID =[];
+  this.itemBID=[];
   this.mySelection =[];
   this.idsUpdates=[];
   }
