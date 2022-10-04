@@ -279,6 +279,7 @@ constructor(    private service: ServiceService,
           this.toastr.success(this.response.message, 'Message.');
           this.datatext.textValue = ''
           this.idsUpdates =[];
+          this.mySelection=[];
            this.getafterGenrated();
            this.rows = process(this.temp,this.state)
     //    //   this.dataBinding.rebind()
