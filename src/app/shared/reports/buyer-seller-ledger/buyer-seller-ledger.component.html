@@ -1,0 +1,308 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="line-spin-fade" [fullScreen]="true">
+    <p style="color: white"> Loading... </p>
+  </ngx-spinner>
+
+
+  <div>
+    <div class="content-header">
+  
+      <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-8">
+          <h2 class="row wrapper page-header font-weight-light"> Buyer/Seller Ledger
+            <div class="ml-2 descr"> By default It displays the open contracts of past 3 months
+             </div>
+          </h2>
+        </div>
+  
+        <div class="col-sm-12 col-md-6 col-lg-4">
+          <ol class="breadcrumb flt-RnL">
+            <li class="breadcrumb-item"><a href="#">Reports</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Buyer/Seller Ledger</li>
+          </ol>
+        </div>
+  
+      </div>
+    </div>
+  
+    <div class="card ibox-content">
+      <div class="panel blank-panel">
+        <div class="panel-heading">
+  
+          <div class="row mb-2 p-2">
+  
+            <div class="col-md-3">
+              <div class="widget style1 yellow-bg  shadow">
+                <div class="row">
+                  <!-- <div class="col-md-4">
+                    <i class="fas fa-file-invoice-dollar fa-3x"></i>
+                  </div> -->
+                  <div class="col-md-12 ">
+                    <h6> Selected Seller </h6>
+                  <h6 class="font-bold" > {{sellerName}} <p class="topbox-small-text">&nbsp;</p></h6>
+  
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+            <div class="col-md-3">
+              <div class="widget style1 bg-secondary shadow">
+                <div class="row">
+                  <!-- <div class="col-md-4">
+                    <i class="fas fa-wallet fa-3x"></i>
+                  </div> -->
+                  <div class="col-md-12">
+                    <h6> Selected Buyer</h6>
+                    <h6 class="font-bold" >{{buyerName}} <p class="topbox-small-text">&nbsp;</p></h6>
+  
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+            <div class="col-md-3">
+              <div class="widget style1 bg-info shadow">
+                <div class="row">
+                  <div class="col-md-4">
+                    <i class="fas fa-hand-holding-usd fa-3x"></i>
+                  </div>
+                  <div class="col-md-8 text-right">
+                    <h6>Bags Quantity </h6>
+                    <h6 class="font-bold" > {{bags}} <p class="topbox-small-text">&nbsp;</p></h6>
+  
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+            <div class="col-md-3">
+              <div class="widget style1 bg-success shadow">
+                <div class="row">
+                  <div class="col-md-4">
+                    <i class="fa fa-calculator fa-3x"></i>
+                  </div>
+                  <div class="col-md-8 text-right">
+                    <h6> Outstanding </h6>
+                    <h6 class="font-bold" > {{outstanding}} <p class="topbox-small-text">&nbsp;</p></h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+  
+          </div>
+  
+            <!-- <form #filterForm="ngForm" novalidate>
+              <div  [ngClass]="status ? 'add' : 'remove'">
+              <div class="card">
+  
+  
+              <div class="row p-2">
+  
+                  <div class="form-group col-md-4">
+                    <label for="description">Buyer Name:</label>
+                    <ng-select placeholder="Buyer Name" name="buyerId" [(ngModel)]="data3.buyerId" #buyerId="ngModel">
+                      <ng-option *ngFor="let i of buyer" [value]="i.id">
+                        {{i.buyerName}}
+                      </ng-option>
+                    </ng-select>
+                  </div>
+  
+                  <div class="form-group col-md-4 ">
+                    <label for="description">Seller Name:</label>
+                    <ng-select placeholder="Seller Name" name="sellerId" [(ngModel)]="data3.sellerId"
+                      #sellerId="ngModel">
+                      <ng-option *ngFor="let i of seller" [value]="i.id">
+                        {{i.sellerName}}
+                      </ng-option>
+                    </ng-select>
+  
+                  </div>
+  
+                  <div class="form-group col-md-4">
+                    <label for="description">Auto Contract#:</label>
+                    <input type="text" placeholder="Contract Number" name="autoContractNumber"
+                      [(ngModel)]="data3.autoContractNumber" #autoContractNumber="ngModel" class="form-control text-w-4">
+                  </div>
+  
+  
+              </div>
+  
+              <div class="row p-2">
+  
+                  <div class="form-group col-md-4">
+                    <label for="description">Start Date:</label>
+                    <input class="form-control" ngbDatepicker #reminderDate2="ngbDatepicker" (click)="reminderDate2.toggle()"
+                    placeholder="Contract start Date" name="contractUpDate" name="contractDate"
+                    [(ngModel)]="data3.startContractDate" #contractDate="ngModel" />
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="description">End Date:</label>
+  
+                      <input class="form-control" ngbDatepicker #reminderDate3="ngbDatepicker" (click)="reminderDate3.toggle()"
+                      placeholder="Contract end Date" name="contractUpDate" name="contractDate"
+                      [(ngModel)]="data3.endContractDate" #contractDate="ngModel" />
+  
+                  </div>
+  
+  
+  
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group row mt-3">
+                    <div class="col-md-2 ml-8">
+                      <button class="btn btn-outline-secondary pull-left btn-xs "><i class="fas fa-sync"></i>
+                        Clear
+                      </button>
+  
+                    </div>
+  
+                    <div class="col-md-4 ">
+                      <button type="button" class="btn btn-primary btn-sm float-right" (click)="getOpenContractReport()">
+                        Search Contract
+                      </button>
+                    </div>
+                  
+  
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+             
+  
+  
+  
+            </form> -->
+  
+  
+  
+  
+          <div class="row">
+  
+  
+  
+            <div class="col-md-12 mb-3">
+              <div class="row justify-content-end">
+
+                <div class="col-md-3">
+                    <ng-select name="sellerId"  placeholder="-- Seller --"  (change)="changeseller($event,'seller')" [(ngModel)]=" data4.sellerId">
+                      <ng-option *ngFor="let i of sellerlookup" [value]="i.sellerId">
+                        {{i.sellerName}}
+                      </ng-option>
+                    </ng-select>
+                  </div>
+
+                  <div class="col-md-3">
+                    <ng-select name="buyerId"  placeholder="-- Buyer --" (change)="changesbuyer($event,'buyer')"  [(ngModel)]=" data4.buyerId">
+                      <ng-option *ngFor="let i of buyerlookup" [value]="i.buyerId">
+                        {{i.buyerName}}
+                      </ng-option>
+                    </ng-select>
+                  </div>
+                <div class="col-md-4 pr-0">
+  
+                  <div class="form-group row">
+                    <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="input form-control form-control-sm" (keyup) = "Search($event)" />
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="html5buttons mrg-tsm">
+                  <div class="dt-buttons btn-group btn-group-sm">
+                    <!-- <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0"
+                      aria-controls="DataTables_Table_0"><span>Copy</span></a> -->
+                    <!-- <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
+                      aria-controls="DataTables_Table_0"><span>CSV</span></a> -->
+                    <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
+                      aria-controls="DataTables_Table_0" (click) = "allContractExcelFile()"><span>Excel</span></a>
+                    <a class="btn btn-default buttons-print bg-white" tabindex="0"
+                      aria-controls="DataTables_Table_0" (click) = "allContractPdf()"><span>Print</span></a>
+                  </div>
+                </div>
+                <!-- <div class="col-md-2 mb-1">
+                  <button type="button" class="btn btn-primary btn-sm ml-md-2 float-right"  (click)="clickEvent()"> Advance Filter <i class="fas fa-search fa-fw mr-2"></i></button>
+                  </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- <div class="card shadow mb-4">
+          <div class="card-body"> -->
+            <div class="panel-body">
+  
+                      
+            
+                      <ngx-datatable #myTable class="bootstrap" [sorts]="[{ prop: 'contractId', dir: 'asc' }]" [columns]="columns"
+                      [rows]="allContractReport" [columnMode]="'force'" [headerHeight]="50"[footerHeight]="30"
+                      [rowHeight]="50"
+                      [scrollbarH]="true"
+                      [scrollbarV]="true"
+                     style="height: 500px;">
+          
+                      <ngx-datatable-column name="Contract#" prop="contractNo" >
+                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                           {{row.autoContractNumber}}
+                        </ng-template>
+                      </ngx-datatable-column>
+          
+                      <ngx-datatable-column name="Buyer Name" *ngIf="data4.sellerId"  prop="buyerName" [width]="320">
+                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                          {{ row.buyerName }}
+                        </ng-template>
+                      </ngx-datatable-column>
+        
+                      <ngx-datatable-column name="Seller Name" *ngIf="data4.buyerId" prop="sellerName" [width]="320">
+                        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                          {{ row.sellerName }}
+                        </ng-template>
+                      </ngx-datatable-column>
+        
+        
+                      <ngx-datatable-column name="Invoice Date"  prop="saleInvoiceDateToDisplay"></ngx-datatable-column>
+                    <ngx-datatable-column name="Invoice #" prop="saleInvoiceNo"></ngx-datatable-column>
+                    
+                    <ngx-datatable-column name="Bags" prop="quantity">
+        
+                      <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                        {{row.quantity}} {{row.uom}}
+                      </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Payable" prop="saleInvoiceAmount"></ngx-datatable-column>
+                    <ngx-datatable-column name="Paid" prop="receivedAmount"></ngx-datatable-column>
+                    <!-- <ngx-datatable-column name="Comission Amount" prop="commissionSaleInvoiceAmount"></ngx-datatable-column> -->
+                    <ngx-datatable-column name="Outstanding	" prop="Outstanding	">
+        
+                      <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                        {{row.saleInvoiceAmount - row.receivedAmount}}
+                      </ng-template>
+                    </ngx-datatable-column>
+        
+                    <ngx-datatable-column name="Ageing	" prop="ageing	">
+        
+                      <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                        <span class="badge badge-info">{{row.ageing}} Days</span>
+                        
+                      </ng-template>
+                    </ngx-datatable-column>
+        
+           
+          
+                    </ngx-datatable>
+            
+              
+  
+  
+  
+            </div>
+          <!-- </div> -->
+        <!-- </div> -->
+  
+      </div>
+    </div>
+  </div>
+  

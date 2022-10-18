@@ -194,6 +194,9 @@ Swal.fire({
     if(menuName == "AllContractReport" ){
       this.router.navigate(['/allContractReport'], { queryParams: { menuName: menuName } });
     }
+    else if(menuName == "Buyer/Seller Ledger Report"){
+      this.router.navigate(['/buyer-seller-ledger'], { queryParams: { menuName: menuName } });
+    }
     else{
     this.router.navigate(['/reports'], { queryParams: { menuName: menuName } });
   }

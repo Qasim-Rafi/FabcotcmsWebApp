@@ -15,6 +15,7 @@ import { AccBulkPrintComponent } from './accounts/acc-bulk-print/acc-bulk-print.
 import { AllContractReportComponent } from './shared/reports/all-contract-report/all-contract-report.component';
 import { SellerMappingComponent } from './shared/mappings/seller-mapping/seller-mapping.component';
 import { FabcotTrendsComponent } from './shared/fabcot-trends/fabcot-trends.component';
+import { BuyerSellerLedgerComponent } from './shared/reports/buyer-seller-ledger/buyer-seller-ledger.component';
 
 
 const configurationModule = () => import('./configuration/configuration.module')
@@ -40,6 +41,7 @@ const routes: Routes = [
     {path:'filter', component:AdvanceFilterComponent},
     {path:'accounts' , component:BillInvoicesComponent},
     {path:'saleBill' , component:SaleInvoiceBillComponent},
+    {path:'buyer-seller-ledger' , component:BuyerSellerLedgerComponent},
 
 
    {

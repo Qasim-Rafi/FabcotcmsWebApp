@@ -88,6 +88,7 @@ import { YearTrendsComponent } from './shared/fabcot-trends/year-trends/year-tre
 
 import { WeekTrendComponent } from './shared/fabcot-trends/week-trend/week-trend.component';
 import { FagentprintComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/fagentprint/fagentprint.component';
+import { BuyerSellerLedgerComponent } from './shared/reports/buyer-seller-ledger/buyer-seller-ledger.component';
 
 const appRoutes: Routes = [] 
 
@@ -148,6 +149,7 @@ const appRoutes: Routes = []
     YearTrendsComponent,
     WeekTrendComponent,
     FagentprintComponent,
+    BuyerSellerLedgerComponent,
    
 
   
