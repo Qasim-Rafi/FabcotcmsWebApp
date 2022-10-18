@@ -174,6 +174,9 @@ getAllContractReport(){
           this.buyerlookup = this.response.data.list;
           this.sellerlookup = this.response.data.list;
 
+          this.sellerlookup = this.removeDuplicates(this.sellerlookup, "sellerName")
+          this.buyerlookup = this.removeDuplicates(this.buyerlookup, "buyerName")
+
               this.totalReceivedAmount=this.response.data.totalReceivedAmount;
               this.totalAAT =this.response.data.totalSaleInvoiceAmountAfterTax;
               this.balanceAmount =this.response.data.balanceAmount;
@@ -200,6 +203,11 @@ getAllContractReport(){
         this.spinner.hide();
 
       });
+}
+removeDuplicates(myArray, Prop) {
+  return myArray.filter((obj, pos, arr) => {
+    return arr.map(mapObj => mapObj[Prop]).indexOf(obj[Prop]) === pos;
+  });
 }
 changeseller(sellerid,name){
   if(sellerid == undefined){
