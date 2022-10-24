@@ -236,7 +236,7 @@ this.spinner.hide();
   
   amountCall(event){
  let deptName =localStorage.getItem('loggedInDepartmentName');
- if(deptName == 'Yarn Local'){
+ if(deptName == 'Yarn Local' || deptName == 'Fabric Local'){
 
   this.amountGivenToCalculate=this.data.amount;
         this.result = this.data.amount.toString() +'.'+this.decimalSize;
@@ -287,11 +287,21 @@ this.spinner.hide();
   }
   taxCalculated(event){
     let deptName =localStorage.getItem('loggedInDepartmentName');
- if(deptName == 'Yarn Local'){
+ if(deptName == 'Yarn Local' || deptName == 'Fabric Local'){
     this.taxpercentage=this.data.taxChalan;
-   //this.amountGivenToCalculate= this.amountGivenToCalculate / 99
+   //this.amountGivenToCalculate= this.amountGivenToCalculate * 1/100 99
+  //  let ab=(this.amountGivenToCalculate * 1) / 100
+  //       let am = this.amountGivenToCalculate + ab
     let taxcal  = this.amountGivenToCalculate * (this.data.taxChalan / 99);
     // (100- this.data.taxChalan)
+    if(taxcal != 0){
+      this.amountGivenToCalculate = parseFloat(this.amountGivenToCalculate + taxcal)
+       this.amountGivenToCalculate =parseFloat(this.amountGivenToCalculate)
+       this.result =Math.round(this.amountGivenToCalculate).toString() +'.'+this.decimalSize;
+    }
+    else if(taxcal == 0){
+           this.result =this.data.amount.toString() +'.'+this.decimalSize;
+    }
     this.calculatedTax= taxcal.toFixed(2);
  }
  else{
