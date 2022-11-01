@@ -201,7 +201,16 @@
                       </ng-option>
                     </ng-select>
                   </div>
-                <div class="col-md-4 pr-0">
+                     
+
+                  <div class="col-md-1">
+                    <input type="text" placeholder="Apply Tax" #tax="ngModel" (change)="taxapplyMethod($event)"
+                                                class="form-control" [(ngModel)]="data4.tax" name="tax">
+                  </div>
+
+                     
+
+                <div class="col-md-3 pr-0">
   
                   <div class="form-group row">
                     <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
@@ -290,7 +299,12 @@
                       </ng-template>
                     </ngx-datatable-column>
         
-           
+                    <ngx-datatable-column name="Tax Amount" prop="taxamountDispaly">
+        
+                      <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                        {{row.taxamountDispaly}}
+                      </ng-template>
+                    </ngx-datatable-column>
           
                     </ngx-datatable>
             

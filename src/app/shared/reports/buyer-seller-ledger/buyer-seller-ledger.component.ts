@@ -209,6 +209,22 @@ removeDuplicates(myArray, Prop) {
     return arr.map(mapObj => mapObj[Prop]).indexOf(obj[Prop]) === pos;
   });
 }
+
+
+taxapplyMethod(event){
+
+  let tax=event.target.value
+  for(let i=0; i<this.allContractReport.length; i++){
+
+    this.allContractReport[i].taxamountDispaly =(parseFloat(this.allContractReport[i].saleInvoiceAmount) * parseFloat(tax)) / 100
+
+  }
+
+
+
+}
+
+
 changeseller(sellerid,name){
   if(sellerid == undefined){
     this.sellerName =null;

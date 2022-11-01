@@ -108,6 +108,21 @@ body {
  font-weight: bold;
 }
 
+body::-webkit-scrollbar {
+  width: 3px !important;               /* width of the entire scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.445) !important;         /* color of the tracking area */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #6b707e !important;     /* color of the scroll thumb */
+  border-radius: 20px !important;        /* roundness of the scroll thumb */
+  border: 3px solid rgba(73, 72, 70, 0.637) !important;   /* creates padding around scroll thumb */
+}
+
+
 .error{
   border: 1px solid #e03a37 !important;
   /* background-image: url('./assets/error.png');

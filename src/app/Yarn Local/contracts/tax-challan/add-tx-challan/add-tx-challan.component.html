@@ -248,15 +248,15 @@
                                             </ng-template>
                                         </ngx-datatable-column>
                         
-                                        <ngx-datatable-column name="Inv #" [width]="80" prop="name">
+                                        <ngx-datatable-column name="Inv #" [width]="80" prop="saleInvoiceNo">
                                             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                                {{row.name}}
+                                                {{row.saleInvoiceNo}}
                                             </ng-template>
                                         </ngx-datatable-column>
                         
-                                        <ngx-datatable-column name="Date" [width]="80" prop="genericName">
+                                        <ngx-datatable-column name="Date" [width]="80" prop="saleInvoiceDateToDisplay">
                                             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                                                {{row.genericName}}
+                                                {{row.saleInvoiceDateToDisplay}}
                                             </ng-template>
                                         </ngx-datatable-column>
                         
