@@ -31,7 +31,7 @@
           <label for="sellerName" class="col-md-3 col-form-label text_Navy">Seller Name<span
               class="required-denote">*</span></label>
           <div class="col-md-8">
-            <input appAutofocus required maxlength="60" id="sellerName" type="text" class="form-control"
+            <input appAutofocus required maxlength="150" id="sellerName" type="text" class="form-control"
               placeholder="Seller name" name="sellerName" [(ngModel)]="data.sellerName" #name="ngModel"
               [ngClass]="{ error: name.invalid && sellerEditForm.submitted }" />
           </div>
