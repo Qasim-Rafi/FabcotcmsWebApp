@@ -161,10 +161,10 @@
                     
                                 <div class="col-md-7">
                                     <div class="row">
-                    
+                                        <!-- [readonly]="isAmountDisabled" -->
                                         <div class="col-md-3">
                                             <div class="input-group">
-                                                <input type="number" min="0" placeholder="Amount" class="form-control" [readonly]="isAmountDisabled"
+                                                <input type="number" min="0" placeholder="Amount" class="form-control" 
                                                 (change)="onBlurMethod(data.amount)" (keyup)="amountCall($event)"
                                                     [(ngModel)]="data.amount">
                                             </div>
@@ -262,7 +262,7 @@
                         
                         
                         
-                                        <ngx-datatable-column name="Tax Amount" [width]="80" prop="taxChallan">
+                                        <ngx-datatable-column name="TaxChallan Amount" [width]="80" prop="taxChallan">
                                             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                                                 {{row.taxChallan}}
                                             </ng-template>
