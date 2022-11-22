@@ -283,10 +283,16 @@
                         {{row.quantity}} {{row.uom}}
                       </ng-template>
                     </ngx-datatable-column>
-                    <ngx-datatable-column name="Payable" prop="saleInvoiceAmount"></ngx-datatable-column>
+                    <ngx-datatable-column name="Invoice Amount" prop="saleInvoiceAmount"></ngx-datatable-column>
+                    <ngx-datatable-column name="Tax Amount" prop="taxamountDispaly">
+        
+                      <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                        {{row.taxAmount}}
+                      </ng-template>
+                    </ngx-datatable-column>
                     <ngx-datatable-column name="Paid" prop="receivedAmount"></ngx-datatable-column>
                     <!-- <ngx-datatable-column name="Comission Amount" prop="commissionSaleInvoiceAmount"></ngx-datatable-column> -->
-                    <ngx-datatable-column name="Outstanding	" prop="Outstanding	">
+                    <ngx-datatable-column name="Payable	" prop="Outstanding	">
         
                       <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                         {{row.saleInvoiceAmount - row.receivedAmount}}
@@ -301,12 +307,7 @@
                       </ng-template>
                     </ngx-datatable-column>
         
-                    <ngx-datatable-column name="Tax Amount" prop="taxamountDispaly">
-        
-                      <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                        {{row.taxAmount}}
-                      </ng-template>
-                    </ngx-datatable-column>
+                    
           
                     </ngx-datatable>
             
