@@ -12,6 +12,7 @@ import { NgForm } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ServiceService } from '../../service.service';
 import { Dateformater } from '../../dateformater';
+// import { parse } from 'path';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -239,6 +240,8 @@ changeseller(sellerid,name){
       this.allContractReport=this.response.data.list.filter(x=>x.sellerId == sellerid);
       this.allContractReport =   this.allContractReport.filter((v,i) =>  this.allContractReport.findIndex(item => item.buyerId == v.buyerId) === i);
       this.outstanding=this.allContractReport .reduce((n, {saleInvoiceAmount}) => n + parseFloat(saleInvoiceAmount) ,0)
+          var okk =this.allContractReport .reduce((n, {receivedAmount}) => n + parseFloat(receivedAmount) ,0)
+          this.outstanding =parseFloat(this.outstanding) - parseFloat(okk)
       this.bags=this.allContractReport .reduce((n, {quantity}) => n + quantity, 0)
   }
 
@@ -257,6 +260,8 @@ changesbuyer(buyerid,name){
   this.allContractReport =   this.allContractReport.filter((v,i) =>  this.allContractReport.findIndex(item => item.sellerId == v.sellerId) === i);
 
   this.outstanding=this.allContractReport .reduce((n, {saleInvoiceAmount}) => n + parseFloat(saleInvoiceAmount) ,0)
+  var okk =this.allContractReport .reduce((n, {receivedAmount}) => n + parseFloat(receivedAmount) ,0)
+  this.outstanding =parseFloat(this.outstanding) - parseFloat(okk)
   this.bags=this.allContractReport .reduce((n, {quantity}) => n + quantity, 0)
   }
 
