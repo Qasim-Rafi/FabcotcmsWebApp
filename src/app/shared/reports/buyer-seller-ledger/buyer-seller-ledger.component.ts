@@ -243,6 +243,15 @@ changeseller(sellerid,name){
           var okk =this.allContractReport .reduce((n, {receivedAmount}) => n + parseFloat(receivedAmount) ,0)
           this.outstanding =parseFloat(this.outstanding) - parseFloat(okk)
       this.bags=this.allContractReport .reduce((n, {quantity}) => n + quantity, 0)
+
+      for(let b = 0; b < this.allContractReport.length; b++){
+
+        var sum = parseFloat(this.allContractReport[b].saleInvoiceAmount) - parseFloat(this.allContractReport[b].receivedAmount);
+              if(sum == 0){
+               this.allContractReport[b].ageing = 0
+              }
+  
+       }
   }
 
 }
@@ -263,6 +272,15 @@ changesbuyer(buyerid,name){
   var okk =this.allContractReport .reduce((n, {receivedAmount}) => n + parseFloat(receivedAmount) ,0)
   this.outstanding =parseFloat(this.outstanding) - parseFloat(okk)
   this.bags=this.allContractReport .reduce((n, {quantity}) => n + quantity, 0)
+
+      for(let b = 0; b < this.allContractReport.length; b++){
+
+      var sum = parseFloat(this.allContractReport[b].saleInvoiceAmount) - parseFloat(this.allContractReport[b].receivedAmount);
+            if(sum == 0){
+             this.allContractReport[b].ageing = 0
+            }
+
+     }
   }
 
 
