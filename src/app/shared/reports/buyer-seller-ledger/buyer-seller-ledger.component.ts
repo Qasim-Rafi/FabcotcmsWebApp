@@ -238,7 +238,7 @@ changeseller(sellerid,name){
         this.sellerName =name[0].sellerName;
     this.isseller =true;
       this.allContractReport=this.response.data.list.filter(x=>x.sellerId == sellerid);
-      this.allContractReport =   this.allContractReport.filter((v,i) =>  this.allContractReport.findIndex(item => item.buyerId == v.buyerId) === i);
+      // this.allContractReport =   this.allContractReport.filter((v,i) =>  this.allContractReport.findIndex(item => item.buyerId == v.buyerId) === i);
       this.outstanding=this.allContractReport .reduce((n, {saleInvoiceAmount}) => n + parseFloat(saleInvoiceAmount) ,0)
           var okk =this.allContractReport .reduce((n, {receivedAmount}) => n + parseFloat(receivedAmount) ,0)
           this.outstanding =parseFloat(this.outstanding) - parseFloat(okk)
@@ -266,7 +266,7 @@ changesbuyer(buyerid,name){
   let name =this.response.data.list.filter(x=>x.buyerId == buyerid);
   this.buyerName =name[0].buyerName;
   this.allContractReport=this.response.data.list.filter(x=>x.buyerId == buyerid);
-  this.allContractReport =   this.allContractReport.filter((v,i) =>  this.allContractReport.findIndex(item => item.sellerId == v.sellerId) === i);
+  // this.allContractReport =   this.allContractReport.filter((v,i) =>  this.allContractReport.findIndex(item => item.sellerId == v.sellerId) === i);
 
   this.outstanding=this.allContractReport .reduce((n, {saleInvoiceAmount}) => n + parseFloat(saleInvoiceAmount) ,0)
   var okk =this.allContractReport .reduce((n, {receivedAmount}) => n + parseFloat(receivedAmount) ,0)
@@ -288,6 +288,8 @@ changesbuyer(buyerid,name){
     this.allContractReport=this.response.data.list.filter(x=>x.buyerId == buyerid && x.sellerId == this.data4.sellerId );
 
     this.outstanding=this.allContractReport .reduce((n, {saleInvoiceAmount}) => n + parseFloat(saleInvoiceAmount) ,0)
+    var okk =this.allContractReport .reduce((n, {receivedAmount}) => n + parseFloat(receivedAmount) ,0)
+    this.outstanding =parseFloat(this.outstanding) - parseFloat(okk)
     this.bags=this.allContractReport .reduce((n, {quantity}) => n + quantity, 0)
   }
 

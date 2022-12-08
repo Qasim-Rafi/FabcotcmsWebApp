@@ -9,7 +9,7 @@
     <span aria-hidden="true">&times;</span>
   </button>
   <div>
-    <h5 class="modal-title py-0" *ngIf = "loggedInDepartmentName == 'Fabric Local' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Comber noil' || loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Import'">
+    <h5 class="modal-title py-0" *ngIf = "loggedInDepartmentName == 'Fabric Local' || loggedInDepartmentName == 'Yarn Export'   || loggedInDepartmentName == 'Yarn Import Bangladesh' || loggedInDepartmentName == 'Comber noil' || loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Import'">
       <i class="fas fa-edit"></i>
       Edit Commission & Kickback
     </h5>
@@ -31,7 +31,7 @@
       <div class="col-10 col-md-11 pt-3 pb-2">
     
         <div class="form-group row"
-          *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Comber noil' || loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Import'">
+          *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName == 'Yarn Export'  || loggedInDepartmentName == 'Yarn Import Bangladesh' || loggedInDepartmentName == 'Comber noil' || loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Import'">
     
           <label for="sellercomm" class="col-md-3 col-form-label ">Kickback</label>
     
@@ -64,7 +64,7 @@
         </div>
     
         <div class="form-group row"
-          *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Comber noil' || loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Import'">
+          *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName == 'Yarn Export'   || loggedInDepartmentName == 'Yarn Import Bangladesh' || loggedInDepartmentName == 'Comber noil' || loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Import'">
     
           <label for="sellercomm" class="col-md-3 col-form-label text_Navy">Beneficiary</label>
           <div class="col-md-8">
@@ -113,7 +113,7 @@
         </div>
     
     
-        <div class="form-group row" *ngIf="loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import'  &&  loggedInDepartmentName == '!Fabric Export' || loggedInDepartmentName == 'Yarn Local' || loggedInDepartmentName == 'Comber noil' || loggedInDepartmentName == 'Fabric Local'">
+        <div class="form-group row" *ngIf="loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import Bangladesh' && loggedInDepartmentName != 'Yarn Import'  &&  loggedInDepartmentName == '!Fabric Export' || loggedInDepartmentName == 'Yarn Local' || loggedInDepartmentName == 'Comber noil' || loggedInDepartmentName == 'Fabric Local'">
           <label for="buyercomm" class="col-md-3 col-form-label text_Navy">Comm Buyer side</label>
           <div class=" col-md-8">
             <div class="row">
@@ -141,7 +141,7 @@
           </div>
         </div>
     
-        <div class="form-group row" *ngIf="loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import' ">
+        <div class="form-group row" *ngIf="loggedInDepartmentName != 'Yarn Export'  && loggedInDepartmentName != 'Yarn Import Bangladesh' && loggedInDepartmentName != 'Yarn Import' ">
           <label for="buyerinfo" class="col-md-3 col-form-label">Additional Info</label>
     
           <div class="col-md-8 fieldmrgbtm">
@@ -174,7 +174,7 @@
           </div>
         </div> -->
     
-    <div  *ngIf="loggedInDepartmentName == 'Yarn Local' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Comber noil' || loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Import'" >
+    <div  *ngIf="loggedInDepartmentName == 'Yarn Local' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import Bangladesh' || loggedInDepartmentName == 'Comber noil' || loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Import'" >
         <div class="form-group row" *ngFor="let a of test; let i = index;" >
           <label for="agentcomm" class="col-md-3 col-form-label" *ngIf="i==0">Agent Comm</label>
           <label for="agentcomm" class="col-md-3 col-form-label" *ngIf="i>0"></label>
@@ -209,7 +209,7 @@
     
     
     
-        <div class="row" *ngIf="loggedInDepartmentName == 'Yarn Local' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Comber noil' || loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Import'">
+        <div class="row" *ngIf="loggedInDepartmentName == 'Yarn Local' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import Bangladesh' || loggedInDepartmentName == 'Comber noil' || loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Import'">
           <div class="col-md-3"></div>
           <div class="col-md-7">
             <button class="btn btn-outline-success" type="submit" (click)="addfield()">

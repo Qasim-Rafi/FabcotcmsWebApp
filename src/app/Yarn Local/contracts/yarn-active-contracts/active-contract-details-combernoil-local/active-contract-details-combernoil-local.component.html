@@ -179,13 +179,13 @@
                         On-Hold
                     </button>
                     <button
-                        *ngIf="(loggedInDepartmentName== 'Yarn Export' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Comber noil') && revised === true "
+                        *ngIf="(loggedInDepartmentName== 'Yarn Export' || loggedInDepartmentName == 'Yarn Import Bangladesh' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Comber noil') && revised === true "
                         class="btn btn-info btn-sm border-rounded px-3 mr-1 mrg-btm" (click)="notRevisedMethod()">
                         <i class="far fa-clone"></i>
                         Revised
                     </button>
                     <button
-                        *ngIf="(loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Comber noil' ) && revised === true"
+                        *ngIf="(loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import Bangladesh' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Comber noil' ) && revised === true"
                         class="btn btn-info btn-sm border-rounded px-3 mr-1 mrg-btm" (click)="notRevisedMethod()">
                         <i class="far fa-clone"></i>
                         <span> &nbsp; Revised</span>
@@ -272,7 +272,7 @@
                                 href="#nav-Details" role="tab" aria-controls="nav-Details" aria-selected="true">
                                 Details</a>
                             <a class="nav-lcInfo nav-link "
-                                *ngIf="loggedInDepartmentName == 'Yarn Export'  || loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Import' ||
+                                *ngIf="loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import Bangladesh' || loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Import' ||
                                 loggedInDepartmentName == 'Comber noil'"
                                 id="nav-lcInfo-tab" data-toggle="tab" href="#nav-lcInfo" role="tab"
                                 aria-controls="nav-lcInfo" aria-selected="false">L/C Info &nbsp;
@@ -280,7 +280,7 @@
                             </a>
 
                             <a class="nav-delivery nav-link "
-                                *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Comber noil'"
+                                *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import Bangladesh' || loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Comber noil'"
                                 id="nav-delivery-tab" data-toggle="tab" href="#nav-delivery" role="tab"
                                 aria-controls="nav-delivery" aria-selected="false">Delivery TL &nbsp;<span
                                     class="badge badge-pill badge-primary">{{deliveryData.length}}</span></a>
@@ -292,7 +292,7 @@
                                     class="badge badge-pill badge-primary">{{dispatchData.length}}</span></a>
 
                             <a class="nav-prodPlan nav-link "
-                                *ngIf="loggedInDepartmentName=='Fabric Local'  || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Comber noil'"
+                                *ngIf="loggedInDepartmentName=='Fabric Local'  || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import Bangladesh' || loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Comber noil'"
                                 id="nav-prodPlan-tab" data-toggle="tab" href="#nav-prodPlan" role="tab"
                                 aria-controls="nav-prodPlan" aria-selected="false">Prod Plan &nbsp;
                                 <span class="badge badge-pill badge-primary">{{rows5.length}}</span>
@@ -302,7 +302,7 @@
                                 role="tab" aria-controls="nav-Sale" aria-selected="false">Sale Invoice &nbsp;<span
                                     class="badge badge-pill badge-primary">{{saleInvoice.length}}</span></a>
 
-                            <a *ngIf="contractData.status == 'OnHold'|| loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Yarn Local' || loggedInDepartmentName =='Yarn Local Karachi' ||loggedInDepartmentName == 'Comber noil'"
+                            <a *ngIf="contractData.status == 'OnHold'|| loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import Bangladesh' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Yarn Local' || loggedInDepartmentName =='Yarn Local Karachi' ||loggedInDepartmentName == 'Comber noil'"
                                 class="nav-item nav-link " id="nav-bill-tab" data-toggle="tab" href="#nav-bill"
                                 role="tab" aria-controls="nav-bill" aria-selected="false">Bill & Payment &nbsp;<span
                                     class="badge badge-pill badge-primary"></span></a>
@@ -313,7 +313,7 @@
                             </a>
 
                             <a class="nav-item nav-link "
-                                *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Fabric Export'  || loggedInDepartmentName == 'Yarn Import' ||loggedInDepartmentName == 'Comber noil'"
+                                *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import Bangladesh' || loggedInDepartmentName == 'Fabric Export'  || loggedInDepartmentName == 'Yarn Import' ||loggedInDepartmentName == 'Comber noil'"
                                 id="nav-Notes-tab" data-toggle="tab" href="#nav-Notes" role="tab"
                                 aria-controls="nav-Notes" aria-selected="false">Notes &nbsp;<span
                                     class="badge badge-pill badge-primary">{{rows3.length}}</span></a>
@@ -618,7 +618,7 @@
                                                 </dd>
                                             </dl>
                                             <dl class="row"
-                                                *ngIf="loggedInDepartmentName == 'Yarn Export'  || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Comber noil'">
+                                                *ngIf="loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import Bangladesh' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Comber noil'">
                                                 <dt class="col-sm-4">LC Opener:
                                                 </dt>
                                                 <dd class="col-sm-6">
@@ -644,13 +644,13 @@
                             
 
                             <hr
-                                *ngIf="loggedInDepartmentName != 'Yarn Export'  && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Comber noil'">
-                            <div class="card bg-light shadow mb-4" *ngIf="loggedInDepartmentName != 'Yarn Export'
+                                *ngIf="loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import Bangladesh' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Comber noil'">
+                            <div class="card bg-light shadow mb-4" *ngIf="loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import Bangladesh'
                             && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Comber noil'">
                                 <div class="pb-2 mt-2 ml-2">
                                     <div class="pb-2">
                                         <span class="badge badge-primary"
-                                            *ngIf="loggedInDepartmentName != 'Yarn Export'  && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Comber noil'">Product
+                                            *ngIf="loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import Bangladesh' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Comber noil'">Product
                                             & Specification</span>
                                     </div>
 
@@ -659,10 +659,10 @@
                                         <div class="col-md-6">
                                             <dl class="row">
                                                 <dt class="col-sm-4"
-                                                    *ngIf="loggedInDepartmentName != 'Yarn Export'  && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Comber noil'">
+                                                    *ngIf="loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import Bangladesh'  && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Comber noil'">
                                                     Construction:
                                                 </dt>
-                                                <dd class="col-sm-6" *ngIf="loggedInDepartmentName != 'Yarn Export'
+                                                <dd class="col-sm-6" *ngIf="loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import Bangladesh'
                                         && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Comber noil'"> <span
                                                         *ngIf="contractProductData.pecenetAge != ''">
                                                         {{contractProductData.pecenetAge}} % </span>
@@ -671,10 +671,10 @@
 
                                             </dl>
                                             <dl class="row">
-                                                <dt class="col-sm-4" *ngIf="loggedInDepartmentName != 'Yarn Export'
+                                                <dt class="col-sm-4" *ngIf="loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import Bangladesh'
                                         && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Comber noil'">Article:
                                                 </dt>
-                                                <dd class="col-sm-6" *ngIf="loggedInDepartmentName != 'Yarn Export'
+                                                <dd class="col-sm-6" *ngIf="loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import Bangladesh'
                                         && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Comber noil'">{{contractProductData.articleName}}
                                                 </dd>
 
@@ -686,7 +686,7 @@
                                         </div>
                                
                                     </div>
-                                    <div class="row" *ngIf="loggedInDepartmentName != 'Yarn Export'
+                                    <div class="row" *ngIf="loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import Bangladesh'
                             && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Comber noil'">
                                         <div class="col-md-12">
                                             <button class="btn btn-outline-primary btn-sm float-right mr-3 mb-2"
@@ -715,7 +715,7 @@
                                       
                                    
 
-                                            <dl class="row" *ngIf="loggedInDepartmentName != 'Yarn Export'
+                                            <dl class="row" *ngIf="loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import Bangladesh'
                                     && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Comber noil'">
                                                 <dt class="col-sm-4">Quantity:
                                                 </dt>
@@ -727,7 +727,7 @@
                                                         % </b></dd>
                                             </dl>
 
-                                            <dl class="row" *ngIf="loggedInDepartmentName != 'Yarn Export'
+                                            <dl class="row" *ngIf="loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import Bangladesh'
                                     && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Comber noil'">
                                                 <dt class="col-sm-4">Rate:
                                                 </dt>
@@ -741,7 +741,7 @@
 
 
                                             </dl>
-                                            <dl class="row" *ngIf="loggedInDepartmentName != 'Yarn Export'
+                                            <dl class="row" *ngIf="loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import Bangladesh'
                                     && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Comber noil'">
                                                 <dt class="col-sm-4">Project Cost:
                                                 </dt>
@@ -759,7 +759,7 @@
 
                                             </dl>
 
-                                            <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName != 'Yarn Export'
+                                            <dl class="row" *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName != 'Yarn Export'    && loggedInDepartmentName != 'Yarn Import Bangladesh'
                                     && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Comber noil' ">
                                                 <dt class="col-sm-4">&nbsp; &nbsp;
                                                 </dt>
@@ -806,7 +806,7 @@
                                         <div class="col-md-6">
 
                                             <dl class="row"
-                                                *ngIf="(loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Comber noil'  && loggedInDepartmentName != 'Yarn Import') &&(loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Local' || loggedInDepartmentName =='Yarn Local Karachi' || loggedInDepartmentName == 'Fabric Local'  )">
+                                                *ngIf="(loggedInDepartmentName != 'Yarn Export'   && loggedInDepartmentName != 'Yarn Import Bangladesh' && loggedInDepartmentName != 'Comber noil'  && loggedInDepartmentName != 'Yarn Import') &&(loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Local' || loggedInDepartmentName =='Yarn Local Karachi' || loggedInDepartmentName == 'Fabric Local'  )">
                                                 <dt class="col-sm-6"
                                                     *ngIf="loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Local' ||loggedInDepartmentName=='Yarn Local Karachi' ">
                                                     Payment terms:</dt>
@@ -821,7 +821,7 @@
                                                     {{contractPaymentData.sellerPaymentTermInfo}}
                                                 </dd>
                                             </dl>
-                                            <dl class="row" *ngIf="loggedInDepartmentName == 'Yarn Export'
+                                            <dl class="row" *ngIf="loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import Bangladesh'
                                     || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Comber noil'">
                                                 <dt class="col-sm-4">Payment terms:</dt>
                                                 <dd class="col-sm-6">{{contractPaymentData.paymentTermName}}
@@ -832,7 +832,7 @@
                                             </dl>
 
                                             <dl class="row"
-                                                *ngIf="loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName !='Fabric Export'  && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Comber noil'">
+                                                *ngIf="loggedInDepartmentName != 'Yarn Export'   && loggedInDepartmentName != 'Yarn Import Bangladesh' && loggedInDepartmentName !='Fabric Export'  && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Comber noil'">
                                                 <dt class="col-sm-6">Buyer Payment terms:
                                                 </dt>
                                                 <dd class="col-sm-6">{{contractPaymentData.buyerPaymentTermName}}
@@ -937,7 +937,7 @@
                                             </ngx-datatable-column>
 
                                             <ngx-datatable-column name="Container" prop="poNumber"
-                                                *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Comber noil' ">
+                                                *ngIf="loggedInDepartmentName=='Fabric Local' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import Bangladesh' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Comber noil' ">
                                                 <ng-template let-row="row" let-expanded="expanded"
                                                     ngx-datatable-cell-template>
                                                     {{row.containerName}}
@@ -1058,7 +1058,7 @@
                                                 </dd>
                                             </dl>
                                             <dl class="row"
-                                                *ngIf="loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Local' ||loggedInDepartmentName=='Yarn Local Karachi' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Comber noil'">
+                                                *ngIf="loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import Bangladesh' || loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Local' ||loggedInDepartmentName=='Yarn Local Karachi' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Comber noil'">
                                                 <dt class="col-sm-4">Foreign Agent Comm:
                                                 </dt>
                                                 
@@ -1673,7 +1673,7 @@
                                     <div class="col-sm-12 col-md-6 col-lg-5 text-right">
 
                                         <button
-                                            *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Comber noil'"
+                                            *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import Bangladesh' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Comber noil'"
                                             class="btn btn-outline-primary btn-sm  mr-2" [disabled]="isnotEditAble"
                                             (click)="salesInvoicereportLocalYarn()">
                                             <i class="fa fa-file"></i>
@@ -1739,7 +1739,7 @@
 
 
                                                 <div class="row"
-                                                    *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Comber noil'">
+                                                    *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import Bangladesh' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Comber noil'">
                                                     <div class="col-sm-6 customFontStyle">Buyer Payment:</div>
                                                     <div class="col-sm-6 customFontS">{{x.quantity}}</div>
                                                 </div>
@@ -1777,7 +1777,7 @@
                                                     <div class="col-sm-6 customFontS">{{x.saleInvoiceDateToDisplay}}</div>
                                                 </div>
                                                 <div class="row"
-                                                    *ngIf="loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Comber noil'">
+                                                    *ngIf="loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import Bangladesh' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Comber noil'">
                                                     <div class="col-sm-6 customFontStyle">BL Date:
 
 
@@ -1786,7 +1786,7 @@
                                                 </div>
 
                                                 <div class="row"
-                                                    *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Comber noil'">
+                                                    *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import Bangladesh' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Comber noil'">
                                                     <div class="col-sm-6 customFontStyle">Tax Challan Info:</div>
                                                     <div class="col-sm-6 customFontS">{{x.quantity}}</div>
                                                 </div>
@@ -1802,25 +1802,25 @@
                                             <tr>
                                                 <th scope="col">sale Invoice #</th>
                                                 <th scope="col"
-                                                    *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Comber noil'">
+                                                    *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import Bangladesh' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Comber noil'">
                                                     Article</th>
                                                 <th scope="col"
-                                                    *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Comber noil'">
+                                                    *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import Bangladesh' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Comber noil'">
                                                     Article Quantity</th>
                                                 <th scope="col"
-                                                    *ngIf="loggedInDepartmentName!='Yarn Export' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Comber noil'">
+                                                    *ngIf="loggedInDepartmentName!='Yarn Export'  && loggedInDepartmentName != 'Yarn Import Bangladesh' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Comber noil'">
                                                     Quantity</th>
                                                 <th scope="col"
-                                                    *ngIf="loggedInDepartmentName!='Yarn Export' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Comber noil'">
+                                                    *ngIf="loggedInDepartmentName!='Yarn Export'  && loggedInDepartmentName != 'Yarn Import Bangladesh' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Comber noil'">
                                                     Unit Rate</th>
                                                 <th scope="col"
-                                                    *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Comber noil'">
+                                                    *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import Bangladesh' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Comber noil'">
                                                     Article Unit</th>
                                                 <th scope="col"
-                                                    *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Comber noil'">
+                                                    *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import Bangladesh' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Comber noil'">
                                                     Article Rate</th>
                                                 <th scope="col"
-                                                    *ngIf="loggedInDepartmentName !='Yarn Export' &&  loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Comber noil'">
+                                                    *ngIf="loggedInDepartmentName !='Yarn Export'  && loggedInDepartmentName != 'Yarn Import Bangladesh' &&  loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Comber noil'">
                                                     Tax %</th>
                                                 <th scope="col">Invoice Amount</th>
 
@@ -1831,16 +1831,16 @@
 
                                                 <td>{{x.saleInvoiceNo}}</td>
                                                 <td
-                                                    *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Comber noil'">
+                                                    *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import Bangladesh' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Comber noil'">
                                                     {{x.contractArticleName}}</td>
                                                 <td
-                                                    *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Comber noil'">
+                                                    *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import Bangladesh' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Comber noil'">
                                                     {{x.quantity}}</td>
                                                 <td
-                                                    *ngIf="loggedInDepartmentName!='Yarn Export' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Comber noil'">
+                                                    *ngIf="loggedInDepartmentName!='Yarn Export'  && loggedInDepartmentName != 'Yarn Import Bangladesh' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Comber noil'">
                                                     {{x.quantity}}&nbsp;{{x.unit}}</td>
                                                 <td
-                                                    *ngIf="loggedInDepartmentName!='Yarn Export' && contractCostingData.rateUOMName !=null && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Comber noil'">
+                                                    *ngIf="loggedInDepartmentName!='Yarn Export'  && loggedInDepartmentName != 'Yarn Import Bangladesh' && contractCostingData.rateUOMName !=null && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Comber noil'">
                                                     <b *ngIf="contractCostingData.rateCurrencyName == 'PKR'">RS</b>
                                                     <b *ngIf="contractCostingData.rateCurrencyName == 'USD'">$</b>
                                                     <b *ngIf="contractCostingData.rateCurrencyName == 'EUR'">€</b>
@@ -1848,12 +1848,12 @@
                                                     {{contractCostingData.rate}} / {{x.unit}}
                                                 </td>
                                                 <td
-                                                    *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Comber noil'">
+                                                    *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import Bangladesh' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Comber noil'">
 
 
                                                     {{x.unit}}</td>
                                                 <td
-                                                    *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Comber noil'">
+                                                    *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import Bangladesh' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Comber noil'">
                                                     <b *ngIf="contractCostingData.rateCurrencyName == 'PKR'">RS</b>
                                                     <b *ngIf="contractCostingData.rateCurrencyName == 'USD'">$</b>
                                                     <b *ngIf="contractCostingData.rateCurrencyName == 'EUR'">€</b>
@@ -1861,7 +1861,7 @@
                                                     {{x.contractArticleRate}}
                                                 </td>
                                                 <td
-                                                    *ngIf="loggedInDepartmentName !='Yarn Export' &&  loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Comber noil'">
+                                                    *ngIf="loggedInDepartmentName !='Yarn Export'  && loggedInDepartmentName != 'Yarn Import Bangladesh' &&  loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Comber noil'">
                                                     {{x.taxPercentage}}</td>
                                                 <td>{{contractCostingData.rateCurrencyName}}&nbsp;{{x.amount}}</td>
                                             </tr>

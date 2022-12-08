@@ -132,7 +132,7 @@ brandId : any;
       this.data.rateUOMId;
       this.data.otherConditionRemarks=this.fabricCondition;
       this.data.title=this.title;
-    }else if(this.loggedInDepartmentName=='Yarn Export'){
+    }else if(this.loggedInDepartmentName=='Yarn Export' || this.loggedInDepartmentName == 'Yarn Import Bangladesh'){
       this.data.otherConditionRemarks=this.exportCondition;
       this.data.title=this.exportTitle;
       this.data.currencyId = 2;
@@ -1069,7 +1069,7 @@ brandId : any;
       "brandId": this.data.brandId,
       "pecenetAge" : this.data.pecenetAge,
       "rate": this.data.rate,
-      "contractArticles" : this.loggedInDepartmentName == 'Yarn Export' || this.loggedInDepartmentName == 'Comber noil' ?  this.articleArray : this.loggedInDepartmentName == 'Yarn Import' ? this.articleArray : null,
+      "contractArticles" : this.loggedInDepartmentName == 'Yarn Export' || this.loggedInDepartmentName == 'Yarn Import Bangladesh' || this.loggedInDepartmentName == 'Comber noil' ?  this.articleArray : this.loggedInDepartmentName == 'Yarn Import' ? this.articleArray : null,
       "currencyId": this.data.currencyId,
       "rateUOMId": this.data.rateUOMId,
       "sellerPaymentTerm": this.data.sellerPaymentTerm,

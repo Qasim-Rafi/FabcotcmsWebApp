@@ -49,7 +49,7 @@
               <div class="col-md-8" *ngIf="amount !=null">
                 <label for="inputSearch" class="col-sm-3 col-form-label" *ngIf = "amount !=0">Amount: {{amount | number:'2.2-2'}}
 
-              <b *ngIf = "loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Import'">$</b>
+              <b *ngIf = "loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import Bangladesh' || loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Import'">$</b>
 
                 </label>
               </div>
@@ -129,7 +129,7 @@
             </ng-template>
           </ngx-datatable-column>
 
-          <ngx-datatable-column  *ngIf="loggedInDepartmentName== 'Yarn Export'" name="Contract Owner" [width]="80" prop="contractOwner" [flexGrow]="0.06">
+          <ngx-datatable-column  *ngIf="loggedInDepartmentName== 'Yarn Export' || loggedInDepartmentName == 'Yarn Import Bangladesh'" name="Contract Owner" [width]="80" prop="contractOwner" [flexGrow]="0.06">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
         {{row.contractOwner}}
             </ng-template>

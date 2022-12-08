@@ -32,10 +32,10 @@
 <div class="card ibox-content margins" *ngFor = "let x of printData" >
     
     <div class="panel blank-panel p-2 mt-1" >
-        <div class="panel-heading "  [ngClass]="{'breakclass': loggedInDepartmentName == 'Yarn Export'}">
+        <div class="panel-heading "  [ngClass]="{'breakclass': loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import Bangladesh'}">
 
 
-            <div class="row  " *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Local' && loggedInDepartmentName != 'Comber noil' && loggedInDepartmentName != 'Yarn Local Karachi' ">
+            <div class="row  " *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Local' && loggedInDepartmentName != 'Comber noil' && loggedInDepartmentName != 'Yarn Local Karachi' && loggedInDepartmentName != 'Yarn Import Bangladesh'">
                 <div class="col-md-3">
                   <img src="/assets/fabcot.png"  class="image">
                 </div>
@@ -60,7 +60,7 @@
       
        </div>
        
-            <div class="row  bottom" *ngIf = "loggedInDepartmentName == 'Fabric Export' ||loggedInDepartmentName == 'Yarn Export'" >
+            <div class="row  bottom" *ngIf = "loggedInDepartmentName == 'Fabric Export' ||loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import Bangladesh'" >
                 <div class="col-md-3">
                   <img src="/assets/fabcot.png"  class="image">
                 </div>
@@ -72,7 +72,7 @@
 
      
             
-            <div class="row " *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import' ">
+            <div class="row " *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Yarn Import Bangladesh' ">
                 <div class="col-md-8">
                     <p class="textsideaddress float-right  bottom2 ">  Flexi Office, RAKEZ Business ZONE F-Z RAK, United Arab Emirates.
                     </p>
@@ -80,7 +80,7 @@
                 </div>
             
             </div>
-            <div class="row " *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export'">
+            <div class="row " *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import Bangladesh'">
                 <div class="col-md-7">
                 
                     <p class="textsideaddress float-right " *ngIf = "x.owneName != 'asif manzoor'">  Email: Sohail@fabcot.net</p>
@@ -96,9 +96,9 @@
                 </div>
             
             </div>
-            <br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import'">
+            <br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Yarn Import Bangladesh'">
 
-<br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import'">
+<br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Yarn Import Bangladesh'">
 
             <div class="clearfix p-4">
 
@@ -106,13 +106,13 @@
                     <span class="font2" *ngIf = "loggedInDepartmentName == 'Fabric Export'">
                         FABRIC EXPORT
                     </span>
-                    <span class="font2" *ngIf = "loggedInDepartmentName == 'Yarn Export'">
+                    <span class="font2" *ngIf = "loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import Bangladesh'">
                         YARN EXPORT
                     </span>
                     <span class="font2" *ngIf = "loggedInDepartmentName == 'Yarn Import'">
                         YARN IMPORT
                     </span>
-            <br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
+            <br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Yarn Import Bangladesh'">
             <!-- <br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export'"> -->
                     
                     <span class="text-font1 mt-3">
@@ -146,7 +146,7 @@
                            Contract Date: &nbsp;  <span class="bold text-font1">{{x.contractDate}}</span>
                     </span>
                     <br>
-                    <span class="text-font1" *ngIf = "loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import' ">
+                    <span class="text-font1" *ngIf = "loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Yarn Import Bangladesh'">
                            Article: &nbsp;  <span class="bold text-font1">{{x.contractArticleName}}</span>
                     </span>
                     &nbsp;  
@@ -154,7 +154,7 @@
                         Weave Name: &nbsp;  <span class="bold text-font1">{{x.weaveName}}</span>
                  </span>
                  <br>
-                    <span class="text-font1" *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import'">
+                    <span class="text-font1" *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Yarn Import Bangladesh'">
                      <p>This refers to our contract for Weaving dispatches. Please make commission cheque in favour of  <strong>M/S FABCOT INTERNATIONAL </strong> and oblige <br> Details as under: </p>
 
                     </span>
@@ -167,7 +167,7 @@
                 <tr>
                     <th>Sale Invoice #</th>
                     <th>Sale Invoice Date</th>
-                    <th *ngIf = "loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import' ">Article</th>
+                    <th *ngIf = "loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Yarn Import Bangladesh'">Article</th>
 
                     <th>Quantity</th>
                     <th>Rate({{x.currencyName}})</th>
@@ -184,7 +184,7 @@
                    
                     <td>{{i.saleInvoiceNo}}</td>
                     <td>{{i.saleInvoiceDateToDisplay}}</td>
-                    <td *ngIf = "loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import' ">{{i.articleName}} <span *ngIf="i.construction">({{i.construction}})</span></td>
+                    <td *ngIf = "loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Yarn Import Bangladesh' ">{{i.articleName}} <span *ngIf="i.construction">({{i.construction}})</span></td>
 
                     <td>{{i.quantity}}&nbsp;{{i.quanityUOM}} <br>
                         <small class="text-danger" *ngIf="i.debitQuantity != '0.00' ">
@@ -218,34 +218,34 @@
                     </span>
                     
             </span>
-            <br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import'">
-            <br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import'">
-            <br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import'">
-            <br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import'">
+            <br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import' &&  loggedInDepartmentName != 'Yarn Import Bangladesh' ">
+            <br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Yarn Import Bangladesh'">
+            <br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Yarn Import Bangladesh'">
+            <br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Yarn Import Bangladesh'">
          
             <div class="float-right" >
-                <span class=" bold text-font1" *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import'">
+                <span class=" bold text-font1" *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Yarn Import Bangladesh'">
                     Sub Total: <span class="text-font1 underline">{{x.currencyName}} {{x.totalCalculation}}
                        
                         </span>
                 </span>
-                <span class=" bold text-font1" *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
+                <span class=" bold text-font1" *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Yarn Import Bangladesh'">
                      Total: <span class="text-font1 underline">{{x.currencyName}} {{x.totalCalculation}}
                        
                         </span>
                 </span>
-                <br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import'">
-                <span class=" bold text-font1" *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import'"> 
+                <br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Yarn Import Bangladesh'">
+                <span class=" bold text-font1" *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Yarn Import Bangladesh'"> 
                     &nbsp;&nbsp; &nbsp;&nbsp;    TAX : <span class="text-font1 underline">{{x.currencyName}}  {{0.00}}</span>
-                </span><br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import'">
-                <span class=" bold text-font1" *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import'">
+                </span><br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Yarn Import Bangladesh'">
+                <span class=" bold text-font1" *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Yarn Import Bangladesh'">
                     &nbsp;&nbsp;    TOTAL : <span class="bold text-font1 underline">{{x.currencyName}}  
                         {{x.totalCalculation }}
                     </span>
                 </span>
             </div> 
-            <br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
-            <br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
+            <br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'  || loggedInDepartmentName == 'Yarn Import Bangladesh'">
+            <br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'  || loggedInDepartmentName == 'Yarn Import Bangladesh'">
             <span class=" float-left text-font1">
                 Amount In Words:<span class="bold text-font1 underline">&nbsp;&nbsp;
                      {{x.updatedByName  }}
@@ -254,34 +254,34 @@
             <br>
    
             <br>
-            <br *ngIf = "loggedInDepartmentName != 'Yarn Export'">  
-            <br *ngIf = "loggedInDepartmentName != 'Yarn Export'"> 
-            <br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import'">  
-             <br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import'">
-            <br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import'">
-            <br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import'">
+            <br *ngIf = "loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import Bangladesh'">  
+            <br *ngIf = "loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import Bangladesh'"> 
+            <br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Yarn Import Bangladesh'">  
+             <br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Yarn Import Bangladesh'">
+            <br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Yarn Import Bangladesh'">
+            <br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Yarn Import Bangladesh'">
 
          
-                          <span class=" float-left text-font1" *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
+                          <span class=" float-left text-font1" *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import Bangladesh' || loggedInDepartmentName == 'Yarn Import'">
                             Our Bank detail as under for FTT:
                         </span>
-                       <br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
-                        <br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
+                       <br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Yarn Import Bangladesh'">
+                        <br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Yarn Import Bangladesh'">
 
-                        <span class=" text-font1 padLeft   " *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
+                        <span class=" text-font1 padLeft   " *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Yarn Import Bangladesh'">
                             Title of Account:<span >&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; {{x.accountName}}    </span>
                         </span>
-                        <br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
+                        <br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Yarn Import Bangladesh'">
             
-                        <span class=" text-font1 padLeft " *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
+                        <span class=" text-font1 padLeft " *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Yarn Import Bangladesh'">
                             Address:<span> &nbsp;&nbsp;  &nbsp;&nbsp; &nbsp;&nbsp;  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;  {{x.address}}  </span>
                         </span>
-                        <br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
+                        <br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Yarn Import Bangladesh'">
 
-                        <span class=" text-font1 padLeft " *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
+                        <span class=" text-font1 padLeft " *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Yarn Import Bangladesh'">
                             Bank Name:<span> &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; {{x.bankName}}  </span>
                         </span>
-                        <br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
+                        <br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Yarn Import Bangladesh'">
                         <!-- <span class=" text-font1 padLeft " *ngIf = " loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
                             Bank Account Number:<span> &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; {{x.bankName}}  </span>
                         </span>
@@ -290,12 +290,12 @@
                         <!-- <span class=" float-left ">
                             Bank Account Number:<span> &nbsp;&nbsp;</span>
                         </span><br> -->
-                        <span class=" text-font1 padLeft " *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
+                        <span class=" text-font1 padLeft " *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Yarn Import Bangladesh'">
                             IBAN Number:<span> &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;  {{x.iban}}  </span>
-                        </span><br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
-                        <span class=" text-font1 padLeft " *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
+                        </span><br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Yarn Import Bangladesh'">
+                        <span class=" text-font1 padLeft " *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Yarn Import Bangladesh'">
                             Swift Code:<span>  &nbsp;   &nbsp;&nbsp; &nbsp;&nbsp;  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;   {{x.swiftCode}} </span>
-                        </span><br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
+                        </span><br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Yarn Import Bangladesh'">
 <!--                        
                         <span class=" float-left padLeft " *ngIf = "loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Yarn Export'">
                             Bank Branch:<span> &nbsp; &nbsp;&nbsp;  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;    </span>
@@ -304,41 +304,41 @@
                         <span class=" text-font1  padLeft" *ngIf = "loggedInDepartmentName == 'Fabric Export' ">
                             Account Type:<span>&nbsp; &nbsp;  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;   {{x.type}} </span>
                         </span><br *ngIf = "loggedInDepartmentName == 'Fabric Export' ">
-                        <span class=" text-font1 padLeft " *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import' ">
+                        <span class=" text-font1 padLeft " *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Yarn Import Bangladesh'">
                             Bank Address:<span> &nbsp;&nbsp;  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;  {{x.bankAddress}}  </span>
                         </span>
-                        <br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
-            <br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
-            <br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
-            <br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
+                        <br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Yarn Import Bangladesh'">
+            <br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Yarn Import Bangladesh'">
+            <br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Yarn Import Bangladesh'">
+            <br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Yarn Import Bangladesh'">
                       
-                        <br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'"><br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
-                        <span class=" text-font1 text-font1" *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
+                        <br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Yarn Import Bangladesh'"><br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Yarn Import Bangladesh'">
+                        <span class=" text-font1 text-font1" *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Yarn Import Bangladesh'">
                             For<span class="bold text-font1">&nbsp;FABCOT INTERNATIONAL ®</span>
                         </span>
           
-            <span class=" float-left text-font1" *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import'">
+            <span class=" float-left text-font1" *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Yarn Import Bangladesh'">
                 Your prompt action in this regard would be highly appreciated.
             </span>
-            <br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import'"><br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import'"><br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import'"><br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import'">
-            <span class=" float-left text-font1" *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import'">
+            <br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Yarn Import Bangladesh'"><br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Yarn Import Bangladesh'"><br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Yarn Import Bangladesh'"><br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Yarn Import Bangladesh'">
+            <span class=" float-left text-font1" *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Yarn Import Bangladesh'">
                 <!-- <span class="bold text-font1"></span> -->
                 Thanking You
             </span>
-            <br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import'"><br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import'"><br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import'"><br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import'">
+            <br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import Bangladesh' && loggedInDepartmentName != 'Yarn Import'"><br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Yarn Import Bangladesh'"><br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Yarn Import Bangladesh'"><br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Yarn Import Bangladesh'">
 
-            <br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import'"><br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import'">
-            <span class=" float-left text-font1" *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import'">
+            <br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export'  && loggedInDepartmentName != 'Yarn Import Bangladesh' && loggedInDepartmentName != 'Yarn Import'"><br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Yarn Import Bangladesh'">
+            <span class=" float-left text-font1" *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Yarn Import Bangladesh'">
                 Checked by: ---------------- 
             </span>
            
-            <span class=" float-right text-font1" *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import'">
+            <span class=" float-right text-font1" *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Yarn Import Bangladesh'">
                 Authorized Signatory: ---------------- 
             </span>
-            <br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import'"><br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import'">
+            <br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Yarn Import Bangladesh'"><br *ngIf = "loggedInDepartmentName != 'Fabric Export' && loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import Bangladesh' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Yarn Import Bangladesh'">
 
         </div>
-        <p *ngIf="loggedInDepartmentName != 'Yarn Export'" style="page-break-after: always">&nbsp;</p>
+        <p *ngIf="loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import Bangladesh'" style="page-break-after: always">&nbsp;</p>
         <br>
         <hr>
         

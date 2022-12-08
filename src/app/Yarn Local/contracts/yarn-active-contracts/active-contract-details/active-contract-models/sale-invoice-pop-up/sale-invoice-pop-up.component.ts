@@ -212,7 +212,7 @@ if(event==7){
     if(this.data.fobValue == undefined){
       this.data.fobValue = ''
     }
-    if(sum>this.quantity && this.loggedInDepartmentName != 'Yarn Export' && this.loggedInDepartmentName != 'Yarn Import' ){
+    if(sum>this.quantity && this.loggedInDepartmentName != 'Yarn Export' && this.loggedInDepartmentName != 'Yarn Import Bangladesh' && this.loggedInDepartmentName != 'Yarn Import' ){
       this.toastr.error("Total Sale Invoice Quantity"+"["+sum+"]"+ "should be less than contract quantity"+"["+this.quantity+"]", 'Message.');
 
     }
@@ -305,7 +305,7 @@ this.spinner.show();
 
       this.uom = this.data.UnitofMeasurement;
       this.articledata.contractArticleCommission=this.data.contractArticleCommission;
-if(this.loggedInDepartmentName == 'Yarn Export'){
+if(this.loggedInDepartmentName == 'Yarn Export' || this.loggedInDepartmentName == 'Yarn Import Bangladesh'){
   this.data.amount=this.data.contractArticleRate * this.data.contractArticleQuantity;
   
 }

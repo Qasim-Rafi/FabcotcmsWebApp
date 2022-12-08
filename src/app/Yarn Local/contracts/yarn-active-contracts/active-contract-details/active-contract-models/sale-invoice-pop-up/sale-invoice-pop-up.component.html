@@ -41,7 +41,7 @@
             </div>
           </div>
       
-          <div class="form-group row" *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
+          <div class="form-group row" *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import Bangladesh' || loggedInDepartmentName == 'Yarn Import'">
             <label for="contractArticleId" class="col-md-3 col-form-label">Article</label>
             <div class="col-md-8">
               <ng-select [(ngModel)]="data.contractArticleId" (change)="articleData($event)" #contractArticleId="ngModel"
@@ -51,14 +51,14 @@
             </div>
           </div>
 
-          <div class="form-group row" *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
+          <div class="form-group row" *ngIf="loggedInDepartmentName=='Yarn Export'  || loggedInDepartmentName == 'Yarn Import Bangladesh' || loggedInDepartmentName == 'Yarn Import'">
             <label for="contractArticleCommission" class="col-md-3 col-form-label text_Navy">Commission</label>
-            <div class="col-md-3" *ngIf="loggedInDepartmentName!='Yarn Export' && loggedInDepartmentName!='Yarn Import'">
+            <div class="col-md-3" *ngIf="loggedInDepartmentName!='Yarn Export'  && loggedInDepartmentName != 'Yarn Import Bangladesh' && loggedInDepartmentName!='Yarn Import'">
               <input min="0" #contractArticleCommission="ngModel" (keyup)="getquantity($event)"
                 name="contractArticleCommission" [(ngModel)]="data.contractArticleCommission" class="form-control" value=""
                 placeholder="Commission" />
             </div>
-            <div class="col-md-3" *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
+            <div class="col-md-3" *ngIf="loggedInDepartmentName=='Yarn Export'  || loggedInDepartmentName == 'Yarn Import Bangladesh' || loggedInDepartmentName == 'Yarn Import'">
               <input min="0" disabled #contractArticleCommission="ngModel" (keyup)="getquantity($event)"
                 name="contractArticleCommission" [(ngModel)]="data.contractArticleCommission" class="form-control" value=""
                 placeholder="Commission" />
@@ -66,12 +66,12 @@
             <!-- <div class="col-md-4"> -->
       
             <label for="contractArticleRate" class="col-sm-1 col-form-label text_Navy">Rate</label>
-            <div class="col-md-4" *ngIf="loggedInDepartmentName!='Yarn Export' && loggedInDepartmentName!= 'Yarn Import'">
+            <div class="col-md-4" *ngIf="loggedInDepartmentName!='Yarn Export' && loggedInDepartmentName != 'Yarn Import Bangladesh'  && loggedInDepartmentName!= 'Yarn Import'">
       
               <input min="0" #quantity="ngModel" (keyup)="getquantity($event)" name="Article Rate"
                 [(ngModel)]="data.contractArticleRate" class="form-control" value="" placeholder="contractArticleRate" />
             </div>
-            <div class="col-md-4" *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
+            <div class="col-md-4" *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import Bangladesh' || loggedInDepartmentName == 'Yarn Import'">
       
               <input min="0" disabled #quantity="ngModel" (keyup)="getquantity($event)" name="Article Rate"
                 [(ngModel)]="data.contractArticleRate" class="form-control" value="" placeholder="contractArticleRate" />
@@ -84,11 +84,11 @@
       
           <div class="form-group row">
             <label for="quantity" class="col-md-3 col-form-label text_Navy">Quantity</label>
-            <div class="col-md-3" *ngIf="loggedInDepartmentName!='Yarn Export' && loggedInDepartmentName!= 'Yarn Import'">
+            <div class="col-md-3" *ngIf="loggedInDepartmentName!='Yarn Export' && loggedInDepartmentName != 'Yarn Import Bangladesh'  && loggedInDepartmentName!= 'Yarn Import'">
               <input min="0" #quantity="ngModel" (keyup)="getquantity($event)" name="quantity"
                 [(ngModel)]="data.quantity" class="form-control" value="" placeholder="Quantity" />
             </div>
-            <div class="col-md-3" *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
+            <div class="col-md-3" *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Import Bangladesh' || loggedInDepartmentName == 'Yarn Import'">
               <input min="0" #quantity="ngModel" (keyup)="getArticleAmount($event)" name="quantity"
                 [(ngModel)]="data.quantity" class="form-control" value="" placeholder="Quantity" />
             </div>
@@ -117,7 +117,7 @@
       
       
       
-          <div class="form-group row"  *ngIf = "loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import'" >
+          <div class="form-group row"  *ngIf = "loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import Bangladesh'  && loggedInDepartmentName != 'Yarn Import'" >
             <label for="amount" class="col-md-3 col-form-label text_Navy">Amount</label>
             <div class="col-md-8">
       
@@ -126,7 +126,7 @@
             </div>
           </div>
        
-          <div class="form-group row"  *ngIf = "(loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import') &&  statusCheck == 'addInvoice' && active == false" >
+          <div class="form-group row"  *ngIf = "(loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import Bangladesh' || loggedInDepartmentName == 'Yarn Import') &&  statusCheck == 'addInvoice' && active == false" >
             <label for="amount" class="col-md-3 col-form-label text_Navy">Amount</label>
             <div class="col-md-8">
       
@@ -134,7 +134,7 @@
                 [(ngModel)]="data.amount" #amount="ngModel" />
             </div>
           </div>
-          <div class="form-group row"  *ngIf = "(loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import') &&  statusCheck == 'editInvoice' && data.isFob == false" >
+          <div class="form-group row"  *ngIf = "(loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import Bangladesh' || loggedInDepartmentName == 'Yarn Import') &&  statusCheck == 'editInvoice' && data.isFob == false" >
             <label for="amount" class="col-md-3 col-form-label text_Navy">Amount</label>
             <div class="col-md-8">
       
@@ -187,7 +187,7 @@
               </div>
             </div>
           </div>
-          <div class="form-group row" *ngIf = " (loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import') && data.isFob == true  ">
+          <div class="form-group row" *ngIf = " (loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import Bangladesh' || loggedInDepartmentName == 'Yarn Import') && data.isFob == true  ">
             <label for="saleInvoiceDate"  class="col-md-3 col-form-label text_Navy">FOB Value</label>
             <div class="col-md-8" >
       
@@ -196,7 +196,7 @@
             </div>
           </div>
          
-          <div class="form-group row" *ngIf = "loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import'">
+          <div class="form-group row" *ngIf = "loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import Bangladesh' || loggedInDepartmentName == 'Yarn Import'">
             <label for="active" class="col-md-3 col-form-label text-grey"></label>
             <div class="col-md-8">
               <div class="form-check form-check-inline">
@@ -208,7 +208,7 @@
               </div>
             </div>
             </div>
-          <div class="form-group row" *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import' ">
+          <div class="form-group row" *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import Bangladesh'  || loggedInDepartmentName == 'Yarn Import' ">
             <label for="saleInvoiceDate" class="col-md-3 col-form-label text_Navy">BL Date</label>
             <div class="col-md-8" (clickOutside)="blDate.close()">
       

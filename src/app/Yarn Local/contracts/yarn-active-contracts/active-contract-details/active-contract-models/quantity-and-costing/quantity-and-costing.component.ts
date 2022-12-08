@@ -147,7 +147,7 @@ this.spinner.hide();
         });
       }
       else{
-        if(this.loggedInDepartmentName == "Yarn Export")
+        if(this.loggedInDepartmentName == "Yarn Export" || this.loggedInDepartmentName == "Yarn Import Bangladesh")
         {
           if(this.data.quantity == undefined){
             this.data.quantity ="0"

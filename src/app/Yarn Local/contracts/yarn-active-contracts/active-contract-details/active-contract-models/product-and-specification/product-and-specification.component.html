@@ -61,7 +61,7 @@
       
       
       
-          <div class="form-group row " *ngIf="loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import'">
+          <div class="form-group row " *ngIf="loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import Bangladesh'  && loggedInDepartmentName != 'Yarn Import'">
             <label for="articleId" class="col-md-3 col-form-label text_Navy ">Article</label>
             <div class="col-md-8">
               <ng-select [(ngModel)]="data.articleId" placeholder="-- Select --" name="articleId">
@@ -72,7 +72,7 @@
             </div>
           </div>
       
-          <div class="form-group row" *ngIf="loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import' ">
+          <div class="form-group row" *ngIf="loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import Bangladesh' || loggedInDepartmentName == 'Yarn Import' ">
             <label for="articleId" class="col-md-3 col-form-label text_Navy ">Brand Name</label>
             <div class="col-md-8">
               <ng-select name="brandId" #brandId="ngModel" class="input-w px-0" [(ngModel)]="data.brandId"
