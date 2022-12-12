@@ -1145,7 +1145,7 @@
                     
                   </kendo-grid-column>
 
-                  <kendo-grid-column field="contractOwners" title="Contract Owners" [width]="120" [headerClass]="'customiconforgrid'" *ngIf = "loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import Bangladesh'">
+                  <kendo-grid-column field="contractOwners" title="Contract Owners" [width]="120" [headerClass]="'customiconforgrid'" *ngIf = "loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Export Bangladesh'">
                     <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
                       {{dataItem.contractOwners}}
                     
@@ -1166,7 +1166,7 @@
                   </kendo-grid-column>
 
 
-                  <kendo-grid-column field="commissionAmount" title="Comm Amount" [width]="120" [headerClass]="'customiconforgrid'" *ngIf = "loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import Bangladesh'">
+                  <kendo-grid-column field="commissionAmount" title="Comm Amount" [width]="120" [headerClass]="'customiconforgrid'" *ngIf = "loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Export Bangladesh'">
                     <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
                      
        <b *ngIf = "dataItem.rateCurrencyName == 'PKR' && loggedInDepartmentName != 'Yarn Local' && loggedInDepartmentName != 'Fabric Local'">RS</b>  

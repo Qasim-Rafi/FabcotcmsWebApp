@@ -239,7 +239,7 @@
               </ng-template>
               
             </kendo-grid-column>
-            <kendo-grid-column [headerClass]="'customiconforgrid'" field="taxAmount" title="Tax Amount" *ngIf = "loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Import Bangladesh' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Fabric Export' " [width]="120">
+            <kendo-grid-column [headerClass]="'customiconforgrid'" field="taxAmount" title="Tax Amount" *ngIf = "loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Export Bangladesh' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Fabric Export' " [width]="120">
               <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
                 {{dataItem.taxAmount}}%   <span *ngIf="loggedInDepartmentName == 'Fabric Local'">+ ({{dataItem.adIncomeTaxFl}})</span>
               </ng-template>
