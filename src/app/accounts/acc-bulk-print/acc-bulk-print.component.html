@@ -187,14 +187,14 @@
            
             <div class="float-right">
                 <span class="   text-font1">
-                    Sub Total: <span class="text-font1  underline">{{x.billAmount | number:'1.0-0'}} </span>
+                    Sub Total: <span class="text-font1  underline">{{x.currencyName}} {{x.billAmount | number:'1.0-0'}} </span>
                 </span>
                 <br>
                 <span class="   text-font1">
-                    TAX : <span class="text-font1  underline">{{x.invoiceTaxAmountTotal | number:'1.0-0'}}</span>
+                    TAX : <span class="text-font1  underline">{{x.currencyName}} {{x.invoiceTaxAmountTotal | number:'1.0-0'}}</span>
                 </span><br>
                 <span class="   text-font1">
-                    TOTAL : <span class=" text-font1  underline">{{x.invoiceTotalAmount | number:'1.0-0'}}  </span>
+                    TOTAL : <span class=" text-font1  underline">{{x.currencyName}} {{x.invoiceTotalAmount | number:'1.0-0'}}  </span>
                 </span>
                 
             </div>

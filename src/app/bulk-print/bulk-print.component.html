@@ -116,11 +116,11 @@
             <!-- <br *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export'"> -->
                     
                     <span class="text-font1 mt-3">
-                        Bill No.: <span class="weight">{{x.billNumber}}</span>
+                        Bill #: <span class="weight">{{x.billNumber}}</span>
                     </span>
                     <br>
                     <span class="text-font1">
-                        Bill Dt.: <span class="bold text-font1">{{x.billDate}}</span>
+                        Bill Date: <span class="bold text-font1">{{x.billDate}}</span>
                     </span>
                 </div>
 
@@ -135,7 +135,7 @@
                     <br>
 
                     <span class="text-font1">
-                          Fabcot Contract No:  <span class="bold text-font1"> {{x.contractNumber}}</span>
+                          Fabcot Contract No:  <span class="bold text-font1"> {{x.contractNumber}} <span class="bold text-font1" *ngIf = "loggedInDepartmentName == 'Yarn Local Karachi'">({{x.manulNumber}})</span></span>
                     </span>
                     <br>
                     <span class="text-font1">
