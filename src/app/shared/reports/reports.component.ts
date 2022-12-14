@@ -1036,7 +1036,7 @@ this.spinner.hide();
       CommPer: row.fabcotCommission + '%' ,
       Quantity: row.quantity,
       QtyUOM:row.quantityUOMName,
-      CommAmount: row.commissionAmount  ,
+      CommAmount: row.commissionAmount +' '+ row.rateCurrencyName ,
   
     }));
     filtered.push({
