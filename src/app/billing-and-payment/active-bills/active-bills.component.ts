@@ -13,6 +13,7 @@ import { ClipboardService } from 'ngx-clipboard';
 import pdfMake from "pdfmake/build/pdfmake";
 import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Dateformater } from 'src/app/shared/dateformater';
 
 @Component({
   selector: 'app-active-bills',
@@ -39,8 +40,8 @@ export class ActiveBillsComponent implements OnInit {
   SelectionType = SelectionType;
   ids : string;
   billFilter: any = {};
-
-
+  data2:any = []
+  dateformater: Dateformater = new Dateformater();  
   url = '/api/BillingPayments/GetAllContractBill'
   constructor(    private service: ServiceService,
     private http: HttpClient,
@@ -108,7 +109,33 @@ export class ActiveBillsComponent implements OnInit {
     });
   }
 
-
+  fetchfilter() {
+    this.spinner.show();
+    this.data2.toDate = this.dateformater.toModel(this.data2.toDate)
+    this.data2.FromDate = this.dateformater.toModel(this.data2.FromDate)
+    this.http
+    .get(`${environment.apiUrl}/api/BillingPayments/GetAllContractBill/`+ this.data2.toDate + '/' + this.data2.FromDate)
+    .subscribe(res => {
+      this.response = res;
+     
+    if(this.response.success==true)
+    {
+    this.rows=this.response.data.objList;
+ 
+    this.spinner.hide();
+    // cb(this.data);
+    }
+    else{
+      this.toastr.error(this.response.message, 'Message.');
+      this.spinner.hide();
+    }
+    }, err => {
+      if ( err.status == 400) {
+  this.toastr.error(err.error.message, 'Message.');
+  this.spinner.hide();
+      }
+    });
+  }
 onSelect({ selected }) {
   console.log('Select Event', selected, this.selected);
 

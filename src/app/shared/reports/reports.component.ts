@@ -699,7 +699,7 @@ else if (this.menuName.menuName == 'ExternalAgentReport'){
 
     this.spinner.show();
     this.http.
-      post(`${environment.apiUrl}/api/Reports/AgentBookingReport`, {})
+    get(`${environment.apiUrl}/api/Reports/AgentBookingReport`)
       .subscribe(
         res => {
 
@@ -941,6 +941,27 @@ this.spinner.hide();
     this.service.exportAsExcelFile(filtered, 'Bill Report(Invoice Wise)');
 
   }
+  invoiceExcelFileYarnlocal(){
+    const filtered = this.billingReportInvoiceWise.map(row => ({
+      BillFor: row.billFor,
+      Article: row.articleName + row.construction,
+      ContractNumber: row.contractNo,
+      CotractDate: row.contractDate ,
+      BillDate: row.billDate,
+      BillNumber: row.billNo,
+      Buyer: row.buyerName ,
+      Seller: row.sellerName,
+      InvoiceNumber:row.invoiceNo,
+      Rate: row.rate +row.uomName,
+      CommPer: row.fabcotCommission + '%' ,
+      Quantity: row.debitQuantity == null || row.debitQuantity == "" ?  row.quantity:row.remainingQuantity + '\n' +  row.quantity  + '-' + row.debitQuantity  + row.quantityUOM ,
+      QtyUOM:row.quantityUOMName,
+
+      CommAmount:row.debitAmount == null || row.debitAmount == "" ? row.commissionAmount + row.rateCurrencyName : row.crdbCommission + " " + row.rateCurrencyName,
+    }));
+
+    this.service.exportAsExcelFile(filtered, 'Bill Report(Invoice Wise)');
+  }
   openContractExcelFile(){
     const filtered = this.rows.map(row => ({
     Age:row.age,
@@ -1001,7 +1022,45 @@ this.spinner.hide();
     this.service.exportAsExcelFile(filtered, 'Cancle Contract Report');
 
   }
+  contractExcelFileyarn(){
 
+    this.contractWise=this.contractWise.sort((a, b) => parseInt(a.billNo) - parseInt(b.billNo));
+    const filtered = this.contractWise.map(row => ({
+      BillFor: row.billFor,
+      Article: row.articleName,
+      ContractNumber: row.contractNo +'('+row.manualContractNumber+')',
+      // ManualContractNumber: row.manualContractNumber,
+      CotractDate: row.contractDate,
+      BillDate: row.billDate ,
+      BillNumber: row.billNo,
+      Buyer: row.buyerName ,
+      Seller: row.sellerName,
+      Rate: row.rate +''+ row.uomName,
+      CommPer: row.fabcotCommission + '%' ,
+      Quantity:row.debitQuantity == null || row.debitQuantity == "" ?row.quantity: row.quantity  + '-' + row.debitQuantity ,
+      QtyUOM:row.quantityUOMName,
+      CommAmount: row.commissionAmount
+      // row.debitAmount == null || row.debitAmount == "" ? row.commissionAmount +' '+ row.rateCurrencyName  : row.debitAmount + '-' + row.commissionAmount,
+  
+    }));
+    filtered.push({
+      "BillFor":'',
+      "Article":'',
+      "ContractNumber":'',
+      "CotractDate":'',
+      "BillDate":'',
+      "BillNumber":'',
+      "Buyer":'',
+      "Seller":'',
+      "Rate":'',
+      "CommPer":'',
+      "Quantity":'',
+      "QtyUOM":'TotalComAmount',
+      "CommAmount":this.contractTotal +' '+'PKR',
+    })
+    this.service.exportAsExcelFile(filtered, 'Bill Report(Contract Wise)');
+
+  }
 
   contractExcelFile(){
 
@@ -1297,9 +1356,9 @@ this.fetch();
                   {text: row.fabcotCommission +'%' , style:'tableHeader2'},
               
                    {text:row.invoiceNo  , style:'tableHeader2' }  ,
-                   {text: row.debitQuantity = null ?  row.quantity + " " + row.quantityUOM :  row.remainingQuantity + '\n' +  row.quantity  + '-' + row.debitQuantity  + row.quantityUOM , style:'tableHeader2' }  ,
+                   {text: row.debitQuantity == null || row.debitQuantity == "" ?  row.quantity + " " + row.quantityUOM :  row.remainingQuantity + '\n' +  row.quantity  + '-' + row.debitQuantity  + row.quantityUOM , style:'tableHeader2' }  ,
 
-                   {text: row.debitAmount = null ?  row.commissionAmount + " " + row.rateCurrencyName :  row.crdbCommission + " " + row.rateCurrencyName
+                   {text: row.debitAmount == null || row.debitAmount == "" ?  row.commissionAmount + " " + row.rateCurrencyName :  row.crdbCommission + " " + row.rateCurrencyName
                     , style:'tableHeader2' }  ,
                 ]
               ))
@@ -1573,7 +1632,7 @@ this.fetch();
                   {text: row.fabcotCommission +' '+ row.quantityUOMName , style:'tableHeader2'},
               
                
-                   {text:row.quantity + " " + row.quantityUOM  , style:'tableHeader2' }  ,
+                   {text: row.debitQuantity == null || row.debitQuantity == "" ?row.quantity: row.quantity  + '-' + row.debitQuantity  + " " + row.quantityUOM  , style:'tableHeader2' }  ,
 
                    {text: row.commissionAmount != '' ? row.rateCurrencyName == 'PKR' ?  row.commissionAmount +'Rs' : row.rateCurrencyName == 'USD' ? row.commissionAmount + '$' : row.rateCurrencyName == 'EUR' ? row.commissionAmount + '€': row.rateCurrencyName == 'GBP' ? row.commissionAmount + 'GBP' : row.commissionAmount + " " + row.rateCurrencyName : '' , style:'tableHeader2' }  ,
                 ]

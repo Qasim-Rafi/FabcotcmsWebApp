@@ -929,7 +929,9 @@
               <!-- <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
                 aria-controls="DataTables_Table_0"><span>CSV</span></a> -->
               <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
-                aria-controls="DataTables_Table_0" (click)="invoiceExcelFile()"><span>Excel</span></a>
+                aria-controls="DataTables_Table_0" (click)="invoiceExcelFile()" *ngIf = "loggedInDepartmentName != 'Yarn Local'"><span>Excel</span></a>
+                <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
+                aria-controls="DataTables_Table_0" (click)="invoiceExcelFileYarnlocal()" *ngIf = "loggedInDepartmentName == 'Yarn Local'"><span>Excel</span></a>
               <a class="btn btn-default buttons-print bg-white" tabindex="0" 
                 aria-controls="DataTables_Table_0" (click) = "billingInvoicePdf2()" *ngIf = "loggedInDepartmentName != 'Yarn Local'"><span>Print</span></a>
                 <a class="btn btn-default buttons-print bg-white" tabindex="0" *ngIf = "loggedInDepartmentName == 'Yarn Local'" 
@@ -1635,7 +1637,9 @@
         <!-- <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
           aria-controls="DataTables_Table_0"><span>CSV</span></a> -->
         <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
-          aria-controls="DataTables_Table_0" (click)="contractExcelFile()"><span>Excel</span></a>
+          aria-controls="DataTables_Table_0" (click)="contractExcelFile()" *ngIf="loggedInDepartmentName !='Yarn Local'"><span>Excel</span></a>
+          <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
+          aria-controls="DataTables_Table_0" (click)="contractExcelFileyarn()" *ngIf="loggedInDepartmentName =='Yarn Local'"><span>Excel</span></a>
         <a class="btn btn-default buttons-print bg-white" tabindex="0"
           aria-controls="DataTables_Table_0" (click) = "billingContractPdf()"><span>Print</span></a>
       </div>
