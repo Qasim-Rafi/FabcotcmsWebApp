@@ -44,7 +44,10 @@
                     <button type="button" *ngIf = "loggedInDepartmentName == 'Fabric Export' " class="btn btn-primary btn-md float-right" (click)="print2(printData)">
                         <i class="fa fa-print"></i> Print Bill
                     </button>
-                    <button type="button" *ngIf = "loggedInDepartmentName == 'Yarn Export'  || loggedInDepartmentName == 'Yarn Export Bangladesh' || loggedInDepartmentName == 'Yarn Import' " class="btn btn-primary btn-md float-right" (click)="print3(printData)">
+                    <button type="button" *ngIf = "loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Import' " class="btn btn-primary btn-md float-right" (click)="print3(printData)">
+                        <i class="fa fa-print"></i> Print Bill
+                    </button>
+                      <button type="button" *ngIf = " loggedInDepartmentName == 'Yarn Export Bangladesh' " class="btn btn-primary btn-md float-right" (click)="print33(printData)">
                         <i class="fa fa-print"></i> Print Bill
                     </button>
                 </div>

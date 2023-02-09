@@ -931,7 +931,7 @@ this.spinner.hide();
       Seller: row.sellerName,
       InvoiceNumber:row.invoiceNo,
       Rate: row.rate +row.uomName,
-      CommPer: row.fabcotCommission + '%' ,
+      CommPer: row.fabcotCommission +' '+ row.commissionUomName ,
       Quantity: row.quantity,
       QtyUOM:row.quantityUOMName,
 
@@ -953,7 +953,7 @@ this.spinner.hide();
       Seller: row.sellerName,
       InvoiceNumber:row.invoiceNo,
       Rate: row.rate +row.uomName,
-      CommPer: row.fabcotCommission + '%' ,
+      CommPer: row.fabcotCommission +' '+ row.commissionUomName,
       Quantity: row.debitQuantity == null || row.debitQuantity == "" ?  row.quantity:row.remainingQuantity + '\n' +  row.quantity  + '-' + row.debitQuantity  + row.quantityUOM ,
       QtyUOM:row.quantityUOMName,
 
@@ -1036,7 +1036,7 @@ this.spinner.hide();
       Buyer: row.buyerName ,
       Seller: row.sellerName,
       Rate: row.rate +''+ row.uomName,
-      CommPer: row.fabcotCommission + '%' ,
+      CommPer: row.fabcotCommission +' '+ row.commissionUomName ,
       Quantity:row.debitQuantity == null || row.debitQuantity == "" ?row.quantity: row.quantity  + '-' + row.debitQuantity ,
       QtyUOM:row.quantityUOMName,
       CommAmount: row.commissionAmount
@@ -1444,7 +1444,7 @@ this.fetch();
            
                  {text: row.buyerName , style:'tableHeader2'} ,
                   {text: row.rate != '' ? row.rateCurrencyName == 'PKR' ?'Rs ' + row.rate + '/' + row.uomName : row.rateCurrencyName == 'USD' ? '$ ' + row.rate + '/' +row.uomName : row.rateCurrencyName == 'EUR' ? '€ ' + row.rate + '/' +row.uomName : row.rateCurrencyName == 'GBP' ? 'GBP ' + row.rate + '/' +row.uomName : row.rateCurrencyName + row.rate + " /" + row.uomName : '' , style:'tableHeader2' }  ,
-                  {text: row.fabcotCommission +'%' , style:'tableHeader2'},
+                  {text: row.fabcotCommission +' '+ row.commissionUomName , style:'tableHeader2'},
               
                    {text:row.invoiceNo  , style:'tableHeader2' }  ,
                    {text:   row.quantity + ' ' + row.quantityUOM  , style:'tableHeader2' }  ,
@@ -1541,7 +1541,7 @@ this.fetch();
            
                  {text: row.buyerName , style:'tableHeader2'} ,
                   {text: row.rate != '' ? row.rateCurrencyName == 'PKR' ?'Rs ' + row.rate + '/' + row.uomName : row.rateCurrencyName == 'USD' ? '$ ' + row.rate + '/' +row.uomName : row.rateCurrencyName == 'EUR' ? '€ ' + row.rate + '/' +row.uomName : row.rateCurrencyName == 'GBP' ? 'GBP ' + row.rate + '/' +row.uomName : row.rateCurrencyName + row.rate + " /" + row.uomName : '' , style:'tableHeader2' }  ,
-                  {text: row.fabcotCommission +'%' , style:'tableHeader2'},
+                  {text: row.fabcotCommission +' '+ row.commissionUomName , style:'tableHeader2'},
               
                    {text:row.invoiceNo  , style:'tableHeader2' }  ,
                    {text:   row.debitQuantity = null ?  row.quantity + " " + row.quantityUOM :  row.remainingQuantity + '\n' +  row.quantity  + '-' + row.debitQuantity  + row.quantityUOM  , style:'tableHeader2' }  ,
