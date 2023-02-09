@@ -294,7 +294,7 @@
   
             <ngx-datatable-column name="Dispatch" >
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                {{ row.dispatch }}  {{row.quantityUOMName}}
+                {{ row.dispatch | number:'2.2-2'}}  {{row.quantityUOMName}}
               </ng-template>
             </ngx-datatable-column>
   
