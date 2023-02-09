@@ -954,7 +954,7 @@ this.spinner.hide();
       InvoiceNumber:row.invoiceNo,
       Rate: row.rate +row.uomName,
       CommPer: row.fabcotCommission +' '+ row.commissionUomName,
-      Quantity: row.debitQuantity == null || row.debitQuantity == "" ?  row.quantity+ row.quantityUOM:  row.remainingQuantity +''+ row.debitQuantity  + row.quantityUOM ,
+      Quantity: row.debitQuantity == null || row.debitQuantity == "" ?  row.quantity+ row.quantityUOM:  row.remainingQuantity  + row.quantityUOM ,
       QtyUOM:row.quantityUOMName,
 
       CommAmount:row.debitAmount == null || row.debitAmount == "" ? row.commissionAmount + row.rateCurrencyName : row.crdbCommission + " " + row.rateCurrencyName,
