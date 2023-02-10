@@ -88,7 +88,7 @@
                   </div>
                   <div class="col-md-8 text-right">
                     <h6>Quantity </h6>
-                    <h6 class="font-bold"> {{totalQuantity}}<p class="topbox-small-text"></p></h6>
+                    <h6 class="font-bold"> {{totalQuantity | number:'1.0-0'}}<p class="topbox-small-text"></p></h6>
                   </div>
                 </div>
               </div>
@@ -102,7 +102,7 @@
                   </div>
                   <div class="col-md-8 text-right">
                     <h6> Dispatch </h6>
-                    <h6 class="font-bold">  {{totalDispatch}}<p class="topbox-small-text"></p></h6>
+                    <h6 class="font-bold">  {{totalDispatch | number:'1.0-0'}}<p class="topbox-small-text"></p></h6>
                   </div>
                 </div>
               </div>
@@ -326,7 +326,7 @@
     
               <ngx-datatable-column name="Dispatch Qty" >
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                  {{ row.dispatch }}  {{row.quantityUOMName}}
+                  {{ row.dispatch | number:'1.0-0' }}  {{row.quantityUOMName}}
                 </ng-template>
               </ngx-datatable-column>
     
