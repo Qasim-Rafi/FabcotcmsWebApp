@@ -953,9 +953,9 @@ this.spinner.hide();
       Seller: row.sellerName,
       InvoiceNumber:row.invoiceNo,
       Rate: row.rate +row.uomName,
-      CommPer: row.fabcotCommission +' '+ row.commissionUomName == null || row.commissionUomName == ""  ?'%':row.commissionUomName,
-      Quantity: row.debitQuantity == null || row.debitQuantity == "" ?  row.quantity+ row.quantityUOM:  row.remainingQuantity  + row.quantityUOM ,
-      QtyUOM:row.quantityUOMName,
+      CommPer: row.fabcotCommission +' '+ (row.commissionUomName == null || row.commissionUomName == ""  ?'%':row.commissionUomName),
+      Quantity: row.debitQuantity == null || row.debitQuantity == "" ?  row.quantity:  row.remainingQuantity  ,
+      QtyUOM:row.quantityUOM,
 
       CommAmount:row.debitAmount == null || row.debitAmount == "" ? row.commissionAmount + row.rateCurrencyName : row.crdbCommission + " " + row.rateCurrencyName,
     }));
