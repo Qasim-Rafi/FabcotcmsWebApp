@@ -1036,10 +1036,10 @@ this.spinner.hide();
       Buyer: row.buyerName ,
       Seller: row.sellerName,
       Rate: row.rate +''+ row.uomName,
-      CommPer: row.fabcotCommission +' '+ row.commissionUomName ,
-      Quantity:row.debitQuantity == null || row.debitQuantity == "" ? row.quantity+ row.quantityUOM:  row.quantity - row.debitQuantity  + row.quantityUOM,
-      QtyUOM:row.quantityUOMName,
-      CommAmount: row.commissionAmount
+      CommPer: row.fabcotCommission +' '+ row.quantityUOMName ,
+      Quantity:row.debitQuantity == null || row.debitQuantity == "" || row.debitQuantity == 0 ? row.quantity:  (row.quantity -  row.debitQuantity),
+      QtyUOM:row.quantityUOM,
+      CommAmount:  row.commissionAmount  +' '+ row.rateCurrencyName,
       // row.debitAmount == null || row.debitAmount == "" ? row.commissionAmount +' '+ row.rateCurrencyName  : row.debitAmount + '-' + row.commissionAmount,
   
     }));

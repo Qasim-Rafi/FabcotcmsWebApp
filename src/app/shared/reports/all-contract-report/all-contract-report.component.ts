@@ -156,6 +156,39 @@ dateformater: Dateformater = new Dateformater();
   navigateEditContract(obj) {
     this.router.navigate(['/FabCot/active-contract-details'], { queryParams: {id: obj.contractId} });
   };
+  allContractExcelFile1(){
+    const filtered = this.allContractReport.map(row => ({
+      Age:row.age,
+      ContractNo: row.contractNo,
+      Buyer: row.buyerName,
+      Seller: row.sellerName ,
+      Date: row.date,
+      PONumber: row.poNumber,
+      Article: row.articleName ,
+      Rate: row.rate + row.rateUOMName ,
+       
+    
+        Quantity: row.quantity,
+        QtyUOM:row.quantityUOMName,
+        Booking: row.booking ,
+        
+        Dispatch: row.dispatch ,
+        Balance: row.balanceQty ,
+        Cost: row.cost ,
+        SellerComm: row.sellerCommission ,
+        SellerCommAmount: row.sellerCommissionAmount ,
+        BuyerComm: row.buyerCommission ,
+        BuyerCommAmount: row.buyerCommissionAmount ,
+        PaymentTermSellerBuyer : row.paymentTerm ,
+        Status :row.status,
+        Agent : row.agent ,
+  
+        
+  
+      }));
+  
+      this.service.exportAsExcelFile(filtered, 'All Contract Report');
+  }
   allContractExcelFile(){
     const filtered = this.allContractReport.map(row => ({
     Age:row.age,
