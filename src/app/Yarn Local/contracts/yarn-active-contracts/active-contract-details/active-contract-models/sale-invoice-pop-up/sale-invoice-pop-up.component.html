@@ -208,6 +208,19 @@
               </div>
             </div>
             </div>
+
+            <div class="form-group row" *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Export Bangladesh' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Fabric Export'">
+              <label for="letteroFCreditId" class="col-md-3 col-form-label">L/C</label>
+              <div class="col-md-8">
+                <ng-select [(ngModel)]="data.letteroFCreditId" #letteroFCreditId="ngModel"
+                  placeholder="Letter oF Credit" name="letteroFCreditId">
+                  <ng-option *ngFor="let i of letteroFCredit" [value]="i.id">{{i.lcNumber}}</ng-option>
+                </ng-select>
+              </div>
+            </div>
+
+
+
           <div class="form-group row" *ngIf = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Export Bangladesh'  || loggedInDepartmentName == 'Yarn Import' ">
             <label for="saleInvoiceDate" class="col-md-3 col-form-label text_Navy">BL Date</label>
             <div class="col-md-8" (clickOutside)="blDate.close()">

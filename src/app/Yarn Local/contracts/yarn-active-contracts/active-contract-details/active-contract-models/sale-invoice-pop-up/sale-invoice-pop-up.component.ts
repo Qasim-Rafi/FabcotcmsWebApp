@@ -29,6 +29,7 @@ export class SaleInvoicePopUpComponent implements OnInit {
   @Input() saleInvoiceQuantityTo;
   data:any ={};
   rate:any;
+  letteroFCredit:any=[];
   condition:string="17"
   quantitya:any;
   calculatedcost:any;
@@ -58,6 +59,7 @@ articles:any=[];
     this.getContractCostingData()
     this.loggedInDepartmentName = localStorage.getItem('loggedInDepartmentName');
 this.GetArticleDropdown();
+this.GetletteroFCreditDropdown();
     this.GetUOMDropdown();
     if (this.statusCheck == 'editInvoice') {
       this.editSaleInvoice();
@@ -175,6 +177,26 @@ if(event==7){
       }
     })
   }
+
+  GetletteroFCreditDropdown() {
+    this.http.get(`${environment.apiUrl}/api/Contracts/GetLetterOFCreditByContractId/` + this.contractId)
+      .subscribe(
+        res => {
+          this.response = res;
+          if (this.response.success == true) {
+            this.letteroFCredit = this.response.data;
+            
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+  
+        }, err => {
+          if (err.status == 400) {
+            this.toastr.error(this.response.message, 'Message.');
+          }
+        });
+  }
  GetArticleDropdown() {
     this.http.get(`${environment.apiUrl}/api/Lookups/ContractArticles/` + this.contractId)
       .subscribe(
@@ -235,7 +257,8 @@ if(event==7){
       "UnitofMeasurement" : this.uom,
       "blDate": this.dateformater.toModel(this.data.blDate),
       "isFob" : this.data.isFob == true ? true : false,
-      "fobValue" : this.data.fobValue != ''  ? this.data.fobValue : 0
+      "fobValue" : this.data.fobValue != ''  ? this.data.fobValue : 0,
+      "letteroFCreditId" : this.data.letteroFCreditId,
     }
     this.response = varr
 this.spinner.show();
@@ -361,7 +384,8 @@ else{
       "UnitofMeasurement" : this.uom,
       "blDate": this.dateformater.toModel(this.data.blDate),
       "isFob" : this.data.isFob == true ? true : false,
-      "fobValue" : this.data.fobValue != ''  ? this.data.fobValue : 0
+      "fobValue" : this.data.fobValue != ''  ? this.data.fobValue : 0,
+      "letteroFCreditId" : this.data.letteroFCreditId,
 
     }
  this.spinner.show();
