@@ -253,17 +253,22 @@
                 {{row.date}}
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="PO#" >
+            <ngx-datatable-column name="PO#" *ngIf="loggedInDepartmentName !='Yarn Export'">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 {{row.poNumber}}
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Article" >
+            <ngx-datatable-column name="Article(s)" [width]="320" *ngIf="loggedInDepartmentName =='Yarn Export'">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                {{row.articlesPlusRate}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Article" *ngIf="loggedInDepartmentName !='Yarn Export'" >
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 {{row.articleName}}
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Rate">
+            <ngx-datatable-column name="Rate" *ngIf="loggedInDepartmentName !='Yarn Export'">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 <b *ngIf = "row.rateCurrencyName == 'PKR'">RS</b>  
                 <b *ngIf = "row.rateCurrencyName == 'USD'">$</b> 
@@ -1668,7 +1673,13 @@
                   {{ row.billFor }}
                 </ng-template>
               </ngx-datatable-column> -->
-              <ngx-datatable-column name="Article" prop="articleName" >
+
+              <!-- <ngx-datatable-column name="Article(s)" [width]="320" *ngIf="loggedInDepartmentName =='Yarn Export'">
+                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                  <p class="text-wrap" > {{row.articlesPlusRate}} </p>
+                </ng-template>
+              </ngx-datatable-column> -->
+              <ngx-datatable-column name="Article" [width]="320" prop="articleName">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{ row.articleName }}
                 </ng-template>
