@@ -55,7 +55,7 @@ public events: string[] = [];
 public pagerTypes = ['numeric', 'input'];
 
 public type: PagerType = 'numeric';
-public buttonCount = 5;
+public buttonCount = 2;
 public info = true;
 public pageSizes = [ 20, 50, 100,500];
 public previousNext = true;
@@ -93,7 +93,7 @@ constructor(    private service: ServiceService,
     }
     else{
       let page = (this.skip + this.pageSize) / this.pageSize;
-      let pages=this.pageSize+this.pageSize;
+      let pages=this.pageSize
       this.fetch13(page,pages)
     }
 }
@@ -270,6 +270,10 @@ public loadItems(): void {
     this.temp = [...this.data.objList]; 
     this.rows = this.data.objList;
 // this.loadItems();
+this.gridView = {
+  data: this.rows.slice(this.skip, this.skip + this.pageSize),
+  total: parseInt(this.rows[0].recordCount,10)
+};
 
      //cb(this.data.objList);
     this.spinner.hide();
