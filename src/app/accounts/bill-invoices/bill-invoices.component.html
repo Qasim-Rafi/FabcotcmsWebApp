@@ -296,19 +296,24 @@
         [kendoGridBinding]="rows"
         kendoGridSelectBy="id"
         [selectedKeys]="mySelection"
-        [pageSize]="2000000"
+        [pageSize]="pageSize"
         [sortable]="true"
         [reorderable]="true"
         [resizable]="true"
         [height]="450"
-        [pageable]="true"
+        [pageable]="{
+          buttonCount: buttonCount,
+          info: info,
+          type: type,
+          pageSizes: pageSizes,
+          previousNext: previousNext,
+          position: position
+      }"
         [filterable]="true"
-     
-       
+        [loading]="rows.loading"
+        (pageChange)="pageChange($event)"
         >
-        <!-- [loading]="rows.loading"
-        [skip]="skip"
-        (pageChange)="pageChange($event)" -->
+        <!-- [skip]="skip" -->
         <!-- <ng-template kendoGridToolbarTemplate>
          
           <input placeholder="Search in all columns..." class="col-md-3 form-control" #newItem kendoTextBox (input)="onFilter(newItem.value)"/>

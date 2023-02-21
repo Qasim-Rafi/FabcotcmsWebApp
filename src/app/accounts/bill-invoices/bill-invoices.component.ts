@@ -14,8 +14,10 @@ import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 import { Observable } from "rxjs";
-import { GridDataResult, PageChangeEvent } from "@progress/kendo-angular-grid";
+import { GridDataResult, PageChangeEvent,} from "@progress/kendo-angular-grid";
+
 import { GridComponent } from '@progress/kendo-angular-grid';
+import { PagerPosition, PagerType } from '@progress/kendo-angular-grid/dist/es2015/pager/pager-settings';
 @Component({
   selector: 'app-bill-invoices',
   templateUrl: './bill-invoices.component.html',
@@ -23,8 +25,7 @@ import { GridComponent } from '@progress/kendo-angular-grid';
 })
 export class BillInvoicesComponent implements OnInit {
 rows: any = [];
-skip = 0;
-pageSize = 19;
+public state: State = { skip: 0, take: 20 };
 columns: any=[];
 SelectionType = SelectionType;
 selected: any = [];
@@ -44,7 +45,24 @@ public gridView: GridDataResult;
 public mySelection: string[] = this.rows;
 lang : SUPPORTED_LANGUAGE = 'en';
 public view: Observable<GridDataResult>;
-public state: State = { skip: 0, take: 5 };
+public skip = 0;
+public pageSize = 10;
+public total = 100;
+public pageSizeValues = [5, 10, 20, 50, 100,500];
+public events: string[] = [];
+
+
+public pagerTypes = ['numeric', 'input'];
+
+public type: PagerType = 'numeric';
+public buttonCount = 5;
+public info = true;
+public pageSizes = [ 20, 50, 100,500];
+public previousNext = true;
+public position: PagerPosition = 'bottom';
+
+
+
 @ViewChild(DataBindingDirective) dataBinding: DataBindingDirective;
 constructor(    private service: ServiceService,
   private http: HttpClient,
@@ -67,7 +85,26 @@ constructor(    private service: ServiceService,
   public exportToExcel(grid: GridComponent): void {
     grid.saveAsExcel();
   }
+  public pageChange({ skip, take }: PageChangeEvent): void {
+    this.skip = skip;
+    this.pageSize = take;
+    if(this.rows.length >= this.pageSize){
+    this.loadItems();
+    }
+    else{
+      let page = (this.skip + this.pageSize) / this.pageSize;
+      let pages=this.pageSize+this.pageSize;
+      this.fetch13(page,pages)
+    }
+}
+
+public loadItems(): void {
   
+    this.gridView = {
+        data: this.rows.slice(this.skip, this.skip + this.pageSize),
+        total: this.rows.length
+    };
+}
   onSelect(selecterow) {
     this.selected =selecterow.selected;
   }
@@ -173,8 +210,10 @@ constructor(    private service: ServiceService,
       this.deptName = 3;
     }
     this.spinner.show();
+    let skip =1;
+    let pagesize=20;
     this.http
-    .get(`${environment.apiUrl}/api/BillingPayments/GetAllContractBillForInvoices/`+ this.deptName+ '/'   + this.data2.toDate + '/' + this.data2.FromDate)
+    .get(`${environment.apiUrl}/api/BillingPayments/GetAllContractBillForInvoices/`+ this.deptName+ '/'   + this.data2.toDate + '/' + this.data2.FromDate+'/'+skip+'/'+pagesize)
     .subscribe(res => {
       this.response = res;
      
@@ -203,20 +242,9 @@ constructor(    private service: ServiceService,
       }
     });
   }
-  pageChange(event: PageChangeEvent): void {
-    this.skip = event.skip;
-     this.fetch13(this.skip);
-  console.log(this.skip)
-  }
-  private loadItems(): void {
-    this.gridView = {
-      data: this.rows.slice(this.skip, this.skip + this.pageSize),
-      total: this.rows[0].recordCount,
-    };
-  }
 
 
-  fetch13(skip) {
+  fetch13(skip,pagesize) {
     this.data2.toDate = this.dateformater.toModel(this.data2.toDate)
     this.data2.FromDate = this.dateformater.toModel(this.data2.FromDate)
 
@@ -229,7 +257,7 @@ constructor(    private service: ServiceService,
     }
     this.spinner.show();
     this.http
-    .get(`${environment.apiUrl}/api/BillingPayments/GetAllContractBillForInvoices/`+this.deptName+'/'+ this.data2.toDate + '/' + this.data2.FromDate )
+    .get(`${environment.apiUrl}/api/BillingPayments/GetAllContractBillForInvoices/`+this.deptName+'/'+ this.data2.toDate + '/' + this.data2.FromDate +'/'+skip+'/'+pagesize)
     .subscribe(res => {
       this.response = res;
      
@@ -241,7 +269,7 @@ constructor(    private service: ServiceService,
     this.dashboardAmnt = this.data
     this.temp = [...this.data.objList]; 
     this.rows = this.data.objList;
-
+// this.loadItems();
 
      //cb(this.data.objList);
     this.spinner.hide();
@@ -276,7 +304,7 @@ constructor(    private service: ServiceService,
     }
     this.spinner.show();
     this.http
-    .get(`${environment.apiUrl}/api/BillingPayments/GetAllContractBillForInvoices/`+this.deptName+'/'+ this.data2.toDate + '/' + this.data2.FromDate)
+    .get(`${environment.apiUrl}/api/BillingPayments/GetAllContractBillForInvoices/`+this.deptName+'/'+ this.data2.toDate + '/' + this.data2.FromDate+'/'+1+'/'+this.pageSize)
     .subscribe(res => {
       this.response = res;
      
@@ -386,7 +414,7 @@ getafterGenrated(){
     }
     this.spinner.show();
     this.http
-    .get(`${environment.apiUrl}/api/BillingPayments/GetAllContractBillForInvoices/`+this.deptName+'/'+ this.data2.toDate + '/' + this.data2.FromDate)
+    .get(`${environment.apiUrl}/api/BillingPayments/GetAllContractBillForInvoices/`+this.deptName+'/'+ this.data2.toDate + '/' + this.data2.FromDate+'/'+1+'/'+this.pageSize)
     .subscribe(res => {
       this.response = res;
      
