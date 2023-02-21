@@ -5538,7 +5538,7 @@ yarnExportInvoicesReportPrint(){
                              {text:'Quantity' , style: 'tableheader2'},
                             {text:'Rate' , style: 'tableheader2'},
                             {text:'Amount Excl Gst' , style: 'tableheader2'} , 
-                             {text:'17% Gst Amount' , style: 'tableheader2'},
+                             {text:'18% Gst Amount' , style: 'tableheader2'},
                              {text:'Amount Incl Gst' , style: 'tableheader2'},
       
                           ],
@@ -5883,7 +5883,7 @@ yarnExportInvoicesReportPrint(){
                                {text:'Quantity' , style: 'tableheader2'},
                               {text:'Rate' , style: 'tableheader2'},
                               {text:'Amount Excl Gst' , style: 'tableheader2'} , 
-                               {text:'17% Gst Amount' , style: 'tableheader2'},
+                               {text:'18% Gst Amount' , style: 'tableheader2'},
                                {text:'Amount Incl Gst' , style: 'tableheader2'},
         
                             ],
