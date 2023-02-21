@@ -30,7 +30,7 @@ export class SaleInvoicePopUpComponent implements OnInit {
   data:any ={};
   rate:any;
   letteroFCredit:any=[];
-  condition:string="17"
+  condition:string="18"
   quantitya:any;
   calculatedcost:any;
   response: any;

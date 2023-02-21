@@ -13,7 +13,9 @@ import { SUPPORTED_LANGUAGE } from 'ngx-num-to-words';
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
-
+import { Observable } from "rxjs";
+import { GridDataResult, PageChangeEvent } from "@progress/kendo-angular-grid";
+import { GridComponent } from '@progress/kendo-angular-grid';
 @Component({
   selector: 'app-bill-invoices',
   templateUrl: './bill-invoices.component.html',
@@ -21,6 +23,8 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 })
 export class BillInvoicesComponent implements OnInit {
 rows: any = [];
+skip = 0;
+pageSize = 19;
 columns: any=[];
 SelectionType = SelectionType;
 selected: any = [];
@@ -36,8 +40,11 @@ ids:any;
 idsUpdates:any;
 temp: any = [];
 deptName : any;
+public gridView: GridDataResult;
 public mySelection: string[] = this.rows;
 lang : SUPPORTED_LANGUAGE = 'en';
+public view: Observable<GridDataResult>;
+public state: State = { skip: 0, take: 5 };
 @ViewChild(DataBindingDirective) dataBinding: DataBindingDirective;
 constructor(    private service: ServiceService,
   private http: HttpClient,
@@ -46,13 +53,19 @@ constructor(    private service: ServiceService,
   private spinner: NgxSpinnerService,
  
 
-  ) { }
+  ) {
+
+   }
 
   ngOnInit(): void {
     this.fetch((data) => {
       this.temp = [...data]; 
       this.rows = data;
+      // this.pageSize =this.rows[0].recordCount
     });
+  }
+  public exportToExcel(grid: GridComponent): void {
+    grid.saveAsExcel();
   }
   
   onSelect(selecterow) {
@@ -190,6 +203,65 @@ constructor(    private service: ServiceService,
       }
     });
   }
+  pageChange(event: PageChangeEvent): void {
+    this.skip = event.skip;
+     this.fetch13(this.skip);
+  console.log(this.skip)
+  }
+  private loadItems(): void {
+    this.gridView = {
+      data: this.rows.slice(this.skip, this.skip + this.pageSize),
+      total: this.rows[0].recordCount,
+    };
+  }
+
+
+  fetch13(skip) {
+    this.data2.toDate = this.dateformater.toModel(this.data2.toDate)
+    this.data2.FromDate = this.dateformater.toModel(this.data2.FromDate)
+
+    if(this.data2.toDate == "undefined-undefined-undefined"){
+      this.data2.toDate ="null";
+      this.data2.FromDate ="null";
+    }
+    if(this.deptName == undefined){
+      this.deptName = 3;
+    }
+    this.spinner.show();
+    this.http
+    .get(`${environment.apiUrl}/api/BillingPayments/GetAllContractBillForInvoices/`+this.deptName+'/'+ this.data2.toDate + '/' + this.data2.FromDate )
+    .subscribe(res => {
+      this.response = res;
+     
+    if(this.response.success==true)
+    {
+      this.data2.toDate = this.dateformater.fromModel(this.data2.toDate)
+      this.data2.FromDate = this.dateformater.fromModel(this.data2.FromDate)
+    this.data=this.response.data;
+    this.dashboardAmnt = this.data
+    this.temp = [...this.data.objList]; 
+    this.rows = this.data.objList;
+
+
+     //cb(this.data.objList);
+    this.spinner.hide();
+
+    }
+    else{
+      this.toastr.error(this.response.message, 'Message.');
+      this.spinner.hide();
+    
+    }
+
+    }, err => {
+      if ( err.status == 400) {
+  this.toastr.error(err.error.message, 'Message.');
+  this.spinner.hide();
+
+      }
+    });
+  }
+
 
   fetch1() {
     this.data2.toDate = this.dateformater.toModel(this.data2.toDate)
@@ -246,10 +318,6 @@ constructor(    private service: ServiceService,
     });
   }
 
-
-  public state: State = {
-    skip: 0,
-};
   genrateInvoices(){
  if(this.datatext.textValue == 0){
   this.toastr.error("PLease enter valid tax%" , 'Message')

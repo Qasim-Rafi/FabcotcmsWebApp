@@ -241,7 +241,7 @@
       <!-- <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
       
       aria-controls="DataTables_Table_0"><span>CSV</span></a> -->
-      <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0" (click)="ExcelFile()"
+      <a class="btn btn-default buttons-excel buttons-html5 bg-white" kendoButton (click)="exportToExcel(grid)" tabindex="0" 
     
       aria-controls="DataTables_Table_0"><span>Excel</span></a>
       <a class="btn btn-default buttons-pdf buttons-html5 bg-white" tabindex="0" (click)="Pdf()"
@@ -250,6 +250,9 @@
       <!-- <a class="btn btn-default buttons-print bg-white" tabindex="0"
     
       aria-controls="DataTables_Table_0"><span>Print</span></a> -->
+      <p>
+        <!-- <button kendoButton (click)="exportToExcel(grid)">Export Grid to Excel...</button> -->
+      </p>
     </div>
   </div>
 </div>
@@ -289,19 +292,23 @@
       <div class="panel-body">
            
         <kendo-grid
+        #grid="kendoGrid"
         [kendoGridBinding]="rows"
         kendoGridSelectBy="id"
         [selectedKeys]="mySelection"
-        [pageSize]="200000"
-        [pageable]="false"
+        [pageSize]="2000000"
         [sortable]="true"
         [reorderable]="true"
         [resizable]="true"
         [height]="450"
         [pageable]="true"
         [filterable]="true"
+     
        
         >
+        <!-- [loading]="rows.loading"
+        [skip]="skip"
+        (pageChange)="pageChange($event)" -->
         <!-- <ng-template kendoGridToolbarTemplate>
          
           <input placeholder="Search in all columns..." class="col-md-3 form-control" #newItem kendoTextBox (input)="onFilter(newItem.value)"/>
@@ -391,7 +398,7 @@
             </kendo-grid-column>
             <kendo-grid-column [headerClass]="'customiconforgrid'" field="taxAmount" title="Tax Amount" [width]="120">
               <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
-                {{dataItem.taxAmount}}
+                {{dataItem.taxAmount  | number:'1.0-0'}}
               </ng-template>
               
             </kendo-grid-column>
@@ -410,6 +417,9 @@
               </ng-template>
               
             </kendo-grid-column>
+            <kendo-grid-excel fileName="Accounts.xlsx">
+              
+            </kendo-grid-excel>
         </kendo-grid>
        
 
