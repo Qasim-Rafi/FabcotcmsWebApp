@@ -76,8 +76,8 @@ import { SellerMappingComponent } from './shared/mappings/seller-mapping/seller-
 import { AddEditMappingsComponent } from './shared/mappings/seller-mapping/add-edit-mappings/add-edit-mappings.component';
 import { AgentContractListComponent } from './shared/agent-contract-list/agent-contract-list.component';
 
-import { GridModule, PDFModule, ExcelModule, PagerModule } from '@progress/kendo-angular-grid';
-
+import { GridModule, PDFModule, ExcelModule } from '@progress/kendo-angular-grid';
+import { PagerModule } from "@progress/kendo-angular-pager";
 //import { ChartsModule } from '@progress/kendo-angular-charts';
 import { InputsModule } from '@progress/kendo-angular-inputs';
 import { ActiveContractDateFilterComponent } from './shared/active-contract-date-filter/active-contract-date-filter.component';

@@ -11,7 +11,11 @@ const EXCEL_EXTENSION = '.xlsx';
 const CSV_EXTENSION = '.csv';
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 import {NgxSpinnerService} from 'ngx-spinner'
-
+import { GridDataResult } from '@progress/kendo-angular-grid';
+import {
+  toDataSourceRequestString,
+  translateDataSourceResultGroups
+} from "@progress/kendo-data-query";
 @Injectable({
   providedIn: 'root'
 })
@@ -23,7 +27,7 @@ export class ServiceService {
   data: any = [];
   user: any;
   rootUrl: "/api/Auth/Login";
-
+  data1:any
   constructor(private http: HttpClient,
     private toastr: ToastrService,
     private spinner : NgxSpinnerService)
@@ -72,9 +76,51 @@ export class ServiceService {
 
       );
   }
+//   private BASE_URL =
+//   "https://demos.telerik.com/aspnet-core/service/api/serveroperations";
 
+// public fetch123(state: any): Observable<GridDataResult> {
+//   const queryStr = `${toDataSourceRequestString(state)}`;
+
+//   return this.http
+//       .post(`${this.BASE_URL}`, queryStr, {
+//           headers: {
+//               "Content-Type":
+//                   "application/x-www-form-urlencoded; charset=UTF-8"
+//           }
+//       })
+//       .pipe(
+//           // Process the response.
+//           map(({ data, total }: GridDataResult): GridDataResult => {
+//               return {
+//                   data: data,
+//                   total: total 
+//               };
+//           })
+//       );
+// }
   //file upload service starts here
-
+  public fetch123(deptName,toDate,FromDate,state: any): Observable<GridDataResult> {
+     const skip = state.skip;
+   const pagesize = state.take;
+   let page = (skip + pagesize) / pagesize;
+//   const queryStr = `${toDataSourceRequestString(state)}`;
+    return this.http
+    .get(`${environment.apiUrl}/api/BillingPayments/GetAllContractBillForInvoices/`+ deptName+ '/'   + toDate + '/' + FromDate+'/'+page+'/'+pagesize)
+        .pipe(
+            // Process the response.
+            map(({ data, total }: GridDataResult): GridDataResult => {
+            
+                this.data1=data;
+                   let c= this.data1.objList[0].recordCount
+                   total=c
+                return {
+                    data: this.data1.objList,
+                    total: total, 
+                };
+            })
+        );
+}
 
   upload(formData) {
     return this.http.post<any>(`${environment.apiUrl}/api/Lookups/Countries`, formData, {

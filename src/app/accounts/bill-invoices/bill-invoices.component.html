@@ -293,10 +293,11 @@
            
         <kendo-grid
         #grid="kendoGrid"
-        [kendoGridBinding]="rows"
+        [data]="rows1"
         kendoGridSelectBy="id"
         [selectedKeys]="mySelection"
-        [pageSize]="pageSize"
+        [pageSize]="state.take"
+        [skip]="state.skip"
         [sortable]="true"
         [reorderable]="true"
         [resizable]="true"
@@ -308,11 +309,14 @@
           pageSizes: pageSizes,
           previousNext: previousNext,
           position: position
-      }"
+        }"
         [filterable]="true"
         [loading]="rows.loading"
-        (pageChange)="pageChange($event)"
+        (dataStateChange)="dataStateChange($event)"
+        [filter]="state.filter"
+        
         >
+        <!-- (filterChange)="filterChange($event)" -->
         <!-- [skip]="skip" -->
         <!-- <ng-template kendoGridToolbarTemplate>
          
@@ -383,9 +387,9 @@
               </ng-template>
               
             </kendo-grid-column>
-            <kendo-grid-column field="billGeneratedDateTime" title="Bill Date" [width]="120" [headerClass]="'customiconforgrid'">
+            <kendo-grid-column field="billDate" title="Bill Date" [width]="120" [headerClass]="'customiconforgrid'">
               <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
-                {{dataItem.billGeneratedDateTime}}
+                {{dataItem.billDate}}
               </ng-template>
               
             </kendo-grid-column>

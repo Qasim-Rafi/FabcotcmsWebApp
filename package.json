@@ -36,6 +36,7 @@
     "@progress/kendo-angular-intl": "^3.1.2",
     "@progress/kendo-angular-l10n": "^3.0.3",
     "@progress/kendo-angular-label": "^3.1.1",
+    "@progress/kendo-angular-pager": "^3.0.3",
     "@progress/kendo-angular-pdf-export": "^3.0.2",
     "@progress/kendo-angular-popup": "^4.0.2",
     "@progress/kendo-angular-treeview": "^5.4.3",
