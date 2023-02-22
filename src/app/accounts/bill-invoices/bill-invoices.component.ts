@@ -106,8 +106,13 @@ public sendRequest(state: State): void {
 
     //  var val =state.filter.filters
     // var val1=val[0]
-    this.data2.toDate = this.dateformater.toModel(this.data2.toDate)
-  this.data2.FromDate = this.dateformater.toModel(this.data2.FromDate)
+    if((typeof (this.data2.toDate)) === 'string'){
+
+    }
+    else{
+     this.data2.toDate = this.dateformater.toModel(this.data2.toDate)
+     this.data2.FromDate = this.dateformater.toModel(this.data2.FromDate)
+    }
  
   if(this.deptName == undefined){
     this.deptName = 3;
@@ -120,6 +125,8 @@ public sendRequest(state: State): void {
       this.rows1 = response;
       this.temp=this.rows1.data ,
       this.rows=this.rows1.data ,
+      this.data2.toDate = this.dateformater.fromModel(this.data2.toDate)
+      this.data2.FromDate = this.dateformater.fromModel(this.data2.FromDate)
       this.spinner.hide();
   });
     //  this.onFilter(val1)
@@ -201,8 +208,14 @@ public loadItems(): void {
  
      //  var val =state.filter.filters
      // var val1=val[0]
-     this.data2.toDate = this.dateformater.toModel(this.data2.toDate)
-   this.data2.FromDate = this.dateformater.toModel(this.data2.FromDate)
+     if((typeof (this.data2.toDate)) === 'string'){
+
+     }
+     else{
+      this.data2.toDate = this.dateformater.toModel(this.data2.toDate)
+      this.data2.FromDate = this.dateformater.toModel(this.data2.FromDate)
+     }
+
   
    if(this.deptName == undefined){
      this.deptName = 3;
@@ -215,6 +228,8 @@ public loadItems(): void {
        this.rows1 = response;
        this.temp=this.rows1.data ,
        this.rows=this.rows1.data ,
+       this.data2.toDate = this.dateformater.fromModel(this.data2.toDate)
+       this.data2.FromDate = this.dateformater.fromModel(this.data2.FromDate)
        this.spinner.hide();
    });
 
