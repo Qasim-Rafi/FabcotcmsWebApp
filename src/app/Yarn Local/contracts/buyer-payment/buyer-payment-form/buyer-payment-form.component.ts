@@ -402,7 +402,14 @@ this.spinner.hide();
                let taxis = this.selected[0].receivedAmount * (this.data.taxChalan/100);
                this.selected[0].taxChallan =taxis.toFixed(2); 
               this.result =this.result - (this.selected[0].receivedAmount2 !="0.00"?(this.selected[0].receivedAmount -this.selected[0].receivedAmount2):this.selected[0].receivedAmount);
-              this.toastr.error("Partial  Value", 'Message.');
+              let value1 =parseInt(this.selected[0].receivedAmount) + parseInt(this.selected[0].taxChallan)
+              if(parseInt(this.selected[0].saleInvoiceAmountAfterTax) == value1){
+
+              }
+              else{
+
+                this.toastr.error("Partial  Value", 'Message.');
+              }
                this.result =this.result;
 
                this.Pblanc.push(parseFloat(this.selected[0].receivedAmount) + parseFloat(this.selected[0].taxChallan));
