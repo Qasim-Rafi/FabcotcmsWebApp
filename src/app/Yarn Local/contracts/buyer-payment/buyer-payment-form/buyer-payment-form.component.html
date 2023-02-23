@@ -212,15 +212,36 @@
 
 
                 <!-------------- -------------->
-
+                <!-- <div class="row">
+                    <div class="col-md-12 ">
+                        <div class="row justify-content-end">
+                            <div class=" col-md-4 pr-0">
+                                <div class="form-group row">
+                                    <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" placeholder="Search by Sale Invoice Number " (keyup)="search($event)"
+                                            class="input form-control form-control-sm">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
 
                 <div class="row border-top">
                     <div class="col-md-12 pt-4 pb-4">
 
-                        <div class="mb-3">
-                            <span class="badge badge-primary">Sale Invoices</span>
+                      
+                        <div class="form-group row">
+                            <div class="mb-3">
+                                <span class="badge badge-primary">Sale Invoices</span>
+                            </div>
+                            <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
+                            <div class="col-sm-6">
+                                <input type="text" placeholder="Search by Sale Invoice Number " (keyup)="search($event)"
+                                    class="input form-control form-control-sm">
+                            </div>
                         </div>
-
 
                         <div class="panel-body">
                                   {{result}}
@@ -265,7 +286,7 @@
                               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                                 <div>
                                     <label class="checkbox-container">
-                                    <input type="checkbox" (change)="onSelect($event,row)">
+                                    <input type="checkbox" [disabled]="!data.amount" (change)="onSelect($event,row)">
                                     <span class="check"></span>
                                   </label>
                                 </div>

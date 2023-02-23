@@ -22,6 +22,7 @@ export class BuyerPaymentFormComponent implements OnInit {
   data: any ={};
   decimalSize:any;
   rows = [];
+  temp = [];
   row =[];
   columns: any = [];
   response: any;
@@ -97,7 +98,14 @@ export class BuyerPaymentFormComponent implements OnInit {
     })
   }
 
-
+  search(event) {
+    const val = event.target.value.toLowerCase();
+    const temp = this.temp.filter(function (d) {
+      return (d.saleInvoiceNo.toLowerCase().indexOf(val) !== -1 ||
+         !val);
+    });
+    this.rows = temp;
+  }
   GetCurrencyDropdown() {
     this.service.getCurrencyType().subscribe(res => {
       this.response = res;
@@ -225,7 +233,7 @@ this.spinner.hide();
       this.response = res;
       if (this.response.success == true) {
         this.rows = this.response.data;
-
+        this.temp=this.rows;
 
         for(let i=0; i<this.rows.length; i++ )
         {     
