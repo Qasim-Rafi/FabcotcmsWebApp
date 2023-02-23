@@ -26,7 +26,9 @@ export class AddEditMappingsComponent implements OnInit {
     private service: ServiceService) { }
 
   ngOnInit(): void {
-    
+    this.mapping=this.mapping;
+    this.mapping.party_Coa=this.mapping.partyCoa
+    this.mapping.sale_Tax_Coa=this.mapping.saleTexCoa
   }
   get activeModal() {
     return this._NgbActiveModal;
