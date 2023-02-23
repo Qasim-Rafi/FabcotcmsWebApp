@@ -131,6 +131,22 @@ export class BuyerPaymentFormComponent implements OnInit {
   addPayment() {
     // this.paymentAdddata.paymentDate = this.dateformater.toModel(this.paymentAdddata.paymentDate);
     // this.paymentAdddata.depositeDate = this.dateformater.toModel(this.paymentAdddata.depositeDate);
+let item=[]
+    this.rows.forEach(childObj=> {
+      this.saleInvoiceIds.forEach(childObj2=> {
+        if(childObj2 ==childObj.saleInvoiceId){
+      let varr = {
+        "saleInvoiceId": childObj.saleInvoiceId,
+        "taxChallan": childObj.taxChallan,
+        "receivedAmount": childObj.receivedAmount,
+        "saleInvoiceAmountAfterTax": childObj.saleInvoiceAmountAfterTax,
+      }
+
+      item.push(varr)
+    }
+    });
+});
+
       let varr = {
         "buyerId": this.data.buyerId,
         "sellerId": this.data.sellerId,
@@ -142,10 +158,12 @@ export class BuyerPaymentFormComponent implements OnInit {
         "depositDate": this.dateformater.toModel(this.data.depositeDate),
         "taxChalan": this.data.taxChalan,
         "remarks": this.data.remarks,
-        "saleInvoiceIds": this.saleInvoiceIds
+        "saleInvoiceIds": this.saleInvoiceIds,
+        "saleInvoicePaymentDetails":item
       
    
       }
+      
 this.spinner.show();
     this.http.
       post(`${environment.apiUrl}/api/YarnContracts/AddBuyerToSellerPayment`, varr)
@@ -215,6 +233,8 @@ this.spinner.hide();
           this.rows[i].saleInvoiceAmountAfterTax = Math.round(this.rows[i].saleInvoiceAmountAfterTax)
           this.rows[i].saleInvoiceAmountAfterTax =  this.rows[i].saleInvoiceAmountAfterTax +'.'+this.decimalSize
           this.rows[i].saleInvoiceAmountAfterTax = this.rows[i].saleInvoiceAmountAfterTax.toString();
+          this.rows[i].receivedAmount2 = this.rows[i].receivedAmount;
+          this.rows[i].taxChallan2 = this.rows[i].taxChallan;
           this.rows[i]['invoiceChecked']=false;
           this.Oblanc.push(parseFloat(this.rows[i].saleInvoiceAmountAfterTax));
           this.Pblanc.push(parseFloat(this.rows[i].paid));
@@ -242,8 +262,16 @@ this.spinner.hide();
         this.result = this.data.amount.toString() +'.'+this.decimalSize;
         this.data.taxChalan = 0;
         for(let i=0;i<=this.rows.length; i++){
-          this.rows[i].receivedAmount ='0.00';
+
+          if( this.rows[i].receivedAmount !="" &&  this.rows[i].receivedAmount != "0.00"){
+            this.rows[i].receivedAmount =this.rows[i].receivedAmount;
+            this.rows[i].taxChallan =this.rows[i].taxChallan;
+          }
+          else{
+            this.rows[i].receivedAmount ='0.00';
           this.rows[i].taxChallan ='0.00';
+          }
+          
         }
  }
 
@@ -369,10 +397,11 @@ this.spinner.hide();
              
             }
              else{
-               this.selected[0].receivedAmount =this.result;
+
+               this.selected[0].receivedAmount =this.selected[0].receivedAmount !="0.00"? (parseInt(this.selected[0].receivedAmount) +parseInt(this.result)).toString():this.result;
                let taxis = this.selected[0].receivedAmount * (this.data.taxChalan/100);
                this.selected[0].taxChallan =taxis.toFixed(2); 
-              this.result =this.result -this.selected[0].receivedAmount;
+              this.result =this.result - (this.selected[0].receivedAmount2 !="0.00"?(this.selected[0].receivedAmount -this.selected[0].receivedAmount2):this.selected[0].receivedAmount);
               this.toastr.error("Partial  Value", 'Message.');
                this.result =this.result;
 
@@ -489,17 +518,34 @@ this.spinner.hide();
       }
       else if(this.saleInvoiceIds.length = 1){
         let newrow =this.rows.filter(r=>r.saleInvoiceId ==row.saleInvoiceId)
-        this.selected = newrow; 
-        this.result=parseFloat(this.result) +parseFloat(this.selected[0].receivedAmount);
-        if(this.selected[0].taxChallan != "" && this.selected[0].taxChallan != null){
-          this.result = this.result +parseFloat(this.selected[0].taxChallan)
+        if(newrow[0].receivedAmount2 != "0.00")
+        {
+          this.selected = newrow; 
+          this.selected[0].receivedAmount=this.selected[0].receivedAmount2
+        this.result=parseFloat(this.result) +this.data.amount;
+        if(this.selected[0].taxChallan != "" && this.selected[0].taxChallan2 != null){
+          this.result = this.result +parseFloat(this.selected[0].taxChallan2)
         }
         this.result =this.result+'.'+this.decimalSize;
         // this.result=row.receivedAmount 
-        this.Paidamount =  parseFloat(this.Paidamount) -parseFloat(this.selected[0].receivedAmount) ;
+        this.Paidamount =  parseFloat(this.Paidamount) -parseFloat(this.selected[0].receivedAmount2) ;
         this.Paidamount =this.Paidamount.toFixed(3);
-        this.selected[0].receivedAmount= '0.'+this.decimalSize;
-        this.selected[0].taxChallan= '0.'+this.decimalSize;
+        this.selected[0].receivedAmount= this.selected[0].receivedAmount2+this.decimalSize;
+        this.selected[0].taxChallan= this.selected[0].taxChallan2+this.decimalSize;
+        }else{
+          this.selected = newrow; 
+          this.result=parseFloat(this.result) +parseFloat(this.selected[0].receivedAmount);
+          if(this.selected[0].taxChallan != "" && this.selected[0].taxChallan != null){
+            this.result = this.result +parseFloat(this.selected[0].taxChallan)
+          }
+          this.result =this.result+'.'+this.decimalSize;
+          // this.result=row.receivedAmount 
+          this.Paidamount =  parseFloat(this.Paidamount) -parseFloat(this.selected[0].receivedAmount) ;
+          this.Paidamount =this.Paidamount.toFixed(3);
+          this.selected[0].receivedAmount= '0.'+this.decimalSize;
+          this.selected[0].taxChallan= '0.'+this.decimalSize;
+        }
+     
       }
       this.selected.push(...this.selected);
           this.rows = [...this.rows]

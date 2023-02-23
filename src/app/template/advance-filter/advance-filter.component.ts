@@ -95,6 +95,9 @@ export class AdvanceFilterComponent implements OnInit {
     if(this.loggedInDepartmentName == "Home Textile & Garment"){
       this.router.navigate(['/contract/active-contract-details'], { queryParams: {id: obj.id} });
     }
+    else if(this.loggedInDepartmentName == "Comber noil"){
+      this.router.navigate(['/FabCot/active-contract-details-combernoil-local'], { queryParams: {id: obj.id} });
+    }
     else{
 
       this.router.navigate(['/FabCot/active-contract-details'], { queryParams: {id: obj.id} });
