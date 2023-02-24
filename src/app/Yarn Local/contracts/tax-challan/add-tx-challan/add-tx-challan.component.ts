@@ -7,6 +7,7 @@ import { Dateformater } from 'src/app/shared/dateformater';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { flatten } from '@angular/compiler';
 
 @Component({
   selector: 'app-add-tx-challan',
@@ -110,7 +111,21 @@ export class AddTxChallanComponent implements OnInit {
 
 
   addChallan() {
+    let item=[]
+    this.rows.forEach(childObj=> {
+      this.saleInvoiceIds.forEach(childObj2=> {
+        if(childObj2 ==childObj.saleInvoiceId){
+      let varr = {
+        "saleInvoiceId": childObj.saleInvoiceId,
+        "taxChallan": childObj.challanTaxChallan,
+        // "receivedAmount": childObj.receivedAmount,
+        // "saleInvoiceAmountAfterTax": childObj.saleInvoiceAmountAfterTax,
+      }
 
+      item.push(varr)
+    }
+    });
+});
       let varr = {
         "buyerId": this.data.buyerId,
         "sellerId": this.data.sellerId,
@@ -118,7 +133,9 @@ export class AddTxChallanComponent implements OnInit {
         "amount": this.data.amount,
         "currencyId": this.data.currencyId,
         "cprNumber": this.data.cprNumber,
-        "remarks": this.data.remarks
+        "remarks": this.data.remarks,
+        "objTaxChallanPayment": item,
+        "saleInvoiceIds": this.saleInvoiceIds,
       
    
       }
@@ -154,12 +171,12 @@ this.http.post(`${environment.apiUrl}/api/YarnContracts/AddTaxChallan`, varr)
     this.amountGivenToCalculate=event.target.value;
     this.amountGivenToCalculate = this.amountGivenToCalculate +'.000';
     this.data.taxChalan = 0;
-  
+  this.result=this.data.amount
 }
 onBlurMethod(event){
 if(event != undefined){
   setTimeout(()=>{                           
-    this.isAmountDisabled =true;
+    this.isAmountDisabled =false;
 }, 3000);
   
 
@@ -177,12 +194,16 @@ this.isAmountDisabled =false;
 
 
 
-    this.http.get(`${environment.apiUrl}/api/Contracts/GetContractByBuyerSellerId/`+this.buyerNameId +'/'+ this.sellerNameId).
+    this.http.get(`${environment.apiUrl}/api/Contracts/GetContractByBuyerSellerId/`+this.buyerNameId +'/'+ this.sellerNameId +'/'+ true).
     subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
         this.rows = this.response.data;
-    
+        this.rows.forEach(childObj2=> {
+          childObj2.taxreceivedAmount="0.00";
+          childObj2.challanTaxChallan2=childObj2.challanTaxChallan
+          // childObj2.taxreceivedAmount="0.00";
+        });
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -197,38 +218,59 @@ this.isAmountDisabled =false;
     if(event.currentTarget.checked == true){
       this.saleInvoiceIds.push(row.saleInvoiceId);
       if(row !=null){
-       
-        if( this.result != null){
-          if(this.result <  this.selected[0].saleInvoiceAmount){
+         if(this.selected[0].taxChallanPaid  == false && this.selected[0].taxChallan == this.result){
+         
+         this.selected[0].taxreceivedAmount = this.result;
+         this.selected[0].challanTaxChallan += this.result;
+         this.result=(this.result - this.result);
+         this.selected[0].balanceAmount = this.result;
+         this.toastr.error("Partial  Value For this Invoice", 'Message.');
+   }
+   else if(this.selected[0].taxChallanPaid ==true && this.result > this.selected[0].taxChallan){
+    
+    this.selected[0].taxreceivedAmount += this.selected[0].balanceAmount;
+    this.selected[0].challanTaxChallan += this.selected[0].balanceAmount;
+    this.result=(this.result - this.selected[0].balanceAmount);
+    this.selected[0].balanceAmount= "0.00";
+   }
+   else if(this.selected[0].taxChallanPaid == false && this.result > this.selected[0].taxChallan){
+   this.selected[0].taxreceivedAmount = this.selected[0].taxChallan
+   this.selected[0].challanTaxChallan = this.selected[0].taxChallan
+   this.result=(this.result - parseFloat(this.selected[0].taxChallan));
+   this.result=this.result.toFixed(2)
+  //  if(this.selected[0].taxChallan == this.selected[0].challanTaxChallan){}
+   this.toastr.error("Partial  Value For this Invoice", 'Message.');}
+        // if( this.result != null){
+        //   if(this.result <  this.selected[0].saleInvoiceAmount){
           
-            this.selected[0].paidAmount =this.result;
-            this.result= this.result -this.selected[0].saleInvoiceAmount;
-          }
+        //     this.selected[0].paidAmount =this.result;
+        //     this.result= this.result -this.selected[0].saleInvoiceAmount;
+        //   }
         
-          if(this.result <0 ){
-            this.toastr.error("Partial  Value", 'Message.');
+        //   if(this.result <0 ){
+        //     this.toastr.error("Partial  Value", 'Message.');
            
-          }
-        }
-        else{
-          if(parseInt(this.amountGivenToCalculate) >  parseInt(this.selected[0].saleInvoiceAmount)){
-            this.selected[0].paidAmount=this.selected[0].saleInvoiceAmount
-            this.result= this.amountGivenToCalculate-this.selected[0].paidAmount
-            this.result =this.result;
-          }
-          else if(parseInt(this.amountGivenToCalculate) <  parseInt(this.selected[0].saleInvoiceAmount)){
-            this.selected[0].paidAmount =this.amountGivenToCalculate;
-            this.result =this.amountGivenToCalculate -this.amountGivenToCalculate;
-            this.toastr.error("Partial  Value", 'Message.');
-             this.result =this.result.replace('.000','');
-          }
-          else{
-            this.result =this.amountGivenToCalculate -  this.selected[0].saleInvoiceAmount;
-            this.selected[0].paidAmount= this.selected[0].saleInvoiceAmount;
+        //   }
+        // }
+        // else{
+        //   if(parseInt(this.amountGivenToCalculate) >  parseInt(this.selected[0].saleInvoiceAmount)){
+        //     this.selected[0].paidAmount=this.selected[0].saleInvoiceAmount
+        //     this.result= this.amountGivenToCalculate-this.selected[0].paidAmount
+        //     this.result =this.result;
+        //   }
+        //   else if(parseInt(this.amountGivenToCalculate) <  parseInt(this.selected[0].saleInvoiceAmount)){
+        //     this.selected[0].paidAmount =this.amountGivenToCalculate;
+        //     this.result =this.amountGivenToCalculate -this.amountGivenToCalculate;
+        //     this.toastr.error("Partial  Value", 'Message.');
+        //      this.result =this.result.replace('.000','');
+        //   }
+        //   else{
+        //     this.result =this.amountGivenToCalculate -  this.selected[0].saleInvoiceAmount;
+        //     this.selected[0].paidAmount= this.selected[0].saleInvoiceAmount;
 
-          }
-        }
-        this.result =this.result +'.000';
+        //   }
+        // }
+        // this.result =this.result +'.000';
         // this.selected[0].paidAmount= this.selected[0].saleInvoiceAmount;
            this.selected.push(...this.selected);
           this.rows = [...this.rows]
@@ -242,22 +284,40 @@ this.isAmountDisabled =false;
       this.saleInvoiceIds.forEach((element,index)=>{
         if(element==row.saleInvoiceId) this.saleInvoiceIds.splice(index,1);
      });
-      if( this.result != null){
+      if( this.result != "0.000"){
         let newrow =this.rows.filter(r=>r.saleInvoiceId ==row.saleInvoiceId)
         this.selected = newrow; 
-        this.result=0
-        this.result=row.paidAmount 
-        this.selected[0].paidAmount= 0;
+        this.result = parseFloat(this.result) + parseFloat(this.selected[0].challanTaxChallan)
+        this.result=this.result.toFixed(2)
+        if(this.selected[0].challanTaxChallan2 != null){
+          this.selected[0].challanTaxChallan =this.selected[0].challanTaxChallan2
+        }
+        else{
+          this.selected[0].challanTaxChallan= "0.00"
+        }
         
-        // parseInt(this.result) + parseInt(row.paidAmount);
 
         this.selected.push(...this.selected);
           this.rows = [...this.rows]
       }
+      else if(this.result == "0.000"){
+        this.selected[0].taxreceivedAmount -= this.selected[0].challanTaxChallan
+        let valam=this.selected[0].challanTaxChallan
+        this.result=(valam +parseFloat(this.result)).toString();
+        if(this.selected[0].challanTaxChallan2 == null){
+          this.selected[0].challanTaxChallan ="0.00"
+        }
+        else{
+          this.selected[0].challanTaxChallan -= this.selected[0].challanTaxChallan2
+        }
+        // this.selected[0].challanTaxChallan -= this.selected[0].challanTaxChallan2
+        // this.selected[0].balanceAmount -= this.selected[0].challanTaxChallan
+      }
     }
-   
+  //  let paid = Boolean
   
-  }
+ 
+   }
 
 
 }

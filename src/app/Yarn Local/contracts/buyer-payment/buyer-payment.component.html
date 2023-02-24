@@ -163,7 +163,7 @@
 
                 <ngx-datatable-column name="challan Amount"  prop="challanAmount">
                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                        {{row.challanAmount}}
+                        {{row.challanAmount | number:'2.2-2' }}
                     </ng-template>
                 </ngx-datatable-column>
 
