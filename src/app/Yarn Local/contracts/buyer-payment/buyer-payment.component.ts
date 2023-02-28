@@ -23,6 +23,7 @@ export class BuyerPaymentComponent implements OnInit {
 
   response: any;
   rows: any = [];
+  temp: any = [];
   columns: any = [];
   data: any = {};
   @ViewChild('myTable') table: DatatableComponent;
@@ -40,7 +41,7 @@ export class BuyerPaymentComponent implements OnInit {
   ngOnInit(): void {
     this.fetch((data) => {
       this.buyerpaymentFilter = [...data];
-
+this.temp=data
       this.rows = data;
       this.buyerpaymentcount = this.rows.length;
     });
@@ -65,6 +66,20 @@ export class BuyerPaymentComponent implements OnInit {
     }, (reason) => {
       // on dismiss
     });
+  }
+  search(event) {
+    const val = event.target.value.toLowerCase();
+    // filter our data
+    const temp = this.temp.filter(function (d) {
+      return (
+        d.buyerName.toLowerCase().indexOf(val) !== -1 ||
+        d.sellerName.toLowerCase().indexOf(val) !== -1 ||
+        // d.invoiceNumber.indexOf(val) !== -1 ||
+        // d.chequeNo.toString().indexOf(val) !== -1 ||
+
+         !val);
+    });
+    this.rows = temp;
   }
 
   fetch(cb) {

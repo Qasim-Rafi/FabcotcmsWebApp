@@ -44,7 +44,7 @@
                             <div class="form-group row">
                                 <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
                                 <div class="col-sm-9">
-                                    <input type="text" placeholder="Search.... "
+                                    <input type="text" placeholder="Search...."  (keyup)="search($event)"
                                         class="input form-control form-control-sm">
                                 </div>
                             </div>
@@ -112,7 +112,11 @@
                     </ng-template>
                 </ngx-datatable-column>
 
-
+                <ngx-datatable-column name="Invoice#" [width]="300" prop="invoiceNumber">
+                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                        {{row.invoiceNumber}}
+                    </ng-template>
+                </ngx-datatable-column>
 
                 <ngx-datatable-column name="Payment Date"  prop="paymentDate">
                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>

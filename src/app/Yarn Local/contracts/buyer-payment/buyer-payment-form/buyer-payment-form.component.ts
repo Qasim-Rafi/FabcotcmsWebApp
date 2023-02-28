@@ -134,12 +134,20 @@ export class BuyerPaymentFormComponent implements OnInit {
       }
     })
   }
+checkadd(){
+  if(this.saleInvoiceIds.length > 0 && this.result == "0.00"){
 
+  }
+  else{
+    this.addPayment() 
+  }
+}
 
   addPayment() {
     // this.paymentAdddata.paymentDate = this.dateformater.toModel(this.paymentAdddata.paymentDate);
     // this.paymentAdddata.depositeDate = this.dateformater.toModel(this.paymentAdddata.depositeDate);
-let item=[]
+if(this.saleInvoiceIds.length > 0 && this.result == "0.00"){
+    let item=[]
     this.rows.forEach(childObj=> {
       this.saleInvoiceIds.forEach(childObj2=> {
         if(childObj2 ==childObj.saleInvoiceId){
@@ -182,6 +190,7 @@ this.spinner.show();
           if (this.response.success == true) {
             // this.data = this.response.data;
             this.toastr.success(this.response.message, 'Message.');
+            this.navigateBuyerPaymentForm()
 this.spinner.hide();
           }
           else {
@@ -195,6 +204,10 @@ this.spinner.hide();
           console.log(messages);
           this.spinner.hide();
         });
+      }
+      else{
+        this.toastr.error("Please check Invoice / amount Not Entered", 'Message.');
+      }
   }
   getbyid() {
 
