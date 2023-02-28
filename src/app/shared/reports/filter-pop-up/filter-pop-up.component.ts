@@ -106,7 +106,7 @@ export class FilterPopUpComponent implements OnInit {
        "billNo":this.data.billNo == undefined ? '': this.data.billNo,
        "saleInvoiceNo":this.data.saleInvoiceNo == undefined ? '': this.data.saleInvoiceNo,
        "articleId":this.data.articleId ==undefined ? 0 :this.data.articleId,
-       "maturityStatus":this.data.maturityStatus == undefined? "null": this.data.maturityStatus,
+       "maturityStatus":this.data.maturityStatus == undefined? "Matured": this.data.maturityStatus,
        "paymentStatus":this.data.paymentStatus == undefined? "null":this.data.paymentStatus
 
 

@@ -1,113 +1,86 @@
-.add{
-    width: 100%;
-    display: inline;
-    transition: inline 5s ease-out;
-    opacity: 1;
-  }
-  .remove{
-    width: 0%;
-    display: none;
-    transition: opacity 1s ease-out;
-    opacity: 0;
-  }
-  .yellow-bg {
-    background-color: #f8ac59;
-    color: #ffffff;
-  }
-  .blue-bg {
-    background-color: #1c84c6;
-    color: #ffffff;
-  }
-  .navy-bg {
-    background-color: #23c6c8;
-    color: #ffffff;
-  }
-  .widget{
-    border-radius: 5px;
-    padding: 15px 20px;
-    margin-bottom: 0px !important;
-    margin-top: 0px !important;
-    height: 75px !important;
-}
-  .text-right {
-    text-align: right !important;
-  }
-  .fa-4x {
-    font-size: 4em;
-  }
-  .lazur-bg {
-    background-color: #23c6c8;
-    color: #ffffff;
-  }
 
-  .topbox {
-    background-color: #ffffff;
-    color: inherit;
-    padding: 15px 20px 20px 20px;
-    border-color: #e7eaec;
-    border-image: none;
-    border-style: solid solid none;
-    border-width: 1px 0;
-  }
-  .topbox-margin-top-text {
-    font-size: 18px;
-    padding-top: 5px;
-    color: gray;
-    font-weight: 400;
-  }
-  
-  .topbox-margin-mid-text {
-    margin: 0 !important;  
-    font-size: 30px;
-    font-weight: 100;
-}
-.topbox-small-text {
-  font-size: 14px;
-  color: #ffffff;
-}
-.date-Label{
-    font-size: 16px!important;
-    font-weight: 200;
-}
-.date{
-    font-size: 30px;
-    font-weight: 200;
-}
-.fontSize{
-  font-size: 15px !important;
-}
-.clr{
-  background-color: white;
-}
-.widget {
-  border-radius: 5px;
-  padding: 15px 20px;
-  margin-bottom: 10px;
-  margin-top: 10px;
-}
-.yellow-bg {
-  background-color: #f8ac59;
-  color: #ffffff;
-}
-.text-right {
-  text-align: right !important;
-}
-.fa-4x {
-  font-size: 4em;
-}
 
-.lazur-bg {
-  background-color: #23c6c8;
-  color: #ffffff;
-}
-
-/* .datatable-body {
-max-height: 70vh;
-overflow-y: scroll !important;
-overflow-x: hidden;
+/* .table {
+    width: 95% !important;
+    margin-bottom: 1rem;
+    color: #212529;
+    background-color: transparent;
 } */
-.totalAmnt{
-  margin-left: 570px;
-  margin-top: 10px;
-  font-weight: bold;
+
+/* *,
+*:after,
+*:before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  --primary-color: #4f46e5;
+} */
+
+.checkbox-input {
+  opacity: 0;
+  visibility: hidden;
+  margin: 0;
+}
+
+/* Change icon, border and text color when radio is checked */
+.checkbox-input:checked + .checkbox-tile,
+.checkbox-input:checked + .checkbox-tile span {
+  border-color: #4f46e5;
+  color: #4f46e5;
+}
+
+/* Checkbox display */
+.checkbox-input:checked + .checkbox-tile::before {
+  transform: scale(1);
+  opacity: 1;
+  background-color: #4f46e5;
+  background-color: #4f46e5;
+}
+
+/* Checkbox icon and text */
+.checkbox-tile {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  width: 86px !important;
+  height: 40px !important;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  transition: 0.1s ease;
+  cursor: pointer;
+  position: relative;
+  top: -20px !important;
+}
+
+.checkbox-tile:hover {
+  background-color: #FBB040  !important;
+}
+
+/* Checkmark (icon inside checker) */
+.checkbox-tile::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  background-color: #fff;
+  border-radius: 50%;
+  top: 0.25rem;
+  left: 0.25rem;
+  opacity: 0;
+  transform: scale(0);
+  transition: 0.25s ease;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='192' height='192' fill='%23FFFFFF' viewBox='0 0 256 256'%3E%3Crect width='256' height='256' fill='none'%3E%3C/rect%3E%3Cpolyline points='216 72.005 104 184 48 128.005' fill='none' stroke='%23FFFFFF' stroke-linecap='round' stroke-linejoin='round' stroke-width='32'%3E%3C/polyline%3E%3C/svg%3E");
+  border: 2px solid #4f46e5;
+  background-size: 12px;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
+.table {
+  width: 100% !important;
+  margin-bottom: 1rem;
+  color: #212529;
+  background-color: initial;
 }

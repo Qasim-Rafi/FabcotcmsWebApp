@@ -341,11 +341,13 @@ this.spinner.hide();
    //this.amountGivenToCalculate= this.amountGivenToCalculate * 1/100 99
   //  let ab=(this.amountGivenToCalculate * 1) / 100
   //       let am = this.amountGivenToCalculate + ab
+         this.amountGivenToCalculate =parseFloat(this.data.amount)
     let taxcal  = this.amountGivenToCalculate * (this.data.taxChalan / 99);
     // (100- this.data.taxChalan)
+    taxcal=parseFloat(taxcal.toFixed(2))
     if(taxcal != 0){
-      this.amountGivenToCalculate = parseFloat(this.amountGivenToCalculate + taxcal)
-       this.amountGivenToCalculate =parseFloat(this.amountGivenToCalculate)
+      // this.amountGivenToCalculate = parseFloat(this.amountGivenToCalculate + taxcal)
+      //  this.amountGivenToCalculate =parseFloat(this.amountGivenToCalculate)
        this.result =Math.round(this.amountGivenToCalculate).toString() +'.'+this.decimalSize;
     }
     else if(taxcal == 0){
@@ -375,7 +377,7 @@ this.spinner.hide();
             this.selected[0].receivedAmount=this.selected[0].saleInvoiceAmountAfterTax;
             
             if(this.calculatedTax !=null){
-              let taxis =this.selected[0].receivedAmount * (this.taxpercentage/100);
+              let taxis =((this.selected[0].receivedAmount * this.taxpercentage)/99);
               this.selected[0].taxChallan =taxis.toFixed(2); 
               this.selected[0].receivedAmount=this.selected[0].receivedAmount - this.selected[0].taxChallan;
               this.selected[0].receivedAmount=this.selected[0].receivedAmount;
@@ -395,7 +397,7 @@ this.spinner.hide();
           else if(parseInt(this.result) ==  parseInt(this.selected[0].saleInvoiceAmountAfterTax)){
             this.selected[0].receivedAmount=this.selected[0].saleInvoiceAmountAfterTax;
             if(this.calculatedTax !=undefined){
-              let taxis =this.result * (this.taxpercentage/100);
+              let taxis =((this.result * this.taxpercentage)/99);
               this.selected[0].taxChallan =taxis.toFixed(2); 
               this.selected[0].receivedAmount= this.selected[0].receivedAmount -this.selected[0].taxChallan;
               this.selected[0].receivedAmount=this.selected[0].receivedAmount;
@@ -420,7 +422,7 @@ this.spinner.hide();
              else{
 
                this.selected[0].receivedAmount =this.selected[0].receivedAmount !="0.00"? (parseInt(this.selected[0].receivedAmount) +parseInt(this.result)).toString():this.result;
-               let taxis = this.selected[0].receivedAmount * (this.data.taxChalan/100);
+               let taxis = ((this.selected[0].receivedAmount * this.data.taxChalan)/99);
                this.selected[0].taxChallan =taxis.toFixed(2); 
               this.result =this.result - (this.selected[0].receivedAmount2 !="0.00"?(this.selected[0].receivedAmount -this.selected[0].receivedAmount2):this.selected[0].receivedAmount);
               let value1 =parseInt(this.selected[0].receivedAmount) + parseInt(this.selected[0].taxChallan)
@@ -564,9 +566,9 @@ this.spinner.hide();
           this.selected = newrow; 
           this.result=parseFloat(this.result) +parseFloat(this.selected[0].receivedAmount);
           if(this.selected[0].taxChallan != "" && this.selected[0].taxChallan != null){
-            this.result = this.result +parseFloat(this.selected[0].taxChallan)
+            // this.result = this.result +parseFloat(this.selected[0].taxChallan)
           }
-          this.result =this.result+'.'+this.decimalSize;
+          this.result =this.result.toString()+'.'+this.decimalSize;
           // this.result=row.receivedAmount 
           this.Paidamount =  parseFloat(this.Paidamount) -parseFloat(this.selected[0].receivedAmount) ;
           this.Paidamount =this.Paidamount.toFixed(3);

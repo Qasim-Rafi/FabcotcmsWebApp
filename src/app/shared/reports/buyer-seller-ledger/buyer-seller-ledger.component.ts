@@ -22,16 +22,10 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
   styleUrls: ['./buyer-seller-ledger.component.css']
 })
 export class BuyerSellerLedgerComponent implements OnInit {
-
-  isbuyer:boolean=false;
-  isseller:boolean=false;
-  data4:any =[];
-  buyerName:any;
-  sellerName:any;
-  bags:any;
-  outstanding:any;
-  buyerlookup:any =[];
-  sellerlookup:any =[];
+  clearData: any;
+  departName:any;
+sellerdrop:any=[]
+datafiltercontractpopover:any={};
   data3: any = [];
   columns: any = [];
   response: any;
@@ -49,6 +43,8 @@ queryParems: any = {};
 reportNameBreadCrums:any;
 dateformater: Dateformater = new Dateformater();
   allContractReport :  any = []
+  department:any=[]
+  Filter :  any = []
   loggedInDepartmentName :  any;
 
   totalAAT:any;
@@ -65,16 +61,34 @@ dateformater: Dateformater = new Dateformater();
 
     private router: Router,) {
       let body = document.getElementsByTagName('body')[0];
-    body.classList.add('sidebar-collapse'); 
-    let footer = document.getElementsByTagName('footer')[0];
-    footer.classList.add('d-none'); 
+      body.classList.add('sidebar-collapse'); 
     }
 
   ngOnInit(): void {
+    // this.GetDeapartmentDropdown();
     this.queryParems = this.route.snapshot.queryParams;
     this.reportNameBreadCrums =this.queryParems.reportName;
     this.loggedInDepartmentName=localStorage.getItem('loggedInDepartmentName');
+    this.getsellerslookup();
     this.getAllContractReport();
+    let departmentIdFromAdmin=localStorage.getItem('loggedInDepartmentId');
+    let named=localStorage.getItem('departName');
+
+     this.departName =named;
+  }
+  GetDeapartmentDropdown() {
+    this.service.getDepartments().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        this.department = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
+  getfilterdata(){
+
   }
   breadcrumbMethod(name){
     if(name =="Main Menu"){
@@ -89,6 +103,13 @@ dateformater: Dateformater = new Dateformater();
 }
 resetfilter(){
   this.getAllContractReport();
+}
+updateFilter(event) {
+  const val = event.target.value.toLowerCase();
+  const temp = this.Filter.filter(function (d) {
+    return d.restaurnatDishName.toLowerCase().indexOf(val) !== -1 || !val;
+  });
+  this.allContractReport = temp;
 }
 adfilter(){
   // const modalRef = this.modalService.open(FilterSellerwisepaymentreportComponent, { centered: true ,size:'sm'});
@@ -138,9 +159,9 @@ GetSellersDropdown() {
 Search(event) {
   const val = event.target.value.toLowerCase();
   const temp = this.search.filter(function (d) {
-    return (d.autoContractNumber.toLowerCase().indexOf(val) !== -1 
-    || d.buyerName.toLowerCase().indexOf(val) !==-1   ||
-    d.sellerName.toLowerCase().indexOf(val) !==-1   ||
+    return (d.contractNo.toLowerCase().indexOf(val) !== -1 
+    || d.manualContractNumber.toLowerCase().indexOf(val) !==-1   ||
+    d.status.toLowerCase().indexOf(val) !==-1   ||
     !val);
   });
   this.allContractReport = temp;
@@ -148,18 +169,67 @@ Search(event) {
 clearfunction(){
   this.filterForm.reset();
 }
+getsellerslookup(){
+  let departmentIdFromAdmin=localStorage.getItem('loggedInDepartmentId');
+  this.http.
+    get(`${environment.apiUrl}/api/Lookups/Sellers/`+departmentIdFromAdmin)
+    .subscribe(
+      res => {
 
+        this.response = res;
+        if (this.response.success == true  && this.response.data.length != 0) {
+          this.sellerdrop = this.response.data;
 
+        }
+        else if(this.response.data.obj.length == 0) {
+          this.toastr.error("No such sellers Exist", 'Message.');
+       this.spinner.hide();
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+       this.spinner.hide();
+        }
+
+      }, (err: HttpErrorResponse) => {
+        const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+        this.toastr.error(messages.toString(),'Message.');
+        this.spinner.hide();
+
+      });
+}
+loaddataforpopover(row){
+  row
+  let data= this.allContractReport.filter(x=>x.contractId == row.contractId);
+  if(data[0].totalReceived == null || data[0].totalReceived ==""){
+    data[0].balanceAmount = data[0].totalAmount - data[0].totalReceived;
+  this.datafiltercontractpopover =data[0]
+}
+else{
+  data[0].balanceAmount = data[0].totalAmount - data[0].totalReceived;
+  let paid  = data[0].totalAmount * (1 / 99);
+  let taxcal  = data[0].totalAmount - paid;
+  data[0].totalReceived=paid
+  data[0].texchalan=taxcal
+  this.datafiltercontractpopover =data[0]
+}
+}
 getAllContractReport(){
   this.spinner.show();
+  let departmentIdFromAdmin=localStorage.getItem('loggedInDepartmentId');
+  let named=localStorage.getItem('departName');
+
+  this.departName =named;
+     
   let varr = {
     "buyerId":this.data3.buyerId ==undefined ? 0 :this.data3.buyerId,
     "sellerId":this.data3.sellerId == undefined?0 :this.data3.sellerId,
     "autoContractNumber":this.data3.autoContractNumber == undefined ? '': this.data3.autoContractNumber,
     "startContractDate":this.data3.startContractDate == undefined? '': this.dateformater.toModel(this.data3.startContractDate),
     "endContractDate":this.data3.endContractDate == undefined?'':this.dateformater.toModel(this.data3.endContractDate),
-    "status" : "All"
-
+    "status" : "All",
+    "departmentId" : departmentIdFromAdmin,
+    "paid":this.data3.paid == undefined ? false : this.data3.paid 
+    
   }
   this.http.
     post(`${environment.apiUrl}/api/Contracts/GetSellerPaymentDetailsSellerWise`, varr)
@@ -170,14 +240,14 @@ getAllContractReport(){
         if (this.response.success == true  && this.response.data.length != 0) {
           this.toastr.success(this.response.message, 'Message.');
           this.allContractReport = this.response.data.list;
-
-
-          this.buyerlookup = this.response.data.list;
-          this.sellerlookup = this.response.data.list;
-
-          this.sellerlookup = this.removeDuplicates(this.sellerlookup, "sellerName")
-          this.buyerlookup = this.removeDuplicates(this.buyerlookup, "buyerName")
-
+          this.Filter = this.response.data.list;
+                  //this.sellerdrop=this.response.data.list;      
+          //         this.sellerdrop = this.sellerdrop.filter((el, i, a) => i === a.indexOf(el))  
+          // this.sellerdrop = this.sellerdrop.filter((test, index, array) =>
+          //   index === array.findIndex((findTest) =>
+          //     findTest.sellerName === test.sellerName
+          //   )
+          // ); 
               this.totalReceivedAmount=this.response.data.totalReceivedAmount;
               this.totalAAT =this.response.data.totalSaleInvoiceAmountAfterTax;
               this.balanceAmount =this.response.data.balanceAmount;
@@ -205,107 +275,20 @@ getAllContractReport(){
 
       });
 }
-removeDuplicates(myArray, Prop) {
-  return myArray.filter((obj, pos, arr) => {
-    return arr.map(mapObj => mapObj[Prop]).indexOf(obj[Prop]) === pos;
-  });
-}
 
-
-taxapplyMethod(event){
-
-  let tax=event.target.value
-  for(let i=0; i<this.allContractReport.length; i++){
-
-    this.allContractReport[i].taxamountDispaly =(parseFloat(this.allContractReport[i].saleInvoiceAmount) * parseFloat(tax)) / 100
-
-  }
-
-
-
-}
-updatetaxcall(){
-  
-}
-
-changeseller(sellerid,name){
-  if(sellerid == undefined){
-    this.sellerName =null;
-    this.allContractReport =this.response.data.list;
-  }
-  else{
-   let name =this.response.data.list.filter(x=>x.sellerId == sellerid);
-        this.sellerName =name[0].sellerName;
-    this.isseller =true;
-      this.allContractReport=this.response.data.list.filter(x=>x.sellerId == sellerid);
-      // this.allContractReport =   this.allContractReport.filter((v,i) =>  this.allContractReport.findIndex(item => item.buyerId == v.buyerId) === i);
-      this.outstanding=this.allContractReport .reduce((n, {saleInvoiceAmount}) => n + parseFloat(saleInvoiceAmount) ,0)
-          var okk =this.allContractReport .reduce((n, {receivedAmount}) => n + parseFloat(receivedAmount) ,0)
-          this.outstanding =parseFloat(this.outstanding) - parseFloat(okk)
-      this.bags=this.allContractReport .reduce((n, {quantity}) => n + quantity, 0)
-
-      for(let b = 0; b < this.allContractReport.length; b++){
-
-        var sum = parseFloat(this.allContractReport[b].saleInvoiceAmount) - parseFloat(this.allContractReport[b].receivedAmount);
-              if(sum == 0){
-               this.allContractReport[b].ageing = 0
-              }
-  
-       }
-  }
-
-}
-changesbuyer(buyerid,name){
-  if(buyerid == undefined){
-    this.buyerName =null;
-    this.allContractReport =this.response.data.list;
-
-  }
-  else{
-  this.isbuyer =true;
-  let name =this.response.data.list.filter(x=>x.buyerId == buyerid);
-  this.buyerName =name[0].buyerName;
-  this.allContractReport=this.response.data.list.filter(x=>x.buyerId == buyerid);
-  // this.allContractReport =   this.allContractReport.filter((v,i) =>  this.allContractReport.findIndex(item => item.sellerId == v.sellerId) === i);
-
-  this.outstanding=this.allContractReport .reduce((n, {saleInvoiceAmount}) => n + parseFloat(saleInvoiceAmount) ,0)
-  var okk =this.allContractReport .reduce((n, {receivedAmount}) => n + parseFloat(receivedAmount) ,0)
-  this.outstanding =parseFloat(this.outstanding) - parseFloat(okk)
-  this.bags=this.allContractReport .reduce((n, {quantity}) => n + quantity, 0)
-
-      for(let b = 0; b < this.allContractReport.length; b++){
-
-      var sum = parseFloat(this.allContractReport[b].saleInvoiceAmount) - parseFloat(this.allContractReport[b].receivedAmount);
-            if(sum == 0){
-             this.allContractReport[b].ageing = 0
-            }
-
-     }
-  }
-
-
-  if(this.data4.sellerId != undefined){
-    this.allContractReport=this.response.data.list.filter(x=>x.buyerId == buyerid && x.sellerId == this.data4.sellerId );
-
-    this.outstanding=this.allContractReport .reduce((n, {saleInvoiceAmount}) => n + parseFloat(saleInvoiceAmount) ,0)
-    var okk =this.allContractReport .reduce((n, {receivedAmount}) => n + parseFloat(receivedAmount) ,0)
-    this.outstanding =parseFloat(this.outstanding) - parseFloat(okk)
-    this.bags=this.allContractReport .reduce((n, {quantity}) => n + quantity, 0)
-  }
-
-
-
-}
 getAllContractReportFilter(filterdata){
   this.spinner.show();
+  let departmentIdFromAdmin=localStorage.getItem('loggedInDepartmentId');
+  let d= this.department.filter(x=>x.id == departmentIdFromAdmin);
+    this.departName =d[0].name;
   let varr = {
     "buyerId":this.data3.buyerId ==undefined ? 0 :this.data3.buyerId,
     "sellerId":this.data3.sellerId == undefined?0 :this.data3.sellerId,
     "autoContractNumber":this.data3.autoContractNumber == undefined ? '': this.data3.autoContractNumber,
-    "startContractDate":this.data3.startContractDate == undefined? 'null': this.dateformater.toModel(this.data3.startContractDate),
-    "endContractDate":this.data3.endContractDate == undefined?'null':this.dateformater.toModel(this.data3.endContractDate),
-    "status" : "All"
-
+    "startContractDate":this.data3.startContractDate == undefined? '': this.dateformater.toModel(this.data3.startContractDate),
+    "endContractDate":this.data3.endContractDate == undefined?'':this.dateformater.toModel(this.data3.endContractDate),
+    "status" : "All",
+    "departmentId" : departmentIdFromAdmin
   }
   this.http.
     post(`${environment.apiUrl}/api/Contracts/GetSellerPaymentDetailsSellerWise`, filterdata)
@@ -352,26 +335,74 @@ toggleExpandGroup(group) {
 onDetailToggle(event) {
   console.log('Detail Toggled', event);
 }
+
+
+trackTotal(sumdata){
+  let total = 0
+    for (let i = 0; i < sumdata.value.length; i++) {
+      if(sumdata.value[i].saleInvoiceAmount != "" && sumdata.value[i].saleInvoiceAmount != null){
+        total += parseFloat(sumdata.value[i].saleInvoiceAmount) - parseFloat(sumdata.value[i].receivedAmount);
+      }
+      }
+    return total ==0? "":total
+
+}
+contractDetails(row) {
+  // const modalRef = this.modalService.open(SellerWisePaymentReportDetailsComponent, {
+  //   centered: true,
+  //   // size: 'lg',
+  // });
+  // modalRef.componentInstance.rowData = row;
+  // modalRef.result.then(
+  //   (data) => {
+  //     // on close
+  //     if (data == true) {
+  //     }
+  //   },
+  //   (reason) => {
+  //     // on dismiss
+  //   }
+  // );
+}
 // .......................................................................
 
 
 
 allContractExcelFile(){
   const filtered = this.allContractReport.map(row => ({
-  ContractNo: row.autoContractNumber,
+  Age:row.age,
+  ContractNo: row.contractNo,
   Buyer: row.buyerName,
   Seller: row.sellerName ,
-  InvoiceDate: row.saleInvoiceDateToDisplay,
-  InvoiceNo: row.saleInvoiceNo,
-  Bags: row.quantity +' '+ row.uom ,
-  Payable: row.saleInvoiceAmount  ,
-  Paid: row.receivedAmount,
-  Outstanding:(row.saleInvoiceAmount - row.receivedAmount),
-  Ageing: row.ageing ,
+  Date: row.date,
+  PONumber: row.poNumber,
+  Article: row.articleName ,
+  Rate: row.rate + row.rateUOMName ,
+   
+
+    Quantity: row.balanceQty,
+    QtyUOM:row.uomName,
+    Booking: row.booking ,
+    
+    Dispatch: row.dispatch ,
+    Balance: row.balanceQty ,
+    Cost: row.cost ,
+    SellerComm: row.sellerCommission ,
+    SellerCommAmount: row.sellerCommissionAmount ,
+    BuyerComm: row.buyerCommission ,
+    BuyerCommAmount: row.buyerCommissionAmount ,
+    PaymentTermSellerBuyer : row.paymentTerm ,
+    Status :row.status,
+    Agent : row.agent ,
+
+    
+
   }));
 
-  this.service.exportAsExcelFile(filtered, 'Buyer Seller Ledger Report');
+  this.service.exportAsExcelFile(filtered, 'All Contract Report');
+
 }
+
 
 allContractPdf() {
 
@@ -379,11 +410,11 @@ allContractPdf() {
     pageSize: 'A4',
     pageOrientation: 'Landscape',
     info: {
-      title: 'Buyer Seller Ledger Report'
+      title: 'All Contract List'
     },
     content: [
       {
-        text: 'Buyer Seller Ledger Report',
+        text: 'All Contract List',
         style: 'heading',
 
       },
@@ -391,37 +422,64 @@ allContractPdf() {
         margin: [-30 , 5 , 0 , 0 ],
         table:{
           headerRows : 1,
-          widths : [40, 130, 130, 60 , 50 , 60 , 60 , 60 , 60 , 60  
+          widths : [23, 35, 45, 45 , 30 , 23 , 40 , 25 , 30 , 35 , 37 , 35 , 30, 35 , 40 , 40 , 40, 40 
           ],
           body:[
             [
-            {text:'Contract#' , style:'tableHeader'} ,
+              {text:'Age' , style:'tableHeader' }
+            ,{text:'Contract#' , style:'tableHeader'} ,
             {text:'Buyer' , style:'tableHeader' }, 
             {text:'Seller' , style:'tableHeader' }, 
 
-            {text:'InvoiceDate'  , style:'tableHeader'} , 
-            {text:'Invoice#' , style:'tableHeader'} , 
-            {text:'Bags' , style:'tableHeader'},
+            {text:'Date'  , style:'tableHeader'} , 
+            {text:'PO#' , style:'tableHeader'} , 
+            {text:'Article' , style:'tableHeader'},
             
-            {text:'Payable'  , style:'tableHeader'} , 
-            {text:'Paid' , style:'tableHeader'} , 
-            {text:'Outstanding' , style:'tableHeader'},
-            {text:'Ageing'  , style:'tableHeader'} , 
+            {text:'Rate'  , style:'tableHeader'} , 
+            {text:'Qty Unit' , style:'tableHeader'} , 
+            {text:'Booking' , style:'tableHeader'},
+            {text:'Dispatch'  , style:'tableHeader'} , 
+            {text:'Balance' , style:'tableHeader'} , 
+            {text:'Cost' , style:'tableHeader'},
+            {text:'Seller Comm'  , style:'tableHeader'} , 
+            {text:'Seller Comm Amount'  , style:'tableHeader'} , 
+          
+            {text:'Payment Term S|B'  , style:'tableHeader'} , 
+            {text:'Status'  , style:'tableHeader'} , 
+            {text:'Agent' , style:'tableHeader'} , 
 
           ],
             ...this.allContractReport.map(row => (
               [
-                {text: row.autoContractNumber , style:'tableHeader2'} ,
-              {text:  row.buyerName , style:'tableHeader2'},
-              {text: row.sellerName, style:'tableHeader2'} ,
-              {text: row.saleInvoiceDateToDisplay , style:'tableHeader2'} ,
-               {text: row.saleInvoiceNo, style:'tableHeader2'} ,
-                {text:row.quantity +' '+ row.uom , style:'tableHeader2' }  ,
-                {text: row.saleInvoiceAmount , style:'tableHeader2'},
-                {text: row.receivedAmount , style:'tableHeader2'},
+                {text: row.age , style:'tableHeader2'} ,
+              {text:  row.contractNo , style:'tableHeader2'},
+              {text: row.buyerName, style:'tableHeader2'} ,
+              {text: row.sellerName , style:'tableHeader2'} ,
+               {text: row.date, style:'tableHeader2'} ,
+                {text:row.poNumber  , style:'tableHeader2' }  ,
+                {text: row.articleName , style:'tableHeader2'},
          
-               {text: (row.saleInvoiceAmount - row.receivedAmount), style:'tableHeader2'} ,
-                {text:row.ageing  , style:'tableHeader2' }  ,
+               {text: row.rate + "/" + row.rateUOMName, style:'tableHeader2'} ,
+                {text:row.quantityUOMName  , style:'tableHeader2' }  ,
+                {text: row.booking + " " + row.quantityUOMName , style:'tableHeader2'},
+            
+                 {text:row.dispatch + " " + row.quantityUOMName   , style:'tableHeader2' }  ,
+                 {text:row.balanceQty + " " + row.quantityUOMName   , style:'tableHeader2' }  ,
+                 {text: row.rateCurrencyName == 'PKR' ? "Rs." + row.cost : row.rateCurrencyName == 'USD' ? "$ " + row.cost : row.rateCurrencyName == 'EUR' ? "€ " + row.cost : row.rateCurrencyName == 'GBP' ? "GBP " + row.cost : row.cost, style:'tableHeader2'} ,
+                 {text:row.sellerCommission != "" ? row.sellerCommission + "%" : ""   , style:'tableHeader2' }  ,
+                 {text:   row.sellerCommissionAmount != '' ?   row.rateCurrencyName == 'PKR' ? "Rs." + "[" + row.sellerCommissionAmount + "]" : row.rateCurrencyName == 'USD' ? "$ " + "[" + row.sellerCommissionAmount + "]" : row.rateCurrencyName == 'EUR' ? "€ " + "[" + row.sellerCommissionAmount + "]" : row.rateCurrencyName == 'GBP' ? "GBP " + "[" + row.sellerCommissionAmount + "]" :  row.sellerCommissionAmount  : row.sellerCommissionAmount , style:'tableHeader2'} ,
+
+                 //{text:row.buyerCommission != "" ? row.buyerCommission + "%" : ""   , style:'tableHeader2' }  ,
+                 //{text: row.buyerCommissionAmount != '' ?  row.rateCurrencyName == 'PKR' ? "Rs." + "[" + row.buyerCommissionAmount + "]" : row.rateCurrencyName == 'USD' ? "$ " + "[" + row.buyerCommissionAmount + "]" : row.rateCurrencyName == 'EUR' ? "€ " + "[" + row.buyerCommissionAmount + "]" : row.rateCurrencyName == 'GBP' ? "GBP " + "[" + row.buyerCommissionAmount + "]" :  row.buyerCommissionAmount  :  row.buyerCommissionAmount  , style:'tableHeader2'} ,
+
+                //  {text:   row.sellerCommission != "" ? row.sellerCommission + "%" +    row.rateCurrencyName == 'PKR' ? "Rs." + "["  + row.sellerCommissionAmount + "]" : row.rateCurrencyName == 'USD' ? "$ " + "["  + row.sellerCommissionAmount + "]" : row.rateCurrencyName == 'EUR' ? "€ " + "["  + row.sellerCommissionAmount + "]" : row.rateCurrencyName == 'GBP' ? "GBP "+ "["  + row.sellerCommissionAmount + "]": row.cost : row.sellerCommission , style:'tableHeader2' }  ,
+                //  {text:   row.buyerCommission != "" ? row.buyerCommission + "%" +    row.rateCurrencyName == 'PKR' ? "Rs." + "["  + row.buyerCommissionAmount + "]" : row.rateCurrencyName == 'USD' ? "$ " + "["  + row.buyerCommissionAmount + "]" : row.rateCurrencyName == 'EUR' ? "€ " + "["  + row.buyerCommissionAmount + "]" : row.rateCurrencyName == 'GBP' ? "GBP "+ "["  + row.buyerCommissionAmount + "]": row.cost : row.buyerCommission , style:'tableHeader2' } 
+                 
+                 
+                 {text: row.paymentTerm , style:'tableHeader2'},
+                 {text: row.status , style:'tableHeader2'},
+                 {text: row.agent , style:'tableHeader2'},
+
 
               ]
             ))
@@ -442,5 +500,4 @@ allContractPdf() {
   };
   pdfMake.createPdf(docDefinition).print();
 }
-
 }

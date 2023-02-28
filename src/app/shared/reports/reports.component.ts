@@ -112,6 +112,22 @@ totalContainer:any;
     this.billingReportInvoiceWise.startDate = this.dateformater.toModel(this.billingReportInvoiceWise.startDate)
     this.billingReportInvoiceWise.endDate = this.dateformater.toModel(this.billingReportInvoiceWise.endDate)
     this.loggedInDepartmentName=localStorage.getItem('loggedInDepartmentName');
+    let varr = {
+      "buyerId":this.data.buyerId ==undefined ? 0 :this.data.buyerId,
+      "sellerId":this.data.sellerId == undefined?0 :this.data.sellerId,
+      "contractNo":this.data.contractNo == undefined ? '': this.data.contractNo,
+       "startInvoiceDate" :  this.data.startInvoiceDate == undefined?'':this.dateformater.toModel(this.data.startInvoiceDate),
+       "endInvoiceDate" :  this.data.endInvoiceDate == undefined?'':this.dateformater.toModel(this.data.endInvoiceDate),
+       "startBillDate" :  this.data.startBillDate == undefined?'':this.dateformater.toModel(this.data.startBillDate),
+       "endIBillDate" :  this.data.endIBillDate == undefined?'':this.dateformater.toModel(this.data.endIBillDate),
+       "billNo":this.data.billNo == undefined ? '': this.data.billNo,
+       "saleInvoiceNo":this.data.saleInvoiceNo == undefined ? '': this.data.saleInvoiceNo,
+       "articleId":this.data.articleId ==undefined ? 0 :this.data.articleId,
+       "maturityStatus":this.data.maturityStatus == undefined? "Matured": this.data.maturityStatus,
+       "paymentStatus":this.data.paymentStatus == undefined? "null":this.data.paymentStatus
+
+
+    }
 
 if(this.menuName.menuName == 'CancleContarctReport'){
 
@@ -145,6 +161,10 @@ else if (this.menuName.menuName == 'DispatchReport'){
 }
 else if (this.menuName.menuName == 'ExternalAgentReport'){
   //this.externalAgentReport();
+}
+
+else if (this.menuName.menuName == 'CommissionReport'){
+this.filterPopUform("CommissionReport");
 }
 
     this.GetBuyersDropdown();
@@ -432,10 +452,10 @@ else if (this.menuName.menuName == 'ExternalAgentReport'){
 
   GetDbCrReport() {
 
-
+let test=localStorage.getItem('loggedInDepartmentId');
     this.spinner.show();
     this.http
-    .get(`${environment.apiUrl}/api/Reports/GetDebitCreditReport` )
+    .get(`${environment.apiUrl}/api/Reports/GetDebitCreditReporte/`+test )
     .subscribe(res => {
       this.response = res;
 
