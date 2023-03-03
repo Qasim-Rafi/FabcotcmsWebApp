@@ -38,8 +38,8 @@ export class AddEditMappingsComponent implements OnInit {
     let varr = {
       "sellerId": this.mapping.sellerId,
       "accountCode": this.mapping.accountCode,
-      "party_Coa": this.mapping.party_Coa,
-      "sale_Tax_Coa": this.mapping.sale_Tax_Coa,
+      "PartyCoa": this.mapping.party_Coa,
+      "SaleTexCoa": this.mapping.sale_Tax_Coa,
 
     }
 this.spinner.show();

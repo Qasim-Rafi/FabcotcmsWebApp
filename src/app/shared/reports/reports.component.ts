@@ -29,6 +29,7 @@ export class ReportsComponent implements OnInit {
   response: any;
   temp: any[];
   columns: any = [];
+  commissionRsum:any;
   openContractReport: any = [];
   agentBookingStatus: any = [];
   billingReportInvoiceWise: any = [];
@@ -883,6 +884,8 @@ commisionReport(varr){
           this.toastr.success(this.response.message, 'Message.');
           this.commissionReport = this.response.data;
           this.commissionReportFilter = [...this.commissionReport]
+          this.commissionRsum= this.commissionReport.reduce((prev,next)=>prev+parseFloat(next.amount),0);
+
 
        this.spinner.hide();
         }
