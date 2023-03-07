@@ -34,6 +34,7 @@ export class SaleInvoicePopUpComponent implements OnInit {
   quantitya:any;
   calculatedcost:any;
   response: any;
+  costingdataunits: any;
   saleInvoiceNo:string;
   loggedInDepartmentName:string;
 uomList : any = {};
@@ -73,6 +74,7 @@ this.GetletteroFCreditDropdown();
         res => {
           this.response = res;
           if (this.response.success == true) {
+            this.costingdataunits=this.response.data;
             this.rate = this.response.data.rate;
          
             
@@ -333,8 +335,12 @@ if(this.loggedInDepartmentName == 'Yarn Export' || this.loggedInDepartmentName =
   
 }
 else{
+ if(this.costingdataunits.rateUOMId == 7){
+  this.data.amount=(this.rate * this.data.quantity) * 10
+ }else{
 
-  this.data.amount=this.rate * this.data.quantity;
+   this.data.amount=this.rate * this.data.quantity;
+ }
 }
       //this.getquantity(this.quantity)
       
