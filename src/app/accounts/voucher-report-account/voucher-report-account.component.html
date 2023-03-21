@@ -14,7 +14,7 @@
   <div class="card card-dark shadow">
     <div class="card-header card-header-hd py-2 bordert-lr">
       <div class="row">
-        <div class="col-lg-5 col-md-7">
+        <div class="col-lg-5 col-md-5">
           <h2 class="p-heading font-weight-light m-0" style="color: #fff !important;">Contract Voucher Report</h2>
         </div>
         <!--
@@ -23,7 +23,15 @@
               <a class="btn btn-sm btn-info text-white" data-toggle="tooltip" data-placement="top" title="PDF" (click)="exportPDFUsersListActive()"><i class="far fa-file-pdf"></i></a>
               <a class="btn btn-sm btn-info text-white" data-toggle="tooltip" data-placement="top" title="Print" (click)="exportPrintUsersListActive()"><i class="fa fa-print"></i></a>
             </div> -->
-        <div class="col-lg-3 offset-4 col-md-5">
+            <div class="col-md-3">
+            <ng-select [(ngModel)]="data3.departmentId" placeholder="All" name="departmentId" (change)="departchange()"
+            #departmentId="ngModel">
+            <ng-option *ngFor="let i of department" [value]="i.id">
+              {{i.name}}
+            </ng-option>
+          </ng-select>
+        </div>
+        <div class="col-lg-3  col-md-4">
           <div class="input-group">
             <input
               [(ngModel)]="clearData"
@@ -31,7 +39,7 @@
               type="text"
               class="form-control"
               placeholder="Type here to search.."
-              (keyup)="updateFilter($event)"
+              (keyup)="Search($event)"
             />
             <div class="input-group-append">
               <button class="btn dinfo" type="submit">

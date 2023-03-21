@@ -327,6 +327,14 @@
             <div class="row">
               <div class="col-md-12 mb-1">
                 <div class="row justify-content-end">
+                    <div class="col-md-3">
+                        <ng-select [(ngModel)]="data3.departmentId" placeholder="All" name="departmentId" (change)="departchange()"
+                        #departmentId="ngModel">
+                        <ng-option *ngFor="let i of department" [value]="i.id">
+                          {{i.name}}
+                        </ng-option>
+                      </ng-select>
+                    </div>
                   <div class="col-md-4 pr-0">
     
                     <div class="form-group row">

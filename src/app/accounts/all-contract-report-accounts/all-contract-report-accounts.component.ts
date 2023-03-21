@@ -51,6 +51,7 @@ blance:any;
 
 
 
+department:any=[];
 
 @HostListener('window:resize', ['$event'])
 onResize(event?) {
@@ -84,10 +85,25 @@ dateformater: Dateformater = new Dateformater();
     this.departmentIdFromAdmin=localStorage.getItem('loggedInDepartmentId');
     this.loggedInDepartmentName=localStorage.getItem('loggedInDepartmentName');
     this.loggedInDepartmentNamecheck=localStorage.getItem('departName');
+    this.GetDeparmentDropdown();
     this.getAllContractReport();
     this.GetBuyersDropdown();
     this.GetSellersDropdown();
     this.GetArticleDropdown();
+  }
+  GetDeparmentDropdown() {
+    this.service.getDepartment().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+        // this.response.data.splice(1, 1);
+        // this.response.data.splice(9, 1);
+        this.department = this.response.data;
+        this.data3.departmentId = 3
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
   }
   GetBuyersDropdown() {
     this.service.getBuyers().subscribe(res => {
@@ -163,6 +179,9 @@ dateformater: Dateformater = new Dateformater();
   clearfunction(){
     this.filterForm.reset();
   }
+  departchange(){
+    this.getAllContractReport()
+  }
   getAllContractReport(){
     this.spinner.show();
     let varr = {
@@ -172,7 +191,7 @@ dateformater: Dateformater = new Dateformater();
       "startContractDate":this.data3.startContractDate == undefined? '': this.dateformater.toModel(this.data3.startContractDate),
       "endContractDate":this.data3.endContractDate == undefined?'':this.dateformater.toModel(this.data3.endContractDate),
       "status" : "All",
-      "AdminDepartmentId" :this.departmentIdFromAdmin != null && this.departmentIdFromAdmin != 8 ?this.departmentIdFromAdmin:3
+      "AdminDepartmentId" :this.data3.departmentId != undefined  ?this.data3.departmentId :3
     }
     this.http.
       post(`${environment.apiUrl}/api/Reports/ContractReport`, varr)
@@ -360,6 +379,7 @@ dateformater: Dateformater = new Dateformater();
   filterPopUformGenericAll(menu) {
     const modalRef = this.modalService.open(GenericFilterForAllComponent, { centered: true,size:"lg" });
     modalRef.componentInstance.menu = menu;
+    modalRef.componentInstance.departId = this.data3.departmentId;
     modalRef.result.then((p) => {
       if (p != null) {
    this.getAllContractReportfilter(p)

@@ -187,6 +187,10 @@ export class ServiceService {
   getBuyers() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/Buyers`);
   }
+
+  getBuyersAccounts(id) {
+    return this.http.get(`${environment.apiUrl}/api/Lookups/GetBuyersAccounts/`+id);
+  }
   getSellerLookup() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/Sellers`);
   }

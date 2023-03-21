@@ -14,6 +14,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 export class GenericFilterForAllComponent implements OnInit {
   dateformater: Dateformater = new Dateformater(); 
   @Input() menu; 
+  @Input() departId; 
   response: any;
   buyer : any = []
   seller : any = []
@@ -67,7 +68,7 @@ export class GenericFilterForAllComponent implements OnInit {
     })
   }
   GetBuyersDropdown() {
-    this.service.getBuyers().subscribe(res => {
+    this.service.getBuyersAccounts(this.departId).subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
         this.buyer = this.response.data;
@@ -105,7 +106,7 @@ export class GenericFilterForAllComponent implements OnInit {
       "buyerId":0,
       // "sellerId":this.data.sellerId == undefined?0 :this.data.sellerId,
       "sellerId":0,
-      "departmentId" :parseInt(this.departmentIdFromAdmin)
+      "departmentId" :parseInt(this.departId)
     }
     this.http
     .post(`${environment.apiUrl}/api/Lookups/GetArticlesByFilter`,varr)
@@ -133,7 +134,7 @@ export class GenericFilterForAllComponent implements OnInit {
       "buyerId":this.data.buyerId ==undefined ? 0 :this.data.buyerId,
       // "sellerId":this.data.sellerId == undefined?0 :this.data.sellerId,
       "sellerId":0,
-      "departmentId" :parseInt(this.departmentIdFromAdmin)
+      "departmentId" :parseInt(this.departId)
     }
 
     if(this.data.sellerId == null || this.data.sellerId == undefined){
@@ -183,7 +184,7 @@ export class GenericFilterForAllComponent implements OnInit {
     let varr = {
       "buyerId":this.data.buyerId ==undefined ? 0 :this.data.buyerId,
       "sellerId":this.data.sellerId == undefined?0 :this.data.sellerId,
-      "departmentId" :this.departmentIdFromAdmin
+      "departmentId" :this.departId
     }
     this.http
     .post(`${environment.apiUrl}/api/Lookups/GetContractOwnerByFilter`,varr)
@@ -210,7 +211,7 @@ export class GenericFilterForAllComponent implements OnInit {
       "buyerId":0,
       // "buyerId":this.data.buyerId ==undefined ? 0 :this.data.buyerId,
       "sellerId":this.data.sellerId == undefined?0 :this.data.sellerId,
-      "departmentId" :parseInt(this.departmentIdFromAdmin)
+      "departmentId" :parseInt(this.departId)
     }
    if(this.data.buyerId == null || this.data.buyerId == undefined){
     this.http
@@ -249,7 +250,7 @@ export class GenericFilterForAllComponent implements OnInit {
        "agentId":this.data.agentId ==undefined ? 0 :this.data.agentId,
        "status":this.data.contractStatus == undefined? "All": this.data.contractStatus,
       "articleId":this.data.articleId == undefined? 0:this.data.articleId,
-       "AdminDepartmentId" :this.departmentIdFromAdmin
+       "AdminDepartmentId" :this.departId
 
     }
     
@@ -265,7 +266,7 @@ export class GenericFilterForAllComponent implements OnInit {
       "endDate":this.data.endContractDate == undefined?'null':this.dateformater.toModel(this.data.endContractDate),
       "status" : "All",
       "year" : this.data.year == undefined? 0:parseInt(this.data.year) ,
-      "departmentId" : this.departmentIdFromAdmin == 8?3:this.departmentIdFromAdmin,
+      "departmentId" : this.departId,
       "agentId" : this.data.agentId,
       "billNumber" : this.data.billNo == undefined?0 :this.data.billNo,
       "voucherNumber" : this.data.voucherNo == undefined ? '': this.data.voucherNo

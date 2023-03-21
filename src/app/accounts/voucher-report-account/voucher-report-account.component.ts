@@ -76,6 +76,7 @@ dateformater: Dateformater = new Dateformater();
         // this.response.data.splice(1, 1);
         // this.response.data.splice(9, 1);
         this.department = this.response.data;
+        this.data3.departmentId = 3
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -85,7 +86,9 @@ dateformater: Dateformater = new Dateformater();
   updateFilter(event) {
     const val = event.target.value.toLowerCase();
     const temp = this.Filter.filter(function (d) {
-      return d.restaurnatDishName.toLowerCase().indexOf(val) !== -1 || !val;
+      return d.autoContractNumber.toLowerCase().indexOf(val) !== -1 ||
+      d.billNumber.toLowerCase().indexOf(val) !== -1 ||
+      d.voucherNumber.toLowerCase().indexOf(val) !== -1 || !val;
     });
     this.allContractReport = temp;
   }
@@ -163,10 +166,9 @@ GetSellersDropdown() {
 Search(event) {
   const val = event.target.value.toLowerCase();
   const temp = this.search.filter(function (d) {
-    return (d.autoContractNumber.toLowerCase().indexOf(val) !== -1 
-    || d.buyerName.toLowerCase().indexOf(val) !==-1   ||
-    d.sellerName.toLowerCase().indexOf(val) !==-1   ||
-    d.createdByUser.toLowerCase().indexOf(val) !==-1   ||
+    return (d.autoContractNumber.toLowerCase().indexOf(val) !== -1 ||
+    d.billNumber.toString().indexOf(val) !== -1 ||
+    d.voucherNumber.toLowerCase().indexOf(val) !== -1 ||
     d.contractOwner.toLowerCase().indexOf(val) !==-1   ||
     !val);
   });
@@ -179,6 +181,7 @@ clearfunction(){
 filterPopUformGenericAll(menu) {
   const modalRef = this.modalService.open(GenericFilterForAllComponent, { centered: true,size:"lg" });
   modalRef.componentInstance.menu = menu;
+  modalRef.componentInstance.departId = this.data3.departmentId;
   modalRef.result.then((p) => {
     if (p != null) {
   this.getAllContractReport234Filter(p)
@@ -186,6 +189,9 @@ filterPopUformGenericAll(menu) {
     }
   }, (reason) => {
   });
+}
+departchange(){
+  this.getAllContractReport()
 }
 getAllContractReport(){
   this.spinner.show();
@@ -200,7 +206,7 @@ getAllContractReport(){
     "billNumber" : 0,
     "voucherNumber" : '',
     "year" : year.toString(),
-    "departmentId" : 3,
+    "departmentId" : this.data3.departmentId != undefined ?this.data3.departmentId:3,
     // "agentId" : 3,
   }
   this.http.
