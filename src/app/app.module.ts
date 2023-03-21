@@ -91,6 +91,9 @@ import { WeekTrendComponent } from './shared/fabcot-trends/week-trend/week-trend
 import { FagentprintComponent } from './contracts/active-contracts/active-contract-detail/Active-Contract-Models/fagentprint/fagentprint.component';
 import { BuyerSellerLedgerComponent } from './shared/reports/buyer-seller-ledger/buyer-seller-ledger.component';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
+import { AllContractReportAccountsComponent } from './accounts/all-contract-report-accounts/all-contract-report-accounts.component';
+import { VoucherReportAccountComponent } from './accounts/voucher-report-account/voucher-report-account.component';
+import { GenericFilterForAllComponent } from './shared/generic-filter-for-all/generic-filter-for-all.component';
 const appRoutes: Routes = [] 
 
 
@@ -151,8 +154,10 @@ const appRoutes: Routes = []
     WeekTrendComponent,
     FagentprintComponent,
     BuyerSellerLedgerComponent,
+    AllContractReportAccountsComponent,
+    VoucherReportAccountComponent,
    
-
+    GenericFilterForAllComponent,
   
 
 

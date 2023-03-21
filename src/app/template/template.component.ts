@@ -29,6 +29,7 @@ export class TemplateComponent implements OnInit {
   Contract: boolean = false;
   Billing: boolean = false;
   Billing2 : boolean = false;
+  AccountsR : boolean = false;
 
   Config: boolean = false;
   Report: boolean = false;
@@ -227,6 +228,9 @@ Swal.fire({
     else if(menuName == 'Billing2'){
       this.Billing2 =!this.Billing2;
    }
+   else if(menuName == 'AccountsR'){
+    this.AccountsR =!this.AccountsR;
+ }
     else if(menuName == 'Config'){
       this.Config =!this.Config;
    }

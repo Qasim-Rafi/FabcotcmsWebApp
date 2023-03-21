@@ -1,0 +1,576 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="line-spin-fade" [fullScreen]="true">
+    <p style="color: white"> Loading... </p>
+  </ngx-spinner>
+    
+    <div class="content-header">
+    
+        <div class="row">
+          <div class="col-sm-12 col-md-6 col-lg-8">
+            <h6 class="row wrapper page-header font-weight-light"> All Contracts Reports
+              <div class="ml-2 descr"> By default It displays the open contracts of past 3 months,
+              </div>
+            </h6>
+          </div>
+    
+          <div class="col-sm-12 col-md-6 col-lg-4">
+            <ol class="breadcrumb flt-RnL">
+              <li class="breadcrumb-item"><a href="#">Reports</a></li>
+              <li class="breadcrumb-item active" aria-current="page">All Conctract Status</li>
+            </ol>
+          </div>
+    
+        </div>
+      </div>
+    
+      <div class="card ibox-content">
+        <div class="panel blank-panel">
+          <div class="panel-heading">
+    
+            <!-- <div class="row mb-3">
+              <div class="col-sm-6 col-md-3">
+                <button type="button" class="btn btn-primary descBtn ml-sm-none ml-md-2">{{totalContract}}
+                </button>
+                <span class="text-muted text2">All Contracts</span>
+              </div>
+              <div class="col-sm-6 col-md-3">
+                <button type="button" class="btn yellow-bg descBtn ml-sm-none ml-md-2">0
+                </button>
+                <span class="text-muted text2">Container</span>
+              </div>
+              <div class="col-sm-6 col-md-3">
+                <button type="button" class="btn blue-bg descBtn ml-sm-none ml-md-2">{{totalQuantity}}
+                </button>
+                <span class="text-muted text2">Quantity</span>
+              </div>
+              <div class="col-sm-6 col-md-3">
+                <button type="button" class="btn navy-bg descBtn ml-sm-none ml-md-2">{{totalDispatch}}
+                </button>
+                <span class="text-muted text2">Dispatch</span>
+              </div>
+    
+            </div> -->
+  
+            <div class="row mb-2">
+  
+              <div class="col-md-3">
+                <div class="widget style1 yellow-bg  shadow">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <i class="fas fa-file-invoice-dollar fa-2x"></i>
+                    </div>
+                    <div class="col-md-8 text-right">
+                      <h6> All Contracts</h6>
+                      <h6 class="font-bold" > {{totalContract}} <p class="topbox-small-text">&nbsp;</p></h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+  <!--           
+              <div class="col-md-3">
+                <div class="widget style1 bg-info shadow">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <i class="fas fa-hand-holding-usd fa-2x"></i>
+                    </div>
+                    <div class="col-md-8 text-right">
+                      <h6>Quantity </h6>
+                      <h6 class="font-bold"> {{totalQuantity | number : '1.0-0'}}<p class="topbox-small-text"></p></h6>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+              <div class="col-md-3">
+                <div class="widget style1 bg-info shadow">
+                  <div class="row text-center font-bold" style="justify-content: center !important;">
+                    <h6 style="font-weight: bold !important;"> On Contract
+                    </h6>
+                </div>
+                  <div class="row">
+                    <div class="col-md-2">
+                      <i class="fas fa-hand-holding-usd fa-2x"></i>
+                    </div>
+                    <div class="col-md-10 p-0">
+                      <div class="row" style="height: 22px  !important;">
+                        <div class="col-md-6">
+                          <h6>Quantity : </h6>
+                        </div>
+                        <div class="col-md-6">
+                          <h6 class="font-bold"> {{totalQuantity | number : '2.2-2'}}<p class="topbox-small-text"></p></h6>
+                        </div>
+                      </div>
+                      <div class="row" style="height: 22px  !important;">
+                        <div class="col-md-6">
+                          <h6>Value: </h6>
+                        </div>
+                        <div class="col-md-6">
+                          <h6 class="font-bold"> {{quantityValue | number : '2.2-2'}}<p class="topbox-small-text"></p></h6>
+                        </div>
+                      </div>
+                      <div class="row" style="height: 22px  !important;">
+                        <div class="col-md-6">
+                          <h6>Commission: </h6>
+                        </div>
+                        <div class="col-md-6">
+                          <h6 class="font-bold"> {{quantityCommission | number : '2.2-2'}}<p class="topbox-small-text"></p></h6>
+                        </div>
+                      </div>
+                      <!-- <h6>Quantity </h6>
+                      <h6 class="font-bold"> {{totalQuantity}}<p class="topbox-small-text"></p></h6> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="widget style1 bg-success shadow">
+                  <div class="row text-center font-bold" style="justify-content: center !important;">
+                    <h6 style="font-weight: bold !important;"> Dispatch
+                    </h6>
+                </div>
+                  <div class="row">
+                    <div class="col-md-2">
+                      <i class="fa fa-calculator fa-2x"></i>
+                    </div>
+                    <!-- <div class="col-md-8 text-right">
+                      <h6> Dispatch </h6>
+                      <h6 class="font-bold">  {{totalDispatch | number : '1.0-0'}}<p class="topbox-small-text"></p></h6>
+                    </div> -->
+  
+  
+                    <div class="col-md-10 p-0">
+                      <div class="row" style="height: 22px  !important;">
+                        <div class="col-md-6">
+                          <h6>Dispatch Qty: </h6>
+                        </div>
+                        <div class="col-md-6">
+                          <h6 class="font-bold"> {{totalDispatch | number : '2.2-2'}}<p class="topbox-small-text"></p></h6>
+                        </div>
+                      </div>
+                      <div class="row" style="height: 22px  !important;">
+                        <div class="col-md-6">
+                          <h6>Value: </h6>
+                        </div>
+                        <div class="col-md-6">
+                          <h6 class="font-bold"> {{dispatchValue | number : '2.2-2'}}<p class="topbox-small-text"></p></h6>
+                        </div>
+                      </div>
+                      <div class="row" style="height: 22px  !important;">
+                        <div class="col-md-6">
+                          <h6>Commission: </h6>
+                        </div>
+                        <div class="col-md-6">
+                          <h6 class="font-bold"> {{dispatchCommission | number : '2.2-2'}}<p class="topbox-small-text"></p></h6>
+                        </div>
+                      </div>
+                      <!-- <h6>Quantity </h6>
+                      <h6 class="font-bold"> {{totalQuantity}}<p class="topbox-small-text"></p></h6> -->
+                    </div>
+  
+  
+  
+  
+  
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="widget style1 bg-secondary shadow">
+                  <div class="row text-center font-bold" style="justify-content: center !important;">
+                    <h6 style="font-weight: bold !important;"> Balance
+                    </h6>
+                </div>
+                  <div class="row">
+                    <div class="col-md-2">
+                      <i class="fas fa-wallet fa-2x"></i>
+                    </div>
+                    <!-- <div class="col-md-8 text-right">
+                      <h6> Container </h6>
+                      <h6 class="font-bold"> <p class="topbox-small-text"></p></h6>
+                    </div> -->
+  
+                    <div class="col-md-10 p-0">
+                      <div class="row" style="height: 22px  !important;">
+                        <div class="col-md-6">
+                          <h6>Balance Qty: </h6>
+                        </div>
+                        <div class="col-md-6">
+                          <h6 class="font-bold"> {{blance | number : '2.2-2'}}<p class="topbox-small-text"></p></h6>
+                        </div>
+                      </div>
+                      <div class="row" style="height: 22px  !important;">
+                        <div class="col-md-6">
+                          <h6>Value: </h6>
+                        </div>
+                        <div class="col-md-6">
+                          <h6 class="font-bold"> {{blanceValue | number : '2.2-2'}}<p class="topbox-small-text"></p></h6>
+                        </div>
+                      </div>
+                      <div class="row" style="height: 22px  !important;">
+                        <div class="col-md-6">
+                          <h6>Commission: </h6>
+                        </div>
+                        <div class="col-md-6">
+                          <h6 class="font-bold"> {{blanceCommission | number : '2.2-2'}}<p class="topbox-small-text"></p></h6>
+                        </div>
+                      </div>
+                      <!-- <h6>Quantity </h6>
+                      <h6 class="font-bold"> {{totalQuantity}}<p class="topbox-small-text"></p></h6> -->
+                    </div>
+  
+  
+  
+  
+                  </div>
+                </div>
+              </div>
+            
+            </div>
+  
+  
+    
+    
+            <form #filterForm="ngForm" novalidate>
+              <div  [ngClass]="status ? 'add' : 'remove'">
+              <div class="card">
+    
+    
+              <div class="row p-2">
+    
+                  <div class="form-group col-md-4">
+                    <label for="description">Buyer Name:</label>
+                    <ng-select placeholder="Buyer Name" name="buyerId" [(ngModel)]="data3.buyerId" #buyerId="ngModel">
+                      <ng-option *ngFor="let i of buyer" [value]="i.id">
+                        {{i.buyerName}}
+                      </ng-option>
+                    </ng-select>
+                  </div>
+    
+                  <div class="form-group col-md-4 ">
+                    <label for="description">Seller Name:</label>
+                    <ng-select placeholder="Seller Name" name="sellerId" [(ngModel)]="data3.sellerId"
+                      #sellerId="ngModel">
+                      <ng-option *ngFor="let i of seller" [value]="i.id">
+                        {{i.sellerName}}
+                      </ng-option>
+                    </ng-select>
+    
+                  </div>
+    
+                  <div class="form-group col-md-4">
+                    <label for="description">Auto Contract#:</label>
+                    <input type="text" placeholder="Contract Number" name="autoContractNumber"
+                      [(ngModel)]="data3.autoContractNumber" #autoContractNumber="ngModel" class="form-control text-w-4">
+                  </div>
+    
+    
+              </div>
+    
+              <div class="row p-2">
+    
+    
+                <div class="form-group col-md-4">
+    
+                  <label for="description">Po Number#:</label>
+                  <input type="text" placeholder="Auto Contract Number" class="form-control" name="poNumber"
+                  [(ngModel)]="data3.poNumber" #poNumber="ngModel">
+    
+                </div>
+    
+                  <div class="form-group col-md-4">
+                    <label for="description">Start Date:</label>
+                    <input class="form-control" ngbDatepicker #reminderDate2="ngbDatepicker" (click)="reminderDate2.toggle()"
+                    placeholder="Contract start Date" name="startContractDate" 
+                    [(ngModel)]="data3.startContractDate" #startContractDate="ngModel" />
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="description">End Date:</label>
+    
+                      <input class="form-control" ngbDatepicker #reminderDate3="ngbDatepicker" (click)="reminderDate3.toggle()"
+                      placeholder="Contract end Date" name="endContractDate" 
+                      [(ngModel)]="data3.endContractDate" #endContractDate="ngModel" />
+    
+                  </div>
+    
+    
+    
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group row mt-3">
+                    <div class="col-md-2 ml-8">
+                      <button class="btn btn-outline-secondary pull-left btn-xs " (click)="clearfunction()"><i class="fas fa-sync"></i>
+                        Clear
+                      </button>
+    
+                    </div>
+    
+                    <div class="col-md-4 ">
+                      <button type="button" class="btn btn-primary btn-sm float-right" (click) = "getAllContractReport()">
+                        Search Contract
+                      </button>
+                    </div>
+                  
+    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+            
+    
+    
+    
+            </form>
+    
+    
+    
+            <div class="row">
+              <div class="col-md-12 mb-1">
+                <div class="row justify-content-end">
+                  <div class="col-md-4 pr-0">
+    
+                    <div class="form-group row">
+                      <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="input form-control form-control-sm" (keyup) = "Search($event)" />
+                      </div>
+                    </div>
+    
+                 
+    
+                  </div>
+    
+                  <div class="html5buttons mrg-tsm">
+                    <div class="dt-buttons btn-group btn-group-sm">
+                      <!-- <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0"
+                        aria-controls="DataTables_Table_0"><span>Copy</span></a>
+                      <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
+                        aria-controls="DataTables_Table_0"><span>CSV</span></a> -->
+                      <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
+                        aria-controls="DataTables_Table_0" (click) = "allContractExcelFile()"><span>Excel</span></a>
+                      <a class="btn btn-default buttons-print bg-white" tabindex="0"
+                        aria-controls="DataTables_Table_0" (click) = "allContractPdf()"><span>Print</span></a>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <button type="button" class="btn btn-primary btn-sm ml-md-2 float-right"  (click)="filterPopUformGenericAll('All Contract Report')"> Advance Filter <i class="fas fa-search fa-fw mr-2"></i></button>
+                    <a type="button" class="btn btn-primary  btn-sm ml-md-2 float-right"  (click)="resetfilter('All Contarct Report')"><i class="fas fa-sync-alt fa-fw"></i>Reset</a>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    
+          <div class="card shadow">
+            <div class="card-body">
+              
+    
+                <ngx-datatable #myTable  class="material" [columns]="columns" [rows]="allContractReport"
+                [columnMode]="'force'"    [headerHeight]="50"  [sorts]="[{ prop: 'id', dir: 'asce' }]"
+                [footerHeight]="30"
+                [rowHeight]="80"
+                [scrollbarH]="true"
+                [scrollbarV]="true"
+               style="height: 500px;"
+            
+       
+             >
+      
+                <ngx-datatable-column name="Age" prop="age"  >
+                  <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                   <h5> <span class="badge badge-primary">{{row.age}}</span></h5>
+                   
+                  </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Contract#">
+                  <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                    <button class="clr" >  {{row.contractNo}} </button> <small *ngIf="loggedInDepartmentName =='Yarn Local Karachi'">({{row.manualContractNumber}})</small>
+                  </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Buyer"    >
+                  <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                    {{row.buyerName}}
+                  </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Seller"  >
+                  <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                    {{row.sellerName}}
+                  </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Date"  >
+                  <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                    {{row.date}}
+                  </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="PO#"  *ngIf="loggedInDepartmentNamecheck != 'Yarn Export' && loggedInDepartmentNamecheck != 'Yarn Local' && loggedInDepartmentNamecheck != 'Yarn Local Karachi' && loggedInDepartmentNamecheck != 'Fabric Local'">
+                  <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                    {{row.poNumber}}
+                  </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Article(s)"  [width]="420"  *ngIf="loggedInDepartmentNamecheck == 'Yarn Export'">
+                  <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                   <p class="text-wrap" > {{row.articlesPlusRate}} </p>
+                  </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Article" *ngIf="loggedInDepartmentNamecheck != 'Yarn Export'" >
+                  <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                    {{row.articleName}}
+                  </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Rate"  *ngIf="  loggedInDepartmentNamecheck != 'Yarn Local' && loggedInDepartmentNamecheck != 'Yarn Local Karachi' && loggedInDepartmentNamecheck != 'Fabric Local' && loggedInDepartmentNamecheck != 'yarn Export'">
+                  <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                    <b *ngIf = "row.rateCurrencyName == 'PKR'">RS {{ row.rate }} /  {{row.rateUOMName}}</b>  
+                    <b *ngIf = "row.rateCurrencyName == 'USD'">$ {{ row.rate }} /  {{row.rateUOMName}}</b> 
+                    <b *ngIf = "row.rateCurrencyName == 'EUR'">€ {{ row.rate }} /  {{row.rateUOMName}}</b> 
+                    <b *ngIf = "row.rateCurrencyName == 'GBP'">GBP {{ row.rate }} /  {{row.rateUOMName}}</b>      
+                    
+                  
+    
+                  </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Rate (Rs/meter)" *ngIf="loggedInDepartmentNamecheck == 'Fabric Local'">
+                  <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                      {{ row.rate }} 
+                  
+    
+                  </ng-template>
+                  
+                </ngx-datatable-column>
+    
+                <ngx-datatable-column name="Rate (Rs)" *ngIf="loggedInDepartmentNamecheck == 'Yarn Local' || loggedInDepartmentNamecheck == 'Yarn Local Karachi'">
+                  <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                      {{ row.rate }} /  {{row.rateUOMName}}
+                  
+    
+                  </ng-template>
+                  
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Container" *ngIf="  loggedInDepartmentNamecheck != 'Yarn Local' && loggedInDepartmentNamecheck != 'Fabric Local'">
+                  <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                    {{row.containerCount}} {{ row.containerName }}  
+                  </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Qty Unit"  *ngIf="  loggedInDepartmentNamecheck != 'Yarn Local' && loggedInDepartmentNamecheck != 'Fabric Local'">
+                  <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                   {{row.quantityUOMName}}
+                  </ng-template>
+                </ngx-datatable-column>
+      
+          
+                <ngx-datatable-column name="Booking Qty (Bags)" *ngIf="  loggedInDepartmentNamecheck == 'Yarn Local' || loggedInDepartmentNamecheck == 'Yarn Local Karachi'">
+                  <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                    {{ row.booking }}  
+                  </ng-template>
+                </ngx-datatable-column>
+      
+                <ngx-datatable-column name="Dispatch Qty (Bags)" *ngIf="  loggedInDepartmentNamecheck == 'Yarn Local' || loggedInDepartmentNamecheck == 'Yarn Local Karachi'">
+                  <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                    {{ row.dispatch | number : '1.0-0'}} 
+                  </ng-template>
+                </ngx-datatable-column>
+      
+                <ngx-datatable-column name="Balance Qty (Bags)" *ngIf="  loggedInDepartmentNamecheck == 'Yarn Local' || loggedInDepartmentNamecheck == 'Yarn Local Karachi'">
+                  <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                    {{ row.balanceQty | number : '1.0-0'}} 
+                  </ng-template>
+                </ngx-datatable-column>
+  
+                <ngx-datatable-column name="Booking Qty (Meter)" *ngIf="  loggedInDepartmentNamecheck == 'Fabric Local'">
+                  <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                    {{ row.booking }}  
+                  </ng-template>
+                </ngx-datatable-column>
+      
+                <ngx-datatable-column name="Dispatch Qty (Meter)" *ngIf="  loggedInDepartmentNamecheck == 'Fabric Local'">
+                  <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                    {{ row.dispatch | number : '1.0-0'}} 
+                  </ng-template>
+                </ngx-datatable-column>
+      
+                <ngx-datatable-column name="Balance Qty (Meter)" *ngIf="  loggedInDepartmentNamecheck == 'Fabric Local'">
+                  <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                    {{ row.balanceQty | number : '1.0-0'}} 
+                  </ng-template>
+                </ngx-datatable-column>
+  
+                <ngx-datatable-column name="Booking Qty " *ngIf="  loggedInDepartmentNamecheck != 'Fabric Local' && loggedInDepartmentNamecheck != 'Yarn Local' && loggedInDepartmentNamecheck != 'Yarn Local Karachi'">
+                  <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                    {{ row.booking }}  
+                  </ng-template>
+                </ngx-datatable-column>
+      
+                <ngx-datatable-column name="Dispatch Qty" *ngIf="   loggedInDepartmentNamecheck != 'Fabric Local' && loggedInDepartmentNamecheck != 'Yarn Local' && loggedInDepartmentNamecheck != 'Yarn Local Karachi'">
+                  <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                    {{ row.dispatch | number : '1.0-0'}} 
+                  </ng-template>
+                </ngx-datatable-column>
+      
+                <ngx-datatable-column name="Balance Qty " *ngIf="  loggedInDepartmentNamecheck != 'Fabric Local' && loggedInDepartmentNamecheck != 'Yarn Local' && loggedInDepartmentNamecheck != 'Yarn Local Karachi'">
+                  <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                    {{ row.balanceQty | number : '1.0-0'}} 
+                  </ng-template>
+                </ngx-datatable-column>
+  
+                <ngx-datatable-column name="Cost" >
+                  <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                    <p *ngIf = "row.rateCurrencyName == 'PKR'">RS {{ row.cost | number : '1.0-0'}}</p>  
+                    <p *ngIf = "row.rateCurrencyName == 'USD'">$ {{ row.cost | number : '1.0-0' }}</p> 
+                    <p *ngIf = "row.rateCurrencyName == 'EUR'">€ {{ row.cost | number : '1.0-0' }}</p> 
+                    <p *ngIf = "row.rateCurrencyName == 'GBP'">GBP {{ row.cost | number : '1.0-0'}}</p>
+                  </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Seller Comm" >
+                  <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                    <div *ngIf = "row.sellerCommission != '' ">{{row.rateCurrencyName}} {{row.sellerCommission}}%   
+                      <!-- <p *ngIf = "row.rateCurrencyName == 'PKR'">RS</p>  
+                      <p *ngIf = "row.rateCurrencyName == 'USD'">$  {{ row.sellerCommissionAmount }}</p> 
+                      <p *ngIf = "row.rateCurrencyName == 'PKR'">RS  {{ row.sellerCommissionAmount }}</p> 
+                      <p *ngIf = "row.rateCurrencyName == 'EUR'">€  {{ row.sellerCommissionAmount }}</p> 
+                      <p *ngIf = "row.rateCurrencyName == 'GBP'">GBP  {{ row.sellerCommissionAmount }}</p> -->
+                    </div>   
+    
+                  </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Buyer Comm">
+                  <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                    <div *ngIf = "row.buyerCommission != '' ">{{row.rateCurrencyName}} {{row.buyerCommission}}% 
+                      <!-- [<p *ngIf = "row.rateCurrencyName == 'PKR'">RS</p>
+                      <p *ngIf = "row.rateCurrencyName == 'USD'">$</p>
+                      <p *ngIf = "row.rateCurrencyName == 'EUR'">€</p>
+                      <p *ngIf = "row.rateCurrencyName == 'GBP'">GBP</p>{{ row.buyerCommissionAmount }}] -->
+                    </div>    
+                  </ng-template>
+                </ngx-datatable-column>
+                <!-- <ngx-datatable-column name="Seller Payment Term" [width]="120">
+                  <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                 {{ row.sellerPaymentTerm }}  
+    
+                  </ng-template>
+                </ngx-datatable-column> -->
+                <ngx-datatable-column name="Payment Term S|B" >
+                  <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                    {{ row.paymentTerm }}  
+    
+                  </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Status" >
+                  <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                    <span class="badge badge-primary">{{row.status}}</span>
+  
+                  </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Agent" >
+                  <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                    {{ row.agent }}
+                  </ng-template>
+                </ngx-datatable-column>
+      
+              </ngx-datatable>
+    
+              
+            </div>
+          </div>
+    
+        </div>
+      </div>

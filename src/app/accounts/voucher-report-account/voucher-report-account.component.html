@@ -1,0 +1,197 @@
+
+<ngx-spinner
+
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="line-spin-fade"
+  [fullScreen]="false"
+>
+  <p style="color: white; position: relative">Loading...</p>
+</ngx-spinner>
+
+<div class="row d-block">
+  <div class="card card-dark shadow">
+    <div class="card-header card-header-hd py-2 bordert-lr">
+      <div class="row">
+        <div class="col-lg-5 col-md-7">
+          <h2 class="p-heading font-weight-light m-0" style="color: #fff !important;">Contract Voucher Report</h2>
+        </div>
+        <!--
+            <div *ngIf="isfirstTable" style="border: 1px solid white; border-radius: 5px;height: 35px;">
+              <a class="btn btn-sm btn-info text-white" data-toggle="tooltip" data-placement="top" title="Excel" (click)="exportExelUsersListActive()"><i class="fas fa-file-excel"></i></a>
+              <a class="btn btn-sm btn-info text-white" data-toggle="tooltip" data-placement="top" title="PDF" (click)="exportPDFUsersListActive()"><i class="far fa-file-pdf"></i></a>
+              <a class="btn btn-sm btn-info text-white" data-toggle="tooltip" data-placement="top" title="Print" (click)="exportPrintUsersListActive()"><i class="fa fa-print"></i></a>
+            </div> -->
+        <div class="col-lg-3 offset-4 col-md-5">
+          <div class="input-group">
+            <input
+              [(ngModel)]="clearData"
+              appInputRestrictions
+              type="text"
+              class="form-control"
+              placeholder="Type here to search.."
+              (keyup)="updateFilter($event)"
+            />
+            <div class="input-group-append">
+              <button class="btn dinfo" type="submit">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="col-lg-1">
+            <button class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Add User" (click)="add('Add')">
+
+                 Add AddOn</button>
+
+          </div> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 mb-1">
+      <div class="row justify-content-end">
+
+        <!-- <div class="col-md-2">
+          <ng-select name="departmentId"  placeholder="-- Department --" (change)="getagentname($event)" [(ngModel)]=" data4.departmentId">
+            <ng-option *ngFor="let i of department" [value]="i.id">
+              {{i.name}}
+            </ng-option>
+          </ng-select>
+        </div> -->
+
+        <!-- <div class="col-md-2">
+          <ng-select name="departmentId"  placeholder="-- Agent Name --" [(ngModel)]=" data4.agentName">
+            <ng-option *ngFor="let i of agentName" [value]="i.id">
+              {{i.username}}
+            </ng-option>
+          </ng-select>
+        </div> -->
+
+        <!-- <div class="col-md-2">
+          <ng-select name="departmentId"  placeholder="-- Year --" (change)="getAllContractReport234()" [(ngModel)]=" data4.year">
+            <ng-option value="2020">2020</ng-option>
+            <ng-option value="2021">2021</ng-option>
+            <ng-option value="2022">2022</ng-option>
+            <ng-option value="2023">2023</ng-option>
+            <ng-option value="2024">2024</ng-option>
+            <ng-option value="2025">2025</ng-option>
+            <ng-option value="2026">2026</ng-option>
+            <ng-option value="2027">2027</ng-option>
+            <ng-option value="2028">2028</ng-option>
+            <ng-option value="2029">2029</ng-option>
+            <ng-option value="2030">2030</ng-option>
+          </ng-select>
+        </div> -->
+
+        <!-- <div class="col-md-3 pr-0">
+
+          <div class="form-group row">
+            <label for="inputSearch" class="col-sm-3 col-form-label">Search:</label>
+            <div class="col-sm-9">
+              <input type="text" class="input form-control form-control-sm" (keyup) = "Search($event)" />
+            </div>
+          </div>
+
+       
+
+        </div> -->
+
+        <div class="html5buttons mrg-tsm col-md-1">
+          <div class="dt-buttons btn-group btn-group-sm">
+            <!-- <a class="btn btn-default buttons-copy buttons-html5 bg-white" tabindex="0"
+              aria-controls="DataTables_Table_0"><span>Copy</span></a>
+            <a class="btn btn-default buttons-csv buttons-html5 bg-white" tabindex="0"
+              aria-controls="DataTables_Table_0"><span>CSV</span></a> -->
+            <a class="btn btn-default buttons-excel buttons-html5 bg-white" tabindex="0"
+              aria-controls="DataTables_Table_0" (click) = "allContractExcelFile()"><span>Excel</span></a>
+            <a class="btn btn-default buttons-print bg-white" tabindex="0"
+              aria-controls="DataTables_Table_0" (click) = "allContractPdf()"><span>Print</span></a>
+
+          </div>
+        </div>
+        <div class="col-md-3 ">
+          <button type="button" class="btn dinfo btn-sm ml-md-2 float-right"  (click)="filterPopUformGenericAll('Contract Voucher Report')"> Advance Filter <i class="fas fa-search fa-fw mr-2"></i></button>
+          <a type="button" class="btn dinfo btn-sm ml-md-2 float-right"  (click)="resetfilter()"><i class="fas fa-sync-alt fa-fw"></i></a>
+          </div>
+      </div>
+    </div>
+  </div>
+
+<div class="panel-body">
+    <ngx-datatable #myTable class="material" [sorts]="[{ prop: 'contractId', dir: 'asc' }]" [columns]="columns"
+    [rows]="allContractReport" [columnMode]="'force'" [headerHeight]="50"[footerHeight]="30"
+    [rowHeight]="50"
+    [scrollbarH]="true"
+    [scrollbarV]="true"
+   style="height: 600px;">
+
+    <ngx-datatable-column name="Contract#" prop="contractNo" >
+      <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+         {{row.autoContractNumber}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Bill No" prop="voucherNumber" >
+      <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+        {{ row.billNumber }}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Bill Date" prop="voucherNumber" >
+      <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+        {{ row.createdDate }}
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="Voucher Number" prop="voucherNumber" >
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+          {{ row.voucherNumber }}
+        </ng-template>
+      </ngx-datatable-column>
+
+
+
+    <!-- <ngx-datatable-column name="Seller Name" prop="sellerName" [width]="320">
+      <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+        {{ row.sellerName }} ({{row.sellerNTN}})
+      </ng-template>
+    </ngx-datatable-column> -->
+    <!-- <ngx-datatable-column name="Article Name" prop="articleName" >
+      <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+        {{ row.articleName }}
+      </ng-template>
+    </ngx-datatable-column> -->
+
+    <ngx-datatable-column name="Contract Owner" prop="contractOwner" >
+      <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+        {{ row.contractOwner }}
+      </ng-template>
+    </ngx-datatable-column>
+
+    
+    <!-- <ngx-datatable-column name="Created By" prop="createdByUser">
+      <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+        {{ row.createdByUser }}
+      </ng-template>
+    </ngx-datatable-column> -->
+
+    <ngx-datatable-column name="Status" prop="status" >
+      <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+        <span class="badge badge-primary">{{row.status}}</span>
+      </ng-template>
+    </ngx-datatable-column>
+
+    <!-- <ngx-datatable-column name="Department Name" prop="departmentName">
+      <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+        {{ row.departmentName }}
+      </ng-template>
+    </ngx-datatable-column> -->
+
+
+
+  </ngx-datatable>
+
+</div>
+

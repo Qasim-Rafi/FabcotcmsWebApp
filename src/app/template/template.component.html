@@ -1041,6 +1041,34 @@
       </ul>
     </li>
 
+    <li class="nav-item" [ngClass]="AccountsR ? 'menu-open' : ''">
+      <a (click)="menuOpen('AccountsR')" class="nav-link">
+        <i class="far fa-money-bill-alt"></i>
+        <p>Reports</p>
+        <i class="right fas fa-angle-left"></i>
+      </a>
+    
+      <ul class="nav nav-treeview sublist" [ngClass]="AccountsR ? 'UlClassOpenMenu' : 'UlClassCloseMenu'">
+        <li class="nav-item">
+          <a routerLink="/all-contract-report-accounts" class="nav-link" routerLinkActive="active">
+            <i class="far fa-circle nav-icon"></i>
+            <p>All Contract Report</p>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a routerLink="/voucher-report-account" class="nav-link" routerLinkActive="active">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Voucher Report </p>
+          </a>
+        </li>
+  
+      
+
+
+      </ul>
+    </li>
+
   </ul>
 </nav>
 

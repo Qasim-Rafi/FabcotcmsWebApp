@@ -16,6 +16,8 @@ import { AllContractReportComponent } from './shared/reports/all-contract-report
 import { SellerMappingComponent } from './shared/mappings/seller-mapping/seller-mapping.component';
 import { FabcotTrendsComponent } from './shared/fabcot-trends/fabcot-trends.component';
 import { BuyerSellerLedgerComponent } from './shared/reports/buyer-seller-ledger/buyer-seller-ledger.component';
+import { AllContractReportAccountsComponent } from './accounts/all-contract-report-accounts/all-contract-report-accounts.component';
+import { VoucherReportAccountComponent } from './accounts/voucher-report-account/voucher-report-account.component';
 
 
 const configurationModule = () => import('./configuration/configuration.module')
@@ -41,6 +43,8 @@ const routes: Routes = [
     {path:'filter', component:AdvanceFilterComponent},
     {path:'accounts' , component:BillInvoicesComponent},
     {path:'saleBill' , component:SaleInvoiceBillComponent},
+    {path:'all-contract-report-accounts' , component:AllContractReportAccountsComponent},
+    {path:'voucher-report-account' , component:VoucherReportAccountComponent},
     {path:'buyer-seller-ledger' , component:BuyerSellerLedgerComponent},
 
 

@@ -168,7 +168,9 @@ export class ServiceService {
 
 
   //file upload service ends here
-
+  getAgentName(id) {
+    return this.http.get(`${environment.apiUrl}/api/Lookups/Users/`+0 +'/'+id);
+  }
   getCountry() {
     return this.http.get(`${environment.apiUrl}/api/Lookups/Countries`)
   }
