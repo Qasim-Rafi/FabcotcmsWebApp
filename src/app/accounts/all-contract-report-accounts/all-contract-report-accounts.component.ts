@@ -37,7 +37,7 @@ screenHeight:any;
 screenWidth:any;
 departmentIdFromAdmin:any;
 loggedInDepartmentNamecheck:any
-
+ month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
 quantityValue:any;
 quantityCommission:any;
@@ -49,8 +49,11 @@ blanceValue:any;
 blanceCommission:any;
 blance:any;
 
+billAwaited:any;
+billAwaitedValue:any;
+billAwaitedCommission:any;
 
-
+monthname:any;
 department:any=[];
 
 @HostListener('window:resize', ['$event'])
@@ -74,14 +77,16 @@ dateformater: Dateformater = new Dateformater();
     this.router.routeReuseStrategy.shouldReuseRoute = () => false; 
     let body = document.getElementsByTagName('body')[0];
     body.classList.add('sidebar-collapse'); 
-    // let footer = document.getElementsByTagName('footer')[0];
-    // footer.classList.add('d-none'); 
+    let footer = document.getElementsByTagName('footer')[0];
+    footer.classList.add('d-none'); 
     
     // let zoom = document.getElementById('zoom').style.minHeight =this.screenWidth;
   }
      
 
   ngOnInit(): void {
+    const d = new Date();
+ this.monthname = this.month[d.getMonth()] +' '+ d.getFullYear();
     this.departmentIdFromAdmin=localStorage.getItem('loggedInDepartmentId');
     this.loggedInDepartmentName=localStorage.getItem('loggedInDepartmentName');
     this.loggedInDepartmentNamecheck=localStorage.getItem('departName');
@@ -218,6 +223,9 @@ dateformater: Dateformater = new Dateformater();
             this.blance=0;
             this.blanceValue=0;
             this.blanceCommission=0;
+            this.billAwaited=0
+            this.billAwaitedValue=0
+            this.billAwaitedCommission=0
             this.spinner.hide();
             for(let i=0;i<=this.allContractReport.length; i++){
               if(parseFloat(this.allContractReport[i].balanceQty) != 0){
@@ -233,6 +241,12 @@ dateformater: Dateformater = new Dateformater();
                  this.dispatchValue += (parseFloat(this.allContractReport[i].dispatch) * parseFloat(this.allContractReport[i].rate)) * 10;
                  this.dispatchCommission += (parseFloat(this.allContractReport[i].dispatch) * parseFloat(this.allContractReport[i].rate)) * parseFloat(this.allContractReport[i].sellerCommission) * 10 /100;
                 
+                 if(this.allContractReport[i].status == "BillAwaited"){
+                  this.billAwaited += parseFloat(this.allContractReport[i].dispatch);
+                  this.billAwaitedValue += (parseFloat(this.allContractReport[i].dispatch) * parseFloat(this.allContractReport[i].rate)) * 10;
+                  this.billAwaitedCommission += (parseFloat(this.allContractReport[i].dispatch) * parseFloat(this.allContractReport[i].rate)) * parseFloat(this.allContractReport[i].sellerCommission) * 10 /100;
+                 }
+
                   if(parseFloat(this.allContractReport[i].balanceQty) != 0){
                  this.blanceValue += (parseFloat(this.allContractReport[i].balanceQty) * parseFloat(this.allContractReport[i].rate)) * 10;
                  this.blanceCommission += (parseFloat(this.allContractReport[i].balanceQty) * parseFloat(this.allContractReport[i].rate)) * parseFloat(this.allContractReport[i].sellerCommission) * 10 /100;
@@ -244,7 +258,12 @@ dateformater: Dateformater = new Dateformater();
  
                  this.dispatchValue += parseFloat(this.allContractReport[i].dispatch) * parseFloat(this.allContractReport[i].rate);
                  this.dispatchCommission += (parseFloat(this.allContractReport[i].dispatch) * parseFloat(this.allContractReport[i].rate)) * parseFloat(this.allContractReport[i].sellerCommission) /100;
- 
+                 
+                 if(this.allContractReport[i].status == "BillAwaited"){
+                  this.billAwaited += parseFloat(this.allContractReport[i].dispatch);
+                  this.billAwaitedValue += parseFloat(this.allContractReport[i].dispatch) * parseFloat(this.allContractReport[i].rate);
+                  this.billAwaitedCommission += (parseFloat(this.allContractReport[i].dispatch) * parseFloat(this.allContractReport[i].rate)) * parseFloat(this.allContractReport[i].sellerCommission) /100;
+                 }
                  if(parseFloat(this.allContractReport[i].balanceQty) != 0){
                    this.blanceValue +=parseFloat(this.allContractReport[i].balanceQty) * parseFloat(this.allContractReport[i].rate);
                    this.blanceCommission += (parseFloat(this.allContractReport[i].balanceQty) * parseFloat(this.allContractReport[i].rate)) * parseFloat(this.allContractReport[i].sellerCommission) /100;
@@ -266,7 +285,19 @@ dateformater: Dateformater = new Dateformater();
         
           }
           else if(this.response.data.obj.length == 0) {
-            this.toastr.error("No such Contract Exist", 'Message.');
+            this.toastr.info("No such Contract Exist", 'Message.');
+            this.allContractReport=[];
+            this.search = [...this.allContractReport];
+            this.quantityValue=0;
+            this.quantityCommission=0;
+            this.dispatchValue=0;
+            this.dispatchCommission=0;
+            this.blance=0;
+            this.blanceValue=0;
+            this.blanceCommission=0;
+            this.billAwaited=0
+            this.billAwaitedValue=0
+            this.billAwaitedCommission=0
          this.spinner.hide();
           }
           else {
@@ -316,6 +347,9 @@ dateformater: Dateformater = new Dateformater();
             this.blance=0;
             this.blanceValue=0;
             this.blanceCommission=0;
+            this.billAwaited=0
+            this.billAwaitedValue=0
+            this.billAwaitedCommission=0
             this.spinner.hide();
             for(let i=0;i<=this.allContractReport.length; i++){
               if(parseFloat(this.allContractReport[i].balanceQty) != 0){
@@ -330,7 +364,11 @@ dateformater: Dateformater = new Dateformater();
                     
                 this.dispatchValue += (parseFloat(this.allContractReport[i].dispatch) * parseFloat(this.allContractReport[i].rate)) * 10;
                 this.dispatchCommission += (parseFloat(this.allContractReport[i].dispatch) * parseFloat(this.allContractReport[i].rate)) * parseFloat(this.allContractReport[i].sellerCommission) * 10 /100;
-               
+                if(this.allContractReport[i].status == "BillAwaited"){
+                  this.billAwaited += parseFloat(this.allContractReport[i].dispatch);
+                  this.billAwaitedValue += (parseFloat(this.allContractReport[i].dispatch) * parseFloat(this.allContractReport[i].rate)) * 10;
+                  this.billAwaitedCommission += (parseFloat(this.allContractReport[i].dispatch) * parseFloat(this.allContractReport[i].rate)) * parseFloat(this.allContractReport[i].sellerCommission) * 10 /100;
+                 }
                  if(parseFloat(this.allContractReport[i].balanceQty) != 0){
                 this.blanceValue += (parseFloat(this.allContractReport[i].balanceQty) * parseFloat(this.allContractReport[i].rate)) * 10;
                 this.blanceCommission += (parseFloat(this.allContractReport[i].balanceQty) * parseFloat(this.allContractReport[i].rate)) * parseFloat(this.allContractReport[i].sellerCommission) * 10 /100;
@@ -342,7 +380,11 @@ dateformater: Dateformater = new Dateformater();
 
                 this.dispatchValue += (parseFloat(this.allContractReport[i].dispatch) * parseFloat(this.allContractReport[i].rate)) * 10;
                 this.dispatchCommission += (parseFloat(this.allContractReport[i].dispatch) * parseFloat(this.allContractReport[i].rate)) * parseFloat(this.allContractReport[i].sellerCommission);
-
+                if(this.allContractReport[i].status == "BillAwaited"){
+                  this.billAwaited += parseFloat(this.allContractReport[i].dispatch);
+                  this.billAwaitedValue += parseFloat(this.allContractReport[i].dispatch) * parseFloat(this.allContractReport[i].rate);
+                  this.billAwaitedCommission += (parseFloat(this.allContractReport[i].dispatch) * parseFloat(this.allContractReport[i].rate)) * parseFloat(this.allContractReport[i].sellerCommission) /100;
+                 }
                 if(parseFloat(this.allContractReport[i].balanceQty) != 0){
                   this.blanceValue +=(parseFloat(this.allContractReport[i].balanceQty) * parseFloat(this.allContractReport[i].rate)) * 10;
                   this.blanceCommission += (parseFloat(this.allContractReport[i].balanceQty) * parseFloat(this.allContractReport[i].rate)) * parseFloat(this.allContractReport[i].sellerCommission);
@@ -356,7 +398,20 @@ dateformater: Dateformater = new Dateformater();
                 }
           }
           else if(this.response.data.obj.length == 0) {
-            this.toastr.error("No such Contract Exist", 'Message.');
+            this.toastr.info("No such Contract Exist", 'Message.');
+            this.allContractReport=[];
+            this.search = [...this.allContractReport];
+            this.quantityValue=0;
+            this.quantityCommission=0;
+            this.dispatchValue=0;
+            this.dispatchCommission=0;
+            this.blance=0;
+            this.blanceValue=0;
+            this.blanceCommission=0;
+            this.billAwaited=0
+            this.billAwaitedValue=0
+            this.billAwaitedCommission=0
+
          this.spinner.hide();
           }
           else {

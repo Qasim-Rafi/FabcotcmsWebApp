@@ -7,7 +7,7 @@
         <div class="row">
           <div class="col-sm-12 col-md-6 col-lg-8">
             <h6 class="row wrapper page-header font-weight-light"> All Contracts Reports
-              <div class="ml-2 descr"> By default It displays the open contracts of past 3 months,
+              <div class="ml-2 descr"> By default It displays the contracts of Current month ({{monthname}})
               </div>
             </h6>
           </div>
@@ -51,35 +51,7 @@
             </div> -->
   
             <div class="row mb-2">
-  
-              <div class="col-md-3">
-                <div class="widget style1 yellow-bg  shadow">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <i class="fas fa-file-invoice-dollar fa-2x"></i>
-                    </div>
-                    <div class="col-md-8 text-right">
-                      <h6> All Contracts</h6>
-                      <h6 class="font-bold" > {{totalContract}} <p class="topbox-small-text">&nbsp;</p></h6>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            
-  <!--           
-              <div class="col-md-3">
-                <div class="widget style1 bg-info shadow">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <i class="fas fa-hand-holding-usd fa-2x"></i>
-                    </div>
-                    <div class="col-md-8 text-right">
-                      <h6>Quantity </h6>
-                      <h6 class="font-bold"> {{totalQuantity | number : '1.0-0'}}<p class="topbox-small-text"></p></h6>
-                    </div>
-                  </div>
-                </div>
-              </div> -->
+
               <div class="col-md-3">
                 <div class="widget style1 bg-info shadow">
                   <div class="row text-center font-bold" style="justify-content: center !important;">
@@ -121,6 +93,64 @@
                   </div>
                 </div>
               </div>
+             
+              <div class="col-md-3">
+                <div class="widget style1  yellow-bg shadow">
+                  <div class="row text-center font-bold" style="justify-content: center !important;">
+                    <h6 style="font-weight: bold !important;"> Bill Awaited
+                    </h6>
+                </div>
+                  <div class="row">
+                    <div class="col-md-2">
+                      <i class="fas fa-hand-holding-usd fa-2x"></i>
+                    </div>
+                    <div class="col-md-10 p-0">
+                      <div class="row" style="height: 22px  !important;">
+                        <div class="col-md-6">
+                          <h6>Quantity : </h6>
+                        </div>
+                        <div class="col-md-6">
+                          <h6 class="font-bold"> {{billAwaited | number : '2.2-2'}}<p class="topbox-small-text"></p></h6>
+                        </div>
+                      </div>
+                      <div class="row" style="height: 22px  !important;">
+                        <div class="col-md-6">
+                          <h6>Value: </h6>
+                        </div>
+                        <div class="col-md-6">
+                          <h6 class="font-bold"> {{billAwaitedValue | number : '2.2-2'}}<p class="topbox-small-text"></p></h6>
+                        </div>
+                      </div>
+                      <div class="row" style="height: 22px  !important;">
+                        <div class="col-md-6">
+                          <h6>Commission: </h6>
+                        </div>
+                        <div class="col-md-6">
+                          <h6 class="font-bold"> {{billAwaitedCommission | number : '2.2-2'}}<p class="topbox-small-text"></p></h6>
+                        </div>
+                      </div>
+                      <!-- <h6>Quantity </h6>
+                      <h6 class="font-bold"> {{totalQuantity}}<p class="topbox-small-text"></p></h6> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+  <!--           
+              <div class="col-md-3">
+                <div class="widget style1 bg-info shadow">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <i class="fas fa-hand-holding-usd fa-2x"></i>
+                    </div>
+                    <div class="col-md-8 text-right">
+                      <h6>Quantity </h6>
+                      <h6 class="font-bold"> {{totalQuantity | number : '1.0-0'}}<p class="topbox-small-text"></p></h6>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+           
               <div class="col-md-3">
                 <div class="widget style1 bg-success shadow">
                   <div class="row text-center font-bold" style="justify-content: center !important;">
@@ -371,37 +401,37 @@
           </div>
     
           <div class="card shadow">
-            <div class="card-body">
+            <div class="">
               
     
                 <ngx-datatable #myTable  class="material" [columns]="columns" [rows]="allContractReport"
                 [columnMode]="'force'"    [headerHeight]="50"  [sorts]="[{ prop: 'id', dir: 'asce' }]"
                 [footerHeight]="30"
-                [rowHeight]="80"
+                [rowHeight]="45"
                 [scrollbarH]="true"
                 [scrollbarV]="true"
-               style="height: 500px;"
+               style="height: 450px;"
             
        
              >
       
                 <ngx-datatable-column name="Age" prop="age"  >
                   <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                   <h5> <span class="badge badge-primary">{{row.age}}</span></h5>
+                   <h6> <span class="badge badge-primary">{{row.age}}</span></h6>
                    
                   </ng-template>
                 </ngx-datatable-column>
                 <ngx-datatable-column name="Contract#">
                   <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                    <button class="clr" >  {{row.contractNo}} </button> <small *ngIf="loggedInDepartmentName =='Yarn Local Karachi'">({{row.manualContractNumber}})</small>
+                    {{row.contractNo}} <small *ngIf="loggedInDepartmentName =='Yarn Local Karachi'">({{row.manualContractNumber}})</small>
                   </ng-template>
                 </ngx-datatable-column>
-                <ngx-datatable-column name="Buyer"    >
+                <ngx-datatable-column name="Buyer"  [width]="300"  >
                   <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                     {{row.buyerName}}
                   </ng-template>
                 </ngx-datatable-column>
-                <ngx-datatable-column name="Seller"  >
+                <ngx-datatable-column name="Seller" [width]="300"  >
                   <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                     {{row.sellerName}}
                   </ng-template>
