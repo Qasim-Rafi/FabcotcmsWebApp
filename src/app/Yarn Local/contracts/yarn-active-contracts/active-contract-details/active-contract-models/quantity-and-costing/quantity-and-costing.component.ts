@@ -104,7 +104,7 @@ export class QuantityAndCostingComponent implements OnInit {
       "quantityUOMId": this.data.quantityUOMId,
 
       "quantityToleranceValue": this.data.quantityToleranceValue,
-      "rate": this.data.rate,
+      "rate": this.data.rate ==""?null:this.data.rate,
       "rateCurrencyId": this.data.rateCurrencyId,
       
       "rateUOMId": this.data.rateUOMId,
