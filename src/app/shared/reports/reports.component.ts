@@ -954,7 +954,29 @@ this.spinner.hide();
       Seller: row.sellerName,
       InvoiceNumber:row.invoiceNo,
       Rate: row.rate +row.uomName,
-      CommPer: row.fabcotCommission +' '+ row.commissionUomName ,
+      CommPer: row.fabcotCommission +' '+ row.commissionUomName  ,
+      Quantity: row.quantity,
+      QtyUOM:row.quantityUOMName,
+
+      CommAmount: row.commissionAmount + row.rateCurrencyName ,
+    }));
+
+    this.service.exportAsExcelFile(filtered, 'Bill Report(Invoice Wise)');
+
+  }
+  invoiceExcelFileB(){
+    const filtered = this.billingReportInvoiceWise.map(row => ({
+      BillFor: row.billFor,
+      Article: row.articleName + row.construction,
+      ContractNumber: row.contractNo,
+      CotractDate: row.contractDate ,
+      BillDate: row.billDate,
+      BillNumber: row.billNo,
+      Buyer: row.buyerName ,
+      Seller: row.sellerName,
+      InvoiceNumber:row.invoiceNo,
+      Rate: row.rate +row.uomName,
+      CommPer:row.commissionUomName == null? row.fabcotCommission +' '+ row.quantityUOMName :row.fabcotCommission +' '+row.commissionUomName ,
       Quantity: row.quantity,
       QtyUOM:row.quantityUOMName,
 
@@ -1504,6 +1526,103 @@ this.fetch();
     pdfMake.createPdf(docDefinition).print();
   }
 
+
+  billingInvoicePdf2b() {
+    // for(let i=0;i<=this.billingReportInvoiceWise.length; i++){
+    //   this.invoiceTotal += this.billingReportInvoiceWise[i].totalCommisson
+     
+    // }
+    this.invoiceTotal =this.billingReportInvoiceWise.reduce((accumulator, current) => accumulator + current.totalCommisson, 0);
+    this.invoiceTotal =this.invoiceTotal.toFixed(3); 
+    let docDefinition = {
+      pageSize: 'A4',
+     
+      info: {
+        title: 'Billing Invoice List'
+      },
+      content: [
+        {
+          text: 'Billing Invoice  List' ,
+          style: 'heading',
+
+        },
+        {
+          text:  this.month != null && this.year != null ? '(' + this.month + '-' +this.year + ')' : '',
+          style: 'heading2',
+
+        },
+        {
+          margin: [-20 , 5 , 0 , 0 ],
+          table:{
+            headerRows : 1,
+            widths : [ 50, 39, 34 , 34 , 20 , 50 , 50 , 30 , 33 , 30 , 35 , 40
+            ],
+            body:[
+              [
+                
+              {text:'Article' , style:'tableHeader'} ,
+              {text:'Contract#' , style:'tableHeader' }, 
+              {text:'Contract Date' , style:'tableHeader' }, 
+
+              {text:'Bill Date'  , style:'tableHeader'} , 
+              {text:'Bill#' , style:'tableHeader'} , 
+              {text:'Seller' , style:'tableHeader'},
+              
+              {text:'Buyer'  , style:'tableHeader'} , 
+              {text:'Rate' , style:'tableHeader'} , 
+              {text:'Comm%' , style:'tableHeader'},
+              {text:'Inv#'  , style:'tableHeader'} , 
+              {text:'Quantity' , style:'tableHeader'} , 
+              {text:'Comm Amount' , style:'tableHeader'} 
+            ],
+              ...this.billingReportInvoiceWise.map(row => (
+                [
+                
+                {text:  row.articleName + row.construction , style:'tableHeader2'},
+                {text: row.contractNo, style:'tableHeader2'} ,
+                {text: row.contractDate , style:'tableHeader2'} ,
+                 {text: row.billDate, style:'tableHeader2'} ,
+                  {text:row.billNo  , style:'tableHeader2' }  ,
+                  {text: row.sellerName , style:'tableHeader2'},
+           
+                 {text: row.buyerName , style:'tableHeader2'} ,
+                  {text: row.rate != '' ? row.rateCurrencyName == 'PKR' ?'Rs ' + row.rate + '/' + row.uomName : row.rateCurrencyName == 'USD' ? '$ ' + row.rate + '/' +row.uomName : row.rateCurrencyName == 'EUR' ? '€ ' + row.rate + '/' +row.uomName : row.rateCurrencyName == 'GBP' ? 'GBP ' + row.rate + '/' +row.uomName : row.rateCurrencyName + row.rate + " /" + row.uomName : '' , style:'tableHeader2' }  ,
+                  {text: row.commissionUomName == null ?row.fabcotCommission +' '+  row.quantityUOMName:row.fabcotCommission +' '+row.commissionUomName, style:'tableHeader2'},
+              
+                   {text:row.invoiceNo  , style:'tableHeader2' }  ,
+                   {text:   row.quantity + ' ' + row.quantityUOM  , style:'tableHeader2' }  ,
+
+                   {text:row.commissionAmount != '' ? row.rateCurrencyName == 'PKR' ?  row.commissionAmount +' Rs' : row.rateCurrencyName == 'USD' ? row.commissionAmount + ' $' : row.rateCurrencyName == 'EUR' ? row.commissionAmount + ' €': row.rateCurrencyName == 'GBP' ? row.commissionAmount + ' GBP' : row.commissionAmount + " " + row.rateCurrencyName : '' 
+                    , style:'tableHeader2' }  
+                ]
+              ))
+            ]
+          }
+        },
+        {text: "Total Comm Amount: " , bold: true , margin:[340 , 20,0,0] ,style:'totalAmount' },
+        {text: this.invoiceTotal , bold: true , margin:[420 , -9,0,0] ,style:'totalAmount' }
+      ],
+      styles: {
+        heading: {
+          fontSize: 12,
+          alignment: 'center',
+          margin: [0, 9, 0, 4]
+        },
+        heading2: {
+          fontSize: 10,
+          alignment: 'center',
+          margin: [0, 2, 0, 9]
+        },
+        totalAmount:{
+          fontSize:8
+              },
+        tableHeader:{ fillColor: '#f3f3f4' , bold:true , margin:4 , alignment: 'center' ,fontSize: 7},
+        tableHeader2:{   margin:3 , alignment: 'center' , fontSize: 6},
+      }
+
+    };
+    pdfMake.createPdf(docDefinition).print();
+  }
   billingInvoicePdfFabriclocal() {
     // for(let i=0;i<=this.billingReportInvoiceWise.length; i++){
     //   this.invoiceTotal += this.billingReportInvoiceWise[i].totalCommisson
