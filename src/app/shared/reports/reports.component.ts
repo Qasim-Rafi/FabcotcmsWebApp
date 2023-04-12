@@ -1489,7 +1489,7 @@ this.fetch();
            
                  {text: row.buyerName , style:'tableHeader2'} ,
                   {text: row.rate != '' ? row.rateCurrencyName == 'PKR' ?'Rs ' + row.rate + '/' + row.uomName : row.rateCurrencyName == 'USD' ? '$ ' + row.rate + '/' +row.uomName : row.rateCurrencyName == 'EUR' ? '€ ' + row.rate + '/' +row.uomName : row.rateCurrencyName == 'GBP' ? 'GBP ' + row.rate + '/' +row.uomName : row.rateCurrencyName + row.rate + " /" + row.uomName : '' , style:'tableHeader2' }  ,
-                  {text: row.fabcotCommission +' '+ row.commissionUomName , style:'tableHeader2'},
+                  {text: row.commissionUomName == null || row.commissionUomName ==""? row.fabcotCommission +' '+ row.quantityUOMName: row.fabcotCommission +' '+ row.commissionUomName, style:'tableHeader2'},
               
                    {text:row.invoiceNo  , style:'tableHeader2' }  ,
                    {text:   row.quantity + ' ' + row.quantityUOM  , style:'tableHeader2' }  ,
