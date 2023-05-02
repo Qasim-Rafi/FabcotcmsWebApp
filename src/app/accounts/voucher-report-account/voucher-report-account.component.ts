@@ -416,36 +416,19 @@ onDetailToggle(event) {
 
 allContractExcelFile(){
   const filtered = this.allContractReport.map(row => ({
-  Age:row.age,
-  ContractNo: row.contractNo,
-  Buyer: row.buyerName,
-  Seller: row.sellerName ,
-  Date: row.date,
-  PONumber: row.poNumber,
-  Article: row.articleName ,
-  Rate: row.rate + row.rateUOMName ,
+    ContractNo: row.autoContractNumber,
+
+    BillNo: row.billNumber,
+    BillDate: row.createdDate,
+    VoucherNumber: row.voucherNumber ,
+    ContractOwner: row.contractOwner ,
    
-
-    Quantity: row.balanceQty,
-    QtyUOM:row.uomName,
-    Booking: row.booking ,
-    
-    Dispatch: row.dispatch ,
-    Balance: row.balanceQty ,
-    Cost: row.cost ,
-    SellerComm: row.sellerCommission ,
-    SellerCommAmount: row.sellerCommissionAmount ,
-    BuyerComm: row.buyerCommission ,
-    BuyerCommAmount: row.buyerCommissionAmount ,
-    PaymentTermSellerBuyer : row.paymentTerm ,
-    Status :row.status,
-    Agent : row.agent ,
-
+      Status :row.status,
     
 
   }));
 
-  this.service.exportAsExcelFile(filtered, 'All Contract Report');
+  this.service.exportAsExcelFile(filtered, 'Contract Voucher Report');
 
 }
 

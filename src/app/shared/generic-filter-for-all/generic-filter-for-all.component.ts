@@ -36,6 +36,7 @@ export class GenericFilterForAllComponent implements OnInit {
   ) { this.router.routeReuseStrategy.shouldReuseRoute = () => false; }
 
   ngOnInit(): void {
+    this.data.year ="2023"
     this.menuName=this.menu;
     if(this.menuName =="Open Contract Report" ){
       this.data.contractStatus = "Open";
