@@ -107,7 +107,7 @@ this.GetletteroFCreditDropdown();
             this.data.unit=this.articledata.costingUOMId;
              this.data.amount=this.articledata.contractArticleRate * this.data.quantity;
 
-  
+             this.data.amount = this.data.amount.toFixed(2)
           }
           else {
             this.toastr.error(this.response.message, 'Message.');
@@ -136,10 +136,12 @@ this.GetletteroFCreditDropdown();
           this.quantitya=event.target.value;
           this.calculatedcost= this.quantitya*this.rate*10;
           this.data.amount=this.calculatedcost;
+          this.data.amount = this.data.amount.toFixed(2)
         }else{
           this.quantitya=event.target.value;
           this.calculatedcost= this.quantitya*this.rate;
           this.data.amount=this.calculatedcost;
+          this.data.amount = this.data.amount.toFixed(2)
         }
       }
     
@@ -152,6 +154,7 @@ getArticleAmount(event){
   this.quantitya=event.target.value;
 this.calculatedcost= this.quantitya*this.data.contractArticleRate;
 this.data.amount=this.calculatedcost;
+this.data.amount = this.data.amount.toFixed(2)
 }
 }
    getunit(event:any){
@@ -250,7 +253,7 @@ if(event==7){
       "saleInvoiceNo": this.data.saleInvoiceNo,
       "saleInvoiceDate":this.dateformater.toModel(this.data.saleInvoiceDate),
       "saleInvoiceRemarks":this.data.saleInvoiceRemarks,
-      "amount": this.data.amount,
+      "amount": parseFloat(this.data.amount).toFixed(2),
       "quantity": this.data.quantity,
       "unit": this.data.unit.toString(),
       "taxPercentage": this.data.taxPercentage == null ?  this.condition :this.data.taxPercentage,
@@ -331,8 +334,8 @@ this.spinner.show();
       this.uom = this.data.UnitofMeasurement;
       this.articledata.contractArticleCommission=this.data.contractArticleCommission;
 if(this.loggedInDepartmentName == 'Yarn Export' || this.loggedInDepartmentName == 'Yarn Export Bangladesh'){
-  this.data.amount=this.data.contractArticleRate * this.data.contractArticleQuantity;
-  
+  this.data.amount=this.data.contractArticleRate * parseFloat(this.data.quantity);
+  this.data.amount = this.data.amount.toFixed(2)
 }
 else{
  if(this.costingdataunits.rateUOMId == 7){
@@ -380,7 +383,7 @@ else{
        "saleInvoiceNo": this.data.saleInvoiceNo,
        "saleInvoiceDate":this.dateformater.toModel(this.data.saleInvoiceDate),
        "saleInvoiceRemarks":this.data.saleInvoiceRemarks,
-       "amount":parseInt(this.data.amount),
+       "amount":parseFloat(this.data.amount).toFixed(2),
        "quantity": this.data.quantity,
        "unit": this.data.unit,
        "rate":  this.data.contractArticleRate == undefined || this.data.contractArticleRate == null ?this.rate :this.data.contractArticleRate,
