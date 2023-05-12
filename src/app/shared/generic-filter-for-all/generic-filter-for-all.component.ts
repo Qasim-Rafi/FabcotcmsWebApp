@@ -238,8 +238,13 @@ export class GenericFilterForAllComponent implements OnInit {
 
   datatransfer(){
     // this.data.branch;
+    // let statuss :any =string []=[];
     this.departmentIdFromAdmin=localStorage.getItem('loggedInDepartmentId');
     if(this.menu!= "Contract Voucher Report"){
+      // if(this.data.contractStatus.length == 1){
+      //   statuss =[];
+      //   statuss.push(this.data.contractStatus)
+      // }
     let varr = {
       "buyerId":this.data.buyerId ==undefined ? 0 :this.data.buyerId,
       "sellerId":this.data.sellerId == undefined?0 :this.data.sellerId,
@@ -249,9 +254,11 @@ export class GenericFilterForAllComponent implements OnInit {
        "ageStart":this.data.ageStart == undefined ? 0: this.data.ageStart,
        "ageEnd":this.data.ageEnd == undefined ? 0: this.data.ageEnd,
        "agentId":this.data.agentId ==undefined ? 0 :this.data.agentId,
-       "status":this.data.contractStatus == undefined? "All": this.data.contractStatus,
+      //  "status":this.data.contractStatus == undefined? "All": this.data.contractStatus,
+       "statuss": this.data.contractStatus ,
       "articleId":this.data.articleId == undefined? 0:this.data.articleId,
-       "AdminDepartmentId" :this.departId
+       "AdminDepartmentId" :this.departId,
+       "isAccounts":true,
 
     }
     

@@ -130,12 +130,12 @@
     
               <div class="col-md-6">
                 <label class="text-grey">Contract Status</label>
-                <ng-select [disabled]="isDisabledStatus" [(ngModel)]="data.contractStatus" placeholder="All" name="contractStatus" #contractStatus="ngModel"
+                <ng-select [disabled]="isDisabledStatus"  [multiple]="true" [(ngModel)]="data.contractStatus" placeholder="All" name="contractStatus" #contractStatus="ngModel"
                 >
                 <ng-option value="All">All</ng-option>
                 <ng-option value="Open">Open</ng-option>
                 <ng-option value="Billed">Billed</ng-option>
-                <ng-option value="Cancle">Cancel</ng-option>
+                <ng-option value="Cancel">Cancel</ng-option>
                 <ng-option value="BillAwaited">BillAwaited</ng-option>
                 </ng-select>
               </div>
