@@ -272,12 +272,13 @@ export class GenericFilterForAllComponent implements OnInit {
       "autoContractNumber":this.data.autoContractNumber == undefined ? '': this.data.autoContractNumber,
       "startDate":this.data.startContractDate == undefined? 'null': this.dateformater.toModel(this.data.startContractDate),
       "endDate":this.data.endContractDate == undefined?'null':this.dateformater.toModel(this.data.endContractDate),
-      "status" : "All",
+      "status" : this.data.contractStatus == undefined? "All" :this.data.contractStatus ,
       "year" : this.data.year == undefined? 0:parseInt(this.data.year) ,
       "departmentId" : this.departId,
       "agentId" : this.data.agentId,
       "billNumber" : this.data.billNo == undefined?0 :this.data.billNo,
-      "voucherNumber" : this.data.voucherNo == undefined ? '': this.data.voucherNo
+      "voucherNumber" : this.data.voucherNo == undefined ? '': this.data.voucherNo,
+      // "status": this.data.contractStatus ,
     }
     this.activeModal.close(varr1);
   }

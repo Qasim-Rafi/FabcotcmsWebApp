@@ -1976,7 +1976,15 @@
                   <b *ngIf = "row.rateCurrencyName == 'PKR'" >RS</b>  
                 <b *ngIf = "row.rateCurrencyName == 'USD'">$</b> 
                 <b *ngIf = "row.rateCurrencyName == 'EUR'">€</b> 
-                <b *ngIf = "row.rateCurrencyName == 'GBP'">GBP</b>   {{ row.received }}
+                <b *ngIf = "row.rateCurrencyName == 'GBP'">GBP</b>   {{ row.received ==null?0:row.received }}
+                </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="Challan" >
+                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                  <b *ngIf = "row.rateCurrencyName == 'PKR'" >RS</b>  
+                <b *ngIf = "row.rateCurrencyName == 'USD'">$</b> 
+                <b *ngIf = "row.rateCurrencyName == 'EUR'">€</b> 
+                <b *ngIf = "row.rateCurrencyName == 'GBP'">GBP</b>   {{ row.taxChallan ==null?0:row.taxChallan }}
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="Balance" >
@@ -1984,7 +1992,7 @@
                   <b *ngIf = "row.rateCurrencyName == 'PKR'">RS</b>  
                 <b *ngIf = "row.rateCurrencyName == 'USD'">$</b> 
                 <b *ngIf = "row.rateCurrencyName == 'EUR'">€</b> 
-                <b *ngIf = "row.rateCurrencyName == 'GBP'">GBP</b>   {{ row.balance }}
+                <b *ngIf = "row.rateCurrencyName == 'GBP'">GBP</b>   {{ row.balance ==null?0:row.balance }}
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="Aging" >

@@ -210,11 +210,19 @@
     <ng-option value="2030">2030</ng-option>
   </ng-select>
 </div>
+
+
 <div class="col-md-6">
   <label class="text-grey">Contract No</label>
   <input class="form-control" name="autoContractNumber" [(ngModel)]="data.autoContractNumber" #autoContractNumber="ngModel"
   placeholder="AutoContractNumber" />
 </div>
+
+
+   
+
+
+
 
 <!-- <div class="col-md-6">
   <label class="text-grey">Contract Status</label>
@@ -229,6 +237,33 @@
   </ng-select>
 </div> -->
 </div>
+</div>
+<div *ngIf="menu =='Contract Voucher Report'">
+          
+          
+  <div class="row pt-1">
+
+    <!-- <div class="col-md-6">
+      <label class="text-grey">Contract Owners</label>
+      <ng-select [(ngModel)]="data.agentId" placeholder="All" name="agentId" #agentId="ngModel"
+      >
+      <ng-option *ngFor="let i of contractOwnera" [value]="i.id">{{ i.fullName }}
+      </ng-option>
+      </ng-select>
+    </div> -->
+
+    <div class="col-md-6">
+      <label class="text-grey">Contract Status</label>
+      <ng-select  [(ngModel)]="data.contractStatus" placeholder="All" name="contractStatus" #contractStatus="ngModel"
+      >
+      <ng-option value="All">All</ng-option>
+      <ng-option value="Open">Open</ng-option>
+      <ng-option value="Billed">Billed</ng-option>
+      <ng-option value="Cancel">Cancel</ng-option>
+      <ng-option value="BillAwaited">BillAwaited</ng-option>
+      </ng-select>
+    </div>
+  </div>
 </div>
           <!-- <div *ngIf="menu=='CommissionReport'">
         
