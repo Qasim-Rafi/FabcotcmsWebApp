@@ -1,0 +1,197 @@
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "line-spin-fade" [fullScreen] = "true"><p style="color: white" > Loading... </p>
+</ngx-spinner>
+<div class="content-header">
+
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-8">
+      <h5 class="row wrapper page-header font-weight-light"> Active Blocks
+        <!-- <h5 class=" wrapper page-header font-weight-light" *ngIf="isFiltred ==true" style="margin-left: 50%;"> Data Filtred</h5> -->
+        <!-- <div class="ml-2 descr"> Manage Fabric / Yarn Articles with warp, weft, end, pick,weive & width info </div> -->
+      </h5>
+      
+    </div>
+
+    <div class="col-sm-12 col-md-6 col-lg-4">
+      <ol class="breadcrumb flt-RnL">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Active Blocks</li>
+      </ol>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="card shadow ibox-content">
+    <div class=" panel blank-panel">
+      <div class="panel-heading">
+        <div class="panel-body">
+<!--         
+            <div class="text-center" *ngIf="isFiltred ==false"> 
+    
+            Default 3 Months Data
+            </div>
+            <div class="text-center" *ngIf="isFiltred ==true"> 
+    
+              Data Filtered  To {{dateData.ToDate}} From {{dateData.FromDate}}
+              </div> -->
+          
+          <kendo-grid
+          [kendoGridBinding]="rows"
+          kendoGridSelectBy="id"
+          [pageSize]="20"
+          [pageable]="true"
+          [sortable]=" {
+            allowUnsort: false
+          }"
+          [reorderable]="true"
+          [resizable]="true"
+          [height]="550"
+  
+          [filterable]="true"
+          >
+          <ng-template kendoGridToolbarTemplate>
+             <button type="button" class="btn btn-primary btn-sm col-md-2"
+              (click)="navigateAddContract()"
+              >
+              <i class="fa fa-plus"></i> Add Block
+            </button>
+
+             <kendo-grid-spacer></kendo-grid-spacer>
+            <input placeholder="Search in all columns..." class="form-control col-md-3 justify-content-end customiconforgrid" #newItem kendoTextBox (input)="onFilter(newItem.value)"/>
+  
+  
+        
+            
+            
+ 
+                
+          </ng-template>
+       
+
+          <kendo-grid-column field="Action" title="Action" [width]="90" [filterable]="false">
+            <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+              <div class="ibox-tools text-center">
+
+                <span  class="editIconBack1 px-1 py-1 "
+                (click)="navigateEditBlock(dataItem)"
+                >
+                  <i class="far fa-edit edit  "></i>
+                </span>
+<!-- 
+                <span type="button" class="editIconBack1 px-1 py-1" (click) = "cloneContract(dataItem)">
+                  <i class="far fa-copy"></i>
+                </span>
+                <span  class="editIconBack1 px-1 py-1" 
+               
+                >
+                  <i class="fa fa-th edit"></i>
+                </span> -->
+
+                <!-- <span  class="deleteIconBack1 px-1 py-1" 
+                (click)="deleteContract(dataItem)"
+                >
+                  <i class="far fa-trash-alt edit"></i>
+                </span> -->
+
+              </div>
+            </ng-template>
+        </kendo-grid-column>
+
+
+              <kendo-grid-column  field="contractNumber" title="Block#" [width]="120"   [headerClass]="'customiconforgrid'">
+                <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                  
+                    {{dataItem.contractNumber}}
+                </ng-template>
+                
+              </kendo-grid-column>
+              <kendo-grid-column field="buyerName" title="Buyer&Seller" [width]="370" [headerClass]="'customiconforgrid'">
+                <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                  
+                    <p class="text-left">
+                        B: &nbsp;{{dataItem.buyerName}}  <br>
+                        S: &nbsp; {{dataItem.sellerName}}
+                    </p>
+                </ng-template>
+                
+              </kendo-grid-column>
+              <kendo-grid-column field="articleName" title="Article(s)" [width]="350"    [headerClass]="'customiconforgrid'">
+                <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                   <div *ngFor="let i of dataItem.blockBookingArticleList">
+                    <div class="row">
+                    <span  class="badge badge-primary col-md-5 text-wrap mr-1">{{i.articleName}}</span>  
+                    <span  class="badge badge-primary col-md-2 mr-1">Qty: {{i.quantity}}</span>  
+                    <span  class="badge badge-primary col-md-2 mr-1">Rate: {{i.rate}}</span>  
+                    <span  class="badge badge-primary col-md-2 mr-1">T: %{{i.tolerance}}(+/-)</span>  
+                    
+                </div>
+                </div>
+                </ng-template>
+                
+              </kendo-grid-column>
+              <!-- <kendo-grid-column field="price" title="Price" [width]="120" [headerClass]="'customiconforgrid'">
+                <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                  {{dataItem.currencyCode}} {{dataItem.price}} / {{dataItem.uomName}}
+                </ng-template>
+                
+              </kendo-grid-column> -->
+              <kendo-grid-column field="packingName" title="Packing" [width]="120"     [headerClass]="'customiconforgrid'">
+                <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                  {{dataItem.packingName}}
+                </ng-template>
+                
+              </kendo-grid-column>
+              <kendo-grid-column field="delivery" title="Delivery" [width]="120"        [headerClass]="'customiconforgrid'">
+                <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                  {{dataItem.delivery}}
+                </ng-template>
+                
+              </kendo-grid-column>
+              <kendo-grid-column field="deliverTerms" title="Deliver Terms" [width]="120"        [headerClass]="'customiconforgrid'">
+                <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                  {{dataItem.deliverTerms}}
+                </ng-template>
+                
+              </kendo-grid-column>
+              <kendo-grid-column field="condition" title="Condition" [width]="120"        [headerClass]="'customiconforgrid'">
+                <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                  {{dataItem.condition}}
+                </ng-template>
+                
+              </kendo-grid-column>
+              <kendo-grid-column field="termOfPayment" title="TermOfPayment" [width]="120"        [headerClass]="'customiconforgrid'">
+                <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                  {{dataItem.termOfPayment}}
+                </ng-template>
+                
+              </kendo-grid-column>
+              <kendo-grid-column field="remarks" title="Remarks" [width]="120"        [headerClass]="'customiconforgrid'">
+                <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                  {{dataItem.remarks}}
+                </ng-template>
+                
+              </kendo-grid-column>
+              <kendo-grid-column field="note" title="Note" [width]="120"        [headerClass]="'customiconforgrid'">
+                <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                  {{dataItem.note}}
+                </ng-template>
+                
+              </kendo-grid-column>
+              <kendo-grid-column field="whtExemption" title="WhtExemption" [width]="120"        [headerClass]="'customiconforgrid'">
+                <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                  {{dataItem.whtExemption}}
+                </ng-template>
+                
+              </kendo-grid-column>
+  
+           
+          </kendo-grid>
+  
+  
+  
+        </div>
+
+        </div>
+        </div>
+        </div>

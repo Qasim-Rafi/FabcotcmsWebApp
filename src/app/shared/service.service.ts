@@ -319,8 +319,16 @@ getAgentType(){
   getUsers() {
     return this.http.get(`${environment.apiUrl}/api/Users/GetUsers`);
   }
-
-
+  addBlock(data) {
+    return this.http.post(`${environment.apiUrl}/api/BlockBooking/AddBlockBooking`,data);
+  }
+  getByIdBlock(id) {
+    return this.http.get(`${environment.apiUrl}/api/BlockBooking/GetblockById/` + id);
+  }
+  updateBlock(id,data) {
+    return this.http.put(`${environment.apiUrl}/api/BlockBooking/UpdateBlock/`+id,data);
+  }
+  
   login(loginData) {
     return this.http.get(`${environment.apiUrl}/api/Auth/Login`)
   }

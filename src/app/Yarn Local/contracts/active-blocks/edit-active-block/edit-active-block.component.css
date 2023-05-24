@@ -1,0 +1,23 @@
+.buttonOuter{
+    /* background-color: #ffffff; */
+    border: 1px solid #e2e2e2;
+    border-radius: 50px;
+    padding: 0px 10px;
+    margin: 10px 0px;
+    box-shadow: 0 0.4rem 0.5rem rgb(0 0 0 / 15%) !important;
+    height: 6vh !important;
+    background: -webkit-linear-gradient(91deg, #1ab394d9 259px, #ffffff 26%);
+  background: -moz-linear-gradient(91deg, #1ab394d9 259px, #ffffff 26%);
+  background: -ms-linear-gradient(91deg, #1ab394d9 259px, #ffffff 26%);
+  background: -o-linear-gradient(91deg, #1ab394d9 259px, #ffffff 26%);
+  background: linear-gradient(91deg, #1ab394d9 259px, #ffffff 26%);
+  }
+  .firstediv {
+    font-size: 23px;
+    font-family: emoji;
+    padding: 5px 5px 5px 30px;
+    color: #ffff;
+  } 
+  .my_class{
+    display: none !important;
+  }

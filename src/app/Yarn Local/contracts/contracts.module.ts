@@ -53,6 +53,9 @@ import { ChartsModule } from '@progress/kendo-angular-charts';
 import { InputsModule } from '@progress/kendo-angular-inputs';
 import { LocalComberNoilComponent } from './local-comber-noil/local-comber-noil.component';
 import { ActiveContractDetailsCombernoilLocalComponent } from './yarn-active-contracts/active-contract-details-combernoil-local/active-contract-details-combernoil-local.component';
+import { AddBlockComponent } from './add-block/add-block.component';
+import { ActiveBlocksComponent } from './active-blocks/active-blocks.component';
+import { EditActiveBlockComponent } from './active-blocks/edit-active-block/edit-active-block.component';
 @NgModule({
   declarations: [AddNewContractsComponent,
     EditDispatchComponent,
@@ -79,6 +82,9 @@ LCInfoComponent,
 SummaryComponent,
 LocalComberNoilComponent,
 ActiveContractDetailsCombernoilLocalComponent,
+AddBlockComponent,
+ActiveBlocksComponent,
+EditActiveBlockComponent,
 
   ],
   imports: [

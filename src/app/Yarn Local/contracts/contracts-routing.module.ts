@@ -16,6 +16,9 @@ import {DocumentUploadPopUpComponent} from './yarn-active-contracts/active-contr
 import { CertificateComponent } from 'src/app/configuration/home-textile/certificate/certificate.component';
 import { LocalComberNoilComponent } from './local-comber-noil/local-comber-noil.component';
 import { ActiveContractDetailsCombernoilLocalComponent } from './yarn-active-contracts/active-contract-details-combernoil-local/active-contract-details-combernoil-local.component';
+import { AddBlockComponent } from './add-block/add-block.component';
+import { ActiveBlocksComponent } from './active-blocks/active-blocks.component';
+import { EditActiveBlockComponent } from './active-blocks/edit-active-block/edit-active-block.component';
 const routes: Routes = [
   { path:'FabCot', component:TemplateComponent,
   // canActivate:[AuthGuard],
@@ -23,8 +26,10 @@ const routes: Routes = [
   children:[
 
     { path: 'add-new-contract' ,  component: AddNewContractsComponent},
+    { path: 'add-block' ,  component: AddBlockComponent},
     { path: 'local-comber-noil' ,  component: LocalComberNoilComponent},
     { path: 'active-contract' ,  component: YarnActiveContractsComponent},
+    { path: 'active-blocks' ,  component: ActiveBlocksComponent},
     { path: 'completed-contract' ,  component: CompletedContractComponent},
     { path: 'dispatched-register' , component:DispatchedRegisterComponent},
     { path: 'buyer-payment' , component:BuyerPaymentComponent},
@@ -33,6 +38,7 @@ const routes: Routes = [
     { path: 'buyer-payment-form' , component:BuyerPaymentFormComponent},
     { path: 'add-tax' , component:AddTxChallanComponent},
     {path: 'active-contract-details' , component:ActiveContractDetailsComponent},
+    {path: 'edit-active-block' , component:EditActiveBlockComponent},
     {path: 'active-contract-details-combernoil-local' , component:ActiveContractDetailsCombernoilLocalComponent},
   {path: 'doc-upload' , component:DocumentUploadPopUpComponent},
   {path: 'certificate' , component:CertificateComponent},
