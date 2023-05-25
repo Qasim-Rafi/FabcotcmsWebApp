@@ -764,7 +764,7 @@ this.http.get('/assets/kk.png', { responseType: 'blob' })
 
             {
               layout:'noBorders',
-              margin: [20 , -625 , 0 , 0],
+              margin: [20 , -610 , 0 , 0],
               table:{headerRows: 1 , widths:['20%' , '45%'  ],
             body: [
               [{text:'Buyer Name:'  , style:'heading'} , {text: this.printData['buyerName'] ,margin:[-20,0,0,0] ,   style:'heading2'} , 
