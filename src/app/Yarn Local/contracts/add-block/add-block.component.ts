@@ -87,7 +87,7 @@ this.getBlockNumber()
       this.response = res;
       if (this.response.success == true) {
         this.data = this.response.data;
-        
+        this.router.navigate(['/FabCot/edit-active-block'], { queryParams: {id: this.data} });
       }
       else {
         this.toastr.error(this.response.message, 'Message.');

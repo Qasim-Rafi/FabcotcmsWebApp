@@ -217,7 +217,7 @@ this.http.get('/assets/kk.png', { responseType: 'blob' })
             
            
        
-            
+     if(this.printData.blockBookingArticleList.length == 1){       
            
     let docDefinition = {
       pageSize: 'A4',
@@ -402,14 +402,15 @@ this.http.get('/assets/kk.png', { responseType: 'blob' })
                 margin: [20 , 2 , 0 , 0],
                 table:{headerRows: 1 , widths:['20%' , '40%'],
               body: [
-                [{text:'Quality:'  , style:'heading'} , {text: this.printData.blockBookingArticleList[0]['construction'], margin:[-20,0,0,0],    style:'heading2'}],] }
+                [{text:'Quality:'  , style:'heading'} , {text: this.printData.blockBookingArticleList[0]['articleName'], margin:[-20,0,0,0],    style:'heading2'}],] }
               },
               {
                 layout:'noBorders',
                 margin: [20 , 2 , 0 , 0],
                 table:{headerRows: 1 , widths:['20%' , '40%'],
               body: [
-                [{text:'Quantity:'  , style:'heading'} , {text: this.printData.blockBookingArticleList[0]['quantity'] , margin:[-20,0,0,0] , style:'heading2'}],] }
+                [{text:'Quantity:'  , style:'heading'} , {text: this.printData.blockBookingArticleList[0]['quantity'] +' '+this.printData.blockBookingArticleList[0]['quantityUOMName'] 
+                , margin:[-20,0,0,0] , style:'heading2'}],] }
               },
 
               {
@@ -417,7 +418,7 @@ this.http.get('/assets/kk.png', { responseType: 'blob' })
                 margin: [20 , 2 , 0 , 0],
                 table:{headerRows: 1 , widths:['20%' , '40%'],
               body: [
-                [{text:'Rate:'  , style:'heading'} , {text: this.printData.blockBookingArticleList[0]['rate'] , margin:[-20,0,0,0]  , style:'heading2'}],] }
+                [{text:'Rate:'  , style:'heading'} , {text:this.printData.blockBookingArticleList[0]['currencyName'] +' /'+ this.printData.blockBookingArticleList[0]['rate'] +' '+this.printData.blockBookingArticleList[0]['rateUOMName'], margin:[-20,0,0,0]  , style:'heading2'}],] }
               },
            
               {
@@ -497,7 +498,6 @@ this.http.get('/assets/kk.png', { responseType: 'blob' })
               body: [
                 [{text:'Remarks:'  , style:'heading'} , {text: this.printData['remarks'] , margin:[-20,0,0,0] , style:'heading2'}],] }
               },
-
 
   
               { 
@@ -600,6 +600,413 @@ this.http.get('/assets/kk.png', { responseType: 'blob' })
   
     };
     pdfMake.createPdf(docDefinition).print();
+  }
+  else{
+    let docDefinition = {
+      pageSize: 'A4',
+      pageMargins: [ 5, 10, 5, 10 ],
+      pageOrientation: 'letter',
+        
+            info: {
+              title: 'Contract Seller'
+            },
+         
+            content: [
+           
+              {
+                "image" : this.image2,
+               fit : [130 , 130] , margin:[420,5,0,0]
+            
+              },
+              {
+                layout:'noBorders',
+                margin: [20 , -50 , 0 , 0],
+                table:{headerRows: 1 , widths:['60%' , '40%' ],
+              body: [
+                [{text:'FABCOT INTERNATIONAL'  , style:'heading10'} ,
+                // {text:this.checkR  , style:'heading10'}
+              ],] }
+              },
+              {
+                layout:'noBorders',
+                margin: [20 , 8 , 0 , 0],
+                table:{headerRows: 1 , widths:['100%' ],
+              body: [
+                [{text:'133 Aurangzeb Block, New Garden Town, Lahore'  , style:'heading'} 
+              ],] }
+              },
+              {
+                layout:'noBorders',
+                margin: [20 , 8 , 0 , 0],
+                table:{headerRows: 1 , widths:['20%' , '50%' ],
+              body: [
+                [{text:'Tel. +92-42-35846171-4'  , style:'heading'} ,
+                {text:'Fax: +92-42-35846175'  , style:'heading'} 
+              ],] }
+              },
+              {
+                layout:'noBorders',
+                margin: [20 , 8 , 0 , 0],
+                table:{headerRows: 1 , widths:['100%' ],
+              body: [
+                [{text:'www.fabcotonline.com'  , style:'heading'} 
+              ],] }
+              },
+              { 
+                margin:[0,-56,0,0],
+                canvas: 
+                [
+                    
+                    {
+                      type: 'line',
+                      x1: 0, y1: 60,
+                      x2: 590, y2: 60,
+                      lineWidth: 0.5,
+                    
+
+                    }
+                ]
+             },
+             { 
+              margin:[0,-59.5,0,0],
+              canvas: 
+              [
+                  
+                  {
+                    type: 'line',
+                    x1: 0, y1: 60,
+                    x2: 590, y2: 60,
+                    lineWidth: 0.5,
+                  
+
+                  }
+              ]
+           },
+                 {
+                layout:'noBorders',
+                margin: [70 , 2 , 0 , 0],
+                table:{headerRows: 1 , widths:['50%' , '50%'],
+              body: [
+                [{text:'To:  ' + this.printData['to']  , style:'heading'} ,
+                {text:'Contract No:  ' + this.printData['contractNumber']  , margin:[60, 0,0,0] , style:'heading'}
+              ],] }
+              },
+              {
+                layout:'noBorders',
+                margin: [70 , 0 , 0 , 0],
+                table:{headerRows: 1 , widths:['50%' , '50%'],
+              body: [
+                [{text:'Attn:  ' + this.printData['attention']  , style:'heading'} ,
+                {text:'Contract Date:  ' + this.printData['createdDateTime']  , margin:[60, 0,0,0] , style:'heading'}
+              ],] }
+              },
+              { 
+                margin:[0,-49,0,0],
+                canvas: 
+                [
+                    
+                    {
+                      type: 'line',
+                      x1: 0, y1: 60,
+                      x2: 590, y2: 60,
+                      lineWidth: 0.5,
+                    
+
+                    }
+                ]
+             },
+             { 
+              margin:[0,-58.5,0,0],
+              canvas: 
+              [
+                  
+                  {
+                    type: 'line',
+                    x1: 0, y1: 60,
+                    x2: 590, y2: 60,
+                    lineWidth: 0.5,
+                   
+
+                  }
+              ]
+           },
+              {
+                layout:'noBorders',
+                margin: [130 , 10 , 0 , 0],
+                table:{headerRows: 1 , widths:['100%'],
+              body: [
+                [{text:'We are pleased to confirm here the booking as per following terms and conditions. ' , style:'heading'}  ],] }
+              },
+
+              { 
+                margin:[10,-105,0,0],
+                canvas: 
+                [
+                    
+                    {
+                      type: 'line',
+                      x1: 100, y1: 90,
+                      x2:100, y2: 720,
+                      lineWidth: 1,
+                      
+                    }
+                ]
+             },
+            //  {
+            //   layout:'noBorders',
+            //   margin: [20 , -510 , 0 , 0],
+            //   table:{headerRows: 1 , widths:['20%' , '45%'  ],
+            // body: [
+            //   [{text:'Buyer Name:'  , style:'heading'} , {text: this.printData['buyerName'] ,margin:[-30,0,0,0] ,   style:'heading2'} , 
+            
+            // ],] }
+            // },   
+
+            {
+              layout:'noBorders',
+              margin: [20 , -625 , 0 , 0],
+              table:{headerRows: 1 , widths:['20%' , '45%'  ],
+            body: [
+              [{text:'Buyer Name:'  , style:'heading'} , {text: this.printData['buyerName'] ,margin:[-20,0,0,0] ,   style:'heading2'} , 
+                      
+            ],] }
+            },
+
+               {
+                layout:'noBorders',
+                margin: [20 , 2 , 0 , 0],
+                table:{headerRows: 1 , widths:['20%' , '45%'],
+              body: [
+                [{text:'Seller Name:'  , style:'heading'} , {text: this.printData['sellerName'] , margin:[-20,0,0,0],    style:'heading2'}],] }
+              },
+             
+              {
+                margin: [120 , 10  , 0 , 10],
+               
+                table:{
+                  headerRows:1,
+                  widths: [ '35%' , '15%' , '15%'  ],
+                  body:[
+                    [ {text:'Quality' , style: 'tableheader2' , },
+                     {text:'Quantity' , style: 'tableheader2'},
+                    {text:'Rate' , style: 'tableheader2'},
+
+                  ],
+            ...this.printData['blockBookingArticleList'].map((row=>
+              [
+                // row.articleName  , row.contractArticleQuantity, row.contractArticleCommission,
+                // row.contractArticleRate 
+                     {text: row.articleName, style: 'tableheader3'} , 
+                     {text: row.quantity +' '+ row.quantityUOMName , style: 'tableheader3'},
+                     {text: row.rate +' '+ row.rateUOMName, style: 'tableheader3'}
+
+                ]
+              ))
+          
+                  ]
+                }
+              },
+           
+              {
+                layout:'noBorders',
+                margin: [20 , 2 , 0 , 0],
+                table:{headerRows: 1 , widths:['20%' , '40%'],
+              body: [
+                [{text:'Packing:'  , style:'heading'} , {text: this.printData['packingName'] ,    margin:[-20,0,0,0] , style:'heading2'}],] }
+              },
+              {
+                layout:'noBorders',
+                margin: [20 , 2 , 0 , 0],
+                table:{headerRows: 1 , widths:['20%' , '40%'],
+              body: [
+                [{text:'Terms of Payment:'  , style:'heading'} , {text: this.printData['termOfPayment'] ,  margin:[-20,0,0,0] ,style:'heading2'}],] }
+              },
+
+                 {
+                layout:'noBorders',
+                margin: [20 , 2 , 0 , 0],
+                table:{headerRows: 1 , widths:['20%' , '40%'],
+              body: [
+                [{text:'Delivery:'  , style:'heading'} , {text: this.printData['delivery'] ,  margin:[-20,0,0,0] ,style:'heading2'}],] }
+              },
+
+                 {
+                layout:'noBorders',
+                margin: [20 , 2 , 0 , 0],
+                table:{headerRows: 1 , widths:['20%' , '40%'],
+              body: [
+                [{text:'Commission:'  , style:'heading'} , {text: this.printData['commission'] ,  margin:[-20,0,0,0] ,style:'heading2'}],] }
+              },
+        
+
+{
+                layout:'noBorders',
+                margin: [20 , 2 , 0 , 0],
+                table:{headerRows: 1 , widths:['20%' , '40%'],
+              body: [
+                [
+                  {text:'Delivery Terms:'  , style:'heading'} , {text: this.printData['deliverTerms'] ,  style:'heading2' , margin:[-20,0,0,0]}, 
+                  // {text: "Margin:"  , margin:[-120,0,0,0] , style:'heading'} ,
+                   ],
+                ] }
+              },
+            
+
+             
+              {
+
+                layout:'noBorders',
+                margin: [20 , 2 , 0 , 0],
+                table:{headerRows: 1 , widths:['20%' , '40%'],
+              body: [
+                [{text:'Condition:'  , style:'heading'} , {text: this.printData['condition'] , margin:[-20,0,0,0] , style:'heading2'}],] }
+              },
+              {
+                layout:'noBorders',
+                margin: [20 , 2 , 0 , 0],
+                table:{headerRows: 1 , widths:['20%' , '40%'],
+              body: [
+                [{text:'W.H.T Exemption:'  , style:'heading'} , {text: this.printData['whtExemption'] , margin:[-20,0,0,0] , style:'heading2'}],] }
+              },
+
+              {
+                layout:'noBorders',
+                margin: [20 , 2 , 0 , 0],
+                table:{headerRows: 1 , widths:['20%' , '40%'],
+              body: [
+                [{text:'Other Terms:'  , style:'heading'} , {text: this.printData['otherTerms'] , margin:[-20,0,0,0] , style:'heading2'}],] }
+              },
+
+              {
+                layout:'noBorders',
+                margin: [20 , 2 , 0 , 0],
+                table:{headerRows: 1 , widths:['20%' , '40%'],
+              body: [
+                [{text:'Remarks:'  , style:'heading'} , {text: this.printData['remarks'] , margin:[-20,0,0,0] , style:'heading2'}],] }
+              },
+
+  
+              { 
+                margin:[0,0,0,0],
+                canvas: 
+                [
+                    
+                    {
+                      type: 'line',
+                      x1: 0, y1: 270,
+                      x2: 590, y2: 270,
+                      lineWidth: 1,
+
+                    }
+                ]
+             },
+  {
+                layout:'noBorders',
+                margin: [20 , 2 , 0 , 0],
+                table:{headerRows: 1 , widths:['20%' , '40%'],
+              body: [
+                [{text:'Note:'  , style:'heading'} , {text: this.printData['note'] , margin:[-20,0,0,0] , style:'heading2'}],] }
+              },
+
+              //  {
+              //   layout:'noBorders',
+              //   margin: [20 , 80 , 0 , 0],
+              //   table:{headerRows: 1 , widths:['100%'],
+              // body: [
+              //   [{text:'Please get it signed & send back same for our record purpose'  ,  style:'heading'}],] }
+              // },
+              // {
+              //   layout:'noBorders',
+              //   margin: [20 , 10 , 0 , 0],
+              //   table:{headerRows: 1 , widths:['100%'],
+              // body: [
+              //   [{text:'For FabCot International'  , style:'heading'}],] }
+              // },
+           
+            ],
+
+            footer:{
+              margin: [20, 2,0,0],
+              columns: [
+                'NOTE: This is a system generated Contract and does not require any signature.',
+                { text: '', alignment: 'center' , style:'tableheader'}
+              ]
+            },
+          //   footer: {
+          //     columns: [
+          //         'Report generated on 8/30/2021 6:02:31PM',
+          //         'Developed by XYZ Fitness Software',
+          //         {
+          //             alignment: 'right',
+          //             text: 'Page 1 of 2'
+          //         },
+          //         {
+          //           alignment: 'right',
+          //           text: 'www.xyz.com'
+          //       },
+          //     ],
+          //     margin: [60, 10, 60, 10 ]
+          // },
+            styles:{
+              heading:{fontSize: 10,
+               bold: true,
+              //  font:ti,
+               // color: '#4d4b4b'
+              },
+               heading10:{fontSize: 10,
+                 bold: true,
+                 // color: '#4d4b4b' 
+               },
+               heading4:{fontSize: 8,
+                bold: true,
+               },
+               heading5:{fontSize: 8,
+               },
+               heading2:{fontSize: 9  , 
+                 // color:'#4d4b4b'
+                 },
+                 heading3:{fontSize: 7  , 
+                   // color:'#4d4b4b'
+                     bold:true
+               },
+               lineColor:{
+                 // color:'#535353'
+               },
+                 tableheader: {
+                   fillColor: '#f3f3f4',
+                   fontSize: 9,
+                   bold: true,
+                   // color: '#4d4b4b',
+                  alignment:'center',
+                   margin:8
+                 
+                  },
+                  tableheader3: {
+                            
+                    fontSize: 8,
+                   
+                    color: '#4d4b4b',
+                   alignment:'center',
+                    margin:5
+                  
+                   },
+                   tableheader2: {
+                    // fillColor: '#f3f3f4',
+                    fontSize: 10,
+                    bold: true,
+                    color: '#4d4b4b',
+                   alignment:'center',
+                    margin:5
+                  
+                   },
+             },
+            
+  
+    };
+    pdfMake.createPdf(docDefinition).print();
+  }
+
+   
   
   }
 
