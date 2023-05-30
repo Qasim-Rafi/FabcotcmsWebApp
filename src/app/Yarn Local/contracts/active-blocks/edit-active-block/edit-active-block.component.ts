@@ -836,7 +836,13 @@ this.http.get('/assets/kk.png', { responseType: 'blob' })
                   ]
                 }
               },
-           
+              {
+                layout:'noBorders',
+                margin: [20 , 2 , 0 , 0],
+                table:{headerRows: 1 , widths:['20%' , '40%'],
+              body: [
+                [{text:'Quantity:'  , style:'heading'} , {text: this.printData['quantity'] ,    margin:[-5,0,0,0] , style:'heading2'}],] }
+              },
               {
                 layout:'noBorders',
                 margin: [20 , 2 , 0 , 0],
