@@ -415,7 +415,7 @@ this.http.get('/assets/kk.png', { responseType: 'blob' })
                 margin: [20 , 2 , 0 , 0],
                 table:{headerRows: 1 , widths:['20%' , '40%'],
               body: [
-                [{text:'Quantity:'  , style:'heading'} , {text: this.printData.blockBookingArticleList[0]['quantity'] +' '+this.printData.blockBookingArticleList[0]['quantityUOMName'] 
+                [{text:'Quantity:'  , style:'heading'} , {text: this.printData['quantity'] +' '+this.printData.blockBookingArticleList[0]['quantityUOMName'] 
                 , margin:[-5,0,0,0] , style:'heading2'}],] }
               },
 
@@ -815,10 +815,10 @@ this.http.get('/assets/kk.png', { responseType: 'blob' })
                
                 table:{
                   headerRows:1,
-                  widths: [ '35%' , '15%' , '15%'  ],
+                  widths: [ '35%'  , '15%'  ],
                   body:[
                     [ {text:'Quality' , style: 'tableheader2' , },
-                     {text:'Quantity' , style: 'tableheader2'},
+                    //  {text:'Quantity' , style: 'tableheader2'},
                     {text:'Rate' , style: 'tableheader2'},
 
                   ],
@@ -827,7 +827,7 @@ this.http.get('/assets/kk.png', { responseType: 'blob' })
                 // row.articleName  , row.contractArticleQuantity, row.contractArticleCommission,
                 // row.contractArticleRate 
                      {text: row.articleName, style: 'tableheader3'} , 
-                     {text: row.quantity +' '+ row.quantityUOMName , style: 'tableheader3'},
+                    //  {text: row.quantity +' '+ row.quantityUOMName , style: 'tableheader3'},
                      {text: row.rate +' '+ row.rateUOMName, style: 'tableheader3'}
 
                 ]
