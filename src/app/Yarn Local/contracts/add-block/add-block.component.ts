@@ -85,6 +85,7 @@ this.getBlockNumber()
       "otherTerms": this.data.otherTerms,
       "note": this.data.note,
       "quantity": this.data.quantity,
+      "quantityUOM": this.data.quantityUOM,
       "blockBookingArticleList": this.Article,
     }
     this.service.addBlock(varr).subscribe(res => {

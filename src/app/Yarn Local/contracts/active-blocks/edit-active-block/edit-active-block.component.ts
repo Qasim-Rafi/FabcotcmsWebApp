@@ -119,6 +119,7 @@ this.http.get('/assets/kk.png', { responseType: 'blob' })
       "otherTerms": this.data.otherTerms,
       "note": this.data.note,
       "quantity": this.data.quantity,
+      "quantityUOM": this.data.quantityUOM,
       "blockBookingArticleList": this.Article,
     }
     this.service.updateBlock(this.contractId,varr).subscribe(res => {

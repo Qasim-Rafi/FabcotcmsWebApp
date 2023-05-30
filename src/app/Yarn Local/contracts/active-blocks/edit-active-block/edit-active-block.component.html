@@ -186,6 +186,15 @@
                                                  </div>
                                              </div>
                                          </div>
+
+                                         <div class="col-md-3 mrg-tsm">
+                                            <ng-select [(ngModel)]="data.quantityUOM" placeholder="Select UOM"
+                                                name="quantityUOM">
+                                                <ng-option *ngFor="let i of uomList" [value]="i.id">{{
+                                                    i.name }}
+                                                </ng-option>
+                                            </ng-select>
+                                        </div>
                                      </div>
 
                                     <div class="card-body" *ngFor="let a of Article; let i = index; let first=first" [ngClass]="{'my_class': a.isHide == true}" >
@@ -229,16 +238,16 @@
                                                         </div>
                                                     </div> -->
 
-                                                    <div class="col-md-3 mrg-tsm">
+                                                    <!-- <div class="col-md-3 mrg-tsm">
                                                         <ng-select [(ngModel)]="a.quantityUOM" placeholder="Select UOM"
                                                             name="quantityUOM_{{i}}">
                                                             <ng-option *ngFor="let i of uomList" [value]="i.id">{{
                                                                 i.name }}
                                                             </ng-option>
                                                         </ng-select>
-                                                    </div>
+                                                    </div> -->
 
-                                                    <div class="col-md-3 mrg-tsm">
+                                                    <!-- <div class="col-md-3 mrg-tsm">
                                                         <div class="input-group">
                                                             <div class="input-group-append">
                                                                 <span class="input-group-text"
@@ -252,7 +261,7 @@
                                                                     id="basic-addon2">%</span>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </div> -->
 
                                                 </div>
                                             </div>
