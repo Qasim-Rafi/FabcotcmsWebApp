@@ -207,6 +207,20 @@
                                 </div>
                             </div>
 
+                            <div class="pb-2 row">
+                               <label class="col-md-1 col-form-label control-label">Quantity:</label>
+                                <div class="col-md-3">
+                                    <div class="input-group">
+                                        <input type="number" min="0" placeholder="quantity"
+                                            #quantity="ngModel" class="form-control"
+                                            [(ngModel)]="data.quantity" name="quantity">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text" id="basic-addon2">per</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                              
                            <div class="card-body" *ngFor="let a of Article; let i = index; let first=first">
                             <div class="form-group row" >
                                 <label for="inputEmail3"
@@ -236,7 +250,7 @@
 
 
 
-                                        <div class="col-md-3">
+                                        <!-- <div class="col-md-3">
                                             <div class="input-group">
                                                 <input type="number" min="0" placeholder="quantity"
                                                     #quantity="ngModel" class="form-control"
@@ -245,26 +259,26 @@
                                                     <span class="input-group-text" id="basic-addon2">per</span>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
 
-                                        <div class="col-md-2 mrg-tsm">
+                                        <div class="col-md-3 mrg-tsm">
                                             <ng-select [(ngModel)]="a.quantityUOM" placeholder="Select UOM"
-                                                name="quantityUOM">
+                                                name="quantityUOM_{{i}}">
                                                 <ng-option *ngFor="let i of uomList" [value]="i.id">{{ i.name }}
                                                 </ng-option>
                                             </ng-select>
                                         </div>
 
-                                        <div class="col-md-2 mrg-tsm">
+                                        <div class="col-md-3 mrg-tsm">
                                             <div class="input-group">
                                                 <div class="input-group-append">
-                                                    <span class="input-group-text" id="basic-addon2">+/-</span>
+                                                    <span class="input-group-text" >+/-</span>
                                                 </div>
                                                 <input type="text" placeholder="tolerance value."
                                                     class="form-control" [(ngModel)]="a.tolerance"
-                                                    name="tolerance" #tolerance="ngModel">
+                                                    name="tolerance_{{i}}" >
                                                 <div class="input-group-append">
-                                                    <span class="input-group-text" id="basic-addon2">%</span>
+                                                    <span class="input-group-text">%</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -281,7 +295,7 @@
                                         <div class="col-md-2">
                                             <div class="input-group">
                                                 <input type="number" min="0" placeholder="Rate" #rate="ngModel"
-                                                    class="form-control" [(ngModel)]="a.rate" name="rate">
+                                                    class="form-control" [(ngModel)]="a.rate" name="rate_{{i}}">
                                                 <div class="input-group-append">
                                                     <span class="input-group-text" id="basic-addon2">per</span>
                                                 </div>
@@ -290,7 +304,7 @@
 
                                         <div class="col-md-2 mrg-tsm">
                                             <ng-select [(ngModel)]="a.currencyId" placeholder="Select Currency"
-                                                name="currencyId">
+                                                name="currencyId_{{i}}">
                                                 <ng-option *ngFor="let i of currency" [value]="i.id">{{ i.code }}
                                                 </ng-option>
                                             </ng-select>
@@ -302,7 +316,7 @@
                                                 <div class="col-md-3 col-sm-4 pt-2"><strong> per </strong></div>
                                                 <div class="col-md-9 col-sm-8 mrg-tsm">
                                                     <ng-select [(ngModel)]="a.rateUOM" placeholder="Select UOM"
-                                                        name="rateUOM">
+                                                        name="rateUOM_{{i}}">
                                                         <ng-option *ngFor="let i of uomList" [value]="i.id">{{
                                                             i.name }}
                                                         </ng-option>
@@ -314,8 +328,8 @@
                                         <div class="col-md-5">
                                             <div class="input-group">
                                                 <input type="text" placeholder="Enter Specification here (Quality)"
-                                                    name="construction" #construction="ngModel"
-                                                    class="form-control text-w-4" [(ngModel)]="data.construction">
+                                                    name="construction_{{i}}" #construction="ngModel"
+                                                    class="form-control text-w-4" [(ngModel)]="a.construction">
                                             </div>
                                         </div>
                                         <div class=" mrg-tsm" *ngIf="!first">
@@ -418,7 +432,7 @@
 
        <div class="form-group row">
         <label for="inputEmail3"
-            class="col-md-2 col-form-label control-label">Delivery:</label>
+            class="col-md-2 col-form-label control-label">Buyer Delivery:</label>
 
             <div class="col-md-4">
                     <input type="text" placeholder="Delivery" [(ngModel)]="data.delivery"
@@ -432,6 +446,26 @@
                  name="deliverTerms" #deliverTerms="ngModel" class="form-control text-w-4"
                  >
         
+        </div>
+
+    </div>
+
+         
+    <div class="form-group row">
+        <label for="inputEmail3"
+            class="col-md-2 col-form-label control-label">Seller Delivery:</label>
+
+        <div class="col-md-4">
+            <input type="text" placeholder="SellerDelivery" [(ngModel)]="data.sellerDelivery"
+                name="sellerDelivery" #sellerDelivery="ngModel" class="form-control text-w-4">
+
+        </div>
+
+        <div class="col-md-4">
+            <input type="text" placeholder="Delivery Terms"
+                [(ngModel)]="data.sellerDeliverTerms" name="sellerDeliverTerms"
+                #sellerDeliverTerms="ngModel" class="form-control text-w-4">
+
         </div>
 
     </div>
@@ -464,7 +498,7 @@
             <div class="col-md-8">
                
                     <div class="input-group">
-                        <textarea rows="3" class="form-control" placeholder="Remarks"
+                        <textarea rows="4" class="form-control" placeholder="Remarks"
                             [(ngModel)]="data.remarks"
                             name="remarks"></textarea>
                     </div>
@@ -488,7 +522,7 @@
 
         <div class="col-md-8">
             <div class="input-group">
-                <textarea rows="3" class="form-control" placeholder="Other Terms"
+                <textarea rows="4" class="form-control" placeholder="Other Terms"
                     [(ngModel)]="data.otherTerms"
                     name="otherTerms"></textarea>
             </div>
@@ -504,7 +538,7 @@
             <div class="col-md-8">
                
                     <div class="input-group">
-                        <textarea rows="3" class="form-control" placeholder="Note"
+                        <textarea rows="4" class="form-control" placeholder="Note"
                             [(ngModel)]="data.note"
                             name="note"></textarea>
                     </div>

@@ -75,6 +75,7 @@ this.http.get('/assets/kk.png', { responseType: 'blob' })
 
   }
   getbyIdblock(){
+    this.spinner.show()
     this.service.getByIdBlock(this.contractId).subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
@@ -88,8 +89,10 @@ this.http.get('/assets/kk.png', { responseType: 'blob' })
           this.Article[i].mode = 2;
           this.Article[i].isHide =false // Add "total": 2 to all objects in array
       }
+      this.spinner.hide()
       }
       else {
+        this.spinner.hide()
         this.toastr.error(this.response.message, 'Message.');
       }
     })
@@ -107,12 +110,15 @@ this.http.get('/assets/kk.png', { responseType: 'blob' })
       "commisionUOMId": this.data.commisionUOMId,
       "termOfPayment": this.data.termOfPayment,
       "delivery": this.data.delivery,
+      "sellerDelivery": this.data.sellerDelivery,
       "deliverTerms": this.data.deliverTerms,
+      "sellerDeliverTerms": this.data.sellerDeliverTerms,
       "condition": this.data.condition,
       "whtExemption": this.data.whtExemption,
       "remarks": this.data.remarks,
       "otherTerms": this.data.otherTerms,
       "note": this.data.note,
+      "quantity": this.data.quantity,
       "blockBookingArticleList": this.Article,
     }
     this.service.updateBlock(this.contractId,varr).subscribe(res => {
@@ -349,7 +355,7 @@ this.http.get('/assets/kk.png', { responseType: 'blob' })
            },
               {
                 layout:'noBorders',
-                margin: [130 , 10 , 0 , 0],
+                margin: [140 , 10 , 0 , 0],
                 table:{headerRows: 1 , widths:['100%'],
               body: [
                 [{text:'We are pleased to confirm here the booking as per following terms and conditions. ' , style:'heading'}  ],] }
@@ -362,8 +368,8 @@ this.http.get('/assets/kk.png', { responseType: 'blob' })
                     
                     {
                       type: 'line',
-                      x1: 100, y1: 90,
-                      x2:100, y2: 730,
+                      x1: 120, y1: 90,
+                      x2:120, y2: 730,
                       lineWidth: 1,
                       
                     }
@@ -384,7 +390,7 @@ this.http.get('/assets/kk.png', { responseType: 'blob' })
               margin: [20 , -600 , 0 , 0],
               table:{headerRows: 1 , widths:['20%' , '45%'  ],
             body: [
-              [{text:'Buyer Name:'  , style:'heading'} , {text: this.printData['buyerName'] ,margin:[-20,0,0,0] ,   style:'heading2'} , 
+              [{text:'Buyer Name:'  , style:'heading'} , {text: this.printData['buyerName'] ,margin:[-5,0,0,0] ,   style:'heading2'} , 
                       
             ],] }
             },
@@ -394,7 +400,7 @@ this.http.get('/assets/kk.png', { responseType: 'blob' })
                 margin: [20 , 2 , 0 , 0],
                 table:{headerRows: 1 , widths:['20%' , '45%'],
               body: [
-                [{text:'Seller Name:'  , style:'heading'} , {text: this.printData['sellerName'] , margin:[-20,0,0,0],    style:'heading2'}],] }
+                [{text:'Seller Name:'  , style:'heading'} , {text: this.printData['sellerName'] , margin:[-5,0,0,0],    style:'heading2'}],] }
               },
              
                {
@@ -402,7 +408,7 @@ this.http.get('/assets/kk.png', { responseType: 'blob' })
                 margin: [20 , 2 , 0 , 0],
                 table:{headerRows: 1 , widths:['20%' , '40%'],
               body: [
-                [{text:'Quality:'  , style:'heading'} , {text: this.printData.blockBookingArticleList[0]['articleName'], margin:[-20,0,0,0],    style:'heading2'}],] }
+                [{text:'Quality:'  , style:'heading'} , {text: this.printData.blockBookingArticleList[0]['articleName'], margin:[-5,0,0,0],    style:'heading2'}],] }
               },
               {
                 layout:'noBorders',
@@ -410,7 +416,7 @@ this.http.get('/assets/kk.png', { responseType: 'blob' })
                 table:{headerRows: 1 , widths:['20%' , '40%'],
               body: [
                 [{text:'Quantity:'  , style:'heading'} , {text: this.printData.blockBookingArticleList[0]['quantity'] +' '+this.printData.blockBookingArticleList[0]['quantityUOMName'] 
-                , margin:[-20,0,0,0] , style:'heading2'}],] }
+                , margin:[-5,0,0,0] , style:'heading2'}],] }
               },
 
               {
@@ -418,7 +424,7 @@ this.http.get('/assets/kk.png', { responseType: 'blob' })
                 margin: [20 , 2 , 0 , 0],
                 table:{headerRows: 1 , widths:['20%' , '40%'],
               body: [
-                [{text:'Rate:'  , style:'heading'} , {text:this.printData.blockBookingArticleList[0]['currencyName'] +' /'+ this.printData.blockBookingArticleList[0]['rate'] +' '+this.printData.blockBookingArticleList[0]['rateUOMName'], margin:[-20,0,0,0]  , style:'heading2'}],] }
+                [{text:'Rate:'  , style:'heading'} , {text:this.printData.blockBookingArticleList[0]['currencyName'] +' /'+ this.printData.blockBookingArticleList[0]['rate'] +' '+this.printData.blockBookingArticleList[0]['rateUOMName'], margin:[-5,0,0,0]  , style:'heading2'}],] }
               },
            
               {
@@ -426,14 +432,14 @@ this.http.get('/assets/kk.png', { responseType: 'blob' })
                 margin: [20 , 2 , 0 , 0],
                 table:{headerRows: 1 , widths:['20%' , '40%'],
               body: [
-                [{text:'Packing:'  , style:'heading'} , {text: this.printData['packingName'] ,    margin:[-20,0,0,0] , style:'heading2'}],] }
+                [{text:'Packing:'  , style:'heading'} , {text: this.printData['packingName'] ,    margin:[-5,0,0,0] , style:'heading2'}],] }
               },
               {
                 layout:'noBorders',
                 margin: [20 , 2 , 0 , 0],
                 table:{headerRows: 1 , widths:['20%' , '40%'],
               body: [
-                [{text:'Terms of Payment:'  , style:'heading'} , {text: this.printData['termOfPayment'] ,  margin:[-20,0,0,0] ,style:'heading2'}],] }
+                [{text:'Terms of Payment:'  , style:'heading'} , {text: this.printData['termOfPayment'] ,  margin:[-5,0,0,0] ,style:'heading2'}],] }
               },
 
                  {
@@ -441,7 +447,15 @@ this.http.get('/assets/kk.png', { responseType: 'blob' })
                 margin: [20 , 2 , 0 , 0],
                 table:{headerRows: 1 , widths:['20%' , '40%'],
               body: [
-                [{text:'Delivery:'  , style:'heading'} , {text: this.printData['delivery'] ,  margin:[-20,0,0,0] ,style:'heading2'}],] }
+                [{text:'Buyer Delivery:'  , style:'heading'} , {text: this.printData['delivery'] ,  margin:[-5,0,0,0] ,style:'heading2'}],] }
+              },
+
+              {
+                layout:'noBorders',
+                margin: [20 , 2 , 0 , 0],
+                table:{headerRows: 1 , widths:['20%' , '40%'],
+              body: [
+                [{text:'Seller Delivery:'  , style:'heading'} , {text: this.printData['sellerDelivery'] ,  margin:[-5,0,0,0] ,style:'heading2'}],] }
               },
 
                  {
@@ -449,20 +463,36 @@ this.http.get('/assets/kk.png', { responseType: 'blob' })
                 margin: [20 , 2 , 0 , 0],
                 table:{headerRows: 1 , widths:['20%' , '40%'],
               body: [
-                [{text:'Commission:'  , style:'heading'} , {text: this.printData['commission'] ,  margin:[-20,0,0,0] ,style:'heading2'}],] }
+                [{text:'Commission:'  , style:'heading'} , {text: this.printData['commission'] ,  margin:[-5,0,0,0] ,style:'heading2'}],] }
               },
         
 
-{
-                layout:'noBorders',
-                margin: [20 , 2 , 0 , 0],
-                table:{headerRows: 1 , widths:['20%' , '40%'],
-              body: [
-                [
-                  {text:'Delivery Terms:'  , style:'heading'} , {text: this.printData['deliverTerms'] ,  style:'heading2' , margin:[-20,0,0,0]}, 
-                  // {text: "Margin:"  , margin:[-120,0,0,0] , style:'heading'} ,
-                   ],
-                ] }
+              {
+                layout: 'noBorders',
+                margin: [20, 2, 0, 0],
+                table: {
+                  headerRows: 1, widths: ['20%', '40%'],
+                  body: [
+                    [
+                      { text: 'Buyer Delivery Terms:', style: 'heading' }, { text: this.printData['deliverTerms'], style: 'heading2', margin: [-5, 0, 0, 0] },
+                      // {text: "Margin:"  , margin:[-120,0,0,0] , style:'heading'} ,
+                    ],
+                  ]
+                }
+              },
+
+              {
+                layout: 'noBorders',
+                margin: [20, 2, 0, 0],
+                table: {
+                  headerRows: 1, widths: ['20%', '40%'],
+                  body: [
+                    [
+                      { text: 'Seller Delivery Terms:', style: 'heading' }, { text: this.printData['sellerDeliverTerms'], style: 'heading2', margin: [-5, 0, 0, 0] },
+                      // {text: "Margin:"  , margin:[-120,0,0,0] , style:'heading'} ,
+                    ],
+                  ]
+                }
               },
             
 
@@ -473,22 +503,14 @@ this.http.get('/assets/kk.png', { responseType: 'blob' })
                 margin: [20 , 2 , 0 , 0],
                 table:{headerRows: 1 , widths:['20%' , '40%'],
               body: [
-                [{text:'Condition:'  , style:'heading'} , {text: this.printData['condition'] , margin:[-20,0,0,0] , style:'heading2'}],] }
+                [{text:'Condition:'  , style:'heading'} , {text: this.printData['condition'] , margin:[-5,0,0,0] , style:'heading2'}],] }
               },
               {
                 layout:'noBorders',
                 margin: [20 , 2 , 0 , 0],
                 table:{headerRows: 1 , widths:['20%' , '40%'],
               body: [
-                [{text:'W.H.T Exemption:'  , style:'heading'} , {text: this.printData['whtExemption'] , margin:[-20,0,0,0] , style:'heading2'}],] }
-              },
-
-              {
-                layout:'noBorders',
-                margin: [20 , 2 , 0 , 0],
-                table:{headerRows: 1 , widths:['20%' , '40%'],
-              body: [
-                [{text:'Other Terms:'  , style:'heading'} , {text: this.printData['otherTerms'] , margin:[-20,0,0,0] , style:'heading2'}],] }
+                [{text:'W.H.T Exemption:'  , style:'heading'} , {text: this.printData['whtExemption'] , margin:[-5,0,0,0] , style:'heading2'}],] }
               },
 
               {
@@ -496,7 +518,15 @@ this.http.get('/assets/kk.png', { responseType: 'blob' })
                 margin: [20 , 2 , 0 , 0],
                 table:{headerRows: 1 , widths:['20%' , '40%'],
               body: [
-                [{text:'Remarks:'  , style:'heading'} , {text: this.printData['remarks'] , margin:[-20,0,0,0] , style:'heading2'}],] }
+                [{text:'Other Terms:'  , style:'heading'} , {text: this.printData['otherTerms'] , margin:[-5,0,0,0] , style:'heading2'}],] }
+              },
+
+              {
+                layout:'noBorders',
+                margin: [20 , 2 , 0 , 0],
+                table:{headerRows: 1 , widths:['20%' , '40%'],
+              body: [
+                [{text:'Remarks:'  , style:'heading'} , {text: this.printData['remarks'] , margin:[-5,0,0,0] , style:'heading2'}],] }
               },
 
   
@@ -519,7 +549,7 @@ this.http.get('/assets/kk.png', { responseType: 'blob' })
                 margin: [20 , 2 , 0 , 0],
                 table:{headerRows: 1 , widths:['20%' , '40%'],
               body: [
-                [{text:'Note:'  , style:'heading'} , {text: this.printData['note'] , margin:[-20,0,0,0] , style:'heading2'}],] }
+                [{text:'Note:'  , style:'heading'} , {text: this.printData['note'] , margin:[-5,0,0,0] , style:'heading2'}],] }
               },
 
               //  {
@@ -732,7 +762,7 @@ this.http.get('/assets/kk.png', { responseType: 'blob' })
            },
               {
                 layout:'noBorders',
-                margin: [130 , 10 , 0 , 0],
+                margin: [140 , 10 , 0 , 0],
                 table:{headerRows: 1 , widths:['100%'],
               body: [
                 [{text:'We are pleased to confirm here the booking as per following terms and conditions. ' , style:'heading'}  ],] }
@@ -745,8 +775,8 @@ this.http.get('/assets/kk.png', { responseType: 'blob' })
                     
                     {
                       type: 'line',
-                      x1: 100, y1: 90,
-                      x2:100, y2: 720,
+                      x1: 120, y1: 90,
+                      x2:120, y2: 720,
                       lineWidth: 1,
                       
                     }
@@ -767,7 +797,7 @@ this.http.get('/assets/kk.png', { responseType: 'blob' })
               margin: [20 , -610 , 0 , 0],
               table:{headerRows: 1 , widths:['20%' , '45%'  ],
             body: [
-              [{text:'Buyer Name:'  , style:'heading'} , {text: this.printData['buyerName'] ,margin:[-20,0,0,0] ,   style:'heading2'} , 
+              [{text:'Buyer Name:'  , style:'heading'} , {text: this.printData['buyerName'] ,margin:[-5,0,0,0] ,   style:'heading2'} , 
                       
             ],] }
             },
@@ -777,11 +807,11 @@ this.http.get('/assets/kk.png', { responseType: 'blob' })
                 margin: [20 , 2 , 0 , 0],
                 table:{headerRows: 1 , widths:['20%' , '45%'],
               body: [
-                [{text:'Seller Name:'  , style:'heading'} , {text: this.printData['sellerName'] , margin:[-20,0,0,0],    style:'heading2'}],] }
+                [{text:'Seller Name:'  , style:'heading'} , {text: this.printData['sellerName'] , margin:[-5,0,0,0],    style:'heading2'}],] }
               },
              
               {
-                margin: [120 , 10  , 0 , 10],
+                margin: [140 , 10  , 0 , 10],
                
                 table:{
                   headerRows:1,
@@ -812,14 +842,14 @@ this.http.get('/assets/kk.png', { responseType: 'blob' })
                 margin: [20 , 2 , 0 , 0],
                 table:{headerRows: 1 , widths:['20%' , '40%'],
               body: [
-                [{text:'Packing:'  , style:'heading'} , {text: this.printData['packingName'] ,    margin:[-20,0,0,0] , style:'heading2'}],] }
+                [{text:'Packing:'  , style:'heading'} , {text: this.printData['packingName'] ,    margin:[-5,0,0,0] , style:'heading2'}],] }
               },
               {
                 layout:'noBorders',
                 margin: [20 , 2 , 0 , 0],
                 table:{headerRows: 1 , widths:['20%' , '40%'],
               body: [
-                [{text:'Terms of Payment:'  , style:'heading'} , {text: this.printData['termOfPayment'] ,  margin:[-20,0,0,0] ,style:'heading2'}],] }
+                [{text:'Terms of Payment:'  , style:'heading'} , {text: this.printData['termOfPayment'] ,  margin:[-5,0,0,0] ,style:'heading2'}],] }
               },
 
                  {
@@ -827,7 +857,15 @@ this.http.get('/assets/kk.png', { responseType: 'blob' })
                 margin: [20 , 2 , 0 , 0],
                 table:{headerRows: 1 , widths:['20%' , '40%'],
               body: [
-                [{text:'Delivery:'  , style:'heading'} , {text: this.printData['delivery'] ,  margin:[-20,0,0,0] ,style:'heading2'}],] }
+                [{text:'Buyer Delivery:'  , style:'heading'} , {text: this.printData['delivery'] ,  margin:[-5,0,0,0] ,style:'heading2'}],] }
+              },
+
+              {
+                layout:'noBorders',
+                margin: [20 , 2 , 0 , 0],
+                table:{headerRows: 1 , widths:['20%' , '40%'],
+              body: [
+                [{text:'Seller Delivery:'  , style:'heading'} , {text: this.printData['sellerDelivery'] ,  margin:[-5,0,0,0] ,style:'heading2'}],] }
               },
 
                  {
@@ -835,23 +873,37 @@ this.http.get('/assets/kk.png', { responseType: 'blob' })
                 margin: [20 , 2 , 0 , 0],
                 table:{headerRows: 1 , widths:['20%' , '40%'],
               body: [
-                [{text:'Commission:'  , style:'heading'} , {text: this.printData['commission'] ,  margin:[-20,0,0,0] ,style:'heading2'}],] }
+                [{text:'Commission:'  , style:'heading'} , {text: this.printData['commission'] ,  margin:[-5,0,0,0] ,style:'heading2'}],] }
               },
         
 
-{
-                layout:'noBorders',
-                margin: [20 , 2 , 0 , 0],
-                table:{headerRows: 1 , widths:['20%' , '40%'],
-              body: [
-                [
-                  {text:'Delivery Terms:'  , style:'heading'} , {text: this.printData['deliverTerms'] ,  style:'heading2' , margin:[-20,0,0,0]}, 
-                  // {text: "Margin:"  , margin:[-120,0,0,0] , style:'heading'} ,
-                   ],
-                ] }
+              {
+                layout: 'noBorders',
+                margin: [20, 2, 0, 0],
+                table: {
+                  headerRows: 1, widths: ['20%', '40%'],
+                  body: [
+                    [
+                      { text: 'Buyer Delivery Terms:', style: 'heading' }, { text: this.printData['deliverTerms'], style: 'heading2', margin: [-5, 0, 0, 0] },
+                      // {text: "Margin:"  , margin:[-120,0,0,0] , style:'heading'} ,
+                    ],
+                  ]
+                }
               },
             
-
+              {
+                layout: 'noBorders',
+                margin: [20, 2, 0, 0],
+                table: {
+                  headerRows: 1, widths: ['20%', '40%'],
+                  body: [
+                    [
+                      { text: 'Seller Delivery Terms:', style: 'heading' }, { text: this.printData['sellerDeliverTerms'], style: 'heading2', margin: [-5, 0, 0, 0] },
+                      // {text: "Margin:"  , margin:[-120,0,0,0] , style:'heading'} ,
+                    ],
+                  ]
+                }
+              },
              
               {
 
@@ -859,22 +911,14 @@ this.http.get('/assets/kk.png', { responseType: 'blob' })
                 margin: [20 , 2 , 0 , 0],
                 table:{headerRows: 1 , widths:['20%' , '40%'],
               body: [
-                [{text:'Condition:'  , style:'heading'} , {text: this.printData['condition'] , margin:[-20,0,0,0] , style:'heading2'}],] }
+                [{text:'Condition:'  , style:'heading'} , {text: this.printData['condition'] , margin:[-5,0,0,0] , style:'heading2'}],] }
               },
               {
                 layout:'noBorders',
                 margin: [20 , 2 , 0 , 0],
                 table:{headerRows: 1 , widths:['20%' , '40%'],
               body: [
-                [{text:'W.H.T Exemption:'  , style:'heading'} , {text: this.printData['whtExemption'] , margin:[-20,0,0,0] , style:'heading2'}],] }
-              },
-
-              {
-                layout:'noBorders',
-                margin: [20 , 2 , 0 , 0],
-                table:{headerRows: 1 , widths:['20%' , '40%'],
-              body: [
-                [{text:'Other Terms:'  , style:'heading'} , {text: this.printData['otherTerms'] , margin:[-20,0,0,0] , style:'heading2'}],] }
+                [{text:'W.H.T Exemption:'  , style:'heading'} , {text: this.printData['whtExemption'] , margin:[-5,0,0,0] , style:'heading2'}],] }
               },
 
               {
@@ -882,7 +926,15 @@ this.http.get('/assets/kk.png', { responseType: 'blob' })
                 margin: [20 , 2 , 0 , 0],
                 table:{headerRows: 1 , widths:['20%' , '40%'],
               body: [
-                [{text:'Remarks:'  , style:'heading'} , {text: this.printData['remarks'] , margin:[-20,0,0,0] , style:'heading2'}],] }
+                [{text:'Other Terms:'  , style:'heading'} , {text: this.printData['otherTerms'] , margin:[-5,0,0,0] , style:'heading2'}],] }
+              },
+
+              {
+                layout:'noBorders',
+                margin: [20 , 2 , 0 , 0],
+                table:{headerRows: 1 , widths:['20%' , '40%'],
+              body: [
+                [{text:'Remarks:'  , style:'heading'} , {text: this.printData['remarks'] , margin:[-5,0,0,0] , style:'heading2'}],] }
               },
 
   
@@ -905,7 +957,7 @@ this.http.get('/assets/kk.png', { responseType: 'blob' })
                 margin: [20 , 2 , 0 , 0],
                 table:{headerRows: 1 , widths:['20%' , '40%'],
               body: [
-                [{text:'Note:'  , style:'heading'} , {text: this.printData['note'] , margin:[-20,0,0,0] , style:'heading2'}],] }
+                [{text:'Note:'  , style:'heading'} , {text: this.printData['note'] , margin:[-5,0,0,0] , style:'heading2'}],] }
               },
 
               //  {

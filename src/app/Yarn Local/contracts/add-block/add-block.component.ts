@@ -64,6 +64,7 @@ this.getBlockNumber()
 
 
   addblock(form: NgForm) {
+    
     let varr = {
       "contractNumber": this.data.contractNumber,
       "to": this.data.to,
@@ -75,18 +76,22 @@ this.getBlockNumber()
       "commisionUOMId": this.data.commisionUOMId,
       "termOfPayment": this.data.termOfPayment,
       "delivery": this.data.delivery,
+      "sellerDelivery": this.data.sellerDelivery,
       "deliverTerms": this.data.deliverTerms,
+      "sellerDeliverTerms": this.data.sellerDeliverTerms,
       "condition": this.data.condition,
       "whtExemption": this.data.whtExemption,
       "remarks": this.data.remarks,
       "otherTerms": this.data.otherTerms,
       "note": this.data.note,
+      "quantity": this.data.quantity,
       "blockBookingArticleList": this.Article,
     }
     this.service.addBlock(varr).subscribe(res => {
       this.response = res;
       if (this.response.success == true) {
         this.data = this.response.data;
+        
         this.router.navigate(['/FabCot/edit-active-block'], { queryParams: {id: this.data} });
       }
       else {

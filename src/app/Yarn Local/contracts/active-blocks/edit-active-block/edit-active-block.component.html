@@ -174,6 +174,19 @@
                                                 Article</button>
                                         </div>
                                     </div>
+                                    <div class="pb-2 row">
+                                        <label class="col-md-1 col-form-label control-label">Quantity:</label>
+                                         <div class="col-md-3">
+                                             <div class="input-group">
+                                                 <input type="number" min="0" placeholder="quantity"
+                                                     #quantity="ngModel" class="form-control"
+                                                     [(ngModel)]="data.quantity" name="quantity">
+                                                 <div class="input-group-append">
+                                                     <span class="input-group-text" id="basic-addon2">per</span>
+                                                 </div>
+                                             </div>
+                                         </div>
+                                     </div>
 
                                     <div class="card-body" *ngFor="let a of Article; let i = index; let first=first" [ngClass]="{'my_class': a.isHide == true}" >
                                         <div class="form-group row">
@@ -204,7 +217,7 @@
 
 
 
-                                                    <div class="col-md-3">
+                                                    <!-- <div class="col-md-3">
                                                         <div class="input-group">
                                                             <input type="number" min="0" placeholder="quantity"
                                                                 #quantity="ngModel" class="form-control"
@@ -214,9 +227,9 @@
                                                                     id="basic-addon2">per</span>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </div> -->
 
-                                                    <div class="col-md-2 mrg-tsm">
+                                                    <div class="col-md-3 mrg-tsm">
                                                         <ng-select [(ngModel)]="a.quantityUOM" placeholder="Select UOM"
                                                             name="quantityUOM_{{i}}">
                                                             <ng-option *ngFor="let i of uomList" [value]="i.id">{{
@@ -225,7 +238,7 @@
                                                         </ng-select>
                                                     </div>
 
-                                                    <div class="col-md-2 mrg-tsm">
+                                                    <div class="col-md-3 mrg-tsm">
                                                         <div class="input-group">
                                                             <div class="input-group-append">
                                                                 <span class="input-group-text"
@@ -396,7 +409,7 @@
 
                                     <div class="form-group row">
                                         <label for="inputEmail3"
-                                            class="col-md-2 col-form-label control-label">Delivery:</label>
+                                            class="col-md-2 col-form-label control-label">Buyer Delivery:</label>
 
                                         <div class="col-md-4">
                                             <input type="text" placeholder="Delivery" [(ngModel)]="data.delivery"
@@ -411,6 +424,26 @@
 
                                         </div>
 
+                                    </div>
+
+                                    
+                                    <div class="form-group row">
+                                        <label for="inputEmail3"
+                                            class="col-md-2 col-form-label control-label">Seller Delivery:</label>
+                                
+                                        <div class="col-md-4">
+                                            <input type="text" placeholder="SellerDelivery" [(ngModel)]="data.sellerDelivery"
+                                                name="sellerDelivery" #sellerDelivery="ngModel" class="form-control text-w-4">
+                                
+                                        </div>
+                                
+                                        <div class="col-md-4">
+                                            <input type="text" placeholder="Delivery Terms"
+                                                [(ngModel)]="data.sellerDeliverTerms" name="sellerDeliverTerms"
+                                                #sellerDeliverTerms="ngModel" class="form-control text-w-4">
+                                
+                                        </div>
+                                
                                     </div>
 
 
