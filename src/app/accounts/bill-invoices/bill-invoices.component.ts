@@ -329,8 +329,10 @@ public loadItems(): void {
      
     if(this.response.success==true)
     {
+      
     this.data=this.response.data;
     this.dashboardAmnt = this.data
+    if(this.data.objList.length > 0){
     this.rows = this.data.objList;
 
     this.gridView = {
@@ -339,7 +341,11 @@ public loadItems(): void {
     };
      cb(this.data.objList);
     this.spinner.hide();
-
+  }
+  else{
+    this.rows1= { data: [], total: 0 };
+    this.spinner.hide();
+  }
     }
     else{
       this.toastr.error(this.response.message, 'Message.');
@@ -460,7 +466,7 @@ this.gridView = {
    this.deptName =  parseInt(this.deptName);
     this.fetch((data) => {
       this.temp = [...data]; 
-      this.rows = data;
+      this.rows1 = data;
     });
   }
 
