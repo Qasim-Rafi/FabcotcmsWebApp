@@ -91,15 +91,25 @@ export class GenericFilterForAllComponent implements OnInit {
     })
   }
   GetSellersDropdown() {
-    this.service.getSellers().subscribe(res => {
+    this.http
+    .get(`${environment.apiUrl}/api/Lookups/Sellers/`+this.departId.toString())
+    .subscribe(res => {
       this.response = res;
-      if (this.response.success == true) {
-        this.seller = this.response.data;
+     
+    if(this.response.success==true)
+    {
+    this.seller=this.response.data;
+
+
+    }
+    else{
+      this.toastr.error(this.response.message, 'Message.');
+    }
+    }, err => {
+      if ( err.status == 400) {
+  this.toastr.error(err.error.message, 'Message.');
       }
-      else {
-        this.toastr.error(this.response.message, 'Message.');
-      }
-    })
+    });
   }
   Articlesgetdropdown(){
     this.departmentIdFromAdmin=localStorage.getItem('loggedInDepartmentId');

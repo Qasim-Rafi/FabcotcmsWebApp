@@ -629,7 +629,7 @@
                       <p>Add New Contracts</p>
                     </a>
                   </li>
-                    <li class="nav-item">
+                    <li class="nav-item"  *ngIf = "loggedInDepartmentName == 'Yarn Local'">
                     <a routerLink="/FabCot/add-block" class="nav-link" routerLinkActive="active">
                       <i class="fas fa-radiation"></i>
                       <p>Add Block</p>
@@ -647,7 +647,7 @@
                       <p>Active Contracts</p>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item" *ngIf = "loggedInDepartmentName == 'Yarn Local'">
                     <a routerLink="/FabCot/active-blocks" class="nav-link" routerLinkActive="active">
                       <i class="fas fa-radiation"></i>
                       <p>Active Blocks</p>
