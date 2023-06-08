@@ -1143,7 +1143,8 @@ brandId : any;
           this.response = res;
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
-            this.addSaleInvoice(this.response.data,this.data.buyerIdLCOpen);
+            if(this.loggedInDepartmentName=='Yarn Export'){
+            this.addSaleInvoice(this.response.data,this.data.buyerIdLCOpen);}
             this.contractForm.reset();
             
             this.router.navigate(['/FabCot/active-contract-details'], { queryParams: { id: this.response.data } });
