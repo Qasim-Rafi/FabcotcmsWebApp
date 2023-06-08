@@ -1143,6 +1143,7 @@ brandId : any;
           this.response = res;
           if (this.response.success == true) {
             this.toastr.success(this.response.message, 'Message.');
+            this.addSaleInvoice(this.response.data,this.data.buyerIdLCOpen);
             this.contractForm.reset();
             
             this.router.navigate(['/FabCot/active-contract-details'], { queryParams: { id: this.response.data } });
@@ -1161,5 +1162,33 @@ brandId : any;
           this.spinner.hide();
         });
   }
+  addSaleInvoice(id,buyerIdLCOpen ) {
+    let varr = {
+      "contractId": id,
+      "buyerId":buyerIdLCOpen,
+     
+    }
+this.spinner.show();
+    this.http.
+      post(`${environment.apiUrl}/api/Contracts/AddContractLetterCredit`, varr)
+      .subscribe(
+        res => {
 
+          this.response = res;
+          if (this.response.success == true) {
+
+         this.spinner.hide();
+          }
+          else {
+            this.toastr.error(this.response.message, 'Message.');
+         this.spinner.hide();
+          }
+
+        }, (err: HttpErrorResponse) => {
+          const messages = this.service.extractErrorMessagesFromErrorResponse(err);
+          this.toastr.error(messages.toString(),'Message.');
+          this.spinner.hide();
+          
+        });
+  }
 }
