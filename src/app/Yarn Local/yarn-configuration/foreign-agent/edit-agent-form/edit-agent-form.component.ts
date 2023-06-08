@@ -142,6 +142,7 @@ export class EditAgentFormComponent implements OnInit {
   UpdateAgent() {
 
     this.spinner.show();
+    this.data.emailAddress =this.data.emailAddress ==""?null:this.data.emailAddress;
     this.http.
       put(`${environment.apiUrl}/api/Configs/UpdateExternalAgent/` + this.userId, this.data)
       .subscribe(
