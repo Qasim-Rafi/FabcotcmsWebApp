@@ -464,6 +464,15 @@
                                                 <span> {{contractData.createdDateTime}}</span>
 
                                             </span>
+                                            &nbsp;
+                                            <div class="col-md-7 mt-2" *ngIf="loggedInDepartmentName =='Yarn Local'">
+                                                <div class="row">
+                                                   <span class="col-md-6 font-weight-bold">Alocation:</span>&nbsp; 
+                                                    <input type="checkbox" class="my-checkbox col-md-3"  [(ngModel)]="data.alocation" id="checkbox" (change)="updateAlocation()" />
+                                                  </div>
+                                                <!-- <input type="checkbox" [(ngModel)]="data.alocation" id="checkbox">
+                                                <label for="checkbox" class="checkbox-label">Alocation</label> -->
+                                            </div>
                                         </div>
                                         <div class="col-md-2 text-right">
 

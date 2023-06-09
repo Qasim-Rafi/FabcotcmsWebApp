@@ -121,6 +121,7 @@ brandId : any;
   ngOnInit(): void {
     this.loggedInDepartmentName = localStorage.getItem('loggedInDepartmentName');
     this.loggedInDepartmentCode = localStorage.getItem('loggedInDepartmentCode');
+    this.data.alocation =false;
     if (this.loggedInDepartmentName == 'Yarn Local') {
       this.data.currencyId = 1,
         this.data.quantityUOMId = 8,
@@ -1124,6 +1125,7 @@ brandId : any;
       "containerId": this.data.containerId,
       "count": this.data.count,
       "isComberImport":false,
+      "isAlocation":this.data.alocation,
       "contractDeliveryDates":[{
       "sellerDeliveryDateDay":this.data.sellerDeliveryDateDay == undefined? "" : this.data.sellerDeliveryDateDay,
       "sellerDeliveryDateMonth":this.data.sellerDeliveryDateMonth == undefined? "" :  this.data.sellerDeliveryDateMonth,

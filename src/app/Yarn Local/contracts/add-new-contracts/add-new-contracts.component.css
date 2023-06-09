@@ -6,7 +6,11 @@
 
 } */
 
-
+.my-checkbox {
+  transform: scale(1.5);
+  margin-right: 22px;
+  margin-top: 11px;
+}
 .badge {
   padding: 5px 10px !important;
   font-weight: 500 !important;

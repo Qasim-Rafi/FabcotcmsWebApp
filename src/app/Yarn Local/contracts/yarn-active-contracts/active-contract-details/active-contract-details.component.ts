@@ -1099,6 +1099,7 @@ if(this.saleInvoice[0].billInvoiceNumber != 0 ){
              this.sellerName = this.contractData.sellerName
              this.max1 = this.response.data.saleInvoiceQuantity;
              this.saleQuantityT =this.response.data.tolerancevalueclaculated;
+             this.data.alocation = this.contractData.isAlocation;
             //  if(this.commissionBill['billNo'] != ''){
             //    this.billCount = 1
             //  }
@@ -2121,7 +2122,41 @@ deleteDispatch(id) {
 }
 
 
+updateAlocation()
+{ 
+  let varr = {
+  
+    "isAlocation":this.data.alocation,
+  }
+this.spinner.show();
+  
+  this.http.
+  put(`${environment.apiUrl}/api/Contracts/UpdateAlocation/`+this.contractId, varr)
+  .subscribe(
+    res=> { 
 
+      this.response = res;
+      if (this.response.success == true ){
+        this.toastr.success(this.response.message, 'Message.');
+        this.getContractData();
+        this.spinner.hide();
+
+
+     
+      }
+      else if(this.response.success == false) {
+   
+        this.toastr.error(this.response.message, 'Message.');
+      }
+
+    }, err => {
+      if (err.status == 400) {
+        this.toastr.error('Something went Worng', 'Message.');
+this.spinner.hide();
+     
+      }
+    });
+}
 
 
 

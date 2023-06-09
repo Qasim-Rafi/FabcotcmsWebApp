@@ -217,3 +217,8 @@ font-weight: 600  !important;
   color: rgb(11, 192, 147) !important;
    cursor: pointer;
 }
+
+.my-checkbox {
+  transform: scale(1);
+  margin-right: 11px;
+}
