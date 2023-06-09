@@ -5266,13 +5266,13 @@ yarnExportInvoicesReportPrint(){
                         [{text:'Supplier Name:'  , style:'heading'} , {text: this.contractPartiesData['sellerName'] , style:'heading5'}],] }
                       },
                    
-                      {
-                        layout:'noBorders',
-                        margin: [70 , 7 , 0 , 0],
-                        table:{headerRows: 1 , widths:['20%' , '80%'],
-                      body: [
-                        [{text:'Buyer Name:'  , style:'heading'} , {text: this.contractPartiesData['buyerName'], style:'heading5'}],] }
-                      },
+                      // {
+                      //   layout:'noBorders',
+                      //   margin: [70 , 7 , 0 , 0],
+                      //   table:{headerRows: 1 , widths:['20%' , '80%'],
+                      // body: [
+                      //   [{text:'Buyer Name:'  , style:'heading'} , {text: this.contractPartiesData['buyerName'], style:'heading5'}],] }
+                      // },
                       {
                         layout:'noBorders',
                         margin: [70 , 7 , 0 , 0],
