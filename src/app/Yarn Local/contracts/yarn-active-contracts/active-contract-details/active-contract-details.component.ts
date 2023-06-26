@@ -2870,7 +2870,7 @@ this.isShownMC = ! this.isShownMC;
                         margin: [70 , 7 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
-                        [{text:'Project Cost:'  , style:'heading'} , {text:this.contractCostingData['contractCost'] != '' ?  this.contractCostingData['rateCurrencyName'] + " " +this.contractCostingData['contractCost'] :  " " , style:'heading2' , margin:[0,0,0,0]} ],] }
+                        [{text:'Total Value:'  , style:'heading'} , {text:this.contractCostingData['contractCost'] != '' ?  this.contractCostingData['rateCurrencyName'] + " " +this.contractCostingData['contractCost'] :  " " , style:'heading2' , margin:[0,0,0,0]} ],] }
                       
                       },
                       {
@@ -3150,7 +3150,7 @@ this.isShownMC = ! this.isShownMC;
                         margin: [70 , 7 , 0 , 0],
                         table:{headerRows: 1 , widths:['20%' , '80%'],
                       body: [
-                        [{text:'Project Cost:'  , style:'heading'} , {text:this.contractCostingData['contractCost'] != '' ?  this.contractCostingData['rateCurrencyName'] + " " +this.contractCostingData['contractCost'] :  " " , style:'heading2' , margin:[0,0,0,0]} ],] }
+                        [{text:'Total Value:'  , style:'heading'} , {text:this.contractCostingData['contractCost'] != '' ?  this.contractCostingData['rateCurrencyName'] + " " +this.contractCostingData['contractCost'] :  " " , style:'heading2' , margin:[0,0,0,0]} ],] }
                       
                       },
                       {
