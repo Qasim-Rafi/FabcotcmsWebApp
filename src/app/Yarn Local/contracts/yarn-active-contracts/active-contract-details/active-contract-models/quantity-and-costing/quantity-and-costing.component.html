@@ -231,16 +231,16 @@
                 </div>
                 
                 <div class="form-group row">
-                    <label for="itemQuantity" class="col-md-3 col-form-label "> Total Cost </label>
+                    <label for="itemQuantity" class="col-md-3 col-form-label "> Total Value </label>
 
                     <div class="col-md-8">
                         <div class="row">
                             <div class="col-md-6">
-                                <input type="number" class="form-control" value="" placeholder="Total Cost" name="contractCost"
+                                <input type="number" class="form-control" value="" placeholder="Total Value" name="contractCost"
                                     #contractCost="ngModel" [(ngModel)]="data.contractCost" />
                             </div>
                             <div class="col-md-6 mrg-tsm" *ngIf="loggedInDepartmentName == 'Fabric Local'">
-                                <input type="number" class="form-control" value="" placeholder="Total Cost with GST" name="totalCostGSt"
+                                <input type="number" class="form-control" value="" placeholder="Total Value with GST" name="totalCostGSt"
                                     #totalCostGSt="ngModel" [(ngModel)]="data.totalCostGSt" />
                             </div>
                         </div>
