@@ -23,6 +23,7 @@ export class YarnActiveContractsComponent implements OnInit {
  public multiple = false;
  public allowUnsort = true;
   response: any;
+ 
   data: any = {};
   rows: any = [];
   dateData: any = {};

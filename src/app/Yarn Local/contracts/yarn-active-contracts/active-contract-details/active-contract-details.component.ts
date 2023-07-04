@@ -108,6 +108,7 @@ printData : any = {}
   prodPlanData = [];
   dispatchData = [];
   deliveryData = [];
+  block:any=[];
   commissionBill:any = [];
 lengthcheckfordevelery:any
   saleInvoiceNo:string
@@ -206,6 +207,7 @@ onResize(event?) {
      
     });
    this.GetArticleDropdown("start");
+ 
   this.getAllDocuments();
 
     this.getContractData();
@@ -267,6 +269,31 @@ onResize(event?) {
       
     }
  
+  }
+  GetBlockLookup(blockId) {
+    if(blockId != null){
+    this.service.GetBlockLookup(blockId).subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+
+        this.block = this.response.data;
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })}
+    else{
+      this.service.GetBlockLookupNopara().subscribe(res => {
+        this.response = res;
+        if (this.response.success == true) {
+  
+          this.block = this.response.data;
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+      })
+    }
   }
   removeArticle(a) {
     // this.contractArticles.splice(i, 1);
@@ -1099,7 +1126,12 @@ if(this.saleInvoice[0].billInvoiceNumber != 0 ){
              this.sellerName = this.contractData.sellerName
              this.max1 = this.response.data.saleInvoiceQuantity;
              this.saleQuantityT =this.response.data.tolerancevalueclaculated;
+             if(this.loggedInDepartmentName == 'Yarn Local'){
+
+              this.GetBlockLookup(this.contractData.blockId);
+              }
              this.data.alocation = this.contractData.isAlocation;
+             this.data.blockId = this.contractData.blockId;
             //  if(this.commissionBill['billNo'] != ''){
             //    this.billCount = 1
             //  }
@@ -2127,6 +2159,7 @@ updateAlocation()
   let varr = {
   
     "isAlocation":this.data.alocation,
+    "blockId":this.data.blockId,
   }
 this.spinner.show();
   

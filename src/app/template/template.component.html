@@ -629,22 +629,16 @@
                       <p>Add New Contracts</p>
                     </a>
                   </li>
-                    <li class="nav-item"  *ngIf = "loggedInDepartmentName == 'Yarn Local'">
-                    <a routerLink="/FabCot/add-block" class="nav-link" routerLinkActive="active">
-                      <i class="fas fa-radiation"></i>
-                      <p>Add Block</p>
-                    </a>
-                  </li>
-                  <li class="nav-item" *ngIf="loggedInDepartmentName == 'Comber noil'">
-                    <a routerLink="/FabCot/local-comber-noil" class="nav-link" routerLinkActive="active">
-                      <i class="fas fa-plus nav-icon"></i>
-                      <p>Add New Contracts Local</p>
-                    </a>
-                  </li>
-                   <li class="nav-item">
+                  <li class="nav-item">
                     <a routerLink="/FabCot/active-contract" class="nav-link" routerLinkActive="active">
                       <i class="fas fa-radiation"></i>
                       <p>Active Contracts</p>
+                    </a>
+                  </li>
+                    <li class="nav-item"  *ngIf = "loggedInDepartmentName == 'Yarn Local'">
+                    <a routerLink="/FabCot/add-block" class="nav-link" routerLinkActive="active">
+                      <i class="fas fa-plus nav-icon"></i>
+                      <p>Add Block</p>
                     </a>
                   </li>
                   <li class="nav-item" *ngIf = "loggedInDepartmentName == 'Yarn Local'">
@@ -653,6 +647,14 @@
                       <p>Active Blocks</p>
                     </a>
                   </li>
+                  <li class="nav-item" *ngIf="loggedInDepartmentName == 'Comber noil'">
+                    <a routerLink="/FabCot/local-comber-noil" class="nav-link" routerLinkActive="active">
+                      <i class="fas fa-plus nav-icon"></i>
+                      <p>Add New Contracts Local</p>
+                    </a>
+                  </li>
+               
+                  
                    <!-- <li class="nav-item">
                     <a routerLink="/FabCot/completed-contract" class="nav-link" routerLinkActive="active">
                       <i class="far fa-list-alt"></i>

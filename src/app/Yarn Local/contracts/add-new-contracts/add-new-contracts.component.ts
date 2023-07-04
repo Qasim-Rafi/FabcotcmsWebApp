@@ -40,6 +40,7 @@ export class AddNewContractsComponent implements OnInit {
   response: any;
   data: any = {};
   buyer: any = [];
+  block:any=[];
   seller: any = [];
   article: any = [];
   packing: any = [];
@@ -183,6 +184,7 @@ brandId : any;
     this.getFabricType("start");
     this.GetAgentDropdown();
     this.getAutoEnquiryNo();
+    this.GetBlockLookup();
     
     if (this.loggedInDepartmentName =='Yarn Local Karachi') {
       this.data.currencyId = 1,
@@ -274,6 +276,20 @@ brandId : any;
           this.data.buyerId = this.newBuyer;
         }
 
+      }
+      else {
+        this.toastr.error(this.response.message, 'Message.');
+      }
+    })
+  }
+
+
+  GetBlockLookup() {
+    this.service.GetBlockLookupNopara().subscribe(res => {
+      this.response = res;
+      if (this.response.success == true) {
+
+        this.block = this.response.data;
       }
       else {
         this.toastr.error(this.response.message, 'Message.');
@@ -1126,6 +1142,7 @@ brandId : any;
       "count": this.data.count,
       "isComberImport":false,
       "isAlocation":this.data.alocation,
+      "blockId":this.data.blockId,
       "contractDeliveryDates":[{
       "sellerDeliveryDateDay":this.data.sellerDeliveryDateDay == undefined? "" : this.data.sellerDeliveryDateDay,
       "sellerDeliveryDateMonth":this.data.sellerDeliveryDateMonth == undefined? "" :  this.data.sellerDeliveryDateMonth,

@@ -464,15 +464,7 @@
                                                 <span> {{contractData.createdDateTime}}</span>
 
                                             </span>
-                                            &nbsp;
-                                            <div class="col-md-7 mt-2" *ngIf="loggedInDepartmentName =='Yarn Local'">
-                                                <div class="row">
-                                                   <span class="col-md-6 font-weight-bold">Alocation:</span>&nbsp; 
-                                                    <input type="checkbox" class="my-checkbox col-md-3"  [(ngModel)]="data.alocation" id="checkbox" (change)="updateAlocation()" />
-                                                  </div>
-                                                <!-- <input type="checkbox" [(ngModel)]="data.alocation" id="checkbox">
-                                                <label for="checkbox" class="checkbox-label">Alocation</label> -->
-                                            </div>
+                                      
                                         </div>
                                         <div class="col-md-2 text-right">
 
@@ -529,6 +521,41 @@
                                         </div>
                                     </div>
 
+
+                                  <div class="row" *ngIf="loggedInDepartmentName =='Yarn Local'">
+
+
+                                    <div class="col-md-2 mt-3" >
+                                        
+                                           <span class="col-md-5 font-weight-bold">Alocation:</span>
+                                            <input type="checkbox" class="my-checkbox col-md-3"  [(ngModel)]="data.alocation" id="checkbox"  />
+                                         
+                                        <!-- <input type="checkbox" [(ngModel)]="data.alocation" id="checkbox">
+                                        <label for="checkbox" class="checkbox-label">Alocation</label> -->
+                                    </div>
+
+                                    <div class="form-row mt-2 col-md-3" >
+                                        <label for="inputEmail3" class="col-md-3 col-form-label control-label">Block#</label>
+                                        <div class="col-md-8">
+                                            <div class="input-group">
+                                                <ng-select name="blockId"  #blockId="ngModel"
+                                                    class="col-md-12 input-sm px-0" [(ngModel)]="data.blockId"
+                                                    placeholder="-- Select --"
+                                                    [ngClass]="{'error': blockId.invalid && blockId.touched,'not-error': blockId.valid && blockId.touched}"
+                                                    >
+                                                    <ng-option *ngFor="let i of block" [value]="i.id">{{ i.autoBlockNumber }}
+                                                    </ng-option>
+                                                </ng-select>
+        
+                                            </div>
+                                        </div>
+                                    </div>
+                                   <div class="col-md-1 mt-3">
+                                    <button class="  btn btn-sm btn-primary p-1 btnsm-f ml-1"
+                                    (click)="updateAlocation()" >Assign</button>
+                                   </div>
+
+                                  </div>
 
                                 </div>
                             </div>

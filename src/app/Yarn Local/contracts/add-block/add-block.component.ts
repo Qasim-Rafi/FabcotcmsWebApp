@@ -66,7 +66,7 @@ this.getBlockNumber()
   addblock(form: NgForm) {
     
     let varr = {
-      "contractNumber": this.data.contractNumber,
+      "autoBlockNumber": this.data.autoBlockNumber,
       "to": this.data.to,
       "attention": this.data.attention,
       "sellerId": this.data.sellerId,
@@ -107,7 +107,7 @@ this.getBlockNumber()
 
           this.response = res;
           if (this.response.success == true) {
-            this.data.contractNumber = this.response.data.contractNumber;
+            this.data.autoBlockNumber = this.response.data.autoBlockNumber;
           }
           else {
             this.toastr.error('Something went Worng', 'Message.');
