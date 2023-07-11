@@ -258,6 +258,7 @@ export class GenericFilterForAllComponent implements OnInit {
     let varr = {
       "buyerId":this.data.buyerId ==undefined ? 0 :this.data.buyerId,
       "sellerId":this.data.sellerId == undefined?0 :this.data.sellerId,
+      "autoContractNumber":this.data.autoContractNumber == undefined ? '': this.data.autoContractNumber,
       "contractNo":this.data.contractNo == undefined ? '': this.data.contractNo,
        "startContractDate" :  this.data.startContractDate == undefined?'null':this.dateformater.toModel(this.data.startContractDate),
        "endContractDate" :  this.data.endContractDate == undefined?'null':this.dateformater.toModel(this.data.endContractDate),
@@ -265,7 +266,7 @@ export class GenericFilterForAllComponent implements OnInit {
        "ageEnd":this.data.ageEnd == undefined ? 0: this.data.ageEnd,
        "agentId":this.data.agentId ==undefined ? 0 :this.data.agentId,
       //  "status":this.data.contractStatus == undefined? "All": this.data.contractStatus,
-       "statuss": this.data.contractStatus ,
+       "statuss": this.data.contractStatus,
       "articleId":this.data.articleId == undefined? 0:this.data.articleId,
        "AdminDepartmentId" :this.departId,
        "isAccounts":true,

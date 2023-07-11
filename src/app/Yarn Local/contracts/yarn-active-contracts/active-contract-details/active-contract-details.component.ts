@@ -1639,6 +1639,7 @@ this.spinner.show();
     const modalRef = this.modalService.open(QuantityAndCostingComponent, { centered: true });
     modalRef.componentInstance.contractId = this.contractId;
     modalRef.componentInstance.contractNumber = row.autoContractNumber;
+    modalRef.componentInstance.blockId = this.data.blockId;
 
 
     modalRef.result.then((data) => {

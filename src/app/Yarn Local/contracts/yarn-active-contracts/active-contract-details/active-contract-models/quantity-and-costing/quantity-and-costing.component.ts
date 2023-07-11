@@ -17,6 +17,7 @@ export class QuantityAndCostingComponent implements OnInit {
   dateformater: Dateformater = new Dateformater();  
   @Input() contractId;
   @Input() autoContractNumber;
+  @Input() blockId;
 
   data:any ={};
   response: any;
@@ -112,7 +113,8 @@ export class QuantityAndCostingComponent implements OnInit {
       "totalCostGSt":this.data.totalCostGSt == ""?  null :this.data.totalCostGSt  ,
       "gst": this.data.gst,
       "aDIncomeTaxFL":this.data.aDIncomeTaxFL,
-      "witAx": this.data.witAx
+      "witAx": this.data.witAx,
+      "blockId": this.blockId == undefined ? null :this.blockId,
       
     }
 this.spinner.show();

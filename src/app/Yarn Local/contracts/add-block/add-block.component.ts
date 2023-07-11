@@ -108,6 +108,7 @@ this.getBlockNumber()
           this.response = res;
           if (this.response.success == true) {
             this.data.autoBlockNumber = this.response.data.autoBlockNumber;
+            console.log("BlockNumber Is ",this.data)
           }
           else {
             this.toastr.error('Something went Worng', 'Message.');
