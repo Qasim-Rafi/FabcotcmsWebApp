@@ -923,7 +923,7 @@ this.spinner.hide();
   this.contractTotal = this.response.data.totalcommisionamount +' ' + this.contractWise[0].rateCurrencyName;
   this.contractTotal= parseFloat(this.contractTotal).toLocaleString()
  this.contractBill = [...this.contractWise]
-
+console.log(this.contractWise)
 
 
   }

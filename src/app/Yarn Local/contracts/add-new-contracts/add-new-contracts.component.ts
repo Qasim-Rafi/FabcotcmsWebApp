@@ -282,7 +282,34 @@ brandId : any;
       }
     })
   }
+  checkBlockQuantity(event){
+    if(this.loggedInDepartmentName == "Yarn Local" && (this.data.blockId != null || this.data.blockId != undefined)){
 
+      
+    let varr = {
+      "blockId": this.data.blockId,
+      "quantity": this.data.quantity,
+    }
+      this.http
+      .post(`${environment.apiUrl}/api/Contracts/blockQuantityCheckAddContract`,varr)
+      .subscribe(res => {
+        this.response = res;
+  
+        if (this.response.success == true) {
+          //this.data4 = this.response.data;
+        }
+        else {
+          this.toastr.error(this.response.message, 'Message.');
+        }
+        // this.spinner.hide();
+      }, err => {
+        if (err.status == 400) {
+          this.toastr.error(err.error.message, 'Message.');;
+        }
+        //  this.spinner.hide();
+      });
+    }
+  }
 
   GetBlockLookup() {
     this.service.GetBlockLookupNopara().subscribe(res => {

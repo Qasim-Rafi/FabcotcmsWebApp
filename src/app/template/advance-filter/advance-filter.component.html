@@ -338,12 +338,15 @@
             </ng-template>
           </ngx-datatable-column>
 
-          <ngx-datatable-column name="#Bill No#"  [width] = "20" [flexGrow]="0.05"  prop="billNumber">
+          <ngx-datatable-column name="Bill No#"  [width] = "20" [flexGrow]="0.05"  prop="billNumber">
             <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
              
               <button class="btn btn-outline-secondary  btn-xs " *ngIf="row.billNumber" (click) = "navigateTobill(row)"> 
-                {{row.billNumber}}
-                </button>
+                S: {{row.billNumber}}
+                </button> <br>
+                <button class="btn btn-outline-secondary  btn-xs mt-2" *ngIf="row.buyerBillNumber" (click) = "navigateTobillBuyer(row)"> 
+                  B: {{row.buyerBillNumber}} 
+                  </button>
             </ng-template>
           </ngx-datatable-column>
 

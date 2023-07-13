@@ -876,7 +876,7 @@
                                                 <div class="input-group">
                                                     <input type="number" min="0" placeholder="quantity"
                                                         #quantity="ngModel" class="form-control"
-                                                        [(ngModel)]="data.quantity" name="quantity">
+                                                        [(ngModel)]="data.quantity" name="quantity" (blur)='checkBlockQuantity($event)'>
                                                     <div class="input-group-append">
                                                         <span class="input-group-text" id="basic-addon2">per</span>
                                                     </div>
