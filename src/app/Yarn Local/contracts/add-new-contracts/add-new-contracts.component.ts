@@ -283,7 +283,7 @@ brandId : any;
     })
   }
   checkBlockQuantity(event){
-    if(this.loggedInDepartmentName == "Yarn Local" && (this.data.blockId != null || this.data.blockId != undefined)){
+    if(this.loggedInDepartmentName == "Yarn Local" && (this.data.quantity != null || this.data.quantity != undefined) && (this.data.blockId != null || this.data.blockId != undefined)){
 
       
     let varr = {
