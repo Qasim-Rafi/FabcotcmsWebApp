@@ -285,10 +285,15 @@
                 Supplier
             </button>
                     <button class="btn btn-outline-primary border-rounded btn-sm px-3 mr-1"
-                        *ngIf="loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Export Bangladesh'" (click)="getPrintData('supplier')">
+                        *ngIf="loggedInDepartmentName == 'Yarn Export'" (click)="getPrintData('supplier')">
                         <i class="fas fa-print"></i>
                         Supplier
                     </button>
+                    <button class="btn btn-outline-primary border-rounded btn-sm px-3 mr-1"
+                    *ngIf="loggedInDepartmentName == 'Yarn Export Bangladesh'" (click)="getPrintData('supplierBang')">
+                    <i class="fas fa-print"></i>
+                    Supplier
+                </button>
                     
                     <button class="btn btn-outline-primary border-rounded btn-sm px-3 mr-1"
                         *ngIf="loggedInDepartmentName == 'Yarn Import'" (click)="getPrintData('supplier2')">
@@ -889,8 +894,44 @@
                                                                     </div>
                                                                 </div>
 
+                                                                <div class="col-md-4 mt-2 " *ngIf="loggedInDepartmentName=='Yarn Export'" style="margin-left: 97px !important;">
+                                                                    <div class="input-group">
+                                                                        <!-- <label class="col-form-label"> <b
+                                                                                class="h6 pdngLR text_Navy">{{i+1}}
+                                                                                -</b></label> -->
+
+                                                                        <ng-select
+                                                                            [disabled]="a.isDeleted ==true || a.isRevised ==true"
+                                                                            name="contractArticleCurrencyId_{{i}}" #contractArticleCurrencyId="ngModel"
+                                                                            class="input-w px-0"
+                                                                            [(ngModel)]="a.contractArticleCurrencyId"
+                                                                            placeholder="Select Currency">
+                                                                            <ng-option *ngFor="let c of currency"
+                                                                                [value]="c.id">{{ c.code }}
+                                                                            </ng-option>
+                                                                        </ng-select>
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4 mt-2"*ngIf="loggedInDepartmentName=='Yarn Export'">
+                                                                    <!-- <label class="col-form-label">Agent/C(%):</label> -->
+
+                                                                    <div class="input-group">
+
+                                                                        <input type="text"
+                                                                            [disabled]="a.isDeleted ==true || a.isRevised ==true"
+                                                                            min="0" placeholder="Container"
+                                                                            #contractArticleContainer="ngModel"
+                                                                            class="form-control"
+                                                                            [(ngModel)]="a.contractArticleContainer"
+                                                                            name="contractArticleContainer_{{i}}">
+
+                                                                    </div>
+                                                                </div>
+
+
                                                                 <div class="col-md-1">
-                                                                    <label class="col-form-label">&nbsp;</label>
+                                                                    <label class="col-form-label" *ngIf="loggedInDepartmentName!='Yarn Export'">&nbsp;</label>
                                                                     <div class="input-group-append">
                                                                         <button class="btn btn-outline-danger"
                                                                             [disabled]="a.isDeleted ==true || a.isRevised ==true"

@@ -548,6 +548,35 @@
 
                                                     </div>
                                                 </div>
+
+
+                                                <div class="col-md-4" *ngIf="loggedInDepartmentName=='Yarn Export'">
+
+                                                    <div class="input-group">
+
+
+                                                        <ng-select [(ngModel)]="a.contractArticleCurrencyId" placeholder="Select Currency"
+                                                        name="contractArticleCurrencyId_{{i}}">
+                                                        <ng-option *ngFor="let i of currency" [value]="i.id">{{ i.code }}
+                                                        </ng-option>
+                                                    </ng-select>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col-md-2 mrg-tsm" *ngIf="loggedInDepartmentName=='Yarn Export'">
+                                                    <div class="input-group">
+                                                        <input type="number" min="0" placeholder="Container"
+                                                            #contractArticleContainer="ngModel"
+                                                            class="form-control"
+                                                            [(ngModel)]="a.contractArticleContainer"
+                                                            name="contractArticleContainer_{{i}}">
+
+                                                    </div>
+                                                </div>
+
+
+
                                                 <div class="col-md-2 mrg-tsm">
                                                     <div class="input-group-append">
                                                         <button class="btn btn-outline-danger " type="button"
