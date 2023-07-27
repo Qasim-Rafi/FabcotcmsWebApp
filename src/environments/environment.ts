@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   // apiUrl:'http://localhost:51381'
-   apiUrl:'http://localhost:51381'
+   //apiUrl:'http://localhost:51381'
+   apiUrl: 'https://cmsfabcot.net/WebApi'
 };
 
 /*
