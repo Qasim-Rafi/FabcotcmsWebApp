@@ -94,6 +94,7 @@ import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { AllContractReportAccountsComponent } from './accounts/all-contract-report-accounts/all-contract-report-accounts.component';
 import { VoucherReportAccountComponent } from './accounts/voucher-report-account/voucher-report-account.component';
 import { GenericFilterForAllComponent } from './shared/generic-filter-for-all/generic-filter-for-all.component';
+import { EmailgenerationComponent } from './shared/emailgeneration/emailgeneration.component';
 const appRoutes: Routes = [] 
 
 
@@ -158,6 +159,8 @@ const appRoutes: Routes = []
     VoucherReportAccountComponent,
    
     GenericFilterForAllComponent,
+   
+    EmailgenerationComponent,
   
 
 

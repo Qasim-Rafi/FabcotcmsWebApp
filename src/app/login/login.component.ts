@@ -45,17 +45,17 @@ invalidLogin: boolean=false;
   }
   signUpForm() {
     this.toastr.error("Please Contact Admin To create the Login !", 'Message.');
-    const modalRef = this.modalService.open(SignUpComponent, { centered: true });
-    modalRef.result.then((data) => {
-      // on close
-      if (data == true) {
+    // const modalRef = this.modalService.open(SignUpComponent, { centered: true });
+    // modalRef.result.then((data) => {
+    //   // on close
+    //   if (data == true) {
 
   
 
-      }
-    }, (reason) => {
-      // on dismiss
-    });
+    //   }
+    // }, (reason) => {
+    //   // on dismiss
+    // });
   } 
   GetDeparmentDropdown() {
     this.Service.getDepartment().subscribe(res => {

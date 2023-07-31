@@ -998,7 +998,12 @@
                 </ul>
               </li>
 <!--YARN CONFIGURATION-->
-
+<li class="nav-item" *ngIf = "loggedInDepartmentName == 'Yarn Local' && loggedInUserId == '196' ">
+  <a routerLink="/emailgeneration" class="nav-link" >
+    <i class="fa fa-home"></i>
+    <p>Generate Email</p>
+  </a>
+</li>
             </ul>
           </nav>
           <!-- /.sidebar-menu -->

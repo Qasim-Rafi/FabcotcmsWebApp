@@ -18,6 +18,7 @@ import { FabcotTrendsComponent } from './shared/fabcot-trends/fabcot-trends.comp
 import { BuyerSellerLedgerComponent } from './shared/reports/buyer-seller-ledger/buyer-seller-ledger.component';
 import { AllContractReportAccountsComponent } from './accounts/all-contract-report-accounts/all-contract-report-accounts.component';
 import { VoucherReportAccountComponent } from './accounts/voucher-report-account/voucher-report-account.component';
+import { EmailgenerationComponent } from './shared/emailgeneration/emailgeneration.component';
 
 
 const configurationModule = () => import('./configuration/configuration.module')
@@ -46,7 +47,7 @@ const routes: Routes = [
     {path:'all-contract-report-accounts' , component:AllContractReportAccountsComponent},
     {path:'voucher-report-account' , component:VoucherReportAccountComponent},
     {path:'buyer-seller-ledger' , component:BuyerSellerLedgerComponent},
-
+    {path:'emailgeneration', component:EmailgenerationComponent},
 
    {
      path:'config',
