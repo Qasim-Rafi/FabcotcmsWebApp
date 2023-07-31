@@ -879,7 +879,8 @@
                                                                 </div>
 
                                                                 <div class="col-md-1">
-                                                                    <label class="col-form-label">Agent/C(%):</label>
+                                                                    <label *ngIf="ishide == false" class="col-form-label">Agent/C(%):</label>
+                                                                    <label *ngIf="ishide == true" class="col-form-label">Agent/C:</label>
 
                                                                     <div class="input-group">
 
@@ -905,7 +906,7 @@
                                                                             name="contractArticleCurrencyId_{{i}}" #contractArticleCurrencyId="ngModel"
                                                                             class="input-w px-0"
                                                                             [(ngModel)]="a.contractArticleCurrencyId"
-                                                                            placeholder="Select Currency">
+                                                                            placeholder="Select Currency" (change)="signchange($event)">
                                                                             <ng-option *ngFor="let c of currency"
                                                                                 [value]="c.id">{{ c.code }}
                                                                             </ng-option>

@@ -150,6 +150,7 @@ max1:any;
  value : any;
  value2 : any;
  uom : any;
+ ishide:boolean =false;
 quantity : any;
 comm = "Commission:";
 revised : any;
@@ -259,6 +260,15 @@ onResize(event?) {
 
   goTo(){
     this.router.navigate(['/FabCot/active-contract-details?id='+ this.contractId]);
+  }
+  signchange(event){
+if(event == 6){
+  this.ishide =true;
+}
+else{
+  this.ishide =false
+}
+
   }
   GetCurrencyDropdown() {
     this.service.getCurrencyType().subscribe(res => {
