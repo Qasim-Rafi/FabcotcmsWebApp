@@ -316,13 +316,24 @@
                 <p *ngIf = "row.rateCurrencyName == 'GBP'">GBP {{ row.cost }}</p>    
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Seller Comm" >
+            <ngx-datatable-column name="Seller Comm" *ngIf="loggedInDepartmentName !='Yarn Export'">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 <div *ngIf = "row.sellerCommission != '' "> {{row.sellerCommission}}%   [      <p *ngIf = "row.rateCurrencyName == 'PKR'">RS</p>  
                   <p *ngIf = "row.rateCurrencyName == 'USD'">$  {{ row.sellerCommissionAmount }}</p> 
                   <p *ngIf = "row.rateCurrencyName == 'PKR'">RS  {{ row.sellerCommissionAmount }}</p> 
                   <p *ngIf = "row.rateCurrencyName == 'EUR'">€  {{ row.sellerCommissionAmount }}</p> 
                   <p *ngIf = "row.rateCurrencyName == 'GBP'">GBP  {{ row.sellerCommissionAmount }}</p>   ]</div>    
+
+              </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Seller Comm" *ngIf="loggedInDepartmentName =='Yarn Export'">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                <div *ngIf = "row.sellerCommission != '' "> 
+                  <p *ngIf = "row.rateCurrencyName == 'USD'">$  {{ row.sellerCommission }}</p> 
+                  <p *ngIf = "row.rateCurrencyName == 'PKR'">RS  {{ row.sellerCommission }}</p> 
+                  <p *ngIf = "row.rateCurrencyName == 'EUR'">€  {{ row.sellerCommission }}</p> 
+                  <p *ngIf = "row.rateCurrencyName == 'GBP'">GBP  {{ row.sellerCommission }}</p>   ]</div>    
 
               </ng-template>
             </ngx-datatable-column>

@@ -1020,13 +1020,13 @@ this.spinner.hide();
     Rate: row.rate,
       RateUOM: row.rateUOMName ,
   
-      BalanceQty: row.balanceQty,
       QtyUOM:row.quantityUOMName,
       BookingQty: row.booking ,
       
       DispatchQty: row.dispatch,
+      BalanceQty: row.balanceQty,
       Cost: row.balanceQty ,
-      SellerComm:  row.sellerCommission + "[" + row.sellerCommissionAmount + "]" ,
+      SellerComm: this.loggedInDepartmentName =='Yarn Export'? row.rateCurrencyName +' '+ row.sellerCommission + "[" + row.sellerCommissionAmount + "]" :row.sellerCommission + "[" + row.sellerCommissionAmount + "]" ,
       BuyerComm: row.buyerCommission + "[" + row.buyerCommissionAmount + "]" ,
     PaymentTermSellerAndBuyer : row.paymentTerm, 
     Agent: row.agent ,
@@ -1316,7 +1316,7 @@ this.spinner.hide();
                    {text:row.dispatch + " " + row.quantityUOMName , style:'tableHeader2' }  ,
                    {text:row.balanceQty + " " + row.quantityUOMName  , style:'tableHeader2' }  ,
                    {text: row.rateCurrencyName == 'PKR' ? "Rs." + row.cost : row.rateCurrencyName == 'USD' ? "$ " + row.cost : row.rateCurrencyName == 'EUR' ? "€ " + row.cost : row.rateCurrencyName == 'GBP' ? "GBP " + row.cost : row.cost, style:'tableHeader2'} ,
-                   {text:row.sellerCommission != "" ? row.sellerCommission + "%" : ""   , style:'tableHeader2' }  ,
+                   {text:  row.sellerCommission != "" ?  row.sellerCommission + "%" : ""   , style:'tableHeader2' }  ,
                    {text:   row.sellerCommissionAmount != '' ?   row.rateCurrencyName == 'PKR' ? "Rs." + "[" + row.sellerCommissionAmount + "]" : row.rateCurrencyName == 'USD' ? "$ " + "[" + row.sellerCommissionAmount + "]" : row.rateCurrencyName == 'EUR' ? "€ " + "[" + row.sellerCommissionAmount + "]" : row.rateCurrencyName == 'GBP' ? "GBP " + "[" + row.sellerCommissionAmount + "]" :  row.sellerCommissionAmount  : row.sellerCommissionAmount , style:'tableHeader2'} ,
 
                    {text:row.buyerCommission != "" ? row.buyerCommission + "%" : ""   , style:'tableHeader2' }  ,
