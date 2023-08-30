@@ -1314,9 +1314,9 @@ this.spinner.hide();
                   {text: row.booking + " " + row.quantityUOMName , style:'tableHeader2'},
               
                    {text:row.dispatch + " " + row.quantityUOMName , style:'tableHeader2' }  ,
-                   {text:row.balanceQty + " " + row.quantityUOMName  , style:'tableHeader2' }  ,
+                   {text:row.balanceQty + " " + row.quantityUOMName  , style:'tableHeader2' }  ,this.loggedInDepartmentName =='Yarn Export'? row.rateCurrencyName +' '+ row.sellerCommission
                    {text: row.rateCurrencyName == 'PKR' ? "Rs." + row.cost : row.rateCurrencyName == 'USD' ? "$ " + row.cost : row.rateCurrencyName == 'EUR' ? "€ " + row.cost : row.rateCurrencyName == 'GBP' ? "GBP " + row.cost : row.cost, style:'tableHeader2'} ,
-                   {text:  row.sellerCommission != "" ?  row.sellerCommission + "%" : ""   , style:'tableHeader2' }  ,
+                   {text:  row.sellerCommission == "" ?  "" : this.loggedInDepartmentName =='Yarn Export'? row.rateCurrencyName +' '+ row.sellerCommission: row.sellerCommission + "%"   , style:'tableHeader2' }  ,
                    {text:   row.sellerCommissionAmount != '' ?   row.rateCurrencyName == 'PKR' ? "Rs." + "[" + row.sellerCommissionAmount + "]" : row.rateCurrencyName == 'USD' ? "$ " + "[" + row.sellerCommissionAmount + "]" : row.rateCurrencyName == 'EUR' ? "€ " + "[" + row.sellerCommissionAmount + "]" : row.rateCurrencyName == 'GBP' ? "GBP " + "[" + row.sellerCommissionAmount + "]" :  row.sellerCommissionAmount  : row.sellerCommissionAmount , style:'tableHeader2'} ,
 
                    {text:row.buyerCommission != "" ? row.buyerCommission + "%" : ""   , style:'tableHeader2' }  ,
