@@ -1026,7 +1026,7 @@ this.spinner.hide();
       DispatchQty: row.dispatch,
       BalanceQty: row.balanceQty,
       Cost: parseFloat(row.cost) ,
-      SellerComm: this.loggedInDepartmentName =='Yarn Export'? parseFloat(row.sellerCommission) :row.sellerCommission + "[" + row.sellerCommissionAmount + "]" ,
+      SellerComm: this.loggedInDepartmentName =='Yarn Export' || this.loggedInDepartmentName =='Yarn Export Bangladesh' ? parseFloat(row.sellerCommission) :row.sellerCommission + "[" + row.sellerCommissionAmount + "]" ,
       BuyerComm: row.buyerCommission + "[" + row.buyerCommissionAmount + "]" ,
     PaymentTermSellerAndBuyer : row.paymentTerm, 
     Agent: row.agent ,
