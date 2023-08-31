@@ -1016,7 +1016,7 @@ this.spinner.hide();
     Seller: row.sellerName ,
     Date: row.date,
     PONumber: row.poNumber,
-    Article: row.articleName ,
+    Article: this.loggedInDepartmentName =='Yarn Export' || this.loggedInDepartmentName =='Yarn Export Bangladesh' ? row.articlesPlusRate:row.articleName ,
     Rate: row.rate,
       RateUOM: row.rateUOMName ,
   
