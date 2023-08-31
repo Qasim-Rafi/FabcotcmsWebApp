@@ -258,17 +258,17 @@
                 {{row.poNumber}}
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Article(s)" [width]="320" *ngIf="loggedInDepartmentName =='Yarn Export'">
+            <ngx-datatable-column name="Article(s)" [width]="320" *ngIf="loggedInDepartmentName =='Yarn Export' ||  loggedInDepartmentName =='Yarn Export Bangladesh'">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 {{row.articlesPlusRate}}
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Article" *ngIf="loggedInDepartmentName !='Yarn Export'" >
+            <ngx-datatable-column name="Article" *ngIf="loggedInDepartmentName !='Yarn Export' && loggedInDepartmentName !='Yarn Export Bangladesh'" >
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 {{row.articleName}}
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Rate" *ngIf="loggedInDepartmentName !='Yarn Export'">
+            <ngx-datatable-column name="Rate" *ngIf="loggedInDepartmentName !='Yarn Export' && loggedInDepartmentName !='Yarn Export Bangladesh'">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 <b *ngIf = "row.rateCurrencyName == 'PKR'">RS</b>  
                 <b *ngIf = "row.rateCurrencyName == 'USD'">$</b> 
