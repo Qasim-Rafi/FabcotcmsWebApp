@@ -174,7 +174,7 @@
         }"
         [reorderable]="true"
         [resizable]="true"
-        [height]="450"
+        [height]="500"
 
         [filterable]="true"
         >
@@ -211,7 +211,7 @@
               
         </ng-template>
      
-        <kendo-grid-checkbox-column [width]="35" [headerClass]="{'text-center': true}"  [class]="{'text-center': true}" [resizable]="false" [columnMenu]="false" [showSelectAll]="true"></kendo-grid-checkbox-column>
+        <!-- <kendo-grid-checkbox-column [width]="35" [headerClass]="{'text-center': true}"  [class]="{'text-center': true}" [resizable]="false" [columnMenu]="false" [showSelectAll]="true"></kendo-grid-checkbox-column> -->
         
             <kendo-grid-column field="Action" title="Action" [width]="120" [filterable]="false">
                 <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
@@ -252,6 +252,9 @@
               <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex"  >
                 <p class="text-left">  <strong> {{dataItem.autoContractNumber}} <small *ngIf="loggedInDepartmentName =='Yarn Local Karachi'">({{dataItem.manualContractNumber}})</small></strong> 
                   <span *ngIf = "loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Export Bangladesh'" type="button" placement="right" ngbTooltip="Create Child Contract" class="editIconBack1 px-1 py-1" (click) = "cloneContractChildExportyarn(dataItem)">
+                    <i class="far fa-copy"></i>
+                  </span> 
+                  <span *ngIf = "loggedInDepartmentName == 'Fabric Local'" type="button" placement="right" ngbTooltip="Create Child Contract" class="editIconBack1 px-1 py-1" (click) = "cloneContractChildExportyarn(dataItem)">
                     <i class="far fa-copy"></i>
                   </span> 
                   <br>
