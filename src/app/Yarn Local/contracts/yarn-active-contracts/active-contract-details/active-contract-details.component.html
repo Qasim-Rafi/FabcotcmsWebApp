@@ -37,7 +37,27 @@
             <div class="col-12 col-sm-6 col-md-6 col-xl-3 pt-2">
                 <div class="topbox-1">
                     <div class="topbox-margin-top-text border-bottom"> Completion Status
-                        <span class="badge badge-primary float-right">Active</span>
+                       
+                    <div class="badge badge-info float-right"
+                        *ngIf="contractData.status == 'Open'">OPEN
+                        
+                    </div>
+                    <div class="badge badge-warning float-right"
+                        *ngIf="contractData.status == 'OnHold'">
+                        On-Hold</div>
+                    <div class="badge badge-info float-right"
+                        *ngIf="contractData.status == 'BillAwaited'">
+                        Bill Awaited</div>
+
+                    <div class="badge badge-info float-right"
+                        *ngIf="contractData.status == 'Closed'">
+                        Closed</div>
+                    <div class="badge badge-info float-right"
+                        *ngIf="contractData.status == 'Billed'">
+                        Billed</div>
+                        <div class="badge badge-danger float-right"
+                        *ngIf="contractData.status == 'Cancel'">
+                        Cancel</div>
                         <span class="topbox-margin-end-text">
                             &nbsp;
                         </span>
@@ -446,6 +466,9 @@
                                                     <div class="badge badge-info ml-1"
                                                         *ngIf="contractData.status == 'Billed'">
                                                         Billed</div>
+                                                        <div class="badge badge-danger ml-1"
+                                                        *ngIf="contractData.status == 'Cancel'">
+                                                        Cancel</div>
 
                                                     <button class="btn btn-outline-secondary btn-xs ml-1"><i
                                                             class="fas fa-history "></i></button>
