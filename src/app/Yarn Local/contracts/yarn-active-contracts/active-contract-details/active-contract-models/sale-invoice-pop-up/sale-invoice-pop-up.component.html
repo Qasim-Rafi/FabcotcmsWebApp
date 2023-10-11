@@ -198,11 +198,20 @@
          
           <div class="form-group row" *ngIf = "loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Export Bangladesh' || loggedInDepartmentName == 'Yarn Import'">
             <label for="active" class="col-md-3 col-form-label text-grey"></label>
-            <div class="col-md-8">
+            <div class="col-md-4">
               <div class="form-check form-check-inline">
                 <input class="form-check-input check-btn "  id="active"
                   type="checkbox"  name="active" [(ngModel)]="active"   (change)="checkValue($event)" >
                 <label for="active"  class="form-check-label text-grey">Marked as Fob</label>
+      
+                
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input check-btn "  id="cancledActive"
+                  type="checkbox"  name="cancledActive" [(ngModel)]="cancledActive"   (change)="checkValueCancled($event)" >
+                <label for="cancledActive"  class="form-check-label text-grey">Marked as Cancled</label>
       
                 
               </div>

@@ -43,6 +43,7 @@ articles:any=[];
 @ViewChild(NgForm) InvoiceForm;
   saleInvoiceDate: any;
   active : boolean = false;
+  cancledActive : boolean = false;
 
   constructor(
     private _NgbActiveModal: NgbActiveModal,
@@ -264,6 +265,8 @@ if(event==7){
       "isFob" : this.data.isFob == true ? true : false,
       "fobValue" : this.data.fobValue != ''  ? this.data.fobValue : 0,
       "letteroFCreditId" : this.data.letteroFCreditId,
+      "isCancel" : this.data.isCancel == true ? true : false,
+
     }
     this.response = varr
 this.spinner.show();
@@ -294,7 +297,10 @@ this.spinner.show();
       }
       }
   // }
-
+  checkValueCancled(event){
+    console.log(event.target.checked)
+    this.data.isCancel = event.target.checked 
+  }
   checkValue(event){
     console.log(event.target.checked)
     this.data.isFob = event.target.checked
@@ -323,6 +329,7 @@ this.spinner.show();
             this.data = this.response.data;
         
            this.active = this.data.isFob;
+           this.cancledActive = this.data.isCancel;
 
             this.saleInvoiceNo=this.data.saleInvoiceNo;
             this.data.saleInvoiceDate = this.dateformater.fromModel(this.data.saleInvoiceDate);
@@ -395,6 +402,7 @@ else{
       "isFob" : this.data.isFob == true ? true : false,
       "fobValue" : this.data.fobValue != ''  ? this.data.fobValue : 0,
       "letteroFCreditId" : this.data.letteroFCreditId,
+      "isCancel" : this.data.isCancel == true ? true : false,
 
     }
  this.spinner.show();

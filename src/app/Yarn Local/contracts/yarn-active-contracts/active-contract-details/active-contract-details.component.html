@@ -2261,9 +2261,13 @@
 
                             <div class="pb-2 mt-2 ml-2">
                                 <div class="row pb-3 border-bottom">
-                                    <div class="col-md-6 ">
+                                    <div class="col-md-4 ">
                                         <button class="btn btn-info btn-sm">
                                             Sale Invoice #{{i+1}}-{{x.saleInvoiceNo}}</button>
+                                    </div>
+                                    <div class="col-md-2 " *ngIf="x.status =='Cancel'">
+                                        <button class="btn btn-danger btn-sm">
+                                            Cancled</button>
                                     </div>
 
                                     <div class="col-md-6 text-right">
