@@ -1434,8 +1434,8 @@ this.fetch();
     //   this.invoiceTotal += this.billingReportInvoiceWise[i].totalCommisson
      
     // }
-    this.invoiceTotal =this.billingReportInvoiceWise.reduce((accumulator, current) => accumulator + current.totalCommisson, 0);
-    this.invoiceTotal =this.invoiceTotal.toFixed(3); 
+    //this.invoiceTotal =this.billingReportInvoiceWise.reduce((accumulator, current) => accumulator + current.totalCommisson, 0);
+    this.invoiceTotal =this.invoiceTotal; 
     let docDefinition = {
       pageSize: 'A4',
      
