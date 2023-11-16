@@ -24,6 +24,7 @@ import { PickInsertionComponent } from './product/pick-insertion/pick-insertion.
 import { BeneficiaryComponent } from './beneficiary/beneficiary.component';
 import { ConfigContractOwnerComponent } from './config-contract-owner/config-contract-owner.component';
 import { GeneralSettingsComponent } from 'src/app/configuration/general-settings/general-settings.component';
+import { AuthGuard } from 'src/app/shared/auth-service/auth.guard';
 
 
 
@@ -33,29 +34,29 @@ const routes: Routes = [
 
   children:[
 
-    { path: 'buyers' ,  component: BuyerComponent},
-    { path: 'seller' , component:SellerComponent},
-    { path: 'external-agents' ,  component: ForeignAgentComponent},
-    { path: 'article' ,  component: ArticlesComponent},
-    { path: 'fabric-type' ,  component: FabricTypeComponent},
-    { path: 'payment-term' ,  component: PaymentTermComponent},
-    { path: 'price-term' ,  component: PriceTermComponent},
-    { path: 'packing' ,  component: PackingComponent},
-    { path: 'bank' ,  component: BankComponent},
-    { path: 'bank-account' ,  component: BankAccountsComponent},
-    { path: 'city' ,  component: CityComponent},
-    { path: 'country' ,  component: CountryComponent},
-    { path: 'currency' ,  component: CurrencyComponent},
-    { path: 'weave' ,  component: WeaveComponent},
-    { path: 'piece-length' ,  component: PieceLengthComponent},
-    { path: 'container' ,  component: ContainerComponent},
-    { path: 'selvedge' ,  component: SelvedgeComponent},
-    { path: 'pick-insertion' ,  component: PickInsertionComponent},
-    { path: 'Warp' ,  component: WarpComponent},
-    { path: 'Weft' ,  component: WeftComponent},
-    { path: 'Beneficiary' ,  component: BeneficiaryComponent},
-    { path: 'config-contract-owner' ,  component: ConfigContractOwnerComponent},
-    { path: 'general-settings', component: GeneralSettingsComponent },
+    { path: 'buyers' ,  component: BuyerComponent,canActivate:[AuthGuard]},
+    { path: 'seller' , component:SellerComponent,canActivate:[AuthGuard]},
+    { path: 'external-agents' ,  component: ForeignAgentComponent,canActivate:[AuthGuard]},
+    { path: 'article' ,  component: ArticlesComponent,canActivate:[AuthGuard]},
+    { path: 'fabric-type' ,  component: FabricTypeComponent,canActivate:[AuthGuard]},
+    { path: 'payment-term' ,  component: PaymentTermComponent,canActivate:[AuthGuard]},
+    { path: 'price-term' ,  component: PriceTermComponent,canActivate:[AuthGuard]},
+    { path: 'packing' ,  component: PackingComponent,canActivate:[AuthGuard]},
+    { path: 'bank' ,  component: BankComponent,canActivate:[AuthGuard]},
+    { path: 'bank-account' ,  component: BankAccountsComponent,canActivate:[AuthGuard]},
+    { path: 'city' ,  component: CityComponent,canActivate:[AuthGuard]},
+    { path: 'country' ,  component: CountryComponent,canActivate:[AuthGuard]},
+    { path: 'currency' ,  component: CurrencyComponent,canActivate:[AuthGuard]},
+    { path: 'weave' ,  component: WeaveComponent,canActivate:[AuthGuard]},
+    { path: 'piece-length' ,  component: PieceLengthComponent,canActivate:[AuthGuard]},
+    { path: 'container' ,  component: ContainerComponent,canActivate:[AuthGuard]},
+    { path: 'selvedge' ,  component: SelvedgeComponent,canActivate:[AuthGuard]},
+    { path: 'pick-insertion' ,  component: PickInsertionComponent,canActivate:[AuthGuard]},
+    { path: 'Warp' ,  component: WarpComponent,canActivate:[AuthGuard]},
+    { path: 'Weft' ,  component: WeftComponent,canActivate:[AuthGuard]},
+    { path: 'Beneficiary' ,  component: BeneficiaryComponent,canActivate:[AuthGuard]},
+    { path: 'config-contract-owner' ,  component: ConfigContractOwnerComponent,canActivate:[AuthGuard]},
+    { path: 'general-settings', component: GeneralSettingsComponent ,canActivate:[AuthGuard]},
 ]
   }
 ]

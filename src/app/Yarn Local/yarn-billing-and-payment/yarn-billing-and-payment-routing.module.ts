@@ -11,21 +11,22 @@ import {EditCommissionComponent} from '../yarn-billing-and-payment/edit-commissi
 import {ExternalAgentCommissionComponent} from '../yarn-billing-and-payment/external-agent-commission/external-agent-commission.component'
 import {NewCommissionPaymentComponent} from '../yarn-billing-and-payment/new-commission-payment/new-commission-payment.component'
 import { ExternalAgentFormComponent } from './external-agent-commission/external-agent-form/external-agent-form.component';
+import { AuthGuard } from 'src/app/shared/auth-service/auth.guard';
 const routes: Routes = [
   { path:'yarn-billing-and-payment', component:TemplateComponent,
-  // canActivate:[AuthGuard],
+   canActivate:[AuthGuard],
 
   children:[
-{ path:'generate-bills' ,  component: GenerateBillsComponent},
-{path: 'active-bills' , component: ActiveBillsComponent},
-{path:'payment-collection' , component:PaymentCollectionComponent},
-{path:'open-bill' , component:OpenActiveBillComponent},
-{path:'payment-form' , component:PaymentFormComponent},
-{path: 'commission-payment' , component:CommissionPaymentComponent},
-{path: 'edit-commission' , component:EditCommissionComponent},
-{path:'external-agent' , component:ExternalAgentCommissionComponent},
-{path:'new-commission' , component:NewCommissionPaymentComponent},
-{path:'external-agent/external-agent-form' , component:ExternalAgentFormComponent},
+{ path:'generate-bills' ,  component: GenerateBillsComponent,canActivate:[AuthGuard]},
+{path: 'active-bills' , component: ActiveBillsComponent,canActivate:[AuthGuard]},
+{path:'payment-collection' , component:PaymentCollectionComponent,canActivate:[AuthGuard]},
+{path:'open-bill' , component:OpenActiveBillComponent,canActivate:[AuthGuard]},
+{path:'payment-form' , component:PaymentFormComponent,canActivate:[AuthGuard]},
+{path: 'commission-payment' , component:CommissionPaymentComponent,canActivate:[AuthGuard]},
+{path: 'edit-commission' , component:EditCommissionComponent,canActivate:[AuthGuard]},
+{path:'external-agent' , component:ExternalAgentCommissionComponent,canActivate:[AuthGuard]},
+{path:'new-commission' , component:NewCommissionPaymentComponent,canActivate:[AuthGuard]},
+{path:'external-agent/external-agent-form' , component:ExternalAgentFormComponent,canActivate:[AuthGuard]},
 
 
 

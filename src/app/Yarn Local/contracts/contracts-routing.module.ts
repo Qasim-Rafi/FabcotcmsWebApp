@@ -19,29 +19,30 @@ import { ActiveContractDetailsCombernoilLocalComponent } from './yarn-active-con
 import { AddBlockComponent } from './add-block/add-block.component';
 import { ActiveBlocksComponent } from './active-blocks/active-blocks.component';
 import { EditActiveBlockComponent } from './active-blocks/edit-active-block/edit-active-block.component';
+import { AuthGuard } from 'src/app/shared/auth-service/auth.guard';
 const routes: Routes = [
   { path:'FabCot', component:TemplateComponent,
   // canActivate:[AuthGuard],
 
   children:[
 
-    { path: 'add-new-contract' ,  component: AddNewContractsComponent},
-    { path: 'add-block' ,  component: AddBlockComponent},
-    { path: 'local-comber-noil' ,  component: LocalComberNoilComponent},
-    { path: 'active-contract' ,  component: YarnActiveContractsComponent},
-    { path: 'active-blocks' ,  component: ActiveBlocksComponent},
-    { path: 'completed-contract' ,  component: CompletedContractComponent},
-    { path: 'dispatched-register' , component:DispatchedRegisterComponent},
-    { path: 'buyer-payment' , component:BuyerPaymentComponent},
-    { path: 'sale-invoice' , component:SaleInvoiceComponent},
-    { path: 'tax' , component:TaxChallanComponent},
-    { path: 'buyer-payment-form' , component:BuyerPaymentFormComponent},
-    { path: 'add-tax' , component:AddTxChallanComponent},
-    {path: 'active-contract-details' , component:ActiveContractDetailsComponent},
-    {path: 'edit-active-block' , component:EditActiveBlockComponent},
-    {path: 'active-contract-details-combernoil-local' , component:ActiveContractDetailsCombernoilLocalComponent},
-  {path: 'doc-upload' , component:DocumentUploadPopUpComponent},
-  {path: 'certificate' , component:CertificateComponent},
+    { path: 'add-new-contract' ,  component: AddNewContractsComponent,canActivate:[AuthGuard]},
+    { path: 'add-block' ,  component: AddBlockComponent,canActivate:[AuthGuard]},
+    { path: 'local-comber-noil' ,  component: LocalComberNoilComponent,canActivate:[AuthGuard]},
+    { path: 'active-contract' ,  component: YarnActiveContractsComponent,canActivate:[AuthGuard]},
+    { path: 'active-blocks' ,  component: ActiveBlocksComponent,canActivate:[AuthGuard]},
+    { path: 'completed-contract' ,  component: CompletedContractComponent,canActivate:[AuthGuard]},
+    { path: 'dispatched-register' , component:DispatchedRegisterComponent,canActivate:[AuthGuard]},
+    { path: 'buyer-payment' , component:BuyerPaymentComponent,canActivate:[AuthGuard]},
+    { path: 'sale-invoice' , component:SaleInvoiceComponent,canActivate:[AuthGuard]},
+    { path: 'tax' , component:TaxChallanComponent,canActivate:[AuthGuard]},
+    { path: 'buyer-payment-form' , component:BuyerPaymentFormComponent,canActivate:[AuthGuard]},
+    { path: 'add-tax' , component:AddTxChallanComponent,canActivate:[AuthGuard]},
+    {path: 'active-contract-details' , component:ActiveContractDetailsComponent,canActivate:[AuthGuard]},
+    {path: 'edit-active-block' , component:EditActiveBlockComponent,canActivate:[AuthGuard]},
+    {path: 'active-contract-details-combernoil-local' , component:ActiveContractDetailsCombernoilLocalComponent,canActivate:[AuthGuard]},
+  {path: 'doc-upload' , component:DocumentUploadPopUpComponent,canActivate:[AuthGuard]},
+  {path: 'certificate' , component:CertificateComponent,canActivate:[AuthGuard]},
 
   ]
   }
