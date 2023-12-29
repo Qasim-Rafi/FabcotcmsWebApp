@@ -901,7 +901,7 @@
                                                                     </div>
                                                                 </div>
 
-                                                                <div class="col-md-1">
+                                                                <div class="col-md-1" *ngIf="loggedInDepartmentName!='Yarn Export'">
                                                                     <label *ngIf="ishide == false" class="col-form-label">Agent/C(%):</label>
                                                                     <label *ngIf="ishide == true" class="col-form-label">Agent/C:</label>
 
@@ -914,6 +914,20 @@
                                                                             class="form-control"
                                                                             [(ngModel)]="a.contractArticleForignAgentCommission"
                                                                             name="contractArticleForignAgentCommission_{{i}}">
+
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-1" *ngIf="loggedInDepartmentName=='Yarn Export'">
+                                                                    <label  class="col-form-label">Agent/C(%):</label>
+                                                                    
+
+                                                                    <div class="input-group">
+
+                                                                        <button class="btn btn-outline-primary"
+                                                                            
+                                                                            type="submit" (click)="editExternalAgentCommArticleWise('Edit',a)">
+                                                                            <i class="fas fa-plus fa-xs">AgentC</i></button>
 
                                                                     </div>
                                                                 </div>

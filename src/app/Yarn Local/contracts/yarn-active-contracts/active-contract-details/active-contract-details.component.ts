@@ -36,6 +36,7 @@ import { LCInfoComponent } from './active-contract-models/lcinfo/lcinfo.componen
 import { DocumentUploadPopUpComponent } from './active-contract-models/document-upload-pop-up/document-upload-pop-up.component';
 import { ArticleRevisePopupComponent } from 'src/app/shared/MODLES/article-revise-popup/article-revise-popup.component';
 import {NgbProgressbarConfig} from '@ng-bootstrap/ng-bootstrap';
+import { ExternalAgentCommissionArticleWiseComponent } from './active-contract-models/external-agent-commission-article-wise/external-agent-commission-article-wise.component';
 
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
@@ -752,7 +753,27 @@ if(this.loggedInDepartmentName == 'Yarn Export' || this.loggedInDepartmentName =
       });
   }
 
+  editExternalAgentCommArticleWise(check,RData){
+    const modalRef = this.modalService.open(ExternalAgentCommissionArticleWiseComponent, { centered: true });
+    modalRef.componentInstance.statusCheck = check;
+    modalRef.componentInstance.contractId = this.contractId ;
+    modalRef.componentInstance.RowData = RData ;
+          modalRef.result.then((data) => {
+         // on close
+          if(data ==true){
 
+          //  this.date = this.myDate;
+           this.fetch((data) => {
+            this.rows = data;
+      this.saleinvoiceFilter = [...this.rows];
+          });
+          this.getContractData();
+         
+        }
+       }, (reason) => {
+         // on dismiss
+       });
+  }
 
   addinvoiceForm(check){
     const modalRef = this.modalService.open(SaleInvoicePopUpComponent, { centered: true });

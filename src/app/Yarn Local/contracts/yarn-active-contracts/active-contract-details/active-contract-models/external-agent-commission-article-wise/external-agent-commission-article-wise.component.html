@@ -1,0 +1,96 @@
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="line-spin-fade" [fullScreen]="true">
+    <p style="color: white"> Loading... </p>
+  </ngx-spinner>
+  
+  
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <div>
+      <h5 class="modal-title py-0" *ngIf="statusCheck == 'Edit'">
+        <i class="fas fa-edit"></i>
+        Edit Agent Commission
+      </h5>
+      <h5 class="modal-title py-0" *ngIf="statusCheck == 'Add'">
+        <i class="fas fa-plus"></i>
+        Add Agent Commission
+      </h5>
+      <div class="font text-muted text-center">Article Name: {{RowData.articleName}} </div>
+    </div>
+  </div>
+  
+  
+  
+  
+  <div class="modal-body BG p-0">
+    <form #CityForm="ngForm" novalidate>
+  
+      <div class="row justify-content-center">
+        <div class="col-10 col-md-11 pt-3 pb-2">
+
+      <div >
+          <div class="form-group row" *ngFor="let a of test; let i = index;" >
+            <label for="agentcomm" class="col-md-3 col-form-label" *ngIf="i==0">Agent Comm</label>
+            <label for="agentcomm" class="col-md-3 col-form-label" *ngIf="i>0"></label>
+            <div class=" col-md-8">
+              <div class="row">
+                <div class=" col-md-6" >
+                  <ng-select placeholder="Select an Agent" [(ngModel)]="a.agentId" #agentId="ngModel" name="agentId_{{i}}">
+                    <ng-option *ngFor="let i of agents" [value]="i.id">
+                      {{i.name}}
+                    </ng-option>
+                  </ng-select>
+                </div>
+      
+      
+                <div class="col-md-6 fieldmrgbtm" >
+                  <input class="form-control" placeholder="Commission %" [(ngModel)]="a.agentCommission"
+                    #agentCommission="ngModel" min="0" name="agentCommission_{{i}}" />
+                </div>
+      
+                <div class="col-md-12" *ngIf="i>0"><button class="btn btn-outline-danger mt-2 float-right" type="submit"
+                    (click)="removefield(i)">
+                    <i class="fas fa-minus fa-xs"></i></button>
+                </div>
+      
+              </div>
+            </div>
+      
+          </div>
+      
+        </div>
+      
+      
+      
+      
+          <div class="row" >
+            <div class="col-md-3"></div>
+            <div class="col-md-7">
+              <button class="btn btn-outline-success" type="submit" (click)="addfield()">
+                <i class="fas fa-plus"></i>
+                Add Agent
+              </button>
+            </div>
+          </div>
+      
+        </div>
+      </div>
+  
+  
+      <div class="modal-footer NotBG">
+        <!-- <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" (click)="activeModal.close()">Close</button> -->
+        <button class="btn btn-outline-dark" type="submit" (click)="activeModal.close()">
+          Close
+        </button>
+        <button class="btn btn-save" type="submit" *ngIf="statusCheck == 'Add'" (click)="onSubmit('Add')">
+          Save
+        </button>
+        <button class="btn btn-save" type="submit" *ngIf="statusCheck == 'Edit'"  (click)="onSubmit('update')">
+            Update
+          </button>
+      </div>
+  
+    </form>
+  </div>

@@ -161,6 +161,7 @@ const appRoutes: Routes = []
     GenericFilterForAllComponent,
    
     EmailgenerationComponent,
+   
   
 
 

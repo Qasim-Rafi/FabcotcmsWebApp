@@ -56,6 +56,9 @@ import { ActiveContractDetailsCombernoilLocalComponent } from './yarn-active-con
 import { AddBlockComponent } from './add-block/add-block.component';
 import { ActiveBlocksComponent } from './active-blocks/active-blocks.component';
 import { EditActiveBlockComponent } from './active-blocks/edit-active-block/edit-active-block.component';
+
+import {ExternalAgentCommissionArticleWiseComponent} from './yarn-active-contracts/active-contract-details/active-contract-models/external-agent-commission-article-wise/external-agent-commission-article-wise.component'
+
 @NgModule({
   declarations: [AddNewContractsComponent,
     EditDispatchComponent,
@@ -85,6 +88,7 @@ ActiveContractDetailsCombernoilLocalComponent,
 AddBlockComponent,
 ActiveBlocksComponent,
 EditActiveBlockComponent,
+ExternalAgentCommissionArticleWiseComponent
 
   ],
   imports: [
