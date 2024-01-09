@@ -763,11 +763,11 @@ if(this.loggedInDepartmentName == 'Yarn Export' || this.loggedInDepartmentName =
           if(data ==true){
 
           //  this.date = this.myDate;
-           this.fetch((data) => {
-            this.rows = data;
-      this.saleinvoiceFilter = [...this.rows];
-          });
-          this.getContractData();
+      //      this.fetch((data) => {
+      //       this.rows = data;
+      // this.saleinvoiceFilter = [...this.rows];
+      //     });
+      //     this.getContractData();
          
         }
        }, (reason) => {
@@ -5423,7 +5423,7 @@ yarnExportInvoicesReportPrint(){
                              {text: row.contractArticleRate == null ? '' : this.contractCostingData['rateCurrencyName'] == 'USD' ?  "$ " + row.contractArticleRate : this.contractCostingData['rateCurrencyName'] == 'PKR' ? "RS " + row.contractArticleRate : this.contractCostingData['rateCurrencyName'] == 'EUR' ?  "€ " + row.contractArticleRate : this.contractCostingData['rateCurrencyName'] == 'GBP' ?  "GBP " + row.contractArticleRate : row.contractArticleRate , style: 'tableheader3'},
 
                              {text: row.contractArticleCommission == null ? '' : row.contractArticleCommission + "%" , style: 'tableheader3'},
-                             {text: row.contractArticleForignAgentCommission == null ? '' : row.contractArticleForignAgentCommission + "%" +'\n'+ row.forignAgentName , style: 'tableheader3'},
+                             {text: row.agentsNames == null ? '' : row.agentsNames , style: 'tableheader3'},
                              {text: row.contractArticleCurrencyName == null ? '' : row.contractArticleCurrencyName  , style: 'tableheader3'},
                              {text: row.contractArticleContainer == null ? '' : row.contractArticleContainer  , style: 'tableheader3'},
 

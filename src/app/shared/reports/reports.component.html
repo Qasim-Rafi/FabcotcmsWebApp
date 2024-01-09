@@ -318,7 +318,8 @@
             </ngx-datatable-column>
             <ngx-datatable-column name="Seller Comm" *ngIf="loggedInDepartmentName !='Yarn Export' && loggedInDepartmentName !='Yarn Export Bangladesh'">
               <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                <div *ngIf = "row.sellerCommission != '' "> {{row.sellerCommission}}%   [      <p *ngIf = "row.rateCurrencyName == 'PKR'">RS</p>  
+                <div *ngIf = "row.sellerCommission != '' "> {{row.sellerCommission}}%   [      
+                  <p *ngIf = "row.rateCurrencyName == 'PKR'">RS</p>  
                   <p *ngIf = "row.rateCurrencyName == 'USD'">$  {{ row.sellerCommissionAmount }}</p> 
                   <p *ngIf = "row.rateCurrencyName == 'PKR'">RS  {{ row.sellerCommissionAmount }}</p> 
                   <p *ngIf = "row.rateCurrencyName == 'EUR'">€  {{ row.sellerCommissionAmount }}</p> 

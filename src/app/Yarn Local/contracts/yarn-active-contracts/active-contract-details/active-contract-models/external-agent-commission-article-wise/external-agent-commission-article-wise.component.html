@@ -31,7 +31,7 @@
         <div class="col-10 col-md-11 pt-3 pb-2">
 
       <div >
-          <div class="form-group row" *ngFor="let a of test; let i = index;" >
+          <div class="form-group row" *ngFor="let a of test; let i = index;" [ngClass]="{ 'displayNo': a.isHide == true || a.active == false}">
             <label for="agentcomm" class="col-md-3 col-form-label" *ngIf="i==0">Agent Comm</label>
             <label for="agentcomm" class="col-md-3 col-form-label" *ngIf="i>0"></label>
             <div class=" col-md-8">
@@ -50,8 +50,8 @@
                     #agentCommission="ngModel" min="0" name="agentCommission_{{i}}" />
                 </div>
       
-                <div class="col-md-12" *ngIf="i>0"><button class="btn btn-outline-danger mt-2 float-right" type="submit"
-                    (click)="removefield(i)">
+                <div class="col-md-12" ><button class="btn btn-outline-danger mt-2 float-right" type="submit"
+                    (click)="removefield(i,a)">
                     <i class="fas fa-minus fa-xs"></i></button>
                 </div>
       

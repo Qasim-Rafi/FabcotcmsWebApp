@@ -17,7 +17,7 @@ export class ExternalAgentCommissionArticleWiseComponent implements OnInit {
   @Input() RowData;
   response: any;
   data: any = {};
-  test: any = [{id:0}];
+  test: any = [];
   agents:any=[];
   constructor(
     private _NgbActiveModal: NgbActiveModal,
@@ -36,18 +36,45 @@ export class ExternalAgentCommissionArticleWiseComponent implements OnInit {
     if (this.statusCheck == 'Edit') {
       this.getById();
     }
+    if (this.statusCheck == 'Add') {
+      this.test = [{ id: 0,isHide:false,isAdded:true,isDelete:false}];
+    }
 
   }
   get activeModal() {
     return this._NgbActiveModal;
   }
+  // addfield() {
+  //   this.test.push({ id: 0 });
+
+  // }
+  // removefield(i: number) {
+  //   this.test.splice(i, 1);
+
+  // }
+
+
   addfield() {
-    this.test.push({ id: 0 });
-
+    this.test.push({id: 0,isHide:false,isAdded:true,isDelete:false});
+    
   }
-  removefield(i: number) {
-    this.test.splice(i, 1);
+  removefield(i: number,b) {
+    if (this.statusCheck == 'Edit') {
 
+      if(b.id == 0){
+        this.test.splice(i, 1);
+      }
+      else{
+        var found=this.test.filter(x=>x.id == b.id);
+        if(found.length>0){
+         found[0].isHide=true;
+         found[0].isDeleted=true;
+        }
+      }
+
+    }else{
+      this.test.splice(i, 1);
+    }
   }
   GetAgentDropdown() {
     this.service.getAgents().subscribe(res => {
@@ -65,21 +92,19 @@ export class ExternalAgentCommissionArticleWiseComponent implements OnInit {
 
     this.http
       .get(
-        `${environment.apiUrl}/api/City/GetCity/` +
-          this.contractId
+        `${environment.apiUrl}/api/ExternalAgentCommissionArticleWise/GetExternalAgentCommissionArticleWiseById/` +
+        this.RowData.id
       )
       .subscribe(
         (res) => {
           this.response = res;
           if (this.response.success == true) {
-            this.data = this.response.data;
-            // this.form.controls.NameUrl.setValue(this.data?.siteUrl);
-            // this.Url = this.transform(this.data.fullpath);
-            // this.form.controls.Active.setValue(this.data?.active);
-            // this.spinner.hide();
-            // console.log(this.Url + 'Same');
+            this.test = this.response.data;
+
           } else {
             this.toastr.error(this.response.message, 'Message.');
+            this.test = [{ id: 0,isHide:false,isAdded:true,isDelete:false}];
+            this.statusCheck == 'Add'
             this.spinner.hide();
           }
         },
@@ -103,21 +128,19 @@ export class ExternalAgentCommissionArticleWiseComponent implements OnInit {
     //   this.commission.push({ ['agentId']: this.data1[i].agentId, ["agentCommission"]: this.data1[i].agentCommission })
     // }
 this.spinner.show();
-    let varr = {
-
-      "contractId": this.contractId,
-
-      "agentCommissions": this.test[0].id == 0 ? this.test[0].hasOwnProperty('agentId') == false ? undefined : this.test : this.test[0].agentId == null ? undefined : this.test 
-    }
+this.test.forEach(d=> {
+  d.contractId = this.contractId;
+  d.contractArticleId =this.RowData.id;
+});
 
     this.http.
-      post(`${environment.apiUrl}/api/Contracts/AddContractCommissionKickBack`, varr)
+      post(`${environment.apiUrl}/api/ExternalAgentCommissionArticleWise/AddExternalAgentCommissionArticleWise`, this.test)
       .subscribe(
         res => {
 
           this.response = res;
           if (this.response.success == true) {
-            this.toastr.success(this.response.message, 'Message.');varr
+            this.toastr.success(this.response.message, 'Message.');
             // this.getEnquiryData(this.objEnquiry);
             this.activeModal.close(true);
 this.spinner.hide();
@@ -138,17 +161,15 @@ this.spinner.hide();
         });
   }
   update() {
-    const formData = new FormData();
-  
-    formData.append('provId', this.data.provId);
-    formData.append('name', this.data.name);
-    formData.append('active', this.data.active);
+    this.test.forEach(d=> {
+      d.contractId = this.contractId;
+      d.contractArticleId =this.RowData.id;
+    });
     this.spinner.show();
     this.http
-      .put(
-        `${environment.apiUrl}/api/City/UpdateCity/` +
-          this.contractId,
-        formData
+      .post(
+        `${environment.apiUrl}/api/ExternalAgentCommissionArticleWise/UpdateExternalAgentCommissionArticleWise`,
+        this.test
       )
       .subscribe(
         (res) => {
@@ -175,11 +196,11 @@ this.spinner.hide();
 
 
   onSubmit(buttonType): void {
-    if (buttonType === 'Add') {
+    if (buttonType === 'Add' && this.statusCheck == 'Add') {
       this.add();
     }
 
-    if (buttonType === 'update') {
+    if (buttonType === 'update' && this.statusCheck == 'Edit') {
       this.update();
     }
   }
