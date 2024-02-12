@@ -95,6 +95,7 @@ import { AllContractReportAccountsComponent } from './accounts/all-contract-repo
 import { VoucherReportAccountComponent } from './accounts/voucher-report-account/voucher-report-account.component';
 import { GenericFilterForAllComponent } from './shared/generic-filter-for-all/generic-filter-for-all.component';
 import { EmailgenerationComponent } from './shared/emailgeneration/emailgeneration.component';
+import { SalesTargetComponent } from './accounts/sales-target/sales-target.component';
 const appRoutes: Routes = [] 
 
 
@@ -161,6 +162,8 @@ const appRoutes: Routes = []
     GenericFilterForAllComponent,
    
     EmailgenerationComponent,
+   
+    SalesTargetComponent,
    
   
 

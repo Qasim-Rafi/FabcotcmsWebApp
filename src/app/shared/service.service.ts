@@ -112,12 +112,20 @@ export class ServiceService {
             map(({ data, total }: GridDataResult): GridDataResult => {
             
                 this.data1=data;
-                   let c= this.data1.objList[0].recordCount
-                   total=c
-                return {
+                if(this.data1.objList.length == 0){
+                  return {
                     data: this.data1.objList,
-                    total: total, 
+                    total: 0, 
                 };
+                }else{
+                  let c= this.data1.objList[0].recordCount
+                  total=c
+               return {
+                   data: this.data1.objList,
+                   total: total, 
+               };
+                }
+                 
             })
         );
 }

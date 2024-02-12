@@ -121,13 +121,22 @@ public sendRequest(state: State): void {
   this.service.fetch123(this.deptName,this.data2.toDate,this.data2.FromDate,state).subscribe((response: GridDataResult) => {
       debugger
 
-
+if(response.data.length >0){
       this.rows1 = response;
       this.temp=this.rows1.data ,
       this.rows=this.rows1.data ,
       this.data2.toDate = this.dateformater.fromModel(this.data2.toDate)
       this.data2.FromDate = this.dateformater.fromModel(this.data2.FromDate)
-      this.spinner.hide();
+      this.spinner.hide();}
+      else{
+        this.rows1 = response;
+        this.temp=this.rows1.data ,
+        this.rows=this.rows1.data ,
+        this.data2.toDate = this.dateformater.fromModel(this.data2.toDate)
+        this.data2.FromDate = this.dateformater.fromModel(this.data2.FromDate)
+        this.spinner.hide();
+        this.toastr.error('Record Not Found')
+      }
   });
     //  this.onFilter(val1)
    }

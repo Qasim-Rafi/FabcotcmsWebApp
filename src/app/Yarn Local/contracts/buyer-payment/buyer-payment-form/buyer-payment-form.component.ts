@@ -146,7 +146,7 @@ checkadd(){
   addPayment() {
     // this.paymentAdddata.paymentDate = this.dateformater.toModel(this.paymentAdddata.paymentDate);
     // this.paymentAdddata.depositeDate = this.dateformater.toModel(this.paymentAdddata.depositeDate);
-if(this.saleInvoiceIds.length > 0 && this.result == "0.00"){
+if(this.saleInvoiceIds.length > 0 && (this.result == "0.00" || this.result > "0.00" ) ){
     let item=[]
     this.rows.forEach(childObj=> {
       this.saleInvoiceIds.forEach(childObj2=> {

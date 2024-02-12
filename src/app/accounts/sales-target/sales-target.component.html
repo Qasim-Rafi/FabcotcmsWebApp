@@ -1,0 +1,180 @@
+<section class="tabs-section text-white">
+    <div class="content-header" style="background-color: aliceblue !important;">
+        <div class="row">
+          <div class="col-sm-12 col-md-6 col-lg-8">
+            <h2 class="row wrapper page-header font-weight-light">
+            Target Mappings
+              <div class="ml-2 descr">
+                Map Target according to Department
+              </div>
+            </h2>
+          </div>
+      
+          <div class="col-sm-12 col-md-6 col-lg-4">
+            <ol class="breadcrumb flt-RnL">
+              <li class="breadcrumb-item"><a href="#">Sales Target</a></li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Target Mappings
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+            <div class="col-sm-12 mb-3">
+                <div class="row">
+                    <div class="mr-3 col-md-4">
+                        <label for="monthDropdown" class="mr-2">Month:</label>
+                        <ng-select id="monthDropdown" class="input-w px-0" [(ngModel)]="month">
+                            <option value="1">January</option>
+    <ng-option value="2">February</ng-option>
+    <ng-option value="3">March</ng-option>
+    <ng-option value="4">April</ng-option>
+    <ng-option value="5">May</ng-option>
+    <ng-option value="6">June</ng-option>
+    <ng-option value="7">July</ng-option>
+    <ng-option value="8">August</ng-option>
+    <ng-option value="9">September</ng-option>
+    <ng-option value="10">October</ng-option>
+    <ng-option value="11">November</ng-option>
+    <ng-option value="12">December</ng-option>n>
+                    
+                        </ng-select>
+                    </div>
+                    <div class="mr-3 col-md-4">
+                        <label for="yearDropdown" class="mr-2">Year:</label>
+                        <ng-select id="yearDropdown" class="input-w px-0" [(ngModel)]="year">
+                            <ng-option value="2023">2023</ng-option>
+                            <ng-option value="2024">2024</ng-option>
+                            <ng-option value="2025">2025</ng-option>
+                            <ng-option value="2026">2026</ng-option>
+                            <ng-option value="2027">2027</ng-option>
+                        
+                        </ng-select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <table class="table table-bordered" style="border-radius: 10px;">
+                    <thead class="thead-primary">
+                        <tr>
+                            <th>Department</th>
+                            <th>Amount</th>
+                            <th>Currency</th>
+                            <th>Target Auantity</th>
+                            <th>Quantity UMO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let department of departments; let i = index">
+                            <td style="background-color: #99b19c;font-size: 14px;
+                            font-weight: 700;
+                            padding: 17px;">{{ department.name }}</td>
+                            <td>
+                                <input type="text" class="form-control" [(ngModel)]="department.amount" name="amount{{i}}">
+                            </td>
+                            <td>
+                                <select class="form-control" [(ngModel)]="department.currencyTypeID" name="currencyTypeID{{i}}">
+                                    <option *ngFor="let i of currency" [value]="i.id">{{ i.code }}
+                                    </option>
+                                    <!-- Add more options as needed -->
+                                </select>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" [(ngModel)]="department.quantity" name="quantity{{i}}">
+                            </td>
+                            <td>
+                                <select class="form-control" [(ngModel)]="department.quantityUOM" name="quantityUOM{{i}}">
+                                    <option *ngFor="let i of uom" [value]="i.id">{{ i.name }}
+                                    </option>
+                                    <!-- Add more options as needed -->
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+ </section>
+<!-- 
+ <section class="tabs-section text-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 mb-3">
+                <div class="row">
+                    <div class="mr-3 col-md-4">
+                        <label for="monthDropdown" class="mr-2">Month:</label>
+                        <ng-select id="monthDropdown" class="input-w px-0">
+                            <option value="1">January</option>
+    <ng-option value="2">February</ng-option>
+    <ng-option value="3">March</ng-option>
+    <ng-option value="4">April</ng-option>
+    <ng-option value="5">May</ng-option>
+    <ng-option value="6">June</ng-option>
+    <ng-option value="7">July</ng-option>
+    <ng-option value="8">August</ng-option>
+    <ng-option value="9">September</ng-option>
+    <ng-option value="10">October</ng-option>
+    <ng-option value="11">November</ng-option>
+    <ng-option value="12">December</ng-option>n>
+                    
+                        </ng-select>
+                    </div>
+                    <div class="mr-3 col-md-4">
+                        <label for="yearDropdown" class="mr-2">Year:</label>
+                        <ng-select id="yearDropdown" class="input-w px-0">
+                            <ng-option value="2023">2023</ng-option>
+                            <ng-option value="2024">2024</ng-option>
+                            <ng-option value="2025">2025</ng-option>
+                            <ng-option value="2026">2026</ng-option>
+                            <ng-option value="2027">2027</ng-option>
+                        
+                        </ng-select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <table class="table table-bordered" style="border-radius: 10px;">
+                    <thead class="thead-primary">
+                        <tr>
+                            <th>Department</th>
+                            <th>Target Ant</th>
+                            <th>UNO</th>
+                            <th>Target Dty</th>
+                            <th>UMO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let department of departments; let i = index">
+                            <td style="background-color: #99b19c;font-size: 14px;
+                            font-weight: 700;
+                            padding: 17px;">{{ department.name }}</td>
+                            <td>
+                                <input type="text" class="form-control" [(ngModel)]="department.uno" name="uno{{i}}">
+                            </td>
+                            <td>
+                                <select class="form-control" [(ngModel)]="department.target" name="target{{i}}">
+                                    <option value="option1">Option 1</option>
+                                    <option value="option2">Option 2</option>
+                                   
+                                </select>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" [(ngModel)]="department.end" name="end{{i}}">
+                            </td>
+                            <td>
+                                <select class="form-control" [(ngModel)]="department.umo" name="umo{{i}}">
+                                    <option value="optionA">Option A</option>
+                                    <option value="optionB">Option B</option>
+                                   
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section> -->

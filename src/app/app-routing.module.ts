@@ -19,6 +19,7 @@ import { BuyerSellerLedgerComponent } from './shared/reports/buyer-seller-ledger
 import { AllContractReportAccountsComponent } from './accounts/all-contract-report-accounts/all-contract-report-accounts.component';
 import { VoucherReportAccountComponent } from './accounts/voucher-report-account/voucher-report-account.component';
 import { EmailgenerationComponent } from './shared/emailgeneration/emailgeneration.component';
+import { SalesTargetComponent } from './accounts/sales-target/sales-target.component';
 
 
 const configurationModule = () => import('./configuration/configuration.module')
@@ -48,6 +49,7 @@ const routes: Routes = [
     {path:'voucher-report-account' , component:VoucherReportAccountComponent},
     {path:'buyer-seller-ledger' , component:BuyerSellerLedgerComponent},
     {path:'emailgeneration', component:EmailgenerationComponent},
+    {path:'sales-target', component:SalesTargetComponent},
 
    {
      path:'config',
