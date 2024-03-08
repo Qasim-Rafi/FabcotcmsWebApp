@@ -113,7 +113,10 @@
       </div>  
       <div class="col-md-2">  <button type="button" class="btn btn-primary" (click) = "fetch()" ><i class="fa fa-search"></i>Go!
       </button></div> 
-      <div class="col-md-2"> <button type="button" class="btn btn-primary btn-sm float-right" (click)="getSelectedRowData()">
+      <div *ngIf = "loggedInDepartmentName != 'Yarn Export'" class="col-md-2"> <button type="button" class="btn btn-primary btn-sm float-right" (click)="getSelectedRowData()">
+          <i class="fa fa-print"></i> Bulk Print
+        </button></div>
+        <div *ngIf = "loggedInDepartmentName == 'Yarn Export'" class="col-md-2"> <button type="button" class="btn btn-primary btn-sm float-right" (click)="getSelectedRowDataExportYran()">
           <i class="fa fa-print"></i> Bulk Print
         </button></div>
       </div>
