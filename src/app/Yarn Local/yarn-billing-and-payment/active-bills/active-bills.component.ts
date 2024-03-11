@@ -348,7 +348,12 @@ this.fetch();
             this.toastr.success(this.response.message, 'Message.');
             this.spinner.hide();
             this.itemBID=[];
-            this.print3()
+            if(this.loggedInDepartmentName =='Yarn Export'){
+
+              this.print3()
+            }else{
+              this.print33()
+            }
             localStorage.removeItem('bulkPrint');
             localStorage.removeItem('BPbuyerId');
   console.log(this.printData)
@@ -670,7 +675,309 @@ this.fetch();
     pdfMake.createPdf(docDefinition).print();
   }
 
+  print33(){
+
+
+    let docDefinition = {
+      pageSize: 'A4',
+      pageMargins: [ 20, 30, 30, 10 ],
+      pageOrientation: 'letter',
+        
+            info: {
+              title: 'Bill generated'
+            },
+            content: [
+             
   
+  
+            ],
+    styles:{}
+    };
+
+
+    this.printData.forEach((data, index) => {
+      // Add content of each page to the main docDefinition
+      docDefinition.content.push(
+
+
+        {
+          "image" : this.image2,
+         fit : [120 , 120]
+      
+        },
+        {
+       
+          text:'FABCOT INTERNATIONAL FZE ®' , style:'heading' , margin: [0,-40,0,0]
+       
+        },
+        {
+       
+          text:this.loggedInDepartmentName , style:'headingG' , margin: [430,-20,0,0]
+       
+        },
+        {
+          margin: [5 , 10 , 0 , 0],
+          layout:'noBorders',
+          table:{headerRows: 1 , widths:['100%'],
+        body: [
+          [{text:'Flexi Office, RAKEZ Business ZONE F-Z RAK , United Arab Emirates ' , style:'headingC'}
+        ],] }
+        },
+        {
+          margin: [5 , -4 , 0 , 0],
+          layout:'noBorders',
+          table:{headerRows: 1 , widths:['100%'],
+        body: [
+          [{text:'Email: Sohail@fabcot.net' , style:'headingC'}],] }
+        },
+        {
+          layout:'noBorders',
+         
+          table:{headerRows:1 ,  widths:['18%' , '67%' , '5%' , '12%'],
+        body:[ [
+          {text: 'Seller :' , margin: [20 , 30 , 0 , 0] , bold:true , style:'common' } , {text: data['sellerName'] , bold:true , margin: [-43 , 30 , 0 , 0] , style:'common'},
+        {text:'Bill # :' , margin: [0 , 30 , 0 , 0] , bold:true , style:'common'} ,{text:data['billNumber'] , margin: [0 , 30 , 0 , 0] , style:'common'}
+      
+      ]]
+        }
+        },
+        {
+          
+          layout:'noBorders',
+          table:{headerRows:1 ,  widths:['18%' , '65%' , '10%' , '15%'],
+        body:[ [{text: 'Buyer :' , margin: [20 , 4 , 0 , 0] , bold:true , style:'common'} , {text: data['buyerName'] , margin: [-43 , 4 , 0 , 0] , bold:true  , style:'common'},
+        {text:'Bill Date :' , margin: [0 , 4 , 0 , 0] , bold:true , style:'common'} ,{text:data['billDate'] , margin: [-20 , 4 , 0 , 0] , bold:true  , style:'common' }
+      
+      ]]
+        }
+        },
+        {
+         
+
+          layout:'noBorders',
+          table:{headerRows:1 ,  widths:['20%' , '80%' ],
+        body:[ [{text: 'Fabcot Contract# :' , margin: [20 , 4 , 0 , 0] , bold:true , style:'common'} , {text: data['contractNumber'] , margin: [-12 , 4 , 0 , 0]  , bold:true  , decoration:'underline' , style:'common'}
+      
+      ]]
+        }
+        },
+        {
+         
+
+          layout:'noBorders',
+          table:{headerRows:1 ,  widths:['20%' , '80%' ],
+        body:[ [{text: 'Supplier Contract# :' , margin: [20 , 4 , 0 , 0] , bold:true , style:'common'} , {text: data['supplierContractNumber'] , margin: [-10 , 4 , 0 , 0]  , bold:true  , decoration:'underline' , style:'common'}
+      
+      ]]
+        }
+        },
+        {
+        
+
+          layout:'noBorders',
+          table:{headerRows:1 ,  widths:['20%' , '80%' ],
+        body:[ [{text: 'Contract Date :' , margin: [20 , 4 , 0 , 0] , bold:true  , style:'common'} , {text: data['contractDate'] , margin: [-25 , 4 , 0 , 0] , bold:true , decoration:'underline' , style:'common' }
+      
+      ]]
+        }
+        },
+
+     
+        {
+         
+
+          layout:'noBorders',
+          table:{headerRows:1 ,  widths:['100%' ],
+        body:[ [{text: 'Detail as under' , margin: [20 , 0 , 0 , 0]  , style:'common'} 
+      
+      ]]
+        }
+        },
+
+        {
+          margin: [0 , 20 , 0 , 0 ],
+          table:{
+            headerRows : 1,
+            widths : [ '10%', '15%' , '15%' , '15%' , '10%' , '15%'  , '10%' , '15%'],
+            body:[
+
+              [
+                {text:'Sale Invoice#' , style:'tableHeader' }
+              ,{text:'Sale Invoice Date' , style:'tableHeader'} ,
+              {text:'Article' , style:'tableHeader'} ,
+
+              {text:'Quantity' , style:'tableHeader' }, 
+              {text:'Rate'  +'(' + data.currencyName+')' , style:'tableHeader' }, 
+
+              {text:'Inv Amount' +'(' + data.currencyName+')'  , style:'tableHeader'} , 
+              {text:'Comm%' , style:'tableHeader'} , 
+
+              {text:'Amount' +'(' + data.currencyName+')' , style:'tableHeader'}],
+              
+              ...data['contractSaleInvoices'].map(row => (
+                [
+
+                  {text: row.saleInvoiceNo , style:'tableHeader2'} ,
+                {text:  row.saleInvoiceDateToDisplay , style:'tableHeader2'},
+                {text: row.articleName  +' '+ row.construction , style:'tableHeader2'},
+
+                {text:  row.quantity + " " + row.quanityUOM   , style:'tableHeader2'} ,
+                {text: row.rate + "/" + row.quanityUOM , style:'tableHeader2'} ,
+                
+                 {text: "$ " + row.amount
+                     , style:'tableHeader2'} ,
+                  {text:row.commission+ ' ' + row.commissionUnit  , style:'tableHeader2' }  ,
+
+                  {text: "$ " + row.billAmount , style:'tableHeader2'}]
+              ))
+            ]
+          }
+        },
+
+      {
+        layout:'noBorders',
+        table:{headerRows:1 ,  widths:['10%' , '20%' ,  '25%' , '25%' ],
+      body:[ [
+        {text: 'Quantity :' , margin:[0 , 30,0,0] , bold:true , style:'common' } ,
+       {text: data['quantitySum'] + " " + data['quanityUOM']  ,margin:[-10 , 30,0,0] , bold:true , style:'common' },
+        {text: this.loggedInDepartmentName =='Yarn Import'? '':'Invoice Amount' + ' (' + data['currencyName'] +   '):'  , margin:[0,30,0,0]  , bold:true , style:'common' } ,
+       {text:  this.loggedInDepartmentName =='Yarn Import'? '':data['amountsum']  , margin:[-35,30,0,0] ,  bold:true , style:'common'}
+    
+    ]]
+      }
+      },
+
+        {
+          layout:'noBorders',
+          table:{headerRows:1 ,  widths:['20%' , '50%' ,  '30%' , '10%' ],
+        body:[ [
+          {text: 'Amount in Words :' , margin:[0 , 20,0,0] , bold:true , style:'common' } ,
+         {text: data['updatedByName'] ,margin:[-30 , 20,0,0] , bold:true , decoration:'underline' , style:'common' },
+          {text: 'TOTAL :' , margin:[50,20,0,0]  , bold:true , style:'common' } ,
+         {text:   data['currencyName']+ ' ' + data.totalCalculation , bold:true  , margin:[-70,20,0,0] , decoration:'underline'  , style:'common'}
+      
+      ]]
+        }
+        },
+   
+
+      {
+        layout:'noBorders',
+        table:{headerRows:1 ,  widths:['100%' ],
+      body:[ [
+        {text: 'Our Bank detail as under FTT:' , margin:[0 , 20,0,0] , bold:true , style:'common' } ,
+      
+    ]]
+      }
+      },
+      {
+        layout:'noBorders',
+        table:{headerRows:1 ,  widths:['20%' , '50%'  ],
+      body:[ [
+        {text: 'Title of Account :' , margin:[0 , 10,0,0] , bold:true , style:'common' } ,
+       {text: data['accountName'] ,margin:[-20 , 10,0,0]  , style:'common' },
+     
+    
+    ]]
+      }
+      },
+
+      {
+        layout:'noBorders',
+        table:{headerRows:1 ,  widths:['20%' , '50%'  ],
+      body:[ [
+        {text: 'Address :' , margin:[0 , 0,0,0] , bold:true , style:'common' } ,
+       {text: data['address'] ,margin:[-20 , 0,0,0]  , style:'common' },
+     
+    
+    ]]
+      }
+      },
+      {
+        layout:'noBorders',
+        table:{headerRows:1 ,  widths:['20%' , '50%'  ],
+      body:[ [
+        {text: 'Bank Name :' , margin:[0 , 0,0,0] , bold:true , style:'common' } ,
+       {text: data['bankName'] ,margin:[-20 , 0,0,0]  , style:'common' },
+     
+    
+    ]]
+      }
+      },
+      {
+        layout:'noBorders',
+        table:{headerRows:1 ,  widths:['20%' , '50%'  ],
+      body:[ [
+        {text: 'IBAN Number:' , margin:[0 , 0,0,0] , bold:true , style:'common' } ,
+       {text: data['iban'] ,margin:[-20 , 0,0,0]  , style:'common' },
+     
+    
+    ]]
+      }
+      },
+      {
+        layout:'noBorders',
+        table:{headerRows:1 ,  widths:['20%' , '50%'  ],
+      body:[ [
+        {text: 'Swift Code :' , margin:[0 , 0,0,0] , bold:true , style:'common' } ,
+       {text: data['swiftCode'] ,margin:[-20 , 0,0,0]  , style:'common' },
+     
+    
+    ]]
+      }
+      },
+
+      {
+        layout:'noBorders',
+        table:{headerRows:1 ,  widths:['20%' , '50%'  ],
+      body:[ [
+        {text: 'Bank Address :' , margin:[0 , 0,0,0] , bold:true , style:'common' } ,
+       {text: data['bankAddress'] ,margin:[-20 , 0,0,0]  , style:'common' },
+     
+    
+    ]]
+      }
+      },
+      {
+        layout:'noBorders',
+        table:{headerRows:1 ,  widths:['100%'   ],
+      body:[ [
+        {text: 'For FABCOT INTERNATIONAL' , margin:[0 , 30,0,0]  , bold: true , style:'common' } ,
+    ]]
+      }
+      },
+
+      index < this.printData.length - 1 ? { text: '', pageBreak: 'after' } : null
+        // ... (other content for each page)
+      );
+    });
+
+
+    docDefinition.styles = {
+      heading: {
+        fontSize: 18,
+        bold: true, alignment: 'center',
+      },
+      headingC: {
+        fontSize: 9,
+        alignment: 'center',
+      },
+      headingG: {
+        fontSize: 12,
+        alignment: 'center', bold: true
+      },
+      common: { fontSize: 9 },
+      heading2: {
+        fontSize: 9,
+        bold: true, alignment: 'center'
+      },
+      tableHeader: { fillColor: '#f3f3f4', bold: true, margin: 4, alignment: 'center', fontSize: 8 },
+      tableHeader2: { margin: 3, alignment: 'center', fontSize: 8 },
+    };
+
+    pdfMake.createPdf(docDefinition).print();
+
+  }
   
   // onRowSelected(event) {
   //   var rowCount = event.data.id;
