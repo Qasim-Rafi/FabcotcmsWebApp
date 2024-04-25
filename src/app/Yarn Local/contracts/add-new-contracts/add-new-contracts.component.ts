@@ -28,6 +28,8 @@ import { AddPaymentComponent } from 'src/app/configuration/product/payment-term/
 import { AddContainerComponent } from '../../yarn-configuration/product/container/add-container/add-container.component';
 import { EditCityComponent } from 'src/app/configuration/city/edit-city/edit-city.component';
 import { AddTypeComponent } from '../../yarn-configuration/product/fabric-type/add-type/add-type.component';
+import { ExternalAgentCommissionArticleWiseComponent } from '../yarn-active-contracts/active-contract-details/active-contract-models/external-agent-commission-article-wise/external-agent-commission-article-wise.component';
+import { AddExternalAgentCommissionArticleWiseComponent } from '../yarn-active-contracts/active-contract-details/active-contract-models/add-external-agent-commission-article-wise/add-external-agent-commission-article-wise.component';
 
 
 @Component({
@@ -51,6 +53,7 @@ export class AddNewContractsComponent implements OnInit {
   PickInsertion: any = [];
   paymentMode1: any = [];
   uomList: any = [];
+  ArticlesAgents: any = [];
   blendingRatioWarp: any = [];
   blendingRatioWeft: any = [];
   currency: any = [];
@@ -76,7 +79,7 @@ export class AddNewContractsComponent implements OnInit {
   sellerPOC: any = [];
   buyerPOC: any = [];
   new: any = [];
-  Article: any = [];
+  Article: any = [{ id: 0 ,agents:[]}];
   new2: any = [];
   new3: any = [];
   data1: any = [];
@@ -205,7 +208,7 @@ brandId : any;
     this.new.push({ id: this.new.length });
   }
   addArticle() {
-    this.Article.push({ id: this.Article.length });
+    this.Article.push({ id: this.Article.length ,agents:[]});
     // this.Article.push({ id: 0 });
 
   }
@@ -1073,6 +1076,46 @@ brandId : any;
           this.spinner.hide();
         });
   }
+
+  editExternalAgentCommArticleWise(check,articleId,from,index){
+if(from == '1' && articleId == undefined){
+  this.toastr.error("Select Article", 'Message.');
+}
+// if(from == '0'){
+//   articleId =articleId.articleId
+// }
+let abs =articleId
+    const modalRef = this.modalService.open(AddExternalAgentCommissionArticleWiseComponent, { centered: true });
+    modalRef.componentInstance.statusCheck = check;
+    modalRef.componentInstance.articleId = abs;
+    modalRef.componentInstance.From = from;
+    modalRef.componentInstance.Index = index;
+          modalRef.result.then((data) => {
+         // on close
+          if(data.length != 0){
+            if(data[0].from == '1'){
+              this.data5.contractArticleForignAgentCommission =data[0].agentCommission
+         this.data5.agentName =data[0].agentName
+            }
+            else if(data[0].from == '0'){
+
+              this.Article[data[0].index].agents = data;
+              // data.forEach(d=> {
+              //   this.Article[data[0].index].agents.push(d)
+              // });
+             
+            //  this.Article[data[0].index].agentName=data[0].agentName
+            }
+        
+        }
+       }, (reason) => {
+         // on dismiss
+       });
+  }
+
+
+
+
   addContract(form: NgForm) {
     let departmentId = parseInt(localStorage.getItem('loggedInDepartmentId'))
     // statusCheck = check;
@@ -1085,7 +1128,7 @@ brandId : any;
 
       this.commission.push({ ['agentId']: this.data1[i].agentId, ["agentCommission"]: this.data1[i].agentCommission })
     }
-    if (this.data5.contractArticleName != '') {
+    if (this.data5.contractArticleName != '' && this.data5.contractArticleName != undefined) {
       this.articleArray.push({ ['articleId']: this.data5.articleId , ['contractArticleQuantity']: this.data5.contractArticleQuantity , ['contractArticleRate']: this.data5.contractArticleRate , ['contractArticleCommission']: this.data5.contractArticleCommission
       , ['contractArticleForignAgentCommission']: this.data5.contractArticleForignAgentCommission
     })
@@ -1098,7 +1141,15 @@ brandId : any;
        , ['contractArticleForignAgentCommission']: this.Article[i].contractArticleForignAgentCommission})
     }
  
+if(this.loggedInDepartmentName == 'Yarn Export' || this.loggedInDepartmentName == 'Yarn Export Bangladesh'){
 
+  this.Article.forEach(agent=> {
+    agent.agents.forEach(agents12=> {
+      agents12.contractArticleId= agents12.articleId
+      this.ArticlesAgents.push(agents12)
+    });
+  });
+}
     let varr = {
       // "enquiryDate": this.dateformater.toModel(this.data.enquiryDate),
       "autoContractNo": this.data.autoContractNo,
@@ -1115,6 +1166,7 @@ brandId : any;
       "pecenetAge" : this.data.pecenetAge,
       "rate": this.data.rate,
       "contractArticles" : this.loggedInDepartmentName == 'Yarn Export' || this.loggedInDepartmentName == 'Yarn Export Bangladesh' || this.loggedInDepartmentName == 'Comber noil' ?  this.articleArray : this.loggedInDepartmentName == 'Yarn Import' ? this.articleArray : null,
+       "ContractArticlesAgents":this.ArticlesAgents.length >0 ?this.ArticlesAgents:this.ArticlesAgents.length =0,
       "currencyId": this.data.currencyId,
       "rateUOMId": this.data.rateUOMId,
       "sellerPaymentTerm": this.data.sellerPaymentTerm,
