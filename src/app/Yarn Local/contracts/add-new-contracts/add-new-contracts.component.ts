@@ -1166,7 +1166,7 @@ if(this.loggedInDepartmentName == 'Yarn Export' || this.loggedInDepartmentName =
       "pecenetAge" : this.data.pecenetAge,
       "rate": this.data.rate,
       "contractArticles" : this.loggedInDepartmentName == 'Yarn Export' || this.loggedInDepartmentName == 'Yarn Export Bangladesh' || this.loggedInDepartmentName == 'Comber noil' ?  this.articleArray : this.loggedInDepartmentName == 'Yarn Import' ? this.articleArray : null,
-       "ContractArticlesAgents":this.ArticlesAgents.length >0 ?this.ArticlesAgents:this.ArticlesAgents.length =0,
+       "ContractArticlesAgents":this.ArticlesAgents.length >0 ?this.ArticlesAgents:[],
       "currencyId": this.data.currencyId,
       "rateUOMId": this.data.rateUOMId,
       "sellerPaymentTerm": this.data.sellerPaymentTerm,
