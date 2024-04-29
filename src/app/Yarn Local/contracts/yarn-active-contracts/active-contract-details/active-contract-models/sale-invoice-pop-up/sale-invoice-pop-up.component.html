@@ -142,7 +142,7 @@
                 [(ngModel)]="data.amount" #amount="ngModel" />
             </div>
           </div>
-          <div class="form-group row" *ngIf="loggedInDepartmentName=='Yarn Local'">
+          <div class="form-group row" *ngIf="loggedInDepartmentName=='Yarn Local' || loggedInDepartmentName == 'Comber noil'">
             <label for="taxPercentage" class="col-md-3 col-form-label">Tax %</label>
             <div class="col-md-8">
               <div class="input-group">

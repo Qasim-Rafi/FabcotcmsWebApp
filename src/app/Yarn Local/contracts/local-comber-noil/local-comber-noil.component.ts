@@ -1108,7 +1108,7 @@ brandId : any;
       "blendingRatioWeftId": this.data.blendingRatioWeftId,
       "buyerSidePaymentTermInfo": this.data.buyerSidePaymentTermInfo,
       "sellerPaymentTermInfo": this.data.sellerPaymentTermInfo,
-      "gst": this.data.gst,
+      "gst": this.data.gst != null || this.data.gst != undefined ? this.data.gst:0,
       "wiTax": this.data.wiTax,
       "priceTermId": this.data.priceTermId,
       "sellerPaymentTermId": this.data.sellerPaymentTermId,

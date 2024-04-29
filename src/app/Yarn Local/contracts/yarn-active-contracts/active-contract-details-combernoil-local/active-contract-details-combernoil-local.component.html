@@ -773,7 +773,14 @@
                                                     {{contractCostingData.contractCost}}</dd>
 
                                             </dl>
-
+                                            <dl class="row"
+                                            >
+                                            <dt class="col-sm-4" *ngIf="loggedInDepartmentName != 'Fabric Export'">
+                                                GST:
+                                            </dt>
+                                            <dd class="col-sm-6" *ngIf="contractCostingData.gst != ''">
+                                                {{contractCostingData.gst}}%</dd>
+                                        </dl>
                                             <dl class="row" *ngIf="loggedInDepartmentName == 'Fabric Local'
                                      ">
                                                 <dt class="col-sm-4">Total Value Inc GST:
