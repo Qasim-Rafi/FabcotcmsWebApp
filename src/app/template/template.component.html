@@ -143,6 +143,9 @@
                 <span class="btn-primary" *ngIf="loggedInDepartmentId == '12' " >
                   Yarn Export Bangladesh
                 </span>
+                <span class="btn-primary" *ngIf="loggedInDepartmentId == '13' " >
+                  Synthetic Fibers
+                </span>
                 
                 
               </div>
@@ -605,7 +608,7 @@
 
 
 
-          <nav class="mt-2" *ngIf="isYarnLocal || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Export Bangladesh' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Comber noil'">
+          <nav class="mt-2" *ngIf="isYarnLocal || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Export Bangladesh' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Synthetic Fibers' || loggedInDepartmentName == 'Comber noil'">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
               <!-- Add icons to the links using the .nav-icon class
                  with font-awesome or any other icon font library -->
@@ -661,28 +664,28 @@
                       <p>Completed Contracts</p>
                     </a>
                   </li> -->
-                  <li class="nav-item" *ngIf = "loggedInDepartmentName != 'Yarn Export'  && loggedInDepartmentName != 'Yarn Export Bangladesh' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Comber noil'">
+                  <li class="nav-item" *ngIf = "loggedInDepartmentName != 'Yarn Export'  && loggedInDepartmentName != 'Yarn Export Bangladesh' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Comber noil' && loggedInDepartmentName != 'Synthetic Fibers'">
                     <a routerLink="/FabCot/dispatched-register" class="nav-link" routerLinkActive="active">
                       <i class="fas fa-truck nav-icon"></i>
                       <p>Dispatched Register</p>
                     </a>
                   </li>
-                  <li class="nav-item" *ngIf = "loggedInDepartmentName != 'Yarn Export'  && loggedInDepartmentName != 'Yarn Export Bangladesh'
-                  && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Comber noil'">
+                  <li class="nav-item" *ngIf="loggedInDepartmentName != 'Yarn Export'  && loggedInDepartmentName != 'Yarn Export Bangladesh'
+                  && loggedInDepartmentName != 'Yarn Import'  && loggedInDepartmentName != 'Comber noil' && loggedInDepartmentName != 'Synthetic Fibers'">
                     <a routerLink="/FabCot/buyer-payment" class="nav-link" routerLinkActive="active">
                       <i class="far fa-money-bill-alt"></i>
                       <p>Buyer Payments</p>
                     </a>
                   </li>
                   <li class="nav-item" *ngIf = "loggedInDepartmentName != 'Yarn Export'  && loggedInDepartmentName != 'Yarn Export Bangladesh'
-                  && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Comber noil'">
+                  && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Comber noil' && loggedInDepartmentName != 'Synthetic Fibers'">
                     <a routerLink="/FabCot/sale-invoice" class="nav-link" routerLinkActive="active">
                       <i class="fas fa-file-invoice-dollar"></i>
                       <p>Sale Invoices</p>
                     </a>
                   </li>
                   <li class="nav-item" *ngIf = "loggedInDepartmentName != 'Yarn Export'  && loggedInDepartmentName != 'Yarn Export Bangladesh'
-                  && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Comber noil'">
+                  && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Comber noil' && loggedInDepartmentName != 'Synthetic Fibers'">
                     <a routerLink="/FabCot/tax" class="nav-link" routerLinkActive="active">
                       <i class="fas fa-tags"></i>
                       <p>Tax Challan</p>
@@ -807,7 +810,7 @@
                       <p>Foreign Agent Commission</p>
                     </a>
                   </li>
-                  <li class="nav-item" *ngIf  = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Export Bangladesh' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Comber noil'">
+                  <li class="nav-item" *ngIf  = "loggedInDepartmentName == 'Fabric Export' || loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Export Bangladesh' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Synthetic Fibers' || loggedInDepartmentName == 'Comber noil'">
                     <a (click)="reportsRoughtMethod('LCReport')" class="nav-link" >
                       <p>LC Reports</p>
                     </a>

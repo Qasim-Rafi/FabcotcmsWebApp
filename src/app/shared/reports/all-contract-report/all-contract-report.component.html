@@ -293,12 +293,12 @@
                   {{row.poNumber}}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Article(s)" [width]="320" *ngIf="loggedInDepartmentName =='Yarn Export' || loggedInDepartmentName =='Yarn Import'">
+              <ngx-datatable-column name="Article(s)" [width]="320" *ngIf="loggedInDepartmentName =='Yarn Export' || loggedInDepartmentName =='Yarn Import' || loggedInDepartmentName =='Synthetic Fibers'">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   <p class="text-wrap" > {{row.articlesPlusRate}} </p>
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Article"  *ngIf="loggedInDepartmentName !='Yarn Export' && loggedInDepartmentName !='Yarn Import'">
+              <ngx-datatable-column name="Article"  *ngIf="loggedInDepartmentName !='Yarn Export' && loggedInDepartmentName !='Yarn Import' && loggedInDepartmentName !='Synthetic Fibers'">
                 <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                   {{row.articleName}}
                 </ng-template>

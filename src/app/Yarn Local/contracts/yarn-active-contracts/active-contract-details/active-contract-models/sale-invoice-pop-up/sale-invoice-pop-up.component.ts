@@ -240,7 +240,7 @@ if(event==7){
     if(this.data.fobValue == undefined){
       this.data.fobValue = ''
     }
-    if(sum>this.quantity && this.loggedInDepartmentName != 'Yarn Export' && this.loggedInDepartmentName != 'Yarn Export Bangladesh' && this.loggedInDepartmentName != 'Yarn Import' ){
+    if(sum>this.quantity && this.loggedInDepartmentName != 'Yarn Export' && this.loggedInDepartmentName != 'Yarn Export Bangladesh' && this.loggedInDepartmentName != 'Yarn Import' && this.loggedInDepartmentName != 'Synthetic Fibers' ){
       this.toastr.error("Total Sale Invoice Quantity"+"["+sum+"]"+ "should be less than contract quantity"+"["+this.quantity+"]", 'Message.');
 
     }

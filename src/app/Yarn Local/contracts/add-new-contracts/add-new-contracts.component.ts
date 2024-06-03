@@ -1165,7 +1165,7 @@ if(this.loggedInDepartmentName == 'Yarn Export' || this.loggedInDepartmentName =
       "brandId": this.data.brandId,
       "pecenetAge" : this.data.pecenetAge,
       "rate": this.data.rate,
-      "contractArticles" : this.loggedInDepartmentName == 'Yarn Export' || this.loggedInDepartmentName == 'Yarn Export Bangladesh' || this.loggedInDepartmentName == 'Comber noil' ?  this.articleArray : this.loggedInDepartmentName == 'Yarn Import' ? this.articleArray : null,
+      "contractArticles" : this.loggedInDepartmentName == 'Yarn Export' || this.loggedInDepartmentName == 'Yarn Export Bangladesh' || this.loggedInDepartmentName == 'Comber noil' ?  this.articleArray : (this.loggedInDepartmentName == 'Yarn Import' || this.loggedInDepartmentName == 'Synthetic Fibers') ? this.articleArray : null,
        "ContractArticlesAgents":this.ArticlesAgents.length >0 ?this.ArticlesAgents:[],
       "currencyId": this.data.currencyId,
       "rateUOMId": this.data.rateUOMId,

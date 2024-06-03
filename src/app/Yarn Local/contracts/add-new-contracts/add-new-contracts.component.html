@@ -260,7 +260,7 @@
                         <hr>
 
                         <div class="card shadow mb-4" *ngIf="loggedInDepartmentName == 'Yarn Export'  || loggedInDepartmentName == 'Yarn Export Bangladesh'
-                    || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Comber noil' ">
+                    || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Comber noil' || loggedInDepartmentName=='Synthetic Fibers'">
                             <div class="card-body">
 
 
@@ -400,7 +400,7 @@
 
 
                                 <div class="form-group row" *ngIf="loggedInDepartmentName!='Yarn Export' && loggedInDepartmentName != 'Yarn Export Bangladesh'
-                                && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Comber noil'">
+                                && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Comber noil' && loggedInDepartmentName != 'Synthetic Fibers'">
                                     <label for="inputEmail3"
                                         class="col-md-3 col-form-label control-label">Article:</label>
 
@@ -504,7 +504,7 @@
                                     </div>
                                 </div> -->
                                 <div *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Export Bangladesh'
-                                || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Comber noil'">
+                                || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Comber noil' || loggedInDepartmentName == 'Synthetic Fibers'">
                                     <div class="form-group row" *ngFor="let a of Article; let i = index;">
                                         <label for="inputEmail3" class="col-md-2 col-form-label control-label"></label>
 
@@ -631,7 +631,7 @@
                                 </div>
                                 <br>
                                 <div class="form-group row" *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Export Bangladesh'
-                                || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Comber noil'">
+                                || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Comber noil' || loggedInDepartmentName == 'Synthetic Fibers'">
                                     <label for="inputEmail3" class="col-md-2 col-form-label control-label">Brand
                                         Name:</label>
 
@@ -914,9 +914,9 @@
                             </div>
                         </div>
                         <hr *ngIf="loggedInDepartmentName != 'Yarn Export'  && loggedInDepartmentName != 'Yarn Export Bangladesh'
-                    && loggedInDepartmentName == 'Yarn Import'  ">
+                    && (loggedInDepartmentName == 'Yarn Import'  || loggedInDepartmentName == 'Synthetic Fibers')">
                         <div class="card shadow mb-4" *ngIf="loggedInDepartmentName != 'Yarn Export' && loggedInDepartmentName != 'Yarn Export Bangladesh'
-                    && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Comber noil'">
+                    && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Comber noil' && loggedInDepartmentName != 'Synthetic Fibers'">
                             <div class="card-body">
 
 
@@ -1871,7 +1871,7 @@
 
                         <!---------- Payment & Delivery for Yarn Export Department ---------->
                         <div class="card shadow mb-4"
-                            *ngIf="loggedInDepartmentName=='Yarn Export'   || loggedInDepartmentName == 'Yarn Export Bangladesh' || loggedInDepartmentName=='Fabric Export' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Comber noil'">
+                            *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Export Bangladesh' || loggedInDepartmentName=='Fabric Export' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Comber noil' || loggedInDepartmentName == 'Synthetic Fibers'">
                             <div class="card-body">
 
 
@@ -1886,7 +1886,7 @@
                                         Terms:</label>
 
                                     <div class="col-md-7" *ngIf="loggedInDepartmentName == 'Yarn Export' || loggedInDepartmentName == 'Yarn Export Bangladesh'
-                || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Comber noil'">
+                || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Comber noil' || loggedInDepartmentName == 'Synthetic Fibers'">
                                         <div class="row">
 
                                             <div class="col-md-4">
@@ -2271,7 +2271,7 @@
 
 
                                     <div class="form-group row" *ngIf="loggedInDepartmentName!='Yarn Export' && loggedInDepartmentName != 'Yarn Export Bangladesh'
-                                    && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Comber noil'">
+                                    && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Comber noil' && loggedInDepartmentName != 'Synthetic Fibers'">
                                         <label for="code" class="col-md-3 col-form-label control-label">FabCot
                                             Commission:</label>
 
@@ -2322,7 +2322,7 @@
 
 
                                     <div class="form-group row"
-                                        *ngIf="loggedInDepartmentName!='Yarn Export' && loggedInDepartmentName != 'Yarn Export Bangladesh' && loggedInDepartmentName!='Fabric Export' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Comber noil'">
+                                        *ngIf="loggedInDepartmentName!='Yarn Export' && loggedInDepartmentName != 'Yarn Export Bangladesh' && loggedInDepartmentName!='Fabric Export' && loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Comber noil' && loggedInDepartmentName != 'Synthetic Fibers'">
                                         <label for="code" class="col-md-3 col-form-label control-label">Commission Buyer
                                             Side:</label>
 
@@ -2457,7 +2457,7 @@
 
                                     <!--Commission for Yarn Export-->
                                     <div
-                                        *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Export Bangladesh' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Comber noil'">
+                                        *ngIf="loggedInDepartmentName=='Yarn Export' || loggedInDepartmentName == 'Yarn Export Bangladesh' || loggedInDepartmentName == 'Yarn Import' || loggedInDepartmentName == 'Comber noil' || loggedInDepartmentName == 'Synthetic Fibers'">
 
                                         <div class="pb-2">
                                             <span class="badge badge-primary">Commission & Kickbak</span>
@@ -2507,7 +2507,7 @@
 
 
 
-                                        <div class="form-group row" *ngIf="loggedInDepartmentName != 'Yarn Import'">
+                                        <div class="form-group row" *ngIf="loggedInDepartmentName != 'Yarn Import' && loggedInDepartmentName != 'Synthetic Fibers'">
                                             <label for="code" class="col-md-3 col-form-label control-label">FabCot
                                                 Commission:</label>
 
@@ -2749,7 +2749,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row"
-                                        *ngIf="loggedInDepartmentName!='Yarn Export' && loggedInDepartmentName != 'Yarn Export Bangladesh' && loggedInDepartmentName!='Fabric Export' && loggedInDepartmentName != 'Yarn Import' &&  loggedInDepartmentName != 'Comber noil' && loggedInDepartmentName != 'Yarn Local Karachi'">
+                                        *ngIf="loggedInDepartmentName!='Yarn Export' && loggedInDepartmentName != 'Yarn Export Bangladesh' && loggedInDepartmentName!='Fabric Export' && loggedInDepartmentName != 'Yarn Import' &&  loggedInDepartmentName != 'Comber noil' && loggedInDepartmentName != 'Yarn Local Karachi' && loggedInDepartmentName != 'Synthetic Fibers'">
                                         <label for="inputEmail3" class="col-md-3 col-form-label control-label">Buyer
                                             Remarks
                                             :</label>

@@ -223,7 +223,7 @@ onResize(event?) {
     this.getContractCostingData();
     this.getContractPaymentData();
 
-    if(this.loggedInDepartmentName == 'Yarn Export' || this.loggedInDepartmentName == 'Yarn Export Bangladesh' || this.loggedInDepartmentName == 'Yarn Import' || this.loggedInDepartmentName == 'Comber noil' ){
+    if(this.loggedInDepartmentName == 'Yarn Export' || this.loggedInDepartmentName == 'Yarn Export Bangladesh' || this.loggedInDepartmentName == 'Yarn Import' || this.loggedInDepartmentName == 'Comber noil' || this.loggedInDepartmentName == 'Synthetic Fibers'){
     this.getContractLOC();
     this.GetCurrencyDropdown();
     }
@@ -242,7 +242,7 @@ onResize(event?) {
   
 
   this.getAllBenificery();
-    if(this.loggedInDepartmentName == 'Yarn Export' || this.loggedInDepartmentName == 'Yarn Export Bangladesh' || this.loggedInDepartmentName == 'Yarn Import' || this.loggedInDepartmentName == 'Comber noil'){
+    if(this.loggedInDepartmentName == 'Yarn Export' || this.loggedInDepartmentName == 'Yarn Export Bangladesh' || this.loggedInDepartmentName == 'Yarn Import' || this.loggedInDepartmentName == 'Comber noil' || this.loggedInDepartmentName == 'Synthetic Fibers'){
 
     this.getAllNotes((NotesData) => {
       this.rows3 = NotesData;
@@ -701,7 +701,7 @@ this.spinner.hide();
 
 
   getAllNotes(cb) {
-if(this.loggedInDepartmentName == 'Yarn Export' || this.loggedInDepartmentName == 'Yarn Export Bangladesh' || this.loggedInDepartmentName == 'Yarn Import' || this.loggedInDepartmentName == 'Comber noil'){
+if(this.loggedInDepartmentName == 'Yarn Export' || this.loggedInDepartmentName == 'Yarn Export Bangladesh' || this.loggedInDepartmentName == 'Yarn Import' || this.loggedInDepartmentName == 'Comber noil' || this.loggedInDepartmentName == 'Synthetic Fibers'){
     this.http
       .get(`${environment.apiUrl}/api/Contracts/GetAllContractNote/`+ this.contractId)
       .subscribe(res => {
@@ -1344,7 +1344,7 @@ getDispatches() {
 }
 
 getProdPlan() {
-  if(this.loggedInDepartmentName == 'Yarn Export' || this.loggedInDepartmentName == 'Yarn Export Bangladesh' || this.loggedInDepartmentName == 'Yarn Import' || this.loggedInDepartmentName == 'Comber noil'){
+  if(this.loggedInDepartmentName == 'Yarn Export' || this.loggedInDepartmentName == 'Yarn Export Bangladesh' || this.loggedInDepartmentName == 'Yarn Import' || this.loggedInDepartmentName == 'Comber noil' || this.loggedInDepartmentName == 'Synthetic Fibers'){
   this.http.get(`${environment.apiUrl}/api/YarnContracts/GetAllContractProductionStatus`)
     .subscribe(
       res => {
@@ -1866,7 +1866,7 @@ getContractRemarkData() {
 getContractLOC() {
 
   if(this.loggedInDepartmentName == 'Yarn Export' || this.loggedInDepartmentName == 'Yarn Export Bangladesh' || this.loggedInDepartmentName == 'Yarn Import' ||
-  this.loggedInDepartmentName == 'Fabric Export' || this.loggedInDepartmentName == 'Comber noil'){
+  this.loggedInDepartmentName == 'Fabric Export' || this.loggedInDepartmentName == 'Comber noil' || this.loggedInDepartmentName == 'Synthetic Fibers'){
   this.http.get(`${environment.apiUrl}/api/Contracts/GetAllContractLetterCredit/` + this.contractId)
 
     .subscribe(
@@ -2141,7 +2141,7 @@ editNote(row, check) {
 }
 
 addProd() {
-  if(this.loggedInDepartmentName == 'Yarn Export' || this.loggedInDepartmentName == 'Yarn Export Bangladesh' || this.loggedInDepartmentName == 'Yarn Import' || this.loggedInDepartmentName == 'Comber noil'){
+  if(this.loggedInDepartmentName == 'Yarn Export' || this.loggedInDepartmentName == 'Yarn Export Bangladesh' || this.loggedInDepartmentName == 'Yarn Import' || this.loggedInDepartmentName == 'Comber noil' || this.loggedInDepartmentName == 'Synthetic Fibers'){
 
   const modalRef = this.modalService.open(ProductionStatusComponent, { centered: true });
   modalRef.result.then((data) => {

@@ -203,7 +203,7 @@ this.spinner.hide();
       
               });
         }
-        else if (this.loggedInDepartmentName == "Yarn Import"){
+        else if (this.loggedInDepartmentName == "Yarn Import" || this.loggedInDepartmentName == "Synthetic Fibers"){
           if(this.data.quantity == undefined){
             this.data.quantity ="0"
           }
