@@ -1152,7 +1152,7 @@ if(this.saleInvoice[0].billInvoiceNumber != 0 ){
           if (this.response.success == true && this.response.data != null) {
             this.contractData = this.response.data;
             
-            if(this.contractData.status == "Closed"){
+            if(this.contractData.status == "Billed" || this.contractData.status == "Closed"){
               if(this.loggedInDepartmentName !='Fabric Local'){
               this.isnotEditAble =true
               }
