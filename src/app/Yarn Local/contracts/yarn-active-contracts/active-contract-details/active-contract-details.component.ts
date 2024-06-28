@@ -763,11 +763,11 @@ if(this.loggedInDepartmentName == 'Yarn Export' || this.loggedInDepartmentName =
           if(data ==true){
 
           //  this.date = this.myDate;
-      //      this.fetch((data) => {
-      //       this.rows = data;
-      // this.saleinvoiceFilter = [...this.rows];
-      //     });
-      //     this.getContractData();
+           this.fetch((data) => {
+            this.rows = data;
+      this.saleinvoiceFilter = [...this.rows];
+          });
+          this.getContractData();
          
         }
        }, (reason) => {
