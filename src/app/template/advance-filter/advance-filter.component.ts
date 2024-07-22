@@ -111,6 +111,15 @@ export class AdvanceFilterComponent implements OnInit {
   navigateTobill(obj) {
     this.router.navigate(['/yarn-billing-and-payment/open-bill'], { queryParams: {id: obj.billId} });
   };
+  navigateTobillSide(obj) {
+    if(obj.isBuyer ==true){
+
+      this.router.navigate(['/yarn-billing-and-payment/open-bill'], { queryParams: {id: null,idbuyer:obj.billId} });
+    }else{
+
+      this.router.navigate(['/yarn-billing-and-payment/open-bill'], { queryParams: {id: obj.billId} });
+    }
+  };
   navigateTobillBuyer(obj) {
     this.router.navigate(['/yarn-billing-and-payment/open-bill'], { queryParams: {id: null,idbuyer:obj.buyerBillId} });
   };
