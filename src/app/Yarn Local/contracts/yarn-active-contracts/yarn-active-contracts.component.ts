@@ -332,6 +332,17 @@ this.spinner.hide();
 }
 
 cloneContractChildExportyarn(clonedata){
+
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You want to Create Child of  '" + clonedata.autoContractNumber + "'!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, Create Child Contract!"
+  }).then((result) => {
+    if (result.isConfirmed) {
   let varr = {
 
   }
@@ -367,43 +378,59 @@ this.spinner.hide();
             }
 
           });
+        }
+      });
 }
 cloneContract(obj){
-  let varr = {
 
-  }
-this.spinner.show();
-  
-   this.http.put(`${environment.apiUrl}/api/Contracts/CloneContract/`+obj.id , varr )
-        .subscribe(
-          res => {
-  
-            this.response = res;
-            if (this.response.success == true) {
-              this.data = this.response.data;
-              this.temp = [this.data];
-            this.toastr.success(this.response.message, 'Message.');
-            this.fetch((data) => {
-              this.temp = [...data]; 
-              this.rows = data;
-            });
-this.spinner.hide();
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You want to Clone '" + obj.autoContractNumber + "'!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, Clone Contract!"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      let varr = {
 
-             }
-            else {
-              this.toastr.error(this.response.message, 'Message.');
-this.spinner.hide();
+      }
+    this.spinner.show();
+      
+       this.http.put(`${environment.apiUrl}/api/Contracts/CloneContract/`+obj.id , varr )
+            .subscribe(
+              res => {
+      
+                this.response = res;
+                if (this.response.success == true) {
+                  this.data = this.response.data;
+                  this.temp = [this.data];
+                this.toastr.success(this.response.message, 'Message.');
+                this.fetch((data) => {
+                  this.temp = [...data]; 
+                  this.rows = data;
+                });
+    this.spinner.hide();
+    
+                 }
+                else {
+                  this.toastr.error(this.response.message, 'Message.');
+    this.spinner.hide();
+    
+                }
+      
+              }, err => {
+                if (err.status == 400) {
+                  this.toastr.error(this.response.message, 'Message.');
+                  this.spinner.hide();
+    
+                }
+    
+              });
+    }
+  });
 
-            }
-  
-          }, err => {
-            if (err.status == 400) {
-              this.toastr.error(this.response.message, 'Message.');
-              this.spinner.hide();
-
-            }
-
-          });
 
 
 }
