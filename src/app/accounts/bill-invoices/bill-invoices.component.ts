@@ -7,7 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Dateformater } from 'src/app/shared/dateformater';
 import { ServiceService } from 'src/app/shared/service.service';
 import { environment } from 'src/environments/environment';
-import { CompositeFilterDescriptor, process,State  } from '@progress/kendo-data-query';
+import { CompositeFilterDescriptor, process  } from '@progress/kendo-data-query';
 import { DataBindingDirective, DataStateChangeEvent } from '@progress/kendo-angular-grid';
 import { SUPPORTED_LANGUAGE } from 'ngx-num-to-words';
 import pdfMake from "pdfmake/build/pdfmake";
@@ -25,7 +25,10 @@ import { PagerPosition, PagerType } from '@progress/kendo-angular-grid/dist/es20
 })
 export class BillInvoicesComponent implements OnInit {
 rows: any = [];
-public state: State = { skip: 0, take: 20 };
+public gridView: unknown[];
+public gridData: unknown[] ;
+loadingIndicator=true;
+  public loading = true;
 columns: any=[];
 SelectionType = SelectionType;
 selected: any = [];
@@ -41,12 +44,12 @@ ids:any;
 idsUpdates:any;
 temp: any = [];
 deptName : any;
-public gridView: GridDataResult;
+
 public mySelection: string[] = [];
 lang : SUPPORTED_LANGUAGE = 'en';
 public view: Observable<GridDataResult>;
 public skip = 0;
-public pageSize = 20;
+public pageSize :any;
 public total = 100;
 public pageSizeValues = [5, 10, 20, 50, 100,500];
 public events: string[] = [];
@@ -79,7 +82,7 @@ constructor(    private service: ServiceService,
    }
 
   ngOnInit(): void {
-    this.sendRequest(this.state);
+    this.sendRequest();
     // this.fetch((data) => {
     //   this.temp = [...data]; 
     //   this.rows = data;
@@ -89,20 +92,9 @@ constructor(    private service: ServiceService,
   public exportToExcel(grid: GridComponent): void {
     grid.saveAsExcel();
   }
-  public pageChange({ skip, take }: PageChangeEvent): void {
-    this.skip = skip;
-    this.pageSize = take;
-    if(this.rows.length >= this.pageSize){
-    this.loadItems();
-    }
-    else{
-      let page = (this.skip + this.pageSize) / this.pageSize;
-      let pages=this.pageSize
-      this.fetch13(page,pages)
-    }
-}
-public sendRequest(state: State): void {
-   if(state.filter ==undefined){
+
+public sendRequest(): void {
+ 
 
     //  var val =state.filter.filters
     // var val1=val[0]
@@ -117,21 +109,24 @@ public sendRequest(state: State): void {
   if(this.deptName == undefined){
     this.deptName = 3;
   }
-  this.spinner.show();
-  this.service.fetch123(this.deptName,this.data2.toDate,this.data2.FromDate,state).subscribe((response: GridDataResult) => {
+  this.loadingIndicator = true;
+  this.loading = true;
+  this.service.fetch123(this.deptName,this.data2.toDate,this.data2.FromDate).subscribe((response:any) => {
       debugger
 
-if(response.data.length >0){
-      this.rows1 = response;
-      this.temp=this.rows1.data ,
-      this.rows=this.rows1.data ,
+if(response.data.objList.length >0){
+  this.pageSize =response.data.objList.length
+  this.gridView = response.data.objList;
+            this.gridData = [...response.data.objList];
+
       this.data2.toDate = this.dateformater.fromModel(this.data2.toDate)
       this.data2.FromDate = this.dateformater.fromModel(this.data2.FromDate)
-      this.spinner.hide();}
+      this.loadingIndicator = false;
+      this.loading = false;
+    }
       else{
-        this.rows1 = response;
-        this.temp=this.rows1.data ,
-        this.rows=this.rows1.data ,
+        this.gridView = response.data.objList;
+        this.gridData = [...response.data.objList];
         this.data2.toDate = this.dateformater.fromModel(this.data2.toDate)
         this.data2.FromDate = this.dateformater.fromModel(this.data2.FromDate)
         this.spinner.hide();
@@ -139,10 +134,8 @@ if(response.data.length >0){
       }
   });
     //  this.onFilter(val1)
-   }
- else{
- this.filterChange(state.filter)
- }
+   
+
 //   this.service.fetch123(state).subscribe((response: GridDataResult) => {
 //     debugger
 
@@ -152,17 +145,8 @@ if(response.data.length >0){
 //     this.spinner.hide();
 // });
 }
-public dataStateChange(state: DataStateChangeEvent): void {
-  this.state = state;
-  this.sendRequest(state);
-}
-public loadItems(): void {
-  
-    this.gridView = {
-        data: this.rows.slice(this.skip, this.skip + this.pageSize),
-        total: this.rows.length
-    };
-}
+
+
   onSelect(selecterow) {
     this.selected =selecterow.selected;
   }
@@ -188,67 +172,14 @@ public loadItems(): void {
   }
 
 
-  public filter: CompositeFilterDescriptor = {
-    logic: "or",
-    filters: [],
-  };
-  public filterChange(filter): void {
-    if(filter.filters.length != 0){
-    this.filter = filter.filters;
 
-    let val2=filter.filters[0]
-    const val =val2.value.toLowerCase();
-    const temp = this.rows.filter(function (d) {
-      return (d.sellerName.toLowerCase().indexOf(val) !== -1   
-      || d.billInvoiceNumber.toLowerCase().indexOf(val) !==-1 
-      || d.billNumber.toLowerCase().indexOf(val) !==-1 
-      || d.autoContractNumber.toLowerCase().indexOf(val) !==-1 
-      || !val);
-    });
-    this.rows1 = temp;
-  }
-  else{
-    this.sate2(this.state)
-  }
-    //this.loadData();
-  }
-
-  public sate2(state: State): void {
- 
-     //  var val =state.filter.filters
-     // var val1=val[0]
-     if((typeof (this.data2.toDate)) === 'string'){
-
-     }
-     else{
-      this.data2.toDate = this.dateformater.toModel(this.data2.toDate)
-      this.data2.FromDate = this.dateformater.toModel(this.data2.FromDate)
-     }
-
-  
-   if(this.deptName == undefined){
-     this.deptName = 3;
-   }
-   this.spinner.show();
-   this.service.fetch123(this.deptName,this.data2.toDate,this.data2.FromDate,state).subscribe((response: GridDataResult) => {
-       debugger
- 
- 
-       this.rows1 = response;
-       this.temp=this.rows1.data ,
-       this.rows=this.rows1.data ,
-       this.data2.toDate = this.dateformater.fromModel(this.data2.toDate)
-       this.data2.FromDate = this.dateformater.fromModel(this.data2.FromDate)
-       this.spinner.hide();
-   });
-
-  }
   public loadData(): void {
     this.rows1 = process(this.temp, this.temp);
     //this.gridData = process(sampleProducts, { filter: this.filter });
   }
-  public onFilter(inputValue: any): void {
-    this.rows = process(this.temp, {
+  public onFilter(input: Event): void {
+    const inputValue = (input.target as HTMLInputElement).value;
+    this.gridView = process(this.gridData, {
         filter: {
             logic: "or",
             filters: [
@@ -338,16 +269,13 @@ public loadItems(): void {
      
     if(this.response.success==true)
     {
-      
+      this.pageSize =this.response.data.objList.length
     this.data=this.response.data;
     this.dashboardAmnt = this.data
     if(this.data.objList.length > 0){
     this.rows = this.data.objList;
 
-    this.gridView = {
-      data: this.rows,
-      total: parseInt(this.rows[0].recordCount,10)
-    };
+    this.gridView = this.data.objList
      cb(this.data.objList);
     this.spinner.hide();
   }
@@ -397,11 +325,8 @@ public loadItems(): void {
     this.dashboardAmnt = this.data
     this.temp = [...this.data.objList]; 
     this.rows = this.data.objList;
-// this.loadItems();
-this.gridView = {
-  data: this.rows.slice(this.skip, this.skip + this.pageSize),
-  total: parseInt(this.rows[0].recordCount,10)
-};
+
+this.gridView = this.data.objList
 
      //cb(this.data.objList);
     this.spinner.hide();
@@ -423,52 +348,7 @@ this.gridView = {
   }
 
 
-  fetch1() {
-    // this.data2.toDate = this.dateformater.toModel(this.data2.toDate)
-    // this.data2.FromDate = this.dateformater.toModel(this.data2.FromDate)
 
-    if(this.data2.toDate == "undefined-undefined-undefined"){
-      this.data2.toDate ="null";
-      this.data2.FromDate ="null";
-    }
-    if(this.deptName == undefined){
-      this.deptName = 3;
-    }
-    this.spinner.show();
-    this.sendRequest(this.state);
-  //   this.http
-  //   .get(`${environment.apiUrl}/api/BillingPayments/GetAllContractBillForInvoices/`+this.deptName+'/'+ this.data2.toDate + '/' + this.data2.FromDate+'/'+1+'/'+this.pageSize)
-  //   .subscribe(res => {
-  //     this.response = res;
-     
-  //   if(this.response.success==true)
-  //   {
-  //     this.data2.toDate = this.dateformater.fromModel(this.data2.toDate)
-  //     this.data2.FromDate = this.dateformater.fromModel(this.data2.FromDate)
-  //   this.data=this.response.data;
-  //   this.dashboardAmnt = this.data
-  //   this.temp = [...this.data.objList]; 
-  //   this.rows = this.data.objList;
-
-
-  //    //cb(this.data.objList);
-  //   this.spinner.hide();
-
-  //   }
-  //   else{
-  //     this.toastr.error(this.response.message, 'Message.');
-  //     this.spinner.hide();
-    
-  //   }
-
-  //   }, err => {
-  //     if ( err.status == 400) {
-  // this.toastr.error(err.error.message, 'Message.');
-  // this.spinner.hide();
-
-  //     }
-  //   });
-  }
   getdept(event){
     this.deptName = event.target.value
     localStorage.setItem('department',this.deptName)
@@ -509,8 +389,8 @@ this.gridView = {
           this.datatext.textValue = ''
           this.idsUpdates =[];
           this.mySelection=[];
-            this.sendRequest(this.state);
-           this.rows = process(this.temp,this.state)
+            this.sendRequest();
+           
 
         }
         else {

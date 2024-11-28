@@ -173,7 +173,7 @@
         placeholder="End Date">
 
         <div class="input-group-append">
-            <button type="button" class="btn btn-primary" (click) = "fetch1()" ><i class="fa fa-search"></i> 
+            <button type="button" class="btn btn-primary" (click) = "sendRequest()" ><i class="fa fa-search"></i> 
             </button>
           </div>
 
@@ -293,27 +293,19 @@
            
         <kendo-grid
         #grid="kendoGrid"
-        [data]="rows1"
+        [kendoGridBinding]="gridView"
         kendoGridSelectBy="id"
         [selectedKeys]="mySelection"
-        [pageSize]="state.take"
-        [skip]="state.skip"
+        [pageSize]="pageSize"
+        [columnMenu]="{ filter: true }"
         [sortable]="true"
         [reorderable]="true"
         [resizable]="true"
         [height]="450"
-        [pageable]="{
-          buttonCount: buttonCount,
-          info: info,
-          type: type,
-          pageSizes: pageSizes,
-          previousNext: previousNext,
-          position: position
-        }"
+        [pageable]="true"
         [filterable]="true"
-        [loading]="rows.loading"
-        (dataStateChange)="dataStateChange($event)"
-        [filter]="state.filter"
+        [loading]="loading"
+        
         
         >
         <!-- (filterChange)="filterChange($event)" -->

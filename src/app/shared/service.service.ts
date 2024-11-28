@@ -100,31 +100,20 @@ export class ServiceService {
 //       );
 // }
   //file upload service starts here
-  public fetch123(deptName,toDate,FromDate,state: any): Observable<GridDataResult> {
-     const skip = state.skip;
-   const pagesize = state.take;
-   let page = (skip + pagesize) / pagesize;
+  public fetch123(deptName,toDate,FromDate,): Observable<GridDataResult> {
+    
+   const pagesize = 20
+   let page = 1
 //   const queryStr = `${toDataSourceRequestString(state)}`;
     return this.http
     .get(`${environment.apiUrl}/api/BillingPayments/GetAllContractBillForInvoices/`+ deptName+ '/'   + toDate + '/' + FromDate+'/'+page+'/'+pagesize)
         .pipe(
             // Process the response.
-            map(({ data, total }: GridDataResult): GridDataResult => {
-            
+            map( (data: any) => {
+             
+                
                 this.data1=data;
-                if(this.data1.objList.length == 0){
-                  return {
-                    data: this.data1.objList,
-                    total: 0, 
-                };
-                }else{
-                  let c= this.data1.objList[0].recordCount
-                  total=c
-               return {
-                   data: this.data1.objList,
-                   total: total, 
-               };
-                }
+              return this.data1
                  
             })
         );
