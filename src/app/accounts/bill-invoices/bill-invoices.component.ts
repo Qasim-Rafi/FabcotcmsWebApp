@@ -123,6 +123,7 @@ if(response.data.objList.length >0){
       this.data2.FromDate = this.dateformater.fromModel(this.data2.FromDate)
       this.loadingIndicator = false;
       this.loading = false;
+      this.spinner.hide();
     }
       else{
         this.gridView = response.data.objList;
@@ -274,6 +275,8 @@ if(response.data.objList.length >0){
     this.dashboardAmnt = this.data
     if(this.data.objList.length > 0){
     this.rows = this.data.objList;
+    this.gridView = this.data.objList;
+            this.gridData = [...this.data.objList];
 
     this.gridView = this.data.objList
      cb(this.data.objList);
@@ -325,7 +328,8 @@ if(response.data.objList.length >0){
     this.dashboardAmnt = this.data
     this.temp = [...this.data.objList]; 
     this.rows = this.data.objList;
-
+    this.gridView = this.data.objList;
+    this.gridData = [...this.data.objList];
 this.gridView = this.data.objList
 
      //cb(this.data.objList);
@@ -356,6 +360,8 @@ this.gridView = this.data.objList
     this.fetch((data) => {
       this.temp = [...data]; 
       this.rows1 = data;
+      this.gridView = data;
+            this.gridData = [...data];
     });
   }
 
