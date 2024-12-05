@@ -372,6 +372,7 @@ this.gridView = this.data.objList
  else{
     this.ids=this.mySelection;
     this.idsUpdates=this.ids
+    this.rows =this.gridData
     for(let i=0;i<=this.idsUpdates.length; i++){
             var d= this.rows.filter(x=>x.id == this.idsUpdates[i]);
             if(d.length >0 ){
