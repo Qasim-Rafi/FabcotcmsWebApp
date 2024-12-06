@@ -464,7 +464,7 @@ getafterGenrated(){
     this.idsUpdates= [];
     this.ids=this.mySelection;
     this.idsUpdates=this.ids
-  
+    this.rows =this.gridData
     if(this.ids.length === 0  || this.mySelection.length === 0  ){
       this.toastr.error("PLease select atleast one bill to generate print" , 'Message')
     }
@@ -498,6 +498,7 @@ getafterGenrated(){
 
 
   ExcelFile(){
+    this.rows =this.gridView
     const filtered = this.rows.map(row => ({
       InvoiceDepartment:row.invoiceDepartment,
       SellerName: row.sellerName,
@@ -515,7 +516,7 @@ getafterGenrated(){
 
   }
   Pdf() {
-
+  this.rows =this.gridView
     let docDefinition = {
       pageSize: 'A4',
       pageOrientation: 'Landscape',
