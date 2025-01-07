@@ -96,6 +96,8 @@ import { VoucherReportAccountComponent } from './accounts/voucher-report-account
 import { GenericFilterForAllComponent } from './shared/generic-filter-for-all/generic-filter-for-all.component';
 import { EmailgenerationComponent } from './shared/emailgeneration/emailgeneration.component';
 import { SalesTargetComponent } from './accounts/sales-target/sales-target.component';
+import { SerchEditInvoiceComponent } from './accounts/serch-edit-invoice/serch-edit-invoice.component';
+import { SearchEditInvoicePopupComponent } from './accounts/serch-edit-invoice/search-edit-invoice-popup/search-edit-invoice-popup.component';
 const appRoutes: Routes = [] 
 
 
@@ -164,6 +166,10 @@ const appRoutes: Routes = []
     EmailgenerationComponent,
    
     SalesTargetComponent,
+   
+    SerchEditInvoiceComponent,
+   
+    SearchEditInvoicePopupComponent,
    
   
 
