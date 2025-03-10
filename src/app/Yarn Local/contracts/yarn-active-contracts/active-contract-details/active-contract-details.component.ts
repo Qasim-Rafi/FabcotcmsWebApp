@@ -889,7 +889,7 @@ lcForm2( check){
             }   
           } 
 if(this.saleInvoice[0].billInvoiceNumber != 0 ){
-  if(this.loggedInDepartmentName !='Fabric Local' && this.loggedInDepartmentName !='Yarn Import'){
+  if(this.loggedInDepartmentName !='Fabric Local' && this.loggedInDepartmentName !='Yarn Import' && this.loggedInDepartmentName !='Fabric Export'){
           this.isnotEditAble = true
   }
 }
@@ -1153,7 +1153,7 @@ if(this.saleInvoice[0].billInvoiceNumber != 0 ){
             this.contractData = this.response.data;
             
             if(this.contractData.status == "Billed"){
-              if(this.loggedInDepartmentName !='Fabric Local' && this.loggedInDepartmentName !='Yarn Import'){
+              if(this.loggedInDepartmentName !='Fabric Local' && this.loggedInDepartmentName !='Yarn Import' && this.loggedInDepartmentName !='Fabric Export'){
               this.isnotEditAble =true
               }
 
