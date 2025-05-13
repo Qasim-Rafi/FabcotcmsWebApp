@@ -163,6 +163,7 @@ screenHeight:any;
 screenWidth:any;
 saleQuantityT:any;
 @HostListener('window:resize', ['$event'])
+errorMessage: string = ''; 
 onResize(event?) {
    this.screenHeight = window.innerHeight;
    this.screenWidth = window.innerWidth;
@@ -882,6 +883,7 @@ lcForm2( check){
 
         if (this.response.success == true && this.response.data != null) {
           this.saleInvoice = this.response.data
+          this.checkForDuplicateInvoices()
           if(this.loggedInDepartmentName =='Fabric Local' && this.contractCostingData.adIncomeTaxFL != null){
             for(let i=0; i<this.saleInvoice.length; i++){
               let am= parseFloat(this.saleInvoice[i].quantity)  * parseFloat(this.contractCostingData.rate);
@@ -894,6 +896,11 @@ if(this.saleInvoice[0].billInvoiceNumber != 0 ){
   }
 }
           // this.deliveryFilter = [...this.deliveryData]
+
+
+           
+
+
         }
         else if(this.response.success == false) {
          
@@ -906,6 +913,18 @@ if(this.saleInvoice[0].billInvoiceNumber != 0 ){
         console.log(messages);
       });
   }
+  checkForDuplicateInvoices(): boolean {
+  const invoiceNumbers = this.saleInvoice.map(inv => inv.saleInvoiceNo);
+  const duplicates = invoiceNumbers.filter((item, index) => invoiceNumbers.indexOf(item) !== index);
+
+  if (duplicates.length > 0) {
+    this.errorMessage = `Duplicate invoice numbers found: ${[...new Set(duplicates)].join(', ')}`;
+    return true;
+  }
+
+  this.errorMessage = '';
+  return false;
+}
   editinvoice(row,check) {
     const modalRef = this.modalService.open(SaleInvoicePopUpComponent, { centered: true });
   modalRef.componentInstance.contractId = this.contractId;
